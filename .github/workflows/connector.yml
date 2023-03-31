@@ -1,0 +1,26 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+      - rc-**
+
+jobs:
+  UnitTest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Go
+      uses: actions/setup-go@v3
+      with:
+        go-version-file: './go.mod'
+    - name: Format
+      run: ./scripts/checks.sh format
+    - name: Vet
+      run: ./scripts/checks.sh vet
+    - name: UnitTest
+      run: go test -v .
