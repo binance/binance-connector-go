@@ -524,7 +524,8 @@ func (s *MarginAccountNewOrderService) TimeInForce(timeInForce string) *MarginAc
 }
 
 // Do send request
-func (s *MarginAccountNewOrderService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountNewOrderResponse, err error) {
+func (s *MarginAccountNewOrderService) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
+	respType := ACK
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: marginAccountNewOrderEndpoint,
@@ -534,6 +535,12 @@ func (s *MarginAccountNewOrderService) Do(ctx context.Context, opts ...RequestOp
 		"symbol": s.symbol,
 		"side":   s.side,
 		"type":   s.orderType,
+	}
+	switch s.orderType {
+	case "MARKET":
+		respType = FULL
+	case "LIMIT":
+		respType = FULL
 	}
 	if s.isIsolated != nil {
 		m["isIsolated"] = *s.isIsolated
@@ -558,6 +565,14 @@ func (s *MarginAccountNewOrderService) Do(ctx context.Context, opts ...RequestOp
 	}
 	if s.newOrderRespType != nil {
 		m["newOrderRespType"] = *s.newOrderRespType
+		switch *s.newOrderRespType {
+		case "ACK":
+			respType = ACK
+		case "RESULT":
+			respType = RESULT
+		case "FULL":
+			respType = FULL
+		}
 	}
 	if s.sideEffectType != nil {
 		m["sideEffectType"] = *s.sideEffectType
@@ -568,18 +583,34 @@ func (s *MarginAccountNewOrderService) Do(ctx context.Context, opts ...RequestOp
 	r.setParams(m)
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountNewOrderResponse{}, err
+		return nil, err
 	}
-	res = new(MarginAccountNewOrderResponse)
+	switch respType {
+	case ACK:
+		res = new(MarginAccountNewOrderResponseACK)
+	case RESULT:
+		res = new(MarginAccountNewOrderResponseRESULT)
+	case FULL:
+		res = new(MarginAccountNewOrderResponseFULL)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
-		return &MarginAccountNewOrderResponse{}, err
+		return nil, err
 	}
 	return res, nil
 }
 
-// MarginAccountNewOrderResponse define margin account new order response
-type MarginAccountNewOrderResponse struct {
+// Create MarginAccountNewOrderResponseACK
+type MarginAccountNewOrderResponseACK struct {
+	Symbol        string `json:"symbol"`
+	OrderId       int64  `json:"orderId"`
+	ClientOrderId int64  `json:"clientOrderId"`
+	IsIsolated    bool   `json:"isIsolated"`
+	TransactTime  uint64 `json:"transactTime"`
+}
+
+// Create MarginAccountNewOrderResponseRESULT
+type MarginAccountNewOrderResponseRESULT struct {
 	Symbol             string `json:"symbol"`
 	OrderId            int64  `json:"orderId"`
 	ClientOrderId      string `json:"clientOrderId"`
@@ -593,6 +624,31 @@ type MarginAccountNewOrderResponse struct {
 	Type               string `json:"type"`
 	IsIsolated         bool   `json:"isIsolated"`
 	Side               string `json:"side"`
+}
+
+// Create MarginAccountNewOrderResponseFULL
+type MarginAccountNewOrderResponseFULL struct {
+	Symbol                string  `json:"symbol"`
+	OrderId               int64   `json:"orderId"`
+	ClientOrderId         string  `json:"clientOrderId"`
+	TransactTime          uint64  `json:"transactTime"`
+	Price                 string  `json:"price"`
+	OrigQty               string  `json:"origQty"`
+	ExecutedQty           string  `json:"executedQty"`
+	CumulativeQuoteQty    string  `json:"cummulativeQuoteQty"`
+	Status                string  `json:"status"`
+	TimeInForce           string  `json:"timeInForce"`
+	Type                  string  `json:"type"`
+	Side                  string  `json:"side"`
+	MarginBuyBorrowAmount float64 `json:"marginBuyBorrowAmount"`
+	MarginBuyBorrowAsset  string  `json:"marginBuyBorrowAsset"`
+	IsIsolated            bool    `json:"isIsolated"`
+	Fills                 []struct {
+		Price           string `json:"price"`
+		Qty             string `json:"qty"`
+		Commission      string `json:"commission"`
+		CommissionAsset string `json:"commissionAsset"`
+	} `json:"fills"`
 }
 
 // Margin Account Cancel Order (TRADE) API Endpoint
@@ -2713,7 +2769,7 @@ func (s *MarginIsolatedAccountInfoService) Symbols(symbols string) *MarginIsolat
 }
 
 // Do send request
-func (s *MarginIsolatedAccountInfoService) Do(ctx context.Context, opts ...RequestOption) (res *MarginIsolatedAccountInfoResponse, err error) {
+func (s *MarginIsolatedAccountInfoService) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginIsolatedAccountInfoEndpoint,
@@ -2724,52 +2780,74 @@ func (s *MarginIsolatedAccountInfoService) Do(ctx context.Context, opts ...Reque
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginIsolatedAccountInfoResponse{}, err
+		if s.symbols != nil {
+			return &MarginIsolatedAccountInfoResponseSymbols{}, err
+		} else {
+			return &MarginIsolatedAccountInfoResponse{}, err
+		}
 	}
-	res = new(MarginIsolatedAccountInfoResponse)
+	if s.symbols != nil {
+		res = new(MarginIsolatedAccountInfoResponseSymbols)
+	} else {
+		res = new(MarginIsolatedAccountInfoResponse)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
-		return &MarginIsolatedAccountInfoResponse{}, err
+		if s.symbols != nil {
+			return &MarginIsolatedAccountInfoResponseSymbols{}, err
+		} else {
+			return &MarginIsolatedAccountInfoResponse{}, err
+		}
 	}
 	return res, nil
 }
 
-// MarginIsolatedAccountInfoService response
+type MarginIsolatedAccountInfoAssets struct {
+	BaseAsset struct {
+		Asset         string `json:"asset"`
+		BorrowEnabled bool   `json:"borrowEnabled"`
+		Free          string `json:"free"`
+		Interest      string `json:"interest"`
+		Locked        string `json:"locked"`
+		NetAsset      string `json:"netAsset"`
+		NetAssetOfBtc string `json:"netAssetOfBtc"`
+		RepayEnabled  bool   `json:"repayEnabled"`
+		TotalAsset    string `json:"totalAsset"`
+	} `json:"baseAsset"`
+	QuoteAsset struct {
+		Asset         string `json:"asset"`
+		BorrowEnabled bool   `json:"borrowEnabled"`
+		Free          string `json:"free"`
+		Interest      string `json:"interest"`
+		Locked        string `json:"locked"`
+		NetAsset      string `json:"netAsset"`
+		NetAssetOfBtc string `json:"netAssetOfBtc"`
+		RepayEnabled  bool   `json:"repayEnabled"`
+		TotalAsset    string `json:"totalAsset"`
+	} `json:"quoteAsset"`
+	Symbol            string `json:"symbol"`
+	IsolatedCreated   bool   `json:"isolatedCreated"`
+	Enabled           bool   `json:"enabled"`
+	MarginLevel       string `json:"marginLevel"`
+	MarginLevelStatus string `json:"marginLevelStatus"`
+	MarginRatio       string `json:"marginRatio"`
+	IndexPrice        string `json:"indexPrice"`
+	LiquidatePrice    string `json:"liquidatePrice"`
+	LiquidateRate     string `json:"liquidateRate"`
+	TradeEnabled      bool   `json:"tradeEnabled"`
+}
+
+// MarginIsolatedAccountInfoService response if symbols parameter is not sent
+type MarginIsolatedAccountInfoResponseSymbols struct {
+	Assets []*MarginIsolatedAccountInfoAssets `json:"assets"`
+}
+
+// MarginIsolatedAccountInfoService response if symbols parameter is sent
 type MarginIsolatedAccountInfoResponse struct {
-	Assets []struct {
-		BaseAsset struct {
-			Asset         string `json:"asset"`
-			BorrowEnabled bool   `json:"borrowEnabled"`
-			Free          string `json:"free"`
-			Interest      string `json:"interest"`
-			Locked        string `json:"locked"`
-			NetAsset      string `json:"netAsset"`
-			NetAssetOfBtc string `json:"netAssetOfBtc"`
-			RepayEnabled  bool   `json:"repayEnabled"`
-			TotalAsset    string `json:"totalAsset"`
-		} `json:"baseAsset"`
-		QuoteAsset struct {
-			Asset         string `json:"asset"`
-			BorrowEnabled bool   `json:"borrowEnabled"`
-			Free          string `json:"free"`
-			Interest      string `json:"interest"`
-			Locked        string `json:"locked"`
-			NetAsset      string `json:"netAsset"`
-			NetAssetOfBtc string `json:"netAssetOfBtc"`
-			RepayEnabled  bool   `json:"repayEnabled"`
-			TotalAsset    string `json:"totalAsset"`
-		} `json:"quoteAsset"`
-		Symbol            string `json:"symbol"`
-		IsolatedCreated   bool   `json:"isolatedCreated"`
-		Enabled           bool   `json:"enabled"`
-		MarginLevel       string `json:"marginLevel"`
-		MarginLevelStatus string `json:"marginLevelStatus"`
-		MarginRatio       string `json:"marginRatio"`
-		IndexPrice        string `json:"indexPrice"`
-		LiquidatePrice    string `json:"liquidatePrice"`
-		LiquidateRate     string `json:"liquidateRate"`
-		TradeEnabled      bool   `json:"tradeEnabled"`
-	} `json:"assets"`
+	Assets              []*MarginIsolatedAccountInfoAssets `json:"assets"`
+	TotalAssetOfBtc     string                             `json:"totalAssetOfBtc"`
+	TotalLiabilityOfBtc string                             `json:"totalLiabilityOfBtc"`
+	TotalNetAssetOfBtc  string                             `json:"totalNetAssetOfBtc"`
 }
 
 // Disable Isolated Margin Account (TRADE)

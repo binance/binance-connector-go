@@ -7,7 +7,7 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -40,11 +40,9 @@ type doFunc func(req *http.Request) (*http.Response, error)
 
 // Globals
 const (
-	baseAPIMainURL    = "https://api.binance.com"
-	baseAPITestnetURL = "https://testnet.binance.vision"
-	timestampKey      = "timestamp"
-	signatureKey      = "signature"
-	recvWindowKey     = "recvWindow"
+	timestampKey  = "timestamp"
+	signatureKey  = "signature"
+	recvWindowKey = "recvWindow"
 )
 
 func currentTimestamp() int64 {
@@ -162,7 +160,7 @@ func (c *Client) callAPI(ctx context.Context, r *request, opts ...RequestOption)
 	if err != nil {
 		return []byte{}, err
 	}
-	data, err = ioutil.ReadAll(res.Body)
+	data, err = io.ReadAll(res.Body)
 	if err != nil {
 		return []byte{}, err
 	}

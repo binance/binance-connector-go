@@ -201,14 +201,14 @@ func (s *accountTestSuite) TestNewOrder() {
 		Do(ctx)
 
 	s.r().NoError(err)
-	e := &CreateOrderResponse{
+	e := &CreateOrderResponseFULL{
 		Symbol:  "BTCUSDT",
 		OrderId: 28,
 	}
-	s.assertCreateOrderResponseEqual(e, res)
+	s.assertCreateOrderResponseEqual(e, res.(*CreateOrderResponseFULL))
 }
 
-func (s *accountTestSuite) assertCreateOrderResponseEqual(e, a *CreateOrderResponse) {
+func (s *accountTestSuite) assertCreateOrderResponseEqual(e, a *CreateOrderResponseFULL) {
 	r := s.r()
 	r.Equal(e.Symbol, a.Symbol, "Symbol")
 	r.Equal(e.OrderId, a.OrderId, "OrderId")

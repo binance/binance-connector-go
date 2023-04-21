@@ -3,7 +3,7 @@ package binance_connector
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"testing"
@@ -90,7 +90,7 @@ func anyHTTPRequest() mock.AnythingOfTypeArgument {
 
 func newHTTPResponse(data []byte, statusCode int) *http.Response {
 	return &http.Response{
-		Body:       ioutil.NopCloser(bytes.NewBuffer(data)),
+		Body:       io.NopCloser(bytes.NewBuffer(data)),
 		StatusCode: statusCode,
 	}
 }

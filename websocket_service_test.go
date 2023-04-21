@@ -66,11 +66,13 @@ func (s *websocketTestSuite) assertUserDataEvent(e, a *WsUserDataEvent) {
 }
 
 func (s *websocketTestSuite) testWsUserDataServe(data []byte, expectedEvent *WsUserDataEvent) {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+
 	fakeErrMsg := "fake error"
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsUserDataServe("fakeListenKey", func(event *WsUserDataEvent) {
+	doneC, stopC, err := websocketStreamClient.WsUserDataServe("listenKey", func(event *WsUserDataEvent) {
 		s.assertUserDataEvent(expectedEvent, event)
 	}, func(err error) {
 		s.r().EqualError(err, fakeErrMsg)
@@ -156,6 +158,8 @@ func (s *websocketTestSuite) TestWsUserDataServeAccountUpdate() {
 }
 
 func (s *websocketTestSuite) TestWsTradeServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+
 	data := []byte(`{
         "e": "trade",
         "E": 123456789,
@@ -173,7 +177,7 @@ func (s *websocketTestSuite) TestWsTradeServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsTradeServe("BNBBTC", func(event *WsTradeEvent) {
+	doneC, stopC, err := websocketStreamClient.WsTradeServe("BNBBTC", func(event *WsTradeEvent) {
 		e := &WsTradeEvent{
 			Event:         "trade",
 			Time:          123456789,
@@ -209,7 +213,8 @@ func (s *websocketTestSuite) assertWsTradeEventEqual(e, a *WsTradeEvent) {
 	r.Equal(e.IsBuyerMaker, a.IsBuyerMaker, "IsBuyerMaker")
 }
 
-func (s *websocketTestSuite) TestWsAllMiniMarketsStatServe() {
+func (s *websocketTestSuite) TestWsAllMarketMiniTickersStatServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`[{
   		"e": "24hrMiniTicker",
     	"E": 1523658017154,
@@ -235,9 +240,9 @@ func (s *websocketTestSuite) TestWsAllMiniMarketsStatServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsAllMiniMarketsStatServe(func(event WsAllMiniMarketsStatEvent) {
-		e := WsAllMiniMarketsStatEvent{
-			&WsMiniMarketsStatEvent{
+	doneC, stopC, err := websocketStreamClient.WsAllMarketMiniTickersStatServe(func(event WsAllMarketMiniTickersStatEvent) {
+		e := WsAllMarketMiniTickersStatEvent{
+			&WsMarketMiniStatEvent{
 				Event:       "24hrMiniTicker",
 				Time:        1523658017154,
 				Symbol:      "BNBBTC",
@@ -248,7 +253,7 @@ func (s *websocketTestSuite) TestWsAllMiniMarketsStatServe() {
 				BaseVolume:  "3479863.89000000",
 				QuoteVolume: "5725.90587704",
 			},
-			&WsMiniMarketsStatEvent{
+			&WsMarketMiniStatEvent{
 				Event:       "24hrMiniTicker",
 				Time:        1523658017133,
 				Symbol:      "BNBETH",
@@ -260,7 +265,7 @@ func (s *websocketTestSuite) TestWsAllMiniMarketsStatServe() {
 				QuoteVolume: "11873.11095682",
 			},
 		}
-		s.assertWsAllMiniMarketsStatEventEqual(e, event)
+		s.assertWsAllMarketMiniTickersStatEventEqual(e, event)
 	}, func(err error) {
 		s.r().EqualError(err, fakeErrMsg)
 	})
@@ -269,13 +274,13 @@ func (s *websocketTestSuite) TestWsAllMiniMarketsStatServe() {
 	<-doneC
 }
 
-func (s *websocketTestSuite) assertWsAllMiniMarketsStatEventEqual(e, a WsAllMiniMarketsStatEvent) {
+func (s *websocketTestSuite) assertWsAllMarketMiniTickersStatEventEqual(e, a WsAllMarketMiniTickersStatEvent) {
 	for i := range e {
-		s.assertWsMiniMarketsStatEventEqual(e[i], a[i])
+		s.assertWsMarketMiniTickersStatEventEqual(e[i], a[i])
 	}
 }
 
-func (s *websocketTestSuite) assertWsMiniMarketsStatEventEqual(e, a *WsMiniMarketsStatEvent) {
+func (s *websocketTestSuite) assertWsMarketMiniTickersStatEventEqual(e, a *WsMarketMiniStatEvent) {
 	r := s.r()
 	r.Equal(e.Event, a.Event, "Event")
 	r.Equal(e.Time, a.Time, "Time")
@@ -289,6 +294,7 @@ func (s *websocketTestSuite) assertWsMiniMarketsStatEventEqual(e, a *WsMiniMarke
 }
 
 func (s *websocketTestSuite) TestBookTickerServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`{
   		"u":17242169,
   		"s":"BTCUSD_200626",
@@ -301,7 +307,7 @@ func (s *websocketTestSuite) TestBookTickerServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsBookTickerServe("BTCUSD_200626", func(event *WsBookTickerEvent) {
+	doneC, stopC, err := websocketStreamClient.WsBookTickerServe("BTCUSD_200626", func(event *WsBookTickerEvent) {
 		e := &WsBookTickerEvent{
 			UpdateID:     17242169,
 			Symbol:       "BTCUSD_200626",
@@ -332,6 +338,7 @@ func (s *websocketTestSuite) assertWsBookTickerEvent(e, a *WsBookTickerEvent) {
 }
 
 func (s *websocketTestSuite) TestDepthServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`{
         "e": "depthUpdate",
         "E": 1499404630606,
@@ -367,7 +374,7 @@ func (s *websocketTestSuite) TestDepthServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsDepthServe("ETHBTC", func(event *WsDepthEvent) {
+	doneC, stopC, err := websocketStreamClient.WsDepthServe("ETHBTC", func(event *WsDepthEvent) {
 		e := &WsDepthEvent{
 			Event:         "depthUpdate",
 			Time:          1499404630606,
@@ -422,6 +429,7 @@ func (s *websocketTestSuite) assertWsDepthEventEqual(e, a *WsDepthEvent) {
 }
 
 func (s *websocketTestSuite) TestKlineServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`{
         "e": "kline",
         "E": 1499404907056,
@@ -450,7 +458,7 @@ func (s *websocketTestSuite) TestKlineServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsKlineServe("ETHBTC", "1m", func(event *WsKlineEvent) {
+	doneC, stopC, err := websocketStreamClient.WsKlineServe("ETHBTC", "1m", func(event *WsKlineEvent) {
 		e := &WsKlineEvent{
 			Event:  "kline",
 			Time:   1499404907056,
@@ -508,6 +516,7 @@ func (s *websocketTestSuite) assertWsKlineEventEqual(e, a *WsKlineEvent) {
 }
 
 func (s *websocketTestSuite) TestWsAggTradeServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`{
         "e": "aggTrade",
         "E": 1499405254326,
@@ -525,7 +534,7 @@ func (s *websocketTestSuite) TestWsAggTradeServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsAggTradeServe("ETHBTC", func(event *WsAggTradeEvent) {
+	doneC, stopC, err := websocketStreamClient.WsAggTradeServe("ETHBTC", func(event *WsAggTradeEvent) {
 		e := &WsAggTradeEvent{
 			Event:                 "aggTrade",
 			Time:                  1499405254326,
@@ -561,7 +570,8 @@ func (s *websocketTestSuite) assertWsAggTradeEventEqual(e, a *WsAggTradeEvent) {
 	r.Equal(e.IsBuyerMaker, a.IsBuyerMaker, "IsBuyerMaker")
 }
 
-func (s *websocketTestSuite) TestWsAllMarketsStatServe() {
+func (s *websocketTestSuite) TestWsAllMarketTickersStatServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
 	data := []byte(`[{
   		"e": "24hrTicker",
   		"E": 123456789,
@@ -615,9 +625,9 @@ func (s *websocketTestSuite) TestWsAllMarketsStatServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := WsAllMarketsStatServe(func(event WsAllMarketsStatEvent) {
-		e := WsAllMarketsStatEvent{
-			&WsMarketStatEvent{
+	doneC, stopC, err := websocketStreamClient.WsAllMarketTickersStatServe(func(event WsAllMarketTickersStatEvent) {
+		e := WsAllMarketTickersStatEvent{
+			&WsMarketTickerStatEvent{
 				Event:              "24hrTicker",
 				Time:               123456789,
 				Symbol:             "BNBBTC",
@@ -642,7 +652,7 @@ func (s *websocketTestSuite) TestWsAllMarketsStatServe() {
 				LastID:             18150,
 				Count:              18151,
 			},
-			&WsMarketStatEvent{
+			&WsMarketTickerStatEvent{
 				Event:              "24hrTicker",
 				Time:               123456789,
 				Symbol:             "ETHBTC",
@@ -668,7 +678,7 @@ func (s *websocketTestSuite) TestWsAllMarketsStatServe() {
 				Count:              18151,
 			},
 		}
-		s.assertWsAllMarketsStatEventEqual(e, event)
+		s.assertWsAllMarketTickersStatEventEqual(e, event)
 	}, func(err error) {
 		s.r().EqualError(err, fakeErrMsg)
 	})
@@ -677,13 +687,13 @@ func (s *websocketTestSuite) TestWsAllMarketsStatServe() {
 	<-doneC
 }
 
-func (s *websocketTestSuite) assertWsAllMarketsStatEventEqual(e, a WsAllMarketsStatEvent) {
+func (s *websocketTestSuite) assertWsAllMarketTickersStatEventEqual(e, a WsAllMarketTickersStatEvent) {
 	for i := range e {
-		s.assertWsMarketStatEventEqual(e[i], a[i])
+		s.assertWsMarketTickerStatEventEqual(e[i], a[i])
 	}
 }
 
-func (s *websocketTestSuite) assertWsMarketStatEventEqual(e, a *WsMarketStatEvent) {
+func (s *websocketTestSuite) assertWsMarketTickerStatEventEqual(e, a *WsMarketTickerStatEvent) {
 	r := s.r()
 	r.Equal(e.Event, a.Event, "Event")
 	r.Equal(e.Time, a.Time, "Time")

@@ -11,13 +11,14 @@ func main() {
 }
 
 func WsBookTickerExample() {
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false)
 	wsBookTickerHandler := func(event *binance_connector.WsBookTickerEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))
 	}
 	errHandler := func(err error) {
 		fmt.Println(err)
 	}
-	doneCh, _, err := binance_connector.WsBookTickerServe("LTCBTC", wsBookTickerHandler, errHandler)
+	doneCh, _, err := websocketStreamClient.WsBookTickerServe("LTCBTC", wsBookTickerHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return
