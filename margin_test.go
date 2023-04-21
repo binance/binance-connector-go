@@ -803,22 +803,24 @@ func (s *marginTestSuite) TestMarginAccountNewOrder() {
 		NewClientOrderId("6gCrw2kRUAF9CvJDGP16IP").
 		TimeInForce("GTC").
 		OrderType("MARKET").
+		NewOrderRespType("RESULT").
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("BTCUSDT", resp.Symbol)
-	s.Equal(int64(28), resp.OrderId)
-	s.Equal("6gCrw2kRUAF9CvJDGP16IP", resp.ClientOrderId)
-	s.Equal(uint64(1507725176595), resp.TransactTime)
-	s.Equal("1.00000000", resp.Price)
-	s.Equal("10.00000000", resp.OrigQty)
-	s.Equal("10.00000000", resp.ExecutedQty)
-	s.Equal("10.00000000", resp.CumulativeQuoteQty)
-	s.Equal("FILLED", resp.Status)
-	s.Equal("GTC", resp.TimeInForce)
-	s.Equal("MARKET", resp.Type)
-	s.True(resp.IsIsolated)
-	s.Equal("SELL", resp.Side)
+	a := resp.(*MarginAccountNewOrderResponseRESULT)
+	s.Equal("BTCUSDT", a.Symbol)
+	s.Equal(int64(28), a.OrderId)
+	s.Equal("6gCrw2kRUAF9CvJDGP16IP", a.ClientOrderId)
+	s.Equal(uint64(1507725176595), a.TransactTime)
+	s.Equal("1.00000000", a.Price)
+	s.Equal("10.00000000", a.OrigQty)
+	s.Equal("10.00000000", a.ExecutedQty)
+	s.Equal("10.00000000", a.CumulativeQuoteQty)
+	s.Equal("FILLED", a.Status)
+	s.Equal("GTC", a.TimeInForce)
+	s.Equal("MARKET", a.Type)
+	s.True(a.IsIsolated)
+	s.Equal("SELL", a.Side)
 }
 
 func (s *marginTestSuite) TestMarginAccountOpenOrder() {
@@ -1438,11 +1440,12 @@ func (s *marginTestSuite) TestMarginIsolatedAccountInfo() {
 	s.mockDo(data, nil)
 	defer s.assertDo()
 
-	resp, err := s.client.NewMarginIsolatedAccountInfoService().Do(context.Background())
+	resp, err := s.client.NewMarginIsolatedAccountInfoService().Symbols("LTCBTC, BTCUSDT").Do(context.Background())
 	s.r().NoError(err)
-	s.Len(resp.Assets, 1)
+	a := resp.(*MarginIsolatedAccountInfoResponseSymbols)
+	s.Len(a.Assets, 1)
 
-	baseAsset := resp.Assets[0].BaseAsset
+	baseAsset := a.Assets[0].BaseAsset
 	s.Equal("BNB", baseAsset.Asset)
 	s.True(baseAsset.BorrowEnabled)
 	s.Equal("0.00000000", baseAsset.Free)
@@ -1453,7 +1456,7 @@ func (s *marginTestSuite) TestMarginIsolatedAccountInfo() {
 	s.True(baseAsset.RepayEnabled)
 	s.Equal("0.00000000", baseAsset.TotalAsset)
 
-	quoteAsset := resp.Assets[0].QuoteAsset
+	quoteAsset := a.Assets[0].QuoteAsset
 	s.Equal("USDT", quoteAsset.Asset)
 	s.True(quoteAsset.BorrowEnabled)
 	s.Equal("10000.00000000", quoteAsset.Free)
@@ -1464,16 +1467,16 @@ func (s *marginTestSuite) TestMarginIsolatedAccountInfo() {
 	s.True(quoteAsset.RepayEnabled)
 	s.Equal("10000.00000000", quoteAsset.TotalAsset)
 
-	s.Equal("BNBUSDT", resp.Assets[0].Symbol)
-	s.True(resp.Assets[0].IsolatedCreated)
-	s.True(resp.Assets[0].Enabled)
-	s.Equal("0.00000", resp.Assets[0].MarginLevel)
-	s.Equal("EXCESSIVE", resp.Assets[0].MarginLevelStatus)
-	s.Equal("0.00000", resp.Assets[0].MarginRatio)
-	s.Equal("48.81190000", resp.Assets[0].IndexPrice)
-	s.Equal("0.00000000", resp.Assets[0].LiquidatePrice)
-	s.Equal("0.00000000", resp.Assets[0].LiquidateRate)
-	s.True(resp.Assets[0].TradeEnabled)
+	s.Equal("BNBUSDT", a.Assets[0].Symbol)
+	s.True(a.Assets[0].IsolatedCreated)
+	s.True(a.Assets[0].Enabled)
+	s.Equal("0.00000", a.Assets[0].MarginLevel)
+	s.Equal("EXCESSIVE", a.Assets[0].MarginLevelStatus)
+	s.Equal("0.00000", a.Assets[0].MarginRatio)
+	s.Equal("48.81190000", a.Assets[0].IndexPrice)
+	s.Equal("0.00000000", a.Assets[0].LiquidatePrice)
+	s.Equal("0.00000000", a.Assets[0].LiquidateRate)
+	s.True(a.Assets[0].TradeEnabled)
 }
 
 func (s *marginTestSuite) TestMarginIsolatedAccountLimit() {

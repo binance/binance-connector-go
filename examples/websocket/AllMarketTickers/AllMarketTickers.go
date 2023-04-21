@@ -11,13 +11,14 @@ func main() {
 }
 
 func WsAllMarketTickersExample() {
-	wsAllMarketTickersHandler := func(event binance_connector.WsAllMarketsStatEvent) {
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false)
+	wsAllMarketTickersHandler := func(event binance_connector.WsAllMarketTickersStatEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))
 	}
 	errHandler := func(err error) {
 		fmt.Println(err)
 	}
-	doneCh, _, err := binance_connector.WsAllMarketsStatServe(wsAllMarketTickersHandler, errHandler)
+	doneCh, _, err := websocketStreamClient.WsAllMarketTickersStatServe(wsAllMarketTickersHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return

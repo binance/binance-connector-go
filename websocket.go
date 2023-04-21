@@ -18,6 +18,32 @@ type WsConfig struct {
 	Endpoint string
 }
 
+type WebsocketStreamClient struct {
+	Endpoint   string
+	IsCombined bool
+}
+
+func NewWebsocketStreamClient(isCombined bool, baseURL ...string) *WebsocketStreamClient {
+	// Set default base URL to production WS URL
+	url := "wss://stream.binance.com:9443"
+
+	if len(baseURL) > 0 {
+		url = baseURL[0]
+	}
+
+	// Append to baseURL based on whether the client is for combined streams or not
+	if isCombined {
+		url += "/stream?streams="
+	} else {
+		url += "/ws"
+	}
+
+	return &WebsocketStreamClient{
+		Endpoint:   url,
+		IsCombined: isCombined,
+	}
+}
+
 func newWsConfig(endpoint string) *WsConfig {
 	return &WsConfig{
 		Endpoint: endpoint,
@@ -56,7 +82,6 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 				silent = true
 			case <-doneCh:
 			}
-			c.Close()
 		}()
 		for {
 			_, message, err := c.ReadMessage()
@@ -91,7 +116,6 @@ func keepAlive(c *websocket.Conn, timeout time.Duration) {
 			}
 			<-ticker.C
 			if time.Since(lastResponse) > timeout {
-				c.Close()
 				return
 			}
 		}

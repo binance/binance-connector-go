@@ -266,8 +266,15 @@ func (s *CreateOrderService) SelfTradePreventionMode(selfTradePreventionMode str
 	return s
 }
 
+const (
+	ACK    = 1
+	RESULT = 2
+	FULL   = 3
+)
+
 // Do send request
-func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res *CreateOrderResponse, err error) {
+func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
+	respType := ACK
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: "/api/v3/order",
@@ -276,6 +283,12 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 	r.setParam("symbol", s.symbol)
 	r.setParam("side", s.side)
 	r.setParam("type", s.orderType)
+	switch s.orderType {
+	case "MARKET":
+		respType = FULL
+	case "LIMIT":
+		respType = FULL
+	}
 	if s.timeInForce != nil {
 		r.setParam("timeInForce", *s.timeInForce)
 	}
@@ -305,6 +318,15 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 	}
 	if s.newOrderRespType != nil {
 		r.setParam("newOrderRespType", *s.newOrderRespType)
+		switch *s.newOrderRespType {
+		case "ACK":
+			respType = ACK
+		case "RESULT":
+			respType = RESULT
+		case "FULL":
+			respType = FULL
+		}
+
 	}
 	if s.selfTradePreventionMode != nil {
 		r.setParam("selfTradePreventionMode", *s.selfTradePreventionMode)
@@ -313,7 +335,14 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 	if err != nil {
 		return nil, err
 	}
-	res = new(CreateOrderResponse)
+	switch respType {
+	case ACK:
+		res = new(CreateOrderResponseACK)
+	case RESULT:
+		res = new(CreateOrderResponseRESULT)
+	case FULL:
+		res = new(CreateOrderResponseFULL)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
 		return nil, err
@@ -321,13 +350,58 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 	return res, nil
 }
 
-// Create CreateOrderResponse
-type CreateOrderResponse struct {
-	Symbol        string  `json:"symbol"`
-	OrderId       int64   `json:"orderId"`
-	OrderIdList   []int64 `json:"orderIdList"`
-	ClientOrderId string  `json:"clientOrderId"`
-	TransactTime  uint64  `json:"transactTime"`
+// Create CreateOrderResponseACK
+type CreateOrderResponseACK struct {
+	Symbol        string `json:"symbol"`
+	OrderId       int64  `json:"orderId"`
+	OrderListId   int64  `json:"orderListId"`
+	ClientOrderId string `json:"clientOrderId"`
+	TransactTime  uint64 `json:"transactTime"`
+}
+
+// Create CreateOrderResponseRESULT
+type CreateOrderResponseRESULT struct {
+	Symbol                  string `json:"symbol"`
+	OrderId                 int64  `json:"orderId"`
+	OrderListId             int64  `json:"orderListId"`
+	ClientOrderId           string `json:"clientOrderId"`
+	TransactTime            uint64 `json:"transactTime"`
+	Price                   string `json:"price"`
+	OrigQty                 string `json:"origQty"`
+	ExecutedQty             string `json:"executedQty"`
+	CumulativeQuoteQty      string `json:"cummulativeQuoteQty"`
+	Status                  string `json:"status"`
+	TimeInForce             string `json:"timeInForce"`
+	Type                    string `json:"type"`
+	Side                    string `json:"side"`
+	WorkingTime             uint64 `json:"workingTime"`
+	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+}
+
+// Create CreateOrderResponseFULL
+type CreateOrderResponseFULL struct {
+	Symbol                  string `json:"symbol"`
+	OrderId                 int64  `json:"orderId"`
+	OrderListId             int64  `json:"orderListId"`
+	ClientOrderId           string `json:"clientOrderId"`
+	TransactTime            uint64 `json:"transactTime"`
+	Price                   string `json:"price"`
+	OrigQty                 string `json:"origQty"`
+	ExecutedQty             string `json:"executedQty"`
+	CumulativeQuoteQty      string `json:"cummulativeQuoteQty"`
+	Status                  string `json:"status"`
+	TimeInForce             string `json:"timeInForce"`
+	Type                    string `json:"type"`
+	Side                    string `json:"side"`
+	WorkingTime             uint64 `json:"workingTime"`
+	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	Fills                   []struct {
+		Price           string `json:"price"`
+		Qty             string `json:"qty"`
+		Commission      string `json:"commission"`
+		CommissionAsset string `json:"commissionAsset"`
+		TradeId         int64  `json:"tradeId"`
+	} `json:"fills"`
 }
 
 // Binance Cancel Order endpoint (DELETE /api/v3/order)

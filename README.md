@@ -77,6 +77,23 @@ func main() {
 Please find more examples for each supported endpoint in the `examples` folder.
 
 ## Websocket API
+Initialising Websocket Client
+- Websocket Client can be initialized with 2 parameters, `NewWebsocketStreamClient(isCombined, baseURL)`:
+- `isCombined` is a MANDATORY boolean value that specifies whether you are calling a combined stream or not.
+  - If `isCombined` is set to `true`, `"/stream?streams="` will be appended to the `baseURL` to allow for Combining streams.
+  - Otherwise, if set to `false`, `"/ws/"` will be appended to the `baseURL`.
+- `baseURL` is an OPTIONAL string value that determines the base URL to use for the websocket connection.
+  - If `baseURL` is not set, it will default to the Live Exchange URL: `"wss://stream.binance.com:9443"`.
+
+```go
+// Initialise Websocket Client with Production baseURL and false for "isCombined" parameter
+
+websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+
+// Initialise Websocket Client with Production baseURL and true for "isCombined" parameter
+
+websocketStreamClient := binance_connector.NewWebsocketStreamClient(true)
+```
 
 Diff. Depth Stream Example
 
@@ -91,6 +108,9 @@ import (
 )
 
 func main() {
+	// Initialise Websocket Client with Testnet BaseURL and false for "isCombined" parameter
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+
 	wsDepthHandler := func(event *binance_connector.WsDepthEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))
 	}
@@ -100,7 +120,7 @@ func main() {
 	}
 
 	// Depth stream subscription
-	doneCh, stopCh, err := binance_connector.WsDepthServe("BNBUSDT", wsDepthHandler, errHandler)
+	doneCh, stopCh, err := websocketStreamClient.WsDepthServe("BNBUSDT", wsDepthHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -108,9 +128,45 @@ func main() {
 
 	go func() {
 		time.Sleep(30 * time.Second)
-		stopCh <- struct{}{} // use stopC to stop streaming
+		stopCh <- struct{}{} // use stopCh to stop streaming
 	}()
 
+	<-doneCh
+}
+```
+
+Combined Diff. Depth Stream Example
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+
+	binance_connector "github.com/binance/binance-connector-go"
+)
+
+func main() {
+	// Set isCombined parameter to true as we are using Combined Depth Stream
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(true)
+
+	wsCombinedDepthHandler := func(event *binance_connector.WsDepthEvent) {
+		fmt.Println(binance_connector.PrettyPrint(event))
+	}
+	errHandler := func(err error) {
+		fmt.Println(err)
+	}
+	// Use WsCombinedDepthServe to subscribe to multiple streams
+	doneCh, stopCh, err := websocketStreamClient.WsCombinedDepthServe([]string{"LTCBTC", "BTCUSDT", "MATICUSDT"}, wsCombinedDepthHandler, errHandler)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	go func() {
+		time.Sleep(5 * time.Second)
+		stopCh <- struct{}{}
+	}()
 	<-doneCh
 }
 ```
