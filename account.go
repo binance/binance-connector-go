@@ -18,6 +18,7 @@ type TestNewOrder struct {
 	price               *float64
 	newClientOrderId    *string
 	strategyId          *int
+	strategyType        *int
 	stopPrice           *float64
 	trailingDelta       *int
 	icebergQty          *float64
@@ -79,6 +80,12 @@ func (s *TestNewOrder) StrategyId(strategyId int) *TestNewOrder {
 	return s
 }
 
+// StrategyType set strategyType
+func (s *TestNewOrder) StrategyType(strategyType int) *TestNewOrder {
+	s.strategyType = &strategyType
+	return s
+}
+
 // StopPrice set stopPrice
 func (s *TestNewOrder) StopPrice(stopPrice float64) *TestNewOrder {
 	s.stopPrice = &stopPrice
@@ -137,6 +144,9 @@ func (s *TestNewOrder) Do(ctx context.Context, opts ...RequestOption) (res *Acco
 	if s.strategyId != nil {
 		r.setParam("strategyId", *s.strategyId)
 	}
+	if s.strategyType != nil {
+		r.setParam("strategyType", *s.strategyType)
+	}
 	if s.stopPrice != nil {
 		r.setParam("stopPrice", *s.stopPrice)
 	}
@@ -181,6 +191,7 @@ type CreateOrderService struct {
 	price                   *float64
 	newClientOrderId        *string
 	strategyId              *int
+	strategyType            *int
 	stopPrice               *float64
 	trailingDelta           *int
 	icebergQty              *float64
@@ -236,6 +247,18 @@ func (s *CreateOrderService) NewClientOrderId(newClientOrderId string) *CreateOr
 	return s
 }
 
+// StrategyId set strategyId
+func (s *CreateOrderService) StrategyId(strategyId int) *CreateOrderService {
+	s.strategyId = &strategyId
+	return s
+}
+
+// StrategyType set strategyType
+func (s *CreateOrderService) StrategyType(strategyType int) *CreateOrderService {
+	s.strategyType = &strategyType
+	return s
+}
+
 // StopPrice set stopPrice
 func (s *CreateOrderService) StopPrice(stopPrice float64) *CreateOrderService {
 	s.stopPrice = &stopPrice
@@ -254,7 +277,7 @@ func (s *CreateOrderService) IcebergQuantity(icebergQty float64) *CreateOrderSer
 	return s
 }
 
-// NewOrderRespType set icebergQuantity
+// NewOrderRespType set newOrderRespType
 func (s *CreateOrderService) NewOrderRespType(newOrderRespType string) *CreateOrderService {
 	s.newOrderRespType = &newOrderRespType
 	return s
@@ -306,6 +329,9 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 	}
 	if s.strategyId != nil {
 		r.setParam("strategyId", *s.strategyId)
+	}
+	if s.strategyType != nil {
+		r.setParam("strategyType", *s.strategyType)
 	}
 	if s.stopPrice != nil {
 		r.setParam("stopPrice", *s.stopPrice)
@@ -376,6 +402,14 @@ type CreateOrderResponseRESULT struct {
 	Side                    string `json:"side"`
 	WorkingTime             uint64 `json:"workingTime"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	IcebergQty              string `json:"icebergQty,omitempty"`
+	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+	StopPrice               string `json:"stopPrice,omitempty"`
+	StrategyId              int64  `json:"strategyId,omitempty"`
+	StrategyType            int64  `json:"strategyType,omitempty"`
+	TrailingDelta           string `json:"trailingDelta,omitempty"`
+	TrailingTime            int64  `json:"trailingTime,omitempty"`
 }
 
 // Create CreateOrderResponseFULL
@@ -395,6 +429,14 @@ type CreateOrderResponseFULL struct {
 	Side                    string `json:"side"`
 	WorkingTime             uint64 `json:"workingTime"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	IcebergQty              string `json:"icebergQty,omitempty"`
+	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+	StopPrice               string `json:"stopPrice,omitempty"`
+	StrategyId              int64  `json:"strategyId,omitempty"`
+	StrategyType            int64  `json:"strategyType,omitempty"`
+	TrailingDelta           string `json:"trailingDelta,omitempty"`
+	TrailingTime            int64  `json:"trailingTime,omitempty"`
 	Fills                   []struct {
 		Price           string `json:"price"`
 		Qty             string `json:"qty"`
@@ -532,6 +574,14 @@ type CancelOrderResponse struct {
 	Type                string `json:"type"`
 	Side                string `json:"side"`
 	SelfTradePrevention string `json:"selfTradePrevention"`
+	IcebergQty          string `json:"icebergQty,omitempty"`
+	PreventedMatchId    int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity   string `json:"preventedQuantity,omitempty"`
+	StopPrice           string `json:"stopPrice,omitempty"`
+	StrategyId          int64  `json:"strategyId,omitempty"`
+	StrategyType        int64  `json:"strategyType,omitempty"`
+	TrailingDelta       string `json:"trailingDelta,omitempty"`
+	TrailingTime        int64  `json:"trailingTime,omitempty"`
 }
 
 // Query Order (USER_DATA)
@@ -606,15 +656,19 @@ type GetOrderResponse struct {
 	Type                    string `json:"type"`
 	Side                    string `json:"side"`
 	StopPrice               string `json:"stopPrice"`
-	IcebergQty              string `json:"icebergQty"`
+	IcebergQty              string `json:"icebergQty,omitempty"`
 	Time                    uint64 `json:"time"`
 	UpdateTime              uint64 `json:"updateTime"`
 	IsWorking               bool   `json:"isWorking"`
 	WorkingTime             uint64 `json:"workingTime"`
 	OrigQuoteOrderQty       string `json:"origQuoteOrderQty"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
-	PreventedMatchId        string `json:"preventedMatchId"`
-	PreventedQuantity       string `json:"preventedQuantity"`
+	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+	StrategyId              int64  `json:"strategyId,omitempty"`
+	StrategyType            int64  `json:"strategyType,omitempty"`
+	TrailingDelta           string `json:"trailingDelta,omitempty"`
+	TrailingTime            int64  `json:"trailingTime,omitempty"`
 }
 
 // Cancel an Existing Order and Send a New Order (TRADE)
@@ -824,55 +878,98 @@ func (s *CancelReplaceService) Do(ctx context.Context, opts ...RequestOption) (r
 		m["cancelRestrictions"] = *s.cancelRestrictions
 	}
 	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return nil, err
-	}
+	data, _ := s.c.callAPI(ctx, r, opts...)
 	res = new(CancelReplaceResponse)
 	err = json.Unmarshal(data, res)
 	if err != nil {
 		return nil, err
 	}
-	return res, nil
+	return res, err
 }
 
-// Create CancelReplaceResponse
 type CancelReplaceResponse struct {
-	CancelResult   string `json:"cancelResult"`
-	NewOrderResult string `json:"newOrderResult"`
-	CancelResponse struct {
-		Symbol                  string `json:"symbol"`
-		OrigClientOrderId       string `json:"origClientOrderId"`
-		OrderId                 int64  `json:"orderId"`
-		OrderListId             int64  `json:"orderListId"`
-		ClientOrderId           string `json:"clientOrderId"`
-		Price                   string `json:"price"`
-		OrigQty                 string `json:"origQty"`
-		ExecutedQty             string `json:"executedQty"`
-		CumulativeQuoteQty      string `json:"cumulativeQuoteQty"`
-		Status                  string `json:"status"`
-		TimeInForce             string `json:"timeInForce"`
-		Type                    string `json:"type"`
-		Side                    string `json:"side"`
-		SelfTradePreventionMode string `json:"selfTradePreventionMode"`
-	} `json:"cancelResponse"`
-	NewOrderResponse struct {
-		Symbol                  string   `json:"symbol"`
-		OrderId                 int64    `json:"orderId"`
-		OrderListId             int64    `json:"orderListId"`
-		ClientOrderId           string   `json:"clientOrderId"`
-		TransactTime            uint64   `json:"transactTime"`
-		Price                   string   `json:"price"`
-		OrigQty                 string   `json:"origQty"`
-		ExecutedQty             string   `json:"executedQty"`
-		CumulativeQuoteQty      string   `json:"cumulativeQuoteQty"`
-		Status                  string   `json:"status"`
-		TimeInForce             string   `json:"timeInForce"`
-		Type                    string   `json:"type"`
-		Side                    string   `json:"side"`
-		Fills                   []string `json:"fills"`
-		SelfTradePreventionMode string   `json:"selfTradePreventionMode"`
-	} `json:"newOrderResponse"`
+	Code           int64  `json:"code,omitempty"`
+	Msg            string `json:"msg,omitempty"`
+	CancelResult   string `json:"cancelResult,omitempty"`
+	NewOrderResult string `json:"newOrderResult,omitempty"`
+	CancelResponse *struct {
+		Code                    int    `json:"code,omitempty"`
+		Msg                     string `json:"msg,omitempty"`
+		Symbol                  string `json:"symbol,omitempty"`
+		OrigClientOrderId       string `json:"origClientOrderId,omitempty"`
+		OrderId                 int64  `json:"orderId,omitempty"`
+		OrderListId             int64  `json:"orderListId,omitempty"`
+		ClientOrderId           string `json:"clientOrderId,omitempty"`
+		Price                   string `json:"price,omitempty"`
+		OrigQty                 string `json:"origQty,omitempty"`
+		ExecutedQty             string `json:"executedQty,omitempty"`
+		CumulativeQuoteQty      string `json:"cumulativeQuoteQty,omitempty"`
+		Status                  string `json:"status,omitempty"`
+		TimeInForce             string `json:"timeInForce,omitempty"`
+		Type                    string `json:"type,omitempty"`
+		Side                    string `json:"side,omitempty"`
+		SelfTradePreventionMode string `json:"selfTradePreventionMode,omitempty"`
+	} `json:"cancelResponse,omitempty"`
+	NewOrderResponse *struct {
+		Code                    int64    `json:"code,omitempty"`
+		Msg                     string   `json:"msg,omitempty"`
+		Symbol                  string   `json:"symbol,omitempty"`
+		OrderId                 int64    `json:"orderId,omitempty"`
+		OrderListId             int64    `json:"orderListId,omitempty"`
+		ClientOrderId           string   `json:"clientOrderId,omitempty"`
+		TransactTime            uint64   `json:"transactTime,omitempty"`
+		Price                   string   `json:"price,omitempty"`
+		OrigQty                 string   `json:"origQty,omitempty"`
+		ExecutedQty             string   `json:"executedQty,omitempty"`
+		CumulativeQuoteQty      string   `json:"cumulativeQuoteQty,omitempty"`
+		Status                  string   `json:"status,omitempty"`
+		TimeInForce             string   `json:"timeInForce,omitempty"`
+		Type                    string   `json:"type,omitempty"`
+		Side                    string   `json:"side,omitempty"`
+		Fills                   []string `json:"fills,omitempty"`
+		SelfTradePreventionMode string   `json:"selfTradePreventionMode,omitempty"`
+	} `json:"newOrderResponse,omitempty"`
+	Data *struct {
+		CancelResult   string `json:"cancelResult,omitempty"`
+		NewOrderResult string `json:"newOrderResult,omitempty"`
+		CancelResponse *struct {
+			Code                    int64  `json:"code,omitempty"`
+			Msg                     string `json:"msg,omitempty"`
+			Symbol                  string `json:"symbol,omitempty"`
+			OrigClientOrderId       string `json:"origClientOrderId,omitempty"`
+			OrderId                 int64  `json:"orderId,omitempty"`
+			OrderListId             int64  `json:"orderListId,omitempty"`
+			ClientOrderId           string `json:"clientOrderId,omitempty"`
+			Price                   string `json:"price,omitempty"`
+			OrigQty                 string `json:"origQty,omitempty"`
+			ExecutedQty             string `json:"executedQty,omitempty"`
+			CumulativeQuoteQty      string `json:"cumulativeQuoteQty,omitempty"`
+			Status                  string `json:"status,omitempty"`
+			TimeInForce             string `json:"timeInForce,omitempty"`
+			Type                    string `json:"type,omitempty"`
+			Side                    string `json:"side,omitempty"`
+			SelfTradePreventionMode string `json:"selfTradePreventionMode,omitempty"`
+		} `json:"cancelResponse,omitempty"`
+		NewOrderResponse struct {
+			Code                    int64    `json:"code,omitempty"`
+			Msg                     string   `json:"msg,omitempty"`
+			Symbol                  string   `json:"symbol,omitempty"`
+			OrderId                 int64    `json:"orderId,omitempty"`
+			OrderListId             int64    `json:"orderListId,omitempty"`
+			ClientOrderId           string   `json:"clientOrderId,omitempty"`
+			TransactTime            uint64   `json:"transactTime,omitempty"`
+			Price                   string   `json:"price,omitempty"`
+			OrigQty                 string   `json:"origQty,omitempty"`
+			ExecutedQty             string   `json:"executedQty,omitempty"`
+			CumulativeQuoteQty      string   `json:"cumulativeQuoteQty,omitempty"`
+			Status                  string   `json:"status,omitempty"`
+			TimeInForce             string   `json:"timeInForce,omitempty"`
+			Type                    string   `json:"type,omitempty"`
+			Side                    string   `json:"side,omitempty"`
+			Fills                   []string `json:"fills,omitempty"`
+			SelfTradePreventionMode string   `json:"selfTradePreventionMode,omitempty"`
+		} `json:"newOrderResponse"`
+	} `json:"data,omitempty"`
 }
 
 // Binance Get current open orders (GET /api/v3/openOrders)
@@ -925,13 +1022,19 @@ type NewOpenOrdersResponse struct {
 	Type                    string `json:"type"`
 	Side                    string `json:"side"`
 	StopPrice               string `json:"stopPrice"`
-	IcebergQty              string `json:"icebergQty"`
+	IcebergQty              string `json:"icebergQty,omitempty"`
 	Time                    uint64 `json:"time"`
 	UpdateTime              uint64 `json:"updateTime"`
 	IsWorking               bool   `json:"isWorking"`
 	WorkingTime             uint64 `json:"workingTime"`
 	OrigQuoteOrderQty       string `json:"origQuoteOrderQty"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+	StrategyId              int64  `json:"strategyId,omitempty"`
+	StrategyType            int64  `json:"strategyType,omitempty"`
+	TrailingDelta           string `json:"trailingDelta,omitempty"`
+	TrailingTime            int64  `json:"trailingTime,omitempty"`
 }
 
 // Binance Get all account orders; active, canceled, or filled (GET /api/v3/allOrders)
@@ -1026,15 +1129,19 @@ type NewAllOrdersResponse struct {
 	Type                    string `json:"type"`
 	Side                    string `json:"side"`
 	StopPrice               string `json:"stopPrice"`
-	IcebergQty              string `json:"icebergQty"`
+	IcebergQty              string `json:"icebergQty,omitempty"`
 	Time                    uint64 `json:"time"`
 	UpdateTime              uint64 `json:"updateTime"`
 	IsWorking               bool   `json:"isWorking"`
 	OrigQuoteOrderQty       string `json:"origQuoteOrderQty"`
 	WorkingTime             uint64 `json:"workingTime"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
-	PreventedMatchId        int64  `json:"preventedMatchId"`
-	PreventedQuantity       string `json:"preventedQuantity"`
+	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
+	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
+	StrategyId              int64  `json:"strategyId,omitempty"`
+	StrategyType            int64  `json:"strategyType,omitempty"`
+	TrailingDelta           string `json:"trailingDelta,omitempty"`
+	TrailingTime            int64  `json:"trailingTime,omitempty"`
 }
 
 // Binance New OCO (TRADE) (POST /api/v3/order/oco)
@@ -1275,6 +1382,13 @@ type OrderOCOResponse struct {
 		StopPrice               string  `json:"stopPrice"`
 		WorkingTime             uint64  `json:"workingTime"`
 		SelfTradePreventionMode string  `json:"selfTradePreventionMode"`
+		IcebergQty              string  `json:"icebergQty,omitempty"`
+		PreventedMatchId        int64   `json:"preventedMatchId,omitempty"`
+		PreventedQuantity       string  `json:"preventedQuantity,omitempty"`
+		StrategyId              int64   `json:"strategyId,omitempty"`
+		StrategyType            int64   `json:"strategyType,omitempty"`
+		TrailingDelta           string  `json:"trailingDelta,omitempty"`
+		TrailingTime            int64   `json:"trailingTime,omitempty"`
 	} `json:"orderReports"`
 }
 
@@ -1424,7 +1538,7 @@ func (s *QueryAllOCOService) Limit(limit int) *QueryAllOCOService {
 }
 
 // Do send request
-func (s *QueryAllOCOService) Do(ctx context.Context, opts ...RequestOption) (res *OCOResponse, err error) {
+func (s *QueryAllOCOService) Do(ctx context.Context, opts ...RequestOption) (res []*OCOResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: "/api/v3/allOrderList",
@@ -1444,12 +1558,12 @@ func (s *QueryAllOCOService) Do(ctx context.Context, opts ...RequestOption) (res
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return nil, err
+		return []*OCOResponse{}, err
 	}
-	res = new(OCOResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*OCOResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return nil, err
+		return []*OCOResponse{}, err
 	}
 	return res, nil
 }

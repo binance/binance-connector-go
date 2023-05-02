@@ -1,5 +1,18 @@
 # Change log
 
+## v0.3.0 - 2023-05-02
+
+### Added
+- New Endpoint, `NewGetManagedSubAccountDepositAddressService()`: `GET /sapi/v1/managed-subaccount/deposit/address` - Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
+
+### Fixed
+- Added separate USDT-M and COIN-M Response Types for relevant Subaccount Endpoints
+- Added support for Conditional Fields in relevant responses on Account Endpoints
+- Responses for `POST /api/v3/order/cancelReplace` support all 4 Response Types
+- Support for specifying `recvWindow` via `WithRecvWindow()` function
+- `strategyId` and `strategyType` parameters added to `TestNewOrder` and `CreateOrderService` endpoints
+- `UiKlines`: corrected `limit` parameter to not be sent as `interval`
+
 ## v0.2.0 - 2023-04-21
 
 ### Added

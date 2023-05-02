@@ -22,14 +22,14 @@ func (s *CreateSubAccountService) SubAccountString(subAccountString string) *Cre
 	return s
 }
 
-func (s *CreateSubAccountService) Do(ctx context.Context) (res *CreateSubAccountResp, err error) {
+func (s *CreateSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *CreateSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: enableSubAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("subAccountString", s.subAccountString)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (s *QuerySubAccountListService) Limit(limit int) *QuerySubAccountListServic
 	return s
 }
 
-func (s *QuerySubAccountListService) Do(ctx context.Context) (res *SubAccountListResp, err error) {
+func (s *QuerySubAccountListService) Do(ctx context.Context, opts ...RequestOption) (res *SubAccountListResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountListEndpoint,
@@ -96,7 +96,7 @@ func (s *QuerySubAccountListService) Do(ctx context.Context) (res *SubAccountLis
 	if s.limit != nil {
 		r.setParam("limit", s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ func (s *QuerySubAccountSpotAssetTransferHistoryService) Limit(limit int) *Query
 	return s
 }
 
-func (s *QuerySubAccountSpotAssetTransferHistoryService) Do(ctx context.Context) (res *QuerySubAccountSpotAssetTransferHistoryResp, err error) {
+func (s *QuerySubAccountSpotAssetTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountSpotAssetTransferHistoryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountSpotAssetTransferHistoryEndpoint,
@@ -189,7 +189,7 @@ func (s *QuerySubAccountSpotAssetTransferHistoryService) Do(ctx context.Context)
 	if s.limit != nil {
 		r.setParam("limit", s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +258,7 @@ func (s *QuerySubAccountFuturesAssetTransferHistoryService) Limit(limit int) *Qu
 	return s
 }
 
-func (s *QuerySubAccountFuturesAssetTransferHistoryService) Do(ctx context.Context) (res *QuerySubAccountFuturesAssetTransferHistoryResp, err error) {
+func (s *QuerySubAccountFuturesAssetTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountFuturesAssetTransferHistoryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountFuturesAssetTransferHistoryEndpoint,
@@ -278,7 +278,7 @@ func (s *QuerySubAccountFuturesAssetTransferHistoryService) Do(ctx context.Conte
 	if s.limit != nil {
 		r.setParam("limit", s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -342,7 +342,7 @@ func (s *SubAccountFuturesAssetTransferService) Amount(amount float32) *SubAccou
 	return s
 }
 
-func (s *SubAccountFuturesAssetTransferService) Do(ctx context.Context) (res *SubAccountFuturesAssetTransferResp, err error) {
+func (s *SubAccountFuturesAssetTransferService) Do(ctx context.Context, opts ...RequestOption) (res *SubAccountFuturesAssetTransferResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: subAccountFuturesAssetTransferEndpoint,
@@ -353,7 +353,7 @@ func (s *SubAccountFuturesAssetTransferService) Do(ctx context.Context) (res *Su
 	r.setParam("futuresType", s.futuresType)
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -385,14 +385,14 @@ func (s *QuerySubAccountAssetsService) Email(email string) *QuerySubAccountAsset
 	return s
 }
 
-func (s *QuerySubAccountAssetsService) Do(ctx context.Context) (res *QuerySubAccountAssetsResp, err error) {
+func (s *QuerySubAccountAssetsService) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountAssetsResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountAssetsEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -439,7 +439,7 @@ func (s *QuerySubAccountSpotAssetsSummaryService) Size(size int) *QuerySubAccoun
 	return s
 }
 
-func (s *QuerySubAccountSpotAssetsSummaryService) Do(ctx context.Context) (res *QuerySubAccountSpotAssetsSummaryResp, err error) {
+func (s *QuerySubAccountSpotAssetsSummaryService) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountSpotAssetsSummaryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountSpotAssetsSummaryEndpoint,
@@ -454,7 +454,7 @@ func (s *QuerySubAccountSpotAssetsSummaryService) Do(ctx context.Context) (res *
 	if s.size != nil {
 		r.setParam("size", *s.size)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -502,7 +502,7 @@ func (s *GetSubAccountDepositAddressService) Network(network string) *GetSubAcco
 	return s
 }
 
-func (s *GetSubAccountDepositAddressService) Do(ctx context.Context) (res *GetSubAccountDepositAddressResp, err error) {
+func (s *GetSubAccountDepositAddressService) Do(ctx context.Context, opts ...RequestOption) (res *GetSubAccountDepositAddressResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSubAccountDepositAddressEndpoint,
@@ -513,7 +513,7 @@ func (s *GetSubAccountDepositAddressService) Do(ctx context.Context) (res *GetSu
 	if s.network != nil {
 		r.setParam("network", *s.network)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -583,7 +583,7 @@ func (s *GetSubAccountDepositHistoryService) Offset(offset int64) *GetSubAccount
 	return s
 }
 
-func (s *GetSubAccountDepositHistoryService) Do(ctx context.Context) (res *GetSubAccountDepositHistoryResp, err error) {
+func (s *GetSubAccountDepositHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *GetSubAccountDepositHistoryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSubAccountDepositHistoryEndpoint,
@@ -606,7 +606,7 @@ func (s *GetSubAccountDepositHistoryService) Do(ctx context.Context) (res *GetSu
 	if s.offset != nil {
 		r.setParam("offset", *s.offset)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -651,7 +651,7 @@ func (s *GetSubAccountStatusService) Email(email string) *GetSubAccountStatusSer
 	return s
 }
 
-func (s *GetSubAccountStatusService) Do(ctx context.Context) (res *GetSubAccountStatusResp, err error) {
+func (s *GetSubAccountStatusService) Do(ctx context.Context, opts ...RequestOption) (res *GetSubAccountStatusResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSubAccountStatusEndpoint,
@@ -660,7 +660,7 @@ func (s *GetSubAccountStatusService) Do(ctx context.Context) (res *GetSubAccount
 	if s.email != nil {
 		r.setParam("email", *s.email)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -697,14 +697,14 @@ func (s *EnableMarginForSubAccountService) Email(email string) *EnableMarginForS
 	return s
 }
 
-func (s *EnableMarginForSubAccountService) Do(ctx context.Context) (res *EnableMarginForSubAccountResp, err error) {
+func (s *EnableMarginForSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *EnableMarginForSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: enableMarginForSubAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -736,14 +736,14 @@ func (s *GetDetailOnSubAccountMarginAccountService) Email(email string) *GetDeta
 	return s
 }
 
-func (s *GetDetailOnSubAccountMarginAccountService) Do(ctx context.Context) (res *GetDetailOnSubAccountMarginAccountResp, err error) {
+func (s *GetDetailOnSubAccountMarginAccountService) Do(ctx context.Context, opts ...RequestOption) (res *GetDetailOnSubAccountMarginAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getDetailOnSubAccountMarginAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -785,13 +785,13 @@ type GetSummaryOfSubAccountMarginAccountService struct {
 	c *Client
 }
 
-func (s *GetSummaryOfSubAccountMarginAccountService) Do(ctx context.Context) (res *GetSummaryOfSubAccountMarginAccountResp, err error) {
+func (s *GetSummaryOfSubAccountMarginAccountService) Do(ctx context.Context, opts ...RequestOption) (res *GetSummaryOfSubAccountMarginAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSummaryOfSubAccountMarginAccountEndpoint,
 		secType:  secTypeSigned,
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -830,14 +830,14 @@ func (s *EnableFuturesForSubAccountService) Email(email string) *EnableFuturesFo
 	return s
 }
 
-func (s *EnableFuturesForSubAccountService) Do(ctx context.Context) (res *EnableFuturesForSubAccountResp, err error) {
+func (s *EnableFuturesForSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *EnableFuturesForSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: enableFuturesForSubAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -869,14 +869,14 @@ func (s *GetDetailOnSubAccountFuturesAccountService) Email(email string) *GetDet
 	return s
 }
 
-func (s *GetDetailOnSubAccountFuturesAccountService) Do(ctx context.Context) (res *GetDetailOnSubAccountFuturesAccountResp, err error) {
+func (s *GetDetailOnSubAccountFuturesAccountService) Do(ctx context.Context, opts ...RequestOption) (res *GetDetailOnSubAccountFuturesAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getDetailOnSubAccountFuturesAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -926,13 +926,13 @@ type GetSummaryOfSubAccountFuturesAccountService struct {
 	c *Client
 }
 
-func (s *GetSummaryOfSubAccountFuturesAccountService) Do(ctx context.Context) (res *GetSummaryOfSubAccountFuturesAccountResp, err error) {
+func (s *GetSummaryOfSubAccountFuturesAccountService) Do(ctx context.Context, opts ...RequestOption) (res *GetSummaryOfSubAccountFuturesAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSummaryOfSubAccountFuturesAccountEndpoint,
 		secType:  secTypeSigned,
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -981,14 +981,14 @@ func (s *GetFuturesPositionRiskOfSubAccountService) Email(email string) *GetFutu
 	return s
 }
 
-func (s *GetFuturesPositionRiskOfSubAccountService) Do(ctx context.Context) (res *GetFuturesPositionRiskOfSubAccountResp, err error) {
+func (s *GetFuturesPositionRiskOfSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *GetFuturesPositionRiskOfSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getFuturesPositionRiskOfSubAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1044,7 +1044,7 @@ func (s *FuturesTransferForSubAccountService) TransferType(transferType int) *Fu
 	return s
 }
 
-func (s *FuturesTransferForSubAccountService) Do(ctx context.Context) (res *FuturesTransferForSubAccountResp, err error) {
+func (s *FuturesTransferForSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *FuturesTransferForSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: futuresTransferForSubAccountEndpoint,
@@ -1054,7 +1054,7 @@ func (s *FuturesTransferForSubAccountService) Do(ctx context.Context) (res *Futu
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
 	r.setParam("type", s.transferType)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1103,7 +1103,7 @@ func (s *MarginTransferForSubAccountService) TransferType(transferType int) *Mar
 	return s
 }
 
-func (s *MarginTransferForSubAccountService) Do(ctx context.Context) (res *MarginTransferForSubAccountResp, err error) {
+func (s *MarginTransferForSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *MarginTransferForSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: marginTransferForSubAccountEndpoint,
@@ -1113,7 +1113,7 @@ func (s *MarginTransferForSubAccountService) Do(ctx context.Context) (res *Margi
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
 	r.setParam("type", s.transferType)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1156,7 +1156,7 @@ func (s *TransferToSubAccountOfSameMasterService) Amount(amount float64) *Transf
 	return s
 }
 
-func (s *TransferToSubAccountOfSameMasterService) Do(ctx context.Context) (res *TransferToSubAccountOfSameMasterResp, err error) {
+func (s *TransferToSubAccountOfSameMasterService) Do(ctx context.Context, opts ...RequestOption) (res *TransferToSubAccountOfSameMasterResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: transferToSubAccountOfSameMasterEndpoint,
@@ -1165,7 +1165,7 @@ func (s *TransferToSubAccountOfSameMasterService) Do(ctx context.Context) (res *
 	r.setParam("toEmail", s.toEmail)
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1202,7 +1202,7 @@ func (s *TransferToMasterService) Amount(amount float64) *TransferToMasterServic
 	return s
 }
 
-func (s *TransferToMasterService) Do(ctx context.Context) (res *TransferToMasterResp, err error) {
+func (s *TransferToMasterService) Do(ctx context.Context, opts ...RequestOption) (res *TransferToMasterResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: transferToMasterEndpoint,
@@ -1210,7 +1210,7 @@ func (s *TransferToMasterService) Do(ctx context.Context) (res *TransferToMaster
 	}
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1265,7 +1265,7 @@ func (s *SubAccountTransferHistoryService) Limit(limit int) *SubAccountTransferH
 	return s
 }
 
-func (s *SubAccountTransferHistoryService) Do(ctx context.Context) (res *SubAccountTransferHistoryResp, err error) {
+func (s *SubAccountTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *SubAccountTransferHistoryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: subAccountTransferHistoryEndpoint,
@@ -1286,7 +1286,7 @@ func (s *SubAccountTransferHistoryService) Do(ctx context.Context) (res *SubAcco
 	if s.limit != nil {
 		r.setParam("limit", *s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1368,7 +1368,7 @@ func (s *UniversalTransferService) Amount(amount float64) *UniversalTransferServ
 	return s
 }
 
-func (s *UniversalTransferService) Do(ctx context.Context) (res *UniversalTransferResp, err error) {
+func (s *UniversalTransferService) Do(ctx context.Context, opts ...RequestOption) (res *UniversalTransferResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: universalTransferEndpoint,
@@ -1390,7 +1390,7 @@ func (s *UniversalTransferService) Do(ctx context.Context) (res *UniversalTransf
 	}
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1517,7 +1517,7 @@ type InternalUniversalTransfer struct {
 
 // Get Detail on Sub-account's Futures Account V2 (For Master Account)
 const (
-	getDetailOnSubAccountFuturesAccountV2Endpoint = "/sapi/v1/sub-account/futures/internalTransfer"
+	getDetailOnSubAccountFuturesAccountV2Endpoint = "/sapi/v2/sub-account/futures/account"
 )
 
 type GetDetailOnSubAccountFuturesAccountV2Service struct {
@@ -1536,7 +1536,7 @@ func (s *GetDetailOnSubAccountFuturesAccountV2Service) FuturesType(futuresType i
 	return s
 }
 
-func (s *GetDetailOnSubAccountFuturesAccountV2Service) Do(ctx context.Context) (res *GetDetailOnSubAccountFuturesAccountV2Resp, err error) {
+func (s *GetDetailOnSubAccountFuturesAccountV2Service) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getDetailOnSubAccountFuturesAccountV2Endpoint,
@@ -1544,11 +1544,15 @@ func (s *GetDetailOnSubAccountFuturesAccountV2Service) Do(ctx context.Context) (
 	}
 	r.setParam("email", s.email)
 	r.setParam("futuresType", s.futuresType)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
-	res = new(GetDetailOnSubAccountFuturesAccountV2Resp)
+	if s.futuresType == 1 {
+		res = new(GetDetailOnSubAccountFuturesAccountV2USDTResp)
+	} else {
+		res = new(GetDetailOnSubAccountFuturesAccountV2COINResp)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
 		return nil, err
@@ -1556,22 +1560,61 @@ func (s *GetDetailOnSubAccountFuturesAccountV2Service) Do(ctx context.Context) (
 	return res, nil
 }
 
-type GetDetailOnSubAccountFuturesAccountV2Resp struct {
-	Success     bool `json:"success"`
-	FuturesType int  `json:"futuresType"`
-	Transfers   []struct {
-		From   string `json:"from"`
-		To     string `json:"to"`
-		Asset  string `json:"asset"`
-		Qty    string `json:"qty"`
-		TranId int64  `json:"tranId"`
-		Time   uint64 `json:"time"`
-	} `json:"transfers"`
+type GetDetailOnSubAccountFuturesAccountV2USDTResp struct {
+	FutureAccountResp struct {
+		Email  string `json:"email"`
+		Assets []struct {
+			Asset                  string `json:"asset"`
+			InitialMargin          string `json:"initialMargin"`
+			MaintenanceMargin      string `json:"maintenanceMargin"`
+			MarginBalance          string `json:"marginBalance"`
+			MaxWithdrawAmount      string `json:"maxWithdrawAmount"`
+			OpenOrderInitialMargin string `json:"openOrderInitialMargin"`
+			PositionInitialMargin  string `json:"positionInitialMargin"`
+			UnrealizedProfit       string `json:"unrealizedProfit"`
+			WalletBalance          string `json:"walletBalance"`
+		} `json:"assets"`
+		CanDeposit                  bool   `json:"canDeposit"`
+		CanTrade                    bool   `json:"canTrade"`
+		CanWithdraw                 bool   `json:"canWithdraw"`
+		FeeTier                     int    `json:"feeTier"`
+		MaxWithdrawAmount           string `json:"maxWithdrawAmount"`
+		TotalInitialMargin          string `json:"totalInitialMargin"`
+		TotalMaintenanceMargin      string `json:"totalMaintenanceMargin"`
+		TotalMarginBalance          string `json:"totalMarginBalance"`
+		TotalOpenOrderInitialMargin string `json:"totalOpenOrderInitialMargin"`
+		TotalPositionInitialMargin  string `json:"totalPositionInitialMargin"`
+		TotalUnrealizedProfit       string `json:"totalUnrealizedProfit"`
+		TotalWalletBalance          string `json:"totalWalletBalance"`
+		UpdateTime                  uint64 `json:"updateTime"`
+	} `json:"futureAccountResp"`
+}
+
+type GetDetailOnSubAccountFuturesAccountV2COINResp struct {
+	DeliveryAccountResp struct {
+		Email  string `json:"email"`
+		Assets []struct {
+			Asset                  string `json:"asset"`
+			InitialMargin          string `json:"initialMargin"`
+			MaintenanceMargin      string `json:"maintenanceMargin"`
+			MarginBalance          string `json:"marginBalance"`
+			MaxWithdrawAmount      string `json:"maxWithdrawAmount"`
+			OpenOrderInitialMargin string `json:"openOrderInitialMargin"`
+			PositionInitialMargin  string `json:"positionInitialMargin"`
+			UnrealizedProfit       string `json:"unrealizedProfit"`
+			WalletBalance          string `json:"walletBalance"`
+		} `json:"assets"`
+		CanDeposit  bool   `json:"canDeposit"`
+		CanTrade    bool   `json:"canTrade"`
+		CanWithdraw bool   `json:"canWithdraw"`
+		FeeTier     int    `json:"feeTier"`
+		UpdateTime  uint64 `json:"updateTime"`
+	} `json:"deliveryAccountResp"`
 }
 
 // Get Summary of Sub-account's Futures Account V2 (For Master Account)
 const (
-	getSummaryOfSubAccountFuturesAccountV2Endpoint = "/sapi/v1/sub-account/futures/accountSummary"
+	getSummaryOfSubAccountFuturesAccountV2Endpoint = "/sapi/v2/sub-account/futures/accountSummary"
 )
 
 type GetSummaryOfSubAccountFuturesAccountV2Service struct {
@@ -1596,7 +1639,7 @@ func (s *GetSummaryOfSubAccountFuturesAccountV2Service) Limit(limit int) *GetSum
 	return s
 }
 
-func (s *GetSummaryOfSubAccountFuturesAccountV2Service) Do(ctx context.Context) (res *GetSummaryOfSubAccountFuturesAccountV2Resp, err error) {
+func (s *GetSummaryOfSubAccountFuturesAccountV2Service) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getSummaryOfSubAccountFuturesAccountV2Endpoint,
@@ -1609,11 +1652,15 @@ func (s *GetSummaryOfSubAccountFuturesAccountV2Service) Do(ctx context.Context) 
 	if s.limit != nil {
 		r.setParam("limit", *s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
-	res = new(GetSummaryOfSubAccountFuturesAccountV2Resp)
+	if s.futuresType == 1 {
+		res = new(GetSummaryOfSubAccountFuturesAccountV2USDTResp)
+	} else {
+		res = new(GetSummaryOfSubAccountFuturesAccountV2COINResp)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
 		return nil, err
@@ -1621,7 +1668,7 @@ func (s *GetSummaryOfSubAccountFuturesAccountV2Service) Do(ctx context.Context) 
 	return res, nil
 }
 
-type GetSummaryOfSubAccountFuturesAccountV2Resp struct {
+type GetSummaryOfSubAccountFuturesAccountV2USDTResp struct {
 	FutureAccountSummaryResp struct {
 		TotalInitialMargin          string `json:"totalInitialMargin"`
 		TotalMaintenanceMargin      string `json:"totalMaintenanceMargin"`
@@ -1645,9 +1692,25 @@ type GetSummaryOfSubAccountFuturesAccountV2Resp struct {
 	} `json:"futureAccountSummaryResp"`
 }
 
+type GetSummaryOfSubAccountFuturesAccountV2COINResp struct {
+	DeliveryAccountSummaryResp struct {
+		TotalMarginBalanceOfBTC    string `json:"totalMarginBalanceOfBTC"`
+		TotalUnrealizedProfitOfBTC string `json:"totalUnrealizedProfitOfBTC"`
+		TotalWalletBalanceOfBTC    string `json:"totalWalletBalanceOfBTC"`
+		Asset                      string `json:"asset"`
+		SubAccountList             []struct {
+			Email                 string `json:"email"`
+			TotalMarginBalance    string `json:"totalMarginBalance"`
+			TotalUnrealizedProfit string `json:"totalUnrealizedProfit"`
+			TotalWalletBalance    string `json:"totalWalletBalance"`
+			Asset                 string `json:"asset"`
+		} `json:"subAccountList"`
+	} `json:"deliveryAccountSummaryResp"`
+}
+
 // Get Futures Position-Risk of Sub-account V2 (For Master Account)
 const (
-	getFuturesPositionRiskOfSubAccountV2Endpoint = "/sapi/v1/sub-account/futures/positionRisk"
+	getFuturesPositionRiskOfSubAccountV2Endpoint = "/sapi/v2/sub-account/futures/positionRisk"
 )
 
 type GetFuturesPositionRiskOfSubAccountV2Service struct {
@@ -1666,7 +1729,7 @@ func (s *GetFuturesPositionRiskOfSubAccountV2Service) FuturesType(futuresType in
 	return s
 }
 
-func (s *GetFuturesPositionRiskOfSubAccountV2Service) Do(ctx context.Context) (res *GetFuturesPositionRiskOfSubAccountV2Resp, err error) {
+func (s *GetFuturesPositionRiskOfSubAccountV2Service) Do(ctx context.Context, opts ...RequestOption) (res interface{}, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getFuturesPositionRiskOfSubAccountV2Endpoint,
@@ -1674,11 +1737,15 @@ func (s *GetFuturesPositionRiskOfSubAccountV2Service) Do(ctx context.Context) (r
 	}
 	r.setParam("email", s.email)
 	r.setParam("futuresType", s.futuresType)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
-	res = new(GetFuturesPositionRiskOfSubAccountV2Resp)
+	if s.futuresType == 1 {
+		res = new(GetFuturesPositionRiskOfSubAccountV2USDTResp)
+	} else {
+		res = new(GetFuturesPositionRiskOfSubAccountV2COINResp)
+	}
 	err = json.Unmarshal(data, res)
 	if err != nil {
 		return nil, err
@@ -1686,7 +1753,7 @@ func (s *GetFuturesPositionRiskOfSubAccountV2Service) Do(ctx context.Context) (r
 	return res, nil
 }
 
-type GetFuturesPositionRiskOfSubAccountV2Resp struct {
+type GetFuturesPositionRiskOfSubAccountV2USDTResp struct {
 	FuturePositionRiskVos []struct {
 		EntryPrice       string `json:"entryPrice"`
 		Leverage         string `json:"leverage"`
@@ -1697,6 +1764,22 @@ type GetFuturesPositionRiskOfSubAccountV2Resp struct {
 		Symbol           string `json:"symbol"`
 		UnrealizedProfit string `json:"unrealizedProfit"`
 	} `json:"futurePositionRiskVos"`
+}
+
+type GetFuturesPositionRiskOfSubAccountV2COINResp struct {
+	DeliveryPositionRiskVos []struct {
+		EntryPrice       string `json:"entryPrice"`
+		MarkPrice        string `json:"markPrice"`
+		Leverage         string `json:"leverage"`
+		Isolated         string `json:"isolated"`
+		IsolatedWallet   string `json:"isolatedWallet"`
+		IsolatedMargin   string `json:"isolatedMargin"`
+		IsAutoAddMargin  string `json:"isAutoAddMargin"`
+		PositionSide     string `json:"positionSide"`
+		PositionAmount   string `json:"positionAmount"`
+		Symbol           string `json:"symbol"`
+		UnrealizedProfit string `json:"unrealizedProfit"`
+	} `json:"deliveryPositionRiskVos"`
 }
 
 // Enable Leverage Token for Sub-account (For Master Account)
@@ -1720,7 +1803,7 @@ func (s *EnableLeverageTokenForSubAccountService) EnableBlvt(enableBlvt bool) *E
 	return s
 }
 
-func (s *EnableLeverageTokenForSubAccountService) Do(ctx context.Context) (res *EnableLeverageTokenForSubAccountResp, err error) {
+func (s *EnableLeverageTokenForSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *EnableLeverageTokenForSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: enableLeverageTokenForSubAccountEndpoint,
@@ -1728,7 +1811,7 @@ func (s *EnableLeverageTokenForSubAccountService) Do(ctx context.Context) (res *
 	}
 	r.setParam("email", s.email)
 	r.setParam("enableBlvt", s.enableBlvt)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1767,7 +1850,7 @@ func (s *GetIPRestrictionForSubAccountAPIKeyService) SubAccountApiKey(subAccount
 	return s
 }
 
-func (s *GetIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context) (res *GetIPRestrictionForSubAccountAPIKeyResp, err error) {
+func (s *GetIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context, opts ...RequestOption) (res *GetIPRestrictionForSubAccountAPIKeyResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getIPRestrictionForSubAccountAPIKeyEndpoint,
@@ -1775,7 +1858,7 @@ func (s *GetIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context) (re
 	}
 	r.setParam("email", s.email)
 	r.setParam("subAccountApiKey", s.subAccountApiKey)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1824,7 +1907,7 @@ func (s *DeleteIPListForSubAccountAPIKeyService) IpAddress(ipAddress string) *De
 	return s
 }
 
-func (s *DeleteIPListForSubAccountAPIKeyService) Do(ctx context.Context) (res *DeleteIPListForSubAccountAPIKeyResp, err error) {
+func (s *DeleteIPListForSubAccountAPIKeyService) Do(ctx context.Context, opts ...RequestOption) (res *DeleteIPListForSubAccountAPIKeyResp, err error) {
 	r := &request{
 		method:   http.MethodDelete,
 		endpoint: deleteIPListForSubAccountAPIKeyEndpoint,
@@ -1835,7 +1918,7 @@ func (s *DeleteIPListForSubAccountAPIKeyService) Do(ctx context.Context) (res *D
 	if s.ipAddress != nil {
 		r.setParam("ipAddress", *s.ipAddress)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1890,7 +1973,7 @@ func (s *UpdateIPRestrictionForSubAccountAPIKeyService) IpAddress(ipAddress stri
 	return s
 }
 
-func (s *UpdateIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context) (res *UpdateIPRestrictionForSubAccountAPIKeyResp, err error) {
+func (s *UpdateIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context, opts ...RequestOption) (res *UpdateIPRestrictionForSubAccountAPIKeyResp, err error) {
 	r := &request{
 		method:   http.MethodPut,
 		endpoint: updateIPRestrictionForSubAccountAPIKeyEndpoint,
@@ -1902,7 +1985,7 @@ func (s *UpdateIPRestrictionForSubAccountAPIKeyService) Do(ctx context.Context) 
 	if s.ipAddress != nil {
 		r.setParam("ipAddress", *s.ipAddress)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1951,7 +2034,7 @@ func (s *DepositAssetsIntoTheManagedSubAccountService) Amount(amount float64) *D
 	return s
 }
 
-func (s *DepositAssetsIntoTheManagedSubAccountService) Do(ctx context.Context) (res *DepositAssetsIntoTheManagedSubAccountResp, err error) {
+func (s *DepositAssetsIntoTheManagedSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *DepositAssetsIntoTheManagedSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: depositAssetsIntoTheManagedSubAccountEndpoint,
@@ -1960,7 +2043,7 @@ func (s *DepositAssetsIntoTheManagedSubAccountService) Do(ctx context.Context) (
 	r.setParam("toEmail", s.toEmail)
 	r.setParam("asset", s.asset)
 	r.setParam("amount", s.amount)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1992,14 +2075,14 @@ func (s *QueryManagedSubAccountAssetDetailsService) Email(email string) *QueryMa
 	return s
 }
 
-func (s *QueryManagedSubAccountAssetDetailsService) Do(ctx context.Context) (res *QueryManagedSubAccountAssetDetailsResp, err error) {
+func (s *QueryManagedSubAccountAssetDetailsService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountAssetDetailsResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountAssetDetailsEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2056,7 +2139,7 @@ func (s *WithdrawAssetsFromTheManagedSubAccountService) TransferDate(transferDat
 	return s
 }
 
-func (s *WithdrawAssetsFromTheManagedSubAccountService) Do(ctx context.Context) (res *WithdrawAssetsFromTheManagedSubAccountResp, err error) {
+func (s *WithdrawAssetsFromTheManagedSubAccountService) Do(ctx context.Context, opts ...RequestOption) (res *WithdrawAssetsFromTheManagedSubAccountResp, err error) {
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: withdrawAssetsFromTheManagedSubAccountEndpoint,
@@ -2068,7 +2151,7 @@ func (s *WithdrawAssetsFromTheManagedSubAccountService) Do(ctx context.Context) 
 	if s.transferDate != nil {
 		r.setParam("transferDate", *s.transferDate)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2124,7 +2207,7 @@ func (s *QueryManagedSubAccountSnapshotService) Limit(limit int) *QueryManagedSu
 	return s
 }
 
-func (s *QueryManagedSubAccountSnapshotService) Do(ctx context.Context) (res *QueryManagedSubAccountSnapshotResp, err error) {
+func (s *QueryManagedSubAccountSnapshotService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountSnapshotResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountSnapshotEndpoint,
@@ -2141,7 +2224,7 @@ func (s *QueryManagedSubAccountSnapshotService) Do(ctx context.Context) (res *Qu
 	if s.limit != nil {
 		r.setParam("limit", *s.limit)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2221,7 +2304,7 @@ func (s *QueryManagedSubAccountTransferLogService) TransferFunctionAccountType(t
 	return s
 }
 
-func (s *QueryManagedSubAccountTransferLogService) Do(ctx context.Context) (res *QueryManagedSubAccountTransferLogResp, err error) {
+func (s *QueryManagedSubAccountTransferLogService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountTransferLogResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountTransferLogEndpoint,
@@ -2238,7 +2321,7 @@ func (s *QueryManagedSubAccountTransferLogService) Do(ctx context.Context) (res 
 	if s.transferFunctionAccountType != nil {
 		r.setParam("transferFunctionAccountType", *s.transferFunctionAccountType)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2280,14 +2363,14 @@ func (s *QueryManagedSubAccountFuturesAssetDetailsService) Email(email string) *
 	return s
 }
 
-func (s *QueryManagedSubAccountFuturesAssetDetailsService) Do(ctx context.Context) (res *QueryManagedSubAccountFuturesAssetDetailsResp, err error) {
+func (s *QueryManagedSubAccountFuturesAssetDetailsService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountFuturesAssetDetailsResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountFuturesAssetDetailsEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2336,14 +2419,14 @@ func (s *QueryManagedSubAccountMarginAssetDetailsService) Email(email string) *Q
 	return s
 }
 
-func (s *QueryManagedSubAccountMarginAssetDetailsService) Do(ctx context.Context) (res *QueryManagedSubAccountMarginAssetDetailsResp, err error) {
+func (s *QueryManagedSubAccountMarginAssetDetailsService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountMarginAssetDetailsResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountMarginAssetDetailsEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2421,7 +2504,7 @@ func (s *QueryManagedSubAccountTransferLogForTradingTeamService) TransferFunctio
 	return s
 }
 
-func (s *QueryManagedSubAccountTransferLogForTradingTeamService) Do(ctx context.Context) (res *QueryManagedSubAccountTransferLogForTradingTeamResp, err error) {
+func (s *QueryManagedSubAccountTransferLogForTradingTeamService) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountTransferLogForTradingTeamResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountTransferLogForTradingTeamEndpoint,
@@ -2438,7 +2521,7 @@ func (s *QueryManagedSubAccountTransferLogForTradingTeamService) Do(ctx context.
 	if s.transferFunctionAccountType != nil {
 		r.setParam("transferFunctionAccountType", *s.transferFunctionAccountType)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2480,14 +2563,14 @@ func (s *QuerySubAccountAssetsForMasterAccountService) Email(email string) *Quer
 	return s
 }
 
-func (s *QuerySubAccountAssetsForMasterAccountService) Do(ctx context.Context) (res *QuerySubAccountAssetsForMasterAccountResp, err error) {
+func (s *QuerySubAccountAssetsForMasterAccountService) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountAssetsForMasterAccountResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: querySubAccountAssetsForMasterAccountEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2534,7 +2617,7 @@ func (s *QueryManagedSubAccountList) Limit(limit int) *QueryManagedSubAccountLis
 	return s
 }
 
-func (s *QueryManagedSubAccountList) Do(ctx context.Context) (res *QueryManagedSubAccountListResp, err error) {
+func (s *QueryManagedSubAccountList) Do(ctx context.Context, opts ...RequestOption) (res *QueryManagedSubAccountListResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: queryManagedSubAccountListEndpoint,
@@ -2549,7 +2632,7 @@ func (s *QueryManagedSubAccountList) Do(ctx context.Context) (res *QueryManagedS
 	if s.limit != nil {
 		r.setParam("limit", strconv.Itoa(*s.limit))
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2593,14 +2676,14 @@ func (s *QuerySubAccountTransactionTatistics) Email(email string) *QuerySubAccou
 	return s
 }
 
-func (s *QuerySubAccountTransactionTatistics) Do(ctx context.Context) (res *QuerySubAccountTransactionTatisticsResp, err error) {
+func (s *QuerySubAccountTransactionTatistics) Do(ctx context.Context, opts ...RequestOption) (res *QuerySubAccountTransactionTatisticsResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: QuerySubAccountTransactionTatisticsEndpoint,
 		secType:  secTypeSigned,
 	}
 	r.setParam("email", s.email)
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2629,4 +2712,61 @@ type QuerySubAccountTransactionTatisticsResp struct {
 		BusdMargin  int   `json:"busdMargin"`
 		Date        int64 `json:"date"`
 	} `json:"tradeInfoVos"`
+}
+
+// Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
+const (
+	getManagedSubAccountDepositAddressEndpoint = "/sapi/v1/managed-subaccount/deposit/address"
+)
+
+type GetManagedSubAccountDepositAddressService struct {
+	c       *Client
+	email   string
+	coin    string
+	network *string
+}
+
+func (s *GetManagedSubAccountDepositAddressService) Email(email string) *GetManagedSubAccountDepositAddressService {
+	s.email = email
+	return s
+}
+
+func (s *GetManagedSubAccountDepositAddressService) Coin(coin string) *GetManagedSubAccountDepositAddressService {
+	s.coin = coin
+	return s
+}
+
+func (s *GetManagedSubAccountDepositAddressService) Network(network string) *GetManagedSubAccountDepositAddressService {
+	s.network = &network
+	return s
+}
+
+func (s *GetManagedSubAccountDepositAddressService) Do(ctx context.Context, opts ...RequestOption) (res *GetManagedSubAccountDepositAddressResp, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: getManagedSubAccountDepositAddressEndpoint,
+		secType:  secTypeSigned,
+	}
+	r.setParam("email", s.email)
+	r.setParam("coin", s.coin)
+	if s.network != nil {
+		r.setParam("network", *s.network)
+	}
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return nil, err
+	}
+	res = new(GetManagedSubAccountDepositAddressResp)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+type GetManagedSubAccountDepositAddressResp struct {
+	Coin    string `json:"coin"`
+	Address string `json:"address"`
+	Tag     string `json:"tag"`
+	Url     string `json:"url"`
 }

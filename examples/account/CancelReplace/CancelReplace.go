@@ -20,7 +20,7 @@ func CancelReplace() {
 
 	// Cancel an Existing Order and Send a New Order (TRADE) - POST /api/v3/order/cancelReplace
 	cancelReplace, err := client.NewCancelReplaceService().
-		Symbol("BTCUSDT").Side("BUY").OrderType("LIMIT").CancelReplaceMode("STOP_ON_FAILURE").
+		Symbol("BTCUSDT").Side("BUY").OrderType("LIMIT").CancelReplaceMode("STOP_ON_FAILURE").CancelOrderId(13341128).
 		TimeInForce("GTC").Quantity(0.001).Price(20000.0).Do(context.Background())
 	if err != nil {
 		fmt.Println(err)
