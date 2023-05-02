@@ -11,6 +11,7 @@
 - Responses for `POST /api/v3/order/cancelReplace` support all 4 Response Types
 - Support for specifying `recvWindow` via `WithRecvWindow()` function
 - `strategyId` and `strategyType` parameters added to `TestNewOrder` and `CreateOrderService` endpoints
+- 'UiKlines': change `interval` to `limit`
 
 ## v0.2.0 - 2023-04-21
 
