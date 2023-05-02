@@ -417,7 +417,7 @@ func (s *Klines) Do(ctx context.Context, opts ...RequestOption) (res []*KlinesRe
 	r.setParam("symbol", s.symbol)
 	r.setParam("interval", s.interval)
 	if s.limit != nil {
-		r.setParam("interval", *s.limit)
+		r.setParam("limit", *s.limit)
 	}
 	if s.startTime != nil {
 		r.setParam("startTime", *s.startTime)
@@ -534,7 +534,7 @@ func (s *UiKlines) Do(ctx context.Context, opts ...RequestOption) (res []*UiKlin
 	r.setParam("symbol", s.symbol)
 	r.setParam("interval", s.interval)
 	if s.limit != nil {
-		r.setParam("interval", *s.limit)
+		r.setParam("limit", *s.limit)
 	}
 	if s.startTime != nil {
 		r.setParam("startTime", *s.startTime)
