@@ -355,26 +355,35 @@ func (s *subAccountTestSuite) TestGetDetailOnSubAccountFuturesAccount() {
 func (s *subAccountTestSuite) TestGetDetailOnSubAccountFuturesAccountV2() {
 	data := []byte(`
 	{
-		"success": true,
-		"futuresType": 1,
-		"transfers": [
+		"futureAccountResp": {
+		"email": "abc@test.com",
+		"assets":[
 			{
-				"from": "aaa",
-				"to": "bbb",
-				"asset": "BTC",
-				"qty": "1.00000000",
-				"tranId": 123,
-				"time": 1613450271000
-			},
-			{
-				"from": "bbb",
-				"to": "aaa",
-				"asset": "ETH",
-				"qty": "10.00000000",
-				"tranId": 456,
-				"time": 1613450272000
-			}
-		]
+				"asset": "USDT",
+				"initialMargin": "0.00000000",
+				"maintenanceMargin": "0.00000000",
+				"marginBalance": "0.88308000",
+				"maxWithdrawAmount": "0.88308000",
+				"openOrderInitialMargin": "0.00000000",
+				"positionInitialMargin": "0.00000000",
+				"unrealizedProfit": "0.00000000",
+				"walletBalance": "0.88308000"
+			 }
+		],
+		"canDeposit": true,
+		"canTrade": true,
+		"canWithdraw": true,
+		"feeTier": 2,
+		"maxWithdrawAmount": "0.88308000",
+		"totalInitialMargin": "0.00000000",
+		"totalMaintenanceMargin": "0.00000000",
+		"totalMarginBalance": "0.88308000",
+		"totalOpenOrderInitialMargin": "0.00000000",
+		"totalPositionInitialMargin": "0.00000000",
+		"totalUnrealizedProfit": "0.00000000",
+		"totalWalletBalance": "0.88308000",
+		"updateTime": 1576756674610
+	 }
 	}
 	`)
 
@@ -387,21 +396,30 @@ func (s *subAccountTestSuite) TestGetDetailOnSubAccountFuturesAccountV2() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.True(resp.Success)
-	s.Equal(1, resp.FuturesType)
-	s.Len(resp.Transfers, 2)
-	s.Equal("aaa", resp.Transfers[0].From)
-	s.Equal("bbb", resp.Transfers[0].To)
-	s.Equal("BTC", resp.Transfers[0].Asset)
-	s.Equal("1.00000000", resp.Transfers[0].Qty)
-	s.Equal(int64(123), resp.Transfers[0].TranId)
-	s.Equal(uint64(1613450271000), resp.Transfers[0].Time)
-	s.Equal("bbb", resp.Transfers[1].From)
-	s.Equal("aaa", resp.Transfers[1].To)
-	s.Equal("ETH", resp.Transfers[1].Asset)
-	s.Equal("10.00000000", resp.Transfers[1].Qty)
-	s.Equal(int64(456), resp.Transfers[1].TranId)
-	s.Equal(uint64(1613450272000), resp.Transfers[1].Time)
+	s.Equal("abc@test.com", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Email)
+	s.Len(resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets, 1)
+	s.Equal("USDT", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].Asset)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].InitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].MaintenanceMargin)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].MarginBalance)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].MaxWithdrawAmount)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].OpenOrderInitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].PositionInitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].UnrealizedProfit)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.Assets[0].WalletBalance)
+	s.True(resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.CanDeposit)
+	s.True(resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.CanTrade)
+	s.True(resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.CanWithdraw)
+	s.Equal(2, resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.FeeTier)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.MaxWithdrawAmount)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalInitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalMaintenanceMargin)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalMarginBalance)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalOpenOrderInitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalPositionInitialMargin)
+	s.Equal("0.00000000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalUnrealizedProfit)
+	s.Equal("0.88308000", resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.TotalWalletBalance)
+	s.Equal(uint64(1576756674610), resp.(*GetDetailOnSubAccountFuturesAccountV2USDTResp).FutureAccountResp.UpdateTime)
 }
 
 func (s *subAccountTestSuite) TestGetDetailOnSubAccountMarginAccount() {
@@ -489,18 +507,18 @@ func (s *subAccountTestSuite) TestGetFuturesPositionRiskOfSubAccountV2() {
 	data := []byte(`
 	{
 		"futurePositionRiskVos": [
-			{
-				"entryPrice": "56789.01234567",
-				"leverage": "1",
-				"maxNotional": "1000000",
-				"liquidationPrice": "55555.55555555",
-				"markPrice": "56789.01234567",
-				"positionAmount": "10",
-				"symbol": "BTCUSDT",
-				"unrealizedProfit": "0.001"
-			}
-		]
-	}`)
+		   {
+			  "entryPrice": "9975.12000",
+			  "leverage": "50",
+			  "maxNotional": "1000000",
+			  "liquidationPrice": "7963.54",
+			  "markPrice": "9973.50770517",
+			  "positionAmount": "0.010",
+			  "symbol": "BTCUSDT",
+			  "unrealizedProfit": "-0.01612295"
+		   }
+		 ]
+	  }`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -511,15 +529,15 @@ func (s *subAccountTestSuite) TestGetFuturesPositionRiskOfSubAccountV2() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Len(resp.FuturePositionRiskVos, 1)
-	s.Equal("56789.01234567", resp.FuturePositionRiskVos[0].EntryPrice)
-	s.Equal("1", resp.FuturePositionRiskVos[0].Leverage)
-	s.Equal("1000000", resp.FuturePositionRiskVos[0].MaxNotional)
-	s.Equal("55555.55555555", resp.FuturePositionRiskVos[0].LiquidationPrice)
-	s.Equal("56789.01234567", resp.FuturePositionRiskVos[0].MarkPrice)
-	s.Equal("10", resp.FuturePositionRiskVos[0].PositionAmount)
-	s.Equal("BTCUSDT", resp.FuturePositionRiskVos[0].Symbol)
-	s.Equal("0.001", resp.FuturePositionRiskVos[0].UnrealizedProfit)
+	s.Len(resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos, 1)
+	s.Equal("9975.12000", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].EntryPrice)
+	s.Equal("50", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].Leverage)
+	s.Equal("1000000", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].MaxNotional)
+	s.Equal("7963.54", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].LiquidationPrice)
+	s.Equal("9973.50770517", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].MarkPrice)
+	s.Equal("0.010", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].PositionAmount)
+	s.Equal("BTCUSDT", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].Symbol)
+	s.Equal("-0.01612295", resp.(*GetFuturesPositionRiskOfSubAccountV2USDTResp).FuturePositionRiskVos[0].UnrealizedProfit)
 }
 
 func (s *subAccountTestSuite) TestGetIPRestrictionForSubAccountAPIKey() {
@@ -739,24 +757,24 @@ func (s *subAccountTestSuite) TestGetSummaryOfSubAccountFuturesAccountV2() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("100.00000000", resp.FutureAccountSummaryResp.TotalInitialMargin)
-	s.Equal("50.00000000", resp.FutureAccountSummaryResp.TotalMaintenanceMargin)
-	s.Equal("150.00000000", resp.FutureAccountSummaryResp.TotalMarginBalance)
-	s.Equal("25.00000000", resp.FutureAccountSummaryResp.TotalOpenOrderInitialMargin)
-	s.Equal("75.00000000", resp.FutureAccountSummaryResp.TotalPositionInitialMargin)
-	s.Equal("10.00000000", resp.FutureAccountSummaryResp.TotalUnrealizedProfit)
-	s.Equal("160.00000000", resp.FutureAccountSummaryResp.TotalWalletBalance)
-	s.Equal("BTC", resp.FutureAccountSummaryResp.Asset)
-	s.Len(resp.FutureAccountSummaryResp.SubAccountList, 2)
-	s.Equal("test1@test.com", resp.FutureAccountSummaryResp.SubAccountList[0].Email)
-	s.Equal("50.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalInitialMargin)
-	s.Equal("25.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalMaintenanceMargin)
-	s.Equal("75.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalMarginBalance)
-	s.Equal("15.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalOpenOrderInitialMargin)
-	s.Equal("45.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalPositionInitialMargin)
-	s.Equal("5.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalUnrealizedProfit)
-	s.Equal("80.00000000", resp.FutureAccountSummaryResp.SubAccountList[0].TotalWalletBalance)
-	s.Equal("BTC", resp.FutureAccountSummaryResp.SubAccountList[0].Asset)
+	s.Equal("100.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalInitialMargin)
+	s.Equal("50.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalMaintenanceMargin)
+	s.Equal("150.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalMarginBalance)
+	s.Equal("25.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalOpenOrderInitialMargin)
+	s.Equal("75.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalPositionInitialMargin)
+	s.Equal("10.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalUnrealizedProfit)
+	s.Equal("160.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.TotalWalletBalance)
+	s.Equal("BTC", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.Asset)
+	s.Len(resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList, 2)
+	s.Equal("test1@test.com", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].Email)
+	s.Equal("50.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalInitialMargin)
+	s.Equal("25.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalMaintenanceMargin)
+	s.Equal("75.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalMarginBalance)
+	s.Equal("15.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalOpenOrderInitialMargin)
+	s.Equal("45.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalPositionInitialMargin)
+	s.Equal("5.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalUnrealizedProfit)
+	s.Equal("80.00000000", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].TotalWalletBalance)
+	s.Equal("BTC", resp.(*GetSummaryOfSubAccountFuturesAccountV2USDTResp).FutureAccountSummaryResp.SubAccountList[0].Asset)
 }
 
 func (s *marginTestSuite) TestGetSummaryOfSubAccountMarginAccount() {
@@ -1535,4 +1553,43 @@ func (s *subAccountTestSuite) TestWithdrawAssetsFromTheManagedSubAccount() {
 
 	s.r().NoError(err)
 	s.Equal(int64(123), resp.TranId)
+}
+
+func (s *subAccountTestSuite) TestManagedSubaccountDepositAddressService() {
+	data := []byte(`
+	{
+		"coin": "USDT",
+		"address": "0x206c22d833bb0bb2102da6b7c7d4c3eb14bcf73d",
+		"tag": "",
+		"url": "https://etherscan.io/address/0x206c22d833bb0bb2102da6b7c7d4c3eb14bcf73d"
+	}
+	`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	email := "testsub@gmail.com"
+	coin := "a_coin"
+	network := "a_network"
+
+	s.assertReq(func(r *request) {
+		e := newSignedRequest().setParams(params{
+			"email":   email,
+			"coin":    coin,
+			"network": network,
+		})
+		s.assertRequestEqual(e, r)
+	})
+
+	res, err := s.client.NewGetManagedSubAccountDepositAddressService().
+		Email(email).
+		Coin(coin).
+		Network(network).
+		Do(newContext())
+
+	r := s.r()
+	r.NoError(err)
+	r.Equal("0x206c22d833bb0bb2102da6b7c7d4c3eb14bcf73d", res.Address, "Address")
+	r.Equal("USDT", res.Coin, "Coin")
+	r.Equal("", res.Tag, "Tag")
+	r.Equal("https://etherscan.io/address/0x206c22d833bb0bb2102da6b7c7d4c3eb14bcf73d", res.Url, "URL")
 }

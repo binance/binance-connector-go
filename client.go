@@ -65,6 +65,7 @@ func (c *Client) debug(format string, v ...interface{}) {
 	}
 }
 
+// Create client function for initialising new Binance client
 func NewClient(apiKey string, secretKey string, baseURL ...string) *Client {
 	url := "https://api.binance.com"
 
@@ -81,7 +82,6 @@ func NewClient(apiKey string, secretKey string, baseURL ...string) *Client {
 	}
 }
 
-// Create client function for initialising new Binance client:
 func (c *Client) parseRequest(r *request, opts ...RequestOption) (err error) {
 	// set request options from user
 	for _, opt := range opts {
@@ -142,8 +142,10 @@ func (c *Client) parseRequest(r *request, opts ...RequestOption) (err error) {
 
 func (c *Client) callAPI(ctx context.Context, r *request, opts ...RequestOption) (data []byte, err error) {
 	err = c.parseRequest(r, opts...)
-	if err != nil {
-		return []byte{}, err
+	if r.endpoint != "/api/v3/order/cancelReplace" {
+		if err != nil {
+			return []byte{}, err
+		}
 	}
 	req, err := http.NewRequest(r.method, r.fullURL, r.body)
 	if err != nil {
@@ -182,7 +184,9 @@ func (c *Client) callAPI(ctx context.Context, r *request, opts ...RequestOption)
 		if e != nil {
 			c.debug("failed to unmarshal json: %s", e)
 		}
-		return nil, apiErr
+		if r.endpoint != "/api/v3/order/cancelReplace" {
+			return nil, apiErr
+		}
 	}
 	return data, nil
 }
@@ -685,6 +689,10 @@ func (c *Client) NewQueryManagedSubAccountList() *QueryManagedSubAccountList {
 
 func (c *Client) NewQuerySubAccountTransactionTatistics() *QuerySubAccountTransactionTatistics {
 	return &QuerySubAccountTransactionTatistics{c: c}
+}
+
+func (c *Client) NewGetManagedSubAccountDepositAddressService() *GetManagedSubAccountDepositAddressService {
+	return &GetManagedSubAccountDepositAddressService{c: c}
 }
 
 // Wallet Endpoints:

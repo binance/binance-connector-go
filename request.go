@@ -66,5 +66,12 @@ func (r *request) validate() (err error) {
 	return nil
 }
 
+// Append `WithRecvWindow(insert_recvwindow)` to request to modify the default recvWindow value
+func WithRecvWindow(recvWindow int64) RequestOption {
+	return func(r *request) {
+		r.recvWindow = recvWindow
+	}
+}
+
 // RequestOption define option type for request
 type RequestOption func(*request)

@@ -453,68 +453,91 @@ func (s *accountTestSuite) TestQueryOCOService() {
 }
 
 func (s *accountTestSuite) TestQueryAllOCOService() {
-	data := []byte(`{
-		"orderListId": 123456,
-		"contingencyType": "OCO",
-		"listStatusType": "EXEC_STARTED",
-		"listOrderStatus": "EXECUTING",
-		"listClientOrderId": "myListClientOrderId",
-		"transactionTime": 1616976140402,
-		"symbol": "BTCUSDT",
-		"orders": [
-			{
-				"symbol": "BTCUSDT",
-				"orderId": 654321,
-				"clientOrderId": "myClientOrderId"
-			}
-		]
-	}`)
+	data := []byte(`
+	[
+		{
+			"orderListId": 29,
+			"contingencyType": "OCO",
+			"listStatusType": "EXEC_STARTED",
+			"listOrderStatus": "EXECUTING",
+			"listClientOrderId": "amEEAXryFzFwYF1FeRpUoZ",
+			"transactionTime": 1565245913483,
+			"symbol": "LTCBTC",
+			"orders": [
+				{
+					"symbol": "LTCBTC",
+					"orderId": 4,
+					"clientOrderId": "oD7aesZqjEGlZrbtRpy5zB"
+				},
+				{
+					"symbol": "LTCBTC",
+					"orderId": 5,
+					"clientOrderId": "Jr1h6xirOxgeJOUuYQS7V3"
+				}
+			]
+		},
+		{
+			"orderListId": 28,
+			"contingencyType": "OCO",
+			"listStatusType": "EXEC_STARTED",
+			"listOrderStatus": "EXECUTING",
+			"listClientOrderId": "hG7hFNxJV6cZy3Ze4AUT4d",
+			"transactionTime": 1565245913407,
+			"symbol": "LTCBTC",
+			"orders": [
+				{
+					"symbol": "LTCBTC",
+					"orderId": 2,
+					"clientOrderId": "j6lFOfbmFMRjTYA7rRJ0LP"
+				},
+				{
+					"symbol": "LTCBTC",
+					"orderId": 3,
+					"clientOrderId": "z0KCjOdditiLS5ekAFtK81"
+				}
+			]
+		}
+	]`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
 
-	response, err := s.client.NewQueryAllOCOService().FromId(123456).StartTime(1616976140402).Limit(100).Do(context.Background())
+	resp, err := s.client.NewQueryAllOCOService().
+		FromId(123456).
+		StartTime(1616976140402).
+		Limit(100).
+		Do(context.Background())
+
 	s.r().NoError(err)
-
-	s.assertOCOResponseEqual(&OCOResponse{
-		OrderListId:       123456,
-		ContingencyType:   "OCO",
-		ListStatusType:    "EXEC_STARTED",
-		ListOrderStatus:   "EXECUTING",
-		ListClientOrderId: "myListClientOrderId",
-		TransactionTime:   1616976140402,
-		Symbol:            "BTCUSDT",
-		Orders: []struct {
-			Symbol        string `json:"symbol"`
-			OrderId       int64  `json:"orderId"`
-			ClientOrderId string `json:"clientOrderId"`
-		}{
-			{
-				Symbol:        "BTCUSDT",
-				OrderId:       654321,
-				ClientOrderId: "myClientOrderId",
-			},
-		},
-	}, response)
-}
-
-func (s *accountTestSuite) assertOCOResponseEqual(expected, other *OCOResponse) {
-	r := s.r()
-
-	r.EqualValues(expected.OrderListId, other.OrderListId)
-	r.EqualValues(expected.ContingencyType, other.ContingencyType)
-	r.EqualValues(expected.ListStatusType, other.ListStatusType)
-	r.EqualValues(expected.ListOrderStatus, other.ListOrderStatus)
-	r.EqualValues(expected.ListClientOrderId, other.ListClientOrderId)
-	r.EqualValues(expected.TransactionTime, other.TransactionTime)
-	r.EqualValues(expected.Symbol, other.Symbol)
-
-	r.Len(other.Orders, len(expected.Orders))
-	for i, order := range expected.Orders {
-		r.EqualValues(order.Symbol, other.Orders[i].Symbol)
-		r.EqualValues(order.OrderId, other.Orders[i].OrderId)
-		r.EqualValues(order.ClientOrderId, other.Orders[i].ClientOrderId)
-	}
+	s.r().Equal(2, len(resp))
+	s.r().Equal(int64(29), resp[0].OrderListId)
+	s.r().Equal(int64(28), resp[1].OrderListId)
+	s.r().Equal("OCO", resp[0].ContingencyType)
+	s.r().Equal("OCO", resp[1].ContingencyType)
+	s.r().Equal("EXEC_STARTED", resp[0].ListStatusType)
+	s.r().Equal("EXEC_STARTED", resp[1].ListStatusType)
+	s.r().Equal("EXECUTING", resp[0].ListOrderStatus)
+	s.r().Equal("EXECUTING", resp[1].ListOrderStatus)
+	s.r().Equal("amEEAXryFzFwYF1FeRpUoZ", resp[0].ListClientOrderId)
+	s.r().Equal("hG7hFNxJV6cZy3Ze4AUT4d", resp[1].ListClientOrderId)
+	s.r().Equal(uint64(1565245913483), resp[0].TransactionTime)
+	s.r().Equal(uint64(1565245913407), resp[1].TransactionTime)
+	s.r().Equal("LTCBTC", resp[0].Symbol)
+	s.r().Equal("LTCBTC", resp[1].Symbol)
+	s.r().Equal(2, len(resp[0].Orders))
+	s.r().Equal(2, len(resp[1].Orders))
+	s.r().Equal("LTCBTC", resp[0].Orders[0].Symbol)
+	s.r().Equal("LTCBTC", resp[0].Orders[1].Symbol)
+	s.r().Equal("LTCBTC", resp[1].Orders[0].Symbol)
+	s.r().Equal("LTCBTC", resp[1].Orders[1].Symbol)
+	s.r().Equal(int64(4), resp[0].Orders[0].OrderId)
+	s.r().Equal(int64(5), resp[0].Orders[1].OrderId)
+	s.r().Equal(int64(2), resp[1].Orders[0].OrderId)
+	s.r().Equal(int64(3), resp[1].Orders[1].OrderId)
+	s.r().Equal("oD7aesZqjEGlZrbtRpy5zB", resp[0].Orders[0].ClientOrderId)
+	s.r().Equal("Jr1h6xirOxgeJOUuYQS7V3", resp[0].Orders[1].ClientOrderId)
+	s.r().Equal("j6lFOfbmFMRjTYA7rRJ0LP", resp[1].Orders[0].ClientOrderId)
+	s.r().Equal("z0KCjOdditiLS5ekAFtK81", resp[1].Orders[1].ClientOrderId)
 }
 
 func (s *accountTestSuite) TestGetOpenOrders() {
