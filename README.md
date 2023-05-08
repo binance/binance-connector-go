@@ -8,6 +8,7 @@ This is a lightweight library that works as a connector to [Binance public API](
 - Margin Account/Trade: `margin.go`
 - Market Data: `market.go`
 - Sub-Accounts: `subaccount.go`
+- Staking: `staking.go`
 - Websocket Market/User Data Stream: `websocket.go`
 - Websocket User Data Stream: `user_stream.go`
 

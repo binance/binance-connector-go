@@ -812,3 +812,32 @@ func (c *Client) NewPingUserStream() *PingUserStream {
 func (c *Client) NewCloseUserStream() *CloseUserStream {
 	return &CloseUserStream{c: c}
 }
+
+// Staking Endpoints:
+func (c *Client) NewGetStakingProductListService() *GetStakingProductListService {
+	return &GetStakingProductListService{c: c}
+}
+
+func (c *Client) NewPurchaseStakingProductService() *PurchaseStakingProductService {
+	return &PurchaseStakingProductService{c: c}
+}
+
+func (c *Client) NewRedeemStakingProductService() *RedeemStakingProductService {
+	return &RedeemStakingProductService{c: c}
+}
+
+func (c *Client) NewGetStakingProductPositionService() *GetStakingProductPositionService {
+	return &GetStakingProductPositionService{c: c}
+}
+
+func (c *Client) NewGetStakingHistoryService() *GetStakingHistoryService {
+	return &GetStakingHistoryService{c: c}
+}
+
+func (c *Client) NewSetAutoStakingService() *SetAutoStakingService {
+	return &SetAutoStakingService{c: c}
+}
+
+func (c *Client) NewPersonalLeftQuotaService() *PersonalLeftQuotaService {
+	return &PersonalLeftQuotaService{c: c}
+}
