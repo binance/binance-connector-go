@@ -1,5 +1,10 @@
 # Change log
 
+## v0.4.0 - 2023-05-08
+
+### Added
+- Staking Endpoints Implemented
+
 ## v0.3.0 - 2023-05-02
 
 ### Added
