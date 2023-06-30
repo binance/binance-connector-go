@@ -1,6 +1,7 @@
 package binance_connector
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -56,8 +57,9 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 		HandshakeTimeout:  45 * time.Second,
 		EnableCompression: false,
 	}
-
-	c, _, err := Dialer.Dial(cfg.Endpoint, nil)
+	headers := http.Header{}
+	headers.Add("User-Agent", fmt.Sprintf("%s/%s", Name, Version))
+	c, _, err := Dialer.Dial(cfg.Endpoint, headers)
 	if err != nil {
 		return nil, nil, err
 	}

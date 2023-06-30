@@ -775,29 +775,6 @@ func (s *TickerBookTicker) Symbols(symbols []string) *TickerBookTicker {
 	return s
 }
 
-/*
-func (s *ListBookTickersService) Do(ctx context.Context, opts ...RequestOption) (res []*BookTicker, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: "/api/v3/ticker/bookTicker",
-	}
-	if s.symbol != nil {
-		r.setParam("symbol", *s.symbol)
-	}
-	data, err := s.c.callAPI(ctx, r, opts...)
-	data = common.ToJSONList(data)
-	if err != nil {
-		return []*BookTicker{}, err
-	}
-	res = make([]*BookTicker, 0)
-	err = json.Unmarshal(data, &res)
-	if err != nil {
-		return []*BookTicker{}, err
-	}
-	return res, nil
-}
-*/
-// Send the request
 func (s *TickerBookTicker) Do(ctx context.Context, opts ...RequestOption) (res []*TickerBookTickerResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
@@ -815,11 +792,29 @@ func (s *TickerBookTicker) Do(ctx context.Context, opts ...RequestOption) (res [
 	if err != nil {
 		return []*TickerBookTickerResponse{}, err
 	}
-	res = make([]*TickerBookTickerResponse, 0)
-	err = json.Unmarshal(data, &res)
+	var raw json.RawMessage
+	err = json.Unmarshal(data, &raw)
 	if err != nil {
 		return []*TickerBookTickerResponse{}, err
 	}
+
+	if raw[0] == '[' {
+		// The response is an array, unmarshal it as before
+		res = make([]*TickerBookTickerResponse, 0)
+		err = json.Unmarshal(data, &res)
+		if err != nil {
+			return []*TickerBookTickerResponse{}, err
+		}
+	} else {
+		// The response is a single object, not an array, make sure to add it to the slice
+		singleRes := new(TickerBookTickerResponse)
+		err = json.Unmarshal(data, &singleRes)
+		if err != nil {
+			return []*TickerBookTickerResponse{}, err
+		}
+		res = append(res, singleRes)
+	}
+
 	return res, nil
 }
 
