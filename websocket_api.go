@@ -76,7 +76,7 @@ func (c *WebsocketAPIClient) Connect() error {
 		return fmt.Errorf("dialer not initialized")
 	}
 	headers := http.Header{}
-	headers.Add("User-Agent", "Go Connector - v0.5.0")
+	headers.Add("User-Agent", fmt.Sprintf("%s/%s", Name, Version))
 	conn, _, err := c.Dialer.Dial(c.Endpoint, headers)
 	if err != nil {
 		return err
