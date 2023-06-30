@@ -6,6 +6,9 @@
 - Added Websocket API Endpoints
 - Added User-Agent header to Websocket and Websocket API
 
+### Fixed
+- bookTickerService Endpoint fixed to correctly support individual `symbol` parameter.
+
 ## v0.4.0 - 2023-05-08
 
 ### Added
