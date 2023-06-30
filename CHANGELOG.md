@@ -1,5 +1,11 @@
 # Change log
 
+## v0.5.0 - 2023-06-30
+
+### Added
+- Added Websocket API Endpoints
+- Added User-Agent header to Websocket and Websocket API
+
 ## v0.4.0 - 2023-05-08
 
 ### Added

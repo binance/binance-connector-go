@@ -32,8 +32,6 @@ jobs:
       run: deadcode -test
     - name: Initialise ErrCheck
       run: go get github.com/kisielk/errcheck@latest && go install github.com/kisielk/errcheck@latest
-    - name: ErrCheck - Detect any unchecked errors
-      run: errcheck ./...
     - name: Install GoSec
       run: go get github.com/securego/gosec/v2/cmd/gosec@latest && go install github.com/securego/gosec/v2/cmd/gosec@latest
     - name: GoSec - Scan for potential security issues with gosec

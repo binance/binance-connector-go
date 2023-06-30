@@ -77,7 +77,7 @@ func main() {
 
 Please find more examples for each supported endpoint in the `examples` folder.
 
-## Websocket API
+## Websocket Stream
 Initialising Websocket Client
 - Websocket Client can be initialized with 2 parameters, `NewWebsocketStreamClient(isCombined, baseURL)`:
 - `isCombined` is a MANDATORY boolean value that specifies whether you are calling a combined stream or not.
@@ -169,6 +169,34 @@ func main() {
 		stopCh <- struct{}{}
 	}()
 	<-doneCh
+}
+```
+
+## Websocket API
+
+```go
+func OCOHistoryExample() {
+	// Initialise Websocket API Client
+	client := binance_connector.NewWebsocketAPIClient("api_key", "secret_key")
+	// Connect to Websocket API
+	err := client.Connect()
+	if err != nil {
+		log.Printf("Error: %v", err)
+		return
+	}
+	defer client.Close()
+
+	// Send request to Websocket API
+	response, err := client.NewAccountOCOHistoryService().Do(context.Background())
+	if err != nil {
+		log.Printf("Error: %v", err)
+		return
+	}
+
+	// Print the response
+	fmt.Println(binance_connector.PrettyPrint(response))
+
+	client.WaitForCloseSignal()
 }
 ```
 

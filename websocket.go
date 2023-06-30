@@ -56,8 +56,9 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 		HandshakeTimeout:  45 * time.Second,
 		EnableCompression: false,
 	}
-
-	c, _, err := Dialer.Dial(cfg.Endpoint, nil)
+	headers := http.Header{}
+	headers.Add("User-Agent", "Go Connector - v0.5.0")
+	c, _, err := Dialer.Dial(cfg.Endpoint, headers)
 	if err != nil {
 		return nil, nil, err
 	}
