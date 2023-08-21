@@ -1,5 +1,10 @@
 # Change log
 
+## v0.5.1 - 2023-08-21
+
+### Fixed
+- Implemented a fix for the automatic conversion to scientific notation when handling large `quantity` values.
+
 ## v0.5.0 - 2023-06-30
 
 ### Added

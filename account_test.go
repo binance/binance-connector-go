@@ -2,6 +2,7 @@ package binance_connector
 
 import (
 	"context"
+	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
@@ -176,42 +177,95 @@ func (s *baseTestSuite) assertMyTradesEqual(e, a *AccountTradeListResponse) {
 func (s *accountTestSuite) TestNewOrder() {
 	data := []byte(`{
 		"symbol": "BTCUSDT",
-		"orderId": 28
+		"orderId": 28,
+		"orderListId": -1,
+		"clientOrderId": "6gCrw2kRUAF9CvJDGP16IP",
+		"transactTime": 1507725176595,
+		"price": "0.00000000",
+		"origQty": "10.00000000",
+		"executedQty": "10.00000000",
+		"cummulativeQuoteQty": "10.00000000",
+		"status": "FILLED",
+		"timeInForce": "GTC",
+		"type": "MARKET",
+		"side": "SELL",
+		"workingTime": 1507725176595,
+		"selfTradePreventionMode": "NONE"
 	}`)
 	s.mockDo(data, nil)
 	defer s.assertDo()
 
+	symbol := "BTCUSDT"
+	side := "SELL"
+	orderType := "MARKET"
+	quantity := 10.0
+	clientOrderId := "6gCrw2kRUAF9CvJDGP16IP"
+	respType := "RESULT"
+
 	s.assertReq(func(r *request) {
-		e := newSignedRequest()
-		e.setParam("symbol", "BTCUSDT")
-		e.setParam("side", "BUY")
-		e.setParam("type", "LIMIT")
-		e.setParam("quantity", 1)
-		e.setParam("price", 100)
+		e := newSignedRequest().setParams(params{
+			"symbol":           symbol,
+			"side":             side,
+			"type":             orderType,
+			"quantity":         quantity,
+			"newClientOrderId": clientOrderId,
+			"newOrderRespType": respType,
+		})
 		s.assertRequestEqual(e, r)
+		inputQuantity := strconv.FormatFloat(quantity, 'f', -1, 64) // Convert the quantity from float to string
+		apiQuantity := r.query.Get("quantity")
+		s.Equal(inputQuantity, apiQuantity, "User-input quantity does not match API value") // Check value of quantity being sent is same as input
 	})
 
-	ctx := context.Background()
-	res, err := s.client.NewCreateOrderService().
-		Symbol("BTCUSDT").
-		Side("BUY").
-		Type("LIMIT").
-		Quantity(1).
-		Price(100).
-		Do(ctx)
+	orderResp, err := s.client.NewCreateOrderService().Symbol(symbol).
+		Side(side).Type(orderType).
+		Quantity(quantity).
+		NewClientOrderId(clientOrderId).
+		NewOrderRespType(respType).
+		Do(newContext())
 
-	s.r().NoError(err)
-	e := &CreateOrderResponseFULL{
-		Symbol:  "BTCUSDT",
-		OrderId: 28,
+	r := s.r()
+	r.NoError(err)
+	r.NotNil(orderResp)
+
+	expectedResp := &CreateOrderResponseRESULT{
+		Symbol:                  "BTCUSDT",
+		OrderId:                 28,
+		OrderListId:             -1,
+		ClientOrderId:           "6gCrw2kRUAF9CvJDGP16IP",
+		TransactTime:            1507725176595,
+		Price:                   "0.00000000",
+		OrigQty:                 "10.00000000",
+		ExecutedQty:             "10.00000000",
+		CumulativeQuoteQty:      "10.00000000",
+		Status:                  "FILLED",
+		TimeInForce:             "GTC",
+		Type:                    "MARKET",
+		Side:                    "SELL",
+		WorkingTime:             1507725176595,
+		SelfTradePreventionMode: "NONE",
 	}
-	s.assertCreateOrderResponseEqual(e, res.(*CreateOrderResponseFULL))
+
+	s.assertCreateOrderResponseEqual(expectedResp, orderResp.(*CreateOrderResponseRESULT))
 }
 
-func (s *accountTestSuite) assertCreateOrderResponseEqual(e, a *CreateOrderResponseFULL) {
+func (s *baseTestSuite) assertCreateOrderResponseEqual(e, a *CreateOrderResponseRESULT) {
 	r := s.r()
 	r.Equal(e.Symbol, a.Symbol, "Symbol")
 	r.Equal(e.OrderId, a.OrderId, "OrderId")
+	r.Equal(e.OrderListId, a.OrderListId, "OrderListId")
+	r.Equal(e.ClientOrderId, a.ClientOrderId, "ClientOrderId")
+	r.Equal(e.TransactTime, a.TransactTime, "TransactTime")
+	r.Equal(e.Price, a.Price, "Price")
+	r.Equal(e.OrigQty, a.OrigQty, "OrigQty")
+	r.Equal(e.ExecutedQty, a.ExecutedQty, "ExecutedQty")
+	r.Equal(e.CumulativeQuoteQty, a.CumulativeQuoteQty, "CumulativeQuoteQty")
+	r.Equal(e.Status, a.Status, "Status")
+	r.Equal(e.TimeInForce, a.TimeInForce, "TimeInForce")
+	r.Equal(e.Type, a.Type, "Type")
+	r.Equal(e.Side, a.Side, "Side")
+	r.Equal(e.WorkingTime, a.WorkingTime, "WorkingTime")
+	r.Equal(e.SelfTradePreventionMode, a.SelfTradePreventionMode, "SelfTradePreventionMode")
 }
 
 func (s *accountTestSuite) TestCancelOrder() {
