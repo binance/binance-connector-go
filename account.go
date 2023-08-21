@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 // Binance Test New Order endpoint (POST /api/v3/order/test)
@@ -130,7 +131,7 @@ func (s *TestNewOrder) Do(ctx context.Context, opts ...RequestOption) (res *Acco
 		r.setParam("timeInForce", *s.timeInForce)
 	}
 	if s.quantity != nil {
-		r.setParam("quantity", *s.quantity)
+		r.setParam("quantity", strconv.FormatFloat(*s.quantity, 'f', -1, 64))
 	}
 	if s.quoteOrderQty != nil {
 		r.setParam("quoteOrderQty", *s.quoteOrderQty)
@@ -316,7 +317,7 @@ func (s *CreateOrderService) Do(ctx context.Context, opts ...RequestOption) (res
 		r.setParam("timeInForce", *s.timeInForce)
 	}
 	if s.quantity != nil {
-		r.setParam("quantity", *s.quantity)
+		r.setParam("quantity", strconv.FormatFloat(*s.quantity, 'f', -1, 64))
 	}
 	if s.quoteOrderQty != nil {
 		r.setParam("quoteOrderQty", *s.quoteOrderQty)
@@ -833,7 +834,7 @@ func (s *CancelReplaceService) Do(ctx context.Context, opts ...RequestOption) (r
 		m["timeInForce"] = *s.timeInForce
 	}
 	if s.quantity != nil {
-		m["quantity"] = *s.quantity
+		m["quantity"] = strconv.FormatFloat(*s.quantity, 'f', -1, 64)
 	}
 	if s.quoteOrderQty != nil {
 		m["quoteOrderQty"] = *s.quoteOrderQty
@@ -1293,7 +1294,7 @@ func (s *NewOCOService) Do(ctx context.Context, opts ...RequestOption) (res *Ord
 	m := params{
 		"symbol":    s.symbol,
 		"side":      s.side,
-		"quantity":  s.quantity,
+		"quantity":  strconv.FormatFloat(s.quantity, 'f', -1, 64),
 		"price":     s.price,
 		"stopPrice": s.stopPrice,
 	}
