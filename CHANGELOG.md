@@ -1,5 +1,10 @@
 # Change log
 
+## v0.5.2 - 2023-08-22
+
+### Fixed
+- Fixed formatting issues causing JSON Unmarshal error in some `wallet` methods.
+
 ## v0.5.1 - 2023-08-21
 
 ### Fixed
