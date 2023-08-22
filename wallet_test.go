@@ -574,21 +574,23 @@ func (s *walletTestSuite) TestCloudMiningPaymentHistory() {
 
 func (s *walletTestSuite) TestDepositHistory() {
 	data := []byte(`
-    {
-        "id": "769800519366885376",
-        "amount": "0.001",
-        "coin": "BNB",
-        "network": "BNB",
-        "status": 0,
-        "address": "bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23",
-        "addressTag": "101764890",
-        "txId": "98A3EA560C6B3336D348B6C83F0F95ECE4F1F5919E94BD006E5BF3BF264FACFC",
-        "insertTime": 1661493146000,
-        "transferType": 0,
-        "confirmTimes": "1/1",
-        "unlockConfirm": 0,
-        "walletType": 0
-    }`)
+	[
+		{
+			"id": "769800519366885376",
+			"amount": "0.001",
+			"coin": "BNB",
+			"network": "BNB",
+			"status": 0,
+			"address": "bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23",
+			"addressTag": "101764890",
+			"txId": "98A3EA560C6B3336D348B6C83F0F95ECE4F1F5919E94BD006E5BF3BF264FACFC",
+			"insertTime": 1661493146000,
+			"transferType": 0,
+			"confirmTimes": "1/1",
+			"unlockConfirm": 0,
+			"walletType": 0
+		}
+	]`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -603,19 +605,19 @@ func (s *walletTestSuite) TestDepositHistory() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("769800519366885376", resp.Id)
-	s.Equal("0.001", resp.Amount)
-	s.Equal("BNB", resp.Coin)
-	s.Equal("BNB", resp.Network)
-	s.Equal(0, resp.Status)
-	s.Equal("bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23", resp.Address)
-	s.Equal("101764890", resp.AddressTag)
-	s.Equal("98A3EA560C6B3336D348B6C83F0F95ECE4F1F5919E94BD006E5BF3BF264FACFC", resp.TxId)
-	s.Equal(uint64(1661493146000), resp.InsertTime)
-	s.Equal(0, resp.TransferType)
-	s.Equal("1/1", resp.ConfirmTimes)
-	s.Equal(0, resp.UnlockConfirm)
-	s.Equal(0, resp.WalletType)
+	s.Equal("769800519366885376", resp[0].Id)
+	s.Equal("0.001", resp[0].Amount)
+	s.Equal("BNB", resp[0].Coin)
+	s.Equal("BNB", resp[0].Network)
+	s.Equal(0, resp[0].Status)
+	s.Equal("bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23", resp[0].Address)
+	s.Equal("101764890", resp[0].AddressTag)
+	s.Equal("98A3EA560C6B3336D348B6C83F0F95ECE4F1F5919E94BD006E5BF3BF264FACFC", resp[0].TxId)
+	s.Equal(uint64(1661493146000), resp[0].InsertTime)
+	s.Equal(0, resp[0].TransferType)
+	s.Equal("1/1", resp[0].ConfirmTimes)
+	s.Equal(0, resp[0].UnlockConfirm)
+	s.Equal(0, resp[0].WalletType)
 }
 
 func (s *walletTestSuite) TestDustLog() {
@@ -681,14 +683,17 @@ func (s *walletTestSuite) TestDustLog() {
 }
 
 func (s *walletTestSuite) TestFundingWallet() {
-	data := []byte(`{
-		"asset": "BTC",
-		"free": "0.1",
-		"locked": "0.2",
-		"freeze": "0.3",
-		"withdrawing": "0.4",
-		"btcValuation": "0.5"
-	}`)
+	data := []byte(`
+	[
+		{
+			"asset": "BTC",
+			"free": "0.1",
+			"locked": "0.2",
+			"freeze": "0.3",
+			"withdrawing": "0.4",
+			"btcValuation": "0.5"
+		}
+	]`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -699,12 +704,12 @@ func (s *walletTestSuite) TestFundingWallet() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("BTC", resp.Asset)
-	s.Equal("0.1", resp.Free)
-	s.Equal("0.2", resp.Locked)
-	s.Equal("0.3", resp.Freeze)
-	s.Equal("0.4", resp.Withdrawing)
-	s.Equal("0.5", resp.BtcValuation)
+	s.Equal("BTC", resp[0].Asset)
+	s.Equal("0.1", resp[0].Free)
+	s.Equal("0.2", resp[0].Locked)
+	s.Equal("0.3", resp[0].Freeze)
+	s.Equal("0.4", resp[0].Withdrawing)
+	s.Equal("0.5", resp[0].BtcValuation)
 }
 
 func (s *walletTestSuite) TestGetAccountSnapshot() {
@@ -874,11 +879,13 @@ func (s *walletTestSuite) TestGetSystemStatus() {
 
 func (s *walletTestSuite) TestTradeFee() {
 	data := []byte(`
-	{
-		"symbol": "BTCUSDT",
-		"makerCommission": "0.00050000",
-		"takerCommission": "0.00050000"
-	}
+	[
+		{
+			"symbol": "BTCUSDT",
+			"makerCommission": "0.00050000",
+			"takerCommission": "0.00050000"
+		}
+	]
 	`)
 
 	s.mockDo(data, nil)
@@ -890,22 +897,24 @@ func (s *walletTestSuite) TestTradeFee() {
 
 	s.r().NoError(err)
 	s.NotNil(resp)
-	s.Equal("BTCUSDT", resp.Symbol)
-	s.Equal("0.00050000", resp.MakerCommission)
-	s.Equal("0.00050000", resp.TakerCommission)
+	s.Equal("BTCUSDT", resp[0].Symbol)
+	s.Equal("0.00050000", resp[0].MakerCommission)
+	s.Equal("0.00050000", resp[0].TakerCommission)
 }
 
 func (s *walletTestSuite) TestUserAsset() {
 	data := []byte(`
-	{
-		"asset": "BTC",
-		"free": "1.00000000",
-		"locked": "0.00000000",
-		"freeze": "0.00000000",
-		"withdrawing": "0.00000000",
-		"ipoable": "0.00000000",
-		"btcValuation": "1000000.00000000"
-	}
+	[
+		{
+			"asset": "BTC",
+			"free": "1.00000000",
+			"locked": "0.00000000",
+			"freeze": "0.00000000",
+			"withdrawing": "0.00000000",
+			"ipoable": "0.00000000",
+			"btcValuation": "1000000.00000000"
+		}
+	]
 	`)
 
 	s.mockDo(data, nil)
@@ -917,13 +926,13 @@ func (s *walletTestSuite) TestUserAsset() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("BTC", resp.Asset)
-	s.Equal("1.00000000", resp.Free)
-	s.Equal("0.00000000", resp.Locked)
-	s.Equal("0.00000000", resp.Freeze)
-	s.Equal("0.00000000", resp.Withdrawing)
-	s.Equal("0.00000000", resp.Ipoable)
-	s.Equal("1000000.00000000", resp.BtcValuation)
+	s.Equal("BTC", resp[0].Asset)
+	s.Equal("1.00000000", resp[0].Free)
+	s.Equal("0.00000000", resp[0].Locked)
+	s.Equal("0.00000000", resp[0].Freeze)
+	s.Equal("0.00000000", resp[0].Withdrawing)
+	s.Equal("0.00000000", resp[0].Ipoable)
+	s.Equal("1000000.00000000", resp[0].BtcValuation)
 }
 
 func (s *walletTestSuite) TestUserUniversalTransferHistory() {
@@ -969,23 +978,25 @@ func (s *walletTestSuite) TestUserUniversalTransferHistory() {
 
 func (s *walletTestSuite) TestWithdrawHistory() {
 	data := []byte(`
-	{
-		"id": "btc123",
-		"amount": "1.00000000",
-		"transactionFee": "0.00010000",
-		"coin": "BTC",
-		"status": 6,
-		"address": "abc123",
-		"txId": "def456",
-		"applyTime": 1617233588000,
-		"network": "btc",
-		"transferType": 0,
-		"withdrawOrderId": "ghi789",
-		"info": "",
-		"confirmNo": 2,
-		"walletType": 1,
-		"txKey": "jkl012"
-	}
+	[
+		{
+			"id": "btc123",
+			"amount": "1.00000000",
+			"transactionFee": "0.00010000",
+			"coin": "BTC",
+			"status": 6,
+			"address": "abc123",
+			"txId": "def456",
+			"applyTime": "1617233588000",
+			"network": "btc",
+			"transferType": 0,
+			"withdrawOrderId": "ghi789",
+			"info": "",
+			"confirmNo": 2,
+			"walletType": 1,
+			"txKey": "jkl012"
+		}
+	]
 	`)
 
 	s.mockDo(data, nil)
@@ -1002,19 +1013,19 @@ func (s *walletTestSuite) TestWithdrawHistory() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal("btc123", resp.Id)
-	s.Equal("1.00000000", resp.Amount)
-	s.Equal("0.00010000", resp.TransactionFee)
-	s.Equal("BTC", resp.Coin)
-	s.Equal(6, resp.Status)
-	s.Equal("abc123", resp.Address)
-	s.Equal("def456", resp.TxId)
-	s.Equal(uint64(1617233588000), resp.ApplyTime)
-	s.Equal("btc", resp.Network)
-	s.Equal(0, resp.TransferType)
-	s.Equal("ghi789", resp.WithdrawOrderId)
-	s.Equal("", resp.Info)
-	s.Equal(2, resp.ConfirmNo)
-	s.Equal(1, resp.WalletType)
-	s.Equal("jkl012", resp.TxKey)
+	s.Equal("btc123", resp[0].Id)
+	s.Equal("1.00000000", resp[0].Amount)
+	s.Equal("0.00010000", resp[0].TransactionFee)
+	s.Equal("BTC", resp[0].Coin)
+	s.Equal(6, resp[0].Status)
+	s.Equal("abc123", resp[0].Address)
+	s.Equal("def456", resp[0].TxId)
+	s.Equal("1617233588000", resp[0].ApplyTime)
+	s.Equal("btc", resp[0].Network)
+	s.Equal(0, resp[0].TransferType)
+	s.Equal("ghi789", resp[0].WithdrawOrderId)
+	s.Equal("", resp[0].Info)
+	s.Equal(2, resp[0].ConfirmNo)
+	s.Equal(1, resp[0].WalletType)
+	s.Equal("jkl012", resp[0].TxKey)
 }

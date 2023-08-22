@@ -434,7 +434,7 @@ func (s *DepositHistoryService) TxId(txid string) *DepositHistoryService {
 	return s
 }
 
-func (s *DepositHistoryService) Do(ctx context.Context) (res *DepositHistoryResponse, err error) {
+func (s *DepositHistoryService) Do(ctx context.Context) (res []*DepositHistoryResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: depositHistoryEndpoint,
@@ -465,8 +465,8 @@ func (s *DepositHistoryService) Do(ctx context.Context) (res *DepositHistoryResp
 	if err != nil {
 		return nil, err
 	}
-	res = new(DepositHistoryResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*DepositHistoryResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -549,7 +549,7 @@ func (s *WithdrawHistoryService) EndTime(endTime uint64) *WithdrawHistoryService
 	return s
 }
 
-func (s *WithdrawHistoryService) Do(ctx context.Context) (res *WithdrawHistoryResponse, err error) {
+func (s *WithdrawHistoryService) Do(ctx context.Context) (res []*WithdrawHistoryResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: withdrawHistoryEndpoint,
@@ -580,8 +580,8 @@ func (s *WithdrawHistoryService) Do(ctx context.Context) (res *WithdrawHistoryRe
 	if err != nil {
 		return nil, err
 	}
-	res = new(WithdrawHistoryResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*WithdrawHistoryResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -597,7 +597,7 @@ type WithdrawHistoryResponse struct {
 	Status          int    `json:"status"`
 	Address         string `json:"address"`
 	TxId            string `json:"txId"`
-	ApplyTime       uint64 `json:"applyTime"`
+	ApplyTime       string `json:"applyTime"`
 	Network         string `json:"network"`
 	TransferType    int    `json:"transferType"`
 	WithdrawOrderId string `json:"withdrawOrderId"`
@@ -1049,7 +1049,7 @@ func (s *TradeFeeService) Symbol(symbol string) *TradeFeeService {
 	return s
 }
 
-func (s *TradeFeeService) Do(ctx context.Context) (res *TradeFeeResponse, err error) {
+func (s *TradeFeeService) Do(ctx context.Context) (res []*TradeFeeResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: tradeFeeEndpoint,
@@ -1062,8 +1062,8 @@ func (s *TradeFeeService) Do(ctx context.Context) (res *TradeFeeResponse, err er
 	if err != nil {
 		return nil, err
 	}
-	res = new(TradeFeeResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*TradeFeeResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -1287,9 +1287,9 @@ func (s *FundingWalletService) NeedBtcValuation(needBtcValuation string) *Fundin
 	return s
 }
 
-func (s *FundingWalletService) Do(ctx context.Context) (res *FundingWalletResponse, err error) {
+func (s *FundingWalletService) Do(ctx context.Context) (res []*FundingWalletResponse, err error) {
 	r := &request{
-		method:   http.MethodGet,
+		method:   http.MethodPost,
 		endpoint: fundingWalletEndpoint,
 		secType:  secTypeSigned,
 	}
@@ -1303,8 +1303,8 @@ func (s *FundingWalletService) Do(ctx context.Context) (res *FundingWalletRespon
 	if err != nil {
 		return nil, err
 	}
-	res = new(FundingWalletResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*FundingWalletResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -1345,9 +1345,9 @@ func (s *UserAssetService) NeedBtcValuation(needBtcValuation bool) *UserAssetSer
 	return s
 }
 
-func (s *UserAssetService) Do(ctx context.Context) (res *UserAssetResponse, err error) {
+func (s *UserAssetService) Do(ctx context.Context) (res []*UserAssetResponse, err error) {
 	r := &request{
-		method:   http.MethodGet,
+		method:   http.MethodPost,
 		endpoint: userAssetEndpoint,
 		secType:  secTypeSigned,
 	}
@@ -1361,8 +1361,8 @@ func (s *UserAssetService) Do(ctx context.Context) (res *UserAssetResponse, err 
 	if err != nil {
 		return nil, err
 	}
-	res = new(UserAssetResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*UserAssetResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
