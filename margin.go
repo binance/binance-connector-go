@@ -1279,7 +1279,7 @@ func (s *InterestHistoryService) Do(ctx context.Context, opts ...RequestOption) 
 type InterestHistoryResponse struct {
 	Rows []struct {
 		TxId                int64  `json:"txId"`
-		InterestAccruedTime uint64 `json:"interestAccruedTime"`
+		InterestAccuredTime uint64 `json:"interestAccuredTime"`
 		Asset               string `json:"asset"`
 		RawAsset            string `json:"rawAsset"`
 		Principal           string `json:"principal"`
