@@ -2343,7 +2343,7 @@ func (s *MarginAccountQueryTradeListService) Limit(limit int) *MarginAccountQuer
 }
 
 // Do send request
-func (s *MarginAccountQueryTradeListService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountQueryTradeListResponse, err error) {
+func (s *MarginAccountQueryTradeListService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountQueryTradeListResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginAccountQueryTradeListEndpoint,
@@ -2373,12 +2373,12 @@ func (s *MarginAccountQueryTradeListService) Do(ctx context.Context, opts ...Req
 	r.setParams(m)
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountQueryTradeListResponse{}, err
+		return []*MarginAccountQueryTradeListResponse{}, err
 	}
-	res = new(MarginAccountQueryTradeListResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*MarginAccountQueryTradeListResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &MarginAccountQueryTradeListResponse{}, err
+		return []*MarginAccountQueryTradeListResponse{}, err
 	}
 	return res, nil
 }
