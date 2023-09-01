@@ -1507,23 +1507,25 @@ func (s *MarginAccountOrderService) Do(ctx context.Context, opts ...RequestOptio
 
 // MarginAccountOrderResponse define margin account order response
 type MarginAccountOrderResponse struct {
-	ClientOrderId      string `json:"clientOrderId"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	ExecutedQty        string `json:"executedQty"`
-	IcebergQty         string `json:"icebergQty"`
-	IsWorking          bool   `json:"isWorking"`
-	OrderId            int    `json:"orderId"`
-	OrigQty            string `json:"origQty"`
-	Price              string `json:"price"`
-	Side               string `json:"side"`
-	Status             string `json:"status"`
-	StopPrice          string `json:"stopPrice"`
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	Time               uint64 `json:"time"`
-	TimeInForce        string `json:"timeInForce"`
-	OrderType          string `json:"type"`
-	UpdateTime         uint64 `json:"updateTime"`
+	AccountId               uint64 `json:"accountId"`
+	ClientOrderId           string `json:"clientOrderId"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
+	ExecutedQty             string `json:"executedQty"`
+	IcebergQty              string `json:"icebergQty"`
+	IsWorking               bool   `json:"isWorking"`
+	OrderId                 int    `json:"orderId"`
+	OrigQty                 string `json:"origQty"`
+	Price                   string `json:"price"`
+	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	Side                    string `json:"side"`
+	Status                  string `json:"status"`
+	StopPrice               string `json:"stopPrice"`
+	Symbol                  string `json:"symbol"`
+	IsIsolated              bool   `json:"isIsolated"`
+	Time                    uint64 `json:"time"`
+	TimeInForce             string `json:"timeInForce"`
+	OrderType               string `json:"type"`
+	UpdateTime              uint64 `json:"updateTime"`
 }
 
 // Query Margin Account's Open Order (USER_DATA) API Endpoint
