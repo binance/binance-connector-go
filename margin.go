@@ -1651,7 +1651,7 @@ func (s *MarginAccountAllOrderService) Limit(limit int) *MarginAccountAllOrderSe
 }
 
 // Do send request
-func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountAllOrderResponse, err error) {
+func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountAllOrderResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginAccountAllOrderEndpoint,
@@ -1678,12 +1678,12 @@ func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOp
 	r.setParams(m)
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountAllOrderResponse{}, err
+		return []*MarginAccountAllOrderResponse{}, err
 	}
-	res = new(MarginAccountAllOrderResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*MarginAccountAllOrderResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &MarginAccountAllOrderResponse{}, err
+		return []*MarginAccountAllOrderResponse{}, err
 	}
 	return res, nil
 }
