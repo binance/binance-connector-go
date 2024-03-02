@@ -1333,13 +1333,13 @@ func (s *marginTestSuite) TestMarginInterestRateHistory() {
 			"asset": "BTC",
 			"vipLevel": 0,
 			"timestamp": 1616697600000,
-			"dailyInterestRate": 0.00025000
+			"dailyInterestRate": "0.00025"
 		},
 		{
 			"asset": "BNB",
 			"vipLevel": 0,
 			"timestamp": 1616697600000,
-			"dailyInterestRate": 0.00100000
+			"dailyInterestRate": "0.001"
 		}
 	]
 	`)
@@ -1357,12 +1357,12 @@ func (s *marginTestSuite) TestMarginInterestRateHistory() {
 	s.r().NoError(err)
 	s.Len(resp, 2)
 	s.Equal("BTC", resp[0].Asset)
-	s.Equal(0.00025, resp[0].DailyInterestRate)
+	s.Equal("0.00025", resp[0].DailyInterestRate)
 	s.Equal(uint64(1616697600000), resp[0].Timestamp)
 	s.Equal(0, resp[0].VIPLevel)
 
 	s.Equal("BNB", resp[1].Asset)
-	s.Equal(0.001, resp[1].DailyInterestRate)
+	s.Equal("0.001", resp[1].DailyInterestRate)
 	s.Equal(uint64(1616697600000), resp[1].Timestamp)
 	s.Equal(0, resp[1].VIPLevel)
 }
