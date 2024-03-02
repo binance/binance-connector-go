@@ -3211,10 +3211,10 @@ func (s *MarginInterestRateHistoryService) Do(ctx context.Context, opts ...Reque
 
 // MarginInterestRateHistoryService response
 type MarginInterestRateHistoryResponse struct {
-	Asset             string  `json:"asset"`
-	DailyInterestRate float64 `json:"dailyInterestRate"`
-	Timestamp         uint64  `json:"timestamp"`
-	VIPLevel          int     `json:"vipLevel"`
+	Asset             string `json:"asset"`
+	DailyInterestRate string `json:"dailyInterestRate"`
+	Timestamp         uint64 `json:"timestamp"`
+	VIPLevel          int    `json:"vipLevel"`
 }
 
 // Query Cross Margin Fee Data (USER_DATA)
