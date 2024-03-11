@@ -1,5 +1,11 @@
 # Change log
 
+
+## v0.5.3 - 2024-03-11
+
+### Added
+- Support websocket subcribe instrument in lazy fashion 
+
 ## v0.5.2 - 2023-08-22
 
 ### Fixed
