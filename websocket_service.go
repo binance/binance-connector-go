@@ -160,6 +160,11 @@ func (c *WebsocketStreamClient) WsDepthServe(symbol string, handler WsDepthHandl
 	return wsDepthServe(endpoint, handler, errHandler)
 }
 
+// WsDepthServe serve websocket depth handler with a symbol, using 1sec updates. Work in lazy fashion
+func (c *WebsocketStreamClient) WsDepthServeSubscribeLazy(handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, subcribeCh chan Payload, err error) {
+	return wsDepthServeSubscribeLazy(c.Endpoint, handler, errHandler)
+}
+
 // WsDepthServe100Ms serve websocket depth handler with a symbol, using 100msec updates
 func (c *WebsocketStreamClient) WsDepthServe100Ms(symbol string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := fmt.Sprintf("%s/%s@depth@100ms", c.Endpoint, strings.ToLower(symbol))
@@ -202,6 +207,44 @@ func wsDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler
 		handler(event)
 	}
 	return wsServe(cfg, wsHandler, errHandler)
+}
+
+// WsDepthServe serve websocket depth handler with an arbitrary endpoint address. Work in lazy fashion
+func wsDepthServeSubscribeLazy(endpoint string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, subcribeCh chan Payload, err error) {
+	cfg := newWsConfig(endpoint)
+	wsHandler := func(message []byte) {
+		j, err := newJSON(message)
+		if err != nil {
+			errHandler(err)
+			return
+		}
+		event := new(WsDepthEvent)
+		event.Event = j.Get("e").MustString()
+		event.Time = j.Get("E").MustInt64()
+		event.Symbol = j.Get("s").MustString()
+		event.FirstUpdateID = j.Get("U").MustInt64()
+		event.LastUpdateID = j.Get("u").MustInt64()
+		bidsLen := len(j.Get("b").MustArray())
+		event.Bids = make([]Bid, bidsLen)
+		for i := 0; i < bidsLen; i++ {
+			item := j.Get("b").GetIndex(i)
+			event.Bids[i] = Bid{
+				Price:    item.GetIndex(0).MustString(),
+				Quantity: item.GetIndex(1).MustString(),
+			}
+		}
+		asksLen := len(j.Get("a").MustArray())
+		event.Asks = make([]Ask, asksLen)
+		for i := 0; i < asksLen; i++ {
+			item := j.Get("a").GetIndex(i)
+			event.Asks[i] = Ask{
+				Price:    item.GetIndex(0).MustString(),
+				Quantity: item.GetIndex(1).MustString(),
+			}
+		}
+		handler(event)
+	}
+	return wsServeSubscribeLazy(cfg, wsHandler, errHandler)
 }
 
 // WsDepthEvent define websocket depth event
