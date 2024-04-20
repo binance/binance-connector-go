@@ -15,6 +15,15 @@ const (
 	secTypeSigned // if the 'timestamp' parameter is required
 )
 
+type KeyType int
+
+const (
+	KeyTypeHMACSHA256    KeyType = iota
+	KeyTypeEd25519PEM            // Ed25519 key in PEM format
+	KeyTypeEd25519Base64         // Ed25519 key in base64 format
+	KeyTypeEd25519Hex            // Ed25519 key in hex format
+)
+
 type params map[string]interface{}
 
 // request define an API request
@@ -25,6 +34,7 @@ type request struct {
 	form       url.Values
 	recvWindow int64
 	secType    secType
+	keyType    KeyType // Only used when secType is secTypeSigned
 	header     http.Header
 	body       io.Reader
 	fullURL    string
@@ -75,3 +85,10 @@ func WithRecvWindow(recvWindow int64) RequestOption {
 
 // RequestOption define option type for request
 type RequestOption func(*request)
+
+// RequestOption to set secret/private key type for request
+func ReqOptWithKeyType(keyType KeyType) RequestOption {
+	return func(r *request) {
+		r.keyType = keyType
+	}
+}

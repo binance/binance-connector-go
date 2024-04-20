@@ -3,9 +3,14 @@ package binance_connector
 import (
 	"bytes"
 	"context"
+	"crypto/ed25519"
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"io"
 	"log"
@@ -117,13 +122,56 @@ func (c *Client) parseRequest(r *request, opts ...RequestOption) (err error) {
 
 	if r.secType == secTypeSigned {
 		raw := fmt.Sprintf("%s%s", queryString, bodyString)
-		mac := hmac.New(sha256.New, []byte(c.SecretKey))
-		_, err = mac.Write([]byte(raw))
-		if err != nil {
-			return err
+		var signatureStr string
+		// Refer to this for more information about the key types supported by Binance:
+		// https://github.com/binance/binance-spot-api-docs/blob/master/faqs/api_key_types.md
+		// Note that the format of the signature may vary depending on the key type.
+		switch r.keyType {
+		case KeyTypeHMACSHA256:
+			mac := hmac.New(sha256.New, []byte(c.SecretKey))
+			_, err = mac.Write([]byte(raw))
+			if err != nil {
+				return err
+			}
+			// Hex format expected
+			signatureStr = fmt.Sprintf("%x", mac.Sum(nil))
+
+		case KeyTypeEd25519PEM:
+			privateKeyBlock, _ := pem.Decode([]byte(c.SecretKey))
+			if privateKeyBlock == nil {
+				return fmt.Errorf("failed to parse PEM block containing the private key")
+			}
+			privateKeyRaw, err := x509.ParsePKCS8PrivateKey(privateKeyBlock.Bytes)
+			if err != nil {
+				return fmt.Errorf("failed to parse private key: %w", err)
+			}
+			privateKey, ok := privateKeyRaw.(ed25519.PrivateKey)
+			if !ok {
+				return fmt.Errorf("invalid private key: %w", err)
+			}
+			// Base64 format expected
+			signatureStr = base64.StdEncoding.EncodeToString(ed25519.Sign(privateKey, []byte(raw)))
+
+		case KeyTypeEd25519Base64:
+			ed25519key, err := base64.StdEncoding.DecodeString(c.SecretKey)
+			if err != nil {
+				return fmt.Errorf("failed to decode private key from base64: %w", err)
+			}
+			// Base64 format expected
+			signatureStr = base64.StdEncoding.EncodeToString(ed25519.Sign(ed25519key, []byte(raw)))
+
+		case KeyTypeEd25519Hex:
+			ed25519key, err := hex.DecodeString(c.SecretKey)
+			if err != nil {
+				return fmt.Errorf("failed to decode private key from hex: %w", err)
+			}
+			// Base64 format expected
+			signatureStr = base64.StdEncoding.EncodeToString(ed25519.Sign(ed25519key, []byte(raw)))
+		default:
+			return fmt.Errorf("invalid key type")
 		}
 		v := url.Values{}
-		v.Set(signatureKey, fmt.Sprintf("%x", (mac.Sum(nil))))
+		v.Set(signatureKey, signatureStr)
 		if queryString == "" {
 			queryString = v.Encode()
 		} else {
