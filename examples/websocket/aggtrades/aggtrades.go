@@ -12,7 +12,7 @@ func main() {
 
 func AggTradesExample() {
 	// Initialise Websocket Client with Testnet base URL and false for "isCombined" parameter
-	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 
 	wsAggTradeHandler := func(event *binance_connector.WsAggTradeEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))

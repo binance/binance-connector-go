@@ -28,7 +28,7 @@ func WsStreamAndWsAPI() {
 	}
 
 	// Websocket API
-	client := binance_connector.NewWebsocketAPIClient("api_key", "secret_key", "wss://testnet.binance.vision/ws-api/v3")
+	client := binance_connector.NewWebsocketAPIClient("api_key", "secret_key", "wss://ws-api.testnet.binance.vision/ws-api/v3")
 	err2 := client.Connect()
 	if err2 != nil {
 		fmt.Println("Error: ", err2)

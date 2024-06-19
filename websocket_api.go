@@ -213,7 +213,7 @@ func getUUID() string {
 }
 
 func randomHex(n int) string {
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 	hexChars := "0123456789abcdef"
 	bytes := make([]byte, n)
 	for i := 0; i < n; i++ {

@@ -13,7 +13,7 @@ func main() {
 }
 
 func AccountInformationExample() {
-	client := binance_connector.NewWebsocketAPIClient("api_key", "secret_key")
+	client := binance_connector.NewWebsocketAPIClient("api_key", "api_secret")
 	err := client.Connect()
 	if err != nil {
 		log.Printf("Error: %v", err)
