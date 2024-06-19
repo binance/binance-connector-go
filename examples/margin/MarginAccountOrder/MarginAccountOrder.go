@@ -20,6 +20,7 @@ func MarginAccountOrder() {
 
 	// MarginAccountOrderService - /sapi/v1/margin/order
 	marginAccountOrder, err := client.NewMarginAccountOrderService().Symbol("BTCUSDT").
+		OrderId(1).
 		Do(context.Background())
 	if err != nil {
 		fmt.Println(err)

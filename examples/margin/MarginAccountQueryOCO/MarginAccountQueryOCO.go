@@ -19,7 +19,7 @@ func MarginAccountQueryOCO() {
 	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
 
 	// MarginAccountQueryOCOService - /sapi/v1/margin/orderList
-	marginAccountQueryOCO, err := client.NewMarginAccountQueryOCOService().
+	marginAccountQueryOCO, err := client.NewMarginAccountQueryOCOService().OrigClientOrderId("").
 		Do(context.Background())
 	if err != nil {
 		fmt.Println(err)

@@ -19,7 +19,7 @@ func MarginAccountQueryTradeList() {
 	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
 
 	// MarginAccountQueryTradeListService - /sapi/v1/margin/myTrades
-	marginAccountQueryTradeList, err := client.NewMarginAccountQueryTradeListService().Symbol("BTCUSD").
+	marginAccountQueryTradeList, err := client.NewMarginAccountQueryTradeListService().Symbol("BTCUSDT").
 		Do(context.Background())
 	if err != nil {
 		fmt.Println(err)

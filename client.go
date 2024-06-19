@@ -325,27 +325,6 @@ func (c *Client) NewTickerService() *Ticker {
 	return &Ticker{c: c}
 }
 
-// Margin Endpoints:
-func (c *Client) NewTransferService() *TransferService {
-	return &TransferService{c: c}
-}
-
-func (c *Client) NewBorrowService() *BorrowService {
-	return &BorrowService{c: c}
-}
-
-func (c *Client) NewRepayService() *RepayService {
-	return &RepayService{c: c}
-}
-
-func (c *Client) NewQueryMarginAssetService() *QueryMarginAssetService {
-	return &QueryMarginAssetService{c: c}
-}
-
-func (c *Client) NewQueryCrossMarginPairService() *QueryCrossMarginPairService {
-	return &QueryCrossMarginPairService{c: c}
-}
-
 func (c *Client) NewGetAllMarginAssetsService() *GetAllMarginAssetsService {
 	return &GetAllMarginAssetsService{c: c}
 }
@@ -372,14 +351,6 @@ func (c *Client) NewMarginAccountCancelAllOrdersService() *MarginAccountCancelAl
 
 func (c *Client) NewCrossMarginTransferHistoryService() *CrossMarginTransferHistoryService {
 	return &CrossMarginTransferHistoryService{c: c}
-}
-
-func (c *Client) NewLoanRecordService() *LoanRecordService {
-	return &LoanRecordService{c: c}
-}
-
-func (c *Client) NewRepayRecordService() *RepayRecordService {
-	return &RepayRecordService{c: c}
 }
 
 func (c *Client) NewInterestHistoryService() *InterestHistoryService {
@@ -442,14 +413,6 @@ func (c *Client) NewMarginAccountSummaryService() *MarginAccountSummaryService {
 	return &MarginAccountSummaryService{c: c}
 }
 
-func (c *Client) NewMarginIsolatedAccountTransferService() *MarginIsolatedAccountTransferService {
-	return &MarginIsolatedAccountTransferService{c: c}
-}
-
-func (c *Client) NewMarginIsolatedAccountTransferHistoryService() *MarginIsolatedAccountTransferHistoryService {
-	return &MarginIsolatedAccountTransferHistoryService{c: c}
-}
-
 func (c *Client) NewMarginIsolatedAccountInfoService() *MarginIsolatedAccountInfoService {
 	return &MarginIsolatedAccountInfoService{c: c}
 }
@@ -464,10 +427,6 @@ func (c *Client) NewMarginIsolatedAccountEnableService() *MarginIsolatedAccountE
 
 func (c *Client) NewMarginIsolatedAccountLimitService() *MarginIsolatedAccountLimitService {
 	return &MarginIsolatedAccountLimitService{c: c}
-}
-
-func (c *Client) NewMarginIsolatedSymbolService() *MarginIsolatedSymbolService {
-	return &MarginIsolatedSymbolService{c: c}
 }
 
 func (c *Client) NewAllIsolatedMarginSymbolService() *AllIsolatedMarginSymbolService {
@@ -500,10 +459,6 @@ func (c *Client) NewMarginIsolatedMarginTierService() *MarginIsolatedMarginTierS
 
 func (c *Client) NewMarginCurrentOrderCountService() *MarginCurrentOrderCountService {
 	return &MarginCurrentOrderCountService{c: c}
-}
-
-func (c *Client) NewMarginDustlogService() *MarginDustlogService {
-	return &MarginDustlogService{c: c}
 }
 
 func (c *Client) NewMarginCrossCollateralRatioService() *MarginCrossCollateralRatioService {
@@ -811,33 +766,4 @@ func (c *Client) NewPingUserStream() *PingUserStream {
 
 func (c *Client) NewCloseUserStream() *CloseUserStream {
 	return &CloseUserStream{c: c}
-}
-
-// Staking Endpoints:
-func (c *Client) NewGetStakingProductListService() *GetStakingProductListService {
-	return &GetStakingProductListService{c: c}
-}
-
-func (c *Client) NewPurchaseStakingProductService() *PurchaseStakingProductService {
-	return &PurchaseStakingProductService{c: c}
-}
-
-func (c *Client) NewRedeemStakingProductService() *RedeemStakingProductService {
-	return &RedeemStakingProductService{c: c}
-}
-
-func (c *Client) NewGetStakingProductPositionService() *GetStakingProductPositionService {
-	return &GetStakingProductPositionService{c: c}
-}
-
-func (c *Client) NewGetStakingHistoryService() *GetStakingHistoryService {
-	return &GetStakingHistoryService{c: c}
-}
-
-func (c *Client) NewSetAutoStakingService() *SetAutoStakingService {
-	return &SetAutoStakingService{c: c}
-}
-
-func (c *Client) NewPersonalLeftQuotaService() *PersonalLeftQuotaService {
-	return &PersonalLeftQuotaService{c: c}
 }

@@ -1,5 +1,52 @@
 # Change log
 
+## v0.6.0 - 2024-06-19
+
+### Fixed
+- Fixed following `Margin` endpoints to correctly return their response:
+  - `MarginAccountOpenOrder`
+  - `MarginAccountAllOrder`
+  - `MarginAccountQueryAllOCO`
+  - `MarginAccountQueryOpenOCO`
+  - `MarginAccountQueryTradeList`
+- Fixed example files for the following endpoints:
+  - `MarginAccountQueryTradeList`
+  - `MarginInterestRateHistory`
+  - `MarginAccountQueryOCO`
+  - `MarginAccountOrder`
+- Added signature to `TestNewOrder` endpoint
+- Fixed typo of `InterestHistoryResponse` parameters
+- Fixed type of `MarginInterestRateHistoryResponse` parameter
+
+### Updated
+- Updated Dependencies
+- Updated Go version to `1.22`
+
+### Removed
+- Removed `Margin` endpoints:
+  - `POST /sapi/v1/margin/transfer`
+  - `POST /sapi/v1/margin/isolated/transfer`
+  - `POST /sapi/v1/margin/loan`
+  - `POST /sapi/v1/margin/repay` 
+  - `GET /sapi/v1/margin/isolated/transfer`
+  - `GET /sapi/v1/margin/asset`
+  - `GET /sapi/v1/margin/pair`
+  - `GET /sapi/v1/margin/isolated/pair`
+  - `GET /sapi/v1/margin/loan`
+  - `GET /sapi/v1/margin/repay`
+  - `GET /sapi/v1/margin/dribblet`
+  - `GET /sapi/v1/margin/dust`
+  - `POST /sapi/v1/margin/dust`
+
+- Removed `Staking` endpoints:
+  - `GET /sapi/v1/staking/productList`
+  - `POST /sapi/v1/staking/purchase`
+  - `POST /sapi/v1/staking/redeem`
+  - `GET /sapi/v1/staking/position`
+  - `GET /sapi/v1/staking/stakingRecord`
+  - `POST /sapi/v1/staking/setAutoStaking`
+  - `GET /sapi/v1/staking/personalLeftQuota`
+
 ## v0.5.2 - 2023-08-22
 
 ### Fixed

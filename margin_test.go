@@ -15,92 +15,6 @@ func TestMargin(t *testing.T) {
 	suite.Run(t, new(marginTestSuite))
 }
 
-func (s *marginTestSuite) TestTransfer() {
-	data := []byte(`{
-		"tranId": 100000001
-	}`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-	asset := "BTC"
-	amount := 1.000
-	transferType := 1
-	s.assertReq(func(r *request) {
-		e := newSignedRequest().setParams(params{
-			"asset":  asset,
-			"amount": amount,
-			"type":   transferType,
-		})
-		s.assertRequestEqual(e, r)
-	})
-	res, err := s.client.NewTransferService().Asset(asset).
-		Amount(amount).TransferType(transferType).Do(newContext())
-	s.r().NoError(err)
-	e := &TransferResponse{
-		TranId: 100000001,
-	}
-	s.assertTransactionResponseEqual(e, res)
-}
-
-func (s *marginTestSuite) assertTransactionResponseEqual(a, e *TransferResponse) {
-	s.r().Equal(a.TranId, e.TranId, "TranID")
-}
-
-func (s *marginTestSuite) TestLoan() {
-	data := []byte(`{
-		"tranId": 100000001
-	}`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-	asset := "BTC"
-	amount := 1.000
-	s.assertReq(func(r *request) {
-		e := newSignedRequest().setParams(params{
-			"asset":  asset,
-			"amount": amount,
-		})
-		s.assertRequestEqual(e, r)
-	})
-	res, err := s.client.NewBorrowService().Asset(asset).
-		Amount(amount).Do(newContext())
-	s.r().NoError(err)
-	e := &BorrowResponse{
-		TranId: 100000001,
-	}
-	s.assertBorrowResponseEqual(e, res)
-}
-
-func (s *marginTestSuite) assertBorrowResponseEqual(a, e *BorrowResponse) {
-	s.r().Equal(a.TranId, e.TranId, "TranID")
-}
-
-func (s *marginTestSuite) TestRepay() {
-	data := []byte(`{
-		"tranId": 100000001
-	}`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-	asset := "BTC"
-	amount := 1.000
-	s.assertReq(func(r *request) {
-		e := newSignedRequest().setParams(params{
-			"asset":  asset,
-			"amount": amount,
-		})
-		s.assertRequestEqual(e, r)
-	})
-	res, err := s.client.NewRepayService().Asset(asset).
-		Amount(amount).Do(newContext())
-	s.r().NoError(err)
-	e := &RepayResponse{
-		TranId: 100000001,
-	}
-	s.assertRepayResponseEqual(e, res)
-}
-
-func (s *marginTestSuite) assertRepayResponseEqual(a, e *RepayResponse) {
-	s.r().Equal(a.TranId, e.TranId, "TranID")
-}
-
 func (s *marginTestSuite) TestGetMaxBorrowable() {
 	data := []byte(`{
 		"amount": "1.69248805"
@@ -250,73 +164,32 @@ func (s *marginTestSuite) assertIsolatedMarginAllPairsEqual(e, a *MarginIsolated
 	r.Equal(e.IsSellAllowed, a.IsSellAllowed, "IsSellAllowed")
 }
 
-func (s *marginTestSuite) TestGetMarginAsset() {
-	data := []byte(`{
-		"assetFullName": "Binance Coin",
-		"assetName": "BNB",
-		"isBorrowable": false,
-		"isMortgageable": true,
-		"userMinBorrow": "0.00000000",
-		"userMinRepay": "0.00000000"
-  	}`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-	asset := "BNB"
-	s.assertReq(func(r *request) {
-		e := newRequest()
-		e.setParam("asset", asset)
-		s.assertRequestEqual(e, r)
-	})
-	res, err := s.client.NewQueryMarginAssetService().Asset(asset).Do(newContext())
-	s.r().NoError(err)
-	e := &QueryMarginAssetResponse{
-		FullName:      "Binance Coin",
-		Name:          asset,
-		Borrowable:    false,
-		Mortgageable:  true,
-		UserMinBorrow: "0.00000000",
-		UserMinRepay:  "0.00000000",
-	}
-	s.assertMarginAssetEqual(e, res)
-}
-
-func (s *marginTestSuite) assertMarginAssetEqual(e, a *QueryMarginAssetResponse) {
-	r := s.r()
-	r.Equal(e.FullName, a.FullName, "FullName")
-	r.Equal(e.Name, a.Name, "Name")
-	r.Equal(e.Borrowable, a.Borrowable, "Borrowable")
-	r.Equal(e.Mortgageable, a.Mortgageable, "Mortgageable")
-	r.Equal(e.UserMinBorrow, a.UserMinBorrow, "UserMinBorrow")
-	r.Equal(e.UserMinRepay, a.UserMinRepay, "UserMinRepay")
-}
-
 func (s *marginTestSuite) TestGetAllMarginAssets() {
-	data := []byte(`{
-		"assetDetailList": [
-			{
-				"assetFullName": "Bitcoin",
-				"assetName": "BTC",
-				"isBorrowable": true,
-				"isMortgageable": true,
-				"minLoanAmt": "0.00010000",
-				"maxLoanAmt": "100000.00000000",
-				"minMortgageAmt": "0.00010000",
-				"maxMortgageAmt": "100000.00000000",
-				"asset": "BTC"
-			},
-			{
-				"assetFullName": "Ethereum",
-				"assetName": "ETH",
-				"isBorrowable": true,
-				"isMortgageable": true,
-				"minLoanAmt": "0.01000000",
-				"maxLoanAmt": "10000.00000000",
-				"minMortgageAmt": "0.01000000",
-				"maxMortgageAmt": "10000.00000000",
-				"asset": "ETH"
-			}
-		]
-	}`)
+	data := []byte(`
+	[
+		{
+			"assetFullName": "Bitcoin",
+			"assetName": "BTC",
+			"isBorrowable": true,
+			"isMortgageable": true,
+			"minLoanAmt": "0.00010000",
+			"maxLoanAmt": "100000.00000000",
+			"minMortgageAmt": "0.00010000",
+			"maxMortgageAmt": "100000.00000000",
+			"asset": "BTC"
+		},
+		{
+			"assetFullName": "Ethereum",
+			"assetName": "ETH",
+			"isBorrowable": true,
+			"isMortgageable": true,
+			"minLoanAmt": "0.01000000",
+			"maxLoanAmt": "10000.00000000",
+			"minMortgageAmt": "0.01000000",
+			"maxMortgageAmt": "10000.00000000",
+			"asset": "ETH"
+		}
+	]`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -324,16 +197,16 @@ func (s *marginTestSuite) TestGetAllMarginAssets() {
 	resp, err := s.client.NewGetAllMarginAssetsService().Do(context.Background())
 
 	s.r().NoError(err)
-	s.Len(resp.AssetDetailList, 2)
-	s.Equal("Bitcoin", resp.AssetDetailList[0].AssetFullName)
-	s.Equal("BTC", resp.AssetDetailList[0].AssetName)
-	s.True(resp.AssetDetailList[0].IsBorrowable)
-	s.True(resp.AssetDetailList[0].IsMortgageable)
-	s.Equal("0.00010000", resp.AssetDetailList[0].MinLoanAmt)
-	s.Equal("100000.00000000", resp.AssetDetailList[0].MaxLoanAmt)
-	s.Equal("0.00010000", resp.AssetDetailList[0].MinMortgageAmt)
-	s.Equal("100000.00000000", resp.AssetDetailList[0].MaxMortgageAmt)
-	s.Equal("BTC", resp.AssetDetailList[0].Asset)
+	s.Len(resp, 2)
+	s.Equal("Bitcoin", resp[0].AssetFullName)
+	s.Equal("BTC", resp[0].AssetName)
+	s.True(resp[0].IsBorrowable)
+	s.True(resp[0].IsMortgageable)
+	s.Equal("0.00010000", resp[0].MinLoanAmt)
+	s.Equal("100000.00000000", resp[0].MaxLoanAmt)
+	s.Equal("0.00010000", resp[0].MinMortgageAmt)
+	s.Equal("100000.00000000", resp[0].MaxMortgageAmt)
+	s.Equal("BTC", resp[0].Asset)
 }
 
 func (s *marginTestSuite) TestForceLiquidationRecordService() {
@@ -422,9 +295,9 @@ func (s *marginTestSuite) TestInterestHistory() {
 	data := []byte(`
 	{
 		"rows": [
-			{
+		  	{       
 				"txId": 123,
-				"interestAccruedTime": 1613450271000,
+				"interestAccuredTime": 1613450271000,
 				"asset": "BTC",
 				"rawAsset": "BTC",
 				"principal": "1.00000000",
@@ -435,7 +308,7 @@ func (s *marginTestSuite) TestInterestHistory() {
 			}
 		],
 		"total": 1
-	}
+	}	  
 	`)
 
 	s.mockDo(data, nil)
@@ -453,7 +326,7 @@ func (s *marginTestSuite) TestInterestHistory() {
 
 	s.r().NoError(err)
 	s.Len(resp.Rows, 1)
-	s.Equal(uint64(1613450271000), resp.Rows[0].InterestAccruedTime)
+	s.Equal(uint64(1613450271000), resp.Rows[0].InterestAccuredTime)
 	s.Equal("BTC", resp.Rows[0].Asset)
 	s.Equal("BTC", resp.Rows[0].RawAsset)
 	s.Equal("1.00000000", resp.Rows[0].Principal)
@@ -464,69 +337,27 @@ func (s *marginTestSuite) TestInterestHistory() {
 	s.Equal(1, resp.Total)
 }
 
-func (s *marginTestSuite) TestLoanRecord() {
-	data := []byte(`
-	{
-		"rows": [
-			{
-				"isolatedSymbol": "",
-				"txId": 123,
-				"asset": "BTC",
-				"principal": "1.00000000",
-				"timestamp": 1613450271000,
-				"status": "CONFIRMED"
-			}
-		],
-		"total": 1
-	}
-	`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewLoanRecordService().
-		Asset("BTC").
-		IsolatedSymbol("BTCUSDT").
-		StartTime(1613450271000).
-		EndTime(1613536671000).
-		Current(1).
-		Size(500).
-		Archived("true").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Len(resp.Rows, 1)
-	s.Equal("", resp.Rows[0].IsolatedSymbol)
-	s.Equal("BTC", resp.Rows[0].Asset)
-	s.Equal("1.00000000", resp.Rows[0].Principal)
-	s.Equal(uint64(1613450271000), resp.Rows[0].Timestamp)
-	s.Equal("CONFIRMED", resp.Rows[0].Status)
-	s.Equal(1, resp.Total)
-}
-
 func (s *marginTestSuite) TestMarginAccountAllOrderService() {
 	data := []byte(`
-	{
-		"orders": [
-			{
-				"clientOrderId": "example-client-order-id",
-				"cumulativeQuoteQty": "100.00000000",
-				"executedQty": "1.00000000",
-				"icebergQty": "0.00000000",
-				"isWorking": false,
-				"orderId": 123,
-				"origQty": "1.00000000",
-				"price": "100.00000000",
-				"side": "BUY",
-				"status": "FILLED",
-				"stopPrice": "0.00000000",
-				"symbol": "BTCUSDT",
-				"isIsolated": true,
-				"time": 1613450271000,
-				"updateTime": 1613450271000
-			}
-		]
-	}
+	[
+		{
+			"clientOrderId": "example-client-order-id",
+			"cumulativeQuoteQty": "100.00000000",
+			"executedQty": "1.00000000",
+			"icebergQty": "0.00000000",
+			"isWorking": false,
+			"orderId": 123,
+			"origQty": "1.00000000",
+			"price": "100.00000000",
+			"side": "BUY",
+			"status": "FILLED",
+			"stopPrice": "0.00000000",
+			"symbol": "BTCUSDT",
+			"isIsolated": true,
+			"time": 1613450271000,
+			"updateTime": 1613450271000
+		}
+	]
 	`)
 
 	s.mockDo(data, nil)
@@ -542,22 +373,22 @@ func (s *marginTestSuite) TestMarginAccountAllOrderService() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Len(resp.Orders, 1)
-	s.Equal("example-client-order-id", resp.Orders[0].ClientOrderId)
-	s.Equal("100.00000000", resp.Orders[0].CumulativeQuoteQty)
-	s.Equal("1.00000000", resp.Orders[0].ExecutedQty)
-	s.Equal("0.00000000", resp.Orders[0].IcebergQty)
-	s.False(resp.Orders[0].IsWorking)
-	s.Equal(123, resp.Orders[0].OrderId)
-	s.Equal("1.00000000", resp.Orders[0].OrigQty)
-	s.Equal("100.00000000", resp.Orders[0].Price)
-	s.Equal("BUY", resp.Orders[0].Side)
-	s.Equal("FILLED", resp.Orders[0].Status)
-	s.Equal("0.00000000", resp.Orders[0].StopPrice)
-	s.Equal("BTCUSDT", resp.Orders[0].Symbol)
-	s.True(resp.Orders[0].IsIsolated)
-	s.Equal(uint64(1613450271000), resp.Orders[0].Time)
-	s.Equal(uint64(1613450271000), resp.Orders[0].UpdateTime)
+	s.Len(resp, 1)
+	s.Equal("example-client-order-id", resp[0].ClientOrderId)
+	s.Equal("100.00000000", resp[0].CumulativeQuoteQty)
+	s.Equal("1.00000000", resp[0].ExecutedQty)
+	s.Equal("0.00000000", resp[0].IcebergQty)
+	s.False(resp[0].IsWorking)
+	s.Equal(123, resp[0].OrderId)
+	s.Equal("1.00000000", resp[0].OrigQty)
+	s.Equal("100.00000000", resp[0].Price)
+	s.Equal("BUY", resp[0].Side)
+	s.Equal("FILLED", resp[0].Status)
+	s.Equal("0.00000000", resp[0].StopPrice)
+	s.Equal("BTCUSDT", resp[0].Symbol)
+	s.True(resp[0].IsIsolated)
+	s.Equal(uint64(1613450271000), resp[0].Time)
+	s.Equal(uint64(1613450271000), resp[0].UpdateTime)
 }
 
 func (s *marginTestSuite) TestMarginAccountCancelAllOrders() {
@@ -825,29 +656,27 @@ func (s *marginTestSuite) TestMarginAccountNewOrder() {
 
 func (s *marginTestSuite) TestMarginAccountOpenOrder() {
 	data := []byte(`
-	{
-		"orders": [
-			{
-				"clientOrderId": "abc123",
-				"cumulativeQuoteQty": "1.00000000",
-				"executedQty": "1.00000000",
-				"icebergQty": "0.00000000",
-				"isWorking": false,
-				"orderId": 123,
-				"origQty": "1.00000000",
-				"price": "10000.00000000",
-				"side": "BUY",
-				"status": "FILLED",
-				"stopPrice": "0.00000000",
-				"symbol": "BTCUSDT",
-				"isIsolated": false,
-				"time": 1619549055345,
-				"timeInForce": "GTC",
-				"type": "LIMIT",
-				"updateTime": 1619549055345
-			}
-		]
-	}
+	[
+		{
+			"clientOrderId": "abc123",
+			"cumulativeQuoteQty": "1.00000000",
+			"executedQty": "1.00000000",
+			"icebergQty": "0.00000000",
+			"isWorking": false,
+			"orderId": 123,
+			"origQty": "1.00000000",
+			"price": "10000.00000000",
+			"side": "BUY",
+			"status": "FILLED",
+			"stopPrice": "0.00000000",
+			"symbol": "BTCUSDT",
+			"isIsolated": false,
+			"time": 1619549055345,
+			"timeInForce": "GTC",
+			"type": "LIMIT",
+			"updateTime": 1619549055345
+		}
+	]
 	`)
 
 	s.mockDo(data, nil)
@@ -859,24 +688,24 @@ func (s *marginTestSuite) TestMarginAccountOpenOrder() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Len(resp.Orders, 1)
-	s.Equal("abc123", resp.Orders[0].ClientOrderId)
-	s.Equal("1.00000000", resp.Orders[0].CumulativeQuoteQty)
-	s.Equal("1.00000000", resp.Orders[0].ExecutedQty)
-	s.Equal("0.00000000", resp.Orders[0].IcebergQty)
-	s.Equal(false, resp.Orders[0].IsWorking)
-	s.Equal(123, resp.Orders[0].OrderId)
-	s.Equal("1.00000000", resp.Orders[0].OrigQty)
-	s.Equal("10000.00000000", resp.Orders[0].Price)
-	s.Equal("BUY", resp.Orders[0].Side)
-	s.Equal("FILLED", resp.Orders[0].Status)
-	s.Equal("0.00000000", resp.Orders[0].StopPrice)
-	s.Equal("BTCUSDT", resp.Orders[0].Symbol)
-	s.Equal(false, resp.Orders[0].IsIsolated)
-	s.Equal(uint64(1619549055345), resp.Orders[0].Time)
-	s.Equal("GTC", resp.Orders[0].TimeInForce)
-	s.Equal("LIMIT", resp.Orders[0].OrderType)
-	s.Equal(uint64(1619549055345), resp.Orders[0].UpdateTime)
+	s.Len(resp, 1)
+	s.Equal("abc123", resp[0].ClientOrderId)
+	s.Equal("1.00000000", resp[0].CumulativeQuoteQty)
+	s.Equal("1.00000000", resp[0].ExecutedQty)
+	s.Equal("0.00000000", resp[0].IcebergQty)
+	s.Equal(false, resp[0].IsWorking)
+	s.Equal(123, resp[0].OrderId)
+	s.Equal("1.00000000", resp[0].OrigQty)
+	s.Equal("10000.00000000", resp[0].Price)
+	s.Equal("BUY", resp[0].Side)
+	s.Equal("FILLED", resp[0].Status)
+	s.Equal("0.00000000", resp[0].StopPrice)
+	s.Equal("BTCUSDT", resp[0].Symbol)
+	s.Equal(false, resp[0].IsIsolated)
+	s.Equal(uint64(1619549055345), resp[0].Time)
+	s.Equal("GTC", resp[0].TimeInForce)
+	s.Equal("LIMIT", resp[0].OrderType)
+	s.Equal(uint64(1619549055345), resp[0].UpdateTime)
 }
 
 func (s *marginTestSuite) TestMarginAccountOrder() {
@@ -987,28 +816,31 @@ func (s *marginTestSuite) TestMarginAccountQueryOCO() {
 }
 
 func (s *marginTestSuite) TestMarginAccountQueryOpenOCO() {
-	data := []byte(`{
-		"orderListId": 1613450271000,
-		"contingencyType": "OCO",
-		"listStatusType": "EXEC_STARTED",
-		"listOrderStatus": "EXECUTING",
-		"listClientOrderId": "JYVppVf2SgZdG8",
-		"transactionTime": 1613450271000,
-		"symbol": "BTCUSDT",
-		"isIsolated": true,
-		"orders": [
-			{
-				"symbol": "BTCUSDT",
-				"orderId": 123,
-				"clientOrderId": "abc123"
-			},
-			{
-				"symbol": "BTCUSDT",
-				"orderId": 456,
-				"clientOrderId": "def456"
-			}
-		]
-	}`)
+	data := []byte(`
+	[
+		{
+			"orderListId": 1613450271000,
+			"contingencyType": "OCO",
+			"listStatusType": "EXEC_STARTED",
+			"listOrderStatus": "EXECUTING",
+			"listClientOrderId": "JYVppVf2SgZdG8",
+			"transactionTime": 1613450271000,
+			"symbol": "BTCUSDT",
+			"isIsolated": true,
+			"orders": [
+				{
+					"symbol": "BTCUSDT",
+					"orderId": 123,
+					"clientOrderId": "abc123"
+				},
+				{
+					"symbol": "BTCUSDT",
+					"orderId": 456,
+					"clientOrderId": "def456"
+				}
+			]
+		}
+	]`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -1019,21 +851,21 @@ func (s *marginTestSuite) TestMarginAccountQueryOpenOCO() {
 		Do(context.Background())
 
 	s.r().NoError(err)
-	s.Equal(1613450271000, resp.OrderListId)
-	s.Equal("OCO", resp.ContingencyType)
-	s.Equal("EXEC_STARTED", resp.ListStatusType)
-	s.Equal("EXECUTING", resp.ListOrderStatus)
-	s.Equal("JYVppVf2SgZdG8", resp.ListClientOrderId)
-	s.Equal(uint64(1613450271000), resp.TransactionTime)
-	s.Equal("BTCUSDT", resp.Symbol)
-	s.True(resp.IsIsolated)
-	s.Len(resp.Orders, 2)
-	s.Equal("BTCUSDT", resp.Orders[0].Symbol)
-	s.Equal(123, resp.Orders[0].OrderId)
-	s.Equal("abc123", resp.Orders[0].ClientOrderId)
-	s.Equal("BTCUSDT", resp.Orders[1].Symbol)
-	s.Equal(456, resp.Orders[1].OrderId)
-	s.Equal("def456", resp.Orders[1].ClientOrderId)
+	s.Equal(1613450271000, resp[0].OrderListId)
+	s.Equal("OCO", resp[0].ContingencyType)
+	s.Equal("EXEC_STARTED", resp[0].ListStatusType)
+	s.Equal("EXECUTING", resp[0].ListOrderStatus)
+	s.Equal("JYVppVf2SgZdG8", resp[0].ListClientOrderId)
+	s.Equal(uint64(1613450271000), resp[0].TransactionTime)
+	s.Equal("BTCUSDT", resp[0].Symbol)
+	s.True(resp[0].IsIsolated)
+	s.Len(resp[0].Orders, 2)
+	s.Equal("BTCUSDT", resp[0].Orders[0].Symbol)
+	s.Equal(123, resp[0].Orders[0].OrderId)
+	s.Equal("abc123", resp[0].Orders[0].ClientOrderId)
+	s.Equal("BTCUSDT", resp[0].Orders[1].Symbol)
+	s.Equal(456, resp[0].Orders[1].OrderId)
+	s.Equal("def456", resp[0].Orders[1].ClientOrderId)
 }
 
 func (s *marginTestSuite) TestMarginAccountSummary() {
@@ -1186,146 +1018,6 @@ func (s *marginTestSuite) TestMarginCurrentOrderCount() {
 	s.Equal(0, resp[0].Count)
 }
 
-func (s *marginTestSuite) TestListDustLog() {
-	data := []byte(`
-	{
-        "total": 8,
-        "userAssetDribblets": [
-            {
-                "totalTransferedAmount": "0.00132256",
-                "totalServiceChargeAmount": "0.00002699",
-                "transId": 45178372831,
-                "userAssetDribbletDetails": [
-                    {
-                        "transId": 4359321,
-                        "serviceChargeAmount": "0.000009",
-                        "amount": "0.0009",
-                        "operateTime": 1615985535000,
-                        "transferedAmount": "0.000441",
-                        "fromAsset": "USDT"
-                    },
-                    {
-                        "transId": 4359321,
-                        "serviceChargeAmount": "0.00001799",
-                        "amount": "0.0009",
-                        "operateTime": 1615985535000,
-                        "transferedAmount": "0.00088156",
-                        "fromAsset": "ETH"
-                    }
-                ]
-            },
-            {
-                "operateTime":1616203180000,
-                "totalTransferedAmount": "0.00058795",
-                "totalServiceChargeAmount": "0.000012",
-                "transId": 4357015,
-                "userAssetDribbletDetails": [
-                    {
-                        "transId": 4357015,
-                        "serviceChargeAmount": "0.00001",
-                        "amount": "0.001",
-                        "operateTime": 1616203180000,
-                        "transferedAmount": "0.00049",
-                        "fromAsset": "USDT"
-                    },
-                    {
-                        "transId": 4357015,
-                        "serviceChargeAmount": "0.000002",
-                        "amount": "0.0001",
-                        "operateTime": 1616203180000,
-                        "transferedAmount": "0.00009795",
-                        "fromAsset": "ETH"
-                    }
-                ]
-            }
-        ]
-    }
-	`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	s.assertReq(func(r *request) {
-		e := newSignedRequest()
-		s.assertRequestEqual(e, r)
-	})
-
-	res, err := s.client.NewMarginDustlogService().Do(context.Background())
-	r := s.r()
-	r.NoError(err)
-	rows := res.UserAssetDribblets
-	s.Len(rows, 2)
-	s.Len(rows[0].UserAssetDribbletDetails, 2)
-	s.Len(rows[1].UserAssetDribbletDetails, 2)
-
-	s.assertUserAssetDribbletEqual(&UserAssetDribblet{
-		TotalTransferedAmount:    "0.00132256",
-		TotalServiceChargeAmount: "0.00002699",
-		TransId:                  45178372831,
-		UserAssetDribbletDetails: []UserAssetDribbletDetail{
-			{
-				TransId:             4359321,
-				ServiceChargeAmount: "0.000009",
-				Amount:              "0.0009",
-				OperateTime:         1615985535000,
-				TransferedAmount:    "0.000441",
-				FromAsset:           "USDT",
-			},
-			{
-				TransId:             4359321,
-				ServiceChargeAmount: "0.00001799",
-				Amount:              "0.0009",
-				OperateTime:         1615985535000,
-				TransferedAmount:    "0.00088156",
-				FromAsset:           "ETH",
-			},
-		},
-	}, &rows[0])
-	s.assertUserAssetDribbletEqual(&UserAssetDribblet{
-		TotalTransferedAmount:    "0.00058795",
-		TotalServiceChargeAmount: "0.000012",
-		TransId:                  4357015,
-		UserAssetDribbletDetails: []UserAssetDribbletDetail{
-			{
-				TransId:             4357015,
-				ServiceChargeAmount: "0.00001",
-				Amount:              "0.001",
-				OperateTime:         1616203180000,
-				TransferedAmount:    "0.00049",
-				FromAsset:           "USDT",
-			},
-			{
-				TransId:             4357015,
-				ServiceChargeAmount: "0.000002",
-				Amount:              "0.0001",
-				OperateTime:         1616203180000,
-				TransferedAmount:    "0.00009795",
-				FromAsset:           "ETH",
-			},
-		},
-		OperateTime: 1616203180000,
-	}, &rows[1])
-}
-
-func (s *marginTestSuite) assertUserAssetDribbletEqual(e, a *UserAssetDribblet) {
-	r := s.r()
-	r.Equal(e.TotalTransferedAmount, a.TotalTransferedAmount, `TotalTransferedAmount`)
-	r.Equal(e.TotalServiceChargeAmount, a.TotalServiceChargeAmount, `TotalServiceChargeAmount`)
-	r.Equal(e.TransId, a.TransId, `TransID`)
-	s.assertUserAssetDribbletDetailEqual(&e.UserAssetDribbletDetails[0], &a.UserAssetDribbletDetails[0])
-	s.assertUserAssetDribbletDetailEqual(&e.UserAssetDribbletDetails[1], &a.UserAssetDribbletDetails[1])
-	r.Equal(e.OperateTime, a.OperateTime, `OperateTime`)
-}
-
-func (s *marginTestSuite) assertUserAssetDribbletDetailEqual(e, a *UserAssetDribbletDetail) {
-	r := s.r()
-	r.Equal(e.TransId, a.TransId, `TransID`)
-	r.Equal(e.ServiceChargeAmount, a.ServiceChargeAmount, `ServiceChargeAmount`)
-	r.Equal(e.Amount, a.Amount, `Amount`)
-	r.Equal(e.OperateTime, a.OperateTime, `OperateTime`)
-	r.Equal(e.TransferedAmount, a.TransferedAmount, `TransferedAmount`)
-	r.Equal(e.FromAsset, a.FromAsset, `FromAsset`)
-}
-
 func (s *marginTestSuite) TestMarginInterestRateHistory() {
 	data := []byte(`
 	[
@@ -1333,13 +1025,13 @@ func (s *marginTestSuite) TestMarginInterestRateHistory() {
 			"asset": "BTC",
 			"vipLevel": 0,
 			"timestamp": 1616697600000,
-			"dailyInterestRate": 0.00025000
+			"dailyInterestRate": "0.00025"
 		},
 		{
 			"asset": "BNB",
 			"vipLevel": 0,
 			"timestamp": 1616697600000,
-			"dailyInterestRate": 0.00100000
+			"dailyInterestRate": "0.001"
 		}
 	]
 	`)
@@ -1357,12 +1049,12 @@ func (s *marginTestSuite) TestMarginInterestRateHistory() {
 	s.r().NoError(err)
 	s.Len(resp, 2)
 	s.Equal("BTC", resp[0].Asset)
-	s.Equal(0.00025, resp[0].DailyInterestRate)
+	s.Equal("0.00025", resp[0].DailyInterestRate)
 	s.Equal(uint64(1616697600000), resp[0].Timestamp)
 	s.Equal(0, resp[0].VIPLevel)
 
 	s.Equal("BNB", resp[1].Asset)
-	s.Equal(0.001, resp[1].DailyInterestRate)
+	s.Equal("0.001", resp[1].DailyInterestRate)
 	s.Equal(uint64(1616697600000), resp[1].Timestamp)
 	s.Equal(0, resp[1].VIPLevel)
 }
@@ -1497,85 +1189,6 @@ func (s *marginTestSuite) TestMarginIsolatedAccountLimit() {
 	s.Equal(10, resp.MaxAccount)
 }
 
-func (s *marginTestSuite) TestMarginIsolatedAccountTransfer() {
-	data := []byte(`{"tranId":"12345"}`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewMarginIsolatedAccountTransferService().
-		Asset("BTC").
-		Symbol("BTCUSDT").
-		TransFrom("BTC").
-		TransTo("USDT").
-		Amount(1.0).
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Equal("12345", resp.TranId)
-}
-
-func (s *marginTestSuite) TestMarginIsolatedAccountTransferHistory() {
-	data := []byte(`{
-			"rows": [
-				{
-					"amount": "1.0",
-					"asset": "BTC",
-					"status": "CONFIRMED",
-					"timestamp": 1527777532000,
-					"txId": 100000001,
-					"transferId": 200000001,
-					"transFrom": "ETH",
-					"transTo": "BTC"
-				},
-				{
-					"amount": "2.0",
-					"asset": "BTC",
-					"status": "CONFIRMED",
-					"type": "ROLL_OUT",
-					"timestamp": 1527777532000,
-					"txId": 100000002,
-					"transferId": 200000002,
-					"transFrom": "BTC",
-					"transTo": "ETH"
-				}
-			],
-			"total": 2
-		}`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewMarginIsolatedAccountTransferHistoryService().
-		Symbol("BTCUSDT").
-		Asset("BTC").
-		TransFrom("BTC").
-		TransTo("ETH").
-		StartTime(1527777532000).
-		EndTime(1527777532000).
-		Current(1).
-		Size(500).
-		Archived("true").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Len(resp.Rows, 2)
-	s.Equal("BTC", resp.Rows[0].Asset)
-	s.Equal("1.0", resp.Rows[0].Amount)
-	s.Equal("CONFIRMED", resp.Rows[0].Status)
-	s.Equal(uint64(1527777532000), resp.Rows[0].TimeStamp)
-	s.Equal(int64(100000001), resp.Rows[0].TxId)
-	s.Equal("ETH", resp.Rows[0].TransFrom)
-	s.Equal("BTC", resp.Rows[0].TransTo)
-	s.Equal("BTC", resp.Rows[1].Asset)
-	s.Equal("2.0", resp.Rows[1].Amount)
-	s.Equal("CONFIRMED", resp.Rows[1].Status)
-	s.Equal(uint64(1527777532000), resp.Rows[1].TimeStamp)
-	s.Equal(int64(100000002), resp.Rows[1].TxId)
-	s.Equal("BTC", resp.Rows[1].TransFrom)
-	s.Equal("ETH", resp.Rows[1].TransTo)
-	s.Equal(int64(2), resp.Total)
-}
-
 func (s *marginTestSuite) TestMarginIsolatedMarginFee() {
 	data := []byte(`
 	[
@@ -1660,32 +1273,6 @@ func (s *marginTestSuite) TestMarginIsolatedMarginTier() {
 	s.Equal("110", resp[0].LiquidationRiskRatio)
 	s.Equal("0.10000000", resp[0].BaseAssetMaxBorrowable)
 	s.Equal("50.00000000", resp[0].QuoteAssetMaxBorrowable)
-}
-
-func (s *marginTestSuite) TestMarginIsolatedSymbol() {
-	data := []byte(`{
-		"symbol": "BTCUSDT",
-		"base": "BTC",
-		"quote": "USDT",
-		"isMarginTrade": true,
-		"isBuyAllowed": true,
-		"isSellAllowed": true
-	}`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewMarginIsolatedSymbolService().
-		Symbol("BTCUSDT").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Equal("BTCUSDT", resp.Symbol)
-	s.Equal("BTC", resp.Base)
-	s.Equal("USDT", resp.Quote)
-	s.True(resp.IsMarginTrade)
-	s.True(resp.IsBuyAllowed)
-	s.True(resp.IsSellAllowed)
 }
 
 func (s *marginTestSuite) TestMarginSmallLiabilityExchange() {
@@ -1788,101 +1375,4 @@ func (s *marginTestSuite) TestMarginToggleBnbBurn() {
 	s.r().NoError(err)
 	s.Equal(true, resp.SpotBNBBurn)
 	s.Equal(false, resp.InterestBNBBurn)
-}
-
-func (s *marginTestSuite) TestQueryCrossMarginPair() {
-	data := []byte(`
-	{
-		"symbolDetail": {
-			"symbol": "BTCUSDT",
-			"isMarginTrade": true,
-			"isBuyAllowed": true,
-			"isSellAllowed": true
-		}
-	}`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewQueryCrossMarginPairService().
-		Symbol("BTCUSDT").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Equal("BTCUSDT", resp.SymbolDetail.Symbol)
-	s.True(resp.SymbolDetail.IsMarginTrade)
-	s.True(resp.SymbolDetail.IsBuyAllowed)
-	s.True(resp.SymbolDetail.IsSellAllowed)
-}
-
-func (s *marginTestSuite) TestQueryMarginAsset() {
-	data := []byte(`
-	{
-		"assetFullName": "Bitcoin",
-		"assetName": "BTC",
-		"isBorrowable": true,
-		"isMortgageable": true,
-		"userMinBorrow": "0.00100000",
-		"userMinRepay": "0.00000000"
-	}
-	`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewQueryMarginAssetService().
-		Asset("BTC").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Equal("Bitcoin", resp.FullName)
-	s.Equal("BTC", resp.Name)
-	s.True(resp.Borrowable)
-	s.True(resp.Mortgageable)
-	s.Equal("0.00100000", resp.UserMinBorrow)
-	s.Equal("0.00000000", resp.UserMinRepay)
-}
-
-func (s *marginTestSuite) TestRepayRecord() {
-	data := []byte(`
-    {
-        "rows": [
-            {
-                "isolatedSymbol": "BTCUSDT",
-                "amount": "1.00000000",
-                "asset": "BTC",
-                "interest": "0.00000005",
-                "principal": "1.00000000",
-                "status": "CONFIRMED",
-                "timestamp": 1613450271000,
-                "txId": 123
-            }
-        ],
-        "total": 1
-    }
-    `)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewRepayRecordService().
-		Asset("BTC").
-		IsolatedSymbol("BTCUSDT").
-		StartTime(1613450271000).
-		EndTime(1613536671000).
-		Current(1).
-		Size(500).
-		Archived("true").
-		Do(context.Background())
-
-	s.r().NoError(err)
-	s.Len(resp.Rows, 1)
-	s.Equal("BTCUSDT", resp.Rows[0].IsolatedSymbol)
-	s.Equal("1.00000000", resp.Rows[0].Amount)
-	s.Equal("BTC", resp.Rows[0].Asset)
-	s.Equal("0.00000005", resp.Rows[0].Interest)
-	s.Equal("1.00000000", resp.Rows[0].Principal)
-	s.Equal("CONFIRMED", resp.Rows[0].Status)
-	s.Equal(uint64(1613450271000), resp.Rows[0].Timestamp)
-	s.Equal(1, resp.Total)
 }

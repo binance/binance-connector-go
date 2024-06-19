@@ -13,7 +13,7 @@ func main() {
 }
 
 func StopUserDataStream() {
-	client := binance_connector.NewWebsocketAPIClient("api_key", "", "wss://testnet.binance.vision/ws-api/v3")
+	client := binance_connector.NewWebsocketAPIClient("api_key", "", "wss://ws-api.testnet.binance.vision/ws-api/v3")
 	err := client.Connect()
 	if err != nil {
 		log.Printf("Error: %v", err)

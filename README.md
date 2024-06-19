@@ -89,7 +89,7 @@ Initialising Websocket Client
 ```go
 // Initialise Websocket Client with Production baseURL and false for "isCombined" parameter
 
-websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 
 // Initialise Websocket Client with Production baseURL and true for "isCombined" parameter
 
@@ -110,7 +110,7 @@ import (
 
 func main() {
 	// Initialise Websocket Client with Testnet BaseURL and false for "isCombined" parameter
-	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 
 	wsDepthHandler := func(event *binance_connector.WsDepthEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))

@@ -66,7 +66,7 @@ func (s *websocketTestSuite) assertUserDataEvent(e, a *WsUserDataEvent) {
 }
 
 func (s *websocketTestSuite) testWsUserDataServe(data []byte, expectedEvent *WsUserDataEvent) {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 
 	fakeErrMsg := "fake error"
 	s.mockWsServe(data, errors.New(fakeErrMsg))
@@ -158,7 +158,7 @@ func (s *websocketTestSuite) TestWsUserDataServeAccountUpdate() {
 }
 
 func (s *websocketTestSuite) TestWsTradeServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 
 	data := []byte(`{
         "e": "trade",
@@ -214,7 +214,7 @@ func (s *websocketTestSuite) assertWsTradeEventEqual(e, a *WsTradeEvent) {
 }
 
 func (s *websocketTestSuite) TestWsAllMarketMiniTickersStatServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`[{
   		"e": "24hrMiniTicker",
     	"E": 1523658017154,
@@ -294,7 +294,7 @@ func (s *websocketTestSuite) assertWsMarketMiniTickersStatEventEqual(e, a *WsMar
 }
 
 func (s *websocketTestSuite) TestBookTickerServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`{
   		"u":17242169,
   		"s":"BTCUSD_200626",
@@ -338,7 +338,7 @@ func (s *websocketTestSuite) assertWsBookTickerEvent(e, a *WsBookTickerEvent) {
 }
 
 func (s *websocketTestSuite) TestDepthServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`{
         "e": "depthUpdate",
         "E": 1499404630606,
@@ -429,7 +429,7 @@ func (s *websocketTestSuite) assertWsDepthEventEqual(e, a *WsDepthEvent) {
 }
 
 func (s *websocketTestSuite) TestKlineServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`{
         "e": "kline",
         "E": 1499404907056,
@@ -516,7 +516,7 @@ func (s *websocketTestSuite) assertWsKlineEventEqual(e, a *WsKlineEvent) {
 }
 
 func (s *websocketTestSuite) TestWsAggTradeServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`{
         "e": "aggTrade",
         "E": 1499405254326,
@@ -571,7 +571,7 @@ func (s *websocketTestSuite) assertWsAggTradeEventEqual(e, a *WsAggTradeEvent) {
 }
 
 func (s *websocketTestSuite) TestWsAllMarketTickersStatServe() {
-	websocketStreamClient := NewWebsocketStreamClient(false, "wss://testnet.binance.vision")
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`[{
   		"e": "24hrTicker",
   		"E": 123456789,
