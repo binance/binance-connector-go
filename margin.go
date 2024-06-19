@@ -6,292 +6,6 @@ import (
 	"net/http"
 )
 
-// Cross Margin Account Transfer API Endpoint
-const (
-	transferEndpoint = "/sapi/v1/margin/transfer"
-)
-
-// TransferService transfer between spot and margin account
-type TransferService struct {
-	c            *Client
-	asset        string
-	amount       float64
-	transferType int
-}
-
-// Asset set asset
-func (s *TransferService) Asset(asset string) *TransferService {
-	s.asset = asset
-	return s
-}
-
-// Amount set amount
-func (s *TransferService) Amount(amount float64) *TransferService {
-	s.amount = amount
-	return s
-}
-
-// TransferType set transfer type
-func (s *TransferService) TransferType(transferType int) *TransferService {
-	s.transferType = transferType
-	return s
-}
-
-// Do send request
-func (s *TransferService) Do(ctx context.Context, opts ...RequestOption) (res *TransferResponse, err error) {
-	r := &request{
-		method:   http.MethodPost,
-		endpoint: transferEndpoint,
-		secType:  secTypeSigned,
-	}
-	r.setParam("asset", s.asset)
-	r.setParam("amount", s.amount)
-	r.setParam("type", s.transferType)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &TransferResponse{}, err
-	}
-	res = new(TransferResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &TransferResponse{}, err
-	}
-	return res, nil
-}
-
-// TransferResponse define transfer response
-type TransferResponse struct {
-	TranId int64 `json:"tranId"`
-}
-
-// Cross Margin Account Borrow API Endpoint
-const (
-	borrowEndpoint = "/sapi/v1/margin/loan"
-)
-
-// BorrowService borrow from cross margin account
-type BorrowService struct {
-	c          *Client
-	asset      string
-	amount     float64
-	isIsolated *string
-	symbol     *string
-}
-
-// Asset set asset
-func (s *BorrowService) Asset(asset string) *BorrowService {
-	s.asset = asset
-	return s
-}
-
-// Amount set amount
-func (s *BorrowService) Amount(amount float64) *BorrowService {
-	s.amount = amount
-	return s
-}
-
-// IsIsolated set isolated
-func (s *BorrowService) IsIsolated(isIsolated string) *BorrowService {
-	s.isIsolated = &isIsolated
-	return s
-}
-
-// Do send request
-func (s *BorrowService) Do(ctx context.Context, opts ...RequestOption) (res *BorrowResponse, err error) {
-	r := &request{
-		method:   http.MethodPost,
-		endpoint: borrowEndpoint,
-		secType:  secTypeSigned,
-	}
-	r.setParam("asset", s.asset)
-	r.setParam("amount", s.amount)
-	if s.isIsolated != nil {
-		r.setParam("isolatedSymbol", *s.isIsolated)
-	}
-	if s.symbol != nil {
-		r.setParam("symbol", *s.symbol)
-	}
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &BorrowResponse{}, err
-	}
-	res = new(BorrowResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &BorrowResponse{}, err
-	}
-	return res, nil
-}
-
-// BorrowResponse define borrow response
-type BorrowResponse struct {
-	TranId int64 `json:"tranId"`
-}
-
-// Cross Margin Account Repay API Endpoint
-const (
-	repayEndpoint = "/sapi/v1/margin/repay"
-)
-
-// RepayService repay to cross margin account
-type RepayService struct {
-	c          *Client
-	asset      string
-	isIsolated *string
-	symbol     *string
-	amount     float64
-}
-
-// Asset set asset
-func (s *RepayService) Asset(asset string) *RepayService {
-	s.asset = asset
-	return s
-}
-
-// Amount set amount
-func (s *RepayService) Amount(amount float64) *RepayService {
-	s.amount = amount
-	return s
-}
-
-// Symbol set symbol
-func (s *RepayService) Symbol(symbol string) *RepayService {
-	s.symbol = &symbol
-	return s
-}
-
-// IsIsolated set isolated
-func (s *RepayService) IsIsolated(isIsolated string) *RepayService {
-	s.isIsolated = &isIsolated
-	return s
-}
-
-// Do send request
-func (s *RepayService) Do(ctx context.Context, opts ...RequestOption) (res *RepayResponse, err error) {
-	r := &request{
-		method:   http.MethodPost,
-		endpoint: repayEndpoint,
-		secType:  secTypeSigned,
-	}
-	r.setParam("asset", s.asset)
-	r.setParam("amount", s.amount)
-	if s.isIsolated != nil {
-		r.setParam("isIsolated", *s.isIsolated)
-	}
-	if s.symbol != nil {
-		r.setParam("symbol", *s.symbol)
-	}
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &RepayResponse{}, err
-	}
-	res = new(RepayResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &RepayResponse{}, err
-	}
-	return res, nil
-}
-
-// RepayResponse define repay response
-type RepayResponse struct {
-	TranId int64 `json:"tranId"`
-}
-
-// Query Margin Asset API Endpoint
-const (
-	queryMarginAssetEndpoint = "/sapi/v1/margin/asset"
-)
-
-// QueryMarginAssetService query margin asset
-type QueryMarginAssetService struct {
-	c     *Client
-	asset string
-}
-
-// Asset set asset
-func (s *QueryMarginAssetService) Asset(asset string) *QueryMarginAssetService {
-	s.asset = asset
-	return s
-}
-
-// Do send request
-func (s *QueryMarginAssetService) Do(ctx context.Context, opts ...RequestOption) (res *QueryMarginAssetResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: queryMarginAssetEndpoint,
-		secType:  secTypeAPIKey,
-	}
-	r.setParam("asset", s.asset)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &QueryMarginAssetResponse{}, err
-	}
-	res = new(QueryMarginAssetResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &QueryMarginAssetResponse{}, err
-	}
-	return res, nil
-}
-
-// QueryMarginAssetResponse define query margin asset response
-type QueryMarginAssetResponse struct {
-	FullName      string `json:"assetFullName"`
-	Name          string `json:"assetName"`
-	Borrowable    bool   `json:"isBorrowable"`
-	Mortgageable  bool   `json:"isMortgageable"`
-	UserMinBorrow string `json:"userMinBorrow"`
-	UserMinRepay  string `json:"userMinRepay"`
-}
-
-// Query Cross Margin Pair API Endpoint
-const (
-	queryCrossMarginPairEndpoint = "/sapi/v1/margin/pair"
-)
-
-// QueryCrossMarginPairService query cross margin pair
-type QueryCrossMarginPairService struct {
-	c      *Client
-	symbol string
-}
-
-// Symbol set symbol
-func (s *QueryCrossMarginPairService) Symbol(symbol string) *QueryCrossMarginPairService {
-	s.symbol = symbol
-	return s
-}
-
-// Do send request
-func (s *QueryCrossMarginPairService) Do(ctx context.Context, opts ...RequestOption) (res *QueryCrossMarginPairResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: queryCrossMarginPairEndpoint,
-		secType:  secTypeSigned,
-	}
-	r.setParam("symbol", s.symbol)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &QueryCrossMarginPairResponse{}, err
-	}
-	res = new(QueryCrossMarginPairResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &QueryCrossMarginPairResponse{}, err
-	}
-	return res, nil
-}
-
-// QueryCrossMarginPairResponse define query cross margin pair response
-type QueryCrossMarginPairResponse struct {
-	SymbolDetail struct {
-		Symbol        string `json:"symbol"`
-		IsMarginTrade bool   `json:"isMarginTrade"`
-		IsBuyAllowed  bool   `json:"isBuyAllowed"`
-		IsSellAllowed bool   `json:"isSellAllowed"`
-	} `json:"symbolDetail"`
-}
-
 // Get all margin assets API Endpoint
 const (
 	getAllMarginAssetsEndpoint = "/sapi/v1/margin/allAssets"
@@ -303,7 +17,7 @@ type GetAllMarginAssetsService struct {
 }
 
 // Do send request
-func (s *GetAllMarginAssetsService) Do(ctx context.Context, opts ...RequestOption) (res *GetAllMarginAssetsResponse, err error) {
+func (s *GetAllMarginAssetsService) Do(ctx context.Context, opts ...RequestOption) (res []*GetAllMarginAssetsResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getAllMarginAssetsEndpoint,
@@ -311,29 +25,27 @@ func (s *GetAllMarginAssetsService) Do(ctx context.Context, opts ...RequestOptio
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &GetAllMarginAssetsResponse{}, err
+		return []*GetAllMarginAssetsResponse{}, err
 	}
-	res = new(GetAllMarginAssetsResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*GetAllMarginAssetsResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &GetAllMarginAssetsResponse{}, err
+		return []*GetAllMarginAssetsResponse{}, err
 	}
 	return res, nil
 }
 
 // GetAllMarginAssetsResponse define get all margin assets response
 type GetAllMarginAssetsResponse struct {
-	AssetDetailList []struct {
-		AssetFullName  string `json:"assetFullName"`
-		AssetName      string `json:"assetName"`
-		IsBorrowable   bool   `json:"isBorrowable"`
-		IsMortgageable bool   `json:"isMortgageable"`
-		MinLoanAmt     string `json:"minLoanAmt"`
-		MaxLoanAmt     string `json:"maxLoanAmt"`
-		MinMortgageAmt string `json:"minMortgageAmt"`
-		MaxMortgageAmt string `json:"maxMortgageAmt"`
-		Asset          string `json:"asset"`
-	} `json:"assetDetailList"`
+	AssetFullName  string `json:"assetFullName"`
+	AssetName      string `json:"assetName"`
+	IsBorrowable   bool   `json:"isBorrowable"`
+	IsMortgageable bool   `json:"isMortgageable"`
+	MinLoanAmt     string `json:"minLoanAmt"`
+	MaxLoanAmt     string `json:"maxLoanAmt"`
+	MinMortgageAmt string `json:"minMortgageAmt"`
+	MaxMortgageAmt string `json:"maxMortgageAmt"`
+	Asset          string `json:"asset"`
 }
 
 // Get all margin pairs API Endpoint
@@ -347,7 +59,7 @@ type GetAllMarginPairsService struct {
 }
 
 // Do send request
-func (s *GetAllMarginPairsService) Do(ctx context.Context, opts ...RequestOption) (res *GetAllMarginPairsResponse, err error) {
+func (s *GetAllMarginPairsService) Do(ctx context.Context, opts ...RequestOption) (res []*GetAllMarginPairsResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: getAllMarginPairsEndpoint,
@@ -355,27 +67,25 @@ func (s *GetAllMarginPairsService) Do(ctx context.Context, opts ...RequestOption
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &GetAllMarginPairsResponse{}, err
+		return []*GetAllMarginPairsResponse{}, err
 	}
-	res = new(GetAllMarginPairsResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*GetAllMarginPairsResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &GetAllMarginPairsResponse{}, err
+		return []*GetAllMarginPairsResponse{}, err
 	}
 	return res, nil
 }
 
 // GetAllMarginPairsResponse define get all margin pairs response
 type GetAllMarginPairsResponse struct {
-	SymbolDetailList []struct {
-		Base          string `json:"base"`
-		Id            int    `json:"id"`
-		IsBuyAllowed  bool   `json:"isBuyAllowed"`
-		IsMarginTrade bool   `json:"isMarginTrade"`
-		IsSellAllowed bool   `json:"isSellAllowed"`
-		Quote         string `json:"quote"`
-		Symbol        string `json:"symbol"`
-	} `json:"symbolDetailList"`
+	Base          string `json:"base"`
+	Id            int    `json:"id"`
+	IsBuyAllowed  bool   `json:"isBuyAllowed"`
+	IsMarginTrade bool   `json:"isMarginTrade"`
+	IsSellAllowed bool   `json:"isSellAllowed"`
+	Quote         string `json:"quote"`
+	Symbol        string `json:"symbol"`
 }
 
 // Query Margin Price Index API Endpoint
@@ -928,254 +638,6 @@ type CrossMarginTransferHistoryResponse struct {
 	Total int `json:"total"`
 }
 
-// Query Loan Record (USER_DATA) API Endpoint
-const (
-	loanRecordEndpoint = "/sapi/v1/margin/loan"
-)
-
-// LoanRecordService query loan record
-type LoanRecordService struct {
-	c              *Client
-	asset          string
-	isolatedSymbol *string
-	txid           *int64
-	startTime      *uint64
-	endTime        *uint64
-	current        *int
-	size           *int
-	archived       *string
-}
-
-// Asset set asset
-func (s *LoanRecordService) Asset(asset string) *LoanRecordService {
-	s.asset = asset
-	return s
-}
-
-// IsolatedSymbol set isolatedSymbol
-func (s *LoanRecordService) IsolatedSymbol(isolatedSymbol string) *LoanRecordService {
-	s.isolatedSymbol = &isolatedSymbol
-	return s
-}
-
-// TxId set txid
-func (s *LoanRecordService) TxId(txid int64) *LoanRecordService {
-	s.txid = &txid
-	return s
-}
-
-// StartTime set startTime
-func (s *LoanRecordService) StartTime(startTime uint64) *LoanRecordService {
-	s.startTime = &startTime
-	return s
-}
-
-// EndTime set endTime
-func (s *LoanRecordService) EndTime(endTime uint64) *LoanRecordService {
-	s.endTime = &endTime
-	return s
-}
-
-// Current set current
-func (s *LoanRecordService) Current(current int) *LoanRecordService {
-	s.current = &current
-	return s
-}
-
-// Size set size
-func (s *LoanRecordService) Size(size int) *LoanRecordService {
-	s.size = &size
-	return s
-}
-
-// Archived set archived
-func (s *LoanRecordService) Archived(archived string) *LoanRecordService {
-	s.archived = &archived
-	return s
-}
-
-// Do send request
-func (s *LoanRecordService) Do(ctx context.Context, opts ...RequestOption) (res *LoanRecordResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: loanRecordEndpoint,
-		secType:  secTypeSigned,
-	}
-	m := params{
-		"asset": s.asset,
-	}
-	if s.isolatedSymbol != nil {
-		m["isolatedSymbol"] = *s.isolatedSymbol
-	}
-	if s.txid != nil {
-		m["txId"] = *s.txid
-	}
-	if s.startTime != nil {
-		m["startTime"] = *s.startTime
-	}
-	if s.endTime != nil {
-		m["endTime"] = *s.endTime
-	}
-	if s.current != nil {
-		m["current"] = *s.current
-	}
-	if s.size != nil {
-		m["size"] = *s.size
-	}
-	if s.archived != nil {
-		m["archived"] = *s.archived
-	}
-	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &LoanRecordResponse{}, err
-	}
-	res = new(LoanRecordResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &LoanRecordResponse{}, err
-	}
-	return res, nil
-}
-
-// LoanRecordResponse define loan record response
-type LoanRecordResponse struct {
-	Rows []struct {
-		IsolatedSymbol string `json:"isolatedSymbol"`
-		TxId           int64  `json:"txId"`
-		Asset          string `json:"asset"`
-		Principal      string `json:"principal"`
-		Timestamp      uint64 `json:"timestamp"`
-		Status         string `json:"status"`
-	} `json:"rows"`
-	Total int `json:"total"`
-}
-
-// Query Repay Record (USER_DATA) API Endpoint
-const (
-	repayRecordEndpoint = "/sapi/v1/margin/repay"
-)
-
-// RepayRecordService query repay record
-type RepayRecordService struct {
-	c              *Client
-	asset          string
-	isolatedSymbol *string
-	txid           *int64
-	startTime      *uint64
-	endTime        *uint64
-	current        *int
-	size           *int
-	archived       *string
-}
-
-// Asset set asset
-func (s *RepayRecordService) Asset(asset string) *RepayRecordService {
-	s.asset = asset
-	return s
-}
-
-// IsolatedSymbol set isolatedSymbol
-func (s *RepayRecordService) IsolatedSymbol(isolatedSymbol string) *RepayRecordService {
-	s.isolatedSymbol = &isolatedSymbol
-	return s
-}
-
-// TxId set txid
-func (s *RepayRecordService) TxId(txid int64) *RepayRecordService {
-	s.txid = &txid
-	return s
-}
-
-// StartTime set startTime
-func (s *RepayRecordService) StartTime(startTime uint64) *RepayRecordService {
-	s.startTime = &startTime
-	return s
-}
-
-// EndTime set endTime
-func (s *RepayRecordService) EndTime(endTime uint64) *RepayRecordService {
-	s.endTime = &endTime
-	return s
-}
-
-// Current set current
-func (s *RepayRecordService) Current(current int) *RepayRecordService {
-	s.current = &current
-	return s
-}
-
-// Size set size
-func (s *RepayRecordService) Size(size int) *RepayRecordService {
-	s.size = &size
-	return s
-}
-
-// Archived set archived
-func (s *RepayRecordService) Archived(archived string) *RepayRecordService {
-	s.archived = &archived
-	return s
-}
-
-// Do send request
-func (s *RepayRecordService) Do(ctx context.Context, opts ...RequestOption) (res *RepayRecordResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: repayRecordEndpoint,
-		secType:  secTypeSigned,
-	}
-	m := params{
-		"asset": s.asset,
-	}
-	if s.isolatedSymbol != nil {
-		m["isolatedSymbol"] = *s.isolatedSymbol
-	}
-	if s.txid != nil {
-		m["txId"] = *s.txid
-	}
-	if s.startTime != nil {
-		m["startTime"] = *s.startTime
-	}
-	if s.endTime != nil {
-		m["endTime"] = *s.endTime
-	}
-	if s.current != nil {
-		m["current"] = *s.current
-	}
-	if s.size != nil {
-		m["size"] = *s.size
-	}
-	if s.archived != nil {
-		m["archived"] = *s.archived
-	}
-	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &RepayRecordResponse{}, err
-	}
-	res = new(RepayRecordResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &RepayRecordResponse{}, err
-	}
-	return res, nil
-}
-
-// RepayRecordResponse define repay record response
-type RepayRecordResponse struct {
-	Rows []struct {
-		IsolatedSymbol string `json:"isolatedSymbol"`
-		Amount         string `json:"amount"`
-		Asset          string `json:"asset"`
-		Interest       string `json:"interest"`
-		Principal      string `json:"principal"`
-		Status         string `json:"status"`
-		Timestamp      uint64 `json:"timestamp"`
-		TxId           int64  `json:"txId"`
-	} `json:"rows"`
-	Total int `json:"total"`
-}
-
 // Query Interest History (USER_DATA) API Endpoint
 const (
 	interestHistoryEndpoint = "/sapi/v1/margin/interestHistory"
@@ -1507,25 +969,23 @@ func (s *MarginAccountOrderService) Do(ctx context.Context, opts ...RequestOptio
 
 // MarginAccountOrderResponse define margin account order response
 type MarginAccountOrderResponse struct {
-	AccountId               uint64 `json:"accountId"`
-	ClientOrderId           string `json:"clientOrderId"`
-	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
-	ExecutedQty             string `json:"executedQty"`
-	IcebergQty              string `json:"icebergQty"`
-	IsWorking               bool   `json:"isWorking"`
-	OrderId                 int    `json:"orderId"`
-	OrigQty                 string `json:"origQty"`
-	Price                   string `json:"price"`
-	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
-	Side                    string `json:"side"`
-	Status                  string `json:"status"`
-	StopPrice               string `json:"stopPrice"`
-	Symbol                  string `json:"symbol"`
-	IsIsolated              bool   `json:"isIsolated"`
-	Time                    uint64 `json:"time"`
-	TimeInForce             string `json:"timeInForce"`
-	OrderType               string `json:"type"`
-	UpdateTime              uint64 `json:"updateTime"`
+	ClientOrderId      string `json:"clientOrderId"`
+	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
+	ExecutedQty        string `json:"executedQty"`
+	IcebergQty         string `json:"icebergQty"`
+	IsWorking          bool   `json:"isWorking"`
+	OrderId            int    `json:"orderId"`
+	OrigQty            string `json:"origQty"`
+	Price              string `json:"price"`
+	Side               string `json:"side"`
+	Status             string `json:"status"`
+	StopPrice          string `json:"stopPrice"`
+	Symbol             string `json:"symbol"`
+	IsIsolated         bool   `json:"isIsolated"`
+	Time               uint64 `json:"time"`
+	TimeInForce        string `json:"timeInForce"`
+	OrderType          string `json:"type"`
+	UpdateTime         uint64 `json:"updateTime"`
 }
 
 // Query Margin Account's Open Order (USER_DATA) API Endpoint
@@ -1553,7 +1013,7 @@ func (s *MarginAccountOpenOrderService) IsIsolated(isIsolated string) *MarginAcc
 }
 
 // Do send request
-func (s *MarginAccountOpenOrderService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountOpenOrderResponse, err error) {
+func (s *MarginAccountOpenOrderService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountOpenOrderResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginAccountOpenOrderEndpoint,
@@ -1567,37 +1027,35 @@ func (s *MarginAccountOpenOrderService) Do(ctx context.Context, opts ...RequestO
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountOpenOrderResponse{}, err
+		return []*MarginAccountOpenOrderResponse{}, err
 	}
-	res = new(MarginAccountOpenOrderResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*MarginAccountOpenOrderResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &MarginAccountOpenOrderResponse{}, err
+		return []*MarginAccountOpenOrderResponse{}, err
 	}
 	return res, nil
 }
 
 // MarginAccountOpenOrderResponse define margin account open order response
 type MarginAccountOpenOrderResponse struct {
-	Orders []struct {
-		ClientOrderId      string `json:"clientOrderId"`
-		CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-		ExecutedQty        string `json:"executedQty"`
-		IcebergQty         string `json:"icebergQty"`
-		IsWorking          bool   `json:"isWorking"`
-		OrderId            int    `json:"orderId"`
-		OrigQty            string `json:"origQty"`
-		Price              string `json:"price"`
-		Side               string `json:"side"`
-		Status             string `json:"status"`
-		StopPrice          string `json:"stopPrice"`
-		Symbol             string `json:"symbol"`
-		IsIsolated         bool   `json:"isIsolated"`
-		Time               uint64 `json:"time"`
-		TimeInForce        string `json:"timeInForce"`
-		OrderType          string `json:"type"`
-		UpdateTime         uint64 `json:"updateTime"`
-	} `json:"orders"`
+	ClientOrderId      string `json:"clientOrderId"`
+	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
+	ExecutedQty        string `json:"executedQty"`
+	IcebergQty         string `json:"icebergQty"`
+	IsWorking          bool   `json:"isWorking"`
+	OrderId            int    `json:"orderId"`
+	OrigQty            string `json:"origQty"`
+	Price              string `json:"price"`
+	Side               string `json:"side"`
+	Status             string `json:"status"`
+	StopPrice          string `json:"stopPrice"`
+	Symbol             string `json:"symbol"`
+	IsIsolated         bool   `json:"isIsolated"`
+	Time               uint64 `json:"time"`
+	TimeInForce        string `json:"timeInForce"`
+	OrderType          string `json:"type"`
+	UpdateTime         uint64 `json:"updateTime"`
 }
 
 // Query Margin Account's All Orders (USER_DATA) API Endpoint
@@ -1692,25 +1150,23 @@ func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOp
 
 // MarginAccountAllOrderResponse define margin account all order response
 type MarginAccountAllOrderResponse struct {
-	Orders []struct {
-		ClientOrderId      string `json:"clientOrderId"`
-		CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-		ExecutedQty        string `json:"executedQty"`
-		IcebergQty         string `json:"icebergQty"`
-		IsWorking          bool   `json:"isWorking"`
-		OrderId            int    `json:"orderId"`
-		OrigQty            string `json:"origQty"`
-		Price              string `json:"price"`
-		Side               string `json:"side"`
-		Status             string `json:"status"`
-		StopPrice          string `json:"stopPrice"`
-		Symbol             string `json:"symbol"`
-		IsIsolated         bool   `json:"isIsolated"`
-		Time               uint64 `json:"time"`
-		TimeInForce        string `json:"timeInForce"`
-		OrderType          string `json:"type"`
-		UpdateTime         uint64 `json:"updateTime"`
-	} `json:"orders"`
+	ClientOrderId      string `json:"clientOrderId"`
+	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
+	ExecutedQty        string `json:"executedQty"`
+	IcebergQty         string `json:"icebergQty"`
+	IsWorking          bool   `json:"isWorking"`
+	OrderId            int    `json:"orderId"`
+	OrigQty            string `json:"origQty"`
+	Price              string `json:"price"`
+	Side               string `json:"side"`
+	Status             string `json:"status"`
+	StopPrice          string `json:"stopPrice"`
+	Symbol             string `json:"symbol"`
+	IsIsolated         bool   `json:"isIsolated"`
+	Time               uint64 `json:"time"`
+	TimeInForce        string `json:"timeInForce"`
+	OrderType          string `json:"type"`
+	UpdateTime         uint64 `json:"updateTime"`
 }
 
 // Margin Account New OCO (TRADE) API Endpoint
@@ -2168,7 +1624,7 @@ func (s *MarginAccountQueryAllOCOService) Limit(limit int) *MarginAccountQueryAl
 }
 
 // Do send request
-func (s *MarginAccountQueryAllOCOService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountQueryAllOCOResponse, err error) {
+func (s *MarginAccountQueryAllOCOService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountQueryAllOCOResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginAccountQueryAllOCOEndpoint,
@@ -2194,12 +1650,12 @@ func (s *MarginAccountQueryAllOCOService) Do(ctx context.Context, opts ...Reques
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountQueryAllOCOResponse{}, err
+		return []*MarginAccountQueryAllOCOResponse{}, err
 	}
-	res = new(MarginAccountQueryAllOCOResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*MarginAccountQueryAllOCOResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &MarginAccountQueryAllOCOResponse{}, err
+		return []*MarginAccountQueryAllOCOResponse{}, err
 	}
 	return res, nil
 }
@@ -2245,7 +1701,7 @@ func (s *MarginAccountQueryOpenOCOService) Symbol(symbol string) *MarginAccountQ
 }
 
 // Do send request
-func (s *MarginAccountQueryOpenOCOService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountQueryOpenOCOResponse, err error) {
+func (s *MarginAccountQueryOpenOCOService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginAccountQueryOpenOCOResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: marginAccountQueryOpenOCOEndpoint,
@@ -2259,12 +1715,12 @@ func (s *MarginAccountQueryOpenOCOService) Do(ctx context.Context, opts ...Reque
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return &MarginAccountQueryOpenOCOResponse{}, err
+		return []*MarginAccountQueryOpenOCOResponse{}, err
 	}
-	res = new(MarginAccountQueryOpenOCOResponse)
-	err = json.Unmarshal(data, res)
+	res = make([]*MarginAccountQueryOpenOCOResponse, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
-		return &MarginAccountQueryOpenOCOResponse{}, err
+		return []*MarginAccountQueryOpenOCOResponse{}, err
 	}
 	return res, nil
 }
@@ -2545,215 +2001,6 @@ type MarginAccountSummaryResponse struct {
 	ForceLiquidationBar string `json:"forceLiquidationBar"`
 }
 
-// Isolated Margin Account Transfer (MARGIN)
-const (
-	marginIsolatedAccountTransferEndpoint = "/sapi/v1/margin/isolated/transfer"
-)
-
-type MarginIsolatedAccountTransferService struct {
-	c         *Client
-	asset     string
-	symbol    string
-	transFrom string
-	transTo   string
-	amount    float64
-}
-
-// Asset set asset
-func (s *MarginIsolatedAccountTransferService) Asset(asset string) *MarginIsolatedAccountTransferService {
-	s.asset = asset
-	return s
-}
-
-// Symbol set symbol
-func (s *MarginIsolatedAccountTransferService) Symbol(symbol string) *MarginIsolatedAccountTransferService {
-	s.symbol = symbol
-	return s
-}
-
-// TransFrom set transFrom
-func (s *MarginIsolatedAccountTransferService) TransFrom(transFrom string) *MarginIsolatedAccountTransferService {
-	s.transFrom = transFrom
-	return s
-}
-
-// TransTo set transTo
-func (s *MarginIsolatedAccountTransferService) TransTo(transTo string) *MarginIsolatedAccountTransferService {
-	s.transTo = transTo
-	return s
-}
-
-// Amount set amount
-func (s *MarginIsolatedAccountTransferService) Amount(amount float64) *MarginIsolatedAccountTransferService {
-	s.amount = amount
-	return s
-}
-
-// Do send request
-func (s *MarginIsolatedAccountTransferService) Do(ctx context.Context, opts ...RequestOption) (res *MarginIsolatedAccountTransferResponse, err error) {
-	r := &request{
-		method:   http.MethodPost,
-		endpoint: marginIsolatedAccountTransferEndpoint,
-		secType:  secTypeSigned,
-	}
-	m := params{
-		"asset":     s.asset,
-		"symbol":    s.symbol,
-		"transFrom": s.transFrom,
-		"transTo":   s.transTo,
-		"amount":    s.amount,
-	}
-	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &MarginIsolatedAccountTransferResponse{}, err
-	}
-	res = new(MarginIsolatedAccountTransferResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &MarginIsolatedAccountTransferResponse{}, err
-	}
-	return res, nil
-}
-
-// MarginIsolatedAccountTransferService response
-type MarginIsolatedAccountTransferResponse struct {
-	TranId string `json:"tranId"`
-}
-
-// Isolated Margin Account Transfer History (MARGIN)
-const (
-	marginIsolatedAccountTransferHistoryEndpoint = "/sapi/v1/margin/isolated/transfer"
-)
-
-type MarginIsolatedAccountTransferHistoryService struct {
-	c         *Client
-	asset     *string
-	symbol    string
-	transFrom *string
-	transTo   *string
-	startTime *uint64
-	endTime   *uint64
-	current   *int
-	size      *int
-	archived  *string
-}
-
-// Asset set asset
-func (s *MarginIsolatedAccountTransferHistoryService) Asset(asset string) *MarginIsolatedAccountTransferHistoryService {
-	s.asset = &asset
-	return s
-}
-
-// Symbol set symbol
-func (s *MarginIsolatedAccountTransferHistoryService) Symbol(symbol string) *MarginIsolatedAccountTransferHistoryService {
-	s.symbol = symbol
-	return s
-}
-
-// TransFrom set transFrom
-func (s *MarginIsolatedAccountTransferHistoryService) TransFrom(transFrom string) *MarginIsolatedAccountTransferHistoryService {
-	s.transFrom = &transFrom
-	return s
-}
-
-// TransTo set transTo
-func (s *MarginIsolatedAccountTransferHistoryService) TransTo(transTo string) *MarginIsolatedAccountTransferHistoryService {
-	s.transTo = &transTo
-	return s
-}
-
-// StartTime set startTime
-func (s *MarginIsolatedAccountTransferHistoryService) StartTime(startTime uint64) *MarginIsolatedAccountTransferHistoryService {
-	s.startTime = &startTime
-	return s
-}
-
-// EndTime set endTime
-func (s *MarginIsolatedAccountTransferHistoryService) EndTime(endTime uint64) *MarginIsolatedAccountTransferHistoryService {
-	s.endTime = &endTime
-	return s
-}
-
-// Current set current
-func (s *MarginIsolatedAccountTransferHistoryService) Current(current int) *MarginIsolatedAccountTransferHistoryService {
-	s.current = &current
-	return s
-}
-
-// Size set size
-func (s *MarginIsolatedAccountTransferHistoryService) Size(size int) *MarginIsolatedAccountTransferHistoryService {
-	s.size = &size
-	return s
-}
-
-// Archived set archived
-func (s *MarginIsolatedAccountTransferHistoryService) Archived(archived string) *MarginIsolatedAccountTransferHistoryService {
-	s.archived = &archived
-	return s
-}
-
-// Do send request
-func (s *MarginIsolatedAccountTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *MarginIsolatedAccountTransferHistoryResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: marginIsolatedAccountTransferHistoryEndpoint,
-		secType:  secTypeSigned,
-	}
-	m := params{
-		"symbol": s.symbol,
-	}
-	if s.asset != nil {
-		m["asset"] = *s.asset
-	}
-	if s.transFrom != nil {
-		m["transFrom"] = *s.transFrom
-	}
-	if s.transTo != nil {
-		m["transTo"] = *s.transTo
-	}
-	if s.startTime != nil {
-		m["startTime"] = *s.startTime
-	}
-	if s.endTime != nil {
-		m["endTime"] = *s.endTime
-	}
-	if s.current != nil {
-		m["current"] = *s.current
-	}
-	if s.size != nil {
-		m["size"] = *s.size
-	}
-	if s.archived != nil {
-		m["archived"] = *s.archived
-	}
-	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &MarginIsolatedAccountTransferHistoryResponse{}, err
-	}
-	res = new(MarginIsolatedAccountTransferHistoryResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &MarginIsolatedAccountTransferHistoryResponse{}, err
-	}
-	return res, nil
-}
-
-// MarginIsolatedAccountTransferHistoryService response
-type MarginIsolatedAccountTransferHistoryResponse struct {
-	Rows []struct {
-		Amount    string `json:"amount"`
-		Asset     string `json:"asset"`
-		Status    string `json:"status"`
-		TimeStamp uint64 `json:"timeStamp"`
-		TxId      int64  `json:"txId"`
-		TransFrom string `json:"transFrom"`
-		TransTo   string `json:"transTo"`
-	} `json:"rows"`
-	Total int64 `json:"total"`
-}
-
 // Query Isolated Margin Account Info (USER_DATA)
 const (
 	marginIsolatedAccountInfoEndpoint = "/sapi/v1/margin/isolated/account"
@@ -2974,55 +2221,6 @@ type MarginIsolatedAccountLimitResponse struct {
 	MaxAccount     int `json:"maxAccount"`
 }
 
-// Query Isolated Margin Symbol (USER_DATA)
-const (
-	marginIsolatedSymbolEndpoint = "/sapi/v1/margin/isolated/pair"
-)
-
-type MarginIsolatedSymbolService struct {
-	c      *Client
-	symbol string
-}
-
-// Symbol set symbol
-func (s *MarginIsolatedSymbolService) Symbol(symbol string) *MarginIsolatedSymbolService {
-	s.symbol = symbol
-	return s
-}
-
-// Do send request
-func (s *MarginIsolatedSymbolService) Do(ctx context.Context, opts ...RequestOption) (res *MarginIsolatedSymbolResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: marginIsolatedSymbolEndpoint,
-		secType:  secTypeSigned,
-	}
-	m := params{
-		"symbol": s.symbol,
-	}
-	r.setParams(m)
-	data, err := s.c.callAPI(ctx, r, opts...)
-	if err != nil {
-		return &MarginIsolatedSymbolResponse{}, err
-	}
-	res = new(MarginIsolatedSymbolResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return &MarginIsolatedSymbolResponse{}, err
-	}
-	return res, nil
-}
-
-// MarginIsolatedSymbolService response
-type MarginIsolatedSymbolResponse struct {
-	Symbol        string `json:"symbol"`
-	Base          string `json:"base"`
-	Quote         string `json:"quote"`
-	IsMarginTrade bool   `json:"isMarginTrade"`
-	IsBuyAllowed  bool   `json:"isBuyAllowed"`
-	IsSellAllowed bool   `json:"isSellAllowed"`
-}
-
 // Get All Isolated Margin Symbol(USER_DATA)
 const (
 	marginIsolatedSymbolAllEndpoint = "/sapi/v1/margin/isolated/allPairs"
@@ -3053,6 +2251,14 @@ func (s *AllIsolatedMarginSymbolService) Do(ctx context.Context, opts ...Request
 }
 
 // MarginIsolatedSymbolAllService returns all isolated margin symbols
+type MarginIsolatedSymbolResponse struct {
+	Symbol        string `json:"symbol"`
+	Base          string `json:"base"`
+	Quote         string `json:"quote"`
+	IsMarginTrade bool   `json:"isMarginTrade"`
+	IsBuyAllowed  bool   `json:"isBuyAllowed"`
+	IsSellAllowed bool   `json:"isSellAllowed"`
+}
 
 // Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)
 const (
@@ -3456,59 +2662,6 @@ type MarginCurrentOrderCountResponse struct {
 	IntervalNum   int    `json:"intervalNum"`
 	Limit         int    `json:"limit"`
 	Count         int    `json:"count"`
-}
-
-// Margin Dustlog (USER_DATA)
-const (
-	marginDustlogEndpoint = "/sapi/v1/margin/dribblet"
-)
-
-type MarginDustlogService struct {
-	c         *Client
-	startTime *uint64
-	endTime   *uint64
-}
-
-// StartTime set startTime
-func (s *MarginDustlogService) StartTime(startTime uint64) *MarginDustlogService {
-	s.startTime = &startTime
-	return s
-}
-
-// EndTime set endTime
-func (s *MarginDustlogService) EndTime(endTime uint64) *MarginDustlogService {
-	s.endTime = &endTime
-	return s
-}
-
-// Do send request
-func (s *MarginDustlogService) Do(ctx context.Context, opts ...RequestOption) (res *MarginDustlogResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: marginDustlogEndpoint,
-		secType:  secTypeSigned,
-	}
-	if s.startTime != nil {
-		r.setParam("startTime", *s.startTime)
-	}
-	if s.endTime != nil {
-		r.setParam("endTime", *s.endTime)
-	}
-	data, err := s.c.callAPI(ctx, r)
-	if err != nil {
-		return
-	}
-	res = new(MarginDustlogResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return
-	}
-	return res, nil
-}
-
-type MarginDustlogResponse struct {
-	Total              uint8               `json:"total"` //Total counts of exchange
-	UserAssetDribblets []UserAssetDribblet `json:"userAssetDribblets"`
 }
 
 // UserAssetDribblet represents one dust log row
