@@ -122,7 +122,7 @@ func (s *TestNewOrder) Do(ctx context.Context, opts ...RequestOption) (res *Acco
 	r := &request{
 		method:   http.MethodPost,
 		endpoint: "/api/v3/order/test",
-		secType:  secTypeNone,
+		secType:  secTypeSigned,
 	}
 	r.setParam("symbol", s.symbol)
 	r.setParam("side", s.side)
