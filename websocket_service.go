@@ -771,6 +771,28 @@ type WsMarketMiniStatEvent struct {
 	QuoteVolume string `json:"q"`
 }
 
+// WsMarketMiniTickersStatHandler handle websocket that push single market statistics for 24hr
+type WsMarketMiniTickersStatHandler func(event WsMarketMiniTickerStatEvent)
+
+// WsMarketMiniTickersStatServe serve websocket that push mini version of 24hr statistics for single market every second
+func (c *WebsocketStreamClient) WsMarketMiniTickersStatServe(symbol string, handler WsMarketMiniTickersStatHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+	endpoint := fmt.Sprintf("%s/%s@miniTicker", c.Endpoint, strings.ToLower(symbol))
+	cfg := newWsConfig(endpoint)
+	wsHandler := func(message []byte) {
+		var event WsMarketMiniTickerStatEvent
+		err := json.Unmarshal(message, &event)
+		if err != nil {
+			errHandler(err)
+			return
+		}
+		handler(event)
+	}
+	return wsServe(cfg, wsHandler, errHandler)
+}
+
+// WsMarketMiniTickerStatEvent define array of websocket market mini-ticker statistics events
+type WsMarketMiniTickerStatEvent *WsMarketMiniStatEvent
+
 // WsBookTickerEvent define websocket best book ticker event.
 type WsBookTickerEvent struct {
 	UpdateID     int64  `json:"u"`
