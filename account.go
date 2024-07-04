@@ -1135,7 +1135,7 @@ type NewAllOrdersResponse struct {
 	UpdateTime              uint64 `json:"updateTime"`
 	IsWorking               bool   `json:"isWorking"`
 	OrigQuoteOrderQty       string `json:"origQuoteOrderQty"`
-	WorkingTime             uint64 `json:"workingTime"`
+	WorkingTime             int64  `json:"workingTime"`
 	SelfTradePreventionMode string `json:"selfTradePreventionMode"`
 	PreventedMatchId        int64  `json:"preventedMatchId,omitempty"`
 	PreventedQuantity       string `json:"preventedQuantity,omitempty"`
