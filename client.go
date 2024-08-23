@@ -767,3 +767,11 @@ func (c *Client) NewPingUserStream() *PingUserStream {
 func (c *Client) NewCloseUserStream() *CloseUserStream {
 	return &CloseUserStream{c: c}
 }
+
+func (c *Client) NewGetFiatDepositWithdrawHistoryService() *GetFiatDepositWithdrawHistoryService {
+	return &GetFiatDepositWithdrawHistoryService{c: c}
+}
+
+func (c *Client) NewGetFiatPaymentHistoryService() *GetFiatPaymentHistoryService {
+	return &GetFiatPaymentHistoryService{c: c}
+}
