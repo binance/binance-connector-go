@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	binance_connector "github.com/binance/binance-connector-go"
 )
@@ -18,10 +19,15 @@ func WsKlineExample() {
 	errHandler := func(err error) {
 		fmt.Println(err)
 	}
-	doneCh, _, err := websocketStreamClient.WsKlineServe("LTCBTC", "1m", wsKlineHandler, errHandler)
+	doneCh, stopCh, err := websocketStreamClient.WsKlineServe("LTCBTC", "1m", wsKlineHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	// use stopCh to exit
+	go func() {
+		time.Sleep(10 * time.Second)
+		stopCh <- struct{}{}
+	}()
 	<-doneCh
 }

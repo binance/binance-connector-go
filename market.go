@@ -103,34 +103,53 @@ type ExchangeFilter struct {
 
 // Symbol define symbol
 type SymbolInfo struct {
-	Symbol                     string          `json:"symbol"`
-	Status                     string          `json:"status"`
-	BaseAsset                  string          `json:"baseAsset"`
-	BaseAssetPrecision         int64           `json:"baseAssetPrecision"`
-	QuoteAsset                 string          `json:"quoteAsset"`
-	QuotePrecision             int64           `json:"quotePrecision"`
-	OrderTypes                 []string        `json:"orderTypes"`
-	IcebergAllowed             bool            `json:"icebergAllowed"`
-	OcoAllowed                 bool            `json:"ocoAllowed"`
-	QuoteOrderQtyMarketAllowed bool            `json:"quoteOrderQtyMarketAllowed"`
-	IsSpotTradingAllowed       bool            `json:"isSpotTradingAllowed"`
-	IsMarginTradingAllowed     bool            `json:"isMarginTradingAllowed"`
-	Filters                    []*SymbolFilter `json:"filters"`
-	Permissions                []string        `json:"permissions"`
+	Symbol                          string          `json:"symbol"`
+	Status                          string          `json:"status"`
+	BaseAsset                       string          `json:"baseAsset"`
+	BaseAssetPrecision              int64           `json:"baseAssetPrecision"`
+	QuoteAsset                      string          `json:"quoteAsset"`
+	QuotePrecision                  int64           `json:"quotePrecision"`
+	QuoteAssetPrecision             int64           `json:"quoteAssetPrecision"`
+	OrderTypes                      []string        `json:"orderTypes"`
+	IcebergAllowed                  bool            `json:"icebergAllowed"`
+	OcoAllowed                      bool            `json:"ocoAllowed"`
+	QuoteOrderQtyMarketAllowed      bool            `json:"quoteOrderQtyMarketAllowed"`
+	AllowTrailingStop               bool            `json:"allowTrailingStop"`
+	CancelReplaceAllowed            bool            `json:"cancelReplaceAllowed"`
+	IsSpotTradingAllowed            bool            `json:"isSpotTradingAllowed"`
+	IsMarginTradingAllowed          bool            `json:"isMarginTradingAllowed"`
+	Filters                         []*SymbolFilter `json:"filters"`
+	Permissions                     []string        `json:"permissions"`
+	PermissionSets                  [][]string      `json:"permissionSets"`
+	DefaultSelfTradePreventionMode  string          `json:"defaultSelfTradePreventionMode"`
+	AllowedSelfTradePreventionModes []string        `json:"allowedSelfTradePreventionModes"`
 }
 
 // SymbolFilter define symbol filter
 type SymbolFilter struct {
-	FilterType       string `json:"filterType"`
-	MinPrice         string `json:"minPrice"`
-	MaxPrice         string `json:"maxPrice"`
-	TickSize         string `json:"tickSize"`
-	MinQty           string `json:"minQty"`
-	MaxQty           string `json:"maxQty"`
-	StepSize         string `json:"stepSize"`
-	MinNotional      string `json:"minNotional"`
-	Limit            uint   `json:"limit"`
-	MaxNumAlgoOrders int64  `json:"maxNumAlgoOrders"`
+	ApplyMinToMarket      bool   `json:"applyMinToMarket"`
+	ApplyMaxToMarket      bool   `json:"applyMaxToMarket"`
+	AskMultiplierDown     string `json:"askMultiplierDown"`
+	AskMultiplierUp       string `json:"askMultiplierUp"`
+	AvgPriceMins          int64  `json:"avgPriceMins"`
+	BidMultiplierDown     string `json:"bidMultiplierDown"`
+	BidMultiplierUp       string `json:"bidMultiplierUp"`
+	FilterType            string `json:"filterType"`
+	Limit                 uint   `json:"limit"`
+	MaxNotional           string `json:"maxNotional"`
+	MaxNumAlgoOrders      int64  `json:"maxNumAlgoOrders"`
+	MaxNumOrders          int64  `json:"maxNumOrders"`
+	MaxPrice              string `json:"maxPrice"`
+	MaxQty                string `json:"maxQty"`
+	MaxTrailingAboveDelta int64  `json:"maxTrailingAboveDelta"`
+	MaxTrailingBelowDelta int64  `json:"maxTrailingBelowDelta"`
+	MinNotional           string `json:"minNotional"`
+	MinPrice              string `json:"minPrice"`
+	MinQty                string `json:"minQty"`
+	MinTrailingAboveDelta int64  `json:"minTrailingAboveDelta"`
+	MinTrailingBelowDelta int64  `json:"minTrailingBelowDelta"`
+	StepSize              string `json:"stepSize"`
+	TickSize              string `json:"tickSize"`
 }
 
 // Binance Order Book endpoint (GET /api/v3/depth)
@@ -659,7 +678,7 @@ func (s *Ticker24hr) Symbols(symbols []string) *Ticker24hr {
 }
 
 // Send the request
-func (s *Ticker24hr) Do(ctx context.Context, opts ...RequestOption) (res *Ticker24hrResponse, err error) {
+func (s *Ticker24hr) Do(ctx context.Context, opts ...RequestOption) (res []*Ticker24hrResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: "/api/v3/ticker/24hr",
@@ -669,16 +688,33 @@ func (s *Ticker24hr) Do(ctx context.Context, opts ...RequestOption) (res *Ticker
 		r.setParam("symbol", *s.symbol)
 	}
 	if s.symbols != nil {
-		r.setParam("symbols", *s.symbols)
+		s, _ := json.Marshal(s.symbols)
+		r.setParam("symbols", string(s))
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
-		return nil, err
+		return []*Ticker24hrResponse{}, err
 	}
-	res = new(Ticker24hrResponse)
-	err = json.Unmarshal(data, res)
+	var raw json.RawMessage
+	err = json.Unmarshal(data, &raw)
 	if err != nil {
-		return nil, err
+		return []*Ticker24hrResponse{}, err
+	}
+
+	if raw[0] == '[' {
+		res = make([]*Ticker24hrResponse, 0)
+		err = json.Unmarshal(data, &res)
+		if err != nil {
+			return []*Ticker24hrResponse{}, err
+		}
+	} else {
+		// The response is a single object, not an array, make sure to add it to the slice
+		singleRes := new(Ticker24hrResponse)
+		err = json.Unmarshal(data, &singleRes)
+		if err != nil {
+			return []*Ticker24hrResponse{}, err
+		}
+		res = append(res, singleRes)
 	}
 	return res, nil
 }

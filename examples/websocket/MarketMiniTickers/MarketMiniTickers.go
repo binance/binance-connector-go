@@ -8,18 +8,18 @@ import (
 )
 
 func main() {
-	WsTradeExample()
+	WsMarketMiniTickers()
 }
 
-func WsTradeExample() {
+func WsMarketMiniTickers() {
 	websocketStreamClient := binance_connector.NewWebsocketStreamClient(false)
-	wsTradeHandler := func(event *binance_connector.WsTradeEvent) {
+	wsMarketMiniTickersHandler := func(event binance_connector.WsMarketMiniTickerStatEvent) {
 		fmt.Println(binance_connector.PrettyPrint(event))
 	}
 	errHandler := func(err error) {
 		fmt.Println(err)
 	}
-	doneCh, stopCh, err := websocketStreamClient.WsTradeServe("LTCBTC", wsTradeHandler, errHandler)
+	doneCh, stopCh, err := websocketStreamClient.WsMarketMiniTickersStatServe("BNBBTC", wsMarketMiniTickersHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return

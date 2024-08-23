@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	binance_connector "github.com/binance/binance-connector-go"
 )
@@ -20,10 +21,15 @@ func AggTradesExample() {
 	errHandler := func(err error) {
 		fmt.Println(err)
 	}
-	doneCh, _, err := websocketStreamClient.WsAggTradeServe("BTCUSDT", wsAggTradeHandler, errHandler)
+	doneCh, stopCh, err := websocketStreamClient.WsAggTradeServe("BTCUSDT", wsAggTradeHandler, errHandler)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	// use stopCh to exit
+	go func() {
+		time.Sleep(10 * time.Second)
+		stopCh <- struct{}{}
+	}()
 	<-doneCh
 }
