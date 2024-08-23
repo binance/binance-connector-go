@@ -79,21 +79,26 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 		// operation.
 		silent := false
 		go func() {
+			for {
+				_, message, err := c.ReadMessage()
+				if err != nil {
+					if !silent {
+						errHandler(err)
+					}
+					stopCh <- struct{}{}
+					return
+				}
+				handler(message)
+			}
+		}()
+
+		for {
 			select {
 			case <-stopCh:
 				silent = true
+				return
 			case <-doneCh:
 			}
-		}()
-		for {
-			_, message, err := c.ReadMessage()
-			if err != nil {
-				if !silent {
-					errHandler(err)
-				}
-				return
-			}
-			handler(message)
 		}
 	}()
 	return
