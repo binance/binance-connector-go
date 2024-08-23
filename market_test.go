@@ -303,7 +303,7 @@ func (s *marketTestSuite) assertAvgPrice(e, a *AvgPriceResponse) {
 }
 
 func (s *marketTestSuite) Test24hrTicker() {
-	data := []byte(`{
+	data := []byte(`[{
 		"symbol": "BNBBTC",
         "priceChange": "-94.99999800",
         "priceChangePercent": "-95.960",
@@ -322,7 +322,7 @@ func (s *marketTestSuite) Test24hrTicker() {
         "firstId": 28385,
         "lastId": 28460,
         "count": 76
-    }`)
+    }]`)
 	s.mockDo(data, nil)
 	defer s.assertDo()
 
@@ -334,27 +334,31 @@ func (s *marketTestSuite) Test24hrTicker() {
 	stats, err := s.client.NewTicker24hrService().Symbol(symbol).Do(newContext())
 	r := s.r()
 	r.NoError(err)
-	e := &Ticker24hrResponse{
-		Symbol:             "BNBBTC",
-		PriceChange:        "-94.99999800",
-		PriceChangePercent: "-95.960",
-		WeightedAvgPrice:   "0.29628482",
-		PrevClosePrice:     "0.10002000",
-		LastPrice:          "4.00000200",
-		LastQty:            "200.00000000",
-		BidPrice:           "4.00000000",
-		AskPrice:           "4.00000200",
-		OpenPrice:          "99.00000000",
-		HighPrice:          "100.00000000",
-		LowPrice:           "0.10000000",
-		Volume:             "8913.30000000",
-		OpenTime:           1499783499040,
-		CloseTime:          1499869899040,
-		FirstId:            28385,
-		LastId:             28460,
-		Count:              76,
+	e := []*Ticker24hrResponse{
+		{
+			Symbol:             "BNBBTC",
+			PriceChange:        "-94.99999800",
+			PriceChangePercent: "-95.960",
+			WeightedAvgPrice:   "0.29628482",
+			PrevClosePrice:     "0.10002000",
+			LastPrice:          "4.00000200",
+			LastQty:            "200.00000000",
+			BidPrice:           "4.00000000",
+			AskPrice:           "4.00000200",
+			OpenPrice:          "99.00000000",
+			HighPrice:          "100.00000000",
+			LowPrice:           "0.10000000",
+			Volume:             "8913.30000000",
+			OpenTime:           1499783499040,
+			CloseTime:          1499869899040,
+			FirstId:            28385,
+			LastId:             28460,
+			Count:              76,
+		},
 	}
-	s.assertPriceChangeStatsEqual(e, stats)
+	for i := 0; i < len(stats); i++ {
+		s.assertPriceChangeStatsEqual(e[i], stats[i])
+	}
 }
 
 func (s *marketTestSuite) assertPriceChangeStatsEqual(e, a *Ticker24hrResponse) {

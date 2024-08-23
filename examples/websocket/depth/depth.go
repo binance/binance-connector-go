@@ -26,7 +26,7 @@ func WsDepthHandlerExample() {
 	}
 	// use stopCh to exit
 	go func() {
-		time.Sleep(5 * time.Second)
+		time.Sleep(10 * time.Second)
 		stopCh <- struct{}{}
 	}()
 	// remove this if you do not want to be blocked here

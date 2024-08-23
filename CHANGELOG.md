@@ -1,5 +1,22 @@
 # Change log
 
+## v0.7.0 - 2024-08-23
+
+### Added
+- SPOT `FIAT` Endpoints:
+    - `GET /sapi/v1/fiat/orders` - Get Fiat Deposit/Withdraw History
+    - `GET /sapi/v1/fiat/payments` - Get Fiat Payments History
+- Websocket Stream:
+    - `<symbol>@miniTicker` - Individual Symbol Mini Ticker Stream
+
+### Updated
+- Updated `SymbolInfo` and `SymbolFilter` types
+
+### Fixed
+- Fixed issue with `stopCh` not stopping the WebSocket connection
+- Fixed the `stop` method for `userDataStream`
+- Fixed symbols method for `NewTicker24hrService`
+
 ## v0.6.0 - 2024-06-19
 
 ### Fixed

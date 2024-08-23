@@ -293,11 +293,49 @@ func (s *websocketTestSuite) assertWsMarketMiniTickersStatEventEqual(e, a *WsMar
 	r.Equal(e.QuoteVolume, a.QuoteVolume, "QuoteVolume")
 }
 
+func (s *websocketTestSuite) TestWsMarketMiniTickersStatServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
+	data := []byte(`{
+  		"e": "24hrMiniTicker",
+    	"E": 1523658017154,
+    	"s": "BNBBTC",
+   	 	"c": "0.00175640",
+    	"o": "0.00161200",
+    	"h": "0.00176000",
+    	"l": "0.00159370",
+    	"v": "3479863.89000000",
+    	"q": "5725.90587704"
+	}`)
+	fakeErrMsg := "fake error"
+	s.mockWsServe(data, errors.New(fakeErrMsg))
+	defer s.assertWsServe()
+
+	doneC, stopC, err := websocketStreamClient.WsMarketMiniTickersStatServe("BNBBTC", func(event WsMarketMiniTickerStatEvent) {
+		e := &WsMarketMiniStatEvent{
+			Event:       "24hrMiniTicker",
+			Time:        1523658017154,
+			Symbol:      "BNBBTC",
+			LastPrice:   "0.00175640",
+			OpenPrice:   "0.00161200",
+			HighPrice:   "0.00176000",
+			LowPrice:    "0.00159370",
+			BaseVolume:  "3479863.89000000",
+			QuoteVolume: "5725.90587704",
+		}
+		s.assertWsMarketMiniTickersStatEventEqual(e, event)
+	}, func(err error) {
+		s.r().EqualError(err, fakeErrMsg)
+	})
+	s.r().NoError(err)
+	stopC <- struct{}{}
+	<-doneC
+}
+
 func (s *websocketTestSuite) TestBookTickerServe() {
 	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
 	data := []byte(`{
   		"u":17242169,
-  		"s":"BTCUSD_200626",
+  		"s":"BNBUSDT",
   		"b":"9548.1",
   		"B":"52",
   		"a":"9548.5",
@@ -307,10 +345,10 @@ func (s *websocketTestSuite) TestBookTickerServe() {
 	s.mockWsServe(data, errors.New(fakeErrMsg))
 	defer s.assertWsServe()
 
-	doneC, stopC, err := websocketStreamClient.WsBookTickerServe("BTCUSD_200626", func(event *WsBookTickerEvent) {
+	doneC, stopC, err := websocketStreamClient.WsBookTickerServe("BNBUSDT", func(event *WsBookTickerEvent) {
 		e := &WsBookTickerEvent{
 			UpdateID:     17242169,
-			Symbol:       "BTCUSD_200626",
+			Symbol:       "BNBUSDT",
 			BestBidPrice: "9548.1",
 			BestBidQty:   "52",
 			BestAskPrice: "9548.5",

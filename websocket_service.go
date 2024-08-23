@@ -758,19 +758,6 @@ func (c *WebsocketStreamClient) WsAllMarketMiniTickersStatServe(handler WsAllMar
 // WsAllMarketMiniTickersStatEvent define array of websocket market mini-ticker statistics events
 type WsAllMarketMiniTickersStatEvent []*WsMarketMiniStatEvent
 
-// WsMarketMiniStatEvent define websocket market mini-ticker statistics event
-type WsMarketMiniStatEvent struct {
-	Event       string `json:"e"`
-	Time        int64  `json:"E"`
-	Symbol      string `json:"s"`
-	LastPrice   string `json:"c"`
-	OpenPrice   string `json:"o"`
-	HighPrice   string `json:"h"`
-	LowPrice    string `json:"l"`
-	BaseVolume  string `json:"v"`
-	QuoteVolume string `json:"q"`
-}
-
 // WsMarketMiniTickersStatHandler handle websocket that push single market statistics for 24hr
 type WsMarketMiniTickersStatHandler func(event WsMarketMiniTickerStatEvent)
 
@@ -792,6 +779,19 @@ func (c *WebsocketStreamClient) WsMarketMiniTickersStatServe(symbol string, hand
 
 // WsMarketMiniTickerStatEvent define array of websocket market mini-ticker statistics events
 type WsMarketMiniTickerStatEvent *WsMarketMiniStatEvent
+
+// WsMarketMiniStatEvent define websocket market mini-ticker statistics event
+type WsMarketMiniStatEvent struct {
+	Event       string `json:"e"`
+	Time        int64  `json:"E"`
+	Symbol      string `json:"s"`
+	LastPrice   string `json:"c"`
+	OpenPrice   string `json:"o"`
+	HighPrice   string `json:"h"`
+	LowPrice    string `json:"l"`
+	BaseVolume  string `json:"v"`
+	QuoteVolume string `json:"q"`
+}
 
 // WsBookTickerEvent define websocket best book ticker event.
 type WsBookTickerEvent struct {

@@ -130,7 +130,7 @@ func (s *StopUserDataStreamService) Do(ctx context.Context) (*StopUserDataStream
 
 	payload := map[string]interface{}{
 		"id":     id,
-		"method": "userDataStream.close",
+		"method": "userDataStream.stop",
 		"params": parameters,
 	}
 
