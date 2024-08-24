@@ -57,7 +57,21 @@ type ServerTimeResponse struct {
 
 // Binance Exchange Information endpoint (GET /api/v3/exchangeInfo)
 type ExchangeInfo struct {
-	c *Client
+	c       *Client
+	symbol  *string
+	symbols *[]string
+}
+
+// Symbol set symbol
+func (s *ExchangeInfo) Symbol(symbol string) *ExchangeInfo {
+	s.symbol = &symbol
+	return s
+}
+
+// Symbols set symbols
+func (s *ExchangeInfo) Symbols(symbols []string) *ExchangeInfo {
+	s.symbols = &symbols
+	return s
 }
 
 // Send the request
@@ -66,6 +80,12 @@ func (s *ExchangeInfo) Do(ctx context.Context, opts ...RequestOption) (res *Exch
 		method:   http.MethodGet,
 		endpoint: "/api/v3/exchangeInfo",
 		secType:  secTypeNone,
+	}
+	if s.symbol != nil {
+		r.setParam("symbol", *s.symbol)
+	}
+	if s.symbols != nil {
+		r.setParam("symbols", *s.symbols)
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
