@@ -1764,3 +1764,38 @@ type AutoConvertStableCoinResponse struct {
 		Asset string `json:"coin"`
 	} `json:"exchangeRates"`
 }
+
+// Wallet Balance (USER_DATA)
+const (
+	walletBalanceEndpoint = "/sapi/v1/asset/wallet/balance"
+)
+
+// WalletBalanceService gets the user wallet balance in BTC.
+type WalletBalanceService struct {
+	c *Client
+}
+
+func (s *WalletBalanceService) Do(ctx context.Context) (res []*WalletBalanceResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: walletBalanceEndpoint,
+		secType:  secTypeSigned,
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = make([]*WalletBalanceResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// WalletBalanceResponse defines the response of WalletBalanceService
+type WalletBalanceResponse struct {
+	Activate   bool   `json:"activate"`
+	Balance    string `json:"balance"`
+	WalletName string `json:"walletName"`
+}

@@ -755,6 +755,10 @@ func (c *Client) NewAutoConvertStableCoinService() *AutoConvertStableCoinService
 	return &AutoConvertStableCoinService{c: c}
 }
 
+func (c *Client) NewWalletBalanceService() *WalletBalanceService {
+	return &WalletBalanceService{c: c}
+}
+
 // User Data Streams:
 func (c *Client) NewCreateListenKeyService() *CreateListenKey {
 	return &CreateListenKey{c: c}
