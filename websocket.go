@@ -69,6 +69,7 @@ func wsServe(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (doneCh, s
 
     go func() {
         defer close(doneCh)
+        defer close(stopCh)
         if WebsocketKeepalive {
             keepAlive(c, WebsocketTimeout)
         }
