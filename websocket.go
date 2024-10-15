@@ -96,7 +96,6 @@ func readMessages(c *websocket.Conn, handler WsHandler, errHandler ErrHandler, s
 			_, message, err := c.ReadMessage()
 			if err != nil {
 				errHandler(err)
-				close(stopCh)
 				return
 			}
 			handler(message)
