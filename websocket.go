@@ -66,42 +66,38 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 	c.SetReadLimit(655350)
 	doneCh = make(chan struct{})
 	stopCh = make(chan struct{})
+
 	go func() {
-		// This function will exit either on error from
-		// websocket.Conn.ReadMessage or when the stopC channel is
-		// closed by the client.
 		defer close(doneCh)
+		defer c.Close()
 		if WebsocketKeepalive {
 			keepAlive(c, WebsocketTimeout)
 		}
-		// Wait for the stopC channel to be closed.  We do that in a
-		// separate goroutine because ReadMessage is a blocking
-		// operation.
-		silent := false
-		go func() {
-			for {
-				_, message, err := c.ReadMessage()
-				if err != nil {
-					if !silent {
-						errHandler(err)
-					}
-					stopCh <- struct{}{}
-					return
-				}
-				handler(message)
-			}
-		}()
-
-		for {
-			select {
-			case <-stopCh:
-				silent = true
-				return
-			case <-doneCh:
-			}
-		}
+		go readMessages(c, handler, errHandler, doneCh, stopCh)
+		<-stopCh
 	}()
 	return
+}
+
+func readMessages(c *websocket.Conn, handler WsHandler, errHandler ErrHandler, doneCh, stopCh chan struct{}) {
+	for {
+		select {
+		case <-doneCh:
+			return
+		default:
+			_, message, err := c.ReadMessage()
+			if err != nil {
+				select {
+				case <-doneCh:
+					return
+				case stopCh <- struct{}{}:
+					errHandler(err)
+				}
+				return
+			}
+			handler(message)
+		}
+	}
 }
 
 func keepAlive(c *websocket.Conn, timeout time.Duration) {
