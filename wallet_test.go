@@ -858,12 +858,10 @@ func (s *walletTestSuite) TestGetAllCoinsInfoService() {
 
 func (s *walletTestSuite) TestGetSystemStatus() {
 	data := []byte(`
-	[
 		{
-			"status": true,
+			"status": 0,
 			"msg": "normal"
 		}
-	]
 	`)
 
 	s.mockDo(data, nil)
@@ -872,9 +870,8 @@ func (s *walletTestSuite) TestGetSystemStatus() {
 	resp, err := s.client.NewGetSystemStatusService().Do(context.Background())
 
 	s.r().NoError(err)
-	s.Len(resp, 1)
-	s.Equal(true, resp[0].Status)
-	s.Equal("normal", resp[0].Msg)
+	s.Equal(0, resp.Status)
+	s.Equal("normal", resp.Msg)
 }
 
 func (s *walletTestSuite) TestTradeFee() {
