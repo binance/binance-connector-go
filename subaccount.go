@@ -1265,7 +1265,7 @@ func (s *SubAccountTransferHistoryService) Limit(limit int) *SubAccountTransferH
 	return s
 }
 
-func (s *SubAccountTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res *SubAccountTransferHistoryResp, err error) {
+func (s *SubAccountTransferHistoryService) Do(ctx context.Context, opts ...RequestOption) (res []*SubAccountTransferHistoryResp, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: subAccountTransferHistoryEndpoint,
@@ -1290,8 +1290,8 @@ func (s *SubAccountTransferHistoryService) Do(ctx context.Context, opts ...Reque
 	if err != nil {
 		return nil, err
 	}
-	res = new(SubAccountTransferHistoryResp)
-	err = json.Unmarshal(data, res)
+	res = make([]*SubAccountTransferHistoryResp, 0)
+	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
