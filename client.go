@@ -775,3 +775,8 @@ func (c *Client) NewGetFiatDepositWithdrawHistoryService() *GetFiatDepositWithdr
 func (c *Client) NewGetFiatPaymentHistoryService() *GetFiatPaymentHistoryService {
 	return &GetFiatPaymentHistoryService{c: c}
 }
+
+// C2C Endpoints:
+func (c *Client) NewGetC2CTradeHistoryService() *GetC2CTradeHistoryService {
+	return &GetC2CTradeHistoryService{c: c}
+}
