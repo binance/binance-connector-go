@@ -270,7 +270,7 @@ type TestConnectivityResponse struct {
 	Status     int                 `json:"status"`
 	Error      *WsAPIErrorResponse `json:"error,omitempty"`
 	Result     struct{}            `json:"result,omitempty"`
-	RateLimits WsAPIRateLimit      `json:"rateLimits,omitempty"`
+	RateLimits []*WsAPIRateLimit   `json:"rateLimits,omitempty"`
 }
 
 type CheckServerTimeService struct {

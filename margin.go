@@ -132,6 +132,91 @@ type QueryMarginPriceIndexResponse struct {
 	Symbol   string `json:"symbol"`
 }
 
+// Query Margin Available Inventory (USER_DATA)
+const (
+	queryMarginAvailableInventoryEndpoint = "/sapi/v1/margin/available-inventory"
+)
+
+// QueryMarginAvailableInventoryService query margin available inventory
+type QueryMarginAvailableInventoryService struct {
+	c          *Client
+	marginType string
+}
+
+// MarginType set marginType
+func (s *QueryMarginAvailableInventoryService) MarginType(marginType string) *QueryMarginAvailableInventoryService {
+	s.marginType = marginType
+	return s
+}
+
+// Do send request
+func (s *QueryMarginAvailableInventoryService) Do(ctx context.Context, opts ...RequestOption) (res *QueryMarginAvailableInventoryResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: queryMarginAvailableInventoryEndpoint,
+		secType:  secTypeSigned,
+	}
+	r.setParam("type", s.marginType)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return &QueryMarginAvailableInventoryResponse{}, err
+	}
+	res = new(QueryMarginAvailableInventoryResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return &QueryMarginAvailableInventoryResponse{}, err
+	}
+	return res, nil
+}
+
+// QueryMarginAvailableInventoryResponse define query margin available inventory response
+type QueryMarginAvailableInventoryResponse struct {
+	Assets     map[string]string `json:"assets"`
+	UpdateTime int64             `json:"updateTime"`
+}
+
+// Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
+const (
+	queryLiabilityCoinLeverageBracketEndpoint = "/sapi/v1/margin/leverageBracket"
+)
+
+// QueryLiabilityCoinLeverageBracketService query liability coin leverage bracket
+type QueryLiabilityCoinLeverageBracketService struct {
+	c *Client
+}
+
+// Do send request
+func (s *QueryLiabilityCoinLeverageBracketService) Do(ctx context.Context, opts ...RequestOption) (res []*QueryLiabilityCoinLeverageBracketResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: queryLiabilityCoinLeverageBracketEndpoint,
+		secType:  secTypeAPIKey,
+	}
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return []*QueryLiabilityCoinLeverageBracketResponse{}, err
+	}
+	res = make([]*QueryLiabilityCoinLeverageBracketResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return []*QueryLiabilityCoinLeverageBracketResponse{}, err
+	}
+	return res, nil
+}
+
+// QueryLiabilityCoinLeverageBracketResponse define query liability coin leverage bracket response
+type QueryLiabilityCoinLeverageBracketResponse struct {
+	AssetNames []string `json:"assetNames"`
+	Rank       int      `json:"rank"`
+	Brackets   []struct {
+		Leverage              int     `json:"leverage"`
+		MaxDebt               float64 `json:"maxDebt"`
+		MaintenanceMarginRate float64 `json:"maintenanceMarginRate"`
+		InitialMarginRate     float64 `json:"initialMarginRate"`
+		FastNum               float64 `json:"fastNum"`
+	} `json:"brackets"`
+}
+
 // Margin Accouunt New Order (TRADE) API Endpoint
 const (
 	marginAccountNewOrderEndpoint = "/sapi/v1/margin/order"
@@ -321,19 +406,19 @@ type MarginAccountNewOrderResponseACK struct {
 
 // Create MarginAccountNewOrderResponseRESULT
 type MarginAccountNewOrderResponseRESULT struct {
-	Symbol             string `json:"symbol"`
-	OrderId            int64  `json:"orderId"`
-	ClientOrderId      string `json:"clientOrderId"`
-	TransactTime       uint64 `json:"transactTime"`
-	Price              string `json:"price"`
-	OrigQty            string `json:"origQty"`
-	ExecutedQty        string `json:"executedQty"`
-	CumulativeQuoteQty string `json:"cummulativeQuoteQty"`
-	Status             string `json:"status"`
-	TimeInForce        string `json:"timeInForce"`
-	Type               string `json:"type"`
-	IsIsolated         bool   `json:"isIsolated"`
-	Side               string `json:"side"`
+	Symbol              string `json:"symbol"`
+	OrderId             int64  `json:"orderId"`
+	ClientOrderId       string `json:"clientOrderId"`
+	TransactTime        uint64 `json:"transactTime"`
+	Price               string `json:"price"`
+	OrigQty             string `json:"origQty"`
+	ExecutedQty         string `json:"executedQty"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	Status              string `json:"status"`
+	TimeInForce         string `json:"timeInForce"`
+	Type                string `json:"type"`
+	IsIsolated          bool   `json:"isIsolated"`
+	Side                string `json:"side"`
 }
 
 // Create MarginAccountNewOrderResponseFULL
@@ -345,7 +430,7 @@ type MarginAccountNewOrderResponseFULL struct {
 	Price                 string  `json:"price"`
 	OrigQty               string  `json:"origQty"`
 	ExecutedQty           string  `json:"executedQty"`
-	CumulativeQuoteQty    string  `json:"cummulativeQuoteQty"`
+	CummulativeQuoteQty   string  `json:"cummulativeQuoteQty"`
 	Status                string  `json:"status"`
 	TimeInForce           string  `json:"timeInForce"`
 	Type                  string  `json:"type"`
@@ -443,19 +528,19 @@ func (s *MarginAccountCancelOrderService) Do(ctx context.Context, opts ...Reques
 
 // MarginAccountCancelOrderResponse define margin account cancel order response
 type MarginAccountCancelOrderResponse struct {
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	OrderId            int    `json:"orderId"`
-	OrigClientOrderId  string `json:"origClientOrderId"`
-	ClientOrderId      string `json:"clientOrderId"`
-	Price              string `json:"price"`
-	OrigQty            string `json:"origQty"`
-	ExecutedQty        string `json:"executedQty"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	Status             string `json:"status"`
-	TimeInForce        string `json:"timeInForce"`
-	Type               string `json:"type"`
-	Side               string `json:"side"`
+	Symbol              string `json:"symbol"`
+	IsIsolated          bool   `json:"isIsolated"`
+	OrderId             int    `json:"orderId"`
+	OrigClientOrderId   string `json:"origClientOrderId"`
+	ClientOrderId       string `json:"clientOrderId"`
+	Price               string `json:"price"`
+	OrigQty             string `json:"origQty"`
+	ExecutedQty         string `json:"executedQty"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	Status              string `json:"status"`
+	TimeInForce         string `json:"timeInForce"`
+	Type                string `json:"type"`
+	Side                string `json:"side"`
 }
 
 // Margin Account Cancel All Orders (TRADE) API Endpoint
@@ -510,20 +595,20 @@ func (s *MarginAccountCancelAllOrdersService) Do(ctx context.Context, opts ...Re
 
 // MarginAccountCancelAllOrdersResponse define margin account cancel all orders response
 type MarginAccountCancelAllOrdersResponse struct {
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	OrigClientOrderId  string `json:"origClientOrderId"`
-	OrderId            int    `json:"orderId"`
-	OrderListId        int    `json:"orderListId"`
-	ClientOrderId      string `json:"clientOrderId"`
-	Price              string `json:"price"`
-	OrigQty            string `json:"origQty"`
-	ExecutedQty        string `json:"executedQty"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	Status             string `json:"status"`
-	TimeInForce        string `json:"timeInForce"`
-	Type               string `json:"type"`
-	Side               string `json:"side"`
+	Symbol              string `json:"symbol"`
+	IsIsolated          bool   `json:"isIsolated"`
+	OrigClientOrderId   string `json:"origClientOrderId"`
+	OrderId             int    `json:"orderId"`
+	OrderListId         int    `json:"orderListId"`
+	ClientOrderId       string `json:"clientOrderId"`
+	Price               string `json:"price"`
+	OrigQty             string `json:"origQty"`
+	ExecutedQty         string `json:"executedQty"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	Status              string `json:"status"`
+	TimeInForce         string `json:"timeInForce"`
+	Type                string `json:"type"`
+	Side                string `json:"side"`
 }
 
 // Get Cross Margin Transfer History (USER_DATA) API Endpoint
@@ -880,14 +965,19 @@ func (s *CrossMarginAccountDetailService) Do(ctx context.Context, opts ...Reques
 
 // CrossMarginAccountDetailResponse define cross margin account detail response
 type CrossMarginAccountDetailResponse struct {
-	BorrowEnabled       bool   `json:"borrowEnabled"`
-	MarginLevel         string `json:"marginLevel"`
-	TotalAssetOfBtc     string `json:"totalAssetOfBtc"`
-	TotalLiabilityOfBtc string `json:"totalLiabilityOfBtc"`
-	TotalNetAssetOfBtc  string `json:"totalNetAssetOfBtc"`
-	TradeEnabled        bool   `json:"tradeEnabled"`
-	TransferEnabled     bool   `json:"transferEnabled"`
-	UserAssets          []struct {
+	Created                    bool   `json:"created"`
+	BorrowEnabled              bool   `json:"borrowEnabled"`
+	MarginLevel                string `json:"marginLevel"`
+	CollateralMarginLevel      string `json:"collateralMarginLevel"`
+	TotalAssetOfBtc            string `json:"totalAssetOfBtc"`
+	TotalLiabilityOfBtc        string `json:"totalLiabilityOfBtc"`
+	TotalNetAssetOfBtc         string `json:"totalNetAssetOfBtc"`
+	TotalCollateralValueInUSDT string `json:"totalCollateralValueInUSDT"`
+	TradeEnabled               bool   `json:"tradeEnabled"`
+	TransferInEnabled          bool   `json:"transferInEnabled"`
+	TransferOutEnabled         bool   `json:"transferOutEnabled"`
+	AccountType                string `json:"accountType"`
+	UserAssets                 []struct {
 		Asset    string `json:"asset"`
 		Borrowed string `json:"borrowed"`
 		Free     string `json:"free"`
@@ -969,23 +1059,23 @@ func (s *MarginAccountOrderService) Do(ctx context.Context, opts ...RequestOptio
 
 // MarginAccountOrderResponse define margin account order response
 type MarginAccountOrderResponse struct {
-	ClientOrderId      string `json:"clientOrderId"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	ExecutedQty        string `json:"executedQty"`
-	IcebergQty         string `json:"icebergQty"`
-	IsWorking          bool   `json:"isWorking"`
-	OrderId            int    `json:"orderId"`
-	OrigQty            string `json:"origQty"`
-	Price              string `json:"price"`
-	Side               string `json:"side"`
-	Status             string `json:"status"`
-	StopPrice          string `json:"stopPrice"`
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	Time               uint64 `json:"time"`
-	TimeInForce        string `json:"timeInForce"`
-	OrderType          string `json:"type"`
-	UpdateTime         uint64 `json:"updateTime"`
+	ClientOrderId       string `json:"clientOrderId"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	ExecutedQty         string `json:"executedQty"`
+	IcebergQty          string `json:"icebergQty"`
+	IsWorking           bool   `json:"isWorking"`
+	OrderId             int    `json:"orderId"`
+	OrigQty             string `json:"origQty"`
+	Price               string `json:"price"`
+	Side                string `json:"side"`
+	Status              string `json:"status"`
+	StopPrice           string `json:"stopPrice"`
+	Symbol              string `json:"symbol"`
+	IsIsolated          bool   `json:"isIsolated"`
+	Time                uint64 `json:"time"`
+	TimeInForce         string `json:"timeInForce"`
+	OrderType           string `json:"type"`
+	UpdateTime          uint64 `json:"updateTime"`
 }
 
 // Query Margin Account's Open Order (USER_DATA) API Endpoint
@@ -1039,23 +1129,23 @@ func (s *MarginAccountOpenOrderService) Do(ctx context.Context, opts ...RequestO
 
 // MarginAccountOpenOrderResponse define margin account open order response
 type MarginAccountOpenOrderResponse struct {
-	ClientOrderId      string `json:"clientOrderId"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	ExecutedQty        string `json:"executedQty"`
-	IcebergQty         string `json:"icebergQty"`
-	IsWorking          bool   `json:"isWorking"`
-	OrderId            int    `json:"orderId"`
-	OrigQty            string `json:"origQty"`
-	Price              string `json:"price"`
-	Side               string `json:"side"`
-	Status             string `json:"status"`
-	StopPrice          string `json:"stopPrice"`
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	Time               uint64 `json:"time"`
-	TimeInForce        string `json:"timeInForce"`
-	OrderType          string `json:"type"`
-	UpdateTime         uint64 `json:"updateTime"`
+	ClientOrderId       string `json:"clientOrderId"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	ExecutedQty         string `json:"executedQty"`
+	IcebergQty          string `json:"icebergQty"`
+	IsWorking           bool   `json:"isWorking"`
+	OrderId             int    `json:"orderId"`
+	OrigQty             string `json:"origQty"`
+	Price               string `json:"price"`
+	Side                string `json:"side"`
+	Status              string `json:"status"`
+	StopPrice           string `json:"stopPrice"`
+	Symbol              string `json:"symbol"`
+	IsIsolated          bool   `json:"isIsolated"`
+	Time                uint64 `json:"time"`
+	TimeInForce         string `json:"timeInForce"`
+	OrderType           string `json:"type"`
+	UpdateTime          uint64 `json:"updateTime"`
 }
 
 // Query Margin Account's All Orders (USER_DATA) API Endpoint
@@ -1150,23 +1240,23 @@ func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOp
 
 // MarginAccountAllOrderResponse define margin account all order response
 type MarginAccountAllOrderResponse struct {
-	ClientOrderId      string `json:"clientOrderId"`
-	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-	ExecutedQty        string `json:"executedQty"`
-	IcebergQty         string `json:"icebergQty"`
-	IsWorking          bool   `json:"isWorking"`
-	OrderId            int    `json:"orderId"`
-	OrigQty            string `json:"origQty"`
-	Price              string `json:"price"`
-	Side               string `json:"side"`
-	Status             string `json:"status"`
-	StopPrice          string `json:"stopPrice"`
-	Symbol             string `json:"symbol"`
-	IsIsolated         bool   `json:"isIsolated"`
-	Time               uint64 `json:"time"`
-	TimeInForce        string `json:"timeInForce"`
-	OrderType          string `json:"type"`
-	UpdateTime         uint64 `json:"updateTime"`
+	ClientOrderId       string `json:"clientOrderId"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+	ExecutedQty         string `json:"executedQty"`
+	IcebergQty          string `json:"icebergQty"`
+	IsWorking           bool   `json:"isWorking"`
+	OrderId             int    `json:"orderId"`
+	OrigQty             string `json:"origQty"`
+	Price               string `json:"price"`
+	Side                string `json:"side"`
+	Status              string `json:"status"`
+	StopPrice           string `json:"stopPrice"`
+	Symbol              string `json:"symbol"`
+	IsIsolated          bool   `json:"isIsolated"`
+	Time                uint64 `json:"time"`
+	TimeInForce         string `json:"timeInForce"`
+	OrderType           string `json:"type"`
+	UpdateTime          uint64 `json:"updateTime"`
 }
 
 // Margin Account New OCO (TRADE) API Endpoint
@@ -1358,20 +1448,20 @@ type MarginAccountNewOCOResponse struct {
 		ClientOrderId string `json:"clientOrderId"`
 	} `json:"orders"`
 	OrderReports []struct {
-		Symbol             string `json:"symbol"`
-		OrderId            int    `json:"orderId"`
-		OrderListId        int    `json:"orderListId"`
-		ClientOrderId      string `json:"clientOrderId"`
-		TransactTime       uint64 `json:"transactTime"`
-		Price              string `json:"price"`
-		OrigQty            string `json:"origQty"`
-		ExecutedQty        string `json:"executedQty"`
-		CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-		Status             string `json:"status"`
-		TimeInForce        string `json:"timeInForce"`
-		OrderType          string `json:"type"`
-		Side               string `json:"side"`
-		StopPrice          string `json:"stopPrice"`
+		Symbol              string `json:"symbol"`
+		OrderId             int    `json:"orderId"`
+		OrderListId         int    `json:"orderListId"`
+		ClientOrderId       string `json:"clientOrderId"`
+		TransactTime        uint64 `json:"transactTime"`
+		Price               string `json:"price"`
+		OrigQty             string `json:"origQty"`
+		ExecutedQty         string `json:"executedQty"`
+		CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+		Status              string `json:"status"`
+		TimeInForce         string `json:"timeInForce"`
+		OrderType           string `json:"type"`
+		Side                string `json:"side"`
+		StopPrice           string `json:"stopPrice"`
 	} `json:"orderReports"`
 }
 
@@ -1470,20 +1560,20 @@ type MarginAccountCancelOCOResponse struct {
 		ClientOrderId string `json:"clientOrderId"`
 	} `json:"orders"`
 	OrderReports []struct {
-		Symbol             string `json:"symbol"`
-		OrigClientOrderId  string `json:"origClientOrderId"`
-		OrderId            int    `json:"orderId"`
-		OrderListId        int    `json:"orderListId"`
-		ClientOrderId      string `json:"clientOrderId"`
-		Price              string `json:"price"`
-		OrigQty            string `json:"origQty"`
-		ExecutedQty        string `json:"executedQty"`
-		CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-		Status             string `json:"status"`
-		TimeInForce        string `json:"timeInForce"`
-		OrderType          string `json:"type"`
-		Side               string `json:"side"`
-		StopPrice          string `json:"stopPrice"`
+		Symbol              string `json:"symbol"`
+		OrigClientOrderId   string `json:"origClientOrderId"`
+		OrderId             int    `json:"orderId"`
+		OrderListId         int    `json:"orderListId"`
+		ClientOrderId       string `json:"clientOrderId"`
+		Price               string `json:"price"`
+		OrigQty             string `json:"origQty"`
+		ExecutedQty         string `json:"executedQty"`
+		CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
+		Status              string `json:"status"`
+		TimeInForce         string `json:"timeInForce"`
+		OrderType           string `json:"type"`
+		Side                string `json:"side"`
+		StopPrice           string `json:"stopPrice"`
 	} `json:"orderReports"`
 }
 
@@ -1966,6 +2056,47 @@ type MarginAccountQueryMaxTransferOutAmountResponse struct {
 	Amount string `json:"amount"`
 }
 
+// Adjust cross margin max leverage (USER_DATA)
+const (
+	marginAccountAdjustCrossMaxLeverageEndpoint = "/sapi/v1/margin/max-leverage"
+)
+
+type MarginAccountAdjustCrossMaxLeverageService struct {
+	c           *Client
+	maxLeverage int32
+}
+
+// MaxLeverage set maxLeverage
+func (s *MarginAccountAdjustCrossMaxLeverageService) MaxLeverage(maxLeverage int32) *MarginAccountAdjustCrossMaxLeverageService {
+	s.maxLeverage = maxLeverage
+	return s
+}
+
+// Do send request
+func (s *MarginAccountAdjustCrossMaxLeverageService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountAdjustCrossMaxLeverageResponse, err error) {
+	r := &request{
+		method:   http.MethodPost,
+		endpoint: marginAccountAdjustCrossMaxLeverageEndpoint,
+		secType:  secTypeSigned,
+	}
+	r.setParam("maxLeverage", s.maxLeverage)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return &MarginAccountAdjustCrossMaxLeverageResponse{}, err
+	}
+	res = new(MarginAccountAdjustCrossMaxLeverageResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return &MarginAccountAdjustCrossMaxLeverageResponse{}, err
+	}
+	return res, nil
+}
+
+// MarginAccountAdjustCrossMaxLeverageService response
+type MarginAccountAdjustCrossMaxLeverageResponse struct {
+	Success bool `json:"success"`
+}
+
 // Get Summary of Margin account (USER_DATA) - GET /sapi/v1/margin/tradeCoeff (HMAC SHA256)
 const (
 	marginAccountSummaryEndpoint = "/sapi/v1/margin/tradeCoeff"
@@ -2312,6 +2443,116 @@ func (s *MarginToggleBnbBurnService) Do(ctx context.Context, opts ...RequestOpti
 type MarginToggleBnbBurnResponse struct {
 	SpotBNBBurn     bool `json:"spotBNBBurn"`
 	InterestBNBBurn bool `json:"interestBNBBurn"`
+}
+
+// Query Cross Isolated Margin Capital Flow (USER_DATA)
+const (
+	marginIsolatedCapitalFlowEndpoint = "/sapi/v1/margin/capital-flow"
+)
+
+type MarginIsolatedCapitalFlowService struct {
+	c            *Client
+	asset        *string
+	symbol       *string
+	isolatedType *string
+	startTime    *uint64
+	endTime      *uint64
+	fromId       *int
+	limit        *int
+}
+
+// Asset set asset
+func (s *MarginIsolatedCapitalFlowService) Asset(asset string) *MarginIsolatedCapitalFlowService {
+	s.asset = &asset
+	return s
+}
+
+// Symbol set symbol
+func (s *MarginIsolatedCapitalFlowService) Symbol(symbol string) *MarginIsolatedCapitalFlowService {
+	s.symbol = &symbol
+	return s
+}
+
+// IsolatedType set isolatedType
+func (s *MarginIsolatedCapitalFlowService) IsolatedType(isolatedType string) *MarginIsolatedCapitalFlowService {
+	s.isolatedType = &isolatedType
+	return s
+}
+
+// StartTime set startTime
+func (s *MarginIsolatedCapitalFlowService) StartTime(startTime uint64) *MarginIsolatedCapitalFlowService {
+	s.startTime = &startTime
+	return s
+}
+
+// EndTime set endTime
+func (s *MarginIsolatedCapitalFlowService) EndTime(endTime uint64) *MarginIsolatedCapitalFlowService {
+	s.endTime = &endTime
+	return s
+}
+
+// FromId set fromId
+func (s *MarginIsolatedCapitalFlowService) FromId(fromId int) *MarginIsolatedCapitalFlowService {
+	s.fromId = &fromId
+	return s
+}
+
+// Limit set limit
+func (s *MarginIsolatedCapitalFlowService) Limit(limit int) *MarginIsolatedCapitalFlowService {
+	s.limit = &limit
+	return s
+}
+
+// Do send request
+func (s *MarginIsolatedCapitalFlowService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginIsolatedCapitalFlowResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: marginIsolatedCapitalFlowEndpoint,
+		secType:  secTypeSigned,
+	}
+	m := params{}
+	if s.asset != nil {
+		m["asset"] = *s.asset
+	}
+	if s.symbol != nil {
+		m["symbol"] = *s.symbol
+	}
+	if s.isolatedType != nil {
+		m["isolatedType"] = *s.isolatedType
+	}
+	if s.startTime != nil {
+		m["startTime"] = *s.startTime
+	}
+	if s.endTime != nil {
+		m["endTime"] = *s.endTime
+	}
+	if s.fromId != nil {
+		m["fromId"] = *s.fromId
+	}
+	if s.limit != nil {
+		m["limit"] = *s.limit
+	}
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return []*MarginIsolatedCapitalFlowResponse{}, err
+	}
+	res = make([]*MarginIsolatedCapitalFlowResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return []*MarginIsolatedCapitalFlowResponse{}, err
+	}
+	return res, nil
+}
+
+// MarginIsolatedCapitalFlowService response
+type MarginIsolatedCapitalFlowResponse struct {
+	Id        int    `json:"id"`
+	TranId    int    `json:"tranId"`
+	Timestamp uint64 `json:"timestamp"`
+	Asset     string `json:"asset"`
+	Symbol    string `json:"symbol"`
+	Type      string `json:"type"`
+	Amount    string `json:"amount"`
 }
 
 // Get BNB Burn Status (USER_DATA)
@@ -2757,6 +2998,693 @@ type MarginSmallLiabilityExchangeCoinListResponse struct {
 	Interest        string `json:"interest"`
 	Principal       string `json:"principal"`
 	LiabilityOfBUSD string `json:"liabilityOfBUSD"`
+}
+
+// Margin Manual Liquidation
+const (
+	marginManualLiquidationEndpoint = "/sapi/v1/margin/manual-liquidation"
+)
+
+type MarginManualLiquidationService struct {
+	c          *Client
+	marginType string
+	symbol     *string
+}
+
+// MarginType set marginType
+func (s *MarginManualLiquidationService) MarginType(marginType string) *MarginManualLiquidationService {
+	s.marginType = marginType
+	return s
+}
+
+// Symbol set symbol
+func (s *MarginManualLiquidationService) Symbol(symbol string) *MarginManualLiquidationService {
+	s.symbol = &symbol
+	return s
+}
+
+// Do send request
+func (s *MarginManualLiquidationService) Do(ctx context.Context, opts ...RequestOption) (res []*MarginManualLiquidationResponse, err error) {
+	r := &request{
+		method:   http.MethodPost,
+		endpoint: marginManualLiquidationEndpoint,
+		secType:  secTypeSigned,
+	}
+	m := params{
+		"marginType": s.marginType,
+	}
+	if s.symbol != nil {
+		m["symbol"] = *s.symbol
+	}
+	r.setParams(m)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return []*MarginManualLiquidationResponse{}, err
+	}
+	res = make([]*MarginManualLiquidationResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return []*MarginManualLiquidationResponse{}, err
+	}
+	return res, nil
+}
+
+// MarginManualLiquidationService response
+type MarginManualLiquidationResponse struct {
+	Asset          string  `json:"asset"`
+	Interest       string  `json:"interest"`
+	Principal      string  `json:"principal"`
+	LiabilityAsset string  `json:"liabilityAsset"`
+	LiabilityQty   float64 `json:"liabilityQty"`
+}
+
+// Margin Account New OTO (TRADE)
+const (
+	marginAccountNewOTOEndpoint = "/sapi/v1/margin/order/oto"
+)
+
+type MarginAccountNewOTOService struct {
+	c                       *Client
+	symbol                  string
+	workingType             string
+	workingSide             string
+	workingPrice            float64
+	workingQuantity         float64
+	pendingType             string
+	pendingSide             string
+	pendingQuantity         float64
+	isIsolated              *string
+	listClientOrderId       *string
+	newOrderRespType        *string
+	sideEffectType          *string
+	selfTradePreventionMode *string
+	autoRepayAtCancel       *bool
+	workingClientOrderId    *string
+	workingIcebergQty       *float64
+	workingTimeInForce      *string
+	pendingClientOrderId    *string
+	pendingPrice            *float64
+	pendingStopPrice        *float64
+	pendingTrailingDelta    *float64
+	pendingIcebergQty       *float64
+	pendingTimeInForce      *string
+}
+
+// Symbol set symbol
+func (s *MarginAccountNewOTOService) Symbol(symbol string) *MarginAccountNewOTOService {
+	s.symbol = symbol
+	return s
+}
+
+// WorkingType set workingType
+func (s *MarginAccountNewOTOService) WorkingType(workingType string) *MarginAccountNewOTOService {
+	s.workingType = workingType
+	return s
+}
+
+// WorkingSide set workingSide
+func (s *MarginAccountNewOTOService) WorkingSide(workingSide string) *MarginAccountNewOTOService {
+	s.workingSide = workingSide
+	return s
+}
+
+// WorkingPrice set workingPrice
+func (s *MarginAccountNewOTOService) WorkingPrice(workingPrice float64) *MarginAccountNewOTOService {
+	s.workingPrice = workingPrice
+	return s
+}
+
+// WorkingQuantity set workingQuantity
+func (s *MarginAccountNewOTOService) WorkingQuantity(workingQuantity float64) *MarginAccountNewOTOService {
+	s.workingQuantity = workingQuantity
+	return s
+}
+
+// PendingType set pendingType
+func (s *MarginAccountNewOTOService) PendingType(pendingType string) *MarginAccountNewOTOService {
+	s.pendingType = pendingType
+	return s
+}
+
+// PendingSide set pendingSide
+func (s *MarginAccountNewOTOService) PendingSide(pendingSide string) *MarginAccountNewOTOService {
+	s.pendingSide = pendingSide
+	return s
+}
+
+// PendingQuantity set pendingQuantity
+func (s *MarginAccountNewOTOService) PendingQuantity(pendingQuantity float64) *MarginAccountNewOTOService {
+	s.pendingQuantity = pendingQuantity
+	return s
+}
+
+// IsIsolated set isIsolated
+func (s *MarginAccountNewOTOService) IsIsolated(isIsolated string) *MarginAccountNewOTOService {
+	s.isIsolated = &isIsolated
+	return s
+}
+
+// ListClientOrderId set listClientOrderId
+func (s *MarginAccountNewOTOService) ListClientOrderId(listClientOrderId string) *MarginAccountNewOTOService {
+	s.listClientOrderId = &listClientOrderId
+	return s
+}
+
+// NewOrderRespType set newOrderRespType
+func (s *MarginAccountNewOTOService) NewOrderRespType(newOrderRespType string) *MarginAccountNewOTOService {
+	s.newOrderRespType = &newOrderRespType
+	return s
+}
+
+// SideEffectType set sideEffectType
+func (s *MarginAccountNewOTOService) SideEffectType(sideEffectType string) *MarginAccountNewOTOService {
+	s.sideEffectType = &sideEffectType
+	return s
+}
+
+// SelfTradePreventionMode set selfTradePreventionMode
+func (s *MarginAccountNewOTOService) SelfTradePreventionMode(selfTradePreventionMode string) *MarginAccountNewOTOService {
+	s.selfTradePreventionMode = &selfTradePreventionMode
+	return s
+}
+
+// AutoRepayAtCancel set autoRepayAtCancel
+func (s *MarginAccountNewOTOService) AutoRepayAtCancel(autoRepayAtCancel bool) *MarginAccountNewOTOService {
+	s.autoRepayAtCancel = &autoRepayAtCancel
+	return s
+}
+
+// WorkingClientOrderId set workingClientOrderId
+func (s *MarginAccountNewOTOService) WorkingClientOrderId(workingClientOrderId string) *MarginAccountNewOTOService {
+	s.workingClientOrderId = &workingClientOrderId
+	return s
+}
+
+// WorkingIcebergQty set workingIcebergQty
+func (s *MarginAccountNewOTOService) WorkingIcebergQty(workingIcebergQty float64) *MarginAccountNewOTOService {
+	s.workingIcebergQty = &workingIcebergQty
+	return s
+}
+
+// WorkingTimeInForce set workingTimeInForce
+func (s *MarginAccountNewOTOService) WorkingTimeInForce(workingTimeInForce string) *MarginAccountNewOTOService {
+	s.workingTimeInForce = &workingTimeInForce
+	return s
+}
+
+// PendingClientOrderId set pendingClientOrderId
+func (s *MarginAccountNewOTOService) PendingClientOrderId(pendingClientOrderId string) *MarginAccountNewOTOService {
+	s.pendingClientOrderId = &pendingClientOrderId
+	return s
+}
+
+// PendingPrice set pendingPrice
+func (s *MarginAccountNewOTOService) PendingPrice(pendingPrice float64) *MarginAccountNewOTOService {
+	s.pendingPrice = &pendingPrice
+	return s
+}
+
+// PendingStopPrice set pendingStopPrice
+func (s *MarginAccountNewOTOService) PendingStopPrice(pendingStopPrice float64) *MarginAccountNewOTOService {
+	s.pendingStopPrice = &pendingStopPrice
+	return s
+}
+
+// PendingTrailingDelta set pendingTrailingDelta
+func (s *MarginAccountNewOTOService) PendingTrailingDelta(pendingTrailingDelta float64) *MarginAccountNewOTOService {
+	s.pendingTrailingDelta = &pendingTrailingDelta
+	return s
+}
+
+// PendingIcebergQty set pendingIcebergQty
+func (s *MarginAccountNewOTOService) PendingIcebergQty(pendingIcebergQty float64) *MarginAccountNewOTOService {
+	s.pendingIcebergQty = &pendingIcebergQty
+	return s
+}
+
+// PendingTimeInForce set pendingTimeInForce
+func (s *MarginAccountNewOTOService) PendingTimeInForce(pendingTimeInForce string) *MarginAccountNewOTOService {
+	s.pendingTimeInForce = &pendingTimeInForce
+	return s
+}
+
+// Do send request
+func (s *MarginAccountNewOTOService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountNewOTOResponse, err error) {
+	r := &request{
+		method:   http.MethodPost,
+		endpoint: marginAccountNewOTOEndpoint,
+		secType:  secTypeSigned,
+	}
+	m := params{
+		"symbol":          s.symbol,
+		"workingType":     s.workingType,
+		"workingSide":     s.workingSide,
+		"workingPrice":    s.workingPrice,
+		"workingQuantity": s.workingQuantity,
+		"pendingType":     s.pendingType,
+		"pendingSide":     s.pendingSide,
+		"pendingQuantity": s.pendingQuantity,
+	}
+	if s.isIsolated != nil {
+		m["isIsolated"] = *s.isIsolated
+	}
+	if s.listClientOrderId != nil {
+		m["listClientOrderId"] = *s.listClientOrderId
+	}
+	if s.newOrderRespType != nil {
+		m["newOrderRespType"] = *s.newOrderRespType
+	}
+	if s.sideEffectType != nil {
+		m["sideEffectType"] = *s.sideEffectType
+	}
+	if s.selfTradePreventionMode != nil {
+		m["selfTradePreventionMode"] = *s.selfTradePreventionMode
+	}
+	if s.autoRepayAtCancel != nil {
+		m["autoRepayAtCancel"] = *s.autoRepayAtCancel
+	}
+	if s.workingClientOrderId != nil {
+		m["workingClientOrderId"] = *s.workingClientOrderId
+	}
+	if s.workingIcebergQty != nil {
+		m["workingIcebergQty"] = *s.workingIcebergQty
+	}
+	if s.workingTimeInForce != nil {
+		m["workingTimeInForce"] = *s.workingTimeInForce
+	}
+	if s.pendingClientOrderId != nil {
+		m["pendingClientOrderId"] = *s.pendingClientOrderId
+	}
+	if s.pendingPrice != nil {
+		m["pendingPrice"] = *s.pendingPrice
+	}
+	if s.pendingStopPrice != nil {
+		m["pendingStopPrice"] = *s.pendingStopPrice
+	}
+	if s.pendingTrailingDelta != nil {
+		m["pendingTrailingDelta"] = *s.pendingTrailingDelta
+	}
+	if s.pendingIcebergQty != nil {
+		m["pendingIcebergQty"] = *s.pendingIcebergQty
+	}
+	if s.pendingTimeInForce != nil {
+		m["pendingTimeInForce"] = *s.pendingTimeInForce
+	}
+	r.setParams(m)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return &MarginAccountNewOTOResponse{}, err
+	}
+	res = new(MarginAccountNewOTOResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return &MarginAccountNewOTOResponse{}, err
+	}
+	return res, nil
+}
+
+// MarginAccountNewOTOResponse represents the response from the MarginAccountNewOTOService
+type MarginAccountNewOTOResponse struct {
+	OrderListId       int64  `json:"orderListId"`
+	ContingencyType   string `json:"contingencyType"`
+	ListStatusType    string `json:"listStatusType"`
+	ListOrderStatus   string `json:"listOrderStatus"`
+	ListClientOrderId string `json:"listClientOrderId"`
+	TransactionTime   int64  `json:"transactionTime"`
+	Symbol            string `json:"symbol"`
+	IsIsolated        bool   `json:"isIsolated"`
+	Orders            []struct {
+		Symbol        string `json:"symbol"`
+		OrderId       int64  `json:"orderId"`
+		ClientOrderId string `json:"clientOrderId"`
+	}
+	OrderReports []struct {
+		Symbol                  string `json:"symbol"`
+		OrderId                 int64  `json:"orderId"`
+		OrderListId             int64  `json:"orderListId"`
+		ClientOrderId           string `json:"clientOrderId"`
+		TransactTime            int64  `json:"transactTime"`
+		Price                   string `json:"price"`
+		OrigQty                 string `json:"origQty"`
+		ExecutedQty             string `json:"executedQty"`
+		CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
+		Status                  string `json:"status"`
+		TimeInForce             string `json:"timeInForce"`
+		Type                    string `json:"type"`
+		Side                    string `json:"side"`
+		SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	}
+}
+
+// Margin Account New OTOCO (TRADE)
+const (
+	marginAccountNewOTOCOEndpoint = "/sapi/v1/margin/order/otoco"
+)
+
+type MarginAccountNewOTOCOService struct {
+	c                         *Client
+	symbol                    string
+	workingType               string
+	workingSide               string
+	workingPrice              float64
+	workingQuantity           float64
+	pendingSide               string
+	pendingQuantity           float64
+	pendingAboveType          string
+	isIsolated                *string
+	sideEffectType            *string
+	autoRepayAtCancel         *bool
+	listClientOrderId         *string
+	newOrderRespType          *string
+	selfTradePreventionMode   *string
+	workingClientOrderId      *string
+	workingIcebergQty         *float64
+	workingTimeInForce        *string
+	pendingAboveClientOrderId *string
+	pendingAbovePrice         *float64
+	pendingAboveStopPrice     *float64
+	pendingAboveTrailingDelta *float64
+	pendingAboveIcebergQty    *float64
+	pendingAboveTimeInForce   *string
+	pendingBelowType          *string
+	pendingBelowClientOrderId *string
+	pendingBelowPrice         *float64
+	pendingBelowStopPrice     *float64
+	pendingBelowTrailingDelta *float64
+	pendingBelowIcebergQty    *float64
+	pendingBelowTimeInForce   *string
+}
+
+// Symbol set symbol
+func (s *MarginAccountNewOTOCOService) Symbol(symbol string) *MarginAccountNewOTOCOService {
+	s.symbol = symbol
+	return s
+}
+
+// WorkingType set workingType
+func (s *MarginAccountNewOTOCOService) WorkingType(workingType string) *MarginAccountNewOTOCOService {
+	s.workingType = workingType
+	return s
+}
+
+// WorkingSide set workingSide
+func (s *MarginAccountNewOTOCOService) WorkingSide(workingSide string) *MarginAccountNewOTOCOService {
+	s.workingSide = workingSide
+	return s
+}
+
+// WorkingPrice set workingPrice
+func (s *MarginAccountNewOTOCOService) WorkingPrice(workingPrice float64) *MarginAccountNewOTOCOService {
+	s.workingPrice = workingPrice
+	return s
+}
+
+// WorkingQuantity set workingQuantity
+func (s *MarginAccountNewOTOCOService) WorkingQuantity(workingQuantity float64) *MarginAccountNewOTOCOService {
+	s.workingQuantity = workingQuantity
+	return s
+}
+
+// PendingSide set pendingSide
+func (s *MarginAccountNewOTOCOService) PendingSide(pendingSide string) *MarginAccountNewOTOCOService {
+	s.pendingSide = pendingSide
+	return s
+}
+
+// PendingQuantity set pendingQuantity
+func (s *MarginAccountNewOTOCOService) PendingQuantity(pendingQuantity float64) *MarginAccountNewOTOCOService {
+	s.pendingQuantity = pendingQuantity
+	return s
+}
+
+// PendingAboveType set pendingAboveType
+func (s *MarginAccountNewOTOCOService) PendingAboveType(pendingAboveType string) *MarginAccountNewOTOCOService {
+	s.pendingAboveType = pendingAboveType
+	return s
+}
+
+// IsIsolated set isIsolated
+func (s *MarginAccountNewOTOCOService) IsIsolated(isIsolated string) *MarginAccountNewOTOCOService {
+	s.isIsolated = &isIsolated
+	return s
+}
+
+// SideEffectType set sideEffectType
+func (s *MarginAccountNewOTOCOService) SideEffectType(sideEffectType string) *MarginAccountNewOTOCOService {
+	s.sideEffectType = &sideEffectType
+	return s
+}
+
+// AutoRepayAtCancel set autoRepayAtCancel
+func (s *MarginAccountNewOTOCOService) AutoRepayAtCancel(autoRepayAtCancel bool) *MarginAccountNewOTOCOService {
+	s.autoRepayAtCancel = &autoRepayAtCancel
+	return s
+}
+
+// ListClientOrderId set listClientOrderId
+func (s *MarginAccountNewOTOCOService) ListClientOrderId(listClientOrderId string) *MarginAccountNewOTOCOService {
+	s.listClientOrderId = &listClientOrderId
+	return s
+}
+
+// NewOrderRespType set newOrderRespType
+func (s *MarginAccountNewOTOCOService) NewOrderRespType(newOrderRespType string) *MarginAccountNewOTOCOService {
+	s.newOrderRespType = &newOrderRespType
+	return s
+}
+
+// SelfTradePreventionMode set selfTradePreventionMode
+func (s *MarginAccountNewOTOCOService) SelfTradePreventionMode(selfTradePreventionMode string) *MarginAccountNewOTOCOService {
+	s.selfTradePreventionMode = &selfTradePreventionMode
+	return s
+}
+
+// WorkingClientOrderId set workingClientOrderId
+func (s *MarginAccountNewOTOCOService) WorkingClientOrderId(workingClientOrderId string) *MarginAccountNewOTOCOService {
+	s.workingClientOrderId = &workingClientOrderId
+	return s
+}
+
+// WorkingIcebergQty set workingIcebergQty
+func (s *MarginAccountNewOTOCOService) WorkingIcebergQty(workingIcebergQty float64) *MarginAccountNewOTOCOService {
+	s.workingIcebergQty = &workingIcebergQty
+	return s
+}
+
+// WorkingTimeInForce set workingTimeInForce
+func (s *MarginAccountNewOTOCOService) WorkingTimeInForce(workingTimeInForce string) *MarginAccountNewOTOCOService {
+	s.workingTimeInForce = &workingTimeInForce
+	return s
+}
+
+// PendingAboveClientOrderId set pendingAboveClientOrderId
+func (s *MarginAccountNewOTOCOService) PendingAboveClientOrderId(pendingAboveClientOrderId string) *MarginAccountNewOTOCOService {
+	s.pendingAboveClientOrderId = &pendingAboveClientOrderId
+	return s
+}
+
+// PendingAbovePrice set pendingAbovePrice
+func (s *MarginAccountNewOTOCOService) PendingAbovePrice(pendingAbovePrice float64) *MarginAccountNewOTOCOService {
+	s.pendingAbovePrice = &pendingAbovePrice
+	return s
+}
+
+// PendingAboveStopPrice set pendingAboveStopPrice
+func (s *MarginAccountNewOTOCOService) PendingAboveStopPrice(pendingAboveStopPrice float64) *MarginAccountNewOTOCOService {
+	s.pendingAboveStopPrice = &pendingAboveStopPrice
+	return s
+}
+
+// PendingAboveTrailingDelta set pendingAboveTrailingDelta
+func (s *MarginAccountNewOTOCOService) PendingAboveTrailingDelta(pendingAboveTrailingDelta float64) *MarginAccountNewOTOCOService {
+	s.pendingAboveTrailingDelta = &pendingAboveTrailingDelta
+	return s
+}
+
+// PendingAboveIcebergQty set pendingAboveIcebergQty
+func (s *MarginAccountNewOTOCOService) PendingAboveIcebergQty(pendingAboveIcebergQty float64) *MarginAccountNewOTOCOService {
+	s.pendingAboveIcebergQty = &pendingAboveIcebergQty
+	return s
+}
+
+// PendingAboveTimeInForce set pendingAboveTimeInForce
+func (s *MarginAccountNewOTOCOService) PendingAboveTimeInForce(pendingAboveTimeInForce string) *MarginAccountNewOTOCOService {
+	s.pendingAboveTimeInForce = &pendingAboveTimeInForce
+	return s
+}
+
+// PendingBelowType set pendingBelowType
+func (s *MarginAccountNewOTOCOService) PendingBelowType(pendingBelowType string) *MarginAccountNewOTOCOService {
+	s.pendingBelowType = &pendingBelowType
+	return s
+}
+
+// PendingBelowClientOrderId set pendingBelowClientOrderId
+func (s *MarginAccountNewOTOCOService) PendingBelowClientOrderId(pendingBelowClientOrderId string) *MarginAccountNewOTOCOService {
+	s.pendingBelowClientOrderId = &pendingBelowClientOrderId
+	return s
+}
+
+// PendingBelowPrice set pendingBelowPrice
+func (s *MarginAccountNewOTOCOService) PendingBelowPrice(pendingBelowPrice float64) *MarginAccountNewOTOCOService {
+	s.pendingBelowPrice = &pendingBelowPrice
+	return s
+}
+
+// PendingBelowStopPrice set pendingBelowStopPrice
+func (s *MarginAccountNewOTOCOService) PendingBelowStopPrice(pendingBelowStopPrice float64) *MarginAccountNewOTOCOService {
+	s.pendingBelowStopPrice = &pendingBelowStopPrice
+	return s
+}
+
+// PendingBelowTrailingDelta set pendingBelowTrailingDelta
+func (s *MarginAccountNewOTOCOService) PendingBelowTrailingDelta(pendingBelowTrailingDelta float64) *MarginAccountNewOTOCOService {
+	s.pendingBelowTrailingDelta = &pendingBelowTrailingDelta
+	return s
+}
+
+// PendingBelowIcebergQty set pendingBelowIcebergQty
+func (s *MarginAccountNewOTOCOService) PendingBelowIcebergQty(pendingBelowIcebergQty float64) *MarginAccountNewOTOCOService {
+	s.pendingBelowIcebergQty = &pendingBelowIcebergQty
+	return s
+}
+
+// PendingBelowTimeInForce set pendingBelowTimeInForce
+func (s *MarginAccountNewOTOCOService) PendingBelowTimeInForce(pendingBelowTimeInForce string) *MarginAccountNewOTOCOService {
+	s.pendingBelowTimeInForce = &pendingBelowTimeInForce
+	return s
+}
+
+// Do send request
+func (s *MarginAccountNewOTOCOService) Do(ctx context.Context, opts ...RequestOption) (res *MarginAccountNewOTOCOResponse, err error) {
+	r := &request{
+		method:   http.MethodPost,
+		endpoint: marginAccountNewOTOCOEndpoint,
+		secType:  secTypeSigned,
+	}
+
+	m := params{
+		"symbol":           s.symbol,
+		"workingType":      s.workingType,
+		"workingSide":      s.workingSide,
+		"workingPrice":     s.workingPrice,
+		"workingQuantity":  s.workingQuantity,
+		"pendingSide":      s.pendingSide,
+		"pendingQuantity":  s.pendingQuantity,
+		"pendingAboveType": s.pendingAboveType,
+	}
+
+	if s.isIsolated != nil {
+		m["isIsolated"] = *s.isIsolated
+	}
+	if s.sideEffectType != nil {
+		m["sideEffectType"] = *s.sideEffectType
+	}
+	if s.autoRepayAtCancel != nil {
+		m["autoRepayAtCancel"] = *s.autoRepayAtCancel
+	}
+	if s.listClientOrderId != nil {
+		m["listClientOrderId"] = *s.listClientOrderId
+	}
+	if s.newOrderRespType != nil {
+		m["newOrderRespType"] = *s.newOrderRespType
+	}
+	if s.selfTradePreventionMode != nil {
+		m["selfTradePreventionMode"] = *s.selfTradePreventionMode
+	}
+	if s.workingClientOrderId != nil {
+		m["workingClientOrderId"] = *s.workingClientOrderId
+	}
+	if s.workingIcebergQty != nil {
+		m["workingIcebergQty"] = *s.workingIcebergQty
+	}
+	if s.workingTimeInForce != nil {
+		m["workingTimeInForce"] = *s.workingTimeInForce
+	}
+	if s.pendingAboveClientOrderId != nil {
+		m["pendingAboveClientOrderId"] = *s.pendingAboveClientOrderId
+	}
+	if s.pendingAbovePrice != nil {
+		m["pendingAbovePrice"] = *s.pendingAbovePrice
+	}
+	if s.pendingAboveStopPrice != nil {
+		m["pendingAboveStopPrice"] = *s.pendingAboveStopPrice
+	}
+	if s.pendingAboveTrailingDelta != nil {
+		m["pendingAboveTrailingDelta"] = *s.pendingAboveTrailingDelta
+	}
+	if s.pendingAboveIcebergQty != nil {
+		m["pendingAboveIcebergQty"] = *s.pendingAboveIcebergQty
+	}
+	if s.pendingAboveTimeInForce != nil {
+		m["pendingAboveTimeInForce"] = *s.pendingAboveTimeInForce
+	}
+	if s.pendingBelowType != nil {
+		m["pendingBelowType"] = *s.pendingBelowType
+	}
+	if s.pendingBelowClientOrderId != nil {
+		m["pendingBelowClientOrderId"] = *s.pendingBelowClientOrderId
+	}
+	if s.pendingBelowPrice != nil {
+		m["pendingBelowPrice"] = *s.pendingBelowPrice
+	}
+	if s.pendingBelowStopPrice != nil {
+		m["pendingBelowStopPrice"] = *s.pendingBelowStopPrice
+	}
+	if s.pendingBelowTrailingDelta != nil {
+		m["pendingBelowTrailingDelta"] = *s.pendingBelowTrailingDelta
+	}
+	if s.pendingBelowIcebergQty != nil {
+		m["pendingBelowIcebergQty"] = *s.pendingBelowIcebergQty
+	}
+	if s.pendingBelowTimeInForce != nil {
+		m["pendingBelowTimeInForce"] = *s.pendingBelowTimeInForce
+	}
+	r.setParams(m)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return &MarginAccountNewOTOCOResponse{}, err
+	}
+	res = new(MarginAccountNewOTOCOResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return &MarginAccountNewOTOCOResponse{}, err
+	}
+	return res, nil
+}
+
+// MarginAccountNewOTOCOResponse represents the response from the MarginAccountNewOTOCOService
+type MarginAccountNewOTOCOResponse struct {
+	OrderListId       int64  `json:"orderListId"`
+	ContingencyType   string `json:"contingencyType"`
+	ListStatusType    string `json:"listStatusType"`
+	ListOrderStatus   string `json:"listOrderStatus"`
+	ListClientOrderId string `json:"listClientOrderId"`
+	TransactionTime   int64  `json:"transactionTime"`
+	Symbol            string `json:"symbol"`
+	IsIsolated        bool   `json:"isIsolated"`
+	Orders            []struct {
+		Symbol        string `json:"symbol"`
+		OrderId       int64  `json:"orderId"`
+		ClientOrderId string `json:"clientOrderId"`
+	}
+	OrderReports []struct {
+		Symbol                  string `json:"symbol"`
+		OrderId                 int64  `json:"orderId"`
+		OrderListId             int64  `json:"orderListId"`
+		ClientOrderId           string `json:"clientOrderId"`
+		TransactTime            int64  `json:"transactTime"`
+		Price                   string `json:"price"`
+		OrigQty                 string `json:"origQty"`
+		ExecutedQty             string `json:"executedQty"`
+		CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
+		Status                  string `json:"status"`
+		TimeInForce             string `json:"timeInForce"`
+		Type                    string `json:"type"`
+		Side                    string `json:"side"`
+		StopPrice               string `json:"stopPrice"`
+		SelfTradePreventionMode string `json:"selfTradePreventionMode"`
+	}
 }
 
 // Small Liability Exchange (MARGIN)

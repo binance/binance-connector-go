@@ -2,6 +2,45 @@
 
 ## v0.8.0 - 2024-11-20
 
+### Added
+- Added `Wallet` Endpoints:
+    - `GET /sapi/v1/account/info` - Fetch account info detail
+    - `GET /sapi/v1/asset/custody/transfer-history` - Query user delegation history
+    - `GET /sapi/v1/asset/wallet/balance` - Query user wallet balance
+    - `GET /sapi/v1/capital/deposit/address/list` - Fetch deposit address list with network
+    - `GET /sapi/v1/spot/delist-schedule` - Query spot delist schedule
+
+- Added `Margin` Endpoints:
+    - `GET /sapi/v1/margin/available-inventory`
+    - `GET /sapi/v1/margin/capital-flow`
+    - `GET /sapi/v1/margin/leverageBracket`
+    - `POST /sapi/v1/margin/manual-liquidation`
+    - `POST /sapi/v1/margin/max-leverage`
+    - `POST /sapi/v1/margin/order/oto`
+    - `POST /sapi/v1/margin/order/otoco`
+
+### Fixed
+- Fixed `TestConnectivityResponse.RateLimits` type - updated to array
+- Fixed `NewTickerPriceService.Do` unmarshaling issue
+- Fixed `SystemStatusResponse` type
+- Fixed variable named `CumulativeQuoteQty` to `CummulativeQuoteQty`
+- Fixed `SubAccountTransferHistoryService` response type
+- Fixed field `Fills` type in `CancelReplaceResponse`
+
+### Updated
+- Added the parameters `symbol`, `symbols`, `permissions` , `showPermissionSets` and `symbolStatus` to endpoint `GET /api/v3/exchangeInfo`
+- Added parameter `accountType` to endpoint `POST /sapi/v1/asset/dust-btc`
+- Added response fields `Created`, `CollateralMarginLevel`, `TotalCollateralValueInUSDT`, `TransferInEnabled`, `TransferOutEnabled` and `AccountType` to endpoint `GET /sapi/v1/margin/account`
+- Added response fields `EnableFixApiTrade`, `EnableFixReadOnly` and `EnablePortfolioMarginTrading` to endpoint `GET /sapi/v1/account/apiRestrictions`
+- Updated `SymbolInfo` and `SymbolFilter` types
+- Removed response field `resetAddressStatus` and added fields `contractAddressUrl` and `contractAddress` from endpoint `GET /sapi/v1/capital/config/getall`
+
+
+### Removed
+- Removed `Wallet` endpoints:
+    - `GET /sapi/v1/capital/contract/convertible-coins`
+    - `POST /sapi/v1/asset/convert-transfer`
+
 ## v0.7.0 - 2024-08-23
 
 ### Added

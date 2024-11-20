@@ -191,44 +191,6 @@ func (s *walletTestSuite) TestUserUniversalTransfer() {
 	r.Equal(int64(13526853623), res.TranId)
 }
 
-func (s *walletTestSuite) TestBusdConvert() {
-	data := []byte(`
-	{
-		"tranId": 13526853623,
-		"status": "S"
-	}
-	`)
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	clientTranId := "X7612JSNTO8274HXUQJ2"
-	asset := "USDT"
-	amount := float64(20)
-	targetAsset := "BUSD"
-
-	s.assertReq(func(r *request) {
-		e := newSignedRequest().setParams(params{
-			"clientTranId": clientTranId,
-			"asset":        asset,
-			"amount":       amount,
-			"targetAsset":  targetAsset,
-		})
-		s.assertRequestEqual(e, r)
-	})
-
-	res, err := s.client.NewBUSDConvertService().
-		ClientTranId(clientTranId).
-		Asset(asset).
-		Amount(amount).
-		TargetAsset(targetAsset).
-		Do(newContext())
-
-	r := s.r()
-	r.NoError(err)
-	r.Equal(int64(13526853623), res.TranId)
-	r.Equal("S", res.Status)
-}
-
 func (s *walletTestSuite) TestGetDepositAddress() {
 	data := []byte(`
 	{
@@ -262,6 +224,40 @@ func (s *walletTestSuite) TestGetDepositAddress() {
 	r.Equal("", res.Tag)
 	r.Equal("BTC", res.Coin)
 	r.Equal("https://btc.com/1HPn8Rx2y6nNSfagQBKy27GB99Vbzg89wv", res.Url)
+}
+
+func (s *walletTestSuite) TestDepositAddressListService() {
+	data := []byte(`[
+		{
+			"coin": "ETH",
+			"address": "0xD316E95Fd9E8E237Cb11f8200Babbc5D8D177BA4",
+			"tag":"",
+			"isDefault": 0
+		}
+	]
+	`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	coin := "BTC"
+	s.assertReq(func(r *request) {
+		e := newSignedRequest().setParams(params{
+			"coin": coin,
+		})
+		s.assertRequestEqual(e, r)
+	})
+
+	res, err := s.client.NewDepositAddressListService().
+		Coin(coin).
+		Do(newContext())
+
+	r := s.r()
+	r.NoError(err)
+	s.Len(res, 1)
+	r.Equal("ETH", res[0].Coin)
+	r.Equal("0xD316E95Fd9E8E237Cb11f8200Babbc5D8D177BA4", res[0].Address)
+	r.Equal("", res[0].Tag)
+	r.Equal(int32(0), res[0].IsDefault)
 }
 
 func (s *walletTestSuite) TestAccountApiTradingStatus() {
@@ -313,17 +309,19 @@ func (s *walletTestSuite) TestAccountStatusService() {
 func (s *walletTestSuite) TestAPIKeyPermission() {
 	data := []byte(`
 	{
-		"ipRestrict": false,
-		"createTime": 1638289749000,
-		"enableWithdrawals": true,
-		"enableInternalTransfer": true,
-		"permitsUniversalTransfer": true,
-		"enableVanillaOptions": true,
-		"enableReading": true,
-		"enableFutures": true,
-		"enableMargin": true,
-		"enableSpotAndMarginTrading": true,
-		"tradingAuthorityExpirationTime": 1640978149000
+		"ipRestrict":false, 
+		"createTime":1698645219000,
+		"enableReading":true, 
+		"enableWithdrawals":false,
+		"enableInternalTransfer":false,
+		"enableMargin":false,
+		"enableFutures":false,
+		"permitsUniversalTransfer":false,
+		"enableVanillaOptions":false,
+		"enableFixApiTrade": false,
+		"enableFixReadOnly": true,
+		"enableSpotAndMarginTrading":false,
+		"enablePortfolioMarginTrading":true
 	}
 	`)
 
@@ -335,16 +333,18 @@ func (s *walletTestSuite) TestAPIKeyPermission() {
 	s.r().NoError(err)
 	s.NotNil(resp)
 	s.False(resp.IPRestrict)
-	s.Equal(uint64(1638289749000), resp.CreateTime)
-	s.True(resp.EnableWithdrawals)
-	s.True(resp.EnableInternalTransfer)
-	s.True(resp.PermitsUniversalTransfer)
-	s.True(resp.EnableVanillaOptions)
+	s.Equal(uint64(1698645219000), resp.CreateTime)
 	s.True(resp.EnableReading)
-	s.True(resp.EnableFutures)
-	s.True(resp.EnableMargin)
-	s.True(resp.EnableSpotAndMarginTrading)
-	s.Equal(uint64(1640978149000), resp.TradingAuthorityExpirationTime)
+	s.False(resp.EnableWithdrawals)
+	s.False(resp.EnableInternalTransfer)
+	s.False(resp.EnableMargin)
+	s.False(resp.EnableFutures)
+	s.False(resp.PermitsUniversalTransfer)
+	s.False(resp.EnableVanillaOptions)
+	s.False(resp.EnableFixApiTrade)
+	s.True(resp.EnableFixReadOnly)
+	s.False(resp.EnableSpotAndMarginTrading)
+	s.True(resp.EnablePortfolioMarginTrading)
 }
 
 func (s *walletTestSuite) TestAssetDetail() {
@@ -415,6 +415,84 @@ func (s *walletTestSuite) TestAssetDetailV2() {
 	s.Equal("Please don't deposit any other assets except RUB", resp.AssetDetail.DepositTip)
 }
 
+func (s *walletTestSuite) TestWalletBalance() {
+	data := []byte(`[
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "Spot"
+		}, 
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "Funding"
+		}, 
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "Cross Margin"
+		}, 
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "Isolated Margin"
+		}, 
+		{
+			"activate": true,
+			"balance": "0.71842752",
+			"walletName": "USDⓈ-M Futures"
+		}, 
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "COIN-M Futures"
+		}, 
+		{
+			"activate": true,
+			"balance": "0",
+			"walletName": "Earn"
+		}, 
+		{
+			"activate": false,
+			"balance": "0",
+			"walletName": "Options"
+		}
+	]
+	`)
+
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewWalletBalanceService().Do(context.Background())
+
+	s.r().NoError(err)
+	s.Len(resp, 8)
+	s.Equal(true, resp[0].Activate)
+	s.Equal("0", resp[0].Balance)
+	s.Equal("Spot", resp[0].WalletName)
+	s.Equal(true, resp[1].Activate)
+	s.Equal("0", resp[1].Balance)
+	s.Equal("Funding", resp[1].WalletName)
+	s.Equal(true, resp[2].Activate)
+	s.Equal("0", resp[2].Balance)
+	s.Equal("Cross Margin", resp[2].WalletName)
+	s.Equal(true, resp[3].Activate)
+	s.Equal("0", resp[3].Balance)
+	s.Equal("Isolated Margin", resp[3].WalletName)
+	s.Equal(true, resp[4].Activate)
+	s.Equal("0.71842752", resp[4].Balance)
+	s.Equal("USDⓈ-M Futures", resp[4].WalletName)
+	s.Equal(true, resp[5].Activate)
+	s.Equal("0", resp[5].Balance)
+	s.Equal("COIN-M Futures", resp[5].WalletName)
+	s.Equal(true, resp[6].Activate)
+	s.Equal("0", resp[6].Balance)
+	s.Equal("Earn", resp[6].WalletName)
+	s.Equal(false, resp[7].Activate)
+	s.Equal("0", resp[7].Balance)
+	s.Equal("Options", resp[7].WalletName)
+}
+
 func (s *walletTestSuite) TestAssetDividendRecord() {
 	data := []byte(`
 	{
@@ -451,44 +529,6 @@ func (s *walletTestSuite) TestAssetDividendRecord() {
 	s.Equal("BTC distribution", resp.Rows[0].EnInfo)
 	s.Equal(int64(456), resp.Rows[0].TranId)
 	s.Equal(int64(1), resp.Total)
-}
-
-func (s *walletTestSuite) TestAutoConvertStableCoin() {
-	data := []byte(`
-	{
-		"convertEnabled": true,
-		"coins": [
-			{
-				"coin": "BUSD"
-			},
-			{
-				"coin": "USDT"
-			}
-		],
-		"exchangeRates": [
-			{
-				"coin": "BUSD"
-			},
-			{
-				"coin": "USDT"
-			}
-		]
-	}
-	`)
-
-	s.mockDo(data, nil)
-	defer s.assertDo()
-
-	resp, err := s.client.NewAutoConvertStableCoinService().Do(context.Background())
-
-	s.r().NoError(err)
-	s.True(resp.ConvertEnabled)
-	s.Len(resp.Coins, 2)
-	s.Equal("BUSD", resp.Coins[0].Asset)
-	s.Equal("USDT", resp.Coins[1].Asset)
-	s.Len(resp.ExchangeRates, 2)
-	s.Equal("BUSD", resp.ExchangeRates[0].Asset)
-	s.Equal("USDT", resp.ExchangeRates[1].Asset)
 }
 
 func (s *walletTestSuite) TestBUSDConvertHistory() {
@@ -570,6 +610,64 @@ func (s *walletTestSuite) TestCloudMiningPaymentHistory() {
 	s.Equal("1.00000000", resp.Rows[0].Amount)
 	s.Equal("CONFIRMED", resp.Rows[0].Status)
 	s.Equal(int32(1), resp.Total)
+}
+
+func (s *walletTestSuite) TestUserDelegationHistory() {
+	data := []byte(`
+	{
+		"total": 3316,
+		"rows": [
+			{
+				"clientTranId": "293915932290879488",
+				"transferType": "Undelegate",
+				"asset": "ETH",
+				"amount": "1",
+				"time": 1695205406000
+			}
+		]
+	}
+	`)
+
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewUserDelegationHistoryService().
+		Email("email@email.com").
+		StartTime(1695200406000).
+		EndTime(1695210406000).
+		Do(context.Background())
+
+	s.r().NoError(err)
+	s.Len(resp.Rows, 1)
+	s.Equal("293915932290879488", resp.Rows[0].ClientTranId)
+	s.Equal("Undelegate", resp.Rows[0].TransferType)
+	s.Equal("ETH", resp.Rows[0].Asset)
+	s.Equal("1", resp.Rows[0].Amount)
+	s.Equal(uint64(1695205406000), resp.Rows[0].Time)
+	s.Equal(int32(3316), resp.Total)
+}
+
+func (s *walletTestSuite) TestAccountInfo() {
+	data := []byte(`
+	{
+		"vipLevel": 0,
+		"isMarginEnabled": true,
+		"isFutureEnabled": true,
+		"isOptionsEnabled":true,
+		"isPortfolioMarginRetailEnabled":true
+	}
+	`)
+
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewAccountInfoService().Do(context.Background())
+	s.r().NoError(err)
+	s.Equal(0, resp.VipLevel)
+	s.True(resp.IsMarginEnabled)
+	s.True(resp.IsFutureEnabled)
+	s.True(resp.IsOptionsEnabled)
+	s.True(resp.IsPortfolioMarginRetailEnabled)
 }
 
 func (s *walletTestSuite) TestDepositHistory() {
@@ -790,7 +888,6 @@ func (s *walletTestSuite) TestGetAllCoinsInfoService() {
 					"minConfirm": 1,
 					"name": "BEP2",
 					"network": "BNB",
-					"resetAddressStatus": false,
 					"specialTips": "",
 					"unLockConfirm": 0,
 					"withdrawDesc": "Withdrawal to address",
@@ -801,7 +898,9 @@ func (s *walletTestSuite) TestGetAllCoinsInfoService() {
 					"withdrawMin": "0.00200000",
 					"sameAddress": false,
 					"estimatedArrivalTime": 0,
-					"busy": false
+					"busy": false,
+					"contractAddressUrl": "",
+					"contractAddress": ""
 				}
 			],
 			"storage": "0.00000000",
@@ -838,7 +937,6 @@ func (s *walletTestSuite) TestGetAllCoinsInfoService() {
 	s.Equal(1, resp[0].NetworkList[0].MinConfirm)
 	s.Equal("BEP2", resp[0].NetworkList[0].Name)
 	s.Equal("BNB", resp[0].NetworkList[0].Network)
-	s.False(resp[0].NetworkList[0].ResetAddressStatus)
 	s.Equal("", resp[0].NetworkList[0].SpecialTips)
 	s.Equal(0, resp[0].NetworkList[0].UnLockConfirm)
 	s.Equal("Withdrawal to address", resp[0].NetworkList[0].WithdrawDesc)
@@ -850,18 +948,52 @@ func (s *walletTestSuite) TestGetAllCoinsInfoService() {
 	s.False(resp[0].NetworkList[0].SameAddress)
 	s.Equal(uint64(0), resp[0].NetworkList[0].EstimatedArrivalTime)
 	s.False(resp[0].NetworkList[0].Busy)
+	s.Equal("", resp[0].NetworkList[0].ContractAddressUrl)
+	s.Equal("", resp[0].NetworkList[0].ContractAddress)
 	s.Equal("0.00000000", resp[0].Storage)
 	s.True(resp[0].Trading)
 	s.True(resp[0].WithdrawAllEnable)
 	s.Equal("0.00000000", resp[0].Withdrawing)
 }
 
+func (s *walletTestSuite) TestGetSymbolsDelistSchedule() {
+	data := []byte(`[
+		{
+			"delistTime": 1686161202000,
+			"symbols": [
+				"ADAUSDT",
+				"BNBUSDT"
+			]
+		},
+		{
+			"delistTime": 1686222232000,
+			"symbols": [
+				"ETHUSDT"
+			]
+		}
+	]
+  `)
+
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewGetSymbolsDelistScheduleService().Do(context.Background())
+
+	s.r().NoError(err)
+	s.Len(resp, 2)
+	s.Equal(uint64(1686161202000), resp[0].DelistTime)
+	s.Equal("ADAUSDT", resp[0].Symbols[0])
+	s.Equal("BNBUSDT", resp[0].Symbols[1])
+	s.Equal(uint64(1686222232000), resp[1].DelistTime)
+	s.Equal("ETHUSDT", resp[1].Symbols[0])
+}
+
 func (s *walletTestSuite) TestGetSystemStatus() {
 	data := []byte(`
-		{
-			"status": 0,
-			"msg": "normal"
-		}
+	{
+		"status": 0,
+		"msg": "normal"
+	}
 	`)
 
 	s.mockDo(data, nil)

@@ -406,9 +406,11 @@ func (s *QuerySubAccountAssetsService) Do(ctx context.Context, opts ...RequestOp
 
 type QuerySubAccountAssetsResp struct {
 	Balances []struct {
-		Asset  string `json:"asset"`
-		Free   string `json:"free"`
-		Locked string `json:"locked"`
+		Freeze      string `json:"freeze"`
+		Withdrawing string `json:"withdrawing"`
+		Asset       string `json:"asset"`
+		Free        string `json:"free"`
+		Locked      string `json:"locked"`
 	} `json:"balances"`
 }
 
@@ -2584,9 +2586,11 @@ func (s *QuerySubAccountAssetsForMasterAccountService) Do(ctx context.Context, o
 
 type QuerySubAccountAssetsForMasterAccountResp struct {
 	Balances []struct {
-		Asset  string `json:"asset"`
-		Free   string `json:"free"`
-		Locked string `json:"locked"`
+		Freeze      string `json:"freeze"`
+		Withdrawing string `json:"withdrawing"`
+		Asset       string `json:"asset"`
+		Free        string `json:"free"`
+		Locked      string `json:"locked"`
 	} `json:"balances"`
 }
 

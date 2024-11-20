@@ -396,7 +396,7 @@ type CreateOrderResponseRESULT struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cummulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`
@@ -423,7 +423,7 @@ type CreateOrderResponseFULL struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cummulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`
@@ -569,7 +569,7 @@ type CancelOrderResponse struct {
 	Price               string `json:"price"`
 	OrigQty             string `json:"origQty"`
 	ExecutedQty         string `json:"executedQty"`
-	CumulativeQuoteQty  string `json:"cumulativeQuoteQty"`
+	CummulativeQuoteQty string `json:"cummulativeQuoteQty"`
 	Status              string `json:"status"`
 	TimeInForce         string `json:"timeInForce"`
 	Type                string `json:"type"`
@@ -651,7 +651,7 @@ type GetOrderResponse struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cumulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`
@@ -904,7 +904,7 @@ type CancelReplaceResponse struct {
 		Price                   string `json:"price,omitempty"`
 		OrigQty                 string `json:"origQty,omitempty"`
 		ExecutedQty             string `json:"executedQty,omitempty"`
-		CumulativeQuoteQty      string `json:"cumulativeQuoteQty,omitempty"`
+		CummulativeQuoteQty     string `json:"cummulativeQuoteQty,omitempty"`
 		Status                  string `json:"status,omitempty"`
 		TimeInForce             string `json:"timeInForce,omitempty"`
 		Type                    string `json:"type,omitempty"`
@@ -912,23 +912,29 @@ type CancelReplaceResponse struct {
 		SelfTradePreventionMode string `json:"selfTradePreventionMode,omitempty"`
 	} `json:"cancelResponse,omitempty"`
 	NewOrderResponse *struct {
-		Code                    int64    `json:"code,omitempty"`
-		Msg                     string   `json:"msg,omitempty"`
-		Symbol                  string   `json:"symbol,omitempty"`
-		OrderId                 int64    `json:"orderId,omitempty"`
-		OrderListId             int64    `json:"orderListId,omitempty"`
-		ClientOrderId           string   `json:"clientOrderId,omitempty"`
-		TransactTime            uint64   `json:"transactTime,omitempty"`
-		Price                   string   `json:"price,omitempty"`
-		OrigQty                 string   `json:"origQty,omitempty"`
-		ExecutedQty             string   `json:"executedQty,omitempty"`
-		CumulativeQuoteQty      string   `json:"cumulativeQuoteQty,omitempty"`
-		Status                  string   `json:"status,omitempty"`
-		TimeInForce             string   `json:"timeInForce,omitempty"`
-		Type                    string   `json:"type,omitempty"`
-		Side                    string   `json:"side,omitempty"`
-		Fills                   []string `json:"fills,omitempty"`
-		SelfTradePreventionMode string   `json:"selfTradePreventionMode,omitempty"`
+		Code                int64  `json:"code,omitempty"`
+		Msg                 string `json:"msg,omitempty"`
+		Symbol              string `json:"symbol,omitempty"`
+		OrderId             int64  `json:"orderId,omitempty"`
+		OrderListId         int64  `json:"orderListId,omitempty"`
+		ClientOrderId       string `json:"clientOrderId,omitempty"`
+		TransactTime        uint64 `json:"transactTime,omitempty"`
+		Price               string `json:"price,omitempty"`
+		OrigQty             string `json:"origQty,omitempty"`
+		ExecutedQty         string `json:"executedQty,omitempty"`
+		CummulativeQuoteQty string `json:"cummulativeQuoteQty,omitempty"`
+		Status              string `json:"status,omitempty"`
+		TimeInForce         string `json:"timeInForce,omitempty"`
+		Type                string `json:"type,omitempty"`
+		Side                string `json:"side,omitempty"`
+		Fills               []struct {
+			Price           string `json:"price"`
+			Qty             string `json:"qty"`
+			Commission      string `json:"commission"`
+			CommissionAsset string `json:"commissionAsset"`
+			TradeId         int64  `json:"tradeId"`
+		} `json:"fills,omitempty"`
+		SelfTradePreventionMode string `json:"selfTradePreventionMode,omitempty"`
 	} `json:"newOrderResponse,omitempty"`
 	Data *struct {
 		CancelResult   string `json:"cancelResult,omitempty"`
@@ -944,7 +950,7 @@ type CancelReplaceResponse struct {
 			Price                   string `json:"price,omitempty"`
 			OrigQty                 string `json:"origQty,omitempty"`
 			ExecutedQty             string `json:"executedQty,omitempty"`
-			CumulativeQuoteQty      string `json:"cumulativeQuoteQty,omitempty"`
+			CummulativeQuoteQty     string `json:"cummulativeQuoteQty,omitempty"`
 			Status                  string `json:"status,omitempty"`
 			TimeInForce             string `json:"timeInForce,omitempty"`
 			Type                    string `json:"type,omitempty"`
@@ -962,7 +968,7 @@ type CancelReplaceResponse struct {
 			Price                   string   `json:"price,omitempty"`
 			OrigQty                 string   `json:"origQty,omitempty"`
 			ExecutedQty             string   `json:"executedQty,omitempty"`
-			CumulativeQuoteQty      string   `json:"cumulativeQuoteQty,omitempty"`
+			CummulativeQuoteQty     string   `json:"cummulativeQuoteQty,omitempty"`
 			Status                  string   `json:"status,omitempty"`
 			TimeInForce             string   `json:"timeInForce,omitempty"`
 			Type                    string   `json:"type,omitempty"`
@@ -1017,7 +1023,7 @@ type NewOpenOrdersResponse struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cumulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`
@@ -1124,7 +1130,7 @@ type NewAllOrdersResponse struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cumulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`
