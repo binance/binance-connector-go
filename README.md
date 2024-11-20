@@ -4,6 +4,7 @@ This is a lightweight library that works as a connector to [Binance public API](
 
 ## Supported API Endpoints:
 - Account/Trade: `account.go`
+- C2C: `c2c.go`
 - Wallet: `wallet.go`
 - Margin Account/Trade: `margin.go`
 - Market Data: `market.go`
