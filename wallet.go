@@ -16,7 +16,7 @@ type GetSystemStatusService struct {
 	c *Client
 }
 
-func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) (res []*SystemStatusResponse, err error) {
+func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) (res *SystemStatusResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: systemStatusEndpoint,
@@ -26,7 +26,7 @@ func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) 
 	if err != nil {
 		return nil, err
 	}
-	res = make([]*SystemStatusResponse, 0)
+	res = new(SystemStatusResponse)
 	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
@@ -36,8 +36,42 @@ func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) 
 
 // SystemStatusResponse define response of GetSystemStatusService
 type SystemStatusResponse struct {
-	Status bool   `json:"status"`
+	Status int    `json:"status"`
 	Msg    string `json:"msg"`
+}
+
+// Get symbols delist schedule for spot (MARKET_DATA)
+const (
+	symbolsDelistScheduleEndpoint = "/sapi/v1/spot/delist-schedule"
+)
+
+// GetSymbolsDelistScheduleService get symbols delist schedule
+type GetSymbolsDelistScheduleService struct {
+	c *Client
+}
+
+func (s *GetSymbolsDelistScheduleService) Do(ctx context.Context) (res []*SymbolsDelistScheduleResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: symbolsDelistScheduleEndpoint,
+		secType:  secTypeNone,
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = make([]*SymbolsDelistScheduleResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// SymbolsDelistScheduleResponse define response of GetSymbolsDelistScheduleService
+type SymbolsDelistScheduleResponse struct {
+	DelistTime uint64   `json:"delistTime"`
+	Symbols    []string `json:"symbols"`
 }
 
 // All Coins' Information (USER_DATA)
@@ -89,7 +123,6 @@ type CoinInfo struct {
 		MinConfirm              int    `json:"minConfirm"`
 		Name                    string `json:"name"`
 		Network                 string `json:"network"`
-		ResetAddressStatus      bool   `json:"resetAddressStatus"`
 		SpecialTips             string `json:"specialTips"`
 		UnLockConfirm           int    `json:"unLockConfirm"`
 		WithdrawDesc            string `json:"withdrawDesc"`
@@ -101,6 +134,8 @@ type CoinInfo struct {
 		SameAddress             bool   `json:"sameAddress"`
 		EstimatedArrivalTime    uint64 `json:"estimatedArrivalTime"`
 		Busy                    bool   `json:"busy"`
+		ContractAddressUrl      string `json:"contractAddressUrl"`
+		ContractAddress         string `json:"contractAddress"`
 	} `json:"networkList"`
 	Storage           string `json:"storage"`
 	Trading           bool   `json:"trading"`
@@ -617,6 +652,7 @@ type DepositAddressService struct {
 	c       *Client
 	coin    string
 	network *string
+	amount  *float64
 }
 
 // Coin set coin
@@ -631,6 +667,12 @@ func (s *DepositAddressService) Network(network string) *DepositAddressService {
 	return s
 }
 
+// Amount set amount
+func (s *DepositAddressService) Amount(amount float64) *DepositAddressService {
+	s.amount = &amount
+	return s
+}
+
 func (s *DepositAddressService) Do(ctx context.Context) (res *DepositAddressResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
@@ -640,6 +682,9 @@ func (s *DepositAddressService) Do(ctx context.Context) (res *DepositAddressResp
 	r.setParam("coin", s.coin)
 	if s.network != nil {
 		r.setParam("network", *s.network)
+	}
+	if s.amount != nil {
+		r.setParam("amount", s.amount)
 	}
 	data, err := s.c.callAPI(ctx, r)
 	if err != nil {
@@ -659,6 +704,60 @@ type DepositAddressResponse struct {
 	Coin    string `json:"coin"`
 	Tag     string `json:"tag"`
 	Url     string `json:"url"`
+}
+
+// Fetch deposit address list with network (USER_DATA)
+const (
+	depositAddressListEndpoint = "/sapi/v1/capital/deposit/address/list"
+)
+
+// DepositAddressListService deposit address list
+type DepositAddressListService struct {
+	c       *Client
+	coin    string
+	network *string
+}
+
+// Coin set coin
+func (s *DepositAddressListService) Coin(coin string) *DepositAddressListService {
+	s.coin = coin
+	return s
+}
+
+// Network set network
+func (s *DepositAddressListService) Network(network string) *DepositAddressListService {
+	s.network = &network
+	return s
+}
+
+func (s *DepositAddressListService) Do(ctx context.Context) (res []*DepositAddressListResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: depositAddressListEndpoint,
+		secType:  secTypeSigned,
+	}
+	r.setParam("coin", s.coin)
+	if s.network != nil {
+		r.setParam("network", *s.network)
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = make([]*DepositAddressListResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// DepositAddressListResponse define response of DepositAddressListService
+type DepositAddressListResponse struct {
+	Coin      string `json:"coin"`
+	Address   string `json:"address"`
+	Tag       string `json:"tag"`
+	IsDefault int32  `json:"isDefault"`
 }
 
 // Account Status (USER_DATA)
@@ -810,7 +909,14 @@ const (
 
 // AssetDetailService asset detail
 type AssetDetailService struct {
-	c *Client
+	c           *Client
+	accountType *string
+}
+
+// AccountType set accountType
+func (s *AssetDetailService) AccountType(accountType string) *AssetDetailService {
+	s.accountType = &accountType
+	return s
 }
 
 func (s *AssetDetailService) Do(ctx context.Context) (res *AssetDetailResponse, err error) {
@@ -818,6 +924,9 @@ func (s *AssetDetailService) Do(ctx context.Context) (res *AssetDetailResponse, 
 		method:   http.MethodPost,
 		endpoint: assetDetailEndpoint,
 		secType:  secTypeSigned,
+	}
+	if s.accountType != nil {
+		r.setParam("accountType", *s.accountType)
 	}
 	data, err := s.c.callAPI(ctx, r)
 	if err != nil {
@@ -1019,6 +1128,41 @@ func (s *AssetDetailV2Service) Do(ctx context.Context) (res *AssetDetailV2Respon
 		return nil, err
 	}
 	return res, nil
+}
+
+// Query User Wallet Balance
+const (
+	walletBalanceEndpoint = "/sapi/v1/asset/wallet/balance"
+)
+
+// WalletBalanceService gets the user wallet balance.
+type WalletBalanceService struct {
+	c *Client
+}
+
+func (s *WalletBalanceService) Do(ctx context.Context) (res []*WalletBalanceResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: walletBalanceEndpoint,
+		secType:  secTypeSigned,
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = make([]*WalletBalanceResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// WalletBalanceResponse defines the response of WalletBalanceService
+type WalletBalanceResponse struct {
+	Activate   bool   `json:"activate"`
+	Balance    string `json:"balance"`
+	WalletName string `json:"walletName"`
 }
 
 // AssetDetailV2Response define response of AssetDetailV2Service
@@ -1380,82 +1524,6 @@ type UserAssetResponse struct {
 	BtcValuation string `json:"btcValuation"`
 }
 
-// BUSD Convert (TRADE)
-const (
-	bUSDConvertEndpoint = "/sapi/v1/asset/convert-transfer"
-)
-
-// BUSDConvertService BUSD convert
-type BUSDConvertService struct {
-	c            *Client
-	clientTranId string
-	asset        string
-	amount       float64
-	targetAsset  string
-	accountType  *string
-}
-
-// ClientTranId set clientTranId
-func (s *BUSDConvertService) ClientTranId(clientTranId string) *BUSDConvertService {
-	s.clientTranId = clientTranId
-	return s
-}
-
-// Asset set asset
-func (s *BUSDConvertService) Asset(asset string) *BUSDConvertService {
-	s.asset = asset
-	return s
-}
-
-// Amount set amount
-func (s *BUSDConvertService) Amount(amount float64) *BUSDConvertService {
-	s.amount = amount
-	return s
-}
-
-// TargetAsset set targetAsset
-func (s *BUSDConvertService) TargetAsset(targetAsset string) *BUSDConvertService {
-	s.targetAsset = targetAsset
-	return s
-}
-
-// AccountType set accountType
-func (s *BUSDConvertService) AccountType(accountType string) *BUSDConvertService {
-	s.accountType = &accountType
-	return s
-}
-
-func (s *BUSDConvertService) Do(ctx context.Context) (res *BUSDConvertResponse, err error) {
-	r := &request{
-		method:   http.MethodPost,
-		endpoint: bUSDConvertEndpoint,
-		secType:  secTypeSigned,
-	}
-	r.setParam("clientTranId", s.clientTranId)
-	r.setParam("asset", s.asset)
-	r.setParam("amount", s.amount)
-	r.setParam("targetAsset", s.targetAsset)
-	if s.accountType != nil {
-		r.setParam("accountType", *s.accountType)
-	}
-	data, err := s.c.callAPI(ctx, r)
-	if err != nil {
-		return nil, err
-	}
-	res = new(BUSDConvertResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
-}
-
-// BUSDConvertResponse define response of BUSDConvertService
-type BUSDConvertResponse struct {
-	TranId int64  `json:"tranId"`
-	Status string `json:"status"`
-}
-
 // BUSD Convert History (USER_DATA)
 const (
 	bUSDConvertHistoryEndpoint = "/sapi/v1/asset/convert-transfer/queryByPage"
@@ -1683,6 +1751,147 @@ type CloudMiningPaymentHistoryResponse struct {
 	} `json:"rows"`
 }
 
+// Query User Delegation History(For Master Account)
+const (
+	UserDelegationHistoryEndpoint = "/sapi/v1/asset/custody/transfer-history"
+)
+
+// UserDelegationHistoryService cloud mining refund history
+type UserDelegationHistoryService struct {
+	c              *Client
+	email          string
+	startTime      uint64
+	endTime        uint64
+	delegationType *string
+	asset          *string
+	current        *int
+	size           *int
+}
+
+// Tranid set tranid
+func (s *UserDelegationHistoryService) Email(email string) *UserDelegationHistoryService {
+	s.email = email
+	return s
+}
+
+// StartTime set startTime
+func (s *UserDelegationHistoryService) StartTime(startTime uint64) *UserDelegationHistoryService {
+	s.startTime = startTime
+	return s
+}
+
+// EndTime set endTime
+func (s *UserDelegationHistoryService) EndTime(endTime uint64) *UserDelegationHistoryService {
+	s.endTime = endTime
+	return s
+}
+
+// ClientTranId set clientTranId
+func (s *UserDelegationHistoryService) DelegationType(delegationType string) *UserDelegationHistoryService {
+	s.delegationType = &delegationType
+	return s
+}
+
+// Asset set asset
+func (s *UserDelegationHistoryService) Asset(asset string) *UserDelegationHistoryService {
+	s.asset = &asset
+	return s
+}
+
+// Current set current
+func (s *UserDelegationHistoryService) Current(current int) *UserDelegationHistoryService {
+	s.current = &current
+	return s
+}
+
+// Size set size
+func (s *UserDelegationHistoryService) Size(size int) *UserDelegationHistoryService {
+	s.size = &size
+	return s
+}
+
+func (s *UserDelegationHistoryService) Do(ctx context.Context) (res *UserDelegationHistoryResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: UserDelegationHistoryEndpoint,
+		secType:  secTypeSigned,
+	}
+	r.setParam("email", s.email)
+	r.setParam("startTime", s.startTime)
+	r.setParam("endTime", s.endTime)
+	if s.delegationType != nil {
+		r.setParam("clientTranId", *s.delegationType)
+	}
+	if s.asset != nil {
+		r.setParam("asset", *s.asset)
+	}
+	if s.current != nil {
+		r.setParam("current", *s.current)
+	}
+	if s.size != nil {
+		r.setParam("size", *s.size)
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = new(UserDelegationHistoryResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// UserDelegationHistoryResponse define response of UserDelegationHistoryService
+type UserDelegationHistoryResponse struct {
+	Total int32 `json:"total"`
+	Rows  []struct {
+		ClientTranId string `json:"clientTranId"`
+		TransferType string `json:"transferType"`
+		Asset        string `json:"asset"`
+		Amount       string `json:"amount"`
+		Time         uint64 `json:"time"`
+	} `json:"rows"`
+}
+
+// Account info (USER_DATA)
+const (
+	accountInfoEndpoint = "/sapi/v1/account/info"
+)
+
+// AccountInfoService account info
+type AccountInfoService struct {
+	c *Client
+}
+
+func (s *AccountInfoService) Do(ctx context.Context) (res *AccountInfoResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: accountInfoEndpoint,
+		secType:  secTypeSigned,
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = new(AccountInfoResponse)
+	err = json.Unmarshal(data, res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// AccountInfoResponse define response of AccountInfoService
+type AccountInfoResponse struct {
+	VipLevel                       int  `json:"vipLevel"`
+	IsMarginEnabled                bool `json:"isMarginEnabled"`
+	IsFutureEnabled                bool `json:"isFutureEnabled"`
+	IsOptionsEnabled               bool `json:"isOptionsEnabled"`
+	IsPortfolioMarginRetailEnabled bool `json:"isPortfolioMarginRetailEnabled"`
+}
+
 // Get API Key Permission (USER_DATA)
 const (
 	apiKeyPermissionEndpoint = "/sapi/v1/account/apiRestrictions"
@@ -1713,54 +1922,17 @@ func (s *APIKeyPermissionService) Do(ctx context.Context) (res *APIKeyPermission
 
 // APIKeyPermissionResponse define response of APIKeyPermissionService
 type APIKeyPermissionResponse struct {
-	IPRestrict                     bool   `json:"ipRestrict"`
-	CreateTime                     uint64 `json:"createTime"`
-	EnableWithdrawals              bool   `json:"enableWithdrawals"`
-	EnableInternalTransfer         bool   `json:"enableInternalTransfer"`
-	PermitsUniversalTransfer       bool   `json:"permitsUniversalTransfer"`
-	EnableVanillaOptions           bool   `json:"enableVanillaOptions"`
-	EnableReading                  bool   `json:"enableReading"`
-	EnableFutures                  bool   `json:"enableFutures"`
-	EnableMargin                   bool   `json:"enableMargin"`
-	EnableSpotAndMarginTrading     bool   `json:"enableSpotAndMarginTrading"`
-	TradingAuthorityExpirationTime uint64 `json:"tradingAuthorityExpirationTime"`
-}
-
-// Query auto-converting stable coins (USER_DATA)
-const (
-	autoConvertStableCoinEndpoint = "/sapi/v1/capital/contract/convertible-coins"
-)
-
-// AutoConvertStableCoinService auto convert stable coin
-type AutoConvertStableCoinService struct {
-	c *Client
-}
-
-func (s *AutoConvertStableCoinService) Do(ctx context.Context) (res *AutoConvertStableCoinResponse, err error) {
-	r := &request{
-		method:   http.MethodGet,
-		endpoint: autoConvertStableCoinEndpoint,
-		secType:  secTypeSigned,
-	}
-	data, err := s.c.callAPI(ctx, r)
-	if err != nil {
-		return nil, err
-	}
-	res = new(AutoConvertStableCoinResponse)
-	err = json.Unmarshal(data, res)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
-}
-
-// AutoConvertStableCoinResponse define response of AutoConvertStableCoinService
-type AutoConvertStableCoinResponse struct {
-	ConvertEnabled bool `json:"convertEnabled"`
-	Coins          []struct {
-		Asset string `json:"coin"`
-	} `json:"coins"`
-	ExchangeRates []struct {
-		Asset string `json:"coin"`
-	} `json:"exchangeRates"`
+	IPRestrict                   bool   `json:"ipRestrict"`
+	CreateTime                   uint64 `json:"createTime"`
+	EnableReading                bool   `json:"enableReading"`
+	EnableWithdrawals            bool   `json:"enableWithdrawals"`
+	EnableInternalTransfer       bool   `json:"enableInternalTransfer"`
+	EnableMargin                 bool   `json:"enableMargin"`
+	EnableFutures                bool   `json:"enableFutures"`
+	PermitsUniversalTransfer     bool   `json:"permitsUniversalTransfer"`
+	EnableVanillaOptions         bool   `json:"enableVanillaOptions"`
+	EnableFixApiTrade            bool   `json:"enableFixApiTrade"`
+	EnableFixReadOnly            bool   `json:"enableFixReadOnly"`
+	EnableSpotAndMarginTrading   bool   `json:"enableSpotAndMarginTrading"`
+	EnablePortfolioMarginTrading bool   `json:"enablePortfolioMarginTrading"`
 }

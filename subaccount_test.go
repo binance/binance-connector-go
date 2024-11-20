@@ -1138,11 +1138,15 @@ func (s *subAccountTestSuite) TestQuerySubAccountAssets() {
 	{
 		"balances": [
 			{
+				"freeze":"0",
+				"withdrawing":"0",
 				"asset": "BTC",
 				"free": "0.1",
 				"locked": "0.2"
 			},
 			{
+				"freeze":"0",
+				"withdrawing":"0",
 				"asset": "ETH",
 				"free": "1.0",
 				"locked": "2.0"
@@ -1151,19 +1155,25 @@ func (s *subAccountTestSuite) TestQuerySubAccountAssets() {
 	}`)
 
 	expectedBalances := []struct {
-		Asset  string
-		Free   string
-		Locked string
+		Freeze      string `json:"freeze"`
+		Withdrawing string `json:"withdrawing"`
+		Asset       string `json:"asset"`
+		Free        string `json:"free"`
+		Locked      string `json:"locked"`
 	}{
 		{
-			Asset:  "BTC",
-			Free:   "0.1",
-			Locked: "0.2",
+			Freeze:      "0",
+			Withdrawing: "0",
+			Asset:       "BTC",
+			Free:        "0.1",
+			Locked:      "0.2",
 		},
 		{
-			Asset:  "ETH",
-			Free:   "1.0",
-			Locked: "2.0",
+			Freeze:      "0",
+			Withdrawing: "0",
+			Asset:       "ETH",
+			Free:        "1.0",
+			Locked:      "2.0",
 		},
 	}
 
@@ -1188,11 +1198,15 @@ func (s *subAccountTestSuite) TestQuerySubAccountAssetsForMasterAccount() {
 	{
 		"balances": [
 			{
+				"freeze":"0",
+				"withdrawing":"0",
 				"asset": "BTC",
 				"free": "0.005",
 				"locked": "0.005"
 			},
 			{
+				"freeze":"0",
+				"withdrawing":"0",
 				"asset": "ETH",
 				"free": "0.01",
 				"locked": "0.01"
@@ -1203,19 +1217,25 @@ func (s *subAccountTestSuite) TestQuerySubAccountAssetsForMasterAccount() {
 
 	expectedResp := &QuerySubAccountAssetsForMasterAccountResp{
 		Balances: []struct {
-			Asset  string `json:"asset"`
-			Free   string `json:"free"`
-			Locked string `json:"locked"`
+			Freeze      string `json:"freeze"`
+			Withdrawing string `json:"withdrawing"`
+			Asset       string `json:"asset"`
+			Free        string `json:"free"`
+			Locked      string `json:"locked"`
 		}{
 			{
-				Asset:  "BTC",
-				Free:   "0.005",
-				Locked: "0.005",
+				Freeze:      "0",
+				Withdrawing: "0",
+				Asset:       "BTC",
+				Free:        "0.005",
+				Locked:      "0.005",
 			},
 			{
-				Asset:  "ETH",
-				Free:   "0.01",
-				Locked: "0.01",
+				Freeze:      "0",
+				Withdrawing: "0",
+				Asset:       "ETH",
+				Free:        "0.01",
+				Locked:      "0.01",
 			},
 		},
 	}

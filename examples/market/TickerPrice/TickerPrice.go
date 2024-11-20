@@ -17,8 +17,7 @@ func TickerPrice() {
 	client := binance_connector.NewClient("", "", baseURL)
 
 	// TickerPrice
-	tickerPrice, err := client.NewTickerPriceService().
-		Symbol("BTCUSDT").Do(context.Background())
+	tickerPrice, err := client.NewTickerPriceService().Do(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		return

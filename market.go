@@ -57,7 +57,42 @@ type ServerTimeResponse struct {
 
 // Binance Exchange Information endpoint (GET /api/v3/exchangeInfo)
 type ExchangeInfo struct {
-	c *Client
+	c                  *Client
+	symbol             *string
+	symbols            *[]string
+	permissions        *string
+	showPermissionSets *bool
+	symbolStatus       *string
+}
+
+// Symbol set symbol
+func (s *ExchangeInfo) Symbol(symbol string) *ExchangeInfo {
+	s.symbol = &symbol
+	return s
+}
+
+// Symbols set symbols
+func (s *ExchangeInfo) Symbols(symbols []string) *ExchangeInfo {
+	s.symbols = &symbols
+	return s
+}
+
+// Permissions set permissions
+func (s *ExchangeInfo) Permissions(permissions string) *ExchangeInfo {
+	s.permissions = &permissions
+	return s
+}
+
+// ShowPermissionSets set showPermissionSets
+func (s *ExchangeInfo) ShowPermissionSets(showPermissionSets bool) *ExchangeInfo {
+	s.showPermissionSets = &showPermissionSets
+	return s
+}
+
+// SymbolStatus set symbolStatus
+func (s *ExchangeInfo) SymbolStatus(symbolStatus string) *ExchangeInfo {
+	s.symbolStatus = &symbolStatus
+	return s
 }
 
 // Send the request
@@ -66,6 +101,21 @@ func (s *ExchangeInfo) Do(ctx context.Context, opts ...RequestOption) (res *Exch
 		method:   http.MethodGet,
 		endpoint: "/api/v3/exchangeInfo",
 		secType:  secTypeNone,
+	}
+	if s.symbol != nil {
+		r.setParam("symbol", *s.symbol)
+	}
+	if s.symbols != nil {
+		r.setParam("symbols", *s.symbols)
+	}
+	if s.permissions != nil {
+		r.setParam("permissions", *s.permissions)
+	}
+	if s.showPermissionSets != nil {
+		r.setParam("showPermissionSets", *s.showPermissionSets)
+	}
+	if s.symbolStatus != nil {
+		r.setParam("symbolStatus", *s.symbolStatus)
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
@@ -110,9 +160,12 @@ type SymbolInfo struct {
 	QuoteAsset                      string          `json:"quoteAsset"`
 	QuotePrecision                  int64           `json:"quotePrecision"`
 	QuoteAssetPrecision             int64           `json:"quoteAssetPrecision"`
+	BaseCommissionPrecision         int64           `json:"baseCommissionPrecision"`
+	QuoteCommissionPrecision        int64           `json:"quoteCommissionPrecision"`
 	OrderTypes                      []string        `json:"orderTypes"`
 	IcebergAllowed                  bool            `json:"icebergAllowed"`
 	OcoAllowed                      bool            `json:"ocoAllowed"`
+	OtoAllowed                      bool            `json:"otoAllowed"`
 	QuoteOrderQtyMarketAllowed      bool            `json:"quoteOrderQtyMarketAllowed"`
 	AllowTrailingStop               bool            `json:"allowTrailingStop"`
 	CancelReplaceAllowed            bool            `json:"cancelReplaceAllowed"`
@@ -762,7 +815,7 @@ func (s *TickerPrice) Symbols(symbols []string) *TickerPrice {
 }
 
 // Send the request
-func (s *TickerPrice) Do(ctx context.Context, opts ...RequestOption) (res *TickerPriceResponse, err error) {
+func (s *TickerPrice) Do(ctx context.Context, opts ...RequestOption) (res []*TickerPriceResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: "/api/v3/ticker/price",
@@ -778,10 +831,26 @@ func (s *TickerPrice) Do(ctx context.Context, opts ...RequestOption) (res *Ticke
 	if err != nil {
 		return nil, err
 	}
-	res = new(TickerPriceResponse)
-	err = json.Unmarshal(data, res)
+	var raw json.RawMessage
+	err = json.Unmarshal(data, &raw)
 	if err != nil {
-		return nil, err
+		return []*TickerPriceResponse{}, err
+	}
+
+	if raw[0] == '[' {
+		res = make([]*TickerPriceResponse, 0)
+		err = json.Unmarshal(data, &res)
+		if err != nil {
+			return []*TickerPriceResponse{}, err
+		}
+	} else {
+		// The response is a single object, not an array, make sure to add it to the slice
+		singleRes := new(TickerPriceResponse)
+		err = json.Unmarshal(data, &singleRes)
+		if err != nil {
+			return []*TickerPriceResponse{}, err
+		}
+		res = append(res, singleRes)
 	}
 	return res, nil
 }

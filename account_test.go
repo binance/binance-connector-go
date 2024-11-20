@@ -237,7 +237,7 @@ func (s *accountTestSuite) TestNewOrder() {
 		Price:                   "0.00000000",
 		OrigQty:                 "10.00000000",
 		ExecutedQty:             "10.00000000",
-		CumulativeQuoteQty:      "10.00000000",
+		CummulativeQuoteQty:     "10.00000000",
 		Status:                  "FILLED",
 		TimeInForce:             "GTC",
 		Type:                    "MARKET",
@@ -259,7 +259,7 @@ func (s *baseTestSuite) assertCreateOrderResponseEqual(e, a *CreateOrderResponse
 	r.Equal(e.Price, a.Price, "Price")
 	r.Equal(e.OrigQty, a.OrigQty, "OrigQty")
 	r.Equal(e.ExecutedQty, a.ExecutedQty, "ExecutedQty")
-	r.Equal(e.CumulativeQuoteQty, a.CumulativeQuoteQty, "CumulativeQuoteQty")
+	r.Equal(e.CummulativeQuoteQty, a.CummulativeQuoteQty, "CummulativeQuoteQty")
 	r.Equal(e.Status, a.Status, "Status")
 	r.Equal(e.TimeInForce, a.TimeInForce, "TimeInForce")
 	r.Equal(e.Type, a.Type, "Type")
@@ -278,7 +278,7 @@ func (s *accountTestSuite) TestCancelOrder() {
 		"price": "0.001",
 		"origQty": "1.00000000",
 		"executedQty": "0.00000000",
-		"cumulativeQuoteQty": "0.00000000",
+		"cummulativeQuoteQty": "0.00000000",
 		"status": "CANCELED",
 		"timeInForce": "GTC",
 		"type": "LIMIT",
@@ -309,7 +309,7 @@ func (s *accountTestSuite) TestCancelOrder() {
 		Price:               "0.001",
 		OrigQty:             "1.00000000",
 		ExecutedQty:         "0.00000000",
-		CumulativeQuoteQty:  "0.00000000",
+		CummulativeQuoteQty: "0.00000000",
 		Status:              "CANCELED",
 		TimeInForce:         "GTC",
 		Type:                "LIMIT",
@@ -329,7 +329,7 @@ func (s *accountTestSuite) assertCancelOrderEqual(e, a *CancelOrderResponse) {
 	r.Equal(e.Price, a.Price, "Price")
 	r.Equal(e.OrigQty, a.OrigQty, "OrigQty")
 	r.Equal(e.ExecutedQty, a.ExecutedQty, "ExecutedQty")
-	r.Equal(e.CumulativeQuoteQty, a.CumulativeQuoteQty, "CumulativeQuoteQty")
+	r.Equal(e.CummulativeQuoteQty, a.CummulativeQuoteQty, "CummulativeQuoteQty")
 	r.Equal(e.Status, a.Status, "Status")
 	r.Equal(e.TimeInForce, a.TimeInForce, "TimeInForce")
 	r.Equal(e.Type, a.Type, "Type")
@@ -398,7 +398,7 @@ func (s *accountTestSuite) TestGetOrder() {
 		"price": "100.00",
 		"origQty": "10.00",
 		"executedQty": "0.00",
-		"cumulativeQuoteQty": "0.00",
+		"cummulativeQuoteQty": "0.00",
 		"status": "NEW",
 		"timeInForce": "GTC",
 		"type": "LIMIT",
@@ -418,24 +418,24 @@ func (s *accountTestSuite) TestGetOrder() {
 	s.r().NoError(err)
 
 	s.assertGetOrderResponseEqual(&GetOrderResponse{
-		Symbol:             "BTCUSDT",
-		OrderId:            12345,
-		OrderListId:        -1,
-		ClientOrderId:      "abcde12345",
-		Price:              "100.00",
-		OrigQty:            "10.00",
-		ExecutedQty:        "0.00",
-		CumulativeQuoteQty: "0.00",
-		Status:             "NEW",
-		TimeInForce:        "GTC",
-		Type:               "LIMIT",
-		Side:               "BUY",
-		StopPrice:          "0.00",
-		IcebergQty:         "0.00",
-		Time:               1499827319559,
-		UpdateTime:         1499827319559,
-		IsWorking:          true,
-		OrigQuoteOrderQty:  "0.000000",
+		Symbol:              "BTCUSDT",
+		OrderId:             12345,
+		OrderListId:         -1,
+		ClientOrderId:       "abcde12345",
+		Price:               "100.00",
+		OrigQty:             "10.00",
+		ExecutedQty:         "0.00",
+		CummulativeQuoteQty: "0.00",
+		Status:              "NEW",
+		TimeInForce:         "GTC",
+		Type:                "LIMIT",
+		Side:                "BUY",
+		StopPrice:           "0.00",
+		IcebergQty:          "0.00",
+		Time:                1499827319559,
+		UpdateTime:          1499827319559,
+		IsWorking:           true,
+		OrigQuoteOrderQty:   "0.000000",
 	}, res)
 }
 
@@ -658,7 +658,7 @@ func (s *accountTestSuite) TestGetAllOrders() {
 			"price": "25000.00000000",
 			"origQty": "1.00000000",
 			"executedQty": "0.00000000",
-			"cumulativeQuoteQty": "0.00000000",
+			"cummulativeQuoteQty": "0.00000000",
 			"status": "NEW",
 			"timeInForce": "GTC",
 			"type": "LIMIT",
@@ -697,7 +697,7 @@ func (s *accountTestSuite) TestGetAllOrders() {
 	s.Equal("25000.00000000", resp[0].Price)
 	s.Equal("1.00000000", resp[0].OrigQty)
 	s.Equal("0.00000000", resp[0].ExecutedQty)
-	s.Equal("0.00000000", resp[0].CumulativeQuoteQty)
+	s.Equal("0.00000000", resp[0].CummulativeQuoteQty)
 	s.Equal("NEW", resp[0].Status)
 	s.Equal("GTC", resp[0].TimeInForce)
 	s.Equal("LIMIT", resp[0].Type)
@@ -725,7 +725,7 @@ func (s *accountTestSuite) TestCancelOpenOrders() {
 			"price": "0.00000000",
 			"origQty": "1.00000000",
 			"executedQty": "0.00000000",
-			"cumulativeQuoteQty": "0.00000000",
+			"cummulativeQuoteQty": "0.00000000",
 			"status": "CANCELED",
 			"timeInForce": "GTC",
 			"type": "LIMIT",
@@ -741,7 +741,7 @@ func (s *accountTestSuite) TestCancelOpenOrders() {
 			"price": "0.00000000",
 			"origQty": "2.00000000",
 			"executedQty": "0.00000000",
-			"cumulativeQuoteQty": "0.00000000",
+			"cummulativeQuoteQty": "0.00000000",
 			"status": "CANCELED",
 			"timeInForce": "GTC",
 			"type": "LIMIT",
@@ -767,7 +767,7 @@ func (s *accountTestSuite) TestCancelOpenOrders() {
 	s.Equal("0.00000000", res[0].Price)
 	s.Equal("1.00000000", res[0].OrigQty)
 	s.Equal("0.00000000", res[0].ExecutedQty)
-	s.Equal("0.00000000", res[0].CumulativeQuoteQty)
+	s.Equal("0.00000000", res[0].CummulativeQuoteQty)
 	s.Equal("CANCELED", res[0].Status)
 	s.Equal("GTC", res[0].TimeInForce)
 	s.Equal("LIMIT", res[0].Type)
@@ -782,7 +782,7 @@ func (s *accountTestSuite) TestCancelOpenOrders() {
 	s.Equal("0.00000000", res[1].Price)
 	s.Equal("2.00000000", res[1].OrigQty)
 	s.Equal("0.00000000", res[1].ExecutedQty)
-	s.Equal("0.00000000", res[1].CumulativeQuoteQty)
+	s.Equal("0.00000000", res[1].CummulativeQuoteQty)
 	s.Equal("CANCELED", res[1].Status)
 	s.Equal("GTC", res[1].TimeInForce)
 	s.Equal("LIMIT", res[1].Type)

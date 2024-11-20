@@ -283,7 +283,7 @@ type OrderHistoryItem struct {
 	Price                   string `json:"price"`
 	OrigQty                 string `json:"origQty"`
 	ExecutedQty             string `json:"executedQty"`
-	CumulativeQuoteQty      string `json:"cummulativeQuoteQty"`
+	CummulativeQuoteQty     string `json:"cummulativeQuoteQty"`
 	Status                  string `json:"status"`
 	TimeInForce             string `json:"timeInForce"`
 	Type                    string `json:"type"`

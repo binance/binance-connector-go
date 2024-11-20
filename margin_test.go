@@ -71,6 +71,18 @@ func (s *marginTestSuite) assertMaxTransferableEqual(e, a *MarginAccountQueryMax
 	s.r().Equal(e.Amount, a.Amount, "Amount")
 }
 
+func (s *marginTestSuite) TestMarginAccountAdjustCrossMaxLeverage() {
+	data := []byte(`{
+		"success": true
+	}`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	res, err := s.client.NewMarginAccountAdjustCrossMaxLeverageService().MaxLeverage(5).Do(context.Background())
+	s.r().NoError(err)
+	s.True(res.Success)
+}
+
 func (s *marginTestSuite) TestGetMarginPriceIndex() {
 	data := []byte(`{
 		"calcTime": 1562046418000,
@@ -93,6 +105,83 @@ func (s *marginTestSuite) TestGetMarginPriceIndex() {
 		Price:    "0.00333930",
 	}
 	s.assertMarginPriceIndexEqual(e, res)
+}
+
+func (s *marginTestSuite) TestQueryMarginAvailableInventory() {
+	data := []byte(`{
+		"assets": {
+			"MATIC": "100000000",
+			"STPT": "100000000",
+			"TVK": "100000000",
+			"SHIB": "97409653"
+		},
+		"updateTime": 1699272487
+	}`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	res, err := s.client.NewQueryMarginAvailableInventoryService().Do(context.Background())
+	s.r().NoError(err)
+	s.Len(res.Assets, 4)
+	s.Equal("100000000", res.Assets["MATIC"])
+	s.Equal("100000000", res.Assets["STPT"])
+	s.Equal("100000000", res.Assets["TVK"])
+	s.Equal("97409653", res.Assets["SHIB"])
+	s.Equal(int64(1699272487), res.UpdateTime)
+}
+
+func (s *marginTestSuite) TestQueryLiabilityCoinLeverageBracket() {
+	data := []byte(`[
+	{
+		"assetNames":[
+			"SHIB",
+			"FDUSD",
+			"BTC",
+			"ETH",
+			"USDC"
+		],          
+		"rank":1,
+		"brackets":[
+			{
+				"leverage":10,
+				"maxDebt":1000000.00000000,
+				"maintenanceMarginRate":0.02000000,
+				"initialMarginRate":0.1112,
+				"fastNum":0
+			},
+			{
+				"leverage":3,
+				"maxDebt":4000000.00000000,
+				"maintenanceMarginRate":0.07000000,
+				"initialMarginRate":0.5000,
+				"fastNum":60000.0000000000000000
+			}
+		]
+	}
+	]`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+	res, err := s.client.NewQueryLiabilityCoinLeverageBracketService().Do(context.Background())
+	s.r().NoError(err)
+	s.Len(res, 1)
+	s.Len(res[0].Brackets, 2)
+	s.Equal(1, res[0].Rank)
+	s.Len(res[0].AssetNames, 5)
+	s.Equal("SHIB", res[0].AssetNames[0])
+	s.Equal("FDUSD", res[0].AssetNames[1])
+	s.Equal("BTC", res[0].AssetNames[2])
+	s.Equal("ETH", res[0].AssetNames[3])
+	s.Equal("USDC", res[0].AssetNames[4])
+	s.Equal(10, res[0].Brackets[0].Leverage)
+	s.Equal(1000000.00000000, res[0].Brackets[0].MaxDebt)
+	s.Equal(0.02000000, res[0].Brackets[0].MaintenanceMarginRate)
+	s.Equal(0.1112, res[0].Brackets[0].InitialMarginRate)
+	s.Equal(0.0, res[0].Brackets[0].FastNum)
+	s.Equal(3, res[0].Brackets[1].Leverage)
+	s.Equal(4000000.00000000, res[0].Brackets[1].MaxDebt)
+	s.Equal(0.07000000, res[0].Brackets[1].MaintenanceMarginRate)
+	s.Equal(0.5000, res[0].Brackets[1].InitialMarginRate)
+	s.Equal(60000.0000000000000000, res[0].Brackets[1].FastNum)
 }
 
 func (s *marginTestSuite) assertMarginPriceIndexEqual(e, a *QueryMarginPriceIndexResponse) {
@@ -342,7 +431,7 @@ func (s *marginTestSuite) TestMarginAccountAllOrderService() {
 	[
 		{
 			"clientOrderId": "example-client-order-id",
-			"cumulativeQuoteQty": "100.00000000",
+			"cummulativeQuoteQty": "100.00000000",
 			"executedQty": "1.00000000",
 			"icebergQty": "0.00000000",
 			"isWorking": false,
@@ -375,7 +464,7 @@ func (s *marginTestSuite) TestMarginAccountAllOrderService() {
 	s.r().NoError(err)
 	s.Len(resp, 1)
 	s.Equal("example-client-order-id", resp[0].ClientOrderId)
-	s.Equal("100.00000000", resp[0].CumulativeQuoteQty)
+	s.Equal("100.00000000", resp[0].CummulativeQuoteQty)
 	s.Equal("1.00000000", resp[0].ExecutedQty)
 	s.Equal("0.00000000", resp[0].IcebergQty)
 	s.False(resp[0].IsWorking)
@@ -392,7 +481,7 @@ func (s *marginTestSuite) TestMarginAccountAllOrderService() {
 }
 
 func (s *marginTestSuite) TestMarginAccountCancelAllOrders() {
-	data := []byte(`{"symbol":"BTCUSDT","isIsolated":false,"origClientOrderId":"a0e0a6f7-8b38-44d5-9dc5-87e3b9bd2d31","orderId":123456789,"orderListId":-1,"clientOrderId":"my_order_id","price":"10000.00000000","origQty":"1.00000000","executedQty":"0.00000000","cumulativeQuoteQty":"0.00000000","status":"CANCELED","timeInForce":"GTC","type":"LIMIT","side":"BUY"}`)
+	data := []byte(`{"symbol":"BTCUSDT","isIsolated":false,"origClientOrderId":"a0e0a6f7-8b38-44d5-9dc5-87e3b9bd2d31","orderId":123456789,"orderListId":-1,"clientOrderId":"my_order_id","price":"10000.00000000","origQty":"1.00000000","executedQty":"0.00000000","cummulativeQuoteQty":"0.00000000","status":"CANCELED","timeInForce":"GTC","type":"LIMIT","side":"BUY"}`)
 
 	s.mockDo(data, nil)
 	defer s.assertDo()
@@ -412,7 +501,7 @@ func (s *marginTestSuite) TestMarginAccountCancelAllOrders() {
 	s.Equal("10000.00000000", resp.Price)
 	s.Equal("1.00000000", resp.OrigQty)
 	s.Equal("0.00000000", resp.ExecutedQty)
-	s.Equal("0.00000000", resp.CumulativeQuoteQty)
+	s.Equal("0.00000000", resp.CummulativeQuoteQty)
 	s.Equal("CANCELED", resp.Status)
 	s.Equal("GTC", resp.TimeInForce)
 	s.Equal("LIMIT", resp.Type)
@@ -510,7 +599,7 @@ func (s *marginTestSuite) TestMarginAccountCancelOrder() {
 		"price": "100.00000000",
 		"origQty": "1.00000000",
 		"executedQty": "0.00000000",
-		"cumulativeQuoteQty": "0.00000000",
+		"cummulativeQuoteQty": "0.00000000",
 		"status": "CANCELED",
 		"timeInForce": "GTC",
 		"type": "LIMIT",
@@ -536,7 +625,7 @@ func (s *marginTestSuite) TestMarginAccountCancelOrder() {
 	s.Equal("100.00000000", resp.Price)
 	s.Equal("1.00000000", resp.OrigQty)
 	s.Equal("0.00000000", resp.ExecutedQty)
-	s.Equal("0.00000000", resp.CumulativeQuoteQty)
+	s.Equal("0.00000000", resp.CummulativeQuoteQty)
 	s.Equal("CANCELED", resp.Status)
 	s.Equal("GTC", resp.TimeInForce)
 	s.Equal("LIMIT", resp.Type)
@@ -646,7 +735,7 @@ func (s *marginTestSuite) TestMarginAccountNewOrder() {
 	s.Equal("1.00000000", a.Price)
 	s.Equal("10.00000000", a.OrigQty)
 	s.Equal("10.00000000", a.ExecutedQty)
-	s.Equal("10.00000000", a.CumulativeQuoteQty)
+	s.Equal("10.00000000", a.CummulativeQuoteQty)
 	s.Equal("FILLED", a.Status)
 	s.Equal("GTC", a.TimeInForce)
 	s.Equal("MARKET", a.Type)
@@ -659,7 +748,7 @@ func (s *marginTestSuite) TestMarginAccountOpenOrder() {
 	[
 		{
 			"clientOrderId": "abc123",
-			"cumulativeQuoteQty": "1.00000000",
+			"cummulativeQuoteQty": "1.00000000",
 			"executedQty": "1.00000000",
 			"icebergQty": "0.00000000",
 			"isWorking": false,
@@ -690,7 +779,7 @@ func (s *marginTestSuite) TestMarginAccountOpenOrder() {
 	s.r().NoError(err)
 	s.Len(resp, 1)
 	s.Equal("abc123", resp[0].ClientOrderId)
-	s.Equal("1.00000000", resp[0].CumulativeQuoteQty)
+	s.Equal("1.00000000", resp[0].CummulativeQuoteQty)
 	s.Equal("1.00000000", resp[0].ExecutedQty)
 	s.Equal("0.00000000", resp[0].IcebergQty)
 	s.Equal(false, resp[0].IsWorking)
@@ -712,7 +801,7 @@ func (s *marginTestSuite) TestMarginAccountOrder() {
 	data := []byte(`
 	{
 		"clientOrderId": "myclientorderid",
-		"cumulativeQuoteQty": "1.00000000",
+		"cummulativeQuoteQty": "1.00000000",
 		"executedQty": "1.00000000",
 		"icebergQty": "0.00000000",
 		"isWorking": false,
@@ -743,7 +832,7 @@ func (s *marginTestSuite) TestMarginAccountOrder() {
 
 	s.r().NoError(err)
 	s.Equal("myclientorderid", resp.ClientOrderId)
-	s.Equal("1.00000000", resp.CumulativeQuoteQty)
+	s.Equal("1.00000000", resp.CummulativeQuoteQty)
 	s.Equal("1.00000000", resp.ExecutedQty)
 	s.Equal("0.00000000", resp.IcebergQty)
 	s.False(resp.IsWorking)
@@ -1323,6 +1412,294 @@ func (s *marginTestSuite) TestMarginSmallLiabilityExchangeCoinList() {
 	s.Equal("0.00000000", resp[1].LiabilityOfBUSD)
 }
 
+func (s *marginTestSuite) TestMarginManualLiquidation() {
+	data := []byte(`[
+		{
+		"asset": "ETH",
+		"interest": "0.00083334",
+		"principal": "0.001",
+		"liabilityAsset": "USDT",
+		"liabilityQty": 0.3552
+		}
+	]`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewMarginManualLiquidationService().MarginType("MARGIN").Do(context.Background())
+
+	s.r().NoError(err)
+	s.Len(resp, 1)
+	s.Equal("ETH", resp[0].Asset)
+	s.Equal("0.00083334", resp[0].Interest)
+	s.Equal("0.001", resp[0].Principal)
+	s.Equal("USDT", resp[0].LiabilityAsset)
+	s.Equal(0.3552, resp[0].LiabilityQty)
+}
+
+func (s *marginTestSuite) TestMarginAccountNewOTO() {
+	data := []byte(`{
+		"orderListId": 13551,
+		"contingencyType": "OTO",
+		"listStatusType": "EXEC_STARTED",
+		"listOrderStatus": "EXECUTING",
+		"listClientOrderId": "JDuOrsu0Ge8GTyvx8J7VTD",
+		"transactionTime": 1725521998054,
+		"symbol": "BTCUSDT",
+		"isIsolated": false,
+		"orders": [
+			{
+				"symbol": "BTCUSDT",
+				"orderId": 29896699,
+				"clientOrderId": "y8RB6tQEMuHUXybqbtzTxk"
+			},
+			{
+				"symbol": "BTCUSDT",
+				"orderId": 29896700,
+				"clientOrderId": "dKQEdh5HhXb7Lpp85jz1dQ"
+			}
+		],
+		"orderReports": [
+			{
+				"symbol": "BTCUSDT",
+				"orderId": 29896699,
+				"orderListId": 13551,
+				"clientOrderId": "y8RB6tQEMuHUXybqbtzTxk",
+				"transactTime": 1725521998054,
+				"price": "80000.00000000",
+				"origQty": "0.02000000",
+				"executedQty": "0",
+				"cummulativeQuoteQty": "0",
+				"status": "NEW",
+				"timeInForce": "GTC",
+				"type": "LIMIT",
+				"side": "SELL",
+				"selfTradePreventionMode": "NONE"
+			},
+			{
+				"symbol": "BTCUSDT",
+				"orderId": 29896700,
+				"orderListId": 13551,
+				"clientOrderId": "dKQEdh5HhXb7Lpp85jz1dQ",
+				"transactTime": 1725521998054,
+				"price": "50000.00000000",
+				"origQty": "0.02000000",
+				"executedQty": "0",
+				"cummulativeQuoteQty": "0",
+				"status": "PENDING_NEW",
+				"timeInForce": "GTC",
+				"type": "LIMIT",
+				"side": "BUY",
+				"selfTradePreventionMode": "NONE"
+			}
+		]
+	}`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewMarginAccountNewOTOService().
+		Symbol("BTCUSDT").WorkingType("LIMIT").WorkingSide("SELL").WorkingPrice(80000.0).WorkingQuantity(0.02).
+		PendingType("LIMIT").PendingSide("BUY").PendingQuantity(0.02).WorkingTimeInForce("GTC").
+		PendingPrice(50000.0).PendingTimeInForce("GTC").Do(context.Background())
+
+	s.r().NoError(err)
+	s.Equal(int64(13551), resp.OrderListId)
+	s.Equal("OTO", resp.ContingencyType)
+	s.Equal("EXEC_STARTED", resp.ListStatusType)
+	s.Equal("EXECUTING", resp.ListOrderStatus)
+	s.Equal("JDuOrsu0Ge8GTyvx8J7VTD", resp.ListClientOrderId)
+	s.Equal(int64(1725521998054), resp.TransactionTime)
+	s.Equal("BTCUSDT", resp.Symbol)
+	s.False(resp.IsIsolated)
+	s.Len(resp.Orders, 2)
+	s.Equal("BTCUSDT", resp.Orders[0].Symbol)
+	s.Equal(int64(29896699), resp.Orders[0].OrderId)
+	s.Equal("y8RB6tQEMuHUXybqbtzTxk", resp.Orders[0].ClientOrderId)
+	s.Equal("BTCUSDT", resp.Orders[1].Symbol)
+	s.Equal(int64(29896700), resp.Orders[1].OrderId)
+	s.Equal("dKQEdh5HhXb7Lpp85jz1dQ", resp.Orders[1].ClientOrderId)
+	s.Len(resp.OrderReports, 2)
+	s.Equal("BTCUSDT", resp.OrderReports[0].Symbol)
+	s.Equal(int64(29896699), resp.OrderReports[0].OrderId)
+	s.Equal(int64(13551), resp.OrderReports[0].OrderListId)
+	s.Equal("y8RB6tQEMuHUXybqbtzTxk", resp.OrderReports[0].ClientOrderId)
+	s.Equal(int64(1725521998054), resp.OrderReports[0].TransactTime)
+	s.Equal("80000.00000000", resp.OrderReports[0].Price)
+	s.Equal("0.02000000", resp.OrderReports[0].OrigQty)
+	s.Equal("0", resp.OrderReports[0].ExecutedQty)
+	s.Equal("0", resp.OrderReports[0].CummulativeQuoteQty)
+	s.Equal("NEW", resp.OrderReports[0].Status)
+	s.Equal("GTC", resp.OrderReports[0].TimeInForce)
+	s.Equal("LIMIT", resp.OrderReports[0].Type)
+	s.Equal("SELL", resp.OrderReports[0].Side)
+	s.Equal("NONE", resp.OrderReports[0].SelfTradePreventionMode)
+	s.Equal("BTCUSDT", resp.OrderReports[1].Symbol)
+	s.Equal(int64(29896700), resp.OrderReports[1].OrderId)
+	s.Equal(int64(13551), resp.OrderReports[1].OrderListId)
+	s.Equal("dKQEdh5HhXb7Lpp85jz1dQ", resp.OrderReports[1].ClientOrderId)
+	s.Equal(int64(1725521998054), resp.OrderReports[1].TransactTime)
+	s.Equal("50000.00000000", resp.OrderReports[1].Price)
+	s.Equal("0.02000000", resp.OrderReports[1].OrigQty)
+	s.Equal("0", resp.OrderReports[1].ExecutedQty)
+	s.Equal("0", resp.OrderReports[1].CummulativeQuoteQty)
+	s.Equal("PENDING_NEW", resp.OrderReports[1].Status)
+	s.Equal("GTC", resp.OrderReports[1].TimeInForce)
+	s.Equal("LIMIT", resp.OrderReports[1].Type)
+	s.Equal("BUY", resp.OrderReports[1].Side)
+	s.Equal("NONE", resp.OrderReports[1].SelfTradePreventionMode)
+}
+
+func (s *marginTestSuite) TestMarginAccountNewOTOCO() {
+	data := []byte(`{
+		"orderListId": 13509,
+		"contingencyType": "OTO",
+		"listStatusType": "EXEC_STARTED",
+		"listOrderStatus": "EXECUTING",
+		"listClientOrderId": "u2AUo48LLef5qVenRtwJZy",
+		"transactionTime": 1725521881300,
+		"symbol": "BNBUSDT",
+		"isIsolated": false,
+		"orders": [
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282534,
+				"clientOrderId": "IfYDxvrZI4kiyqYpRH13iI"
+			},
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282535,
+				"clientOrderId": "0HCSsPRxVfW8BkTUy9z4np"
+			},
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282536,
+				"clientOrderId": "dypsgdxWnLY75kwT930cbD"
+			}
+		],
+		"orderReports": [
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282534,
+				"orderListId": 13509,
+				"clientOrderId": "IfYDxvrZI4kiyqYpRH13iI",
+				"transactTime": 1725521881300,
+				"price": "300.00000000",
+				"origQty": "1.00000000",
+				"executedQty": "0",
+				"cummulativeQuoteQty": "0",
+				"status": "NEW",
+				"timeInForce": "GTC",
+				"type": "LIMIT",
+				"side": "BUY",
+				"selfTradePreventionMode": "NONE"
+			},
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282535,
+				"orderListId": 13509,
+				"clientOrderId": "0HCSsPRxVfW8BkTUy9z4np",
+				"transactTime": 1725521881300,
+				"price": "0E-8",
+				"origQty": "1.00000000",
+				"executedQty": "0",
+				"cummulativeQuoteQty": "0",
+				"status": "PENDING_NEW",
+				"timeInForce": "GTC",
+				"type": "STOP_LOSS",
+				"side": "SELL",
+				"stopPrice": "299.00000000",
+				"selfTradePreventionMode": "NONE"
+			},
+			{
+				"symbol": "BNBUSDT",
+				"orderId": 28282536,
+				"orderListId": 13509,
+				"clientOrderId": "dypsgdxWnLY75kwT930cbD",
+				"transactTime": 1725521881300,
+				"price": "301.00000000",
+				"origQty": "1.00000000",
+				"executedQty": "0",
+				"cummulativeQuoteQty": "0",
+				"status": "PENDING_NEW",
+				"timeInForce": "GTC",
+				"type": "LIMIT_MAKER",
+				"side": "SELL",
+				"selfTradePreventionMode": "NONE"
+			}
+		]
+	}`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewMarginAccountNewOTOCOService().
+		Symbol("BNBUSDT").WorkingType("LIMIT").WorkingSide("BUY").WorkingPrice(300).WorkingQuantity(1).
+		PendingSide("SELL").PendingQuantity(1).PendingAboveType("LIMIT_MAKER").WorkingTimeInForce("GTC").
+		PendingAbovePrice(301.0).PendingBelowType("STOP_LOSS").PendingBelowPrice(299.0).Do(context.Background())
+
+	s.r().NoError(err)
+	s.Equal(int64(13509), resp.OrderListId)
+	s.Equal("OTO", resp.ContingencyType)
+	s.Equal("EXEC_STARTED", resp.ListStatusType)
+	s.Equal("EXECUTING", resp.ListOrderStatus)
+	s.Equal("u2AUo48LLef5qVenRtwJZy", resp.ListClientOrderId)
+	s.Equal(int64(1725521881300), resp.TransactionTime)
+	s.Equal("BNBUSDT", resp.Symbol)
+	s.False(resp.IsIsolated)
+	s.Len(resp.Orders, 3)
+	s.Equal("BNBUSDT", resp.Orders[0].Symbol)
+	s.Equal(int64(28282534), resp.Orders[0].OrderId)
+	s.Equal("IfYDxvrZI4kiyqYpRH13iI", resp.Orders[0].ClientOrderId)
+	s.Equal("BNBUSDT", resp.Orders[1].Symbol)
+	s.Equal(int64(28282535), resp.Orders[1].OrderId)
+	s.Equal("0HCSsPRxVfW8BkTUy9z4np", resp.Orders[1].ClientOrderId)
+	s.Equal("BNBUSDT", resp.Orders[2].Symbol)
+	s.Equal(int64(28282536), resp.Orders[2].OrderId)
+	s.Equal("dypsgdxWnLY75kwT930cbD", resp.Orders[2].ClientOrderId)
+	s.Len(resp.OrderReports, 3)
+	s.Equal("BNBUSDT", resp.OrderReports[0].Symbol)
+	s.Equal(int64(28282534), resp.OrderReports[0].OrderId)
+	s.Equal(int64(13509), resp.OrderReports[0].OrderListId)
+	s.Equal("IfYDxvrZI4kiyqYpRH13iI", resp.OrderReports[0].ClientOrderId)
+	s.Equal(int64(1725521881300), resp.OrderReports[0].TransactTime)
+	s.Equal("300.00000000", resp.OrderReports[0].Price)
+	s.Equal("1.00000000", resp.OrderReports[0].OrigQty)
+	s.Equal("0", resp.OrderReports[0].ExecutedQty)
+	s.Equal("0", resp.OrderReports[0].CummulativeQuoteQty)
+	s.Equal("NEW", resp.OrderReports[0].Status)
+	s.Equal("GTC", resp.OrderReports[0].TimeInForce)
+	s.Equal("LIMIT", resp.OrderReports[0].Type)
+	s.Equal("BUY", resp.OrderReports[0].Side)
+	s.Equal("NONE", resp.OrderReports[0].SelfTradePreventionMode)
+	s.Equal("BNBUSDT", resp.OrderReports[1].Symbol)
+	s.Equal(int64(28282535), resp.OrderReports[1].OrderId)
+	s.Equal(int64(13509), resp.OrderReports[1].OrderListId)
+	s.Equal("0HCSsPRxVfW8BkTUy9z4np", resp.OrderReports[1].ClientOrderId)
+	s.Equal(int64(1725521881300), resp.OrderReports[1].TransactTime)
+	s.Equal("0E-8", resp.OrderReports[1].Price)
+	s.Equal("1.00000000", resp.OrderReports[1].OrigQty)
+	s.Equal("0", resp.OrderReports[1].ExecutedQty)
+	s.Equal("0", resp.OrderReports[1].CummulativeQuoteQty)
+	s.Equal("PENDING_NEW", resp.OrderReports[1].Status)
+	s.Equal("GTC", resp.OrderReports[1].TimeInForce)
+	s.Equal("STOP_LOSS", resp.OrderReports[1].Type)
+	s.Equal("SELL", resp.OrderReports[1].Side)
+	s.Equal("NONE", resp.OrderReports[1].SelfTradePreventionMode)
+	s.Equal("299.00000000", resp.OrderReports[1].StopPrice)
+	s.Equal("BNBUSDT", resp.OrderReports[2].Symbol)
+	s.Equal(int64(28282536), resp.OrderReports[2].OrderId)
+	s.Equal(int64(13509), resp.OrderReports[2].OrderListId)
+	s.Equal("dypsgdxWnLY75kwT930cbD", resp.OrderReports[2].ClientOrderId)
+	s.Equal(int64(1725521881300), resp.OrderReports[2].TransactTime)
+	s.Equal("301.00000000", resp.OrderReports[2].Price)
+	s.Equal("1.00000000", resp.OrderReports[2].OrigQty)
+	s.Equal("0", resp.OrderReports[2].ExecutedQty)
+	s.Equal("0", resp.OrderReports[2].CummulativeQuoteQty)
+	s.Equal("PENDING_NEW", resp.OrderReports[2].Status)
+	s.Equal("GTC", resp.OrderReports[2].TimeInForce)
+	s.Equal("LIMIT_MAKER", resp.OrderReports[2].Type)
+	s.Equal("SELL", resp.OrderReports[2].Side)
+	s.Equal("NONE", resp.OrderReports[2].SelfTradePreventionMode)
+}
+
 func (s *marginTestSuite) TestMarginSmallLiabilityExchangeHistory() {
 	data := []byte(`[
 	  {
@@ -1375,4 +1752,32 @@ func (s *marginTestSuite) TestMarginToggleBnbBurn() {
 	s.r().NoError(err)
 	s.Equal(true, resp.SpotBNBBurn)
 	s.Equal(false, resp.InterestBNBBurn)
+}
+
+func (s *marginTestSuite) TestMarginIsolatedCapitalFlow() {
+	data := []byte(`[
+		{ 
+			"id": 123456,
+			"tranId": 123123,
+			"timestamp": 1691116657000,
+			"asset": "USDT",
+			"symbol": "BTCUSDT",
+			"type": "BORROW",
+			"amount": "101"
+		}
+	]`)
+	s.mockDo(data, nil)
+	defer s.assertDo()
+
+	resp, err := s.client.NewMarginIsolatedCapitalFlowService().Do(context.Background())
+
+	s.r().NoError(err)
+	s.Len(resp, 1)
+	s.Equal(int(123456), resp[0].Id)
+	s.Equal(int(123123), resp[0].TranId)
+	s.Equal(uint64(1691116657000), resp[0].Timestamp)
+	s.Equal("USDT", resp[0].Asset)
+	s.Equal("BTCUSDT", resp[0].Symbol)
+	s.Equal("BORROW", resp[0].Type)
+	s.Equal("101", resp[0].Amount)
 }
