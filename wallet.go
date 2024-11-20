@@ -16,7 +16,7 @@ type GetSystemStatusService struct {
 	c *Client
 }
 
-func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) (res []*SystemStatusResponse, err error) {
+func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) (*SystemStatusResponse, error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: systemStatusEndpoint,
@@ -26,17 +26,17 @@ func (s *GetSystemStatusService) Do(ctx context.Context, opts ...RequestOption) 
 	if err != nil {
 		return nil, err
 	}
-	res = make([]*SystemStatusResponse, 0)
+	var res SystemStatusResponse
 	err = json.Unmarshal(data, &res)
 	if err != nil {
 		return nil, err
 	}
-	return res, nil
+	return &res, nil
 }
 
 // SystemStatusResponse define response of GetSystemStatusService
 type SystemStatusResponse struct {
-	Status bool   `json:"status"`
+	Status int    `json:"status"`
 	Msg    string `json:"msg"`
 }
 
