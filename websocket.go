@@ -22,6 +22,7 @@ type WsConfig struct {
 type WebsocketStreamClient struct {
 	Endpoint   string
 	IsCombined bool
+	Dialer     *websocket.Dialer
 }
 
 func NewWebsocketStreamClient(isCombined bool, baseURL ...string) *WebsocketStreamClient {
@@ -42,6 +43,11 @@ func NewWebsocketStreamClient(isCombined bool, baseURL ...string) *WebsocketStre
 	return &WebsocketStreamClient{
 		Endpoint:   url,
 		IsCombined: isCombined,
+		Dialer: &websocket.Dialer{
+			Proxy:             http.ProxyFromEnvironment,
+			HandshakeTimeout:  45 * time.Second,
+			EnableCompression: false,
+		},
 	}
 }
 
@@ -52,14 +58,9 @@ func newWsConfig(endpoint string) *WsConfig {
 }
 
 func (wsc *WebsocketStreamClient) wsServe(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
-	Dialer := websocket.Dialer{
-		Proxy:             http.ProxyFromEnvironment,
-		HandshakeTimeout:  45 * time.Second,
-		EnableCompression: false,
-	}
 	headers := http.Header{}
 	headers.Add("User-Agent", fmt.Sprintf("%s/%s", Name, Version))
-	c, _, err := Dialer.Dial(cfg.Endpoint, headers)
+	c, _, err := wsc.Dialer.Dial(cfg.Endpoint, headers)
 	if err != nil {
 		return nil, nil, err
 	}
