@@ -51,7 +51,7 @@ func newWsConfig(endpoint string) *WsConfig {
 	}
 }
 
-var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+func (wsc *WebsocketStreamClient) wsServe(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	Dialer := websocket.Dialer{
 		Proxy:             http.ProxyFromEnvironment,
 		HandshakeTimeout:  45 * time.Second,
