@@ -63,17 +63,17 @@ type WsPartialDepthHandler func(event *WsPartialDepthEvent)
 // WsPartialDepthServe serve websocket partial depth handler with a symbol, using 1sec updates
 func (c *WebsocketStreamClient) WsPartialDepthServe(symbol string, levels string, handler WsPartialDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := fmt.Sprintf("%s/%s@depth%s", c.Endpoint, strings.ToLower(symbol), levels)
-	return wsPartialDepthServe(endpoint, symbol, handler, errHandler)
+	return c.wsPartialDepthServe(endpoint, symbol, handler, errHandler)
 }
 
 // WsPartialDepthServe100Ms serve websocket partial depth handler with a symbol, using 100msec updates
 func (c *WebsocketStreamClient) WsPartialDepthServe100Ms(symbol string, levels string, handler WsPartialDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := fmt.Sprintf("%s/%s@depth%s@100ms", c.Endpoint, strings.ToLower(symbol), levels)
-	return wsPartialDepthServe(endpoint, symbol, handler, errHandler)
+	return c.wsPartialDepthServe(endpoint, symbol, handler, errHandler)
 }
 
 // WsPartialDepthServe serve websocket partial depth handler with a symbol
-func wsPartialDepthServe(endpoint string, symbol string, handler WsPartialDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+func (c *WebsocketStreamClient) wsPartialDepthServe(endpoint string, symbol string, handler WsPartialDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	cfg := newWsConfig(endpoint)
 	wsHandler := func(message []byte) {
 		j, err := newJSON(message)
@@ -104,7 +104,7 @@ func wsPartialDepthServe(endpoint string, symbol string, handler WsPartialDepthH
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsCombinedPartialDepthServe is similar to WsPartialDepthServe, but it for multiple symbols
@@ -148,7 +148,7 @@ func (c *WebsocketStreamClient) WsCombinedPartialDepthServe(symbolLevels map[str
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsDepthHandler handle websocket depth event
@@ -157,17 +157,17 @@ type WsDepthHandler func(event *WsDepthEvent)
 // WsDepthServe serve websocket depth handler with a symbol, using 1sec updates
 func (c *WebsocketStreamClient) WsDepthServe(symbol string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := fmt.Sprintf("%s/%s@depth", c.Endpoint, strings.ToLower(symbol))
-	return wsDepthServe(endpoint, handler, errHandler)
+	return c.wsDepthServe(endpoint, handler, errHandler)
 }
 
 // WsDepthServe100Ms serve websocket depth handler with a symbol, using 100msec updates
 func (c *WebsocketStreamClient) WsDepthServe100Ms(symbol string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := fmt.Sprintf("%s/%s@depth@100ms", c.Endpoint, strings.ToLower(symbol))
-	return wsDepthServe(endpoint, handler, errHandler)
+	return c.wsDepthServe(endpoint, handler, errHandler)
 }
 
 // WsDepthServe serve websocket depth handler with an arbitrary endpoint address
-func wsDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+func (c *WebsocketStreamClient) wsDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	cfg := newWsConfig(endpoint)
 	wsHandler := func(message []byte) {
 		j, err := newJSON(message)
@@ -201,7 +201,7 @@ func wsDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsDepthEvent define websocket depth event
@@ -222,7 +222,7 @@ func (c *WebsocketStreamClient) WsCombinedDepthServe(symbols []string, handler W
 		endpoint += fmt.Sprintf("%s@depth", strings.ToLower(s)) + "/"
 	}
 	endpoint = endpoint[:len(endpoint)-1]
-	return wsCombinedDepthServe(endpoint, handler, errHandler)
+	return c.wsCombinedDepthServe(endpoint, handler, errHandler)
 }
 
 func (c *WebsocketStreamClient) WsCombinedDepthServe100Ms(symbols []string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
@@ -231,10 +231,10 @@ func (c *WebsocketStreamClient) WsCombinedDepthServe100Ms(symbols []string, hand
 		endpoint += fmt.Sprintf("%s@depth@100ms", strings.ToLower(s)) + "/"
 	}
 	endpoint = endpoint[:len(endpoint)-1]
-	return wsCombinedDepthServe(endpoint, handler, errHandler)
+	return c.wsCombinedDepthServe(endpoint, handler, errHandler)
 }
 
-func wsCombinedDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+func (c *WebsocketStreamClient) wsCombinedDepthServe(endpoint string, handler WsDepthHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	cfg := newWsConfig(endpoint)
 	wsHandler := func(message []byte) {
 		j, err := newJSON(message)
@@ -271,7 +271,7 @@ func wsCombinedDepthServe(endpoint string, handler WsDepthHandler, errHandler Er
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsKlineHandler handle websocket kline event
@@ -309,7 +309,7 @@ func (c *WebsocketStreamClient) WsCombinedKlineServe(symbolIntervalPair map[stri
 
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsKlineServe serve websocket kline handler with a symbol and interval like 15m, 30s
@@ -325,7 +325,7 @@ func (c *WebsocketStreamClient) WsKlineServe(symbol string, interval string, han
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsKlineEvent define websocket kline event
@@ -372,7 +372,7 @@ func (c *WebsocketStreamClient) WsAggTradeServe(symbol string, handler WsAggTrad
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsCombinedAggTradeServe is similar to WsAggTradeServe, but it handles multiple symbolx
@@ -408,7 +408,7 @@ func (c *WebsocketStreamClient) WsCombinedAggTradeServe(symbols []string, handle
 
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsAggTradeEvent define websocket aggregate trade event
@@ -443,7 +443,7 @@ func (c *WebsocketStreamClient) WsTradeServe(symbol string, handler WsTradeHandl
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 func (c *WebsocketStreamClient) WsCombinedTradeServe(symbols []string, handler WsCombinedTradeHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
@@ -462,7 +462,7 @@ func (c *WebsocketStreamClient) WsCombinedTradeServe(symbols []string, handler W
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsTradeEvent define websocket trade event
@@ -628,7 +628,7 @@ func (c *WebsocketStreamClient) WsUserDataServe(listenKey string, handler WsUser
 
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsMarketTickersStatHandler handle websocket that push single market statistics for 24hr
@@ -668,7 +668,7 @@ func (c *WebsocketStreamClient) WsCombinedMarketTickersStatServe(symbols []strin
 
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsMarketTickersStatServe serve websocket that push 24hr statistics for single market every second
@@ -684,7 +684,7 @@ func (c *WebsocketStreamClient) WsMarketTickersStatServe(symbol string, handler 
 		}
 		handler(&event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsAllMarketTickersStatHandler handle websocket that push all markets statistics for 24hr
@@ -703,7 +703,7 @@ func (c *WebsocketStreamClient) WsAllMarketTickersStatServe(handler WsAllMarketT
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsAllMarketTickersStatEvent define array of websocket market statistics events
@@ -752,7 +752,7 @@ func (c *WebsocketStreamClient) WsAllMarketMiniTickersStatServe(handler WsAllMar
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsAllMarketMiniTickersStatEvent define array of websocket market mini-ticker statistics events
@@ -774,7 +774,7 @@ func (c *WebsocketStreamClient) WsMarketMiniTickersStatServe(symbol string, hand
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsMarketMiniTickerStatEvent define array of websocket market mini-ticker statistics events
@@ -824,7 +824,7 @@ func (c *WebsocketStreamClient) WsBookTickerServe(symbol string, handler WsBookT
 		}
 		handler(event)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
 
 // WsCombinedBookTickerServe is similar to WsBookTickerServe, but it is for multiple symbols
@@ -844,5 +844,5 @@ func (c *WebsocketStreamClient) WsCombinedBookTickerServe(symbols []string, hand
 		}
 		handler(event.Data)
 	}
-	return wsServe(cfg, wsHandler, errHandler)
+	return c.wsServe(cfg, wsHandler, errHandler)
 }
