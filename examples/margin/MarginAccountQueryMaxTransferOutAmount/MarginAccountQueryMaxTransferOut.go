@@ -16,7 +16,7 @@ func MarginAccountQueryMaxTransferOutAmount() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// MarginAccountQueryMaxTransferOutAmountService - /sapi/v1/margin/maxTransferable
 	marginAccountQueryMaxTransferOutAmount, err := client.NewMarginAccountQueryMaxTransferOutAmountService().

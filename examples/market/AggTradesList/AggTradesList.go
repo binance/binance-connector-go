@@ -14,7 +14,7 @@ func main() {
 func AggTradesList() {
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient("", "", baseURL)
+	client := binance_connector.NewClient("", "", binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// AggTradesList
 	aggTradesList, err := client.NewAggTradesListService().

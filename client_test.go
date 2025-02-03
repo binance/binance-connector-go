@@ -120,7 +120,7 @@ type mockedClient struct {
 
 func newMockedClient(apiKey, secretKey, baseURL string) *mockedClient {
 	m := new(mockedClient)
-	m.Client = NewClient(apiKey, secretKey, baseURL)
+	m.Client = NewClient(apiKey, secretKey, SIGNATURE_HMAC_SHA256, baseURL)
 	return m
 }
 

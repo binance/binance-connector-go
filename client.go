@@ -3,9 +3,14 @@ package binance_connector
 import (
 	"bytes"
 	"context"
+	"crypto"
 	"crypto/hmac"
+	"crypto/rsa"
 	"crypto/sha256"
+	"crypto/x509"
+	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"io"
 	"log"
@@ -26,14 +31,15 @@ type UserDataEventType string
 
 // Client define API client
 type Client struct {
-	APIKey     string
-	SecretKey  string
-	BaseURL    string
-	HTTPClient *http.Client
-	Debug      bool
-	Logger     *log.Logger
-	TimeOffset int64
-	do         doFunc
+	APIKey        string
+	SecretKey     string
+	BaseURL       string
+	HTTPClient    *http.Client
+	Debug         bool
+	Logger        *log.Logger
+	TimeOffset    int64
+	do            doFunc
+	SignatureType SignatureType
 }
 
 type doFunc func(req *http.Request) (*http.Response, error)
@@ -66,7 +72,7 @@ func (c *Client) debug(format string, v ...interface{}) {
 }
 
 // Create client function for initialising new Binance client
-func NewClient(apiKey string, secretKey string, baseURL ...string) *Client {
+func NewClient(apiKey string, secretKey string, SignatureType SignatureType, baseURL ...string) *Client {
 	url := "https://api.binance.com"
 
 	if len(baseURL) > 0 {
@@ -74,11 +80,12 @@ func NewClient(apiKey string, secretKey string, baseURL ...string) *Client {
 	}
 
 	return &Client{
-		APIKey:     apiKey,
-		SecretKey:  secretKey,
-		BaseURL:    url,
-		HTTPClient: http.DefaultClient,
-		Logger:     log.New(os.Stderr, Name, log.LstdFlags),
+		APIKey:        apiKey,
+		SecretKey:     secretKey,
+		BaseURL:       url,
+		HTTPClient:    http.DefaultClient,
+		Logger:        log.New(os.Stderr, Name, log.LstdFlags),
+		SignatureType: SignatureType,
 	}
 }
 
@@ -117,13 +124,21 @@ func (c *Client) parseRequest(r *request, opts ...RequestOption) (err error) {
 
 	if r.secType == secTypeSigned {
 		raw := fmt.Sprintf("%s%s", queryString, bodyString)
-		mac := hmac.New(sha256.New, []byte(c.SecretKey))
-		_, err = mac.Write([]byte(raw))
-		if err != nil {
-			return err
+		var signature string
+		switch c.SignatureType {
+		case SIGNATURE_HMAC_SHA256:
+			signature, err = c.singHMac(raw)
+			if err != nil {
+				return err
+			}
+		case SIGNATURE_RSA_SHA256:
+			signature, err = c.singRSASHA256(raw)
+			if err != nil {
+				return err
+			}
 		}
 		v := url.Values{}
-		v.Set(signatureKey, fmt.Sprintf("%x", (mac.Sum(nil))))
+		v.Set(signatureKey, signature)
 		if queryString == "" {
 			queryString = v.Encode()
 		} else {
@@ -138,6 +153,44 @@ func (c *Client) parseRequest(r *request, opts ...RequestOption) (err error) {
 	r.header = header
 	r.body = body
 	return nil
+}
+
+func (c *Client) singHMac(raw string) (string, error) {
+	mac := hmac.New(sha256.New, []byte(c.SecretKey))
+	_, err := mac.Write([]byte(raw))
+	if err != nil {
+		return "", err
+	}
+
+	return fmt.Sprintf("%x", (mac.Sum(nil))), nil
+}
+
+func (c *Client) singRSASHA256(raw string) (string, error) {
+	block, _ := pem.Decode([]byte(c.SecretKey))
+	if block == nil {
+		return "", fmt.Errorf("failed to parse PEM block containing the key")
+	}
+
+	privateKey, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+	if err != nil {
+		return "", err
+	}
+
+	rsaPrivateKey, ok := privateKey.(*rsa.PrivateKey)
+	if !ok {
+		return "", fmt.Errorf("not an RSA private key")
+	}
+
+	hash := sha256.New()
+	hash.Write([]byte(raw))
+	digest := hash.Sum(nil)
+
+	signature, err := rsa.SignPKCS1v15(nil, rsaPrivateKey, crypto.SHA256, digest)
+	if err != nil {
+		return "", err
+	}
+
+	return base64.StdEncoding.EncodeToString(signature), nil
 }
 
 func (c *Client) callAPI(ctx context.Context, r *request, opts ...RequestOption) (data []byte, err error) {

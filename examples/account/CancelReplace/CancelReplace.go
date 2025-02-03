@@ -16,7 +16,7 @@ func CancelReplace() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Cancel an Existing Order and Send a New Order (TRADE) - POST /api/v3/order/cancelReplace
 	cancelReplace, err := client.NewCancelReplaceService().

@@ -16,7 +16,7 @@ func FuturesTransferForSubAccount() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Futures Transfer for Sub-account (For Master Account) - /sapi/v1/sub-account/futures/transfer
 	futuresTransferForSubAccount, err := client.NewFuturesTransferForSubAccountService().Email("from@email.com").Asset("BTC").

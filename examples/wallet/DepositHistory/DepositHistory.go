@@ -16,7 +16,7 @@ func DepositHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// DepositHistoryService - /sapi/v1/capital/deposit/hisrec
 	depositHistory, err := client.NewDepositHistoryService().Coin("BTC").

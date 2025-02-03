@@ -16,7 +16,7 @@ func QueryManagedSubAccountFuturesAssetDetails() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Query Managed Sub-account Futures Asset Details（For Investor Master Account）(USER_DATA)
 	queryManagedSubAccountFuturesAssetDetails, err := client.NewQueryManagedSubAccountFuturesAssetDetailsService().Email("email@email.com").

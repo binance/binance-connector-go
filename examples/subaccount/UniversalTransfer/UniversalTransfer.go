@@ -16,7 +16,7 @@ func UniversalTransfer() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Universal Transfer (For Master Account) - /sapi/v1/asset/universalTransfer
 	universalTransfer, err := client.NewUniversalTransferService().FromEmail("from@email.com").ToEmail("to@email.com").

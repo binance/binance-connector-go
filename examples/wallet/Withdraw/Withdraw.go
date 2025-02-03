@@ -16,7 +16,7 @@ func Withdraw() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// WithdrawService - /sapi/v1/capital/withdraw/apply
 	withdraw, err := client.NewWithdrawService().Coin("BTC").Address("123123123").

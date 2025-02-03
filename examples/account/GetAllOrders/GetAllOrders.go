@@ -16,7 +16,7 @@ func GetAllOrders() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance Get all account orders; active, canceled, or filled - GET /api/v3/allOrders
 	getAllOrders, err := client.NewGetAllOrdersService().Symbol("BTCUSDT").

@@ -16,7 +16,7 @@ func UserAsset() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// UserAssetService - /sapi/v3/asset/getUserAsset
 	userAsset, err := client.NewUserAssetService().Asset("BTC").

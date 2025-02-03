@@ -16,7 +16,7 @@ func CancelOpenOrders() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance Cancel all open orders on a symbol - DELETE /api/v3/openOrders
 	cancelOpenOrders, err := client.NewCancelOpenOrdersService().Symbol("BTCUSDT").

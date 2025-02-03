@@ -15,7 +15,7 @@ func HistoricalTradeLookup() {
 	apiKey := "your api key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, "", baseURL)
+	client := binance_connector.NewClient(apiKey, "",binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	historicalTradeLookup, err := client.NewHistoricalTradeLookupService().
 		Symbol("BTCUSDT").Do(context.Background())

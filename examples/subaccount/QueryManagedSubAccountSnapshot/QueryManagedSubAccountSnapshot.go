@@ -16,7 +16,7 @@ func QueryManagedSubAccountSnapshot() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	withdrawAssetsFromTheManagedSubAccount, err := client.NewQueryManagedSubAccountSnapshotService().Email("email@email.com").
 		SubType("BTC").StartTime(123123123).EndTime(123132123).Limit(10).Do(context.Background())

@@ -16,7 +16,7 @@ func MarginAccountQueryMaxBorrow() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// MarginAccountQueryMaxBorrowService - /sapi/v1/margin/maxBorrowable
 	marginAccountQueryMaxBorrow, err := client.NewMarginAccountQueryMaxBorrowService().Asset("USDT").

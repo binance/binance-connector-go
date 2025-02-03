@@ -16,7 +16,7 @@ func WithdrawHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// WithdrawHistoryService - /sapi/v1/capital/withdraw/history
 	withdrawHistory, err := client.NewWithdrawHistoryService().

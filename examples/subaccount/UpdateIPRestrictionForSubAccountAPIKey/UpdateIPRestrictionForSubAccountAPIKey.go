@@ -16,7 +16,7 @@ func UpdateIPRestrictionForSubAccountAPIKey() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Update IP Restriction for Sub-Account API key (For Master Account) - /sapi/v2/sub-account/subaccountApi/ipRestriction
 	updateIPRestrictionForSubAccountAPIKey, err := client.NewUpdateIPRestrictionForSubAccountAPIKeyService().Email("email@email.com").

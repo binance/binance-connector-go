@@ -14,7 +14,7 @@ func main() {
 func Klines() {
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient("", "", baseURL)
+	client := binance_connector.NewClient("", "", binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Klines
 	klines, err := client.NewKlinesService().

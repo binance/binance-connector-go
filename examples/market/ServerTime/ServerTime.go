@@ -13,7 +13,7 @@ func main() {
 
 func ServerTime() {
 
-	client := binance_connector.NewClient("", "")
+	client := binance_connector.NewClient("", "", binance_connector.SIGNATURE_HMAC_SHA256)
 
 	// set to debug mode
 	client.Debug = true

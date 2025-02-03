@@ -16,7 +16,7 @@ func CloudMiningPaymentHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// CloudMiningPaymentHistoryService - /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage
 	cloudMiningPaymentHistory, err := client.NewCloudMiningPaymentHistoryService().

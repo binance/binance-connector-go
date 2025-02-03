@@ -16,7 +16,7 @@ func CreateSubAccount() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// #1
 	subaccount, err := client.NewCreateSubAccountService().SubAccountString("TestSubaccount1").

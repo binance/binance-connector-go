@@ -16,7 +16,7 @@ func QueryMarginAvailableInventory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// QueryMarginAvailableInventoryService - /sapi/v1/margin/available-inventory
 	queryMarginAvailableInventory, err := client.NewQueryMarginAvailableInventoryService().

@@ -16,7 +16,7 @@ func SubAccountSpotAssetTransferHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Query Sub-account Spot Asset Transfer History (For Master Account) - /sapi/v1/sub-account/sub/transfer/history
 	subaccountSpotAssetTransferHistory, err := client.NewQuerySubAccountSpotAssetTransferHistoryService().FromEmail("from@email.com").

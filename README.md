@@ -61,7 +61,7 @@ func main() {
 	baseURL := "https://testnet.binance.vision"
 
 	// Initialise the client
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey,binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Create new order
 	newOrder, err := client.NewCreateOrderService().Symbol("BTCUSDT").

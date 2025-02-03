@@ -14,7 +14,7 @@ func main() {
 func ExchangeInfo() {
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient("", "", baseURL)
+	client := binance_connector.NewClient("", "",binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// ExchangeInfo
 	exchangeInfo, err := client.NewExchangeInfoService().Do(context.Background())

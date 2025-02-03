@@ -16,7 +16,7 @@ func GetSystemStatus() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// GetSystemStatusService get account info - /sapi/v1/system/status
 	systemStatus, err := client.NewGetSystemStatusService().Do(context.Background())

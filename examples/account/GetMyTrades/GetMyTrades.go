@@ -16,7 +16,7 @@ func GetMyTrades() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance Get trades for a specific account and symbol (USER_DATA) - GET /api/v3/myTrades
 	getMyTradesService, err := client.NewGetMyTradesService().

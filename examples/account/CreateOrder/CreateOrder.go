@@ -16,7 +16,7 @@ func NewOrder() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance New Order endpoint - POST /api/v3/order
 	newOrder, err := client.NewCreateOrderService().Symbol("BTCUSDT").

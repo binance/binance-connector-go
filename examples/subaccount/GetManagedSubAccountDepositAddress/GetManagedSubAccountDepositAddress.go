@@ -16,7 +16,7 @@ func GetManagedSubAccountDepositAddress() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Get Managed Sub-account Deposit Address (For Investor Master Account) - /sapi/v1/managed-subaccount/deposit/address
 	GetManagedSubAccountDepositAddress, err := client.NewGetManagedSubAccountDepositAddressService().Email("from@email.com").

@@ -16,7 +16,7 @@ func QueryAllOCO() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance Query all OCO (USER_DATA) (GET /api/v3/allOrderList)
 	queryAllOCO, err := client.NewQueryAllOCOService().

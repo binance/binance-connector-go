@@ -16,7 +16,7 @@ func SubAccountFuturesAssetTransferHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Query Sub-account Futures Asset Transfer History (For Master Account) - /sapi/v1/sub-account/futures/internalTransfer
 	subaccountFuturesAssetTransferHistory, err := client.NewQuerySubAccountFuturesAssetTransferHistoryService().Email("from@email.com").

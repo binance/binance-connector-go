@@ -16,7 +16,7 @@ func DeleteIPListForSubAccountAPIKey() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Delete IP List For a Sub-account API Key (For Master Account) - /sapi/v1/sub-account/subaccountApi/ipRestriction/ipList
 	deleteIPListForSubAccountAPIKey, err := client.NewDeleteIPListForSubAccountAPIKeyService().Email("email@email.com").

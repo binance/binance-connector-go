@@ -16,7 +16,7 @@ func AssetDetail() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// AssetDetailService - /sapi/v1/asset/dust-btc
 	assetDetail, err := client.NewAssetDetailService().Do(context.Background())

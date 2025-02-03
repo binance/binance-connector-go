@@ -16,7 +16,7 @@ func CancelOrder() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Binance Cancel Order endpoint - DELETE /api/v3/order
 	cancelOrder, err := client.NewCancelOrderService().Symbol("BTCUSDT").

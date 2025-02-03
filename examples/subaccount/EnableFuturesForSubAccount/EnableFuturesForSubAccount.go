@@ -16,7 +16,7 @@ func EnableFuturesForSubAccount() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Enable Futures for Sub-account (For Master Account) - /sapi/v1/sub-account/futures/enable
 	enableFuturesForSubAccount, err := client.NewEnableFuturesForSubAccountService().Email("from@email.com").

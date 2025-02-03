@@ -16,7 +16,7 @@ func GetSubAccountDepositAddress() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Get Sub-account Deposit Address (For Master Account) - /sapi/v1/capital/deposit/subAddress
 	getSubAccountDepositAddress, err := client.NewGetSubAccountDepositAddressService().Email("from@email.com").

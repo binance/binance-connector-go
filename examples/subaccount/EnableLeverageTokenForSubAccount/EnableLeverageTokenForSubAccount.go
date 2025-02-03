@@ -16,7 +16,7 @@ func EnableLeverageTokenForSubAccount() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Enable Leverage Token for Sub-account (For Master Account) - /sapi/v1/sub-account/blvt/enable
 	enableLeverageTokenForSubAccount, err := client.NewEnableLeverageTokenForSubAccountService().Email("email@email.com").

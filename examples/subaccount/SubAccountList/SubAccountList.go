@@ -16,7 +16,7 @@ func SubAccountList() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Query Sub-account List (For Master Account) - /sapi/v1/sub-account/list
 	subaccountList, err := client.NewQuerySubAccountListService().Email("test@email.com").

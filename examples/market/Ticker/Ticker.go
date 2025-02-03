@@ -14,7 +14,7 @@ func main() {
 func Ticker() {
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient("", "", baseURL)
+	client := binance_connector.NewClient("", "", binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Ticker
 	ticker, err := client.NewTickerService().

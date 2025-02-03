@@ -16,7 +16,7 @@ func QueryCurrentOrderCountUsage() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Query Current Order Count Usage (TRADE)
 	getQueryCurrentOrderCountUsageService, err := client.NewGetQueryCurrentOrderCountUsageService().

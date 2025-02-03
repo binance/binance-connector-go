@@ -16,7 +16,7 @@ func UserDelegationHistory() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// UserDelegationHistoryService - /sapi/v1/asset/custody/transfer-history
 	userDelegationHistory, err := client.NewUserDelegationHistoryService().

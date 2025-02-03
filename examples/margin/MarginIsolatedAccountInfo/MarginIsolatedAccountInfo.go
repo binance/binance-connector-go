@@ -16,7 +16,7 @@ func MarginIsolatedAccountInfo() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// MarginIsolatedAccountInfoService - /sapi/v1/margin/isolated/account
 	marginIsolatedAccountInfo, err := client.NewMarginIsolatedAccountInfoService().Do(context.Background())

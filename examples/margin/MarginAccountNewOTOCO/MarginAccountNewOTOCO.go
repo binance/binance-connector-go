@@ -16,7 +16,7 @@ func MarginAccountNewOTOCO() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// MarginAccountNewOTOCOService - /sapi/v1/margin/order/otoco
 	marginAccountNewOTOCO, err := client.NewMarginAccountNewOTOCOService().

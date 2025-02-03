@@ -16,7 +16,7 @@ func QuerySubAccountTransactionTatistics() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	transactionTatistics, err := client.NewQuerySubAccountTransactionTatistics().Email("email@email.com").Do(context.Background())
 	if err != nil {

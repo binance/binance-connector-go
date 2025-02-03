@@ -16,7 +16,7 @@ func AllCoinsInfo() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// GetAllCoinsInfoService - /sapi/v1/capital/config/getall
 	allCoinsInfo, err := client.NewGetAllCoinsInfoService().Do(context.Background())

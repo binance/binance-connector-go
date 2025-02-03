@@ -16,7 +16,7 @@ func GetSubAccountStatus() {
 	secretKey := "your secret key"
 	baseURL := "https://api.binance.com"
 
-	client := binance_connector.NewClient(apiKey, secretKey, baseURL)
+	client := binance_connector.NewClient(apiKey, secretKey, binance_connector.SIGNATURE_HMAC_SHA256, baseURL)
 
 	// Get Sub-account's Status on Margin/Futures (For Master Account) - /sapi/v1/sub-account/status
 	getSubAccountStatus, err := client.NewGetSubAccountStatusService().Email("from@email.com").
