@@ -815,3 +815,11 @@ func (c *Client) NewGetFiatDepositWithdrawHistoryService() *GetFiatDepositWithdr
 func (c *Client) NewGetFiatPaymentHistoryService() *GetFiatPaymentHistoryService {
 	return &GetFiatPaymentHistoryService{c: c}
 }
+
+func (c *Client) NewGetFuturesLeadTraderStatusService() *GetFuturesLeadTraderStatusService {
+	return &GetFuturesLeadTraderStatusService{c: c}
+}
+
+func (c *Client) NewGetFuturesLeadTradingSymbolWhitelistService() *GetFuturesLeadTradingSymbolWhitelistService {
+	return &GetFuturesLeadTradingSymbolWhitelistService{c: c}
+}
