@@ -529,6 +529,79 @@ func (s *websocketTestSuite) TestKlineServe() {
 	<-doneC
 }
 
+func (s *websocketTestSuite) TestCombinedKlineServe() {
+	websocketStreamClient := NewWebsocketStreamClient(false, "wss://stream.testnet.binance.vision")
+	data := []byte(`{
+        "e": "kline",
+        "E": 1499404907056,
+        "s": "ETHBTC",
+        "k": {
+            "t": 1499404860000,
+            "T": 1499404919999,
+            "s": "ETHBTC",
+            "i": "1m",
+            "f": 77462,
+            "L": 77465,
+            "o": "0.10278577",
+            "c": "0.10278645",
+            "h": "0.10278712",
+            "l": "0.10278518",
+            "v": "17.47929838",
+            "n": 4,
+            "x": false,
+            "q": "1.79662878",
+            "V": "2.34879839",
+            "Q": "0.24142166",
+            "B": "13279784.01349473"
+        }
+    }`)
+	fakeErrMsg := "fake error"
+	s.mockWsServe(data, errors.New(fakeErrMsg))
+	defer s.assertWsServe()
+	symbolInterval := []CombinedKlineSymbolInterval{
+		{
+			Symbol:   "ETHBTC",
+			Interval: "1m",
+		},
+		{
+			Symbol:   "BTCUSDT",
+			Interval: "1m",
+		},
+	}
+
+	doneC, stopC, err := websocketStreamClient.WsCombinedKlineServe(symbolInterval, func(event *WsKlineEvent) {
+		e := &WsKlineEvent{
+			Event:  "kline",
+			Time:   1499404907056,
+			Symbol: "ETHBTC",
+			Kline: WsKline{
+				StartTime:            1499404860000,
+				EndTime:              1499404919999,
+				Symbol:               "ETHBTC",
+				Interval:             "1m",
+				FirstTradeID:         77462,
+				LastTradeID:          77465,
+				Open:                 "0.10278577",
+				Close:                "0.10278645",
+				High:                 "0.10278712",
+				Low:                  "0.10278518",
+				Volume:               "17.47929838",
+				TradeNum:             4,
+				IsFinal:              false,
+				QuoteVolume:          "1.79662878",
+				ActiveBuyVolume:      "2.34879839",
+				ActiveBuyQuoteVolume: "0.24142166",
+			},
+		}
+		s.assertWsKlineEventEqual(e, event)
+	}, func(err error) {
+		s.r().EqualError(err, fakeErrMsg)
+	})
+	s.r().NoError(err)
+	stopC <- struct{}{}
+	<-doneC
+}
+
 func (s *websocketTestSuite) assertWsKlineEventEqual(e, a *WsKlineEvent) {
 	r := s.r()
 	r.Equal(e.Event, a.Event, "Event")

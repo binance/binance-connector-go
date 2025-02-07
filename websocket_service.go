@@ -1,12 +1,11 @@
 package binance_connector
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
-
-	"encoding/json"
 )
 
 type PriceLevel struct {
@@ -277,36 +276,28 @@ func wsCombinedDepthServe(endpoint string, handler WsDepthHandler, errHandler Er
 // WsKlineHandler handle websocket kline event
 type WsKlineHandler func(event *WsKlineEvent)
 
+// CombinedKlineSymbolInterval is a struct that combines symbol and interval information for K-line data.
+// It is used to uniquely identify K-line data for a specific trading pair and time period.
+type CombinedKlineSymbolInterval struct {
+	Symbol   string
+	Interval string
+}
+
 // WsCombinedKlineServe is similar to WsKlineServe, but it handles multiple symbols with it interval
-func (c *WebsocketStreamClient) WsCombinedKlineServe(symbolIntervalPair map[string]string, handler WsKlineHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
+func (c *WebsocketStreamClient) WsCombinedKlineServe(symbolIntervalPair []CombinedKlineSymbolInterval, handler WsKlineHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	endpoint := c.Endpoint
-	for symbol, interval := range symbolIntervalPair {
-		endpoint += fmt.Sprintf("%s@kline_%s", strings.ToLower(symbol), interval) + "/"
+	for _, pair := range symbolIntervalPair {
+		endpoint += fmt.Sprintf("%s@kline_%s", strings.ToLower(pair.Symbol), pair.Interval) + "/"
 	}
 	endpoint = endpoint[:len(endpoint)-1]
 	cfg := newWsConfig(endpoint)
 	wsHandler := func(message []byte) {
-		j, err := newJSON(message)
-		if err != nil {
-			errHandler(err)
-			return
-		}
-
-		stream := j.Get("stream").MustString()
-		data := j.Get("data").MustMap()
-
-		symbol := strings.Split(stream, "@")[0]
-
-		jsonData, _ := json.Marshal(data)
-
 		event := new(WsKlineEvent)
-		err = json.Unmarshal(jsonData, event)
+		err := json.Unmarshal(message, event)
 		if err != nil {
 			errHandler(err)
 			return
 		}
-		event.Symbol = strings.ToUpper(symbol)
-
 		handler(event)
 	}
 	return wsServe(cfg, wsHandler, errHandler)
