@@ -89,6 +89,14 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 					return
 				}
 				handler(message)
+				if silent {
+					err := c.Close()
+					if err != nil {
+						errHandler(err)
+					}
+					// errHandler(errors.New("websocket connection is closed"))
+					return
+				}
 			}
 		}()
 
