@@ -469,7 +469,7 @@ func (s *DepositHistoryService) TxId(txid string) *DepositHistoryService {
 	return s
 }
 
-func (s *DepositHistoryService) Do(ctx context.Context) (res []*DepositHistoryResponse, err error) {
+func (s *DepositHistoryService) Do(ctx context.Context, opts ...RequestOption) (res []*DepositHistoryResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: depositHistoryEndpoint,
@@ -496,7 +496,7 @@ func (s *DepositHistoryService) Do(ctx context.Context) (res []*DepositHistoryRe
 	if s.txid != nil {
 		r.setParam("txId", *s.txid)
 	}
-	data, err := s.c.callAPI(ctx, r)
+	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {
 		return nil, err
 	}
