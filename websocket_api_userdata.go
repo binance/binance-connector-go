@@ -2,7 +2,8 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
+
+	json "github.com/json-iterator/go"
 )
 
 type StartUserDataStreamService struct {

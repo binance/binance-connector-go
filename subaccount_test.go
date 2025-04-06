@@ -2,10 +2,11 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"testing"
 	"time"
+
+	json "github.com/json-iterator/go"
 
 	"github.com/stretchr/testify/suite"
 )

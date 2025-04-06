@@ -2,8 +2,9 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
+
+	json "github.com/json-iterator/go"
 )
 
 // Get all margin assets API Endpoint

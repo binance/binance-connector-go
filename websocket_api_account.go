@@ -2,8 +2,9 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"strconv"
+
+	json "github.com/json-iterator/go"
 )
 
 type AccountInformationService struct {

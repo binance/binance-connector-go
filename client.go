@@ -5,7 +5,6 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -13,6 +12,8 @@ import (
 	"net/url"
 	"os"
 	"time"
+
+	json "github.com/json-iterator/go"
 
 	"github.com/binance/binance-connector-go/handlers"
 	"github.com/bitly/go-simplejson"
@@ -55,7 +56,7 @@ func FormatTimestamp(t time.Time) int64 {
 }
 
 func PrettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
+	s, _ := json.MarshalIndent(i, "", "  ")
 	return string(s)
 }
 
