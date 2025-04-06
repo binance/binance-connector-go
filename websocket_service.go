@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"encoding/json"
+	json "github.com/json-iterator/go"
 )
 
 type PriceLevel struct {

@@ -2,9 +2,10 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"math/big"
 	"net/http"
+
+	json "github.com/json-iterator/go"
 )
 
 // Binance Test Connectivity endpoint (GET /api/v3/ping)

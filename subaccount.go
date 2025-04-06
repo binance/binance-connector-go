@@ -2,9 +2,10 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"strconv"
+
+	json "github.com/json-iterator/go"
 )
 
 // Create a Virtual Sub-account(For Master Account)
