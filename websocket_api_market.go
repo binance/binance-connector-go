@@ -2,7 +2,6 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"strconv"
 )
 
@@ -39,27 +38,11 @@ func (s *DepthService) Do(ctx context.Context) (*DepthResponse, error) {
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp DepthResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var depthResponse DepthResponse
-		err = json.Unmarshal(response, &depthResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &depthResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type DepthResponse struct {
@@ -109,27 +92,11 @@ func (s *RecentTradesService) Do(ctx context.Context) (*RecentTradesResponse, er
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp RecentTradesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var recentTradesResponse RecentTradesResponse
-		err = json.Unmarshal(response, &recentTradesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &recentTradesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type RecentTradesResponse struct {
@@ -193,27 +160,11 @@ func (s *HistoricalTradesService) Do(ctx context.Context) (*HistoricalTradesResp
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp HistoricalTradesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var historicalTradesResponse HistoricalTradesResponse
-		err = json.Unmarshal(response, &historicalTradesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &historicalTradesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type HistoricalTradesResponse struct {
@@ -297,27 +248,11 @@ func (s *AggregateTradesService) Do(ctx context.Context) (*AggregateTradesRespon
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp AggregateTradesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var aggTradesResponse AggregateTradesResponse
-		err = json.Unmarshal(response, &aggTradesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &aggTradesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AggregateTradesResponse struct {
@@ -399,27 +334,11 @@ func (s *KlinesService) Do(ctx context.Context) (*WsAPIKlinesResponse, error) {
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPIKlinesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var klinesResponse WsAPIKlinesResponse
-		err = json.Unmarshal(response, &klinesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &klinesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPIKlinesResponse struct {
@@ -453,27 +372,11 @@ func (s *AvgPriceService) Do(ctx context.Context) (*WsAPIAvgPriceResponse, error
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPIAvgPriceResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var avgPriceResponse WsAPIAvgPriceResponse
-		err = json.Unmarshal(response, &avgPriceResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &avgPriceResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPIAvgPriceResponse struct {
@@ -512,27 +415,11 @@ func (s *Ticker24hrService) Do(ctx context.Context) (*WsAPITicker24hrResponse, e
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPITicker24hrResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var twentyFourHrResponse WsAPITicker24hrResponse
-		err = json.Unmarshal(response, &twentyFourHrResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &twentyFourHrResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPITicker24hrResponse struct {
@@ -590,27 +477,11 @@ func (s *TickerService) Do(ctx context.Context) (*WsAPITickerResponse, error) {
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPITickerResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var tickerResponse WsAPITickerResponse
-		err = json.Unmarshal(response, &tickerResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &tickerResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPITickerResponse struct {
@@ -662,27 +533,11 @@ func (s *TickerPriceService) Do(ctx context.Context) (*WsAPIPriceTickerResponse,
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPIPriceTickerResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var priceTickerResponse WsAPIPriceTickerResponse
-		err = json.Unmarshal(response, &priceTickerResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &priceTickerResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPIPriceTickerResponse struct {
@@ -721,27 +576,11 @@ func (s *TickerBookService) Do(ctx context.Context) (*WsAPIBookTickerResponse, e
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp WsAPIBookTickerResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var bookTickerResponse WsAPIBookTickerResponse
-		err = json.Unmarshal(response, &bookTickerResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &bookTickerResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type WsAPIBookTickerResponse struct {
@@ -819,27 +658,11 @@ func (s *UIKlinesService) Do(ctx context.Context) (*UIKlinesResponse, error) {
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp UIKlinesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var uiKlinesResponse UIKlinesResponse
-		err = json.Unmarshal(response, &uiKlinesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &uiKlinesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type UIKlinesResponse struct {

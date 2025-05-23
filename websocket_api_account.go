@@ -36,27 +36,11 @@ func (s *AccountInformationService) Do(ctx context.Context) (*AccountInformation
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp AccountInformationResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var accInfoResponse AccountInformationResponse
-		err = json.Unmarshal(response, &accInfoResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &accInfoResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AccountInformationResponse struct {
@@ -127,27 +111,11 @@ func (s *AccountOrderRateLimitsService) Do(ctx context.Context) (*AccountOrderRa
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp AccountOrderRateLimitsResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderRateLimitsResponse AccountOrderRateLimitsResponse
-		err = json.Unmarshal(response, &orderRateLimitsResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderRateLimitsResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AccountOrderRateLimitsResponse struct {
@@ -245,14 +213,13 @@ func (s *AccountOrderHistoryService) Do(ctx context.Context) (*AccountOrderHisto
 	}
 
 	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
+	s.websocketAPI.ReqResponseMap.Store(id, messageCh)
+	defer s.websocketAPI.ReqResponseMap.Delete(id)
 
 	err2 := s.websocketAPI.SendMessage(payload)
 	if err2 != nil {
 		return nil, err2
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
 
 	select {
 	case response := <-messageCh:
@@ -370,27 +337,11 @@ func (s *AccountOCOHistoryService) Do(ctx context.Context) (*AccountOCOHistoryRe
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp AccountOCOHistoryResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var ocoHistoryResponse AccountOCOHistoryResponse
-		err = json.Unmarshal(response, &ocoHistoryResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &ocoHistoryResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AccountOCOHistoryResponse struct {
@@ -508,27 +459,11 @@ func (s *AccountTradeHistoryService) Do(ctx context.Context) (*AccountTradeHisto
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp AccountTradeHistoryResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var tradeHistoryResponse AccountTradeHistoryResponse
-		err = json.Unmarshal(response, &tradeHistoryResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &tradeHistoryResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AccountTradeHistoryResponse struct {
@@ -585,27 +520,11 @@ func (s *AccountPreventedMatchesService) Do(ctx context.Context) (*AccountPreven
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp AccountPreventedMatchesResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var preventedMatchesResponse AccountPreventedMatchesResponse
-		err = json.Unmarshal(response, &preventedMatchesResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &preventedMatchesResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type AccountPreventedMatchesResponse struct {

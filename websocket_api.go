@@ -15,6 +15,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
@@ -26,8 +27,9 @@ type WebsocketAPIClient struct {
 	APISecret      string
 	Endpoint       string
 	Conn           *websocket.Conn
+	mu             sync.Mutex //for Conn write msg
 	Dialer         *websocket.Dialer
-	ReqResponseMap map[string]chan []byte
+	ReqResponseMap sync.Map //map[string]chan []byte
 }
 
 type WsAPIRateLimit struct {
@@ -85,7 +87,6 @@ func (c *WebsocketAPIClient) Connect() error {
 	fmt.Println("Connected to Binance Websocket API")
 	c.Conn = conn
 
-	c.ReqResponseMap = make(map[string]chan []byte)
 	c.startReader() // start reader again
 	return nil
 }
@@ -112,8 +113,12 @@ func (c *WebsocketAPIClient) Handler(message []byte) {
 		return
 	}
 	// Send the message to the corresponding request
-	if channel, ok := c.ReqResponseMap[response.ID]; ok {
-		channel <- message
+	if channel, ok := c.ReqResponseMap.Load(response.ID); ok {
+		if ch, ok := channel.(chan []byte); ok {
+			ch <- message
+		} else {
+			log.Printf("Channel for ID %s is not of type chan []byte", response.ID)
+		}
 	}
 }
 
@@ -128,7 +133,30 @@ func (c *WebsocketAPIClient) Close() error {
 }
 
 func (c *WebsocketAPIClient) SendMessage(msg interface{}) error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
 	return c.Conn.WriteJSON(msg)
+}
+
+func (c *WebsocketAPIClient) Do(ctx context.Context, id string, payload map[string]interface{}, resp any) error {
+	messageCh := make(chan []byte, 1)
+	c.ReqResponseMap.Store(id, messageCh)
+	defer c.ReqResponseMap.Delete(id)
+
+	err := c.SendMessage(payload)
+	if err != nil {
+		return err
+	}
+
+	select {
+	case response := <-messageCh:
+		if err := json.Unmarshal(response, resp); err != nil {
+			return err
+		}
+		return nil
+	case <-ctx.Done():
+		return ctx.Err()
+	}
 }
 
 func (c *WebsocketAPIClient) RequestHandler(req interface{}, handler WsHandler, errHandler ErrHandler) (stopCh chan struct{}, err error) {
@@ -242,27 +270,11 @@ func (s *TestConnectivityService) Do(ctx context.Context) (*TestConnectivityResp
 		"method": "ping",
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp TestConnectivityResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var pingResponse TestConnectivityResponse
-		err = json.Unmarshal(response, &pingResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &pingResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type TestConnectivityResponse struct {
@@ -285,27 +297,11 @@ func (s *CheckServerTimeService) Do(ctx context.Context) (*CheckServerTimeRespon
 		"method": "time",
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp CheckServerTimeResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var timeResponse CheckServerTimeResponse
-		err = json.Unmarshal(response, &timeResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &timeResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type CheckServerTimeResponse struct {

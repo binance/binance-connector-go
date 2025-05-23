@@ -2,7 +2,6 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 )
 
 type StartUserDataStreamService struct {
@@ -22,27 +21,11 @@ func (s *StartUserDataStreamService) Do(ctx context.Context) (*StartUserDataStre
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp StartUserDataStreamResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var startResponse StartUserDataStreamResponse
-		err = json.Unmarshal(response, &startResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &startResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type StartUserDataStreamResponse struct {
@@ -79,27 +62,11 @@ func (s *PingUserDataStreamService) Do(ctx context.Context) (*PingUserDataStream
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp PingUserDataStreamResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var pingResponse PingUserDataStreamResponse
-		err = json.Unmarshal(response, &pingResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &pingResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type PingUserDataStreamResponse struct {
@@ -134,27 +101,11 @@ func (s *StopUserDataStreamService) Do(ctx context.Context) (*StopUserDataStream
 		"params": parameters,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err := s.websocketAPI.SendMessage(payload)
-	if err != nil {
+	var resp StopUserDataStreamResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
 		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var stopResponse StopUserDataStreamResponse
-		err = json.Unmarshal(response, &stopResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &stopResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type StopUserDataStreamResponse struct {

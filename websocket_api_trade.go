@@ -2,7 +2,6 @@ package binance_connector
 
 import (
 	"context"
-	"encoding/json"
 	"strconv"
 )
 
@@ -166,27 +165,11 @@ func (s *OrderPlacementService) Do(ctx context.Context) (*OrderPlacementResponse
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderPlacementResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderPlacementResponse OrderPlacementResponse
-		err = json.Unmarshal(response, &orderPlacementResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderPlacementResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderPlacementResponse struct {
@@ -392,27 +375,11 @@ func (s *TestOrderPlacementService) Do(ctx context.Context) (*OrderPlacementResp
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderPlacementResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderPlacementResponse OrderPlacementResponse
-		err = json.Unmarshal(response, &orderPlacementResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderPlacementResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderStatusService struct {
@@ -473,27 +440,11 @@ func (s *OrderStatusService) Do(ctx context.Context) (*OrderStatusResponse, erro
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderStatusResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderStatusResponse OrderStatusResponse
-		err = json.Unmarshal(response, &orderStatusResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderStatusResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderStatusResponse struct {
@@ -611,27 +562,11 @@ func (s *OrderCancelService) Do(ctx context.Context) (*OrderCancelResponse, erro
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderCancelResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderCancelResponse OrderCancelResponse
-		err = json.Unmarshal(response, &orderCancelResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderCancelResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderCancelResponse struct {
@@ -886,27 +821,11 @@ func (s *OrderCancelReplaceService) Do(ctx context.Context) (*OrderCancelReplace
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderCancelReplaceResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderCancelReplaceResponse OrderCancelReplaceResponse
-		err = json.Unmarshal(response, &orderCancelReplaceResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderCancelReplaceResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderCancelReplaceResponse struct {
@@ -1008,27 +927,11 @@ func (s *OpenOrdersStatusService) Do(ctx context.Context) (*OpenOrdersStatusResp
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OpenOrdersStatusResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var openOrdersStatusResponse OpenOrdersStatusResponse
-		err = json.Unmarshal(response, &openOrdersStatusResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &openOrdersStatusResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OpenOrdersStatusResponse struct {
@@ -1100,27 +1003,11 @@ func (s *OpenOrdersCancelAllService) Do(ctx context.Context) (*OpenOrdersCancelA
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OpenOrdersCancelAllResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var openOrdersCancelAllResponse OpenOrdersCancelAllResponse
-		err = json.Unmarshal(response, &openOrdersCancelAllResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &openOrdersCancelAllResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OpenOrdersCancelAllResponse struct {
@@ -1356,27 +1243,11 @@ func (s *OrderListPlaceService) Do(ctx context.Context) (*OrderListPlaceResponse
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderListPlaceResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderListPlaceResponse OrderListPlaceResponse
-		err = json.Unmarshal(response, &orderListPlaceResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderListPlaceResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderListPlaceResponse struct {
@@ -1473,27 +1344,11 @@ func (s *OrderListStatusService) Do(ctx context.Context) (*OrderListStatusRespon
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderListStatusResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderListStatusResponse OrderListStatusResponse
-		err = json.Unmarshal(response, &orderListStatusResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderListStatusResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderListStatusResponse struct {
@@ -1589,27 +1444,11 @@ func (s *OrderListCancelService) Do(ctx context.Context) (*OrderListCancelRespon
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OrderListCancelResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var orderListCancelResponse OrderListCancelResponse
-		err = json.Unmarshal(response, &orderListCancelResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &orderListCancelResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OrderListCancelResponse struct {
@@ -1680,27 +1519,11 @@ func (s *OpenOrderListsStatusService) Do(ctx context.Context) (*OpenOrderListsSt
 		"params": signedParams,
 	}
 
-	messageCh := make(chan []byte)
-	s.websocketAPI.ReqResponseMap[id] = messageCh
-
-	err2 := s.websocketAPI.SendMessage(payload)
-	if err2 != nil {
-		return nil, err2
+	var resp OpenOrderListsStatusResponse
+	if err := s.websocketAPI.Do(ctx, id, payload, &resp); err != nil {
+		return nil, err
 	}
-
-	defer delete(s.websocketAPI.ReqResponseMap, id)
-
-	select {
-	case response := <-messageCh:
-		var openOrderListsStatusResponse OpenOrderListsStatusResponse
-		err = json.Unmarshal(response, &openOrderListsStatusResponse)
-		if err != nil {
-			return nil, err
-		}
-		return &openOrderListsStatusResponse, nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
+	return &resp, nil
 }
 
 type OpenOrderListsStatusResponse struct {
