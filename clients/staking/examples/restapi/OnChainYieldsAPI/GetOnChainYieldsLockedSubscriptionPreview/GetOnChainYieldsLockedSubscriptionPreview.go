@@ -1,0 +1,36 @@
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+
+	client "github.com/binance/binance-connector-go/clients/staking/src"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	GetOnChainYieldsLockedSubscriptionPreview()
+}
+
+func GetOnChainYieldsLockedSubscriptionPreview() {
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.StakingRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := client.NewBinanceStakingClient(
+		client.WithRestAPI(configuration),
+	)
+	resp, err := apiClient.RestApi.OnChainYieldsAPI.GetOnChainYieldsLockedSubscriptionPreview(context.Background()).ProjectId("1").Amount(1.0).Execute()
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
