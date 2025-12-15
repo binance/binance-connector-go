@@ -1,0 +1,170 @@
+name: Release Go Connector
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  detect-clients:
+    runs-on: ubuntu-latest
+    outputs:
+      clients: ${{ steps.detect.outputs.clients }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect all clients
+        id: detect
+        run: |
+          echo "clients=[\"common\"]" >> $GITHUB_OUTPUT
+
+  release:
+    needs: detect-clients
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        client: ${{ fromJson(needs.detect-clients.outputs.clients) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24'
+
+      - name: Compare versions
+        id: version
+        run: |
+          if [ "${{ matrix.client }}" == "common" ]; then
+            cd common
+            # Get the latest tag for this module
+            LATEST_TAG=$(git describe --tags --match "common/v*" --abbrev=0 2>/dev/null || echo "")
+            CURRENT_COMMIT=$(git rev-parse HEAD)
+            LAST_TAG_COMMIT=$(git rev-list -n 1 $LATEST_TAG 2>/dev/null || echo "")
+
+            if [ -z "$LATEST_TAG" ] || [ "$CURRENT_COMMIT" != "$LAST_TAG_COMMIT" ]; then
+              echo "release_needed=true" >> $GITHUB_OUTPUT
+              echo "New changes detected since last tag"
+            else
+              echo "release_needed=false" >> $GITHUB_OUTPUT
+              echo "No new changes since last tag"
+            fi
+          else
+            cd clients/${{ matrix.client }}
+            # Get the latest tag for this client
+            LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
+            CURRENT_COMMIT=$(git rev-parse HEAD)
+            LAST_TAG_COMMIT=$(git rev-list -n 1 $LATEST_TAG 2>/dev/null || echo "")
+
+            if [ -z "$LATEST_TAG" ] || [ "$CURRENT_COMMIT" != "$LAST_TAG_COMMIT" ]; then
+              echo "release_needed=true" >> $GITHUB_OUTPUT
+              echo "New changes detected since last tag"
+            else
+              echo "release_needed=false" >> $GITHUB_OUTPUT
+              echo "No new changes since last tag"
+            fi
+          fi
+
+      - name: Set working directory path
+        if: steps.version.outputs.release_needed == 'true'
+        id: path
+        run: |
+          if [ "${{ matrix.client }}" == "common" ]; then
+            echo "dir=common" >> $GITHUB_OUTPUT
+            echo "package_path=./" >> $GITHUB_OUTPUT
+          else
+            echo "dir=clients/${{ matrix.client }}" >> $GITHUB_OUTPUT
+            echo "package_path=./src" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up Go environment
+        if: steps.version.outputs.release_needed == 'true'
+        working-directory: ${{ steps.path.outputs.dir }}
+        env:
+          GOPROXY: proxy.golang.org,direct
+          GOPRIVATE: github.com/${{ github.repository }}
+        run: |
+          # Configure git for private module access
+          git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com".insteadOf "https://github.com"
+
+          # Verify module and tidy dependencies
+          go mod tidy
+          go mod verify
+
+      - name: Build and test
+        if: steps.version.outputs.release_needed == 'true'
+        working-directory: ${{ steps.path.outputs.dir }}
+        run: |
+          # Install goimports if not already installed
+          if ! command -v goimports &> /dev/null; then
+            go install golang.org/x/tools/cmd/goimports@latest
+          fi
+
+          # Format code
+          goimports -w .
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Code not properly formatted. Run gofmt locally."
+            exit 1
+          fi
+
+          # Build the package
+          go build -v ${{ steps.path.outputs.package_path }}/...
+
+          # Run tests from the tests directory
+          if [ -d "tests" ]; then
+            go test -v ./tests/...
+          fi
+
+      - name: Determine next version
+        id: next_version
+        run: |
+          # Get the latest tag for this module
+          LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LATEST_TAG" ]; then
+            # No tags exist yet, start with v1.0.0
+            NEW_VERSION="v1.0.0"
+          else
+            CURRENT_VERSION=${LATEST_TAG#${{ matrix.client }}/v}
+
+            # Split into parts
+            IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
+            MAJOR=${VERSION_PARTS[0]}
+            MINOR=${VERSION_PARTS[1]}
+            PATCH=${VERSION_PARTS[2]}
+
+            # Increment patch version
+            NEW_MAJOR=$((MAJOR + 1))
+            NEW_VERSION="v${NEW_MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          # Set the full tag name
+          FULL_TAG="${{ matrix.client }}/$NEW_VERSION"
+          echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish to GitHub Packages
+        if: steps.version.outputs.release_needed == 'true'
+        working-directory: ${{ steps.path.outputs.dir }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOPROXY: proxy.golang.org,direct
+          GOPRIVATE: github.com/${{ github.repository }}
+        run: |
+          # Configure git
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com".insteadOf "https://github.com"
+
+          # Create and push tag
+          git tag ${{ steps.next_version.outputs.tag }}
+          git push origin ${{ steps.next_version.outputs.tag }}
+
+          # Verify the module is published
+          GOPRIVATE=github.com/${{ github.repository }} go list -m
