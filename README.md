@@ -1,6 +1,8 @@
-# Binance Spot Go Connector
+# Binance Spot Go Connector - Legacy
 
 This is a lightweight library that works as a connector to [Binance public API](https://github.com/binance/binance-spot-api-docs)
+
+**Note:** This is the legacy version of the Binance Spot Go Connector. For the latest modular version, please refer to the **Binance Go Modular Connector**.
 
 ## Supported API Endpoints:
 - Account/Trade: `account.go`
