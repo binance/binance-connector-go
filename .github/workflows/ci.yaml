@@ -15,8 +15,9 @@ jobs:
       - name: Detect modified targets
         id: filter
         run: |
-          echo "Detected all clients: [\"common\"]"
-          echo "modified_targets=[\"common\"]" >> $GITHUB_OUTPUT
+          ALL_CLIENTS=$(ls -d clients/*/ | xargs -n 1 basename | jq -R -s -c 'split("\n")[:-1]')
+          echo "Detected all clients: $ALL_CLIENTS"
+          echo "modified_targets=$ALL_CLIENTS" >> $GITHUB_OUTPUT
 
   build-target:
     needs: detect-targets
