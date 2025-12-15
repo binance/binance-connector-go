@@ -1,0 +1,65 @@
+name: Go Connectors CI/CD
+
+on:
+  pull_request:
+
+jobs:
+  detect-targets:
+    runs-on: ubuntu-latest
+    outputs:
+      modified_targets: ${{ steps.filter.outputs.modified_targets }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Detect modified targets
+        id: filter
+        run: |
+          ALL_CLIENTS=$(ls -d clients/*/ | xargs -n 1 basename | jq -R -s -c 'split("\n")[:-1]')
+          echo "Detected all clients: $ALL_CLIENTS"
+          echo "modified_targets=$ALL_CLIENTS" >> $GITHUB_OUTPUT
+
+  build-target:
+    needs: detect-targets
+    runs-on: ubuntu-latest
+    if: ${{ needs.detect-targets.outputs.modified_targets != '[]' }}
+    strategy:
+      matrix:
+        target: ${{ fromJson(needs.detect-targets.outputs.modified_targets) }}
+        go-version: ['1.24', '1.25']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: false
+
+      - name: Install goimports
+        run: go install golang.org/x/tools/cmd/goimports@latest
+
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+      - name: Build ${{ matrix.target }}
+        run: |
+          if [ "${{ matrix.target }}" == "common" ]; then
+            cd common
+          else
+            cd clients/${{ matrix.target }}
+          fi
+
+          # Ensure dependencies are up to date
+          go mod tidy
+          goimports -w .
+
+          # Check code formatting
+          gofmt -l -e .
+
+          # Run linter and tests
+          golangci-lint run --timeout 5m ./...
+
+          # Run unit tests
+          go test ./tests/unit/...

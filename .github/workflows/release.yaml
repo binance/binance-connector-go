@@ -18,7 +18,9 @@ jobs:
       - name: Detect all clients
         id: detect
         run: |
-          echo "clients=[\"common\"]" >> $GITHUB_OUTPUT
+          ALL_CLIENTS=$(ls -d clients/*/ | xargs -n 1 basename | jq -R -s -c 'split("\n")[:-1]')
+          echo "Detected all clients: $ALL_CLIENTS"
+          echo "clients=$ALL_CLIENTS" >> $GITHUB_OUTPUT
 
   release:
     needs: detect-clients
