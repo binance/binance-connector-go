@@ -1,4 +1,4 @@
-package binanceCryptoLoan
+package cryptoloan
 
 import (
 	BinanceCryptoLoanRestApi "github.com/binance/binance-connector-go/clients/cryptoloan/src/restapi"

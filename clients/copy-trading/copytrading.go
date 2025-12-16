@@ -1,4 +1,4 @@
-package binanceCopyTrading
+package copytrading
 
 import (
 	BinanceCopyTradingRestApi "github.com/binance/binance-connector-go/clients/copytrading/src/restapi"

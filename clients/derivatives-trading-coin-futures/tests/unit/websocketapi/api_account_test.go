@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures"
 	"github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/websocketapi/models"
 	"github.com/binance/binance-connector-go/common/common"
 	tests "github.com/binance/binance-connector-go/common/tests"

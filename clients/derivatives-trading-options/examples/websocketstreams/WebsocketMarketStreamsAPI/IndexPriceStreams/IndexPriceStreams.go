@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
 	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/websocketstreams/models"
 	"github.com/binance/binance-connector-go/common/common"
 )

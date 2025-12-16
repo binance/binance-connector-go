@@ -1,4 +1,4 @@
-package binanceRebate
+package rebate
 
 import (
 	BinanceRebateRestApi "github.com/binance/binance-connector-go/clients/rebate/src/restapi"

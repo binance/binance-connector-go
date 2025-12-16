@@ -1,4 +1,4 @@
-package binanceMarginTrading
+package margintrading
 
 import (
 	BinanceMarginTradingRestApi "github.com/binance/binance-connector-go/clients/margintrading/src/restapi"

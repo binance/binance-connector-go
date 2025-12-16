@@ -1,4 +1,4 @@
-package binanceDerivativesTradingUsdsFutures
+package derivativestradingusdsfutures
 
 import (
 	BinanceDerivativesTradingUsdsFuturesRestApi "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/restapi"

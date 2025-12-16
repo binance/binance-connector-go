@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/wallet/src"
+	client "github.com/binance/binance-connector-go/clients/wallet"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

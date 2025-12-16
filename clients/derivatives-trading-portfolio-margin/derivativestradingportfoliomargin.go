@@ -1,4 +1,4 @@
-package binanceDerivativesTradingPortfolioMargin
+package derivativestradingportfoliomargin
 
 import (
 	BinanceDerivativesTradingPortfolioMarginRestApi "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/restapi"

@@ -1,4 +1,4 @@
-package binanceSubAccount
+package subaccount
 
 import (
 	BinanceSubAccountRestApi "github.com/binance/binance-connector-go/clients/subaccount/src/restapi"

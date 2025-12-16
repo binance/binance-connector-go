@@ -1,4 +1,4 @@
-package binanceWallet
+package wallet
 
 import (
 	BinanceWalletRestApi "github.com/binance/binance-connector-go/clients/wallet/src/restapi"

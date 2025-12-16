@@ -30,7 +30,7 @@ This is a client library for the Binance Crypto Loan API, enabling developers to
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.22** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.24** or higher is recommended). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/cryptoloan

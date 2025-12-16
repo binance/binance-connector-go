@@ -1,4 +1,4 @@
-package binanceNFT
+package nft
 
 import (
 	BinanceNFTRestApi "github.com/binance/binance-connector-go/clients/nft/src/restapi"

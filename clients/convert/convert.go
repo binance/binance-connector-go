@@ -1,4 +1,4 @@
-package binanceConvert
+package convert
 
 import (
 	BinanceConvertRestApi "github.com/binance/binance-connector-go/clients/convert/src/restapi"

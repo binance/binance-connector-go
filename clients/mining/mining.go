@@ -1,4 +1,4 @@
-package binanceMining
+package mining
 
 import (
 	BinanceMiningRestApi "github.com/binance/binance-connector-go/clients/mining/src/restapi"
