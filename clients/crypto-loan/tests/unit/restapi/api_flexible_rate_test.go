@@ -15,7 +15,7 @@ import (
 	"reflect"
 	"testing"
 
-	client "github.com/binance/binance-connector-go/clients/cryptoloan/src"
+	client "github.com/binance/binance-connector-go/clients/cryptoloan"
 	"github.com/binance/binance-connector-go/clients/cryptoloan/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/common"
 	"github.com/stretchr/testify/require"

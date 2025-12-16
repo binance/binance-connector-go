@@ -1,4 +1,4 @@
-package binanceFiat
+package fiat
 
 import (
 	BinanceFiatRestApi "github.com/binance/binance-connector-go/clients/fiat/src/restapi"

@@ -31,7 +31,7 @@ This is a client library for the Binance Derivatives Trading Portfolio Margin AP
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.22** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.24** or higher is recommended). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin
@@ -53,7 +53,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

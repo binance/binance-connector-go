@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/subaccount/src"
+	client "github.com/binance/binance-connector-go/clients/subaccount"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

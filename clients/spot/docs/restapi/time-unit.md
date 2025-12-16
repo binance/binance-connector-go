@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	client "github.com/binance/binance-connector-go/clients/spot/src"
+	client "github.com/binance/binance-connector-go/clients/spot"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

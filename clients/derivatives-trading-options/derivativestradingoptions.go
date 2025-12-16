@@ -1,4 +1,4 @@
-package binanceDerivativesTradingOptions
+package derivativestradingoptions
 
 import (
 	BinanceDerivativesTradingOptionsRestApi "github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/restapi"

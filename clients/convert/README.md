@@ -29,7 +29,7 @@ This is a client library for the Binance Convert API, enabling developers to int
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.22** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.24** or higher is recommended). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/convert
@@ -51,7 +51,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/convert/src"
+	client "github.com/binance/binance-connector-go/clients/convert"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

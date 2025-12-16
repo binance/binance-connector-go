@@ -1,4 +1,4 @@
-package binanceDualInvestment
+package dualinvestment
 
 import (
 	BinanceDualInvestmentRestApi "github.com/binance/binance-connector-go/clients/dualinvestment/src/restapi"

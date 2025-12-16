@@ -1,4 +1,4 @@
-package binancePay
+package pay
 
 import (
 	BinancePayRestApi "github.com/binance/binance-connector-go/clients/pay/src/restapi"

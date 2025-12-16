@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/margintrading/src"
+	client "github.com/binance/binance-connector-go/clients/margintrading"
 	"github.com/binance/binance-connector-go/common/common"
 )
 

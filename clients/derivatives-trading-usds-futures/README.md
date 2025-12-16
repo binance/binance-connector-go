@@ -34,7 +34,7 @@ This is a client library for the Binance Derivatives Trading USDS-M Futures API,
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.22** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.24** or higher is recommended). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures
@@ -191,7 +191,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
 	"github.com/binance/binance-connector-go/common/common"
 )
 
@@ -324,7 +324,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
 	"github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/websocketstreams/models"
 	"github.com/binance/binance-connector-go/common/common"
 )
@@ -452,7 +452,7 @@ import (
 	"log"
 	"time"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
 	"github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/websocketstreams/models"
 	"github.com/binance/binance-connector-go/common/common"
 )

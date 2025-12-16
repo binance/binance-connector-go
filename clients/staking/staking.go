@@ -1,4 +1,4 @@
-package binanceStaking
+package staking
 
 import (
 	BinanceStakingRestApi "github.com/binance/binance-connector-go/clients/staking/src/restapi"

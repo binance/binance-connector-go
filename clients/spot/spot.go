@@ -1,4 +1,4 @@
-package binanceSpot
+package spot
 
 import (
 	BinanceSpotRestApi "github.com/binance/binance-connector-go/clients/spot/src/restapi"

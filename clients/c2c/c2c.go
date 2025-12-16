@@ -1,4 +1,4 @@
-package binanceC2C
+package c2c
 
 import (
 	BinanceC2CRestApi "github.com/binance/binance-connector-go/clients/c2c/src/restapi"

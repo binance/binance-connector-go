@@ -1,4 +1,4 @@
-package binanceSimpleEarn
+package simpleearn
 
 import (
 	BinanceSimpleEarnRestApi "github.com/binance/binance-connector-go/clients/simpleearn/src/restapi"

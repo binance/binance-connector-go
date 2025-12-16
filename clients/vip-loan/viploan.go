@@ -1,4 +1,4 @@
-package binanceVipLoan
+package viploan
 
 import (
 	BinanceVipLoanRestApi "github.com/binance/binance-connector-go/clients/viploan/src/restapi"

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"log"
 
-	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions/src"
+	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
 	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/common"
 )

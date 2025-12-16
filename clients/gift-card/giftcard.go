@@ -1,4 +1,4 @@
-package binanceGiftCard
+package giftcard
 
 import (
 	BinanceGiftCardRestApi "github.com/binance/binance-connector-go/clients/giftcard/src/restapi"

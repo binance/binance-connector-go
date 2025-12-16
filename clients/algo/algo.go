@@ -1,4 +1,4 @@
-package binanceAlgo
+package algo
 
 import (
 	BinanceAlgoRestApi "github.com/binance/binance-connector-go/clients/algo/src/restapi"
