@@ -13,14 +13,40 @@ jobs:
       clients: ${{ steps.detect.outputs.clients }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
 
       - name: Detect all clients
         id: detect
         run: |
-          ALL_CLIENTS=$(ls -d clients/*/ | xargs -n 1 basename | jq -R -s -c 'split("\n")[:-1]')
-          echo "Detected all clients: $ALL_CLIENTS"
-          echo "clients=$ALL_CLIENTS" >> $GITHUB_OUTPUT
+          ALL_CLIENTS=$(ls -d clients/*/ | xargs -n 1 basename)
+          CHANGED_CLIENTS=()
+          PREV_COMMIT=$(git rev-parse HEAD~1)
+
+          # Check each client directory for changes
+          for client in $ALL_CLIENTS; do
+            if git diff --quiet $PREV_COMMIT HEAD -- clients/$client/; then
+              echo "No changes detected in $client"
+            else
+              CHANGED_CLIENTS+=("$client")
+            fi
+          done
+
+          if git diff --quiet $PREV_COMMIT HEAD -- common/; then
+            echo "No changes detected in common"
+          else
+            CHANGED_CLIENTS+=("common")
+          fi
+
+          if [ ${#CHANGED_CLIENTS[@]} -eq 0 ]; then
+            CHANGED_CLIENTS_JSON="[]"
+          else
+            CHANGED_CLIENTS_JSON=$(printf '%s\n' "${CHANGED_CLIENTS[@]}" | jq -R -s -c 'split("\n")[:-1]')
+          fi
+
+          echo "Detected changed clients: $CHANGED_CLIENTS_JSON"
+          echo "clients=$CHANGED_CLIENTS_JSON" >> $GITHUB_OUTPUT
 
   release:
     needs: detect-clients
@@ -82,7 +108,7 @@ jobs:
             echo "package_path=./" >> $GITHUB_OUTPUT
           else
             echo "dir=clients/${{ matrix.client }}" >> $GITHUB_OUTPUT
-            echo "package_path=./src" >> $GITHUB_OUTPUT
+            echo "package_path=./" >> $GITHUB_OUTPUT
           fi
 
       - name: Set up Go environment
@@ -147,7 +173,11 @@ jobs:
           fi
 
           # Set the full tag name
-          FULL_TAG="${{ matrix.client }}/$NEW_VERSION"
+          if [ "${{ matrix.client }}" == "common" ]; then
+            FULL_TAG="common/$NEW_VERSION"
+          else
+            FULL_TAG="clients/${{ matrix.client }}/$NEW_VERSION"
+          fi
           echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
