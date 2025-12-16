@@ -1,3 +1,5 @@
-coverage.txt
-*.DS_Store
+dist
+.env
+
+# IntelliJ
 .idea
