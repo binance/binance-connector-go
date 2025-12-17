@@ -33,7 +33,7 @@ type MarginAccountNewOrderResponse struct {
 	Type                    *string                                   `json:"type,omitempty"`
 	Side                    *string                                   `json:"side,omitempty"`
 	SelfTradePreventionMode *string                                   `json:"selfTradePreventionMode,omitempty"`
-	MarginBuyBorrowAmount   *int64                                    `json:"marginBuyBorrowAmount,omitempty"`
+	MarginBuyBorrowAmount   *string                                   `json:"marginBuyBorrowAmount,omitempty"`
 	MarginBuyBorrowAsset    *string                                   `json:"marginBuyBorrowAsset,omitempty"`
 	Fills                   []MarginAccountNewOrderResponseFillsInner `json:"fills,omitempty"`
 	AdditionalProperties    map[string]interface{}
@@ -507,9 +507,9 @@ func (o *MarginAccountNewOrderResponse) SetSelfTradePreventionMode(v string) {
 }
 
 // GetMarginBuyBorrowAmount returns the MarginBuyBorrowAmount field value if set, zero value otherwise.
-func (o *MarginAccountNewOrderResponse) GetMarginBuyBorrowAmount() int64 {
+func (o *MarginAccountNewOrderResponse) GetMarginBuyBorrowAmount() string {
 	if o == nil || common.IsNil(o.MarginBuyBorrowAmount) {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.MarginBuyBorrowAmount
@@ -517,7 +517,7 @@ func (o *MarginAccountNewOrderResponse) GetMarginBuyBorrowAmount() int64 {
 
 // GetMarginBuyBorrowAmountOk returns a tuple with the MarginBuyBorrowAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MarginAccountNewOrderResponse) GetMarginBuyBorrowAmountOk() (*int64, bool) {
+func (o *MarginAccountNewOrderResponse) GetMarginBuyBorrowAmountOk() (*string, bool) {
 	if o == nil || common.IsNil(o.MarginBuyBorrowAmount) {
 		return nil, false
 	}
@@ -533,8 +533,8 @@ func (o *MarginAccountNewOrderResponse) HasMarginBuyBorrowAmount() bool {
 	return false
 }
 
-// SetMarginBuyBorrowAmount gets a reference to the given int64 and assigns it to the MarginBuyBorrowAmount field.
-func (o *MarginAccountNewOrderResponse) SetMarginBuyBorrowAmount(v int64) {
+// SetMarginBuyBorrowAmount gets a reference to the given string and assigns it to the MarginBuyBorrowAmount field.
+func (o *MarginAccountNewOrderResponse) SetMarginBuyBorrowAmount(v string) {
 	o.MarginBuyBorrowAmount = &v
 }
 
