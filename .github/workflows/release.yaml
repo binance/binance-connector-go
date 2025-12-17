@@ -59,7 +59,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -159,7 +159,11 @@ jobs:
             # No tags exist yet, start with v1.0.0
             NEW_VERSION="v1.0.0"
           else
-            CURRENT_VERSION=${LATEST_TAG#${{ matrix.client }}/v}
+            if [ "${{ matrix.client }}" == "common" ]; then
+              CURRENT_VERSION=${LATEST_TAG#${{ matrix.client }}/v}
+            else
+              CURRENT_VERSION=${LATEST_TAG#clients/${{ matrix.client }}/v}
+            fi
 
             # Split into parts
             IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
