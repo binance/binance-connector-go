@@ -133,6 +133,152 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test AssetAPIService DustConvert Success", func(t *testing.T) {
+
+		mockedJSON := `{"totalTransfered":"3.5971223","totalServiceCharge":"0.0794964","transferResult":[{"tranId":2987331510,"fromAsset":"USDT","amount":"1","transferedAmount":"3.5971223","serviceChargeAmount":"0.0794964","operateTime":1765212029749}]}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/asset/dust-convert/convert", r.URL.Path)
+			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.DustConvertResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset("asset_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.DustConvertResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.DustConvertResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test AssetAPIService DustConvert Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test AssetAPIService DustConvert Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test AssetAPIService DustConvertibleAssets Success", func(t *testing.T) {
+
+		mockedJSON := `{"dribbletPercentage":"0.02","totalTransferQuotaAssetAmount":"0.7899968","totalTransferTargetAssetAmount":"0.7899968","dribbletBase":"10","details":[{"asset":"AR","assetFullName":"AR","amountFree":"0.00856","exchange":"0.00073616","toQuotaAssetAmount":"0.036808","toTargetAssetAmount":"0.036808","toTargetAssetOffExchange":"0.03607184"},{"asset":"BNB","assetFullName":"BNB","amountFree":"0.00082768","exchange":"0.01506378","toQuotaAssetAmount":"0.7531888","toTargetAssetAmount":"0.7531888","toTargetAssetOffExchange":"0.73812502"}]}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/asset/dust-convert/query-convertible-assets", r.URL.Path)
+			require.Equal(t, "targetAsset_example", r.URL.Query().Get("targetAsset"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.DustConvertibleAssetsResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset("targetAsset_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.DustConvertibleAssetsResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.DustConvertibleAssetsResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test AssetAPIService DustConvertibleAssets Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test AssetAPIService DustConvertibleAssets Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test AssetAPIService DustTransfer Success", func(t *testing.T) {
 
 		mockedJSON := `{"totalServiceCharge":"0.02102542","totalTransfered":"1.05127099","transferResult":[{"amount":"0.03000000","fromAsset":"ETH","operateTime":1563368549307,"serviceChargeAmount":"0.00500000","tranId":2970932918,"transferedAmount":"0.25000000"},{"amount":"0.09000000","fromAsset":"LTC","operateTime":1563368549404,"serviceChargeAmount":"0.01548000","tranId":2970932918,"transferedAmount":"0.77400000"},{"amount":"248.61878453","fromAsset":"TRX","operateTime":1563368549489,"serviceChargeAmount":"0.00054542","tranId":2970932918,"transferedAmount":"0.02727099"}]}`

@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/binance/binance-connector-go/ci.yaml)](https://github.com/binance/binance-connector-go/actions)
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-go)](https://github.com/binance/binance-connector-go/issues)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/binance/binance-connector-go)](https://github.com/binance/binance-connector-go)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/binance/binance-connector-go/common)](https://github.com/binance/binance-connector-go/common)
 [![Known Vulnerabilities](https://img.shields.io/badge/security-scanned-brightgreen)](https://github.com/binance/binance-connector-go/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -18,28 +18,28 @@ Before using the SDK, ensure you have:
 
 - [binance-connector-algo](./clients/algo) - Algo Trading connector
 - [binance-connector-c2c](./clients/c2c/) - C2
-- [binance-sdk-convert](./clients/convert/) - Convert connector
-- [binance-sdk-copy-trading](./clients/copy-trading/) - Copy Trading connector
-- [binance-sdk-crypto-loan](./clients/crypto-loan/) - Crypto Loan connector
-- [binance-sdk-derivatives-trading-coin-futures](./clients/derivatives-trading-coin-futures/) - Coin Futures Trading connector
-- [binance-sdk-derivatives-trading-options](./clients/derivatives-trading-options/) - Options Trading connector
-- [binance-sdk-derivatives-trading-portfolio-margin](./clients/derivatives-trading-portfolio-margin/) - Portfolio Margin Futures Trading connector
-- [binance-sdk-derivatives-trading-portfolio-margin-pro](./clients/derivatives-trading-portfolio-margin-pro/) - Portfolio Margin Pro Trading connector
-- [binance-sdk-derivatives-trading-usds-futures](./clients/derivatives-trading-usds-futures/) - USDs Futures Trading connector
-- [binance-sdk-dual-investment](./clients/dual-investment/) - Dual Investment connector
-- [binance-sdk-fiat](./clients/fiat/) - Fiat connector
-- [binance-sdk-gift-card](./clients/gift-card/) - Gift Card connector
-- [binance-sdk-margin-trading](./clients/margin-trading/) - Margin Trading connector
-- [binance-sdk-mining](./clients/mining/) - Mining connector
-- [binance-sdk-nft](./clients/nft/) - NFT connector
-- [binance-sdk-pay](./clients/pay/) - Pay connector
-- [binance-sdk-rebate](./clients/rebate/) - Rebate connector
-- [binance-sdk-simple-earn](./clients/simple-earn/) - Simple Earn connector
-- [binance-sdk-spot](./clients/spot/) - Spot Trading connector
-- [binance-sdk-staking](./clients/staking/) - Staking connector
-- [binance-sdk-sub-account](./clients/sub-account/) - Sub Account connector
-- [binance-sdk-vip-loan](./clients/vip-loan/) - VIP Loan connector
-- [binance-sdk-wallet](./clients/wallet/) - Wallet connector
+- [binance-convert](./clients/convert/) - Convert connector
+- [binance-copy-trading](./clients/copy-trading/) - Copy Trading connector
+- [binance-crypto-loan](./clients/crypto-loan/) - Crypto Loan connector
+- [binance-derivatives-trading-coin-futures](./clients/derivatives-trading-coin-futures/) - Coin Futures Trading connector
+- [binance-derivatives-trading-options](./clients/derivatives-trading-options/) - Options Trading connector
+- [binance-derivatives-trading-portfolio-margin](./clients/derivatives-trading-portfolio-margin/) - Portfolio Margin Futures Trading connector
+- [binance-derivatives-trading-portfolio-margin-pro](./clients/derivatives-trading-portfolio-margin-pro/) - Portfolio Margin Pro Trading connector
+- [binance-derivatives-trading-usds-futures](./clients/derivatives-trading-usds-futures/) - USDs Futures Trading connector
+- [binance-dual-investment](./clients/dual-investment/) - Dual Investment connector
+- [binance-fiat](./clients/fiat/) - Fiat connector
+- [binance-gift-card](./clients/gift-card/) - Gift Card connector
+- [binance-margin-trading](./clients/margin-trading/) - Margin Trading connector
+- [binance-mining](./clients/mining/) - Mining connector
+- [binance-nft](./clients/nft/) - NFT connector
+- [binance-pay](./clients/pay/) - Pay connector
+- [binance-rebate](./clients/rebate/) - Rebate connector
+- [binance-simple-earn](./clients/simple-earn/) - Simple Earn connector
+- [binance-spot](./clients/spot/) - Spot Trading connector
+- [binance-staking](./clients/staking/) - Staking connector
+- [binance-sub-account](./clients/sub-account/) - Sub Account connector
+- [binance-vip-loan](./clients/vip-loan/) - VIP Loan connector
+- [binance-wallet](./clients/wallet/) - Wallet connector
 
 ## Documentation
 

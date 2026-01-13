@@ -2,8 +2,6 @@
 Binance Pay REST API
 
 OpenAPI Specification for the Binance Pay REST API
-
-API version: 1.0.0
 */
 
 package binancepayrestapi

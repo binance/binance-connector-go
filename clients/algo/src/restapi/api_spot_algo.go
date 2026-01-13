@@ -2,8 +2,6 @@
 Binance Algo REST API
 
 OpenAPI Specification for the Binance Algo REST API
-
-API version: 1.0.0
 */
 
 package binancealgorestapi

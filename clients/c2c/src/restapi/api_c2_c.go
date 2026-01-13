@@ -2,8 +2,6 @@
 Binance C2C REST API
 
 OpenAPI Specification for the Binance C2C REST API
-
-API version: 1.0.0
 */
 
 package binancec2crestapi

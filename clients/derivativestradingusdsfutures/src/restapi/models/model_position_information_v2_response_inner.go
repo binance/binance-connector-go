@@ -1,0 +1,706 @@
+/*
+Binance Derivatives Trading USDS Futures REST API
+
+OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+*/
+
+package models
+
+import (
+	"encoding/json"
+
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+// checks if the PositionInformationV2ResponseInner type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &PositionInformationV2ResponseInner{}
+
+// PositionInformationV2ResponseInner struct for PositionInformationV2ResponseInner
+type PositionInformationV2ResponseInner struct {
+	EntryPrice           *string `json:"entryPrice,omitempty"`
+	BreakEvenPrice       *string `json:"breakEvenPrice,omitempty"`
+	MarginType           *string `json:"marginType,omitempty"`
+	IsAutoAddMargin      *string `json:"isAutoAddMargin,omitempty"`
+	IsolatedMargin       *string `json:"isolatedMargin,omitempty"`
+	Leverage             *string `json:"leverage,omitempty"`
+	LiquidationPrice     *string `json:"liquidationPrice,omitempty"`
+	MarkPrice            *string `json:"markPrice,omitempty"`
+	MaxNotionalValue     *string `json:"maxNotionalValue,omitempty"`
+	PositionAmt          *string `json:"positionAmt,omitempty"`
+	Notional             *string `json:"notional,omitempty"`
+	IsolatedWallet       *string `json:"isolatedWallet,omitempty"`
+	Symbol               *string `json:"symbol,omitempty"`
+	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
+	PositionSide         *string `json:"positionSide,omitempty"`
+	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
+}
+
+type _PositionInformationV2ResponseInner PositionInformationV2ResponseInner
+
+// NewPositionInformationV2ResponseInner instantiates a new PositionInformationV2ResponseInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPositionInformationV2ResponseInner() *PositionInformationV2ResponseInner {
+	this := PositionInformationV2ResponseInner{}
+	return &this
+}
+
+// NewPositionInformationV2ResponseInnerWithDefaults instantiates a new PositionInformationV2ResponseInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPositionInformationV2ResponseInnerWithDefaults() *PositionInformationV2ResponseInner {
+	this := PositionInformationV2ResponseInner{}
+	return &this
+}
+
+// GetEntryPrice returns the EntryPrice field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetEntryPrice() string {
+	if o == nil || common.IsNil(o.EntryPrice) {
+		var ret string
+		return ret
+	}
+	return *o.EntryPrice
+}
+
+// GetEntryPriceOk returns a tuple with the EntryPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetEntryPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.EntryPrice) {
+		return nil, false
+	}
+	return o.EntryPrice, true
+}
+
+// HasEntryPrice returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasEntryPrice() bool {
+	if o != nil && !common.IsNil(o.EntryPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntryPrice gets a reference to the given string and assigns it to the EntryPrice field.
+func (o *PositionInformationV2ResponseInner) SetEntryPrice(v string) {
+	o.EntryPrice = &v
+}
+
+// GetBreakEvenPrice returns the BreakEvenPrice field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetBreakEvenPrice() string {
+	if o == nil || common.IsNil(o.BreakEvenPrice) {
+		var ret string
+		return ret
+	}
+	return *o.BreakEvenPrice
+}
+
+// GetBreakEvenPriceOk returns a tuple with the BreakEvenPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetBreakEvenPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.BreakEvenPrice) {
+		return nil, false
+	}
+	return o.BreakEvenPrice, true
+}
+
+// HasBreakEvenPrice returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasBreakEvenPrice() bool {
+	if o != nil && !common.IsNil(o.BreakEvenPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetBreakEvenPrice gets a reference to the given string and assigns it to the BreakEvenPrice field.
+func (o *PositionInformationV2ResponseInner) SetBreakEvenPrice(v string) {
+	o.BreakEvenPrice = &v
+}
+
+// GetMarginType returns the MarginType field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetMarginType() string {
+	if o == nil || common.IsNil(o.MarginType) {
+		var ret string
+		return ret
+	}
+	return *o.MarginType
+}
+
+// GetMarginTypeOk returns a tuple with the MarginType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetMarginTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.MarginType) {
+		return nil, false
+	}
+	return o.MarginType, true
+}
+
+// HasMarginType returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasMarginType() bool {
+	if o != nil && !common.IsNil(o.MarginType) {
+		return true
+	}
+
+	return false
+}
+
+// SetMarginType gets a reference to the given string and assigns it to the MarginType field.
+func (o *PositionInformationV2ResponseInner) SetMarginType(v string) {
+	o.MarginType = &v
+}
+
+// GetIsAutoAddMargin returns the IsAutoAddMargin field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetIsAutoAddMargin() string {
+	if o == nil || common.IsNil(o.IsAutoAddMargin) {
+		var ret string
+		return ret
+	}
+	return *o.IsAutoAddMargin
+}
+
+// GetIsAutoAddMarginOk returns a tuple with the IsAutoAddMargin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetIsAutoAddMarginOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IsAutoAddMargin) {
+		return nil, false
+	}
+	return o.IsAutoAddMargin, true
+}
+
+// HasIsAutoAddMargin returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasIsAutoAddMargin() bool {
+	if o != nil && !common.IsNil(o.IsAutoAddMargin) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAutoAddMargin gets a reference to the given string and assigns it to the IsAutoAddMargin field.
+func (o *PositionInformationV2ResponseInner) SetIsAutoAddMargin(v string) {
+	o.IsAutoAddMargin = &v
+}
+
+// GetIsolatedMargin returns the IsolatedMargin field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetIsolatedMargin() string {
+	if o == nil || common.IsNil(o.IsolatedMargin) {
+		var ret string
+		return ret
+	}
+	return *o.IsolatedMargin
+}
+
+// GetIsolatedMarginOk returns a tuple with the IsolatedMargin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetIsolatedMarginOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IsolatedMargin) {
+		return nil, false
+	}
+	return o.IsolatedMargin, true
+}
+
+// HasIsolatedMargin returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasIsolatedMargin() bool {
+	if o != nil && !common.IsNil(o.IsolatedMargin) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsolatedMargin gets a reference to the given string and assigns it to the IsolatedMargin field.
+func (o *PositionInformationV2ResponseInner) SetIsolatedMargin(v string) {
+	o.IsolatedMargin = &v
+}
+
+// GetLeverage returns the Leverage field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetLeverage() string {
+	if o == nil || common.IsNil(o.Leverage) {
+		var ret string
+		return ret
+	}
+	return *o.Leverage
+}
+
+// GetLeverageOk returns a tuple with the Leverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetLeverageOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Leverage) {
+		return nil, false
+	}
+	return o.Leverage, true
+}
+
+// HasLeverage returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasLeverage() bool {
+	if o != nil && !common.IsNil(o.Leverage) {
+		return true
+	}
+
+	return false
+}
+
+// SetLeverage gets a reference to the given string and assigns it to the Leverage field.
+func (o *PositionInformationV2ResponseInner) SetLeverage(v string) {
+	o.Leverage = &v
+}
+
+// GetLiquidationPrice returns the LiquidationPrice field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetLiquidationPrice() string {
+	if o == nil || common.IsNil(o.LiquidationPrice) {
+		var ret string
+		return ret
+	}
+	return *o.LiquidationPrice
+}
+
+// GetLiquidationPriceOk returns a tuple with the LiquidationPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetLiquidationPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.LiquidationPrice) {
+		return nil, false
+	}
+	return o.LiquidationPrice, true
+}
+
+// HasLiquidationPrice returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasLiquidationPrice() bool {
+	if o != nil && !common.IsNil(o.LiquidationPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiquidationPrice gets a reference to the given string and assigns it to the LiquidationPrice field.
+func (o *PositionInformationV2ResponseInner) SetLiquidationPrice(v string) {
+	o.LiquidationPrice = &v
+}
+
+// GetMarkPrice returns the MarkPrice field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetMarkPrice() string {
+	if o == nil || common.IsNil(o.MarkPrice) {
+		var ret string
+		return ret
+	}
+	return *o.MarkPrice
+}
+
+// GetMarkPriceOk returns a tuple with the MarkPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetMarkPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.MarkPrice) {
+		return nil, false
+	}
+	return o.MarkPrice, true
+}
+
+// HasMarkPrice returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasMarkPrice() bool {
+	if o != nil && !common.IsNil(o.MarkPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetMarkPrice gets a reference to the given string and assigns it to the MarkPrice field.
+func (o *PositionInformationV2ResponseInner) SetMarkPrice(v string) {
+	o.MarkPrice = &v
+}
+
+// GetMaxNotionalValue returns the MaxNotionalValue field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetMaxNotionalValue() string {
+	if o == nil || common.IsNil(o.MaxNotionalValue) {
+		var ret string
+		return ret
+	}
+	return *o.MaxNotionalValue
+}
+
+// GetMaxNotionalValueOk returns a tuple with the MaxNotionalValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetMaxNotionalValueOk() (*string, bool) {
+	if o == nil || common.IsNil(o.MaxNotionalValue) {
+		return nil, false
+	}
+	return o.MaxNotionalValue, true
+}
+
+// HasMaxNotionalValue returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasMaxNotionalValue() bool {
+	if o != nil && !common.IsNil(o.MaxNotionalValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxNotionalValue gets a reference to the given string and assigns it to the MaxNotionalValue field.
+func (o *PositionInformationV2ResponseInner) SetMaxNotionalValue(v string) {
+	o.MaxNotionalValue = &v
+}
+
+// GetPositionAmt returns the PositionAmt field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetPositionAmt() string {
+	if o == nil || common.IsNil(o.PositionAmt) {
+		var ret string
+		return ret
+	}
+	return *o.PositionAmt
+}
+
+// GetPositionAmtOk returns a tuple with the PositionAmt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetPositionAmtOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PositionAmt) {
+		return nil, false
+	}
+	return o.PositionAmt, true
+}
+
+// HasPositionAmt returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasPositionAmt() bool {
+	if o != nil && !common.IsNil(o.PositionAmt) {
+		return true
+	}
+
+	return false
+}
+
+// SetPositionAmt gets a reference to the given string and assigns it to the PositionAmt field.
+func (o *PositionInformationV2ResponseInner) SetPositionAmt(v string) {
+	o.PositionAmt = &v
+}
+
+// GetNotional returns the Notional field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetNotional() string {
+	if o == nil || common.IsNil(o.Notional) {
+		var ret string
+		return ret
+	}
+	return *o.Notional
+}
+
+// GetNotionalOk returns a tuple with the Notional field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetNotionalOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Notional) {
+		return nil, false
+	}
+	return o.Notional, true
+}
+
+// HasNotional returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasNotional() bool {
+	if o != nil && !common.IsNil(o.Notional) {
+		return true
+	}
+
+	return false
+}
+
+// SetNotional gets a reference to the given string and assigns it to the Notional field.
+func (o *PositionInformationV2ResponseInner) SetNotional(v string) {
+	o.Notional = &v
+}
+
+// GetIsolatedWallet returns the IsolatedWallet field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetIsolatedWallet() string {
+	if o == nil || common.IsNil(o.IsolatedWallet) {
+		var ret string
+		return ret
+	}
+	return *o.IsolatedWallet
+}
+
+// GetIsolatedWalletOk returns a tuple with the IsolatedWallet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetIsolatedWalletOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IsolatedWallet) {
+		return nil, false
+	}
+	return o.IsolatedWallet, true
+}
+
+// HasIsolatedWallet returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasIsolatedWallet() bool {
+	if o != nil && !common.IsNil(o.IsolatedWallet) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsolatedWallet gets a reference to the given string and assigns it to the IsolatedWallet field.
+func (o *PositionInformationV2ResponseInner) SetIsolatedWallet(v string) {
+	o.IsolatedWallet = &v
+}
+
+// GetSymbol returns the Symbol field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetSymbol() string {
+	if o == nil || common.IsNil(o.Symbol) {
+		var ret string
+		return ret
+	}
+	return *o.Symbol
+}
+
+// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetSymbolOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Symbol) {
+		return nil, false
+	}
+	return o.Symbol, true
+}
+
+// HasSymbol returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasSymbol() bool {
+	if o != nil && !common.IsNil(o.Symbol) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+func (o *PositionInformationV2ResponseInner) SetSymbol(v string) {
+	o.Symbol = &v
+}
+
+// GetUnRealizedProfit returns the UnRealizedProfit field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetUnRealizedProfit() string {
+	if o == nil || common.IsNil(o.UnRealizedProfit) {
+		var ret string
+		return ret
+	}
+	return *o.UnRealizedProfit
+}
+
+// GetUnRealizedProfitOk returns a tuple with the UnRealizedProfit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetUnRealizedProfitOk() (*string, bool) {
+	if o == nil || common.IsNil(o.UnRealizedProfit) {
+		return nil, false
+	}
+	return o.UnRealizedProfit, true
+}
+
+// HasUnRealizedProfit returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasUnRealizedProfit() bool {
+	if o != nil && !common.IsNil(o.UnRealizedProfit) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnRealizedProfit gets a reference to the given string and assigns it to the UnRealizedProfit field.
+func (o *PositionInformationV2ResponseInner) SetUnRealizedProfit(v string) {
+	o.UnRealizedProfit = &v
+}
+
+// GetPositionSide returns the PositionSide field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetPositionSide() string {
+	if o == nil || common.IsNil(o.PositionSide) {
+		var ret string
+		return ret
+	}
+	return *o.PositionSide
+}
+
+// GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetPositionSideOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PositionSide) {
+		return nil, false
+	}
+	return o.PositionSide, true
+}
+
+// HasPositionSide returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasPositionSide() bool {
+	if o != nil && !common.IsNil(o.PositionSide) {
+		return true
+	}
+
+	return false
+}
+
+// SetPositionSide gets a reference to the given string and assigns it to the PositionSide field.
+func (o *PositionInformationV2ResponseInner) SetPositionSide(v string) {
+	o.PositionSide = &v
+}
+
+// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseInner) GetUpdateTime() int64 {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		var ret int64
+		return ret
+	}
+	return *o.UpdateTime
+}
+
+// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PositionInformationV2ResponseInner) GetUpdateTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		return nil, false
+	}
+	return o.UpdateTime, true
+}
+
+// HasUpdateTime returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseInner) HasUpdateTime() bool {
+	if o != nil && !common.IsNil(o.UpdateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
+func (o *PositionInformationV2ResponseInner) SetUpdateTime(v int64) {
+	o.UpdateTime = &v
+}
+
+func (o PositionInformationV2ResponseInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o PositionInformationV2ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !common.IsNil(o.EntryPrice) {
+		toSerialize["entryPrice"] = o.EntryPrice
+	}
+	if !common.IsNil(o.BreakEvenPrice) {
+		toSerialize["breakEvenPrice"] = o.BreakEvenPrice
+	}
+	if !common.IsNil(o.MarginType) {
+		toSerialize["marginType"] = o.MarginType
+	}
+	if !common.IsNil(o.IsAutoAddMargin) {
+		toSerialize["isAutoAddMargin"] = o.IsAutoAddMargin
+	}
+	if !common.IsNil(o.IsolatedMargin) {
+		toSerialize["isolatedMargin"] = o.IsolatedMargin
+	}
+	if !common.IsNil(o.Leverage) {
+		toSerialize["leverage"] = o.Leverage
+	}
+	if !common.IsNil(o.LiquidationPrice) {
+		toSerialize["liquidationPrice"] = o.LiquidationPrice
+	}
+	if !common.IsNil(o.MarkPrice) {
+		toSerialize["markPrice"] = o.MarkPrice
+	}
+	if !common.IsNil(o.MaxNotionalValue) {
+		toSerialize["maxNotionalValue"] = o.MaxNotionalValue
+	}
+	if !common.IsNil(o.PositionAmt) {
+		toSerialize["positionAmt"] = o.PositionAmt
+	}
+	if !common.IsNil(o.Notional) {
+		toSerialize["notional"] = o.Notional
+	}
+	if !common.IsNil(o.IsolatedWallet) {
+		toSerialize["isolatedWallet"] = o.IsolatedWallet
+	}
+	if !common.IsNil(o.Symbol) {
+		toSerialize["symbol"] = o.Symbol
+	}
+	if !common.IsNil(o.UnRealizedProfit) {
+		toSerialize["unRealizedProfit"] = o.UnRealizedProfit
+	}
+	if !common.IsNil(o.PositionSide) {
+		toSerialize["positionSide"] = o.PositionSide
+	}
+	if !common.IsNil(o.UpdateTime) {
+		toSerialize["updateTime"] = o.UpdateTime
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *PositionInformationV2ResponseInner) UnmarshalJSON(data []byte) (err error) {
+	varPositionInformationV2ResponseInner := _PositionInformationV2ResponseInner{}
+
+	err = json.Unmarshal(data, &varPositionInformationV2ResponseInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PositionInformationV2ResponseInner(varPositionInformationV2ResponseInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "entryPrice")
+		delete(additionalProperties, "breakEvenPrice")
+		delete(additionalProperties, "marginType")
+		delete(additionalProperties, "isAutoAddMargin")
+		delete(additionalProperties, "isolatedMargin")
+		delete(additionalProperties, "leverage")
+		delete(additionalProperties, "liquidationPrice")
+		delete(additionalProperties, "markPrice")
+		delete(additionalProperties, "maxNotionalValue")
+		delete(additionalProperties, "positionAmt")
+		delete(additionalProperties, "notional")
+		delete(additionalProperties, "isolatedWallet")
+		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "unRealizedProfit")
+		delete(additionalProperties, "positionSide")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+}
+
+type NullablePositionInformationV2ResponseInner struct {
+	value *PositionInformationV2ResponseInner
+	isSet bool
+}
+
+func (v NullablePositionInformationV2ResponseInner) Get() *PositionInformationV2ResponseInner {
+	return v.value
+}
+
+func (v *NullablePositionInformationV2ResponseInner) Set(val *PositionInformationV2ResponseInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePositionInformationV2ResponseInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePositionInformationV2ResponseInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePositionInformationV2ResponseInner(val *PositionInformationV2ResponseInner) *NullablePositionInformationV2ResponseInner {
+	return &NullablePositionInformationV2ResponseInner{value: val, isSet: true}
+}
+
+func (v NullablePositionInformationV2ResponseInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePositionInformationV2ResponseInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

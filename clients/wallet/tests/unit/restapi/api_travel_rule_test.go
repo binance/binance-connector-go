@@ -348,7 +348,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaire(context.Background()).SubAccountId("1").DepositId("1").Questionnaire("questionnaire_example").BeneficiaryPii("beneficiaryPii_example").Signature("signature_example").Execute()
+		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaire(context.Background()).SubAccountId("1").DepositId(int64(1)).Questionnaire("questionnaire_example").BeneficiaryPii("beneficiaryPii_example").Signature("signature_example").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -468,6 +468,80 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 		)
 
 		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaireTravelRule(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TravelRuleAPIService SubmitDepositQuestionnaireV2 Success", func(t *testing.T) {
+
+		mockedJSON := `{"trId":765127651,"accepted":true,"info":"Deposit questionnaire accepted."}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v2/localentity/deposit/provide-info", r.URL.Path)
+			require.Equal(t, "1", r.URL.Query().Get("depositId"))
+			require.Equal(t, "questionnaire_example", r.URL.Query().Get("questionnaire"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.SubmitDepositQuestionnaireV2Response
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaireV2(context.Background()).DepositId(int64(1)).Questionnaire("questionnaire_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.SubmitDepositQuestionnaireV2Response]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.SubmitDepositQuestionnaireV2Response{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TravelRuleAPIService SubmitDepositQuestionnaireV2 Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaireV2(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TravelRuleAPIService SubmitDepositQuestionnaireV2 Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceWalletClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaireV2(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

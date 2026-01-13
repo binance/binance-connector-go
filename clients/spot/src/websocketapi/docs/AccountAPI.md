@@ -349,7 +349,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | Cancel order by orderId (optional)
+	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
@@ -393,7 +393,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | Cancel order by orderId | 
+ **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
@@ -437,7 +437,7 @@ func main() {
 	endTime := int64(1735693200000) // int64 |  (optional)
 	fromAllocationId := int32(1) // int32 |  (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	orderId := int64(1) // int64 | Cancel order by orderId (optional)
+	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -482,7 +482,7 @@ Name          | Type          | Description   | Notes
  **endTime** | **int64** |  | 
  **fromAllocationId** | **int32** |  | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **orderId** | **int64** | Cancel order by orderId | 
+ **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -596,7 +596,7 @@ func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 	preventedMatchId := int64(1) // int64 |  (optional)
-	orderId := int64(1) // int64 | Cancel order by orderId (optional)
+	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
 	fromPreventedMatchId := int64(1) // int64 |  (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
@@ -640,7 +640,7 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
  **preventedMatchId** | **int64** |  | 
- **orderId** | **int64** | Cancel order by orderId | 
+ **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **fromPreventedMatchId** | **int64** |  | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
@@ -679,7 +679,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | Cancel order by orderId (optional)
+	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
 	fromId := int32(1) // int32 | Aggregate trade ID to begin at (optional)
@@ -724,7 +724,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | Cancel order by orderId | 
+ **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **fromId** | **int32** | Aggregate trade ID to begin at | 
@@ -996,7 +996,7 @@ import (
 
 func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
+	origClientOrderId := "origClientOrderId_example" // string | `orderId`or`origClientOrderId`mustbesent (optional)
 	orderListId := int32(1) // int32 | Cancel order list by orderListId (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
@@ -1037,7 +1037,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
- **origClientOrderId** | **string** |  | 
+ **origClientOrderId** | **string** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **orderListId** | **int32** | Cancel order list by orderListId | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
@@ -1075,8 +1075,8 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | Cancel order by orderId (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
+	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
+	origClientOrderId := "origClientOrderId_example" // string | `orderId`or`origClientOrderId`mustbesent (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1117,8 +1117,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | Cancel order by orderId | 
- **origClientOrderId** | **string** |  | 
+ **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
+ **origClientOrderId** | **string** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type

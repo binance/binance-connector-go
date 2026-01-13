@@ -157,7 +157,7 @@ jobs:
 
           if [ -z "$LATEST_TAG" ]; then
             # No tags exist yet, start with v1.0.0
-            NEW_VERSION="v1.0.0"
+            NEW_VERSION="v1.1.0"
           else
             if [ "${{ matrix.client }}" == "common" ]; then
               CURRENT_VERSION=${LATEST_TAG#${{ matrix.client }}/v}

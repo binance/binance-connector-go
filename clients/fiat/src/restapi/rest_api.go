@@ -2,8 +2,6 @@
 Binance Fiat REST API
 
 OpenAPI Specification for the Binance Fiat REST API
-
-API version: 1.0.0
 */
 
 package binancefiatrestapi
@@ -16,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// RestAPIClient manages communication with the Binance Fiat REST API API v1.0.0
+// RestAPIClient manages communication with the Binance Fiat REST API API v1.1.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -38,7 +36,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-fiat/1.0.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-fiat/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

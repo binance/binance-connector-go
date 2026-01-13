@@ -2,8 +2,6 @@
 Binance Spot WebSocket API
 
 OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
-
-API version: 1.0.0
 */
 
 package binancespotwebsocketapi
@@ -107,6 +105,137 @@ func (a *TradeAPIService) OpenOrdersCancelAllExecute(r ApiOpenOrdersCancelAllReq
 	return SendMessage[models.OpenOrdersCancelAllResponse](a.Ws, localPayload, sendParams)
 }
 
+type ApiOrderAmendKeepPriorityRequest struct {
+	ApiService        *TradeAPIService
+	symbol            *string
+	newQty            *float32
+	id                *string
+	orderId           *int64
+	origClientOrderId *string
+	newClientOrderId  *string
+	recvWindow        *float32
+}
+
+func (r ApiOrderAmendKeepPriorityRequest) Symbol(symbol string) ApiOrderAmendKeepPriorityRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// &#x60;newQty&#x60; must be greater than 0 and less than the order&#39;s quantity.
+func (r ApiOrderAmendKeepPriorityRequest) NewQty(newQty float32) ApiOrderAmendKeepPriorityRequest {
+	r.newQty = &newQty
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiOrderAmendKeepPriorityRequest) Id(id string) ApiOrderAmendKeepPriorityRequest {
+	r.id = &id
+	return r
+}
+
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+func (r ApiOrderAmendKeepPriorityRequest) OrderId(orderId int64) ApiOrderAmendKeepPriorityRequest {
+	r.orderId = &orderId
+	return r
+}
+
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+func (r ApiOrderAmendKeepPriorityRequest) OrigClientOrderId(origClientOrderId string) ApiOrderAmendKeepPriorityRequest {
+	r.origClientOrderId = &origClientOrderId
+	return r
+}
+
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
+func (r ApiOrderAmendKeepPriorityRequest) NewClientOrderId(newClientOrderId string) ApiOrderAmendKeepPriorityRequest {
+	r.newClientOrderId = &newClientOrderId
+	return r
+}
+
+// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+func (r ApiOrderAmendKeepPriorityRequest) RecvWindow(recvWindow float32) ApiOrderAmendKeepPriorityRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiOrderAmendKeepPriorityRequest) Execute() (*common.ResponseOrRaw[models.OrderAmendKeepPriorityResponse], error) {
+	respChan, errChan, err := r.ApiService.OrderAmendKeepPriorityExecute(r)
+	if err != nil {
+		return nil, err
+	}
+
+	select {
+	case resp := <-respChan:
+		return resp, nil
+	case err := <-errChan:
+		return nil, err
+	}
+}
+
+func (r ApiOrderAmendKeepPriorityRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.OrderAmendKeepPriorityResponse], chan error, error) {
+	return r.ApiService.OrderAmendKeepPriorityExecute(r)
+}
+
+/*
+OrderAmendKeepPriority WebSocket Order Amend Keep Priority
+/order.amend.keepPriority
+
+https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#order-amend-keep-priority-trade
+
+@param symbol	@param newQty `newQty` must be greater than 0 and less than the order's quantity. 	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@return ApiOrderAmendKeepPriorityRequest
+*/
+func (a *TradeAPIService) OrderAmendKeepPriority() ApiOrderAmendKeepPriorityRequest {
+	return ApiOrderAmendKeepPriorityRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return OrderAmendKeepPriorityResponse
+func (a *TradeAPIService) OrderAmendKeepPriorityExecute(r ApiOrderAmendKeepPriorityRequest) (chan *common.ResponseOrRaw[models.OrderAmendKeepPriorityResponse], chan error, error) {
+	localVarQueryParams := map[string]any{}
+
+	if r.symbol == nil {
+		return nil, nil, common.ReportError("symbol is required and must be specified")
+	}
+	localVarQueryParams["symbol"] = *r.symbol
+
+	if r.newQty == nil {
+		return nil, nil, common.ReportError("newQty is required and must be specified")
+	}
+	localVarQueryParams["newQty"] = *r.newQty
+
+	if r.id != nil {
+		localVarQueryParams["id"] = *r.id
+	}
+	if r.orderId != nil {
+		localVarQueryParams["orderId"] = *r.orderId
+	}
+	if r.origClientOrderId != nil {
+		localVarQueryParams["origClientOrderId"] = *r.origClientOrderId
+	}
+	if r.newClientOrderId != nil {
+		localVarQueryParams["newClientOrderId"] = *r.newClientOrderId
+	}
+	if r.recvWindow != nil {
+		localVarQueryParams["recvWindow"] = *r.recvWindow
+	}
+
+	localPayload := map[string]any{
+		"method": "/order.amend.keepPriority"[1:],
+		"params": localVarQueryParams,
+	}
+
+	sendParams := common.SendParams{
+		Signed:           true,
+		WithAPIKey:       false,
+		WithSessionLogon: false,
+	}
+
+	return SendMessage[models.OrderAmendKeepPriorityResponse](a.Ws, localPayload, sendParams)
+}
+
 type ApiOrderCancelRequest struct {
 	ApiService         *TradeAPIService
 	symbol             *string
@@ -129,18 +258,19 @@ func (r ApiOrderCancelRequest) Id(id string) ApiOrderCancelRequest {
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiOrderCancelRequest) OrderId(orderId int64) ApiOrderCancelRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiOrderCancelRequest) OrigClientOrderId(origClientOrderId string) ApiOrderCancelRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiOrderCancelRequest) NewClientOrderId(newClientOrderId string) ApiOrderCancelRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -181,7 +311,7 @@ OrderCancel WebSocket Cancel order
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-order-trade
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId Cancel order by orderId	@param origClientOrderId	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param cancelRestrictions	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param cancelRestrictions	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderCancelRequest
 */
 func (a *TradeAPIService) OrderCancel() ApiOrderCancelRequest {
@@ -327,7 +457,7 @@ func (r ApiOrderCancelReplaceRequest) QuoteOrderQty(quoteOrderQty float32) ApiOr
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiOrderCancelReplaceRequest) NewClientOrderId(newClientOrderId string) ApiOrderCancelReplaceRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -427,7 +557,7 @@ OrderCancelReplace WebSocket Cancel and replace order
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-and-replace-order-trade
 
-@param symbol	@param cancelReplaceMode	@param side	@param type_	@param id Unique WebSocket request ID.	@param cancelOrderId Cancel order by orderId	@param cancelOrigClientOrderId	@param cancelNewClientOrderId New ID for the canceled order. Automatically generated if not sent	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param newOrderRespType	@param stopPrice	@param trailingDelta See Trailing Stop order FAQ	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param cancelRestrictions	@param orderRateLimitExceededMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param cancelReplaceMode	@param side	@param type_	@param id Unique WebSocket request ID.	@param cancelOrderId Cancel order by orderId	@param cancelOrigClientOrderId	@param cancelNewClientOrderId New ID for the canceled order. Automatically generated if not sent	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param newOrderRespType	@param stopPrice	@param trailingDelta See Trailing Stop order FAQ	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param cancelRestrictions	@param orderRateLimitExceededMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderCancelReplaceRequest
 */
 func (a *TradeAPIService) OrderCancelReplace() ApiOrderCancelReplaceRequest {
@@ -575,7 +705,7 @@ func (r ApiOrderListCancelRequest) ListClientOrderId(listClientOrderId string) A
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiOrderListCancelRequest) NewClientOrderId(newClientOrderId string) ApiOrderListCancelRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -611,7 +741,7 @@ OrderListCancel WebSocket Cancel Order list
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#cancel-order-list-trade
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderListId Cancel order list by orderListId	@param listClientOrderId	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param orderListId Cancel order list by orderListId	@param listClientOrderId	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListCancelRequest
 */
 func (a *TradeAPIService) OrderListCancel() ApiOrderListCancelRequest {
@@ -3072,7 +3202,7 @@ func (r ApiOrderPlaceRequest) QuoteOrderQty(quoteOrderQty float32) ApiOrderPlace
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiOrderPlaceRequest) NewClientOrderId(newClientOrderId string) ApiOrderPlaceRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -3162,7 +3292,7 @@ OrderPlace WebSocket Place new order
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#place-new-order-trade
 
-@param symbol	@param side	@param type_	@param id Unique WebSocket request ID.	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param newOrderRespType	@param stopPrice	@param trailingDelta See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md)	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param side	@param type_	@param id Unique WebSocket request ID.	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param newOrderRespType	@param stopPrice	@param trailingDelta See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md)	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderPlaceRequest
 */
 func (a *TradeAPIService) OrderPlace() ApiOrderPlaceRequest {
@@ -3330,7 +3460,7 @@ func (r ApiOrderTestRequest) QuoteOrderQty(quoteOrderQty float32) ApiOrderTestRe
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiOrderTestRequest) NewClientOrderId(newClientOrderId string) ApiOrderTestRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -3420,7 +3550,7 @@ OrderTest WebSocket Test new order
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-trade
 
-@param symbol	@param side	@param type_	@param id Unique WebSocket request ID.	@param computeCommissionRates Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more.	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param newOrderRespType	@param stopPrice	@param trailingDelta See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md)	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param side	@param type_	@param id Unique WebSocket request ID.	@param computeCommissionRates Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more.	@param timeInForce	@param price	@param quantity	@param quoteOrderQty	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param newOrderRespType	@param stopPrice	@param trailingDelta See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md)	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param pegPriceType	@param pegOffsetValue Price level to peg the price to (max: 100)       See Pegged Orders	@param pegOffsetType	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderTestRequest
 */
 func (a *TradeAPIService) OrderTest() ApiOrderTestRequest {
@@ -3573,7 +3703,7 @@ func (r ApiSorOrderPlaceRequest) Price(price float32) ApiSorOrderPlaceRequest {
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiSorOrderPlaceRequest) NewClientOrderId(newClientOrderId string) ApiSorOrderPlaceRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -3636,7 +3766,7 @@ SorOrderPlace WebSocket Place new order using SOR
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#place-new-order-using-sor-trade
 
-@param symbol	@param side	@param type_	@param quantity	@param id Unique WebSocket request ID.	@param timeInForce	@param price	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param newOrderRespType	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param side	@param type_	@param quantity	@param id Unique WebSocket request ID.	@param timeInForce	@param price	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param newOrderRespType	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiSorOrderPlaceRequest
 */
 func (a *TradeAPIService) SorOrderPlace() ApiSorOrderPlaceRequest {
@@ -3777,7 +3907,7 @@ func (r ApiSorOrderTestRequest) Price(price float32) ApiSorOrderTestRequest {
 	return r
 }
 
-// New ID for the canceled order. Automatically generated if not sent
+// The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;.
 func (r ApiSorOrderTestRequest) NewClientOrderId(newClientOrderId string) ApiSorOrderTestRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -3840,7 +3970,7 @@ SorOrderTest WebSocket Test new order using SOR
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/trading-requests#test-new-order-using-sor-trade
 
-@param symbol	@param side	@param type_	@param quantity	@param id Unique WebSocket request ID.	@param computeCommissionRates Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more.	@param timeInForce	@param price	@param newClientOrderId New ID for the canceled order. Automatically generated if not sent	@param newOrderRespType	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param side	@param type_	@param quantity	@param id Unique WebSocket request ID.	@param computeCommissionRates Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more.	@param timeInForce	@param price	@param newClientOrderId The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. 	@param newOrderRespType	@param icebergQty	@param strategyId Arbitrary numeric value identifying the order within an order strategy.	@param strategyType Arbitrary numeric value identifying the order strategy.                 Values smaller than 1000000 are reserved and cannot be used.	@param selfTradePreventionMode	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiSorOrderTestRequest
 */
 func (a *TradeAPIService) SorOrderTest() ApiSorOrderTestRequest {

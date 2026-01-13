@@ -2,8 +2,6 @@
 Binance Wallet REST API
 
 OpenAPI Specification for the Binance Wallet REST API
-
-API version: 1.0.0
 */
 
 package models

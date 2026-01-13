@@ -2,8 +2,6 @@
 Binance Spot WebSocket Streams
 
 OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
-
-API version: 1.0.0
 */
 
 package binancespotwebsocketstreams
@@ -80,13 +78,13 @@ func (a *WebSocketStreamsAPIService) AggTradeExecute(r ApiAggTradeRequest) (*com
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AggTradeResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -157,13 +155,13 @@ func (a *WebSocketStreamsAPIService) AllMarketRollingWindowTickerExecute(r ApiAl
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllMarketRollingWindowTickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -219,13 +217,13 @@ func (a *WebSocketStreamsAPIService) AllMiniTickerExecute(r ApiAllMiniTickerRequ
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllMiniTickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -297,13 +295,13 @@ func (a *WebSocketStreamsAPIService) AvgPriceExecute(r ApiAvgPriceRequest) (*com
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AvgPriceResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -375,13 +373,13 @@ func (a *WebSocketStreamsAPIService) BookTickerExecute(r ApiBookTickerRequest) (
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.BookTickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -466,13 +464,13 @@ func (a *WebSocketStreamsAPIService) DiffBookDepthExecute(r ApiDiffBookDepthRequ
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.DiffBookDepthResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -559,13 +557,13 @@ func (a *WebSocketStreamsAPIService) KlineExecute(r ApiKlineRequest) (*common.St
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.KlineResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -652,13 +650,13 @@ func (a *WebSocketStreamsAPIService) KlineOffsetExecute(r ApiKlineOffsetRequest)
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.KlineOffsetResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -730,13 +728,13 @@ func (a *WebSocketStreamsAPIService) MiniTickerExecute(r ApiMiniTickerRequest) (
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.MiniTickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -836,13 +834,13 @@ func (a *WebSocketStreamsAPIService) PartialBookDepthExecute(r ApiPartialBookDep
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.PartialBookDepthResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -929,13 +927,13 @@ func (a *WebSocketStreamsAPIService) RollingWindowTickerExecute(r ApiRollingWind
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.RollingWindowTickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -1007,13 +1005,13 @@ func (a *WebSocketStreamsAPIService) TickerExecute(r ApiTickerRequest) (*common.
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.TickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err
@@ -1085,13 +1083,13 @@ func (a *WebSocketStreamsAPIService) TradeExecute(r ApiTradeRequest) (*common.St
 	)
 	ws := a.client.Ws
 
-	id := []string{common.GenerateUUID()}
+	id := []any{common.GenerateUUID()}
 	if r.id != nil {
-		id = []string{*r.id}
+		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.TradeResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id)
+	}, localStream, id, false)
 
 	if err != nil {
 		return nil, err

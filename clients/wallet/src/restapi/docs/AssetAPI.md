@@ -6,6 +6,8 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AssetDetail**](AssetAPI.md#AssetDetail) | **Get** /sapi/v1/asset/assetDetail | Asset Detail (USER_DATA)
 [**AssetDividendRecord**](AssetAPI.md#AssetDividendRecord) | **Get** /sapi/v1/asset/assetDividend | Asset Dividend Record (USER_DATA)
+[**DustConvert**](AssetAPI.md#DustConvert) | **Post** /sapi/v1/asset/dust-convert/convert | Dust Convert (USER_DATA)
+[**DustConvertibleAssets**](AssetAPI.md#DustConvertibleAssets) | **Post** /sapi/v1/asset/dust-convert/query-convertible-assets | Dust Convertible Assets (USER_DATA)
 [**DustTransfer**](AssetAPI.md#DustTransfer) | **Post** /sapi/v1/asset/dust | Dust Transfer (USER_DATA)
 [**Dustlog**](AssetAPI.md#Dustlog) | **Get** /sapi/v1/asset/dribblet | DustLog(USER_DATA)
 [**FundingWallet**](AssetAPI.md#FundingWallet) | **Post** /sapi/v1/asset/get-funding-asset | Funding Wallet (USER_DATA)
@@ -153,6 +155,152 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**AssetDividendRecordResponse**](AssetDividendRecordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## DustConvert
+
+> DustConvertResponse DustConvert(ctx).Asset(asset).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+
+Dust Convert (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	asset := "asset_example" // string | 
+	clientId := "1" // string | A unique id for the request (optional)
+	targetAsset := "targetAsset_example" // string |  (optional)
+	thirdPartyClientId := "1" // string |  (optional)
+	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset(asset).ClientId(clientId).TargetAsset(targetAsset).ThirdPartyClientId(thirdPartyClientId).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AssetAPI.DustConvert``: %v\n", err)
+		return
+	}
+
+	// response from `DustConvert`: DustConvertResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **string** |  | 
+ **clientId** | **string** | A unique id for the request | 
+ **targetAsset** | **string** |  | 
+ **thirdPartyClientId** | **string** |  | 
+ **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
+
+### Return type
+
+[**DustConvertResponse**](DustConvertResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## DustConvertibleAssets
+
+> DustConvertibleAssetsResponse DustConvertibleAssets(ctx).TargetAsset(targetAsset).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+
+Dust Convertible Assets (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	targetAsset := "targetAsset_example" // string | 
+	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset(targetAsset).DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AssetAPI.DustConvertibleAssets``: %v\n", err)
+		return
+	}
+
+	// response from `DustConvertibleAssets`: DustConvertibleAssetsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAsset** | **string** |  | 
+ **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
+
+### Return type
+
+[**DustConvertibleAssetsResponse**](DustConvertibleAssetsResponse.md)
 
 ### Authorization
 
