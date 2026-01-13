@@ -11,6 +11,7 @@ Method        | HTTP request  | Description
 [**FetchAddressVerificationList**](TravelRuleAPI.md#FetchAddressVerificationList) | **Get** /sapi/v1/addressVerify/list | Fetch address verification list (USER_DATA)
 [**SubmitDepositQuestionnaire**](TravelRuleAPI.md#SubmitDepositQuestionnaire) | **Put** /sapi/v1/localentity/broker/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
 [**SubmitDepositQuestionnaireTravelRule**](TravelRuleAPI.md#SubmitDepositQuestionnaireTravelRule) | **Put** /sapi/v1/localentity/deposit/provide-info | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
+[**SubmitDepositQuestionnaireV2**](TravelRuleAPI.md#SubmitDepositQuestionnaireV2) | **Put** /sapi/v2/localentity/deposit/provide-info | Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA)
 [**VaspList**](TravelRuleAPI.md#VaspList) | **Get** /sapi/v1/localentity/vasp | VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
 [**WithdrawHistoryV1**](TravelRuleAPI.md#WithdrawHistoryV1) | **Get** /sapi/v1/localentity/withdraw/history | Withdraw History (for local entities that require travel rule) (supporting network) (USER_DATA)
 [**WithdrawHistoryV2**](TravelRuleAPI.md#WithdrawHistoryV2) | **Get** /sapi/v2/localentity/withdraw/history | Withdraw History V2 (for local entities that require travel rule) (supporting network) (USER_DATA)
@@ -439,7 +440,7 @@ import (
 
 func main() {
 	subAccountId := "1" // string | External user ID.
-	depositId := "1" // string | Wallet deposit ID.
+	depositId := int64(1) // int64 | Wallet deposit ID
 	questionnaire := "questionnaire_example" // string | JSON format questionnaire answers.
 	beneficiaryPii := "beneficiaryPii_example" // string | JSON format beneficiary Pii.
 	signature := "signature_example" // string | Must be the last parameter.
@@ -476,7 +477,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **subAccountId** | **string** | External user ID. | 
- **depositId** | **string** | Wallet deposit ID. | 
+ **depositId** | **int64** | Wallet deposit ID | 
  **questionnaire** | **string** | JSON format questionnaire answers. | 
  **beneficiaryPii** | **string** | JSON format beneficiary Pii. | 
  **signature** | **string** | Must be the last parameter. | 
@@ -559,6 +560,76 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**SubmitDepositQuestionnaireTravelRuleResponse**](SubmitDepositQuestionnaireTravelRuleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## SubmitDepositQuestionnaireV2
+
+> SubmitDepositQuestionnaireV2Response SubmitDepositQuestionnaireV2(ctx).DepositId(depositId).Questionnaire(questionnaire).Execute()
+
+Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	depositId := int64(1) // int64 | Wallet deposit ID
+	questionnaire := "questionnaire_example" // string | JSON format questionnaire answers.
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TravelRuleAPI.SubmitDepositQuestionnaireV2(context.Background()).DepositId(depositId).Questionnaire(questionnaire).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TravelRuleAPI.SubmitDepositQuestionnaireV2``: %v\n", err)
+		return
+	}
+
+	// response from `SubmitDepositQuestionnaireV2`: SubmitDepositQuestionnaireV2Response
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **depositId** | **int64** | Wallet deposit ID | 
+ **questionnaire** | **string** | JSON format questionnaire answers. | 
+
+### Return type
+
+[**SubmitDepositQuestionnaireV2Response**](SubmitDepositQuestionnaireV2Response.md)
 
 ### Authorization
 

@@ -1,0 +1,654 @@
+# OrderTradeUpdateO
+
+## Properties
+
+Name         | Type          | Description.  | Notes
+------------ | ------------- | ------------- | -------------
+**S** | Pointer to **string** |  | [optional] 
+**C** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** |  | [optional] 
+**O** | Pointer to **string** |  | [optional] 
+**F** | Pointer to **string** |  | [optional] 
+**Q** | Pointer to **string** |  | [optional] 
+**P** | Pointer to **string** |  | [optional] 
+**Ap** | Pointer to **string** |  | [optional] 
+**X** | Pointer to **string** |  | [optional] 
+**X** | Pointer to **string** |  | [optional] 
+**I** | Pointer to **int64** |  | [optional] 
+**L** | Pointer to **string** |  | [optional] 
+**Z** | Pointer to **string** |  | [optional] 
+**L** | Pointer to **string** |  | [optional] 
+**N** | Pointer to **string** |  | [optional] 
+**N** | Pointer to **string** |  | [optional] 
+**T** | Pointer to **int64** |  | [optional] 
+**T** | Pointer to **int64** |  | [optional] 
+**B** | Pointer to **string** |  | [optional] 
+**A** | Pointer to **string** |  | [optional] 
+**M** | Pointer to **bool** |  | [optional] 
+**R** | Pointer to **bool** |  | [optional] 
+**Ot** | Pointer to **string** |  | [optional] 
+**Rp** | Pointer to **string** |  | [optional] 
+
+## Methods
+
+### NewOrderTradeUpdateO
+
+`func NewOrderTradeUpdateO() *OrderTradeUpdateO`
+
+NewOrderTradeUpdateO instantiates a new OrderTradeUpdateO object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewOrderTradeUpdateOWithDefaults
+
+`func NewOrderTradeUpdateOWithDefaults() *OrderTradeUpdateO`
+
+NewOrderTradeUpdateOWithDefaults instantiates a new OrderTradeUpdateO object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetS
+
+`func (o *OrderTradeUpdateO) GetS() string`
+
+GetS returns the S field if non-nil, zero value otherwise.
+
+### GetSOk
+
+`func (o *OrderTradeUpdateO) GetSOk() (*string, bool)`
+
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS
+
+`func (o *OrderTradeUpdateO) SetS(v string)`
+
+SetS sets S field to given value.
+
+### HasS
+
+`func (o *OrderTradeUpdateO) HasS() bool`
+
+HasS returns a boolean if a field has been set.
+
+### GetC
+
+`func (o *OrderTradeUpdateO) GetC() string`
+
+GetC returns the C field if non-nil, zero value otherwise.
+
+### GetCOk
+
+`func (o *OrderTradeUpdateO) GetCOk() (*string, bool)`
+
+GetCOk returns a tuple with the C field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetC
+
+`func (o *OrderTradeUpdateO) SetC(v string)`
+
+SetC sets C field to given value.
+
+### HasC
+
+`func (o *OrderTradeUpdateO) HasC() bool`
+
+HasC returns a boolean if a field has been set.
+
+### GetS
+
+`func (o *OrderTradeUpdateO) GetS() string`
+
+GetS returns the S field if non-nil, zero value otherwise.
+
+### GetSOk
+
+`func (o *OrderTradeUpdateO) GetSOk() (*string, bool)`
+
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS
+
+`func (o *OrderTradeUpdateO) SetS(v string)`
+
+SetS sets S field to given value.
+
+### HasS
+
+`func (o *OrderTradeUpdateO) HasS() bool`
+
+HasS returns a boolean if a field has been set.
+
+### GetO
+
+`func (o *OrderTradeUpdateO) GetO() string`
+
+GetO returns the O field if non-nil, zero value otherwise.
+
+### GetOOk
+
+`func (o *OrderTradeUpdateO) GetOOk() (*string, bool)`
+
+GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetO
+
+`func (o *OrderTradeUpdateO) SetO(v string)`
+
+SetO sets O field to given value.
+
+### HasO
+
+`func (o *OrderTradeUpdateO) HasO() bool`
+
+HasO returns a boolean if a field has been set.
+
+### GetF
+
+`func (o *OrderTradeUpdateO) GetF() string`
+
+GetF returns the F field if non-nil, zero value otherwise.
+
+### GetFOk
+
+`func (o *OrderTradeUpdateO) GetFOk() (*string, bool)`
+
+GetFOk returns a tuple with the F field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetF
+
+`func (o *OrderTradeUpdateO) SetF(v string)`
+
+SetF sets F field to given value.
+
+### HasF
+
+`func (o *OrderTradeUpdateO) HasF() bool`
+
+HasF returns a boolean if a field has been set.
+
+### GetQ
+
+`func (o *OrderTradeUpdateO) GetQ() string`
+
+GetQ returns the Q field if non-nil, zero value otherwise.
+
+### GetQOk
+
+`func (o *OrderTradeUpdateO) GetQOk() (*string, bool)`
+
+GetQOk returns a tuple with the Q field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQ
+
+`func (o *OrderTradeUpdateO) SetQ(v string)`
+
+SetQ sets Q field to given value.
+
+### HasQ
+
+`func (o *OrderTradeUpdateO) HasQ() bool`
+
+HasQ returns a boolean if a field has been set.
+
+### GetP
+
+`func (o *OrderTradeUpdateO) GetP() string`
+
+GetP returns the P field if non-nil, zero value otherwise.
+
+### GetPOk
+
+`func (o *OrderTradeUpdateO) GetPOk() (*string, bool)`
+
+GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetP
+
+`func (o *OrderTradeUpdateO) SetP(v string)`
+
+SetP sets P field to given value.
+
+### HasP
+
+`func (o *OrderTradeUpdateO) HasP() bool`
+
+HasP returns a boolean if a field has been set.
+
+### GetAp
+
+`func (o *OrderTradeUpdateO) GetAp() string`
+
+GetAp returns the Ap field if non-nil, zero value otherwise.
+
+### GetApOk
+
+`func (o *OrderTradeUpdateO) GetApOk() (*string, bool)`
+
+GetApOk returns a tuple with the Ap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAp
+
+`func (o *OrderTradeUpdateO) SetAp(v string)`
+
+SetAp sets Ap field to given value.
+
+### HasAp
+
+`func (o *OrderTradeUpdateO) HasAp() bool`
+
+HasAp returns a boolean if a field has been set.
+
+### GetX
+
+`func (o *OrderTradeUpdateO) GetX() string`
+
+GetX returns the X field if non-nil, zero value otherwise.
+
+### GetXOk
+
+`func (o *OrderTradeUpdateO) GetXOk() (*string, bool)`
+
+GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetX
+
+`func (o *OrderTradeUpdateO) SetX(v string)`
+
+SetX sets X field to given value.
+
+### HasX
+
+`func (o *OrderTradeUpdateO) HasX() bool`
+
+HasX returns a boolean if a field has been set.
+
+### GetX
+
+`func (o *OrderTradeUpdateO) GetX() string`
+
+GetX returns the X field if non-nil, zero value otherwise.
+
+### GetXOk
+
+`func (o *OrderTradeUpdateO) GetXOk() (*string, bool)`
+
+GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetX
+
+`func (o *OrderTradeUpdateO) SetX(v string)`
+
+SetX sets X field to given value.
+
+### HasX
+
+`func (o *OrderTradeUpdateO) HasX() bool`
+
+HasX returns a boolean if a field has been set.
+
+### GetI
+
+`func (o *OrderTradeUpdateO) GetI() int64`
+
+GetI returns the I field if non-nil, zero value otherwise.
+
+### GetIOk
+
+`func (o *OrderTradeUpdateO) GetIOk() (*int64, bool)`
+
+GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetI
+
+`func (o *OrderTradeUpdateO) SetI(v int64)`
+
+SetI sets I field to given value.
+
+### HasI
+
+`func (o *OrderTradeUpdateO) HasI() bool`
+
+HasI returns a boolean if a field has been set.
+
+### GetL
+
+`func (o *OrderTradeUpdateO) GetL() string`
+
+GetL returns the L field if non-nil, zero value otherwise.
+
+### GetLOk
+
+`func (o *OrderTradeUpdateO) GetLOk() (*string, bool)`
+
+GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL
+
+`func (o *OrderTradeUpdateO) SetL(v string)`
+
+SetL sets L field to given value.
+
+### HasL
+
+`func (o *OrderTradeUpdateO) HasL() bool`
+
+HasL returns a boolean if a field has been set.
+
+### GetZ
+
+`func (o *OrderTradeUpdateO) GetZ() string`
+
+GetZ returns the Z field if non-nil, zero value otherwise.
+
+### GetZOk
+
+`func (o *OrderTradeUpdateO) GetZOk() (*string, bool)`
+
+GetZOk returns a tuple with the Z field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZ
+
+`func (o *OrderTradeUpdateO) SetZ(v string)`
+
+SetZ sets Z field to given value.
+
+### HasZ
+
+`func (o *OrderTradeUpdateO) HasZ() bool`
+
+HasZ returns a boolean if a field has been set.
+
+### GetL
+
+`func (o *OrderTradeUpdateO) GetL() string`
+
+GetL returns the L field if non-nil, zero value otherwise.
+
+### GetLOk
+
+`func (o *OrderTradeUpdateO) GetLOk() (*string, bool)`
+
+GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL
+
+`func (o *OrderTradeUpdateO) SetL(v string)`
+
+SetL sets L field to given value.
+
+### HasL
+
+`func (o *OrderTradeUpdateO) HasL() bool`
+
+HasL returns a boolean if a field has been set.
+
+### GetN
+
+`func (o *OrderTradeUpdateO) GetN() string`
+
+GetN returns the N field if non-nil, zero value otherwise.
+
+### GetNOk
+
+`func (o *OrderTradeUpdateO) GetNOk() (*string, bool)`
+
+GetNOk returns a tuple with the N field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetN
+
+`func (o *OrderTradeUpdateO) SetN(v string)`
+
+SetN sets N field to given value.
+
+### HasN
+
+`func (o *OrderTradeUpdateO) HasN() bool`
+
+HasN returns a boolean if a field has been set.
+
+### GetN
+
+`func (o *OrderTradeUpdateO) GetN() string`
+
+GetN returns the N field if non-nil, zero value otherwise.
+
+### GetNOk
+
+`func (o *OrderTradeUpdateO) GetNOk() (*string, bool)`
+
+GetNOk returns a tuple with the N field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetN
+
+`func (o *OrderTradeUpdateO) SetN(v string)`
+
+SetN sets N field to given value.
+
+### HasN
+
+`func (o *OrderTradeUpdateO) HasN() bool`
+
+HasN returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *OrderTradeUpdateO) GetT() int64`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *OrderTradeUpdateO) GetTOk() (*int64, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *OrderTradeUpdateO) SetT(v int64)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *OrderTradeUpdateO) HasT() bool`
+
+HasT returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *OrderTradeUpdateO) GetT() int64`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *OrderTradeUpdateO) GetTOk() (*int64, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *OrderTradeUpdateO) SetT(v int64)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *OrderTradeUpdateO) HasT() bool`
+
+HasT returns a boolean if a field has been set.
+
+### GetB
+
+`func (o *OrderTradeUpdateO) GetB() string`
+
+GetB returns the B field if non-nil, zero value otherwise.
+
+### GetBOk
+
+`func (o *OrderTradeUpdateO) GetBOk() (*string, bool)`
+
+GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetB
+
+`func (o *OrderTradeUpdateO) SetB(v string)`
+
+SetB sets B field to given value.
+
+### HasB
+
+`func (o *OrderTradeUpdateO) HasB() bool`
+
+HasB returns a boolean if a field has been set.
+
+### GetA
+
+`func (o *OrderTradeUpdateO) GetA() string`
+
+GetA returns the A field if non-nil, zero value otherwise.
+
+### GetAOk
+
+`func (o *OrderTradeUpdateO) GetAOk() (*string, bool)`
+
+GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetA
+
+`func (o *OrderTradeUpdateO) SetA(v string)`
+
+SetA sets A field to given value.
+
+### HasA
+
+`func (o *OrderTradeUpdateO) HasA() bool`
+
+HasA returns a boolean if a field has been set.
+
+### GetM
+
+`func (o *OrderTradeUpdateO) GetM() bool`
+
+GetM returns the M field if non-nil, zero value otherwise.
+
+### GetMOk
+
+`func (o *OrderTradeUpdateO) GetMOk() (*bool, bool)`
+
+GetMOk returns a tuple with the M field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetM
+
+`func (o *OrderTradeUpdateO) SetM(v bool)`
+
+SetM sets M field to given value.
+
+### HasM
+
+`func (o *OrderTradeUpdateO) HasM() bool`
+
+HasM returns a boolean if a field has been set.
+
+### GetR
+
+`func (o *OrderTradeUpdateO) GetR() bool`
+
+GetR returns the R field if non-nil, zero value otherwise.
+
+### GetROk
+
+`func (o *OrderTradeUpdateO) GetROk() (*bool, bool)`
+
+GetROk returns a tuple with the R field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetR
+
+`func (o *OrderTradeUpdateO) SetR(v bool)`
+
+SetR sets R field to given value.
+
+### HasR
+
+`func (o *OrderTradeUpdateO) HasR() bool`
+
+HasR returns a boolean if a field has been set.
+
+### GetOt
+
+`func (o *OrderTradeUpdateO) GetOt() string`
+
+GetOt returns the Ot field if non-nil, zero value otherwise.
+
+### GetOtOk
+
+`func (o *OrderTradeUpdateO) GetOtOk() (*string, bool)`
+
+GetOtOk returns a tuple with the Ot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOt
+
+`func (o *OrderTradeUpdateO) SetOt(v string)`
+
+SetOt sets Ot field to given value.
+
+### HasOt
+
+`func (o *OrderTradeUpdateO) HasOt() bool`
+
+HasOt returns a boolean if a field has been set.
+
+### GetRp
+
+`func (o *OrderTradeUpdateO) GetRp() string`
+
+GetRp returns the Rp field if non-nil, zero value otherwise.
+
+### GetRpOk
+
+`func (o *OrderTradeUpdateO) GetRpOk() (*string, bool)`
+
+GetRpOk returns a tuple with the Rp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRp
+
+`func (o *OrderTradeUpdateO) SetRp(v string)`
+
+SetRp sets Rp field to given value.
+
+### HasRp
+
+`func (o *OrderTradeUpdateO) HasRp() bool`
+
+HasRp returns a boolean if a field has been set.
+
+
+[[Back to README]](../README.md)
+
+

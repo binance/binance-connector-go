@@ -2,8 +2,6 @@
 Binance Spot WebSocket Streams
 
 OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
-
-API version: 1.0.0
 */
 
 package binancespotwebsocketstreams
@@ -15,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.0.0
+// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.1.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -31,7 +29,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-spot/1.0.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-spot/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -61,8 +59,8 @@ func (c *WebsocketStreamsClient) Connect() error {
 // @param streams []string - The list of streams to subscribe to
 // @param id []string - The optional list of IDs for the subscriptions
 // @return error - An error if the subscription fails
-func (c *WebsocketStreamsClient) Subscribe(streams []string, id []string) error {
-	return c.Ws.Subscribe(streams, id)
+func (c *WebsocketStreamsClient) Subscribe(streams []string, id []any) error {
+	return c.Ws.Subscribe(streams, id, false)
 }
 
 // On registers a callback for the specified stream

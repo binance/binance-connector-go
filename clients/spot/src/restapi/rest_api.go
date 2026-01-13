@@ -2,8 +2,6 @@
 Binance Spot REST API
 
 OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
-
-API version: 1.0.0
 */
 
 package binancespotrestapi
@@ -16,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// RestAPIClient manages communication with the Binance Spot REST API API v1.0.0
+// RestAPIClient manages communication with the Binance Spot REST API API v1.1.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -41,7 +39,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-spot/1.0.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-spot/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

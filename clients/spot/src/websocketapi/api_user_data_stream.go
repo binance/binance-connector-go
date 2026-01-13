@@ -2,8 +2,6 @@
 Binance Spot WebSocket API
 
 OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
-
-API version: 1.0.0
 */
 
 package binancespotwebsocketapi
@@ -155,7 +153,7 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 		ws := a.Ws
 		stream, err := common.CreateStreamHandler[models.UserDataStreamEventsResponse](&common.StreamHandlerWrapper{
 			WebsocketAPI: ws,
-		}, streamId, []string{common.GenerateUUID()})
+		}, streamId, []any{common.GenerateUUID()}, false)
 
 		if err != nil {
 			return nil, nil, nil, err
@@ -238,7 +236,7 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignatureExecute(r Api
 		ws := a.Ws
 		stream, err := common.CreateStreamHandler[models.UserDataStreamEventsResponse](&common.StreamHandlerWrapper{
 			WebsocketAPI: ws,
-		}, streamId, []string{common.GenerateUUID()})
+		}, streamId, []any{common.GenerateUUID()}, false)
 
 		if err != nil {
 			return nil, nil, nil, err

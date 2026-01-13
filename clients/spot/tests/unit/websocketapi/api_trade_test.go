@@ -160,6 +160,172 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		<-done
 	})
+	t.Run("Test TradeAPIService OrderAmendKeepPriority AsyncExecute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1.0)).ExecuteAsync()
+		require.NoError(t, err)
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":{"transactTime":1741924229819,"executionId":60,"amendedOrder":{"symbol":"BTUCSDT","orderId":23,"orderListId":4,"origClientOrderId":"my_pending_order","clientOrderId":"xbxXh5SSwaHS7oUEOCI88B","price":"1.00000000","qty":"5.00000000","executedQty":"0.00000000","preventedQty":"0.00000000","quoteOrderQty":"0.00000000","cumulativeQuoteQty":"0.00000000","status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1741924204920,"selfTradePreventionMode":"NONE"},"listStatus":{"orderListId":4,"contingencyType":"OTO","listOrderStatus":"EXECUTING","listClientOrderId":"8nOGLLawudj1QoOiwbroRH","symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":23,"clientOrderId":"xbxXh5SSwaHS7oUEOCI88B"},{"symbol":"BTCUSDT","orderId":22,"clientOrderId":"g04EWsjaackzedjC9wRkWD"},{"symbol":"BTCUSDT","orderId":23,"clientOrderId":"xbxXh5SSwaHS7oUEOCI88B"},{"symbol":"BTCUSDT","orderId":22,"clientOrderId":"g04EWsjaackzedjC9wRkWD"}]}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":1}]}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		select {
+		case resp := <-responseChan:
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			require.NotEmpty(t, mockWS.MessagesWritten)
+
+			require.Len(t, mockWS.MessagesWritten, 1)
+			var sent map[string]any
+			err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+			require.NoError(t, err)
+			require.Equal(t, "/order.amend.keepPriority"[1:], sent["method"])
+
+			typedResp := resp.Typed
+			require.IsType(t, &models.OrderAmendKeepPriorityResponse{}, typedResp)
+		case err := <-errorChan:
+			t.Fatalf("Unexpected error: %v", err)
+		}
+	})
+
+	t.Run("Test TradeAPIService OrderAmendKeepPriority Execute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		resultChan := make(chan common.ResultWebsocket[models.OrderAmendKeepPriorityResponse], 1)
+		go func() {
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1.0)).Execute()
+			resultChan <- common.ResultWebsocket[models.OrderAmendKeepPriorityResponse]{Value: resp, Err: err}
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":{"transactTime":1741924229819,"executionId":60,"amendedOrder":{"symbol":"BTUCSDT","orderId":23,"orderListId":4,"origClientOrderId":"my_pending_order","clientOrderId":"xbxXh5SSwaHS7oUEOCI88B","price":"1.00000000","qty":"5.00000000","executedQty":"0.00000000","preventedQty":"0.00000000","quoteOrderQty":"0.00000000","cumulativeQuoteQty":"0.00000000","status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1741924204920,"selfTradePreventionMode":"NONE"},"listStatus":{"orderListId":4,"contingencyType":"OTO","listOrderStatus":"EXECUTING","listClientOrderId":"8nOGLLawudj1QoOiwbroRH","symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":23,"clientOrderId":"xbxXh5SSwaHS7oUEOCI88B"},{"symbol":"BTCUSDT","orderId":22,"clientOrderId":"g04EWsjaackzedjC9wRkWD"},{"symbol":"BTCUSDT","orderId":23,"clientOrderId":"xbxXh5SSwaHS7oUEOCI88B"},{"symbol":"BTCUSDT","orderId":22,"clientOrderId":"g04EWsjaackzedjC9wRkWD"}]}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":1}]}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		res := <-resultChan
+		resp := res.Value
+		err := res.Err
+
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.NotEmpty(t, mockWS.MessagesWritten)
+
+		require.Len(t, mockWS.MessagesWritten, 1)
+		var sent map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+		require.Equal(t, "/order.amend.keepPriority"[1:], sent["method"])
+
+		typedResp := resp.Typed
+		require.IsType(t, &models.OrderAmendKeepPriorityResponse{}, typedResp)
+	})
+
+	t.Run("Test TradeAPIService OrderAmendKeepPriority Missing Required Params", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		respChan, errChan, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().ExecuteAsync()
+		require.Error(t, err)
+		require.Nil(t, respChan)
+		require.Nil(t, errChan)
+	})
+
+	t.Run("Test TradeAPIService OrderAmendKeepPriority Missing Required Params", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		respChan, errChan, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().ExecuteAsync()
+		require.Error(t, err)
+		require.Nil(t, respChan)
+		require.Nil(t, errChan)
+	})
+
+	t.Run("Test TradeAPIService OrderAmendKeepPriority Server Error", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+		conn.Id = "123"
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+		done := make(chan struct{})
+
+		go func() {
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1.0)).ExecuteAsync()
+			if err != nil {
+				var wsErr *common.WebSocketError
+				if errors.As(err, &wsErr) {
+					require.Contains(t, wsErr.Error(), "[-1001] Internal server error")
+					require.Equal(t, "123", wsErr.ConnID)
+					require.Equal(t, "error_response", wsErr.Op)
+				} else {
+					t.Errorf("unexpected error type: %T", err)
+				}
+				_, ok := <-respChan
+				require.False(t, ok, "response channel should be closed")
+			}
+			close(done)
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockWS.QueueMessage([]byte(`{
+			"id":"123",
+			"status":500,
+			"error":{
+				"code":-1001,
+				"msg":"Internal server error"
+			}
+		}`))
+
+		<-done
+	})
 	t.Run("Test TradeAPIService OrderCancel AsyncExecute Success", func(t *testing.T) {
 		conn, mockWS, cleanup := tests.SetupMockClient("123")
 		defer cleanup()

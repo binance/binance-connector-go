@@ -2,8 +2,6 @@
 Binance Spot WebSocket API
 
 OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
-
-API version: 1.0.0
 */
 
 package binancespotwebsocketapi
@@ -401,7 +399,7 @@ func (r ApiAllOrdersRequest) Id(id string) ApiAllOrdersRequest {
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiAllOrdersRequest) OrderId(orderId int64) ApiAllOrdersRequest {
 	r.orderId = &orderId
 	return r
@@ -453,7 +451,7 @@ AllOrders WebSocket Account order history
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-history-user_data
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId Cancel order by orderId	@param startTime	@param endTime	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param startTime	@param endTime	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAllOrdersRequest
 */
 func (a *AccountAPIService) AllOrders() ApiAllOrdersRequest {
@@ -550,7 +548,7 @@ func (r ApiMyAllocationsRequest) Limit(limit int32) ApiMyAllocationsRequest {
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiMyAllocationsRequest) OrderId(orderId int64) ApiMyAllocationsRequest {
 	r.orderId = &orderId
 	return r
@@ -586,7 +584,7 @@ MyAllocations WebSocket Account allocations
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-allocations-user_data
 
-@param symbol	@param id Unique WebSocket request ID.	@param startTime	@param endTime	@param fromAllocationId	@param limit Default: 100; Maximum: 5000	@param orderId Cancel order by orderId	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param startTime	@param endTime	@param fromAllocationId	@param limit Default: 100; Maximum: 5000	@param orderId `orderId`or`origClientOrderId`mustbesent	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyAllocationsRequest
 */
 func (a *AccountAPIService) MyAllocations() ApiMyAllocationsRequest {
@@ -758,7 +756,7 @@ func (r ApiMyPreventedMatchesRequest) PreventedMatchId(preventedMatchId int64) A
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiMyPreventedMatchesRequest) OrderId(orderId int64) ApiMyPreventedMatchesRequest {
 	r.orderId = &orderId
 	return r
@@ -805,7 +803,7 @@ MyPreventedMatches WebSocket Account prevented matches
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-prevented-matches-user_data
 
-@param symbol	@param id Unique WebSocket request ID.	@param preventedMatchId	@param orderId Cancel order by orderId	@param fromPreventedMatchId	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param preventedMatchId	@param orderId `orderId`or`origClientOrderId`mustbesent	@param fromPreventedMatchId	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyPreventedMatchesRequest
 */
 func (a *AccountAPIService) MyPreventedMatches() ApiMyPreventedMatchesRequest {
@@ -881,7 +879,7 @@ func (r ApiMyTradesRequest) Id(id string) ApiMyTradesRequest {
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiMyTradesRequest) OrderId(orderId int64) ApiMyTradesRequest {
 	r.orderId = &orderId
 	return r
@@ -939,7 +937,7 @@ MyTrades WebSocket Account trade history
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-trade-history-user_data
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId Cancel order by orderId	@param startTime	@param endTime	@param fromId Aggregate trade ID to begin at	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param startTime	@param endTime	@param fromId Aggregate trade ID to begin at	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyTradesRequest
 */
 func (a *AccountAPIService) MyTrades() ApiMyTradesRequest {
@@ -1294,6 +1292,7 @@ func (r ApiOrderListStatusRequest) Id(id string) ApiOrderListStatusRequest {
 	return r
 }
 
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiOrderListStatusRequest) OrigClientOrderId(origClientOrderId string) ApiOrderListStatusRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -1335,7 +1334,7 @@ OrderListStatus WebSocket Query Order list
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-list-user_data
 
-@param id Unique WebSocket request ID.	@param origClientOrderId	@param orderListId Cancel order list by orderListId	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Unique WebSocket request ID.	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param orderListId Cancel order list by orderListId	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListStatusRequest
 */
 func (a *AccountAPIService) OrderListStatus() ApiOrderListStatusRequest {
@@ -1397,12 +1396,13 @@ func (r ApiOrderStatusRequest) Id(id string) ApiOrderStatusRequest {
 	return r
 }
 
-// Cancel order by orderId
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiOrderStatusRequest) OrderId(orderId int64) ApiOrderStatusRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
 func (r ApiOrderStatusRequest) OrigClientOrderId(origClientOrderId string) ApiOrderStatusRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -1438,7 +1438,7 @@ OrderStatus WebSocket Query order
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-user_data
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId Cancel order by orderId	@param origClientOrderId	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderStatusRequest
 */
 func (a *AccountAPIService) OrderStatus() ApiOrderStatusRequest {

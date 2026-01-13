@@ -2,8 +2,6 @@
 Binance Rebate REST API
 
 OpenAPI Specification for the Binance Rebate REST API
-
-API version: 1.0.0
 */
 
 package binancerebaterestapi

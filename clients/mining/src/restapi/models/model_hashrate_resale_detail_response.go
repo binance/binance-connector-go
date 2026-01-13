@@ -2,8 +2,6 @@
 Binance Mining REST API
 
 OpenAPI Specification for the Binance Mining REST API
-
-API version: 1.0.0
 */
 
 package models
