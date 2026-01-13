@@ -2189,9 +2189,9 @@ func TestWebsocketStreams_Subscribe_Success(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade", "ethusdt@trade"}
-	ids := []string{"id-1", "id-2"}
+	ids := []any{"id-1", "id-2"}
 
-	err := ws.Subscribe(streams, ids)
+	err := ws.Subscribe(streams, ids, false)
 
 	require.NoError(t, err)
 
@@ -2221,9 +2221,9 @@ func TestWebsocketStreams_Subscribe_NoStreams(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{}
-	ids := []string{}
+	ids := []any{}
 
-	err := ws.Subscribe(streams, ids)
+	err := ws.Subscribe(streams, ids, false)
 
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "no streams to subscribe")
@@ -2234,9 +2234,9 @@ func TestWebsocketStreams_Subscribe_AutoGenerateID(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	ids := []string{}
+	ids := []any{}
 
-	err := ws.Subscribe(streams, ids)
+	err := ws.Subscribe(streams, ids, false)
 
 	require.NoError(t, err)
 
@@ -2249,17 +2249,60 @@ func TestWebsocketStreams_Subscribe_AutoGenerateID(t *testing.T) {
 	assert.NotEmpty(t, msg["id"])
 }
 
+func TestWebsocketStreams_Subscribe_AutoGenerateNumberID(t *testing.T) {
+	mockConn := NewMockWebSocketConn()
+	ws := createTestWebsocketStreams(mockConn)
+
+	streams := []string{"btcusdt@trade"}
+	ids := []any{}
+
+	err := ws.Subscribe(streams, ids, true)
+
+	require.NoError(t, err)
+
+	writtenMsgs := mockConn.GetWrittenMessages()
+	assert.Equal(t, 1, len(writtenMsgs))
+
+	var msg map[string]interface{}
+	err = json.Unmarshal(writtenMsgs[0].data, &msg)
+	require.NoError(t, err)
+	assert.NotEmpty(t, msg["id"])
+	assert.IsType(t, float64(0), msg["id"])
+}
+
+func TestWebsocketStreams_Subscribe_NumberID(t *testing.T) {
+	mockConn := NewMockWebSocketConn()
+	ws := createTestWebsocketStreams(mockConn)
+
+	streams := []string{"btcusdt@trade"}
+	ids := []any{12345}
+
+	err := ws.Subscribe(streams, ids, true)
+
+	require.NoError(t, err)
+
+	writtenMsgs := mockConn.GetWrittenMessages()
+	assert.Equal(t, 1, len(writtenMsgs))
+
+	var msg map[string]interface{}
+	err = json.Unmarshal(writtenMsgs[0].data, &msg)
+	require.NoError(t, err)
+	assert.NotEmpty(t, msg["id"])
+	assert.IsType(t, float64(0), msg["id"])
+	assert.Equal(t, float64(12345), msg["id"])
+}
+
 func TestWebsocketStreams_Subscribe_AlreadySubscribed(t *testing.T) {
 	mockConn := NewMockWebSocketConn()
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	ids := []string{"id-1"}
+	ids := []any{"id-1"}
 
-	err := ws.Subscribe(streams, ids)
+	err := ws.Subscribe(streams, ids, false)
 	require.NoError(t, err)
 
-	err = ws.Subscribe(streams, ids)
+	err = ws.Subscribe(streams, ids, false)
 	require.NoError(t, err)
 
 	writtenMsgs := mockConn.GetWrittenMessages()
@@ -2272,9 +2315,9 @@ func TestWebsocketStreams_Subscribe_WriteError(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	ids := []string{"id-1"}
+	ids := []any{"id-1"}
 
-	err := ws.Subscribe(streams, ids)
+	err := ws.Subscribe(streams, ids, false)
 
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "write failed")
@@ -2285,7 +2328,7 @@ func TestWebsocketStreams_On_Success(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1"})
+	err := ws.Subscribe(streams, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	callbackCalled := false
@@ -2309,7 +2352,7 @@ func TestWebsocketStreams_On_MultipleCallbacks(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1"})
+	err := ws.Subscribe(streams, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	callback1Called := false
@@ -2493,7 +2536,7 @@ func TestWebsocketStreams_Unsubscribe_Success(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade", "ethusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1", "id-2"})
+	err := ws.Subscribe(streams, []any{"id-1", "id-2"}, false)
 	require.NoError(t, err)
 
 	_ = mockConn.GetWrittenMessages()
@@ -2541,7 +2584,7 @@ func TestWebsocketStreams_Unsubscribe_WriteError(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1"})
+	err := ws.Subscribe(streams, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	mockConn.SetWriteError(errors.New("write failed"))
@@ -2557,7 +2600,7 @@ func TestWebsocketStreams_Unsubscribe_RemovesCallback(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1"})
+	err := ws.Subscribe(streams, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	callback := func(data map[string]interface{}) {}
@@ -2578,7 +2621,7 @@ func TestWebsocketStreams_IsSubscribed_True(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1"})
+	err := ws.Subscribe(streams, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	result := ws.IsSubscribed("btcusdt@trade")
@@ -2700,7 +2743,7 @@ func TestWebsocketStreams_Subscribe_ConcurrentSubscriptions(t *testing.T) {
 		go func(index int) {
 			defer wg.Done()
 			stream := []string{"stream-" + string(rune('A'+index))}
-			err := ws.Subscribe(stream, []string{})
+			err := ws.Subscribe(stream, []any{}, false)
 			assert.NoError(t, err)
 		}(i)
 	}
@@ -2715,7 +2758,7 @@ func TestWebsocketStreams_CompleteWorkflow(t *testing.T) {
 	ws := createTestWebsocketStreams(mockConn)
 
 	streams := []string{"btcusdt@trade", "ethusdt@trade"}
-	err := ws.Subscribe(streams, []string{"id-1", "id-2"})
+	err := ws.Subscribe(streams, []any{"id-1", "id-2"}, false)
 	require.NoError(t, err)
 
 	assert.True(t, ws.IsSubscribed("btcusdt@trade"))
@@ -2754,7 +2797,7 @@ func TestCreateStreamHandler_WithWebsocketStreams(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 
 	require.NoError(t, err)
 	assert.NotNil(t, handler)
@@ -2769,7 +2812,7 @@ func TestCreateStreamHandler_WithWebsocketAPI(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithAPI(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{}, false)
 
 	require.NoError(t, err)
 	assert.NotNil(t, handler)
@@ -2783,7 +2826,7 @@ func TestCreateStreamHandler_InvalidWrapper(t *testing.T) {
 	wrapper := &common.StreamHandlerWrapper{}
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{}, false)
 
 	assert.Error(t, err)
 	assert.Nil(t, handler)
@@ -2799,9 +2842,9 @@ func TestCreateStreamHandler_WithCustomIDs(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	customIDs := []string{"custom-id-123"}
+	customIDs := []any{"custom-id-123"}
 
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, customIDs)
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, customIDs, false)
 
 	require.NoError(t, err)
 	assert.NotNil(t, handler)
@@ -2820,7 +2863,7 @@ func TestStreamHandler_On_SingleObject_WithStreams(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var receivedData TestTradeData
@@ -2860,7 +2903,7 @@ func TestStreamHandler_On_SingleObject_WithAPI(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithAPI(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{}, false)
 	require.NoError(t, err)
 
 	var receivedData TestTradeData
@@ -2898,7 +2941,7 @@ func TestStreamHandler_On_ArrayOfObjects(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "!ticker@arr"
-	handler, err := common.CreateStreamHandler[TestTickerData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTickerData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var receivedData []TestTickerData
@@ -2953,7 +2996,7 @@ func TestStreamHandler_On_NonMessageEvent(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	callbackCalled := false
@@ -2995,7 +3038,7 @@ func TestStreamHandler_On_MultipleCallbacks(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var callback1Called, callback2Called bool
@@ -3037,7 +3080,7 @@ func TestStreamHandler_On_InvalidJSON(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	callbackCalled := false
@@ -3063,7 +3106,7 @@ func TestStreamHandler_OnError(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var receivedError error
@@ -3092,7 +3135,7 @@ func TestStreamHandler_OnError_MultipleErrors(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var receivedErrors []error
@@ -3153,7 +3196,7 @@ func TestStreamHandler_Unsubscribe_WithStreams(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	assert.Contains(t, wrapper.WebsocketStreams.GlobalStreamConnectionMap, stream)
@@ -3196,7 +3239,7 @@ func TestStreamHandler_Unsubscribe_WithAPI(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithAPI(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{}, false)
 	require.NoError(t, err)
 
 	handler.Unsubscribe()
@@ -3209,7 +3252,7 @@ func TestStreamHandler_CompleteWorkflow(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var receivedTrades []TestTradeData
@@ -3280,7 +3323,7 @@ func TestStreamHandler_ConcurrentCallbacks(t *testing.T) {
 	wrapper := createStreamHandlerWrapperWithStreams(mockConn)
 
 	stream := "btcusdt@trade"
-	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []string{"id-1"})
+	handler, err := common.CreateStreamHandler[TestTradeData](wrapper, stream, []any{"id-1"}, false)
 	require.NoError(t, err)
 
 	var callbackCount int

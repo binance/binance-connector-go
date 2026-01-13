@@ -69,7 +69,7 @@ const DerivativesTradingUsdsFuturesWebsocketStreamsTestnetUrl = "wss://stream.bi
 
 // Derivatives Trading Options API URLs
 const DerivativesTradingOptionsRestApiProdUrl = "https://eapi.binance.com"
-const DerivativesTradingOptionsWebsocketStreamsProdUrl = "wss://nbstream.binance.com/eoptions/stream"
+const DerivativesTradingOptionsWebsocketStreamsProdUrl = "wss://fstream.binance.com"
 
 // Derivatives Trading Portfolio Margin API URLs
 const DerivativesTradingPortfolioMarginRestApiProdUrl = "https://papi.binance.com"

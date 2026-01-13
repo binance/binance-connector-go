@@ -1130,7 +1130,7 @@ func (w *WebsocketStreams) Connect(userAgent string) error {
 // @param streams A slice of stream names to subscribe to.
 // @param id A slice of IDs corresponding to each stream. If empty, new UUIDs will be generated.
 // @return An error if any subscription fails, otherwise nil.
-func (w *WebsocketStreams) Subscribe(streams []string, id []string) error {
+func (w *WebsocketStreams) Subscribe(streams []string, id []any, strictInt bool) error {
 	if len(streams) == 0 {
 		return errors.New("no streams to subscribe")
 	}
@@ -1145,7 +1145,13 @@ func (w *WebsocketStreams) Subscribe(streams []string, id []string) error {
 			return err
 		}
 
-		streamID := GenerateUUID()
+		var streamID interface{}
+		if strictInt {
+			streamID = GenerateIntUUID()
+		} else {
+			streamID = GenerateUUID()
+		}
+
 		if len(id) > num {
 			streamID = id[num]
 		}
@@ -1337,9 +1343,9 @@ func (w *WebsocketStreams) CloseWebSocketStreamConnection() error {
 // @param stream The name of the stream to handle.
 // @param id An optional slice of IDs associated with the stream.
 // @return A pointer to the created StreamHandler or an error if subscription fails.
-func CreateStreamHandler[T any](wrapper *StreamHandlerWrapper, stream string, id []string) (*StreamHandler[T], error) {
+func CreateStreamHandler[T any](wrapper *StreamHandlerWrapper, stream string, id []any, strictInt bool) (*StreamHandler[T], error) {
 	if wrapper.WebsocketStreams != nil {
-		if err := wrapper.WebsocketStreams.Subscribe([]string{stream}, id); err != nil {
+		if err := wrapper.WebsocketStreams.Subscribe([]string{stream}, id, strictInt); err != nil {
 			return nil, err
 		}
 	} else if wrapper.WebsocketAPI != nil {
