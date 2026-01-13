@@ -22,6 +22,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	randpkg "math/rand/v2"
 	"net"
 	"net/http"
 	"net/url"
@@ -1001,6 +1002,13 @@ func WsStreamsPlaceholder(stream string, params map[string]string) string {
 // @return A string representing the generated UUID.
 var GenerateUUID = func() string {
 	return uuid.New().String()
+}
+
+// GenerateIntUUID is a function that generates a new random int32 UUID.
+//
+// @return An int32 representing the generated UUID.
+var GenerateIntUUID = func() int32 {
+	return randpkg.Int32()
 }
 
 // Pretty converts a value to its pretty-printed JSON string representation.

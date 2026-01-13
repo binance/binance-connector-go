@@ -15,6 +15,7 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"unicode/utf8"
 
 	"github.com/binance/binance-connector-go/common/common"
 )
@@ -31,10 +32,10 @@ func (m mockMappedNullable) ToMap() (map[string]interface{}, error) {
 
 func TestParameterAddToHeaderOrQuery_BasicTypes(t *testing.T) {
 	tests := []struct {
-		name           string
-		obj            interface{}
+		name		   string
+		obj			interface{}
 		expectedValue  string
-		expectedKey    string
+		expectedKey	string
 		collectionType string
 	}{
 		{"int", 42, "42", "intKey", ""},
@@ -588,7 +589,7 @@ func TestPrepareRequest_WithJSONBody(t *testing.T) {
 	cfg := &common.ConfigurationRestAPI{}
 	body := struct {
 		Key1 string `json:"key1"`
-		Key2 int    `json:"key2"`
+		Key2 int	`json:"key2"`
 	}{
 		Key1: "value1",
 		Key2: 123,
@@ -639,4 +640,59 @@ func TestPrepareRequest_WithQueryAndBody(t *testing.T) {
 	if req.Header.Get("Content-Type") != "application/x-www-form-urlencoded" {
 		t.Errorf("Expected Content-Type header to be set")
 	}
+}
+
+func TestGenerateUUID(t *testing.T) {
+	t.Run("returns non-empty string", func(t *testing.T) {
+		uuid := common.GenerateUUID()
+		if len(uuid) == 0 {
+			t.Error("GenerateUUID() returned empty string")
+		}
+	})
+
+	t.Run("returns valid UTF-8 string", func(t *testing.T) {
+		uuid := common.GenerateUUID()
+		if !utf8.ValidString(uuid) {
+			t.Error("GenerateUUID() returned invalid UTF-8 string")
+		}
+	})
+
+	t.Run("returns string of expected length", func(t *testing.T) {
+		uuid := common.GenerateUUID()
+
+		if len(uuid) != 36 {
+			t.Errorf("GenerateUUID() returned string of length %d, expected 36", len(uuid))
+		}
+	})
+
+	t.Run("returns different values on subsequent calls", func(t *testing.T) {
+		first := common.GenerateUUID()
+		second := common.GenerateUUID()
+		if first == second {
+			t.Error("GenerateUUID() returned same value on subsequent calls")
+		}
+	})
+}
+
+func TestGenerateIntUUID(t *testing.T) {
+	t.Run("returns a value", func(t *testing.T) {
+		uuid := common.GenerateIntUUID()
+		_ = uuid
+	})
+
+	t.Run("returns different values on subsequent calls", func(t *testing.T) {
+		first := common.GenerateIntUUID()
+		second := common.GenerateIntUUID()
+		if first == second {
+			t.Error("GenerateIntUUID() returned same value on subsequent calls")
+		}
+	})
+
+	t.Run("returns value within int32 range", func(t *testing.T) {
+		uuid := common.GenerateIntUUID()
+
+		if uuid < -2147483648 || uuid > 2147483647 {
+			t.Errorf("GenerateIntUUID() returned value %d outside int32 range", uuid)
+		}
+	})
 }
