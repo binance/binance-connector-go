@@ -22,7 +22,7 @@ func HashrateResaleDetail() {
 	apiClient := client.NewBinanceMiningClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(1).UserName("userName_example").Execute()
+	resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

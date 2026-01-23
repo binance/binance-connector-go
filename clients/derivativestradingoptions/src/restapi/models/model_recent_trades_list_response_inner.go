@@ -17,7 +17,8 @@ var _ common.MappedNullable = &RecentTradesListResponseInner{}
 
 // RecentTradesListResponseInner struct for RecentTradesListResponseInner
 type RecentTradesListResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
+	Id                   *int64  `json:"id,omitempty"`
+	TradeId              *int64  `json:"tradeId,omitempty"`
 	Symbol               *string `json:"symbol,omitempty"`
 	Price                *string `json:"price,omitempty"`
 	Qty                  *string `json:"qty,omitempty"`
@@ -47,9 +48,9 @@ func NewRecentTradesListResponseInnerWithDefaults() *RecentTradesListResponseInn
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *RecentTradesListResponseInner) GetId() string {
+func (o *RecentTradesListResponseInner) GetId() int64 {
 	if o == nil || common.IsNil(o.Id) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -57,7 +58,7 @@ func (o *RecentTradesListResponseInner) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecentTradesListResponseInner) GetIdOk() (*string, bool) {
+func (o *RecentTradesListResponseInner) GetIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
@@ -73,9 +74,41 @@ func (o *RecentTradesListResponseInner) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *RecentTradesListResponseInner) SetId(v string) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *RecentTradesListResponseInner) SetId(v int64) {
 	o.Id = &v
+}
+
+// GetTradeId returns the TradeId field value if set, zero value otherwise.
+func (o *RecentTradesListResponseInner) GetTradeId() int64 {
+	if o == nil || common.IsNil(o.TradeId) {
+		var ret int64
+		return ret
+	}
+	return *o.TradeId
+}
+
+// GetTradeIdOk returns a tuple with the TradeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecentTradesListResponseInner) GetTradeIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TradeId) {
+		return nil, false
+	}
+	return o.TradeId, true
+}
+
+// HasTradeId returns a boolean if a field has been set.
+func (o *RecentTradesListResponseInner) HasTradeId() bool {
+	if o != nil && !common.IsNil(o.TradeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTradeId gets a reference to the given int64 and assigns it to the TradeId field.
+func (o *RecentTradesListResponseInner) SetTradeId(v int64) {
+	o.TradeId = &v
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
@@ -283,6 +316,9 @@ func (o RecentTradesListResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !common.IsNil(o.TradeId) {
+		toSerialize["tradeId"] = o.TradeId
+	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
@@ -324,6 +360,7 @@ func (o *RecentTradesListResponseInner) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "tradeId")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "qty")

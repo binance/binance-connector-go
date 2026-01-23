@@ -22,12 +22,10 @@ type CancelOptionOrderResponse struct {
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
 	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
 	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	PostOnly             *bool   `json:"postOnly,omitempty"`
 	CreateDate           *int64  `json:"createDate,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	Status               *string `json:"status,omitempty"`
@@ -221,38 +219,6 @@ func (o *CancelOptionOrderResponse) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *CancelOptionOrderResponse) GetFee() string {
-	if o == nil || common.IsNil(o.Fee) {
-		var ret string
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOptionOrderResponse) GetFeeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *CancelOptionOrderResponse) HasFee() bool {
-	if o != nil && !common.IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given string and assigns it to the Fee field.
-func (o *CancelOptionOrderResponse) SetFee(v string) {
-	o.Fee = &v
-}
-
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *CancelOptionOrderResponse) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -379,38 +345,6 @@ func (o *CancelOptionOrderResponse) HasReduceOnly() bool {
 // SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
 func (o *CancelOptionOrderResponse) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
-}
-
-// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *CancelOptionOrderResponse) GetPostOnly() bool {
-	if o == nil || common.IsNil(o.PostOnly) {
-		var ret bool
-		return ret
-	}
-	return *o.PostOnly
-}
-
-// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOptionOrderResponse) GetPostOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PostOnly) {
-		return nil, false
-	}
-	return o.PostOnly, true
-}
-
-// HasPostOnly returns a boolean if a field has been set.
-func (o *CancelOptionOrderResponse) HasPostOnly() bool {
-	if o != nil && !common.IsNil(o.PostOnly) {
-		return true
-	}
-
-	return false
-}
-
-// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
-func (o *CancelOptionOrderResponse) SetPostOnly(v bool) {
-	o.PostOnly = &v
 }
 
 // GetCreateDate returns the CreateDate field value if set, zero value otherwise.
@@ -790,9 +724,6 @@ func (o CancelOptionOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
-	if !common.IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
-	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -804,9 +735,6 @@ func (o CancelOptionOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
-	}
-	if !common.IsNil(o.PostOnly) {
-		toSerialize["postOnly"] = o.PostOnly
 	}
 	if !common.IsNil(o.CreateDate) {
 		toSerialize["createDate"] = o.CreateDate
@@ -868,12 +796,10 @@ func (o *CancelOptionOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
-		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
-		delete(additionalProperties, "postOnly")
 		delete(additionalProperties, "createDate")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")

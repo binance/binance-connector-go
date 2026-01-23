@@ -9,17 +9,14 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
-**PostOnly** | Pointer to **bool** |  | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **AvgPrice** | Pointer to **string** |  | [optional] 
-**Source** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
@@ -171,31 +168,6 @@ SetExecutedQty sets ExecutedQty field to given value.
 
 HasExecutedQty returns a boolean if a field has been set.
 
-### GetFee
-
-`func (o *QuerySingleOrderResponse) GetFee() string`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *QuerySingleOrderResponse) GetFeeOk() (*string, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *QuerySingleOrderResponse) SetFee(v string)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *QuerySingleOrderResponse) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
-
 ### GetSide
 
 `func (o *QuerySingleOrderResponse) GetSide() string`
@@ -296,31 +268,6 @@ SetReduceOnly sets ReduceOnly field to given value.
 
 HasReduceOnly returns a boolean if a field has been set.
 
-### GetPostOnly
-
-`func (o *QuerySingleOrderResponse) GetPostOnly() bool`
-
-GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
-
-### GetPostOnlyOk
-
-`func (o *QuerySingleOrderResponse) GetPostOnlyOk() (*bool, bool)`
-
-GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostOnly
-
-`func (o *QuerySingleOrderResponse) SetPostOnly(v bool)`
-
-SetPostOnly sets PostOnly field to given value.
-
-### HasPostOnly
-
-`func (o *QuerySingleOrderResponse) HasPostOnly() bool`
-
-HasPostOnly returns a boolean if a field has been set.
-
 ### GetCreateTime
 
 `func (o *QuerySingleOrderResponse) GetCreateTime() int64`
@@ -420,31 +367,6 @@ SetAvgPrice sets AvgPrice field to given value.
 `func (o *QuerySingleOrderResponse) HasAvgPrice() bool`
 
 HasAvgPrice returns a boolean if a field has been set.
-
-### GetSource
-
-`func (o *QuerySingleOrderResponse) GetSource() string`
-
-GetSource returns the Source field if non-nil, zero value otherwise.
-
-### GetSourceOk
-
-`func (o *QuerySingleOrderResponse) GetSourceOk() (*string, bool)`
-
-GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSource
-
-`func (o *QuerySingleOrderResponse) SetSource(v string)`
-
-SetSource sets Source field to given value.
-
-### HasSource
-
-`func (o *QuerySingleOrderResponse) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
 
 ### GetClientOrderId
 

@@ -98,7 +98,7 @@ func (a *ManagedSubAccountAPIService) DepositAssetsIntoTheManagedSubAccountExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositAssetsIntoTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DepositAssetsIntoTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -197,7 +197,7 @@ func (a *ManagedSubAccountAPIService) GetManagedSubAccountDepositAddressExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetManagedSubAccountDepositAddressResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetManagedSubAccountDepositAddressResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -264,7 +264,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountAssetDetailsExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountFuturesAssetDetailsE
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountFuturesAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountFuturesAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -419,7 +419,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountListExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -487,7 +487,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountMarginAssetDetailsEx
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountMarginAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountMarginAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -597,7 +597,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountSnapshotExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -724,7 +724,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "transferFunctionAccountType", r.transferFunctionAccountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -851,7 +851,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "transferFunctionAccountType", r.transferFunctionAccountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -976,7 +976,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogSubAccoun
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogSubAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogSubAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1075,7 +1075,7 @@ func (a *ManagedSubAccountAPIService) WithdrawlAssetsFromTheManagedSubAccountExe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawlAssetsFromTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.WithdrawlAssetsFromTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

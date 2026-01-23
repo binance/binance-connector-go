@@ -12,6 +12,7 @@ Name         | Type          | Description.  | Notes
 **StartDay** | Pointer to **int64** |  | [optional] 
 **EndDay** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
+**Type** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetStatus sets Status field to given value.
 `func (o *HashrateResaleListResponseDataConfigDetailsInner) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *HashrateResaleListResponseDataConfigDetailsInner) GetType() int64`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *HashrateResaleListResponseDataConfigDetailsInner) GetTypeOk() (*int64, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *HashrateResaleListResponseDataConfigDetailsInner) SetType(v int64)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *HashrateResaleListResponseDataConfigDetailsInner) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

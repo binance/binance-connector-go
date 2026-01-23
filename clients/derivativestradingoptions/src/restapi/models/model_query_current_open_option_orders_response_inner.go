@@ -22,12 +22,10 @@ type QueryCurrentOpenOptionOrdersResponseInner struct {
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
 	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
 	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	PostOnly             *bool   `json:"postOnly,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	Status               *string `json:"status,omitempty"`
@@ -220,38 +218,6 @@ func (o *QueryCurrentOpenOptionOrdersResponseInner) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) GetFee() string {
-	if o == nil || common.IsNil(o.Fee) {
-		var ret string
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) GetFeeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) HasFee() bool {
-	if o != nil && !common.IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given string and assigns it to the Fee field.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) SetFee(v string) {
-	o.Fee = &v
-}
-
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *QueryCurrentOpenOptionOrdersResponseInner) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -378,38 +344,6 @@ func (o *QueryCurrentOpenOptionOrdersResponseInner) HasReduceOnly() bool {
 // SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
 func (o *QueryCurrentOpenOptionOrdersResponseInner) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
-}
-
-// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) GetPostOnly() bool {
-	if o == nil || common.IsNil(o.PostOnly) {
-		var ret bool
-		return ret
-	}
-	return *o.PostOnly
-}
-
-// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) GetPostOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PostOnly) {
-		return nil, false
-	}
-	return o.PostOnly, true
-}
-
-// HasPostOnly returns a boolean if a field has been set.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) HasPostOnly() bool {
-	if o != nil && !common.IsNil(o.PostOnly) {
-		return true
-	}
-
-	return false
-}
-
-// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
-func (o *QueryCurrentOpenOptionOrdersResponseInner) SetPostOnly(v bool) {
-	o.PostOnly = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
@@ -757,9 +691,6 @@ func (o QueryCurrentOpenOptionOrdersResponseInner) ToMap() (map[string]interface
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
-	if !common.IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
-	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -771,9 +702,6 @@ func (o QueryCurrentOpenOptionOrdersResponseInner) ToMap() (map[string]interface
 	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
-	}
-	if !common.IsNil(o.PostOnly) {
-		toSerialize["postOnly"] = o.PostOnly
 	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
@@ -832,12 +760,10 @@ func (o *QueryCurrentOpenOptionOrdersResponseInner) UnmarshalJSON(data []byte) (
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
-		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
-		delete(additionalProperties, "postOnly")
 		delete(additionalProperties, "createTime")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")

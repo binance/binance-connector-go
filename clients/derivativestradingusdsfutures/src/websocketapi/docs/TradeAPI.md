@@ -16,7 +16,7 @@ Method        | HTTP request  | Description
 
 ## CancelAlgoOrder
 
-> CancelAlgoOrderResponse CancelAlgoOrder().Id(id).Algoid(algoid).Clientalgoid(clientalgoid).RecvWindow(recvWindow).Execute()
+> CancelAlgoOrderResponse CancelAlgoOrder().Id(id).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 
 Cancel Algo Order (TRADE)
 
@@ -36,8 +36,8 @@ import (
 
 func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	algoid := int64(789) // int64 |  (optional)
-	clientalgoid := "clientalgoid_example" // string |  (optional)
+	algoId := int64(1) // int64 |  (optional)
+	clientAlgoId := "1" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -55,7 +55,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.CancelAlgoOrder().Id(id).Algoid(algoid).Clientalgoid(clientalgoid).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.CancelAlgoOrder().Id(id).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.CancelAlgoOrder``: %v\n", err)
 		return
@@ -77,8 +77,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
- **algoid** | **int64** |  | 
- **clientalgoid** | **string** |  | 
+ **algoId** | **int64** |  | 
+ **clientAlgoId** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -298,7 +298,7 @@ func main() {
 	reduceOnly := "false" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (optional)
 	activatePrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
 	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
-	clientAlgoId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
+	clientAlgoId := "1" // string |  (optional)
 	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterExpireTaker // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
 	goodTillDate := int64(789) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -356,7 +356,7 @@ Name          | Type          | Description   | Notes
  **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
  **activatePrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
  **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
- **clientAlgoId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
+ **clientAlgoId** | **string** |  | 
  **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
  **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 | 
  **recvWindow** | **int64** |  | 

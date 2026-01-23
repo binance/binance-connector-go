@@ -19,6 +19,7 @@ const (
 	PlaceMultipleOrdersOrdersParameterInnerTimeInForceGtc PlaceMultipleOrdersOrdersParameterInnerTimeInForce = "GTC"
 	PlaceMultipleOrdersOrdersParameterInnerTimeInForceIoc PlaceMultipleOrdersOrdersParameterInnerTimeInForce = "IOC"
 	PlaceMultipleOrdersOrdersParameterInnerTimeInForceFok PlaceMultipleOrdersOrdersParameterInnerTimeInForce = "FOK"
+	PlaceMultipleOrdersOrdersParameterInnerTimeInForceGtx PlaceMultipleOrdersOrdersParameterInnerTimeInForce = "GTX"
 )
 
 // All allowed values of PlaceMultipleOrdersOrdersParameterInnerTimeInForce enum
@@ -26,6 +27,7 @@ var AllowedPlaceMultipleOrdersOrdersParameterInnerTimeInForceEnumValues = []Plac
 	"GTC",
 	"IOC",
 	"FOK",
+	"GTX",
 }
 
 func (v *PlaceMultipleOrdersOrdersParameterInnerTimeInForce) UnmarshalJSON(src []byte) error {

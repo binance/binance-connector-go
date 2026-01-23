@@ -12,7 +12,6 @@ Name         | Type          | Description.  | Notes
 **WithdrawalStatus** | Pointer to **int64** |  | [optional] 
 **TravelRuleStatus** | Pointer to **int64** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
-**AddressTag** | Pointer to **string** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **ApplyTime** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
@@ -243,31 +242,6 @@ SetAddress sets Address field to given value.
 `func (o *WithdrawHistoryV2ResponseInner) HasAddress() bool`
 
 HasAddress returns a boolean if a field has been set.
-
-### GetAddressTag
-
-`func (o *WithdrawHistoryV2ResponseInner) GetAddressTag() string`
-
-GetAddressTag returns the AddressTag field if non-nil, zero value otherwise.
-
-### GetAddressTagOk
-
-`func (o *WithdrawHistoryV2ResponseInner) GetAddressTagOk() (*string, bool)`
-
-GetAddressTagOk returns a tuple with the AddressTag field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddressTag
-
-`func (o *WithdrawHistoryV2ResponseInner) SetAddressTag(v string)`
-
-SetAddressTag sets AddressTag field to given value.
-
-### HasAddressTag
-
-`func (o *WithdrawHistoryV2ResponseInner) HasAddressTag() bool`
-
-HasAddressTag returns a boolean if a field has been set.
 
 ### GetTxId
 

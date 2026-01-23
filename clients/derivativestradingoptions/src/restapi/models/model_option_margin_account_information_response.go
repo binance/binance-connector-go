@@ -18,8 +18,12 @@ var _ common.MappedNullable = &OptionMarginAccountInformationResponse{}
 // OptionMarginAccountInformationResponse struct for OptionMarginAccountInformationResponse
 type OptionMarginAccountInformationResponse struct {
 	Asset                []OptionMarginAccountInformationResponseAssetInner `json:"asset,omitempty"`
-	Greek                []OptionAccountInformationResponseGreekInner       `json:"greek,omitempty"`
+	Greek                []OptionMarginAccountInformationResponseGreekInner `json:"greek,omitempty"`
 	Time                 *int64                                             `json:"time,omitempty"`
+	CanTrade             *bool                                              `json:"canTrade,omitempty"`
+	CanDeposit           *bool                                              `json:"canDeposit,omitempty"`
+	CanWithdraw          *bool                                              `json:"canWithdraw,omitempty"`
+	ReduceOnly           *bool                                              `json:"reduceOnly,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,9 +79,9 @@ func (o *OptionMarginAccountInformationResponse) SetAsset(v []OptionMarginAccoun
 }
 
 // GetGreek returns the Greek field value if set, zero value otherwise.
-func (o *OptionMarginAccountInformationResponse) GetGreek() []OptionAccountInformationResponseGreekInner {
+func (o *OptionMarginAccountInformationResponse) GetGreek() []OptionMarginAccountInformationResponseGreekInner {
 	if o == nil || common.IsNil(o.Greek) {
-		var ret []OptionAccountInformationResponseGreekInner
+		var ret []OptionMarginAccountInformationResponseGreekInner
 		return ret
 	}
 	return o.Greek
@@ -85,7 +89,7 @@ func (o *OptionMarginAccountInformationResponse) GetGreek() []OptionAccountInfor
 
 // GetGreekOk returns a tuple with the Greek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OptionMarginAccountInformationResponse) GetGreekOk() ([]OptionAccountInformationResponseGreekInner, bool) {
+func (o *OptionMarginAccountInformationResponse) GetGreekOk() ([]OptionMarginAccountInformationResponseGreekInner, bool) {
 	if o == nil || common.IsNil(o.Greek) {
 		return nil, false
 	}
@@ -101,8 +105,8 @@ func (o *OptionMarginAccountInformationResponse) HasGreek() bool {
 	return false
 }
 
-// SetGreek gets a reference to the given []OptionAccountInformationResponseGreekInner and assigns it to the Greek field.
-func (o *OptionMarginAccountInformationResponse) SetGreek(v []OptionAccountInformationResponseGreekInner) {
+// SetGreek gets a reference to the given []OptionMarginAccountInformationResponseGreekInner and assigns it to the Greek field.
+func (o *OptionMarginAccountInformationResponse) SetGreek(v []OptionMarginAccountInformationResponseGreekInner) {
 	o.Greek = v
 }
 
@@ -138,6 +142,134 @@ func (o *OptionMarginAccountInformationResponse) SetTime(v int64) {
 	o.Time = &v
 }
 
+// GetCanTrade returns the CanTrade field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponse) GetCanTrade() bool {
+	if o == nil || common.IsNil(o.CanTrade) {
+		var ret bool
+		return ret
+	}
+	return *o.CanTrade
+}
+
+// GetCanTradeOk returns a tuple with the CanTrade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponse) GetCanTradeOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanTrade) {
+		return nil, false
+	}
+	return o.CanTrade, true
+}
+
+// HasCanTrade returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponse) HasCanTrade() bool {
+	if o != nil && !common.IsNil(o.CanTrade) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanTrade gets a reference to the given bool and assigns it to the CanTrade field.
+func (o *OptionMarginAccountInformationResponse) SetCanTrade(v bool) {
+	o.CanTrade = &v
+}
+
+// GetCanDeposit returns the CanDeposit field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponse) GetCanDeposit() bool {
+	if o == nil || common.IsNil(o.CanDeposit) {
+		var ret bool
+		return ret
+	}
+	return *o.CanDeposit
+}
+
+// GetCanDepositOk returns a tuple with the CanDeposit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponse) GetCanDepositOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanDeposit) {
+		return nil, false
+	}
+	return o.CanDeposit, true
+}
+
+// HasCanDeposit returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponse) HasCanDeposit() bool {
+	if o != nil && !common.IsNil(o.CanDeposit) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanDeposit gets a reference to the given bool and assigns it to the CanDeposit field.
+func (o *OptionMarginAccountInformationResponse) SetCanDeposit(v bool) {
+	o.CanDeposit = &v
+}
+
+// GetCanWithdraw returns the CanWithdraw field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponse) GetCanWithdraw() bool {
+	if o == nil || common.IsNil(o.CanWithdraw) {
+		var ret bool
+		return ret
+	}
+	return *o.CanWithdraw
+}
+
+// GetCanWithdrawOk returns a tuple with the CanWithdraw field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponse) GetCanWithdrawOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanWithdraw) {
+		return nil, false
+	}
+	return o.CanWithdraw, true
+}
+
+// HasCanWithdraw returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponse) HasCanWithdraw() bool {
+	if o != nil && !common.IsNil(o.CanWithdraw) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanWithdraw gets a reference to the given bool and assigns it to the CanWithdraw field.
+func (o *OptionMarginAccountInformationResponse) SetCanWithdraw(v bool) {
+	o.CanWithdraw = &v
+}
+
+// GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponse) GetReduceOnly() bool {
+	if o == nil || common.IsNil(o.ReduceOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.ReduceOnly
+}
+
+// GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponse) GetReduceOnlyOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.ReduceOnly) {
+		return nil, false
+	}
+	return o.ReduceOnly, true
+}
+
+// HasReduceOnly returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponse) HasReduceOnly() bool {
+	if o != nil && !common.IsNil(o.ReduceOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
+func (o *OptionMarginAccountInformationResponse) SetReduceOnly(v bool) {
+	o.ReduceOnly = &v
+}
+
 func (o OptionMarginAccountInformationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +288,18 @@ func (o OptionMarginAccountInformationResponse) ToMap() (map[string]interface{},
 	}
 	if !common.IsNil(o.Time) {
 		toSerialize["time"] = o.Time
+	}
+	if !common.IsNil(o.CanTrade) {
+		toSerialize["canTrade"] = o.CanTrade
+	}
+	if !common.IsNil(o.CanDeposit) {
+		toSerialize["canDeposit"] = o.CanDeposit
+	}
+	if !common.IsNil(o.CanWithdraw) {
+		toSerialize["canWithdraw"] = o.CanWithdraw
+	}
+	if !common.IsNil(o.ReduceOnly) {
+		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +326,10 @@ func (o *OptionMarginAccountInformationResponse) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "asset")
 		delete(additionalProperties, "greek")
 		delete(additionalProperties, "time")
+		delete(additionalProperties, "canTrade")
+		delete(additionalProperties, "canDeposit")
+		delete(additionalProperties, "canWithdraw")
+		delete(additionalProperties, "reduceOnly")
 		o.AdditionalProperties = additionalProperties
 	}
 

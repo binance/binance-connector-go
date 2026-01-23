@@ -18,6 +18,7 @@ var _ common.MappedNullable = &StartUserDataStreamResponse{}
 // StartUserDataStreamResponse struct for StartUserDataStreamResponse
 type StartUserDataStreamResponse struct {
 	ListenKey            *string `json:"listenKey,omitempty"`
+	Expiration           *int64  `json:"expiration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,6 +73,38 @@ func (o *StartUserDataStreamResponse) SetListenKey(v string) {
 	o.ListenKey = &v
 }
 
+// GetExpiration returns the Expiration field value if set, zero value otherwise.
+func (o *StartUserDataStreamResponse) GetExpiration() int64 {
+	if o == nil || common.IsNil(o.Expiration) {
+		var ret int64
+		return ret
+	}
+	return *o.Expiration
+}
+
+// GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StartUserDataStreamResponse) GetExpirationOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Expiration) {
+		return nil, false
+	}
+	return o.Expiration, true
+}
+
+// HasExpiration returns a boolean if a field has been set.
+func (o *StartUserDataStreamResponse) HasExpiration() bool {
+	if o != nil && !common.IsNil(o.Expiration) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiration gets a reference to the given int64 and assigns it to the Expiration field.
+func (o *StartUserDataStreamResponse) SetExpiration(v int64) {
+	o.Expiration = &v
+}
+
 func (o StartUserDataStreamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -84,6 +117,9 @@ func (o StartUserDataStreamResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.ListenKey) {
 		toSerialize["listenKey"] = o.ListenKey
+	}
+	if !common.IsNil(o.Expiration) {
+		toSerialize["expiration"] = o.Expiration
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -108,6 +144,7 @@ func (o *StartUserDataStreamResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "listenKey")
+		delete(additionalProperties, "expiration")
 		o.AdditionalProperties = additionalProperties
 	}
 

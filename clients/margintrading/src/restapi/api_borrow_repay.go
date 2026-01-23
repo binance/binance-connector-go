@@ -79,7 +79,7 @@ func (a *BorrowRepayAPIService) GetFutureHourlyInterestRateExecute(r ApiGetFutur
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "assets", r.assets, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "isIsolated", r.isIsolated, "form", "")
 
-	resp, err := SendRequest[models.GetFutureHourlyInterestRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetFutureHourlyInterestRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func (r ApiGetInterestHistoryRequest) IsolatedSymbol(isolatedSymbol string) ApiG
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiGetInterestHistoryRequest) StartTime(startTime int64) ApiGetInterestHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -152,7 +152,7 @@ https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
 @param isolatedSymbol -  isolated symbol
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
 @param size -  Default:10 Max:100
@@ -198,7 +198,7 @@ func (a *BorrowRepayAPIService) GetInterestHistoryExecute(r ApiGetInterestHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -311,7 +311,7 @@ func (a *BorrowRepayAPIService) MarginAccountBorrowRepayExecute(r ApiMarginAccou
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountBorrowRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountBorrowRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -356,7 +356,7 @@ func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) TxId(txId int64) ApiQu
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) StartTime(startTime int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.startTime = &startTime
 	return r
@@ -400,7 +400,7 @@ https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow
 @param asset -
 @param isolatedSymbol -  isolated symbol
 @param txId -  `tranId` in `POST /sapi/v1/margin/loan`
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
 @param size -  Default:10 Max:100
@@ -454,7 +454,7 @@ func (a *BorrowRepayAPIService) QueryBorrowRepayRecordsInMarginAccountExecute(r 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryBorrowRepayRecordsInMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryBorrowRepayRecordsInMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -483,7 +483,7 @@ func (r ApiQueryMarginInterestRateHistoryRequest) VipLevel(vipLevel int64) ApiQu
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginInterestRateHistoryRequest) StartTime(startTime int64) ApiQueryMarginInterestRateHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -513,7 +513,7 @@ https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
 @param vipLevel -  User's current specific margin data will be returned if vipLevel is omitted
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param recvWindow -  No more than 60000
 @return ApiQueryMarginInterestRateHistoryRequest
@@ -553,7 +553,7 @@ func (a *BorrowRepayAPIService) QueryMarginInterestRateHistoryExecute(r ApiQuery
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -631,7 +631,7 @@ func (a *BorrowRepayAPIService) QueryMaxBorrowExecute(r ApiQueryMaxBorrowRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMaxBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMaxBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

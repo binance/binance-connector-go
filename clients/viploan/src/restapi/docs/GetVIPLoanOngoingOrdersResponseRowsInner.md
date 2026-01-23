@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **OrderId** | Pointer to **int64** |  | [optional] 
 **LoanCoin** | Pointer to **string** |  | [optional] 
 **TotalDebt** | Pointer to **string** |  | [optional] 
+**LoanRate** | Pointer to **string** |  | [optional] 
 **ResidualInterest** | Pointer to **string** |  | [optional] 
 **CollateralAccountId** | Pointer to **string** |  | [optional] 
 **CollateralCoin** | Pointer to **string** |  | [optional] 
@@ -110,6 +111,31 @@ SetTotalDebt sets TotalDebt field to given value.
 `func (o *GetVIPLoanOngoingOrdersResponseRowsInner) HasTotalDebt() bool`
 
 HasTotalDebt returns a boolean if a field has been set.
+
+### GetLoanRate
+
+`func (o *GetVIPLoanOngoingOrdersResponseRowsInner) GetLoanRate() string`
+
+GetLoanRate returns the LoanRate field if non-nil, zero value otherwise.
+
+### GetLoanRateOk
+
+`func (o *GetVIPLoanOngoingOrdersResponseRowsInner) GetLoanRateOk() (*string, bool)`
+
+GetLoanRateOk returns a tuple with the LoanRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoanRate
+
+`func (o *GetVIPLoanOngoingOrdersResponseRowsInner) SetLoanRate(v string)`
+
+SetLoanRate sets LoanRate field to given value.
+
+### HasLoanRate
+
+`func (o *GetVIPLoanOngoingOrdersResponseRowsInner) HasLoanRate() bool`
+
+HasLoanRate returns a boolean if a field has been set.
 
 ### GetResidualInterest
 

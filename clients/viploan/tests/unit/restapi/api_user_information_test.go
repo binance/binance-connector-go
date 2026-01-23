@@ -135,7 +135,7 @@ func Test_binanceviploanrestapi_UserInformationAPIService(t *testing.T) {
 
 	t.Run("Test UserInformationAPIService GetVIPLoanOngoingOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"orderId":100000001,"loanCoin":"BUSD","totalDebt":"10000","residualInterest":"10.27687923","collateralAccountId":"12345678,23456789","collateralCoin":"BNB,BTC,ETH","totalCollateralValueAfterHaircut":"25000.27565492","lockedCollateralValue":"25000.27565492","currentLTV":"0.57","expirationTime":1575018510000,"loanDate":"1676851200000","loanTerm":"30days"}],"total":1}`
+		mockedJSON := `{"rows":[{"orderId":100000001,"loanCoin":"BUSD","totalDebt":"10000","loanRate":"0.0123","residualInterest":"10.27687923","collateralAccountId":"12345678,23456789","collateralCoin":"BNB,BTC,ETH","totalCollateralValueAfterHaircut":"25000.27565492","lockedCollateralValue":"25000.27565492","currentLTV":"0.57","expirationTime":1575018510000,"loanDate":"1676851200000","loanTerm":"30days"}],"total":1}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/ongoing/orders", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

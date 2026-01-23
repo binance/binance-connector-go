@@ -44,7 +44,7 @@ func (r ApiAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse[mo
 AutoCancelAllOpenOrders Auto-Cancel All Open Orders (Kill-Switch) Heartbeat (TRADE)
 Post /eapi/v1/countdownCancelAllHeartBeat
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlyings -  Option Underlying Symbols, e.g BTCUSDT,ETHUSDT
@@ -77,7 +77,7 @@ func (a *MarketMakerEndpointsAPIService) AutoCancelAllOpenOrdersExecute(r ApiAut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -111,7 +111,7 @@ func (r ApiGetAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse
 GetAutoCancelAllOpenOrders Get Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE)
 Get /eapi/v1/countdownCancelAll
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlying -  underlying, e.g BTCUSDT
@@ -142,7 +142,7 @@ func (a *MarketMakerEndpointsAPIService) GetAutoCancelAllOpenOrdersExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func (r ApiGetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiResp
 GetMarketMakerProtectionConfig Get Market Maker Protection Config (TRADE)
 Get /eapi/v1/mmp
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Get-Market-Maker-Protection-Config
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlying -  underlying, e.g BTCUSDT
@@ -207,7 +207,7 @@ func (a *MarketMakerEndpointsAPIService) GetMarketMakerProtectionConfigExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -241,7 +241,7 @@ func (r ApiResetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiRe
 ResetMarketMakerProtectionConfig Reset Market Maker Protection Config (TRADE)
 Post /eapi/v1/mmpReset
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Reset-Market-Maker-Protection-Config
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlying -  underlying, e.g BTCUSDT
@@ -272,7 +272,7 @@ func (a *MarketMakerEndpointsAPIService) ResetMarketMakerProtectionConfigExecute
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ResetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ResetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -313,7 +313,7 @@ func (r ApiSetAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse
 SetAutoCancelAllOpenOrders Set Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE)
 Post /eapi/v1/countdownCancelAll
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlying -  Option underlying, e.g BTCUSDT
@@ -351,7 +351,7 @@ func (a *MarketMakerEndpointsAPIService) SetAutoCancelAllOpenOrdersExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -413,7 +413,7 @@ func (r ApiSetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiResp
 SetMarketMakerProtectionConfig Set Market Maker Protection Config (TRADE)
 Post /eapi/v1/mmpSet
 
-https://developers.binance.com/docs/derivatives/option/market-maker-endpoints/Set-Market-Maker-Protection-Config
+https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param underlying -  underlying, e.g BTCUSDT
@@ -460,7 +460,7 @@ func (a *MarketMakerEndpointsAPIService) SetMarketMakerProtectionConfigExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

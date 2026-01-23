@@ -17,10 +17,10 @@ var _ common.MappedNullable = &OrderBookResponse{}
 
 // OrderBookResponse struct for OrderBookResponse
 type OrderBookResponse struct {
-	T                    *int64                      `json:"T,omitempty"`
-	U                    *int64                      `json:"u,omitempty"`
 	Bids                 []OrderBookResponseBidsItem `json:"bids,omitempty"`
 	Asks                 []OrderBookResponseAsksItem `json:"asks,omitempty"`
+	T                    *int64                      `json:"T,omitempty"`
+	LastUpdateId         *int64                      `json:"lastUpdateId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,70 +41,6 @@ func NewOrderBookResponse() *OrderBookResponse {
 func NewOrderBookResponseWithDefaults() *OrderBookResponse {
 	this := OrderBookResponse{}
 	return &this
-}
-
-// GetT returns the T field value if set, zero value otherwise.
-func (o *OrderBookResponse) GetT() int64 {
-	if o == nil || common.IsNil(o.T) {
-		var ret int64
-		return ret
-	}
-	return *o.T
-}
-
-// GetTOk returns a tuple with the T field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderBookResponse) GetTOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.T) {
-		return nil, false
-	}
-	return o.T, true
-}
-
-// HasT returns a boolean if a field has been set.
-func (o *OrderBookResponse) HasT() bool {
-	if o != nil && !common.IsNil(o.T) {
-		return true
-	}
-
-	return false
-}
-
-// SetT gets a reference to the given int64 and assigns it to the T field.
-func (o *OrderBookResponse) SetT(v int64) {
-	o.T = &v
-}
-
-// GetU returns the U field value if set, zero value otherwise.
-func (o *OrderBookResponse) GetU() int64 {
-	if o == nil || common.IsNil(o.U) {
-		var ret int64
-		return ret
-	}
-	return *o.U
-}
-
-// GetUOk returns a tuple with the U field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderBookResponse) GetUOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.U) {
-		return nil, false
-	}
-	return o.U, true
-}
-
-// HasU returns a boolean if a field has been set.
-func (o *OrderBookResponse) HasU() bool {
-	if o != nil && !common.IsNil(o.U) {
-		return true
-	}
-
-	return false
-}
-
-// SetU gets a reference to the given int64 and assigns it to the U field.
-func (o *OrderBookResponse) SetU(v int64) {
-	o.U = &v
 }
 
 // GetBids returns the Bids field value if set, zero value otherwise.
@@ -171,6 +107,70 @@ func (o *OrderBookResponse) SetAsks(v []OrderBookResponseAsksItem) {
 	o.Asks = v
 }
 
+// GetT returns the T field value if set, zero value otherwise.
+func (o *OrderBookResponse) GetT() int64 {
+	if o == nil || common.IsNil(o.T) {
+		var ret int64
+		return ret
+	}
+	return *o.T
+}
+
+// GetTOk returns a tuple with the T field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderBookResponse) GetTOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.T) {
+		return nil, false
+	}
+	return o.T, true
+}
+
+// HasT returns a boolean if a field has been set.
+func (o *OrderBookResponse) HasT() bool {
+	if o != nil && !common.IsNil(o.T) {
+		return true
+	}
+
+	return false
+}
+
+// SetT gets a reference to the given int64 and assigns it to the T field.
+func (o *OrderBookResponse) SetT(v int64) {
+	o.T = &v
+}
+
+// GetLastUpdateId returns the LastUpdateId field value if set, zero value otherwise.
+func (o *OrderBookResponse) GetLastUpdateId() int64 {
+	if o == nil || common.IsNil(o.LastUpdateId) {
+		var ret int64
+		return ret
+	}
+	return *o.LastUpdateId
+}
+
+// GetLastUpdateIdOk returns a tuple with the LastUpdateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderBookResponse) GetLastUpdateIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.LastUpdateId) {
+		return nil, false
+	}
+	return o.LastUpdateId, true
+}
+
+// HasLastUpdateId returns a boolean if a field has been set.
+func (o *OrderBookResponse) HasLastUpdateId() bool {
+	if o != nil && !common.IsNil(o.LastUpdateId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUpdateId gets a reference to the given int64 and assigns it to the LastUpdateId field.
+func (o *OrderBookResponse) SetLastUpdateId(v int64) {
+	o.LastUpdateId = &v
+}
+
 func (o OrderBookResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -181,17 +181,17 @@ func (o OrderBookResponse) MarshalJSON() ([]byte, error) {
 
 func (o OrderBookResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.T) {
-		toSerialize["T"] = o.T
-	}
-	if !common.IsNil(o.U) {
-		toSerialize["u"] = o.U
-	}
 	if !common.IsNil(o.Bids) {
 		toSerialize["bids"] = o.Bids
 	}
 	if !common.IsNil(o.Asks) {
 		toSerialize["asks"] = o.Asks
+	}
+	if !common.IsNil(o.T) {
+		toSerialize["T"] = o.T
+	}
+	if !common.IsNil(o.LastUpdateId) {
+		toSerialize["lastUpdateId"] = o.LastUpdateId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -215,10 +215,10 @@ func (o *OrderBookResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "T")
-		delete(additionalProperties, "u")
 		delete(additionalProperties, "bids")
 		delete(additionalProperties, "asks")
+		delete(additionalProperties, "T")
+		delete(additionalProperties, "lastUpdateId")
 		o.AdditionalProperties = additionalProperties
 	}
 

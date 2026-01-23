@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.1.0
+// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.2.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -29,7 +29,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-spot/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-spot/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -93,5 +93,6 @@ func (c *WebsocketStreamsClient) Unsubscribe(streams []string) error {
 //
 // @return error - An error if closing the connection fails
 func (c *WebsocketStreamsClient) CloseWebSocketStreamConnection() error {
+
 	return c.Ws.CloseWebSocketStreamConnection()
 }

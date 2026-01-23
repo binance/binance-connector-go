@@ -42,7 +42,7 @@ func (r ApiGetCrossMarginTransferHistoryRequest) Type(type_ string) ApiGetCrossM
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiGetCrossMarginTransferHistoryRequest) StartTime(startTime int64) ApiGetCrossMarginTransferHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -90,7 +90,7 @@ https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Tra
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
 @param type_ -  Transfer Type: ROLL_IN, ROLL_OUT
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
 @param size -  Default:10 Max:100
@@ -140,7 +140,7 @@ func (a *TransferAPIService) GetCrossMarginTransferHistoryExecute(r ApiGetCrossM
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCrossMarginTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetCrossMarginTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -218,7 +218,7 @@ func (a *TransferAPIService) QueryMaxTransferOutAmountExecute(r ApiQueryMaxTrans
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMaxTransferOutAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMaxTransferOutAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

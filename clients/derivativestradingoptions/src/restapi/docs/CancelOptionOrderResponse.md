@@ -9,12 +9,10 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
-**PostOnly** | Pointer to **bool** |  | [optional] 
 **CreateDate** | Pointer to **int64** |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
@@ -171,31 +169,6 @@ SetExecutedQty sets ExecutedQty field to given value.
 
 HasExecutedQty returns a boolean if a field has been set.
 
-### GetFee
-
-`func (o *CancelOptionOrderResponse) GetFee() string`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *CancelOptionOrderResponse) GetFeeOk() (*string, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *CancelOptionOrderResponse) SetFee(v string)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *CancelOptionOrderResponse) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
-
 ### GetSide
 
 `func (o *CancelOptionOrderResponse) GetSide() string`
@@ -295,31 +268,6 @@ SetReduceOnly sets ReduceOnly field to given value.
 `func (o *CancelOptionOrderResponse) HasReduceOnly() bool`
 
 HasReduceOnly returns a boolean if a field has been set.
-
-### GetPostOnly
-
-`func (o *CancelOptionOrderResponse) GetPostOnly() bool`
-
-GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
-
-### GetPostOnlyOk
-
-`func (o *CancelOptionOrderResponse) GetPostOnlyOk() (*bool, bool)`
-
-GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostOnly
-
-`func (o *CancelOptionOrderResponse) SetPostOnly(v bool)`
-
-SetPostOnly sets PostOnly field to given value.
-
-### HasPostOnly
-
-`func (o *CancelOptionOrderResponse) HasPostOnly() bool`
-
-HasPostOnly returns a boolean if a field has been set.
 
 ### GetCreateDate
 

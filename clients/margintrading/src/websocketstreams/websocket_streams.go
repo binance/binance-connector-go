@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Margin Trading WebSocket Market Streams WebSocket Streams v1.1.0
+// WebsocketStreamsClient manages communication with the Binance Binance Margin Trading WebSocket Market Streams WebSocket Streams v1.2.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -29,7 +29,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-margintrading/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-margintrading/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -40,6 +40,14 @@ func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *Webso
 	// API Services
 
 	return c
+}
+
+// Connect establishes the WebSocket connection
+//
+// @return error - An error if the connection fails
+func (c *WebsocketStreamsClient) Connect() error {
+
+	return c.Ws.Connect(c.userAgent)
 }
 
 // RiskData subscribes to risk data stream events with an optional ID
@@ -78,4 +86,12 @@ func (c *WebsocketStreamsClient) TradeData(listenKey string, id any) (*common.St
 			WebsocketStreams: c.Ws,
 		}, listenKey, nil, false)
 	}
+}
+
+// CloseWebSocketStreamConnection closes the WebSocket stream connection
+//
+// @return error - An error if closing the connection fails
+func (c *WebsocketStreamsClient) CloseWebSocketStreamConnection() error {
+
+	return c.Ws.CloseWebSocketStreamConnection()
 }

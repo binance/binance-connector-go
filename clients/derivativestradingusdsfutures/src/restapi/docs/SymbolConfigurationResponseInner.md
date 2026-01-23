@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **MarginType** | Pointer to **string** |  | [optional] 
-**IsAutoAddMargin** | Pointer to **string** |  | [optional] 
+**IsAutoAddMargin** | Pointer to **bool** |  | [optional] 
 **Leverage** | Pointer to **int64** |  | [optional] 
 **MaxNotionalValue** | Pointer to **string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasMarginType returns a boolean if a field has been set.
 
 ### GetIsAutoAddMargin
 
-`func (o *SymbolConfigurationResponseInner) GetIsAutoAddMargin() string`
+`func (o *SymbolConfigurationResponseInner) GetIsAutoAddMargin() bool`
 
 GetIsAutoAddMargin returns the IsAutoAddMargin field if non-nil, zero value otherwise.
 
 ### GetIsAutoAddMarginOk
 
-`func (o *SymbolConfigurationResponseInner) GetIsAutoAddMarginOk() (*string, bool)`
+`func (o *SymbolConfigurationResponseInner) GetIsAutoAddMarginOk() (*bool, bool)`
 
 GetIsAutoAddMarginOk returns a tuple with the IsAutoAddMargin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsAutoAddMargin
 
-`func (o *SymbolConfigurationResponseInner) SetIsAutoAddMargin(v string)`
+`func (o *SymbolConfigurationResponseInner) SetIsAutoAddMargin(v bool)`
 
 SetIsAutoAddMargin sets IsAutoAddMargin field to given value.
 

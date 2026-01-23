@@ -88,7 +88,7 @@ func (a *AccountAPIService) BnbTransferExecute(r ApiBnbTransferRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.BnbTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.BnbTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -155,7 +155,7 @@ func (a *AccountAPIService) ChangeAutoRepayFuturesStatusExecute(r ApiChangeAutoR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ChangeAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -209,7 +209,7 @@ func (a *AccountAPIService) FundAutoCollectionExecute(r ApiFundAutoCollectionReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundAutoCollectionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.FundAutoCollectionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -276,7 +276,7 @@ func (a *AccountAPIService) FundCollectionByAssetExecute(r ApiFundCollectionByAs
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundCollectionByAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.FundCollectionByAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -330,7 +330,61 @@ func (a *AccountAPIService) GetAutoRepayFuturesStatusExecute(r ApiGetAutoRepayFu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetDeltaModeStatusRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	recvWindow *int64
+}
+
+func (r ApiGetDeltaModeStatusRequest) RecvWindow(recvWindow int64) ApiGetDeltaModeStatusRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetDeltaModeStatusRequest) Execute() (*common.RestApiResponse[models.GetDeltaModeStatusResponse], error) {
+	return r.ApiService.GetDeltaModeStatusExecute(r)
+}
+
+/*
+GetDeltaModeStatus Get Delta Mode Status(USER_DATA)
+Get /sapi/v1/portfolio/delta-mode
+
+https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Delta-Mode-Status
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -
+@return ApiGetDeltaModeStatusRequest
+*/
+func (a *AccountAPIService) GetDeltaModeStatus(ctx context.Context) ApiGetDeltaModeStatusRequest {
+	return ApiGetDeltaModeStatusRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetDeltaModeStatusResponse
+func (a *AccountAPIService) GetDeltaModeStatusExecute(r ApiGetDeltaModeStatusRequest) (*common.RestApiResponse[models.GetDeltaModeStatusResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/portfolio/delta-mode"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetDeltaModeStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -394,7 +448,7 @@ func (a *AccountAPIService) GetPortfolioMarginProAccountBalanceExecute(r ApiGetP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProAccountBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetPortfolioMarginProAccountBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -448,7 +502,7 @@ func (a *AccountAPIService) GetPortfolioMarginProAccountInfoExecute(r ApiGetPort
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetPortfolioMarginProAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -502,7 +556,7 @@ func (a *AccountAPIService) GetPortfolioMarginProSpanAccountInfoExecute(r ApiGet
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProSpanAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetPortfolioMarginProSpanAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -581,7 +635,7 @@ func (a *AccountAPIService) GetTransferableEarnAssetBalanceForPortfolioMarginExe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetTransferableEarnAssetBalanceForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetTransferableEarnAssetBalanceForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -646,7 +700,7 @@ func (a *AccountAPIService) PortfolioMarginProBankruptcyLoanRepayExecute(r ApiPo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PortfolioMarginProBankruptcyLoanRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PortfolioMarginProBankruptcyLoanRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -700,7 +754,7 @@ func (a *AccountAPIService) QueryPortfolioMarginProBankruptcyLoanAmountExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -796,7 +850,7 @@ func (a *AccountAPIService) QueryPortfolioMarginProBankruptcyLoanRepayHistoryExe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -891,7 +945,7 @@ func (a *AccountAPIService) QueryPortfolioMarginProNegativeBalanceInterestHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -956,7 +1010,74 @@ func (a *AccountAPIService) RepayFuturesNegativeBalanceExecute(r ApiRepayFutures
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RepayFuturesNegativeBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.RepayFuturesNegativeBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiSwitchDeltaModeRequest struct {
+	ctx          context.Context
+	ApiService   *AccountAPIService
+	deltaEnabled *string
+	recvWindow   *int64
+}
+
+// &#x60;true&#x60; to enable Delta mode; &#x60;false&#x60; to disable Delta mode
+func (r ApiSwitchDeltaModeRequest) DeltaEnabled(deltaEnabled string) ApiSwitchDeltaModeRequest {
+	r.deltaEnabled = &deltaEnabled
+	return r
+}
+
+func (r ApiSwitchDeltaModeRequest) RecvWindow(recvWindow int64) ApiSwitchDeltaModeRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiSwitchDeltaModeRequest) Execute() (*common.RestApiResponse[models.SwitchDeltaModeResponse], error) {
+	return r.ApiService.SwitchDeltaModeExecute(r)
+}
+
+/*
+SwitchDeltaMode Switch Delta Mode(TRADE)
+Post /sapi/v1/portfolio/delta-mode
+
+https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Switch-Delta-Mode
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param deltaEnabled -  `true` to enable Delta mode; `false` to disable Delta mode
+@param recvWindow -
+@return ApiSwitchDeltaModeRequest
+*/
+func (a *AccountAPIService) SwitchDeltaMode(ctx context.Context) ApiSwitchDeltaModeRequest {
+	return ApiSwitchDeltaModeRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return SwitchDeltaModeResponse
+func (a *AccountAPIService) SwitchDeltaModeExecute(r ApiSwitchDeltaModeRequest) (*common.RestApiResponse[models.SwitchDeltaModeResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/portfolio/delta-mode"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.deltaEnabled == nil {
+		return nil, common.ReportError("deltaEnabled is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "deltaEnabled", r.deltaEnabled, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.SwitchDeltaModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1046,7 +1167,7 @@ func (a *AccountAPIService) TransferLdusdtRwusdForPortfolioMarginExecute(r ApiTr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TransferLdusdtRwusdForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TransferLdusdtRwusdForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

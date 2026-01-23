@@ -27,13 +27,12 @@ type AccountTradeListResponseInner struct {
 	RealizedProfit       *string `json:"realizedProfit,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
-	Volatility           *string `json:"volatility,omitempty"`
 	Liquidity            *string `json:"liquidity,omitempty"`
-	QuoteAsset           *string `json:"quoteAsset,omitempty"`
 	Time                 *int64  `json:"time,omitempty"`
 	PriceScale           *int64  `json:"priceScale,omitempty"`
 	QuantityScale        *int64  `json:"quantityScale,omitempty"`
 	OptionSide           *string `json:"optionSide,omitempty"`
+	QuoteAsset           *string `json:"quoteAsset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -376,38 +375,6 @@ func (o *AccountTradeListResponseInner) SetType(v string) {
 	o.Type = &v
 }
 
-// GetVolatility returns the Volatility field value if set, zero value otherwise.
-func (o *AccountTradeListResponseInner) GetVolatility() string {
-	if o == nil || common.IsNil(o.Volatility) {
-		var ret string
-		return ret
-	}
-	return *o.Volatility
-}
-
-// GetVolatilityOk returns a tuple with the Volatility field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountTradeListResponseInner) GetVolatilityOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Volatility) {
-		return nil, false
-	}
-	return o.Volatility, true
-}
-
-// HasVolatility returns a boolean if a field has been set.
-func (o *AccountTradeListResponseInner) HasVolatility() bool {
-	if o != nil && !common.IsNil(o.Volatility) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolatility gets a reference to the given string and assigns it to the Volatility field.
-func (o *AccountTradeListResponseInner) SetVolatility(v string) {
-	o.Volatility = &v
-}
-
 // GetLiquidity returns the Liquidity field value if set, zero value otherwise.
 func (o *AccountTradeListResponseInner) GetLiquidity() string {
 	if o == nil || common.IsNil(o.Liquidity) {
@@ -438,38 +405,6 @@ func (o *AccountTradeListResponseInner) HasLiquidity() bool {
 // SetLiquidity gets a reference to the given string and assigns it to the Liquidity field.
 func (o *AccountTradeListResponseInner) SetLiquidity(v string) {
 	o.Liquidity = &v
-}
-
-// GetQuoteAsset returns the QuoteAsset field value if set, zero value otherwise.
-func (o *AccountTradeListResponseInner) GetQuoteAsset() string {
-	if o == nil || common.IsNil(o.QuoteAsset) {
-		var ret string
-		return ret
-	}
-	return *o.QuoteAsset
-}
-
-// GetQuoteAssetOk returns a tuple with the QuoteAsset field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountTradeListResponseInner) GetQuoteAssetOk() (*string, bool) {
-	if o == nil || common.IsNil(o.QuoteAsset) {
-		return nil, false
-	}
-	return o.QuoteAsset, true
-}
-
-// HasQuoteAsset returns a boolean if a field has been set.
-func (o *AccountTradeListResponseInner) HasQuoteAsset() bool {
-	if o != nil && !common.IsNil(o.QuoteAsset) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuoteAsset gets a reference to the given string and assigns it to the QuoteAsset field.
-func (o *AccountTradeListResponseInner) SetQuoteAsset(v string) {
-	o.QuoteAsset = &v
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
@@ -600,6 +535,38 @@ func (o *AccountTradeListResponseInner) SetOptionSide(v string) {
 	o.OptionSide = &v
 }
 
+// GetQuoteAsset returns the QuoteAsset field value if set, zero value otherwise.
+func (o *AccountTradeListResponseInner) GetQuoteAsset() string {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		var ret string
+		return ret
+	}
+	return *o.QuoteAsset
+}
+
+// GetQuoteAssetOk returns a tuple with the QuoteAsset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTradeListResponseInner) GetQuoteAssetOk() (*string, bool) {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		return nil, false
+	}
+	return o.QuoteAsset, true
+}
+
+// HasQuoteAsset returns a boolean if a field has been set.
+func (o *AccountTradeListResponseInner) HasQuoteAsset() bool {
+	if o != nil && !common.IsNil(o.QuoteAsset) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuoteAsset gets a reference to the given string and assigns it to the QuoteAsset field.
+func (o *AccountTradeListResponseInner) SetQuoteAsset(v string) {
+	o.QuoteAsset = &v
+}
+
 func (o AccountTradeListResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -640,14 +607,8 @@ func (o AccountTradeListResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !common.IsNil(o.Volatility) {
-		toSerialize["volatility"] = o.Volatility
-	}
 	if !common.IsNil(o.Liquidity) {
 		toSerialize["liquidity"] = o.Liquidity
-	}
-	if !common.IsNil(o.QuoteAsset) {
-		toSerialize["quoteAsset"] = o.QuoteAsset
 	}
 	if !common.IsNil(o.Time) {
 		toSerialize["time"] = o.Time
@@ -660,6 +621,9 @@ func (o AccountTradeListResponseInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.OptionSide) {
 		toSerialize["optionSide"] = o.OptionSide
+	}
+	if !common.IsNil(o.QuoteAsset) {
+		toSerialize["quoteAsset"] = o.QuoteAsset
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -693,13 +657,12 @@ func (o *AccountTradeListResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "realizedProfit")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "volatility")
 		delete(additionalProperties, "liquidity")
-		delete(additionalProperties, "quoteAsset")
 		delete(additionalProperties, "time")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "optionSide")
+		delete(additionalProperties, "quoteAsset")
 		o.AdditionalProperties = additionalProperties
 	}
 

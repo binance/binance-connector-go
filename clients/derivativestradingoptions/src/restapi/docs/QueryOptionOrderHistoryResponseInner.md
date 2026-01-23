@@ -9,18 +9,14 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
-**PostOnly** | Pointer to **bool** |  | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Reason** | Pointer to **string** |  | [optional] 
 **AvgPrice** | Pointer to **string** |  | [optional] 
-**Source** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
@@ -172,31 +168,6 @@ SetExecutedQty sets ExecutedQty field to given value.
 
 HasExecutedQty returns a boolean if a field has been set.
 
-### GetFee
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetFee() string`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetFeeOk() (*string, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *QueryOptionOrderHistoryResponseInner) SetFee(v string)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *QueryOptionOrderHistoryResponseInner) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
-
 ### GetSide
 
 `func (o *QueryOptionOrderHistoryResponseInner) GetSide() string`
@@ -297,31 +268,6 @@ SetReduceOnly sets ReduceOnly field to given value.
 
 HasReduceOnly returns a boolean if a field has been set.
 
-### GetPostOnly
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetPostOnly() bool`
-
-GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
-
-### GetPostOnlyOk
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetPostOnlyOk() (*bool, bool)`
-
-GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostOnly
-
-`func (o *QueryOptionOrderHistoryResponseInner) SetPostOnly(v bool)`
-
-SetPostOnly sets PostOnly field to given value.
-
-### HasPostOnly
-
-`func (o *QueryOptionOrderHistoryResponseInner) HasPostOnly() bool`
-
-HasPostOnly returns a boolean if a field has been set.
-
 ### GetCreateTime
 
 `func (o *QueryOptionOrderHistoryResponseInner) GetCreateTime() int64`
@@ -397,31 +343,6 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### GetReason
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetReason() string`
-
-GetReason returns the Reason field if non-nil, zero value otherwise.
-
-### GetReasonOk
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetReasonOk() (*string, bool)`
-
-GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReason
-
-`func (o *QueryOptionOrderHistoryResponseInner) SetReason(v string)`
-
-SetReason sets Reason field to given value.
-
-### HasReason
-
-`func (o *QueryOptionOrderHistoryResponseInner) HasReason() bool`
-
-HasReason returns a boolean if a field has been set.
-
 ### GetAvgPrice
 
 `func (o *QueryOptionOrderHistoryResponseInner) GetAvgPrice() string`
@@ -446,31 +367,6 @@ SetAvgPrice sets AvgPrice field to given value.
 `func (o *QueryOptionOrderHistoryResponseInner) HasAvgPrice() bool`
 
 HasAvgPrice returns a boolean if a field has been set.
-
-### GetSource
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetSource() string`
-
-GetSource returns the Source field if non-nil, zero value otherwise.
-
-### GetSourceOk
-
-`func (o *QueryOptionOrderHistoryResponseInner) GetSourceOk() (*string, bool)`
-
-GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSource
-
-`func (o *QueryOptionOrderHistoryResponseInner) SetSource(v string)`
-
-SetSource sets Source field to given value.
-
-### HasSource
-
-`func (o *QueryOptionOrderHistoryResponseInner) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
 
 ### GetClientOrderId
 

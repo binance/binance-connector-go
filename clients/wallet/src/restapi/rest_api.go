@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// RestAPIClient manages communication with the Binance Wallet REST API API v1.1.0
+// RestAPIClient manages communication with the Binance Wallet REST API API v1.2.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -40,7 +40,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-wallet/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-wallet/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
@@ -66,8 +66,8 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 // @param config *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *common.RestApiResponse[T] - The API response containing the typed data
 // @return error - An error if the request fails
-func SendRequest[T any](ctx context.Context, path string, method string, queryParams url.Values, bodyParams interface{}, config *common.ConfigurationRestAPI) (*common.RestApiResponse[T], error) {
-	resp, err := common.SendRequest[T](ctx, path, method, queryParams, bodyParams, config)
+func SendRequest[T any](ctx context.Context, path string, method string, queryParams url.Values, bodyParams interface{}, config *common.ConfigurationRestAPI, signed bool) (*common.RestApiResponse[T], error) {
+	resp, err := common.SendRequest[T](ctx, path, method, queryParams, bodyParams, config, signed)
 	if err != nil {
 		return resp, err
 	}

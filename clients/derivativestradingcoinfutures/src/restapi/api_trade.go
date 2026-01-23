@@ -136,7 +136,7 @@ func (a *TradeAPIService) AccountTradeListExecute(r ApiAccountTradeListRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -251,7 +251,7 @@ func (a *TradeAPIService) AllOrdersExecute(r ApiAllOrdersRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -329,7 +329,7 @@ func (a *TradeAPIService) AutoCancelAllOpenOrdersExecute(r ApiAutoCancelAllOpenO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -395,7 +395,7 @@ func (a *TradeAPIService) CancelAllOpenOrdersExecute(r ApiCancelAllOpenOrdersReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -485,7 +485,7 @@ func (a *TradeAPIService) CancelMultipleOrdersExecute(r ApiCancelMultipleOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CancelMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -571,7 +571,7 @@ func (a *TradeAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -649,7 +649,7 @@ func (a *TradeAPIService) ChangeInitialLeverageExecute(r ApiChangeInitialLeverag
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeInitialLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ChangeInitialLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -727,7 +727,7 @@ func (a *TradeAPIService) ChangeMarginTypeExecute(r ApiChangeMarginTypeRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeMarginTypeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ChangeMarginTypeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -794,7 +794,7 @@ func (a *TradeAPIService) ChangePositionModeExecute(r ApiChangePositionModeReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangePositionModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ChangePositionModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -868,7 +868,7 @@ func (a *TradeAPIService) CurrentAllOpenOrdersExecute(r ApiCurrentAllOpenOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CurrentAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CurrentAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -985,7 +985,7 @@ func (a *TradeAPIService) GetOrderModifyHistoryExecute(r ApiGetOrderModifyHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOrderModifyHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetOrderModifyHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1093,7 +1093,7 @@ func (a *TradeAPIService) GetPositionMarginChangeHistoryExecute(r ApiGetPosition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPositionMarginChangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetPositionMarginChangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1106,8 +1106,8 @@ type ApiModifyIsolatedPositionMarginRequest struct {
 	ApiService   *TradeAPIService
 	symbol       *string
 	amount       *float32
-	type_        *models.NewOrderTypeParameter
-	positionSide *models.NewOrderPositionSideParameter
+	type_        *models.PlaceMultipleOrdersBatchOrdersParameterInnerType
+	positionSide *models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide
 	recvWindow   *int64
 }
 
@@ -1121,13 +1121,13 @@ func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float32) ApiModify
 	return r
 }
 
-func (r ApiModifyIsolatedPositionMarginRequest) Type(type_ models.NewOrderTypeParameter) ApiModifyIsolatedPositionMarginRequest {
+func (r ApiModifyIsolatedPositionMarginRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiModifyIsolatedPositionMarginRequest {
 	r.type_ = &type_
 	return r
 }
 
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiModifyIsolatedPositionMarginRequest) PositionSide(positionSide models.NewOrderPositionSideParameter) ApiModifyIsolatedPositionMarginRequest {
+func (r ApiModifyIsolatedPositionMarginRequest) PositionSide(positionSide models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide) ApiModifyIsolatedPositionMarginRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -1192,7 +1192,7 @@ func (a *TradeAPIService) ModifyIsolatedPositionMarginExecute(r ApiModifyIsolate
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyIsolatedPositionMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ModifyIsolatedPositionMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1262,7 +1262,7 @@ func (a *TradeAPIService) ModifyMultipleOrdersExecute(r ApiModifyMultipleOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ModifyMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1279,7 +1279,7 @@ type ApiModifyOrderRequest struct {
 	origClientOrderId *string
 	quantity          *float32
 	price             *float32
-	priceMatch        *models.ModifyOrderPriceMatchParameter
+	priceMatch        *models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch
 	recvWindow        *int64
 }
 
@@ -1316,7 +1316,7 @@ func (r ApiModifyOrderRequest) Price(price float32) ApiModifyOrderRequest {
 }
 
 // only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
-func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch) ApiModifyOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
@@ -1392,7 +1392,7 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ModifyOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1405,9 +1405,9 @@ type ApiNewOrderRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.ModifyMultipleOrdersBatchOrdersParameterInnerSide
-	type_                   *models.NewOrderTypeParameter
-	positionSide            *models.NewOrderPositionSideParameter
-	timeInForce             *models.NewOrderTimeInForceParameter
+	type_                   *models.PlaceMultipleOrdersBatchOrdersParameterInnerType
+	positionSide            *models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide
+	timeInForce             *models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce
 	quantity                *float32
 	reduceOnly              *string
 	price                   *float32
@@ -1416,11 +1416,11 @@ type ApiNewOrderRequest struct {
 	closePosition           *string
 	activationPrice         *float32
 	callbackRate            *float32
-	workingType             *models.NewOrderWorkingTypeParameter
+	workingType             *models.PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType
 	priceProtect            *string
-	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
-	priceMatch              *models.ModifyOrderPriceMatchParameter
-	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
+	newOrderRespType        *models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType
+	priceMatch              *models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch
+	selfTradePreventionMode *models.PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode
 	recvWindow              *int64
 }
 
@@ -1435,18 +1435,18 @@ func (r ApiNewOrderRequest) Side(side models.ModifyMultipleOrdersBatchOrdersPara
 	return r
 }
 
-func (r ApiNewOrderRequest) Type(type_ models.NewOrderTypeParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiNewOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiNewOrderRequest) PositionSide(positionSide models.NewOrderPositionSideParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) PositionSide(positionSide models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide) ApiNewOrderRequest {
 	r.positionSide = &positionSide
 	return r
 }
 
-func (r ApiNewOrderRequest) TimeInForce(timeInForce models.NewOrderTimeInForceParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) TimeInForce(timeInForce models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce) ApiNewOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
@@ -1499,7 +1499,7 @@ func (r ApiNewOrderRequest) CallbackRate(callbackRate float32) ApiNewOrderReques
 }
 
 // stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
-func (r ApiNewOrderRequest) WorkingType(workingType models.NewOrderWorkingTypeParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) WorkingType(workingType models.PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType) ApiNewOrderRequest {
 	r.workingType = &workingType
 	return r
 }
@@ -1511,19 +1511,19 @@ func (r ApiNewOrderRequest) PriceProtect(priceProtect string) ApiNewOrderRequest
 }
 
 // \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
-func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
 // only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
-func (r ApiNewOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) PriceMatch(priceMatch models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch) ApiNewOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
 // &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60;
-func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
@@ -1644,7 +1644,7 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.NewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1714,7 +1714,7 @@ func (a *TradeAPIService) PlaceMultipleOrdersExecute(r ApiPlaceMultipleOrdersReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1778,7 +1778,7 @@ func (a *TradeAPIService) PositionAdlQuantileEstimationExecute(r ApiPositionAdlQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PositionAdlQuantileEstimationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PositionAdlQuantileEstimationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1852,7 +1852,7 @@ func (a *TradeAPIService) PositionInformationExecute(r ApiPositionInformationReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PositionInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PositionInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1938,7 +1938,7 @@ func (a *TradeAPIService) QueryCurrentOpenOrderExecute(r ApiQueryCurrentOpenOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryCurrentOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2024,7 +2024,7 @@ func (a *TradeAPIService) QueryOrderExecute(r ApiQueryOrderRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2130,7 +2130,7 @@ func (a *TradeAPIService) UsersForceOrdersExecute(r ApiUsersForceOrdersRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UsersForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.UsersForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

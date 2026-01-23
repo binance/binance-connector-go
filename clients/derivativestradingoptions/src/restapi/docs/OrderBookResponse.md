@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
 **Bids** | Pointer to [**[]OrderBookResponseBidsItem**](OrderBookResponseBidsItem.md) |  | [optional] 
 **Asks** | Pointer to [**[]OrderBookResponseAsksItem**](OrderBookResponseAsksItem.md) |  | [optional] 
+**T** | Pointer to **int64** |  | [optional] 
+**LastUpdateId** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -27,56 +27,6 @@ will change when the set of required properties is changed
 NewOrderBookResponseWithDefaults instantiates a new OrderBookResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetT
-
-`func (o *OrderBookResponse) GetT() int64`
-
-GetT returns the T field if non-nil, zero value otherwise.
-
-### GetTOk
-
-`func (o *OrderBookResponse) GetTOk() (*int64, bool)`
-
-GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetT
-
-`func (o *OrderBookResponse) SetT(v int64)`
-
-SetT sets T field to given value.
-
-### HasT
-
-`func (o *OrderBookResponse) HasT() bool`
-
-HasT returns a boolean if a field has been set.
-
-### GetU
-
-`func (o *OrderBookResponse) GetU() int64`
-
-GetU returns the U field if non-nil, zero value otherwise.
-
-### GetUOk
-
-`func (o *OrderBookResponse) GetUOk() (*int64, bool)`
-
-GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetU
-
-`func (o *OrderBookResponse) SetU(v int64)`
-
-SetU sets U field to given value.
-
-### HasU
-
-`func (o *OrderBookResponse) HasU() bool`
-
-HasU returns a boolean if a field has been set.
 
 ### GetBids
 
@@ -127,6 +77,56 @@ SetAsks sets Asks field to given value.
 `func (o *OrderBookResponse) HasAsks() bool`
 
 HasAsks returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *OrderBookResponse) GetT() int64`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *OrderBookResponse) GetTOk() (*int64, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *OrderBookResponse) SetT(v int64)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *OrderBookResponse) HasT() bool`
+
+HasT returns a boolean if a field has been set.
+
+### GetLastUpdateId
+
+`func (o *OrderBookResponse) GetLastUpdateId() int64`
+
+GetLastUpdateId returns the LastUpdateId field if non-nil, zero value otherwise.
+
+### GetLastUpdateIdOk
+
+`func (o *OrderBookResponse) GetLastUpdateIdOk() (*int64, bool)`
+
+GetLastUpdateIdOk returns a tuple with the LastUpdateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastUpdateId
+
+`func (o *OrderBookResponse) SetLastUpdateId(v int64)`
+
+SetLastUpdateId sets LastUpdateId field to given value.
+
+### HasLastUpdateId
+
+`func (o *OrderBookResponse) HasLastUpdateId() bool`
+
+HasLastUpdateId returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams v1.1.0
+// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams v1.2.0
 type WebsocketStreamsClient struct {
 	cfg        *common.ConfigurationWebsocketStreams
 	userAgent  string
@@ -33,7 +33,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingoptions/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingoptions/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	cfgMarket := *cfg
 	cfgMarket.BasePath = cfgMarket.BasePath + "/market/stream"

@@ -353,6 +353,61 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test AccountAPIService GetDeltaModeStatus Success", func(t *testing.T) {
+
+		mockedJSON := `{"deltaEnabled":false}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/portfolio/delta-mode", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.GetDeltaModeStatusResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AccountAPI.GetDeltaModeStatus(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.GetDeltaModeStatusResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.GetDeltaModeStatusResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test AccountAPIService GetDeltaModeStatus Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AccountAPI.GetDeltaModeStatus(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test AccountAPIService GetPortfolioMarginProAccountBalance Success", func(t *testing.T) {
 
 		mockedJSON := `[{"asset":"BTC","totalWalletBalance":"100","crossMarginAsset":"100","crossMarginBorrowed":"0","crossMarginFree":"100","crossMarginInterest":"0","crossMarginLocked":"0","umWalletBalance":"0","umUnrealizedPNL":"0","cmWalletBalance":"0","cmUnrealizedPNL":"0","updateTime":0,"negativeBalance":"0","optionWalletBalance":"0","optionEquity":"0"}]`
@@ -862,6 +917,79 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 		)
 
 		resp, err := apiClient.RestApi.AccountAPI.RepayFuturesNegativeBalance(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test AccountAPIService SwitchDeltaMode Success", func(t *testing.T) {
+
+		mockedJSON := `{"msg":"success"}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/portfolio/delta-mode", r.URL.Path)
+			require.Equal(t, "deltaEnabled_example", r.URL.Query().Get("deltaEnabled"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.SwitchDeltaModeResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).DeltaEnabled("deltaEnabled_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.SwitchDeltaModeResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.SwitchDeltaModeResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test AccountAPIService SwitchDeltaMode Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test AccountAPIService SwitchDeltaMode Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

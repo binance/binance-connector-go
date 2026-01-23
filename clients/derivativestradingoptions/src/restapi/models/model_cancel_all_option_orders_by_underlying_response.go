@@ -19,7 +19,6 @@ var _ common.MappedNullable = &CancelAllOptionOrdersByUnderlyingResponse{}
 type CancelAllOptionOrdersByUnderlyingResponse struct {
 	Code                 *int64  `json:"code,omitempty"`
 	Msg                  *string `json:"msg,omitempty"`
-	Data                 *int64  `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -106,38 +105,6 @@ func (o *CancelAllOptionOrdersByUnderlyingResponse) SetMsg(v string) {
 	o.Msg = &v
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *CancelAllOptionOrdersByUnderlyingResponse) GetData() int64 {
-	if o == nil || common.IsNil(o.Data) {
-		var ret int64
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelAllOptionOrdersByUnderlyingResponse) GetDataOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *CancelAllOptionOrdersByUnderlyingResponse) HasData() bool {
-	if o != nil && !common.IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given int64 and assigns it to the Data field.
-func (o *CancelAllOptionOrdersByUnderlyingResponse) SetData(v int64) {
-	o.Data = &v
-}
-
 func (o CancelAllOptionOrdersByUnderlyingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -153,9 +120,6 @@ func (o CancelAllOptionOrdersByUnderlyingResponse) ToMap() (map[string]interface
 	}
 	if !common.IsNil(o.Msg) {
 		toSerialize["msg"] = o.Msg
-	}
-	if !common.IsNil(o.Data) {
-		toSerialize["data"] = o.Data
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -181,7 +145,6 @@ func (o *CancelAllOptionOrdersByUnderlyingResponse) UnmarshalJSON(data []byte) (
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "msg")
-		delete(additionalProperties, "data")
 		o.AdditionalProperties = additionalProperties
 	}
 

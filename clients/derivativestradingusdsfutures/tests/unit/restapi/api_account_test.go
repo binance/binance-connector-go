@@ -1126,7 +1126,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService SymbolConfiguration Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"BTCUSDT","marginType":"CROSSED","isAutoAddMargin":"false","leverage":21,"maxNotionalValue":"1000000"}]`
+		mockedJSON := `[{"symbol":"BTCUSDT","marginType":"CROSSED","isAutoAddMargin":false,"leverage":21,"maxNotionalValue":"1000000"}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/symbolConfig", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

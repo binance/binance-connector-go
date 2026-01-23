@@ -107,7 +107,7 @@ import (
 func main() {
 	asset := "asset_example" // string |  (optional)
 	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	startTime := int64(1623319461670) // int64 | 只支持查询最近90天的数据 (optional)
+	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
 	size := int64(10) // int64 | Default:10 Max:100 (optional)
@@ -141,7 +141,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
  **isolatedSymbol** | **string** | isolated symbol | 
- **startTime** | **int64** | 只支持查询最近90天的数据 | 
+ **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
  **size** | **int64** | Default:10 Max:100 | 
@@ -267,7 +267,7 @@ func main() {
 	asset := "asset_example" // string |  (optional)
 	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
 	txId := int64(1) // int64 | `tranId` in `POST /sapi/v1/margin/loan` (optional)
-	startTime := int64(1623319461670) // int64 | 只支持查询最近90天的数据 (optional)
+	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
 	size := int64(10) // int64 | Default:10 Max:100 (optional)
@@ -303,7 +303,7 @@ Name          | Type          | Description   | Notes
  **asset** | **string** |  | 
  **isolatedSymbol** | **string** | isolated symbol | 
  **txId** | **int64** | &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; | 
- **startTime** | **int64** | 只支持查询最近90天的数据 | 
+ **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
  **size** | **int64** | Default:10 Max:100 | 
@@ -349,7 +349,7 @@ import (
 func main() {
 	asset := "asset_example" // string | 
 	vipLevel := int64(1) // int64 | User's current specific margin data will be returned if vipLevel is omitted (optional)
-	startTime := int64(1623319461670) // int64 | 只支持查询最近90天的数据 (optional)
+	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
 
@@ -381,7 +381,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
  **vipLevel** | **int64** | User&#39;s current specific margin data will be returned if vipLevel is omitted | 
- **startTime** | **int64** | 只支持查询最近90天的数据 | 
+ **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
  **recvWindow** | **int64** | No more than 60000 | 
 

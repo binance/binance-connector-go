@@ -4,7 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int64** |  | [optional] 
+**TradeId** | Pointer to **int64** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **Qty** | Pointer to **string** |  | [optional] 
@@ -33,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *RecentTradesListResponseInner) GetId() string`
+`func (o *RecentTradesListResponseInner) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *RecentTradesListResponseInner) GetIdOk() (*string, bool)`
+`func (o *RecentTradesListResponseInner) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *RecentTradesListResponseInner) SetId(v string)`
+`func (o *RecentTradesListResponseInner) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -55,6 +56,31 @@ SetId sets Id field to given value.
 `func (o *RecentTradesListResponseInner) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetTradeId
+
+`func (o *RecentTradesListResponseInner) GetTradeId() int64`
+
+GetTradeId returns the TradeId field if non-nil, zero value otherwise.
+
+### GetTradeIdOk
+
+`func (o *RecentTradesListResponseInner) GetTradeIdOk() (*int64, bool)`
+
+GetTradeIdOk returns a tuple with the TradeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTradeId
+
+`func (o *RecentTradesListResponseInner) SetTradeId(v int64)`
+
+SetTradeId sets TradeId field to given value.
+
+### HasTradeId
+
+`func (o *RecentTradesListResponseInner) HasTradeId() bool`
+
+HasTradeId returns a boolean if a field has been set.
 
 ### GetSymbol
 

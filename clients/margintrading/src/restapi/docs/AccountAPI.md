@@ -387,10 +387,10 @@ func main() {
 	asset := "asset_example" // string |  (optional)
 	symbol := "symbol_example" // string | isolated margin pair (optional)
 	type_ := "type__example" // string | Transfer Type: ROLL_IN, ROLL_OUT (optional)
-	startTime := int64(1623319461670) // int64 | 只支持查询最近90天的数据 (optional)
+	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	fromId := int64(1) // int64 | 如设置fromId, 将返回id > fromId的数据。否则将返回最新数据 (optional)
-	limit := int64(500) // int64 | Default Value: 500; Max Value: 1000 (optional)
+	fromId := int64(1) // int64 | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned. (optional)
+	limit := int64(500) // int64 | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. (optional)
 	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -422,10 +422,10 @@ Name          | Type          | Description   | Notes
  **asset** | **string** |  | 
  **symbol** | **string** | isolated margin pair | 
  **type_** | **string** | Transfer Type: ROLL_IN, ROLL_OUT | 
- **startTime** | **int64** | 只支持查询最近90天的数据 | 
+ **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
- **fromId** | **int64** | 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据 | 
- **limit** | **int64** | Default Value: 500; Max Value: 1000 | 
+ **fromId** | **int64** | If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | 
+ **limit** | **int64** | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | 
  **recvWindow** | **int64** | No more than 60000 | 
 
 ### Return type
