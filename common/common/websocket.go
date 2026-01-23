@@ -1301,6 +1301,8 @@ func (w *WebsocketStreams) Unsubscribe(streams []string) error {
 
 		conn.mu.Lock()
 		delete(conn.StreamCallbackMap, stream)
+		conn.mu.Unlock()
+
 		log.Printf("Unsubscribed from stream %s", stream)
 	}
 

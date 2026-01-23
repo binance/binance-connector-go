@@ -39,6 +39,9 @@ const (
 // Algo API URLs
 const AlgoRestApiProdUrl = "https://api.binance.com"
 
+// Alpha API URLs
+const AlphaRestApiProdUrl = "https://www.binance.com"
+
 // C2C API URLs
 const C2CRestApiProdUrl = "https://api.binance.com"
 

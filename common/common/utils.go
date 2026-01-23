@@ -415,8 +415,9 @@ func ParseRateLimitHeaders(header http.Header) ([]RateLimit, error) {
 // @param method The HTTP method (GET, POST, etc.).
 // @param queryParams The query parameters for the request.
 // @param cfg The configuration containing API keys, secrets, and other settings.
+// @param signed A boolean indicating whether the request requires signing.
 // @return The response from the REST API or an error if the request fails.
-func SendRequest[T any](ctx context.Context, path string, method string, queryParams url.Values, bodyParams interface{}, cfg *ConfigurationRestAPI) (*RestApiResponse[T], error) {
+func SendRequest[T any](ctx context.Context, path string, method string, queryParams url.Values, bodyParams interface{}, cfg *ConfigurationRestAPI, signed bool) (*RestApiResponse[T], error) {
 	var (
 		localVarHeaderParams     = make(map[string]string)
 		localVarHTTPContentTypes = []string{}
@@ -427,7 +428,7 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
-	req, err := PrepareRequest(ctx, path, method, localVarHeaderParams, queryParams, bodyParams, cfg)
+	req, err := PrepareRequest(ctx, path, method, localVarHeaderParams, queryParams, bodyParams, cfg, signed)
 	if err != nil {
 		return &RestApiResponse[T]{}, err
 	}
@@ -443,7 +444,6 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 	var lastErr error
 
 	httpClient := SetupProxy(cfg)
-
 	for attempt := 0; attempt <= retries; attempt++ {
 		resp, err := httpClient.Do(req)
 		if err != nil {
@@ -543,6 +543,7 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 // @param headerParams A map of header parameters to include in the request.
 // @param queryParams The query parameters for the request.
 // @param c The configuration containing API keys, secrets, and other settings.
+// @param signed A boolean indicating whether the request requires signing.
 // @return The prepared HTTP request or an error if preparation fails.
 func PrepareRequest(
 	ctx context.Context,
@@ -550,7 +551,8 @@ func PrepareRequest(
 	headerParams map[string]string,
 	queryParams url.Values,
 	bodyParams interface{},
-	c *ConfigurationRestAPI) (localVarRequest *http.Request, err error) {
+	c *ConfigurationRestAPI,
+	signed bool) (localVarRequest *http.Request, err error) {
 
 	reqURL, err := url.Parse(path)
 	if err != nil {
@@ -608,34 +610,36 @@ func PrepareRequest(
 		}
 	}
 
-	if c.ApiSecret != "" {
-		paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
+	if signed && c != nil {
+		if c.ApiSecret != "" {
+			paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
 
-		signer := hmac.New(sha256.New, []byte(c.ApiSecret))
-		signer.Write([]byte(paramsToSign))
-		signature := signer.Sum(nil)
-		if err != nil {
-			return nil, err
+			signer := hmac.New(sha256.New, []byte(c.ApiSecret))
+			signer.Write([]byte(paramsToSign))
+			signature := signer.Sum(nil)
+			if err != nil {
+				return nil, err
+			}
+			paramsToSign += "&signature=" + fmt.Sprintf("%x", signature)
 		}
-		paramsToSign += "&signature=" + fmt.Sprintf("%x", signature)
-	}
 
-	if c.PrivateKey != "" {
-		paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
+		if c.PrivateKey != "" {
+			paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
 
-		if c.Signer == nil {
-			key, err := LoadPrivateKey(c.PrivateKey, c.PrivateKeyPassphrase)
+			if c.Signer == nil {
+				key, err := LoadPrivateKey(c.PrivateKey, c.PrivateKeyPassphrase)
+				if err != nil {
+					panic(err)
+				}
+				c.Signer = &cryptoSigner{s: key}
+			}
+
+			signature, _ := c.Signer.Sign([]byte(paramsToSign))
 			if err != nil {
 				panic(err)
 			}
-			c.Signer = &cryptoSigner{s: key}
+			paramsToSign += "&signature=" + base64.StdEncoding.EncodeToString(signature)
 		}
-
-		signature, _ := c.Signer.Sign([]byte(paramsToSign))
-		if err != nil {
-			panic(err)
-		}
-		paramsToSign += "&signature=" + base64.StdEncoding.EncodeToString(signature)
 	}
 	reqURL.RawQuery = paramsToSign
 
