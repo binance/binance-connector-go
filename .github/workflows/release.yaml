@@ -153,7 +153,11 @@ jobs:
         id: next_version
         run: |
           # Get the latest tag for this module
-          LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
+          if [ "${{ matrix.client }}" == "common" ]; then
+            LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
+          else
+            LATEST_TAG=$(git describe --tags --match "clients/${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
+          fi
 
           if [ -z "$LATEST_TAG" ]; then
             # No tags exist yet, start with v1.0.0
