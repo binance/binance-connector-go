@@ -734,10 +734,6 @@ func TestProcessMessage_ResponseMessageHandled(t *testing.T) {
 		},
 	}}
 
-	// doneChan := make(chan []byte, 1)
-	// mockPendingMsgs := sync.Map{}
-	// mockPendingMsgs.Store("0", doneChan)
-
 	conn := &common.WebSocketConnection{
 		Id:                "test-connection",
 		Connected:         common.OPEN,
