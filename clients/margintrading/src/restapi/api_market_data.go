@@ -53,7 +53,7 @@ func (a *MarketDataAPIService) CrossMarginCollateralRatioExecute(r ApiCrossMargi
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.CrossMarginCollateralRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CrossMarginCollateralRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ func (a *MarketDataAPIService) GetAllCrossMarginPairsExecute(r ApiGetAllCrossMar
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAllCrossMarginPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAllCrossMarginPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func (a *MarketDataAPIService) GetAllIsolatedMarginSymbolExecute(r ApiGetAllIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAllIsolatedMarginSymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAllIsolatedMarginSymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -228,7 +228,7 @@ func (a *MarketDataAPIService) GetAllMarginAssetsExecute(r ApiGetAllMarginAssets
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAllMarginAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAllMarginAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -283,7 +283,7 @@ func (a *MarketDataAPIService) GetDelistScheduleExecute(r ApiGetDelistScheduleRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDelistScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetDelistScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -326,7 +326,7 @@ func (a *MarketDataAPIService) GetLimitPricePairsExecute(r ApiGetLimitPricePairs
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetLimitPricePairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetLimitPricePairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -381,7 +381,7 @@ func (a *MarketDataAPIService) GetListScheduleExecute(r ApiGetListScheduleReques
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetListScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetListScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -459,7 +459,7 @@ func (a *MarketDataAPIService) QueryIsolatedMarginTierDataExecute(r ApiQueryIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryIsolatedMarginTierDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryIsolatedMarginTierDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -502,7 +502,7 @@ func (a *MarketDataAPIService) QueryLiabilityCoinLeverageBracketInCrossMarginPro
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -559,7 +559,7 @@ func (a *MarketDataAPIService) QueryMarginAvailableInventoryExecute(r ApiQueryMa
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 
-	resp, err := SendRequest[models.QueryMarginAvailableInventoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAvailableInventoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -615,7 +615,7 @@ func (a *MarketDataAPIService) QueryMarginPriceindexExecute(r ApiQueryMarginPric
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.QueryMarginPriceindexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginPriceindexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}

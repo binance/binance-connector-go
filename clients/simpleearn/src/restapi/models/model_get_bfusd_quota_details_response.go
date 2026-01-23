@@ -19,8 +19,6 @@ var _ common.MappedNullable = &GetBfusdQuotaDetailsResponse{}
 type GetBfusdQuotaDetailsResponse struct {
 	FastRedemptionQuota     *GetBfusdQuotaDetailsResponseFastRedemptionQuota     `json:"fastRedemptionQuota,omitempty"`
 	StandardRedemptionQuota *GetBfusdQuotaDetailsResponseStandardRedemptionQuota `json:"standardRedemptionQuota,omitempty"`
-	SubscribeEnable         *bool                                                `json:"subscribeEnable,omitempty"`
-	RedeemEnable            *bool                                                `json:"redeemEnable,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -107,70 +105,6 @@ func (o *GetBfusdQuotaDetailsResponse) SetStandardRedemptionQuota(v GetBfusdQuot
 	o.StandardRedemptionQuota = &v
 }
 
-// GetSubscribeEnable returns the SubscribeEnable field value if set, zero value otherwise.
-func (o *GetBfusdQuotaDetailsResponse) GetSubscribeEnable() bool {
-	if o == nil || common.IsNil(o.SubscribeEnable) {
-		var ret bool
-		return ret
-	}
-	return *o.SubscribeEnable
-}
-
-// GetSubscribeEnableOk returns a tuple with the SubscribeEnable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetBfusdQuotaDetailsResponse) GetSubscribeEnableOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.SubscribeEnable) {
-		return nil, false
-	}
-	return o.SubscribeEnable, true
-}
-
-// HasSubscribeEnable returns a boolean if a field has been set.
-func (o *GetBfusdQuotaDetailsResponse) HasSubscribeEnable() bool {
-	if o != nil && !common.IsNil(o.SubscribeEnable) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscribeEnable gets a reference to the given bool and assigns it to the SubscribeEnable field.
-func (o *GetBfusdQuotaDetailsResponse) SetSubscribeEnable(v bool) {
-	o.SubscribeEnable = &v
-}
-
-// GetRedeemEnable returns the RedeemEnable field value if set, zero value otherwise.
-func (o *GetBfusdQuotaDetailsResponse) GetRedeemEnable() bool {
-	if o == nil || common.IsNil(o.RedeemEnable) {
-		var ret bool
-		return ret
-	}
-	return *o.RedeemEnable
-}
-
-// GetRedeemEnableOk returns a tuple with the RedeemEnable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetBfusdQuotaDetailsResponse) GetRedeemEnableOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.RedeemEnable) {
-		return nil, false
-	}
-	return o.RedeemEnable, true
-}
-
-// HasRedeemEnable returns a boolean if a field has been set.
-func (o *GetBfusdQuotaDetailsResponse) HasRedeemEnable() bool {
-	if o != nil && !common.IsNil(o.RedeemEnable) {
-		return true
-	}
-
-	return false
-}
-
-// SetRedeemEnable gets a reference to the given bool and assigns it to the RedeemEnable field.
-func (o *GetBfusdQuotaDetailsResponse) SetRedeemEnable(v bool) {
-	o.RedeemEnable = &v
-}
-
 func (o GetBfusdQuotaDetailsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -186,12 +120,6 @@ func (o GetBfusdQuotaDetailsResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.StandardRedemptionQuota) {
 		toSerialize["standardRedemptionQuota"] = o.StandardRedemptionQuota
-	}
-	if !common.IsNil(o.SubscribeEnable) {
-		toSerialize["subscribeEnable"] = o.SubscribeEnable
-	}
-	if !common.IsNil(o.RedeemEnable) {
-		toSerialize["redeemEnable"] = o.RedeemEnable
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -217,8 +145,6 @@ func (o *GetBfusdQuotaDetailsResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "fastRedemptionQuota")
 		delete(additionalProperties, "standardRedemptionQuota")
-		delete(additionalProperties, "subscribeEnable")
-		delete(additionalProperties, "redeemEnable")
 		o.AdditionalProperties = additionalProperties
 	}
 

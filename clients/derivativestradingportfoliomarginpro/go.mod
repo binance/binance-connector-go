@@ -5,7 +5,7 @@ go 1.24.0
 toolchain go1.24.11
 
 require (
-	github.com/binance/binance-connector-go/common v1.1.0
+	github.com/binance/binance-connector-go/common v1.2.0
 	github.com/stretchr/testify v1.11.1
 )
 

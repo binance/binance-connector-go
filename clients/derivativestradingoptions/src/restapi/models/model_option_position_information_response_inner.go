@@ -21,18 +21,18 @@ type OptionPositionInformationResponseInner struct {
 	Symbol               *string `json:"symbol,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
-	ReducibleQty         *string `json:"reducibleQty,omitempty"`
 	MarkValue            *string `json:"markValue,omitempty"`
-	Ror                  *string `json:"ror,omitempty"`
 	UnrealizedPNL        *string `json:"unrealizedPNL,omitempty"`
 	MarkPrice            *string `json:"markPrice,omitempty"`
 	StrikePrice          *string `json:"strikePrice,omitempty"`
-	PositionCost         *string `json:"positionCost,omitempty"`
 	ExpiryDate           *int64  `json:"expiryDate,omitempty"`
 	PriceScale           *int64  `json:"priceScale,omitempty"`
 	QuantityScale        *int64  `json:"quantityScale,omitempty"`
 	OptionSide           *string `json:"optionSide,omitempty"`
 	QuoteAsset           *string `json:"quoteAsset,omitempty"`
+	Time                 *int64  `json:"time,omitempty"`
+	BidQuantity          *string `json:"bidQuantity,omitempty"`
+	AskQuantity          *string `json:"askQuantity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -183,38 +183,6 @@ func (o *OptionPositionInformationResponseInner) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
-// GetReducibleQty returns the ReducibleQty field value if set, zero value otherwise.
-func (o *OptionPositionInformationResponseInner) GetReducibleQty() string {
-	if o == nil || common.IsNil(o.ReducibleQty) {
-		var ret string
-		return ret
-	}
-	return *o.ReducibleQty
-}
-
-// GetReducibleQtyOk returns a tuple with the ReducibleQty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OptionPositionInformationResponseInner) GetReducibleQtyOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ReducibleQty) {
-		return nil, false
-	}
-	return o.ReducibleQty, true
-}
-
-// HasReducibleQty returns a boolean if a field has been set.
-func (o *OptionPositionInformationResponseInner) HasReducibleQty() bool {
-	if o != nil && !common.IsNil(o.ReducibleQty) {
-		return true
-	}
-
-	return false
-}
-
-// SetReducibleQty gets a reference to the given string and assigns it to the ReducibleQty field.
-func (o *OptionPositionInformationResponseInner) SetReducibleQty(v string) {
-	o.ReducibleQty = &v
-}
-
 // GetMarkValue returns the MarkValue field value if set, zero value otherwise.
 func (o *OptionPositionInformationResponseInner) GetMarkValue() string {
 	if o == nil || common.IsNil(o.MarkValue) {
@@ -245,38 +213,6 @@ func (o *OptionPositionInformationResponseInner) HasMarkValue() bool {
 // SetMarkValue gets a reference to the given string and assigns it to the MarkValue field.
 func (o *OptionPositionInformationResponseInner) SetMarkValue(v string) {
 	o.MarkValue = &v
-}
-
-// GetRor returns the Ror field value if set, zero value otherwise.
-func (o *OptionPositionInformationResponseInner) GetRor() string {
-	if o == nil || common.IsNil(o.Ror) {
-		var ret string
-		return ret
-	}
-	return *o.Ror
-}
-
-// GetRorOk returns a tuple with the Ror field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OptionPositionInformationResponseInner) GetRorOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Ror) {
-		return nil, false
-	}
-	return o.Ror, true
-}
-
-// HasRor returns a boolean if a field has been set.
-func (o *OptionPositionInformationResponseInner) HasRor() bool {
-	if o != nil && !common.IsNil(o.Ror) {
-		return true
-	}
-
-	return false
-}
-
-// SetRor gets a reference to the given string and assigns it to the Ror field.
-func (o *OptionPositionInformationResponseInner) SetRor(v string) {
-	o.Ror = &v
 }
 
 // GetUnrealizedPNL returns the UnrealizedPNL field value if set, zero value otherwise.
@@ -373,38 +309,6 @@ func (o *OptionPositionInformationResponseInner) HasStrikePrice() bool {
 // SetStrikePrice gets a reference to the given string and assigns it to the StrikePrice field.
 func (o *OptionPositionInformationResponseInner) SetStrikePrice(v string) {
 	o.StrikePrice = &v
-}
-
-// GetPositionCost returns the PositionCost field value if set, zero value otherwise.
-func (o *OptionPositionInformationResponseInner) GetPositionCost() string {
-	if o == nil || common.IsNil(o.PositionCost) {
-		var ret string
-		return ret
-	}
-	return *o.PositionCost
-}
-
-// GetPositionCostOk returns a tuple with the PositionCost field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OptionPositionInformationResponseInner) GetPositionCostOk() (*string, bool) {
-	if o == nil || common.IsNil(o.PositionCost) {
-		return nil, false
-	}
-	return o.PositionCost, true
-}
-
-// HasPositionCost returns a boolean if a field has been set.
-func (o *OptionPositionInformationResponseInner) HasPositionCost() bool {
-	if o != nil && !common.IsNil(o.PositionCost) {
-		return true
-	}
-
-	return false
-}
-
-// SetPositionCost gets a reference to the given string and assigns it to the PositionCost field.
-func (o *OptionPositionInformationResponseInner) SetPositionCost(v string) {
-	o.PositionCost = &v
 }
 
 // GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.
@@ -567,6 +471,102 @@ func (o *OptionPositionInformationResponseInner) SetQuoteAsset(v string) {
 	o.QuoteAsset = &v
 }
 
+// GetTime returns the Time field value if set, zero value otherwise.
+func (o *OptionPositionInformationResponseInner) GetTime() int64 {
+	if o == nil || common.IsNil(o.Time) {
+		var ret int64
+		return ret
+	}
+	return *o.Time
+}
+
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionPositionInformationResponseInner) GetTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Time) {
+		return nil, false
+	}
+	return o.Time, true
+}
+
+// HasTime returns a boolean if a field has been set.
+func (o *OptionPositionInformationResponseInner) HasTime() bool {
+	if o != nil && !common.IsNil(o.Time) {
+		return true
+	}
+
+	return false
+}
+
+// SetTime gets a reference to the given int64 and assigns it to the Time field.
+func (o *OptionPositionInformationResponseInner) SetTime(v int64) {
+	o.Time = &v
+}
+
+// GetBidQuantity returns the BidQuantity field value if set, zero value otherwise.
+func (o *OptionPositionInformationResponseInner) GetBidQuantity() string {
+	if o == nil || common.IsNil(o.BidQuantity) {
+		var ret string
+		return ret
+	}
+	return *o.BidQuantity
+}
+
+// GetBidQuantityOk returns a tuple with the BidQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionPositionInformationResponseInner) GetBidQuantityOk() (*string, bool) {
+	if o == nil || common.IsNil(o.BidQuantity) {
+		return nil, false
+	}
+	return o.BidQuantity, true
+}
+
+// HasBidQuantity returns a boolean if a field has been set.
+func (o *OptionPositionInformationResponseInner) HasBidQuantity() bool {
+	if o != nil && !common.IsNil(o.BidQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetBidQuantity gets a reference to the given string and assigns it to the BidQuantity field.
+func (o *OptionPositionInformationResponseInner) SetBidQuantity(v string) {
+	o.BidQuantity = &v
+}
+
+// GetAskQuantity returns the AskQuantity field value if set, zero value otherwise.
+func (o *OptionPositionInformationResponseInner) GetAskQuantity() string {
+	if o == nil || common.IsNil(o.AskQuantity) {
+		var ret string
+		return ret
+	}
+	return *o.AskQuantity
+}
+
+// GetAskQuantityOk returns a tuple with the AskQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionPositionInformationResponseInner) GetAskQuantityOk() (*string, bool) {
+	if o == nil || common.IsNil(o.AskQuantity) {
+		return nil, false
+	}
+	return o.AskQuantity, true
+}
+
+// HasAskQuantity returns a boolean if a field has been set.
+func (o *OptionPositionInformationResponseInner) HasAskQuantity() bool {
+	if o != nil && !common.IsNil(o.AskQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetAskQuantity gets a reference to the given string and assigns it to the AskQuantity field.
+func (o *OptionPositionInformationResponseInner) SetAskQuantity(v string) {
+	o.AskQuantity = &v
+}
+
 func (o OptionPositionInformationResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -589,14 +589,8 @@ func (o OptionPositionInformationResponseInner) ToMap() (map[string]interface{},
 	if !common.IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
-	if !common.IsNil(o.ReducibleQty) {
-		toSerialize["reducibleQty"] = o.ReducibleQty
-	}
 	if !common.IsNil(o.MarkValue) {
 		toSerialize["markValue"] = o.MarkValue
-	}
-	if !common.IsNil(o.Ror) {
-		toSerialize["ror"] = o.Ror
 	}
 	if !common.IsNil(o.UnrealizedPNL) {
 		toSerialize["unrealizedPNL"] = o.UnrealizedPNL
@@ -606,9 +600,6 @@ func (o OptionPositionInformationResponseInner) ToMap() (map[string]interface{},
 	}
 	if !common.IsNil(o.StrikePrice) {
 		toSerialize["strikePrice"] = o.StrikePrice
-	}
-	if !common.IsNil(o.PositionCost) {
-		toSerialize["positionCost"] = o.PositionCost
 	}
 	if !common.IsNil(o.ExpiryDate) {
 		toSerialize["expiryDate"] = o.ExpiryDate
@@ -624,6 +615,15 @@ func (o OptionPositionInformationResponseInner) ToMap() (map[string]interface{},
 	}
 	if !common.IsNil(o.QuoteAsset) {
 		toSerialize["quoteAsset"] = o.QuoteAsset
+	}
+	if !common.IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !common.IsNil(o.BidQuantity) {
+		toSerialize["bidQuantity"] = o.BidQuantity
+	}
+	if !common.IsNil(o.AskQuantity) {
+		toSerialize["askQuantity"] = o.AskQuantity
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -651,18 +651,18 @@ func (o *OptionPositionInformationResponseInner) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "quantity")
-		delete(additionalProperties, "reducibleQty")
 		delete(additionalProperties, "markValue")
-		delete(additionalProperties, "ror")
 		delete(additionalProperties, "unrealizedPNL")
 		delete(additionalProperties, "markPrice")
 		delete(additionalProperties, "strikePrice")
-		delete(additionalProperties, "positionCost")
 		delete(additionalProperties, "expiryDate")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "optionSide")
 		delete(additionalProperties, "quoteAsset")
+		delete(additionalProperties, "time")
+		delete(additionalProperties, "bidQuantity")
+		delete(additionalProperties, "askQuantity")
 		o.AdditionalProperties = additionalProperties
 	}
 

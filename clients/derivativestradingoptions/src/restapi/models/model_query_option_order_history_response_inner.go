@@ -22,18 +22,14 @@ type QueryOptionOrderHistoryResponseInner struct {
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
 	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
 	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	PostOnly             *bool   `json:"postOnly,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	Status               *string `json:"status,omitempty"`
-	Reason               *string `json:"reason,omitempty"`
 	AvgPrice             *string `json:"avgPrice,omitempty"`
-	Source               *string `json:"source,omitempty"`
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
 	PriceScale           *int64  `json:"priceScale,omitempty"`
 	QuantityScale        *int64  `json:"quantityScale,omitempty"`
@@ -222,38 +218,6 @@ func (o *QueryOptionOrderHistoryResponseInner) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *QueryOptionOrderHistoryResponseInner) GetFee() string {
-	if o == nil || common.IsNil(o.Fee) {
-		var ret string
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryOptionOrderHistoryResponseInner) GetFeeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *QueryOptionOrderHistoryResponseInner) HasFee() bool {
-	if o != nil && !common.IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given string and assigns it to the Fee field.
-func (o *QueryOptionOrderHistoryResponseInner) SetFee(v string) {
-	o.Fee = &v
-}
-
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *QueryOptionOrderHistoryResponseInner) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -382,38 +346,6 @@ func (o *QueryOptionOrderHistoryResponseInner) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
-// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *QueryOptionOrderHistoryResponseInner) GetPostOnly() bool {
-	if o == nil || common.IsNil(o.PostOnly) {
-		var ret bool
-		return ret
-	}
-	return *o.PostOnly
-}
-
-// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryOptionOrderHistoryResponseInner) GetPostOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PostOnly) {
-		return nil, false
-	}
-	return o.PostOnly, true
-}
-
-// HasPostOnly returns a boolean if a field has been set.
-func (o *QueryOptionOrderHistoryResponseInner) HasPostOnly() bool {
-	if o != nil && !common.IsNil(o.PostOnly) {
-		return true
-	}
-
-	return false
-}
-
-// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
-func (o *QueryOptionOrderHistoryResponseInner) SetPostOnly(v bool) {
-	o.PostOnly = &v
-}
-
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
 func (o *QueryOptionOrderHistoryResponseInner) GetCreateTime() int64 {
 	if o == nil || common.IsNil(o.CreateTime) {
@@ -510,38 +442,6 @@ func (o *QueryOptionOrderHistoryResponseInner) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetReason returns the Reason field value if set, zero value otherwise.
-func (o *QueryOptionOrderHistoryResponseInner) GetReason() string {
-	if o == nil || common.IsNil(o.Reason) {
-		var ret string
-		return ret
-	}
-	return *o.Reason
-}
-
-// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryOptionOrderHistoryResponseInner) GetReasonOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Reason) {
-		return nil, false
-	}
-	return o.Reason, true
-}
-
-// HasReason returns a boolean if a field has been set.
-func (o *QueryOptionOrderHistoryResponseInner) HasReason() bool {
-	if o != nil && !common.IsNil(o.Reason) {
-		return true
-	}
-
-	return false
-}
-
-// SetReason gets a reference to the given string and assigns it to the Reason field.
-func (o *QueryOptionOrderHistoryResponseInner) SetReason(v string) {
-	o.Reason = &v
-}
-
 // GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
 func (o *QueryOptionOrderHistoryResponseInner) GetAvgPrice() string {
 	if o == nil || common.IsNil(o.AvgPrice) {
@@ -572,38 +472,6 @@ func (o *QueryOptionOrderHistoryResponseInner) HasAvgPrice() bool {
 // SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
 func (o *QueryOptionOrderHistoryResponseInner) SetAvgPrice(v string) {
 	o.AvgPrice = &v
-}
-
-// GetSource returns the Source field value if set, zero value otherwise.
-func (o *QueryOptionOrderHistoryResponseInner) GetSource() string {
-	if o == nil || common.IsNil(o.Source) {
-		var ret string
-		return ret
-	}
-	return *o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryOptionOrderHistoryResponseInner) GetSourceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Source) {
-		return nil, false
-	}
-	return o.Source, true
-}
-
-// HasSource returns a boolean if a field has been set.
-func (o *QueryOptionOrderHistoryResponseInner) HasSource() bool {
-	if o != nil && !common.IsNil(o.Source) {
-		return true
-	}
-
-	return false
-}
-
-// SetSource gets a reference to the given string and assigns it to the Source field.
-func (o *QueryOptionOrderHistoryResponseInner) SetSource(v string) {
-	o.Source = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -823,9 +691,6 @@ func (o QueryOptionOrderHistoryResponseInner) ToMap() (map[string]interface{}, e
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
-	if !common.IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
-	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -838,9 +703,6 @@ func (o QueryOptionOrderHistoryResponseInner) ToMap() (map[string]interface{}, e
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
-	if !common.IsNil(o.PostOnly) {
-		toSerialize["postOnly"] = o.PostOnly
-	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
 	}
@@ -850,14 +712,8 @@ func (o QueryOptionOrderHistoryResponseInner) ToMap() (map[string]interface{}, e
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if !common.IsNil(o.Reason) {
-		toSerialize["reason"] = o.Reason
-	}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
-	}
-	if !common.IsNil(o.Source) {
-		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
@@ -904,18 +760,14 @@ func (o *QueryOptionOrderHistoryResponseInner) UnmarshalJSON(data []byte) (err e
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
-		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
-		delete(additionalProperties, "postOnly")
 		delete(additionalProperties, "createTime")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "reason")
 		delete(additionalProperties, "avgPrice")
-		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")

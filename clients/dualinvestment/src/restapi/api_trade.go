@@ -51,7 +51,7 @@ func (r ApiChangeAutoCompoundStatusRequest) Execute() (*common.RestApiResponse[m
 ChangeAutoCompoundStatus Change Auto-Compound status(USER_DATA)
 Post /sapi/v1/dci/product/auto_compound/edit-status
 
-https://developers.binance.com/docs/dual_investment/trade/Change-Auto-Compound-status
+https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Change-Auto-Compound-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -  Get positionId from `/sapi/v1/dci/product/positions`
@@ -88,7 +88,7 @@ func (a *TradeAPIService) ChangeAutoCompoundStatusExecute(r ApiChangeAutoCompoun
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeAutoCompoundStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ChangeAutoCompoundStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func (r ApiCheckDualInvestmentAccountsRequest) Execute() (*common.RestApiRespons
 CheckDualInvestmentAccounts Check Dual Investment accounts(USER_DATA)
 Get /sapi/v1/dci/product/accounts
 
-https://developers.binance.com/docs/dual_investment/trade/Check-Dual-Investment-accounts
+https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Check-Dual-Investment-accounts
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  The value cannot be greater than 60000
@@ -143,7 +143,7 @@ func (a *TradeAPIService) CheckDualInvestmentAccountsExecute(r ApiCheckDualInves
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckDualInvestmentAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CheckDualInvestmentAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -192,7 +192,7 @@ func (r ApiGetDualInvestmentPositionsRequest) Execute() (*common.RestApiResponse
 GetDualInvestmentPositions Get Dual Investment positions(USER_DATA)
 Get /sapi/v1/dci/product/positions
 
-https://developers.binance.com/docs/dual_investment/trade/Get-Dual-Investment-positions
+https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Get-Dual-Investment-positions
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param status -  `PENDING`:Products are purchasing, will give results later;`PURCHASE_SUCCESS`:purchase successfully;`SETTLED`: Products are finish settling;`PURCHASE_FAIL`:fail to purchase;`REFUNDING`:refund ongoing;`REFUND_SUCCESS`:refund to spot account successfully; `SETTLING`:Products are settling. If don't fill this field, will response all the position status.
@@ -231,7 +231,7 @@ func (a *TradeAPIService) GetDualInvestmentPositionsExecute(r ApiGetDualInvestme
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDualInvestmentPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetDualInvestmentPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -287,7 +287,7 @@ func (r ApiSubscribeDualInvestmentProductsRequest) Execute() (*common.RestApiRes
 SubscribeDualInvestmentProducts Subscribe Dual Investment products(USER_DATA)
 Post /sapi/v1/dci/product/subscribe
 
-https://developers.binance.com/docs/dual_investment/trade/Subscribe-Dual-Investment-products
+https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Subscribe-Dual-Investment-products
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param id -  get id from `/sapi/v1/dci/product/list`
@@ -335,7 +335,7 @@ func (a *TradeAPIService) SubscribeDualInvestmentProductsExecute(r ApiSubscribeD
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeDualInvestmentProductsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SubscribeDualInvestmentProductsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

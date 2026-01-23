@@ -31,7 +31,7 @@ func (r ApiCloseUserDataStreamRequest) Execute() (struct{}, error) {
 CloseUserDataStream Close User Data Stream (USER_STREAM)
 Delete /eapi/v1/listenKey
 
-https://developers.binance.com/docs/derivatives/option/user-data-streams/Close-User-Data-Stream
+https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Close-User-Data-Stream
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiCloseUserDataStreamRequest
@@ -51,7 +51,7 @@ func (a *UserDataStreamsAPIService) CloseUserDataStreamExecute(r ApiCloseUserDat
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -72,7 +72,7 @@ func (r ApiKeepaliveUserDataStreamRequest) Execute() (struct{}, error) {
 KeepaliveUserDataStream Keepalive User Data Stream (USER_STREAM)
 Put /eapi/v1/listenKey
 
-https://developers.binance.com/docs/derivatives/option/user-data-streams/Keepalive-User-Data-Stream
+https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Keepalive-User-Data-Stream
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiKeepaliveUserDataStreamRequest
@@ -92,7 +92,7 @@ func (a *UserDataStreamsAPIService) KeepaliveUserDataStreamExecute(r ApiKeepaliv
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -113,7 +113,7 @@ func (r ApiStartUserDataStreamRequest) Execute() (*common.RestApiResponse[models
 StartUserDataStream Start User Data Stream (USER_STREAM)
 Post /eapi/v1/listenKey
 
-https://developers.binance.com/docs/derivatives/option/user-data-streams/Start-User-Data-Stream
+https://developers.binance.com/docs/derivatives/options-trading/user-data-streams/Start-User-Data-Stream
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiStartUserDataStreamRequest
@@ -135,7 +135,7 @@ func (a *UserDataStreamsAPIService) StartUserDataStreamExecute(r ApiStartUserDat
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.StartUserDataStreamResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.StartUserDataStreamResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}

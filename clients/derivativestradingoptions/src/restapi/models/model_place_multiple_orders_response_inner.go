@@ -21,11 +21,21 @@ type PlaceMultipleOrdersResponseInner struct {
 	Symbol               *string `json:"symbol,omitempty"`
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
+	ExecutedQty          *string `json:"executedQty,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
+	TimeInForce          *string `json:"timeInForce,omitempty"`
 	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	PostOnly             *bool   `json:"postOnly,omitempty"`
+	CreateTime           *int64  `json:"createTime,omitempty"`
+	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AvgPrice             *string `json:"avgPrice,omitempty"`
+	Source               *string `json:"source,omitempty"`
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
+	PriceScale           *int64  `json:"priceScale,omitempty"`
+	QuantityScale        *int64  `json:"quantityScale,omitempty"`
+	OptionSide           *string `json:"optionSide,omitempty"`
+	QuoteAsset           *string `json:"quoteAsset,omitempty"`
 	Mmp                  *bool   `json:"mmp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -177,6 +187,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
+// GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetExecutedQty() string {
+	if o == nil || common.IsNil(o.ExecutedQty) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutedQty
+}
+
+// GetExecutedQtyOk returns a tuple with the ExecutedQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetExecutedQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ExecutedQty) {
+		return nil, false
+	}
+	return o.ExecutedQty, true
+}
+
+// HasExecutedQty returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasExecutedQty() bool {
+	if o != nil && !common.IsNil(o.ExecutedQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
+func (o *PlaceMultipleOrdersResponseInner) SetExecutedQty(v string) {
+	o.ExecutedQty = &v
+}
+
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -241,6 +283,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetType(v string) {
 	o.Type = &v
 }
 
+// GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetTimeInForce() string {
+	if o == nil || common.IsNil(o.TimeInForce) {
+		var ret string
+		return ret
+	}
+	return *o.TimeInForce
+}
+
+// GetTimeInForceOk returns a tuple with the TimeInForce field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetTimeInForceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.TimeInForce) {
+		return nil, false
+	}
+	return o.TimeInForce, true
+}
+
+// HasTimeInForce returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasTimeInForce() bool {
+	if o != nil && !common.IsNil(o.TimeInForce) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeInForce gets a reference to the given string and assigns it to the TimeInForce field.
+func (o *PlaceMultipleOrdersResponseInner) SetTimeInForce(v string) {
+	o.TimeInForce = &v
+}
+
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetReduceOnly() bool {
 	if o == nil || common.IsNil(o.ReduceOnly) {
@@ -273,36 +347,164 @@ func (o *PlaceMultipleOrdersResponseInner) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
-// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersResponseInner) GetPostOnly() bool {
-	if o == nil || common.IsNil(o.PostOnly) {
-		var ret bool
+// GetCreateTime returns the CreateTime field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetCreateTime() int64 {
+	if o == nil || common.IsNil(o.CreateTime) {
+		var ret int64
 		return ret
 	}
-	return *o.PostOnly
+	return *o.CreateTime
 }
 
-// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
+// GetCreateTimeOk returns a tuple with the CreateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersResponseInner) GetPostOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PostOnly) {
+func (o *PlaceMultipleOrdersResponseInner) GetCreateTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.CreateTime) {
 		return nil, false
 	}
-	return o.PostOnly, true
+	return o.CreateTime, true
 }
 
-// HasPostOnly returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersResponseInner) HasPostOnly() bool {
-	if o != nil && !common.IsNil(o.PostOnly) {
+// HasCreateTime returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasCreateTime() bool {
+	if o != nil && !common.IsNil(o.CreateTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
-func (o *PlaceMultipleOrdersResponseInner) SetPostOnly(v bool) {
-	o.PostOnly = &v
+// SetCreateTime gets a reference to the given int64 and assigns it to the CreateTime field.
+func (o *PlaceMultipleOrdersResponseInner) SetCreateTime(v int64) {
+	o.CreateTime = &v
+}
+
+// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetUpdateTime() int64 {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		var ret int64
+		return ret
+	}
+	return *o.UpdateTime
+}
+
+// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetUpdateTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		return nil, false
+	}
+	return o.UpdateTime, true
+}
+
+// HasUpdateTime returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasUpdateTime() bool {
+	if o != nil && !common.IsNil(o.UpdateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
+func (o *PlaceMultipleOrdersResponseInner) SetUpdateTime(v int64) {
+	o.UpdateTime = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetStatus() string {
+	if o == nil || common.IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetStatusOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasStatus() bool {
+	if o != nil && !common.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *PlaceMultipleOrdersResponseInner) SetStatus(v string) {
+	o.Status = &v
+}
+
+// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetAvgPrice() string {
+	if o == nil || common.IsNil(o.AvgPrice) {
+		var ret string
+		return ret
+	}
+	return *o.AvgPrice
+}
+
+// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetAvgPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.AvgPrice) {
+		return nil, false
+	}
+	return o.AvgPrice, true
+}
+
+// HasAvgPrice returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasAvgPrice() bool {
+	if o != nil && !common.IsNil(o.AvgPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
+func (o *PlaceMultipleOrdersResponseInner) SetAvgPrice(v string) {
+	o.AvgPrice = &v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetSource() string {
+	if o == nil || common.IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetSourceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasSource() bool {
+	if o != nil && !common.IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *PlaceMultipleOrdersResponseInner) SetSource(v string) {
+	o.Source = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -335,6 +537,134 @@ func (o *PlaceMultipleOrdersResponseInner) HasClientOrderId() bool {
 // SetClientOrderId gets a reference to the given string and assigns it to the ClientOrderId field.
 func (o *PlaceMultipleOrdersResponseInner) SetClientOrderId(v string) {
 	o.ClientOrderId = &v
+}
+
+// GetPriceScale returns the PriceScale field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetPriceScale() int64 {
+	if o == nil || common.IsNil(o.PriceScale) {
+		var ret int64
+		return ret
+	}
+	return *o.PriceScale
+}
+
+// GetPriceScaleOk returns a tuple with the PriceScale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetPriceScaleOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PriceScale) {
+		return nil, false
+	}
+	return o.PriceScale, true
+}
+
+// HasPriceScale returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasPriceScale() bool {
+	if o != nil && !common.IsNil(o.PriceScale) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceScale gets a reference to the given int64 and assigns it to the PriceScale field.
+func (o *PlaceMultipleOrdersResponseInner) SetPriceScale(v int64) {
+	o.PriceScale = &v
+}
+
+// GetQuantityScale returns the QuantityScale field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetQuantityScale() int64 {
+	if o == nil || common.IsNil(o.QuantityScale) {
+		var ret int64
+		return ret
+	}
+	return *o.QuantityScale
+}
+
+// GetQuantityScaleOk returns a tuple with the QuantityScale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetQuantityScaleOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.QuantityScale) {
+		return nil, false
+	}
+	return o.QuantityScale, true
+}
+
+// HasQuantityScale returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasQuantityScale() bool {
+	if o != nil && !common.IsNil(o.QuantityScale) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuantityScale gets a reference to the given int64 and assigns it to the QuantityScale field.
+func (o *PlaceMultipleOrdersResponseInner) SetQuantityScale(v int64) {
+	o.QuantityScale = &v
+}
+
+// GetOptionSide returns the OptionSide field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetOptionSide() string {
+	if o == nil || common.IsNil(o.OptionSide) {
+		var ret string
+		return ret
+	}
+	return *o.OptionSide
+}
+
+// GetOptionSideOk returns a tuple with the OptionSide field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetOptionSideOk() (*string, bool) {
+	if o == nil || common.IsNil(o.OptionSide) {
+		return nil, false
+	}
+	return o.OptionSide, true
+}
+
+// HasOptionSide returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasOptionSide() bool {
+	if o != nil && !common.IsNil(o.OptionSide) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptionSide gets a reference to the given string and assigns it to the OptionSide field.
+func (o *PlaceMultipleOrdersResponseInner) SetOptionSide(v string) {
+	o.OptionSide = &v
+}
+
+// GetQuoteAsset returns the QuoteAsset field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetQuoteAsset() string {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		var ret string
+		return ret
+	}
+	return *o.QuoteAsset
+}
+
+// GetQuoteAssetOk returns a tuple with the QuoteAsset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetQuoteAssetOk() (*string, bool) {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		return nil, false
+	}
+	return o.QuoteAsset, true
+}
+
+// HasQuoteAsset returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasQuoteAsset() bool {
+	if o != nil && !common.IsNil(o.QuoteAsset) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuoteAsset gets a reference to the given string and assigns it to the QuoteAsset field.
+func (o *PlaceMultipleOrdersResponseInner) SetQuoteAsset(v string) {
+	o.QuoteAsset = &v
 }
 
 // GetMmp returns the Mmp field value if set, zero value otherwise.
@@ -391,20 +721,50 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+	if !common.IsNil(o.ExecutedQty) {
+		toSerialize["executedQty"] = o.ExecutedQty
+	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+	if !common.IsNil(o.TimeInForce) {
+		toSerialize["timeInForce"] = o.TimeInForce
+	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
-	if !common.IsNil(o.PostOnly) {
-		toSerialize["postOnly"] = o.PostOnly
+	if !common.IsNil(o.CreateTime) {
+		toSerialize["createTime"] = o.CreateTime
+	}
+	if !common.IsNil(o.UpdateTime) {
+		toSerialize["updateTime"] = o.UpdateTime
+	}
+	if !common.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !common.IsNil(o.AvgPrice) {
+		toSerialize["avgPrice"] = o.AvgPrice
+	}
+	if !common.IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
+	}
+	if !common.IsNil(o.PriceScale) {
+		toSerialize["priceScale"] = o.PriceScale
+	}
+	if !common.IsNil(o.QuantityScale) {
+		toSerialize["quantityScale"] = o.QuantityScale
+	}
+	if !common.IsNil(o.OptionSide) {
+		toSerialize["optionSide"] = o.OptionSide
+	}
+	if !common.IsNil(o.QuoteAsset) {
+		toSerialize["quoteAsset"] = o.QuoteAsset
 	}
 	if !common.IsNil(o.Mmp) {
 		toSerialize["mmp"] = o.Mmp
@@ -435,11 +795,21 @@ func (o *PlaceMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
-		delete(additionalProperties, "postOnly")
+		delete(additionalProperties, "createTime")
+		delete(additionalProperties, "updateTime")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "avgPrice")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
+		delete(additionalProperties, "priceScale")
+		delete(additionalProperties, "quantityScale")
+		delete(additionalProperties, "optionSide")
+		delete(additionalProperties, "quoteAsset")
 		delete(additionalProperties, "mmp")
 		o.AdditionalProperties = additionalProperties
 	}

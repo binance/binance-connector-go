@@ -65,7 +65,7 @@ func (a *BfusdAPIService) GetBfusdAccountExecute(r ApiGetBfusdAccountRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func (a *BfusdAPIService) GetBfusdQuotaDetailsExecute(r ApiGetBfusdQuotaDetailsR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdQuotaDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdQuotaDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -217,7 +217,7 @@ func (a *BfusdAPIService) GetBfusdRateHistoryExecute(r ApiGetBfusdRateHistoryReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -314,7 +314,7 @@ func (a *BfusdAPIService) GetBfusdRedemptionHistoryExecute(r ApiGetBfusdRedempti
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdRedemptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdRedemptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -411,7 +411,7 @@ func (a *BfusdAPIService) GetBfusdRewardsHistoryExecute(r ApiGetBfusdRewardsHist
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func (a *BfusdAPIService) GetBfusdSubscriptionHistoryExecute(r ApiGetBfusdSubscr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBfusdSubscriptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBfusdSubscriptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -599,7 +599,7 @@ func (a *BfusdAPIService) RedeemBfusdExecute(r ApiRedeemBfusdRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemBfusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.RedeemBfusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -679,7 +679,7 @@ func (a *BfusdAPIService) SubscribeBfusdExecute(r ApiSubscribeBfusdRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeBfusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SubscribeBfusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

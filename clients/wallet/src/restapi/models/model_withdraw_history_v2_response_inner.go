@@ -25,7 +25,6 @@ type WithdrawHistoryV2ResponseInner struct {
 	WithdrawalStatus     *int64  `json:"withdrawalStatus,omitempty"`
 	TravelRuleStatus     *int64  `json:"travelRuleStatus,omitempty"`
 	Address              *string `json:"address,omitempty"`
-	AddressTag           *string `json:"addressTag,omitempty"`
 	TxId                 *string `json:"txId,omitempty"`
 	ApplyTime            *string `json:"applyTime,omitempty"`
 	Network              *string `json:"network,omitempty"`
@@ -313,38 +312,6 @@ func (o *WithdrawHistoryV2ResponseInner) HasAddress() bool {
 // SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *WithdrawHistoryV2ResponseInner) SetAddress(v string) {
 	o.Address = &v
-}
-
-// GetAddressTag returns the AddressTag field value if set, zero value otherwise.
-func (o *WithdrawHistoryV2ResponseInner) GetAddressTag() string {
-	if o == nil || common.IsNil(o.AddressTag) {
-		var ret string
-		return ret
-	}
-	return *o.AddressTag
-}
-
-// GetAddressTagOk returns a tuple with the AddressTag field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WithdrawHistoryV2ResponseInner) GetAddressTagOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AddressTag) {
-		return nil, false
-	}
-	return o.AddressTag, true
-}
-
-// HasAddressTag returns a boolean if a field has been set.
-func (o *WithdrawHistoryV2ResponseInner) HasAddressTag() bool {
-	if o != nil && !common.IsNil(o.AddressTag) {
-		return true
-	}
-
-	return false
-}
-
-// SetAddressTag gets a reference to the given string and assigns it to the AddressTag field.
-func (o *WithdrawHistoryV2ResponseInner) SetAddressTag(v string) {
-	o.AddressTag = &v
 }
 
 // GetTxId returns the TxId field value if set, zero value otherwise.
@@ -733,9 +700,6 @@ func (o WithdrawHistoryV2ResponseInner) ToMap() (map[string]interface{}, error) 
 	if !common.IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if !common.IsNil(o.AddressTag) {
-		toSerialize["addressTag"] = o.AddressTag
-	}
 	if !common.IsNil(o.TxId) {
 		toSerialize["txId"] = o.TxId
 	}
@@ -799,7 +763,6 @@ func (o *WithdrawHistoryV2ResponseInner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "withdrawalStatus")
 		delete(additionalProperties, "travelRuleStatus")
 		delete(additionalProperties, "address")
-		delete(additionalProperties, "addressTag")
 		delete(additionalProperties, "txId")
 		delete(additionalProperties, "applyTime")
 		delete(additionalProperties, "network")

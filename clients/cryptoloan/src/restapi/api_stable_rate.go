@@ -99,7 +99,7 @@ func (a *StableRateAPIService) CheckCollateralRepayRateStableRateExecute(r ApiCh
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckCollateralRepayRateStableRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CheckCollateralRepayRateStableRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -205,7 +205,7 @@ func (a *StableRateAPIService) GetCryptoLoansIncomeHistoryExecute(r ApiGetCrypto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCryptoLoansIncomeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetCryptoLoansIncomeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func (a *StableRateAPIService) GetLoanBorrowHistoryExecute(r ApiGetLoanBorrowHis
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLoanBorrowHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetLoanBorrowHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -459,7 +459,7 @@ func (a *StableRateAPIService) GetLoanLtvAdjustmentHistoryExecute(r ApiGetLoanLt
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLoanLtvAdjustmentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetLoanLtvAdjustmentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -586,7 +586,7 @@ func (a *StableRateAPIService) GetLoanRepaymentHistoryExecute(r ApiGetLoanRepaym
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLoanRepaymentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetLoanRepaymentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

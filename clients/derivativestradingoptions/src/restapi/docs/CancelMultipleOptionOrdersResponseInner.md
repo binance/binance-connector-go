@@ -9,16 +9,21 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **int64** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
+**ReduceOnly** | Pointer to **bool** |  | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
+**UpdateTime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **AvgPrice** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
+**Source** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**PriceScale** | Pointer to **int64** |  | [optional] 
+**QuantityScale** | Pointer to **int64** |  | [optional] 
+**OptionSide** | Pointer to **string** |  | [optional] 
+**QuoteAsset** | Pointer to **string** |  | [optional] 
+**Mmp** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -164,31 +169,6 @@ SetExecutedQty sets ExecutedQty field to given value.
 
 HasExecutedQty returns a boolean if a field has been set.
 
-### GetFee
-
-`func (o *CancelMultipleOptionOrdersResponseInner) GetFee() int64`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *CancelMultipleOptionOrdersResponseInner) GetFeeOk() (*int64, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *CancelMultipleOptionOrdersResponseInner) SetFee(v int64)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *CancelMultipleOptionOrdersResponseInner) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
-
 ### GetSide
 
 `func (o *CancelMultipleOptionOrdersResponseInner) GetSide() string`
@@ -264,6 +244,31 @@ SetTimeInForce sets TimeInForce field to given value.
 
 HasTimeInForce returns a boolean if a field has been set.
 
+### GetReduceOnly
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnly() bool`
+
+GetReduceOnly returns the ReduceOnly field if non-nil, zero value otherwise.
+
+### GetReduceOnlyOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnlyOk() (*bool, bool)`
+
+GetReduceOnlyOk returns a tuple with the ReduceOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReduceOnly
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetReduceOnly(v bool)`
+
+SetReduceOnly sets ReduceOnly field to given value.
+
+### HasReduceOnly
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasReduceOnly() bool`
+
+HasReduceOnly returns a boolean if a field has been set.
+
 ### GetCreateTime
 
 `func (o *CancelMultipleOptionOrdersResponseInner) GetCreateTime() int64`
@@ -288,6 +293,31 @@ SetCreateTime sets CreateTime field to given value.
 `func (o *CancelMultipleOptionOrdersResponseInner) HasCreateTime() bool`
 
 HasCreateTime returns a boolean if a field has been set.
+
+### GetUpdateTime
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTime() int64`
+
+GetUpdateTime returns the UpdateTime field if non-nil, zero value otherwise.
+
+### GetUpdateTimeOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTimeOk() (*int64, bool)`
+
+GetUpdateTimeOk returns a tuple with the UpdateTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateTime
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetUpdateTime(v int64)`
+
+SetUpdateTime sets UpdateTime field to given value.
+
+### HasUpdateTime
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasUpdateTime() bool`
+
+HasUpdateTime returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -339,30 +369,30 @@ SetAvgPrice sets AvgPrice field to given value.
 
 HasAvgPrice returns a boolean if a field has been set.
 
-### GetReduceOnly
+### GetSource
 
-`func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnly() bool`
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string`
 
-GetReduceOnly returns the ReduceOnly field if non-nil, zero value otherwise.
+GetSource returns the Source field if non-nil, zero value otherwise.
 
-### GetReduceOnlyOk
+### GetSourceOk
 
-`func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnlyOk() (*bool, bool)`
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool)`
 
-GetReduceOnlyOk returns a tuple with the ReduceOnly field if it's non-nil, zero value otherwise
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReduceOnly
+### SetSource
 
-`func (o *CancelMultipleOptionOrdersResponseInner) SetReduceOnly(v bool)`
+`func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string)`
 
-SetReduceOnly sets ReduceOnly field to given value.
+SetSource sets Source field to given value.
 
-### HasReduceOnly
+### HasSource
 
-`func (o *CancelMultipleOptionOrdersResponseInner) HasReduceOnly() bool`
+`func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool`
 
-HasReduceOnly returns a boolean if a field has been set.
+HasSource returns a boolean if a field has been set.
 
 ### GetClientOrderId
 
@@ -389,30 +419,130 @@ SetClientOrderId sets ClientOrderId field to given value.
 
 HasClientOrderId returns a boolean if a field has been set.
 
-### GetUpdateTime
+### GetPriceScale
 
-`func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTime() int64`
+`func (o *CancelMultipleOptionOrdersResponseInner) GetPriceScale() int64`
 
-GetUpdateTime returns the UpdateTime field if non-nil, zero value otherwise.
+GetPriceScale returns the PriceScale field if non-nil, zero value otherwise.
 
-### GetUpdateTimeOk
+### GetPriceScaleOk
 
-`func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTimeOk() (*int64, bool)`
+`func (o *CancelMultipleOptionOrdersResponseInner) GetPriceScaleOk() (*int64, bool)`
 
-GetUpdateTimeOk returns a tuple with the UpdateTime field if it's non-nil, zero value otherwise
+GetPriceScaleOk returns a tuple with the PriceScale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdateTime
+### SetPriceScale
 
-`func (o *CancelMultipleOptionOrdersResponseInner) SetUpdateTime(v int64)`
+`func (o *CancelMultipleOptionOrdersResponseInner) SetPriceScale(v int64)`
 
-SetUpdateTime sets UpdateTime field to given value.
+SetPriceScale sets PriceScale field to given value.
 
-### HasUpdateTime
+### HasPriceScale
 
-`func (o *CancelMultipleOptionOrdersResponseInner) HasUpdateTime() bool`
+`func (o *CancelMultipleOptionOrdersResponseInner) HasPriceScale() bool`
 
-HasUpdateTime returns a boolean if a field has been set.
+HasPriceScale returns a boolean if a field has been set.
+
+### GetQuantityScale
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetQuantityScale() int64`
+
+GetQuantityScale returns the QuantityScale field if non-nil, zero value otherwise.
+
+### GetQuantityScaleOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetQuantityScaleOk() (*int64, bool)`
+
+GetQuantityScaleOk returns a tuple with the QuantityScale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuantityScale
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetQuantityScale(v int64)`
+
+SetQuantityScale sets QuantityScale field to given value.
+
+### HasQuantityScale
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasQuantityScale() bool`
+
+HasQuantityScale returns a boolean if a field has been set.
+
+### GetOptionSide
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetOptionSide() string`
+
+GetOptionSide returns the OptionSide field if non-nil, zero value otherwise.
+
+### GetOptionSideOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetOptionSideOk() (*string, bool)`
+
+GetOptionSideOk returns a tuple with the OptionSide field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptionSide
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetOptionSide(v string)`
+
+SetOptionSide sets OptionSide field to given value.
+
+### HasOptionSide
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasOptionSide() bool`
+
+HasOptionSide returns a boolean if a field has been set.
+
+### GetQuoteAsset
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetQuoteAsset() string`
+
+GetQuoteAsset returns the QuoteAsset field if non-nil, zero value otherwise.
+
+### GetQuoteAssetOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetQuoteAssetOk() (*string, bool)`
+
+GetQuoteAssetOk returns a tuple with the QuoteAsset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuoteAsset
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetQuoteAsset(v string)`
+
+SetQuoteAsset sets QuoteAsset field to given value.
+
+### HasQuoteAsset
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasQuoteAsset() bool`
+
+HasQuoteAsset returns a boolean if a field has been set.
+
+### GetMmp
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetMmp() bool`
+
+GetMmp returns the Mmp field if non-nil, zero value otherwise.
+
+### GetMmpOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetMmpOk() (*bool, bool)`
+
+GetMmpOk returns a tuple with the Mmp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMmp
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetMmp(v bool)`
+
+SetMmp sets Mmp field to given value.
+
+### HasMmp
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasMmp() bool`
+
+HasMmp returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

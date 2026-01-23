@@ -2732,7 +2732,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 
 	t.Run("Test TradeAPIService QueryCurrentCmOpenOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgPrice":"0.0","clientOrderId":"abc","cumBase":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSD_200925","pair":"BTCUSD","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075}`
+		mockedJSON := `[{"avgPrice":"0.0","clientOrderId":"abc","cumBase":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSD_200925","pair":"BTCUSD","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/cm/openOrder", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))

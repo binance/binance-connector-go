@@ -21,7 +21,6 @@ type UserExerciseRecordResponseInner struct {
 	Currency             *string `json:"currency,omitempty"`
 	Symbol               *string `json:"symbol,omitempty"`
 	ExercisePrice        *string `json:"exercisePrice,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
 	Amount               *string `json:"amount,omitempty"`
 	Fee                  *string `json:"fee,omitempty"`
@@ -179,38 +178,6 @@ func (o *UserExerciseRecordResponseInner) HasExercisePrice() bool {
 // SetExercisePrice gets a reference to the given string and assigns it to the ExercisePrice field.
 func (o *UserExerciseRecordResponseInner) SetExercisePrice(v string) {
 	o.ExercisePrice = &v
-}
-
-// GetMarkPrice returns the MarkPrice field value if set, zero value otherwise.
-func (o *UserExerciseRecordResponseInner) GetMarkPrice() string {
-	if o == nil || common.IsNil(o.MarkPrice) {
-		var ret string
-		return ret
-	}
-	return *o.MarkPrice
-}
-
-// GetMarkPriceOk returns a tuple with the MarkPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserExerciseRecordResponseInner) GetMarkPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.MarkPrice) {
-		return nil, false
-	}
-	return o.MarkPrice, true
-}
-
-// HasMarkPrice returns a boolean if a field has been set.
-func (o *UserExerciseRecordResponseInner) HasMarkPrice() bool {
-	if o != nil && !common.IsNil(o.MarkPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetMarkPrice gets a reference to the given string and assigns it to the MarkPrice field.
-func (o *UserExerciseRecordResponseInner) SetMarkPrice(v string) {
-	o.MarkPrice = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -523,9 +490,6 @@ func (o UserExerciseRecordResponseInner) ToMap() (map[string]interface{}, error)
 	if !common.IsNil(o.ExercisePrice) {
 		toSerialize["exercisePrice"] = o.ExercisePrice
 	}
-	if !common.IsNil(o.MarkPrice) {
-		toSerialize["markPrice"] = o.MarkPrice
-	}
 	if !common.IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
@@ -579,7 +543,6 @@ func (o *UserExerciseRecordResponseInner) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "currency")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "exercisePrice")
-		delete(additionalProperties, "markPrice")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "fee")

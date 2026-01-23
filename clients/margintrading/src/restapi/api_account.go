@@ -67,7 +67,7 @@ func (a *AccountAPIService) AdjustCrossMarginMaxLeverageExecute(r ApiAdjustCross
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "maxLeverage", r.maxLeverage, "form", "")
 
-	resp, err := SendRequest[models.AdjustCrossMarginMaxLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AdjustCrossMarginMaxLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -134,7 +134,7 @@ func (a *AccountAPIService) DisableIsolatedMarginAccountExecute(r ApiDisableIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DisableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DisableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -201,7 +201,7 @@ func (a *AccountAPIService) EnableIsolatedMarginAccountExecute(r ApiEnableIsolat
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.EnableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.EnableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -256,7 +256,7 @@ func (a *AccountAPIService) GetBnbBurnStatusExecute(r ApiGetBnbBurnStatusRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBnbBurnStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetBnbBurnStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -311,7 +311,7 @@ func (a *AccountAPIService) GetSummaryOfMarginAccountExecute(r ApiGetSummaryOfMa
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSummaryOfMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetSummaryOfMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -349,7 +349,7 @@ func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Type(type_ string) ApiQue
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) StartTime(startTime int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.startTime = &startTime
 	return r
@@ -360,13 +360,13 @@ func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) EndTime(endTime int64) Ap
 	return r
 }
 
-// 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据
+// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) FromId(fromId int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default Value: 500; Max Value: 1000
+// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Limit(limit int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.limit = &limit
 	return r
@@ -392,10 +392,10 @@ https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-
 @param asset -
 @param symbol -  isolated margin pair
 @param type_ -  Transfer Type: ROLL_IN, ROLL_OUT
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
-@param fromId -  如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-@param limit -  Default Value: 500; Max Value: 1000
+@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 @param recvWindow -  No more than 60000
 @return ApiQueryCrossIsolatedMarginCapitalFlowRequest
 */
@@ -441,7 +441,7 @@ func (a *AccountAPIService) QueryCrossIsolatedMarginCapitalFlowExecute(r ApiQuer
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossIsolatedMarginCapitalFlowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryCrossIsolatedMarginCapitalFlowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -496,7 +496,7 @@ func (a *AccountAPIService) QueryCrossMarginAccountDetailsExecute(r ApiQueryCros
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossMarginAccountDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryCrossMarginAccountDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -572,7 +572,7 @@ func (a *AccountAPIService) QueryCrossMarginFeeDataExecute(r ApiQueryCrossMargin
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryCrossMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -627,7 +627,7 @@ func (a *AccountAPIService) QueryEnabledIsolatedMarginAccountLimitExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryEnabledIsolatedMarginAccountLimitResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryEnabledIsolatedMarginAccountLimitResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -693,7 +693,7 @@ func (a *AccountAPIService) QueryIsolatedMarginAccountInfoExecute(r ApiQueryIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryIsolatedMarginAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryIsolatedMarginAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -770,7 +770,7 @@ func (a *AccountAPIService) QueryIsolatedMarginFeeDataExecute(r ApiQueryIsolated
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryIsolatedMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryIsolatedMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

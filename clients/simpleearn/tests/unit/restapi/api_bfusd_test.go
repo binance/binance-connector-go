@@ -80,7 +80,7 @@ func Test_binancesimpleearnrestapi_BfusdAPIService(t *testing.T) {
 
 	t.Run("Test BfusdAPIService GetBfusdQuotaDetails Success", func(t *testing.T) {
 
-		mockedJSON := `{"fastRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.001","freeQuota":"100"},"standardRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.0005","redeemPeriod":3},"subscribeEnable":true,"redeemEnable":true}`
+		mockedJSON := `{"fastRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.001","freeQuota":"100"},"standardRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.0005","redeemPeriod":3}}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/bfusd/quota", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

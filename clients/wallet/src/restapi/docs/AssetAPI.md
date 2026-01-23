@@ -25,7 +25,7 @@ Method        | HTTP request  | Description
 
 ## AssetDetail
 
-> AssetDetailResponse AssetDetail(ctx).RecvWindow(recvWindow).Execute()
+> AssetDetailResponse AssetDetail(ctx).Asset(asset).RecvWindow(recvWindow).Execute()
 
 Asset Detail (USER_DATA)
 
@@ -46,6 +46,7 @@ import (
 )
 
 func main() {
+	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -55,7 +56,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetAPI.AssetDetail(context.Background()).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.AssetDetail(context.Background()).Asset(asset).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetAPI.AssetDetail``: %v\n", err)
 		return
@@ -74,6 +75,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **asset** | **string** | If asset is blank, then query all positive assets user have. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -387,7 +389,7 @@ No authorization required
 
 ## Dustlog
 
-> DustlogResponse Dustlog(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+> DustlogResponse Dustlog(ctx).AccountType(accountType).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
 DustLog(USER_DATA)
 
@@ -408,6 +410,7 @@ import (
 )
 
 func main() {
+	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -419,7 +422,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetAPI.Dustlog(context.Background()).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.Dustlog(context.Background()).AccountType(accountType).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetAPI.Dustlog``: %v\n", err)
 		return
@@ -438,6 +441,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **recvWindow** | **int64** |  | 

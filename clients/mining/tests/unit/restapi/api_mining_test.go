@@ -435,7 +435,6 @@ func Test_binanceminingrestapi_MiningAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/mining/hash-transfer/profit/details", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("configId"))
-			require.Equal(t, "userName_example", r.URL.Query().Get("userName"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -452,7 +451,7 @@ func Test_binanceminingrestapi_MiningAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(int64(1)).UserName("userName_example").Execute()
+		resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(int64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -505,7 +504,7 @@ func Test_binanceminingrestapi_MiningAPIService(t *testing.T) {
 
 	t.Run("Test MiningAPIService HashrateResaleList Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":0,"msg":"","data":{"configDetails":[{"configId":168,"poolUsername":"123","toPoolUsername":"user1","algoName":"Ethash","hashRate":5000000,"startDay":20201210,"endDay":20210405,"status":1},{"configId":166,"poolUsername":"pop","toPoolUsername":"111111","algoName":"Ethash","hashRate":3320000,"startDay":20201226,"endDay":20201227,"status":0}],"totalNum":21,"pageSize":200}}`
+		mockedJSON := `{"code":0,"msg":"","data":{"configDetails":[{"configId":168,"poolUsername":"123","toPoolUsername":"user1","algoName":"Ethash","hashRate":5000000,"startDay":20201210,"endDay":20210405,"status":1,"type":0},{"configId":166,"poolUsername":"pop","toPoolUsername":"111111","algoName":"Ethash","hashRate":3320000,"startDay":20201226,"endDay":20201227,"status":0,"type":0}],"totalNum":21,"pageSize":200}}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/mining/hash-transfer/config/details/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

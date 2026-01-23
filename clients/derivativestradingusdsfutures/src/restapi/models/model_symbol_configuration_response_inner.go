@@ -19,7 +19,7 @@ var _ common.MappedNullable = &SymbolConfigurationResponseInner{}
 type SymbolConfigurationResponseInner struct {
 	Symbol               *string `json:"symbol,omitempty"`
 	MarginType           *string `json:"marginType,omitempty"`
-	IsAutoAddMargin      *string `json:"isAutoAddMargin,omitempty"`
+	IsAutoAddMargin      *bool   `json:"isAutoAddMargin,omitempty"`
 	Leverage             *int64  `json:"leverage,omitempty"`
 	MaxNotionalValue     *string `json:"maxNotionalValue,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -109,9 +109,9 @@ func (o *SymbolConfigurationResponseInner) SetMarginType(v string) {
 }
 
 // GetIsAutoAddMargin returns the IsAutoAddMargin field value if set, zero value otherwise.
-func (o *SymbolConfigurationResponseInner) GetIsAutoAddMargin() string {
+func (o *SymbolConfigurationResponseInner) GetIsAutoAddMargin() bool {
 	if o == nil || common.IsNil(o.IsAutoAddMargin) {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.IsAutoAddMargin
@@ -119,7 +119,7 @@ func (o *SymbolConfigurationResponseInner) GetIsAutoAddMargin() string {
 
 // GetIsAutoAddMarginOk returns a tuple with the IsAutoAddMargin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SymbolConfigurationResponseInner) GetIsAutoAddMarginOk() (*string, bool) {
+func (o *SymbolConfigurationResponseInner) GetIsAutoAddMarginOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.IsAutoAddMargin) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *SymbolConfigurationResponseInner) HasIsAutoAddMargin() bool {
 	return false
 }
 
-// SetIsAutoAddMargin gets a reference to the given string and assigns it to the IsAutoAddMargin field.
-func (o *SymbolConfigurationResponseInner) SetIsAutoAddMargin(v string) {
+// SetIsAutoAddMargin gets a reference to the given bool and assigns it to the IsAutoAddMargin field.
+func (o *SymbolConfigurationResponseInner) SetIsAutoAddMargin(v bool) {
 	o.IsAutoAddMargin = &v
 }
 

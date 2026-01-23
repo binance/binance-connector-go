@@ -9,6 +9,7 @@ Method        | HTTP request  | Description
 [**FundAutoCollection**](AccountAPI.md#FundAutoCollection) | **Post** /sapi/v1/portfolio/auto-collection | Fund Auto-collection(USER_DATA)
 [**FundCollectionByAsset**](AccountAPI.md#FundCollectionByAsset) | **Post** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset(USER_DATA)
 [**GetAutoRepayFuturesStatus**](AccountAPI.md#GetAutoRepayFuturesStatus) | **Get** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA)
+[**GetDeltaModeStatus**](AccountAPI.md#GetDeltaModeStatus) | **Get** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status(USER_DATA)
 [**GetPortfolioMarginProAccountBalance**](AccountAPI.md#GetPortfolioMarginProAccountBalance) | **Get** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance(USER_DATA)
 [**GetPortfolioMarginProAccountInfo**](AccountAPI.md#GetPortfolioMarginProAccountInfo) | **Get** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA)
 [**GetPortfolioMarginProSpanAccountInfo**](AccountAPI.md#GetPortfolioMarginProSpanAccountInfo) | **Get** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
@@ -18,6 +19,7 @@ Method        | HTTP request  | Description
 [**QueryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountAPI.md#QueryPortfolioMarginProBankruptcyLoanRepayHistory) | **Get** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
 [**QueryPortfolioMarginProNegativeBalanceInterestHistory**](AccountAPI.md#QueryPortfolioMarginProNegativeBalanceInterestHistory) | **Get** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
 [**RepayFuturesNegativeBalance**](AccountAPI.md#RepayFuturesNegativeBalance) | **Post** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA)
+[**SwitchDeltaMode**](AccountAPI.md#SwitchDeltaMode) | **Post** /sapi/v1/portfolio/delta-mode | Switch Delta Mode(TRADE)
 [**TransferLdusdtRwusdForPortfolioMargin**](AccountAPI.md#TransferLdusdtRwusdForPortfolioMargin) | **Post** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
 
 
@@ -357,6 +359,74 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**GetAutoRepayFuturesStatusResponse**](GetAutoRepayFuturesStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetDeltaModeStatus
+
+> GetDeltaModeStatusResponse GetDeltaModeStatus(ctx).RecvWindow(recvWindow).Execute()
+
+Get Delta Mode Status(USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetDeltaModeStatus(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetDeltaModeStatus``: %v\n", err)
+		return
+	}
+
+	// response from `GetDeltaModeStatus`: GetDeltaModeStatusResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetDeltaModeStatusResponse**](GetDeltaModeStatusResponse.md)
 
 ### Authorization
 
@@ -995,6 +1065,76 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**RepayFuturesNegativeBalanceResponse**](RepayFuturesNegativeBalanceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## SwitchDeltaMode
+
+> SwitchDeltaModeResponse SwitchDeltaMode(ctx).DeltaEnabled(deltaEnabled).RecvWindow(recvWindow).Execute()
+
+Switch Delta Mode(TRADE)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	deltaEnabled := "deltaEnabled_example" // string | `true` to enable Delta mode; `false` to disable Delta mode
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).DeltaEnabled(deltaEnabled).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.SwitchDeltaMode``: %v\n", err)
+		return
+	}
+
+	// response from `SwitchDeltaMode`: SwitchDeltaModeResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **deltaEnabled** | **string** | &#x60;true&#x60; to enable Delta mode; &#x60;false&#x60; to disable Delta mode | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**SwitchDeltaModeResponse**](SwitchDeltaModeResponse.md)
 
 ### Authorization
 

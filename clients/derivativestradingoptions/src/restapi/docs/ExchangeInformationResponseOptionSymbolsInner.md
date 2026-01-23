@@ -11,8 +11,6 @@ Name         | Type          | Description.  | Notes
 **StrikePrice** | Pointer to **string** |  | [optional] 
 **Underlying** | Pointer to **string** |  | [optional] 
 **Unit** | Pointer to **int64** |  | [optional] 
-**MakerFeeRate** | Pointer to **string** |  | [optional] 
-**TakerFeeRate** | Pointer to **string** |  | [optional] 
 **LiquidationFeeRate** | Pointer to **string** |  | [optional] 
 **MinQty** | Pointer to **string** |  | [optional] 
 **MaxQty** | Pointer to **string** |  | [optional] 
@@ -23,6 +21,7 @@ Name         | Type          | Description.  | Notes
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
 **QuoteAsset** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -217,56 +216,6 @@ SetUnit sets Unit field to given value.
 `func (o *ExchangeInformationResponseOptionSymbolsInner) HasUnit() bool`
 
 HasUnit returns a boolean if a field has been set.
-
-### GetMakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) GetMakerFeeRate() string`
-
-GetMakerFeeRate returns the MakerFeeRate field if non-nil, zero value otherwise.
-
-### GetMakerFeeRateOk
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) GetMakerFeeRateOk() (*string, bool)`
-
-GetMakerFeeRateOk returns a tuple with the MakerFeeRate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) SetMakerFeeRate(v string)`
-
-SetMakerFeeRate sets MakerFeeRate field to given value.
-
-### HasMakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) HasMakerFeeRate() bool`
-
-HasMakerFeeRate returns a boolean if a field has been set.
-
-### GetTakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) GetTakerFeeRate() string`
-
-GetTakerFeeRate returns the TakerFeeRate field if non-nil, zero value otherwise.
-
-### GetTakerFeeRateOk
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) GetTakerFeeRateOk() (*string, bool)`
-
-GetTakerFeeRateOk returns a tuple with the TakerFeeRate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) SetTakerFeeRate(v string)`
-
-SetTakerFeeRate sets TakerFeeRate field to given value.
-
-### HasTakerFeeRate
-
-`func (o *ExchangeInformationResponseOptionSymbolsInner) HasTakerFeeRate() bool`
-
-HasTakerFeeRate returns a boolean if a field has been set.
 
 ### GetLiquidationFeeRate
 
@@ -517,6 +466,31 @@ SetQuoteAsset sets QuoteAsset field to given value.
 `func (o *ExchangeInformationResponseOptionSymbolsInner) HasQuoteAsset() bool`
 
 HasQuoteAsset returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

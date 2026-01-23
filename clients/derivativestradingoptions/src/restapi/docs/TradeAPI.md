@@ -15,6 +15,7 @@ Method        | HTTP request  | Description
 [**QueryCurrentOpenOptionOrders**](TradeAPI.md#QueryCurrentOpenOptionOrders) | **Get** /eapi/v1/openOrders | Query Current Open Option Orders (USER_DATA)
 [**QueryOptionOrderHistory**](TradeAPI.md#QueryOptionOrderHistory) | **Get** /eapi/v1/historyOrders | Query Option Order History (TRADE)
 [**QuerySingleOrder**](TradeAPI.md#QuerySingleOrder) | **Get** /eapi/v1/order | Query Single Order (TRADE)
+[**UserCommission**](TradeAPI.md#UserCommission) | **Get** /eapi/v1/commission | User Commission (USER_DATA)
 [**UserExerciseRecord**](TradeAPI.md#UserExerciseRecord) | **Get** /eapi/v1/exerciseRecord | User Exercise Record (USER_DATA)
 
 
@@ -42,7 +43,7 @@ import (
 
 func main() {
 	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
-	fromId := int64(1) // int64 | The UniqueId ID from which to return. The latest deal record is returned by default (optional)
+	fromId := int64(1) // int64 | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
 	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
@@ -75,7 +76,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **fromId** | **int64** | The UniqueId ID from which to return. The latest deal record is returned by default | 
+ **fromId** | **int64** | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
  **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
@@ -830,6 +831,74 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**QuerySingleOrderResponse**](QuerySingleOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## UserCommission
+
+> UserCommissionResponse UserCommission(ctx).RecvWindow(recvWindow).Execute()
+
+User Commission (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
+	"github.com/binance/binance-connector-go/common/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingOptionsClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.UserCommission(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.UserCommission``: %v\n", err)
+		return
+	}
+
+	// response from `UserCommission`: UserCommissionResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**UserCommissionResponse**](UserCommissionResponse.md)
 
 ### Authorization
 

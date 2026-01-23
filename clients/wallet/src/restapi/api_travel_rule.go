@@ -190,7 +190,7 @@ func (a *TravelRuleAPIService) BrokerWithdrawExecute(r ApiBrokerWithdrawRequest)
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "originatorPii", r.originatorPii, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "signature", r.signature, "form", "")
 
-	resp, err := SendRequest[models.BrokerWithdrawResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.BrokerWithdrawResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -244,7 +244,7 @@ func (a *TravelRuleAPIService) CheckQuestionnaireRequirementsExecute(r ApiCheckQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckQuestionnaireRequirementsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CheckQuestionnaireRequirementsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func (a *TravelRuleAPIService) DepositHistoryTravelRuleExecute(r ApiDepositHisto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositHistoryTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DepositHistoryTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -542,7 +542,7 @@ func (a *TravelRuleAPIService) DepositHistoryV2Execute(r ApiDepositHistoryV2Requ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DepositHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -596,7 +596,7 @@ func (a *TravelRuleAPIService) FetchAddressVerificationListExecute(r ApiFetchAdd
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FetchAddressVerificationListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.FetchAddressVerificationListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -752,7 +752,7 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireExecute(r ApiSubmitDepo
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "signature", r.signature, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -821,7 +821,7 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireTravelRuleExecute(r Api
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tranId", r.tranId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -890,7 +890,7 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireV2Execute(r ApiSubmitDe
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "depositId", r.depositId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -944,7 +944,7 @@ func (a *TravelRuleAPIService) VaspListExecute(r ApiVaspListRequest) (*common.Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.VaspListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.VaspListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1103,7 +1103,7 @@ func (a *TravelRuleAPIService) WithdrawHistoryV1Execute(r ApiWithdrawHistoryV1Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawHistoryV1Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.WithdrawHistoryV1Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1262,7 +1262,7 @@ func (a *TravelRuleAPIService) WithdrawHistoryV2Execute(r ApiWithdrawHistoryV2Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.WithdrawHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1427,7 +1427,7 @@ func (a *TravelRuleAPIService) WithdrawTravelRuleExecute(r ApiWithdrawTravelRule
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.WithdrawTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.WithdrawTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

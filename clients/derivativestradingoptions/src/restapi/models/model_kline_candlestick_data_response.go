@@ -17,7 +17,7 @@ var _ common.MappedNullable = &KlineCandlestickDataResponse{}
 
 // KlineCandlestickDataResponse struct for KlineCandlestickDataResponse
 type KlineCandlestickDataResponse struct {
-	Items []KlineCandlestickDataResponseInner
+	Items []KlineCandlestickDataResponseItem
 }
 
 // NewKlineCandlestickDataResponse instantiates a new KlineCandlestickDataResponse object

@@ -53,7 +53,7 @@ func (a *MarketDataAPIService) GetPortfolioMarginAssetLeverageExecute(r ApiGetPo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetPortfolioMarginAssetLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetPortfolioMarginAssetLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (a *MarketDataAPIService) PortfolioMarginCollateralRateExecute(r ApiPortfol
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.PortfolioMarginCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PortfolioMarginCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (a *MarketDataAPIService) PortfolioMarginProTieredCollateralRateExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PortfolioMarginProTieredCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PortfolioMarginProTieredCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -204,7 +204,7 @@ func (a *MarketDataAPIService) QueryPortfolioMarginAssetIndexPriceExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginAssetIndexPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryPortfolioMarginAssetIndexPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}

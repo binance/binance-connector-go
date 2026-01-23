@@ -24,8 +24,6 @@ type ExchangeInformationResponseOptionSymbolsInner struct {
 	StrikePrice          *string                                                     `json:"strikePrice,omitempty"`
 	Underlying           *string                                                     `json:"underlying,omitempty"`
 	Unit                 *int64                                                      `json:"unit,omitempty"`
-	MakerFeeRate         *string                                                     `json:"makerFeeRate,omitempty"`
-	TakerFeeRate         *string                                                     `json:"takerFeeRate,omitempty"`
 	LiquidationFeeRate   *string                                                     `json:"liquidationFeeRate,omitempty"`
 	MinQty               *string                                                     `json:"minQty,omitempty"`
 	MaxQty               *string                                                     `json:"maxQty,omitempty"`
@@ -36,6 +34,7 @@ type ExchangeInformationResponseOptionSymbolsInner struct {
 	PriceScale           *int64                                                      `json:"priceScale,omitempty"`
 	QuantityScale        *int64                                                      `json:"quantityScale,omitempty"`
 	QuoteAsset           *string                                                     `json:"quoteAsset,omitempty"`
+	Status               *string                                                     `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -280,70 +279,6 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) HasUnit() bool {
 // SetUnit gets a reference to the given int64 and assigns it to the Unit field.
 func (o *ExchangeInformationResponseOptionSymbolsInner) SetUnit(v int64) {
 	o.Unit = &v
-}
-
-// GetMakerFeeRate returns the MakerFeeRate field value if set, zero value otherwise.
-func (o *ExchangeInformationResponseOptionSymbolsInner) GetMakerFeeRate() string {
-	if o == nil || common.IsNil(o.MakerFeeRate) {
-		var ret string
-		return ret
-	}
-	return *o.MakerFeeRate
-}
-
-// GetMakerFeeRateOk returns a tuple with the MakerFeeRate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExchangeInformationResponseOptionSymbolsInner) GetMakerFeeRateOk() (*string, bool) {
-	if o == nil || common.IsNil(o.MakerFeeRate) {
-		return nil, false
-	}
-	return o.MakerFeeRate, true
-}
-
-// HasMakerFeeRate returns a boolean if a field has been set.
-func (o *ExchangeInformationResponseOptionSymbolsInner) HasMakerFeeRate() bool {
-	if o != nil && !common.IsNil(o.MakerFeeRate) {
-		return true
-	}
-
-	return false
-}
-
-// SetMakerFeeRate gets a reference to the given string and assigns it to the MakerFeeRate field.
-func (o *ExchangeInformationResponseOptionSymbolsInner) SetMakerFeeRate(v string) {
-	o.MakerFeeRate = &v
-}
-
-// GetTakerFeeRate returns the TakerFeeRate field value if set, zero value otherwise.
-func (o *ExchangeInformationResponseOptionSymbolsInner) GetTakerFeeRate() string {
-	if o == nil || common.IsNil(o.TakerFeeRate) {
-		var ret string
-		return ret
-	}
-	return *o.TakerFeeRate
-}
-
-// GetTakerFeeRateOk returns a tuple with the TakerFeeRate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExchangeInformationResponseOptionSymbolsInner) GetTakerFeeRateOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TakerFeeRate) {
-		return nil, false
-	}
-	return o.TakerFeeRate, true
-}
-
-// HasTakerFeeRate returns a boolean if a field has been set.
-func (o *ExchangeInformationResponseOptionSymbolsInner) HasTakerFeeRate() bool {
-	if o != nil && !common.IsNil(o.TakerFeeRate) {
-		return true
-	}
-
-	return false
-}
-
-// SetTakerFeeRate gets a reference to the given string and assigns it to the TakerFeeRate field.
-func (o *ExchangeInformationResponseOptionSymbolsInner) SetTakerFeeRate(v string) {
-	o.TakerFeeRate = &v
 }
 
 // GetLiquidationFeeRate returns the LiquidationFeeRate field value if set, zero value otherwise.
@@ -666,6 +601,38 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) SetQuoteAsset(v string) 
 	o.QuoteAsset = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetStatus() string {
+	if o == nil || common.IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetStatusOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) HasStatus() bool {
+	if o != nil && !common.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *ExchangeInformationResponseOptionSymbolsInner) SetStatus(v string) {
+	o.Status = &v
+}
+
 func (o ExchangeInformationResponseOptionSymbolsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -697,12 +664,6 @@ func (o ExchangeInformationResponseOptionSymbolsInner) ToMap() (map[string]inter
 	if !common.IsNil(o.Unit) {
 		toSerialize["unit"] = o.Unit
 	}
-	if !common.IsNil(o.MakerFeeRate) {
-		toSerialize["makerFeeRate"] = o.MakerFeeRate
-	}
-	if !common.IsNil(o.TakerFeeRate) {
-		toSerialize["takerFeeRate"] = o.TakerFeeRate
-	}
 	if !common.IsNil(o.LiquidationFeeRate) {
 		toSerialize["liquidationFeeRate"] = o.LiquidationFeeRate
 	}
@@ -733,6 +694,9 @@ func (o ExchangeInformationResponseOptionSymbolsInner) ToMap() (map[string]inter
 	if !common.IsNil(o.QuoteAsset) {
 		toSerialize["quoteAsset"] = o.QuoteAsset
 	}
+	if !common.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -762,8 +726,6 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "strikePrice")
 		delete(additionalProperties, "underlying")
 		delete(additionalProperties, "unit")
-		delete(additionalProperties, "makerFeeRate")
-		delete(additionalProperties, "takerFeeRate")
 		delete(additionalProperties, "liquidationFeeRate")
 		delete(additionalProperties, "minQty")
 		delete(additionalProperties, "maxQty")
@@ -774,6 +736,7 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "quoteAsset")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -8,24 +8,22 @@ Name         | Type          | Description.  | Notes
 **Symbol** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
+**ExecutedQty** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**CreateDate** | Pointer to **int64** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**PostOnly** | Pointer to **bool** |  | [optional] 
-**Mmp** | Pointer to **bool** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
+**ReduceOnly** | Pointer to **bool** |  | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **AvgPrice** | Pointer to **string** |  | [optional] 
+**Source** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
 **OptionSide** | Pointer to **string** |  | [optional] 
 **QuoteAsset** | Pointer to **string** |  | [optional] 
+**Mmp** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -146,6 +144,31 @@ SetQuantity sets Quantity field to given value.
 
 HasQuantity returns a boolean if a field has been set.
 
+### GetExecutedQty
+
+`func (o *NewOrderResponse) GetExecutedQty() string`
+
+GetExecutedQty returns the ExecutedQty field if non-nil, zero value otherwise.
+
+### GetExecutedQtyOk
+
+`func (o *NewOrderResponse) GetExecutedQtyOk() (*string, bool)`
+
+GetExecutedQtyOk returns a tuple with the ExecutedQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutedQty
+
+`func (o *NewOrderResponse) SetExecutedQty(v string)`
+
+SetExecutedQty sets ExecutedQty field to given value.
+
+### HasExecutedQty
+
+`func (o *NewOrderResponse) HasExecutedQty() bool`
+
+HasExecutedQty returns a boolean if a field has been set.
+
 ### GetSide
 
 `func (o *NewOrderResponse) GetSide() string`
@@ -196,30 +219,30 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### GetCreateDate
+### GetTimeInForce
 
-`func (o *NewOrderResponse) GetCreateDate() int64`
+`func (o *NewOrderResponse) GetTimeInForce() string`
 
-GetCreateDate returns the CreateDate field if non-nil, zero value otherwise.
+GetTimeInForce returns the TimeInForce field if non-nil, zero value otherwise.
 
-### GetCreateDateOk
+### GetTimeInForceOk
 
-`func (o *NewOrderResponse) GetCreateDateOk() (*int64, bool)`
+`func (o *NewOrderResponse) GetTimeInForceOk() (*string, bool)`
 
-GetCreateDateOk returns a tuple with the CreateDate field if it's non-nil, zero value otherwise
+GetTimeInForceOk returns a tuple with the TimeInForce field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreateDate
+### SetTimeInForce
 
-`func (o *NewOrderResponse) SetCreateDate(v int64)`
+`func (o *NewOrderResponse) SetTimeInForce(v string)`
 
-SetCreateDate sets CreateDate field to given value.
+SetTimeInForce sets TimeInForce field to given value.
 
-### HasCreateDate
+### HasTimeInForce
 
-`func (o *NewOrderResponse) HasCreateDate() bool`
+`func (o *NewOrderResponse) HasTimeInForce() bool`
 
-HasCreateDate returns a boolean if a field has been set.
+HasTimeInForce returns a boolean if a field has been set.
 
 ### GetReduceOnly
 
@@ -245,131 +268,6 @@ SetReduceOnly sets ReduceOnly field to given value.
 `func (o *NewOrderResponse) HasReduceOnly() bool`
 
 HasReduceOnly returns a boolean if a field has been set.
-
-### GetPostOnly
-
-`func (o *NewOrderResponse) GetPostOnly() bool`
-
-GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
-
-### GetPostOnlyOk
-
-`func (o *NewOrderResponse) GetPostOnlyOk() (*bool, bool)`
-
-GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostOnly
-
-`func (o *NewOrderResponse) SetPostOnly(v bool)`
-
-SetPostOnly sets PostOnly field to given value.
-
-### HasPostOnly
-
-`func (o *NewOrderResponse) HasPostOnly() bool`
-
-HasPostOnly returns a boolean if a field has been set.
-
-### GetMmp
-
-`func (o *NewOrderResponse) GetMmp() bool`
-
-GetMmp returns the Mmp field if non-nil, zero value otherwise.
-
-### GetMmpOk
-
-`func (o *NewOrderResponse) GetMmpOk() (*bool, bool)`
-
-GetMmpOk returns a tuple with the Mmp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMmp
-
-`func (o *NewOrderResponse) SetMmp(v bool)`
-
-SetMmp sets Mmp field to given value.
-
-### HasMmp
-
-`func (o *NewOrderResponse) HasMmp() bool`
-
-HasMmp returns a boolean if a field has been set.
-
-### GetExecutedQty
-
-`func (o *NewOrderResponse) GetExecutedQty() string`
-
-GetExecutedQty returns the ExecutedQty field if non-nil, zero value otherwise.
-
-### GetExecutedQtyOk
-
-`func (o *NewOrderResponse) GetExecutedQtyOk() (*string, bool)`
-
-GetExecutedQtyOk returns a tuple with the ExecutedQty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutedQty
-
-`func (o *NewOrderResponse) SetExecutedQty(v string)`
-
-SetExecutedQty sets ExecutedQty field to given value.
-
-### HasExecutedQty
-
-`func (o *NewOrderResponse) HasExecutedQty() bool`
-
-HasExecutedQty returns a boolean if a field has been set.
-
-### GetFee
-
-`func (o *NewOrderResponse) GetFee() string`
-
-GetFee returns the Fee field if non-nil, zero value otherwise.
-
-### GetFeeOk
-
-`func (o *NewOrderResponse) GetFeeOk() (*string, bool)`
-
-GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFee
-
-`func (o *NewOrderResponse) SetFee(v string)`
-
-SetFee sets Fee field to given value.
-
-### HasFee
-
-`func (o *NewOrderResponse) HasFee() bool`
-
-HasFee returns a boolean if a field has been set.
-
-### GetTimeInForce
-
-`func (o *NewOrderResponse) GetTimeInForce() string`
-
-GetTimeInForce returns the TimeInForce field if non-nil, zero value otherwise.
-
-### GetTimeInForceOk
-
-`func (o *NewOrderResponse) GetTimeInForceOk() (*string, bool)`
-
-GetTimeInForceOk returns a tuple with the TimeInForce field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeInForce
-
-`func (o *NewOrderResponse) SetTimeInForce(v string)`
-
-SetTimeInForce sets TimeInForce field to given value.
-
-### HasTimeInForce
-
-`func (o *NewOrderResponse) HasTimeInForce() bool`
-
-HasTimeInForce returns a boolean if a field has been set.
 
 ### GetCreateTime
 
@@ -470,6 +368,31 @@ SetAvgPrice sets AvgPrice field to given value.
 `func (o *NewOrderResponse) HasAvgPrice() bool`
 
 HasAvgPrice returns a boolean if a field has been set.
+
+### GetSource
+
+`func (o *NewOrderResponse) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *NewOrderResponse) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *NewOrderResponse) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *NewOrderResponse) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
 
 ### GetClientOrderId
 
@@ -595,6 +518,31 @@ SetQuoteAsset sets QuoteAsset field to given value.
 `func (o *NewOrderResponse) HasQuoteAsset() bool`
 
 HasQuoteAsset returns a boolean if a field has been set.
+
+### GetMmp
+
+`func (o *NewOrderResponse) GetMmp() bool`
+
+GetMmp returns the Mmp field if non-nil, zero value otherwise.
+
+### GetMmpOk
+
+`func (o *NewOrderResponse) GetMmpOk() (*bool, bool)`
+
+GetMmpOk returns a tuple with the Mmp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMmp
+
+`func (o *NewOrderResponse) SetMmp(v bool)`
+
+SetMmp sets Mmp field to given value.
+
+### HasMmp
+
+`func (o *NewOrderResponse) HasMmp() bool`
+
+HasMmp returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

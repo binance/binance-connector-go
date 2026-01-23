@@ -8,7 +8,6 @@ Name         | Type          | Description.  | Notes
 **Currency** | Pointer to **string** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **ExercisePrice** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
 **Amount** | Pointer to **string** |  | [optional] 
 **Fee** | Pointer to **string** |  | [optional] 
@@ -137,31 +136,6 @@ SetExercisePrice sets ExercisePrice field to given value.
 `func (o *UserExerciseRecordResponseInner) HasExercisePrice() bool`
 
 HasExercisePrice returns a boolean if a field has been set.
-
-### GetMarkPrice
-
-`func (o *UserExerciseRecordResponseInner) GetMarkPrice() string`
-
-GetMarkPrice returns the MarkPrice field if non-nil, zero value otherwise.
-
-### GetMarkPriceOk
-
-`func (o *UserExerciseRecordResponseInner) GetMarkPriceOk() (*string, bool)`
-
-GetMarkPriceOk returns a tuple with the MarkPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMarkPrice
-
-`func (o *UserExerciseRecordResponseInner) SetMarkPrice(v string)`
-
-SetMarkPrice sets MarkPrice field to given value.
-
-### HasMarkPrice
-
-`func (o *UserExerciseRecordResponseInner) HasMarkPrice() bool`
-
-HasMarkPrice returns a boolean if a field has been set.
 
 ### GetQuantity
 

@@ -22,16 +22,21 @@ type CancelMultipleOptionOrdersResponseInner struct {
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
 	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Fee                  *int64  `json:"fee,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
+	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
+	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	Status               *string `json:"status,omitempty"`
 	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
+	Source               *string `json:"source,omitempty"`
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	PriceScale           *int64  `json:"priceScale,omitempty"`
+	QuantityScale        *int64  `json:"quantityScale,omitempty"`
+	OptionSide           *string `json:"optionSide,omitempty"`
+	QuoteAsset           *string `json:"quoteAsset,omitempty"`
+	Mmp                  *bool   `json:"mmp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -214,38 +219,6 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *CancelMultipleOptionOrdersResponseInner) GetFee() int64 {
-	if o == nil || common.IsNil(o.Fee) {
-		var ret int64
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) GetFeeOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) HasFee() bool {
-	if o != nil && !common.IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given int64 and assigns it to the Fee field.
-func (o *CancelMultipleOptionOrdersResponseInner) SetFee(v int64) {
-	o.Fee = &v
-}
-
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *CancelMultipleOptionOrdersResponseInner) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -342,6 +315,38 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetTimeInForce(v string) {
 	o.TimeInForce = &v
 }
 
+// GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnly() bool {
+	if o == nil || common.IsNil(o.ReduceOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.ReduceOnly
+}
+
+// GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnlyOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.ReduceOnly) {
+		return nil, false
+	}
+	return o.ReduceOnly, true
+}
+
+// HasReduceOnly returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasReduceOnly() bool {
+	if o != nil && !common.IsNil(o.ReduceOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetReduceOnly(v bool) {
+	o.ReduceOnly = &v
+}
+
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
 func (o *CancelMultipleOptionOrdersResponseInner) GetCreateTime() int64 {
 	if o == nil || common.IsNil(o.CreateTime) {
@@ -372,6 +377,38 @@ func (o *CancelMultipleOptionOrdersResponseInner) HasCreateTime() bool {
 // SetCreateTime gets a reference to the given int64 and assigns it to the CreateTime field.
 func (o *CancelMultipleOptionOrdersResponseInner) SetCreateTime(v int64) {
 	o.CreateTime = &v
+}
+
+// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTime() int64 {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		var ret int64
+		return ret
+	}
+	return *o.UpdateTime
+}
+
+// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		return nil, false
+	}
+	return o.UpdateTime, true
+}
+
+// HasUpdateTime returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasUpdateTime() bool {
+	if o != nil && !common.IsNil(o.UpdateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetUpdateTime(v int64) {
+	o.UpdateTime = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -438,36 +475,36 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetAvgPrice(v string) {
 	o.AvgPrice = &v
 }
 
-// GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
-func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnly() bool {
-	if o == nil || common.IsNil(o.ReduceOnly) {
-		var ret bool
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string {
+	if o == nil || common.IsNil(o.Source) {
+		var ret string
 		return ret
 	}
-	return *o.ReduceOnly
+	return *o.Source
 }
 
-// GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) GetReduceOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.ReduceOnly) {
+func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Source) {
 		return nil, false
 	}
-	return o.ReduceOnly, true
+	return o.Source, true
 }
 
-// HasReduceOnly returns a boolean if a field has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) HasReduceOnly() bool {
-	if o != nil && !common.IsNil(o.ReduceOnly) {
+// HasSource returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool {
+	if o != nil && !common.IsNil(o.Source) {
 		return true
 	}
 
 	return false
 }
 
-// SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
-func (o *CancelMultipleOptionOrdersResponseInner) SetReduceOnly(v bool) {
-	o.ReduceOnly = &v
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string) {
+	o.Source = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -502,36 +539,164 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetClientOrderId(v string) {
 	o.ClientOrderId = &v
 }
 
-// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
-func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTime() int64 {
-	if o == nil || common.IsNil(o.UpdateTime) {
+// GetPriceScale returns the PriceScale field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetPriceScale() int64 {
+	if o == nil || common.IsNil(o.PriceScale) {
 		var ret int64
 		return ret
 	}
-	return *o.UpdateTime
+	return *o.PriceScale
 }
 
-// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
+// GetPriceScaleOk returns a tuple with the PriceScale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) GetUpdateTimeOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.UpdateTime) {
+func (o *CancelMultipleOptionOrdersResponseInner) GetPriceScaleOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PriceScale) {
 		return nil, false
 	}
-	return o.UpdateTime, true
+	return o.PriceScale, true
 }
 
-// HasUpdateTime returns a boolean if a field has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) HasUpdateTime() bool {
-	if o != nil && !common.IsNil(o.UpdateTime) {
+// HasPriceScale returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasPriceScale() bool {
+	if o != nil && !common.IsNil(o.PriceScale) {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
-func (o *CancelMultipleOptionOrdersResponseInner) SetUpdateTime(v int64) {
-	o.UpdateTime = &v
+// SetPriceScale gets a reference to the given int64 and assigns it to the PriceScale field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetPriceScale(v int64) {
+	o.PriceScale = &v
+}
+
+// GetQuantityScale returns the QuantityScale field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetQuantityScale() int64 {
+	if o == nil || common.IsNil(o.QuantityScale) {
+		var ret int64
+		return ret
+	}
+	return *o.QuantityScale
+}
+
+// GetQuantityScaleOk returns a tuple with the QuantityScale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetQuantityScaleOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.QuantityScale) {
+		return nil, false
+	}
+	return o.QuantityScale, true
+}
+
+// HasQuantityScale returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasQuantityScale() bool {
+	if o != nil && !common.IsNil(o.QuantityScale) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuantityScale gets a reference to the given int64 and assigns it to the QuantityScale field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetQuantityScale(v int64) {
+	o.QuantityScale = &v
+}
+
+// GetOptionSide returns the OptionSide field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetOptionSide() string {
+	if o == nil || common.IsNil(o.OptionSide) {
+		var ret string
+		return ret
+	}
+	return *o.OptionSide
+}
+
+// GetOptionSideOk returns a tuple with the OptionSide field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetOptionSideOk() (*string, bool) {
+	if o == nil || common.IsNil(o.OptionSide) {
+		return nil, false
+	}
+	return o.OptionSide, true
+}
+
+// HasOptionSide returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasOptionSide() bool {
+	if o != nil && !common.IsNil(o.OptionSide) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptionSide gets a reference to the given string and assigns it to the OptionSide field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetOptionSide(v string) {
+	o.OptionSide = &v
+}
+
+// GetQuoteAsset returns the QuoteAsset field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetQuoteAsset() string {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		var ret string
+		return ret
+	}
+	return *o.QuoteAsset
+}
+
+// GetQuoteAssetOk returns a tuple with the QuoteAsset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetQuoteAssetOk() (*string, bool) {
+	if o == nil || common.IsNil(o.QuoteAsset) {
+		return nil, false
+	}
+	return o.QuoteAsset, true
+}
+
+// HasQuoteAsset returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasQuoteAsset() bool {
+	if o != nil && !common.IsNil(o.QuoteAsset) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuoteAsset gets a reference to the given string and assigns it to the QuoteAsset field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetQuoteAsset(v string) {
+	o.QuoteAsset = &v
+}
+
+// GetMmp returns the Mmp field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetMmp() bool {
+	if o == nil || common.IsNil(o.Mmp) {
+		var ret bool
+		return ret
+	}
+	return *o.Mmp
+}
+
+// GetMmpOk returns a tuple with the Mmp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetMmpOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Mmp) {
+		return nil, false
+	}
+	return o.Mmp, true
+}
+
+// HasMmp returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasMmp() bool {
+	if o != nil && !common.IsNil(o.Mmp) {
+		return true
+	}
+
+	return false
+}
+
+// SetMmp gets a reference to the given bool and assigns it to the Mmp field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetMmp(v bool) {
+	o.Mmp = &v
 }
 
 func (o CancelMultipleOptionOrdersResponseInner) MarshalJSON() ([]byte, error) {
@@ -559,9 +724,6 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
-	if !common.IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
-	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -571,8 +733,14 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
 	}
+	if !common.IsNil(o.ReduceOnly) {
+		toSerialize["reduceOnly"] = o.ReduceOnly
+	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
+	}
+	if !common.IsNil(o.UpdateTime) {
+		toSerialize["updateTime"] = o.UpdateTime
 	}
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -580,14 +748,26 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
 	}
-	if !common.IsNil(o.ReduceOnly) {
-		toSerialize["reduceOnly"] = o.ReduceOnly
+	if !common.IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
-	if !common.IsNil(o.UpdateTime) {
-		toSerialize["updateTime"] = o.UpdateTime
+	if !common.IsNil(o.PriceScale) {
+		toSerialize["priceScale"] = o.PriceScale
+	}
+	if !common.IsNil(o.QuantityScale) {
+		toSerialize["quantityScale"] = o.QuantityScale
+	}
+	if !common.IsNil(o.OptionSide) {
+		toSerialize["optionSide"] = o.OptionSide
+	}
+	if !common.IsNil(o.QuoteAsset) {
+		toSerialize["quoteAsset"] = o.QuoteAsset
+	}
+	if !common.IsNil(o.Mmp) {
+		toSerialize["mmp"] = o.Mmp
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -616,16 +796,21 @@ func (o *CancelMultipleOptionOrdersResponseInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
-		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
+		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "createTime")
+		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "avgPrice")
-		delete(additionalProperties, "reduceOnly")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
-		delete(additionalProperties, "updateTime")
+		delete(additionalProperties, "priceScale")
+		delete(additionalProperties, "quantityScale")
+		delete(additionalProperties, "optionSide")
+		delete(additionalProperties, "quoteAsset")
+		delete(additionalProperties, "mmp")
 		o.AdditionalProperties = additionalProperties
 	}
 

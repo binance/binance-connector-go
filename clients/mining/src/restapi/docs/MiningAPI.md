@@ -459,7 +459,7 @@ No authorization required
 
 ## HashrateResaleDetail
 
-> HashrateResaleDetailResponse HashrateResaleDetail(ctx).ConfigId(configId).UserName(userName).PageIndex(pageIndex).PageSize(pageSize).RecvWindow(recvWindow).Execute()
+> HashrateResaleDetailResponse HashrateResaleDetail(ctx).ConfigId(configId).PageIndex(pageIndex).PageSize(pageSize).RecvWindow(recvWindow).Execute()
 
 Hashrate Resale Detail(USER_DATA)
 
@@ -481,7 +481,6 @@ import (
 
 func main() {
 	configId := int64(1) // int64 | Mining ID 168
-	userName := "userName_example" // string | Mining account test
 	pageIndex := int64(1) // int64 | Page number, empty default first page, starting from 1  (optional)
 	pageSize := int64(789) // int64 | Min 10,Max 200  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -493,7 +492,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceMiningClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(configId).UserName(userName).PageIndex(pageIndex).PageSize(pageSize).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.MiningAPI.HashrateResaleDetail(context.Background()).ConfigId(configId).PageIndex(pageIndex).PageSize(pageSize).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MiningAPI.HashrateResaleDetail``: %v\n", err)
 		return
@@ -513,7 +512,6 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **configId** | **int64** | Mining ID 168 | 
- **userName** | **string** | Mining account test | 
  **pageIndex** | **int64** | Page number, empty default first page, starting from 1  | 
  **pageSize** | **int64** | Min 10,Max 200  | 
  **recvWindow** | **int64** |  | 

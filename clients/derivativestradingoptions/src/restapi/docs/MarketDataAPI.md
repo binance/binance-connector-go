@@ -7,9 +7,8 @@ Method        | HTTP request  | Description
 [**CheckServerTime**](MarketDataAPI.md#CheckServerTime) | **Get** /eapi/v1/time | Check Server Time
 [**ExchangeInformation**](MarketDataAPI.md#ExchangeInformation) | **Get** /eapi/v1/exchangeInfo | Exchange Information
 [**HistoricalExerciseRecords**](MarketDataAPI.md#HistoricalExerciseRecords) | **Get** /eapi/v1/exerciseHistory | Historical Exercise Records
-[**IndexPriceTicker**](MarketDataAPI.md#IndexPriceTicker) | **Get** /eapi/v1/index | Index Price Ticker
+[**IndexPrice**](MarketDataAPI.md#IndexPrice) | **Get** /eapi/v1/index | Index Price
 [**KlineCandlestickData**](MarketDataAPI.md#KlineCandlestickData) | **Get** /eapi/v1/klines | Kline/Candlestick Data
-[**OldTradesLookup**](MarketDataAPI.md#OldTradesLookup) | **Get** /eapi/v1/historicalTrades | Old Trades Lookup (MARKET_DATA)
 [**OpenInterest**](MarketDataAPI.md#OpenInterest) | **Get** /eapi/v1/openInterest | Open Interest
 [**OptionMarkPrice**](MarketDataAPI.md#OptionMarkPrice) | **Get** /eapi/v1/mark | Option Mark Price
 [**OrderBook**](MarketDataAPI.md#OrderBook) | **Get** /eapi/v1/depth | Order Book
@@ -223,11 +222,11 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## IndexPriceTicker
+## IndexPrice
 
-> IndexPriceTickerResponse IndexPriceTicker(ctx).Underlying(underlying).Execute()
+> IndexPriceResponse IndexPrice(ctx).Underlying(underlying).Execute()
 
-Index Price Ticker
+Index Price
 
 
 ### Example
@@ -255,13 +254,13 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingOptionsClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MarketDataAPI.IndexPriceTicker(context.Background()).Underlying(underlying).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.IndexPrice(context.Background()).Underlying(underlying).Execute()
 	if err != nil {
-		log.Println(os.Stderr, "Error when calling `MarketDataAPI.IndexPriceTicker``: %v\n", err)
+		log.Println(os.Stderr, "Error when calling `MarketDataAPI.IndexPrice``: %v\n", err)
 		return
 	}
 
-	// response from `IndexPriceTicker`: IndexPriceTickerResponse
+	// response from `IndexPrice`: IndexPriceResponse
 	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
 	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
 
@@ -278,7 +277,7 @@ Name          | Type          | Description   | Notes
 
 ### Return type
 
-[**IndexPriceTickerResponse**](IndexPriceTickerResponse.md)
+[**IndexPriceResponse**](IndexPriceResponse.md)
 
 ### Authorization
 
@@ -355,78 +354,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**KlineCandlestickDataResponse**](KlineCandlestickDataResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## OldTradesLookup
-
-> OldTradesLookupResponse OldTradesLookup(ctx).Symbol(symbol).FromId(fromId).Limit(limit).Execute()
-
-Old Trades Lookup (MARKET_DATA)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
-	"github.com/binance/binance-connector-go/common/common"
-)
-
-func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	fromId := int64(1) // int64 | The UniqueId ID from which to return. The latest deal record is returned by default (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingOptionsClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.MarketDataAPI.OldTradesLookup(context.Background()).Symbol(symbol).FromId(fromId).Limit(limit).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `MarketDataAPI.OldTradesLookup``: %v\n", err)
-		return
-	}
-
-	// response from `OldTradesLookup`: OldTradesLookupResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **fromId** | **int64** | The UniqueId ID from which to return. The latest deal record is returned by default | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
-
-### Return type
-
-[**OldTradesLookupResponse**](OldTradesLookupResponse.md)
 
 ### Authorization
 

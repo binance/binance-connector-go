@@ -73,7 +73,7 @@ func (r ApiGetDualInvestmentProductListRequest) Execute() (*common.RestApiRespon
 GetDualInvestmentProductList Get Dual Investment product list
 Get /sapi/v1/dci/product/list
 
-https://developers.binance.com/docs/dual_investment/market-data/Get-Dual-Investment-product-list
+https://developers.binance.com/docs/advanced_earn/dual-investment/market-data/Get-Dual-Investment-product-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param optionType -  Input CALL or PUT
@@ -124,7 +124,7 @@ func (a *MarketDataAPIService) GetDualInvestmentProductListExecute(r ApiGetDualI
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDualInvestmentProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetDualInvestmentProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

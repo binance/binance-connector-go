@@ -33,7 +33,7 @@ import (
 func main() {
 	asset := "asset_example" // string |  (optional)
 	type_ := "type__example" // string | Transfer Type: ROLL_IN, ROLL_OUT (optional)
-	startTime := int64(1623319461670) // int64 | 只支持查询最近90天的数据 (optional)
+	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
 	size := int64(10) // int64 | Default:10 Max:100 (optional)
@@ -68,7 +68,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
  **type_** | **string** | Transfer Type: ROLL_IN, ROLL_OUT | 
- **startTime** | **int64** | 只支持查询最近90天的数据 | 
+ **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
  **size** | **int64** | Default:10 Max:100 | 

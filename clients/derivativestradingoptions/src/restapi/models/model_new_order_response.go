@@ -21,24 +21,22 @@ type NewOrderResponse struct {
 	Symbol               *string `json:"symbol,omitempty"`
 	Price                *string `json:"price,omitempty"`
 	Quantity             *string `json:"quantity,omitempty"`
+	ExecutedQty          *string `json:"executedQty,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Type                 *string `json:"type,omitempty"`
-	CreateDate           *int64  `json:"createDate,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	PostOnly             *bool   `json:"postOnly,omitempty"`
-	Mmp                  *bool   `json:"mmp,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
+	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	Status               *string `json:"status,omitempty"`
 	AvgPrice             *string `json:"avgPrice,omitempty"`
+	Source               *string `json:"source,omitempty"`
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
 	PriceScale           *int64  `json:"priceScale,omitempty"`
 	QuantityScale        *int64  `json:"quantityScale,omitempty"`
 	OptionSide           *string `json:"optionSide,omitempty"`
 	QuoteAsset           *string `json:"quoteAsset,omitempty"`
+	Mmp                  *bool   `json:"mmp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -189,6 +187,38 @@ func (o *NewOrderResponse) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
+// GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
+func (o *NewOrderResponse) GetExecutedQty() string {
+	if o == nil || common.IsNil(o.ExecutedQty) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutedQty
+}
+
+// GetExecutedQtyOk returns a tuple with the ExecutedQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewOrderResponse) GetExecutedQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ExecutedQty) {
+		return nil, false
+	}
+	return o.ExecutedQty, true
+}
+
+// HasExecutedQty returns a boolean if a field has been set.
+func (o *NewOrderResponse) HasExecutedQty() bool {
+	if o != nil && !common.IsNil(o.ExecutedQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
+func (o *NewOrderResponse) SetExecutedQty(v string) {
+	o.ExecutedQty = &v
+}
+
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *NewOrderResponse) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -253,36 +283,36 @@ func (o *NewOrderResponse) SetType(v string) {
 	o.Type = &v
 }
 
-// GetCreateDate returns the CreateDate field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetCreateDate() int64 {
-	if o == nil || common.IsNil(o.CreateDate) {
-		var ret int64
+// GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
+func (o *NewOrderResponse) GetTimeInForce() string {
+	if o == nil || common.IsNil(o.TimeInForce) {
+		var ret string
 		return ret
 	}
-	return *o.CreateDate
+	return *o.TimeInForce
 }
 
-// GetCreateDateOk returns a tuple with the CreateDate field value if set, nil otherwise
+// GetTimeInForceOk returns a tuple with the TimeInForce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetCreateDateOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.CreateDate) {
+func (o *NewOrderResponse) GetTimeInForceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.TimeInForce) {
 		return nil, false
 	}
-	return o.CreateDate, true
+	return o.TimeInForce, true
 }
 
-// HasCreateDate returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasCreateDate() bool {
-	if o != nil && !common.IsNil(o.CreateDate) {
+// HasTimeInForce returns a boolean if a field has been set.
+func (o *NewOrderResponse) HasTimeInForce() bool {
+	if o != nil && !common.IsNil(o.TimeInForce) {
 		return true
 	}
 
 	return false
 }
 
-// SetCreateDate gets a reference to the given int64 and assigns it to the CreateDate field.
-func (o *NewOrderResponse) SetCreateDate(v int64) {
-	o.CreateDate = &v
+// SetTimeInForce gets a reference to the given string and assigns it to the TimeInForce field.
+func (o *NewOrderResponse) SetTimeInForce(v string) {
+	o.TimeInForce = &v
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
@@ -315,166 +345,6 @@ func (o *NewOrderResponse) HasReduceOnly() bool {
 // SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
 func (o *NewOrderResponse) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
-}
-
-// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetPostOnly() bool {
-	if o == nil || common.IsNil(o.PostOnly) {
-		var ret bool
-		return ret
-	}
-	return *o.PostOnly
-}
-
-// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetPostOnlyOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PostOnly) {
-		return nil, false
-	}
-	return o.PostOnly, true
-}
-
-// HasPostOnly returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasPostOnly() bool {
-	if o != nil && !common.IsNil(o.PostOnly) {
-		return true
-	}
-
-	return false
-}
-
-// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
-func (o *NewOrderResponse) SetPostOnly(v bool) {
-	o.PostOnly = &v
-}
-
-// GetMmp returns the Mmp field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetMmp() bool {
-	if o == nil || common.IsNil(o.Mmp) {
-		var ret bool
-		return ret
-	}
-	return *o.Mmp
-}
-
-// GetMmpOk returns a tuple with the Mmp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetMmpOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.Mmp) {
-		return nil, false
-	}
-	return o.Mmp, true
-}
-
-// HasMmp returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasMmp() bool {
-	if o != nil && !common.IsNil(o.Mmp) {
-		return true
-	}
-
-	return false
-}
-
-// SetMmp gets a reference to the given bool and assigns it to the Mmp field.
-func (o *NewOrderResponse) SetMmp(v bool) {
-	o.Mmp = &v
-}
-
-// GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetExecutedQty() string {
-	if o == nil || common.IsNil(o.ExecutedQty) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutedQty
-}
-
-// GetExecutedQtyOk returns a tuple with the ExecutedQty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetExecutedQtyOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ExecutedQty) {
-		return nil, false
-	}
-	return o.ExecutedQty, true
-}
-
-// HasExecutedQty returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasExecutedQty() bool {
-	if o != nil && !common.IsNil(o.ExecutedQty) {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
-func (o *NewOrderResponse) SetExecutedQty(v string) {
-	o.ExecutedQty = &v
-}
-
-// GetFee returns the Fee field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetFee() string {
-	if o == nil || common.IsNil(o.Fee) {
-		var ret string
-		return ret
-	}
-	return *o.Fee
-}
-
-// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetFeeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Fee) {
-		return nil, false
-	}
-	return o.Fee, true
-}
-
-// HasFee returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasFee() bool {
-	if o != nil && !common.IsNil(o.Fee) {
-		return true
-	}
-
-	return false
-}
-
-// SetFee gets a reference to the given string and assigns it to the Fee field.
-func (o *NewOrderResponse) SetFee(v string) {
-	o.Fee = &v
-}
-
-// GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetTimeInForce() string {
-	if o == nil || common.IsNil(o.TimeInForce) {
-		var ret string
-		return ret
-	}
-	return *o.TimeInForce
-}
-
-// GetTimeInForceOk returns a tuple with the TimeInForce field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetTimeInForceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TimeInForce) {
-		return nil, false
-	}
-	return o.TimeInForce, true
-}
-
-// HasTimeInForce returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasTimeInForce() bool {
-	if o != nil && !common.IsNil(o.TimeInForce) {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeInForce gets a reference to the given string and assigns it to the TimeInForce field.
-func (o *NewOrderResponse) SetTimeInForce(v string) {
-	o.TimeInForce = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
@@ -603,6 +473,38 @@ func (o *NewOrderResponse) HasAvgPrice() bool {
 // SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
 func (o *NewOrderResponse) SetAvgPrice(v string) {
 	o.AvgPrice = &v
+}
+
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *NewOrderResponse) GetSource() string {
+	if o == nil || common.IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewOrderResponse) GetSourceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *NewOrderResponse) HasSource() bool {
+	if o != nil && !common.IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *NewOrderResponse) SetSource(v string) {
+	o.Source = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -765,6 +667,38 @@ func (o *NewOrderResponse) SetQuoteAsset(v string) {
 	o.QuoteAsset = &v
 }
 
+// GetMmp returns the Mmp field value if set, zero value otherwise.
+func (o *NewOrderResponse) GetMmp() bool {
+	if o == nil || common.IsNil(o.Mmp) {
+		var ret bool
+		return ret
+	}
+	return *o.Mmp
+}
+
+// GetMmpOk returns a tuple with the Mmp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewOrderResponse) GetMmpOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Mmp) {
+		return nil, false
+	}
+	return o.Mmp, true
+}
+
+// HasMmp returns a boolean if a field has been set.
+func (o *NewOrderResponse) HasMmp() bool {
+	if o != nil && !common.IsNil(o.Mmp) {
+		return true
+	}
+
+	return false
+}
+
+// SetMmp gets a reference to the given bool and assigns it to the Mmp field.
+func (o *NewOrderResponse) SetMmp(v bool) {
+	o.Mmp = &v
+}
+
 func (o NewOrderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -787,32 +721,20 @@ func (o NewOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
+	if !common.IsNil(o.ExecutedQty) {
+		toSerialize["executedQty"] = o.ExecutedQty
+	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !common.IsNil(o.CreateDate) {
-		toSerialize["createDate"] = o.CreateDate
+	if !common.IsNil(o.TimeInForce) {
+		toSerialize["timeInForce"] = o.TimeInForce
 	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
-	}
-	if !common.IsNil(o.PostOnly) {
-		toSerialize["postOnly"] = o.PostOnly
-	}
-	if !common.IsNil(o.Mmp) {
-		toSerialize["mmp"] = o.Mmp
-	}
-	if !common.IsNil(o.ExecutedQty) {
-		toSerialize["executedQty"] = o.ExecutedQty
-	}
-	if !common.IsNil(o.Fee) {
-		toSerialize["fee"] = o.Fee
-	}
-	if !common.IsNil(o.TimeInForce) {
-		toSerialize["timeInForce"] = o.TimeInForce
 	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
@@ -825,6 +747,9 @@ func (o NewOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
+	}
+	if !common.IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
@@ -840,6 +765,9 @@ func (o NewOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.QuoteAsset) {
 		toSerialize["quoteAsset"] = o.QuoteAsset
+	}
+	if !common.IsNil(o.Mmp) {
+		toSerialize["mmp"] = o.Mmp
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -867,24 +795,22 @@ func (o *NewOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
+		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "createDate")
-		delete(additionalProperties, "reduceOnly")
-		delete(additionalProperties, "postOnly")
-		delete(additionalProperties, "mmp")
-		delete(additionalProperties, "executedQty")
-		delete(additionalProperties, "fee")
 		delete(additionalProperties, "timeInForce")
+		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "createTime")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "avgPrice")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "optionSide")
 		delete(additionalProperties, "quoteAsset")
+		delete(additionalProperties, "mmp")
 		o.AdditionalProperties = additionalProperties
 	}
 

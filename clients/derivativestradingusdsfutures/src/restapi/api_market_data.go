@@ -64,7 +64,7 @@ func (a *MarketDataAPIService) AdlRiskExecute(r ApiAdlRiskRequest) (*common.Rest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.AdlRiskResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AdlRiskResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -175,7 +175,7 @@ func (a *MarketDataAPIService) BasisExecute(r ApiBasisRequest) (*common.RestApiR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.BasisResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.BasisResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -218,7 +218,7 @@ func (a *MarketDataAPIService) CheckServerTimeExecute(r ApiCheckServerTimeReques
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.CheckServerTimeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CheckServerTimeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -272,7 +272,7 @@ func (a *MarketDataAPIService) CompositeIndexSymbolInformationExecute(r ApiCompo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.CompositeIndexSymbolInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CompositeIndexSymbolInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -370,7 +370,7 @@ func (a *MarketDataAPIService) CompressedAggregateTradesListExecute(r ApiCompres
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.CompressedAggregateTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CompressedAggregateTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -479,7 +479,7 @@ func (a *MarketDataAPIService) ContinuousContractKlineCandlestickDataExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.ContinuousContractKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ContinuousContractKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -522,7 +522,7 @@ func (a *MarketDataAPIService) ExchangeInformationExecute(r ApiExchangeInformati
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.ExchangeInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ExchangeInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -607,7 +607,7 @@ func (a *MarketDataAPIService) GetFundingRateHistoryExecute(r ApiGetFundingRateH
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFundingRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetFundingRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -650,7 +650,7 @@ func (a *MarketDataAPIService) GetFundingRateInfoExecute(r ApiGetFundingRateInfo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetFundingRateInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetFundingRateInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -748,7 +748,7 @@ func (a *MarketDataAPIService) IndexPriceKlineCandlestickDataExecute(r ApiIndexP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.IndexPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.IndexPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -846,7 +846,7 @@ func (a *MarketDataAPIService) KlineCandlestickDataExecute(r ApiKlineCandlestick
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.KlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.KlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -945,7 +945,7 @@ func (a *MarketDataAPIService) LongShortRatioExecute(r ApiLongShortRatioRequest)
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.LongShortRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.LongShortRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -999,7 +999,7 @@ func (a *MarketDataAPIService) MarkPriceExecute(r ApiMarkPriceRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarkPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarkPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1097,7 +1097,7 @@ func (a *MarketDataAPIService) MarkPriceKlineCandlestickDataExecute(r ApiMarkPri
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarkPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarkPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1151,7 +1151,7 @@ func (a *MarketDataAPIService) MultiAssetsModeAssetIndexExecute(r ApiMultiAssets
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.MultiAssetsModeAssetIndexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MultiAssetsModeAssetIndexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1229,7 +1229,7 @@ func (a *MarketDataAPIService) OldTradesLookupExecute(r ApiOldTradesLookupReques
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromId", r.fromId, "form", "")
 	}
 
-	resp, err := SendRequest[models.OldTradesLookupResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.OldTradesLookupResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1285,7 +1285,7 @@ func (a *MarketDataAPIService) OpenInterestExecute(r ApiOpenInterestRequest) (*c
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.OpenInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.OpenInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1384,7 +1384,7 @@ func (a *MarketDataAPIService) OpenInterestStatisticsExecute(r ApiOpenInterestSt
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.OpenInterestStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.OpenInterestStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1451,7 +1451,7 @@ func (a *MarketDataAPIService) OrderBookExecute(r ApiOrderBookRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.OrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.OrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1549,7 +1549,7 @@ func (a *MarketDataAPIService) PremiumIndexKlineDataExecute(r ApiPremiumIndexKli
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.PremiumIndexKlineDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.PremiumIndexKlineDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1605,7 +1605,7 @@ func (a *MarketDataAPIService) QuarterlyContractSettlementPriceExecute(r ApiQuar
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 
-	resp, err := SendRequest[models.QuarterlyContractSettlementPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QuarterlyContractSettlementPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1661,7 +1661,7 @@ func (a *MarketDataAPIService) QueryIndexPriceConstituentsExecute(r ApiQueryInde
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.QueryIndexPriceConstituentsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryIndexPriceConstituentsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1715,7 +1715,7 @@ func (a *MarketDataAPIService) QueryInsuranceFundBalanceSnapshotExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryInsuranceFundBalanceSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryInsuranceFundBalanceSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1782,7 +1782,7 @@ func (a *MarketDataAPIService) RecentTradesListExecute(r ApiRecentTradesListRequ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.RecentTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.RecentTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1849,7 +1849,7 @@ func (a *MarketDataAPIService) RpiOrderBookExecute(r ApiRpiOrderBookRequest) (*c
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.RpiOrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.RpiOrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1903,7 +1903,7 @@ func (a *MarketDataAPIService) SymbolOrderBookTickerExecute(r ApiSymbolOrderBook
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolOrderBookTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SymbolOrderBookTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1961,7 +1961,7 @@ func (a *MarketDataAPIService) SymbolPriceTickerExecute(r ApiSymbolPriceTickerRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolPriceTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SymbolPriceTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2015,7 +2015,7 @@ func (a *MarketDataAPIService) SymbolPriceTickerV2Execute(r ApiSymbolPriceTicker
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolPriceTickerV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SymbolPriceTickerV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2114,7 +2114,7 @@ func (a *MarketDataAPIService) TakerBuySellVolumeExecute(r ApiTakerBuySellVolume
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TakerBuySellVolumeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TakerBuySellVolumeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2155,7 +2155,7 @@ func (a *MarketDataAPIService) TestConnectivityExecute(r ApiTestConnectivityRequ
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -2209,7 +2209,7 @@ func (a *MarketDataAPIService) Ticker24hrPriceChangeStatisticsExecute(r ApiTicke
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.Ticker24hrPriceChangeStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.Ticker24hrPriceChangeStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2308,7 +2308,7 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioAccountsExecute(r ApiTopTr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TopTraderLongShortRatioAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TopTraderLongShortRatioAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2407,7 +2407,7 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioPositionsExecute(r ApiTopT
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TopTraderLongShortRatioPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TopTraderLongShortRatioPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2450,7 +2450,7 @@ func (a *MarketDataAPIService) TradingScheduleExecute(r ApiTradingScheduleReques
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.TradingScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TradingScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}

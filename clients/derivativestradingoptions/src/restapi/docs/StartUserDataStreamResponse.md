@@ -5,6 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ListenKey** | Pointer to **string** |  | [optional] 
+**Expiration** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetListenKey sets ListenKey field to given value.
 `func (o *StartUserDataStreamResponse) HasListenKey() bool`
 
 HasListenKey returns a boolean if a field has been set.
+
+### GetExpiration
+
+`func (o *StartUserDataStreamResponse) GetExpiration() int64`
+
+GetExpiration returns the Expiration field if non-nil, zero value otherwise.
+
+### GetExpirationOk
+
+`func (o *StartUserDataStreamResponse) GetExpirationOk() (*int64, bool)`
+
+GetExpirationOk returns a tuple with the Expiration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiration
+
+`func (o *StartUserDataStreamResponse) SetExpiration(v int64)`
+
+SetExpiration sets Expiration field to given value.
+
+### HasExpiration
+
+`func (o *StartUserDataStreamResponse) HasExpiration() bool`
+
+HasExpiration returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

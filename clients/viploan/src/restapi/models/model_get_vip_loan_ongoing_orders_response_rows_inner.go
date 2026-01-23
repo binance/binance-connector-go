@@ -20,6 +20,7 @@ type GetVIPLoanOngoingOrdersResponseRowsInner struct {
 	OrderId                          *int64  `json:"orderId,omitempty"`
 	LoanCoin                         *string `json:"loanCoin,omitempty"`
 	TotalDebt                        *string `json:"totalDebt,omitempty"`
+	LoanRate                         *string `json:"loanRate,omitempty"`
 	ResidualInterest                 *string `json:"residualInterest,omitempty"`
 	CollateralAccountId              *string `json:"collateralAccountId,omitempty"`
 	CollateralCoin                   *string `json:"collateralCoin,omitempty"`
@@ -145,6 +146,38 @@ func (o *GetVIPLoanOngoingOrdersResponseRowsInner) HasTotalDebt() bool {
 // SetTotalDebt gets a reference to the given string and assigns it to the TotalDebt field.
 func (o *GetVIPLoanOngoingOrdersResponseRowsInner) SetTotalDebt(v string) {
 	o.TotalDebt = &v
+}
+
+// GetLoanRate returns the LoanRate field value if set, zero value otherwise.
+func (o *GetVIPLoanOngoingOrdersResponseRowsInner) GetLoanRate() string {
+	if o == nil || common.IsNil(o.LoanRate) {
+		var ret string
+		return ret
+	}
+	return *o.LoanRate
+}
+
+// GetLoanRateOk returns a tuple with the LoanRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVIPLoanOngoingOrdersResponseRowsInner) GetLoanRateOk() (*string, bool) {
+	if o == nil || common.IsNil(o.LoanRate) {
+		return nil, false
+	}
+	return o.LoanRate, true
+}
+
+// HasLoanRate returns a boolean if a field has been set.
+func (o *GetVIPLoanOngoingOrdersResponseRowsInner) HasLoanRate() bool {
+	if o != nil && !common.IsNil(o.LoanRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoanRate gets a reference to the given string and assigns it to the LoanRate field.
+func (o *GetVIPLoanOngoingOrdersResponseRowsInner) SetLoanRate(v string) {
+	o.LoanRate = &v
 }
 
 // GetResidualInterest returns the ResidualInterest field value if set, zero value otherwise.
@@ -454,6 +487,9 @@ func (o GetVIPLoanOngoingOrdersResponseRowsInner) ToMap() (map[string]interface{
 	if !common.IsNil(o.TotalDebt) {
 		toSerialize["totalDebt"] = o.TotalDebt
 	}
+	if !common.IsNil(o.LoanRate) {
+		toSerialize["loanRate"] = o.LoanRate
+	}
 	if !common.IsNil(o.ResidualInterest) {
 		toSerialize["residualInterest"] = o.ResidualInterest
 	}
@@ -506,6 +542,7 @@ func (o *GetVIPLoanOngoingOrdersResponseRowsInner) UnmarshalJSON(data []byte) (e
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "loanCoin")
 		delete(additionalProperties, "totalDebt")
+		delete(additionalProperties, "loanRate")
 		delete(additionalProperties, "residualInterest")
 		delete(additionalProperties, "collateralAccountId")
 		delete(additionalProperties, "collateralCoin")

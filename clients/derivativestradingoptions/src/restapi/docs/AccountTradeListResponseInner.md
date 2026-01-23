@@ -14,13 +14,12 @@ Name         | Type          | Description.  | Notes
 **RealizedProfit** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Volatility** | Pointer to **string** |  | [optional] 
 **Liquidity** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
 **Time** | Pointer to **int64** |  | [optional] 
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
 **OptionSide** | Pointer to **string** |  | [optional] 
+**QuoteAsset** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -291,31 +290,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### GetVolatility
-
-`func (o *AccountTradeListResponseInner) GetVolatility() string`
-
-GetVolatility returns the Volatility field if non-nil, zero value otherwise.
-
-### GetVolatilityOk
-
-`func (o *AccountTradeListResponseInner) GetVolatilityOk() (*string, bool)`
-
-GetVolatilityOk returns a tuple with the Volatility field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVolatility
-
-`func (o *AccountTradeListResponseInner) SetVolatility(v string)`
-
-SetVolatility sets Volatility field to given value.
-
-### HasVolatility
-
-`func (o *AccountTradeListResponseInner) HasVolatility() bool`
-
-HasVolatility returns a boolean if a field has been set.
-
 ### GetLiquidity
 
 `func (o *AccountTradeListResponseInner) GetLiquidity() string`
@@ -340,31 +314,6 @@ SetLiquidity sets Liquidity field to given value.
 `func (o *AccountTradeListResponseInner) HasLiquidity() bool`
 
 HasLiquidity returns a boolean if a field has been set.
-
-### GetQuoteAsset
-
-`func (o *AccountTradeListResponseInner) GetQuoteAsset() string`
-
-GetQuoteAsset returns the QuoteAsset field if non-nil, zero value otherwise.
-
-### GetQuoteAssetOk
-
-`func (o *AccountTradeListResponseInner) GetQuoteAssetOk() (*string, bool)`
-
-GetQuoteAssetOk returns a tuple with the QuoteAsset field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuoteAsset
-
-`func (o *AccountTradeListResponseInner) SetQuoteAsset(v string)`
-
-SetQuoteAsset sets QuoteAsset field to given value.
-
-### HasQuoteAsset
-
-`func (o *AccountTradeListResponseInner) HasQuoteAsset() bool`
-
-HasQuoteAsset returns a boolean if a field has been set.
 
 ### GetTime
 
@@ -465,6 +414,31 @@ SetOptionSide sets OptionSide field to given value.
 `func (o *AccountTradeListResponseInner) HasOptionSide() bool`
 
 HasOptionSide returns a boolean if a field has been set.
+
+### GetQuoteAsset
+
+`func (o *AccountTradeListResponseInner) GetQuoteAsset() string`
+
+GetQuoteAsset returns the QuoteAsset field if non-nil, zero value otherwise.
+
+### GetQuoteAssetOk
+
+`func (o *AccountTradeListResponseInner) GetQuoteAssetOk() (*string, bool)`
+
+GetQuoteAssetOk returns a tuple with the QuoteAsset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuoteAsset
+
+`func (o *AccountTradeListResponseInner) SetQuoteAsset(v string)`
+
+SetQuoteAsset sets QuoteAsset field to given value.
+
+### HasQuoteAsset
+
+`func (o *AccountTradeListResponseInner) HasQuoteAsset() bool`
+
+HasQuoteAsset returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

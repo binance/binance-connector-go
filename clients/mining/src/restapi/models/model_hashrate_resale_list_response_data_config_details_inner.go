@@ -25,6 +25,7 @@ type HashrateResaleListResponseDataConfigDetailsInner struct {
 	StartDay             *int64  `json:"startDay,omitempty"`
 	EndDay               *int64  `json:"endDay,omitempty"`
 	Status               *int64  `json:"status,omitempty"`
+	Type                 *int64  `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -303,6 +304,38 @@ func (o *HashrateResaleListResponseDataConfigDetailsInner) SetStatus(v int64) {
 	o.Status = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *HashrateResaleListResponseDataConfigDetailsInner) GetType() int64 {
+	if o == nil || common.IsNil(o.Type) {
+		var ret int64
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HashrateResaleListResponseDataConfigDetailsInner) GetTypeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *HashrateResaleListResponseDataConfigDetailsInner) HasType() bool {
+	if o != nil && !common.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given int64 and assigns it to the Type field.
+func (o *HashrateResaleListResponseDataConfigDetailsInner) SetType(v int64) {
+	o.Type = &v
+}
+
 func (o HashrateResaleListResponseDataConfigDetailsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -337,6 +370,9 @@ func (o HashrateResaleListResponseDataConfigDetailsInner) ToMap() (map[string]in
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !common.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -367,6 +403,7 @@ func (o *HashrateResaleListResponseDataConfigDetailsInner) UnmarshalJSON(data []
 		delete(additionalProperties, "startDay")
 		delete(additionalProperties, "endDay")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -76,7 +76,7 @@ func (a *ConvertAPIService) AcceptTheOfferedQuoteExecute(r ApiAcceptTheOfferedQu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AcceptTheOfferedQuoteResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AcceptTheOfferedQuoteResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (a *ConvertAPIService) ListAllConvertPairsExecute(r ApiListAllConvertPairsR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "toAsset", r.toAsset, "form", "")
 	}
 
-	resp, err := SendRequest[models.ListAllConvertPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ListAllConvertPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -208,7 +208,7 @@ func (a *ConvertAPIService) OrderStatusExecute(r ApiOrderStatusRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteId", r.quoteId, "form", "")
 	}
 
-	resp, err := SendRequest[models.OrderStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.OrderStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -318,7 +318,7 @@ func (a *ConvertAPIService) SendQuoteRequestExecute(r ApiSendQuoteRequestRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SendQuoteRequestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.SendQuoteRequestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

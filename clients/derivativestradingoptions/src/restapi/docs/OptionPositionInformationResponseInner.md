@@ -8,18 +8,18 @@ Name         | Type          | Description.  | Notes
 **Symbol** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
-**ReducibleQty** | Pointer to **string** |  | [optional] 
 **MarkValue** | Pointer to **string** |  | [optional] 
-**Ror** | Pointer to **string** |  | [optional] 
 **UnrealizedPNL** | Pointer to **string** |  | [optional] 
 **MarkPrice** | Pointer to **string** |  | [optional] 
 **StrikePrice** | Pointer to **string** |  | [optional] 
-**PositionCost** | Pointer to **string** |  | [optional] 
 **ExpiryDate** | Pointer to **int64** |  | [optional] 
 **PriceScale** | Pointer to **int64** |  | [optional] 
 **QuantityScale** | Pointer to **int64** |  | [optional] 
 **OptionSide** | Pointer to **string** |  | [optional] 
 **QuoteAsset** | Pointer to **string** |  | [optional] 
+**Time** | Pointer to **int64** |  | [optional] 
+**BidQuantity** | Pointer to **string** |  | [optional] 
+**AskQuantity** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -140,31 +140,6 @@ SetQuantity sets Quantity field to given value.
 
 HasQuantity returns a boolean if a field has been set.
 
-### GetReducibleQty
-
-`func (o *OptionPositionInformationResponseInner) GetReducibleQty() string`
-
-GetReducibleQty returns the ReducibleQty field if non-nil, zero value otherwise.
-
-### GetReducibleQtyOk
-
-`func (o *OptionPositionInformationResponseInner) GetReducibleQtyOk() (*string, bool)`
-
-GetReducibleQtyOk returns a tuple with the ReducibleQty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReducibleQty
-
-`func (o *OptionPositionInformationResponseInner) SetReducibleQty(v string)`
-
-SetReducibleQty sets ReducibleQty field to given value.
-
-### HasReducibleQty
-
-`func (o *OptionPositionInformationResponseInner) HasReducibleQty() bool`
-
-HasReducibleQty returns a boolean if a field has been set.
-
 ### GetMarkValue
 
 `func (o *OptionPositionInformationResponseInner) GetMarkValue() string`
@@ -189,31 +164,6 @@ SetMarkValue sets MarkValue field to given value.
 `func (o *OptionPositionInformationResponseInner) HasMarkValue() bool`
 
 HasMarkValue returns a boolean if a field has been set.
-
-### GetRor
-
-`func (o *OptionPositionInformationResponseInner) GetRor() string`
-
-GetRor returns the Ror field if non-nil, zero value otherwise.
-
-### GetRorOk
-
-`func (o *OptionPositionInformationResponseInner) GetRorOk() (*string, bool)`
-
-GetRorOk returns a tuple with the Ror field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRor
-
-`func (o *OptionPositionInformationResponseInner) SetRor(v string)`
-
-SetRor sets Ror field to given value.
-
-### HasRor
-
-`func (o *OptionPositionInformationResponseInner) HasRor() bool`
-
-HasRor returns a boolean if a field has been set.
 
 ### GetUnrealizedPNL
 
@@ -289,31 +239,6 @@ SetStrikePrice sets StrikePrice field to given value.
 `func (o *OptionPositionInformationResponseInner) HasStrikePrice() bool`
 
 HasStrikePrice returns a boolean if a field has been set.
-
-### GetPositionCost
-
-`func (o *OptionPositionInformationResponseInner) GetPositionCost() string`
-
-GetPositionCost returns the PositionCost field if non-nil, zero value otherwise.
-
-### GetPositionCostOk
-
-`func (o *OptionPositionInformationResponseInner) GetPositionCostOk() (*string, bool)`
-
-GetPositionCostOk returns a tuple with the PositionCost field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPositionCost
-
-`func (o *OptionPositionInformationResponseInner) SetPositionCost(v string)`
-
-SetPositionCost sets PositionCost field to given value.
-
-### HasPositionCost
-
-`func (o *OptionPositionInformationResponseInner) HasPositionCost() bool`
-
-HasPositionCost returns a boolean if a field has been set.
 
 ### GetExpiryDate
 
@@ -439,6 +364,81 @@ SetQuoteAsset sets QuoteAsset field to given value.
 `func (o *OptionPositionInformationResponseInner) HasQuoteAsset() bool`
 
 HasQuoteAsset returns a boolean if a field has been set.
+
+### GetTime
+
+`func (o *OptionPositionInformationResponseInner) GetTime() int64`
+
+GetTime returns the Time field if non-nil, zero value otherwise.
+
+### GetTimeOk
+
+`func (o *OptionPositionInformationResponseInner) GetTimeOk() (*int64, bool)`
+
+GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *OptionPositionInformationResponseInner) SetTime(v int64)`
+
+SetTime sets Time field to given value.
+
+### HasTime
+
+`func (o *OptionPositionInformationResponseInner) HasTime() bool`
+
+HasTime returns a boolean if a field has been set.
+
+### GetBidQuantity
+
+`func (o *OptionPositionInformationResponseInner) GetBidQuantity() string`
+
+GetBidQuantity returns the BidQuantity field if non-nil, zero value otherwise.
+
+### GetBidQuantityOk
+
+`func (o *OptionPositionInformationResponseInner) GetBidQuantityOk() (*string, bool)`
+
+GetBidQuantityOk returns a tuple with the BidQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBidQuantity
+
+`func (o *OptionPositionInformationResponseInner) SetBidQuantity(v string)`
+
+SetBidQuantity sets BidQuantity field to given value.
+
+### HasBidQuantity
+
+`func (o *OptionPositionInformationResponseInner) HasBidQuantity() bool`
+
+HasBidQuantity returns a boolean if a field has been set.
+
+### GetAskQuantity
+
+`func (o *OptionPositionInformationResponseInner) GetAskQuantity() string`
+
+GetAskQuantity returns the AskQuantity field if non-nil, zero value otherwise.
+
+### GetAskQuantityOk
+
+`func (o *OptionPositionInformationResponseInner) GetAskQuantityOk() (*string, bool)`
+
+GetAskQuantityOk returns a tuple with the AskQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAskQuantity
+
+`func (o *OptionPositionInformationResponseInner) SetAskQuantity(v string)`
+
+SetAskQuantity sets AskQuantity field to given value.
+
+### HasAskQuantity
+
+`func (o *OptionPositionInformationResponseInner) HasAskQuantity() bool`
+
+HasAskQuantity returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -51,7 +51,7 @@ func (a *RiskDataStreamAPIService) CloseUserDataStreamExecute(r ApiCloseUserData
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -105,7 +105,7 @@ func (a *RiskDataStreamAPIService) KeepaliveUserDataStreamExecute(r ApiKeepalive
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "listenKey", r.listenKey, "form", "")
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -148,7 +148,7 @@ func (a *RiskDataStreamAPIService) StartUserDataStreamExecute(r ApiStartUserData
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.StartUserDataStreamResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.StartUserDataStreamResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}

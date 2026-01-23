@@ -6,7 +6,6 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int64** |  | [optional] 
 **Msg** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -76,31 +75,6 @@ SetMsg sets Msg field to given value.
 `func (o *CancelAllOptionOrdersByUnderlyingResponse) HasMsg() bool`
 
 HasMsg returns a boolean if a field has been set.
-
-### GetData
-
-`func (o *CancelAllOptionOrdersByUnderlyingResponse) GetData() int64`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *CancelAllOptionOrdersByUnderlyingResponse) GetDataOk() (*int64, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *CancelAllOptionOrdersByUnderlyingResponse) SetData(v int64)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *CancelAllOptionOrdersByUnderlyingResponse) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

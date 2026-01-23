@@ -21,7 +21,14 @@ type AssetAPIService Service
 type ApiAssetDetailRequest struct {
 	ctx        context.Context
 	ApiService *AssetAPIService
+	asset      *string
 	recvWindow *int64
+}
+
+// If asset is blank, then query all positive assets user have.
+func (r ApiAssetDetailRequest) Asset(asset string) ApiAssetDetailRequest {
+	r.asset = &asset
+	return r
 }
 
 func (r ApiAssetDetailRequest) RecvWindow(recvWindow int64) ApiAssetDetailRequest {
@@ -40,6 +47,7 @@ Get /sapi/v1/asset/assetDetail
 https://developers.binance.com/docs/wallet/asset/Asset-Detail
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param asset -  If asset is blank, then query all positive assets user have.
 @param recvWindow -
 @return ApiAssetDetailRequest
 */
@@ -60,11 +68,14 @@ func (a *AssetAPIService) AssetDetailExecute(r ApiAssetDetailRequest) (*common.R
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.asset != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AssetDetailResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AssetDetailResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -160,7 +171,7 @@ func (a *AssetAPIService) AssetDividendRecordExecute(r ApiAssetDividendRecordReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AssetDividendRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.AssetDividendRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -257,7 +268,7 @@ func (a *AssetAPIService) DustConvertExecute(r ApiDustConvertRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "dustQuotaAssetToTargetAssetPrice", r.dustQuotaAssetToTargetAssetPrice, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustConvertResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DustConvertResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -323,7 +334,7 @@ func (a *AssetAPIService) DustConvertibleAssetsExecute(r ApiDustConvertibleAsset
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "dustQuotaAssetToTargetAssetPrice", r.dustQuotaAssetToTargetAssetPrice, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustConvertibleAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DustConvertibleAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -400,7 +411,7 @@ func (a *AssetAPIService) DustTransferExecute(r ApiDustTransferRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DustTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -409,11 +420,18 @@ func (a *AssetAPIService) DustTransferExecute(r ApiDustTransferRequest) (*common
 }
 
 type ApiDustlogRequest struct {
-	ctx        context.Context
-	ApiService *AssetAPIService
-	startTime  *int64
-	endTime    *int64
-	recvWindow *int64
+	ctx         context.Context
+	ApiService  *AssetAPIService
+	accountType *string
+	startTime   *int64
+	endTime     *int64
+	recvWindow  *int64
+}
+
+// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
+func (r ApiDustlogRequest) AccountType(accountType string) ApiDustlogRequest {
+	r.accountType = &accountType
+	return r
 }
 
 func (r ApiDustlogRequest) StartTime(startTime int64) ApiDustlogRequest {
@@ -442,6 +460,7 @@ Get /sapi/v1/asset/dribblet
 https://developers.binance.com/docs/wallet/asset/dust-log
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
 @param startTime -
 @param endTime -
 @param recvWindow -
@@ -464,6 +483,9 @@ func (a *AssetAPIService) DustlogExecute(r ApiDustlogRequest) (*common.RestApiRe
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.accountType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}
@@ -474,7 +496,7 @@ func (a *AssetAPIService) DustlogExecute(r ApiDustlogRequest) (*common.RestApiRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustlogResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.DustlogResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -550,7 +572,7 @@ func (a *AssetAPIService) FundingWalletExecute(r ApiFundingWalletRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundingWalletResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.FundingWalletResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -615,7 +637,7 @@ func (a *AssetAPIService) GetAssetsThatCanBeConvertedIntoBnbExecute(r ApiGetAsse
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAssetsThatCanBeConvertedIntoBnbResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetAssetsThatCanBeConvertedIntoBnbResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -737,7 +759,7 @@ func (a *AssetAPIService) GetCloudMiningPaymentAndRefundHistoryExecute(r ApiGetC
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCloudMiningPaymentAndRefundHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetCloudMiningPaymentAndRefundHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -780,7 +802,7 @@ func (a *AssetAPIService) GetOpenSymbolListExecute(r ApiGetOpenSymbolListRequest
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetOpenSymbolListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetOpenSymbolListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -912,7 +934,7 @@ func (a *AssetAPIService) QueryUserDelegationHistoryExecute(r ApiQueryUserDelega
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserDelegationHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryUserDelegationHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1040,7 +1062,7 @@ func (a *AssetAPIService) QueryUserUniversalTransferHistoryExecute(r ApiQueryUse
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserUniversalTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryUserUniversalTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1105,7 +1127,7 @@ func (a *AssetAPIService) QueryUserWalletBalanceExecute(r ApiQueryUserWalletBala
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserWalletBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryUserWalletBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1181,7 +1203,7 @@ func (a *AssetAPIService) ToggleBnbBurnOnSpotTradeAndMarginInterestExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1245,7 +1267,7 @@ func (a *AssetAPIService) TradeFeeExecute(r ApiTradeFeeRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TradeFeeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.TradeFeeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1321,7 +1343,7 @@ func (a *AssetAPIService) UserAssetExecute(r ApiUserAssetRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.UserAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1429,7 +1451,7 @@ func (a *AssetAPIService) UserUniversalTransferExecute(r ApiUserUniversalTransfe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserUniversalTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.UserUniversalTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}

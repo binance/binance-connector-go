@@ -855,7 +855,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			require.Equal(t, "/dapi/v1/positionMargin", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
 			require.Equal(t, "1", r.URL.Query().Get("amount"))
-			require.Equal(t, string(models.NewOrderTypeParameterLimit), r.URL.Query().Get("type"))
+			require.Equal(t, string(models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -872,7 +872,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("symbol_example").Amount(float32(1.0)).Type(models.NewOrderTypeParameterLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("symbol_example").Amount(float32(1.0)).Type(models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1076,7 +1076,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			require.Equal(t, "/dapi/v1/order", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy), r.URL.Query().Get("side"))
-			require.Equal(t, string(models.NewOrderTypeParameterLimit), r.URL.Query().Get("type"))
+			require.Equal(t, string(models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1093,7 +1093,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("symbol_example").Side(models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy).Type(models.NewOrderTypeParameterLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("symbol_example").Side(models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy).Type(models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

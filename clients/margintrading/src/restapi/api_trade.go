@@ -121,7 +121,7 @@ func (a *TradeAPIService) CreateSpecialKeyExecute(r ApiCreateSpecialKeyRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateSpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.CreateSpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -195,7 +195,7 @@ func (a *TradeAPIService) DeleteSpecialKeyExecute(r ApiDeleteSpecialKeyRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -272,7 +272,7 @@ func (a *TradeAPIService) EditIpForSpecialKeyExecute(r ApiEditIpForSpecialKeyReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -291,7 +291,7 @@ type ApiGetForceLiquidationRecordRequest struct {
 	recvWindow     *int64
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiGetForceLiquidationRecordRequest) StartTime(startTime int64) ApiGetForceLiquidationRecordRequest {
 	r.startTime = &startTime
 	return r
@@ -337,7 +337,7 @@ Get /sapi/v1/margin/forceLiquidationRec
 https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param isolatedSymbol -  isolated symbol
 @param current -  Currently querying page. Start from 1. Default:1
@@ -381,7 +381,7 @@ func (a *TradeAPIService) GetForceLiquidationRecordExecute(r ApiGetForceLiquidat
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetForceLiquidationRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetForceLiquidationRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -436,7 +436,7 @@ func (a *TradeAPIService) GetSmallLiabilityExchangeCoinListExecute(r ApiGetSmall
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSmallLiabilityExchangeCoinListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetSmallLiabilityExchangeCoinListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -466,7 +466,7 @@ func (r ApiGetSmallLiabilityExchangeHistoryRequest) Size(size int64) ApiGetSmall
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiGetSmallLiabilityExchangeHistoryRequest) StartTime(startTime int64) ApiGetSmallLiabilityExchangeHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -496,7 +496,7 @@ https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exc
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param current -  Currently querying page. Start from 1. Default:1
 @param size -  Default:10, Max:100
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
 @param recvWindow -  No more than 60000
 @return ApiGetSmallLiabilityExchangeHistoryRequest
@@ -537,7 +537,7 @@ func (a *TradeAPIService) GetSmallLiabilityExchangeHistoryExecute(r ApiGetSmallL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSmallLiabilityExchangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.GetSmallLiabilityExchangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -615,7 +615,7 @@ func (a *TradeAPIService) MarginAccountCancelAllOpenOrdersOnASymbolExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelAllOpenOrdersOnASymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountCancelAllOpenOrdersOnASymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -726,7 +726,7 @@ func (a *TradeAPIService) MarginAccountCancelOcoExecute(r ApiMarginAccountCancel
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountCancelOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -835,7 +835,7 @@ func (a *TradeAPIService) MarginAccountCancelOrderExecute(r ApiMarginAccountCanc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountCancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1076,7 +1076,7 @@ func (a *TradeAPIService) MarginAccountNewOcoExecute(r ApiMarginAccountNewOcoReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountNewOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1295,7 +1295,7 @@ func (a *TradeAPIService) MarginAccountNewOrderExecute(r ApiMarginAccountNewOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountNewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1595,7 +1595,7 @@ func (a *TradeAPIService) MarginAccountNewOtoExecute(r ApiMarginAccountNewOtoReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingTimeInForce", r.pendingTimeInForce, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOtoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountNewOtoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1966,7 +1966,7 @@ func (a *TradeAPIService) MarginAccountNewOtocoExecute(r ApiMarginAccountNewOtoc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingBelowTimeInForce", r.pendingBelowTimeInForce, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOtocoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginAccountNewOtocoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2045,7 +2045,7 @@ func (a *TradeAPIService) MarginManualLiquidationExecute(r ApiMarginManualLiquid
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginManualLiquidationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.MarginManualLiquidationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2122,7 +2122,7 @@ func (a *TradeAPIService) QueryCurrentMarginOrderCountUsageExecute(r ApiQueryCur
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentMarginOrderCountUsageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryCurrentMarginOrderCountUsageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2154,13 +2154,13 @@ func (r ApiQueryMarginAccountsAllOcoRequest) Symbol(symbol string) ApiQueryMargi
 	return r
 }
 
-// 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据
+// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryMarginAccountsAllOcoRequest) FromId(fromId int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsAllOcoRequest) StartTime(startTime int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.startTime = &startTime
 	return r
@@ -2171,7 +2171,7 @@ func (r ApiQueryMarginAccountsAllOcoRequest) EndTime(endTime int64) ApiQueryMarg
 	return r
 }
 
-// Default Value: 500; Max Value: 1000
+// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsAllOcoRequest) Limit(limit int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.limit = &limit
 	return r
@@ -2196,10 +2196,10 @@ https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-al
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param isIsolated -  for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
 @param symbol -  isolated margin pair
-@param fromId -  如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-@param startTime -  只支持查询最近90天的数据
+@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
-@param limit -  Default Value: 500; Max Value: 1000
+@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 @param recvWindow -  No more than 60000
 @return ApiQueryMarginAccountsAllOcoRequest
 */
@@ -2242,7 +2242,7 @@ func (a *TradeAPIService) QueryMarginAccountsAllOcoExecute(r ApiQueryMarginAccou
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2278,7 +2278,7 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) OrderId(orderId int64) ApiQueryM
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsAllOrdersRequest) StartTime(startTime int64) ApiQueryMarginAccountsAllOrdersRequest {
 	r.startTime = &startTime
 	return r
@@ -2289,7 +2289,7 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) EndTime(endTime int64) ApiQueryM
 	return r
 }
 
-// Default Value: 500; Max Value: 1000
+// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsAllOrdersRequest) Limit(limit int64) ApiQueryMarginAccountsAllOrdersRequest {
 	r.limit = &limit
 	return r
@@ -2315,9 +2315,9 @@ https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Al
 @param symbol -
 @param isIsolated -  for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
 @param orderId -
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
-@param limit -  Default Value: 500; Max Value: 1000
+@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 @param recvWindow -  No more than 60000
 @return ApiQueryMarginAccountsAllOrdersRequest
 */
@@ -2362,7 +2362,7 @@ func (a *TradeAPIService) QueryMarginAccountsAllOrdersExecute(r ApiQueryMarginAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsAllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsAllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2460,7 +2460,7 @@ func (a *TradeAPIService) QueryMarginAccountsOcoExecute(r ApiQueryMarginAccounts
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2537,7 +2537,7 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOcoExecute(r ApiQueryMarginAcco
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2614,7 +2614,7 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOrdersExecute(r ApiQueryMarginA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2712,7 +2712,7 @@ func (a *TradeAPIService) QueryMarginAccountsOrderExecute(r ApiQueryMarginAccoun
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2749,7 +2749,7 @@ func (r ApiQueryMarginAccountsTradeListRequest) OrderId(orderId int64) ApiQueryM
 	return r
 }
 
-// 只支持查询最近90天的数据
+// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsTradeListRequest) StartTime(startTime int64) ApiQueryMarginAccountsTradeListRequest {
 	r.startTime = &startTime
 	return r
@@ -2760,13 +2760,13 @@ func (r ApiQueryMarginAccountsTradeListRequest) EndTime(endTime int64) ApiQueryM
 	return r
 }
 
-// 如设置fromId, 将返回id &gt; fromId的数据。否则将返回最新数据
+// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryMarginAccountsTradeListRequest) FromId(fromId int64) ApiQueryMarginAccountsTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default Value: 500; Max Value: 1000
+// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsTradeListRequest) Limit(limit int64) ApiQueryMarginAccountsTradeListRequest {
 	r.limit = &limit
 	return r
@@ -2792,10 +2792,10 @@ https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Tr
 @param symbol -
 @param isIsolated -  for isolated margin or not, \"TRUE\", \"FALSE\"，default \"FALSE\"
 @param orderId -
-@param startTime -  只支持查询最近90天的数据
+@param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
-@param fromId -  如设置fromId, 将返回id > fromId的数据。否则将返回最新数据
-@param limit -  Default Value: 500; Max Value: 1000
+@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
+@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 @param recvWindow -  No more than 60000
 @return ApiQueryMarginAccountsTradeListRequest
 */
@@ -2843,7 +2843,7 @@ func (a *TradeAPIService) QueryMarginAccountsTradeListExecute(r ApiQueryMarginAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QueryMarginAccountsTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2909,7 +2909,7 @@ func (a *TradeAPIService) QuerySpecialKeyExecute(r ApiQuerySpecialKeyRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QuerySpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2975,7 +2975,7 @@ func (a *TradeAPIService) QuerySpecialKeyListExecute(r ApiQuerySpecialKeyListReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySpecialKeyListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	resp, err := SendRequest[models.QuerySpecialKeyListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3044,7 +3044,7 @@ func (a *TradeAPIService) SmallLiabilityExchangeExecute(r ApiSmallLiabilityExcha
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg)
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
 	if err != nil {
 		return struct{}{}, err
 	}
