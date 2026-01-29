@@ -1,5 +1,13 @@
 ### Changelog
 
+## 1.3.0 - 2026-01-29
+
+### Changed (1)
+
+- Modified response for `assetDividendRecord()` (`GET /sapi/v1/asset/assetDividend`):
+  - `rows`.items: property `direction` added
+  - `rows`.items: item property `direction` added
+
 ## 1.2.0 - 2026-01-23
 
 ### Changed (1)

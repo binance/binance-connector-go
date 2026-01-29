@@ -13,7 +13,7 @@ Name         | Type          | Description.  | Notes
 **ReduceOnly** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **NewClientOrderId** | Pointer to **string** |  | [optional] 
-**NewOrderRespType** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType.md) |  | [optional] 
+**NewOrderRespType** | Pointer to [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | [optional] 
 **PriceMatch** | Pointer to [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) |  | [optional] 
 **SelfTradePreventionMode** | Pointer to [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) |  | [optional] 
 **GoodTillDate** | Pointer to **string** |  | [optional] 
@@ -264,20 +264,20 @@ HasNewClientOrderId returns a boolean if a field has been set.
 
 ### GetNewOrderRespType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() NewAlgoOrderNewOrderRespTypeParameter`
 
 GetNewOrderRespType returns the NewOrderRespType field if non-nil, zero value otherwise.
 
 ### GetNewOrderRespTypeOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*NewAlgoOrderNewOrderRespTypeParameter, bool)`
 
 GetNewOrderRespTypeOk returns a tuple with the NewOrderRespType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewOrderRespType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v NewAlgoOrderNewOrderRespTypeParameter)`
 
 SetNewOrderRespType sets NewOrderRespType field to given value.
 

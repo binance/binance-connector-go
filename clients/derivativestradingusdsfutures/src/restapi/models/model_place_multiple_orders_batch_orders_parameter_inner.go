@@ -17,19 +17,19 @@ var _ common.MappedNullable = &PlaceMultipleOrdersBatchOrdersParameterInner{}
 
 // PlaceMultipleOrdersBatchOrdersParameterInner struct for PlaceMultipleOrdersBatchOrdersParameterInner
 type PlaceMultipleOrdersBatchOrdersParameterInner struct {
-	Symbol                  *string                                                       `json:"symbol,omitempty"`
-	Side                    *NewAlgoOrderSideParameter                                    `json:"side,omitempty"`
-	PositionSide            *NewAlgoOrderPositionSideParameter                            `json:"positionSide,omitempty"`
-	Type                    *string                                                       `json:"type,omitempty"`
-	TimeInForce             *NewAlgoOrderTimeInForceParameter                             `json:"timeInForce,omitempty"`
-	Quantity                *string                                                       `json:"quantity,omitempty"`
-	ReduceOnly              *string                                                       `json:"reduceOnly,omitempty"`
-	Price                   *string                                                       `json:"price,omitempty"`
-	NewClientOrderId        *string                                                       `json:"newClientOrderId,omitempty"`
-	NewOrderRespType        *PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType `json:"newOrderRespType,omitempty"`
-	PriceMatch              *NewAlgoOrderPriceMatchParameter                              `json:"priceMatch,omitempty"`
-	SelfTradePreventionMode *NewAlgoOrderSelfTradePreventionModeParameter                 `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *string                                                       `json:"goodTillDate,omitempty"`
+	Symbol                  *string                                       `json:"symbol,omitempty"`
+	Side                    *NewAlgoOrderSideParameter                    `json:"side,omitempty"`
+	PositionSide            *NewAlgoOrderPositionSideParameter            `json:"positionSide,omitempty"`
+	Type                    *string                                       `json:"type,omitempty"`
+	TimeInForce             *NewAlgoOrderTimeInForceParameter             `json:"timeInForce,omitempty"`
+	Quantity                *string                                       `json:"quantity,omitempty"`
+	ReduceOnly              *string                                       `json:"reduceOnly,omitempty"`
+	Price                   *string                                       `json:"price,omitempty"`
+	NewClientOrderId        *string                                       `json:"newClientOrderId,omitempty"`
+	NewOrderRespType        *NewAlgoOrderNewOrderRespTypeParameter        `json:"newOrderRespType,omitempty"`
+	PriceMatch              *NewAlgoOrderPriceMatchParameter              `json:"priceMatch,omitempty"`
+	SelfTradePreventionMode *NewAlgoOrderSelfTradePreventionModeParameter `json:"selfTradePreventionMode,omitempty"`
+	GoodTillDate            *string                                       `json:"goodTillDate,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -341,9 +341,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewClientOrderId(v str
 }
 
 // GetNewOrderRespType returns the NewOrderRespType field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() NewAlgoOrderNewOrderRespTypeParameter {
 	if o == nil || common.IsNil(o.NewOrderRespType) {
-		var ret PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType
+		var ret NewAlgoOrderNewOrderRespTypeParameter
 		return ret
 	}
 	return *o.NewOrderRespType
@@ -351,7 +351,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() Pla
 
 // GetNewOrderRespTypeOk returns a tuple with the NewOrderRespType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*NewAlgoOrderNewOrderRespTypeParameter, bool) {
 	if o == nil || common.IsNil(o.NewOrderRespType) {
 		return nil, false
 	}
@@ -367,8 +367,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasNewOrderRespType() boo
 	return false
 }
 
-// SetNewOrderRespType gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType and assigns it to the NewOrderRespType field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType) {
+// SetNewOrderRespType gets a reference to the given NewAlgoOrderNewOrderRespTypeParameter and assigns it to the NewOrderRespType field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v NewAlgoOrderNewOrderRespTypeParameter) {
 	o.NewOrderRespType = &v
 }
 

@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **EntryPrice** | Pointer to **string** |  | [optional] 
 **BreakEvenPrice** | Pointer to **string** |  | [optional] 
 **MarkPrice** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
+**UnRealizedProfit** | Pointer to **string** |  | [optional] 
 **LiquidationPrice** | Pointer to **string** |  | [optional] 
 **IsolatedMargin** | Pointer to **string** |  | [optional] 
 **Notional** | Pointer to **string** |  | [optional] 
@@ -194,30 +194,30 @@ SetMarkPrice sets MarkPrice field to given value.
 
 HasMarkPrice returns a boolean if a field has been set.
 
-### GetUnrealizedProfit
+### GetUnRealizedProfit
 
-`func (o *PositionInformationV2ResponseResultInner) GetUnrealizedProfit() string`
+`func (o *PositionInformationV2ResponseResultInner) GetUnRealizedProfit() string`
 
-GetUnrealizedProfit returns the UnrealizedProfit field if non-nil, zero value otherwise.
+GetUnRealizedProfit returns the UnRealizedProfit field if non-nil, zero value otherwise.
 
-### GetUnrealizedProfitOk
+### GetUnRealizedProfitOk
 
-`func (o *PositionInformationV2ResponseResultInner) GetUnrealizedProfitOk() (*string, bool)`
+`func (o *PositionInformationV2ResponseResultInner) GetUnRealizedProfitOk() (*string, bool)`
 
-GetUnrealizedProfitOk returns a tuple with the UnrealizedProfit field if it's non-nil, zero value otherwise
+GetUnRealizedProfitOk returns a tuple with the UnRealizedProfit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUnrealizedProfit
+### SetUnRealizedProfit
 
-`func (o *PositionInformationV2ResponseResultInner) SetUnrealizedProfit(v string)`
+`func (o *PositionInformationV2ResponseResultInner) SetUnRealizedProfit(v string)`
 
-SetUnrealizedProfit sets UnrealizedProfit field to given value.
+SetUnRealizedProfit sets UnRealizedProfit field to given value.
 
-### HasUnrealizedProfit
+### HasUnRealizedProfit
 
-`func (o *PositionInformationV2ResponseResultInner) HasUnrealizedProfit() bool`
+`func (o *PositionInformationV2ResponseResultInner) HasUnRealizedProfit() bool`
 
-HasUnrealizedProfit returns a boolean if a field has been set.
+HasUnRealizedProfit returns a boolean if a field has been set.
 
 ### GetLiquidationPrice
 

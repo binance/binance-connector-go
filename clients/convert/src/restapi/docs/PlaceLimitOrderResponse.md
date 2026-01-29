@@ -4,12 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**QuoteId** | Pointer to **string** |  | [optional] 
-**Ratio** | Pointer to **string** |  | [optional] 
-**InverseRatio** | Pointer to **string** |  | [optional] 
-**ValidTimestamp** | Pointer to **int64** |  | [optional] 
-**ToAmount** | Pointer to **string** |  | [optional] 
-**FromAmount** | Pointer to **string** |  | [optional] 
+**OrderId** | Pointer to **int64** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -30,155 +26,55 @@ NewPlaceLimitOrderResponseWithDefaults instantiates a new PlaceLimitOrderRespons
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQuoteId
+### GetOrderId
 
-`func (o *PlaceLimitOrderResponse) GetQuoteId() string`
+`func (o *PlaceLimitOrderResponse) GetOrderId() int64`
 
-GetQuoteId returns the QuoteId field if non-nil, zero value otherwise.
+GetOrderId returns the OrderId field if non-nil, zero value otherwise.
 
-### GetQuoteIdOk
+### GetOrderIdOk
 
-`func (o *PlaceLimitOrderResponse) GetQuoteIdOk() (*string, bool)`
+`func (o *PlaceLimitOrderResponse) GetOrderIdOk() (*int64, bool)`
 
-GetQuoteIdOk returns a tuple with the QuoteId field if it's non-nil, zero value otherwise
+GetOrderIdOk returns a tuple with the OrderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetQuoteId
+### SetOrderId
 
-`func (o *PlaceLimitOrderResponse) SetQuoteId(v string)`
+`func (o *PlaceLimitOrderResponse) SetOrderId(v int64)`
 
-SetQuoteId sets QuoteId field to given value.
+SetOrderId sets OrderId field to given value.
 
-### HasQuoteId
+### HasOrderId
 
-`func (o *PlaceLimitOrderResponse) HasQuoteId() bool`
+`func (o *PlaceLimitOrderResponse) HasOrderId() bool`
 
-HasQuoteId returns a boolean if a field has been set.
+HasOrderId returns a boolean if a field has been set.
 
-### GetRatio
+### GetStatus
 
-`func (o *PlaceLimitOrderResponse) GetRatio() string`
+`func (o *PlaceLimitOrderResponse) GetStatus() string`
 
-GetRatio returns the Ratio field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetRatioOk
+### GetStatusOk
 
-`func (o *PlaceLimitOrderResponse) GetRatioOk() (*string, bool)`
+`func (o *PlaceLimitOrderResponse) GetStatusOk() (*string, bool)`
 
-GetRatioOk returns a tuple with the Ratio field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRatio
+### SetStatus
 
-`func (o *PlaceLimitOrderResponse) SetRatio(v string)`
+`func (o *PlaceLimitOrderResponse) SetStatus(v string)`
 
-SetRatio sets Ratio field to given value.
+SetStatus sets Status field to given value.
 
-### HasRatio
+### HasStatus
 
-`func (o *PlaceLimitOrderResponse) HasRatio() bool`
+`func (o *PlaceLimitOrderResponse) HasStatus() bool`
 
-HasRatio returns a boolean if a field has been set.
-
-### GetInverseRatio
-
-`func (o *PlaceLimitOrderResponse) GetInverseRatio() string`
-
-GetInverseRatio returns the InverseRatio field if non-nil, zero value otherwise.
-
-### GetInverseRatioOk
-
-`func (o *PlaceLimitOrderResponse) GetInverseRatioOk() (*string, bool)`
-
-GetInverseRatioOk returns a tuple with the InverseRatio field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInverseRatio
-
-`func (o *PlaceLimitOrderResponse) SetInverseRatio(v string)`
-
-SetInverseRatio sets InverseRatio field to given value.
-
-### HasInverseRatio
-
-`func (o *PlaceLimitOrderResponse) HasInverseRatio() bool`
-
-HasInverseRatio returns a boolean if a field has been set.
-
-### GetValidTimestamp
-
-`func (o *PlaceLimitOrderResponse) GetValidTimestamp() int64`
-
-GetValidTimestamp returns the ValidTimestamp field if non-nil, zero value otherwise.
-
-### GetValidTimestampOk
-
-`func (o *PlaceLimitOrderResponse) GetValidTimestampOk() (*int64, bool)`
-
-GetValidTimestampOk returns a tuple with the ValidTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValidTimestamp
-
-`func (o *PlaceLimitOrderResponse) SetValidTimestamp(v int64)`
-
-SetValidTimestamp sets ValidTimestamp field to given value.
-
-### HasValidTimestamp
-
-`func (o *PlaceLimitOrderResponse) HasValidTimestamp() bool`
-
-HasValidTimestamp returns a boolean if a field has been set.
-
-### GetToAmount
-
-`func (o *PlaceLimitOrderResponse) GetToAmount() string`
-
-GetToAmount returns the ToAmount field if non-nil, zero value otherwise.
-
-### GetToAmountOk
-
-`func (o *PlaceLimitOrderResponse) GetToAmountOk() (*string, bool)`
-
-GetToAmountOk returns a tuple with the ToAmount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetToAmount
-
-`func (o *PlaceLimitOrderResponse) SetToAmount(v string)`
-
-SetToAmount sets ToAmount field to given value.
-
-### HasToAmount
-
-`func (o *PlaceLimitOrderResponse) HasToAmount() bool`
-
-HasToAmount returns a boolean if a field has been set.
-
-### GetFromAmount
-
-`func (o *PlaceLimitOrderResponse) GetFromAmount() string`
-
-GetFromAmount returns the FromAmount field if non-nil, zero value otherwise.
-
-### GetFromAmountOk
-
-`func (o *PlaceLimitOrderResponse) GetFromAmountOk() (*string, bool)`
-
-GetFromAmountOk returns a tuple with the FromAmount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFromAmount
-
-`func (o *PlaceLimitOrderResponse) SetFromAmount(v string)`
-
-SetFromAmount sets FromAmount field to given value.
-
-### HasFromAmount
-
-`func (o *PlaceLimitOrderResponse) HasFromAmount() bool`
-
-HasFromAmount returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

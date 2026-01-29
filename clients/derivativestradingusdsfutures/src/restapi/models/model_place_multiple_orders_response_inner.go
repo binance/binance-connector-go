@@ -30,6 +30,7 @@ type PlaceMultipleOrdersResponseInner struct {
 	PositionSide            *string `json:"positionSide,omitempty"`
 	Status                  *string `json:"status,omitempty"`
 	StopPrice               *string `json:"stopPrice,omitempty"`
+	ClosePosition           *bool   `json:"closePosition,omitempty"`
 	Symbol                  *string `json:"symbol,omitempty"`
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`
@@ -480,6 +481,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetStopPrice(v string) {
 	o.StopPrice = &v
 }
 
+// GetClosePosition returns the ClosePosition field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetClosePosition() bool {
+	if o == nil || common.IsNil(o.ClosePosition) {
+		var ret bool
+		return ret
+	}
+	return *o.ClosePosition
+}
+
+// GetClosePositionOk returns a tuple with the ClosePosition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetClosePositionOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.ClosePosition) {
+		return nil, false
+	}
+	return o.ClosePosition, true
+}
+
+// HasClosePosition returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasClosePosition() bool {
+	if o != nil && !common.IsNil(o.ClosePosition) {
+		return true
+	}
+
+	return false
+}
+
+// SetClosePosition gets a reference to the given bool and assigns it to the ClosePosition field.
+func (o *PlaceMultipleOrdersResponseInner) SetClosePosition(v bool) {
+	o.ClosePosition = &v
+}
+
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetSymbol() string {
 	if o == nil || common.IsNil(o.Symbol) {
@@ -913,6 +946,9 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.StopPrice) {
 		toSerialize["stopPrice"] = o.StopPrice
 	}
+	if !common.IsNil(o.ClosePosition) {
+		toSerialize["closePosition"] = o.ClosePosition
+	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
@@ -984,6 +1020,7 @@ func (o *PlaceMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "positionSide")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "stopPrice")
+		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")

@@ -20,6 +20,7 @@ Name         | Type          | Description.  | Notes
 **StopPrice** | Pointer to **string** |  | [optional] 
 **ClosePosition** | Pointer to **bool** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
+**Pair** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **ActivatePrice** | Pointer to **string** |  | [optional] 
@@ -450,6 +451,31 @@ SetSymbol sets Symbol field to given value.
 `func (o *CancelMultipleOrdersResponseInner) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
+
+### GetPair
+
+`func (o *CancelMultipleOrdersResponseInner) GetPair() string`
+
+GetPair returns the Pair field if non-nil, zero value otherwise.
+
+### GetPairOk
+
+`func (o *CancelMultipleOrdersResponseInner) GetPairOk() (*string, bool)`
+
+GetPairOk returns a tuple with the Pair field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPair
+
+`func (o *CancelMultipleOrdersResponseInner) SetPair(v string)`
+
+SetPair sets Pair field to given value.
+
+### HasPair
+
+`func (o *CancelMultipleOrdersResponseInner) HasPair() bool`
+
+HasPair returns a boolean if a field has been set.
 
 ### GetTimeInForce
 

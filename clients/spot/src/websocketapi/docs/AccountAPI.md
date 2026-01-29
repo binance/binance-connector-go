@@ -266,7 +266,7 @@ import (
 
 func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromId := int32(1) // int32 | Aggregate trade ID to begin at (optional)
+	fromId := int32(1) // int32 | Trade ID to begin at (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
@@ -309,7 +309,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
- **fromId** | **int32** | Aggregate trade ID to begin at | 
+ **fromId** | **int32** | Trade ID to begin at | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
@@ -682,7 +682,7 @@ func main() {
 	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
-	fromId := int32(1) // int32 | Aggregate trade ID to begin at (optional)
+	fromId := int32(1) // int32 | Trade ID to begin at (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
@@ -727,7 +727,7 @@ Name          | Type          | Description   | Notes
  **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **fromId** | **int32** | Aggregate trade ID to begin at | 
+ **fromId** | **int32** | Trade ID to begin at | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
@@ -917,7 +917,7 @@ func main() {
 	orderId := int64(1) // int64 | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 	fromExecutionId := int64(1) // int64 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -960,7 +960,7 @@ Name          | Type          | Description   | Notes
  **orderId** | **int64** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
  **fromExecutionId** | **int64** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **limit** | **int64** | Default: 500; Maximum: 1000 | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type

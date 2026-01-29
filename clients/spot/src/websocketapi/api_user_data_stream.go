@@ -172,11 +172,18 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 type ApiUserDataStreamSubscribeSignatureRequest struct {
 	ApiService *UserDataStreamAPIService
 	id         *string
+	recvWindow *float32
 }
 
 // Unique WebSocket request ID.
 func (r ApiUserDataStreamSubscribeSignatureRequest) Id(id string) ApiUserDataStreamSubscribeSignatureRequest {
 	r.id = &id
+	return r
+}
+
+// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+func (r ApiUserDataStreamSubscribeSignatureRequest) RecvWindow(recvWindow float32) ApiUserDataStreamSubscribeSignatureRequest {
+	r.recvWindow = &recvWindow
 	return r
 }
 
@@ -190,7 +197,7 @@ UserDataStreamSubscribeSignature WebSocket Subscribe to User Data Stream through
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_stream
 
-@param id Unique WebSocket request ID.
+@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiUserDataStreamSubscribeSignatureRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignature() ApiUserDataStreamSubscribeSignatureRequest {
@@ -207,6 +214,9 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignatureExecute(r Api
 
 	if r.id != nil {
 		localVarQueryParams["id"] = *r.id
+	}
+	if r.recvWindow != nil {
+		localVarQueryParams["recvWindow"] = *r.recvWindow
 	}
 
 	localPayload := map[string]any{

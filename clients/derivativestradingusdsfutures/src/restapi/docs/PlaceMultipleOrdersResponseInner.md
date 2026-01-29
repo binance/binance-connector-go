@@ -17,6 +17,7 @@ Name         | Type          | Description.  | Notes
 **PositionSide** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **StopPrice** | Pointer to **string** |  | [optional] 
+**ClosePosition** | Pointer to **bool** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
@@ -373,6 +374,31 @@ SetStopPrice sets StopPrice field to given value.
 `func (o *PlaceMultipleOrdersResponseInner) HasStopPrice() bool`
 
 HasStopPrice returns a boolean if a field has been set.
+
+### GetClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) GetClosePosition() bool`
+
+GetClosePosition returns the ClosePosition field if non-nil, zero value otherwise.
+
+### GetClosePositionOk
+
+`func (o *PlaceMultipleOrdersResponseInner) GetClosePositionOk() (*bool, bool)`
+
+GetClosePositionOk returns a tuple with the ClosePosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) SetClosePosition(v bool)`
+
+SetClosePosition sets ClosePosition field to given value.
+
+### HasClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) HasClosePosition() bool`
+
+HasClosePosition returns a boolean if a field has been set.
 
 ### GetSymbol
 

@@ -10,6 +10,7 @@ Name         | Type          | Description.  | Notes
 **DivTime** | Pointer to **int64** |  | [optional] 
 **EnInfo** | Pointer to **string** |  | [optional] 
 **TranId** | Pointer to **int64** |  | [optional] 
+**Direction** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetTranId sets TranId field to given value.
 `func (o *AssetDividendRecordResponseRowsInner) HasTranId() bool`
 
 HasTranId returns a boolean if a field has been set.
+
+### GetDirection
+
+`func (o *AssetDividendRecordResponseRowsInner) GetDirection() int64`
+
+GetDirection returns the Direction field if non-nil, zero value otherwise.
+
+### GetDirectionOk
+
+`func (o *AssetDividendRecordResponseRowsInner) GetDirectionOk() (*int64, bool)`
+
+GetDirectionOk returns a tuple with the Direction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDirection
+
+`func (o *AssetDividendRecordResponseRowsInner) SetDirection(v int64)`
+
+SetDirection sets Direction field to given value.
+
+### HasDirection
+
+`func (o *AssetDividendRecordResponseRowsInner) HasDirection() bool`
+
+HasDirection returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

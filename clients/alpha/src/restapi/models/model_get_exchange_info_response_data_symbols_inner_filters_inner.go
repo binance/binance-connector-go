@@ -2,7 +2,6 @@
 Binance Alpha REST API
 
 OpenAPI Specification for the Binance Alpha REST API
-
 */
 
 package models

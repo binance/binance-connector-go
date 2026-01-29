@@ -11,6 +11,7 @@ Name         | Type          | Description.  | Notes
 **Quantity** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **PriceMatch** | Pointer to [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) |  | [optional] 
+**StopPrice** | Pointer to **string** |  | [optional] 
 **RecvWindow** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -206,6 +207,31 @@ SetPriceMatch sets PriceMatch field to given value.
 `func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPriceMatch() bool`
 
 HasPriceMatch returns a boolean if a field has been set.
+
+### GetStopPrice
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() string`
+
+GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
+
+### GetStopPriceOk
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*string, bool)`
+
+GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopPrice
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v string)`
+
+SetStopPrice sets StopPrice field to given value.
+
+### HasStopPrice
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool`
+
+HasStopPrice returns a boolean if a field has been set.
 
 ### GetRecvWindow
 

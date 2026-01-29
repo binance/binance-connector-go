@@ -23,6 +23,7 @@ type AssetDividendRecordResponseRowsInner struct {
 	DivTime              *int64  `json:"divTime,omitempty"`
 	EnInfo               *string `json:"enInfo,omitempty"`
 	TranId               *int64  `json:"tranId,omitempty"`
+	Direction            *int64  `json:"direction,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -237,6 +238,38 @@ func (o *AssetDividendRecordResponseRowsInner) SetTranId(v int64) {
 	o.TranId = &v
 }
 
+// GetDirection returns the Direction field value if set, zero value otherwise.
+func (o *AssetDividendRecordResponseRowsInner) GetDirection() int64 {
+	if o == nil || common.IsNil(o.Direction) {
+		var ret int64
+		return ret
+	}
+	return *o.Direction
+}
+
+// GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssetDividendRecordResponseRowsInner) GetDirectionOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Direction) {
+		return nil, false
+	}
+	return o.Direction, true
+}
+
+// HasDirection returns a boolean if a field has been set.
+func (o *AssetDividendRecordResponseRowsInner) HasDirection() bool {
+	if o != nil && !common.IsNil(o.Direction) {
+		return true
+	}
+
+	return false
+}
+
+// SetDirection gets a reference to the given int64 and assigns it to the Direction field.
+func (o *AssetDividendRecordResponseRowsInner) SetDirection(v int64) {
+	o.Direction = &v
+}
+
 func (o AssetDividendRecordResponseRowsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -264,6 +297,9 @@ func (o AssetDividendRecordResponseRowsInner) ToMap() (map[string]interface{}, e
 	}
 	if !common.IsNil(o.TranId) {
 		toSerialize["tranId"] = o.TranId
+	}
+	if !common.IsNil(o.Direction) {
+		toSerialize["direction"] = o.Direction
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -293,6 +329,7 @@ func (o *AssetDividendRecordResponseRowsInner) UnmarshalJSON(data []byte) (err e
 		delete(additionalProperties, "divTime")
 		delete(additionalProperties, "enInfo")
 		delete(additionalProperties, "tranId")
+		delete(additionalProperties, "direction")
 		o.AdditionalProperties = additionalProperties
 	}
 
