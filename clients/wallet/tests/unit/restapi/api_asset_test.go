@@ -80,7 +80,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService AssetDividendRecord Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"id":1637366104,"amount":"10.00000000","asset":"BHFT","divTime":1563189166000,"enInfo":"BHFT distribution","tranId":2968885920},{"id":1631750237,"amount":"10.00000000","asset":"BHFT","divTime":1563189165000,"enInfo":"BHFT distribution","tranId":2968885920}],"total":2}`
+		mockedJSON := `{"rows":[{"id":1637366104,"amount":"10.00000000","asset":"BHFT","divTime":1563189166000,"enInfo":"BHFT distribution","tranId":2968885920,"direction":1},{"id":1631750237,"amount":"10.00000000","asset":"BHFT","divTime":1563189165000,"enInfo":"BHFT distribution","tranId":2968885920,"direction":1}],"total":2}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/assetDividend", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

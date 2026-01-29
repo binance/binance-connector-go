@@ -388,6 +388,7 @@ type ApiNewAlgoOrderRequest struct {
 	activatePrice           *float32
 	callbackRate            *float32
 	clientAlgoId            *string
+	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
 	recvWindow              *int64
@@ -495,6 +496,12 @@ func (r ApiNewAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiNewAlgoOrde
 	return r
 }
 
+// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
+func (r ApiNewAlgoOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewAlgoOrderRequest {
+	r.newOrderRespType = &newOrderRespType
+	return r
+}
+
 // &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiNewAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiNewAlgoOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
@@ -536,7 +543,7 @@ NewAlgoOrder New Algo Order(TRADE)
 
 https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/websocket-api/New-Algo-Order
 
-@param algoType Only support `CONDITIONAL`	@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity Cannot be sent with `closePosition`=`true`(Close-All)	@param price	@param triggerPrice	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param priceProtect \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`	@param activatePrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param clientAlgoId	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
+@param algoType Only support `CONDITIONAL`	@param symbol	@param side `SELL`, `BUY`	@param type_	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.	@param timeInForce	@param quantity Cannot be sent with `closePosition`=`true`(Close-All)	@param price	@param triggerPrice	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param priceProtect \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param reduceOnly \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`	@param activatePrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param clientAlgoId	@param newOrderRespType \"ACK\", \"RESULT\", default \"ACK\"	@param selfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param goodTillDate order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000	@param recvWindow
 @return ApiNewAlgoOrderRequest
 */
 func (a *TradeAPIService) NewAlgoOrder() ApiNewAlgoOrderRequest {
@@ -613,6 +620,9 @@ func (a *TradeAPIService) NewAlgoOrderExecute(r ApiNewAlgoOrderRequest) (chan *c
 	if r.clientAlgoId != nil {
 		localVarQueryParams["clientAlgoId"] = *r.clientAlgoId
 	}
+	if r.newOrderRespType != nil {
+		localVarQueryParams["newOrderRespType"] = *r.newOrderRespType
+	}
 	if r.selfTradePreventionMode != nil {
 		localVarQueryParams["selfTradePreventionMode"] = *r.selfTradePreventionMode
 	}
@@ -655,7 +665,7 @@ type ApiNewOrderRequest struct {
 	callbackRate            *float32
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
 	priceProtect            *string
-	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
+	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.ModifyOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
@@ -755,7 +765,7 @@ func (r ApiNewOrderRequest) PriceProtect(priceProtect string) ApiNewOrderRequest
 }
 
 // \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
-func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading USDS Futures WebSocket Market Streams WebSocket Streams v1.2.0
+// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading USDS Futures WebSocket Market Streams WebSocket Streams v1.3.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -30,7 +30,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingusdsfutures/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingusdsfutures/1.3.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -52,6 +52,7 @@ type Service struct {
 //
 // @return error - An error if the connection fails
 func (c *WebsocketStreamsClient) Connect() error {
+
 	return c.Ws.Connect(c.userAgent)
 }
 
@@ -113,5 +114,6 @@ func (c *WebsocketStreamsClient) UserData(listenKey string, id any) (*common.Str
 //
 // @return error - An error if closing the connection fails
 func (c *WebsocketStreamsClient) CloseWebSocketStreamConnection() error {
+
 	return c.Ws.CloseWebSocketStreamConnection()
 }

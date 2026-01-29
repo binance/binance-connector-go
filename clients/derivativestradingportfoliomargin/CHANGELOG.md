@@ -1,5 +1,17 @@
 ### Changelog
 
+## 1.3.0 - 2026-01-29
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `StrategyType`:
+  - enum added: `LIMIT_MAKER`
+  - affected methods:
+    - `NewCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `NewUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+
 ## 1.2.0 - 2026-01-23
 
 ### Changed (1)

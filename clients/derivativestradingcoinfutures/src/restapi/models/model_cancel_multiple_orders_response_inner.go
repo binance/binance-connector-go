@@ -33,6 +33,7 @@ type CancelMultipleOrdersResponseInner struct {
 	StopPrice               *string `json:"stopPrice,omitempty"`
 	ClosePosition           *bool   `json:"closePosition,omitempty"`
 	Symbol                  *string `json:"symbol,omitempty"`
+	Pair                    *string `json:"pair,omitempty"`
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`
 	ActivatePrice           *string `json:"activatePrice,omitempty"`
@@ -578,6 +579,38 @@ func (o *CancelMultipleOrdersResponseInner) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
+// GetPair returns the Pair field value if set, zero value otherwise.
+func (o *CancelMultipleOrdersResponseInner) GetPair() string {
+	if o == nil || common.IsNil(o.Pair) {
+		var ret string
+		return ret
+	}
+	return *o.Pair
+}
+
+// GetPairOk returns a tuple with the Pair field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOrdersResponseInner) GetPairOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Pair) {
+		return nil, false
+	}
+	return o.Pair, true
+}
+
+// HasPair returns a boolean if a field has been set.
+func (o *CancelMultipleOrdersResponseInner) HasPair() bool {
+	if o != nil && !common.IsNil(o.Pair) {
+		return true
+	}
+
+	return false
+}
+
+// SetPair gets a reference to the given string and assigns it to the Pair field.
+func (o *CancelMultipleOrdersResponseInner) SetPair(v string) {
+	o.Pair = &v
+}
+
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
 func (o *CancelMultipleOrdersResponseInner) GetTimeInForce() string {
 	if o == nil || common.IsNil(o.TimeInForce) {
@@ -988,6 +1021,9 @@ func (o CancelMultipleOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
+	if !common.IsNil(o.Pair) {
+		toSerialize["pair"] = o.Pair
+	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
 	}
@@ -1059,6 +1095,7 @@ func (o *CancelMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "pair")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "activatePrice")

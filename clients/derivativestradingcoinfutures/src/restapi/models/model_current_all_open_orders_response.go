@@ -17,7 +17,7 @@ var _ common.MappedNullable = &CurrentAllOpenOrdersResponse{}
 
 // CurrentAllOpenOrdersResponse struct for CurrentAllOpenOrdersResponse
 type CurrentAllOpenOrdersResponse struct {
-	Items []CurrentAllOpenOrdersResponseInner
+	Items []AllOrdersResponseInner
 }
 
 // NewCurrentAllOpenOrdersResponse instantiates a new CurrentAllOpenOrdersResponse object

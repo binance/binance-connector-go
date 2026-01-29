@@ -18,6 +18,7 @@ type NewCmConditionalOrderStrategyTypeParameter string
 const (
 	NewCmConditionalOrderStrategyTypeParameterStop               NewCmConditionalOrderStrategyTypeParameter = "STOP"
 	NewCmConditionalOrderStrategyTypeParameterStopMarket         NewCmConditionalOrderStrategyTypeParameter = "STOP_MARKET"
+	NewCmConditionalOrderStrategyTypeParameterLimitMaker         NewCmConditionalOrderStrategyTypeParameter = "LIMIT_MAKER"
 	NewCmConditionalOrderStrategyTypeParameterTakeProfit         NewCmConditionalOrderStrategyTypeParameter = "TAKE_PROFIT"
 	NewCmConditionalOrderStrategyTypeParameterTakeProfitMarket   NewCmConditionalOrderStrategyTypeParameter = "TAKE_PROFIT_MARKET"
 	NewCmConditionalOrderStrategyTypeParameterTrailingStopMarket NewCmConditionalOrderStrategyTypeParameter = "TRAILING_STOP_MARKET"
@@ -27,6 +28,7 @@ const (
 var AllowedNewCmConditionalOrderStrategyTypeParameterEnumValues = []NewCmConditionalOrderStrategyTypeParameter{
 	"STOP",
 	"STOP_MARKET",
+	"LIMIT_MAKER",
 	"TAKE_PROFIT",
 	"TAKE_PROFIT_MARKET",
 	"TRAILING_STOP_MARKET",

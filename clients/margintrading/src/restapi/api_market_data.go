@@ -389,6 +389,49 @@ func (a *MarketDataAPIService) GetListScheduleExecute(r ApiGetListScheduleReques
 	return resp, nil
 }
 
+type ApiGetMarginAssetRiskBasedLiquidationRatioRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+}
+
+func (r ApiGetMarginAssetRiskBasedLiquidationRatioRequest) Execute() (*common.RestApiResponse[models.GetMarginAssetRiskBasedLiquidationRatioResponse], error) {
+	return r.ApiService.GetMarginAssetRiskBasedLiquidationRatioExecute(r)
+}
+
+/*
+GetMarginAssetRiskBasedLiquidationRatio Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
+Get /sapi/v1/margin/risk-based-liquidation-ratio
+
+https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Asset-Risk-Based-Liquidation-Ratio
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return ApiGetMarginAssetRiskBasedLiquidationRatioRequest
+*/
+func (a *MarketDataAPIService) GetMarginAssetRiskBasedLiquidationRatio(ctx context.Context) ApiGetMarginAssetRiskBasedLiquidationRatioRequest {
+	return ApiGetMarginAssetRiskBasedLiquidationRatioRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetMarginAssetRiskBasedLiquidationRatioResponse
+func (a *MarketDataAPIService) GetMarginAssetRiskBasedLiquidationRatioExecute(r ApiGetMarginAssetRiskBasedLiquidationRatioRequest) (*common.RestApiResponse[models.GetMarginAssetRiskBasedLiquidationRatioResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/risk-based-liquidation-ratio"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	resp, err := SendRequest[models.GetMarginAssetRiskBasedLiquidationRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiQueryIsolatedMarginTierDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService

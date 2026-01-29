@@ -23,7 +23,7 @@ type PositionInformationV2ResponseResultInner struct {
 	EntryPrice             *string `json:"entryPrice,omitempty"`
 	BreakEvenPrice         *string `json:"breakEvenPrice,omitempty"`
 	MarkPrice              *string `json:"markPrice,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
+	UnRealizedProfit       *string `json:"unRealizedProfit,omitempty"`
 	LiquidationPrice       *string `json:"liquidationPrice,omitempty"`
 	IsolatedMargin         *string `json:"isolatedMargin,omitempty"`
 	Notional               *string `json:"notional,omitempty"`
@@ -251,36 +251,36 @@ func (o *PositionInformationV2ResponseResultInner) SetMarkPrice(v string) {
 	o.MarkPrice = &v
 }
 
-// GetUnrealizedProfit returns the UnrealizedProfit field value if set, zero value otherwise.
-func (o *PositionInformationV2ResponseResultInner) GetUnrealizedProfit() string {
-	if o == nil || common.IsNil(o.UnrealizedProfit) {
+// GetUnRealizedProfit returns the UnRealizedProfit field value if set, zero value otherwise.
+func (o *PositionInformationV2ResponseResultInner) GetUnRealizedProfit() string {
+	if o == nil || common.IsNil(o.UnRealizedProfit) {
 		var ret string
 		return ret
 	}
-	return *o.UnrealizedProfit
+	return *o.UnRealizedProfit
 }
 
-// GetUnrealizedProfitOk returns a tuple with the UnrealizedProfit field value if set, nil otherwise
+// GetUnRealizedProfitOk returns a tuple with the UnRealizedProfit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PositionInformationV2ResponseResultInner) GetUnrealizedProfitOk() (*string, bool) {
-	if o == nil || common.IsNil(o.UnrealizedProfit) {
+func (o *PositionInformationV2ResponseResultInner) GetUnRealizedProfitOk() (*string, bool) {
+	if o == nil || common.IsNil(o.UnRealizedProfit) {
 		return nil, false
 	}
-	return o.UnrealizedProfit, true
+	return o.UnRealizedProfit, true
 }
 
-// HasUnrealizedProfit returns a boolean if a field has been set.
-func (o *PositionInformationV2ResponseResultInner) HasUnrealizedProfit() bool {
-	if o != nil && !common.IsNil(o.UnrealizedProfit) {
+// HasUnRealizedProfit returns a boolean if a field has been set.
+func (o *PositionInformationV2ResponseResultInner) HasUnRealizedProfit() bool {
+	if o != nil && !common.IsNil(o.UnRealizedProfit) {
 		return true
 	}
 
 	return false
 }
 
-// SetUnrealizedProfit gets a reference to the given string and assigns it to the UnrealizedProfit field.
-func (o *PositionInformationV2ResponseResultInner) SetUnrealizedProfit(v string) {
-	o.UnrealizedProfit = &v
+// SetUnRealizedProfit gets a reference to the given string and assigns it to the UnRealizedProfit field.
+func (o *PositionInformationV2ResponseResultInner) SetUnRealizedProfit(v string) {
+	o.UnRealizedProfit = &v
 }
 
 // GetLiquidationPrice returns the LiquidationPrice field value if set, zero value otherwise.
@@ -727,8 +727,8 @@ func (o PositionInformationV2ResponseResultInner) ToMap() (map[string]interface{
 	if !common.IsNil(o.MarkPrice) {
 		toSerialize["markPrice"] = o.MarkPrice
 	}
-	if !common.IsNil(o.UnrealizedProfit) {
-		toSerialize["unrealizedProfit"] = o.UnrealizedProfit
+	if !common.IsNil(o.UnRealizedProfit) {
+		toSerialize["unRealizedProfit"] = o.UnRealizedProfit
 	}
 	if !common.IsNil(o.LiquidationPrice) {
 		toSerialize["liquidationPrice"] = o.LiquidationPrice
@@ -797,7 +797,7 @@ func (o *PositionInformationV2ResponseResultInner) UnmarshalJSON(data []byte) (e
 		delete(additionalProperties, "entryPrice")
 		delete(additionalProperties, "breakEvenPrice")
 		delete(additionalProperties, "markPrice")
-		delete(additionalProperties, "unrealizedProfit")
+		delete(additionalProperties, "unRealizedProfit")
 		delete(additionalProperties, "liquidationPrice")
 		delete(additionalProperties, "isolatedMargin")
 		delete(additionalProperties, "notional")

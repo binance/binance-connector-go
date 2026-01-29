@@ -856,10 +856,10 @@ type ApiTradesAggregateRequest struct {
 	ApiService *MarketAPIService
 	symbol     *string
 	id         *string
-	fromId     *int32
+	fromId     *int64
 	startTime  *int64
 	endTime    *int64
-	limit      *int32
+	limit      *int64
 }
 
 func (r ApiTradesAggregateRequest) Symbol(symbol string) ApiTradesAggregateRequest {
@@ -874,7 +874,7 @@ func (r ApiTradesAggregateRequest) Id(id string) ApiTradesAggregateRequest {
 }
 
 // Aggregate trade ID to begin at
-func (r ApiTradesAggregateRequest) FromId(fromId int32) ApiTradesAggregateRequest {
+func (r ApiTradesAggregateRequest) FromId(fromId int64) ApiTradesAggregateRequest {
 	r.fromId = &fromId
 	return r
 }
@@ -889,8 +889,8 @@ func (r ApiTradesAggregateRequest) EndTime(endTime int64) ApiTradesAggregateRequ
 	return r
 }
 
-// Default: 100; Maximum: 5000
-func (r ApiTradesAggregateRequest) Limit(limit int32) ApiTradesAggregateRequest {
+// Default: 500; Maximum: 1000
+func (r ApiTradesAggregateRequest) Limit(limit int64) ApiTradesAggregateRequest {
 	r.limit = &limit
 	return r
 }
@@ -919,7 +919,7 @@ TradesAggregate WebSocket Aggregate trades
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#aggregate-trades
 
-@param symbol	@param id Unique WebSocket request ID.	@param fromId Aggregate trade ID to begin at	@param startTime	@param endTime	@param limit Default: 100; Maximum: 5000
+@param symbol	@param id Unique WebSocket request ID.	@param fromId Aggregate trade ID to begin at	@param startTime	@param endTime	@param limit Default: 500; Maximum: 1000
 @return ApiTradesAggregateRequest
 */
 func (a *MarketAPIService) TradesAggregate() ApiTradesAggregateRequest {
@@ -988,7 +988,7 @@ func (r ApiTradesHistoricalRequest) Id(id string) ApiTradesHistoricalRequest {
 	return r
 }
 
-// Aggregate trade ID to begin at
+// Trade ID to begin at
 func (r ApiTradesHistoricalRequest) FromId(fromId int32) ApiTradesHistoricalRequest {
 	r.fromId = &fromId
 	return r
@@ -1024,7 +1024,7 @@ TradesHistorical WebSocket Historical trades
 
 https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#historical-trades
 
-@param symbol	@param id Unique WebSocket request ID.	@param fromId Aggregate trade ID to begin at	@param limit Default: 100; Maximum: 5000
+@param symbol	@param id Unique WebSocket request ID.	@param fromId Trade ID to begin at	@param limit Default: 100; Maximum: 5000
 @return ApiTradesHistoricalRequest
 */
 func (a *MarketAPIService) TradesHistorical() ApiTradesHistoricalRequest {

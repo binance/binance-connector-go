@@ -160,7 +160,7 @@ No authorization required
 
 ## UserDataStreamSubscribeSignature
 
-> UserDataStreamSubscribeSignatureResponse UserDataStreamSubscribeSignature().Id(id).Execute()
+> UserDataStreamSubscribeSignatureResponse UserDataStreamSubscribeSignature().Id(id).RecvWindow(recvWindow).Execute()
 
 WebSocket Subscribe to User Data Stream through signature subscription
 
@@ -180,6 +180,7 @@ import (
 
 func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -222,6 +223,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 

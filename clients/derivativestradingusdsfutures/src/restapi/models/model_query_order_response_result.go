@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Binance Derivatives Trading USDS Futures REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
 */
 
 package models
@@ -12,60 +12,58 @@ import (
 	"github.com/binance/binance-connector-go/common/common"
 )
 
-// checks if the CurrentAllOpenOrdersResponseInner type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &CurrentAllOpenOrdersResponseInner{}
+// checks if the QueryOrderResponseResult type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &QueryOrderResponseResult{}
 
-// CurrentAllOpenOrdersResponseInner struct for CurrentAllOpenOrdersResponseInner
-type CurrentAllOpenOrdersResponseInner struct {
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
-	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	AdditionalProperties    map[string]interface{}
+// QueryOrderResponseResult struct for QueryOrderResponseResult
+type QueryOrderResponseResult struct {
+	AvgPrice             *string `json:"avgPrice,omitempty"`
+	ClientOrderId        *string `json:"clientOrderId,omitempty"`
+	CumQuote             *string `json:"cumQuote,omitempty"`
+	ExecutedQty          *string `json:"executedQty,omitempty"`
+	OrderId              *int64  `json:"orderId,omitempty"`
+	OrigQty              *string `json:"origQty,omitempty"`
+	OrigType             *string `json:"origType,omitempty"`
+	Price                *string `json:"price,omitempty"`
+	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
+	Side                 *string `json:"side,omitempty"`
+	PositionSide         *string `json:"positionSide,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	StopPrice            *string `json:"stopPrice,omitempty"`
+	ClosePosition        *bool   `json:"closePosition,omitempty"`
+	Symbol               *string `json:"symbol,omitempty"`
+	Time                 *int64  `json:"time,omitempty"`
+	TimeInForce          *string `json:"timeInForce,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	ActivatePrice        *string `json:"activatePrice,omitempty"`
+	PriceRate            *string `json:"priceRate,omitempty"`
+	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	WorkingType          *string `json:"workingType,omitempty"`
+	PriceProtect         *bool   `json:"priceProtect,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
-type _CurrentAllOpenOrdersResponseInner CurrentAllOpenOrdersResponseInner
+type _QueryOrderResponseResult QueryOrderResponseResult
 
-// NewCurrentAllOpenOrdersResponseInner instantiates a new CurrentAllOpenOrdersResponseInner object
+// NewQueryOrderResponseResult instantiates a new QueryOrderResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrentAllOpenOrdersResponseInner() *CurrentAllOpenOrdersResponseInner {
-	this := CurrentAllOpenOrdersResponseInner{}
+func NewQueryOrderResponseResult() *QueryOrderResponseResult {
+	this := QueryOrderResponseResult{}
 	return &this
 }
 
-// NewCurrentAllOpenOrdersResponseInnerWithDefaults instantiates a new CurrentAllOpenOrdersResponseInner object
+// NewQueryOrderResponseResultWithDefaults instantiates a new QueryOrderResponseResult object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCurrentAllOpenOrdersResponseInnerWithDefaults() *CurrentAllOpenOrdersResponseInner {
-	this := CurrentAllOpenOrdersResponseInner{}
+func NewQueryOrderResponseResultWithDefaults() *QueryOrderResponseResult {
+	this := QueryOrderResponseResult{}
 	return &this
 }
 
 // GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetAvgPrice() string {
+func (o *QueryOrderResponseResult) GetAvgPrice() string {
 	if o == nil || common.IsNil(o.AvgPrice) {
 		var ret string
 		return ret
@@ -75,7 +73,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetAvgPrice() string {
 
 // GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetAvgPriceOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetAvgPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.AvgPrice) {
 		return nil, false
 	}
@@ -83,7 +81,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetAvgPriceOk() (*string, bool) {
 }
 
 // HasAvgPrice returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasAvgPrice() bool {
+func (o *QueryOrderResponseResult) HasAvgPrice() bool {
 	if o != nil && !common.IsNil(o.AvgPrice) {
 		return true
 	}
@@ -92,12 +90,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasAvgPrice() bool {
 }
 
 // SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *CurrentAllOpenOrdersResponseInner) SetAvgPrice(v string) {
+func (o *QueryOrderResponseResult) SetAvgPrice(v string) {
 	o.AvgPrice = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderId() string {
+func (o *QueryOrderResponseResult) GetClientOrderId() string {
 	if o == nil || common.IsNil(o.ClientOrderId) {
 		var ret string
 		return ret
@@ -107,7 +105,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderId() string {
 
 // GetClientOrderIdOk returns a tuple with the ClientOrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderIdOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetClientOrderIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ClientOrderId) {
 		return nil, false
 	}
@@ -115,7 +113,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderIdOk() (*string, bool)
 }
 
 // HasClientOrderId returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasClientOrderId() bool {
+func (o *QueryOrderResponseResult) HasClientOrderId() bool {
 	if o != nil && !common.IsNil(o.ClientOrderId) {
 		return true
 	}
@@ -124,44 +122,44 @@ func (o *CurrentAllOpenOrdersResponseInner) HasClientOrderId() bool {
 }
 
 // SetClientOrderId gets a reference to the given string and assigns it to the ClientOrderId field.
-func (o *CurrentAllOpenOrdersResponseInner) SetClientOrderId(v string) {
+func (o *QueryOrderResponseResult) SetClientOrderId(v string) {
 	o.ClientOrderId = &v
 }
 
-// GetCumBase returns the CumBase field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetCumBase() string {
-	if o == nil || common.IsNil(o.CumBase) {
+// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
+func (o *QueryOrderResponseResult) GetCumQuote() string {
+	if o == nil || common.IsNil(o.CumQuote) {
 		var ret string
 		return ret
 	}
-	return *o.CumBase
+	return *o.CumQuote
 }
 
-// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
+// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetCumBaseOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumBase) {
+func (o *QueryOrderResponseResult) GetCumQuoteOk() (*string, bool) {
+	if o == nil || common.IsNil(o.CumQuote) {
 		return nil, false
 	}
-	return o.CumBase, true
+	return o.CumQuote, true
 }
 
-// HasCumBase returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasCumBase() bool {
-	if o != nil && !common.IsNil(o.CumBase) {
+// HasCumQuote returns a boolean if a field has been set.
+func (o *QueryOrderResponseResult) HasCumQuote() bool {
+	if o != nil && !common.IsNil(o.CumQuote) {
 		return true
 	}
 
 	return false
 }
 
-// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
-func (o *CurrentAllOpenOrdersResponseInner) SetCumBase(v string) {
-	o.CumBase = &v
+// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
+func (o *QueryOrderResponseResult) SetCumQuote(v string) {
+	o.CumQuote = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQty() string {
+func (o *QueryOrderResponseResult) GetExecutedQty() string {
 	if o == nil || common.IsNil(o.ExecutedQty) {
 		var ret string
 		return ret
@@ -171,7 +169,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQty() string {
 
 // GetExecutedQtyOk returns a tuple with the ExecutedQty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQtyOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetExecutedQtyOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ExecutedQty) {
 		return nil, false
 	}
@@ -179,7 +177,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQtyOk() (*string, bool) {
 }
 
 // HasExecutedQty returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasExecutedQty() bool {
+func (o *QueryOrderResponseResult) HasExecutedQty() bool {
 	if o != nil && !common.IsNil(o.ExecutedQty) {
 		return true
 	}
@@ -188,12 +186,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasExecutedQty() bool {
 }
 
 // SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
-func (o *CurrentAllOpenOrdersResponseInner) SetExecutedQty(v string) {
+func (o *QueryOrderResponseResult) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
 // GetOrderId returns the OrderId field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrderId() int64 {
+func (o *QueryOrderResponseResult) GetOrderId() int64 {
 	if o == nil || common.IsNil(o.OrderId) {
 		var ret int64
 		return ret
@@ -203,7 +201,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrderId() int64 {
 
 // GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrderIdOk() (*int64, bool) {
+func (o *QueryOrderResponseResult) GetOrderIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.OrderId) {
 		return nil, false
 	}
@@ -211,7 +209,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrderIdOk() (*int64, bool) {
 }
 
 // HasOrderId returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasOrderId() bool {
+func (o *QueryOrderResponseResult) HasOrderId() bool {
 	if o != nil && !common.IsNil(o.OrderId) {
 		return true
 	}
@@ -220,12 +218,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasOrderId() bool {
 }
 
 // SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
-func (o *CurrentAllOpenOrdersResponseInner) SetOrderId(v int64) {
+func (o *QueryOrderResponseResult) SetOrderId(v int64) {
 	o.OrderId = &v
 }
 
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrigQty() string {
+func (o *QueryOrderResponseResult) GetOrigQty() string {
 	if o == nil || common.IsNil(o.OrigQty) {
 		var ret string
 		return ret
@@ -235,7 +233,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrigQty() string {
 
 // GetOrigQtyOk returns a tuple with the OrigQty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrigQtyOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetOrigQtyOk() (*string, bool) {
 	if o == nil || common.IsNil(o.OrigQty) {
 		return nil, false
 	}
@@ -243,7 +241,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrigQtyOk() (*string, bool) {
 }
 
 // HasOrigQty returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasOrigQty() bool {
+func (o *QueryOrderResponseResult) HasOrigQty() bool {
 	if o != nil && !common.IsNil(o.OrigQty) {
 		return true
 	}
@@ -252,12 +250,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasOrigQty() bool {
 }
 
 // SetOrigQty gets a reference to the given string and assigns it to the OrigQty field.
-func (o *CurrentAllOpenOrdersResponseInner) SetOrigQty(v string) {
+func (o *QueryOrderResponseResult) SetOrigQty(v string) {
 	o.OrigQty = &v
 }
 
 // GetOrigType returns the OrigType field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrigType() string {
+func (o *QueryOrderResponseResult) GetOrigType() string {
 	if o == nil || common.IsNil(o.OrigType) {
 		var ret string
 		return ret
@@ -267,7 +265,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrigType() string {
 
 // GetOrigTypeOk returns a tuple with the OrigType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetOrigTypeOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetOrigTypeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.OrigType) {
 		return nil, false
 	}
@@ -275,7 +273,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetOrigTypeOk() (*string, bool) {
 }
 
 // HasOrigType returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasOrigType() bool {
+func (o *QueryOrderResponseResult) HasOrigType() bool {
 	if o != nil && !common.IsNil(o.OrigType) {
 		return true
 	}
@@ -284,12 +282,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasOrigType() bool {
 }
 
 // SetOrigType gets a reference to the given string and assigns it to the OrigType field.
-func (o *CurrentAllOpenOrdersResponseInner) SetOrigType(v string) {
+func (o *QueryOrderResponseResult) SetOrigType(v string) {
 	o.OrigType = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetPrice() string {
+func (o *QueryOrderResponseResult) GetPrice() string {
 	if o == nil || common.IsNil(o.Price) {
 		var ret string
 		return ret
@@ -299,7 +297,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -307,7 +305,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPriceOk() (*string, bool) {
 }
 
 // HasPrice returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasPrice() bool {
+func (o *QueryOrderResponseResult) HasPrice() bool {
 	if o != nil && !common.IsNil(o.Price) {
 		return true
 	}
@@ -316,12 +314,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasPrice() bool {
 }
 
 // SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *CurrentAllOpenOrdersResponseInner) SetPrice(v string) {
+func (o *QueryOrderResponseResult) SetPrice(v string) {
 	o.Price = &v
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnly() bool {
+func (o *QueryOrderResponseResult) GetReduceOnly() bool {
 	if o == nil || common.IsNil(o.ReduceOnly) {
 		var ret bool
 		return ret
@@ -331,7 +329,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnly() bool {
 
 // GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnlyOk() (*bool, bool) {
+func (o *QueryOrderResponseResult) GetReduceOnlyOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.ReduceOnly) {
 		return nil, false
 	}
@@ -339,7 +337,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnlyOk() (*bool, bool) {
 }
 
 // HasReduceOnly returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasReduceOnly() bool {
+func (o *QueryOrderResponseResult) HasReduceOnly() bool {
 	if o != nil && !common.IsNil(o.ReduceOnly) {
 		return true
 	}
@@ -348,12 +346,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasReduceOnly() bool {
 }
 
 // SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
-func (o *CurrentAllOpenOrdersResponseInner) SetReduceOnly(v bool) {
+func (o *QueryOrderResponseResult) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
 // GetSide returns the Side field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetSide() string {
+func (o *QueryOrderResponseResult) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
 		var ret string
 		return ret
@@ -363,7 +361,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetSide() string {
 
 // GetSideOk returns a tuple with the Side field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetSideOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetSideOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Side) {
 		return nil, false
 	}
@@ -371,7 +369,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetSideOk() (*string, bool) {
 }
 
 // HasSide returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasSide() bool {
+func (o *QueryOrderResponseResult) HasSide() bool {
 	if o != nil && !common.IsNil(o.Side) {
 		return true
 	}
@@ -380,12 +378,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasSide() bool {
 }
 
 // SetSide gets a reference to the given string and assigns it to the Side field.
-func (o *CurrentAllOpenOrdersResponseInner) SetSide(v string) {
+func (o *QueryOrderResponseResult) SetSide(v string) {
 	o.Side = &v
 }
 
 // GetPositionSide returns the PositionSide field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetPositionSide() string {
+func (o *QueryOrderResponseResult) GetPositionSide() string {
 	if o == nil || common.IsNil(o.PositionSide) {
 		var ret string
 		return ret
@@ -395,7 +393,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPositionSide() string {
 
 // GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetPositionSideOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetPositionSideOk() (*string, bool) {
 	if o == nil || common.IsNil(o.PositionSide) {
 		return nil, false
 	}
@@ -403,7 +401,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPositionSideOk() (*string, bool) 
 }
 
 // HasPositionSide returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasPositionSide() bool {
+func (o *QueryOrderResponseResult) HasPositionSide() bool {
 	if o != nil && !common.IsNil(o.PositionSide) {
 		return true
 	}
@@ -412,12 +410,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasPositionSide() bool {
 }
 
 // SetPositionSide gets a reference to the given string and assigns it to the PositionSide field.
-func (o *CurrentAllOpenOrdersResponseInner) SetPositionSide(v string) {
+func (o *QueryOrderResponseResult) SetPositionSide(v string) {
 	o.PositionSide = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetStatus() string {
+func (o *QueryOrderResponseResult) GetStatus() string {
 	if o == nil || common.IsNil(o.Status) {
 		var ret string
 		return ret
@@ -427,7 +425,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetStatusOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetStatusOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Status) {
 		return nil, false
 	}
@@ -435,7 +433,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasStatus() bool {
+func (o *QueryOrderResponseResult) HasStatus() bool {
 	if o != nil && !common.IsNil(o.Status) {
 		return true
 	}
@@ -444,12 +442,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CurrentAllOpenOrdersResponseInner) SetStatus(v string) {
+func (o *QueryOrderResponseResult) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetStopPrice() string {
+func (o *QueryOrderResponseResult) GetStopPrice() string {
 	if o == nil || common.IsNil(o.StopPrice) {
 		var ret string
 		return ret
@@ -459,7 +457,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetStopPrice() string {
 
 // GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetStopPriceOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetStopPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.StopPrice) {
 		return nil, false
 	}
@@ -467,7 +465,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetStopPriceOk() (*string, bool) {
 }
 
 // HasStopPrice returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasStopPrice() bool {
+func (o *QueryOrderResponseResult) HasStopPrice() bool {
 	if o != nil && !common.IsNil(o.StopPrice) {
 		return true
 	}
@@ -476,12 +474,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasStopPrice() bool {
 }
 
 // SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
-func (o *CurrentAllOpenOrdersResponseInner) SetStopPrice(v string) {
+func (o *QueryOrderResponseResult) SetStopPrice(v string) {
 	o.StopPrice = &v
 }
 
 // GetClosePosition returns the ClosePosition field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetClosePosition() bool {
+func (o *QueryOrderResponseResult) GetClosePosition() bool {
 	if o == nil || common.IsNil(o.ClosePosition) {
 		var ret bool
 		return ret
@@ -491,7 +489,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetClosePosition() bool {
 
 // GetClosePositionOk returns a tuple with the ClosePosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetClosePositionOk() (*bool, bool) {
+func (o *QueryOrderResponseResult) GetClosePositionOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.ClosePosition) {
 		return nil, false
 	}
@@ -499,7 +497,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetClosePositionOk() (*bool, bool) {
 }
 
 // HasClosePosition returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasClosePosition() bool {
+func (o *QueryOrderResponseResult) HasClosePosition() bool {
 	if o != nil && !common.IsNil(o.ClosePosition) {
 		return true
 	}
@@ -508,12 +506,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasClosePosition() bool {
 }
 
 // SetClosePosition gets a reference to the given bool and assigns it to the ClosePosition field.
-func (o *CurrentAllOpenOrdersResponseInner) SetClosePosition(v bool) {
+func (o *QueryOrderResponseResult) SetClosePosition(v bool) {
 	o.ClosePosition = &v
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetSymbol() string {
+func (o *QueryOrderResponseResult) GetSymbol() string {
 	if o == nil || common.IsNil(o.Symbol) {
 		var ret string
 		return ret
@@ -523,7 +521,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetSymbolOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetSymbolOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Symbol) {
 		return nil, false
 	}
@@ -531,7 +529,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasSymbol() bool {
+func (o *QueryOrderResponseResult) HasSymbol() bool {
 	if o != nil && !common.IsNil(o.Symbol) {
 		return true
 	}
@@ -540,12 +538,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *CurrentAllOpenOrdersResponseInner) SetSymbol(v string) {
+func (o *QueryOrderResponseResult) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetTime() int64 {
+func (o *QueryOrderResponseResult) GetTime() int64 {
 	if o == nil || common.IsNil(o.Time) {
 		var ret int64
 		return ret
@@ -555,7 +553,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetTime() int64 {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetTimeOk() (*int64, bool) {
+func (o *QueryOrderResponseResult) GetTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Time) {
 		return nil, false
 	}
@@ -563,7 +561,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetTimeOk() (*int64, bool) {
 }
 
 // HasTime returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasTime() bool {
+func (o *QueryOrderResponseResult) HasTime() bool {
 	if o != nil && !common.IsNil(o.Time) {
 		return true
 	}
@@ -572,12 +570,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasTime() bool {
 }
 
 // SetTime gets a reference to the given int64 and assigns it to the Time field.
-func (o *CurrentAllOpenOrdersResponseInner) SetTime(v int64) {
+func (o *QueryOrderResponseResult) SetTime(v int64) {
 	o.Time = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForce() string {
+func (o *QueryOrderResponseResult) GetTimeInForce() string {
 	if o == nil || common.IsNil(o.TimeInForce) {
 		var ret string
 		return ret
@@ -587,7 +585,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForce() string {
 
 // GetTimeInForceOk returns a tuple with the TimeInForce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForceOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetTimeInForceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.TimeInForce) {
 		return nil, false
 	}
@@ -595,7 +593,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForceOk() (*string, bool) {
 }
 
 // HasTimeInForce returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasTimeInForce() bool {
+func (o *QueryOrderResponseResult) HasTimeInForce() bool {
 	if o != nil && !common.IsNil(o.TimeInForce) {
 		return true
 	}
@@ -604,12 +602,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasTimeInForce() bool {
 }
 
 // SetTimeInForce gets a reference to the given string and assigns it to the TimeInForce field.
-func (o *CurrentAllOpenOrdersResponseInner) SetTimeInForce(v string) {
+func (o *QueryOrderResponseResult) SetTimeInForce(v string) {
 	o.TimeInForce = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetType() string {
+func (o *QueryOrderResponseResult) GetType() string {
 	if o == nil || common.IsNil(o.Type) {
 		var ret string
 		return ret
@@ -619,7 +617,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetTypeOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetTypeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
@@ -627,7 +625,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasType() bool {
+func (o *QueryOrderResponseResult) HasType() bool {
 	if o != nil && !common.IsNil(o.Type) {
 		return true
 	}
@@ -636,12 +634,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CurrentAllOpenOrdersResponseInner) SetType(v string) {
+func (o *QueryOrderResponseResult) SetType(v string) {
 	o.Type = &v
 }
 
 // GetActivatePrice returns the ActivatePrice field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetActivatePrice() string {
+func (o *QueryOrderResponseResult) GetActivatePrice() string {
 	if o == nil || common.IsNil(o.ActivatePrice) {
 		var ret string
 		return ret
@@ -651,7 +649,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetActivatePrice() string {
 
 // GetActivatePriceOk returns a tuple with the ActivatePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetActivatePriceOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetActivatePriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ActivatePrice) {
 		return nil, false
 	}
@@ -659,7 +657,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetActivatePriceOk() (*string, bool)
 }
 
 // HasActivatePrice returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasActivatePrice() bool {
+func (o *QueryOrderResponseResult) HasActivatePrice() bool {
 	if o != nil && !common.IsNil(o.ActivatePrice) {
 		return true
 	}
@@ -668,12 +666,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasActivatePrice() bool {
 }
 
 // SetActivatePrice gets a reference to the given string and assigns it to the ActivatePrice field.
-func (o *CurrentAllOpenOrdersResponseInner) SetActivatePrice(v string) {
+func (o *QueryOrderResponseResult) SetActivatePrice(v string) {
 	o.ActivatePrice = &v
 }
 
 // GetPriceRate returns the PriceRate field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceRate() string {
+func (o *QueryOrderResponseResult) GetPriceRate() string {
 	if o == nil || common.IsNil(o.PriceRate) {
 		var ret string
 		return ret
@@ -683,7 +681,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPriceRate() string {
 
 // GetPriceRateOk returns a tuple with the PriceRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceRateOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetPriceRateOk() (*string, bool) {
 	if o == nil || common.IsNil(o.PriceRate) {
 		return nil, false
 	}
@@ -691,7 +689,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPriceRateOk() (*string, bool) {
 }
 
 // HasPriceRate returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasPriceRate() bool {
+func (o *QueryOrderResponseResult) HasPriceRate() bool {
 	if o != nil && !common.IsNil(o.PriceRate) {
 		return true
 	}
@@ -700,12 +698,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasPriceRate() bool {
 }
 
 // SetPriceRate gets a reference to the given string and assigns it to the PriceRate field.
-func (o *CurrentAllOpenOrdersResponseInner) SetPriceRate(v string) {
+func (o *QueryOrderResponseResult) SetPriceRate(v string) {
 	o.PriceRate = &v
 }
 
 // GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTime() int64 {
+func (o *QueryOrderResponseResult) GetUpdateTime() int64 {
 	if o == nil || common.IsNil(o.UpdateTime) {
 		var ret int64
 		return ret
@@ -715,7 +713,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTime() int64 {
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTimeOk() (*int64, bool) {
+func (o *QueryOrderResponseResult) GetUpdateTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.UpdateTime) {
 		return nil, false
 	}
@@ -723,7 +721,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTimeOk() (*int64, bool) {
 }
 
 // HasUpdateTime returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasUpdateTime() bool {
+func (o *QueryOrderResponseResult) HasUpdateTime() bool {
 	if o != nil && !common.IsNil(o.UpdateTime) {
 		return true
 	}
@@ -732,12 +730,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasUpdateTime() bool {
 }
 
 // SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
-func (o *CurrentAllOpenOrdersResponseInner) SetUpdateTime(v int64) {
+func (o *QueryOrderResponseResult) SetUpdateTime(v int64) {
 	o.UpdateTime = &v
 }
 
 // GetWorkingType returns the WorkingType field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetWorkingType() string {
+func (o *QueryOrderResponseResult) GetWorkingType() string {
 	if o == nil || common.IsNil(o.WorkingType) {
 		var ret string
 		return ret
@@ -747,7 +745,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetWorkingType() string {
 
 // GetWorkingTypeOk returns a tuple with the WorkingType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetWorkingTypeOk() (*string, bool) {
+func (o *QueryOrderResponseResult) GetWorkingTypeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.WorkingType) {
 		return nil, false
 	}
@@ -755,7 +753,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetWorkingTypeOk() (*string, bool) {
 }
 
 // HasWorkingType returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasWorkingType() bool {
+func (o *QueryOrderResponseResult) HasWorkingType() bool {
 	if o != nil && !common.IsNil(o.WorkingType) {
 		return true
 	}
@@ -764,12 +762,12 @@ func (o *CurrentAllOpenOrdersResponseInner) HasWorkingType() bool {
 }
 
 // SetWorkingType gets a reference to the given string and assigns it to the WorkingType field.
-func (o *CurrentAllOpenOrdersResponseInner) SetWorkingType(v string) {
+func (o *QueryOrderResponseResult) SetWorkingType(v string) {
 	o.WorkingType = &v
 }
 
 // GetPriceProtect returns the PriceProtect field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtect() bool {
+func (o *QueryOrderResponseResult) GetPriceProtect() bool {
 	if o == nil || common.IsNil(o.PriceProtect) {
 		var ret bool
 		return ret
@@ -779,7 +777,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtect() bool {
 
 // GetPriceProtectOk returns a tuple with the PriceProtect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtectOk() (*bool, bool) {
+func (o *QueryOrderResponseResult) GetPriceProtectOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.PriceProtect) {
 		return nil, false
 	}
@@ -787,7 +785,7 @@ func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtectOk() (*bool, bool) {
 }
 
 // HasPriceProtect returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasPriceProtect() bool {
+func (o *QueryOrderResponseResult) HasPriceProtect() bool {
 	if o != nil && !common.IsNil(o.PriceProtect) {
 		return true
 	}
@@ -796,75 +794,11 @@ func (o *CurrentAllOpenOrdersResponseInner) HasPriceProtect() bool {
 }
 
 // SetPriceProtect gets a reference to the given bool and assigns it to the PriceProtect field.
-func (o *CurrentAllOpenOrdersResponseInner) SetPriceProtect(v bool) {
+func (o *QueryOrderResponseResult) SetPriceProtect(v bool) {
 	o.PriceProtect = &v
 }
 
-// GetPriceMatch returns the PriceMatch field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceMatch() string {
-	if o == nil || common.IsNil(o.PriceMatch) {
-		var ret string
-		return ret
-	}
-	return *o.PriceMatch
-}
-
-// GetPriceMatchOk returns a tuple with the PriceMatch field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetPriceMatchOk() (*string, bool) {
-	if o == nil || common.IsNil(o.PriceMatch) {
-		return nil, false
-	}
-	return o.PriceMatch, true
-}
-
-// HasPriceMatch returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasPriceMatch() bool {
-	if o != nil && !common.IsNil(o.PriceMatch) {
-		return true
-	}
-
-	return false
-}
-
-// SetPriceMatch gets a reference to the given string and assigns it to the PriceMatch field.
-func (o *CurrentAllOpenOrdersResponseInner) SetPriceMatch(v string) {
-	o.PriceMatch = &v
-}
-
-// GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
-func (o *CurrentAllOpenOrdersResponseInner) GetSelfTradePreventionMode() string {
-	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
-		var ret string
-		return ret
-	}
-	return *o.SelfTradePreventionMode
-}
-
-// GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CurrentAllOpenOrdersResponseInner) GetSelfTradePreventionModeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
-		return nil, false
-	}
-	return o.SelfTradePreventionMode, true
-}
-
-// HasSelfTradePreventionMode returns a boolean if a field has been set.
-func (o *CurrentAllOpenOrdersResponseInner) HasSelfTradePreventionMode() bool {
-	if o != nil && !common.IsNil(o.SelfTradePreventionMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetSelfTradePreventionMode gets a reference to the given string and assigns it to the SelfTradePreventionMode field.
-func (o *CurrentAllOpenOrdersResponseInner) SetSelfTradePreventionMode(v string) {
-	o.SelfTradePreventionMode = &v
-}
-
-func (o CurrentAllOpenOrdersResponseInner) MarshalJSON() ([]byte, error) {
+func (o QueryOrderResponseResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -872,7 +806,7 @@ func (o CurrentAllOpenOrdersResponseInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CurrentAllOpenOrdersResponseInner) ToMap() (map[string]interface{}, error) {
+func (o QueryOrderResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
@@ -880,8 +814,8 @@ func (o CurrentAllOpenOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
-	if !common.IsNil(o.CumBase) {
-		toSerialize["cumBase"] = o.CumBase
+	if !common.IsNil(o.CumQuote) {
+		toSerialize["cumQuote"] = o.CumQuote
 	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
@@ -943,12 +877,6 @@ func (o CurrentAllOpenOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	if !common.IsNil(o.PriceProtect) {
 		toSerialize["priceProtect"] = o.PriceProtect
 	}
-	if !common.IsNil(o.PriceMatch) {
-		toSerialize["priceMatch"] = o.PriceMatch
-	}
-	if !common.IsNil(o.SelfTradePreventionMode) {
-		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -957,23 +885,23 @@ func (o CurrentAllOpenOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
-func (o *CurrentAllOpenOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
-	varCurrentAllOpenOrdersResponseInner := _CurrentAllOpenOrdersResponseInner{}
+func (o *QueryOrderResponseResult) UnmarshalJSON(data []byte) (err error) {
+	varQueryOrderResponseResult := _QueryOrderResponseResult{}
 
-	err = json.Unmarshal(data, &varCurrentAllOpenOrdersResponseInner)
+	err = json.Unmarshal(data, &varQueryOrderResponseResult)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CurrentAllOpenOrdersResponseInner(varCurrentAllOpenOrdersResponseInner)
+	*o = QueryOrderResponseResult(varQueryOrderResponseResult)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "clientOrderId")
-		delete(additionalProperties, "cumBase")
+		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")
@@ -994,46 +922,44 @@ func (o *CurrentAllOpenOrdersResponseInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "workingType")
 		delete(additionalProperties, "priceProtect")
-		delete(additionalProperties, "priceMatch")
-		delete(additionalProperties, "selfTradePreventionMode")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableCurrentAllOpenOrdersResponseInner struct {
-	value *CurrentAllOpenOrdersResponseInner
+type NullableQueryOrderResponseResult struct {
+	value *QueryOrderResponseResult
 	isSet bool
 }
 
-func (v NullableCurrentAllOpenOrdersResponseInner) Get() *CurrentAllOpenOrdersResponseInner {
+func (v NullableQueryOrderResponseResult) Get() *QueryOrderResponseResult {
 	return v.value
 }
 
-func (v *NullableCurrentAllOpenOrdersResponseInner) Set(val *CurrentAllOpenOrdersResponseInner) {
+func (v *NullableQueryOrderResponseResult) Set(val *QueryOrderResponseResult) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCurrentAllOpenOrdersResponseInner) IsSet() bool {
+func (v NullableQueryOrderResponseResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCurrentAllOpenOrdersResponseInner) Unset() {
+func (v *NullableQueryOrderResponseResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCurrentAllOpenOrdersResponseInner(val *CurrentAllOpenOrdersResponseInner) *NullableCurrentAllOpenOrdersResponseInner {
-	return &NullableCurrentAllOpenOrdersResponseInner{value: val, isSet: true}
+func NewNullableQueryOrderResponseResult(val *QueryOrderResponseResult) *NullableQueryOrderResponseResult {
+	return &NullableQueryOrderResponseResult{value: val, isSet: true}
 }
 
-func (v NullableCurrentAllOpenOrdersResponseInner) MarshalJSON() ([]byte, error) {
+func (v NullableQueryOrderResponseResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCurrentAllOpenOrdersResponseInner) UnmarshalJSON(src []byte) error {
+func (v *NullableQueryOrderResponseResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

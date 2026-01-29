@@ -1,5 +1,16 @@
 ### Changelog
 
+## 1.3.0 - 2026-01-29
+
+### Changed (2)
+
+- Deleted parameter `userName`
+  - affected methods:
+    - `hashrateResaleDetail()` (`GET /sapi/v1/mining/hash-transfer/profit/details`)
+- Modified response for `hashrateResaleList()` (`GET /sapi/v1/mining/hash-transfer/config/details/list`):
+  - `data`.`configDetails`.items: property `type` added
+  - `data`.`configDetails`.items: item property `type` added
+
 ## 1.2.0 - 2026-01-23
 
 ### Changed (1)

@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.3.0 - 2026-01-29
+
+### Changed (1)
+
+- Modified response for `PlaceLimitOrder()` (`POST /sapi/v1/convert/limit/placeOrder`):
+  - property `Status` added
+  - property `OrderId` added
+  - property `FromAmount` deleted
+  - property `InverseRatio` deleted
+  - property `QuoteId` deleted
+  - property `Ratio` deleted
+  - property `ToAmount` deleted
+  - property `ValidTimestamp` deleted
+
 ## 1.2.0 - 2026-01-23
 
 ### Changed (1)

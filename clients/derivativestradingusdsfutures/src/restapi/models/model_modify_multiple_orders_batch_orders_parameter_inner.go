@@ -24,6 +24,7 @@ type ModifyMultipleOrdersBatchOrdersParameterInner struct {
 	Quantity             *string                          `json:"quantity,omitempty"`
 	Price                *string                          `json:"price,omitempty"`
 	PriceMatch           *NewAlgoOrderPriceMatchParameter `json:"priceMatch,omitempty"`
+	StopPrice            *string                          `json:"stopPrice,omitempty"`
 	RecvWindow           *string                          `json:"recvWindow,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -271,6 +272,38 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v NewAlgoO
 	o.PriceMatch = &v
 }
 
+// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() string {
+	if o == nil || common.IsNil(o.StopPrice) {
+		var ret string
+		return ret
+	}
+	return *o.StopPrice
+}
+
+// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.StopPrice) {
+		return nil, false
+	}
+	return o.StopPrice, true
+}
+
+// HasStopPrice returns a boolean if a field has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool {
+	if o != nil && !common.IsNil(o.StopPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v string) {
+	o.StopPrice = &v
+}
+
 // GetRecvWindow returns the RecvWindow field value if set, zero value otherwise.
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() string {
 	if o == nil || common.IsNil(o.RecvWindow) {
@@ -334,6 +367,9 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.PriceMatch) {
 		toSerialize["priceMatch"] = o.PriceMatch
 	}
+	if !common.IsNil(o.StopPrice) {
+		toSerialize["stopPrice"] = o.StopPrice
+	}
 	if !common.IsNil(o.RecvWindow) {
 		toSerialize["recvWindow"] = o.RecvWindow
 	}
@@ -366,6 +402,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "priceMatch")
+		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "recvWindow")
 		o.AdditionalProperties = additionalProperties
 	}

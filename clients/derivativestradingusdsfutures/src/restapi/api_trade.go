@@ -1741,6 +1741,7 @@ type ApiNewAlgoOrderRequest struct {
 	activatePrice           *float32
 	callbackRate            *float32
 	clientAlgoId            *string
+	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
 	recvWindow              *int64
@@ -1841,6 +1842,12 @@ func (r ApiNewAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiNewAlgoOrde
 	return r
 }
 
+// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
+func (r ApiNewAlgoOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewAlgoOrderRequest {
+	r.newOrderRespType = &newOrderRespType
+	return r
+}
+
 // &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiNewAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiNewAlgoOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
@@ -1886,6 +1893,7 @@ https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest
 @param activatePrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
 @param clientAlgoId -
+@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
 @param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
@@ -1964,6 +1972,9 @@ func (a *TradeAPIService) NewAlgoOrderExecute(r ApiNewAlgoOrderRequest) (*common
 	if r.clientAlgoId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientAlgoId", r.clientAlgoId, "form", "")
 	}
+	if r.newOrderRespType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "newOrderRespType", r.newOrderRespType, "form", "")
+	}
 	if r.selfTradePreventionMode != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "selfTradePreventionMode", r.selfTradePreventionMode, "form", "")
 	}
@@ -1994,7 +2005,7 @@ type ApiNewOrderRequest struct {
 	reduceOnly              *string
 	price                   *float32
 	newClientOrderId        *string
-	newOrderRespType        *models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType
+	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
@@ -2051,7 +2062,7 @@ func (r ApiNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewOrde
 }
 
 // \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
-func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
@@ -2821,7 +2832,7 @@ type ApiTestOrderRequest struct {
 	callbackRate            *float32
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
 	priceProtect            *string
-	newOrderRespType        *models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType
+	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
@@ -2914,7 +2925,7 @@ func (r ApiTestOrderRequest) PriceProtect(priceProtect string) ApiTestOrderReque
 }
 
 // \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
-func (r ApiTestOrderRequest) NewOrderRespType(newOrderRespType models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiTestOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }

@@ -677,10 +677,10 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromId := int32(1) // int32 | Aggregate trade ID to begin at (optional)
+	fromId := int64(1) // int64 | Aggregate trade ID to begin at (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -720,10 +720,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
- **fromId** | **int32** | Aggregate trade ID to begin at | 
+ **fromId** | **int64** | Aggregate trade ID to begin at | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **limit** | **int64** | Default: 500; Maximum: 1000 | 
 
 ### Return type
 
@@ -759,7 +759,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromId := int32(1) // int32 | Aggregate trade ID to begin at (optional)
+	fromId := int32(1) // int32 | Trade ID to begin at (optional)
 	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -800,7 +800,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Unique WebSocket request ID. | 
- **fromId** | **int32** | Aggregate trade ID to begin at | 
+ **fromId** | **int32** | Trade ID to begin at | 
  **limit** | **int32** | Default: 100; Maximum: 5000 | 
 
 ### Return type
