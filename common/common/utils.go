@@ -449,7 +449,7 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 		if err != nil {
 			lastErr = err
 			if attempt < retries && ShouldRetryRequest(err, method, retries-attempt, resp) {
-				time.Sleep(time.Duration(backoff*attempt) * time.Second)
+				time.Sleep(time.Duration(backoff*attempt) * time.Millisecond)
 				continue
 			}
 			return &RestApiResponse[T]{}, NewNetworkError(fmt.Sprintf("Network error: %v", err))
@@ -490,7 +490,7 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 
 		if resp.StatusCode >= 500 && resp.StatusCode <= 504 {
 			if attempt < retries {
-				time.Sleep(time.Duration(backoff*attempt) * time.Second)
+				time.Sleep(time.Duration(backoff*attempt) * time.Millisecond)
 				continue
 			}
 			return &RestApiResponse[T]{}, fmt.Errorf("request failed after %d retries: received status %d", retries, resp.StatusCode)
