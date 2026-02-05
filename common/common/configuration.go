@@ -111,7 +111,7 @@ type ConfigurationWebsocketStreamsOption func(*ConfigurationWebsocketStreams)
 // @return A pointer to the newly created ConfigurationRestAPI.
 func NewConfigurationRestAPI(opts ...ConfigurationRestAPIOption) *ConfigurationRestAPI {
 	basePath := "https://api.binance.com"
-	timeout := 5 * time.Millisecond
+	timeout := 5000 * time.Millisecond
 	retries := 3
 	backoff := 1000
 	keepAlive := true
