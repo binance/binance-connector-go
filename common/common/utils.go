@@ -408,6 +408,38 @@ func ParseRateLimitHeaders(header http.Header) ([]RateLimit, error) {
 	return rateLimits, nil
 }
 
+// SleepContext pauses the execution for the specified duration or until the context is done.
+//
+// @param ctx The context to observe for cancellation.
+// @param duration The duration to sleep.
+// @return An error if the context is done before the duration elapses.
+func SleepContext(ctx context.Context, duration time.Duration) error {
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	if duration <= 0 {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		default:
+			return nil
+		}
+	}
+
+	timer := time.NewTimer(duration)
+	defer timer.Stop()
+
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-timer.C:
+		return nil
+	}
+}
+
 // SendRequest sends an HTTP request and handles retries, response decoding, and error handling.
 //
 // @param ctx The context for the request.
@@ -439,7 +471,7 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 
 	backoff := cfg.Backoff
 	if backoff <= 0 {
-		backoff = 1
+		backoff = 1000
 	}
 	var lastErr error
 
@@ -449,7 +481,9 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 		if err != nil {
 			lastErr = err
 			if attempt < retries && ShouldRetryRequest(err, method, retries-attempt, resp) {
-				time.Sleep(time.Duration(backoff*attempt) * time.Second)
+				if err := SleepContext(ctx, time.Duration(backoff*(attempt+1))*time.Millisecond); err != nil {
+					return &RestApiResponse[T]{}, err
+				}
 				continue
 			}
 			return &RestApiResponse[T]{}, NewNetworkError(fmt.Sprintf("Network error: %v", err))
@@ -490,7 +524,9 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 
 		if resp.StatusCode >= 500 && resp.StatusCode <= 504 {
 			if attempt < retries {
-				time.Sleep(time.Duration(backoff*attempt) * time.Second)
+				if err := SleepContext(ctx, time.Duration(backoff*(attempt+1))*time.Millisecond); err != nil {
+					return &RestApiResponse[T]{}, err
+				}
 				continue
 			}
 			return &RestApiResponse[T]{}, fmt.Errorf("request failed after %d retries: received status %d", retries, resp.StatusCode)
@@ -703,11 +739,11 @@ func SetupProxy(cfg *ConfigurationRestAPI) *http.Client {
 		transport := BuildTransport(cfg.HTTPSAgent, cfg)
 		return &http.Client{
 			Transport: transport,
-			Timeout:   time.Duration(cfg.Timeout) * time.Millisecond,
+			Timeout:   cfg.Timeout,
 		}
 	}
 	return &http.Client{
-		Timeout: time.Duration(cfg.Timeout) * time.Millisecond,
+		Timeout: cfg.Timeout,
 	}
 }
 

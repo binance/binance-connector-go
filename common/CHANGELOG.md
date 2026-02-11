@@ -1,5 +1,12 @@
 ### Changelog
 
+## 2.0.0 - 2026-02-11
+
+### Changed (2)
+
+- Updated `WebSocketCommon` connect method to accept streams parameter for subscribing upon connection.
+- Updated `retry` logic in `utils.go` to use `SleepContext` for better handling of context cancellation during retries.
+
 ## 1.2.0 - 2026-01-23
 
 ### Added (1)
