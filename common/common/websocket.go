@@ -362,30 +362,44 @@ func (w *WebSocketCommon) initializePool() {
 //
 // @param config The WebSocketConfig containing configuration details.
 // @param userAgent The user agent string to be used for the connection.
+// @param streams A slice of stream names to subscribe to upon connection.
 // @return An error if the connection fails, otherwise nil.
-func (w *WebSocketCommon) Connect(config WebSocketConfig, userAgent string) error {
+func (w *WebSocketCommon) Connect(config WebSocketConfig, userAgent string, streams []string) error {
 	if err := w.setupProxyDialer(config); err != nil {
 		return fmt.Errorf("proxy setup failed: %v", err)
 	}
 
-	BasePath := w.prepareBasePath(config)
 	headers := w.prepareHeaders(config, userAgent)
 	dialer := w.CreateWebSocketDialer(config)
 
 	if w.Mode == SINGLE {
+		BasePath := w.prepareBasePath(config, streams, true)
 		return w.connectSingleMode(BasePath, headers, dialer, config, userAgent)
 	}
-	return w.connectPoolMode(BasePath, headers, dialer, config, userAgent)
+	return w.connectPoolMode(headers, dialer, config, userAgent, streams)
 }
 
 // prepareBasePath constructs the base path for the WebSocket connection.
 //
 // @param config The WebSocketConfig containing configuration details.
+// @param streams The list of streams to include in the base path.
+// @param includeStreams A boolean indicating whether to include streams in the base path.
 // @return The constructed base path string.
-func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig) string {
+func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []string, includeStreams bool) string {
 	BasePath := config.GetBasePath()
+	if includeStreams && streams != nil && len(streams) > 0 {
+		BasePath += "?streams="
+		for _, stream := range streams {
+			BasePath += stream + "/"
+		}
+		BasePath = strings.TrimSuffix(BasePath, "/")
+	}
 	if timeUnit := config.GetTimeUnit(); timeUnit != "" {
-		BasePath = BasePath + "?timeUnit=" + string(timeUnit)
+		if streams != nil && len(streams) > 0 {
+			BasePath += "&timeUnit=" + string(timeUnit)
+		} else {
+			BasePath += "?timeUnit=" + string(timeUnit)
+		}
 	}
 	return BasePath
 }
@@ -485,13 +499,13 @@ func (w *WebSocketCommon) connectSingleMode(BasePath string, headers http.Header
 
 // connectPoolMode establishes WebSocket connections in pool mode.
 //
-// @param BasePath The base URL for the WebSocket connection.
 // @param headers The HTTP headers to include in the connection request.
 // @param dialer The WebSocket dialer to use for the connection.
 // @param config The WebSocketConfig containing configuration details.
 // @param userAgent The user agent string to use for the connection.
+// @param streams A slice of stream names to subscribe to upon connection.
 // @return An error if the connection fails, otherwise nil.
-func (w *WebSocketCommon) connectPoolMode(BasePath string, headers http.Header, dialer websocket.Dialer, config WebSocketConfig, userAgent string) error {
+func (w *WebSocketCommon) connectPoolMode(headers http.Header, dialer websocket.Dialer, config WebSocketConfig, userAgent string, streams []string) error {
 	var wg sync.WaitGroup
 	successChan := make(chan bool, len(w.Connections))
 	errChan := make(chan error, len(w.Connections))
@@ -502,6 +516,7 @@ func (w *WebSocketCommon) connectPoolMode(BasePath string, headers http.Header, 
 			go func(num int, conn *WebSocketConnection) {
 				defer wg.Done()
 
+				BasePath := w.prepareBasePath(config, streams, num == 0)
 				wsConn, _, err := dialer.Dial(BasePath, headers)
 				if err != nil {
 					log.Printf("WebSocket connection error: %v", err)
@@ -601,7 +616,7 @@ func (w *WebSocketCommon) KeepAlive(connection *WebSocketConnection, config WebS
 // @param userAgent The user agent string to use for the connection.
 // @return An error if the reconnection fails, otherwise nil.
 func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketConfig, userAgent string) error {
-	BasePath := w.prepareBasePath(config)
+	BasePath := w.prepareBasePath(config, conn.StreamConnectionMap, conn.SessionLogonRequest == nil)
 	headers := w.prepareHeaders(config, userAgent)
 	dialer := w.CreateWebSocketDialer(config)
 
@@ -617,8 +632,6 @@ func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketC
 		w.restoreSessionIfNeeded(conn)
 		time.Sleep(1 * time.Second)
 		w.resubscribeUserDataStreams(conn)
-	} else if len(conn.StreamConnectionMap) > 0 {
-		w.resubscribeRegularStreams(conn)
 	}
 
 	return nil
@@ -710,34 +723,6 @@ func (w *WebSocketCommon) resubscribeUserDataStreams(connection *WebSocketConnec
 			log.Printf("Error sending resubscription message for stream %s: %v", streamID, err)
 			continue
 		}
-	}
-}
-
-// resubscribeRegularStreams resubscribes to all regular streams after reconnection.
-//
-// @param connection The WebSocketConnection to resubscribe streams on.
-func (w *WebSocketCommon) resubscribeRegularStreams(connection *WebSocketConnection) {
-	for _, stream := range connection.StreamConnectionMap {
-		subscribePayload := map[string]interface{}{
-			"method": "SUBSCRIBE",
-			"params": []string{stream},
-			"id":     GenerateUUID(),
-		}
-
-		message, err := json.Marshal(subscribePayload)
-		if err != nil {
-			log.Printf("Error during resubscription to stream %s: %v", stream, err)
-			continue
-		}
-
-		connection.mu.Lock()
-		err = connection.Websocket.WriteMessage(websocket.TextMessage, message)
-		connection.mu.Unlock()
-		if err != nil {
-			log.Printf("Error sending resubscription message for stream %s: %v", stream, err)
-			continue
-		}
-		log.Printf("Resubscribed to stream %s on reconnection", stream)
 	}
 }
 
@@ -867,7 +852,7 @@ func NewWebsocketAPI(cfg *ConfigurationWebsocketApi) (*WebsocketAPI, error) {
 // @param userAgent The user agent string to be used for the connection.
 // @return An error if the connection fails, otherwise nil.
 func (w *WebsocketAPI) Connect(userAgent string) error {
-	return w.WsCommon.Connect(w.Cfg, userAgent)
+	return w.WsCommon.Connect(w.Cfg, userAgent, []string{})
 }
 
 // SendMessage sends a message over the WebSocket connection and returns channels for the response and error.
@@ -1121,8 +1106,25 @@ func NewWebsocketStreams(cfg *ConfigurationWebsocketStreams) (*WebsocketStreams,
 	}, nil
 }
 
-func (w *WebsocketStreams) Connect(userAgent string) error {
-	return w.WsCommon.Connect(w.Cfg, userAgent)
+// Connect establishes the WebSocket connection using the provided user agent and streams.
+//
+// @param userAgent The user agent string to be used for the connection.
+// @param streams A slice of stream names to subscribe to upon connection.
+// @return An error if the connection fails, otherwise nil.
+func (w *WebsocketStreams) Connect(userAgent string, streams []string) error {
+	err := w.WsCommon.Connect(w.Cfg, userAgent, streams)
+	if err != nil {
+		fmt.Println("WebSocket connection error:", err)
+		return err
+	}
+	if streams != nil && len(streams) > 0 {
+		conn := w.WsCommon.Connections[0]
+		for _, stream := range streams {
+			w.GlobalStreamConnectionMap[stream] = append(w.GlobalStreamConnectionMap[stream], conn)
+			conn.StreamConnectionMap = append(conn.StreamConnectionMap, stream)
+		}
+	}
+	return nil
 }
 
 // Subscribe subscribes to the specified streams.

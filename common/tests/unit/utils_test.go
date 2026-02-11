@@ -513,6 +513,92 @@ func TestSendRequest_ContentEncodingGzip(t *testing.T) {
 	}
 }
 
+func TestSleepContext_CompletesNormally(t *testing.T) {
+	ctx := context.Background()
+	duration := 50 * time.Millisecond
+
+	start := time.Now()
+	err := common.SleepContext(ctx, duration)
+	elapsed := time.Since(start)
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+
+	if elapsed < duration {
+		t.Errorf("Expected sleep to last at least %v, but it lasted %v", duration, elapsed)
+	}
+}
+
+func TestSleepContext_CanceledContext(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+
+	err := common.SleepContext(ctx, 1*time.Second)
+
+	if err != context.Canceled {
+		t.Errorf("Expected context.Canceled error, got %v", err)
+	}
+}
+
+func TestSleepContext_CanceledDuringSleep(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	
+	go func() {
+		time.Sleep(50 * time.Millisecond)
+		cancel()
+	}()
+
+	start := time.Now()
+	err := common.SleepContext(ctx, 1*time.Second)
+	elapsed := time.Since(start)
+
+	if err != context.Canceled {
+		t.Errorf("Expected context.Canceled error, got %v", err)
+	}
+
+	if elapsed >= 1*time.Second {
+		t.Errorf("Expected sleep to be interrupted before 1 second, but it lasted %v", elapsed)
+	}
+}
+
+func TestSleepContext_ZeroDuration(t *testing.T) {
+	ctx := context.Background()
+
+	err := common.SleepContext(ctx, 0)
+
+	if err != nil {
+		t.Errorf("Expected no error with zero duration, got %v", err)
+	}
+}
+
+func TestSleepContext_NegativeDuration(t *testing.T) {
+	ctx := context.Background()
+
+	err := common.SleepContext(ctx, -1*time.Second)
+
+	if err != nil {
+		t.Errorf("Expected no error with negative duration, got %v", err)
+	}
+}
+
+func TestSleepContext_TimeoutContext(t *testing.T) {
+	ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
+	defer cancel()
+
+	start := time.Now()
+	err := common.SleepContext(ctx, 1*time.Second)
+	elapsed := time.Since(start)
+
+	if err != context.DeadlineExceeded {
+		t.Errorf("Expected context.DeadlineExceeded error, got %v", err)
+	}
+
+	if elapsed >= 1*time.Second {
+		t.Errorf("Expected sleep to be interrupted by timeout, but it lasted %v", elapsed)
+	}
+}
+
 func TestPrepareRequest_BasicHeadersAndQuery(t *testing.T) {
 	cfg := &common.ConfigurationRestAPI{
 		ApiKey: "apikey123",

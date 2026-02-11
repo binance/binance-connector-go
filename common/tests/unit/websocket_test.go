@@ -1440,7 +1440,7 @@ func TestWebSocketCommon_Connect(t *testing.T) {
 			},
 		})
 
-		err := wsc.Connect(config, "test-agent")
+		err := wsc.Connect(config, "test-agent", []string{"stream1", "stream2"})
 
 		if err != nil {
 			t.Fatalf("Connect failed: %v", err)
@@ -1462,18 +1462,20 @@ func TestWebSocketCommon_Connect(t *testing.T) {
 
 		var connectionCount int
 		var mu sync.Mutex
+		requestURLs := make([]string, 0)
 
 		s := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			mu.Lock()
+			requestURLs = append(requestURLs, r.URL.String())
+			connectionCount++
+			mu.Unlock()
+
 			conn, err := upgrader.Upgrade(w, r, nil)
 			if err != nil {
 				t.Logf("WebSocket upgrade failed: %v", err)
 				return
 			}
 			defer func() { _ = conn.Close() }()
-
-			mu.Lock()
-			connectionCount++
-			mu.Unlock()
 
 			for {
 				_, _, err := conn.ReadMessage()
@@ -1504,11 +1506,14 @@ func TestWebSocketCommon_Connect(t *testing.T) {
 		config := NewMockWebSocketConfig()
 		config.basePath = u.String()
 
-		err := wsc.Connect(config, "test-agent")
+		streams := []string{"stream1", "stream2"}
+		err := wsc.Connect(config, "test-agent", streams)
 
 		if err != nil {
 			t.Fatalf("Connect failed: %v", err)
 		}
+
+		time.Sleep(200 * time.Millisecond)
 
 		if len(wsc.Connections) != 3 {
 			t.Errorf("Expected 3 connections, got %d", len(wsc.Connections))
@@ -1526,6 +1531,99 @@ func TestWebSocketCommon_Connect(t *testing.T) {
 		mu.Lock()
 		if connectionCount != 3 {
 			t.Errorf("Expected 3 server connections, got %d", connectionCount)
+		}
+
+		hasStreamsCount := 0
+		var firstURLWithStreams string
+		for _, url := range requestURLs {
+			if strings.Contains(url, "streams=") {
+				hasStreamsCount++
+				if firstURLWithStreams == "" {
+					firstURLWithStreams = url
+				}
+			}
+		}
+
+		if hasStreamsCount != 1 {
+			t.Errorf("Expected exactly 1 connection with streams parameter, got %d. URLs: %v", hasStreamsCount, requestURLs)
+		}
+
+		if firstURLWithStreams != "" {
+			if !strings.Contains(firstURLWithStreams, "streams=stream1/stream2") {
+				t.Errorf("Expected streams parameter to be 'streams=stream1/stream2', got: %s", firstURLWithStreams)
+			}
+		}
+		mu.Unlock()
+	})
+
+	t.Run("pool mode connection without streams", func(t *testing.T) {
+		upgrader := websocket.Upgrader{
+			CheckOrigin: func(r *http.Request) bool { return true },
+		}
+
+		var connectionCount int
+		var mu sync.Mutex
+		requestURLs := make([]string, 0)
+
+		s := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			mu.Lock()
+			requestURLs = append(requestURLs, r.URL.String())
+			connectionCount++
+			mu.Unlock()
+
+			conn, err := upgrader.Upgrade(w, r, nil)
+			if err != nil {
+				t.Logf("WebSocket upgrade failed: %v", err)
+				return
+			}
+			defer func() { _ = conn.Close() }()
+
+			for {
+				_, _, err := conn.ReadMessage()
+				if err != nil {
+					return
+				}
+			}
+		}))
+		defer s.Close()
+
+		u, _ := url.Parse(s.URL)
+		u.Scheme = "ws"
+
+		wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+			APIConfig: &common.ConfigurationWebsocketApi{
+				PoolSize: 3,
+				Mode:     common.POOL,
+			},
+		})
+
+		if len(wsc.Connections) == 0 {
+			wsc.Connections = make([]*common.WebSocketConnection, 3)
+			for i := 0; i < 3; i++ {
+				wsc.Connections[i] = &common.WebSocketConnection{}
+			}
+		}
+
+		config := NewMockWebSocketConfig()
+		config.basePath = u.String()
+
+		err := wsc.Connect(config, "test-agent", []string{})
+
+		if err != nil {
+			t.Fatalf("Connect failed: %v", err)
+		}
+
+		time.Sleep(200 * time.Millisecond)
+
+		mu.Lock()
+		if connectionCount != 3 {
+			t.Errorf("Expected 3 server connections, got %d", connectionCount)
+		}
+
+		for _, url := range requestURLs {
+			if strings.Contains(url, "streams=") {
+				t.Errorf("Expected no connection with streams parameter when empty slice provided, but found: %s", url)
+			}
 		}
 		mu.Unlock()
 	})
@@ -2172,12 +2270,110 @@ func TestNewWebsocketStreams(t *testing.T) {
 }
 
 func TestWebsocketStreams_Connect(t *testing.T) {
-	mockConn := NewMockWebSocketConn()
-	ws := createTestWebsocketStreams(mockConn)
+	t.Run("connect without streams", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
 
-	err := ws.Connect("test-user-agent")
+		err := ws.Connect("test-user-agent", []string{})
 
-	assert.NoError(t, err)
+		assert.NoError(t, err)
+		assert.Empty(t, ws.GlobalStreamConnectionMap)
+		if len(ws.WsCommon.Connections) > 0 {
+			assert.Empty(t, ws.WsCommon.Connections[0].StreamConnectionMap)
+		}
+	})
+
+	t.Run("connect with nil streams", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
+
+		err := ws.Connect("test-user-agent", nil)
+
+		assert.NoError(t, err)
+		assert.Empty(t, ws.GlobalStreamConnectionMap)
+		if len(ws.WsCommon.Connections) > 0 {
+			assert.Empty(t, ws.WsCommon.Connections[0].StreamConnectionMap)
+		}
+	})
+
+	t.Run("connect with single stream", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
+
+		streams := []string{"stream1"}
+		err := ws.Connect("test-user-agent", streams)
+
+		assert.NoError(t, err)
+		assert.Len(t, ws.GlobalStreamConnectionMap, 1)
+		assert.Contains(t, ws.GlobalStreamConnectionMap, "stream1")
+		assert.Len(t, ws.GlobalStreamConnectionMap["stream1"], 1)
+		assert.Equal(t, ws.WsCommon.Connections[0], ws.GlobalStreamConnectionMap["stream1"][0])
+
+		assert.Len(t, ws.WsCommon.Connections[0].StreamConnectionMap, 1)
+		assert.Contains(t, ws.WsCommon.Connections[0].StreamConnectionMap, "stream1")
+	})
+
+	t.Run("connect with multiple streams", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
+
+		streams := []string{"stream1", "stream2", "stream3"}
+		err := ws.Connect("test-user-agent", streams)
+
+		assert.NoError(t, err)
+		assert.Len(t, ws.GlobalStreamConnectionMap, 3)
+
+		for _, stream := range streams {
+			assert.Contains(t, ws.GlobalStreamConnectionMap, stream)
+			assert.Len(t, ws.GlobalStreamConnectionMap[stream], 1)
+			assert.Equal(t, ws.WsCommon.Connections[0], ws.GlobalStreamConnectionMap[stream][0])
+		}
+
+		assert.Len(t, ws.WsCommon.Connections[0].StreamConnectionMap, 3)
+		for _, stream := range streams {
+			assert.Contains(t, ws.WsCommon.Connections[0].StreamConnectionMap, stream)
+		}
+	})
+
+
+	t.Run("verify first connection is used for stream mapping", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
+
+		if len(ws.WsCommon.Connections) > 1 {
+			streams := []string{"stream1", "stream2"}
+			err := ws.Connect("test-user-agent", streams)
+
+			assert.NoError(t, err)
+
+			firstConn := ws.WsCommon.Connections[0]
+			assert.Len(t, firstConn.StreamConnectionMap, 2)
+
+			for i := 1; i < len(ws.WsCommon.Connections); i++ {
+				if ws.WsCommon.Connections[i].StreamConnectionMap != nil {
+					assert.Empty(t, ws.WsCommon.Connections[i].StreamConnectionMap)
+				}
+			}
+		}
+	})
+
+	t.Run("connect with duplicate streams", func(t *testing.T) {
+		mockConn := NewMockWebSocketConn()
+		ws := createTestWebsocketStreams(mockConn)
+
+		streams := []string{"stream1", "stream1", "stream2"}
+		err := ws.Connect("test-user-agent", streams)
+
+		assert.NoError(t, err)
+
+		assert.Contains(t, ws.GlobalStreamConnectionMap, "stream1")
+		assert.Contains(t, ws.GlobalStreamConnectionMap, "stream2")
+
+		assert.Len(t, ws.GlobalStreamConnectionMap["stream1"], 2)
+		assert.Len(t, ws.GlobalStreamConnectionMap["stream2"], 1)
+
+		assert.Len(t, ws.WsCommon.Connections[0].StreamConnectionMap, 3)
+	})
 }
 
 func TestWebsocketStreams_Subscribe_Success(t *testing.T) {

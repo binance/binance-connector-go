@@ -408,11 +408,11 @@ func ParseRateLimitHeaders(header http.Header) ([]RateLimit, error) {
 	return rateLimits, nil
 }
 
-// SleepContext a sleep that can be cancelled by context.
-// It uses a timer and select to either wait for the specified duration
-// or return immediately if the context is cancelled. This is useful
-// for operations that need to respect context cancellation while
-// waiting, such as retry logic or timeouts in concurrent operations.
+// SleepContext pauses the execution for the specified duration or until the context is done.
+//
+// @param ctx The context to observe for cancellation.
+// @param duration The duration to sleep.
+// @return An error if the context is done before the duration elapses.
 func SleepContext(ctx context.Context, duration time.Duration) error {
 	select {
 	case <-ctx.Done():

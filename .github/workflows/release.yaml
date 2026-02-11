@@ -172,12 +172,12 @@ jobs:
             # Split into parts
             IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
             MAJOR=${VERSION_PARTS[0]}
-            MINOR=${VERSION_PARTS[1]}
+            MINOR=0
             PATCH=${VERSION_PARTS[2]}
 
             # Increment patch version
-            NEW_MINOR=$((MINOR + 1))
-            NEW_VERSION="v${MAJOR}.${NEW_MINOR}.${PATCH}"
+            NEW_MAJOR=$((MAJOR + 1))
+            NEW_VERSION="v${NEW_MAJOR}.${MINOR}.${PATCH}"
           fi
 
           # Set the full tag name
