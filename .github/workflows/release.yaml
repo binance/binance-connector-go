@@ -176,8 +176,8 @@ jobs:
             PATCH=${VERSION_PARTS[2]}
 
             # Increment patch version
-            NEW_PATCH=$((PATCH + 1))
-            NEW_VERSION="v${MAJOR}.${MINOR}.${NEW_PATCH}"
+            NEW_MINOR=$((MINOR + 1))
+            NEW_VERSION="v${MAJOR}.${NEW_MINOR}.${PATCH}"
           fi
 
           # Set the full tag name

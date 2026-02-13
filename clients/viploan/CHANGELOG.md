@@ -6,7 +6,7 @@
 
 - Updated `github.com/binance/binance-connector-go/common` library to version `2.0.0`.
 
-## 1.3.0 - 2026-01-29
+## 1.2.0 - 2026-01-29
 
 ### Changed (1)
 
