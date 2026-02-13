@@ -2,7 +2,7 @@ package subaccount
 
 import (
 	BinanceSubAccountRestApi "github.com/binance/binance-connector-go/clients/subaccount/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceSubAccountClient struct {

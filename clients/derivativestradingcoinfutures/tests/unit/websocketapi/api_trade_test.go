@@ -7,8 +7,8 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures"
 	"github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/websocketapi/models"
-	"github.com/binance/binance-connector-go/common/common"
-	tests "github.com/binance/binance-connector-go/common/tests"
+	"github.com/binance/binance-connector-go/common/v2/common"
+	tests "github.com/binance/binance-connector-go/common/v2/tests"
 	"github.com/stretchr/testify/require"
 )
 

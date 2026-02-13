@@ -2,7 +2,7 @@ package fiat
 
 import (
 	BinanceFiatRestApi "github.com/binance/binance-connector-go/clients/fiat/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceFiatClient struct {

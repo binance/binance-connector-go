@@ -2,6 +2,7 @@
 Binance Derivatives Trading Portfolio Margin REST API
 
 OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+
 */
 
 package binancederivativestradingportfoliomarginrestapi
@@ -12,7 +13,7 @@ import (
 	"net/url"
 
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // TradeAPIService TradeAPI Service

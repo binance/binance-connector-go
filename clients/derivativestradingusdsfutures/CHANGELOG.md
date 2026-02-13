@@ -1,5 +1,16 @@
 ### Changelog
 
+## 1.4.0 - 2026-02-13
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common` library to version `2.0.0`.
+
+#### REST API
+
+- Modified response for `cancelOrder()` (`DELETE /fapi/v1/order`):
+  - property `avgPrice` deleted
+
 ## 1.3.0 - 2026-01-29
 
 ### Changed (6)

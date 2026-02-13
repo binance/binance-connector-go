@@ -9,7 +9,7 @@ package models
 import (
 	"encoding/json"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // checks if the CancelOrderResponse type satisfies the MappedNullable interface at compile time
@@ -25,6 +25,7 @@ type CancelOrderResponse struct {
 	OrigQty                 *string `json:"origQty,omitempty"`
 	OrigType                *string `json:"origType,omitempty"`
 	Price                   *string `json:"price,omitempty"`
+	AvgPrice                *string `json:"avgPrice,omitempty"`
 	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
 	Side                    *string `json:"side,omitempty"`
 	PositionSide            *string `json:"positionSide,omitempty"`
@@ -318,6 +319,38 @@ func (o *CancelOrderResponse) HasPrice() bool {
 // SetPrice gets a reference to the given string and assigns it to the Price field.
 func (o *CancelOrderResponse) SetPrice(v string) {
 	o.Price = &v
+}
+
+// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
+func (o *CancelOrderResponse) GetAvgPrice() string {
+	if o == nil || common.IsNil(o.AvgPrice) {
+		var ret string
+		return ret
+	}
+	return *o.AvgPrice
+}
+
+// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelOrderResponse) GetAvgPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.AvgPrice) {
+		return nil, false
+	}
+	return o.AvgPrice, true
+}
+
+// HasAvgPrice returns a boolean if a field has been set.
+func (o *CancelOrderResponse) HasAvgPrice() bool {
+	if o != nil && !common.IsNil(o.AvgPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
+func (o *CancelOrderResponse) SetAvgPrice(v string) {
+	o.AvgPrice = &v
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
@@ -898,6 +931,9 @@ func (o CancelOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
+	if !common.IsNil(o.AvgPrice) {
+		toSerialize["avgPrice"] = o.AvgPrice
+	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
@@ -979,6 +1015,7 @@ func (o *CancelOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "origType")
 		delete(additionalProperties, "price")
+		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "positionSide")

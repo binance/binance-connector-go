@@ -2,7 +2,7 @@ package staking
 
 import (
 	BinanceStakingRestApi "github.com/binance/binance-connector-go/clients/staking/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceStakingClient struct {

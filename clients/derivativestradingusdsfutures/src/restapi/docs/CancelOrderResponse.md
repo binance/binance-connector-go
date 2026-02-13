@@ -12,6 +12,7 @@ Name         | Type          | Description.  | Notes
 **OrigQty** | Pointer to **string** |  | [optional] 
 **OrigType** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
+**AvgPrice** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **PositionSide** | Pointer to **string** |  | [optional] 
@@ -248,6 +249,31 @@ SetPrice sets Price field to given value.
 `func (o *CancelOrderResponse) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
+
+### GetAvgPrice
+
+`func (o *CancelOrderResponse) GetAvgPrice() string`
+
+GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
+
+### GetAvgPriceOk
+
+`func (o *CancelOrderResponse) GetAvgPriceOk() (*string, bool)`
+
+GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvgPrice
+
+`func (o *CancelOrderResponse) SetAvgPrice(v string)`
+
+SetAvgPrice sets AvgPrice field to given value.
+
+### HasAvgPrice
+
+`func (o *CancelOrderResponse) HasAvgPrice() bool`
+
+HasAvgPrice returns a boolean if a field has been set.
 
 ### GetReduceOnly
 

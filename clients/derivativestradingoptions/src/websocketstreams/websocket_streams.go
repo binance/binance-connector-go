@@ -11,10 +11,10 @@ import (
 	"runtime"
 
 	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams v1.2.0
+// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams v1.0.0
 type WebsocketStreamsClient struct {
 	cfg        *common.ConfigurationWebsocketStreams
 	userAgent  string
@@ -33,7 +33,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingoptions/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingoptions/1.0.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	cfgMarket := *cfg
 	cfgMarket.BasePath = cfgMarket.BasePath + "/market/stream"
@@ -73,14 +73,14 @@ type Service struct {
 // Connect establishes the WebSocket connection
 //
 // @return error - An error if the connection fails
-func (c *WebsocketStreamsClient) Connect() error {
+func (c *WebsocketStreamsClient) Connect(streams []string) error {
 	var err error
-	err = c.ConnectMarket()
+	err = c.ConnectMarket(streams)
 	if err != nil {
 		return err
 	}
 
-	err = c.ConnectPublic()
+	err = c.ConnectPublic(streams)
 	if err != nil {
 		return err
 	}
@@ -91,8 +91,8 @@ func (c *WebsocketStreamsClient) Connect() error {
 // ConnectMarket establishes the WebSocket connection
 //
 // @return error - An error if the connection fails
-func (c *WebsocketStreamsClient) ConnectMarket() error {
-	err := c.WsMarket.Connect(c.userAgent)
+func (c *WebsocketStreamsClient) ConnectMarket(streams []string) error {
+	err := c.WsMarket.Connect(c.userAgent, streams)
 	if err != nil {
 		return err
 	}
@@ -138,8 +138,8 @@ func (c *WebsocketStreamsClient) UnsubscribeMarket(streams []string) error {
 // ConnectPublic establishes the WebSocket connection
 //
 // @return error - An error if the connection fails
-func (c *WebsocketStreamsClient) ConnectPublic() error {
-	err := c.WsPublic.Connect(c.userAgent)
+func (c *WebsocketStreamsClient) ConnectPublic(streams []string) error {
+	err := c.WsPublic.Connect(c.userAgent, streams)
 	if err != nil {
 		return err
 	}

@@ -37,7 +37,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -113,7 +113,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -189,7 +189,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -263,7 +263,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -339,7 +339,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -415,7 +415,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -493,7 +493,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -571,7 +571,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -649,7 +649,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -725,7 +725,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -805,7 +805,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -883,7 +883,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -959,7 +959,7 @@ import (
 
 	models "github.com/binance/binance-connector-go/clients/spot"
 	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {

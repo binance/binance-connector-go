@@ -17,7 +17,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 	"github.com/stretchr/testify/require"
 )
 

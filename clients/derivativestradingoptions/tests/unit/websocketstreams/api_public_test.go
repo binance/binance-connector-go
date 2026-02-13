@@ -9,8 +9,8 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
 	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
-	tests "github.com/binance/binance-connector-go/common/tests"
+	"github.com/binance/binance-connector-go/common/v2/common"
+	tests "github.com/binance/binance-connector-go/common/v2/tests"
 	"github.com/stretchr/testify/require"
 )
 

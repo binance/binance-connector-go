@@ -17,7 +17,7 @@ import (
 	"time"
 
 	client "github.com/binance/binance-connector-go/clients/dualinvestment"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // Replace this with the base64(SHA256(subjectPublicKeyInfo)) value you pin to.

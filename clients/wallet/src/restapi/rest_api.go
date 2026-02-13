@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"runtime"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // RestAPIClient manages communication with the Binance Wallet REST API API v1.0.0
