@@ -10,10 +10,10 @@ import (
 	"log"
 	"runtime"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketAPIClient manages communication with the Binance Binance Spot WebSocket API WebSocketAPI v1.3.0
+// WebsocketAPIClient manages communication with the Binance Binance Spot WebSocket API WebSocketAPI v1.4.0
 type WebsocketAPIClient struct {
 	cfg       *common.ConfigurationWebsocketApi
 	userAgent string
@@ -40,7 +40,7 @@ func NewWebsocketAPIClient(cfg *common.ConfigurationWebsocketApi) *WebsocketAPIC
 
 	c := &WebsocketAPIClient{
 		cfg:               cfg,
-		userAgent:         "binance-spot/1.3.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
+		userAgent:         "binance-spot/1.4.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
 		Ws:                wsClient,
 		AccountAPI:        &AccountAPIService{Ws: wsClient},
 		AuthAPI:           &AuthAPIService{Ws: wsClient},

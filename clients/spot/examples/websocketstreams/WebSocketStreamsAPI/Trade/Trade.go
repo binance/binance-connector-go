@@ -7,7 +7,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/spot"
 	"github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func Trade() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}

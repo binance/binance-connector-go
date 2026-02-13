@@ -4,7 +4,7 @@ import (
 	BinanceDerivativesTradingCoinFuturesRestApi "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/restapi"
 	BinanceDerivativesTradingCoinFuturesWebsocketApi "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/websocketapi"
 	BinanceDerivativesTradingCoinFuturesWebsocketStreams "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/websocketstreams"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceDerivativesTradingCoinFuturesClient struct {

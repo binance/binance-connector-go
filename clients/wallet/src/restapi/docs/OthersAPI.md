@@ -27,7 +27,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/wallet"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -95,7 +95,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/wallet"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {

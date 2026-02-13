@@ -48,7 +48,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -124,7 +124,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -194,7 +194,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -266,7 +266,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -336,7 +336,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -414,7 +414,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -490,7 +490,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -557,7 +557,7 @@ No authorization required
 
 ## GetSummaryOfSubAccountsFuturesAccount
 
-> GetSummaryOfSubAccountsFuturesAccountResponse GetSummaryOfSubAccountsFuturesAccount(ctx).RecvWindow(recvWindow).Execute()
+> GetSummaryOfSubAccountsFuturesAccountResponse GetSummaryOfSubAccountsFuturesAccount(ctx).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
 
 Get Summary of Sub-account's Futures Account (For Master Account) (USER_DATA)
 
@@ -574,10 +574,12 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
+	page := int64(789) // int64 | Page
+	limit := int64(789) // int64 | Limit (Max: 500)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -587,7 +589,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount(context.Background()).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount(context.Background()).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount``: %v\n", err)
 		return
@@ -606,6 +608,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **page** | **int64** | Page | 
+ **limit** | **int64** | Limit (Max: 500) | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -642,7 +646,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -716,7 +720,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -784,7 +788,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -860,7 +864,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -936,7 +940,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1006,7 +1010,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1076,7 +1080,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1156,7 +1160,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1236,7 +1240,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1310,7 +1314,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1392,7 +1396,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1470,7 +1474,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1550,7 +1554,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1622,7 +1626,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -1696,7 +1700,7 @@ import (
 	"os"
 
 	models "github.com/binance/binance-connector-go/clients/subaccount"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {

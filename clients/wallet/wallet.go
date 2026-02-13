@@ -2,7 +2,7 @@ package wallet
 
 import (
 	BinanceWalletRestApi "github.com/binance/binance-connector-go/clients/wallet/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceWalletClient struct {

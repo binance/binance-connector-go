@@ -32,7 +32,7 @@ With the transition to a modularized structure, the Binance Connector has been s
     ```go
     import (
         "github.com/binance/binance-connector-go/clients/spot"
-        "github.com/binance/binance-connector-go/common/common"
+        "github.com/binance/binance-connector-go/common/v2/common"
     )
     ```
 
@@ -85,7 +85,7 @@ to:
 ```go
 import (
     "github.com/binance/binance-connector-go/clients/spot"
-    "github.com/binance/binance-connector-go/common/common"
+    "github.com/binance/binance-connector-go/common/v2/common"
 )
 ```
 

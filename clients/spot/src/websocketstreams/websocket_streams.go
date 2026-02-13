@@ -10,10 +10,10 @@ import (
 	"log"
 	"runtime"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.3.0
+// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.4.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -29,7 +29,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-spot/1.3.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-spot/1.4.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -50,9 +50,8 @@ type Service struct {
 // Connect establishes the WebSocket connection
 //
 // @return error - An error if the connection fails
-func (c *WebsocketStreamsClient) Connect() error {
-
-	return c.Ws.Connect(c.userAgent)
+func (c *WebsocketStreamsClient) Connect(streams []string) error {
+	return c.Ws.Connect(c.userAgent, streams)
 }
 
 // Subscribe subscribes to the specified streams with optional IDs

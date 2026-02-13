@@ -9,7 +9,7 @@ package models
 import (
 	"encoding/json"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // checks if the UmNotionalAndLeverageBracketsResponseInner type satisfies the MappedNullable interface at compile time

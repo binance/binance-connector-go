@@ -2,7 +2,7 @@ package dualinvestment
 
 import (
 	BinanceDualInvestmentRestApi "github.com/binance/binance-connector-go/clients/dualinvestment/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceDualInvestmentClient struct {

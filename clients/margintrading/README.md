@@ -56,7 +56,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/margintrading"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -188,7 +188,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {
@@ -239,7 +239,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {

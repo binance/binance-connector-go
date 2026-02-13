@@ -2,7 +2,7 @@ package alpha
 
 import (
 	BinanceAlphaRestApi "github.com/binance/binance-connector-go/clients/alpha/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceAlphaClient struct {

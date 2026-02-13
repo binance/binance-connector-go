@@ -2,7 +2,6 @@
 Binance Derivatives Trading Portfolio Margin REST API TEST
 
 Testing AccountAPIService
-
 */
 
 package binancederivativestradingportfoliomarginrestapi
@@ -17,7 +16,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 	"github.com/stretchr/testify/require"
 )
 

@@ -17,7 +17,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/subaccount"
 	"github.com/binance/binance-connector-go/clients/subaccount/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 	"github.com/stretchr/testify/require"
 )
 
@@ -546,6 +546,8 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 		mockedJSON := `{"totalInitialMargin":"9.83137400","totalMaintenanceMargin":"0.41568700","totalMarginBalance":"23.03235621","totalOpenOrderInitialMargin":"9.00000000","totalPositionInitialMargin":"0.83137400","totalUnrealizedProfit":"0.03219710","totalWalletBalance":"22.15879444","asset":"USD","subAccountList":[{"email":"123@test.com","totalInitialMargin":"9.00000000","totalMaintenanceMargin":"0.00000000","totalMarginBalance":"22.12659734","totalOpenOrderInitialMargin":"9.00000000","totalPositionInitialMargin":"0.00000000","totalUnrealizedProfit":"0.00000000","totalWalletBalance":"22.12659734","asset":"USD"},{"email":"345@test.com","totalInitialMargin":"0.83137400","totalMaintenanceMargin":"0.41568700","totalMarginBalance":"0.90575887","totalOpenOrderInitialMargin":"0.00000000","totalPositionInitialMargin":"0.83137400","totalUnrealizedProfit":"0.03219710","totalWalletBalance":"0.87356177","asset":"USD"}]}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/accountSummary", r.URL.Path)
+			require.Equal(t, "789", r.URL.Query().Get("page"))
+			require.Equal(t, "789", r.URL.Query().Get("limit"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -562,7 +564,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount(context.Background()).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount(context.Background()).Page(int64(789)).Limit(int64(789)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -573,6 +575,23 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 		require.Equal(t, reflect.TypeOf(models.GetSummaryOfSubAccountsFuturesAccountResponse{}), reflect.TypeOf(resp.Data))
 		require.Equal(t, 200, resp.Status)
 		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test AssetManagementAPIService GetSummaryOfSubAccountsFuturesAccount Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSubAccountClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccount(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
 	})
 
 	t.Run("Test AssetManagementAPIService GetSummaryOfSubAccountsFuturesAccount Server Error", func(t *testing.T) {

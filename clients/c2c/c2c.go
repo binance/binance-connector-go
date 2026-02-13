@@ -2,7 +2,7 @@ package c2c
 
 import (
 	BinanceC2CRestApi "github.com/binance/binance-connector-go/clients/c2c/src/restapi"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceC2CClient struct {

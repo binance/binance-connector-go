@@ -12,7 +12,7 @@ import (
 	"net/url"
 
 	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // MarketDataAPIService MarketDataAPI Service

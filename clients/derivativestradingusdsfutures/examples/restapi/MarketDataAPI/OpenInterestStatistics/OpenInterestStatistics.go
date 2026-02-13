@@ -7,7 +7,7 @@ import (
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
 	"github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 func main() {

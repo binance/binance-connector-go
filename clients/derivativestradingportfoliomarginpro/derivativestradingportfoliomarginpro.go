@@ -3,7 +3,7 @@ package derivativestradingportfoliomarginpro
 import (
 	BinanceDerivativesTradingPortfolioMarginProRestApi "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/restapi"
 	BinanceDerivativesTradingPortfolioMarginProWebsocketStreams "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/websocketstreams"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceDerivativesTradingPortfolioMarginProClient struct {

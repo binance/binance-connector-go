@@ -3,7 +3,7 @@ package margintrading
 import (
 	BinanceMarginTradingRestApi "github.com/binance/binance-connector-go/clients/margintrading/src/restapi"
 	BinanceMarginTradingWebsocketStreams "github.com/binance/binance-connector-go/clients/margintrading/src/websocketstreams"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type BinanceMarginTradingClient struct {

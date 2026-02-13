@@ -12,7 +12,7 @@ import (
 	"net/url"
 
 	"github.com/binance/binance-connector-go/clients/subaccount/src/restapi/models"
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 // AssetManagementAPIService AssetManagementAPI Service
@@ -683,7 +683,21 @@ func (a *AssetManagementAPIService) GetSubAccountDepositHistoryExecute(r ApiGetS
 type ApiGetSummaryOfSubAccountsFuturesAccountRequest struct {
 	ctx        context.Context
 	ApiService *AssetManagementAPIService
+	page       *int64
+	limit      *int64
 	recvWindow *int64
+}
+
+// Page
+func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) Page(page int64) ApiGetSummaryOfSubAccountsFuturesAccountRequest {
+	r.page = &page
+	return r
+}
+
+// Limit (Max: 500)
+func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) Limit(limit int64) ApiGetSummaryOfSubAccountsFuturesAccountRequest {
+	r.limit = &limit
+	return r
 }
 
 func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) RecvWindow(recvWindow int64) ApiGetSummaryOfSubAccountsFuturesAccountRequest {
@@ -702,6 +716,8 @@ Get /sapi/v1/sub-account/futures/accountSummary
 https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param page -  Page
+@param limit -  Limit (Max: 500)
 @param recvWindow -
 @return ApiGetSummaryOfSubAccountsFuturesAccountRequest
 */
@@ -722,6 +738,15 @@ func (a *AssetManagementAPIService) GetSummaryOfSubAccountsFuturesAccountExecute
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.page == nil {
+		return nil, common.ReportError("page is required and must be specified")
+	}
+	if r.limit == nil {
+		return nil, common.ReportError("limit is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
