@@ -1,5 +1,11 @@
 ### Changelog
 
+## 2.0.1 - 2026-02-13
+
+### Changed (1)
+
+- Fixed imported `common` package for websocket mocks.
+
 ## 2.0.0 - 2026-02-12
 
 ### Changed (2)

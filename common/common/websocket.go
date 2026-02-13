@@ -395,7 +395,7 @@ func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []stri
 		BasePath = strings.TrimSuffix(BasePath, "/")
 	}
 	if timeUnit := config.GetTimeUnit(); timeUnit != "" {
-		if streams != nil && len(streams) > 0 {
+		if len(streams) > 0 {
 			BasePath += "&timeUnit=" + string(timeUnit)
 		} else {
 			BasePath += "?timeUnit=" + string(timeUnit)
@@ -1117,7 +1117,7 @@ func (w *WebsocketStreams) Connect(userAgent string, streams []string) error {
 		fmt.Println("WebSocket connection error:", err)
 		return err
 	}
-	if streams != nil && len(streams) > 0 {
+	if len(streams) > 0 {
 		conn := w.WsCommon.Connections[0]
 		for _, stream := range streams {
 			w.GlobalStreamConnectionMap[stream] = append(w.GlobalStreamConnectionMap[stream], conn)

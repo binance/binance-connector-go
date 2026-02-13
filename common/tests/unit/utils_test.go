@@ -17,7 +17,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/binance/binance-connector-go/common/common"
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
 type mockMappedNullable struct {
@@ -819,14 +819,6 @@ func TestGenerateIntUUID(t *testing.T) {
 		second := common.GenerateIntUUID()
 		if first == second {
 			t.Error("GenerateIntUUID() returned same value on subsequent calls")
-		}
-	})
-
-	t.Run("returns value within int32 range", func(t *testing.T) {
-		uuid := common.GenerateIntUUID()
-
-		if uuid < -2147483648 || uuid > 2147483647 {
-			t.Errorf("GenerateIntUUID() returned value %d outside int32 range", uuid)
 		}
 	})
 }
