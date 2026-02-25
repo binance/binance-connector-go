@@ -1476,6 +1476,79 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService QueryPreventedMatches Success", func(t *testing.T) {
+
+		mockedJSON := `[{"symbol":"BTCUSDT","preventedMatchId":1,"takerOrderId":5,"makerSymbol":"BTCUSDT","makerOrderId":3,"tradeGroupId":1,"selfTradePreventionMode":"EXPIRE_MAKER","price":"1.100000","makerPreventedQuantity":"1.300000","transactTime":1669101687094}]`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/margin/myPreventedMatches", r.URL.Path)
+			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryPreventedMatchesResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryPreventedMatches(context.Background()).Symbol("symbol_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryPreventedMatchesResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryPreventedMatchesResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryPreventedMatches Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryPreventedMatches(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryPreventedMatches Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryPreventedMatches(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService QuerySpecialKey Success", func(t *testing.T) {
 
 		mockedJSON := `{"apiKey":"npOzOAeLVgr2TuxWfNo43AaPWpBbJEoKezh1o8mSQb6ryE2odE11A4AoVlJbQoGx","ip":"0.0.0.0,192.168.0.1,192.168.0.2","apiName":"testName","type":"RSA","permissionMode":"TRADE"}`

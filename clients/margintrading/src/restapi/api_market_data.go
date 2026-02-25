@@ -432,6 +432,49 @@ func (a *MarketDataAPIService) GetMarginAssetRiskBasedLiquidationRatioExecute(r 
 	return resp, nil
 }
 
+type ApiGetMarginRestrictedAssetsRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+}
+
+func (r ApiGetMarginRestrictedAssetsRequest) Execute() (*common.RestApiResponse[models.GetMarginRestrictedAssetsResponse], error) {
+	return r.ApiService.GetMarginRestrictedAssetsExecute(r)
+}
+
+/*
+GetMarginRestrictedAssets Get Margin Restricted Assets (MARKET_DATA)
+Get /sapi/v1/margin/restricted-asset
+
+https://developers.binance.com/docs/margin_trading/market-data/Get-Margin-Restricted-Assets
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return ApiGetMarginRestrictedAssetsRequest
+*/
+func (a *MarketDataAPIService) GetMarginRestrictedAssets(ctx context.Context) ApiGetMarginRestrictedAssetsRequest {
+	return ApiGetMarginRestrictedAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetMarginRestrictedAssetsResponse
+func (a *MarketDataAPIService) GetMarginRestrictedAssetsExecute(r ApiGetMarginRestrictedAssetsRequest) (*common.RestApiResponse[models.GetMarginRestrictedAssetsResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/restricted-asset"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	resp, err := SendRequest[models.GetMarginRestrictedAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiQueryIsolatedMarginTierDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
