@@ -12,6 +12,7 @@ Method        | HTTP request  | Description
 [**GetLimitPricePairs**](MarketDataAPI.md#GetLimitPricePairs) | **Get** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs(MARKET_DATA)
 [**GetListSchedule**](MarketDataAPI.md#GetListSchedule) | **Get** /sapi/v1/margin/list-schedule | Get list Schedule (MARKET_DATA)
 [**GetMarginAssetRiskBasedLiquidationRatio**](MarketDataAPI.md#GetMarginAssetRiskBasedLiquidationRatio) | **Get** /sapi/v1/margin/risk-based-liquidation-ratio | Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
+[**GetMarginRestrictedAssets**](MarketDataAPI.md#GetMarginRestrictedAssets) | **Get** /sapi/v1/margin/restricted-asset | Get Margin Restricted Assets (MARKET_DATA)
 [**QueryIsolatedMarginTierData**](MarketDataAPI.md#QueryIsolatedMarginTierData) | **Get** /sapi/v1/margin/isolatedMarginTier | Query Isolated Margin Tier Data (USER_DATA)
 [**QueryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataAPI.md#QueryLiabilityCoinLeverageBracketInCrossMarginProMode) | **Get** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
 [**QueryMarginAvailableInventory**](MarketDataAPI.md#QueryMarginAvailableInventory) | **Get** /sapi/v1/margin/available-inventory | Query Margin Available Inventory(USER_DATA)
@@ -543,6 +544,71 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GetMarginAssetRiskBasedLiquidationRatioResponse**](GetMarginAssetRiskBasedLiquidationRatioResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetMarginRestrictedAssets
+
+> GetMarginRestrictedAssetsResponse GetMarginRestrictedAssets(ctx).Execute()
+
+Get Margin Restricted Assets (MARKET_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketDataAPI.GetMarginRestrictedAssets(context.Background()).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketDataAPI.GetMarginRestrictedAssets``: %v\n", err)
+		return
+	}
+
+	// response from `GetMarginRestrictedAssets`: GetMarginRestrictedAssetsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetMarginRestrictedAssetsResponse**](GetMarginRestrictedAssetsResponse.md)
 
 ### Authorization
 

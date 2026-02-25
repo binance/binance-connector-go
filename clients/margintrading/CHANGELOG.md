@@ -1,5 +1,14 @@
 ### Changelog
 
+## 1.5.0 - 2026-02-25
+
+### Added (2)
+
+#### REST API
+
+- `GetMarginRestrictedAssets()` (`GET /sapi/v1/margin/restricted-asset`)
+- `QueryPreventedMatches()` (`GET /sapi/v1/margin/myPreventedMatches`)
+
 ## 1.4.0 - 2026-02-13
 
 ### Changed (1)
