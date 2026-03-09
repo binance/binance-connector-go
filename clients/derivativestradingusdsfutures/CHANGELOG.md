@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.5.0 - 2026-03-09
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `exchange_information()` (`GET /fapi/v1/exchangeInfo`):
+  - `symbols`.items: property `orderTypes` added
+  - `symbols`.items: property `OrderType` deleted
+  - `symbols`.items: item property `orderTypes` added
+  - `symbols`.items: item property `OrderType` deleted
+
+- Modified response for `cancel_order()` (`DELETE /fapi/v1/order`):
+  - property `avgPrice` added
+
 ## 1.4.0 - 2026-02-13
 
 ### Changed (2)

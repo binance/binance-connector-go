@@ -549,7 +549,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 
 	t.Run("Test TravelRuleAPIService VaspList Success", func(t *testing.T) {
 
-		mockedJSON := `[{"vaspName":"Binance","vaspCode":"BINANCE"},{"vaspName":"HashKeyGlobal","vaspCode":"NVBH3Z_nNEHjvqbUfkaL"}]`
+		mockedJSON := `[{"vaspCode":"BINANCE","vaspName":"Binance","identifier":"I1QNLP"},{"vaspCode":"NVBH3Z_nNEHjvqbUfkaL","vaspName":"HashKeyGlobal","identifier":"ABC123"}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/localentity/vasp", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
