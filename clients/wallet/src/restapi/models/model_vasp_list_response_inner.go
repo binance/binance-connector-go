@@ -17,8 +17,9 @@ var _ common.MappedNullable = &VaspListResponseInner{}
 
 // VaspListResponseInner struct for VaspListResponseInner
 type VaspListResponseInner struct {
-	VaspName             *string `json:"vaspName,omitempty"`
 	VaspCode             *string `json:"vaspCode,omitempty"`
+	VaspName             *string `json:"vaspName,omitempty"`
+	Identifier           *string `json:"identifier,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,38 +40,6 @@ func NewVaspListResponseInner() *VaspListResponseInner {
 func NewVaspListResponseInnerWithDefaults() *VaspListResponseInner {
 	this := VaspListResponseInner{}
 	return &this
-}
-
-// GetVaspName returns the VaspName field value if set, zero value otherwise.
-func (o *VaspListResponseInner) GetVaspName() string {
-	if o == nil || common.IsNil(o.VaspName) {
-		var ret string
-		return ret
-	}
-	return *o.VaspName
-}
-
-// GetVaspNameOk returns a tuple with the VaspName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VaspListResponseInner) GetVaspNameOk() (*string, bool) {
-	if o == nil || common.IsNil(o.VaspName) {
-		return nil, false
-	}
-	return o.VaspName, true
-}
-
-// HasVaspName returns a boolean if a field has been set.
-func (o *VaspListResponseInner) HasVaspName() bool {
-	if o != nil && !common.IsNil(o.VaspName) {
-		return true
-	}
-
-	return false
-}
-
-// SetVaspName gets a reference to the given string and assigns it to the VaspName field.
-func (o *VaspListResponseInner) SetVaspName(v string) {
-	o.VaspName = &v
 }
 
 // GetVaspCode returns the VaspCode field value if set, zero value otherwise.
@@ -105,6 +74,70 @@ func (o *VaspListResponseInner) SetVaspCode(v string) {
 	o.VaspCode = &v
 }
 
+// GetVaspName returns the VaspName field value if set, zero value otherwise.
+func (o *VaspListResponseInner) GetVaspName() string {
+	if o == nil || common.IsNil(o.VaspName) {
+		var ret string
+		return ret
+	}
+	return *o.VaspName
+}
+
+// GetVaspNameOk returns a tuple with the VaspName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaspListResponseInner) GetVaspNameOk() (*string, bool) {
+	if o == nil || common.IsNil(o.VaspName) {
+		return nil, false
+	}
+	return o.VaspName, true
+}
+
+// HasVaspName returns a boolean if a field has been set.
+func (o *VaspListResponseInner) HasVaspName() bool {
+	if o != nil && !common.IsNil(o.VaspName) {
+		return true
+	}
+
+	return false
+}
+
+// SetVaspName gets a reference to the given string and assigns it to the VaspName field.
+func (o *VaspListResponseInner) SetVaspName(v string) {
+	o.VaspName = &v
+}
+
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *VaspListResponseInner) GetIdentifier() string {
+	if o == nil || common.IsNil(o.Identifier) {
+		var ret string
+		return ret
+	}
+	return *o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaspListResponseInner) GetIdentifierOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Identifier) {
+		return nil, false
+	}
+	return o.Identifier, true
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *VaspListResponseInner) HasIdentifier() bool {
+	if o != nil && !common.IsNil(o.Identifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *VaspListResponseInner) SetIdentifier(v string) {
+	o.Identifier = &v
+}
+
 func (o VaspListResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -115,11 +148,14 @@ func (o VaspListResponseInner) MarshalJSON() ([]byte, error) {
 
 func (o VaspListResponseInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !common.IsNil(o.VaspCode) {
+		toSerialize["vaspCode"] = o.VaspCode
+	}
 	if !common.IsNil(o.VaspName) {
 		toSerialize["vaspName"] = o.VaspName
 	}
-	if !common.IsNil(o.VaspCode) {
-		toSerialize["vaspCode"] = o.VaspCode
+	if !common.IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -143,8 +179,9 @@ func (o *VaspListResponseInner) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "vaspName")
 		delete(additionalProperties, "vaspCode")
+		delete(additionalProperties, "vaspName")
+		delete(additionalProperties, "identifier")
 		o.AdditionalProperties = additionalProperties
 	}
 

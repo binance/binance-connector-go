@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Filters** | Pointer to [**[]ExchangeInformationResponseSymbolsInnerFiltersInner**](ExchangeInformationResponseSymbolsInnerFiltersInner.md) |  | [optional] 
-**OrderType** | Pointer to **[]string** |  | [optional] 
+**OrderTypes** | Pointer to **[]string** |  | [optional] 
 **TimeInForce** | Pointer to **[]string** |  | [optional] 
 **LiquidationFee** | Pointer to **string** |  | [optional] 
 **MarketTakeBound** | Pointer to **string** |  | [optional] 
@@ -74,30 +74,30 @@ SetFilters sets Filters field to given value.
 
 HasFilters returns a boolean if a field has been set.
 
-### GetOrderType
+### GetOrderTypes
 
-`func (o *ExchangeInformationResponseSymbolsInner) GetOrderType() []string`
+`func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypes() []string`
 
-GetOrderType returns the OrderType field if non-nil, zero value otherwise.
+GetOrderTypes returns the OrderTypes field if non-nil, zero value otherwise.
 
-### GetOrderTypeOk
+### GetOrderTypesOk
 
-`func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypeOk() (*[]string, bool)`
+`func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypesOk() (*[]string, bool)`
 
-GetOrderTypeOk returns a tuple with the OrderType field if it's non-nil, zero value otherwise
+GetOrderTypesOk returns a tuple with the OrderTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrderType
+### SetOrderTypes
 
-`func (o *ExchangeInformationResponseSymbolsInner) SetOrderType(v []string)`
+`func (o *ExchangeInformationResponseSymbolsInner) SetOrderTypes(v []string)`
 
-SetOrderType sets OrderType field to given value.
+SetOrderTypes sets OrderTypes field to given value.
 
-### HasOrderType
+### HasOrderTypes
 
-`func (o *ExchangeInformationResponseSymbolsInner) HasOrderType() bool`
+`func (o *ExchangeInformationResponseSymbolsInner) HasOrderTypes() bool`
 
-HasOrderType returns a boolean if a field has been set.
+HasOrderTypes returns a boolean if a field has been set.
 
 ### GetTimeInForce
 

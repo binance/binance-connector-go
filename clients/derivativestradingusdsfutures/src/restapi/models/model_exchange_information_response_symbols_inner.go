@@ -37,7 +37,7 @@ type ExchangeInformationResponseSymbolsInner struct {
 	SettlePlan            *int64                                                `json:"settlePlan,omitempty"`
 	TriggerProtect        *string                                               `json:"triggerProtect,omitempty"`
 	Filters               []ExchangeInformationResponseSymbolsInnerFiltersInner `json:"filters,omitempty"`
-	OrderType             []string                                              `json:"OrderType,omitempty"`
+	OrderTypes            []string                                              `json:"orderTypes,omitempty"`
 	TimeInForce           []string                                              `json:"timeInForce,omitempty"`
 	LiquidationFee        *string                                               `json:"liquidationFee,omitempty"`
 	MarketTakeBound       *string                                               `json:"marketTakeBound,omitempty"`
@@ -703,36 +703,36 @@ func (o *ExchangeInformationResponseSymbolsInner) SetFilters(v []ExchangeInforma
 	o.Filters = v
 }
 
-// GetOrderType returns the OrderType field value if set, zero value otherwise.
-func (o *ExchangeInformationResponseSymbolsInner) GetOrderType() []string {
-	if o == nil || common.IsNil(o.OrderType) {
+// GetOrderTypes returns the OrderTypes field value if set, zero value otherwise.
+func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypes() []string {
+	if o == nil || common.IsNil(o.OrderTypes) {
 		var ret []string
 		return ret
 	}
-	return o.OrderType
+	return o.OrderTypes
 }
 
-// GetOrderTypeOk returns a tuple with the OrderType field value if set, nil otherwise
+// GetOrderTypesOk returns a tuple with the OrderTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypeOk() ([]string, bool) {
-	if o == nil || common.IsNil(o.OrderType) {
+func (o *ExchangeInformationResponseSymbolsInner) GetOrderTypesOk() ([]string, bool) {
+	if o == nil || common.IsNil(o.OrderTypes) {
 		return nil, false
 	}
-	return o.OrderType, true
+	return o.OrderTypes, true
 }
 
-// HasOrderType returns a boolean if a field has been set.
-func (o *ExchangeInformationResponseSymbolsInner) HasOrderType() bool {
-	if o != nil && !common.IsNil(o.OrderType) {
+// HasOrderTypes returns a boolean if a field has been set.
+func (o *ExchangeInformationResponseSymbolsInner) HasOrderTypes() bool {
+	if o != nil && !common.IsNil(o.OrderTypes) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrderType gets a reference to the given []string and assigns it to the OrderType field.
-func (o *ExchangeInformationResponseSymbolsInner) SetOrderType(v []string) {
-	o.OrderType = v
+// SetOrderTypes gets a reference to the given []string and assigns it to the OrderTypes field.
+func (o *ExchangeInformationResponseSymbolsInner) SetOrderTypes(v []string) {
+	o.OrderTypes = v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -901,8 +901,8 @@ func (o ExchangeInformationResponseSymbolsInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
 	}
-	if !common.IsNil(o.OrderType) {
-		toSerialize["OrderType"] = o.OrderType
+	if !common.IsNil(o.OrderTypes) {
+		toSerialize["orderTypes"] = o.OrderTypes
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
@@ -955,7 +955,7 @@ func (o *ExchangeInformationResponseSymbolsInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "settlePlan")
 		delete(additionalProperties, "triggerProtect")
 		delete(additionalProperties, "filters")
-		delete(additionalProperties, "OrderType")
+		delete(additionalProperties, "orderTypes")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "liquidationFee")
 		delete(additionalProperties, "marketTakeBound")

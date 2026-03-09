@@ -26,7 +26,7 @@ jobs:
     strategy:
       matrix:
         target: ${{ fromJson(needs.detect-targets.outputs.modified_targets) }}
-        go-version: ['1.24', '1.25']
+        go-version: ['1.25']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3

@@ -4,8 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**VaspName** | Pointer to **string** |  | [optional] 
 **VaspCode** | Pointer to **string** |  | [optional] 
+**VaspName** | Pointer to **string** |  | [optional] 
+**Identifier** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewVaspListResponseInnerWithDefaults instantiates a new VaspListResponseInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetVaspCode
+
+`func (o *VaspListResponseInner) GetVaspCode() string`
+
+GetVaspCode returns the VaspCode field if non-nil, zero value otherwise.
+
+### GetVaspCodeOk
+
+`func (o *VaspListResponseInner) GetVaspCodeOk() (*string, bool)`
+
+GetVaspCodeOk returns a tuple with the VaspCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVaspCode
+
+`func (o *VaspListResponseInner) SetVaspCode(v string)`
+
+SetVaspCode sets VaspCode field to given value.
+
+### HasVaspCode
+
+`func (o *VaspListResponseInner) HasVaspCode() bool`
+
+HasVaspCode returns a boolean if a field has been set.
 
 ### GetVaspName
 
@@ -51,30 +77,30 @@ SetVaspName sets VaspName field to given value.
 
 HasVaspName returns a boolean if a field has been set.
 
-### GetVaspCode
+### GetIdentifier
 
-`func (o *VaspListResponseInner) GetVaspCode() string`
+`func (o *VaspListResponseInner) GetIdentifier() string`
 
-GetVaspCode returns the VaspCode field if non-nil, zero value otherwise.
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
 
-### GetVaspCodeOk
+### GetIdentifierOk
 
-`func (o *VaspListResponseInner) GetVaspCodeOk() (*string, bool)`
+`func (o *VaspListResponseInner) GetIdentifierOk() (*string, bool)`
 
-GetVaspCodeOk returns a tuple with the VaspCode field if it's non-nil, zero value otherwise
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVaspCode
+### SetIdentifier
 
-`func (o *VaspListResponseInner) SetVaspCode(v string)`
+`func (o *VaspListResponseInner) SetIdentifier(v string)`
 
-SetVaspCode sets VaspCode field to given value.
+SetIdentifier sets Identifier field to given value.
 
-### HasVaspCode
+### HasIdentifier
 
-`func (o *VaspListResponseInner) HasVaspCode() bool`
+`func (o *VaspListResponseInner) HasIdentifier() bool`
 
-HasVaspCode returns a boolean if a field has been set.
+HasIdentifier returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)
