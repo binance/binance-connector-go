@@ -78,6 +78,11 @@ func (c *WebSocketConnection) ProcessMessage() error {
 		}
 	}
 
+	if c.isServerShutdown(data) {
+		go c.HandleServerShutdown(data)
+		return nil
+	}
+
 	if c.isErrorResponse(data) {
 		log.Printf("WebSocket received error message: %s\n", string(msg))
 
@@ -145,6 +150,31 @@ func (c *WebSocketConnection) isErrorResponse(data map[string]interface{}) bool 
 		return status >= 300
 	}
 	return false
+}
+
+// isServerShutdown checks if the message data indicates a server shutdown event.
+//
+// @param data The parsed message data as a map.
+// @return True if the message is a server shutdown event, otherwise false.
+func (c *WebSocketConnection) isServerShutdown(data map[string]interface{}) bool {
+	e, ok := data["e"].(string)
+	return ok && e == "serverShutdown"
+}
+
+// handleServerShutdown processes the server shutdown event and triggers reconnection logic.
+//
+// @param data The parsed message data containing the server shutdown event details.
+func (c *WebSocketConnection) HandleServerShutdown(data map[string]interface{}) {
+	_, ok := data["E"].(float64)
+	if !ok {
+		log.Println("serverShutdown received without timestamp")
+		return
+	}
+
+	select {
+	case c.ReconnectChan <- struct{}{}:
+	default:
+	}
 }
 
 // handleResponseMessage processes incoming response messages and routes them to the appropriate pending message channels.
@@ -332,6 +362,7 @@ func NewWebSocketCommon(cfg *ConfigurationWrapper) (*WebSocketCommon, error) {
 
 	wsc := &WebSocketCommon{
 		PoolSize:        poolSize,
+		ReconnectTasks:  make(map[string]chan struct{}),
 		Mode:            mode,
 		RoundRobinIndex: 0,
 	}
@@ -353,6 +384,7 @@ func (w *WebSocketCommon) initializePool() {
 			StreamCallbackMap:   make(map[string][]func(map[string]interface{})),
 			StreamConnectionMap: []string{},
 			ErrorChan:           make(chan error, 1),
+			ReconnectChan:       make(chan struct{}, 1),
 			Done:                make(chan struct{}),
 		})
 	}
@@ -477,6 +509,47 @@ func (w *WebSocketCommon) CreateWebSocketDialer(config WebSocketConfig) websocke
 	return dialer
 }
 
+// startReconnectHandler starts a goroutine to handle reconnection logic for the WebSocket connection
+// when receiving server shutdown events.
+//
+// @param conn The WebSocketConnection to monitor for errors and trigger reconnection.
+// @param config The WebSocketConfig containing configuration details.
+// @param userAgent The user agent string to use for the connection.
+func (w *WebSocketCommon) startReconnectHandler(conn *WebSocketConnection, config WebSocketConfig, userAgent string) {
+	go func() {
+		for range conn.ReconnectChan {
+			if conn.Connected == CLOSING || conn.Connected == CLOSED {
+				log.Printf("Skipping reconnect for %s because connection is closing", conn.Id)
+				continue
+			}
+
+			w.ReconnectMutex.Lock()
+			if w.ReconnectTasks == nil {
+				w.ReconnectTasks = make(map[string]chan struct{})
+			}
+			if _, exists := w.ReconnectTasks[conn.Id]; exists {
+				w.ReconnectMutex.Unlock()
+				continue
+			}
+
+			stop := make(chan struct{})
+			w.ReconnectTasks[conn.Id] = stop
+			w.ReconnectMutex.Unlock()
+
+			log.Printf("Reconnecting websocket %s", conn.Id)
+
+			err := w.reconnect(conn, config, userAgent, true)
+			if err != nil {
+				log.Printf("Reconnect failed: %v", err)
+			}
+
+			w.ReconnectMutex.Lock()
+			delete(w.ReconnectTasks, conn.Id)
+			w.ReconnectMutex.Unlock()
+		}
+	}()
+}
+
 // connectSingleMode establishes a single WebSocket connection.
 //
 // @param BasePath The base URL for the WebSocket connection.
@@ -491,9 +564,11 @@ func (w *WebSocketCommon) connectSingleMode(BasePath string, headers http.Header
 		return err
 	}
 
-	w.configureConnection(conn, w.Connections[0])
-	go w.Connections[0].Listen()
-	go w.KeepAlive(w.Connections[0], config, userAgent)
+	connection := w.Connections[0]
+	w.configureConnection(conn, connection)
+	w.startReconnectHandler(connection, config, userAgent)
+	go connection.Listen()
+	go w.KeepAlive(connection, config, userAgent)
 	return nil
 }
 
@@ -525,6 +600,7 @@ func (w *WebSocketCommon) connectPoolMode(headers http.Header, dialer websocket.
 				}
 
 				w.configureConnection(wsConn, conn)
+				w.startReconnectHandler(conn, config, userAgent)
 				go conn.Listen()
 				go w.KeepAlive(conn, config, userAgent)
 				successChan <- true
@@ -601,7 +677,7 @@ func (w *WebSocketCommon) KeepAlive(connection *WebSocketConnection, config WebS
 		if err := connection.Websocket.Close(); err != nil {
 			log.Printf("Failed to close WebSocket: %v", err)
 		}
-		err := w.reconnect(connection, config, userAgent)
+		err := w.reconnect(connection, config, userAgent, false)
 		if err != nil {
 			log.Printf("WebSocket reconnection failed for connection ID: %s, error: %v", connection.Id, err)
 			return
@@ -614,8 +690,9 @@ func (w *WebSocketCommon) KeepAlive(connection *WebSocketConnection, config WebS
 // @param conn The WebSocketConnection to reconnect.
 // @param config The WebSocketConfig containing configuration details.
 // @param userAgent The user agent string to use for the connection.
+// @param graceful A boolean indicating whether to perform a graceful reconnection.
 // @return An error if the reconnection fails, otherwise nil.
-func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketConfig, userAgent string) error {
+func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketConfig, userAgent string, graceful bool) error {
 	BasePath := w.prepareBasePath(config, conn.StreamConnectionMap, conn.SessionLogonRequest == nil)
 	headers := w.prepareHeaders(config, userAgent)
 	dialer := w.CreateWebSocketDialer(config)
@@ -625,13 +702,52 @@ func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketC
 		return err
 	}
 
-	w.configureConnection(newConn, conn)
-	go conn.Listen()
+	if graceful {
+		tempConn := &WebSocketConnection{}
+		w.configureConnection(newConn, tempConn)
+		tempConn.StreamConnectionMap = conn.StreamConnectionMap
+		tempConn.SessionLogonRequest = conn.SessionLogonRequest
+		tempConn.Id = conn.Id
 
-	if conn.SessionLogonRequest != nil && !conn.SessionLogon {
-		w.restoreSessionIfNeeded(conn)
-		time.Sleep(1 * time.Second)
-		w.resubscribeUserDataStreams(conn)
+		if tempConn.SessionLogonRequest != nil {
+			w.restoreSessionIfNeeded(tempConn)
+			w.resubscribeUserDataStreams(tempConn)
+		}
+
+		conn.mu.Lock()
+		oldWs := conn.Websocket
+		conn.Websocket = tempConn.Websocket
+		conn.mu.Unlock()
+
+		closeOld := func() {
+			if oldWs != nil {
+				if err := oldWs.Close(); err != nil {
+					log.Printf("error closing old websocket: %v", err)
+				}
+			}
+		}
+
+		closeDelay := config.GetReconnectDelay()
+		if closeDelay > 0 {
+			time.AfterFunc(closeDelay, closeOld)
+		} else {
+			closeOld()
+		}
+	} else {
+		if conn.Websocket != nil {
+			if err := conn.Websocket.Close(); err != nil {
+				log.Printf("error closing websocket connection %s: %v", conn.Id, err)
+			}
+		}
+
+		w.configureConnection(newConn, conn)
+		go conn.Listen()
+
+		if conn.SessionLogonRequest != nil && !conn.SessionLogon {
+			w.restoreSessionIfNeeded(conn)
+			time.Sleep(1 * time.Second)
+			w.resubscribeUserDataStreams(conn)
+		}
 	}
 
 	return nil

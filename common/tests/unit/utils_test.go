@@ -31,10 +31,10 @@ func (m mockMappedNullable) ToMap() (map[string]interface{}, error) {
 
 func TestParameterAddToHeaderOrQuery_BasicTypes(t *testing.T) {
 	tests := []struct {
-		name		   string
-		obj			interface{}
+		name           string
+		obj            interface{}
 		expectedValue  string
-		expectedKey	string
+		expectedKey    string
 		collectionType string
 	}{
 		{"int", 42, "42", "intKey", ""},
@@ -404,7 +404,7 @@ func TestSendRequest_Success(t *testing.T) {
 
 func TestSendRequest_Signing(t *testing.T) {
 	cfg := &common.ConfigurationRestAPI{
-		ApiKey:	"apikey123",
+		ApiKey:    "apikey123",
 		ApiSecret: "secretkey456",
 	}
 	handler := func(w http.ResponseWriter, r *http.Request) {
@@ -543,7 +543,7 @@ func TestSleepContext_CanceledContext(t *testing.T) {
 
 func TestSleepContext_CanceledDuringSleep(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	
+
 	go func() {
 		time.Sleep(50 * time.Millisecond)
 		cancel()
@@ -622,7 +622,7 @@ func TestPrepareRequest_BasicHeadersAndQuery(t *testing.T) {
 
 func TestPrepareRequest_Signing(t *testing.T) {
 	cfg := &common.ConfigurationRestAPI{
-		ApiKey:	"apikey123",
+		ApiKey:    "apikey123",
 		ApiSecret: "secretkey456",
 	}
 	query := url.Values{}
@@ -723,7 +723,7 @@ func TestPrepareRequest_WithJSONBody(t *testing.T) {
 	cfg := &common.ConfigurationRestAPI{}
 	body := struct {
 		Key1 string `json:"key1"`
-		Key2 int	`json:"key2"`
+		Key2 int    `json:"key2"`
 	}{
 		Key1: "value1",
 		Key2: 123,

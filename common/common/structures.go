@@ -89,12 +89,14 @@ type WebSocketConnection struct {
 	StreamConnectionMap []string
 	Done                chan struct{}
 	ErrorChan           chan error
+	ReconnectChan       chan struct{}
 	mu                  sync.Mutex
 }
 
 type WebSocketCommon struct {
 	Connections     []*WebSocketConnection
 	ReconnectTasks  map[string]chan struct{}
+	ReconnectMutex  sync.Mutex
 	Mode            WebsocketMode
 	PoolSize        int
 	ProxyDialer     proxy.Dialer
