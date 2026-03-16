@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **int64** |  | [optional] 
+**Code** | Pointer to **string** |  | [optional] 
 **Msg** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCode
 
-`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCode() int64`
+`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCode() string`
 
 GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCodeOk() (*int64, bool)`
+`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCodeOk() (*string, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCode
 
-`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) SetCode(v int64)`
+`func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) SetCode(v string)`
 
 SetCode sets Code field to given value.
 

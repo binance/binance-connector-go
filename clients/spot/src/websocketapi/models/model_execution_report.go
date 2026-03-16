@@ -71,6 +71,7 @@ type ExecutionReport struct {
 	GOT                  *string `json:"gOT,omitempty"`
 	GOV                  *int64  `json:"gOV,omitempty"`
 	Smallgp              *string `json:"gp,omitempty"`
+	ER                   *string `json:"eR,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1821,6 +1822,38 @@ func (o *ExecutionReport) SetSmallgp(v string) {
 	o.Smallgp = &v
 }
 
+// GetER returns the ER field value if set, zero value otherwise.
+func (o *ExecutionReport) GetER() string {
+	if o == nil || common.IsNil(o.ER) {
+		var ret string
+		return ret
+	}
+	return *o.ER
+}
+
+// GetEROk returns a tuple with the ER field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecutionReport) GetEROk() (*string, bool) {
+	if o == nil || common.IsNil(o.ER) {
+		return nil, false
+	}
+	return o.ER, true
+}
+
+// HasER returns a boolean if a field has been set.
+func (o *ExecutionReport) HasER() bool {
+	if o != nil && !common.IsNil(o.ER) {
+		return true
+	}
+
+	return false
+}
+
+// SetER gets a reference to the given string and assigns it to the ER field.
+func (o *ExecutionReport) SetER(v string) {
+	o.ER = &v
+}
+
 func (o ExecutionReport) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -1993,6 +2026,9 @@ func (o ExecutionReport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallgp) {
 		toSerialize["gp"] = o.Smallgp
 	}
+	if !common.IsNil(o.ER) {
+		toSerialize["eR"] = o.ER
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2069,6 +2105,7 @@ func (o *ExecutionReport) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "gOT")
 		delete(additionalProperties, "gOV")
 		delete(additionalProperties, "gp")
+		delete(additionalProperties, "eR")
 		o.AdditionalProperties = additionalProperties
 	}
 

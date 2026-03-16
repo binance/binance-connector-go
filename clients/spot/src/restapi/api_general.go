@@ -118,6 +118,83 @@ func (a *GeneralAPIService) ExchangeInfoExecute(r ApiExchangeInfoRequest) (*comm
 	return resp, nil
 }
 
+type ApiExecutionRulesRequest struct {
+	ctx          context.Context
+	ApiService   *GeneralAPIService
+	symbol       *string
+	symbols      *[]string
+	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+}
+
+// Symbol to query
+func (r ApiExecutionRulesRequest) Symbol(symbol string) ApiExecutionRulesRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// List of symbols to query
+func (r ApiExecutionRulesRequest) Symbols(symbols []string) ApiExecutionRulesRequest {
+	r.symbols = &symbols
+	return r
+}
+
+func (r ApiExecutionRulesRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExecutionRulesRequest {
+	r.symbolStatus = &symbolStatus
+	return r
+}
+
+func (r ApiExecutionRulesRequest) Execute() (*common.RestApiResponse[models.ExecutionRulesResponse], error) {
+	return r.ApiService.ExecutionRulesExecute(r)
+}
+
+/*
+ExecutionRules Query Execution Rules
+Get /api/v3/executionRules
+
+https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-endpoints#query-execution-rules
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol to query
+@param symbols -  List of symbols to query
+@param symbolStatus -
+@return ApiExecutionRulesRequest
+*/
+func (a *GeneralAPIService) ExecutionRules(ctx context.Context) ApiExecutionRulesRequest {
+	return ApiExecutionRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ExecutionRulesResponse
+func (a *GeneralAPIService) ExecutionRulesExecute(r ApiExecutionRulesRequest) (*common.RestApiResponse[models.ExecutionRulesResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/api/v3/executionRules"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	}
+	if r.symbols != nil {
+		t := *r.symbols
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbols", t, "form", "multi")
+	}
+	if r.symbolStatus != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
+	}
+
+	resp, err := SendRequest[models.ExecutionRulesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiPingRequest struct {
 	ctx        context.Context
 	ApiService *GeneralAPIService

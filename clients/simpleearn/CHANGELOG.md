@@ -1,10 +1,18 @@
 ### Changelog
 
+## 1.5.0 - 2026-03-16
+
+### Changed (1)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.1.0`.
+- Modified response for `getBfusdQuotaDetails()` (`GET /sapi/v1/bfusd/quota`):
+  - property `subscriptionQuota` added
+
 ## 1.4.0 - 2026-02-13
 
 ### Changed (1)
 
-- Updated `github.com/binance/binance-connector-go/common` library to version `2.0.0`.
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.0.0`.
 
 ## 1.3.0 - 2026-01-29
 

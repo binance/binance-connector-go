@@ -131,6 +131,103 @@ func (a *GeneralAPIService) ExchangeInfoExecute(r ApiExchangeInfoRequest) (chan 
 	return SendMessage[models.ExchangeInfoResponse](a.Ws, localPayload, sendParams)
 }
 
+type ApiExecutionRulesRequest struct {
+	ApiService   *GeneralAPIService
+	id           *string
+	symbol       *string
+	symbols      *[]string
+	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+}
+
+// Unique WebSocket request ID.
+func (r ApiExecutionRulesRequest) Id(id string) ApiExecutionRulesRequest {
+	r.id = &id
+	return r
+}
+
+// Describe a single symbol
+func (r ApiExecutionRulesRequest) Symbol(symbol string) ApiExecutionRulesRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// List of symbols to query
+func (r ApiExecutionRulesRequest) Symbols(symbols []string) ApiExecutionRulesRequest {
+	r.symbols = &symbols
+	return r
+}
+
+func (r ApiExecutionRulesRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExecutionRulesRequest {
+	r.symbolStatus = &symbolStatus
+	return r
+}
+
+func (r ApiExecutionRulesRequest) Execute() (*common.ResponseOrRaw[models.ExecutionRulesResponse], error) {
+	respChan, errChan, err := r.ApiService.ExecutionRulesExecute(r)
+	if err != nil {
+		return nil, err
+	}
+
+	select {
+	case resp := <-respChan:
+		return resp, nil
+	case err := <-errChan:
+		return nil, err
+	}
+}
+
+func (r ApiExecutionRulesRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.ExecutionRulesResponse], chan error, error) {
+	return r.ApiService.ExecutionRulesExecute(r)
+}
+
+/*
+ExecutionRules WebSocket Query Execution Rules
+/executionRules
+
+https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#query-execution-rules
+
+@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param symbolStatus
+@return ApiExecutionRulesRequest
+*/
+func (a *GeneralAPIService) ExecutionRules() ApiExecutionRulesRequest {
+	return ApiExecutionRulesRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ExecutionRulesResponse
+func (a *GeneralAPIService) ExecutionRulesExecute(r ApiExecutionRulesRequest) (chan *common.ResponseOrRaw[models.ExecutionRulesResponse], chan error, error) {
+	localVarQueryParams := map[string]any{}
+
+	if r.id != nil {
+		localVarQueryParams["id"] = *r.id
+	}
+	if r.symbol != nil {
+		localVarQueryParams["symbol"] = *r.symbol
+	}
+	if r.symbols != nil {
+		localVarQueryParams["symbols"] = *r.symbols
+	}
+	if r.symbolStatus != nil {
+		localVarQueryParams["symbolStatus"] = *r.symbolStatus
+	}
+
+	localPayload := map[string]any{
+		"method": "/executionRules"[1:],
+		"params": localVarQueryParams,
+	}
+
+	sendParams := common.SendParams{
+		Signed:           false,
+		WithAPIKey:       false,
+		WithSessionLogon: false,
+	}
+
+	return SendMessage[models.ExecutionRulesResponse](a.Ws, localPayload, sendParams)
+}
+
 type ApiPingRequest struct {
 	ApiService *GeneralAPIService
 	id         *string

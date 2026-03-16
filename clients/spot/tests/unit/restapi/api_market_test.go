@@ -462,6 +462,152 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test MarketAPIService ReferencePrice Success", func(t *testing.T) {
+
+		mockedJSON := `{"symbol":"BAZUSD","referencePrice":"10.00","timestamp":1770736694138}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/api/v3/referencePrice", r.URL.Path)
+			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.ReferencePriceResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePrice(context.Background()).Symbol("BNBUSDT").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.ReferencePriceResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.ReferencePriceResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketAPIService ReferencePrice Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePrice(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test MarketAPIService ReferencePrice Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePrice(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test MarketAPIService ReferencePriceCalculation Success", func(t *testing.T) {
+
+		mockedJSON := `{"symbol":"BAZUSD","calculationType":"EXTERNAL","bucketCount":10,"bucketWidthMs":1000,"externalCalculationId":42}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/api/v3/referencePrice/calculation", r.URL.Path)
+			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.ReferencePriceCalculationResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePriceCalculation(context.Background()).Symbol("BNBUSDT").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.ReferencePriceCalculationResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.ReferencePriceCalculationResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketAPIService ReferencePriceCalculation Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePriceCalculation(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test MarketAPIService ReferencePriceCalculation Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.ReferencePriceCalculation(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test MarketAPIService Ticker Success", func(t *testing.T) {
 
 		mockedJSON := `{"symbol":"LTCBTC","priceChange":"-8.00000000","priceChangePercent":"-88.889","weightedAvgPrice":"2.60427807","openPrice":"0.10000000","highPrice":"2.00000000","lowPrice":"0.10000000","lastPrice":"2.00000000","volume":"39.00000000","quoteVolume":"13.40000000","openTime":1656986580000,"closeTime":1657001016795,"firstId":0,"lastId":34,"count":35}`

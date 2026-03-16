@@ -1,5 +1,40 @@
 ### Changelog
 
+## 1.6.0 - 2026-03-16
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.1.0`.
+
+#### REST API
+
+- Modified response for `queryOrder()` (`GET /fapi/v1/order`):
+  - property `workingType` added
+  - property `clientOrderId` added
+  - property `orderId` added
+  - property `time` added
+  - property `priceProtect` added
+  - property `positionSide` added
+  - property `cumQuote` added
+  - property `activatePrice` added
+  - property `avgPrice` added
+  - property `price` added
+  - property `reduceOnly` added
+  - property `timeInForce` added
+  - property `symbol` added
+  - property `updateTime` added
+  - property `type` added
+  - property `origType` added
+  - property `origQty` added
+  - property `stopPrice` added
+  - property `closePosition` added
+  - property `priceRate` added
+  - property `side` added
+  - property `executedQty` added
+  - property `result` deleted
+  - property `id` deleted
+  - `status`: type `integer` → `string`
+
 ## 1.5.0 - 2026-03-09
 
 ### Changed (2)
@@ -19,7 +54,7 @@
 
 ### Changed (2)
 
-- Updated `github.com/binance/binance-connector-go/common` library to version `2.0.0`.
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.0.0`.
 
 #### REST API
 

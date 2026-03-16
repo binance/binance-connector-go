@@ -10,6 +10,8 @@ Method        | HTTP request  | Description
 [**GetTrades**](MarketAPI.md#GetTrades) | **Get** /api/v3/trades | Recent trades list
 [**HistoricalTrades**](MarketAPI.md#HistoricalTrades) | **Get** /api/v3/historicalTrades | Old trade lookup
 [**Klines**](MarketAPI.md#Klines) | **Get** /api/v3/klines | Kline/Candlestick data
+[**ReferencePrice**](MarketAPI.md#ReferencePrice) | **Get** /api/v3/referencePrice | Query Reference Price
+[**ReferencePriceCalculation**](MarketAPI.md#ReferencePriceCalculation) | **Get** /api/v3/referencePrice/calculation | Query Reference Price Calculation
 [**Ticker**](MarketAPI.md#Ticker) | **Get** /api/v3/ticker | Rolling window price change statistics
 [**Ticker24hr**](MarketAPI.md#Ticker24hr) | **Get** /api/v3/ticker/24hr | 24hr ticker price change statistics
 [**TickerBookTicker**](MarketAPI.md#TickerBookTicker) | **Get** /api/v3/ticker/bookTicker | Symbol order book ticker
@@ -442,6 +444,144 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**KlinesResponse**](KlinesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## ReferencePrice
+
+> ReferencePriceResponse ReferencePrice(ctx).Symbol(symbol).Execute()
+
+Query Reference Price
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceSpotClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketAPI.ReferencePrice(context.Background()).Symbol(symbol).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.ReferencePrice``: %v\n", err)
+		return
+	}
+
+	// response from `ReferencePrice`: ReferencePriceResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+
+### Return type
+
+[**ReferencePriceResponse**](ReferencePriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## ReferencePriceCalculation
+
+> ReferencePriceCalculationResponse ReferencePriceCalculation(ctx).Symbol(symbol).SymbolStatus(symbolStatus).Execute()
+
+Query Reference Price Calculation
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceSpotClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketAPI.ReferencePriceCalculation(context.Background()).Symbol(symbol).SymbolStatus(symbolStatus).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.ReferencePriceCalculation``: %v\n", err)
+		return
+	}
+
+	// response from `ReferencePriceCalculation`: ReferencePriceCalculationResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+
+### Return type
+
+[**ReferencePriceCalculationResponse**](ReferencePriceCalculationResponse.md)
 
 ### Authorization
 

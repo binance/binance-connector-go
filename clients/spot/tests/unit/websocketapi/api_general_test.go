@@ -140,6 +140,132 @@ func Test_binancespotwebsocketapi_GeneralAPIService(t *testing.T) {
 
 		<-done
 	})
+	t.Run("Test GeneralAPIService ExecutionRules AsyncExecute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		responseChan, errorChan, err := mockClient.WebsocketAPI.GeneralAPI.ExecutionRules().ExecuteAsync()
+		require.NoError(t, err)
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbolRules":[{"symbol":"BAZUSD","rules":[{"ruleType":"PRICE_RANGE","bidLimitMultUp":"1.0001","bidLimitMultDown":"0.9999","askLimitMultUp":"1.0001","askLimitMultDown":"0.9999"}]}]}}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		select {
+		case resp := <-responseChan:
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			require.NotEmpty(t, mockWS.MessagesWritten)
+
+			require.Len(t, mockWS.MessagesWritten, 1)
+			var sent map[string]any
+			err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+			require.NoError(t, err)
+			require.Equal(t, "/executionRules"[1:], sent["method"])
+
+			typedResp := resp.Typed
+			require.IsType(t, &models.ExecutionRulesResponse{}, typedResp)
+		case err := <-errorChan:
+			t.Fatalf("Unexpected error: %v", err)
+		}
+	})
+
+	t.Run("Test GeneralAPIService ExecutionRules Execute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		resultChan := make(chan common.ResultWebsocket[models.ExecutionRulesResponse], 1)
+		go func() {
+			resp, err := mockClient.WebsocketAPI.GeneralAPI.ExecutionRules().Execute()
+			resultChan <- common.ResultWebsocket[models.ExecutionRulesResponse]{Value: resp, Err: err}
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbolRules":[{"symbol":"BAZUSD","rules":[{"ruleType":"PRICE_RANGE","bidLimitMultUp":"1.0001","bidLimitMultDown":"0.9999","askLimitMultUp":"1.0001","askLimitMultDown":"0.9999"}]}]}}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		res := <-resultChan
+		resp := res.Value
+		err := res.Err
+
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.NotEmpty(t, mockWS.MessagesWritten)
+
+		require.Len(t, mockWS.MessagesWritten, 1)
+		var sent map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+		require.Equal(t, "/executionRules"[1:], sent["method"])
+
+		typedResp := resp.Typed
+		require.IsType(t, &models.ExecutionRulesResponse{}, typedResp)
+	})
+
+	t.Run("Test GeneralAPIService ExecutionRules Server Error", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+		conn.Id = "123"
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+		done := make(chan struct{})
+
+		go func() {
+			respChan, _, err := mockClient.WebsocketAPI.GeneralAPI.ExecutionRules().ExecuteAsync()
+			if err != nil {
+				var wsErr *common.WebSocketError
+				if errors.As(err, &wsErr) {
+					require.Contains(t, wsErr.Error(), "[-1001] Internal server error")
+					require.Equal(t, "123", wsErr.ConnID)
+					require.Equal(t, "error_response", wsErr.Op)
+				} else {
+					t.Errorf("unexpected error type: %T", err)
+				}
+				_, ok := <-respChan
+				require.False(t, ok, "response channel should be closed")
+			}
+			close(done)
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockWS.QueueMessage([]byte(`{
+			"id":"123",
+			"status":500,
+			"error":{
+				"code":-1001,
+				"msg":"Internal server error"
+			}
+		}`))
+
+		<-done
+	})
 	t.Run("Test GeneralAPIService Ping AsyncExecute Success", func(t *testing.T) {
 		conn, mockWS, cleanup := tests.SetupMockClient("123")
 		defer cleanup()
