@@ -7,10 +7,10 @@ import (
 	"errors"
 	"io"
 	"log"
-
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
@@ -1011,6 +1011,96 @@ func TestProcessMessage_MissingErrorFields(t *testing.T) {
 	}
 }
 
+func TestHandleServerShutdown_TriggersReconnect(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		ReconnectChan: make(chan struct{}, 1),
+	}
+
+	ts := time.Now().Add(1 * time.Minute).UnixMilli()
+	data := map[string]interface{}{
+		"e": "serverShutdown",
+		"E": float64(ts),
+	}
+	conn.HandleServerShutdown(data)
+
+	select {
+	case <-conn.ReconnectChan:
+	case <-time.After(100 * time.Millisecond):
+		t.Fatal("expected reconnect signal but none received")
+	}
+}
+
+func TestHandleServerShutdown_MissingTimestamp_NoReconnect(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		ReconnectChan: make(chan struct{}, 1),
+	}
+
+	data := map[string]interface{}{
+		"e": "serverShutdown",
+	}
+	conn.HandleServerShutdown(data)
+
+	select {
+	case <-conn.ReconnectChan:
+		t.Fatal("expected no reconnect signal but one was received")
+	case <-time.After(100 * time.Millisecond):
+    }
+}
+
+func TestHandleServerShutdown_MissingTimestamp(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		ReconnectChan: make(chan struct{}, 1),
+	}
+
+	data := map[string]interface{}{
+		"event": map[string]interface{}{
+			"e": "serverShutdown",
+		},
+	}
+
+	conn.HandleServerShutdown(data)
+
+	select {
+	case <-conn.ReconnectChan:
+		t.Fatal("did not expect reconnect signal")
+	case <-time.After(50 * time.Millisecond):
+	}
+}
+
+func TestHandleServerShutdown_ChannelAlreadyFull(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		ReconnectChan: make(chan struct{}, 1),
+	}
+
+	conn.ReconnectChan <- struct{}{}
+
+	ts := time.Now().Add(1 * time.Minute).UnixMilli()
+
+	data := map[string]interface{}{
+		"event": map[string]interface{}{
+			"e": "serverShutdown",
+			"E": float64(ts),
+		},
+	}
+
+	done := make(chan struct{})
+
+	go func() {
+		conn.HandleServerShutdown(data)
+		close(done)
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(100 * time.Millisecond):
+		t.Fatal("handleServerShutdown blocked")
+	}
+}
+
 func TestWebSocketConnection_IsHealthy(t *testing.T) {
 	t.Run("returns true when connected and not done", func(t *testing.T) {
 		conn := &common.WebSocketConnection{
@@ -1175,6 +1265,314 @@ func TestConfigurationWrapper_IsStreams(t *testing.T) {
 			}
 		})
 	}
+}
+
+func newTestWSServer(message string, onConnect func()) *httptest.Server {
+	upgrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
+
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		conn, err := upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			return
+		}
+
+		if onConnect != nil {
+			onConnect()
+		}
+
+		go func() {
+			defer func() {
+				if err := conn.Close(); err != nil {
+					log.Printf("error closing conn: %v", err)
+				}
+			}()
+
+			if message != "" {
+				time.Sleep(20 * time.Millisecond)
+				if err := conn.WriteMessage(websocket.TextMessage, []byte(message)); err != nil {
+					return
+				}
+			}
+			time.Sleep(3 * time.Second)
+		}()
+	}))
+}
+
+func TestReconnect_OnServerShutdown(t *testing.T) {
+	var connectionCount int
+	var mu sync.Mutex
+
+	ts := time.Now().Add(200 * time.Millisecond).UnixMilli()
+	msg := `{"e":"serverShutdown","E":` + strconv.FormatInt(ts, 10) + `}`
+	server := newTestWSServer(msg, func() {
+		mu.Lock()
+		connectionCount++
+		mu.Unlock()
+	})
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+	config.reconnectDelay = 0
+
+	wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+
+	if err := wsc.Connect(config, "test-agent", []string{}); err != nil {
+		t.Fatalf("failed to connect: %v", err)
+	}
+
+	require.Eventually(t, func() bool {
+		mu.Lock()
+		defer mu.Unlock()
+		return connectionCount >= 2
+	}, 3*time.Second, 50*time.Millisecond, "expected reconnect on serverShutdown")
+}
+
+func TestNoReconnect_WhenRenewalPending(t *testing.T) {
+	var connectionCount int
+	var mu sync.Mutex
+
+	server := newTestWSServer(`{"event":"serverShutdown", "E": 9999999999999}`, func() {
+		mu.Lock()
+		connectionCount++
+		mu.Unlock()
+	})
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+
+	wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+
+	if err := wsc.Connect(config, "test-agent", []string{}); err != nil {
+		t.Fatalf("failed to connect: %v", err)
+	}
+
+	conn := wsc.Connections[0]
+	conn.Connected = common.CLOSING
+
+	time.Sleep(600 * time.Millisecond)
+
+	mu.Lock()
+	count := connectionCount
+	mu.Unlock()
+
+	if count != 1 {
+		t.Fatal("reconnect should not trigger when connection is closing")
+	}
+}
+
+func TestNoReconnect_WhenCloseInitiated(t *testing.T) {
+	var connectionCount int
+	var mu sync.Mutex
+
+	server := newTestWSServer(`{"event":"serverShutdown", "E": 9999999999999}`, func() {
+		mu.Lock()
+		connectionCount++
+		mu.Unlock()
+	})
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+
+	wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+
+	if err := wsc.Connect(config, "test-agent", []string{}); err != nil {
+		t.Fatalf("failed to connect: %v", err)
+	}
+
+	conn := wsc.Connections[0]
+	conn.Connected = common.CLOSING
+
+	time.Sleep(600 * time.Millisecond)
+
+	mu.Lock()
+	count := connectionCount
+	mu.Unlock()
+
+	if count != 1 {
+		t.Fatal("reconnect should not trigger when connection is closing")
+	}
+}
+
+func TestNoReconnect_OnOtherEvent(t *testing.T) {
+	upgrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		conn, _ := upgrader.Upgrade(w, r, nil)
+
+		go func() {
+			time.Sleep(50 * time.Millisecond)
+			if err := conn.WriteMessage(websocket.TextMessage, []byte(`{"event":"somethingElse", "E": 9999999999999}`)); err != nil {
+				return
+			}
+		}()
+	}))
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+
+	wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+
+	if err := wsc.Connect(config, "test-agent", []string{}); err != nil {
+		t.Fatalf("failed to connect: %v", err)
+	}
+	conn := wsc.Connections[0]
+
+	select {
+	case <-conn.ReconnectChan:
+		t.Fatal("unexpected reconnect trigger")
+	case <-time.After(300 * time.Millisecond):
+	}
+}
+
+func TestNoReconnect_OnMalformedPayload(t *testing.T) {
+	upgrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		conn, _ := upgrader.Upgrade(w, r, nil)
+
+		go func() {
+			time.Sleep(50 * time.Millisecond)
+			if err := conn.WriteMessage(websocket.TextMessage, []byte(`{"event":"somethingElse", "E": 9999999999999}`)); err != nil {
+				return
+			}
+		}()
+	}))
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+
+	wsc, _ := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+
+	if err := wsc.Connect(config, "test-agent", []string{}); err != nil {
+		t.Fatalf("failed to connect: %v", err)
+	}
+	conn := wsc.Connections[0]
+
+	select {
+	case <-conn.ReconnectChan:
+		t.Fatal("unexpected reconnect trigger")
+	case <-time.After(300 * time.Millisecond):
+	}
+}
+
+func TestWebSocketCommon_ReconnectTriggeredByChannel(t *testing.T) {
+	upgrader := websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
+
+	var (
+		connectionCount int
+		mu              sync.Mutex
+	)
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		conn, err := upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			return
+		}
+
+		mu.Lock()
+		connectionCount++
+		mu.Unlock()
+
+		go func() {
+			for {
+				if _, _, err := conn.ReadMessage(); err != nil {
+					return
+				}
+			}
+		}()
+	}))
+	defer server.Close()
+
+	u, _ := url.Parse(server.URL)
+	u.Scheme = "ws"
+
+	config := NewMockWebSocketConfig()
+	config.basePath = u.String()
+
+	wsc, err := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+	assert.NoError(t, err)
+
+	if wsc.ReconnectTasks == nil {
+		wsc.ReconnectTasks = make(map[string]chan struct{})
+	}
+
+	err = wsc.Connect(config, "test-agent", []string{})
+	assert.NoError(t, err)
+
+	conn := wsc.Connections[0]
+
+	time.Sleep(100 * time.Millisecond)
+
+	mu.Lock()
+	initialConnections := connectionCount
+	mu.Unlock()
+	conn.ReconnectChan <- struct{}{}
+	time.Sleep(300 * time.Millisecond)
+	mu.Lock()
+	finalConnections := connectionCount
+	mu.Unlock()
+
+	assert.Greater(t, finalConnections, initialConnections,
+		"expected reconnect to create new websocket connection",
+	)
 }
 
 // =============================================================================
@@ -1608,7 +2006,6 @@ func TestWebSocketCommon_Connect(t *testing.T) {
 		config.basePath = u.String()
 
 		err := wsc.Connect(config, "test-agent", []string{})
-
 		if err != nil {
 			t.Fatalf("Connect failed: %v", err)
 		}
@@ -2334,7 +2731,6 @@ func TestWebsocketStreams_Connect(t *testing.T) {
 			assert.Contains(t, ws.WsCommon.Connections[0].StreamConnectionMap, stream)
 		}
 	})
-
 
 	t.Run("verify first connection is used for stream mapping", func(t *testing.T) {
 		mockConn := NewMockWebSocketConn()

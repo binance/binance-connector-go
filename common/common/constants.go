@@ -65,10 +65,11 @@ const DerivativesTradingCoinFuturesWebsocketStreamsTestnetUrl = "wss://dstream.b
 // Derivatives Trading USDS Futures API URLs
 const DerivativesTradingUsdsFuturesRestApiProdUrl = "https://fapi.binance.com"
 const DerivativesTradingUsdsFuturesRestApiTestnetUrl = "https://testnet.binancefuture.com"
+const DerivativesTradingUsdsFuturesRestApiDemoUrl = "https://demo-fapi.binance.com"
 const DerivativesTradingUsdsFuturesWebsocketApiProdUrl = "wss://ws-fapi.binance.com/ws-fapi/v1"
 const DerivativesTradingUsdsFuturesWebsocketApiTestnetUrl = "wss://testnet.binancefuture.com/ws-fapi/v1"
 const DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl = "wss://fstream.binance.com/stream"
-const DerivativesTradingUsdsFuturesWebsocketStreamsTestnetUrl = "wss://stream.binancefuture.com/stream"
+const DerivativesTradingUsdsFuturesWebsocketStreamsTestnetUrl = "wss://fstream.binancefuture.com/stream"
 
 // Derivatives Trading Options API URLs
 const DerivativesTradingOptionsRestApiProdUrl = "https://eapi.binance.com"
@@ -116,10 +117,13 @@ const SimpleEarnRestApiProdUrl = "https://api.binance.com"
 // Spot API URLs
 const SpotRestApiProdUrl = "https://api.binance.com"
 const SpotRestApiTestnetUrl = "https://testnet.binance.vision"
+const SpotRestApiDemoUrl = "https://demo-api.binance.com"
 const SpotWebsocketApiProdUrl = "wss://ws-api.binance.com/ws-api/v3"
 const SpotWebsocketApiTestnetUrl = "wss://ws-api.testnet.binance.vision/ws-api/v3"
+const SpotWebsocketApiDemoUrl = "wss://demo-ws-api.binance.com/ws-api/v3"
 const SpotWebsocketStreamsProdUrl = "wss://stream.binance.com:9443/stream"
 const SpotWebsocketStreamsTestnetUrl = "wss://stream.testnet.binance.vision/stream"
+const SpotWebsocketStreamsDemotUrl = "wss://demo-stream.binance.com:9443/stream"
 const SpotRestApiMarketUrl = "https://data-api.binance.vision"
 const SpotWebsocketStreamsMarketUrl = "wss://data-stream.binance.vision/stream"
 
