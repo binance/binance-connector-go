@@ -14,6 +14,7 @@ Method        | HTTP request  | Description
 [**KlineOffset**](WebSocketStreamsAPI.md#KlineOffset) | /&lt;symbol&gt;@kline_&lt;interval&gt;@+08:00 | WebSocket Kline/Candlestick Streams with timezone offset
 [**MiniTicker**](WebSocketStreamsAPI.md#MiniTicker) | /&lt;symbol&gt;@miniTicker | WebSocket Individual Symbol Mini Ticker Stream
 [**PartialBookDepth**](WebSocketStreamsAPI.md#PartialBookDepth) | /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | WebSocket Partial Book Depth Streams
+[**ReferencePrice**](WebSocketStreamsAPI.md#ReferencePrice) | /&lt;symbol&gt;@referencePrice | WebSocket Reference Price Streams
 [**RollingWindowTicker**](WebSocketStreamsAPI.md#RollingWindowTicker) | /&lt;symbol&gt;@ticker_&lt;windowSize&gt; | WebSocket Individual Symbol Rolling Window Statistics Streams
 [**Ticker**](WebSocketStreamsAPI.md#Ticker) | /&lt;symbol&gt;@ticker | WebSocket Individual Symbol Ticker Streams
 [**Trade**](WebSocketStreamsAPI.md#Trade) | /&lt;symbol&gt;@trade | WebSocket Trade Streams
@@ -779,6 +780,82 @@ Name          | Type          | Description   | Notes
  **levels** | [**PartialBookDepthLevelsParameter**](PartialBookDepthLevelsParameter.md) |  | 
  **id** | **string** | Unique WebSocket request ID. | 
  **updateSpeed** | **string** | 1000ms or 100ms | 
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## ReferencePrice
+
+WebSocket Reference Price Streams
+
+
+### Example
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"os"
+	"time"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "bnbusdt" // string | Symbol to query
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketStreams.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+	handler, err := wsClient.WebsocketStreams.WebSocketStreamsAPI.ReferencePrice().Symbol(symbol).Id(id).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `WebSocketStreamsAPI.ReferencePrice``: %v\n", err)
+		return
+	}
+
+	handler.On("message", func(message responseModels.ReferencePriceResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	log.Println("Subscribed. Waiting 10 seconds...")
+	time.Sleep(10 * time.Second)
+
+	log.Println("Unsubscribing from stream...")
+	handler.Unsubscribe()
+
+	log.Println("Closing WebSocket connection...")
+	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
+	if err != nil {
+		log.Fatalf("Error closing WebSocket connection: %v", err)
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol to query | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 

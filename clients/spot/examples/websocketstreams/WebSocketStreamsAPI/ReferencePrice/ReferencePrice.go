@@ -1,0 +1,52 @@
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"time"
+
+	client "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	ReferencePrice()
+}
+
+func ReferencePrice() {
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsStreamsBasePath(common.SpotWebsocketStreamsProdUrl),
+	)
+
+	wsClient := client.NewBinanceSpotClient(
+		client.WithWebsocketStreams(configuration),
+	)
+
+	err := wsClient.WebsocketStreams.Connect([]string{})
+	if err != nil {
+		log.Fatalf("Error connecting to WebSocket: %v", err)
+	}
+
+	handler, err := wsClient.WebsocketStreams.WebSocketStreamsAPI.ReferencePrice().Symbol("bnbusdt").Execute()
+	if err != nil {
+		log.Fatalf("Error subscribing to stream: %v", err)
+	}
+
+	handler.On("message", func(message models.ReferencePriceResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	log.Println("Subscribed. Waiting 10 seconds...")
+	time.Sleep(10 * time.Second)
+
+	log.Println("Unsubscribing from stream...")
+	handler.Unsubscribe()
+
+	log.Println("Closing WebSocket connection...")
+	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
+	if err != nil {
+		log.Fatalf("Error closing WebSocket connection: %v", err)
+	}
+}

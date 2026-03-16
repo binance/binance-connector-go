@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**ExchangeInfo**](GeneralAPI.md#ExchangeInfo) | /exchangeInfo | WebSocket Exchange information
+[**ExecutionRules**](GeneralAPI.md#ExecutionRules) | /executionRules | WebSocket Query Execution Rules
 [**Ping**](GeneralAPI.md#Ping) | /ping | WebSocket Test connectivity
 [**Time**](GeneralAPI.md#Time) | /time | WebSocket Check server time
 
@@ -83,6 +84,84 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**ExchangeInfoResponse**](ExchangeInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## ExecutionRules
+
+> ExecutionRulesResponse ExecutionRules().Id(id).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
+
+WebSocket Query Execution Rules
+
+
+### Example
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
+	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+
+	configuration := common.NewConfigurationWebsocketApi(
+		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
+		common.WithWsApiKey("Your API Key"),
+		common.WithWsApiSecret("Your API Secret"),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketAPI(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketAPI.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+
+	resp, err := wsClient.WebsocketAPI.GeneralAPI.ExecutionRules().Id(id).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `GeneralAPI.ExecutionRules``: %v\n", err)
+		return
+	}
+
+	result, _ := json.MarshalIndent(resp.Typed, "", "  ")
+	log.Printf("Result: %s\n", result)
+
+	err = wsClient.WebsocketAPI.CloseWebSocketConnection()
+	if err != nil {
+		log.Printf("Error closing WebSocket connection: %v\n", err)
+		return
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Unique WebSocket request ID. | 
+ **symbol** | **string** | Describe a single symbol | 
+ **symbols** | **[]string** | List of symbols to query | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+
+### Return type
+
+[**ExecutionRulesResponse**](ExecutionRulesResponse.md)
 
 ### Authorization
 

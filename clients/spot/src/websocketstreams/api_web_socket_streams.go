@@ -848,6 +848,84 @@ func (a *WebSocketStreamsAPIService) PartialBookDepthExecute(r ApiPartialBookDep
 	return resp, nil
 }
 
+type ApiReferencePriceRequest struct {
+	ApiService *WebSocketStreamsAPIService
+	symbol     *string
+	id         *string
+}
+
+// Symbol to query
+func (r ApiReferencePriceRequest) Symbol(symbol string) ApiReferencePriceRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiReferencePriceRequest) Id(id string) ApiReferencePriceRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiReferencePriceRequest) Execute() (*common.StreamHandler[models.ReferencePriceResponse], error) {
+	return r.ApiService.ReferencePriceExecute(r)
+}
+
+/*
+ReferencePrice WebSocket Reference Price Streams
+/<symbol>@referencePrice
+
+https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#reference-price-streams
+
+@param symbol Symbol to query	@param id Unique WebSocket request ID.
+@return ApiReferencePriceRequest
+*/
+func (a *WebSocketStreamsAPIService) ReferencePrice() ApiReferencePriceRequest {
+	return ApiReferencePriceRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ReferencePriceResponse
+func (a *WebSocketStreamsAPIService) ReferencePriceExecute(r ApiReferencePriceRequest) (*common.StreamHandler[models.ReferencePriceResponse], error) {
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	localStream := common.WsStreamsPlaceholder(
+		"/<symbol>@referencePrice"[1:],
+		map[string]string{
+			"symbol": func() string {
+				if r.symbol == nil {
+					return ""
+				}
+				return *r.symbol
+			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
+		},
+	)
+	ws := a.client.Ws
+
+	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
+	resp, err := common.CreateStreamHandler[models.ReferencePriceResponse](&common.StreamHandlerWrapper{
+		WebsocketStreams: ws,
+	}, localStream, id, false)
+
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
 type ApiRollingWindowTickerRequest struct {
 	ApiService *WebSocketStreamsAPIService
 	symbol     *string

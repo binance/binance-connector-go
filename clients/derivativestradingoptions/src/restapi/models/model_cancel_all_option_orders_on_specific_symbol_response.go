@@ -17,7 +17,7 @@ var _ common.MappedNullable = &CancelAllOptionOrdersOnSpecificSymbolResponse{}
 
 // CancelAllOptionOrdersOnSpecificSymbolResponse struct for CancelAllOptionOrdersOnSpecificSymbolResponse
 type CancelAllOptionOrdersOnSpecificSymbolResponse struct {
-	Code                 *int64  `json:"code,omitempty"`
+	Code                 *string `json:"code,omitempty"`
 	Msg                  *string `json:"msg,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -42,9 +42,9 @@ func NewCancelAllOptionOrdersOnSpecificSymbolResponseWithDefaults() *CancelAllOp
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCode() int64 {
+func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCode() string {
 	if o == nil || common.IsNil(o.Code) {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.Code
@@ -52,7 +52,7 @@ func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCode() int64 {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCodeOk() (*int64, bool) {
+func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) GetCodeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Code) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) SetCode(v int64) {
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *CancelAllOptionOrdersOnSpecificSymbolResponse) SetCode(v string) {
 	o.Code = &v
 }
 

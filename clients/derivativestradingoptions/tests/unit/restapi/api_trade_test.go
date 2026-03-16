@@ -153,7 +153,7 @@ func Test_binancederivativestradingoptionsrestapi_TradeAPIService(t *testing.T) 
 
 	t.Run("Test TradeAPIService CancelAllOptionOrdersOnSpecificSymbol Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":0,"msg":"success"}`
+		mockedJSON := `{"code":"0","msg":"success"}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/allOpenOrders", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))

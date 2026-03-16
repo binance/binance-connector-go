@@ -7,6 +7,8 @@ Method        | HTTP request  | Description
 [**AvgPrice**](MarketAPI.md#AvgPrice) | /avgPrice | WebSocket Current average price
 [**Depth**](MarketAPI.md#Depth) | /depth | WebSocket Order book
 [**Klines**](MarketAPI.md#Klines) | /klines | WebSocket Klines
+[**ReferencePrice**](MarketAPI.md#ReferencePrice) | /referencePrice | WebSocket Query Reference Price
+[**ReferencePriceCalculation**](MarketAPI.md#ReferencePriceCalculation) | /referencePrice.calculation | WebSocket Query Reference Price Calculation
 [**Ticker**](MarketAPI.md#Ticker) | /ticker | WebSocket Rolling window price change statistics
 [**Ticker24hr**](MarketAPI.md#Ticker24hr) | /ticker.24hr | WebSocket 24hr ticker price change statistics
 [**TickerBook**](MarketAPI.md#TickerBook) | /ticker.book | WebSocket Symbol order book ticker
@@ -246,6 +248,156 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**KlinesResponse**](KlinesResponse.md)
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## ReferencePrice
+
+> ReferencePriceResponse ReferencePrice().Symbol(symbol).Id(id).Execute()
+
+WebSocket Query Reference Price
+
+
+### Example
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+
+	configuration := common.NewConfigurationWebsocketApi(
+		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
+		common.WithWsApiKey("Your API Key"),
+		common.WithWsApiSecret("Your API Secret"),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketAPI(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketAPI.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+
+	resp, err := wsClient.WebsocketAPI.MarketAPI.ReferencePrice().Symbol(symbol).Id(id).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.ReferencePrice``: %v\n", err)
+		return
+	}
+
+	result, _ := json.MarshalIndent(resp.Typed, "", "  ")
+	log.Printf("Result: %s\n", result)
+
+	err = wsClient.WebsocketAPI.CloseWebSocketConnection()
+	if err != nil {
+		log.Printf("Error closing WebSocket connection: %v\n", err)
+		return
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **id** | **string** | Unique WebSocket request ID. | 
+
+### Return type
+
+[**ReferencePriceResponse**](ReferencePriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## ReferencePriceCalculation
+
+> ReferencePriceCalculationResponse ReferencePriceCalculation().Symbol(symbol).Id(id).SymbolStatus(symbolStatus).Execute()
+
+WebSocket Query Reference Price Calculation
+
+
+### Example
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+
+	configuration := common.NewConfigurationWebsocketApi(
+		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
+		common.WithWsApiKey("Your API Key"),
+		common.WithWsApiSecret("Your API Secret"),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketAPI(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketAPI.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+
+	resp, err := wsClient.WebsocketAPI.MarketAPI.ReferencePriceCalculation().Symbol(symbol).Id(id).SymbolStatus(symbolStatus).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.ReferencePriceCalculation``: %v\n", err)
+		return
+	}
+
+	result, _ := json.MarshalIndent(resp.Typed, "", "  ")
+	log.Printf("Result: %s\n", result)
+
+	err = wsClient.WebsocketAPI.CloseWebSocketConnection()
+	if err != nil {
+		log.Printf("Error closing WebSocket connection: %v\n", err)
+		return
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **id** | **string** | Unique WebSocket request ID. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+
+### Return type
+
+[**ReferencePriceCalculationResponse**](ReferencePriceCalculationResponse.md)
 
 ### Authorization
 

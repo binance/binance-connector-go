@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Derivatives Trading COIN Futures REST API API v1.5.0
+// RestAPIClient manages communication with the Binance Derivatives Trading COIN Futures REST API API v1.6.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -40,7 +40,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-derivativestradingcoinfutures/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-derivativestradingcoinfutures/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

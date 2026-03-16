@@ -321,6 +321,173 @@ func (a *MarketAPIService) KlinesExecute(r ApiKlinesRequest) (chan *common.Respo
 	return SendMessage[models.KlinesResponse](a.Ws, localPayload, sendParams)
 }
 
+type ApiReferencePriceRequest struct {
+	ApiService *MarketAPIService
+	symbol     *string
+	id         *string
+}
+
+func (r ApiReferencePriceRequest) Symbol(symbol string) ApiReferencePriceRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiReferencePriceRequest) Id(id string) ApiReferencePriceRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiReferencePriceRequest) Execute() (*common.ResponseOrRaw[models.ReferencePriceResponse], error) {
+	respChan, errChan, err := r.ApiService.ReferencePriceExecute(r)
+	if err != nil {
+		return nil, err
+	}
+
+	select {
+	case resp := <-respChan:
+		return resp, nil
+	case err := <-errChan:
+		return nil, err
+	}
+}
+
+func (r ApiReferencePriceRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.ReferencePriceResponse], chan error, error) {
+	return r.ApiService.ReferencePriceExecute(r)
+}
+
+/*
+ReferencePrice WebSocket Query Reference Price
+/referencePrice
+
+https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price
+
+@param symbol	@param id Unique WebSocket request ID.
+@return ApiReferencePriceRequest
+*/
+func (a *MarketAPIService) ReferencePrice() ApiReferencePriceRequest {
+	return ApiReferencePriceRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ReferencePriceResponse
+func (a *MarketAPIService) ReferencePriceExecute(r ApiReferencePriceRequest) (chan *common.ResponseOrRaw[models.ReferencePriceResponse], chan error, error) {
+	localVarQueryParams := map[string]any{}
+
+	if r.symbol == nil {
+		return nil, nil, common.ReportError("symbol is required and must be specified")
+	}
+	localVarQueryParams["symbol"] = *r.symbol
+
+	if r.id != nil {
+		localVarQueryParams["id"] = *r.id
+	}
+
+	localPayload := map[string]any{
+		"method": "/referencePrice"[1:],
+		"params": localVarQueryParams,
+	}
+
+	sendParams := common.SendParams{
+		Signed:           false,
+		WithAPIKey:       false,
+		WithSessionLogon: false,
+	}
+
+	return SendMessage[models.ReferencePriceResponse](a.Ws, localPayload, sendParams)
+}
+
+type ApiReferencePriceCalculationRequest struct {
+	ApiService   *MarketAPIService
+	symbol       *string
+	id           *string
+	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+}
+
+func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferencePriceCalculationRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiReferencePriceCalculationRequest) Id(id string) ApiReferencePriceCalculationRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiReferencePriceCalculationRequest {
+	r.symbolStatus = &symbolStatus
+	return r
+}
+
+func (r ApiReferencePriceCalculationRequest) Execute() (*common.ResponseOrRaw[models.ReferencePriceCalculationResponse], error) {
+	respChan, errChan, err := r.ApiService.ReferencePriceCalculationExecute(r)
+	if err != nil {
+		return nil, err
+	}
+
+	select {
+	case resp := <-respChan:
+		return resp, nil
+	case err := <-errChan:
+		return nil, err
+	}
+}
+
+func (r ApiReferencePriceCalculationRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.ReferencePriceCalculationResponse], chan error, error) {
+	return r.ApiService.ReferencePriceCalculationExecute(r)
+}
+
+/*
+ReferencePriceCalculation WebSocket Query Reference Price Calculation
+/referencePrice.calculation
+
+https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price-calculation
+
+@param symbol	@param id Unique WebSocket request ID.	@param symbolStatus
+@return ApiReferencePriceCalculationRequest
+*/
+func (a *MarketAPIService) ReferencePriceCalculation() ApiReferencePriceCalculationRequest {
+	return ApiReferencePriceCalculationRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ReferencePriceCalculationResponse
+func (a *MarketAPIService) ReferencePriceCalculationExecute(r ApiReferencePriceCalculationRequest) (chan *common.ResponseOrRaw[models.ReferencePriceCalculationResponse], chan error, error) {
+	localVarQueryParams := map[string]any{}
+
+	if r.symbol == nil {
+		return nil, nil, common.ReportError("symbol is required and must be specified")
+	}
+	localVarQueryParams["symbol"] = *r.symbol
+
+	if r.id != nil {
+		localVarQueryParams["id"] = *r.id
+	}
+	if r.symbolStatus != nil {
+		localVarQueryParams["symbolStatus"] = *r.symbolStatus
+	}
+
+	localPayload := map[string]any{
+		"method": "/referencePrice.calculation"[1:],
+		"params": localVarQueryParams,
+	}
+
+	sendParams := common.SendParams{
+		Signed:           false,
+		WithAPIKey:       false,
+		WithSessionLogon: false,
+	}
+
+	return SendMessage[models.ReferencePriceCalculationResponse](a.Ws, localPayload, sendParams)
+}
+
 type ApiTickerRequest struct {
 	ApiService   *MarketAPIService
 	id           *string

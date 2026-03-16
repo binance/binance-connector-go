@@ -58,6 +58,7 @@ Name         | Type          | Description.  | Notes
 **GOT** | Pointer to **string** |  | [optional] 
 **GOV** | Pointer to **int64** |  | [optional] 
 **Gp** | Pointer to **string** |  | [optional] 
+**ER** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -1427,6 +1428,31 @@ SetGp sets Gp field to given value.
 `func (o *UserDataStreamEventsResponse) HasGp() bool`
 
 HasGp returns a boolean if a field has been set.
+
+### GetER
+
+`func (o *UserDataStreamEventsResponse) GetER() string`
+
+GetER returns the ER field if non-nil, zero value otherwise.
+
+### GetEROk
+
+`func (o *UserDataStreamEventsResponse) GetEROk() (*string, bool)`
+
+GetEROk returns a tuple with the ER field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetER
+
+`func (o *UserDataStreamEventsResponse) SetER(v string)`
+
+SetER sets ER field to given value.
+
+### HasER
+
+`func (o *UserDataStreamEventsResponse) HasER() bool`
+
+HasER returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -4,6 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
+**SubscriptionQuota** | Pointer to [**GetBfusdQuotaDetailsResponseSubscriptionQuota**](GetBfusdQuotaDetailsResponseSubscriptionQuota.md) |  | [optional] 
 **FastRedemptionQuota** | Pointer to [**GetBfusdQuotaDetailsResponseFastRedemptionQuota**](GetBfusdQuotaDetailsResponseFastRedemptionQuota.md) |  | [optional] 
 **StandardRedemptionQuota** | Pointer to [**GetBfusdQuotaDetailsResponseStandardRedemptionQuota**](GetBfusdQuotaDetailsResponseStandardRedemptionQuota.md) |  | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewGetBfusdQuotaDetailsResponseWithDefaults instantiates a new GetBfusdQuotaDetailsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetSubscriptionQuota
+
+`func (o *GetBfusdQuotaDetailsResponse) GetSubscriptionQuota() GetBfusdQuotaDetailsResponseSubscriptionQuota`
+
+GetSubscriptionQuota returns the SubscriptionQuota field if non-nil, zero value otherwise.
+
+### GetSubscriptionQuotaOk
+
+`func (o *GetBfusdQuotaDetailsResponse) GetSubscriptionQuotaOk() (*GetBfusdQuotaDetailsResponseSubscriptionQuota, bool)`
+
+GetSubscriptionQuotaOk returns a tuple with the SubscriptionQuota field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionQuota
+
+`func (o *GetBfusdQuotaDetailsResponse) SetSubscriptionQuota(v GetBfusdQuotaDetailsResponseSubscriptionQuota)`
+
+SetSubscriptionQuota sets SubscriptionQuota field to given value.
+
+### HasSubscriptionQuota
+
+`func (o *GetBfusdQuotaDetailsResponse) HasSubscriptionQuota() bool`
+
+HasSubscriptionQuota returns a boolean if a field has been set.
 
 ### GetFastRedemptionQuota
 

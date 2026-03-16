@@ -5,6 +5,7 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**ExchangeInfo**](GeneralAPI.md#ExchangeInfo) | **Get** /api/v3/exchangeInfo | Exchange information
+[**ExecutionRules**](GeneralAPI.md#ExecutionRules) | **Get** /api/v3/executionRules | Query Execution Rules
 [**Ping**](GeneralAPI.md#Ping) | **Get** /api/v3/ping | Test connectivity
 [**Time**](GeneralAPI.md#Time) | **Get** /api/v3/time | Check server time
 
@@ -73,6 +74,78 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**ExchangeInfoResponse**](ExchangeInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## ExecutionRules
+
+> ExecutionRulesResponse ExecutionRules(ctx).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
+
+Query Execution Rules
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | Symbol to query (optional)
+	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceSpotClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.GeneralAPI.ExecutionRules(context.Background()).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `GeneralAPI.ExecutionRules``: %v\n", err)
+		return
+	}
+
+	// response from `ExecutionRules`: ExecutionRulesResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol to query | 
+ **symbols** | **[]string** | List of symbols to query | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+
+### Return type
+
+[**ExecutionRulesResponse**](ExecutionRulesResponse.md)
 
 ### Authorization
 

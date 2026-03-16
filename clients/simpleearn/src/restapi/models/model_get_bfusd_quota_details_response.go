@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetBfusdQuotaDetailsResponse{}
 
 // GetBfusdQuotaDetailsResponse struct for GetBfusdQuotaDetailsResponse
 type GetBfusdQuotaDetailsResponse struct {
+	SubscriptionQuota       *GetBfusdQuotaDetailsResponseSubscriptionQuota       `json:"subscriptionQuota,omitempty"`
 	FastRedemptionQuota     *GetBfusdQuotaDetailsResponseFastRedemptionQuota     `json:"fastRedemptionQuota,omitempty"`
 	StandardRedemptionQuota *GetBfusdQuotaDetailsResponseStandardRedemptionQuota `json:"standardRedemptionQuota,omitempty"`
 	AdditionalProperties    map[string]interface{}
@@ -39,6 +40,38 @@ func NewGetBfusdQuotaDetailsResponse() *GetBfusdQuotaDetailsResponse {
 func NewGetBfusdQuotaDetailsResponseWithDefaults() *GetBfusdQuotaDetailsResponse {
 	this := GetBfusdQuotaDetailsResponse{}
 	return &this
+}
+
+// GetSubscriptionQuota returns the SubscriptionQuota field value if set, zero value otherwise.
+func (o *GetBfusdQuotaDetailsResponse) GetSubscriptionQuota() GetBfusdQuotaDetailsResponseSubscriptionQuota {
+	if o == nil || common.IsNil(o.SubscriptionQuota) {
+		var ret GetBfusdQuotaDetailsResponseSubscriptionQuota
+		return ret
+	}
+	return *o.SubscriptionQuota
+}
+
+// GetSubscriptionQuotaOk returns a tuple with the SubscriptionQuota field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetBfusdQuotaDetailsResponse) GetSubscriptionQuotaOk() (*GetBfusdQuotaDetailsResponseSubscriptionQuota, bool) {
+	if o == nil || common.IsNil(o.SubscriptionQuota) {
+		return nil, false
+	}
+	return o.SubscriptionQuota, true
+}
+
+// HasSubscriptionQuota returns a boolean if a field has been set.
+func (o *GetBfusdQuotaDetailsResponse) HasSubscriptionQuota() bool {
+	if o != nil && !common.IsNil(o.SubscriptionQuota) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionQuota gets a reference to the given GetBfusdQuotaDetailsResponseSubscriptionQuota and assigns it to the SubscriptionQuota field.
+func (o *GetBfusdQuotaDetailsResponse) SetSubscriptionQuota(v GetBfusdQuotaDetailsResponseSubscriptionQuota) {
+	o.SubscriptionQuota = &v
 }
 
 // GetFastRedemptionQuota returns the FastRedemptionQuota field value if set, zero value otherwise.
@@ -115,6 +148,9 @@ func (o GetBfusdQuotaDetailsResponse) MarshalJSON() ([]byte, error) {
 
 func (o GetBfusdQuotaDetailsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !common.IsNil(o.SubscriptionQuota) {
+		toSerialize["subscriptionQuota"] = o.SubscriptionQuota
+	}
 	if !common.IsNil(o.FastRedemptionQuota) {
 		toSerialize["fastRedemptionQuota"] = o.FastRedemptionQuota
 	}
@@ -143,6 +179,7 @@ func (o *GetBfusdQuotaDetailsResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "subscriptionQuota")
 		delete(additionalProperties, "fastRedemptionQuota")
 		delete(additionalProperties, "standardRedemptionQuota")
 		o.AdditionalProperties = additionalProperties

@@ -507,6 +507,128 @@ func (a *MarketAPIService) KlinesExecute(r ApiKlinesRequest) (*common.RestApiRes
 	return resp, nil
 }
 
+type ApiReferencePriceRequest struct {
+	ctx        context.Context
+	ApiService *MarketAPIService
+	symbol     *string
+}
+
+func (r ApiReferencePriceRequest) Symbol(symbol string) ApiReferencePriceRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiReferencePriceRequest) Execute() (*common.RestApiResponse[models.ReferencePriceResponse], error) {
+	return r.ApiService.ReferencePriceExecute(r)
+}
+
+/*
+ReferencePrice Query Reference Price
+Get /api/v3/referencePrice
+
+https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@return ApiReferencePriceRequest
+*/
+func (a *MarketAPIService) ReferencePrice(ctx context.Context) ApiReferencePriceRequest {
+	return ApiReferencePriceRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ReferencePriceResponse
+func (a *MarketAPIService) ReferencePriceExecute(r ApiReferencePriceRequest) (*common.RestApiResponse[models.ReferencePriceResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/api/v3/referencePrice"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+
+	resp, err := SendRequest[models.ReferencePriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiReferencePriceCalculationRequest struct {
+	ctx          context.Context
+	ApiService   *MarketAPIService
+	symbol       *string
+	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+}
+
+func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferencePriceCalculationRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiReferencePriceCalculationRequest {
+	r.symbolStatus = &symbolStatus
+	return r
+}
+
+func (r ApiReferencePriceCalculationRequest) Execute() (*common.RestApiResponse[models.ReferencePriceCalculationResponse], error) {
+	return r.ApiService.ReferencePriceCalculationExecute(r)
+}
+
+/*
+ReferencePriceCalculation Query Reference Price Calculation
+Get /api/v3/referencePrice/calculation
+
+https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price-calculation
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@param symbolStatus -
+@return ApiReferencePriceCalculationRequest
+*/
+func (a *MarketAPIService) ReferencePriceCalculation(ctx context.Context) ApiReferencePriceCalculationRequest {
+	return ApiReferencePriceCalculationRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ReferencePriceCalculationResponse
+func (a *MarketAPIService) ReferencePriceCalculationExecute(r ApiReferencePriceCalculationRequest) (*common.RestApiResponse[models.ReferencePriceCalculationResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/api/v3/referencePrice/calculation"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	if r.symbolStatus != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
+	}
+
+	resp, err := SendRequest[models.ReferencePriceCalculationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiTickerRequest struct {
 	ctx          context.Context
 	ApiService   *MarketAPIService
