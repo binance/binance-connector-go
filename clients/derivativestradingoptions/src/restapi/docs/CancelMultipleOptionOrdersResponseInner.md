@@ -24,6 +24,7 @@ Name         | Type          | Description.  | Notes
 **OptionSide** | Pointer to **string** |  | [optional] 
 **QuoteAsset** | Pointer to **string** |  | [optional] 
 **Mmp** | Pointer to **bool** |  | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -543,6 +544,31 @@ SetMmp sets Mmp field to given value.
 `func (o *CancelMultipleOptionOrdersResponseInner) HasMmp() bool`
 
 HasMmp returns a boolean if a field has been set.
+
+### GetSelfTradePreventionMode
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSelfTradePreventionMode() string`
+
+GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
+
+### GetSelfTradePreventionModeOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSelfTradePreventionModeOk() (*string, bool)`
+
+GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfTradePreventionMode
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetSelfTradePreventionMode(v string)`
+
+SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
+
+### HasSelfTradePreventionMode
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasSelfTradePreventionMode() bool`
+
+HasSelfTradePreventionMode returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

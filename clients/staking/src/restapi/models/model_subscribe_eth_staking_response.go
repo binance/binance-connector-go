@@ -20,6 +20,7 @@ type SubscribeEthStakingResponse struct {
 	Success              *bool   `json:"success,omitempty"`
 	WbethAmount          *string `json:"wbethAmount,omitempty"`
 	ConversionRatio      *string `json:"conversionRatio,omitempty"`
+	PurchaseId           *int64  `json:"purchaseId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +139,38 @@ func (o *SubscribeEthStakingResponse) SetConversionRatio(v string) {
 	o.ConversionRatio = &v
 }
 
+// GetPurchaseId returns the PurchaseId field value if set, zero value otherwise.
+func (o *SubscribeEthStakingResponse) GetPurchaseId() int64 {
+	if o == nil || common.IsNil(o.PurchaseId) {
+		var ret int64
+		return ret
+	}
+	return *o.PurchaseId
+}
+
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscribeEthStakingResponse) GetPurchaseIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PurchaseId) {
+		return nil, false
+	}
+	return o.PurchaseId, true
+}
+
+// HasPurchaseId returns a boolean if a field has been set.
+func (o *SubscribeEthStakingResponse) HasPurchaseId() bool {
+	if o != nil && !common.IsNil(o.PurchaseId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPurchaseId gets a reference to the given int64 and assigns it to the PurchaseId field.
+func (o *SubscribeEthStakingResponse) SetPurchaseId(v int64) {
+	o.PurchaseId = &v
+}
+
 func (o SubscribeEthStakingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o SubscribeEthStakingResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.ConversionRatio) {
 		toSerialize["conversionRatio"] = o.ConversionRatio
+	}
+	if !common.IsNil(o.PurchaseId) {
+		toSerialize["purchaseId"] = o.PurchaseId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +218,7 @@ func (o *SubscribeEthStakingResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "success")
 		delete(additionalProperties, "wbethAmount")
 		delete(additionalProperties, "conversionRatio")
+		delete(additionalProperties, "purchaseId")
 		o.AdditionalProperties = additionalProperties
 	}
 

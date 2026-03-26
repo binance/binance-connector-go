@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **Success** | Pointer to **bool** |  | [optional] 
 **BnsolAmount** | Pointer to **string** |  | [optional] 
 **ExchangeRate** | Pointer to **string** |  | [optional] 
+**PurchaseId** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetExchangeRate sets ExchangeRate field to given value.
 `func (o *SubscribeSolStakingResponse) HasExchangeRate() bool`
 
 HasExchangeRate returns a boolean if a field has been set.
+
+### GetPurchaseId
+
+`func (o *SubscribeSolStakingResponse) GetPurchaseId() int64`
+
+GetPurchaseId returns the PurchaseId field if non-nil, zero value otherwise.
+
+### GetPurchaseIdOk
+
+`func (o *SubscribeSolStakingResponse) GetPurchaseIdOk() (*int64, bool)`
+
+GetPurchaseIdOk returns a tuple with the PurchaseId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPurchaseId
+
+`func (o *SubscribeSolStakingResponse) SetPurchaseId(v int64)`
+
+SetPurchaseId sets PurchaseId field to given value.
+
+### HasPurchaseId
+
+`func (o *SubscribeSolStakingResponse) HasPurchaseId() bool`
+
+HasPurchaseId returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

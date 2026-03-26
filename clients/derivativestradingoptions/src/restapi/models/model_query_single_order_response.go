@@ -17,26 +17,27 @@ var _ common.MappedNullable = &QuerySingleOrderResponse{}
 
 // QuerySingleOrderResponse struct for QuerySingleOrderResponse
 type QuerySingleOrderResponse struct {
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	CreateTime           *int64  `json:"createTime,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	PriceScale           *int64  `json:"priceScale,omitempty"`
-	QuantityScale        *int64  `json:"quantityScale,omitempty"`
-	OptionSide           *string `json:"optionSide,omitempty"`
-	QuoteAsset           *string `json:"quoteAsset,omitempty"`
-	Mmp                  *bool   `json:"mmp,omitempty"`
-	AdditionalProperties map[string]interface{}
+	OrderId                 *int64  `json:"orderId,omitempty"`
+	Symbol                  *string `json:"symbol,omitempty"`
+	Price                   *string `json:"price,omitempty"`
+	Quantity                *string `json:"quantity,omitempty"`
+	ExecutedQty             *string `json:"executedQty,omitempty"`
+	Side                    *string `json:"side,omitempty"`
+	Type                    *string `json:"type,omitempty"`
+	TimeInForce             *string `json:"timeInForce,omitempty"`
+	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
+	CreateTime              *int64  `json:"createTime,omitempty"`
+	UpdateTime              *int64  `json:"updateTime,omitempty"`
+	Status                  *string `json:"status,omitempty"`
+	AvgPrice                *string `json:"avgPrice,omitempty"`
+	ClientOrderId           *string `json:"clientOrderId,omitempty"`
+	PriceScale              *int64  `json:"priceScale,omitempty"`
+	QuantityScale           *int64  `json:"quantityScale,omitempty"`
+	OptionSide              *string `json:"optionSide,omitempty"`
+	QuoteAsset              *string `json:"quoteAsset,omitempty"`
+	Mmp                     *bool   `json:"mmp,omitempty"`
+	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _QuerySingleOrderResponse QuerySingleOrderResponse
@@ -666,6 +667,38 @@ func (o *QuerySingleOrderResponse) SetMmp(v bool) {
 	o.Mmp = &v
 }
 
+// GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
+func (o *QuerySingleOrderResponse) GetSelfTradePreventionMode() string {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		var ret string
+		return ret
+	}
+	return *o.SelfTradePreventionMode
+}
+
+// GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QuerySingleOrderResponse) GetSelfTradePreventionModeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		return nil, false
+	}
+	return o.SelfTradePreventionMode, true
+}
+
+// HasSelfTradePreventionMode returns a boolean if a field has been set.
+func (o *QuerySingleOrderResponse) HasSelfTradePreventionMode() bool {
+	if o != nil && !common.IsNil(o.SelfTradePreventionMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfTradePreventionMode gets a reference to the given string and assigns it to the SelfTradePreventionMode field.
+func (o *QuerySingleOrderResponse) SetSelfTradePreventionMode(v string) {
+	o.SelfTradePreventionMode = &v
+}
+
 func (o QuerySingleOrderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -733,6 +766,9 @@ func (o QuerySingleOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Mmp) {
 		toSerialize["mmp"] = o.Mmp
 	}
+	if !common.IsNil(o.SelfTradePreventionMode) {
+		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -774,6 +810,7 @@ func (o *QuerySingleOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "optionSide")
 		delete(additionalProperties, "quoteAsset")
 		delete(additionalProperties, "mmp")
+		delete(additionalProperties, "selfTradePreventionMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

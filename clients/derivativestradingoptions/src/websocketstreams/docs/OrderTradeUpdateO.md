@@ -28,6 +28,7 @@ Name         | Type          | Description.  | Notes
 **R** | Pointer to **bool** |  | [optional] 
 **Ot** | Pointer to **string** |  | [optional] 
 **Rp** | Pointer to **string** |  | [optional] 
+**V** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -647,6 +648,31 @@ SetRp sets Rp field to given value.
 `func (o *OrderTradeUpdateO) HasRp() bool`
 
 HasRp returns a boolean if a field has been set.
+
+### GetV
+
+`func (o *OrderTradeUpdateO) GetV() string`
+
+GetV returns the V field if non-nil, zero value otherwise.
+
+### GetVOk
+
+`func (o *OrderTradeUpdateO) GetVOk() (*string, bool)`
+
+GetVOk returns a tuple with the V field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetV
+
+`func (o *OrderTradeUpdateO) SetV(v string)`
+
+SetV sets V field to given value.
+
+### HasV
+
+`func (o *OrderTradeUpdateO) HasV() bool`
+
+HasV returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

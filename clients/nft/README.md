@@ -1,4 +1,6 @@
-# Binance Go NFT SDK
+# **DEPRECATED** Binance Go NFT SDK
+
+## **This module is deprecated and will be removed**
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/binance/binance-connector-go/ci.yaml)](https://github.com/binance/binance-connector-go/actions)
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-go)](https://github.com/binance/binance-connector-go/issues)

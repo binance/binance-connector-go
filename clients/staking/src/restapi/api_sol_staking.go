@@ -376,11 +376,17 @@ func (a *SolStakingAPIService) GetBoostRewardsHistoryExecute(r ApiGetBoostReward
 type ApiGetSolRedemptionHistoryRequest struct {
 	ctx        context.Context
 	ApiService *SolStakingAPIService
+	redeemId   *int64
 	startTime  *int64
 	endTime    *int64
 	current    *int64
 	size       *int64
 	recvWindow *int64
+}
+
+func (r ApiGetSolRedemptionHistoryRequest) RedeemId(redeemId int64) ApiGetSolRedemptionHistoryRequest {
+	r.redeemId = &redeemId
+	return r
 }
 
 func (r ApiGetSolRedemptionHistoryRequest) StartTime(startTime int64) ApiGetSolRedemptionHistoryRequest {
@@ -421,6 +427,7 @@ Get /sapi/v1/sol-staking/sol/history/redemptionHistory
 https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-redemption-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param redeemId -
 @param startTime -
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
@@ -445,6 +452,9 @@ func (a *SolStakingAPIService) GetSolRedemptionHistoryExecute(r ApiGetSolRedempt
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.redeemId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "redeemId", r.redeemId, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}
@@ -472,11 +482,17 @@ func (a *SolStakingAPIService) GetSolRedemptionHistoryExecute(r ApiGetSolRedempt
 type ApiGetSolStakingHistoryRequest struct {
 	ctx        context.Context
 	ApiService *SolStakingAPIService
+	purchaseId *int64
 	startTime  *int64
 	endTime    *int64
 	current    *int64
 	size       *int64
 	recvWindow *int64
+}
+
+func (r ApiGetSolStakingHistoryRequest) PurchaseId(purchaseId int64) ApiGetSolStakingHistoryRequest {
+	r.purchaseId = &purchaseId
+	return r
 }
 
 func (r ApiGetSolStakingHistoryRequest) StartTime(startTime int64) ApiGetSolStakingHistoryRequest {
@@ -517,6 +533,7 @@ Get /sapi/v1/sol-staking/sol/history/stakingHistory
 https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-staking-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param purchaseId -
 @param startTime -
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
@@ -541,6 +558,9 @@ func (a *SolStakingAPIService) GetSolStakingHistoryExecute(r ApiGetSolStakingHis
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.purchaseId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "purchaseId", r.purchaseId, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}

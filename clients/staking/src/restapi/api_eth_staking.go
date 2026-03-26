@@ -129,11 +129,17 @@ func (a *EthStakingAPIService) GetCurrentEthStakingQuotaExecute(r ApiGetCurrentE
 type ApiGetEthRedemptionHistoryRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
+	redeemId   *int64
 	startTime  *int64
 	endTime    *int64
 	current    *int64
 	size       *int64
 	recvWindow *int64
+}
+
+func (r ApiGetEthRedemptionHistoryRequest) RedeemId(redeemId int64) ApiGetEthRedemptionHistoryRequest {
+	r.redeemId = &redeemId
+	return r
 }
 
 func (r ApiGetEthRedemptionHistoryRequest) StartTime(startTime int64) ApiGetEthRedemptionHistoryRequest {
@@ -174,6 +180,7 @@ Get /sapi/v1/eth-staking/eth/history/redemptionHistory
 https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-redemption-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param redeemId -
 @param startTime -
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
@@ -198,6 +205,9 @@ func (a *EthStakingAPIService) GetEthRedemptionHistoryExecute(r ApiGetEthRedempt
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.redeemId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "redeemId", r.redeemId, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}
@@ -225,11 +235,17 @@ func (a *EthStakingAPIService) GetEthRedemptionHistoryExecute(r ApiGetEthRedempt
 type ApiGetEthStakingHistoryRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
+	purchaseId *int64
 	startTime  *int64
 	endTime    *int64
 	current    *int64
 	size       *int64
 	recvWindow *int64
+}
+
+func (r ApiGetEthStakingHistoryRequest) PurchaseId(purchaseId int64) ApiGetEthStakingHistoryRequest {
+	r.purchaseId = &purchaseId
+	return r
 }
 
 func (r ApiGetEthStakingHistoryRequest) StartTime(startTime int64) ApiGetEthStakingHistoryRequest {
@@ -270,6 +286,7 @@ Get /sapi/v1/eth-staking/eth/history/stakingHistory
 https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-staking-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param purchaseId -
 @param startTime -
 @param endTime -
 @param current -  Currently querying page. Start from 1. Default:1
@@ -294,6 +311,9 @@ func (a *EthStakingAPIService) GetEthStakingHistoryExecute(r ApiGetEthStakingHis
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
+	if r.purchaseId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "purchaseId", r.purchaseId, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}

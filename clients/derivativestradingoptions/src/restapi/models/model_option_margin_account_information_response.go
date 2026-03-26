@@ -24,6 +24,7 @@ type OptionMarginAccountInformationResponse struct {
 	CanDeposit           *bool                                              `json:"canDeposit,omitempty"`
 	CanWithdraw          *bool                                              `json:"canWithdraw,omitempty"`
 	ReduceOnly           *bool                                              `json:"reduceOnly,omitempty"`
+	TradeGroupId         *int64                                             `json:"tradeGroupId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -270,6 +271,38 @@ func (o *OptionMarginAccountInformationResponse) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
+// GetTradeGroupId returns the TradeGroupId field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponse) GetTradeGroupId() int64 {
+	if o == nil || common.IsNil(o.TradeGroupId) {
+		var ret int64
+		return ret
+	}
+	return *o.TradeGroupId
+}
+
+// GetTradeGroupIdOk returns a tuple with the TradeGroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponse) GetTradeGroupIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TradeGroupId) {
+		return nil, false
+	}
+	return o.TradeGroupId, true
+}
+
+// HasTradeGroupId returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponse) HasTradeGroupId() bool {
+	if o != nil && !common.IsNil(o.TradeGroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTradeGroupId gets a reference to the given int64 and assigns it to the TradeGroupId field.
+func (o *OptionMarginAccountInformationResponse) SetTradeGroupId(v int64) {
+	o.TradeGroupId = &v
+}
+
 func (o OptionMarginAccountInformationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -301,6 +334,9 @@ func (o OptionMarginAccountInformationResponse) ToMap() (map[string]interface{},
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
+	if !common.IsNil(o.TradeGroupId) {
+		toSerialize["tradeGroupId"] = o.TradeGroupId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -330,6 +366,7 @@ func (o *OptionMarginAccountInformationResponse) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "canDeposit")
 		delete(additionalProperties, "canWithdraw")
 		delete(additionalProperties, "reduceOnly")
+		delete(additionalProperties, "tradeGroupId")
 		o.AdditionalProperties = additionalProperties
 	}
 

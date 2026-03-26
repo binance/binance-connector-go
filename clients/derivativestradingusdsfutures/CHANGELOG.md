@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.7.0 - 2026-03-26
+
+### Changed (3)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.2.0`.
+
+#### WebSocket Streams
+
+- Modified response for `markPriceStreamForAllMarket()` (`!markPrice@arr@<updateSpeed>` stream):
+  - items: property `ap` added
+  - items: item property `ap` added
+
+- Modified response for `markPriceStream()` (`<symbol>@markPrice@<updateSpeed>` stream):
+  - property `ap` added
+
 ## 1.6.0 - 2026-03-16
 
 ### Changed (2)

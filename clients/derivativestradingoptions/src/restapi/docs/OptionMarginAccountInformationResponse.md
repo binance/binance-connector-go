@@ -11,6 +11,7 @@ Name         | Type          | Description.  | Notes
 **CanDeposit** | Pointer to **bool** |  | [optional] 
 **CanWithdraw** | Pointer to **bool** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
+**TradeGroupId** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetReduceOnly sets ReduceOnly field to given value.
 `func (o *OptionMarginAccountInformationResponse) HasReduceOnly() bool`
 
 HasReduceOnly returns a boolean if a field has been set.
+
+### GetTradeGroupId
+
+`func (o *OptionMarginAccountInformationResponse) GetTradeGroupId() int64`
+
+GetTradeGroupId returns the TradeGroupId field if non-nil, zero value otherwise.
+
+### GetTradeGroupIdOk
+
+`func (o *OptionMarginAccountInformationResponse) GetTradeGroupIdOk() (*int64, bool)`
+
+GetTradeGroupIdOk returns a tuple with the TradeGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTradeGroupId
+
+`func (o *OptionMarginAccountInformationResponse) SetTradeGroupId(v int64)`
+
+SetTradeGroupId sets TradeGroupId field to given value.
+
+### HasTradeGroupId
+
+`func (o *OptionMarginAccountInformationResponse) HasTradeGroupId() bool`
+
+HasTradeGroupId returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -78,6 +78,11 @@ func tlsConfigWithPinning(pinnedKey string) (*tls.Config, error) {
 
 	cfg := &tls.Config{
 		// We'll perform verification ourselves in VerifyPeerCertificate so set InsecureSkipVerify.
+		//
+		// ------------------------BEWARE------------------------
+		// THIS DISABLES HOSTNAME VERIFICATION AND OTHER CHECKS.
+		// We must do them ourselves in VerifyPeerCertificate.
+		// ------------------------------------------------------
 		InsecureSkipVerify: true,
 		VerifyPeerCertificate: func(rawCerts [][]byte, _ [][]*x509.Certificate) error {
 			// rawCerts are DER-encoded certs; first is leaf

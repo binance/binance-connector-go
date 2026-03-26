@@ -19,7 +19,7 @@ func main() {
 
 func AllBookTickersStream() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath(common.DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl),
+		common.WithWsStreamsBasePath("wss://fstream.binance.com"),
 		common.WithWsStreamsAgent("your-proxy-url"),
 	)
 

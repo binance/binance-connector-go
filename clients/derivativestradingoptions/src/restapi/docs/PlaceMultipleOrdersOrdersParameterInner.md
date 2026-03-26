@@ -15,6 +15,7 @@ Name         | Type          | Description.  | Notes
 **NewOrderRespType** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType.md) |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **IsMmp** | Pointer to **string** |  | [optional] 
+**SelfTradePreventionMode** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode.md) |  | [optional] 
 
 ## Methods
 
@@ -309,6 +310,31 @@ SetIsMmp sets IsMmp field to given value.
 `func (o *PlaceMultipleOrdersOrdersParameterInner) HasIsMmp() bool`
 
 HasIsMmp returns a boolean if a field has been set.
+
+### GetSelfTradePreventionMode
+
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetSelfTradePreventionMode() PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode`
+
+GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
+
+### GetSelfTradePreventionModeOk
+
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetSelfTradePreventionModeOk() (*PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode, bool)`
+
+GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfTradePreventionMode
+
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetSelfTradePreventionMode(v PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode)`
+
+SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
+
+### HasSelfTradePreventionMode
+
+`func (o *PlaceMultipleOrdersOrdersParameterInner) HasSelfTradePreventionMode() bool`
+
+HasSelfTradePreventionMode returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

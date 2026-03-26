@@ -8,6 +8,7 @@ Name         | Type          | Description.  | Notes
 **E** | Pointer to **int64** |  | [optional] 
 **S** | Pointer to **string** |  | [optional] 
 **P** | Pointer to **string** |  | [optional] 
+**Ap** | Pointer to **string** |  | [optional] 
 **I** | Pointer to **string** |  | [optional] 
 **P** | Pointer to **string** |  | [optional] 
 **R** | Pointer to **string** |  | [optional] 
@@ -131,6 +132,31 @@ SetP sets P field to given value.
 `func (o *MarkPriceStreamForAllMarketResponseInner) HasP() bool`
 
 HasP returns a boolean if a field has been set.
+
+### GetAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetAp() string`
+
+GetAp returns the Ap field if non-nil, zero value otherwise.
+
+### GetApOk
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetApOk() (*string, bool)`
+
+GetApOk returns a tuple with the Ap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) SetAp(v string)`
+
+SetAp sets Ap field to given value.
+
+### HasAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) HasAp() bool`
+
+HasAp returns a boolean if a field has been set.
 
 ### GetI
 
