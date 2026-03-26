@@ -789,7 +789,8 @@ func (w *WebSocketCommon) restoreSessionIfNeeded(connection *WebSocketConnection
 
 	signature, err := SignMessage(connection.SessionLogonRequest.Priv, []byte(Urlencode(connection.SessionLogonRequest.Params)))
 	if err != nil {
-		panic(err)
+		log.Printf("Error signing session logon request: %v", err)
+		return
 	}
 	connection.SessionLogonRequest.Params["signature"] = signature
 
@@ -991,7 +992,7 @@ func SendMessage[T any](w *WebsocketAPI, payload map[string]any, sendParams Send
 
 	skipAuth := !sendParams.WithSessionLogon && conn.SessionLogon
 
-	newParams, err := processParams(params, sendParams.WithAPIKey, skipAuth, w.Cfg.ApiKey)
+	newParams, err := processParams(params, sendParams.WithAPIKey, skipAuth, w.Cfg.GetWsApiKey())
 	if err != nil {
 		return nil, nil, err
 	}
@@ -1115,12 +1116,12 @@ func (w *WebsocketAPI) handleSignature(conn *WebSocketConnection, newParams map[
 	priv := crypto.Signer(nil)
 	newParams["timestamp"] = GetTimestamp()
 	if !skipAuth {
-		newParams["apiKey"] = w.Cfg.ApiKey
+		newParams["apiKey"] = w.Cfg.GetWsApiKey()
 
-		if w.Cfg.PrivateKey != "" {
+		if w.Cfg.GetWsPrivateKey() != "" {
 			if w.Cfg.Signer == nil {
 				var err error
-				priv, err = LoadPrivateKey(w.Cfg.PrivateKey, w.Cfg.PrivateKeyPassphrase)
+				priv, err = LoadPrivateKey(w.Cfg.GetWsPrivateKey(), w.Cfg.GetWsPrivateKeyPassphrase())
 				if err != nil {
 					return nil, &WebSocketError{
 						ConnID:  conn.Id,
@@ -1143,7 +1144,7 @@ func (w *WebsocketAPI) handleSignature(conn *WebSocketConnection, newParams map[
 			}
 			newParams["signature"] = signature
 		} else {
-			signer := hmac.New(sha256.New, []byte(w.Cfg.ApiSecret))
+			signer := hmac.New(sha256.New, []byte(w.Cfg.GetWsApiSecret()))
 			signer.Write([]byte(Urlencode(newParams)))
 			signatureBytes := signer.Sum(nil)
 			newParams["signature"] = hex.EncodeToString(signatureBytes)

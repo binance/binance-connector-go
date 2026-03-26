@@ -155,13 +155,13 @@ func (m *MockWebSocketCommon) Connect(cfg *common.ConfigurationWebsocketApi, use
 }
 
 func createTestWebsocketAPI(mockConn *MockWebSocketConn) *common.WebsocketAPI {
-	cfg := &common.ConfigurationWebsocketApi{
-		ApiKey:         "test-api-key",
-		ApiSecret:      "test-api-secret",
-		Timeout:        5 * time.Second,
-		ReconnectDelay: 1 * time.Second,
-		PoolSize:       1,
-	}
+	cfg := common.NewConfigurationWebsocketApi(
+		common.WithWsApiKey("test-api-key"),
+		common.WithWsApiSecret("test-api-secret"),
+		common.WithWsTimeout(5 * time.Second),
+		common.WithWsReconnectDelay(1 * time.Second),
+		common.WithWsPoolSize(1),
+	)
 
 	wsConnection := &common.WebSocketConnection{
 		Id:                  "test-conn-1",
@@ -1176,10 +1176,10 @@ func TestConfigurationWrapper_IsAPI(t *testing.T) {
 		{
 			name: "API config is not nil",
 			wrapper: common.ConfigurationWrapper{
-				APIConfig: &common.ConfigurationWebsocketApi{
-					ApiKey:    "test-key",
-					ApiSecret: "test-secret",
-				},
+				APIConfig: common.NewConfigurationWebsocketApi(
+					common.WithWsApiKey("test-key"),
+					common.WithWsApiSecret("test-secret"),
+				),
 			},
 			expected: true,
 		},
@@ -2151,11 +2151,11 @@ func TestWebsocketCommon_Ping(t *testing.T) {
 // =============================================================================
 
 func TestNewWebsocketAPI(t *testing.T) {
-	cfg := &common.ConfigurationWebsocketApi{
-		ApiKey:    "test-key",
-		ApiSecret: "test-secret",
-		PoolSize:  2,
-	}
+	cfg := common.NewConfigurationWebsocketApi(
+		common.WithWsApiKey("test-key"),
+		common.WithWsApiSecret("test-secret"),
+		common.WithWsPoolSize(2),
+	)
 
 	api, err := common.NewWebsocketAPI(cfg)
 
@@ -2557,12 +2557,12 @@ func TestWebsocketAPI_CloseWebSocketConnection_MultipleConnections(t *testing.T)
 	mockConn1 := NewMockWebSocketConn()
 	mockConn2 := NewMockWebSocketConn()
 
-	cfg := &common.ConfigurationWebsocketApi{
-		ApiKey:    "test-key",
-		ApiSecret: "test-secret",
-		Timeout:   5 * time.Second,
-		PoolSize:  2,
-	}
+	cfg := common.NewConfigurationWebsocketApi(
+		common.WithWsApiKey("test-key"),
+		common.WithWsApiSecret("test-secret"),
+		common.WithWsTimeout(5 * time.Second),
+		common.WithWsPoolSize(2),
+	)
 
 	conn1 := &common.WebSocketConnection{
 		Id:        "conn-1",

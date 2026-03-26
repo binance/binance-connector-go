@@ -261,24 +261,34 @@ func Decode(v interface{}, b []byte, contentType string) (err error) {
 		return nil
 	}
 	if _, ok := v.(*os.File); ok {
-		f, err := os.CreateTemp("", "HttpClientFile")
+		prefix := "HttpClientFile" + GenerateUUID()
+		f, err := os.CreateTemp("", prefix)
 		if err != nil {
+			f.Close()
+			os.Remove(f.Name())
 			return err
 		}
 		_, err = f.Write(b)
 		if err != nil {
+			f.Close()
+			os.Remove(f.Name())
 			return err
 		}
 		_, err = f.Seek(0, io.SeekStart)
 		return err
 	}
 	if f, ok := v.(**os.File); ok {
-		*f, err = os.CreateTemp("", "HttpClientFile")
+		prefix := "HttpClientFile" + GenerateUUID()
+		*f, err = os.CreateTemp("", prefix)
 		if err != nil {
+			(*f).Close()
+			os.Remove((*f).Name())
 			return err
 		}
 		_, err = (*f).Write(b)
 		if err != nil {
+			(*f).Close()
+			os.Remove((*f).Name())
 			return err
 		}
 		_, err = (*f).Seek(0, io.SeekStart)
@@ -475,7 +485,10 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 	}
 	var lastErr error
 
-	httpClient := SetupProxy(cfg)
+	httpClient, err := SetupProxy(cfg)
+	if err != nil {
+		return &RestApiResponse[T]{}, err
+	}
 	for attempt := 0; attempt <= retries; attempt++ {
 		resp, err := httpClient.Do(req)
 		if err != nil {
@@ -647,10 +660,10 @@ func PrepareRequest(
 	}
 
 	if signed && c != nil {
-		if c.ApiSecret != "" {
+		if c.GetApiSecret() != "" {
 			paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
 
-			signer := hmac.New(sha256.New, []byte(c.ApiSecret))
+			signer := hmac.New(sha256.New, []byte(c.GetApiSecret()))
 			signer.Write([]byte(paramsToSign))
 			signature := signer.Sum(nil)
 			if err != nil {
@@ -659,20 +672,20 @@ func PrepareRequest(
 			paramsToSign += "&signature=" + fmt.Sprintf("%x", signature)
 		}
 
-		if c.PrivateKey != "" {
+		if c.GetPrivateKey() != "" {
 			paramsToSign += "&timestamp=" + strconv.FormatInt(time.Now().UnixMilli(), 10)
 
 			if c.Signer == nil {
-				key, err := LoadPrivateKey(c.PrivateKey, c.PrivateKeyPassphrase)
-				if err != nil {
-					panic(err)
+				key, signErr := LoadPrivateKey(c.GetPrivateKey(), c.GetPrivateKeyPassphrase())
+				if signErr != nil {
+					return nil, fmt.Errorf("failed to load private key: %w", signErr)
 				}
 				c.Signer = &cryptoSigner{s: key}
 			}
 
-			signature, _ := c.Signer.Sign([]byte(paramsToSign))
-			if err != nil {
-				panic(err)
+			signature, signErr := c.Signer.Sign([]byte(paramsToSign))
+			if signErr != nil {
+				return nil, fmt.Errorf("failed signing: %w", signErr)
 			}
 			paramsToSign += "&signature=" + base64.StdEncoding.EncodeToString(signature)
 		}
@@ -688,8 +701,8 @@ func PrepareRequest(
 		req.Header.Set(h, v)
 	}
 
-	if c != nil && c.ApiKey != "" {
-		req.Header.Set("X-MBX-APIKEY", c.ApiKey)
+	if c != nil && c.GetApiKey() != "" {
+		req.Header.Set("X-MBX-APIKEY", c.GetApiKey())
 	}
 
 	if c != nil {
@@ -722,29 +735,32 @@ func PrepareRequest(
 //
 // @param cfg The configuration containing proxy settings.
 // @return An HTTP client configured with the proxy settings if provided, otherwise a default HTTP client.
-func SetupProxy(cfg *ConfigurationRestAPI) *http.Client {
+func SetupProxy(cfg *ConfigurationRestAPI) (*http.Client, error) {
 	if cfg.Proxy != nil && !cfg.Proxy.IsEmpty() {
 		proxyURL, err := cfg.Proxy.URL()
 
 		if err != nil {
-			panic(err)
+			return nil, fmt.Errorf("failed to get proxy URL: %w", err)
 		}
 
 		return &http.Client{
 			Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL), TLSClientConfig: cfg.Proxy.TLSConfig},
-		}
+		}, nil
 	}
 
 	if cfg.HTTPSAgent != nil {
-		transport := BuildTransport(cfg.HTTPSAgent, cfg)
+		transport, err := BuildTransport(cfg.HTTPSAgent, cfg)
+		if err != nil {
+			return nil, err
+		}
 		return &http.Client{
 			Transport: transport,
 			Timeout:   cfg.Timeout,
-		}
+		}, nil
 	}
 	return &http.Client{
 		Timeout: cfg.Timeout,
-	}
+	}, nil
 }
 
 // Sign signs a message using the provided crypto.Signer.
