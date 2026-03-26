@@ -387,7 +387,7 @@ No authorization required
 
 ## NewOrder
 
-> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).Price(price).TimeInForce(timeInForce).ReduceOnly(reduceOnly).PostOnly(postOnly).NewOrderRespType(newOrderRespType).ClientOrderId(clientOrderId).IsMmp(isMmp).RecvWindow(recvWindow).Execute()
+> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).Price(price).TimeInForce(timeInForce).ReduceOnly(reduceOnly).PostOnly(postOnly).NewOrderRespType(newOrderRespType).ClientOrderId(clientOrderId).IsMmp(isMmp).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
 New Order (TRADE)
 
@@ -419,6 +419,7 @@ func main() {
 	newOrderRespType := models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespTypeAck // PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType | \"ACK\", \"RESULT\", Default \"ACK\" (optional)
 	clientOrderId := "1" // string | User-defined order ID, e.g 10000 (optional)
 	isMmp := true // bool | is market maker protection order, true/false (optional)
+	selfTradePreventionMode := models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker // PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire maker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; Default `EXPIRE_MAKER` (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -428,7 +429,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingOptionsClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).Price(price).TimeInForce(timeInForce).ReduceOnly(reduceOnly).PostOnly(postOnly).NewOrderRespType(newOrderRespType).ClientOrderId(clientOrderId).IsMmp(isMmp).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).Price(price).TimeInForce(timeInForce).ReduceOnly(reduceOnly).PostOnly(postOnly).NewOrderRespType(newOrderRespType).ClientOrderId(clientOrderId).IsMmp(isMmp).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.NewOrder``: %v\n", err)
 		return
@@ -458,6 +459,7 @@ Name          | Type          | Description   | Notes
  **newOrderRespType** | [**PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, Default \&quot;ACK\&quot; | 
  **clientOrderId** | **string** | User-defined order ID, e.g 10000 | 
  **isMmp** | **bool** | is market maker protection order, true/false | 
+ **selfTradePreventionMode** | [**PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire maker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; Default &#x60;EXPIRE_MAKER&#x60; | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

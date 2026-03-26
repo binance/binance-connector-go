@@ -1209,7 +1209,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11794.15000000","i":"11784.62659091","P":"11784.25641265","r":"0.00038167","T":1562306400000}`
+		mockedJSON := `{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11794.15000000","ap":"11794.15000000","i":"11784.62659091","P":"11784.25641265","r":"0.00038167","T":1562306400000}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.MarkPriceStream().Symbol("btcusdt").Execute()
@@ -1318,7 +1318,7 @@ func Test_binancederivativestradingusdsfutureswebsocketstreams_MarketAPIService(
 		)
 		mockClient.WebsocketStreams.WsMarket.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11185.87786614","i":"11784.62659091","P":"11784.25641265","r":"0.00030000","T":1562306400000}]`
+		mockedJSON := `[{"e":"markPriceUpdate","E":1562305380000,"s":"BTCUSDT","p":"11185.87786614","ap":"11185.87786614","i":"11784.62659091","P":"11784.25641265","r":"0.00030000","T":1562306400000}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketAPI.MarkPriceStreamForAllMarket().Execute()

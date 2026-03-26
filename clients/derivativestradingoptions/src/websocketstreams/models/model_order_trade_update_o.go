@@ -41,6 +41,7 @@ type OrderTradeUpdateO struct {
 	R                    *bool   `json:"R,omitempty"`
 	Smallot              *string `json:"ot,omitempty"`
 	Smallrp              *string `json:"rp,omitempty"`
+	V                    *string `json:"V,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -831,6 +832,38 @@ func (o *OrderTradeUpdateO) SetSmallrp(v string) {
 	o.Smallrp = &v
 }
 
+// GetV returns the V field value if set, zero value otherwise.
+func (o *OrderTradeUpdateO) GetV() string {
+	if o == nil || common.IsNil(o.V) {
+		var ret string
+		return ret
+	}
+	return *o.V
+}
+
+// GetVOk returns a tuple with the V field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderTradeUpdateO) GetVOk() (*string, bool) {
+	if o == nil || common.IsNil(o.V) {
+		return nil, false
+	}
+	return o.V, true
+}
+
+// HasV returns a boolean if a field has been set.
+func (o *OrderTradeUpdateO) HasV() bool {
+	if o != nil && !common.IsNil(o.V) {
+		return true
+	}
+
+	return false
+}
+
+// SetV gets a reference to the given string and assigns it to the V field.
+func (o *OrderTradeUpdateO) SetV(v string) {
+	o.V = &v
+}
+
 func (o OrderTradeUpdateO) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -913,6 +946,9 @@ func (o OrderTradeUpdateO) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallrp) {
 		toSerialize["rp"] = o.Smallrp
 	}
+	if !common.IsNil(o.V) {
+		toSerialize["V"] = o.V
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -959,6 +995,7 @@ func (o *OrderTradeUpdateO) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "R")
 		delete(additionalProperties, "ot")
 		delete(additionalProperties, "rp")
+		delete(additionalProperties, "V")
 		o.AdditionalProperties = additionalProperties
 	}
 

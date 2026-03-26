@@ -317,7 +317,7 @@ No authorization required
 
 ## GetSolRedemptionHistory
 
-> GetSolRedemptionHistoryResponse GetSolRedemptionHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> GetSolRedemptionHistoryResponse GetSolRedemptionHistory(ctx).RedeemId(redeemId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
 Get SOL redemption history(USER_DATA)
 
@@ -338,6 +338,7 @@ import (
 )
 
 func main() {
+	redeemId := int64(1) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
@@ -351,7 +352,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStakingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.SolStakingAPI.GetSolRedemptionHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.SolStakingAPI.GetSolRedemptionHistory(context.Background()).RedeemId(redeemId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `SolStakingAPI.GetSolRedemptionHistory``: %v\n", err)
 		return
@@ -370,6 +371,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **redeemId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
@@ -393,7 +395,7 @@ No authorization required
 
 ## GetSolStakingHistory
 
-> GetSolStakingHistoryResponse GetSolStakingHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> GetSolStakingHistoryResponse GetSolStakingHistory(ctx).PurchaseId(purchaseId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
 Get SOL staking history(USER_DATA)
 
@@ -414,6 +416,7 @@ import (
 )
 
 func main() {
+	purchaseId := int64(1) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
@@ -427,7 +430,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStakingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.SolStakingAPI.GetSolStakingHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.SolStakingAPI.GetSolStakingHistory(context.Background()).PurchaseId(purchaseId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `SolStakingAPI.GetSolStakingHistory``: %v\n", err)
 		return
@@ -446,6 +449,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **purchaseId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 

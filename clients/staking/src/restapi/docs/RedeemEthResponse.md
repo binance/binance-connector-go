@@ -8,6 +8,7 @@ Name         | Type          | Description.  | Notes
 **EthAmount** | Pointer to **string** |  | [optional] 
 **ConversionRatio** | Pointer to **string** |  | [optional] 
 **ArrivalTime** | Pointer to **int64** |  | [optional] 
+**RedeemId** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetArrivalTime sets ArrivalTime field to given value.
 `func (o *RedeemEthResponse) HasArrivalTime() bool`
 
 HasArrivalTime returns a boolean if a field has been set.
+
+### GetRedeemId
+
+`func (o *RedeemEthResponse) GetRedeemId() int64`
+
+GetRedeemId returns the RedeemId field if non-nil, zero value otherwise.
+
+### GetRedeemIdOk
+
+`func (o *RedeemEthResponse) GetRedeemIdOk() (*int64, bool)`
+
+GetRedeemIdOk returns a tuple with the RedeemId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedeemId
+
+`func (o *RedeemEthResponse) SetRedeemId(v int64)`
+
+SetRedeemId sets RedeemId field to given value.
+
+### HasRedeemId
+
+`func (o *RedeemEthResponse) HasRedeemId() bool`
+
+HasRedeemId returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

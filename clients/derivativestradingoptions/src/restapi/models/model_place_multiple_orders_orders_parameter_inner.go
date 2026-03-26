@@ -17,18 +17,19 @@ var _ common.MappedNullable = &PlaceMultipleOrdersOrdersParameterInner{}
 
 // PlaceMultipleOrdersOrdersParameterInner struct for PlaceMultipleOrdersOrdersParameterInner
 type PlaceMultipleOrdersOrdersParameterInner struct {
-	Symbol               *string                                                  `json:"symbol,omitempty"`
-	Side                 *PlaceMultipleOrdersOrdersParameterInnerSide             `json:"side,omitempty"`
-	Type                 *PlaceMultipleOrdersOrdersParameterInnerType             `json:"type,omitempty"`
-	Quantity             *string                                                  `json:"quantity,omitempty"`
-	Price                *string                                                  `json:"price,omitempty"`
-	TimeInForce          *PlaceMultipleOrdersOrdersParameterInnerTimeInForce      `json:"timeInForce,omitempty"`
-	ReduceOnly           *string                                                  `json:"reduceOnly,omitempty"`
-	PostOnly             *string                                                  `json:"postOnly,omitempty"`
-	NewOrderRespType     *PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType `json:"newOrderRespType,omitempty"`
-	ClientOrderId        *string                                                  `json:"clientOrderId,omitempty"`
-	IsMmp                *string                                                  `json:"isMmp,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Symbol                  *string                                                         `json:"symbol,omitempty"`
+	Side                    *PlaceMultipleOrdersOrdersParameterInnerSide                    `json:"side,omitempty"`
+	Type                    *PlaceMultipleOrdersOrdersParameterInnerType                    `json:"type,omitempty"`
+	Quantity                *string                                                         `json:"quantity,omitempty"`
+	Price                   *string                                                         `json:"price,omitempty"`
+	TimeInForce             *PlaceMultipleOrdersOrdersParameterInnerTimeInForce             `json:"timeInForce,omitempty"`
+	ReduceOnly              *string                                                         `json:"reduceOnly,omitempty"`
+	PostOnly                *string                                                         `json:"postOnly,omitempty"`
+	NewOrderRespType        *PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType        `json:"newOrderRespType,omitempty"`
+	ClientOrderId           *string                                                         `json:"clientOrderId,omitempty"`
+	IsMmp                   *string                                                         `json:"isMmp,omitempty"`
+	SelfTradePreventionMode *PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode `json:"selfTradePreventionMode,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _PlaceMultipleOrdersOrdersParameterInner PlaceMultipleOrdersOrdersParameterInner
@@ -402,6 +403,38 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) SetIsMmp(v string) {
 	o.IsMmp = &v
 }
 
+// GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetSelfTradePreventionMode() PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		var ret PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode
+		return ret
+	}
+	return *o.SelfTradePreventionMode
+}
+
+// GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetSelfTradePreventionModeOk() (*PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode, bool) {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		return nil, false
+	}
+	return o.SelfTradePreventionMode, true
+}
+
+// HasSelfTradePreventionMode returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersOrdersParameterInner) HasSelfTradePreventionMode() bool {
+	if o != nil && !common.IsNil(o.SelfTradePreventionMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfTradePreventionMode gets a reference to the given PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode and assigns it to the SelfTradePreventionMode field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetSelfTradePreventionMode(v PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode) {
+	o.SelfTradePreventionMode = &v
+}
+
 func (o PlaceMultipleOrdersOrdersParameterInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -445,6 +478,9 @@ func (o PlaceMultipleOrdersOrdersParameterInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.IsMmp) {
 		toSerialize["isMmp"] = o.IsMmp
 	}
+	if !common.IsNil(o.SelfTradePreventionMode) {
+		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -478,6 +514,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "newOrderRespType")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "isMmp")
+		delete(additionalProperties, "selfTradePreventionMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

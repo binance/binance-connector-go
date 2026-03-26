@@ -21,6 +21,7 @@ type MarkPriceStreamForAllMarketResponseInner struct {
 	E                    *int64  `json:"E,omitempty"`
 	Smalls               *string `json:"s,omitempty"`
 	Smallp               *string `json:"p,omitempty"`
+	Smallap              *string `json:"ap,omitempty"`
 	Smalli               *string `json:"i,omitempty"`
 	P                    *string `json:"P,omitempty"`
 	Smallr               *string `json:"r,omitempty"`
@@ -175,6 +176,38 @@ func (o *MarkPriceStreamForAllMarketResponseInner) SetSmallp(v string) {
 	o.Smallp = &v
 }
 
+// GetAp returns the Ap field value if set, zero value otherwise.
+func (o *MarkPriceStreamForAllMarketResponseInner) GetSmallap() string {
+	if o == nil || common.IsNil(o.Smallap) {
+		var ret string
+		return ret
+	}
+	return *o.Smallap
+}
+
+// GetApOk returns a tuple with the Ap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MarkPriceStreamForAllMarketResponseInner) GetSmallapOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallap) {
+		return nil, false
+	}
+	return o.Smallap, true
+}
+
+// HasAp returns a boolean if a field has been set.
+func (o *MarkPriceStreamForAllMarketResponseInner) HasSmallap() bool {
+	if o != nil && !common.IsNil(o.Smallap) {
+		return true
+	}
+
+	return false
+}
+
+// SetAp gets a reference to the given string and assigns it to the Ap field.
+func (o *MarkPriceStreamForAllMarketResponseInner) SetSmallap(v string) {
+	o.Smallap = &v
+}
+
 // GetI returns the I field value if set, zero value otherwise.
 func (o *MarkPriceStreamForAllMarketResponseInner) GetSmalli() string {
 	if o == nil || common.IsNil(o.Smalli) {
@@ -325,6 +358,9 @@ func (o MarkPriceStreamForAllMarketResponseInner) ToMap() (map[string]interface{
 	if !common.IsNil(o.Smallp) {
 		toSerialize["p"] = o.Smallp
 	}
+	if !common.IsNil(o.Smallap) {
+		toSerialize["ap"] = o.Smallap
+	}
 	if !common.IsNil(o.Smalli) {
 		toSerialize["i"] = o.Smalli
 	}
@@ -363,6 +399,7 @@ func (o *MarkPriceStreamForAllMarketResponseInner) UnmarshalJSON(data []byte) (e
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "s")
 		delete(additionalProperties, "p")
+		delete(additionalProperties, "ap")
 		delete(additionalProperties, "i")
 		delete(additionalProperties, "P")
 		delete(additionalProperties, "r")

@@ -465,7 +465,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService RedeemEth Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"ethAmount":"0.23092091","conversionRatio":"1.00121234","arrivalTime":1575018510000}`
+		mockedJSON := `{"success":true,"ethAmount":"0.23092091","conversionRatio":"1.00121234","arrivalTime":1575018510000,"redeemId":1234567}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/redeem", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("amount"))
@@ -538,7 +538,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService SubscribeEthStaking Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"wbethAmount":"0.23092091","conversionRatio":"1.001212342342"}`
+		mockedJSON := `{"success":true,"wbethAmount":"0.23092091","conversionRatio":"1.001212342342","purchaseId":1234567}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/eth-staking/eth/stake", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("amount"))

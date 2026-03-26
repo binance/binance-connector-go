@@ -155,7 +155,7 @@ No authorization required
 
 ## GetEthRedemptionHistory
 
-> GetEthRedemptionHistoryResponse GetEthRedemptionHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> GetEthRedemptionHistoryResponse GetEthRedemptionHistory(ctx).RedeemId(redeemId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
 Get ETH redemption history(USER_DATA)
 
@@ -176,6 +176,7 @@ import (
 )
 
 func main() {
+	redeemId := int64(1) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
@@ -189,7 +190,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStakingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.EthStakingAPI.GetEthRedemptionHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.EthStakingAPI.GetEthRedemptionHistory(context.Background()).RedeemId(redeemId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `EthStakingAPI.GetEthRedemptionHistory``: %v\n", err)
 		return
@@ -208,6 +209,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **redeemId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
@@ -231,7 +233,7 @@ No authorization required
 
 ## GetEthStakingHistory
 
-> GetEthStakingHistoryResponse GetEthStakingHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> GetEthStakingHistoryResponse GetEthStakingHistory(ctx).PurchaseId(purchaseId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
 Get ETH staking history(USER_DATA)
 
@@ -252,6 +254,7 @@ import (
 )
 
 func main() {
+	purchaseId := int64(1) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
@@ -265,7 +268,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStakingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.EthStakingAPI.GetEthStakingHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.EthStakingAPI.GetEthStakingHistory(context.Background()).PurchaseId(purchaseId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `EthStakingAPI.GetEthStakingHistory``: %v\n", err)
 		return
@@ -284,6 +287,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
+ **purchaseId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **current** | **int64** | Currently querying page. Start from 1. Default:1 | 

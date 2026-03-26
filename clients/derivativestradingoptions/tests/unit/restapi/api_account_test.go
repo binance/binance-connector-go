@@ -98,7 +98,7 @@ func Test_binancederivativestradingoptionsrestapi_AccountAPIService(t *testing.T
 
 	t.Run("Test AccountAPIService OptionMarginAccountInformation Success", func(t *testing.T) {
 
-		mockedJSON := `{"asset":[{"asset":"USDT","marginBalance":"99998.87365244","equity":"99998.87365244","available":"96883.72734374","initialMargin":"3115.14630870","maintMargin":"0.00000000","unrealizedPNL":"0.00000000","adjustedEquity":"99998.87365244"}],"greek":[{"underlying":"BTCUSDT","delta":"0","theta":"0","gamma":"0","vega":"0"}],"time":1762843368098,"canTrade":true,"canDeposit":true,"canWithdraw":true,"reduceOnly":false}`
+		mockedJSON := `{"asset":[{"asset":"USDT","marginBalance":"99998.87365244","equity":"99998.87365244","available":"96883.72734374","initialMargin":"3115.14630870","maintMargin":"0.00000000","unrealizedPNL":"0.00000000","adjustedEquity":"99998.87365244"}],"greek":[{"underlying":"BTCUSDT","delta":"0","theta":"0","gamma":"0","vega":"0"}],"time":1762843368098,"canTrade":true,"canDeposit":true,"canWithdraw":true,"reduceOnly":false,"tradeGroupId":-1}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/marginAccount", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

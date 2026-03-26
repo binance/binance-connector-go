@@ -442,20 +442,21 @@ func (a *TradeAPIService) CancelOptionOrderExecute(r ApiCancelOptionOrderRequest
 }
 
 type ApiNewOrderRequest struct {
-	ctx              context.Context
-	ApiService       *TradeAPIService
-	symbol           *string
-	side             *models.PlaceMultipleOrdersOrdersParameterInnerSide
-	type_            *models.PlaceMultipleOrdersOrdersParameterInnerType
-	quantity         *float32
-	price            *float32
-	timeInForce      *models.PlaceMultipleOrdersOrdersParameterInnerTimeInForce
-	reduceOnly       *bool
-	postOnly         *bool
-	newOrderRespType *models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType
-	clientOrderId    *string
-	isMmp            *bool
-	recvWindow       *int64
+	ctx                     context.Context
+	ApiService              *TradeAPIService
+	symbol                  *string
+	side                    *models.PlaceMultipleOrdersOrdersParameterInnerSide
+	type_                   *models.PlaceMultipleOrdersOrdersParameterInnerType
+	quantity                *float32
+	price                   *float32
+	timeInForce             *models.PlaceMultipleOrdersOrdersParameterInnerTimeInForce
+	reduceOnly              *bool
+	postOnly                *bool
+	newOrderRespType        *models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType
+	clientOrderId           *string
+	isMmp                   *bool
+	selfTradePreventionMode *models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode
+	recvWindow              *int64
 }
 
 // Option trading pair, e.g BTC-200730-9000-C
@@ -524,6 +525,12 @@ func (r ApiNewOrderRequest) IsMmp(isMmp bool) ApiNewOrderRequest {
 	return r
 }
 
+// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire maker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; Default &#x60;EXPIRE_MAKER&#x60;
+func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode) ApiNewOrderRequest {
+	r.selfTradePreventionMode = &selfTradePreventionMode
+	return r
+}
+
 func (r ApiNewOrderRequest) RecvWindow(recvWindow int64) ApiNewOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -551,6 +558,7 @@ https://developers.binance.com/docs/derivatives/options-trading/trade/New-Order
 @param newOrderRespType -  \"ACK\", \"RESULT\", Default \"ACK\"
 @param clientOrderId -  User-defined order ID, e.g 10000
 @param isMmp -  is market maker protection order, true/false
+@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire maker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; Default `EXPIRE_MAKER`
 @param recvWindow -
 @return ApiNewOrderRequest
 */
@@ -608,6 +616,9 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 	}
 	if r.isMmp != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "isMmp", r.isMmp, "form", "")
+	}
+	if r.selfTradePreventionMode != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "selfTradePreventionMode", r.selfTradePreventionMode, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

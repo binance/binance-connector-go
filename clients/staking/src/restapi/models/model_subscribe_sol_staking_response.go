@@ -20,6 +20,7 @@ type SubscribeSolStakingResponse struct {
 	Success              *bool   `json:"success,omitempty"`
 	BnsolAmount          *string `json:"bnsolAmount,omitempty"`
 	ExchangeRate         *string `json:"exchangeRate,omitempty"`
+	PurchaseId           *int64  `json:"purchaseId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +139,38 @@ func (o *SubscribeSolStakingResponse) SetExchangeRate(v string) {
 	o.ExchangeRate = &v
 }
 
+// GetPurchaseId returns the PurchaseId field value if set, zero value otherwise.
+func (o *SubscribeSolStakingResponse) GetPurchaseId() int64 {
+	if o == nil || common.IsNil(o.PurchaseId) {
+		var ret int64
+		return ret
+	}
+	return *o.PurchaseId
+}
+
+// GetPurchaseIdOk returns a tuple with the PurchaseId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscribeSolStakingResponse) GetPurchaseIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PurchaseId) {
+		return nil, false
+	}
+	return o.PurchaseId, true
+}
+
+// HasPurchaseId returns a boolean if a field has been set.
+func (o *SubscribeSolStakingResponse) HasPurchaseId() bool {
+	if o != nil && !common.IsNil(o.PurchaseId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPurchaseId gets a reference to the given int64 and assigns it to the PurchaseId field.
+func (o *SubscribeSolStakingResponse) SetPurchaseId(v int64) {
+	o.PurchaseId = &v
+}
+
 func (o SubscribeSolStakingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o SubscribeSolStakingResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.ExchangeRate) {
 		toSerialize["exchangeRate"] = o.ExchangeRate
+	}
+	if !common.IsNil(o.PurchaseId) {
+		toSerialize["purchaseId"] = o.PurchaseId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +218,7 @@ func (o *SubscribeSolStakingResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "success")
 		delete(additionalProperties, "bnsolAmount")
 		delete(additionalProperties, "exchangeRate")
+		delete(additionalProperties, "purchaseId")
 		o.AdditionalProperties = additionalProperties
 	}
 
