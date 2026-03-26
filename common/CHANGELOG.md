@@ -1,5 +1,14 @@
 ### Changelog
 
+## 2.2.0 - 2026-03-26
+
+### Changed (4)
+
+- Updated `apiKey`, `apiSecret`, `privateKey`, and `privateKeyPassphrase` fields in `ConfigurationRestAPI` and `ConfigurationWebsocketApi` to be unexported and added corresponding getter methods for better encapsulation.
+- Updated `panic` calls in `utils.go` to return errors instead, allowing the caller to handle them gracefully instead of crashing the application.
+- Updated `Decoder` method to generate temp files with a unique prefix to avoid conflicts when multiple decoders are used concurrently.
+- Fixed error returned when signing requests with a private key by ensuring the error is returned to the caller instead of being ignored.
+
 ## 2.1.0 - 2026-03-16
 
 ### Added (1)

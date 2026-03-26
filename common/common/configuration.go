@@ -10,8 +10,8 @@ import (
 
 // ConfigurationRestAPI holds configuration settings for REST API interactions.
 //
-// @field ApiKey The API key for authentication.
-// @field ApiSecret The API secret for authentication.
+// @field apiKey The API key for authentication.
+// @field apiSecret The API secret for authentication.
 // @field BasePath The base URL for the API.
 // @field Timeout The timeout duration for API requests.
 // @field Proxy The proxy configuration.
@@ -20,14 +20,14 @@ import (
 // @field Retries The number of retry attempts for failed requests.
 // @field Backoff The backoff duration between retries.
 // @field TimeUnit The time unit used for rate limiting.
-// @field PrivateKey The private key for signing requests.
-// @field PrivateKeyPassphrase The passphrase for the private key.
+// @field privateKey The private key for signing requests.
+// @field privateKeyPassphrase The passphrase for the private key.
 // @field CustomHeaders A map of custom headers to include in requests.
 // @field Signer The signer used for request signing.
 // @field HTTPSAgent The HTTPS agent configuration.
 type ConfigurationRestAPI struct {
-	ApiKey               string
-	ApiSecret            string
+	apiKey               string
+	apiSecret            string
 	BasePath             string
 	Timeout              time.Duration
 	Proxy                *ProxyConfig
@@ -36,8 +36,8 @@ type ConfigurationRestAPI struct {
 	Retries              int
 	Backoff              int
 	TimeUnit             TimeUnit
-	PrivateKey           string
-	PrivateKeyPassphrase string
+	privateKey           string
+	privateKeyPassphrase string
 	CustomHeaders        map[string]string
 	Signer               Signer
 	HTTPSAgent           HTTPSAgent
@@ -47,10 +47,10 @@ type ConfigurationRestAPIOption func(*ConfigurationRestAPI)
 
 // ConfigurationWebsocketApi holds configuration settings for WebSocket API interactions.
 //
-// @field ApiKey The API key for authentication.
-// @field ApiSecret The API secret for authentication.
-// @field PrivateKey The private key for signing requests.
-// @field PrivateKeyPassphrase The passphrase for the private key.
+// @field apiKey The API key for authentication.
+// @field apiSecret The API secret for authentication.
+// @field privateKey The private key for signing requests.
+// @field privateKeyPassphrase The passphrase for the private key.
 // @field BasePath The base URL for the WebSocket API.
 // @field Timeout The timeout duration for WebSocket connections.
 // @field ReconnectDelay The delay duration before attempting to reconnect.
@@ -63,10 +63,10 @@ type ConfigurationRestAPIOption func(*ConfigurationRestAPI)
 // @field Signer The signer used for request signing.
 // @field Agent The HTTPS agent configuration.
 type ConfigurationWebsocketApi struct {
-	ApiKey               string
-	ApiSecret            string
-	PrivateKey           string
-	PrivateKeyPassphrase string
+	apiKey               string
+	apiSecret            string
+	privateKey           string
+	privateKeyPassphrase string
 	BasePath             string
 	Timeout              time.Duration
 	ReconnectDelay       time.Duration
@@ -134,11 +134,19 @@ func NewConfigurationRestAPI(opts ...ConfigurationRestAPIOption) *ConfigurationR
 }
 
 func WithApiKey(v string) ConfigurationRestAPIOption {
-	return func(c *ConfigurationRestAPI) { c.ApiKey = v }
+	return func(c *ConfigurationRestAPI) { c.apiKey = v }
+}
+
+func (c *ConfigurationRestAPI) GetApiKey() string {
+	return c.apiKey
 }
 
 func WithApiSecret(v string) ConfigurationRestAPIOption {
-	return func(c *ConfigurationRestAPI) { c.ApiSecret = v }
+	return func(c *ConfigurationRestAPI) { c.apiSecret = v }
+}
+
+func (c *ConfigurationRestAPI) GetApiSecret() string {
+	return c.apiSecret
 }
 
 func WithBasePath(v string) ConfigurationRestAPIOption {
@@ -176,11 +184,19 @@ func WithTimeUnit(v TimeUnit) ConfigurationRestAPIOption {
 }
 
 func WithPrivateKey(v string) ConfigurationRestAPIOption {
-	return func(c *ConfigurationRestAPI) { c.PrivateKey = v }
+	return func(c *ConfigurationRestAPI) { c.privateKey = v }
+}
+
+func (c *ConfigurationRestAPI) GetPrivateKey() string {
+	return c.privateKey
 }
 
 func WithPrivateKeyPassphrase(v string) ConfigurationRestAPIOption {
-	return func(c *ConfigurationRestAPI) { c.PrivateKeyPassphrase = v }
+	return func(c *ConfigurationRestAPI) { c.privateKeyPassphrase = v }
+}
+
+func (c *ConfigurationRestAPI) GetPrivateKeyPassphrase() string {
+	return c.privateKeyPassphrase
 }
 
 func WithCustomHeaders(v map[string]string) ConfigurationRestAPIOption {
@@ -234,19 +250,35 @@ func (c *ConfigurationWebsocketApi) GetBasePath() string {
 }
 
 func WithWsApiKey(v string) ConfigurationWebsocketApiOption {
-	return func(c *ConfigurationWebsocketApi) { c.ApiKey = v }
+	return func(c *ConfigurationWebsocketApi) { c.apiKey = v }
+}
+
+func (c *ConfigurationWebsocketApi) GetWsApiKey() string {
+	return c.apiKey
 }
 
 func WithWsApiSecret(v string) ConfigurationWebsocketApiOption {
-	return func(c *ConfigurationWebsocketApi) { c.ApiSecret = v }
+	return func(c *ConfigurationWebsocketApi) { c.apiSecret = v }
+}
+
+func (c *ConfigurationWebsocketApi) GetWsApiSecret() string {
+	return c.apiSecret
 }
 
 func WithWsPrivateKey(v string) ConfigurationWebsocketApiOption {
-	return func(c *ConfigurationWebsocketApi) { c.PrivateKey = v }
+	return func(c *ConfigurationWebsocketApi) { c.privateKey = v }
+}
+
+func (c *ConfigurationWebsocketApi) GetWsPrivateKey() string {
+	return c.privateKey
 }
 
 func WithWsPrivateKeyPassphrase(v string) ConfigurationWebsocketApiOption {
-	return func(c *ConfigurationWebsocketApi) { c.PrivateKeyPassphrase = v }
+	return func(c *ConfigurationWebsocketApi) { c.privateKeyPassphrase = v }
+}
+
+func (c *ConfigurationWebsocketApi) GetWsPrivateKeyPassphrase() string {
+	return c.privateKeyPassphrase
 }
 
 func WithWsAPIBasePath(v string) ConfigurationWebsocketApiOption {
@@ -470,25 +502,25 @@ func (pc ProxyConfig) IsEmpty() bool {
 // @param agent The HTTPSAgent which can be nil, *tls.Config, or http.RoundTripper.
 // @param cfg The ConfigurationRestAPI containing settings like Compression.
 // @return An http.RoundTripper configured according to the provided agent and configuration.
-func BuildTransport(agent HTTPSAgent, cfg *ConfigurationRestAPI) http.RoundTripper {
+func BuildTransport(agent HTTPSAgent, cfg *ConfigurationRestAPI) (http.RoundTripper, error) {
 	switch a := agent.(type) {
 	case nil:
 		return &http.Transport{
 			MaxIdleConns:       10,
 			IdleConnTimeout:    30 * time.Second,
 			DisableCompression: !cfg.Compression,
-		}
+		}, nil
 	case *tls.Config:
 		return &http.Transport{
 			TLSClientConfig:    a,
 			MaxIdleConns:       10,
 			IdleConnTimeout:    30 * time.Second,
 			DisableCompression: !cfg.Compression,
-		}
+		}, nil
 	case http.RoundTripper:
-		return a
+		return a, nil
 	default:
-		panic("unsupported HTTPSAgent type")
+		return nil, fmt.Errorf("unsupported HTTPSAgent type")
 	}
 }
 

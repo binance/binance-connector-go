@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -403,10 +404,10 @@ func TestSendRequest_Success(t *testing.T) {
 }
 
 func TestSendRequest_Signing(t *testing.T) {
-	cfg := &common.ConfigurationRestAPI{
-		ApiKey:    "apikey123",
-		ApiSecret: "secretkey456",
-	}
+	cfg := common.NewConfigurationRestAPI(
+		common.WithApiKey("apikey123"),
+		common.WithApiSecret("secretkey456"),
+	)
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
 		signature := query.Get("signature")
@@ -600,9 +601,9 @@ func TestSleepContext_TimeoutContext(t *testing.T) {
 }
 
 func TestPrepareRequest_BasicHeadersAndQuery(t *testing.T) {
-	cfg := &common.ConfigurationRestAPI{
-		ApiKey: "apikey123",
-	}
+	cfg := common.NewConfigurationRestAPI(
+		common.WithApiKey("apikey123"),
+	)
 	query := url.Values{}
 	query.Set("param", "value")
 
@@ -621,10 +622,10 @@ func TestPrepareRequest_BasicHeadersAndQuery(t *testing.T) {
 }
 
 func TestPrepareRequest_Signing(t *testing.T) {
-	cfg := &common.ConfigurationRestAPI{
-		ApiKey:    "apikey123",
-		ApiSecret: "secretkey456",
-	}
+	cfg := common.NewConfigurationRestAPI(
+		common.WithApiKey("apikey123"),
+		common.WithApiSecret("secretkey456"),
+	)
 	query := url.Values{}
 	query.Set("param", "value")
 
@@ -821,4 +822,70 @@ func TestGenerateIntUUID(t *testing.T) {
 			t.Error("GenerateIntUUID() returned same value on subsequent calls")
 		}
 	})
+}
+
+func TestBuildTransport_NilAgent(t *testing.T) {
+	cfg := &common.ConfigurationRestAPI{
+		Compression: true,
+	}
+	transport, err := common.BuildTransport(nil, cfg)
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	tr, ok := transport.(*http.Transport)
+	if !ok {
+		t.Fatalf("expected *http.Transport, got %T", transport)
+	}
+
+	if tr.MaxIdleConns != 10 {
+		t.Errorf("expected MaxIdleConns=10, got %d", tr.MaxIdleConns)
+	}
+	if tr.IdleConnTimeout != 30*time.Second {
+		t.Errorf("expected IdleConnTimeout=30s, got %v", tr.IdleConnTimeout)
+	}
+	if tr.DisableCompression != !cfg.Compression {
+		t.Errorf("expected DisableCompression=%v, got %v", !cfg.Compression, tr.DisableCompression)
+	}
+}
+
+func TestBuildTransport_TLSConfigAgent(t *testing.T) {
+	tlsConfig := &tls.Config{}
+	cfg := &common.ConfigurationRestAPI{
+		Compression: false,
+	}
+	transport, err := common.BuildTransport(tlsConfig, cfg)
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	tr, ok := transport.(*http.Transport)
+	if !ok {
+		t.Fatalf("expected *http.Transport, got %T", transport)
+	}
+
+	if tr.TLSClientConfig != tlsConfig {
+		t.Errorf("expected TLSClientConfig to be set")
+	}
+	if tr.MaxIdleConns != 10 {
+		t.Errorf("expected MaxIdleConns=10, got %d", tr.MaxIdleConns)
+	}
+	if tr.IdleConnTimeout != 30*time.Second {
+		t.Errorf("expected IdleConnTimeout=30s, got %v", tr.IdleConnTimeout)
+	}
+	if tr.DisableCompression != !cfg.Compression {
+		t.Errorf("expected DisableCompression=%v, got %v", !cfg.Compression, tr.DisableCompression)
+	}
+}
+
+func TestBuildTransport_UnsupportedAgent(t *testing.T) {
+	cfg := &common.ConfigurationRestAPI{}
+	_, err := common.BuildTransport(12345, cfg) // int is unsupported
+	if err == nil {
+		t.Fatal("expected error for unsupported HTTPSAgent type, got nil")
+	}
+	expectedMsg := "unsupported HTTPSAgent type"
+	if err.Error() != expectedMsg {
+		t.Errorf("expected error message %q, got %q", expectedMsg, err.Error())
+	}
 }
