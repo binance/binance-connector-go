@@ -22,7 +22,7 @@ func Basis() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.Basis(context.Background()).Pair("pair_example").ContractType(models.BasisContractTypeParameterPerpetual).Period(models.BasisPeriodParameterPeriod5m).Limit(30).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.Basis(context.Background()).Pair("pair_example").ContractType(models.BasisContractTypeParameterPerpetual).Period(models.BasisPeriodParameterPeriod5m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

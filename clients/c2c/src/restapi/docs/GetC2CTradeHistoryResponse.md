@@ -4,11 +4,24 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to [**[]GetC2CTradeHistoryResponseDataInner**](GetC2CTradeHistoryResponseDataInner.md) |  | [optional] 
-**Total** | Pointer to **int64** |  | [optional] 
-**Success** | Pointer to **bool** |  | [optional] 
+**OrderNumber** | Pointer to **string** |  | [optional] 
+**AdvNo** | Pointer to **string** |  | [optional] 
+**TradeType** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** |  | [optional] 
+**Fiat** | Pointer to **string** |  | [optional] 
+**FiatSymbol** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** |  | [optional] 
+**TotalPrice** | Pointer to **string** |  | [optional] 
+**UnitPrice** | Pointer to **string** |  | [optional] 
+**OrderStatus** | Pointer to **string** |  | [optional] 
+**CreateTime** | Pointer to **int64** |  | [optional] 
+**Commission** | Pointer to **string** |  | [optional] 
+**TakerCommissionRate** | Pointer to **string** |  | [optional] 
+**TakerCommission** | Pointer to **string** |  | [optional] 
+**TakerAmount** | Pointer to **string** |  | [optional] 
+**CounterPartNickName** | Pointer to **string** |  | [optional] 
+**PayMethodName** | Pointer to **string** |  | [optional] 
+**AdditionalKycVerify** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -29,130 +42,455 @@ NewGetC2CTradeHistoryResponseWithDefaults instantiates a new GetC2CTradeHistoryR
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCode
+### GetOrderNumber
 
-`func (o *GetC2CTradeHistoryResponse) GetCode() string`
+`func (o *GetC2CTradeHistoryResponse) GetOrderNumber() string`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetOrderNumber returns the OrderNumber field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetOrderNumberOk
 
-`func (o *GetC2CTradeHistoryResponse) GetCodeOk() (*string, bool)`
+`func (o *GetC2CTradeHistoryResponse) GetOrderNumberOk() (*string, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetOrderNumberOk returns a tuple with the OrderNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCode
+### SetOrderNumber
 
-`func (o *GetC2CTradeHistoryResponse) SetCode(v string)`
+`func (o *GetC2CTradeHistoryResponse) SetOrderNumber(v string)`
 
-SetCode sets Code field to given value.
+SetOrderNumber sets OrderNumber field to given value.
 
-### HasCode
+### HasOrderNumber
 
-`func (o *GetC2CTradeHistoryResponse) HasCode() bool`
+`func (o *GetC2CTradeHistoryResponse) HasOrderNumber() bool`
 
-HasCode returns a boolean if a field has been set.
+HasOrderNumber returns a boolean if a field has been set.
 
-### GetMessage
+### GetAdvNo
 
-`func (o *GetC2CTradeHistoryResponse) GetMessage() string`
+`func (o *GetC2CTradeHistoryResponse) GetAdvNo() string`
 
-GetMessage returns the Message field if non-nil, zero value otherwise.
+GetAdvNo returns the AdvNo field if non-nil, zero value otherwise.
 
-### GetMessageOk
+### GetAdvNoOk
 
-`func (o *GetC2CTradeHistoryResponse) GetMessageOk() (*string, bool)`
+`func (o *GetC2CTradeHistoryResponse) GetAdvNoOk() (*string, bool)`
 
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+GetAdvNoOk returns a tuple with the AdvNo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMessage
+### SetAdvNo
 
-`func (o *GetC2CTradeHistoryResponse) SetMessage(v string)`
+`func (o *GetC2CTradeHistoryResponse) SetAdvNo(v string)`
 
-SetMessage sets Message field to given value.
+SetAdvNo sets AdvNo field to given value.
 
-### HasMessage
+### HasAdvNo
 
-`func (o *GetC2CTradeHistoryResponse) HasMessage() bool`
+`func (o *GetC2CTradeHistoryResponse) HasAdvNo() bool`
 
-HasMessage returns a boolean if a field has been set.
+HasAdvNo returns a boolean if a field has been set.
 
-### GetData
+### GetTradeType
 
-`func (o *GetC2CTradeHistoryResponse) GetData() []GetC2CTradeHistoryResponseDataInner`
+`func (o *GetC2CTradeHistoryResponse) GetTradeType() string`
 
-GetData returns the Data field if non-nil, zero value otherwise.
+GetTradeType returns the TradeType field if non-nil, zero value otherwise.
 
-### GetDataOk
+### GetTradeTypeOk
 
-`func (o *GetC2CTradeHistoryResponse) GetDataOk() (*[]GetC2CTradeHistoryResponseDataInner, bool)`
+`func (o *GetC2CTradeHistoryResponse) GetTradeTypeOk() (*string, bool)`
 
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+GetTradeTypeOk returns a tuple with the TradeType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetData
+### SetTradeType
 
-`func (o *GetC2CTradeHistoryResponse) SetData(v []GetC2CTradeHistoryResponseDataInner)`
+`func (o *GetC2CTradeHistoryResponse) SetTradeType(v string)`
 
-SetData sets Data field to given value.
+SetTradeType sets TradeType field to given value.
 
-### HasData
+### HasTradeType
 
-`func (o *GetC2CTradeHistoryResponse) HasData() bool`
+`func (o *GetC2CTradeHistoryResponse) HasTradeType() bool`
 
-HasData returns a boolean if a field has been set.
+HasTradeType returns a boolean if a field has been set.
 
-### GetTotal
+### GetAsset
 
-`func (o *GetC2CTradeHistoryResponse) GetTotal() int64`
+`func (o *GetC2CTradeHistoryResponse) GetAsset() string`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetAsset returns the Asset field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetAssetOk
 
-`func (o *GetC2CTradeHistoryResponse) GetTotalOk() (*int64, bool)`
+`func (o *GetC2CTradeHistoryResponse) GetAssetOk() (*string, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetAssetOk returns a tuple with the Asset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetAsset
 
-`func (o *GetC2CTradeHistoryResponse) SetTotal(v int64)`
+`func (o *GetC2CTradeHistoryResponse) SetAsset(v string)`
 
-SetTotal sets Total field to given value.
+SetAsset sets Asset field to given value.
 
-### HasTotal
+### HasAsset
 
-`func (o *GetC2CTradeHistoryResponse) HasTotal() bool`
+`func (o *GetC2CTradeHistoryResponse) HasAsset() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasAsset returns a boolean if a field has been set.
 
-### GetSuccess
+### GetFiat
 
-`func (o *GetC2CTradeHistoryResponse) GetSuccess() bool`
+`func (o *GetC2CTradeHistoryResponse) GetFiat() string`
 
-GetSuccess returns the Success field if non-nil, zero value otherwise.
+GetFiat returns the Fiat field if non-nil, zero value otherwise.
 
-### GetSuccessOk
+### GetFiatOk
 
-`func (o *GetC2CTradeHistoryResponse) GetSuccessOk() (*bool, bool)`
+`func (o *GetC2CTradeHistoryResponse) GetFiatOk() (*string, bool)`
 
-GetSuccessOk returns a tuple with the Success field if it's non-nil, zero value otherwise
+GetFiatOk returns a tuple with the Fiat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSuccess
+### SetFiat
 
-`func (o *GetC2CTradeHistoryResponse) SetSuccess(v bool)`
+`func (o *GetC2CTradeHistoryResponse) SetFiat(v string)`
 
-SetSuccess sets Success field to given value.
+SetFiat sets Fiat field to given value.
 
-### HasSuccess
+### HasFiat
 
-`func (o *GetC2CTradeHistoryResponse) HasSuccess() bool`
+`func (o *GetC2CTradeHistoryResponse) HasFiat() bool`
 
-HasSuccess returns a boolean if a field has been set.
+HasFiat returns a boolean if a field has been set.
+
+### GetFiatSymbol
+
+`func (o *GetC2CTradeHistoryResponse) GetFiatSymbol() string`
+
+GetFiatSymbol returns the FiatSymbol field if non-nil, zero value otherwise.
+
+### GetFiatSymbolOk
+
+`func (o *GetC2CTradeHistoryResponse) GetFiatSymbolOk() (*string, bool)`
+
+GetFiatSymbolOk returns a tuple with the FiatSymbol field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFiatSymbol
+
+`func (o *GetC2CTradeHistoryResponse) SetFiatSymbol(v string)`
+
+SetFiatSymbol sets FiatSymbol field to given value.
+
+### HasFiatSymbol
+
+`func (o *GetC2CTradeHistoryResponse) HasFiatSymbol() bool`
+
+HasFiatSymbol returns a boolean if a field has been set.
+
+### GetAmount
+
+`func (o *GetC2CTradeHistoryResponse) GetAmount() string`
+
+GetAmount returns the Amount field if non-nil, zero value otherwise.
+
+### GetAmountOk
+
+`func (o *GetC2CTradeHistoryResponse) GetAmountOk() (*string, bool)`
+
+GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmount
+
+`func (o *GetC2CTradeHistoryResponse) SetAmount(v string)`
+
+SetAmount sets Amount field to given value.
+
+### HasAmount
+
+`func (o *GetC2CTradeHistoryResponse) HasAmount() bool`
+
+HasAmount returns a boolean if a field has been set.
+
+### GetTotalPrice
+
+`func (o *GetC2CTradeHistoryResponse) GetTotalPrice() string`
+
+GetTotalPrice returns the TotalPrice field if non-nil, zero value otherwise.
+
+### GetTotalPriceOk
+
+`func (o *GetC2CTradeHistoryResponse) GetTotalPriceOk() (*string, bool)`
+
+GetTotalPriceOk returns a tuple with the TotalPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalPrice
+
+`func (o *GetC2CTradeHistoryResponse) SetTotalPrice(v string)`
+
+SetTotalPrice sets TotalPrice field to given value.
+
+### HasTotalPrice
+
+`func (o *GetC2CTradeHistoryResponse) HasTotalPrice() bool`
+
+HasTotalPrice returns a boolean if a field has been set.
+
+### GetUnitPrice
+
+`func (o *GetC2CTradeHistoryResponse) GetUnitPrice() string`
+
+GetUnitPrice returns the UnitPrice field if non-nil, zero value otherwise.
+
+### GetUnitPriceOk
+
+`func (o *GetC2CTradeHistoryResponse) GetUnitPriceOk() (*string, bool)`
+
+GetUnitPriceOk returns a tuple with the UnitPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnitPrice
+
+`func (o *GetC2CTradeHistoryResponse) SetUnitPrice(v string)`
+
+SetUnitPrice sets UnitPrice field to given value.
+
+### HasUnitPrice
+
+`func (o *GetC2CTradeHistoryResponse) HasUnitPrice() bool`
+
+HasUnitPrice returns a boolean if a field has been set.
+
+### GetOrderStatus
+
+`func (o *GetC2CTradeHistoryResponse) GetOrderStatus() string`
+
+GetOrderStatus returns the OrderStatus field if non-nil, zero value otherwise.
+
+### GetOrderStatusOk
+
+`func (o *GetC2CTradeHistoryResponse) GetOrderStatusOk() (*string, bool)`
+
+GetOrderStatusOk returns a tuple with the OrderStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrderStatus
+
+`func (o *GetC2CTradeHistoryResponse) SetOrderStatus(v string)`
+
+SetOrderStatus sets OrderStatus field to given value.
+
+### HasOrderStatus
+
+`func (o *GetC2CTradeHistoryResponse) HasOrderStatus() bool`
+
+HasOrderStatus returns a boolean if a field has been set.
+
+### GetCreateTime
+
+`func (o *GetC2CTradeHistoryResponse) GetCreateTime() int64`
+
+GetCreateTime returns the CreateTime field if non-nil, zero value otherwise.
+
+### GetCreateTimeOk
+
+`func (o *GetC2CTradeHistoryResponse) GetCreateTimeOk() (*int64, bool)`
+
+GetCreateTimeOk returns a tuple with the CreateTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateTime
+
+`func (o *GetC2CTradeHistoryResponse) SetCreateTime(v int64)`
+
+SetCreateTime sets CreateTime field to given value.
+
+### HasCreateTime
+
+`func (o *GetC2CTradeHistoryResponse) HasCreateTime() bool`
+
+HasCreateTime returns a boolean if a field has been set.
+
+### GetCommission
+
+`func (o *GetC2CTradeHistoryResponse) GetCommission() string`
+
+GetCommission returns the Commission field if non-nil, zero value otherwise.
+
+### GetCommissionOk
+
+`func (o *GetC2CTradeHistoryResponse) GetCommissionOk() (*string, bool)`
+
+GetCommissionOk returns a tuple with the Commission field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommission
+
+`func (o *GetC2CTradeHistoryResponse) SetCommission(v string)`
+
+SetCommission sets Commission field to given value.
+
+### HasCommission
+
+`func (o *GetC2CTradeHistoryResponse) HasCommission() bool`
+
+HasCommission returns a boolean if a field has been set.
+
+### GetTakerCommissionRate
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerCommissionRate() string`
+
+GetTakerCommissionRate returns the TakerCommissionRate field if non-nil, zero value otherwise.
+
+### GetTakerCommissionRateOk
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerCommissionRateOk() (*string, bool)`
+
+GetTakerCommissionRateOk returns a tuple with the TakerCommissionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTakerCommissionRate
+
+`func (o *GetC2CTradeHistoryResponse) SetTakerCommissionRate(v string)`
+
+SetTakerCommissionRate sets TakerCommissionRate field to given value.
+
+### HasTakerCommissionRate
+
+`func (o *GetC2CTradeHistoryResponse) HasTakerCommissionRate() bool`
+
+HasTakerCommissionRate returns a boolean if a field has been set.
+
+### GetTakerCommission
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerCommission() string`
+
+GetTakerCommission returns the TakerCommission field if non-nil, zero value otherwise.
+
+### GetTakerCommissionOk
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerCommissionOk() (*string, bool)`
+
+GetTakerCommissionOk returns a tuple with the TakerCommission field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTakerCommission
+
+`func (o *GetC2CTradeHistoryResponse) SetTakerCommission(v string)`
+
+SetTakerCommission sets TakerCommission field to given value.
+
+### HasTakerCommission
+
+`func (o *GetC2CTradeHistoryResponse) HasTakerCommission() bool`
+
+HasTakerCommission returns a boolean if a field has been set.
+
+### GetTakerAmount
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerAmount() string`
+
+GetTakerAmount returns the TakerAmount field if non-nil, zero value otherwise.
+
+### GetTakerAmountOk
+
+`func (o *GetC2CTradeHistoryResponse) GetTakerAmountOk() (*string, bool)`
+
+GetTakerAmountOk returns a tuple with the TakerAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTakerAmount
+
+`func (o *GetC2CTradeHistoryResponse) SetTakerAmount(v string)`
+
+SetTakerAmount sets TakerAmount field to given value.
+
+### HasTakerAmount
+
+`func (o *GetC2CTradeHistoryResponse) HasTakerAmount() bool`
+
+HasTakerAmount returns a boolean if a field has been set.
+
+### GetCounterPartNickName
+
+`func (o *GetC2CTradeHistoryResponse) GetCounterPartNickName() string`
+
+GetCounterPartNickName returns the CounterPartNickName field if non-nil, zero value otherwise.
+
+### GetCounterPartNickNameOk
+
+`func (o *GetC2CTradeHistoryResponse) GetCounterPartNickNameOk() (*string, bool)`
+
+GetCounterPartNickNameOk returns a tuple with the CounterPartNickName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCounterPartNickName
+
+`func (o *GetC2CTradeHistoryResponse) SetCounterPartNickName(v string)`
+
+SetCounterPartNickName sets CounterPartNickName field to given value.
+
+### HasCounterPartNickName
+
+`func (o *GetC2CTradeHistoryResponse) HasCounterPartNickName() bool`
+
+HasCounterPartNickName returns a boolean if a field has been set.
+
+### GetPayMethodName
+
+`func (o *GetC2CTradeHistoryResponse) GetPayMethodName() string`
+
+GetPayMethodName returns the PayMethodName field if non-nil, zero value otherwise.
+
+### GetPayMethodNameOk
+
+`func (o *GetC2CTradeHistoryResponse) GetPayMethodNameOk() (*string, bool)`
+
+GetPayMethodNameOk returns a tuple with the PayMethodName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPayMethodName
+
+`func (o *GetC2CTradeHistoryResponse) SetPayMethodName(v string)`
+
+SetPayMethodName sets PayMethodName field to given value.
+
+### HasPayMethodName
+
+`func (o *GetC2CTradeHistoryResponse) HasPayMethodName() bool`
+
+HasPayMethodName returns a boolean if a field has been set.
+
+### GetAdditionalKycVerify
+
+`func (o *GetC2CTradeHistoryResponse) GetAdditionalKycVerify() int64`
+
+GetAdditionalKycVerify returns the AdditionalKycVerify field if non-nil, zero value otherwise.
+
+### GetAdditionalKycVerifyOk
+
+`func (o *GetC2CTradeHistoryResponse) GetAdditionalKycVerifyOk() (*int64, bool)`
+
+GetAdditionalKycVerifyOk returns a tuple with the AdditionalKycVerify field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalKycVerify
+
+`func (o *GetC2CTradeHistoryResponse) SetAdditionalKycVerify(v int64)`
+
+SetAdditionalKycVerify sets AdditionalKycVerify field to given value.
+
+### HasAdditionalKycVerify
+
+`func (o *GetC2CTradeHistoryResponse) HasAdditionalKycVerify() bool`
+
+HasAdditionalKycVerify returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

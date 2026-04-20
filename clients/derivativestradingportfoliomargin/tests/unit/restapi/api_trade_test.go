@@ -169,6 +169,79 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService CancelAllUmAlgoOpenOrders Success", func(t *testing.T) {
+
+		mockedJSON := `{"code":200,"msg":"The operation of cancel all open order is done."}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/allOpenOrders", r.URL.Path)
+			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CancelAllUmAlgoOpenOrdersResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllUmAlgoOpenOrders(context.Background()).Symbol("symbol_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CancelAllUmAlgoOpenOrdersResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CancelAllUmAlgoOpenOrdersResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService CancelAllUmAlgoOpenOrders Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllUmAlgoOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService CancelAllUmAlgoOpenOrders Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllUmAlgoOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService CancelAllUmOpenConditionalOrders Success", func(t *testing.T) {
 
 		mockedJSON := `{"code":"200","msg":"The operation of cancel all conditional open order is done."}`
@@ -680,6 +753,61 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService CancelUmAlgoOrder Success", func(t *testing.T) {
+
+		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","code":"200","msg":"success"}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/order", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CancelUmAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelUmAlgoOrder(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CancelUmAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CancelUmAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService CancelUmAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelUmAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService CancelUmConditionalOrder Success", func(t *testing.T) {
 
 		mockedJSON := `{"newClientStrategyId":"myOrder1","strategyId":123445,"strategyStatus":"CANCELED","strategyType":"TRAILING_STOP_MARKET","origQty":"11","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","stopPrice":"9300","symbol":"BTCUSDT","timeInForce":"GTC","activatePrice":"9020","priceRate":"0.3","bookTime":1566818724710,"updateTime":1566818724722,"workingType":"CONTRACT_PRICE","priceProtect":false,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}`
@@ -931,6 +1059,61 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		)
 
 		resp, err := apiClient.RestApi.TradeAPI.CmPositionAdlQuantileEstimation(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService FuturesTradfiPerpsContract Success", func(t *testing.T) {
+
+		mockedJSON := `{"code":200,"msg":"success"}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/stock/contract", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.FuturesTradfiPerpsContractResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.FuturesTradfiPerpsContractResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.FuturesTradfiPerpsContractResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService FuturesTradfiPerpsContract Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)
@@ -1739,6 +1922,82 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService NewUmAlgoOrder Success", func(t *testing.T) {
+
+		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/order", r.URL.Path)
+			require.Equal(t, "algoType_example", r.URL.Query().Get("algoType"))
+			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, string(models.NewCmConditionalOrderSideParameterBuy), r.URL.Query().Get("side"))
+			require.Equal(t, string(models.NewCmOrderTypeParameterLimit), r.URL.Query().Get("type"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.NewUmAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Type(models.NewCmOrderTypeParameterLimit).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.NewUmAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.NewUmAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService NewUmAlgoOrder Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService NewUmAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService NewUmConditionalOrder Success", func(t *testing.T) {
 
 		mockedJSON := `{"newClientStrategyId":"testOrder","strategyId":123445,"strategyStatus":"NEW","strategyType":"TRAILING_STOP_MARKET","origQty":"10","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","stopPrice":"9300","symbol":"BTCUSDT","timeInForce":"GTD","activatePrice":"9020","priceRate":"0.3","bookTime":1566818724710,"updateTime":1566818724722,"workingType":"CONTRACT_PRICE","priceProtect":false,"selfTradePreventionMode":"NONE","goodTillDate":1693207680000,"priceMatch":"NONE"}`
@@ -2122,6 +2381,61 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		)
 
 		resp, err := apiClient.RestApi.TradeAPI.QueryAllCurrentCmOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryAllCurrentUmOpenAlgoOrders Success", func(t *testing.T) {
+
+		mockedJSON := `[{"algoId":2148627,"clientAlgoId":"MRumok0dkhrP4kCm12AHaB","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","actualOrderId":"","actualPrice":"0.00000","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"tpTriggerPrice":"0.000","tpPrice":"0.000","slTriggerPrice":"0.000","slPrice":"0.000","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750514941540,"updateTime":1750514941540,"triggerTime":0,"goodTillDate":0}]`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/openAlgoOrders", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryAllCurrentUmOpenAlgoOrdersResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAllCurrentUmOpenAlgoOrders(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryAllCurrentUmOpenAlgoOrdersResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryAllCurrentUmOpenAlgoOrdersResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryAllCurrentUmOpenAlgoOrders Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAllCurrentUmOpenAlgoOrders(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)
@@ -2876,6 +3190,61 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService QueryCurrentUmOpenAlgoOrder Success", func(t *testing.T) {
+
+		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"CANCELED","actualOrderId":"","actualPrice":"0.00000","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"tpTriggerPrice":"0.000","tpPrice":"0.000","slTriggerPrice":"0.000","slPrice":"0.000","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750514545091,"triggerTime":0,"goodTillDate":0}`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/algoOrder", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryCurrentUmOpenAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryCurrentUmOpenAlgoOrder(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryCurrentUmOpenAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryCurrentUmOpenAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryCurrentUmOpenAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryCurrentUmOpenAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService QueryCurrentUmOpenConditionalOrder Success", func(t *testing.T) {
 
 		mockedJSON := `{"newClientStrategyId":"abc","strategyId":123445,"strategyStatus":"NEW","strategyType":"TRAILING_STOP_MARKET","origQty":"0.40","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","stopPrice":"9300","symbol":"BTCUSDT","bookTime":1566818724710,"updateTime":1566818724722,"timeInForce":"GTC","activatePrice":"9020","priceRate":"0.3","selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}`
@@ -3255,6 +3624,79 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		)
 
 		resp, err := apiClient.RestApi.TradeAPI.QueryMarginAccountsOpenOco(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryUmAlgoOrderHistory Success", func(t *testing.T) {
+
+		mockedJSON := `[{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"CANCELED","actualOrderId":"","actualPrice":"0.00000","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"tpTriggerPrice":"0.000","tpPrice":"0.000","slTriggerPrice":"0.000","slPrice":"0.000","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750514545091,"triggerTime":0,"goodTillDate":0}]`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/papi/v1/um/algo/allAlgoOrders", r.URL.Path)
+			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryUmAlgoOrderHistoryResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryUmAlgoOrderHistory(context.Background()).Symbol("symbol_example").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryUmAlgoOrderHistoryResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryUmAlgoOrderHistoryResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryUmAlgoOrderHistory Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryUmAlgoOrderHistory(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryUmAlgoOrderHistory Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryUmAlgoOrderHistory(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

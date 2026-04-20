@@ -6,12 +6,12 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **T** | Pointer to **int64** |  | [optional] 
 **E** | Pointer to **int64** |  | [optional] 
+**O** | Pointer to **string** |  | [optional] 
 **Fs** | Pointer to **string** |  | [optional] 
 **So** | Pointer to [**ConditionalOrderTradeUpdateSo**](ConditionalOrderTradeUpdateSo.md) |  | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 **I** | Pointer to **int64** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
 **T** | Pointer to **int64** |  | [optional] 
 **P** | Pointer to **string** |  | [optional] 
 **L** | Pointer to **string** |  | [optional] 
@@ -49,6 +49,11 @@ Name         | Type          | Description.  | Notes
 **W** | Pointer to **int64** |  | [optional] 
 **V** | Pointer to **string** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
+**Cs** | Pointer to **string** |  | [optional] 
+**Pl** | Pointer to **string** |  | [optional] 
+**PL** | Pointer to **string** |  | [optional] 
+**PY** | Pointer to **string** |  | [optional] 
+**ER** | Pointer to **string** |  | [optional] 
 **Eq** | Pointer to **string** |  | [optional] 
 **Ae** | Pointer to **string** |  | [optional] 
 
@@ -120,6 +125,31 @@ SetE sets E field to given value.
 `func (o *UserDataStreamEventsResponse) HasE() bool`
 
 HasE returns a boolean if a field has been set.
+
+### GetO
+
+`func (o *UserDataStreamEventsResponse) GetO() string`
+
+GetO returns the O field if non-nil, zero value otherwise.
+
+### GetOOk
+
+`func (o *UserDataStreamEventsResponse) GetOOk() (*string, bool)`
+
+GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetO
+
+`func (o *UserDataStreamEventsResponse) SetO(v string)`
+
+SetO sets O field to given value.
+
+### HasO
+
+`func (o *UserDataStreamEventsResponse) HasO() bool`
+
+HasO returns a boolean if a field has been set.
 
 ### GetFs
 
@@ -245,31 +275,6 @@ SetA sets A field to given value.
 `func (o *UserDataStreamEventsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
-
-### GetO
-
-`func (o *UserDataStreamEventsResponse) GetO() string`
-
-GetO returns the O field if non-nil, zero value otherwise.
-
-### GetOOk
-
-`func (o *UserDataStreamEventsResponse) GetOOk() (*string, bool)`
-
-GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetO
-
-`func (o *UserDataStreamEventsResponse) SetO(v string)`
-
-SetO sets O field to given value.
-
-### HasO
-
-`func (o *UserDataStreamEventsResponse) HasO() bool`
-
-HasO returns a boolean if a field has been set.
 
 ### GetT
 
@@ -1195,6 +1200,131 @@ SetA sets A field to given value.
 `func (o *UserDataStreamEventsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetCs
+
+`func (o *UserDataStreamEventsResponse) GetCs() string`
+
+GetCs returns the Cs field if non-nil, zero value otherwise.
+
+### GetCsOk
+
+`func (o *UserDataStreamEventsResponse) GetCsOk() (*string, bool)`
+
+GetCsOk returns a tuple with the Cs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCs
+
+`func (o *UserDataStreamEventsResponse) SetCs(v string)`
+
+SetCs sets Cs field to given value.
+
+### HasCs
+
+`func (o *UserDataStreamEventsResponse) HasCs() bool`
+
+HasCs returns a boolean if a field has been set.
+
+### GetPl
+
+`func (o *UserDataStreamEventsResponse) GetPl() string`
+
+GetPl returns the Pl field if non-nil, zero value otherwise.
+
+### GetPlOk
+
+`func (o *UserDataStreamEventsResponse) GetPlOk() (*string, bool)`
+
+GetPlOk returns a tuple with the Pl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPl
+
+`func (o *UserDataStreamEventsResponse) SetPl(v string)`
+
+SetPl sets Pl field to given value.
+
+### HasPl
+
+`func (o *UserDataStreamEventsResponse) HasPl() bool`
+
+HasPl returns a boolean if a field has been set.
+
+### GetPL
+
+`func (o *UserDataStreamEventsResponse) GetPL() string`
+
+GetPL returns the PL field if non-nil, zero value otherwise.
+
+### GetPLOk
+
+`func (o *UserDataStreamEventsResponse) GetPLOk() (*string, bool)`
+
+GetPLOk returns a tuple with the PL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPL
+
+`func (o *UserDataStreamEventsResponse) SetPL(v string)`
+
+SetPL sets PL field to given value.
+
+### HasPL
+
+`func (o *UserDataStreamEventsResponse) HasPL() bool`
+
+HasPL returns a boolean if a field has been set.
+
+### GetPY
+
+`func (o *UserDataStreamEventsResponse) GetPY() string`
+
+GetPY returns the PY field if non-nil, zero value otherwise.
+
+### GetPYOk
+
+`func (o *UserDataStreamEventsResponse) GetPYOk() (*string, bool)`
+
+GetPYOk returns a tuple with the PY field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPY
+
+`func (o *UserDataStreamEventsResponse) SetPY(v string)`
+
+SetPY sets PY field to given value.
+
+### HasPY
+
+`func (o *UserDataStreamEventsResponse) HasPY() bool`
+
+HasPY returns a boolean if a field has been set.
+
+### GetER
+
+`func (o *UserDataStreamEventsResponse) GetER() string`
+
+GetER returns the ER field if non-nil, zero value otherwise.
+
+### GetEROk
+
+`func (o *UserDataStreamEventsResponse) GetEROk() (*string, bool)`
+
+GetEROk returns a tuple with the ER field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetER
+
+`func (o *UserDataStreamEventsResponse) SetER(v string)`
+
+SetER sets ER field to given value.
+
+### HasER
+
+`func (o *UserDataStreamEventsResponse) HasER() bool`
+
+HasER returns a boolean if a field has been set.
 
 ### GetEq
 

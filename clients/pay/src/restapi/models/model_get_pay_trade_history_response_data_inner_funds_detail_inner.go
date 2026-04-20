@@ -17,9 +17,9 @@ var _ common.MappedNullable = &GetPayTradeHistoryResponseDataInnerFundsDetailInn
 
 // GetPayTradeHistoryResponseDataInnerFundsDetailInner struct for GetPayTradeHistoryResponseDataInnerFundsDetailInner
 type GetPayTradeHistoryResponseDataInnerFundsDetailInner struct {
-	Currency             *string                                                                   `json:"currency,omitempty"`
-	Amount               *string                                                                   `json:"amount,omitempty"`
-	WalletAssetCost      []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner `json:"walletAssetCost,omitempty"`
+	Currency             *string                                                             `json:"currency,omitempty"`
+	Amount               *string                                                             `json:"amount,omitempty"`
+	WalletAssetCost      *GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost `json:"walletAssetCost,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,17 +107,17 @@ func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetAmount(v string
 }
 
 // GetWalletAssetCost returns the WalletAssetCost field value if set, zero value otherwise.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner {
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost {
 	if o == nil || common.IsNil(o.WalletAssetCost) {
-		var ret []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner
+		var ret GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
 		return ret
 	}
-	return o.WalletAssetCost
+	return *o.WalletAssetCost
 }
 
 // GetWalletAssetCostOk returns a tuple with the WalletAssetCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() ([]GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner, bool) {
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost, bool) {
 	if o == nil || common.IsNil(o.WalletAssetCost) {
 		return nil, false
 	}
@@ -133,9 +133,9 @@ func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) HasWalletAssetCost
 	return false
 }
 
-// SetWalletAssetCost gets a reference to the given []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner and assigns it to the WalletAssetCost field.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner) {
-	o.WalletAssetCost = v
+// SetWalletAssetCost gets a reference to the given GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost and assigns it to the WalletAssetCost field.
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost) {
+	o.WalletAssetCost = &v
 }
 
 func (o GetPayTradeHistoryResponseDataInnerFundsDetailInner) MarshalJSON() ([]byte, error) {

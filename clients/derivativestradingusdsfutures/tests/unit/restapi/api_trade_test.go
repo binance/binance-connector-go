@@ -996,17 +996,12 @@ func Test_binancederivativestradingusdsfuturesrestapi_TradeAPIService(t *testing
 
 	t.Run("Test TradeAPIService FuturesTradfiPerpsContract Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":200,"msg":"success"}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/stock/contract", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
-			_, _ = w.Write([]byte(mockedJSON))
+			_, _ = w.Write([]byte(`{}`))
 		}))
 		defer mockServer.Close()
-
-		var expected models.FuturesTradfiPerpsContractResponse
-		err := json.Unmarshal([]byte(mockedJSON), &expected)
-		require.NoError(t, err)
 
 		configuration := common.NewConfigurationRestAPI()
 		configuration.BasePath = mockServer.URL
@@ -1015,17 +1010,8 @@ func Test_binancederivativestradingusdsfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
+		_, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
 		require.NoError(t, err)
-		require.NotNil(t, resp)
-		require.Equal(
-			t,
-			reflect.TypeOf(&common.RestApiResponse[models.FuturesTradfiPerpsContractResponse]{}),
-			reflect.TypeOf(resp),
-		)
-		require.Equal(t, reflect.TypeOf(models.FuturesTradfiPerpsContractResponse{}), reflect.TypeOf(resp.Data))
-		require.Equal(t, 200, resp.Status)
-		require.Equal(t, expected, resp.Data)
 	})
 
 	t.Run("Test TradeAPIService FuturesTradfiPerpsContract Server Error", func(t *testing.T) {
@@ -1043,10 +1029,9 @@ func Test_binancederivativestradingusdsfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
+		_, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
 
 		require.Error(t, err)
-		require.Nil(t, resp)
 	})
 
 	t.Run("Test TradeAPIService GetOrderModifyHistory Success", func(t *testing.T) {

@@ -20,6 +20,8 @@ type ReferencePriceResponseResult struct {
 	Symbol               *string `json:"symbol,omitempty"`
 	ReferencePrice       *string `json:"referencePrice,omitempty"`
 	Timestamp            *int64  `json:"timestamp,omitempty"`
+	Code                 *int64  `json:"code,omitempty"`
+	Msg                  *string `json:"msg,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +140,70 @@ func (o *ReferencePriceResponseResult) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *ReferencePriceResponseResult) GetCode() int64 {
+	if o == nil || common.IsNil(o.Code) {
+		var ret int64
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponseResult) GetCodeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Code) {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *ReferencePriceResponseResult) HasCode() bool {
+	if o != nil && !common.IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given int64 and assigns it to the Code field.
+func (o *ReferencePriceResponseResult) SetCode(v int64) {
+	o.Code = &v
+}
+
+// GetMsg returns the Msg field value if set, zero value otherwise.
+func (o *ReferencePriceResponseResult) GetMsg() string {
+	if o == nil || common.IsNil(o.Msg) {
+		var ret string
+		return ret
+	}
+	return *o.Msg
+}
+
+// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponseResult) GetMsgOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Msg) {
+		return nil, false
+	}
+	return o.Msg, true
+}
+
+// HasMsg returns a boolean if a field has been set.
+func (o *ReferencePriceResponseResult) HasMsg() bool {
+	if o != nil && !common.IsNil(o.Msg) {
+		return true
+	}
+
+	return false
+}
+
+// SetMsg gets a reference to the given string and assigns it to the Msg field.
+func (o *ReferencePriceResponseResult) SetMsg(v string) {
+	o.Msg = &v
+}
+
 func (o ReferencePriceResponseResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +222,12 @@ func (o ReferencePriceResponseResult) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !common.IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !common.IsNil(o.Msg) {
+		toSerialize["msg"] = o.Msg
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +254,8 @@ func (o *ReferencePriceResponseResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "referencePrice")
 		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "msg")
 		o.AdditionalProperties = additionalProperties
 	}
 

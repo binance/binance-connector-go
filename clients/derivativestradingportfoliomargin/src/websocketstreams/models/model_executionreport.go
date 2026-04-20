@@ -58,6 +58,11 @@ type Executionreport struct {
 	U                    *int64  `json:"U,omitempty"`
 	A                    *string `json:"A,omitempty"`
 	B                    *string `json:"B,omitempty"`
+	Cs                   *string `json:"Cs,omitempty"`
+	Smallpl              *string `json:"pl,omitempty"`
+	PL                   *string `json:"pL,omitempty"`
+	PY                   *string `json:"pY,omitempty"`
+	ER                   *string `json:"eR,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1392,6 +1397,166 @@ func (o *Executionreport) SetB(v string) {
 	o.B = &v
 }
 
+// GetCs returns the Cs field value if set, zero value otherwise.
+func (o *Executionreport) GetCs() string {
+	if o == nil || common.IsNil(o.Cs) {
+		var ret string
+		return ret
+	}
+	return *o.Cs
+}
+
+// GetCsOk returns a tuple with the Cs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Executionreport) GetCsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Cs) {
+		return nil, false
+	}
+	return o.Cs, true
+}
+
+// HasCs returns a boolean if a field has been set.
+func (o *Executionreport) HasCs() bool {
+	if o != nil && !common.IsNil(o.Cs) {
+		return true
+	}
+
+	return false
+}
+
+// SetCs gets a reference to the given string and assigns it to the Cs field.
+func (o *Executionreport) SetCs(v string) {
+	o.Cs = &v
+}
+
+// GetPl returns the Pl field value if set, zero value otherwise.
+func (o *Executionreport) GetSmallpl() string {
+	if o == nil || common.IsNil(o.Smallpl) {
+		var ret string
+		return ret
+	}
+	return *o.Smallpl
+}
+
+// GetPlOk returns a tuple with the Pl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Executionreport) GetSmallplOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallpl) {
+		return nil, false
+	}
+	return o.Smallpl, true
+}
+
+// HasPl returns a boolean if a field has been set.
+func (o *Executionreport) HasSmallpl() bool {
+	if o != nil && !common.IsNil(o.Smallpl) {
+		return true
+	}
+
+	return false
+}
+
+// SetPl gets a reference to the given string and assigns it to the Pl field.
+func (o *Executionreport) SetSmallpl(v string) {
+	o.Smallpl = &v
+}
+
+// GetPL returns the PL field value if set, zero value otherwise.
+func (o *Executionreport) GetPL() string {
+	if o == nil || common.IsNil(o.PL) {
+		var ret string
+		return ret
+	}
+	return *o.PL
+}
+
+// GetPLOk returns a tuple with the PL field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Executionreport) GetPLOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PL) {
+		return nil, false
+	}
+	return o.PL, true
+}
+
+// HasPL returns a boolean if a field has been set.
+func (o *Executionreport) HasPL() bool {
+	if o != nil && !common.IsNil(o.PL) {
+		return true
+	}
+
+	return false
+}
+
+// SetPL gets a reference to the given string and assigns it to the PL field.
+func (o *Executionreport) SetPL(v string) {
+	o.PL = &v
+}
+
+// GetPY returns the PY field value if set, zero value otherwise.
+func (o *Executionreport) GetPY() string {
+	if o == nil || common.IsNil(o.PY) {
+		var ret string
+		return ret
+	}
+	return *o.PY
+}
+
+// GetPYOk returns a tuple with the PY field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Executionreport) GetPYOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PY) {
+		return nil, false
+	}
+	return o.PY, true
+}
+
+// HasPY returns a boolean if a field has been set.
+func (o *Executionreport) HasPY() bool {
+	if o != nil && !common.IsNil(o.PY) {
+		return true
+	}
+
+	return false
+}
+
+// SetPY gets a reference to the given string and assigns it to the PY field.
+func (o *Executionreport) SetPY(v string) {
+	o.PY = &v
+}
+
+// GetER returns the ER field value if set, zero value otherwise.
+func (o *Executionreport) GetER() string {
+	if o == nil || common.IsNil(o.ER) {
+		var ret string
+		return ret
+	}
+	return *o.ER
+}
+
+// GetEROk returns a tuple with the ER field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Executionreport) GetEROk() (*string, bool) {
+	if o == nil || common.IsNil(o.ER) {
+		return nil, false
+	}
+	return o.ER, true
+}
+
+// HasER returns a boolean if a field has been set.
+func (o *Executionreport) HasER() bool {
+	if o != nil && !common.IsNil(o.ER) {
+		return true
+	}
+
+	return false
+}
+
+// SetER gets a reference to the given string and assigns it to the ER field.
+func (o *Executionreport) SetER(v string) {
+	o.ER = &v
+}
+
 func (o Executionreport) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -1525,6 +1690,21 @@ func (o Executionreport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.B) {
 		toSerialize["B"] = o.B
 	}
+	if !common.IsNil(o.Cs) {
+		toSerialize["Cs"] = o.Cs
+	}
+	if !common.IsNil(o.Smallpl) {
+		toSerialize["pl"] = o.Smallpl
+	}
+	if !common.IsNil(o.PL) {
+		toSerialize["pL"] = o.PL
+	}
+	if !common.IsNil(o.PY) {
+		toSerialize["pY"] = o.PY
+	}
+	if !common.IsNil(o.ER) {
+		toSerialize["eR"] = o.ER
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1588,6 +1768,11 @@ func (o *Executionreport) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "U")
 		delete(additionalProperties, "A")
 		delete(additionalProperties, "B")
+		delete(additionalProperties, "Cs")
+		delete(additionalProperties, "pl")
+		delete(additionalProperties, "pL")
+		delete(additionalProperties, "pY")
+		delete(additionalProperties, "eR")
 		o.AdditionalProperties = additionalProperties
 	}
 

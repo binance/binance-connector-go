@@ -45,6 +45,11 @@ Name         | Type          | Description.  | Notes
 **U** | Pointer to **int64** |  | [optional] 
 **A** | Pointer to **string** |  | [optional] 
 **B** | Pointer to **string** |  | [optional] 
+**Cs** | Pointer to **string** |  | [optional] 
+**Pl** | Pointer to **string** |  | [optional] 
+**PL** | Pointer to **string** |  | [optional] 
+**PY** | Pointer to **string** |  | [optional] 
+**ER** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -1089,6 +1094,131 @@ SetB sets B field to given value.
 `func (o *Executionreport) HasB() bool`
 
 HasB returns a boolean if a field has been set.
+
+### GetCs
+
+`func (o *Executionreport) GetCs() string`
+
+GetCs returns the Cs field if non-nil, zero value otherwise.
+
+### GetCsOk
+
+`func (o *Executionreport) GetCsOk() (*string, bool)`
+
+GetCsOk returns a tuple with the Cs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCs
+
+`func (o *Executionreport) SetCs(v string)`
+
+SetCs sets Cs field to given value.
+
+### HasCs
+
+`func (o *Executionreport) HasCs() bool`
+
+HasCs returns a boolean if a field has been set.
+
+### GetPl
+
+`func (o *Executionreport) GetPl() string`
+
+GetPl returns the Pl field if non-nil, zero value otherwise.
+
+### GetPlOk
+
+`func (o *Executionreport) GetPlOk() (*string, bool)`
+
+GetPlOk returns a tuple with the Pl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPl
+
+`func (o *Executionreport) SetPl(v string)`
+
+SetPl sets Pl field to given value.
+
+### HasPl
+
+`func (o *Executionreport) HasPl() bool`
+
+HasPl returns a boolean if a field has been set.
+
+### GetPL
+
+`func (o *Executionreport) GetPL() string`
+
+GetPL returns the PL field if non-nil, zero value otherwise.
+
+### GetPLOk
+
+`func (o *Executionreport) GetPLOk() (*string, bool)`
+
+GetPLOk returns a tuple with the PL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPL
+
+`func (o *Executionreport) SetPL(v string)`
+
+SetPL sets PL field to given value.
+
+### HasPL
+
+`func (o *Executionreport) HasPL() bool`
+
+HasPL returns a boolean if a field has been set.
+
+### GetPY
+
+`func (o *Executionreport) GetPY() string`
+
+GetPY returns the PY field if non-nil, zero value otherwise.
+
+### GetPYOk
+
+`func (o *Executionreport) GetPYOk() (*string, bool)`
+
+GetPYOk returns a tuple with the PY field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPY
+
+`func (o *Executionreport) SetPY(v string)`
+
+SetPY sets PY field to given value.
+
+### HasPY
+
+`func (o *Executionreport) HasPY() bool`
+
+HasPY returns a boolean if a field has been set.
+
+### GetER
+
+`func (o *Executionreport) GetER() string`
+
+GetER returns the ER field if non-nil, zero value otherwise.
+
+### GetEROk
+
+`func (o *Executionreport) GetEROk() (*string, bool)`
+
+GetEROk returns a tuple with the ER field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetER
+
+`func (o *Executionreport) SetER(v string)`
+
+SetER sets ER field to given value.
+
+### HasER
+
+`func (o *Executionreport) HasER() bool`
+
+HasER returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

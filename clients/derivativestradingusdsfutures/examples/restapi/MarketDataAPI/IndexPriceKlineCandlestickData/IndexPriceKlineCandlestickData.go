@@ -22,7 +22,7 @@ func IndexPriceKlineCandlestickData() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.IndexPriceKlineCandlestickData(context.Background()).Pair("pair_example").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.IndexPriceKlineCandlestickData(context.Background()).Pair("pair_example").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s).Execute()
 	if err != nil {
 		log.Println(err)
 		return

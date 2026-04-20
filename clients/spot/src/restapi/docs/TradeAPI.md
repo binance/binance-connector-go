@@ -586,7 +586,7 @@ func main() {
 	belowClientOrderId := "belowClientOrderId_example" // string | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent (optional)
 	belowIcebergQty := int64(1) // int64 | Note that this can only be used if `belowTimeInForce` is `GTC`. (optional)
 	belowPrice := float32(1.0) // float32 | Can be used if `belowType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
-	belowStopPrice := float32(1.0) // float32 | Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT, TAKE_PROFIT` or `TAKE_PROFIT_LIMIT` <br>Either belowStopPrice or belowTrailingDelta or both, must be specified. (optional)
+	belowStopPrice := float32(1.0) // float32 | Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT` or `TAKE_PROFIT_LIMIT` <br>Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified. (optional)
 	belowTrailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
 	belowTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
 	belowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the below order within an order strategy. (optional)
@@ -644,7 +644,7 @@ Name          | Type          | Description   | Notes
  **belowClientOrderId** | **string** | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent | 
  **belowIcebergQty** | **int64** | Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **belowPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
- **belowStopPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT, TAKE_PROFIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; &lt;br&gt;Either belowStopPrice or belowTrailingDelta or both, must be specified. | 
+ **belowStopPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; &lt;br&gt;Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified. | 
  **belowTrailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
  **belowTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
  **belowStrategyId** | **int64** | Arbitrary numeric value identifying the below order within an order strategy. | 
