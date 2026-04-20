@@ -1640,7 +1640,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_AccountAPIService(t *t
 
 	t.Run("Test AccountAPIService GetUmIncomeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"USDT","info":"TRANSFER","time":1570608000000,"tranId":"9689322392","tradeId":""},{"symbol":"BTCUSDT","incomeType":"COMMISSION","income":"-0.01000000","asset":"USDT","info":"COMMISSION","time":1570636800000,"tranId":"9689322392","tradeId":"2059192"}]`
+		mockedJSON := `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"USDT","info":"TRANSFER","time":1570608000000,"tranId":9689322392,"tradeId":""},{"symbol":"BTCUSDT","incomeType":"COMMISSION","income":"-0.01000000","asset":"USDT","info":"COMMISSION","time":1570636800000,"tranId":9689322392,"tradeId":"2059192"}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/um/income", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

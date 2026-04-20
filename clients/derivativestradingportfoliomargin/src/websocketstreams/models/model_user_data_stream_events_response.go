@@ -17,6 +17,7 @@ import (
 type UserDataStreamEventsResponse struct {
 	AccountConfigUpdate         *AccountConfigUpdate
 	AccountUpdate               *AccountUpdate
+	AlgoUpdate                  *AlgoUpdate
 	Balanceupdate               *Balanceupdate
 	ConditionalOrderTradeUpdate *ConditionalOrderTradeUpdate
 	Executionreport             *Executionreport
@@ -39,6 +40,13 @@ func AccountConfigUpdateAsUserDataStreamEventsResponse(v *AccountConfigUpdate) U
 func AccountUpdateAsUserDataStreamEventsResponse(v *AccountUpdate) UserDataStreamEventsResponse {
 	return UserDataStreamEventsResponse{
 		AccountUpdate: v,
+	}
+}
+
+// AlgoUpdateAsUserDataStreamEventsResponse is a convenience function that returns AlgoUpdate wrapped in UserDataStreamEventsResponse
+func AlgoUpdateAsUserDataStreamEventsResponse(v *AlgoUpdate) UserDataStreamEventsResponse {
+	return UserDataStreamEventsResponse{
+		AlgoUpdate: v,
 	}
 }
 
@@ -150,6 +158,18 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.AccountUpdate = nil
 			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AccountUpdate: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ALGO_UPDATE'
+	if jsonDict["e"] == "ALGO_UPDATE" {
+		// try to unmarshal JSON data into AlgoUpdate
+		err = json.Unmarshal(cleanedData, &dst.AlgoUpdate)
+		if err == nil {
+			return nil // data stored in dst.AlgoUpdate, return on the first match
+		} else {
+			dst.AlgoUpdate = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AlgoUpdate: %s", err.Error())
 		}
 	}
 
@@ -285,6 +305,18 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'algoUpdate'
+	if jsonDict["e"] == "algoUpdate" {
+		// try to unmarshal JSON data into AlgoUpdate
+		err = json.Unmarshal(cleanedData, &dst.AlgoUpdate)
+		if err == nil {
+			return nil // data stored in dst.AlgoUpdate, return on the first match
+		} else {
+			dst.AlgoUpdate = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AlgoUpdate: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'balanceupdate'
 	if jsonDict["e"] == "balanceupdate" {
 		// try to unmarshal JSON data into Balanceupdate
@@ -406,6 +438,10 @@ func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AccountUpdate)
 	}
 
+	if src.AlgoUpdate != nil {
+		return json.Marshal(&src.AlgoUpdate)
+	}
+
 	if src.Balanceupdate != nil {
 		return json.Marshal(&src.Balanceupdate)
 	}
@@ -456,6 +492,10 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 
 	if obj.AccountUpdate != nil {
 		return obj.AccountUpdate
+	}
+
+	if obj.AlgoUpdate != nil {
+		return obj.AlgoUpdate
 	}
 
 	if obj.Balanceupdate != nil {

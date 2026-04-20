@@ -1,5 +1,34 @@
 ### Changelog
 
+## 1.7.0 - 2026-04-20
+
+### Added (7)
+
+#### REST API
+
+- `cancelAllUmAlgoOpenOrders()` (`DELETE /papi/v1/um/algo/allOpenOrders`)
+- `cancelUmAlgoOrder()` (`DELETE /papi/v1/um/algo/order`)
+- `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+- `queryAllCurrentUmOpenAlgoOrders()` (`GET /papi/v1/um/algo/openAlgoOrders`)
+- `queryCurrentUmOpenAlgoOrder()` (`GET /papi/v1/um/algo/algoOrder`)
+- `queryUmAlgoOrderHistory()` (`GET /papi/v1/um/algo/allAlgoOrders`)
+- `futuresTradfiPerpsContract()` (`POST /papi/v1/um/stock/contract`)
+
+### Changed (8)
+
+#### REST API
+
+- Marked `cancelAllUmOpenConditionalOrders()` (`DELETE /papi/v1/um/conditional/allOpenOrders`) as deprecated.
+- Marked `cancelUmConditionalOrder()` (`DELETE /papi/v1/um/conditional/order`) as deprecated.
+- Marked `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`) as deprecated.
+- Marked `queryAllCurrentUmOpenConditionalOrders()` (`GET /papi/v1/um/conditional/openOrders`) as deprecated.
+- Marked `queryAllUmConditionalOrders()` (`GET /papi/v1/um/conditional/allOrders`) as deprecated.
+- Marked `queryCurrentUmOpenConditionalOrder()` (`GET /papi/v1/um/conditional/openOrder`) as deprecated.
+- Marked `queryUmConditionalOrderHistory()` (`GET /papi/v1/um/conditional/orderHistory`) as deprecated.
+- Modified response for `getUmIncomeHistory()` (`GET /papi/v1/um/income`):
+  - items.`tranId`: type `string` → `integer`
+  - items.`tranId`: type `string` → `integer`
+
 ## 1.6.0 - 2026-03-26
 
 ### Changed (1)

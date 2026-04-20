@@ -2,6 +2,7 @@
 
 ## Enum
 
+* `ContinuousContractKlineCandlestickDataIntervalParameterInterval1s` (value: `"1s"`)
 * `ContinuousContractKlineCandlestickDataIntervalParameterInterval1m` (value: `"1m"`)
 * `ContinuousContractKlineCandlestickDataIntervalParameterInterval3m` (value: `"3m"`)
 * `ContinuousContractKlineCandlestickDataIntervalParameterInterval5m` (value: `"5m"`)

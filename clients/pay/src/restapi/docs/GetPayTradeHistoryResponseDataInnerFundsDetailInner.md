@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Currency** | Pointer to **string** |  | [optional] 
 **Amount** | Pointer to **string** |  | [optional] 
-**WalletAssetCost** | Pointer to [**[]GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner**](GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner.md) |  | [optional] 
+**WalletAssetCost** | Pointer to [**GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost**](GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasAmount returns a boolean if a field has been set.
 
 ### GetWalletAssetCost
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost`
 
 GetWalletAssetCost returns the WalletAssetCost field if non-nil, zero value otherwise.
 
 ### GetWalletAssetCostOk
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*[]GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner, bool)`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost, bool)`
 
 GetWalletAssetCostOk returns a tuple with the WalletAssetCost field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletAssetCost
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v []GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCostInner)`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost)`
 
 SetWalletAssetCost sets WalletAssetCost field to given value.
 

@@ -1104,7 +1104,7 @@ func (r ApiOrderListOcoRequest) BelowPrice(belowPrice float32) ApiOrderListOcoRe
 	return r
 }
 
-// Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT, TAKE_PROFIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; &lt;br&gt;Either belowStopPrice or belowTrailingDelta or both, must be specified.
+// Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; &lt;br&gt;Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified.
 func (r ApiOrderListOcoRequest) BelowStopPrice(belowStopPrice float32) ApiOrderListOcoRequest {
 	r.belowStopPrice = &belowStopPrice
 	return r
@@ -1195,7 +1195,7 @@ https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpo
 @param belowClientOrderId -  Arbitrary unique ID among open orders for the below order. Automatically generated if not sent
 @param belowIcebergQty -  Note that this can only be used if `belowTimeInForce` is `GTC`.
 @param belowPrice -  Can be used if `belowType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price.
-@param belowStopPrice -  Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT, TAKE_PROFIT` or `TAKE_PROFIT_LIMIT` <br>Either belowStopPrice or belowTrailingDelta or both, must be specified.
+@param belowStopPrice -  Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT` or `TAKE_PROFIT_LIMIT` <br>Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified.
 @param belowTrailingDelta -  See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md).
 @param belowTimeInForce -
 @param belowStrategyId -  Arbitrary numeric value identifying the below order within an order strategy.

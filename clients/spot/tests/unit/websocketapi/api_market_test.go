@@ -489,7 +489,7 @@ func Test_binancespotwebsocketapi_MarketAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BAZUSD","referencePrice":"0.00501900","timestamp":1770946889251}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BAZUSD","referencePrice":"0.00501900","timestamp":1770946889251,"code":-2043,"msg":"This symbol doesn't have a reference price."}}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		select {
@@ -531,7 +531,7 @@ func Test_binancespotwebsocketapi_MarketAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BAZUSD","referencePrice":"0.00501900","timestamp":1770946889251}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BAZUSD","referencePrice":"0.00501900","timestamp":1770946889251,"code":-2043,"msg":"This symbol doesn't have a reference price."}}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		res := <-resultChan

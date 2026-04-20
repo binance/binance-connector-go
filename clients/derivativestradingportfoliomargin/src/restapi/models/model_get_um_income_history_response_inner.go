@@ -23,7 +23,7 @@ type GetUmIncomeHistoryResponseInner struct {
 	Asset                *string `json:"asset,omitempty"`
 	Info                 *string `json:"info,omitempty"`
 	Time                 *int64  `json:"time,omitempty"`
-	TranId               *string `json:"tranId,omitempty"`
+	TranId               *int64  `json:"tranId,omitempty"`
 	TradeId              *string `json:"tradeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -240,9 +240,9 @@ func (o *GetUmIncomeHistoryResponseInner) SetTime(v int64) {
 }
 
 // GetTranId returns the TranId field value if set, zero value otherwise.
-func (o *GetUmIncomeHistoryResponseInner) GetTranId() string {
+func (o *GetUmIncomeHistoryResponseInner) GetTranId() int64 {
 	if o == nil || common.IsNil(o.TranId) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.TranId
@@ -250,7 +250,7 @@ func (o *GetUmIncomeHistoryResponseInner) GetTranId() string {
 
 // GetTranIdOk returns a tuple with the TranId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*string, bool) {
+func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.TranId) {
 		return nil, false
 	}
@@ -266,8 +266,8 @@ func (o *GetUmIncomeHistoryResponseInner) HasTranId() bool {
 	return false
 }
 
-// SetTranId gets a reference to the given string and assigns it to the TranId field.
-func (o *GetUmIncomeHistoryResponseInner) SetTranId(v string) {
+// SetTranId gets a reference to the given int64 and assigns it to the TranId field.
+func (o *GetUmIncomeHistoryResponseInner) SetTranId(v int64) {
 	o.TranId = &v
 }
 

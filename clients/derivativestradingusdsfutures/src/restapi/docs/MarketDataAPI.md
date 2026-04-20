@@ -134,7 +134,7 @@ func main() {
 	pair := "pair_example" // string | 
 	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(30) // int64 | Default 30,Max 500
+	limit := int64(100) // int64 | Default 100; max 1000 (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -167,7 +167,7 @@ Name          | Type          | Description   | Notes
  **pair** | **string** |  | 
  **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) |  | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 30,Max 500 | 
+ **limit** | **int64** | Default 100; max 1000 | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -420,7 +420,7 @@ import (
 func main() {
 	pair := "pair_example" // string | 
 	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
@@ -701,7 +701,7 @@ import (
 
 func main() {
 	pair := "pair_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
@@ -777,7 +777,7 @@ import (
 
 func main() {
 	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
@@ -997,7 +997,7 @@ import (
 
 func main() {
 	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
@@ -1427,7 +1427,7 @@ import (
 
 func main() {
 	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)

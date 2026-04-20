@@ -1058,7 +1058,7 @@ No authorization required
 
 ## FuturesTradfiPerpsContract
 
-> FuturesTradfiPerpsContractResponse FuturesTradfiPerpsContract(ctx).RecvWindow(recvWindow).Execute()
+> FuturesTradfiPerpsContract(ctx).RecvWindow(recvWindow).Execute()
 
 Futures TradFi Perps Contract(USER_DATA)
 
@@ -1088,18 +1088,12 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).RecvWindow(recvWindow).Execute()
+	 err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.FuturesTradfiPerpsContract``: %v\n", err)
 		return
 	}
 
-	// response from `FuturesTradfiPerpsContract`: FuturesTradfiPerpsContractResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
 }
 ```
 
@@ -1111,7 +1105,7 @@ Name          | Type          | Description   | Notes
 
 ### Return type
 
-[**FuturesTradfiPerpsContractResponse**](FuturesTradfiPerpsContractResponse.md)
+ (empty response body)
 
 ### Authorization
 
@@ -1119,7 +1113,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to README]](../../../README.md)
 
@@ -2066,7 +2060,7 @@ No authorization required
 
 ## QueryAllAlgoOrders
 
-> QueryAllAlgoOrdersResponse QueryAllAlgoOrders(ctx).Symbol(symbol).AlgoId(algoId).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+> QueryAllAlgoOrdersResponse QueryAllAlgoOrders(ctx).Symbol(symbol).AlgoId(algoId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
 Query All Algo Orders (USER_DATA)
 
@@ -2091,7 +2085,6 @@ func main() {
 	algoId := int64(1) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(789) // int64 |  (optional)
 	limit := int64(100) // int64 | Default 100; max 1000 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -2102,7 +2095,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.QueryAllAlgoOrders(context.Background()).Symbol(symbol).AlgoId(algoId).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QueryAllAlgoOrders(context.Background()).Symbol(symbol).AlgoId(algoId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryAllAlgoOrders``: %v\n", err)
 		return
@@ -2125,7 +2118,6 @@ Name          | Type          | Description   | Notes
  **algoId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **page** | **int64** |  | 
  **limit** | **int64** | Default 100; max 1000 | 
  **recvWindow** | **int64** |  | 
 

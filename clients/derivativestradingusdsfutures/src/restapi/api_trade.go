@@ -1152,7 +1152,7 @@ func (r ApiFuturesTradfiPerpsContractRequest) RecvWindow(recvWindow int64) ApiFu
 	return r
 }
 
-func (r ApiFuturesTradfiPerpsContractRequest) Execute() (*common.RestApiResponse[models.FuturesTradfiPerpsContractResponse], error) {
+func (r ApiFuturesTradfiPerpsContractRequest) Execute() (struct{}, error) {
 	return r.ApiService.FuturesTradfiPerpsContractExecute(r)
 }
 
@@ -1174,9 +1174,7 @@ func (a *TradeAPIService) FuturesTradfiPerpsContract(ctx context.Context) ApiFut
 }
 
 // Execute executes the request
-//
-//	@return FuturesTradfiPerpsContractResponse
-func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPerpsContractRequest) (*common.RestApiResponse[models.FuturesTradfiPerpsContractResponse], error) {
+func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPerpsContractRequest) (struct{}, error) {
 	localVarHTTPMethod := http.MethodPost
 	localVarPath := a.client.cfg.BasePath + "/fapi/v1/stock/contract"
 
@@ -1187,12 +1185,12 @@ func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FuturesTradfiPerpsContractResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
-	if err != nil || resp == nil {
-		return nil, err
+	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if err != nil {
+		return struct{}{}, err
 	}
 
-	return resp, nil
+	return struct{}{}, nil
 }
 
 type ApiGetOrderModifyHistoryRequest struct {
@@ -2532,7 +2530,6 @@ type ApiQueryAllAlgoOrdersRequest struct {
 	algoId     *int64
 	startTime  *int64
 	endTime    *int64
-	page       *int64
 	limit      *int64
 	recvWindow *int64
 }
@@ -2554,11 +2551,6 @@ func (r ApiQueryAllAlgoOrdersRequest) StartTime(startTime int64) ApiQueryAllAlgo
 
 func (r ApiQueryAllAlgoOrdersRequest) EndTime(endTime int64) ApiQueryAllAlgoOrdersRequest {
 	r.endTime = &endTime
-	return r
-}
-
-func (r ApiQueryAllAlgoOrdersRequest) Page(page int64) ApiQueryAllAlgoOrdersRequest {
-	r.page = &page
 	return r
 }
 
@@ -2588,7 +2580,6 @@ https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest
 @param algoId -
 @param startTime -
 @param endTime -
-@param page -
 @param limit -  Default 100; max 1000
 @param recvWindow -
 @return ApiQueryAllAlgoOrdersRequest
@@ -2623,9 +2614,6 @@ func (a *TradeAPIService) QueryAllAlgoOrdersExecute(r ApiQueryAllAlgoOrdersReque
 	}
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
-	}
-	if r.page != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")

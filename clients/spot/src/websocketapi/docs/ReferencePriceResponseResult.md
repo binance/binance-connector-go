@@ -7,6 +7,8 @@ Name         | Type          | Description.  | Notes
 **Symbol** | Pointer to **string** |  | [optional] 
 **ReferencePrice** | Pointer to **string** |  | [optional] 
 **Timestamp** | Pointer to **int64** |  | [optional] 
+**Code** | Pointer to **int64** |  | [optional] 
+**Msg** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +103,56 @@ SetTimestamp sets Timestamp field to given value.
 `func (o *ReferencePriceResponseResult) HasTimestamp() bool`
 
 HasTimestamp returns a boolean if a field has been set.
+
+### GetCode
+
+`func (o *ReferencePriceResponseResult) GetCode() int64`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *ReferencePriceResponseResult) GetCodeOk() (*int64, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *ReferencePriceResponseResult) SetCode(v int64)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *ReferencePriceResponseResult) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### GetMsg
+
+`func (o *ReferencePriceResponseResult) GetMsg() string`
+
+GetMsg returns the Msg field if non-nil, zero value otherwise.
+
+### GetMsgOk
+
+`func (o *ReferencePriceResponseResult) GetMsgOk() (*string, bool)`
+
+GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMsg
+
+`func (o *ReferencePriceResponseResult) SetMsg(v string)`
+
+SetMsg sets Msg field to given value.
+
+### HasMsg
+
+`func (o *ReferencePriceResponseResult) HasMsg() bool`
+
+HasMsg returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

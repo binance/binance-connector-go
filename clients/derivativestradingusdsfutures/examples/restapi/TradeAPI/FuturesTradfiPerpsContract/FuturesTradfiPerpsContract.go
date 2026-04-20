@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures"
@@ -22,15 +21,9 @@ func FuturesTradfiPerpsContract() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
+	_, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).Execute()
 	if err != nil {
 		log.Println(err)
 		return
 	}
-
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
 }

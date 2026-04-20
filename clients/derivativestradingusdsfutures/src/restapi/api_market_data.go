@@ -99,7 +99,7 @@ func (r ApiBasisRequest) Period(period models.BasisPeriodParameter) ApiBasisRequ
 	return r
 }
 
-// Default 30,Max 500
+// Default 100; max 1000
 func (r ApiBasisRequest) Limit(limit int64) ApiBasisRequest {
 	r.limit = &limit
 	return r
@@ -129,7 +129,7 @@ https://developers.binance.com/docs/derivatives/usds-margined-futures/market-dat
 @param pair -
 @param contractType -
 @param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 30,Max 500
+@param limit -  Default 100; max 1000
 @param startTime -
 @param endTime -
 @return ApiBasisRequest
@@ -160,14 +160,13 @@ func (a *MarketDataAPIService) BasisExecute(r ApiBasisRequest) (*common.RestApiR
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
-	if r.limit == nil {
-		return nil, common.ReportError("limit is required and must be specified")
-	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	if r.limit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}
