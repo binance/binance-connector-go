@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **Amount** | Pointer to **string** |  | [optional] 
 **OriginalAmount** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**DeliverDate** | Pointer to **string** |  | [optional] 
+**DeliverDate** | Pointer to **int64** |  | [optional] 
 **LossAmount** | Pointer to **string** |  | [optional] 
 **IsComplete** | Pointer to **bool** |  | [optional] 
 **RewardAsset** | Pointer to **string** |  | [optional] 
@@ -242,20 +242,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetDeliverDate
 
-`func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDate() string`
+`func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDate() int64`
 
 GetDeliverDate returns the DeliverDate field if non-nil, zero value otherwise.
 
 ### GetDeliverDateOk
 
-`func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDateOk() (*string, bool)`
+`func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDateOk() (*int64, bool)`
 
 GetDeliverDateOk returns a tuple with the DeliverDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeliverDate
 
-`func (o *GetLockedRedemptionRecordResponseRowsInner) SetDeliverDate(v string)`
+`func (o *GetLockedRedemptionRecordResponseRowsInner) SetDeliverDate(v int64)`
 
 SetDeliverDate sets DeliverDate field to given value.
 

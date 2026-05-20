@@ -309,6 +309,84 @@ func (a *WebSocketStreamsAPIService) AvgPriceExecute(r ApiAvgPriceRequest) (*com
 	return resp, nil
 }
 
+type ApiBlockTradeRequest struct {
+	ApiService *WebSocketStreamsAPIService
+	symbol     *string
+	id         *string
+}
+
+// Symbol to query
+func (r ApiBlockTradeRequest) Symbol(symbol string) ApiBlockTradeRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiBlockTradeRequest) Id(id string) ApiBlockTradeRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiBlockTradeRequest) Execute() (*common.StreamHandler[models.BlockTradeResponse], error) {
+	return r.ApiService.BlockTradeExecute(r)
+}
+
+/*
+BlockTrade WebSocket Block Trade Streams
+/<symbol>@blockTrade
+
+https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams#block-trade-streams
+
+@param symbol Symbol to query	@param id Unique WebSocket request ID.
+@return ApiBlockTradeRequest
+*/
+func (a *WebSocketStreamsAPIService) BlockTrade() ApiBlockTradeRequest {
+	return ApiBlockTradeRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BlockTradeResponse
+func (a *WebSocketStreamsAPIService) BlockTradeExecute(r ApiBlockTradeRequest) (*common.StreamHandler[models.BlockTradeResponse], error) {
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	localStream := common.WsStreamsPlaceholder(
+		"/<symbol>@blockTrade"[1:],
+		map[string]string{
+			"symbol": func() string {
+				if r.symbol == nil {
+					return ""
+				}
+				return *r.symbol
+			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
+		},
+	)
+	ws := a.client.Ws
+
+	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
+	resp, err := common.CreateStreamHandler[models.BlockTradeResponse](&common.StreamHandlerWrapper{
+		WebsocketStreams: ws,
+	}, localStream, id, false)
+
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
 type ApiBookTickerRequest struct {
 	ApiService *WebSocketStreamsAPIService
 	symbol     *string

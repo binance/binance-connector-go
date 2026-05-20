@@ -25,7 +25,7 @@ type GetLockedRedemptionRecordResponseRowsInner struct {
 	Amount               *string `json:"amount,omitempty"`
 	OriginalAmount       *string `json:"originalAmount,omitempty"`
 	Type                 *string `json:"type,omitempty"`
-	DeliverDate          *string `json:"deliverDate,omitempty"`
+	DeliverDate          *int64  `json:"deliverDate,omitempty"`
 	LossAmount           *string `json:"lossAmount,omitempty"`
 	IsComplete           *bool   `json:"isComplete,omitempty"`
 	RewardAsset          *string `json:"rewardAsset,omitempty"`
@@ -312,9 +312,9 @@ func (o *GetLockedRedemptionRecordResponseRowsInner) SetType(v string) {
 }
 
 // GetDeliverDate returns the DeliverDate field value if set, zero value otherwise.
-func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDate() string {
+func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDate() int64 {
 	if o == nil || common.IsNil(o.DeliverDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.DeliverDate
@@ -322,7 +322,7 @@ func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDate() string {
 
 // GetDeliverDateOk returns a tuple with the DeliverDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDateOk() (*string, bool) {
+func (o *GetLockedRedemptionRecordResponseRowsInner) GetDeliverDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.DeliverDate) {
 		return nil, false
 	}
@@ -338,8 +338,8 @@ func (o *GetLockedRedemptionRecordResponseRowsInner) HasDeliverDate() bool {
 	return false
 }
 
-// SetDeliverDate gets a reference to the given string and assigns it to the DeliverDate field.
-func (o *GetLockedRedemptionRecordResponseRowsInner) SetDeliverDate(v string) {
+// SetDeliverDate gets a reference to the given int64 and assigns it to the DeliverDate field.
+func (o *GetLockedRedemptionRecordResponseRowsInner) SetDeliverDate(v int64) {
 	o.DeliverDate = &v
 }
 

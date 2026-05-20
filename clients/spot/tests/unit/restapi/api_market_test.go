@@ -315,6 +315,80 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test MarketAPIService HistoricalBlockTrades Success", func(t *testing.T) {
+
+		mockedJSON := `[{"id":582,"price":"0.052","qty":"5838","quoteQty":"303.576","time":1772506983321,"isBuyerMaker":true}]`
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/api/v3/historicalBlockTrades", r.URL.Path)
+			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
+			require.Equal(t, "1", r.URL.Query().Get("fromId"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.HistoricalBlockTradesResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol("BNBUSDT").FromId(int64(1)).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.HistoricalBlockTradesResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.HistoricalBlockTradesResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketAPIService HistoricalBlockTrades Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test MarketAPIService HistoricalBlockTrades Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceSpotClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test MarketAPIService HistoricalTrades Success", func(t *testing.T) {
 
 		mockedJSON := `[{"id":28457,"price":"4.00000100","qty":"12.00000000","quoteQty":"48.000012","time":1499865549590,"isBuyerMaker":true,"isBestMatch":true}]`

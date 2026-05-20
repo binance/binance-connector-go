@@ -24,11 +24,11 @@ type GetLockedSubscriptionPreviewResponseInner struct {
 	BoostRewardAsset       *string `json:"boostRewardAsset,omitempty"`
 	EstDailyRewardAmt      *string `json:"estDailyRewardAmt,omitempty"`
 	NextPay                *string `json:"nextPay,omitempty"`
-	NextPayDate            *string `json:"nextPayDate,omitempty"`
-	ValueDate              *string `json:"valueDate,omitempty"`
-	RewardsEndDate         *string `json:"rewardsEndDate,omitempty"`
-	DeliverDate            *string `json:"deliverDate,omitempty"`
-	NextSubscriptionDate   *string `json:"nextSubscriptionDate,omitempty"`
+	NextPayDate            *int64  `json:"nextPayDate,omitempty"`
+	ValueDate              *int64  `json:"valueDate,omitempty"`
+	RewardsEndDate         *int64  `json:"rewardsEndDate,omitempty"`
+	DeliverDate            *int64  `json:"deliverDate,omitempty"`
+	NextSubscriptionDate   *int64  `json:"nextSubscriptionDate,omitempty"`
 	AdditionalProperties   map[string]interface{}
 }
 
@@ -276,9 +276,9 @@ func (o *GetLockedSubscriptionPreviewResponseInner) SetNextPay(v string) {
 }
 
 // GetNextPayDate returns the NextPayDate field value if set, zero value otherwise.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDate() string {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDate() int64 {
 	if o == nil || common.IsNil(o.NextPayDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.NextPayDate
@@ -286,7 +286,7 @@ func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDate() string {
 
 // GetNextPayDateOk returns a tuple with the NextPayDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDateOk() (*string, bool) {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.NextPayDate) {
 		return nil, false
 	}
@@ -302,15 +302,15 @@ func (o *GetLockedSubscriptionPreviewResponseInner) HasNextPayDate() bool {
 	return false
 }
 
-// SetNextPayDate gets a reference to the given string and assigns it to the NextPayDate field.
-func (o *GetLockedSubscriptionPreviewResponseInner) SetNextPayDate(v string) {
+// SetNextPayDate gets a reference to the given int64 and assigns it to the NextPayDate field.
+func (o *GetLockedSubscriptionPreviewResponseInner) SetNextPayDate(v int64) {
 	o.NextPayDate = &v
 }
 
 // GetValueDate returns the ValueDate field value if set, zero value otherwise.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDate() string {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDate() int64 {
 	if o == nil || common.IsNil(o.ValueDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.ValueDate
@@ -318,7 +318,7 @@ func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDate() string {
 
 // GetValueDateOk returns a tuple with the ValueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDateOk() (*string, bool) {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.ValueDate) {
 		return nil, false
 	}
@@ -334,15 +334,15 @@ func (o *GetLockedSubscriptionPreviewResponseInner) HasValueDate() bool {
 	return false
 }
 
-// SetValueDate gets a reference to the given string and assigns it to the ValueDate field.
-func (o *GetLockedSubscriptionPreviewResponseInner) SetValueDate(v string) {
+// SetValueDate gets a reference to the given int64 and assigns it to the ValueDate field.
+func (o *GetLockedSubscriptionPreviewResponseInner) SetValueDate(v int64) {
 	o.ValueDate = &v
 }
 
 // GetRewardsEndDate returns the RewardsEndDate field value if set, zero value otherwise.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDate() string {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDate() int64 {
 	if o == nil || common.IsNil(o.RewardsEndDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.RewardsEndDate
@@ -350,7 +350,7 @@ func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDate() string {
 
 // GetRewardsEndDateOk returns a tuple with the RewardsEndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDateOk() (*string, bool) {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.RewardsEndDate) {
 		return nil, false
 	}
@@ -366,15 +366,15 @@ func (o *GetLockedSubscriptionPreviewResponseInner) HasRewardsEndDate() bool {
 	return false
 }
 
-// SetRewardsEndDate gets a reference to the given string and assigns it to the RewardsEndDate field.
-func (o *GetLockedSubscriptionPreviewResponseInner) SetRewardsEndDate(v string) {
+// SetRewardsEndDate gets a reference to the given int64 and assigns it to the RewardsEndDate field.
+func (o *GetLockedSubscriptionPreviewResponseInner) SetRewardsEndDate(v int64) {
 	o.RewardsEndDate = &v
 }
 
 // GetDeliverDate returns the DeliverDate field value if set, zero value otherwise.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDate() string {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDate() int64 {
 	if o == nil || common.IsNil(o.DeliverDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.DeliverDate
@@ -382,7 +382,7 @@ func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDate() string {
 
 // GetDeliverDateOk returns a tuple with the DeliverDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDateOk() (*string, bool) {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.DeliverDate) {
 		return nil, false
 	}
@@ -398,15 +398,15 @@ func (o *GetLockedSubscriptionPreviewResponseInner) HasDeliverDate() bool {
 	return false
 }
 
-// SetDeliverDate gets a reference to the given string and assigns it to the DeliverDate field.
-func (o *GetLockedSubscriptionPreviewResponseInner) SetDeliverDate(v string) {
+// SetDeliverDate gets a reference to the given int64 and assigns it to the DeliverDate field.
+func (o *GetLockedSubscriptionPreviewResponseInner) SetDeliverDate(v int64) {
 	o.DeliverDate = &v
 }
 
 // GetNextSubscriptionDate returns the NextSubscriptionDate field value if set, zero value otherwise.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDate() string {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDate() int64 {
 	if o == nil || common.IsNil(o.NextSubscriptionDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.NextSubscriptionDate
@@ -414,7 +414,7 @@ func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDate() st
 
 // GetNextSubscriptionDateOk returns a tuple with the NextSubscriptionDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDateOk() (*string, bool) {
+func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.NextSubscriptionDate) {
 		return nil, false
 	}
@@ -430,8 +430,8 @@ func (o *GetLockedSubscriptionPreviewResponseInner) HasNextSubscriptionDate() bo
 	return false
 }
 
-// SetNextSubscriptionDate gets a reference to the given string and assigns it to the NextSubscriptionDate field.
-func (o *GetLockedSubscriptionPreviewResponseInner) SetNextSubscriptionDate(v string) {
+// SetNextSubscriptionDate gets a reference to the given int64 and assigns it to the NextSubscriptionDate field.
+func (o *GetLockedSubscriptionPreviewResponseInner) SetNextSubscriptionDate(v int64) {
 	o.NextSubscriptionDate = &v
 }
 

@@ -1811,7 +1811,7 @@ func (r ApiNewAlgoOrderRequest) ClosePosition(closePosition string) ApiNewAlgoOr
 	return r
 }
 
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
 func (r ApiNewAlgoOrderRequest) PriceProtect(priceProtect string) ApiNewAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -1886,7 +1886,7 @@ https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param closePosition -  `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
-@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 @param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode
 @param activatePrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
@@ -2906,7 +2906,7 @@ func (r ApiTestOrderRequest) WorkingType(workingType models.NewAlgoOrderWorkingT
 	return r
 }
 
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
 func (r ApiTestOrderRequest) PriceProtect(priceProtect string) ApiTestOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -2966,7 +2966,7 @@ https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest
 @param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 @param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`

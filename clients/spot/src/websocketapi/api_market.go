@@ -95,6 +95,107 @@ func (a *MarketAPIService) AvgPriceExecute(r ApiAvgPriceRequest) (chan *common.R
 	return SendMessage[models.AvgPriceResponse](a.Ws, localPayload, sendParams)
 }
 
+type ApiBlockTradesHistoricalRequest struct {
+	ApiService *MarketAPIService
+	symbol     *string
+	fromId     *int64
+	id         *string
+	limit      *int64
+}
+
+func (r ApiBlockTradesHistoricalRequest) Symbol(symbol string) ApiBlockTradesHistoricalRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Block trade ID to fetch from
+func (r ApiBlockTradesHistoricalRequest) FromId(fromId int64) ApiBlockTradesHistoricalRequest {
+	r.fromId = &fromId
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiBlockTradesHistoricalRequest) Id(id string) ApiBlockTradesHistoricalRequest {
+	r.id = &id
+	return r
+}
+
+// Default: 500; Maximum: 1000
+func (r ApiBlockTradesHistoricalRequest) Limit(limit int64) ApiBlockTradesHistoricalRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiBlockTradesHistoricalRequest) Execute() (*common.ResponseOrRaw[models.BlockTradesHistoricalResponse], error) {
+	respChan, errChan, err := r.ApiService.BlockTradesHistoricalExecute(r)
+	if err != nil {
+		return nil, err
+	}
+
+	select {
+	case resp := <-respChan:
+		return resp, nil
+	case err := <-errChan:
+		return nil, err
+	}
+}
+
+func (r ApiBlockTradesHistoricalRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.BlockTradesHistoricalResponse], chan error, error) {
+	return r.ApiService.BlockTradesHistoricalExecute(r)
+}
+
+/*
+BlockTradesHistorical WebSocket Historical Block Trades
+/blockTrades.historical
+
+https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#historical-block-trades
+
+@param symbol	@param fromId Block trade ID to fetch from	@param id Unique WebSocket request ID.	@param limit Default: 500; Maximum: 1000
+@return ApiBlockTradesHistoricalRequest
+*/
+func (a *MarketAPIService) BlockTradesHistorical() ApiBlockTradesHistoricalRequest {
+	return ApiBlockTradesHistoricalRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BlockTradesHistoricalResponse
+func (a *MarketAPIService) BlockTradesHistoricalExecute(r ApiBlockTradesHistoricalRequest) (chan *common.ResponseOrRaw[models.BlockTradesHistoricalResponse], chan error, error) {
+	localVarQueryParams := map[string]any{}
+
+	if r.symbol == nil {
+		return nil, nil, common.ReportError("symbol is required and must be specified")
+	}
+	localVarQueryParams["symbol"] = *r.symbol
+
+	if r.fromId == nil {
+		return nil, nil, common.ReportError("fromId is required and must be specified")
+	}
+	localVarQueryParams["fromId"] = *r.fromId
+
+	if r.id != nil {
+		localVarQueryParams["id"] = *r.id
+	}
+	if r.limit != nil {
+		localVarQueryParams["limit"] = *r.limit
+	}
+
+	localPayload := map[string]any{
+		"method": "/blockTrades.historical"[1:],
+		"params": localVarQueryParams,
+	}
+
+	sendParams := common.SendParams{
+		Signed:           false,
+		WithAPIKey:       false,
+		WithSessionLogon: false,
+	}
+
+	return SendMessage[models.BlockTradesHistoricalResponse](a.Ws, localPayload, sendParams)
+}
+
 type ApiDepthRequest struct {
 	ApiService   *MarketAPIService
 	symbol       *string

@@ -17,9 +17,10 @@ var _ common.MappedNullable = &AlgoUpdate{}
 
 // AlgoUpdate struct for AlgoUpdate
 type AlgoUpdate struct {
-	T                    *int64       `json:"T,omitempty"`
-	E                    *int64       `json:"E,omitempty"`
-	Smallo               *AlgoUpdateO `json:"o,omitempty"`
+	T                    *int64        `json:"T,omitempty"`
+	E                    *int64        `json:"E,omitempty"`
+	Smallfs              *string       `json:"fs,omitempty"`
+	Smallao              *AlgoUpdateAo `json:"ao,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -106,36 +107,68 @@ func (o *AlgoUpdate) SetE(v int64) {
 	o.E = &v
 }
 
-// GetO returns the O field value if set, zero value otherwise.
-func (o *AlgoUpdate) GetSmallo() AlgoUpdateO {
-	if o == nil || common.IsNil(o.Smallo) {
-		var ret AlgoUpdateO
+// GetFs returns the Fs field value if set, zero value otherwise.
+func (o *AlgoUpdate) GetSmallfs() string {
+	if o == nil || common.IsNil(o.Smallfs) {
+		var ret string
 		return ret
 	}
-	return *o.Smallo
+	return *o.Smallfs
 }
 
-// GetOOk returns a tuple with the O field value if set, nil otherwise
+// GetFsOk returns a tuple with the Fs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdate) GetSmalloOk() (*AlgoUpdateO, bool) {
-	if o == nil || common.IsNil(o.Smallo) {
+func (o *AlgoUpdate) GetSmallfsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallfs) {
 		return nil, false
 	}
-	return o.Smallo, true
+	return o.Smallfs, true
 }
 
-// HasO returns a boolean if a field has been set.
-func (o *AlgoUpdate) HasSmallo() bool {
-	if o != nil && !common.IsNil(o.Smallo) {
+// HasFs returns a boolean if a field has been set.
+func (o *AlgoUpdate) HasSmallfs() bool {
+	if o != nil && !common.IsNil(o.Smallfs) {
 		return true
 	}
 
 	return false
 }
 
-// SetO gets a reference to the given AlgoUpdateO and assigns it to the O field.
-func (o *AlgoUpdate) SetSmallo(v AlgoUpdateO) {
-	o.Smallo = &v
+// SetFs gets a reference to the given string and assigns it to the Fs field.
+func (o *AlgoUpdate) SetSmallfs(v string) {
+	o.Smallfs = &v
+}
+
+// GetAo returns the Ao field value if set, zero value otherwise.
+func (o *AlgoUpdate) GetSmallao() AlgoUpdateAo {
+	if o == nil || common.IsNil(o.Smallao) {
+		var ret AlgoUpdateAo
+		return ret
+	}
+	return *o.Smallao
+}
+
+// GetAoOk returns a tuple with the Ao field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlgoUpdate) GetSmallaoOk() (*AlgoUpdateAo, bool) {
+	if o == nil || common.IsNil(o.Smallao) {
+		return nil, false
+	}
+	return o.Smallao, true
+}
+
+// HasAo returns a boolean if a field has been set.
+func (o *AlgoUpdate) HasSmallao() bool {
+	if o != nil && !common.IsNil(o.Smallao) {
+		return true
+	}
+
+	return false
+}
+
+// SetAo gets a reference to the given AlgoUpdateAo and assigns it to the Ao field.
+func (o *AlgoUpdate) SetSmallao(v AlgoUpdateAo) {
+	o.Smallao = &v
 }
 
 func (o AlgoUpdate) MarshalJSON() ([]byte, error) {
@@ -154,8 +187,11 @@ func (o AlgoUpdate) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.Smallo) {
-		toSerialize["o"] = o.Smallo
+	if !common.IsNil(o.Smallfs) {
+		toSerialize["fs"] = o.Smallfs
+	}
+	if !common.IsNil(o.Smallao) {
+		toSerialize["ao"] = o.Smallao
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -181,7 +217,8 @@ func (o *AlgoUpdate) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "T")
 		delete(additionalProperties, "E")
-		delete(additionalProperties, "o")
+		delete(additionalProperties, "fs")
+		delete(additionalProperties, "ao")
 		o.AdditionalProperties = additionalProperties
 	}
 

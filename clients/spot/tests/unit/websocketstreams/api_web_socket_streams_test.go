@@ -435,6 +435,115 @@ func Test_binancespotwebsocketstreams_WebSocketStreamsAPIService(t *testing.T) {
 
 		require.EqualError(t, gotErr, "Invalid JSON: expected value at line 1 column 30")
 	})
+	t.Run("Test WebSocketStreamsAPI BlockTrade Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketStreams()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketStreams(cfg),
+		)
+		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		mockedJSON := `{"e":"blockTrade","E":1772506983582,"s":"BNBBTC","t":582,"p":"0.052","q":"5838","T":1772506983321,"m":true}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		resp, err := mockClient.WebsocketStreams.WebSocketStreamsAPI.BlockTrade().Symbol("bnbusdt").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.NotEmpty(t, mockWS.MessagesWritten)
+
+		require.IsType(t, &common.StreamHandler[models.BlockTradeResponse]{}, resp)
+		require.NotNil(t, resp.On)
+		require.NotNil(t, resp.Unsubscribe)
+
+		called := 0
+		var got models.BlockTradeResponse
+		mockCallback := func(msg models.BlockTradeResponse) {
+			called++
+			got = msg
+		}
+
+		resp.On("message", mockCallback)
+
+		if handlers, ok := conn.StreamCallbackMap[resp.Stream]; ok {
+			for _, handler := range handlers {
+				var rawData interface{}
+				if err := json.Unmarshal([]byte(mockedJSON), &rawData); err != nil {
+					t.Fatalf("Failed to unmarshal test data: %v", err)
+				}
+
+				var msgData map[string]interface{}
+				switch v := rawData.(type) {
+				case map[string]interface{}:
+					msgData = v
+				case []interface{}:
+					msgData = map[string]interface{}{"data": v}
+				default:
+					t.Fatalf("Unexpected JSON type: %T", v)
+				}
+
+				handlerValue := reflect.ValueOf(handler)
+				handlerValue.Call([]reflect.Value{reflect.ValueOf(msgData)})
+			}
+		}
+
+		require.Equal(t, 1, called, "callback should be called once")
+		require.NotNil(t, got)
+	})
+
+	t.Run("Test WebSocketStreamsAPIService BlockTrade Missing Required Params", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketStreams()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketStreams(cfg),
+		)
+		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		resp, err := mockClient.WebsocketStreams.WebSocketStreamsAPI.BlockTrade().Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test WebSocketStreamsAPIService BlockTrade Server Error", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		conn.Listen()
+		conn.ErrorChan = make(chan error, 1)
+		cfg := common.NewConfigurationWebsocketStreams()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketStreams(cfg),
+		)
+		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		resp, err := mockClient.WebsocketStreams.WebSocketStreamsAPI.BlockTrade().Symbol("bnbusdt").Execute()
+		require.NotNil(t, resp)
+		require.NoError(t, err)
+
+		done := make(chan struct{})
+		var gotErr error
+
+		resp.OnError(func(err error) {
+			gotErr = err
+			close(done)
+		})
+
+		conn.ErrorChan <- errors.New("Invalid JSON: expected value at line 1 column 30")
+
+		select {
+		case <-done:
+		case <-time.After(time.Second):
+			t.Fatal("timeout waiting for error callback")
+		}
+
+		require.EqualError(t, gotErr, "Invalid JSON: expected value at line 1 column 30")
+	})
 	t.Run("Test WebSocketStreamsAPI BookTicker Success", func(t *testing.T) {
 		conn, mockWS, cleanup := tests.SetupMockClient("123")
 		defer cleanup()

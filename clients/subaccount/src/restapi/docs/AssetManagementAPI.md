@@ -319,7 +319,7 @@ No authorization required
 
 ## GetMovePositionHistoryForSubAccount
 
-> GetMovePositionHistoryForSubAccountResponse GetMovePositionHistoryForSubAccount(ctx).Symbol(symbol).Page(page).Row(row).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+> GetMovePositionHistoryForSubAccountResponse GetMovePositionHistoryForSubAccount(ctx).Symbol(symbol).Page(page).Rows(rows).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
 Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 
@@ -342,7 +342,7 @@ import (
 func main() {
 	symbol := "symbol_example" // string | 
 	page := int64(789) // int64 | Page
-	row := int64(789) // int64 | 
+	rows := int64(789) // int64 | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -354,7 +354,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol(symbol).Page(page).Row(row).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol(symbol).Page(page).Rows(rows).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetManagementAPI.GetMovePositionHistoryForSubAccount``: %v\n", err)
 		return
@@ -375,7 +375,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **page** | **int64** | Page | 
- **row** | **int64** |  | 
+ **rows** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **recvWindow** | **int64** |  | 

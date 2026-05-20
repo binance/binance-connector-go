@@ -23,7 +23,7 @@ func NewUmAlgoOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Type(models.NewCmOrderTypeParameterLimit).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Type(models.NewCmOrderTypeParameterLimit).Quantity(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

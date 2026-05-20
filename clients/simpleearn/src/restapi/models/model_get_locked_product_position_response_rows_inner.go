@@ -22,7 +22,7 @@ type GetLockedProductPositionResponseRowsInner struct {
 	ProjectId             *string `json:"projectId,omitempty"`
 	Asset                 *string `json:"asset,omitempty"`
 	Amount                *string `json:"amount,omitempty"`
-	PurchaseTime          *string `json:"purchaseTime,omitempty"`
+	PurchaseTime          *int64  `json:"purchaseTime,omitempty"`
 	Duration              *string `json:"duration,omitempty"`
 	AccrualDays           *string `json:"accrualDays,omitempty"`
 	RewardAsset           *string `json:"rewardAsset,omitempty"`
@@ -35,15 +35,15 @@ type GetLockedProductPositionResponseRowsInner struct {
 	BoostApr              *string `json:"boostApr,omitempty"`
 	TotalBoostRewardAmt   *string `json:"totalBoostRewardAmt,omitempty"`
 	NextPay               *string `json:"nextPay,omitempty"`
-	NextPayDate           *string `json:"nextPayDate,omitempty"`
+	NextPayDate           *int64  `json:"nextPayDate,omitempty"`
 	PayPeriod             *string `json:"payPeriod,omitempty"`
 	RedeemAmountEarly     *string `json:"redeemAmountEarly,omitempty"`
-	RewardsEndDate        *string `json:"rewardsEndDate,omitempty"`
-	DeliverDate           *string `json:"deliverDate,omitempty"`
+	RewardsEndDate        *int64  `json:"rewardsEndDate,omitempty"`
+	DeliverDate           *int64  `json:"deliverDate,omitempty"`
 	RedeemPeriod          *string `json:"redeemPeriod,omitempty"`
 	RedeemingAmt          *string `json:"redeemingAmt,omitempty"`
 	RedeemTo              *string `json:"redeemTo,omitempty"`
-	PartialAmtDeliverDate *string `json:"partialAmtDeliverDate,omitempty"`
+	PartialAmtDeliverDate *int64  `json:"partialAmtDeliverDate,omitempty"`
 	CanRedeemEarly        *bool   `json:"canRedeemEarly,omitempty"`
 	CanFastRedemption     *bool   `json:"canFastRedemption,omitempty"`
 	AutoSubscribe         *bool   `json:"autoSubscribe,omitempty"`
@@ -233,9 +233,9 @@ func (o *GetLockedProductPositionResponseRowsInner) SetAmount(v string) {
 }
 
 // GetPurchaseTime returns the PurchaseTime field value if set, zero value otherwise.
-func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTime() string {
+func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTime() int64 {
 	if o == nil || common.IsNil(o.PurchaseTime) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.PurchaseTime
@@ -243,7 +243,7 @@ func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTime() string {
 
 // GetPurchaseTimeOk returns a tuple with the PurchaseTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTimeOk() (*string, bool) {
+func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.PurchaseTime) {
 		return nil, false
 	}
@@ -259,8 +259,8 @@ func (o *GetLockedProductPositionResponseRowsInner) HasPurchaseTime() bool {
 	return false
 }
 
-// SetPurchaseTime gets a reference to the given string and assigns it to the PurchaseTime field.
-func (o *GetLockedProductPositionResponseRowsInner) SetPurchaseTime(v string) {
+// SetPurchaseTime gets a reference to the given int64 and assigns it to the PurchaseTime field.
+func (o *GetLockedProductPositionResponseRowsInner) SetPurchaseTime(v int64) {
 	o.PurchaseTime = &v
 }
 
@@ -649,9 +649,9 @@ func (o *GetLockedProductPositionResponseRowsInner) SetNextPay(v string) {
 }
 
 // GetNextPayDate returns the NextPayDate field value if set, zero value otherwise.
-func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDate() string {
+func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDate() int64 {
 	if o == nil || common.IsNil(o.NextPayDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.NextPayDate
@@ -659,7 +659,7 @@ func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDate() string {
 
 // GetNextPayDateOk returns a tuple with the NextPayDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDateOk() (*string, bool) {
+func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.NextPayDate) {
 		return nil, false
 	}
@@ -675,8 +675,8 @@ func (o *GetLockedProductPositionResponseRowsInner) HasNextPayDate() bool {
 	return false
 }
 
-// SetNextPayDate gets a reference to the given string and assigns it to the NextPayDate field.
-func (o *GetLockedProductPositionResponseRowsInner) SetNextPayDate(v string) {
+// SetNextPayDate gets a reference to the given int64 and assigns it to the NextPayDate field.
+func (o *GetLockedProductPositionResponseRowsInner) SetNextPayDate(v int64) {
 	o.NextPayDate = &v
 }
 
@@ -745,9 +745,9 @@ func (o *GetLockedProductPositionResponseRowsInner) SetRedeemAmountEarly(v strin
 }
 
 // GetRewardsEndDate returns the RewardsEndDate field value if set, zero value otherwise.
-func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDate() string {
+func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDate() int64 {
 	if o == nil || common.IsNil(o.RewardsEndDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.RewardsEndDate
@@ -755,7 +755,7 @@ func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDate() string {
 
 // GetRewardsEndDateOk returns a tuple with the RewardsEndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDateOk() (*string, bool) {
+func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.RewardsEndDate) {
 		return nil, false
 	}
@@ -771,15 +771,15 @@ func (o *GetLockedProductPositionResponseRowsInner) HasRewardsEndDate() bool {
 	return false
 }
 
-// SetRewardsEndDate gets a reference to the given string and assigns it to the RewardsEndDate field.
-func (o *GetLockedProductPositionResponseRowsInner) SetRewardsEndDate(v string) {
+// SetRewardsEndDate gets a reference to the given int64 and assigns it to the RewardsEndDate field.
+func (o *GetLockedProductPositionResponseRowsInner) SetRewardsEndDate(v int64) {
 	o.RewardsEndDate = &v
 }
 
 // GetDeliverDate returns the DeliverDate field value if set, zero value otherwise.
-func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDate() string {
+func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDate() int64 {
 	if o == nil || common.IsNil(o.DeliverDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.DeliverDate
@@ -787,7 +787,7 @@ func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDate() string {
 
 // GetDeliverDateOk returns a tuple with the DeliverDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDateOk() (*string, bool) {
+func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.DeliverDate) {
 		return nil, false
 	}
@@ -803,8 +803,8 @@ func (o *GetLockedProductPositionResponseRowsInner) HasDeliverDate() bool {
 	return false
 }
 
-// SetDeliverDate gets a reference to the given string and assigns it to the DeliverDate field.
-func (o *GetLockedProductPositionResponseRowsInner) SetDeliverDate(v string) {
+// SetDeliverDate gets a reference to the given int64 and assigns it to the DeliverDate field.
+func (o *GetLockedProductPositionResponseRowsInner) SetDeliverDate(v int64) {
 	o.DeliverDate = &v
 }
 
@@ -905,9 +905,9 @@ func (o *GetLockedProductPositionResponseRowsInner) SetRedeemTo(v string) {
 }
 
 // GetPartialAmtDeliverDate returns the PartialAmtDeliverDate field value if set, zero value otherwise.
-func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDate() string {
+func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDate() int64 {
 	if o == nil || common.IsNil(o.PartialAmtDeliverDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.PartialAmtDeliverDate
@@ -915,7 +915,7 @@ func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDate() s
 
 // GetPartialAmtDeliverDateOk returns a tuple with the PartialAmtDeliverDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDateOk() (*string, bool) {
+func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.PartialAmtDeliverDate) {
 		return nil, false
 	}
@@ -931,8 +931,8 @@ func (o *GetLockedProductPositionResponseRowsInner) HasPartialAmtDeliverDate() b
 	return false
 }
 
-// SetPartialAmtDeliverDate gets a reference to the given string and assigns it to the PartialAmtDeliverDate field.
-func (o *GetLockedProductPositionResponseRowsInner) SetPartialAmtDeliverDate(v string) {
+// SetPartialAmtDeliverDate gets a reference to the given int64 and assigns it to the PartialAmtDeliverDate field.
+func (o *GetLockedProductPositionResponseRowsInner) SetPartialAmtDeliverDate(v int64) {
 	o.PartialAmtDeliverDate = &v
 }
 

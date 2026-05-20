@@ -160,6 +160,172 @@ func Test_binancespotwebsocketapi_MarketAPIService(t *testing.T) {
 
 		<-done
 	})
+	t.Run("Test MarketAPIService BlockTradesHistorical AsyncExecute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		responseChan, errorChan, err := mockClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol("BNBUSDT").FromId(int64(1)).ExecuteAsync()
+		require.NoError(t, err)
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"id":582,"price":"0.052","qty":"5838","quoteQty":"303.576","time":1772506983321,"isBuyerMaker":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":10}]}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		select {
+		case resp := <-responseChan:
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			require.NotEmpty(t, mockWS.MessagesWritten)
+
+			require.Len(t, mockWS.MessagesWritten, 1)
+			var sent map[string]any
+			err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+			require.NoError(t, err)
+			require.Equal(t, "/blockTrades.historical"[1:], sent["method"])
+
+			typedResp := resp.Typed
+			require.IsType(t, &models.BlockTradesHistoricalResponse{}, typedResp)
+		case err := <-errorChan:
+			t.Fatalf("Unexpected error: %v", err)
+		}
+	})
+
+	t.Run("Test MarketAPIService BlockTradesHistorical Execute Success", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer cleanup()
+
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		conn.Listen()
+
+		resultChan := make(chan common.ResultWebsocket[models.BlockTradesHistoricalResponse], 1)
+		go func() {
+			resp, err := mockClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol("BNBUSDT").FromId(int64(1)).Execute()
+			resultChan <- common.ResultWebsocket[models.BlockTradesHistoricalResponse]{Value: resp, Err: err}
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"id":582,"price":"0.052","qty":"5838","quoteQty":"303.576","time":1772506983321,"isBuyerMaker":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":10}]}`
+		mockWS.QueueMessage([]byte(mockedJSON))
+
+		res := <-resultChan
+		resp := res.Value
+		err := res.Err
+
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.NotEmpty(t, mockWS.MessagesWritten)
+
+		require.Len(t, mockWS.MessagesWritten, 1)
+		var sent map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+		require.Equal(t, "/blockTrades.historical"[1:], sent["method"])
+
+		typedResp := resp.Typed
+		require.IsType(t, &models.BlockTradesHistoricalResponse{}, typedResp)
+	})
+
+	t.Run("Test MarketAPIService BlockTradesHistorical Missing Required Params", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		respChan, errChan, err := mockClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().ExecuteAsync()
+		require.Error(t, err)
+		require.Nil(t, respChan)
+		require.Nil(t, errChan)
+	})
+
+	t.Run("Test MarketAPIService BlockTradesHistorical Missing Required Params", func(t *testing.T) {
+		conn, _, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+
+		respChan, errChan, err := mockClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().ExecuteAsync()
+		require.Error(t, err)
+		require.Nil(t, respChan)
+		require.Nil(t, errChan)
+	})
+
+	t.Run("Test MarketAPIService BlockTradesHistorical Server Error", func(t *testing.T) {
+		conn, mockWS, cleanup := tests.SetupMockClient("123")
+		defer func() {
+			close(conn.Done)
+			cleanup()
+		}()
+		conn.Id = "123"
+
+		conn.Listen()
+		cfg := common.NewConfigurationWebsocketApi()
+		mockClient := client.NewBinanceSpotClient(
+			client.WithWebsocketAPI(cfg),
+		)
+		mockClient.WebsocketAPI.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
+		done := make(chan struct{})
+
+		go func() {
+			respChan, _, err := mockClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol("BNBUSDT").FromId(int64(1)).ExecuteAsync()
+			if err != nil {
+				var wsErr *common.WebSocketError
+				if errors.As(err, &wsErr) {
+					require.Contains(t, wsErr.Error(), "[-1001] Internal server error")
+					require.Equal(t, "123", wsErr.ConnID)
+					require.Equal(t, "error_response", wsErr.Op)
+				} else {
+					t.Errorf("unexpected error type: %T", err)
+				}
+				_, ok := <-respChan
+				require.False(t, ok, "response channel should be closed")
+			}
+			close(done)
+		}()
+
+		<-mockWS.HasSentChan
+
+		mockWS.QueueMessage([]byte(`{
+			"id":"123",
+			"status":500,
+			"error":{
+				"code":-1001,
+				"msg":"Internal server error"
+			}
+		}`))
+
+		<-done
+	})
 	t.Run("Test MarketAPIService Depth AsyncExecute Success", func(t *testing.T) {
 		conn, mockWS, cleanup := tests.SetupMockClient("123")
 		defer cleanup()

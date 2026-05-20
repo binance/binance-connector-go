@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** |  | [optional] 
 **ListenKey** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetE
 
-`func (o *Listenkeyexpired) GetE() string`
+`func (o *Listenkeyexpired) GetE() int64`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *Listenkeyexpired) GetEOk() (*string, bool)`
+`func (o *Listenkeyexpired) GetEOk() (*int64, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *Listenkeyexpired) SetE(v string)`
+`func (o *Listenkeyexpired) SetE(v int64)`
 
 SetE sets E field to given value.
 

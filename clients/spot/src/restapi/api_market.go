@@ -318,6 +318,85 @@ func (a *MarketAPIService) GetTradesExecute(r ApiGetTradesRequest) (*common.Rest
 	return resp, nil
 }
 
+type ApiHistoricalBlockTradesRequest struct {
+	ctx        context.Context
+	ApiService *MarketAPIService
+	symbol     *string
+	fromId     *int64
+	limit      *int64
+}
+
+func (r ApiHistoricalBlockTradesRequest) Symbol(symbol string) ApiHistoricalBlockTradesRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Block trade ID to fetch from
+func (r ApiHistoricalBlockTradesRequest) FromId(fromId int64) ApiHistoricalBlockTradesRequest {
+	r.fromId = &fromId
+	return r
+}
+
+// Default: 500; Maximum: 1000
+func (r ApiHistoricalBlockTradesRequest) Limit(limit int64) ApiHistoricalBlockTradesRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiHistoricalBlockTradesRequest) Execute() (*common.RestApiResponse[models.HistoricalBlockTradesResponse], error) {
+	return r.ApiService.HistoricalBlockTradesExecute(r)
+}
+
+/*
+HistoricalBlockTrades Historical Block Trades
+Get /api/v3/historicalBlockTrades
+
+https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#historical-block-trades
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@param fromId -  Block trade ID to fetch from
+@param limit -  Default: 500; Maximum: 1000
+@return ApiHistoricalBlockTradesRequest
+*/
+func (a *MarketAPIService) HistoricalBlockTrades(ctx context.Context) ApiHistoricalBlockTradesRequest {
+	return ApiHistoricalBlockTradesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return HistoricalBlockTradesResponse
+func (a *MarketAPIService) HistoricalBlockTradesExecute(r ApiHistoricalBlockTradesRequest) (*common.RestApiResponse[models.HistoricalBlockTradesResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/api/v3/historicalBlockTrades"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+	if r.fromId == nil {
+		return nil, common.ReportError("fromId is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromId", r.fromId, "form", "")
+	if r.limit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+
+	resp, err := SendRequest[models.HistoricalBlockTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiHistoricalTradesRequest struct {
 	ctx        context.Context
 	ApiService *MarketAPIService

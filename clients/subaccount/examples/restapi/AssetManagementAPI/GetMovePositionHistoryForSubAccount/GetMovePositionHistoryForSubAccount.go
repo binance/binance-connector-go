@@ -22,7 +22,7 @@ func GetMovePositionHistoryForSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol("symbol_example").Page(789).Row(789).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol("symbol_example").Page(789).Rows(789).Execute()
 	if err != nil {
 		log.Println(err)
 		return

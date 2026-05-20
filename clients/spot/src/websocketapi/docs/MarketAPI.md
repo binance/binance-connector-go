@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AvgPrice**](MarketAPI.md#AvgPrice) | /avgPrice | WebSocket Current average price
+[**BlockTradesHistorical**](MarketAPI.md#BlockTradesHistorical) | /blockTrades.historical | WebSocket Historical Block Trades
 [**Depth**](MarketAPI.md#Depth) | /depth | WebSocket Order book
 [**Klines**](MarketAPI.md#Klines) | /klines | WebSocket Klines
 [**ReferencePrice**](MarketAPI.md#ReferencePrice) | /referencePrice | WebSocket Query Reference Price
@@ -86,6 +87,84 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**AvgPriceResponse**](AvgPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## BlockTradesHistorical
+
+> BlockTradesHistoricalResponse BlockTradesHistorical().Symbol(symbol).FromId(fromId).Id(id).Limit(limit).Execute()
+
+WebSocket Historical Block Trades
+
+
+### Example
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+	fromId := int64(1) // int64 | Block trade ID to fetch from
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
+
+	configuration := common.NewConfigurationWebsocketApi(
+		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
+		common.WithWsApiKey("Your API Key"),
+		common.WithWsApiSecret("Your API Secret"),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketAPI(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketAPI.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+
+	resp, err := wsClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol(symbol).FromId(fromId).Id(id).Limit(limit).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.BlockTradesHistorical``: %v\n", err)
+		return
+	}
+
+	result, _ := json.MarshalIndent(resp.Typed, "", "  ")
+	log.Printf("Result: %s\n", result)
+
+	err = wsClient.WebsocketAPI.CloseWebSocketConnection()
+	if err != nil {
+		log.Printf("Error closing WebSocket connection: %v\n", err)
+		return
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **fromId** | **int64** | Block trade ID to fetch from | 
+ **id** | **string** | Unique WebSocket request ID. | 
+ **limit** | **int64** | Default: 500; Maximum: 1000 | 
+
+### Return type
+
+[**BlockTradesHistoricalResponse**](BlockTradesHistoricalResponse.md)
 
 ### Authorization
 

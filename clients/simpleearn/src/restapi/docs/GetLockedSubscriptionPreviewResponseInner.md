@@ -11,11 +11,11 @@ Name         | Type          | Description.  | Notes
 **BoostRewardAsset** | Pointer to **string** |  | [optional] 
 **EstDailyRewardAmt** | Pointer to **string** |  | [optional] 
 **NextPay** | Pointer to **string** |  | [optional] 
-**NextPayDate** | Pointer to **string** |  | [optional] 
-**ValueDate** | Pointer to **string** |  | [optional] 
-**RewardsEndDate** | Pointer to **string** |  | [optional] 
-**DeliverDate** | Pointer to **string** |  | [optional] 
-**NextSubscriptionDate** | Pointer to **string** |  | [optional] 
+**NextPayDate** | Pointer to **int64** |  | [optional] 
+**ValueDate** | Pointer to **int64** |  | [optional] 
+**RewardsEndDate** | Pointer to **int64** |  | [optional] 
+**DeliverDate** | Pointer to **int64** |  | [optional] 
+**NextSubscriptionDate** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -213,20 +213,20 @@ HasNextPay returns a boolean if a field has been set.
 
 ### GetNextPayDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDate() string`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDate() int64`
 
 GetNextPayDate returns the NextPayDate field if non-nil, zero value otherwise.
 
 ### GetNextPayDateOk
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDateOk() (*string, bool)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextPayDateOk() (*int64, bool)`
 
 GetNextPayDateOk returns a tuple with the NextPayDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextPayDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) SetNextPayDate(v string)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) SetNextPayDate(v int64)`
 
 SetNextPayDate sets NextPayDate field to given value.
 
@@ -238,20 +238,20 @@ HasNextPayDate returns a boolean if a field has been set.
 
 ### GetValueDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDate() string`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDate() int64`
 
 GetValueDate returns the ValueDate field if non-nil, zero value otherwise.
 
 ### GetValueDateOk
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDateOk() (*string, bool)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetValueDateOk() (*int64, bool)`
 
 GetValueDateOk returns a tuple with the ValueDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValueDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) SetValueDate(v string)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) SetValueDate(v int64)`
 
 SetValueDate sets ValueDate field to given value.
 
@@ -263,20 +263,20 @@ HasValueDate returns a boolean if a field has been set.
 
 ### GetRewardsEndDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDate() string`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDate() int64`
 
 GetRewardsEndDate returns the RewardsEndDate field if non-nil, zero value otherwise.
 
 ### GetRewardsEndDateOk
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDateOk() (*string, bool)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetRewardsEndDateOk() (*int64, bool)`
 
 GetRewardsEndDateOk returns a tuple with the RewardsEndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRewardsEndDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) SetRewardsEndDate(v string)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) SetRewardsEndDate(v int64)`
 
 SetRewardsEndDate sets RewardsEndDate field to given value.
 
@@ -288,20 +288,20 @@ HasRewardsEndDate returns a boolean if a field has been set.
 
 ### GetDeliverDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDate() string`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDate() int64`
 
 GetDeliverDate returns the DeliverDate field if non-nil, zero value otherwise.
 
 ### GetDeliverDateOk
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDateOk() (*string, bool)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetDeliverDateOk() (*int64, bool)`
 
 GetDeliverDateOk returns a tuple with the DeliverDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeliverDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) SetDeliverDate(v string)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) SetDeliverDate(v int64)`
 
 SetDeliverDate sets DeliverDate field to given value.
 
@@ -313,20 +313,20 @@ HasDeliverDate returns a boolean if a field has been set.
 
 ### GetNextSubscriptionDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDate() string`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDate() int64`
 
 GetNextSubscriptionDate returns the NextSubscriptionDate field if non-nil, zero value otherwise.
 
 ### GetNextSubscriptionDateOk
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDateOk() (*string, bool)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) GetNextSubscriptionDateOk() (*int64, bool)`
 
 GetNextSubscriptionDateOk returns a tuple with the NextSubscriptionDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextSubscriptionDate
 
-`func (o *GetLockedSubscriptionPreviewResponseInner) SetNextSubscriptionDate(v string)`
+`func (o *GetLockedSubscriptionPreviewResponseInner) SetNextSubscriptionDate(v int64)`
 
 SetNextSubscriptionDate sets NextSubscriptionDate field to given value.
 

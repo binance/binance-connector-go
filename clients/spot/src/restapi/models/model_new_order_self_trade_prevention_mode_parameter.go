@@ -21,6 +21,7 @@ const (
 	NewOrderSelfTradePreventionModeParameterExpireMaker      NewOrderSelfTradePreventionModeParameter = "EXPIRE_MAKER"
 	NewOrderSelfTradePreventionModeParameterExpireBoth       NewOrderSelfTradePreventionModeParameter = "EXPIRE_BOTH"
 	NewOrderSelfTradePreventionModeParameterDecrement        NewOrderSelfTradePreventionModeParameter = "DECREMENT"
+	NewOrderSelfTradePreventionModeParameterTransfer         NewOrderSelfTradePreventionModeParameter = "TRANSFER"
 	NewOrderSelfTradePreventionModeParameterNonRepresentable NewOrderSelfTradePreventionModeParameter = "NON_REPRESENTABLE"
 )
 
@@ -31,6 +32,7 @@ var AllowedNewOrderSelfTradePreventionModeParameterEnumValues = []NewOrderSelfTr
 	"EXPIRE_MAKER",
 	"EXPIRE_BOTH",
 	"DECREMENT",
+	"TRANSFER",
 	"NON_REPRESENTABLE",
 }
 

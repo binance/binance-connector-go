@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the AlgoUpdateO type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &AlgoUpdateO{}
+// checks if the AlgoUpdateAo type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &AlgoUpdateAo{}
 
-// AlgoUpdateO struct for AlgoUpdateO
-type AlgoUpdateO struct {
+// AlgoUpdateAo struct for AlgoUpdateAo
+type AlgoUpdateAo struct {
 	Caid                 *string `json:"caid,omitempty"`
 	Aid                  *int64  `json:"aid,omitempty"`
 	Smallat              *string `json:"at,omitempty"`
@@ -45,27 +45,27 @@ type AlgoUpdateO struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AlgoUpdateO AlgoUpdateO
+type _AlgoUpdateAo AlgoUpdateAo
 
-// NewAlgoUpdateO instantiates a new AlgoUpdateO object
+// NewAlgoUpdateAo instantiates a new AlgoUpdateAo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlgoUpdateO() *AlgoUpdateO {
-	this := AlgoUpdateO{}
+func NewAlgoUpdateAo() *AlgoUpdateAo {
+	this := AlgoUpdateAo{}
 	return &this
 }
 
-// NewAlgoUpdateOWithDefaults instantiates a new AlgoUpdateO object
+// NewAlgoUpdateAoWithDefaults instantiates a new AlgoUpdateAo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAlgoUpdateOWithDefaults() *AlgoUpdateO {
-	this := AlgoUpdateO{}
+func NewAlgoUpdateAoWithDefaults() *AlgoUpdateAo {
+	this := AlgoUpdateAo{}
 	return &this
 }
 
 // GetCaid returns the Caid field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetCaid() string {
+func (o *AlgoUpdateAo) GetCaid() string {
 	if o == nil || common.IsNil(o.Caid) {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *AlgoUpdateO) GetCaid() string {
 
 // GetCaidOk returns a tuple with the Caid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetCaidOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetCaidOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Caid) {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *AlgoUpdateO) GetCaidOk() (*string, bool) {
 }
 
 // HasCaid returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasCaid() bool {
+func (o *AlgoUpdateAo) HasCaid() bool {
 	if o != nil && !common.IsNil(o.Caid) {
 		return true
 	}
@@ -92,12 +92,12 @@ func (o *AlgoUpdateO) HasCaid() bool {
 }
 
 // SetCaid gets a reference to the given string and assigns it to the Caid field.
-func (o *AlgoUpdateO) SetCaid(v string) {
+func (o *AlgoUpdateAo) SetCaid(v string) {
 	o.Caid = &v
 }
 
 // GetAid returns the Aid field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetAid() int64 {
+func (o *AlgoUpdateAo) GetAid() int64 {
 	if o == nil || common.IsNil(o.Aid) {
 		var ret int64
 		return ret
@@ -107,7 +107,7 @@ func (o *AlgoUpdateO) GetAid() int64 {
 
 // GetAidOk returns a tuple with the Aid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetAidOk() (*int64, bool) {
+func (o *AlgoUpdateAo) GetAidOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Aid) {
 		return nil, false
 	}
@@ -115,7 +115,7 @@ func (o *AlgoUpdateO) GetAidOk() (*int64, bool) {
 }
 
 // HasAid returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasAid() bool {
+func (o *AlgoUpdateAo) HasAid() bool {
 	if o != nil && !common.IsNil(o.Aid) {
 		return true
 	}
@@ -124,12 +124,12 @@ func (o *AlgoUpdateO) HasAid() bool {
 }
 
 // SetAid gets a reference to the given int64 and assigns it to the Aid field.
-func (o *AlgoUpdateO) SetAid(v int64) {
+func (o *AlgoUpdateAo) SetAid(v int64) {
 	o.Aid = &v
 }
 
 // GetAt returns the At field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallat() string {
+func (o *AlgoUpdateAo) GetSmallat() string {
 	if o == nil || common.IsNil(o.Smallat) {
 		var ret string
 		return ret
@@ -139,7 +139,7 @@ func (o *AlgoUpdateO) GetSmallat() string {
 
 // GetAtOk returns a tuple with the At field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallatOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallatOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallat) {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *AlgoUpdateO) GetSmallatOk() (*string, bool) {
 }
 
 // HasAt returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallat() bool {
+func (o *AlgoUpdateAo) HasSmallat() bool {
 	if o != nil && !common.IsNil(o.Smallat) {
 		return true
 	}
@@ -156,12 +156,12 @@ func (o *AlgoUpdateO) HasSmallat() bool {
 }
 
 // SetAt gets a reference to the given string and assigns it to the At field.
-func (o *AlgoUpdateO) SetSmallat(v string) {
+func (o *AlgoUpdateAo) SetSmallat(v string) {
 	o.Smallat = &v
 }
 
 // GetO returns the O field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallo() string {
+func (o *AlgoUpdateAo) GetSmallo() string {
 	if o == nil || common.IsNil(o.Smallo) {
 		var ret string
 		return ret
@@ -171,7 +171,7 @@ func (o *AlgoUpdateO) GetSmallo() string {
 
 // GetOOk returns a tuple with the O field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmalloOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmalloOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallo) {
 		return nil, false
 	}
@@ -179,7 +179,7 @@ func (o *AlgoUpdateO) GetSmalloOk() (*string, bool) {
 }
 
 // HasO returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallo() bool {
+func (o *AlgoUpdateAo) HasSmallo() bool {
 	if o != nil && !common.IsNil(o.Smallo) {
 		return true
 	}
@@ -188,12 +188,12 @@ func (o *AlgoUpdateO) HasSmallo() bool {
 }
 
 // SetO gets a reference to the given string and assigns it to the O field.
-func (o *AlgoUpdateO) SetSmallo(v string) {
+func (o *AlgoUpdateAo) SetSmallo(v string) {
 	o.Smallo = &v
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmalls() string {
+func (o *AlgoUpdateAo) GetSmalls() string {
 	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
@@ -203,7 +203,7 @@ func (o *AlgoUpdateO) GetSmalls() string {
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallsOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallsOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
@@ -211,7 +211,7 @@ func (o *AlgoUpdateO) GetSmallsOk() (*string, bool) {
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmalls() bool {
+func (o *AlgoUpdateAo) HasSmalls() bool {
 	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
@@ -220,12 +220,12 @@ func (o *AlgoUpdateO) HasSmalls() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *AlgoUpdateO) SetSmalls(v string) {
+func (o *AlgoUpdateAo) SetSmalls(v string) {
 	o.Smalls = &v
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetS() string {
+func (o *AlgoUpdateAo) GetS() string {
 	if o == nil || common.IsNil(o.S) {
 		var ret string
 		return ret
@@ -235,7 +235,7 @@ func (o *AlgoUpdateO) GetS() string {
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSOk() (*string, bool) {
 	if o == nil || common.IsNil(o.S) {
 		return nil, false
 	}
@@ -243,7 +243,7 @@ func (o *AlgoUpdateO) GetSOk() (*string, bool) {
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasS() bool {
+func (o *AlgoUpdateAo) HasS() bool {
 	if o != nil && !common.IsNil(o.S) {
 		return true
 	}
@@ -252,12 +252,12 @@ func (o *AlgoUpdateO) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *AlgoUpdateO) SetS(v string) {
+func (o *AlgoUpdateAo) SetS(v string) {
 	o.S = &v
 }
 
 // GetPs returns the Ps field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallps() string {
+func (o *AlgoUpdateAo) GetSmallps() string {
 	if o == nil || common.IsNil(o.Smallps) {
 		var ret string
 		return ret
@@ -267,7 +267,7 @@ func (o *AlgoUpdateO) GetSmallps() string {
 
 // GetPsOk returns a tuple with the Ps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallpsOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallpsOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallps) {
 		return nil, false
 	}
@@ -275,7 +275,7 @@ func (o *AlgoUpdateO) GetSmallpsOk() (*string, bool) {
 }
 
 // HasPs returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallps() bool {
+func (o *AlgoUpdateAo) HasSmallps() bool {
 	if o != nil && !common.IsNil(o.Smallps) {
 		return true
 	}
@@ -284,12 +284,12 @@ func (o *AlgoUpdateO) HasSmallps() bool {
 }
 
 // SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *AlgoUpdateO) SetSmallps(v string) {
+func (o *AlgoUpdateAo) SetSmallps(v string) {
 	o.Smallps = &v
 }
 
 // GetF returns the F field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallf() string {
+func (o *AlgoUpdateAo) GetSmallf() string {
 	if o == nil || common.IsNil(o.Smallf) {
 		var ret string
 		return ret
@@ -299,7 +299,7 @@ func (o *AlgoUpdateO) GetSmallf() string {
 
 // GetFOk returns a tuple with the F field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallfOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallfOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallf) {
 		return nil, false
 	}
@@ -307,7 +307,7 @@ func (o *AlgoUpdateO) GetSmallfOk() (*string, bool) {
 }
 
 // HasF returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallf() bool {
+func (o *AlgoUpdateAo) HasSmallf() bool {
 	if o != nil && !common.IsNil(o.Smallf) {
 		return true
 	}
@@ -316,12 +316,12 @@ func (o *AlgoUpdateO) HasSmallf() bool {
 }
 
 // SetF gets a reference to the given string and assigns it to the F field.
-func (o *AlgoUpdateO) SetSmallf(v string) {
+func (o *AlgoUpdateAo) SetSmallf(v string) {
 	o.Smallf = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallq() string {
+func (o *AlgoUpdateAo) GetSmallq() string {
 	if o == nil || common.IsNil(o.Smallq) {
 		var ret string
 		return ret
@@ -331,7 +331,7 @@ func (o *AlgoUpdateO) GetSmallq() string {
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallqOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallqOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallq) {
 		return nil, false
 	}
@@ -339,7 +339,7 @@ func (o *AlgoUpdateO) GetSmallqOk() (*string, bool) {
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallq() bool {
+func (o *AlgoUpdateAo) HasSmallq() bool {
 	if o != nil && !common.IsNil(o.Smallq) {
 		return true
 	}
@@ -348,12 +348,12 @@ func (o *AlgoUpdateO) HasSmallq() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *AlgoUpdateO) SetSmallq(v string) {
+func (o *AlgoUpdateAo) SetSmallq(v string) {
 	o.Smallq = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetX() string {
+func (o *AlgoUpdateAo) GetX() string {
 	if o == nil || common.IsNil(o.X) {
 		var ret string
 		return ret
@@ -363,7 +363,7 @@ func (o *AlgoUpdateO) GetX() string {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetXOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetXOk() (*string, bool) {
 	if o == nil || common.IsNil(o.X) {
 		return nil, false
 	}
@@ -371,7 +371,7 @@ func (o *AlgoUpdateO) GetXOk() (*string, bool) {
 }
 
 // HasX returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasX() bool {
+func (o *AlgoUpdateAo) HasX() bool {
 	if o != nil && !common.IsNil(o.X) {
 		return true
 	}
@@ -380,12 +380,12 @@ func (o *AlgoUpdateO) HasX() bool {
 }
 
 // SetX gets a reference to the given string and assigns it to the X field.
-func (o *AlgoUpdateO) SetX(v string) {
+func (o *AlgoUpdateAo) SetX(v string) {
 	o.X = &v
 }
 
 // GetAi returns the Ai field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallai() string {
+func (o *AlgoUpdateAo) GetSmallai() string {
 	if o == nil || common.IsNil(o.Smallai) {
 		var ret string
 		return ret
@@ -395,7 +395,7 @@ func (o *AlgoUpdateO) GetSmallai() string {
 
 // GetAiOk returns a tuple with the Ai field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallaiOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallaiOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallai) {
 		return nil, false
 	}
@@ -403,7 +403,7 @@ func (o *AlgoUpdateO) GetSmallaiOk() (*string, bool) {
 }
 
 // HasAi returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallai() bool {
+func (o *AlgoUpdateAo) HasSmallai() bool {
 	if o != nil && !common.IsNil(o.Smallai) {
 		return true
 	}
@@ -412,12 +412,12 @@ func (o *AlgoUpdateO) HasSmallai() bool {
 }
 
 // SetAi gets a reference to the given string and assigns it to the Ai field.
-func (o *AlgoUpdateO) SetSmallai(v string) {
+func (o *AlgoUpdateAo) SetSmallai(v string) {
 	o.Smallai = &v
 }
 
 // GetAp returns the Ap field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallap() string {
+func (o *AlgoUpdateAo) GetSmallap() string {
 	if o == nil || common.IsNil(o.Smallap) {
 		var ret string
 		return ret
@@ -427,7 +427,7 @@ func (o *AlgoUpdateO) GetSmallap() string {
 
 // GetApOk returns a tuple with the Ap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallapOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallapOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallap) {
 		return nil, false
 	}
@@ -435,7 +435,7 @@ func (o *AlgoUpdateO) GetSmallapOk() (*string, bool) {
 }
 
 // HasAp returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallap() bool {
+func (o *AlgoUpdateAo) HasSmallap() bool {
 	if o != nil && !common.IsNil(o.Smallap) {
 		return true
 	}
@@ -444,12 +444,12 @@ func (o *AlgoUpdateO) HasSmallap() bool {
 }
 
 // SetAp gets a reference to the given string and assigns it to the Ap field.
-func (o *AlgoUpdateO) SetSmallap(v string) {
+func (o *AlgoUpdateAo) SetSmallap(v string) {
 	o.Smallap = &v
 }
 
 // GetAq returns the Aq field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallaq() string {
+func (o *AlgoUpdateAo) GetSmallaq() string {
 	if o == nil || common.IsNil(o.Smallaq) {
 		var ret string
 		return ret
@@ -459,7 +459,7 @@ func (o *AlgoUpdateO) GetSmallaq() string {
 
 // GetAqOk returns a tuple with the Aq field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallaqOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallaqOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallaq) {
 		return nil, false
 	}
@@ -467,7 +467,7 @@ func (o *AlgoUpdateO) GetSmallaqOk() (*string, bool) {
 }
 
 // HasAq returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallaq() bool {
+func (o *AlgoUpdateAo) HasSmallaq() bool {
 	if o != nil && !common.IsNil(o.Smallaq) {
 		return true
 	}
@@ -476,12 +476,12 @@ func (o *AlgoUpdateO) HasSmallaq() bool {
 }
 
 // SetAq gets a reference to the given string and assigns it to the Aq field.
-func (o *AlgoUpdateO) SetSmallaq(v string) {
+func (o *AlgoUpdateAo) SetSmallaq(v string) {
 	o.Smallaq = &v
 }
 
 // GetAct returns the Act field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetAct() string {
+func (o *AlgoUpdateAo) GetAct() string {
 	if o == nil || common.IsNil(o.Act) {
 		var ret string
 		return ret
@@ -491,7 +491,7 @@ func (o *AlgoUpdateO) GetAct() string {
 
 // GetActOk returns a tuple with the Act field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetActOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetActOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Act) {
 		return nil, false
 	}
@@ -499,7 +499,7 @@ func (o *AlgoUpdateO) GetActOk() (*string, bool) {
 }
 
 // HasAct returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasAct() bool {
+func (o *AlgoUpdateAo) HasAct() bool {
 	if o != nil && !common.IsNil(o.Act) {
 		return true
 	}
@@ -508,12 +508,12 @@ func (o *AlgoUpdateO) HasAct() bool {
 }
 
 // SetAct gets a reference to the given string and assigns it to the Act field.
-func (o *AlgoUpdateO) SetAct(v string) {
+func (o *AlgoUpdateAo) SetAct(v string) {
 	o.Act = &v
 }
 
 // GetTp returns the Tp field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmalltp() string {
+func (o *AlgoUpdateAo) GetSmalltp() string {
 	if o == nil || common.IsNil(o.Smalltp) {
 		var ret string
 		return ret
@@ -523,7 +523,7 @@ func (o *AlgoUpdateO) GetSmalltp() string {
 
 // GetTpOk returns a tuple with the Tp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmalltpOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmalltpOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smalltp) {
 		return nil, false
 	}
@@ -531,7 +531,7 @@ func (o *AlgoUpdateO) GetSmalltpOk() (*string, bool) {
 }
 
 // HasTp returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmalltp() bool {
+func (o *AlgoUpdateAo) HasSmalltp() bool {
 	if o != nil && !common.IsNil(o.Smalltp) {
 		return true
 	}
@@ -540,12 +540,12 @@ func (o *AlgoUpdateO) HasSmalltp() bool {
 }
 
 // SetTp gets a reference to the given string and assigns it to the Tp field.
-func (o *AlgoUpdateO) SetSmalltp(v string) {
+func (o *AlgoUpdateAo) SetSmalltp(v string) {
 	o.Smalltp = &v
 }
 
 // GetP returns the P field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallp() string {
+func (o *AlgoUpdateAo) GetSmallp() string {
 	if o == nil || common.IsNil(o.Smallp) {
 		var ret string
 		return ret
@@ -555,7 +555,7 @@ func (o *AlgoUpdateO) GetSmallp() string {
 
 // GetPOk returns a tuple with the P field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallpOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallpOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallp) {
 		return nil, false
 	}
@@ -563,7 +563,7 @@ func (o *AlgoUpdateO) GetSmallpOk() (*string, bool) {
 }
 
 // HasP returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallp() bool {
+func (o *AlgoUpdateAo) HasSmallp() bool {
 	if o != nil && !common.IsNil(o.Smallp) {
 		return true
 	}
@@ -572,12 +572,12 @@ func (o *AlgoUpdateO) HasSmallp() bool {
 }
 
 // SetP gets a reference to the given string and assigns it to the P field.
-func (o *AlgoUpdateO) SetSmallp(v string) {
+func (o *AlgoUpdateAo) SetSmallp(v string) {
 	o.Smallp = &v
 }
 
 // GetV returns the V field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetV() string {
+func (o *AlgoUpdateAo) GetV() string {
 	if o == nil || common.IsNil(o.V) {
 		var ret string
 		return ret
@@ -587,7 +587,7 @@ func (o *AlgoUpdateO) GetV() string {
 
 // GetVOk returns a tuple with the V field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetVOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetVOk() (*string, bool) {
 	if o == nil || common.IsNil(o.V) {
 		return nil, false
 	}
@@ -595,7 +595,7 @@ func (o *AlgoUpdateO) GetVOk() (*string, bool) {
 }
 
 // HasV returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasV() bool {
+func (o *AlgoUpdateAo) HasV() bool {
 	if o != nil && !common.IsNil(o.V) {
 		return true
 	}
@@ -604,12 +604,12 @@ func (o *AlgoUpdateO) HasV() bool {
 }
 
 // SetV gets a reference to the given string and assigns it to the V field.
-func (o *AlgoUpdateO) SetV(v string) {
+func (o *AlgoUpdateAo) SetV(v string) {
 	o.V = &v
 }
 
 // GetWt returns the Wt field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallwt() string {
+func (o *AlgoUpdateAo) GetSmallwt() string {
 	if o == nil || common.IsNil(o.Smallwt) {
 		var ret string
 		return ret
@@ -619,7 +619,7 @@ func (o *AlgoUpdateO) GetSmallwt() string {
 
 // GetWtOk returns a tuple with the Wt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallwtOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallwtOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallwt) {
 		return nil, false
 	}
@@ -627,7 +627,7 @@ func (o *AlgoUpdateO) GetSmallwtOk() (*string, bool) {
 }
 
 // HasWt returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallwt() bool {
+func (o *AlgoUpdateAo) HasSmallwt() bool {
 	if o != nil && !common.IsNil(o.Smallwt) {
 		return true
 	}
@@ -636,12 +636,12 @@ func (o *AlgoUpdateO) HasSmallwt() bool {
 }
 
 // SetWt gets a reference to the given string and assigns it to the Wt field.
-func (o *AlgoUpdateO) SetSmallwt(v string) {
+func (o *AlgoUpdateAo) SetSmallwt(v string) {
 	o.Smallwt = &v
 }
 
 // GetPm returns the Pm field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallpm() string {
+func (o *AlgoUpdateAo) GetSmallpm() string {
 	if o == nil || common.IsNil(o.Smallpm) {
 		var ret string
 		return ret
@@ -651,7 +651,7 @@ func (o *AlgoUpdateO) GetSmallpm() string {
 
 // GetPmOk returns a tuple with the Pm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallpmOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallpmOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallpm) {
 		return nil, false
 	}
@@ -659,7 +659,7 @@ func (o *AlgoUpdateO) GetSmallpmOk() (*string, bool) {
 }
 
 // HasPm returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallpm() bool {
+func (o *AlgoUpdateAo) HasSmallpm() bool {
 	if o != nil && !common.IsNil(o.Smallpm) {
 		return true
 	}
@@ -668,12 +668,12 @@ func (o *AlgoUpdateO) HasSmallpm() bool {
 }
 
 // SetPm gets a reference to the given string and assigns it to the Pm field.
-func (o *AlgoUpdateO) SetSmallpm(v string) {
+func (o *AlgoUpdateAo) SetSmallpm(v string) {
 	o.Smallpm = &v
 }
 
 // GetCp returns the Cp field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallcp() bool {
+func (o *AlgoUpdateAo) GetSmallcp() bool {
 	if o == nil || common.IsNil(o.Smallcp) {
 		var ret bool
 		return ret
@@ -683,7 +683,7 @@ func (o *AlgoUpdateO) GetSmallcp() bool {
 
 // GetCpOk returns a tuple with the Cp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallcpOk() (*bool, bool) {
+func (o *AlgoUpdateAo) GetSmallcpOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Smallcp) {
 		return nil, false
 	}
@@ -691,7 +691,7 @@ func (o *AlgoUpdateO) GetSmallcpOk() (*bool, bool) {
 }
 
 // HasCp returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallcp() bool {
+func (o *AlgoUpdateAo) HasSmallcp() bool {
 	if o != nil && !common.IsNil(o.Smallcp) {
 		return true
 	}
@@ -700,12 +700,12 @@ func (o *AlgoUpdateO) HasSmallcp() bool {
 }
 
 // SetCp gets a reference to the given bool and assigns it to the Cp field.
-func (o *AlgoUpdateO) SetSmallcp(v bool) {
+func (o *AlgoUpdateAo) SetSmallcp(v bool) {
 	o.Smallcp = &v
 }
 
 // GetPP returns the PP field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetPP() bool {
+func (o *AlgoUpdateAo) GetPP() bool {
 	if o == nil || common.IsNil(o.PP) {
 		var ret bool
 		return ret
@@ -715,7 +715,7 @@ func (o *AlgoUpdateO) GetPP() bool {
 
 // GetPPOk returns a tuple with the PP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetPPOk() (*bool, bool) {
+func (o *AlgoUpdateAo) GetPPOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.PP) {
 		return nil, false
 	}
@@ -723,7 +723,7 @@ func (o *AlgoUpdateO) GetPPOk() (*bool, bool) {
 }
 
 // HasPP returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasPP() bool {
+func (o *AlgoUpdateAo) HasPP() bool {
 	if o != nil && !common.IsNil(o.PP) {
 		return true
 	}
@@ -732,12 +732,12 @@ func (o *AlgoUpdateO) HasPP() bool {
 }
 
 // SetPP gets a reference to the given bool and assigns it to the PP field.
-func (o *AlgoUpdateO) SetPP(v bool) {
+func (o *AlgoUpdateAo) SetPP(v bool) {
 	o.PP = &v
 }
 
 // GetR returns the R field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetR() bool {
+func (o *AlgoUpdateAo) GetR() bool {
 	if o == nil || common.IsNil(o.R) {
 		var ret bool
 		return ret
@@ -747,7 +747,7 @@ func (o *AlgoUpdateO) GetR() bool {
 
 // GetROk returns a tuple with the R field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetROk() (*bool, bool) {
+func (o *AlgoUpdateAo) GetROk() (*bool, bool) {
 	if o == nil || common.IsNil(o.R) {
 		return nil, false
 	}
@@ -755,7 +755,7 @@ func (o *AlgoUpdateO) GetROk() (*bool, bool) {
 }
 
 // HasR returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasR() bool {
+func (o *AlgoUpdateAo) HasR() bool {
 	if o != nil && !common.IsNil(o.R) {
 		return true
 	}
@@ -764,12 +764,12 @@ func (o *AlgoUpdateO) HasR() bool {
 }
 
 // SetR gets a reference to the given bool and assigns it to the R field.
-func (o *AlgoUpdateO) SetR(v bool) {
+func (o *AlgoUpdateAo) SetR(v bool) {
 	o.R = &v
 }
 
 // GetTt returns the Tt field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmalltt() int64 {
+func (o *AlgoUpdateAo) GetSmalltt() int64 {
 	if o == nil || common.IsNil(o.Smalltt) {
 		var ret int64
 		return ret
@@ -779,7 +779,7 @@ func (o *AlgoUpdateO) GetSmalltt() int64 {
 
 // GetTtOk returns a tuple with the Tt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallttOk() (*int64, bool) {
+func (o *AlgoUpdateAo) GetSmallttOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smalltt) {
 		return nil, false
 	}
@@ -787,7 +787,7 @@ func (o *AlgoUpdateO) GetSmallttOk() (*int64, bool) {
 }
 
 // HasTt returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmalltt() bool {
+func (o *AlgoUpdateAo) HasSmalltt() bool {
 	if o != nil && !common.IsNil(o.Smalltt) {
 		return true
 	}
@@ -796,12 +796,12 @@ func (o *AlgoUpdateO) HasSmalltt() bool {
 }
 
 // SetTt gets a reference to the given int64 and assigns it to the Tt field.
-func (o *AlgoUpdateO) SetSmalltt(v int64) {
+func (o *AlgoUpdateAo) SetSmalltt(v int64) {
 	o.Smalltt = &v
 }
 
 // GetGtd returns the Gtd field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetGtd() int64 {
+func (o *AlgoUpdateAo) GetGtd() int64 {
 	if o == nil || common.IsNil(o.Gtd) {
 		var ret int64
 		return ret
@@ -811,7 +811,7 @@ func (o *AlgoUpdateO) GetGtd() int64 {
 
 // GetGtdOk returns a tuple with the Gtd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetGtdOk() (*int64, bool) {
+func (o *AlgoUpdateAo) GetGtdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Gtd) {
 		return nil, false
 	}
@@ -819,7 +819,7 @@ func (o *AlgoUpdateO) GetGtdOk() (*int64, bool) {
 }
 
 // HasGtd returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasGtd() bool {
+func (o *AlgoUpdateAo) HasGtd() bool {
 	if o != nil && !common.IsNil(o.Gtd) {
 		return true
 	}
@@ -828,12 +828,12 @@ func (o *AlgoUpdateO) HasGtd() bool {
 }
 
 // SetGtd gets a reference to the given int64 and assigns it to the Gtd field.
-func (o *AlgoUpdateO) SetGtd(v int64) {
+func (o *AlgoUpdateAo) SetGtd(v int64) {
 	o.Gtd = &v
 }
 
 // GetRm returns the Rm field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetSmallrm() string {
+func (o *AlgoUpdateAo) GetSmallrm() string {
 	if o == nil || common.IsNil(o.Smallrm) {
 		var ret string
 		return ret
@@ -843,7 +843,7 @@ func (o *AlgoUpdateO) GetSmallrm() string {
 
 // GetRmOk returns a tuple with the Rm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetSmallrmOk() (*string, bool) {
+func (o *AlgoUpdateAo) GetSmallrmOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Smallrm) {
 		return nil, false
 	}
@@ -851,7 +851,7 @@ func (o *AlgoUpdateO) GetSmallrmOk() (*string, bool) {
 }
 
 // HasRm returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasSmallrm() bool {
+func (o *AlgoUpdateAo) HasSmallrm() bool {
 	if o != nil && !common.IsNil(o.Smallrm) {
 		return true
 	}
@@ -860,11 +860,11 @@ func (o *AlgoUpdateO) HasSmallrm() bool {
 }
 
 // SetRm gets a reference to the given string and assigns it to the Rm field.
-func (o *AlgoUpdateO) SetSmallrm(v string) {
+func (o *AlgoUpdateAo) SetSmallrm(v string) {
 	o.Smallrm = &v
 }
 
-func (o AlgoUpdateO) MarshalJSON() ([]byte, error) {
+func (o AlgoUpdateAo) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -872,7 +872,7 @@ func (o AlgoUpdateO) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AlgoUpdateO) ToMap() (map[string]interface{}, error) {
+func (o AlgoUpdateAo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Caid) {
 		toSerialize["caid"] = o.Caid
@@ -957,16 +957,16 @@ func (o AlgoUpdateO) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AlgoUpdateO) UnmarshalJSON(data []byte) (err error) {
-	varAlgoUpdateO := _AlgoUpdateO{}
+func (o *AlgoUpdateAo) UnmarshalJSON(data []byte) (err error) {
+	varAlgoUpdateAo := _AlgoUpdateAo{}
 
-	err = json.Unmarshal(data, &varAlgoUpdateO)
+	err = json.Unmarshal(data, &varAlgoUpdateAo)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AlgoUpdateO(varAlgoUpdateO)
+	*o = AlgoUpdateAo(varAlgoUpdateAo)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -1002,38 +1002,38 @@ func (o *AlgoUpdateO) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableAlgoUpdateO struct {
-	value *AlgoUpdateO
+type NullableAlgoUpdateAo struct {
+	value *AlgoUpdateAo
 	isSet bool
 }
 
-func (v NullableAlgoUpdateO) Get() *AlgoUpdateO {
+func (v NullableAlgoUpdateAo) Get() *AlgoUpdateAo {
 	return v.value
 }
 
-func (v *NullableAlgoUpdateO) Set(val *AlgoUpdateO) {
+func (v *NullableAlgoUpdateAo) Set(val *AlgoUpdateAo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAlgoUpdateO) IsSet() bool {
+func (v NullableAlgoUpdateAo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAlgoUpdateO) Unset() {
+func (v *NullableAlgoUpdateAo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAlgoUpdateO(val *AlgoUpdateO) *NullableAlgoUpdateO {
-	return &NullableAlgoUpdateO{value: val, isSet: true}
+func NewNullableAlgoUpdateAo(val *AlgoUpdateAo) *NullableAlgoUpdateAo {
+	return &NullableAlgoUpdateAo{value: val, isSet: true}
 }
 
-func (v NullableAlgoUpdateO) MarshalJSON() ([]byte, error) {
+func (v NullableAlgoUpdateAo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAlgoUpdateO) UnmarshalJSON(src []byte) error {
+func (v *NullableAlgoUpdateAo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
