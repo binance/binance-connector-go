@@ -20,7 +20,6 @@ Name         | Type          | Description.  | Notes
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 
 **PriceMatch** | Pointer to **string** |  | [optional] 
-**ClosePosition** | Pointer to **bool** |  | [optional] 
 **PriceProtect** | Pointer to **bool** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
 **ActivatePrice** | Pointer to **string** |  | [optional] 
@@ -448,31 +447,6 @@ SetPriceMatch sets PriceMatch field to given value.
 `func (o *NewUmAlgoOrderResponse) HasPriceMatch() bool`
 
 HasPriceMatch returns a boolean if a field has been set.
-
-### GetClosePosition
-
-`func (o *NewUmAlgoOrderResponse) GetClosePosition() bool`
-
-GetClosePosition returns the ClosePosition field if non-nil, zero value otherwise.
-
-### GetClosePositionOk
-
-`func (o *NewUmAlgoOrderResponse) GetClosePositionOk() (*bool, bool)`
-
-GetClosePositionOk returns a tuple with the ClosePosition field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClosePosition
-
-`func (o *NewUmAlgoOrderResponse) SetClosePosition(v bool)`
-
-SetClosePosition sets ClosePosition field to given value.
-
-### HasClosePosition
-
-`func (o *NewUmAlgoOrderResponse) HasClosePosition() bool`
-
-HasClosePosition returns a boolean if a field has been set.
 
 ### GetPriceProtect
 

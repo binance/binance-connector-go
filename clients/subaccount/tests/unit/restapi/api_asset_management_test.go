@@ -326,7 +326,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/move-position", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
 			require.Equal(t, "789", r.URL.Query().Get("page"))
-			require.Equal(t, "789", r.URL.Query().Get("row"))
+			require.Equal(t, "789", r.URL.Query().Get("rows"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -343,7 +343,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol("symbol_example").Page(int64(789)).Row(int64(789)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol("symbol_example").Page(int64(789)).Rows(int64(789)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

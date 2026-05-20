@@ -1074,7 +1074,7 @@ func (r ApiOrderAmendmentsRequest) FromExecutionId(fromExecutionId int64) ApiOrd
 	return r
 }
 
-// Default:500; Maximum: 1000
+// Default: 500; Maximum: 1000
 func (r ApiOrderAmendmentsRequest) Limit(limit int64) ApiOrderAmendmentsRequest {
 	r.limit = &limit
 	return r
@@ -1100,7 +1100,7 @@ https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpo
 @param symbol -
 @param orderId -
 @param fromExecutionId -
-@param limit -  Default:500; Maximum: 1000
+@param limit -  Default: 500; Maximum: 1000
 @param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderAmendmentsRequest
 */

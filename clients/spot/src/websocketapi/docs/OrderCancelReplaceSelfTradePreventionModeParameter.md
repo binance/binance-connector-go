@@ -7,6 +7,7 @@
 * `OrderCancelReplaceSelfTradePreventionModeParameterExpireMaker` (value: `"EXPIRE_MAKER"`)
 * `OrderCancelReplaceSelfTradePreventionModeParameterExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `OrderCancelReplaceSelfTradePreventionModeParameterDecrement` (value: `"DECREMENT"`)
+* `OrderCancelReplaceSelfTradePreventionModeParameterTransfer` (value: `"TRANSFER"`)
 * `OrderCancelReplaceSelfTradePreventionModeParameterNonRepresentable` (value: `"NON_REPRESENTABLE"`)
 
 

@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **ProjectId** | Pointer to **string** |  | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
 **Amount** | Pointer to **string** |  | [optional] 
-**PurchaseTime** | Pointer to **string** |  | [optional] 
+**PurchaseTime** | Pointer to **int64** |  | [optional] 
 **Duration** | Pointer to **string** |  | [optional] 
 **AccrualDays** | Pointer to **string** |  | [optional] 
 **RewardAsset** | Pointer to **string** |  | [optional] 
@@ -22,15 +22,15 @@ Name         | Type          | Description.  | Notes
 **BoostApr** | Pointer to **string** |  | [optional] 
 **TotalBoostRewardAmt** | Pointer to **string** |  | [optional] 
 **NextPay** | Pointer to **string** |  | [optional] 
-**NextPayDate** | Pointer to **string** |  | [optional] 
+**NextPayDate** | Pointer to **int64** |  | [optional] 
 **PayPeriod** | Pointer to **string** |  | [optional] 
 **RedeemAmountEarly** | Pointer to **string** |  | [optional] 
-**RewardsEndDate** | Pointer to **string** |  | [optional] 
-**DeliverDate** | Pointer to **string** |  | [optional] 
+**RewardsEndDate** | Pointer to **int64** |  | [optional] 
+**DeliverDate** | Pointer to **int64** |  | [optional] 
 **RedeemPeriod** | Pointer to **string** |  | [optional] 
 **RedeemingAmt** | Pointer to **string** |  | [optional] 
 **RedeemTo** | Pointer to **string** |  | [optional] 
-**PartialAmtDeliverDate** | Pointer to **string** |  | [optional] 
+**PartialAmtDeliverDate** | Pointer to **int64** |  | [optional] 
 **CanRedeemEarly** | Pointer to **bool** |  | [optional] 
 **CanFastRedemption** | Pointer to **bool** |  | [optional] 
 **AutoSubscribe** | Pointer to **bool** |  | [optional] 
@@ -184,20 +184,20 @@ HasAmount returns a boolean if a field has been set.
 
 ### GetPurchaseTime
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTime() string`
+`func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTime() int64`
 
 GetPurchaseTime returns the PurchaseTime field if non-nil, zero value otherwise.
 
 ### GetPurchaseTimeOk
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTimeOk() (*string, bool)`
+`func (o *GetLockedProductPositionResponseRowsInner) GetPurchaseTimeOk() (*int64, bool)`
 
 GetPurchaseTimeOk returns a tuple with the PurchaseTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPurchaseTime
 
-`func (o *GetLockedProductPositionResponseRowsInner) SetPurchaseTime(v string)`
+`func (o *GetLockedProductPositionResponseRowsInner) SetPurchaseTime(v int64)`
 
 SetPurchaseTime sets PurchaseTime field to given value.
 
@@ -509,20 +509,20 @@ HasNextPay returns a boolean if a field has been set.
 
 ### GetNextPayDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDate() string`
+`func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDate() int64`
 
 GetNextPayDate returns the NextPayDate field if non-nil, zero value otherwise.
 
 ### GetNextPayDateOk
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDateOk() (*string, bool)`
+`func (o *GetLockedProductPositionResponseRowsInner) GetNextPayDateOk() (*int64, bool)`
 
 GetNextPayDateOk returns a tuple with the NextPayDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextPayDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) SetNextPayDate(v string)`
+`func (o *GetLockedProductPositionResponseRowsInner) SetNextPayDate(v int64)`
 
 SetNextPayDate sets NextPayDate field to given value.
 
@@ -584,20 +584,20 @@ HasRedeemAmountEarly returns a boolean if a field has been set.
 
 ### GetRewardsEndDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDate() string`
+`func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDate() int64`
 
 GetRewardsEndDate returns the RewardsEndDate field if non-nil, zero value otherwise.
 
 ### GetRewardsEndDateOk
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDateOk() (*string, bool)`
+`func (o *GetLockedProductPositionResponseRowsInner) GetRewardsEndDateOk() (*int64, bool)`
 
 GetRewardsEndDateOk returns a tuple with the RewardsEndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRewardsEndDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) SetRewardsEndDate(v string)`
+`func (o *GetLockedProductPositionResponseRowsInner) SetRewardsEndDate(v int64)`
 
 SetRewardsEndDate sets RewardsEndDate field to given value.
 
@@ -609,20 +609,20 @@ HasRewardsEndDate returns a boolean if a field has been set.
 
 ### GetDeliverDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDate() string`
+`func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDate() int64`
 
 GetDeliverDate returns the DeliverDate field if non-nil, zero value otherwise.
 
 ### GetDeliverDateOk
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDateOk() (*string, bool)`
+`func (o *GetLockedProductPositionResponseRowsInner) GetDeliverDateOk() (*int64, bool)`
 
 GetDeliverDateOk returns a tuple with the DeliverDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeliverDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) SetDeliverDate(v string)`
+`func (o *GetLockedProductPositionResponseRowsInner) SetDeliverDate(v int64)`
 
 SetDeliverDate sets DeliverDate field to given value.
 
@@ -709,20 +709,20 @@ HasRedeemTo returns a boolean if a field has been set.
 
 ### GetPartialAmtDeliverDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDate() string`
+`func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDate() int64`
 
 GetPartialAmtDeliverDate returns the PartialAmtDeliverDate field if non-nil, zero value otherwise.
 
 ### GetPartialAmtDeliverDateOk
 
-`func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDateOk() (*string, bool)`
+`func (o *GetLockedProductPositionResponseRowsInner) GetPartialAmtDeliverDateOk() (*int64, bool)`
 
 GetPartialAmtDeliverDateOk returns a tuple with the PartialAmtDeliverDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPartialAmtDeliverDate
 
-`func (o *GetLockedProductPositionResponseRowsInner) SetPartialAmtDeliverDate(v string)`
+`func (o *GetLockedProductPositionResponseRowsInner) SetPartialAmtDeliverDate(v int64)`
 
 SetPartialAmtDeliverDate sets PartialAmtDeliverDate field to given value.
 

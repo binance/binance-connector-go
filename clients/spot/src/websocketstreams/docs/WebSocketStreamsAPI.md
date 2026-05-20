@@ -8,6 +8,7 @@ Method        | HTTP request  | Description
 [**AllMarketRollingWindowTicker**](WebSocketStreamsAPI.md#AllMarketRollingWindowTicker) | /!ticker_&lt;windowSize&gt;@arr | WebSocket All Market Rolling Window Statistics Streams
 [**AllMiniTicker**](WebSocketStreamsAPI.md#AllMiniTicker) | /!miniTicker@arr | WebSocket All Market Mini Tickers Stream
 [**AvgPrice**](WebSocketStreamsAPI.md#AvgPrice) | /&lt;symbol&gt;@avgPrice | WebSocket Average Price
+[**BlockTrade**](WebSocketStreamsAPI.md#BlockTrade) | /&lt;symbol&gt;@blockTrade | WebSocket Block Trade Streams
 [**BookTicker**](WebSocketStreamsAPI.md#BookTicker) | /&lt;symbol&gt;@bookTicker | WebSocket Individual Symbol Book Ticker Streams
 [**DiffBookDepth**](WebSocketStreamsAPI.md#DiffBookDepth) | /&lt;symbol&gt;@depth@&lt;updateSpeed&gt; | WebSocket Diff. Depth Stream
 [**Kline**](WebSocketStreamsAPI.md#Kline) | /&lt;symbol&gt;@kline_&lt;interval&gt; | WebSocket Kline/Candlestick Streams for UTC
@@ -290,6 +291,82 @@ func main() {
 	}
 
 	handler.On("message", func(message responseModels.AvgPriceResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	log.Println("Subscribed. Waiting 10 seconds...")
+	time.Sleep(10 * time.Second)
+
+	log.Println("Unsubscribing from stream...")
+	handler.Unsubscribe()
+
+	log.Println("Closing WebSocket connection...")
+	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
+	if err != nil {
+		log.Fatalf("Error closing WebSocket connection: %v", err)
+	}
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Symbol to query | 
+ **id** | **string** | Unique WebSocket request ID. | 
+
+### Authorization
+
+No authorization required
+
+[[Back to README]](../../../README.md)
+
+
+## BlockTrade
+
+WebSocket Block Trade Streams
+
+
+### Example
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"os"
+	"time"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	responseModels "github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "bnbusdt" // string | Symbol to query
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
+	)
+	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
+
+	// Connect to WebSocket
+	err := wsClient.WebsocketStreams.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+	handler, err := wsClient.WebsocketStreams.WebSocketStreamsAPI.BlockTrade().Symbol(symbol).Id(id).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `WebSocketStreamsAPI.BlockTrade``: %v\n", err)
+		return
+	}
+
+	handler.On("message", func(message responseModels.BlockTradeResponse) {
 		b, _ := json.MarshalIndent(message, "", "  ")
 		log.Printf("Received message: %s\n", string(b))
 	})

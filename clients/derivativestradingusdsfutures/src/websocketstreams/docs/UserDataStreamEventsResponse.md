@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** |  | [optional] 
 **T** | Pointer to **int64** |  | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 **Ai** | Pointer to [**AccountConfigUpdateAi**](AccountConfigUpdateAi.md) |  | [optional] 
@@ -47,20 +47,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetE
 
-`func (o *UserDataStreamEventsResponse) GetE() string`
+`func (o *UserDataStreamEventsResponse) GetE() int64`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *UserDataStreamEventsResponse) GetEOk() (*string, bool)`
+`func (o *UserDataStreamEventsResponse) GetEOk() (*int64, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *UserDataStreamEventsResponse) SetE(v string)`
+`func (o *UserDataStreamEventsResponse) SetE(v int64)`
 
 SetE sets E field to given value.
 

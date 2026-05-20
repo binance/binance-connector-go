@@ -337,7 +337,7 @@ type ApiGetMovePositionHistoryForSubAccountRequest struct {
 	ApiService *AssetManagementAPIService
 	symbol     *string
 	page       *int64
-	row        *int64
+	rows       *int64
 	startTime  *int64
 	endTime    *int64
 	recvWindow *int64
@@ -354,8 +354,8 @@ func (r ApiGetMovePositionHistoryForSubAccountRequest) Page(page int64) ApiGetMo
 	return r
 }
 
-func (r ApiGetMovePositionHistoryForSubAccountRequest) Row(row int64) ApiGetMovePositionHistoryForSubAccountRequest {
-	r.row = &row
+func (r ApiGetMovePositionHistoryForSubAccountRequest) Rows(rows int64) ApiGetMovePositionHistoryForSubAccountRequest {
+	r.rows = &rows
 	return r
 }
 
@@ -387,7 +387,7 @@ https://developers.binance.com/docs/sub_account/asset-management/Get-Move-Positi
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param page -  Page
-@param row -
+@param rows -
 @param startTime -
 @param endTime -
 @param recvWindow -
@@ -416,8 +416,8 @@ func (a *AssetManagementAPIService) GetMovePositionHistoryForSubAccountExecute(r
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
-	if r.row == nil {
-		return nil, common.ReportError("row is required and must be specified")
+	if r.rows == nil {
+		return nil, common.ReportError("rows is required and must be specified")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
@@ -428,7 +428,7 @@ func (a *AssetManagementAPIService) GetMovePositionHistoryForSubAccountExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "row", r.row, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "rows", r.rows, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}

@@ -8,6 +8,7 @@ Method        | HTTP request  | Description
 [**AvgPrice**](MarketAPI.md#AvgPrice) | **Get** /api/v3/avgPrice | Current average price
 [**Depth**](MarketAPI.md#Depth) | **Get** /api/v3/depth | Order book
 [**GetTrades**](MarketAPI.md#GetTrades) | **Get** /api/v3/trades | Recent trades list
+[**HistoricalBlockTrades**](MarketAPI.md#HistoricalBlockTrades) | **Get** /api/v3/historicalBlockTrades | Historical Block Trades
 [**HistoricalTrades**](MarketAPI.md#HistoricalTrades) | **Get** /api/v3/historicalTrades | Old trade lookup
 [**Klines**](MarketAPI.md#Klines) | **Get** /api/v3/klines | Kline/Candlestick data
 [**ReferencePrice**](MarketAPI.md#ReferencePrice) | **Get** /api/v3/referencePrice | Query Reference Price
@@ -294,6 +295,78 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**GetTradesResponse**](GetTradesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## HistoricalBlockTrades
+
+> HistoricalBlockTradesResponse HistoricalBlockTrades(ctx).Symbol(symbol).FromId(fromId).Limit(limit).Execute()
+
+Historical Block Trades
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/spot"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BNBUSDT" // string | 
+	fromId := int64(1) // int64 | Block trade ID to fetch from
+	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceSpotClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol(symbol).FromId(fromId).Limit(limit).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketAPI.HistoricalBlockTrades``: %v\n", err)
+		return
+	}
+
+	// response from `HistoricalBlockTrades`: HistoricalBlockTradesResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **fromId** | **int64** | Block trade ID to fetch from | 
+ **limit** | **int64** | Default: 500; Maximum: 1000 | 
+
+### Return type
+
+[**HistoricalBlockTradesResponse**](HistoricalBlockTradesResponse.md)
 
 ### Authorization
 

@@ -1,5 +1,58 @@
 ### Changelog
 
+## 1.8.0 - 2026-05-20
+
+### Added (3)
+
+#### REST API
+
+- `historicalBlockTrades()` (`GET /api/v3/historicalBlockTrades`)
+
+#### WebSocket API
+
+- `blockTradesHistorical()` (`blockTrades.historical` method)
+
+#### WebSocket Streams
+
+- `blockTrade()` (`<symbol>@blockTrade` stream)
+
+### Changed (3)
+
+#### REST API
+
+- Modified parameter `selfTradePreventionMode`:
+  - enum added: `TRANSFER`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderOco()` (`POST /api/v3/order/oco`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+    - `sorOrder()` (`POST /api/v3/sor/order`)
+    - `sorOrderTest()` (`POST /api/v3/sor/order/test`)
+- Marked `orderOco()` (`POST /api/v3/order/oco`) as deprecated.
+
+#### WebSocket API
+
+- Modified parameter `selfTradePreventionMode`:
+  - enum added: `TRANSFER`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+    - `orderListPlace()` (`orderList.place` method)
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+    - `sorOrderPlace()` (`sor.order.place` method)
+    - `sorOrderTest()` (`sor.order.test` method)
+
 ## 1.7.0 - 2026-04-20
 
 ### Changed (1)

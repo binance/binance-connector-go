@@ -21,6 +21,7 @@ const (
 	OrderCancelReplaceSelfTradePreventionModeParameterExpireMaker      OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_MAKER"
 	OrderCancelReplaceSelfTradePreventionModeParameterExpireBoth       OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_BOTH"
 	OrderCancelReplaceSelfTradePreventionModeParameterDecrement        OrderCancelReplaceSelfTradePreventionModeParameter = "DECREMENT"
+	OrderCancelReplaceSelfTradePreventionModeParameterTransfer         OrderCancelReplaceSelfTradePreventionModeParameter = "TRANSFER"
 	OrderCancelReplaceSelfTradePreventionModeParameterNonRepresentable OrderCancelReplaceSelfTradePreventionModeParameter = "NON_REPRESENTABLE"
 )
 
@@ -31,6 +32,7 @@ var AllowedOrderCancelReplaceSelfTradePreventionModeParameterEnumValues = []Orde
 	"EXPIRE_MAKER",
 	"EXPIRE_BOTH",
 	"DECREMENT",
+	"TRANSFER",
 	"NON_REPRESENTABLE",
 }
 

@@ -6,7 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **T** | Pointer to **int64** |  | [optional] 
 **E** | Pointer to **int64** |  | [optional] 
-**O** | Pointer to [**AlgoUpdateO**](AlgoUpdateO.md) |  | [optional] 
+**Fs** | Pointer to **string** |  | [optional] 
+**Ao** | Pointer to [**AlgoUpdateAo**](AlgoUpdateAo.md) |  | [optional] 
 
 ## Methods
 
@@ -77,30 +78,55 @@ SetE sets E field to given value.
 
 HasE returns a boolean if a field has been set.
 
-### GetO
+### GetFs
 
-`func (o *AlgoUpdate) GetO() AlgoUpdateO`
+`func (o *AlgoUpdate) GetFs() string`
 
-GetO returns the O field if non-nil, zero value otherwise.
+GetFs returns the Fs field if non-nil, zero value otherwise.
 
-### GetOOk
+### GetFsOk
 
-`func (o *AlgoUpdate) GetOOk() (*AlgoUpdateO, bool)`
+`func (o *AlgoUpdate) GetFsOk() (*string, bool)`
 
-GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+GetFsOk returns a tuple with the Fs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetO
+### SetFs
 
-`func (o *AlgoUpdate) SetO(v AlgoUpdateO)`
+`func (o *AlgoUpdate) SetFs(v string)`
 
-SetO sets O field to given value.
+SetFs sets Fs field to given value.
 
-### HasO
+### HasFs
 
-`func (o *AlgoUpdate) HasO() bool`
+`func (o *AlgoUpdate) HasFs() bool`
 
-HasO returns a boolean if a field has been set.
+HasFs returns a boolean if a field has been set.
+
+### GetAo
+
+`func (o *AlgoUpdate) GetAo() AlgoUpdateAo`
+
+GetAo returns the Ao field if non-nil, zero value otherwise.
+
+### GetAoOk
+
+`func (o *AlgoUpdate) GetAoOk() (*AlgoUpdateAo, bool)`
+
+GetAoOk returns a tuple with the Ao field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAo
+
+`func (o *AlgoUpdate) SetAo(v AlgoUpdateAo)`
+
+SetAo sets Ao field to given value.
+
+### HasAo
+
+`func (o *AlgoUpdate) HasAo() bool`
+
+HasAo returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

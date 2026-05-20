@@ -1,5 +1,16 @@
 ### Changelog
 
+## 1.7.0 - 2026-05-20
+
+### Changed (2)
+
+- Added parameter `rows`
+  - affected methods:
+    - `getMovePositionHistoryForSubAccount()` (`GET /sapi/v1/sub-account/futures/move-position`)
+- Deleted parameter `row`
+  - affected methods:
+    - `getMovePositionHistoryForSubAccount()` (`GET /sapi/v1/sub-account/futures/move-position`)
+
 ## 1.6.0 - 2026-03-26
 
 ### Changed (1)

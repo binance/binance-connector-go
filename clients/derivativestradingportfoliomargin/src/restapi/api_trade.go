@@ -2226,7 +2226,7 @@ func (r ApiNewCmConditionalOrderRequest) WorkingType(workingType models.NewCmCon
 	return r
 }
 
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
 func (r ApiNewCmConditionalOrderRequest) PriceProtect(priceProtect string) ApiNewCmConditionalOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -2280,7 +2280,7 @@ https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-CM-Co
 @param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
 @param price -
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
 @param newClientStrategyId -
 @param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 @param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the mark price
@@ -2750,14 +2750,13 @@ type ApiNewUmAlgoOrderRequest struct {
 	symbol                  *string
 	side                    *models.NewCmConditionalOrderSideParameter
 	type_                   *models.NewCmOrderTypeParameter
+	quantity                *float32
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce             *models.NewCmConditionalOrderTimeInForceParameter
-	quantity                *float32
 	price                   *float32
 	triggerPrice            *float32
 	workingType             *models.NewCmConditionalOrderWorkingTypeParameter
 	priceMatch              *models.ModifyCmOrderPriceMatchParameter
-	closePosition           *string
 	priceProtect            *string
 	reduceOnly              *string
 	activatePrice           *float32
@@ -2791,6 +2790,12 @@ func (r ApiNewUmAlgoOrderRequest) Type(type_ models.NewCmOrderTypeParameter) Api
 	return r
 }
 
+// Order quantity
+func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRequest {
+	r.quantity = &quantity
+	return r
+}
+
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
 func (r ApiNewUmAlgoOrderRequest) PositionSide(positionSide models.NewCmConditionalOrderPositionSideParameter) ApiNewUmAlgoOrderRequest {
 	r.positionSide = &positionSide
@@ -2799,11 +2804,6 @@ func (r ApiNewUmAlgoOrderRequest) PositionSide(positionSide models.NewCmConditio
 
 func (r ApiNewUmAlgoOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrderTimeInForceParameter) ApiNewUmAlgoOrderRequest {
 	r.timeInForce = &timeInForce
-	return r
-}
-
-func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRequest {
-	r.quantity = &quantity
 	return r
 }
 
@@ -2829,13 +2829,7 @@ func (r ApiNewUmAlgoOrderRequest) PriceMatch(priceMatch models.ModifyCmOrderPric
 	return r
 }
 
-// true, false; Close-All, used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
-func (r ApiNewUmAlgoOrderRequest) ClosePosition(closePosition string) ApiNewUmAlgoOrderRequest {
-	r.closePosition = &closePosition
-	return r
-}
-
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
 func (r ApiNewUmAlgoOrderRequest) PriceProtect(priceProtect string) ApiNewUmAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -2902,15 +2896,14 @@ https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Al
 @param symbol -
 @param side -
 @param type_ -  `LIMIT`, `MARKET`
+@param quantity -  Order quantity
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param timeInForce -
-@param quantity -
 @param price -
 @param triggerPrice -
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param closePosition -  true, false; Close-All, used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
-@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
 @param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
 @param activatePrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
@@ -2950,6 +2943,9 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
+	if r.quantity == nil {
+		return nil, common.ReportError("quantity is required and must be specified")
+	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoType", r.algoType, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
@@ -2961,9 +2957,7 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	if r.timeInForce != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "timeInForce", r.timeInForce, "form", "")
 	}
-	if r.quantity != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
-	}
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
 	if r.price != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "price", r.price, "form", "")
 	}
@@ -2975,9 +2969,6 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	}
 	if r.priceMatch != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceMatch", r.priceMatch, "form", "")
-	}
-	if r.closePosition != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "closePosition", r.closePosition, "form", "")
 	}
 	if r.priceProtect != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceProtect", r.priceProtect, "form", "")
@@ -3087,7 +3078,7 @@ func (r ApiNewUmConditionalOrderRequest) WorkingType(workingType models.NewCmCon
 	return r
 }
 
-// \&quot;TRUE\&quot; or \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
 func (r ApiNewUmConditionalOrderRequest) PriceProtect(priceProtect string) ApiNewUmConditionalOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
@@ -3159,7 +3150,7 @@ func (r ApiNewUmConditionalOrderRequest) Execute() (*common.RestApiResponse[mode
 	@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
 	@param price -
 	@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-	@param priceProtect -  \"TRUE\" or \"FALSE\", default \"FALSE\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
+	@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
 	@param newClientStrategyId -
 	@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 	@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the mark price

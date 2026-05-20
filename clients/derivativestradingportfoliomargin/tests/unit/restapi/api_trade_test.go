@@ -755,7 +755,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 
 	t.Run("Test TradeAPIService CancelUmAlgoOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","code":"200","msg":"success"}`
+		mockedJSON := `{"complete":true}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/um/algo/order", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1924,13 +1924,14 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 
 	t.Run("Test TradeAPIService NewUmAlgoOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
+		mockedJSON := `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","icebergQuantity":null,"selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/um/algo/order", r.URL.Path)
 			require.Equal(t, "algoType_example", r.URL.Query().Get("algoType"))
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewCmConditionalOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.NewCmOrderTypeParameterLimit), r.URL.Query().Get("type"))
+			require.Equal(t, "1", r.URL.Query().Get("quantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1947,7 +1948,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Type(models.NewCmOrderTypeParameterLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Type(models.NewCmOrderTypeParameterLimit).Quantity(float32(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -4161,7 +4162,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 
 	t.Run("Test TradeAPIService UmAccountTradeList Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"BTCUSDT","id":67880589,"orderId":270093109,"side":"SELL","price":"28511.00","qty":"0.010","realizedPnl":"2.58500000","quoteQty":"285.11000","commission":"-0.11404400","commissionAsset":"USDT","time":1680688557875,"buyer":false,"maker":false,"positionSide":"BOTH"}]`
+		mockedJSON := `[{"symbol":"BTCUSDT","id":67880589,"orderId":270093109,"side":"SELL","price":"28511.00","qty":"0.010","realizedPnl":"2.58500000","quoteQty":"285.11000","commission":"0.11404400","commissionAsset":"USDT","time":1680688557875,"buyer":false,"maker":false,"positionSide":"BOTH"}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/um/userTrades", r.URL.Path)
 			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))

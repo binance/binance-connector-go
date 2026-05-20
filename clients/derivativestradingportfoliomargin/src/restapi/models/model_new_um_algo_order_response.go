@@ -33,7 +33,6 @@ type NewUmAlgoOrderResponse struct {
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	WorkingType             *string `json:"workingType,omitempty"`
 	PriceMatch              *string `json:"priceMatch,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
 	PriceProtect            *bool   `json:"priceProtect,omitempty"`
 	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
 	ActivatePrice           *string `json:"activatePrice,omitempty"`
@@ -576,38 +575,6 @@ func (o *NewUmAlgoOrderResponse) SetPriceMatch(v string) {
 	o.PriceMatch = &v
 }
 
-// GetClosePosition returns the ClosePosition field value if set, zero value otherwise.
-func (o *NewUmAlgoOrderResponse) GetClosePosition() bool {
-	if o == nil || common.IsNil(o.ClosePosition) {
-		var ret bool
-		return ret
-	}
-	return *o.ClosePosition
-}
-
-// GetClosePositionOk returns a tuple with the ClosePosition field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewUmAlgoOrderResponse) GetClosePositionOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.ClosePosition) {
-		return nil, false
-	}
-	return o.ClosePosition, true
-}
-
-// HasClosePosition returns a boolean if a field has been set.
-func (o *NewUmAlgoOrderResponse) HasClosePosition() bool {
-	if o != nil && !common.IsNil(o.ClosePosition) {
-		return true
-	}
-
-	return false
-}
-
-// SetClosePosition gets a reference to the given bool and assigns it to the ClosePosition field.
-func (o *NewUmAlgoOrderResponse) SetClosePosition(v bool) {
-	o.ClosePosition = &v
-}
-
 // GetPriceProtect returns the PriceProtect field value if set, zero value otherwise.
 func (o *NewUmAlgoOrderResponse) GetPriceProtect() bool {
 	if o == nil || common.IsNil(o.PriceProtect) {
@@ -922,9 +889,6 @@ func (o NewUmAlgoOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.PriceMatch) {
 		toSerialize["priceMatch"] = o.PriceMatch
 	}
-	if !common.IsNil(o.ClosePosition) {
-		toSerialize["closePosition"] = o.ClosePosition
-	}
 	if !common.IsNil(o.PriceProtect) {
 		toSerialize["priceProtect"] = o.PriceProtect
 	}
@@ -987,7 +951,6 @@ func (o *NewUmAlgoOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "selfTradePreventionMode")
 		delete(additionalProperties, "workingType")
 		delete(additionalProperties, "priceMatch")
-		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "priceProtect")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "activatePrice")

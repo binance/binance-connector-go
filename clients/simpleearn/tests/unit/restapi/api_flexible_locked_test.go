@@ -538,7 +538,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleLockedAPIService GetLockedProductPosition Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"positionId":123123,"parentPositionId":123122,"projectId":"Axs*90","asset":"AXS","amount":"122.09202928","purchaseTime":"1646182276000","duration":"60","accrualDays":"4","rewardAsset":"AXS","APY":"0.2032","rewardAmt":"5.17181528","extraRewardAsset":"BNB","extraRewardAPR":"0.0203","estExtraRewardAmt":"5.17181528","boostRewardAsset":"AXS","boostApr":"0.0121","totalBoostRewardAmt":"3.98201829","nextPay":"1.29295383","nextPayDate":"1646697600000","payPeriod":"1","redeemAmountEarly":"2802.24068892","rewardsEndDate":"1651449600000","deliverDate":"1651536000000","redeemPeriod":"1","redeemingAmt":"232.2323","redeemTo":"FLEXIBLE","partialAmtDeliverDate":"1651536000000","canRedeemEarly":true,"canFastRedemption":true,"autoSubscribe":true,"type":"AUTO","status":"HOLDING","canReStake":true}],"total":1}`
+		mockedJSON := `{"rows":[{"positionId":123123,"parentPositionId":123122,"projectId":"Axs*90","asset":"AXS","amount":"122.09202928","purchaseTime":1646182276000,"duration":"60","accrualDays":"4","rewardAsset":"AXS","APY":"0.2032","rewardAmt":"5.17181528","extraRewardAsset":"BNB","extraRewardAPR":"0.0203","estExtraRewardAmt":"5.17181528","boostRewardAsset":"AXS","boostApr":"0.0121","totalBoostRewardAmt":"3.98201829","nextPay":"1.29295383","nextPayDate":1646697600000,"payPeriod":"1","redeemAmountEarly":"2802.24068892","rewardsEndDate":1651449600000,"deliverDate":1651536000000,"redeemPeriod":"1","redeemingAmt":"232.2323","redeemTo":"FLEXIBLE","partialAmtDeliverDate":1651536000000,"canRedeemEarly":true,"canFastRedemption":true,"autoSubscribe":true,"type":"AUTO","status":"HOLDING","canReStake":true}],"total":1}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/locked/position", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -593,7 +593,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleLockedAPIService GetLockedRedemptionRecord Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"positionId":123123,"redeemId":40607,"time":1575018510000,"asset":"BNB","lockPeriod":"30","amount":"21312.23223","originalAmount":"21312.23223","type":"MATURE","deliverDate":"1575018510000","lossAmount":"0.00001232","isComplete":true,"rewardAsset":"AXS","rewardAmt":"5.17181528","extraRewardAsset":"BNB","estExtraRewardAmt":"5.17181528","status":"PAID"}],"total":1}`
+		mockedJSON := `{"rows":[{"positionId":123123,"redeemId":40607,"time":1575018510000,"asset":"BNB","lockPeriod":"30","amount":"21312.23223","originalAmount":"21312.23223","type":"MATURE","deliverDate":1575018510000,"lossAmount":"0.00001232","isComplete":true,"rewardAsset":"AXS","rewardAmt":"5.17181528","extraRewardAsset":"BNB","estExtraRewardAmt":"5.17181528","status":"PAID"}],"total":1}`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/locked/history/redemptionRecord", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -703,7 +703,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleLockedAPIService GetLockedSubscriptionPreview Success", func(t *testing.T) {
 
-		mockedJSON := `[{"rewardAsset":"AXS","totalRewardAmt":"5.17181528","extraRewardAsset":"BNB","estTotalExtraRewardAmt":"5.17181528","boostRewardAsset":"AXS","estDailyRewardAmt":"1.20928901","nextPay":"1.29295383","nextPayDate":"1646697600000","valueDate":"1646697600000","rewardsEndDate":"1651449600000","deliverDate":"1651536000000","nextSubscriptionDate":"1651536000000"}]`
+		mockedJSON := `[{"rewardAsset":"AXS","totalRewardAmt":"5.17181528","extraRewardAsset":"BNB","estTotalExtraRewardAmt":"5.17181528","boostRewardAsset":"AXS","estDailyRewardAmt":"1.20928901","nextPay":"1.29295383","nextPayDate":1646697600000,"valueDate":1646697600000,"rewardsEndDate":1651449600000,"deliverDate":1651536000000,"nextSubscriptionDate":1651536000000}]`
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/locked/subscriptionPreview", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("projectId"))

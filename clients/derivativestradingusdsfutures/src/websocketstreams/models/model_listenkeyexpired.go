@@ -17,7 +17,7 @@ var _ common.MappedNullable = &Listenkeyexpired{}
 
 // Listenkeyexpired struct for Listenkeyexpired
 type Listenkeyexpired struct {
-	E                    *string `json:"E,omitempty"`
+	E                    *int64  `json:"E,omitempty"`
 	ListenKey            *string `json:"listenKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -42,9 +42,9 @@ func NewListenkeyexpiredWithDefaults() *Listenkeyexpired {
 }
 
 // GetE returns the E field value if set, zero value otherwise.
-func (o *Listenkeyexpired) GetE() string {
+func (o *Listenkeyexpired) GetE() int64 {
 	if o == nil || common.IsNil(o.E) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.E
@@ -52,7 +52,7 @@ func (o *Listenkeyexpired) GetE() string {
 
 // GetEOk returns a tuple with the E field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listenkeyexpired) GetEOk() (*string, bool) {
+func (o *Listenkeyexpired) GetEOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.E) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *Listenkeyexpired) HasE() bool {
 	return false
 }
 
-// SetE gets a reference to the given string and assigns it to the E field.
-func (o *Listenkeyexpired) SetE(v string) {
+// SetE gets a reference to the given int64 and assigns it to the E field.
+func (o *Listenkeyexpired) SetE(v int64) {
 	o.E = &v
 }
 

@@ -930,7 +930,7 @@ func main() {
 	symbol := "BNBUSDT" // string | 
 	orderId := int64(1) // int64 | 
 	fromExecutionId := int64(1) // int64 |  (optional)
-	limit := int64(500) // int64 | Default:500; Maximum: 1000  (optional)
+	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -962,7 +962,7 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
  **fromExecutionId** | **int64** |  | 
- **limit** | **int64** | Default:500; Maximum: 1000  | 
+ **limit** | **int64** | Default: 500; Maximum: 1000 | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
