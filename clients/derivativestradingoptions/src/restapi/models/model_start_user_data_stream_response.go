@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &StartUserDataStreamResponse{}
 
 // StartUserDataStreamResponse struct for StartUserDataStreamResponse
 type StartUserDataStreamResponse struct {
-	ListenKey            *string `json:"listenKey,omitempty"`
-	Expiration           *int64  `json:"expiration,omitempty"`
+	// listen Key
+	ListenKey *string `json:"listenKey,omitempty"`
+	// Listen key expiration timestamp in milliseconds
+	Expiration           *int64 `json:"expiration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

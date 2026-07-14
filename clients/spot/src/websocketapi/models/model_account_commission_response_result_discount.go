@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -15,11 +15,12 @@ import (
 // checks if the AccountCommissionResponseResultDiscount type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountCommissionResponseResultDiscount{}
 
-// AccountCommissionResponseResultDiscount struct for AccountCommissionResponseResultDiscount
+// AccountCommissionResponseResultDiscount Discount on standard commissions when paying in BNB.
 type AccountCommissionResponseResultDiscount struct {
-	EnabledForAccount    *bool   `json:"enabledForAccount,omitempty"`
-	EnabledForSymbol     *bool   `json:"enabledForSymbol,omitempty"`
-	DiscountAsset        *string `json:"discountAsset,omitempty"`
+	EnabledForAccount *bool   `json:"enabledForAccount,omitempty"`
+	EnabledForSymbol  *bool   `json:"enabledForSymbol,omitempty"`
+	DiscountAsset     *string `json:"discountAsset,omitempty"`
+	// Standard commission is reduced by this rate when paying commission in BNB.
 	Discount             *string `json:"discount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

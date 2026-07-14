@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -16,22 +16,16 @@ type BasisContractTypeParameter string
 
 // List of basis_contractType_parameter
 const (
-	BasisContractTypeParameterPerpetual           BasisContractTypeParameter = "PERPETUAL"
-	BasisContractTypeParameterCurrentMonth        BasisContractTypeParameter = "CURRENT_MONTH"
-	BasisContractTypeParameterNextMonth           BasisContractTypeParameter = "NEXT_MONTH"
-	BasisContractTypeParameterCurrentQuarter      BasisContractTypeParameter = "CURRENT_QUARTER"
-	BasisContractTypeParameterNextQuarter         BasisContractTypeParameter = "NEXT_QUARTER"
-	BasisContractTypeParameterPerpetualDelivering BasisContractTypeParameter = "PERPETUAL_DELIVERING"
+	BasisContractTypeParameterPerpetual      BasisContractTypeParameter = "PERPETUAL"
+	BasisContractTypeParameterCurrentQuarter BasisContractTypeParameter = "CURRENT_QUARTER"
+	BasisContractTypeParameterNextQuarter    BasisContractTypeParameter = "NEXT_QUARTER"
 )
 
 // All allowed values of BasisContractTypeParameter enum
 var AllowedBasisContractTypeParameterEnumValues = []BasisContractTypeParameter{
 	"PERPETUAL",
-	"CURRENT_MONTH",
-	"NEXT_MONTH",
 	"CURRENT_QUARTER",
 	"NEXT_QUARTER",
-	"PERPETUAL_DELIVERING",
 }
 
 func (v *BasisContractTypeParameter) UnmarshalJSON(src []byte) error {

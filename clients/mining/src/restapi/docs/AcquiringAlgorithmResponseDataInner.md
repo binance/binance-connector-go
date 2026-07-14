@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AlgoName** | Pointer to **string** |  | [optional] 
-**AlgoId** | Pointer to **int64** |  | [optional] 
-**PoolIndex** | Pointer to **int64** |  | [optional] 
-**Unit** | Pointer to **string** |  | [optional] 
+**AlgoName** | Pointer to **string** | Algorithm name | [optional] 
+**AlgoId** | Pointer to **int64** | Algorithm ID | [optional] 
+**PoolIndex** | Pointer to **int64** | Sequence | [optional] 
+**Unit** | Pointer to **string** | Unit | [optional] 
 
 ## Methods
 

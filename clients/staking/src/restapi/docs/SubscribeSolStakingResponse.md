@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | Pointer to **bool** |  | [optional] 
 **BnsolAmount** | Pointer to **string** |  | [optional] 
-**ExchangeRate** | Pointer to **string** |  | [optional] 
 **PurchaseId** | Pointer to **int64** |  | [optional] 
+**ExchangeRate** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -78,31 +78,6 @@ SetBnsolAmount sets BnsolAmount field to given value.
 
 HasBnsolAmount returns a boolean if a field has been set.
 
-### GetExchangeRate
-
-`func (o *SubscribeSolStakingResponse) GetExchangeRate() string`
-
-GetExchangeRate returns the ExchangeRate field if non-nil, zero value otherwise.
-
-### GetExchangeRateOk
-
-`func (o *SubscribeSolStakingResponse) GetExchangeRateOk() (*string, bool)`
-
-GetExchangeRateOk returns a tuple with the ExchangeRate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExchangeRate
-
-`func (o *SubscribeSolStakingResponse) SetExchangeRate(v string)`
-
-SetExchangeRate sets ExchangeRate field to given value.
-
-### HasExchangeRate
-
-`func (o *SubscribeSolStakingResponse) HasExchangeRate() bool`
-
-HasExchangeRate returns a boolean if a field has been set.
-
 ### GetPurchaseId
 
 `func (o *SubscribeSolStakingResponse) GetPurchaseId() int64`
@@ -127,6 +102,31 @@ SetPurchaseId sets PurchaseId field to given value.
 `func (o *SubscribeSolStakingResponse) HasPurchaseId() bool`
 
 HasPurchaseId returns a boolean if a field has been set.
+
+### GetExchangeRate
+
+`func (o *SubscribeSolStakingResponse) GetExchangeRate() string`
+
+GetExchangeRate returns the ExchangeRate field if non-nil, zero value otherwise.
+
+### GetExchangeRateOk
+
+`func (o *SubscribeSolStakingResponse) GetExchangeRateOk() (*string, bool)`
+
+GetExchangeRateOk returns a tuple with the ExchangeRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExchangeRate
+
+`func (o *SubscribeSolStakingResponse) SetExchangeRate(v string)`
+
+SetExchangeRate sets ExchangeRate field to given value.
+
+### HasExchangeRate
+
+`func (o *SubscribeSolStakingResponse) HasExchangeRate() bool`
+
+HasExchangeRate returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

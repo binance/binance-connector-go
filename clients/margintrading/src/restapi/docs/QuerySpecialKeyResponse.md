@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | Pointer to **string** |  | [optional] 
-**Ip** | Pointer to **string** |  | [optional] 
-**ApiName** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**PermissionMode** | Pointer to **string** |  | [optional] 
+**ApiKey** | Pointer to **string** | api Key. | [optional] 
+**Ip** | Pointer to **string** | 0.0.0.0 is just an initial statereference (no extra meaning). | [optional] 
+**ApiName** | Pointer to **string** | api Name. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**PermissionMode** | Pointer to **string** | permission Mode. | [optional] 
 
 ## Methods
 

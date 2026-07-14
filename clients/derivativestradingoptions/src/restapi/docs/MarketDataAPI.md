@@ -171,10 +171,10 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
+	underlying := "BTCUSDT" // string | Underlying asset. (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
+	limit := int64(20) // int64 | Number of result sets returned (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -202,10 +202,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | underlying, e.g BTCUSDT | 
+ **underlying** | **string** | Underlying asset. | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
+ **limit** | **int64** | Number of result sets returned | 
 
 ### Return type
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | Option underlying, e.g BTCUSDT
+	underlying := "BTCUSDT" // string | Underlying asset.
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -273,7 +273,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | Option underlying, e.g BTCUSDT | 
+ **underlying** | **string** | Underlying asset. | 
 
 ### Return type
 
@@ -313,11 +313,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	interval := "interval_example" // string | Time interval
+	symbol := "BTC-200730-9000-C" // string | Option trading pair
+	interval := models.KlineCandlestickDataIntervalParameterInterval1m // KlineCandlestickDataIntervalParameter | Time interval
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
+	limit := int64(20) // int64 | Number of result sets returned (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -345,11 +345,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **interval** | **string** | Time interval | 
+ **symbol** | **string** | Option trading pair | 
+ **interval** | [**KlineCandlestickDataIntervalParameter**](KlineCandlestickDataIntervalParameter.md) | Time interval | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
+ **limit** | **int64** | Number of result sets returned | 
 
 ### Return type
 
@@ -389,8 +389,8 @@ import (
 )
 
 func main() {
-	underlyingAsset := "underlyingAsset_example" // string | underlying asset, e.g ETH/BTC
-	expiration := "expiration_example" // string | expiration date, e.g 221225
+	underlyingAsset := "ETH/BTC" // string | Underlying asset.
+	expiration := "221225" // string | expiration date
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -418,8 +418,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlyingAsset** | **string** | underlying asset, e.g ETH/BTC | 
- **expiration** | **string** | expiration date, e.g 221225 | 
+ **underlyingAsset** | **string** | Underlying asset. | 
+ **expiration** | **string** | expiration date | 
 
 ### Return type
 
@@ -459,7 +459,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -487,7 +487,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
+ **symbol** | **string** | Option trading pair | 
 
 ### Return type
 
@@ -527,8 +527,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair
+	limit := int64(20) // int64 | Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000] (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -556,8 +556,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
+ **symbol** | **string** | Option trading pair | 
+ **limit** | **int64** | Default:100 Max:1000.Optional value:[10, 20, 50, 100, 500, 1000] | 
 
 ### Return type
 
@@ -597,8 +597,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair (optional)
+	limit := int64(20) // int64 | Number of records (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -626,8 +626,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
+ **symbol** | **string** | Option trading pair | 
+ **limit** | **int64** | Number of records | 
 
 ### Return type
 
@@ -667,8 +667,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair
+	limit := int64(20) // int64 | Number of result sets returned (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -696,8 +696,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
+ **symbol** | **string** | Option trading pair | 
+ **limit** | **int64** | Number of result sets returned | 
 
 ### Return type
 
@@ -796,7 +796,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -824,7 +824,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
+ **symbol** | **string** | Option trading pair | 
 
 ### Return type
 

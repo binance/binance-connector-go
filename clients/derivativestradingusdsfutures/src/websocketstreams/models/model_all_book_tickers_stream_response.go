@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &AllBookTickersStreamResponse{}
 
 // AllBookTickersStreamResponse struct for AllBookTickersStreamResponse
 type AllBookTickersStreamResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	Smallu               *int64  `json:"u,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	B                    *string `json:"B,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
-	A                    *string `json:"A,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// event type
+	Smalle *string `json:"e,omitempty"`
+	// order book updateId
+	Smallu *int64 `json:"u,omitempty"`
+	// event time
+	E *int64 `json:"E,omitempty"`
+	// transaction time
+	T *int64 `json:"T,omitempty"`
+	// symbol
+	Smalls *string `json:"s,omitempty"`
+	// best bid price
+	Smallb *string `json:"b,omitempty"`
+	// best bid qty
+	B *string `json:"B,omitempty"`
+	// best ask price
+	Smalla *string `json:"a,omitempty"`
+	// best ask qty
+	A *string `json:"A,omitempty"`
+	// (After CM migration) Pair symbol
+	Smallps *string `json:"ps,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -371,9 +382,9 @@ func (o *AllBookTickersStreamResponse) SetSmallps(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *AllBookTickersStreamResponse) GetSmallst() int64 {
+func (o *AllBookTickersStreamResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -381,7 +392,7 @@ func (o *AllBookTickersStreamResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllBookTickersStreamResponse) GetSmallstOk() (*int64, bool) {
+func (o *AllBookTickersStreamResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -397,8 +408,8 @@ func (o *AllBookTickersStreamResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *AllBookTickersStreamResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *AllBookTickersStreamResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

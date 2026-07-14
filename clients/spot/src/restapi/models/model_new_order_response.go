@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &NewOrderResponse{}
 
 // NewOrderResponse struct for NewOrderResponse
 type NewOrderResponse struct {
-	Symbol                  *string                      `json:"symbol,omitempty"`
-	OrderId                 *int64                       `json:"orderId,omitempty"`
+	Symbol  *string `json:"symbol,omitempty"`
+	OrderId *int64  `json:"orderId,omitempty"`
+	// Unless it's part of an order list, value will be -1
 	OrderListId             *int64                       `json:"orderListId,omitempty"`
 	ClientOrderId           *string                      `json:"clientOrderId,omitempty"`
 	TransactTime            *int64                       `json:"transactTime,omitempty"`

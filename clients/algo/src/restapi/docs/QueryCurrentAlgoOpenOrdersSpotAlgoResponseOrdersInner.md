@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AlgoId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**TotalQty** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**ExecutedAmt** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ClientAlgoId** | Pointer to **string** |  | [optional] 
-**BookTime** | Pointer to **int64** |  | [optional] 
-**EndTime** | Pointer to **int64** |  | [optional] 
-**AlgoStatus** | Pointer to **string** |  | [optional] 
-**AlgoType** | Pointer to **string** |  | [optional] 
-**Urgency** | Pointer to **string** |  | [optional] 
+**AlgoId** | Pointer to **int64** | Algo order ID | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Side** | Pointer to **string** | Trading side | [optional] 
+**TotalQty** | Pointer to **string** | Total order quantity | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
+**ExecutedAmt** | Pointer to **string** | Executed amount | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price | [optional] 
+**ClientAlgoId** | Pointer to **string** | Client-defined algo order ID | [optional] 
+**BookTime** | Pointer to **int64** | Order creation time | [optional] 
+**EndTime** | Pointer to **int64** | End time | [optional] 
+**AlgoStatus** | Pointer to **string** | Algo order status | [optional] 
+**AlgoType** | Pointer to **string** | Algo order type | [optional] 
+**Urgency** | Pointer to **string** | Execution urgency | [optional] 
 
 ## Methods
 

@@ -22,7 +22,7 @@ func GetFuturesOrderHistoryDownloadLinkById() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("1").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Assets** | Pointer to [**[]GetCmAccountDetailResponseAssetsInner**](GetCmAccountDetailResponseAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]GetCmAccountDetailResponsePositionsInner**](GetCmAccountDetailResponsePositionsInner.md) |  | [optional] 
+**Assets** | Pointer to [**[]GetCmAccountDetailResponseAssetsInner**](GetCmAccountDetailResponseAssetsInner.md) | Assets. | [optional] 
+**Positions** | Pointer to [**[]GetCmAccountDetailResponsePositionsInner**](GetCmAccountDetailResponsePositionsInner.md) | positions of all symbols in the market are returned | [optional] 
 
 ## Methods
 

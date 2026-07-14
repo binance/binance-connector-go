@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,27 +17,47 @@ var _ common.MappedNullable = &PositionInformationV3ResponseInner{}
 
 // PositionInformationV3ResponseInner struct for PositionInformationV3ResponseInner
 type PositionInformationV3ResponseInner struct {
-	Symbol                 *string `json:"symbol,omitempty"`
-	PositionSide           *string `json:"positionSide,omitempty"`
-	PositionAmt            *string `json:"positionAmt,omitempty"`
-	EntryPrice             *string `json:"entryPrice,omitempty"`
-	BreakEvenPrice         *string `json:"breakEvenPrice,omitempty"`
-	MarkPrice              *string `json:"markPrice,omitempty"`
-	UnRealizedProfit       *string `json:"unRealizedProfit,omitempty"`
-	LiquidationPrice       *string `json:"liquidationPrice,omitempty"`
-	IsolatedMargin         *string `json:"isolatedMargin,omitempty"`
-	Notional               *string `json:"notional,omitempty"`
-	MarginAsset            *string `json:"marginAsset,omitempty"`
-	IsolatedWallet         *string `json:"isolatedWallet,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// position amount, positive for long, negative for short
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// break-even price
+	BreakEvenPrice *string `json:"breakEvenPrice,omitempty"`
+	// current mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// unrealized profit
+	UnRealizedProfit *string `json:"unRealizedProfit,omitempty"`
+	// liquidation price
+	LiquidationPrice *string `json:"liquidationPrice,omitempty"`
+	// isolated margin
+	IsolatedMargin *string `json:"isolatedMargin,omitempty"`
+	// notional value of position
+	Notional *string `json:"notional,omitempty"`
+	// margin asset
+	MarginAsset *string `json:"marginAsset,omitempty"`
+	// isolated wallet (if isolated position)
+	IsolatedWallet *string `json:"isolatedWallet,omitempty"`
+	// initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// initial margin required for positions with current mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	Adl                    *int64  `json:"adl,omitempty"`
-	BidNotional            *string `json:"bidNotional,omitempty"`
-	AskNotional            *string `json:"askNotional,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// auto-deleverage ranking
+	Adl *int64 `json:"adl,omitempty"`
+	// ignore
+	BidNotional *string `json:"bidNotional,omitempty"`
+	// ignore
+	AskNotional *string `json:"askNotional,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PositionInformationV3ResponseInner PositionInformationV3ResponseInner

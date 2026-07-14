@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 **Ai** | Pointer to [**AccountConfigUpdateAi**](AccountConfigUpdateAi.md) |  | [optional] 
 

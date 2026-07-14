@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Portfolio Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,35 +17,64 @@ var _ common.MappedNullable = &OrderTradeUpdateO{}
 
 // OrderTradeUpdateO struct for OrderTradeUpdateO
 type OrderTradeUpdateO struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallf               *string `json:"f,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallap              *string `json:"ap,omitempty"`
-	Smallsp              *string `json:"sp,omitempty"`
-	Smallx               *string `json:"x,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallz               *string `json:"z,omitempty"`
-	L                    *string `json:"L,omitempty"`
-	N                    *string `json:"N,omitempty"`
-	Smalln               *string `json:"n,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallt               *int64  `json:"t,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	R                    *bool   `json:"R,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallrp              *string `json:"rp,omitempty"`
-	Smallst              *string `json:"st,omitempty"`
-	Smallsi              *int64  `json:"si,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Gtd                  *int64  `json:"gtd,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Client Order Id
+	Smallc *string `json:"c,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Order Type
+	Smallo *string `json:"o,omitempty"`
+	// Time in Force
+	Smallf *string `json:"f,omitempty"`
+	// Original Quantity
+	Smallq *string `json:"q,omitempty"`
+	// Original Price
+	Smallp *string `json:"p,omitempty"`
+	// Average Price
+	Smallap *string `json:"ap,omitempty"`
+	// Ignore
+	Smallsp *string `json:"sp,omitempty"`
+	// Execution Type
+	Smallx *string `json:"x,omitempty"`
+	// Order Status
+	X *string `json:"X,omitempty"`
+	// Order Id
+	Smalli *int64 `json:"i,omitempty"`
+	// Order Last Filled Quantity
+	Smalll *string `json:"l,omitempty"`
+	// Order Filled Accumulated Quantity
+	Smallz *string `json:"z,omitempty"`
+	// Last Filled Price
+	L *string `json:"L,omitempty"`
+	// Commission Asset, will not push if no commission
+	N *string `json:"N,omitempty"`
+	// Commission, will not push if no commission
+	Smalln *string `json:"n,omitempty"`
+	// Order Trade Time
+	T *int64 `json:"T,omitempty"`
+	// Trade Id
+	Smallt *int64 `json:"t,omitempty"`
+	// Bids Notional
+	Smallb *string `json:"b,omitempty"`
+	// Ask Notional
+	Smalla *string `json:"a,omitempty"`
+	// Is this trade the maker side?
+	Smallm *bool `json:"m,omitempty"`
+	// Is this reduce only
+	R *bool `json:"R,omitempty"`
+	// Position Side
+	Smallps *string `json:"ps,omitempty"`
+	// Realized Profit of the trade
+	Smallrp *string `json:"rp,omitempty"`
+	// Strategy type, only pushed with conditional order triggered
+	Smallst *string `json:"st,omitempty"`
+	// StrategyId, only pushed with conditional order triggered
+	Smallsi *int64 `json:"si,omitempty"`
+	// STP mode
+	V *string `json:"V,omitempty"`
+	// TIF GTD order auto cancel time
+	Gtd                  *int64 `json:"gtd,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

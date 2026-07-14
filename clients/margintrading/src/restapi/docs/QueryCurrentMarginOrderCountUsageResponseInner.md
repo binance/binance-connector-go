@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**RateLimitType** | Pointer to **string** |  | [optional] 
-**Interval** | Pointer to **string** |  | [optional] 
-**IntervalNum** | Pointer to **int64** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**RateLimitType** | Pointer to **string** | rate Limit Type. | [optional] 
+**Interval** | Pointer to **string** | interval. | [optional] 
+**IntervalNum** | Pointer to **int64** | interval Num. | [optional] 
+**Limit** | Pointer to **int64** | limit. | [optional] 
+**Count** | Pointer to **int64** | count. | [optional] 
 
 ## Methods
 

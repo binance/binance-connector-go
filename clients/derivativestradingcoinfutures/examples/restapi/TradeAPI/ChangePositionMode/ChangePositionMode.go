@@ -22,7 +22,7 @@ func ChangePositionMode() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ChangePositionMode(context.Background()).DualSidePosition("dualSidePosition_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ChangePositionMode(context.Background()).DualSidePosition("true").Execute()
 	if err != nil {
 		log.Println(err)
 		return

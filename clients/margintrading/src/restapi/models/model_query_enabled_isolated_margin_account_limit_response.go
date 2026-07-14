@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &QueryEnabledIsolatedMarginAccountLimitResponse{}
 
 // QueryEnabledIsolatedMarginAccountLimitResponse struct for QueryEnabledIsolatedMarginAccountLimitResponse
 type QueryEnabledIsolatedMarginAccountLimitResponse struct {
-	EnabledAccount       *int64 `json:"enabledAccount,omitempty"`
+	// enabled Account.
+	EnabledAccount *int64 `json:"enabledAccount,omitempty"`
+	// max Account.
 	MaxAccount           *int64 `json:"maxAccount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

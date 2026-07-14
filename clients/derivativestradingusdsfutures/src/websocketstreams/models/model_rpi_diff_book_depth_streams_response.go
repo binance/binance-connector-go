@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &RpiDiffBookDepthStreamsResponse{}
 
 // RpiDiffBookDepthStreamsResponse struct for RpiDiffBookDepthStreamsResponse
 type RpiDiffBookDepthStreamsResponse struct {
-	Smalle               *string                                `json:"e,omitempty"`
-	E                    *int64                                 `json:"E,omitempty"`
-	T                    *int64                                 `json:"T,omitempty"`
-	Smalls               *string                                `json:"s,omitempty"`
-	U                    *int64                                 `json:"U,omitempty"`
-	Smallu               *int64                                 `json:"u,omitempty"`
-	Smallpu              *int64                                 `json:"pu,omitempty"`
-	Smallb               []RpiDiffBookDepthStreamsResponseBItem `json:"b,omitempty"`
-	Smalla               []RpiDiffBookDepthStreamsResponseAItem `json:"a,omitempty"`
-	Smallps              *string                                `json:"ps,omitempty"`
-	Smallst              *int64                                 `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Transaction time
+	T *int64 `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// First update ID in event
+	U *int64 `json:"U,omitempty"`
+	// Final update ID in event
+	Smallu *int64 `json:"u,omitempty"`
+	// Final update Id in last stream(ie `u` in last stream)
+	Smallpu *int64 `json:"pu,omitempty"`
+	// Bids to be updated
+	Smallb [][]string `json:"b,omitempty"`
+	// Asks to be updated
+	Smalla [][]string `json:"a,omitempty"`
+	// (After CM migration) Pair symbol
+	Smallps *string `json:"ps,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -275,9 +286,9 @@ func (o *RpiDiffBookDepthStreamsResponse) SetSmallpu(v int64) {
 }
 
 // GetB returns the B field value if set, zero value otherwise.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmallb() []RpiDiffBookDepthStreamsResponseBItem {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmallb() [][]string {
 	if o == nil || common.IsNil(o.Smallb) {
-		var ret []RpiDiffBookDepthStreamsResponseBItem
+		var ret [][]string
 		return ret
 	}
 	return o.Smallb
@@ -285,7 +296,7 @@ func (o *RpiDiffBookDepthStreamsResponse) GetSmallb() []RpiDiffBookDepthStreamsR
 
 // GetBOk returns a tuple with the B field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmallbOk() ([]RpiDiffBookDepthStreamsResponseBItem, bool) {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmallbOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Smallb) {
 		return nil, false
 	}
@@ -301,15 +312,15 @@ func (o *RpiDiffBookDepthStreamsResponse) HasSmallb() bool {
 	return false
 }
 
-// SetB gets a reference to the given []RpiDiffBookDepthStreamsResponseBItem and assigns it to the B field.
-func (o *RpiDiffBookDepthStreamsResponse) SetSmallb(v []RpiDiffBookDepthStreamsResponseBItem) {
+// SetB gets a reference to the given [][]string and assigns it to the B field.
+func (o *RpiDiffBookDepthStreamsResponse) SetSmallb(v [][]string) {
 	o.Smallb = v
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmalla() []RpiDiffBookDepthStreamsResponseAItem {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmalla() [][]string {
 	if o == nil || common.IsNil(o.Smalla) {
-		var ret []RpiDiffBookDepthStreamsResponseAItem
+		var ret [][]string
 		return ret
 	}
 	return o.Smalla
@@ -317,7 +328,7 @@ func (o *RpiDiffBookDepthStreamsResponse) GetSmalla() []RpiDiffBookDepthStreamsR
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmallaOk() ([]RpiDiffBookDepthStreamsResponseAItem, bool) {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmallaOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
@@ -333,8 +344,8 @@ func (o *RpiDiffBookDepthStreamsResponse) HasSmalla() bool {
 	return false
 }
 
-// SetA gets a reference to the given []RpiDiffBookDepthStreamsResponseAItem and assigns it to the A field.
-func (o *RpiDiffBookDepthStreamsResponse) SetSmalla(v []RpiDiffBookDepthStreamsResponseAItem) {
+// SetA gets a reference to the given [][]string and assigns it to the A field.
+func (o *RpiDiffBookDepthStreamsResponse) SetSmalla(v [][]string) {
 	o.Smalla = v
 }
 
@@ -371,9 +382,9 @@ func (o *RpiDiffBookDepthStreamsResponse) SetSmallps(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmallst() int64 {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -381,7 +392,7 @@ func (o *RpiDiffBookDepthStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpiDiffBookDepthStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *RpiDiffBookDepthStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -397,8 +408,8 @@ func (o *RpiDiffBookDepthStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *RpiDiffBookDepthStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *RpiDiffBookDepthStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

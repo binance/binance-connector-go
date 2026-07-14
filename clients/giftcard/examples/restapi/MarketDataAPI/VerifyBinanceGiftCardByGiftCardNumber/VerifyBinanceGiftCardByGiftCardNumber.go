@@ -22,7 +22,7 @@ func VerifyBinanceGiftCardByGiftCardNumber() {
 	apiClient := client.NewBinanceGiftCardClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.VerifyBinanceGiftCardByGiftCardNumber(context.Background()).ReferenceNo("referenceNo_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.VerifyBinanceGiftCardByGiftCardNumber(context.Background()).ReferenceNo("0033002328060227").Execute()
 	if err != nil {
 		log.Println(err)
 		return

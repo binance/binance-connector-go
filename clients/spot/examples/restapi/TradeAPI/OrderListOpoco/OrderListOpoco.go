@@ -23,7 +23,7 @@ func OrderListOpoco() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.OrderListOpoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(1.0).WorkingQuantity(1.0).PendingSide(models.NewOrderSideParameterBuy).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.OrderListOpoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(1).WorkingQuantity(1).PendingSide(models.NewOrderSideParameterBuy).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
 	if err != nil {
 		log.Println(err)
 		return

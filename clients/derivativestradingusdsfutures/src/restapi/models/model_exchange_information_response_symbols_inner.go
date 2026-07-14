@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,33 +15,52 @@ import (
 // checks if the ExchangeInformationResponseSymbolsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &ExchangeInformationResponseSymbolsInner{}
 
-// ExchangeInformationResponseSymbolsInner struct for ExchangeInformationResponseSymbolsInner
+// ExchangeInformationResponseSymbolsInner symbols.
 type ExchangeInformationResponseSymbolsInner struct {
-	Symbol                *string                                               `json:"symbol,omitempty"`
-	Pair                  *string                                               `json:"pair,omitempty"`
-	ContractType          *string                                               `json:"contractType,omitempty"`
-	DeliveryDate          *int64                                                `json:"deliveryDate,omitempty"`
-	OnboardDate           *int64                                                `json:"onboardDate,omitempty"`
-	Status                *string                                               `json:"status,omitempty"`
-	MaintMarginPercent    *string                                               `json:"maintMarginPercent,omitempty"`
-	RequiredMarginPercent *string                                               `json:"requiredMarginPercent,omitempty"`
-	BaseAsset             *string                                               `json:"baseAsset,omitempty"`
-	QuoteAsset            *string                                               `json:"quoteAsset,omitempty"`
-	MarginAsset           *string                                               `json:"marginAsset,omitempty"`
-	PricePrecision        *int64                                                `json:"pricePrecision,omitempty"`
-	QuantityPrecision     *int64                                                `json:"quantityPrecision,omitempty"`
-	BaseAssetPrecision    *int64                                                `json:"baseAssetPrecision,omitempty"`
-	QuotePrecision        *int64                                                `json:"quotePrecision,omitempty"`
-	UnderlyingType        *string                                               `json:"underlyingType,omitempty"`
-	UnderlyingSubType     []string                                              `json:"underlyingSubType,omitempty"`
-	SettlePlan            *int64                                                `json:"settlePlan,omitempty"`
-	TriggerProtect        *string                                               `json:"triggerProtect,omitempty"`
-	Filters               []ExchangeInformationResponseSymbolsInnerFiltersInner `json:"filters,omitempty"`
-	OrderTypes            []string                                              `json:"orderTypes,omitempty"`
-	TimeInForce           []string                                              `json:"timeInForce,omitempty"`
-	LiquidationFee        *string                                               `json:"liquidationFee,omitempty"`
-	MarketTakeBound       *string                                               `json:"marketTakeBound,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair *string `json:"pair,omitempty"`
+	// Contract Type.
+	ContractType *string `json:"contractType,omitempty"`
+	// Delivery Date.
+	DeliveryDate *int64 `json:"deliveryDate,omitempty"`
+	// Onboard Date.
+	OnboardDate *int64 `json:"onboardDate,omitempty"`
+	// Status.
+	Status *string `json:"status,omitempty"`
+	// ignore
+	MaintMarginPercent *string `json:"maintMarginPercent,omitempty"`
+	// ignore
+	RequiredMarginPercent *string `json:"requiredMarginPercent,omitempty"`
+	// Base Asset.
+	BaseAsset *string `json:"baseAsset,omitempty"`
+	// Quote Asset.
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// Margin Asset.
+	MarginAsset *string `json:"marginAsset,omitempty"`
+	// please do not use it as tickSize
+	PricePrecision *int64 `json:"pricePrecision,omitempty"`
+	// please do not use it as stepSize
+	QuantityPrecision *int64 `json:"quantityPrecision,omitempty"`
+	// Base Asset Precision.
+	BaseAssetPrecision *int64 `json:"baseAssetPrecision,omitempty"`
+	// Quote Precision.
+	QuotePrecision    *int64   `json:"quotePrecision,omitempty"`
+	UnderlyingType    *string  `json:"underlyingType,omitempty"`
+	UnderlyingSubType []string `json:"underlyingSubType,omitempty"`
+	SettlePlan        *int64   `json:"settlePlan,omitempty"`
+	// threshold for algo order with \"priceProtect\"
+	TriggerProtect *string                                               `json:"triggerProtect,omitempty"`
+	Filters        []ExchangeInformationResponseSymbolsInnerFiltersInner `json:"filters,omitempty"`
+	OrderTypes     []string                                              `json:"orderTypes,omitempty"`
+	// Time In Force.
+	TimeInForce []string `json:"timeInForce,omitempty"`
+	// liquidation fee rate
+	LiquidationFee *string `json:"liquidationFee,omitempty"`
+	// the max price difference rate( from mark price) a market order can make
+	MarketTakeBound      *string `json:"marketTakeBound,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ExchangeInformationResponseSymbolsInner ExchangeInformationResponseSymbolsInner

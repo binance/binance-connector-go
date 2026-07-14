@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **int64** |  | [optional] 
-**Rows** | Pointer to [**[]GetSmallLiabilityExchangeHistoryResponseRowsInner**](GetSmallLiabilityExchangeHistoryResponseRowsInner.md) |  | [optional] 
+**Total** | Pointer to **int64** | total. | [optional] 
+**Rows** | Pointer to [**[]GetSmallLiabilityExchangeHistoryResponseRowsInner**](GetSmallLiabilityExchangeHistoryResponseRowsInner.md) | rows list. | [optional] 
 
 ## Methods
 

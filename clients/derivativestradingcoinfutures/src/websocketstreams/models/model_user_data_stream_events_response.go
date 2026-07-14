@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -18,7 +18,7 @@ type UserDataStreamEventsResponse struct {
 	AccountConfigUpdate *AccountConfigUpdate
 	AccountUpdate       *AccountUpdate
 	GridUpdate          *GridUpdate
-	Listenkeyexpired    *Listenkeyexpired
+	ListenKeyExpired    *ListenKeyExpired
 	MarginCall          *MarginCall
 	OrderTradeUpdate    *OrderTradeUpdate
 	StrategyUpdate      *StrategyUpdate
@@ -45,10 +45,10 @@ func GridUpdateAsUserDataStreamEventsResponse(v *GridUpdate) UserDataStreamEvent
 	}
 }
 
-// ListenkeyexpiredAsUserDataStreamEventsResponse is a convenience function that returns Listenkeyexpired wrapped in UserDataStreamEventsResponse
-func ListenkeyexpiredAsUserDataStreamEventsResponse(v *Listenkeyexpired) UserDataStreamEventsResponse {
+// ListenKeyExpiredAsUserDataStreamEventsResponse is a convenience function that returns ListenKeyExpired wrapped in UserDataStreamEventsResponse
+func ListenKeyExpiredAsUserDataStreamEventsResponse(v *ListenKeyExpired) UserDataStreamEventsResponse {
 	return UserDataStreamEventsResponse{
-		Listenkeyexpired: v,
+		ListenKeyExpired: v,
 	}
 }
 
@@ -171,97 +171,13 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'listenKeyExpired'
 	if jsonDict["e"] == "listenKeyExpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
+		// try to unmarshal JSON data into ListenKeyExpired
+		err = json.Unmarshal(cleanedData, &dst.ListenKeyExpired)
 		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
+			return nil // data stored in dst.ListenKeyExpired, return on the first match
 		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'accountConfigUpdate'
-	if jsonDict["e"] == "accountConfigUpdate" {
-		// try to unmarshal JSON data into AccountConfigUpdate
-		err = json.Unmarshal(cleanedData, &dst.AccountConfigUpdate)
-		if err == nil {
-			return nil // data stored in dst.AccountConfigUpdate, return on the first match
-		} else {
-			dst.AccountConfigUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AccountConfigUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'accountUpdate'
-	if jsonDict["e"] == "accountUpdate" {
-		// try to unmarshal JSON data into AccountUpdate
-		err = json.Unmarshal(cleanedData, &dst.AccountUpdate)
-		if err == nil {
-			return nil // data stored in dst.AccountUpdate, return on the first match
-		} else {
-			dst.AccountUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AccountUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'gridUpdate'
-	if jsonDict["e"] == "gridUpdate" {
-		// try to unmarshal JSON data into GridUpdate
-		err = json.Unmarshal(cleanedData, &dst.GridUpdate)
-		if err == nil {
-			return nil // data stored in dst.GridUpdate, return on the first match
-		} else {
-			dst.GridUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as GridUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'listenkeyexpired'
-	if jsonDict["e"] == "listenkeyexpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
-		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
-		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'marginCall'
-	if jsonDict["e"] == "marginCall" {
-		// try to unmarshal JSON data into MarginCall
-		err = json.Unmarshal(cleanedData, &dst.MarginCall)
-		if err == nil {
-			return nil // data stored in dst.MarginCall, return on the first match
-		} else {
-			dst.MarginCall = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as MarginCall: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'orderTradeUpdate'
-	if jsonDict["e"] == "orderTradeUpdate" {
-		// try to unmarshal JSON data into OrderTradeUpdate
-		err = json.Unmarshal(cleanedData, &dst.OrderTradeUpdate)
-		if err == nil {
-			return nil // data stored in dst.OrderTradeUpdate, return on the first match
-		} else {
-			dst.OrderTradeUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as OrderTradeUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'strategyUpdate'
-	if jsonDict["e"] == "strategyUpdate" {
-		// try to unmarshal JSON data into StrategyUpdate
-		err = json.Unmarshal(cleanedData, &dst.StrategyUpdate)
-		if err == nil {
-			return nil // data stored in dst.StrategyUpdate, return on the first match
-		} else {
-			dst.StrategyUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as StrategyUpdate: %s", err.Error())
+			dst.ListenKeyExpired = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as ListenKeyExpired: %s", err.Error())
 		}
 	}
 
@@ -282,8 +198,8 @@ func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.GridUpdate)
 	}
 
-	if src.Listenkeyexpired != nil {
-		return json.Marshal(&src.Listenkeyexpired)
+	if src.ListenKeyExpired != nil {
+		return json.Marshal(&src.ListenKeyExpired)
 	}
 
 	if src.MarginCall != nil {
@@ -318,8 +234,8 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 		return obj.GridUpdate
 	}
 
-	if obj.Listenkeyexpired != nil {
-		return obj.Listenkeyexpired
+	if obj.ListenKeyExpired != nil {
+		return obj.ListenKeyExpired
 	}
 
 	if obj.MarginCall != nil {

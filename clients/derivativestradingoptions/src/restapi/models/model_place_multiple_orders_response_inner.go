@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,27 +17,50 @@ var _ common.MappedNullable = &PlaceMultipleOrdersResponseInner{}
 
 // PlaceMultipleOrdersResponseInner struct for PlaceMultipleOrdersResponseInner
 type PlaceMultipleOrdersResponseInner struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	Quantity                *string `json:"quantity,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	CreateTime              *int64  `json:"createTime,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	Source                  *string `json:"source,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	PriceScale              *int64  `json:"priceScale,omitempty"`
-	QuantityScale           *int64  `json:"quantityScale,omitempty"`
-	OptionSide              *string `json:"optionSide,omitempty"`
-	QuoteAsset              *string `json:"quoteAsset,omitempty"`
+	// System order number
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Option trading pair
+	Symbol *string `json:"symbol,omitempty"`
+	// Order Price
+	Price *string `json:"price,omitempty"`
+	// Order Quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// Number of executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// fee
+	Fee *int64 `json:"fee,omitempty"`
+	// Buy/sell direction
+	Side *string `json:"side,omitempty"`
+	// Order type
+	Type *string `json:"type,omitempty"`
+	// Time in force method
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order is reduce only Y/N
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// post Only
+	PostOnly *bool `json:"postOnly,omitempty"`
+	// Order Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// Update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Order status
+	Status *string `json:"status,omitempty"`
+	// Average price of completed trade
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client order ID
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote Asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// mmp
 	Mmp                     *bool   `json:"mmp,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	Source                  *string `json:"source,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -220,6 +243,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
 }
 
+// GetFee returns the Fee field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetFee() int64 {
+	if o == nil || common.IsNil(o.Fee) {
+		var ret int64
+		return ret
+	}
+	return *o.Fee
+}
+
+// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetFeeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Fee) {
+		return nil, false
+	}
+	return o.Fee, true
+}
+
+// HasFee returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasFee() bool {
+	if o != nil && !common.IsNil(o.Fee) {
+		return true
+	}
+
+	return false
+}
+
+// SetFee gets a reference to the given int64 and assigns it to the Fee field.
+func (o *PlaceMultipleOrdersResponseInner) SetFee(v int64) {
+	o.Fee = &v
+}
+
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -348,6 +403,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
+// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetPostOnly() bool {
+	if o == nil || common.IsNil(o.PostOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.PostOnly
+}
+
+// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetPostOnlyOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.PostOnly) {
+		return nil, false
+	}
+	return o.PostOnly, true
+}
+
+// HasPostOnly returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasPostOnly() bool {
+	if o != nil && !common.IsNil(o.PostOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
+func (o *PlaceMultipleOrdersResponseInner) SetPostOnly(v bool) {
+	o.PostOnly = &v
+}
+
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetCreateTime() int64 {
 	if o == nil || common.IsNil(o.CreateTime) {
@@ -474,38 +561,6 @@ func (o *PlaceMultipleOrdersResponseInner) HasAvgPrice() bool {
 // SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
 func (o *PlaceMultipleOrdersResponseInner) SetAvgPrice(v string) {
 	o.AvgPrice = &v
-}
-
-// GetSource returns the Source field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersResponseInner) GetSource() string {
-	if o == nil || common.IsNil(o.Source) {
-		var ret string
-		return ret
-	}
-	return *o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersResponseInner) GetSourceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Source) {
-		return nil, false
-	}
-	return o.Source, true
-}
-
-// HasSource returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersResponseInner) HasSource() bool {
-	if o != nil && !common.IsNil(o.Source) {
-		return true
-	}
-
-	return false
-}
-
-// SetSource gets a reference to the given string and assigns it to the Source field.
-func (o *PlaceMultipleOrdersResponseInner) SetSource(v string) {
-	o.Source = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -732,6 +787,38 @@ func (o *PlaceMultipleOrdersResponseInner) SetSelfTradePreventionMode(v string) 
 	o.SelfTradePreventionMode = &v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *PlaceMultipleOrdersResponseInner) GetSource() string {
+	if o == nil || common.IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceMultipleOrdersResponseInner) GetSourceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *PlaceMultipleOrdersResponseInner) HasSource() bool {
+	if o != nil && !common.IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *PlaceMultipleOrdersResponseInner) SetSource(v string) {
+	o.Source = &v
+}
+
 func (o PlaceMultipleOrdersResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -757,6 +844,9 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
+	if !common.IsNil(o.Fee) {
+		toSerialize["fee"] = o.Fee
+	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -769,6 +859,9 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
+	if !common.IsNil(o.PostOnly) {
+		toSerialize["postOnly"] = o.PostOnly
+	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
 	}
@@ -780,9 +873,6 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
-	}
-	if !common.IsNil(o.Source) {
-		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
@@ -804,6 +894,9 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
+	if !common.IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -832,15 +925,16 @@ func (o *PlaceMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
+		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
+		delete(additionalProperties, "postOnly")
 		delete(additionalProperties, "createTime")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "avgPrice")
-		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
@@ -848,6 +942,7 @@ func (o *PlaceMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "quoteAsset")
 		delete(additionalProperties, "mmp")
 		delete(additionalProperties, "selfTradePreventionMode")
+		delete(additionalProperties, "source")
 		o.AdditionalProperties = additionalProperties
 	}
 

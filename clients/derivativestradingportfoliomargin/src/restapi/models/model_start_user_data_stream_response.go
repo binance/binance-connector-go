@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &StartUserDataStreamResponse{}
 
 // StartUserDataStreamResponse struct for StartUserDataStreamResponse
 type StartUserDataStreamResponse struct {
+	// Listen Key.
 	ListenKey            *string `json:"listenKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

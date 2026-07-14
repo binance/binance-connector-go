@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,21 +17,37 @@ var _ common.MappedNullable = &AccountTradeListResponseInner{}
 
 // AccountTradeListResponseInner struct for AccountTradeListResponseInner
 type AccountTradeListResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	TradeId              *int64  `json:"tradeId,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
-	RealizedProfit       *string `json:"realizedProfit,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	Liquidity            *string `json:"liquidity,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	PriceScale           *int64  `json:"priceScale,omitempty"`
-	QuantityScale        *int64  `json:"quantityScale,omitempty"`
-	OptionSide           *string `json:"optionSide,omitempty"`
+	// unique id
+	Id *int64 `json:"id,omitempty"`
+	// trade id
+	TradeId *int64 `json:"tradeId,omitempty"`
+	// order id
+	OrderId *int64 `json:"orderId,omitempty"`
+	// option symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// trade price
+	Price *string `json:"price,omitempty"`
+	// trade quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// fee(negative is fee deduction)
+	Fee *string `json:"fee,omitempty"`
+	// realized profit/loss
+	RealizedProfit *string `json:"realizedProfit,omitempty"`
+	// order side
+	Side *string `json:"side,omitempty"`
+	// order type
+	Type *string `json:"type,omitempty"`
+	// TAKER or MAKER
+	Liquidity *string `json:"liquidity,omitempty"`
+	// trade time
+	Time *int64 `json:"time,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote Asset
 	QuoteAsset           *string `json:"quoteAsset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

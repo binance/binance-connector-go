@@ -12,29 +12,29 @@ Method        | HTTP request  | Description
 [**CancelAllOpenOrders**](TradeAPI.md#CancelAllOpenOrders) | **Delete** /fapi/v1/allOpenOrders | Cancel All Open Orders (TRADE)
 [**CancelMultipleOrders**](TradeAPI.md#CancelMultipleOrders) | **Delete** /fapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
 [**CancelOrder**](TradeAPI.md#CancelOrder) | **Delete** /fapi/v1/order | Cancel Order (TRADE)
-[**ChangeInitialLeverage**](TradeAPI.md#ChangeInitialLeverage) | **Post** /fapi/v1/leverage | Change Initial Leverage(TRADE)
-[**ChangeMarginType**](TradeAPI.md#ChangeMarginType) | **Post** /fapi/v1/marginType | Change Margin Type(TRADE)
+[**ChangeInitialLeverage**](TradeAPI.md#ChangeInitialLeverage) | **Post** /fapi/v1/leverage | Change Initial Leverage (TRADE)
+[**ChangeMarginType**](TradeAPI.md#ChangeMarginType) | **Post** /fapi/v1/marginType | Change Margin Type (TRADE)
 [**ChangeMultiAssetsMode**](TradeAPI.md#ChangeMultiAssetsMode) | **Post** /fapi/v1/multiAssetsMargin | Change Multi-Assets Mode (TRADE)
-[**ChangePositionMode**](TradeAPI.md#ChangePositionMode) | **Post** /fapi/v1/positionSide/dual | Change Position Mode(TRADE)
+[**ChangePositionMode**](TradeAPI.md#ChangePositionMode) | **Post** /fapi/v1/positionSide/dual | Change Position Mode (TRADE)
 [**CurrentAllAlgoOpenOrders**](TradeAPI.md#CurrentAllAlgoOpenOrders) | **Get** /fapi/v1/openAlgoOrders | Current All Algo Open Orders (USER_DATA)
 [**CurrentAllOpenOrders**](TradeAPI.md#CurrentAllOpenOrders) | **Get** /fapi/v1/openOrders | Current All Open Orders (USER_DATA)
-[**FuturesTradfiPerpsContract**](TradeAPI.md#FuturesTradfiPerpsContract) | **Post** /fapi/v1/stock/contract | Futures TradFi Perps Contract(USER_DATA)
+[**FuturesTradfiPerpsContract**](TradeAPI.md#FuturesTradfiPerpsContract) | **Post** /fapi/v1/stock/contract | Futures TradFi Perps Contract (USER_DATA)
 [**GetOrderModifyHistory**](TradeAPI.md#GetOrderModifyHistory) | **Get** /fapi/v1/orderAmendment | Get Order Modify History (USER_DATA)
 [**GetPositionMarginChangeHistory**](TradeAPI.md#GetPositionMarginChangeHistory) | **Get** /fapi/v1/positionMargin/history | Get Position Margin Change History (TRADE)
-[**ModifyIsolatedPositionMargin**](TradeAPI.md#ModifyIsolatedPositionMargin) | **Post** /fapi/v1/positionMargin | Modify Isolated Position Margin(TRADE)
-[**ModifyMultipleOrders**](TradeAPI.md#ModifyMultipleOrders) | **Put** /fapi/v1/batchOrders | Modify Multiple Orders(TRADE)
+[**ModifyIsolatedPositionMargin**](TradeAPI.md#ModifyIsolatedPositionMargin) | **Post** /fapi/v1/positionMargin | Modify Isolated Position Margin (TRADE)
+[**ModifyMultipleOrders**](TradeAPI.md#ModifyMultipleOrders) | **Put** /fapi/v1/batchOrders | Modify Multiple Orders (TRADE)
 [**ModifyOrder**](TradeAPI.md#ModifyOrder) | **Put** /fapi/v1/order | Modify Order (TRADE)
-[**NewAlgoOrder**](TradeAPI.md#NewAlgoOrder) | **Post** /fapi/v1/algoOrder | New Algo Order(TRADE)
-[**NewOrder**](TradeAPI.md#NewOrder) | **Post** /fapi/v1/order | New Order(TRADE)
-[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /fapi/v1/batchOrders | Place Multiple Orders(TRADE)
-[**PositionAdlQuantileEstimation**](TradeAPI.md#PositionAdlQuantileEstimation) | **Get** /fapi/v1/adlQuantile | Position ADL Quantile Estimation(USER_DATA)
+[**NewAlgoOrder**](TradeAPI.md#NewAlgoOrder) | **Post** /fapi/v1/algoOrder | New Algo Order (TRADE)
+[**NewOrder**](TradeAPI.md#NewOrder) | **Post** /fapi/v1/order | New Order (TRADE)
+[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /fapi/v1/batchOrders | Place Multiple Orders (TRADE)
+[**PositionAdlQuantileEstimation**](TradeAPI.md#PositionAdlQuantileEstimation) | **Get** /fapi/v1/adlQuantile | Position ADL Quantile Estimation (USER_DATA)
 [**PositionInformationV2**](TradeAPI.md#PositionInformationV2) | **Get** /fapi/v2/positionRisk | Position Information V2 (USER_DATA)
 [**PositionInformationV3**](TradeAPI.md#PositionInformationV3) | **Get** /fapi/v3/positionRisk | Position Information V3 (USER_DATA)
 [**QueryAlgoOrder**](TradeAPI.md#QueryAlgoOrder) | **Get** /fapi/v1/algoOrder | Query Algo Order (USER_DATA)
 [**QueryAllAlgoOrders**](TradeAPI.md#QueryAllAlgoOrders) | **Get** /fapi/v1/allAlgoOrders | Query All Algo Orders (USER_DATA)
 [**QueryCurrentOpenOrder**](TradeAPI.md#QueryCurrentOpenOrder) | **Get** /fapi/v1/openOrder | Query Current Open Order (USER_DATA)
 [**QueryOrder**](TradeAPI.md#QueryOrder) | **Get** /fapi/v1/order | Query Order (USER_DATA)
-[**TestOrder**](TradeAPI.md#TestOrder) | **Post** /fapi/v1/order/test | Test Order(TRADE)
+[**TestOrder**](TradeAPI.md#TestOrder) | **Post** /fapi/v1/order/test | Test Order (TRADE)
 [**UsersForceOrders**](TradeAPI.md#UsersForceOrders) | **Get** /fapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
 
 
@@ -61,12 +61,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(25851813) // int64 | Must be used together with parameter `symbol`. (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	fromId := int64(1) // int64 | Trade id to fetch from. Default gets most recent trades. (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -96,11 +96,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **orderId** | **int64** | Must be used together with parameter &#x60;symbol&#x60;. | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **fromId** | **int64** | Trade id to fetch from. Default gets most recent trades. | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -141,11 +141,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(1917641) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -176,9 +176,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -219,8 +219,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	countdownTime := int64(789) // int64 | countdown time, 1000 for 1 second. 0 to cancel the timer
+	symbol := "BTCUSDT" // string | 
+	countdownTime := int64(1000) // int64 | Countdown in milliseconds. `1000` means 1 second; `0` disables countdown cancel-all.
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -250,7 +250,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **countdownTime** | **int64** | countdown time, 1000 for 1 second. 0 to cancel the timer | 
+ **countdownTime** | **int64** | Countdown in milliseconds. &#x60;1000&#x60; means 1 second; &#x60;0&#x60; disables countdown cancel-all. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -291,8 +291,8 @@ import (
 )
 
 func main() {
-	algoId := int64(1) // int64 |  (optional)
-	clientAlgoId := "1" // string |  (optional)
+	algoId := int64(2146760) // int64 |  (optional)
+	clientAlgoId := "6B2I9XVcJpCjqPAJ4YoFX7" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -363,7 +363,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -433,7 +433,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -503,9 +503,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderIdList := []int64{int64(1234567)} // []int64 | max length 10 <br /> e.g. [1234567,2345678] (optional)
-	origClientOrderIdList := []string{"my_id_1"} // []string | max length 10<br /> e.g. [\"my_id_1\",\"my_id_2\"], encode the double quotes. No space after comma. (optional)
+	symbol := "BTCUSDT" // string | 
+	orderIdList := []int64{int64(1234567)} // []int64 |  (optional)
+	origClientOrderIdList := []string{"my_id_1"} // []string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -535,8 +535,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **orderIdList** | **[]int64** | max length 10 &lt;br /&gt; e.g. [1234567,2345678] | 
- **origClientOrderIdList** | **[]string** | max length 10&lt;br /&gt; e.g. [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after comma. | 
+ **orderIdList** | **[]int64** |  | 
+ **origClientOrderIdList** | **[]string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -577,9 +577,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(283194212) // int64 |  (optional)
+	origClientOrderId := "myOrder1" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -632,7 +632,7 @@ No authorization required
 
 > ChangeInitialLeverageResponse ChangeInitialLeverage(ctx).Symbol(symbol).Leverage(leverage).RecvWindow(recvWindow).Execute()
 
-Change Initial Leverage(TRADE)
+Change Initial Leverage (TRADE)
 
 
 ### Example
@@ -651,8 +651,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	leverage := int64(789) // int64 | target initial leverage: int from 1 to 125
+	symbol := "BTCUSDT" // string | 
+	leverage := int64(1) // int64 | target initial leverage
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -682,7 +682,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **leverage** | **int64** | target initial leverage: int from 1 to 125 | 
+ **leverage** | **int64** | target initial leverage | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -704,7 +704,7 @@ No authorization required
 
 > ChangeMarginTypeResponse ChangeMarginType(ctx).Symbol(symbol).MarginType(marginType).RecvWindow(recvWindow).Execute()
 
-Change Margin Type(TRADE)
+Change Margin Type (TRADE)
 
 
 ### Example
@@ -723,8 +723,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	marginType := models.ChangeMarginTypeMarginTypeParameterIsolated // ChangeMarginTypeMarginTypeParameter | ISOLATED, CROSSED
+	symbol := "BTCUSDT" // string | 
+	marginType := models.ChangeMarginTypeMarginTypeParameterIsolated // ChangeMarginTypeMarginTypeParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -754,7 +754,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **marginType** | [**ChangeMarginTypeMarginTypeParameter**](ChangeMarginTypeMarginTypeParameter.md) | ISOLATED, CROSSED | 
+ **marginType** | [**ChangeMarginTypeMarginTypeParameter**](ChangeMarginTypeMarginTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -795,7 +795,7 @@ import (
 )
 
 func main() {
-	multiAssetsMargin := "multiAssetsMargin_example" // string | \"true\": Multi-Assets Mode; \"false\": Single-Asset Mode
+	multiAssetsMargin := "true" // string | \"true\": Multi-Assets Mode; \"false\": Single-Asset Mode
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -846,7 +846,7 @@ No authorization required
 
 > ChangePositionModeResponse ChangePositionMode(ctx).DualSidePosition(dualSidePosition).RecvWindow(recvWindow).Execute()
 
-Change Position Mode(TRADE)
+Change Position Mode (TRADE)
 
 
 ### Example
@@ -865,7 +865,7 @@ import (
 )
 
 func main() {
-	dualSidePosition := "dualSidePosition_example" // string | \"true\": Hedge Mode; \"false\": One-way Mode
+	dualSidePosition := "true" // string | \"true\": Hedge Mode; \"false\": One-way Mode
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -935,9 +935,9 @@ import (
 )
 
 func main() {
-	algoType := "algoType_example" // string |  (optional)
-	symbol := "symbol_example" // string |  (optional)
-	algoId := int64(1) // int64 |  (optional)
+	algoType := "CONDITIONAL" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	algoId := int64(2148627) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1009,7 +1009,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1058,9 +1058,9 @@ No authorization required
 
 ## FuturesTradfiPerpsContract
 
-> FuturesTradfiPerpsContract(ctx).RecvWindow(recvWindow).Execute()
+> FuturesTradfiPerpsContractResponse FuturesTradfiPerpsContract(ctx).RecvWindow(recvWindow).Execute()
 
-Futures TradFi Perps Contract(USER_DATA)
+Futures TradFi Perps Contract (USER_DATA)
 
 
 ### Example
@@ -1088,12 +1088,18 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	 err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.FuturesTradfiPerpsContract(context.Background()).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.FuturesTradfiPerpsContract``: %v\n", err)
 		return
 	}
 
+	// response from `FuturesTradfiPerpsContract`: FuturesTradfiPerpsContractResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
 }
 ```
 
@@ -1105,7 +1111,7 @@ Name          | Type          | Description   | Notes
 
 ### Return type
 
- (empty response body)
+[**FuturesTradfiPerpsContractResponse**](FuturesTradfiPerpsContractResponse.md)
 
 ### Authorization
 
@@ -1113,7 +1119,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to README]](../../../README.md)
 
@@ -1141,12 +1147,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(20072994037) // int64 |  (optional)
+	origClientOrderId := "LJ9R4QZDihCaS8UAOOLpgW" // string |  (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in ms to get modification history from INCLUSIVE (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in ms to get modification history until INCLUSIVE (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1178,9 +1184,9 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Timestamp in ms to get modification history from INCLUSIVE | 
+ **endTime** | **int64** | Timestamp in ms to get modification history until INCLUSIVE | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1221,11 +1227,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	type_ := int64(789) // int64 | 1: Add position margin，2: Reduce position margin (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	type_ := "1" // string | 1: Add position margin，2: Reduce position margin (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | time if not pass (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1255,10 +1261,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **type_** | **int64** | 1: Add position margin，2: Reduce position margin | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **type_** | **string** | 1: Add position margin，2: Reduce position margin | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | time if not pass | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1280,7 +1286,7 @@ No authorization required
 
 > ModifyIsolatedPositionMarginResponse ModifyIsolatedPositionMargin(ctx).Symbol(symbol).Amount(amount).Type(type_).PositionSide(positionSide).RecvWindow(recvWindow).Execute()
 
-Modify Isolated Position Margin(TRADE)
+Modify Isolated Position Margin (TRADE)
 
 
 ### Example
@@ -1299,10 +1305,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	amount := float32(1.0) // float32 | 
-	type_ := "type__example" // string | 
-	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
+	symbol := "BTCUSDT" // string | 
+	amount := float32(1.0) // float32 | Margin asset
+	type_ := int32(1) // int32 | 1: Add position margin，2: Reduce position margin
+	positionSide := "BOTH" // string | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1332,9 +1338,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **amount** | **float32** |  | 
- **type_** | **string** |  | 
- **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
+ **amount** | **float32** | Margin asset | 
+ **type_** | **int32** | 1: Add position margin，2: Reduce position margin | 
+ **positionSide** | **string** | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1356,7 +1362,7 @@ No authorization required
 
 > ModifyMultipleOrdersResponse ModifyMultipleOrders(ctx).BatchOrders(batchOrders).RecvWindow(recvWindow).Execute()
 
-Modify Multiple Orders(TRADE)
+Modify Multiple Orders (TRADE)
 
 
 ### Example
@@ -1445,13 +1451,13 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | `SELL`, `BUY`
+	symbol := "BTCUSDT" // string | 
+	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | 
 	quantity := float32(1.0) // float32 | Order quantity, cannot be sent with `closePosition=true`
-	price := float32(1.0) // float32 | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
-	priceMatch := models.NewAlgoOrderPriceMatchParameterNone // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
+	price := float32(30005) // float32 | 
+	orderId := int64(20072994037) // int64 |  (optional)
+	origClientOrderId := "LJ9R4QZDihCaS8UAOOLpgW" // string |  (optional)
+	priceMatch := models.NewAlgoOrderPriceMatchParameterOpponent // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1481,12 +1487,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
+ **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | 
  **quantity** | **float32** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60; | 
  **price** | **float32** |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1508,7 +1514,7 @@ No authorization required
 
 > NewAlgoOrderResponse NewAlgoOrder(ctx).AlgoType(algoType).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).Price(price).TriggerPrice(triggerPrice).WorkingType(workingType).PriceMatch(priceMatch).ClosePosition(closePosition).PriceProtect(priceProtect).ReduceOnly(reduceOnly).ActivatePrice(activatePrice).CallbackRate(callbackRate).ClientAlgoId(clientAlgoId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 
-New Algo Order(TRADE)
+New Algo Order (TRADE)
 
 
 ### Example
@@ -1527,26 +1533,26 @@ import (
 )
 
 func main() {
-	algoType := "algoType_example" // string | Only support `CONDITIONAL`
-	symbol := "symbol_example" // string | 
-	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | `SELL`, `BUY`
-	type_ := "type__example" // string | 
-	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
+	algoType := models.NewAlgoOrderAlgoTypeParameterConditional // NewAlgoOrderAlgoTypeParameter | 
+	symbol := "BNBUSDT" // string | 
+	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | 
+	type_ := models.NewAlgoOrderTypeParameterLimit // NewAlgoOrderTypeParameter | 
+	positionSide := "BOTH" // string | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewAlgoOrderTimeInForceParameterGtc // NewAlgoOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
+	quantity := float32(1.0) // float32 | Cannot be sent with `closePosition`=`true`(Close-All) (optional)
 	price := float32(1.0) // float32 |  (optional)
-	triggerPrice := float32(1.0) // float32 |  (optional)
-	workingType := models.NewAlgoOrderWorkingTypeParameterMarkPrice // NewAlgoOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
-	priceMatch := models.NewAlgoOrderPriceMatchParameterNone // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
-	closePosition := "closePosition_example" // string | `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
-	priceProtect := "false" // string | \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	reduceOnly := "false" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode (optional)
+	triggerPrice := float32(1.0) // float32 | Trigger price (optional)
+	workingType := models.NewAlgoOrderWorkingTypeParameterMarkPrice // NewAlgoOrderWorkingTypeParameter |  (optional)
+	priceMatch := models.NewAlgoOrderPriceMatchParameterOpponent // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
+	closePosition := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
+	priceProtect := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Used with `STOP_MARKET` or `TAKE_PROFIT_MARKET` order. when price reaches the triggerPrice ，the difference rate between \"MARK_PRICE\" and \"CONTRACT_PRICE\" cannot be larger than the Price Protection Threshold of the symbol.' (optional)
+	reduceOnly := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`' (optional)
 	activatePrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
-	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1% (optional)
-	clientAlgoId := "1" // string |  (optional)
-	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter | \"ACK\", \"RESULT\", default \"ACK\" (optional)
-	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterExpireTaker // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
-	goodTillDate := int64(789) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
+	callbackRate := float32(1) // float32 | Used with `TRAILING_STOP_MARKET` orders (optional)
+	clientAlgoId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
+	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter |  (optional)
+	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterNone // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers / `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
+	goodTillDate := int64(1770736694138) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1575,25 +1581,25 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **algoType** | **string** | Only support &#x60;CONDITIONAL&#x60; | 
+ **algoType** | [**NewAlgoOrderAlgoTypeParameter**](NewAlgoOrderAlgoTypeParameter.md) |  | 
  **symbol** | **string** |  | 
- **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **type_** | **string** |  | 
- **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
+ **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | 
+ **type_** | [**NewAlgoOrderTypeParameter**](NewAlgoOrderTypeParameter.md) |  | 
+ **positionSide** | **string** | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** |  | 
+ **quantity** | **float32** | Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
  **price** | **float32** |  | 
- **triggerPrice** | **float32** |  | 
- **workingType** | [**NewAlgoOrderWorkingTypeParameter**](NewAlgoOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
- **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
- **closePosition** | **string** | &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
- **priceProtect** | **string** | \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode | 
+ **triggerPrice** | **float32** | Trigger price | 
+ **workingType** | [**NewAlgoOrderWorkingTypeParameter**](NewAlgoOrderWorkingTypeParameter.md) |  | 
+ **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **closePosition** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
+ **priceProtect** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60; order. when price reaches the triggerPrice ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the Price Protection Threshold of the symbol.&#39; | 
+ **reduceOnly** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;&#39; | 
  **activatePrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1% | 
- **clientAlgoId** | **string** |  | 
- **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
- **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
+ **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders | 
+ **clientAlgoId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
+ **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | 
+ **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers / &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
  **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 | 
  **recvWindow** | **int64** |  | 
 
@@ -1614,9 +1620,9 @@ No authorization required
 
 ## NewOrder
 
-> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 
-New Order(TRADE)
+New Order (TRADE)
 
 
 ### Example
@@ -1635,19 +1641,19 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | `SELL`, `BUY`
-	type_ := "type__example" // string | 
-	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
+	symbol := "BTCUSDT" // string | 
+	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | 
+	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | Order type
+	positionSide := "BOTH" // string | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewAlgoOrderTimeInForceParameterGtc // NewAlgoOrderTimeInForceParameter |  (optional)
+	reduceOnly := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Cannot be sent in Hedge Mode (optional)
 	quantity := float32(1.0) // float32 |  (optional)
-	reduceOnly := "false" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode (optional)
 	price := float32(1.0) // float32 |  (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
-	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter | \"ACK\", \"RESULT\", default \"ACK\" (optional)
-	priceMatch := models.NewAlgoOrderPriceMatchParameterNone // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
-	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterExpireTaker // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
-	goodTillDate := int64(789) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
+	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter |  (optional)
+	priceMatch := models.NewAlgoOrderPriceMatchParameterOpponent // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterExpireTaker // NewOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER` (optional)
+	goodTillDate := int64(1770736694138) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1657,7 +1663,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.NewOrder``: %v\n", err)
 		return
@@ -1677,17 +1683,17 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **type_** | **string** |  | 
- **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
+ **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | 
+ **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) | Order type | 
+ **positionSide** | **string** | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | 
+ **reduceOnly** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Cannot be sent in Hedge Mode | 
  **quantity** | **float32** |  | 
- **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode | 
  **price** | **float32** |  | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
- **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
- **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
- **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
+ **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | 
+ **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60; | 
  **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 | 
  **recvWindow** | **int64** |  | 
 
@@ -1710,7 +1716,7 @@ No authorization required
 
 > PlaceMultipleOrdersResponse PlaceMultipleOrders(ctx).BatchOrders(batchOrders).RecvWindow(recvWindow).Execute()
 
-Place Multiple Orders(TRADE)
+Place Multiple Orders (TRADE)
 
 
 ### Example
@@ -1780,7 +1786,7 @@ No authorization required
 
 > PositionAdlQuantileEstimationResponse PositionAdlQuantileEstimation(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Position ADL Quantile Estimation(USER_DATA)
+Position ADL Quantile Estimation (USER_DATA)
 
 
 ### Example
@@ -1799,7 +1805,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1869,7 +1875,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1939,7 +1945,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2009,8 +2015,8 @@ import (
 )
 
 func main() {
-	algoId := int64(1) // int64 |  (optional)
-	clientAlgoId := "1" // string |  (optional)
+	algoId := int64(1) // int64 | Order ID (optional)
+	clientAlgoId := "1" // string | Client order ID (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2039,8 +2045,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **algoId** | **int64** |  | 
- **clientAlgoId** | **string** |  | 
+ **algoId** | **int64** | Order ID | 
+ **clientAlgoId** | **string** | Client order ID | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -2081,11 +2087,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	algoId := int64(1) // int64 |  (optional)
+	symbol := "BTCUSDT" // string | Symbol
+	algoId := int64(2146760) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2114,11 +2120,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **algoId** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -2159,9 +2165,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(1917641) // int64 |  (optional)
+	origClientOrderId := "abc" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2233,9 +2239,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(1917641) // int64 |  (optional)
+	origClientOrderId := "abc" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2286,9 +2292,9 @@ No authorization required
 
 ## TestOrder
 
-> TestOrderResponse TestOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+> TestOrderResponse TestOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).TimeInForce(timeInForce).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 
-Test Order(TRADE)
+Test Order (TRADE)
 
 
 ### Example
@@ -2307,25 +2313,25 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | `SELL`, `BUY`
-	type_ := "type__example" // string | 
-	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
-	timeInForce := models.NewAlgoOrderTimeInForceParameterGtc // NewAlgoOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	reduceOnly := "false" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode (optional)
+	symbol := "BTCUSDT" // string | 
+	side := models.NewAlgoOrderSideParameterBuy // NewAlgoOrderSideParameter | 
+	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | 
+	positionSide := models.TestOrderPositionSideParameterBoth // TestOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
+	reduceOnly := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (optional)
+	quantity := float32(1.0) // float32 | Cannot be sent with `closePosition`=`true`(Close-All) (optional)
 	price := float32(1.0) // float32 |  (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
 	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	closePosition := "closePosition_example" // string | `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
+	closePosition := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.\" (optional)
 	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
-	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1% (optional)
-	workingType := models.NewAlgoOrderWorkingTypeParameterMarkPrice // NewAlgoOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
-	priceProtect := "false" // string | \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter | \"ACK\", \"RESULT\", default \"ACK\" (optional)
-	priceMatch := models.NewAlgoOrderPriceMatchParameterNone // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
-	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterExpireTaker // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
-	goodTillDate := int64(789) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
+	callbackRate := float32(1) // float32 | Used with `TRAILING_STOP_MARKET` orders (optional)
+	timeInForce := models.NewAlgoOrderTimeInForceParameterGtc // NewAlgoOrderTimeInForceParameter |  (optional)
+	workingType := models.NewAlgoOrderWorkingTypeParameterMarkPrice // NewAlgoOrderWorkingTypeParameter |  (optional)
+	priceProtect := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter |  (optional)
+	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter |  (optional)
+	priceMatch := models.NewAlgoOrderPriceMatchParameterOpponent // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
+	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterNone // NewAlgoOrderSelfTradePreventionModeParameter | `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
+	goodTillDate := int64(1770736694138) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2335,7 +2341,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.TestOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.TestOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).TimeInForce(timeInForce).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.TestOrder``: %v\n", err)
 		return
@@ -2355,23 +2361,23 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **type_** | **string** |  | 
- **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
- **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** |  | 
- **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode | 
+ **side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | 
+ **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | 
+ **positionSide** | [**TestOrderPositionSideParameter**](TestOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
+ **reduceOnly** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
+ **quantity** | **float32** | Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
  **price** | **float32** |  | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
  **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **closePosition** | **string** | &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
+ **closePosition** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.\&quot; | 
  **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1% | 
- **workingType** | [**NewAlgoOrderWorkingTypeParameter**](NewAlgoOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
- **priceProtect** | **string** | \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
- **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
- **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
+ **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders | 
+ **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | 
+ **workingType** | [**NewAlgoOrderWorkingTypeParameter**](NewAlgoOrderWorkingTypeParameter.md) |  | 
+ **priceProtect** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) |  | 
+ **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | 
+ **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
  **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000 | 
  **recvWindow** | **int64** |  | 
 
@@ -2413,11 +2419,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	autoCloseType := models.UsersForceOrdersAutoCloseTypeParameterLiquidation // UsersForceOrdersAutoCloseTypeParameter | \"LIQUIDATION\" for liquidation orders, \"ADL\" for ADL orders. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	limit := int64(50) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -2450,7 +2456,7 @@ Name          | Type          | Description   | Notes
  **autoCloseType** | [**UsersForceOrdersAutoCloseTypeParameter**](UsersForceOrdersAutoCloseTypeParameter.md) | \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for ADL orders. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

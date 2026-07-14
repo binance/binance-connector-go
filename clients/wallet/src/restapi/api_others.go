@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package binancewalletrestapi
@@ -34,10 +34,10 @@ func (r ApiGetSymbolsDelistScheduleForSpotRequest) Execute() (*common.RestApiRes
 }
 
 /*
-GetSymbolsDelistScheduleForSpot Get symbols delist schedule for spot (MARKET_DATA)
+GetSymbolsDelistScheduleForSpot Get Spot Delist Schedule (MARKET_DATA)
 Get /sapi/v1/spot/delist-schedule
 
-https://developers.binance.com/docs/wallet/others/delist-schedule
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#get-symbols-delist-schedule-for-spot
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -64,7 +64,15 @@ func (a *OthersAPIService) GetSymbolsDelistScheduleForSpotExecute(r ApiGetSymbol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSymbolsDelistScheduleForSpotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetSymbolsDelistScheduleForSpotResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -82,10 +90,10 @@ func (r ApiSystemStatusRequest) Execute() (*common.RestApiResponse[models.System
 }
 
 /*
-SystemStatus System Status (System)
+SystemStatus System Status
 Get /sapi/v1/system/status
 
-https://developers.binance.com/docs/wallet/others/System-Status
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/others#system-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiSystemStatusRequest
@@ -107,7 +115,15 @@ func (a *OthersAPIService) SystemStatusExecute(r ApiSystemStatusRequest) (*commo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.SystemStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.SystemStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

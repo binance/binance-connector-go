@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Id** | Pointer to **string** | positionId | [optional] 
+**Status** | Pointer to **int64** | Enum：completed，processing | [optional] 
 **Result** | Pointer to [**KeepaliveUserDataStreamResponseResult**](KeepaliveUserDataStreamResponseResult.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
 
 ## Methods
 

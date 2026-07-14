@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/algo"
+	"github.com/binance/binance-connector-go/clients/algo/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func VolumeParticipationFutureAlgo() {
 	apiClient := client.NewBinanceAlgoClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FutureAlgoAPI.VolumeParticipationFutureAlgo(context.Background()).Symbol("BTCUSDT").Side("BUY").Quantity(1.0).Urgency("LOW").Execute()
+	resp, err := apiClient.RestApi.FutureAlgoAPI.VolumeParticipationFutureAlgo(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(1).Urgency(models.VolumeParticipationFutureAlgoUrgencyParameterLow).Execute()
 	if err != nil {
 		log.Println(err)
 		return

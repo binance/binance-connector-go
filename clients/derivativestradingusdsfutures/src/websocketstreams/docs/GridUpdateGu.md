@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Si** | Pointer to **int64** |  | [optional] 
-**St** | Pointer to **string** |  | [optional] 
-**Ss** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**Up** | Pointer to **string** |  | [optional] 
-**Uq** | Pointer to **string** |  | [optional] 
-**Uf** | Pointer to **string** |  | [optional] 
-**Mp** | Pointer to **string** |  | [optional] 
-**Ut** | Pointer to **int64** |  | [optional] 
+**Si** | Pointer to **int64** | Strategy ID | [optional] 
+**St** | Pointer to **string** | Strategy Type | [optional] 
+**Ss** | Pointer to **string** | Strategy Status | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**R** | Pointer to **string** | Realized PNL | [optional] 
+**Up** | Pointer to **string** | Unmatched Average Price | [optional] 
+**Uq** | Pointer to **string** | Unmatched Qty | [optional] 
+**Uf** | Pointer to **string** | Unmatched Fee | [optional] 
+**Mp** | Pointer to **string** | Matched PNL | [optional] 
+**Ut** | Pointer to **int64** | Update Time | [optional] 
 
 ## Methods
 

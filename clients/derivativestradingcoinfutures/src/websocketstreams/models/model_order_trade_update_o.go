@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,40 +17,75 @@ var _ common.MappedNullable = &OrderTradeUpdateO{}
 
 // OrderTradeUpdateO struct for OrderTradeUpdateO
 type OrderTradeUpdateO struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallf               *string `json:"f,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallap              *string `json:"ap,omitempty"`
-	Smallsp              *string `json:"sp,omitempty"`
-	Smallx               *string `json:"x,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallz               *string `json:"z,omitempty"`
-	L                    *string `json:"L,omitempty"`
-	Smallma              *string `json:"ma,omitempty"`
-	N                    *string `json:"N,omitempty"`
-	Smalln               *string `json:"n,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallt               *int64  `json:"t,omitempty"`
-	Smallrp              *string `json:"rp,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	R                    *bool   `json:"R,omitempty"`
-	Smallwt              *string `json:"wt,omitempty"`
-	Smallot              *string `json:"ot,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallcp              *bool   `json:"cp,omitempty"`
-	AP                   *string `json:"AP,omitempty"`
-	Smallcr              *string `json:"cr,omitempty"`
-	PP                   *bool   `json:"pP,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Smallpm              *string `json:"pm,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Client Order Id
+	Smallc *string `json:"c,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Order Type
+	Smallo *string `json:"o,omitempty"`
+	// Time in Force
+	Smallf *string `json:"f,omitempty"`
+	// Original Quantity
+	Smallq *string `json:"q,omitempty"`
+	// Original Price
+	Smallp *string `json:"p,omitempty"`
+	// Average Price
+	Smallap *string `json:"ap,omitempty"`
+	// Stop Price. Please ignore with TRAILING_STOP_MARKET order
+	Smallsp *string `json:"sp,omitempty"`
+	// Execution Type
+	Smallx *string `json:"x,omitempty"`
+	// Order Status
+	X *string `json:"X,omitempty"`
+	// Order Id
+	Smalli *int64 `json:"i,omitempty"`
+	// Order Last Filled Quantity
+	Smalll *string `json:"l,omitempty"`
+	// Order Filled Accumulated Quantity
+	Smallz *string `json:"z,omitempty"`
+	// Last Filled Price
+	L *string `json:"L,omitempty"`
+	// Margin Asset
+	Smallma *string `json:"ma,omitempty"`
+	// Commission Asset
+	N *string `json:"N,omitempty"`
+	// Commission
+	Smalln *string `json:"n,omitempty"`
+	// Order Trade Time
+	T *int64 `json:"T,omitempty"`
+	// Trade Id
+	Smallt *int64 `json:"t,omitempty"`
+	// Realized Profit of the trade
+	Smallrp *string `json:"rp,omitempty"`
+	// Bid quantity of base asset
+	Smallb *string `json:"b,omitempty"`
+	// Ask quantity of base asset
+	Smalla *string `json:"a,omitempty"`
+	// Is this trade the maker side?
+	Smallm *bool `json:"m,omitempty"`
+	// Is this reduce only
+	R *bool `json:"R,omitempty"`
+	// Stop Price Working Type
+	Smallwt *string `json:"wt,omitempty"`
+	// Original Order Type
+	Smallot *string `json:"ot,omitempty"`
+	// Position Side
+	Smallps *string `json:"ps,omitempty"`
+	// If Close-All, pushed with conditional order
+	Smallcp *bool `json:"cp,omitempty"`
+	// Activation Price, only pushed with TRAILING_STOP_MARKET order
+	AP *string `json:"AP,omitempty"`
+	// Callback Rate, only pushed with TRAILING_STOP_MARKET order
+	Smallcr *string `json:"cr,omitempty"`
+	// If conditional order trigger is protected
+	SmallpP *bool `json:"pP,omitempty"`
+	// STP mode
+	V *string `json:"V,omitempty"`
+	// Price match mode
+	Smallpm *string `json:"pm,omitempty"`
+	// Expiry Reason
 	Smaller              *string `json:"er,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -1067,26 +1102,26 @@ func (o *OrderTradeUpdateO) SetSmallcr(v string) {
 }
 
 // GetPP returns the PP field value if set, zero value otherwise.
-func (o *OrderTradeUpdateO) GetPP() bool {
-	if o == nil || common.IsNil(o.PP) {
+func (o *OrderTradeUpdateO) GetSmallpP() bool {
+	if o == nil || common.IsNil(o.SmallpP) {
 		var ret bool
 		return ret
 	}
-	return *o.PP
+	return *o.SmallpP
 }
 
 // GetPPOk returns a tuple with the PP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderTradeUpdateO) GetPPOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PP) {
+func (o *OrderTradeUpdateO) GetSmallpPOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.SmallpP) {
 		return nil, false
 	}
-	return o.PP, true
+	return o.SmallpP, true
 }
 
 // HasPP returns a boolean if a field has been set.
-func (o *OrderTradeUpdateO) HasPP() bool {
-	if o != nil && !common.IsNil(o.PP) {
+func (o *OrderTradeUpdateO) HasSmallpP() bool {
+	if o != nil && !common.IsNil(o.SmallpP) {
 		return true
 	}
 
@@ -1094,8 +1129,8 @@ func (o *OrderTradeUpdateO) HasPP() bool {
 }
 
 // SetPP gets a reference to the given bool and assigns it to the PP field.
-func (o *OrderTradeUpdateO) SetPP(v bool) {
-	o.PP = &v
+func (o *OrderTradeUpdateO) SetSmallpP(v bool) {
+	o.SmallpP = &v
 }
 
 // GetV returns the V field value if set, zero value otherwise.
@@ -1297,8 +1332,8 @@ func (o OrderTradeUpdateO) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallcr) {
 		toSerialize["cr"] = o.Smallcr
 	}
-	if !common.IsNil(o.PP) {
-		toSerialize["pP"] = o.PP
+	if !common.IsNil(o.SmallpP) {
+		toSerialize["pP"] = o.SmallpP
 	}
 	if !common.IsNil(o.V) {
 		toSerialize["V"] = o.V

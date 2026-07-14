@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**MinUsdValue** | Pointer to **string** |  | [optional] 
-**MaxUsdValue** | Pointer to **string** |  | [optional] 
-**DiscountRate** | Pointer to **string** |  | [optional] 
+**MinUsdValue** | Pointer to **string** | min Usd Value. | [optional] 
+**MaxUsdValue** | Pointer to **string** | max Usd Value. | [optional] 
+**DiscountRate** | Pointer to **string** | discount Rate. | [optional] 
 
 ## Methods
 

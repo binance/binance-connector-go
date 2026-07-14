@@ -6,16 +6,16 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AccountInformation**](AccountAPI.md#AccountInformation) | **Get** /dapi/v1/account | Account Information (USER_DATA)
 [**FuturesAccountBalance**](AccountAPI.md#FuturesAccountBalance) | **Get** /dapi/v1/balance | Futures Account Balance (USER_DATA)
-[**GetCurrentPositionMode**](AccountAPI.md#GetCurrentPositionMode) | **Get** /dapi/v1/positionSide/dual | Get Current Position Mode(USER_DATA)
+[**GetCurrentPositionMode**](AccountAPI.md#GetCurrentPositionMode) | **Get** /dapi/v1/positionSide/dual | Get Current Position Mode (USER_DATA)
 [**GetDownloadIdForFuturesOrderHistory**](AccountAPI.md#GetDownloadIdForFuturesOrderHistory) | **Get** /dapi/v1/order/asyn | Get Download Id For Futures Order History (USER_DATA)
 [**GetDownloadIdForFuturesTradeHistory**](AccountAPI.md#GetDownloadIdForFuturesTradeHistory) | **Get** /dapi/v1/trade/asyn | Get Download Id For Futures Trade History (USER_DATA)
-[**GetDownloadIdForFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForFuturesTransactionHistory) | **Get** /dapi/v1/income/asyn | Get Download Id For Futures Transaction History(USER_DATA)
+[**GetDownloadIdForFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForFuturesTransactionHistory) | **Get** /dapi/v1/income/asyn | Get Download Id For Futures Transaction History (USER_DATA)
 [**GetFuturesOrderHistoryDownloadLinkById**](AccountAPI.md#GetFuturesOrderHistoryDownloadLinkById) | **Get** /dapi/v1/order/asyn/id | Get Futures Order History Download Link by Id (USER_DATA)
-[**GetFuturesTradeDownloadLinkById**](AccountAPI.md#GetFuturesTradeDownloadLinkById) | **Get** /dapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id(USER_DATA)
+[**GetFuturesTradeDownloadLinkById**](AccountAPI.md#GetFuturesTradeDownloadLinkById) | **Get** /dapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id (USER_DATA)
 [**GetFuturesTransactionHistoryDownloadLinkById**](AccountAPI.md#GetFuturesTransactionHistoryDownloadLinkById) | **Get** /dapi/v1/income/asyn/id | Get Futures Transaction History Download Link by Id (USER_DATA)
-[**GetIncomeHistory**](AccountAPI.md#GetIncomeHistory) | **Get** /dapi/v1/income | Get Income History(USER_DATA)
-[**NotionalBracketForPair**](AccountAPI.md#NotionalBracketForPair) | **Get** /dapi/v1/leverageBracket | Notional Bracket for Pair(USER_DATA)
-[**NotionalBracketForSymbol**](AccountAPI.md#NotionalBracketForSymbol) | **Get** /dapi/v2/leverageBracket | Notional Bracket for Symbol(USER_DATA)
+[**GetIncomeHistory**](AccountAPI.md#GetIncomeHistory) | **Get** /dapi/v1/income | Get Income History (USER_DATA)
+[**NotionalBracketForPair**](AccountAPI.md#NotionalBracketForPair) | **Get** /dapi/v1/leverageBracket | Notional Bracket for Pair (USER_DATA)
+[**NotionalBracketForSymbol**](AccountAPI.md#NotionalBracketForSymbol) | **Get** /dapi/v2/leverageBracket | Notional Bracket for Symbol (USER_DATA)
 [**UserCommissionRate**](AccountAPI.md#UserCommissionRate) | **Get** /dapi/v1/commissionRate | User Commission Rate (USER_DATA)
 
 
@@ -159,7 +159,7 @@ No authorization required
 
 > GetCurrentPositionModeResponse GetCurrentPositionMode(ctx).RecvWindow(recvWindow).Execute()
 
-Get Current Position Mode(USER_DATA)
+Get Current Position Mode (USER_DATA)
 
 
 ### Example
@@ -371,7 +371,7 @@ No authorization required
 
 > GetDownloadIdForFuturesTransactionHistoryResponse GetDownloadIdForFuturesTransactionHistory(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
-Get Download Id For Futures Transaction History(USER_DATA)
+Get Download Id For Futures Transaction History (USER_DATA)
 
 
 ### Example
@@ -462,7 +462,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -513,7 +513,7 @@ No authorization required
 
 > GetFuturesTradeDownloadLinkByIdResponse GetFuturesTradeDownloadLinkById(ctx).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
 
-Get Futures Trade Download Link by Id(USER_DATA)
+Get Futures Trade Download Link by Id (USER_DATA)
 
 
 ### Example
@@ -532,7 +532,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -602,7 +602,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -653,7 +653,7 @@ No authorization required
 
 > GetIncomeHistoryResponse GetIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Income History(USER_DATA)
+Get Income History (USER_DATA)
 
 
 ### Example
@@ -672,12 +672,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	incomeType := "incomeType_example" // string | \"TRANSFER\",\"WELCOME_BONUS\", \"FUNDING_FEE\", \"REALIZED_PNL\", \"COMMISSION\", \"INSURANCE_CLEAR\", and \"DELIVERED_SETTELMENT\" (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(789) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | Symbol (optional)
+	incomeType := models.GetIncomeHistoryIncomeTypeParameterTransfer // GetIncomeHistoryIncomeTypeParameter | Income type. (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in ms to get funding from INCLUSIVE. (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in ms to get funding until INCLUSIVE. (optional)
+	page := int64(1) // int64 | Page number (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -706,12 +706,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **incomeType** | **string** | \&quot;TRANSFER\&quot;,\&quot;WELCOME_BONUS\&quot;, \&quot;FUNDING_FEE\&quot;, \&quot;REALIZED_PNL\&quot;, \&quot;COMMISSION\&quot;, \&quot;INSURANCE_CLEAR\&quot;, and \&quot;DELIVERED_SETTELMENT\&quot; | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **page** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **symbol** | **string** | Symbol | 
+ **incomeType** | [**GetIncomeHistoryIncomeTypeParameter**](GetIncomeHistoryIncomeTypeParameter.md) | Income type. | 
+ **startTime** | **int64** | Timestamp in ms to get funding from INCLUSIVE. | 
+ **endTime** | **int64** | Timestamp in ms to get funding until INCLUSIVE. | 
+ **page** | **int64** | Page number | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -733,7 +733,7 @@ No authorization required
 
 > NotionalBracketForPairResponse NotionalBracketForPair(ctx).Pair(pair).RecvWindow(recvWindow).Execute()
 
-Notional Bracket for Pair(USER_DATA)
+Notional Bracket for Pair (USER_DATA)
 
 
 ### Example
@@ -752,7 +752,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string |  (optional)
+	pair := "BTCUSD" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -803,7 +803,7 @@ No authorization required
 
 > NotionalBracketForSymbolResponse NotionalBracketForSymbol(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Notional Bracket for Symbol(USER_DATA)
+Notional Bracket for Symbol (USER_DATA)
 
 
 ### Example
@@ -822,7 +822,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSD_PERP" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -892,7 +892,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSD_PERP" // string | Symbol
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -921,7 +921,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

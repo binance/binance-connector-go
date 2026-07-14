@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,24 +15,41 @@ import (
 // checks if the KlineCandlestickStreamsResponseK type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &KlineCandlestickStreamsResponseK{}
 
-// KlineCandlestickStreamsResponseK struct for KlineCandlestickStreamsResponseK
+// KlineCandlestickStreamsResponseK Kline payload
 type KlineCandlestickStreamsResponseK struct {
-	Smallt               *int64  `json:"t,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smalli               *string `json:"i,omitempty"`
-	Smallf               *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"L,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	Smallh               *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallv               *string `json:"v,omitempty"`
-	Smalln               *int64  `json:"n,omitempty"`
-	Smallx               *bool   `json:"x,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Q                    *string `json:"Q,omitempty"`
+	// Kline start time
+	Smallt *int64 `json:"t,omitempty"`
+	// Kline close time
+	T *int64 `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Interval
+	Smalli *string `json:"i,omitempty"`
+	// First trade ID
+	Smallf *int64 `json:"f,omitempty"`
+	// Last trade ID
+	L *int64 `json:"L,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// Close price
+	Smallc *string `json:"c,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// volume
+	Smallv *string `json:"v,omitempty"`
+	// Number of trades
+	Smalln *int64 `json:"n,omitempty"`
+	// Is this kline closed?
+	Smallx *bool `json:"x,omitempty"`
+	// Base asset volume
+	Smallq *string `json:"q,omitempty"`
+	// Taker buy volume
+	V *string `json:"V,omitempty"`
+	// Taker buy base asset volume
+	Q *string `json:"Q,omitempty"`
+	// Ignore
 	B                    *string `json:"B,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

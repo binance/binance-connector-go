@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &ChangeInitialLeverageResponse{}
 
 // ChangeInitialLeverageResponse struct for ChangeInitialLeverageResponse
 type ChangeInitialLeverageResponse struct {
-	Leverage             *int64  `json:"leverage,omitempty"`
-	MaxNotionalValue     *string `json:"maxNotionalValue,omitempty"`
+	// Leverage.
+	Leverage *int64 `json:"leverage,omitempty"`
+	// Max Notional Value.
+	MaxNotionalValue *string `json:"maxNotionalValue,omitempty"`
+	// Symbol.
 	Symbol               *string `json:"symbol,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

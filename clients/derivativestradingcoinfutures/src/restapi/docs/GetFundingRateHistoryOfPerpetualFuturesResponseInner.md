@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**FundingTime** | Pointer to **int64** |  | [optional] 
-**FundingRate** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**FundingTime** | Pointer to **int64** | Funding time. | [optional] 
+**FundingRate** | Pointer to **string** | Funding rate. | [optional] 
 
 ## Methods
 

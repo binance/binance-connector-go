@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &FuturesAccountBalanceResponse{}
 
 // FuturesAccountBalanceResponse struct for FuturesAccountBalanceResponse
 type FuturesAccountBalanceResponse struct {
-	Id                   *string                                       `json:"id,omitempty"`
-	Status               *int64                                        `json:"status,omitempty"`
-	Result               []FuturesAccountBalanceV2ResponseResultInner  `json:"result,omitempty"`
-	RateLimits           []AccountInformationV2ResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                                     `json:"id,omitempty"`
+	Status               *int64                                      `json:"status,omitempty"`
+	Result               []FuturesAccountBalanceResponseResultInner  `json:"result,omitempty"`
+	RateLimits           []AccountInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,9 +108,9 @@ func (o *FuturesAccountBalanceResponse) SetStatus(v int64) {
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *FuturesAccountBalanceResponse) GetResult() []FuturesAccountBalanceV2ResponseResultInner {
+func (o *FuturesAccountBalanceResponse) GetResult() []FuturesAccountBalanceResponseResultInner {
 	if o == nil || common.IsNil(o.Result) {
-		var ret []FuturesAccountBalanceV2ResponseResultInner
+		var ret []FuturesAccountBalanceResponseResultInner
 		return ret
 	}
 	return o.Result
@@ -118,7 +118,7 @@ func (o *FuturesAccountBalanceResponse) GetResult() []FuturesAccountBalanceV2Res
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FuturesAccountBalanceResponse) GetResultOk() ([]FuturesAccountBalanceV2ResponseResultInner, bool) {
+func (o *FuturesAccountBalanceResponse) GetResultOk() ([]FuturesAccountBalanceResponseResultInner, bool) {
 	if o == nil || common.IsNil(o.Result) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *FuturesAccountBalanceResponse) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []FuturesAccountBalanceV2ResponseResultInner and assigns it to the Result field.
-func (o *FuturesAccountBalanceResponse) SetResult(v []FuturesAccountBalanceV2ResponseResultInner) {
+// SetResult gets a reference to the given []FuturesAccountBalanceResponseResultInner and assigns it to the Result field.
+func (o *FuturesAccountBalanceResponse) SetResult(v []FuturesAccountBalanceResponseResultInner) {
 	o.Result = v
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *FuturesAccountBalanceResponse) GetRateLimits() []AccountInformationV2ResponseRateLimitsInner {
+func (o *FuturesAccountBalanceResponse) GetRateLimits() []AccountInformationResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountInformationV2ResponseRateLimitsInner
+		var ret []AccountInformationResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *FuturesAccountBalanceResponse) GetRateLimits() []AccountInformationV2Re
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FuturesAccountBalanceResponse) GetRateLimitsOk() ([]AccountInformationV2ResponseRateLimitsInner, bool) {
+func (o *FuturesAccountBalanceResponse) GetRateLimitsOk() ([]AccountInformationResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *FuturesAccountBalanceResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountInformationV2ResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *FuturesAccountBalanceResponse) SetRateLimits(v []AccountInformationV2ResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []AccountInformationResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *FuturesAccountBalanceResponse) SetRateLimits(v []AccountInformationResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Simple Earn REST API
+Simple Earn REST API
 
-OpenAPI Specification for the Binance Simple Earn REST API
+Earn rewards by subscribing to flexible or locked Simple Earn products.
 */
 
 package binancesimpleearnrestapi
@@ -38,7 +38,7 @@ func (r ApiGetRwusdAccountRequest) Execute() (*common.RestApiResponse[models.Get
 GetRwusdAccount Get RWUSD Account (USER_DATA)
 Get /sapi/v1/rwusd/account
 
-https://developers.binance.com/docs/simple_earn/rwusd/account/
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  The value cannot be greater than 60000 (ms)
@@ -65,7 +65,15 @@ func (a *RwusdAPIService) GetRwusdAccountExecute(r ApiGetRwusdAccountRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -93,7 +101,7 @@ func (r ApiGetRwusdQuotaDetailsRequest) Execute() (*common.RestApiResponse[model
 GetRwusdQuotaDetails Get RWUSD Quota Details (USER_DATA)
 Get /sapi/v1/rwusd/quota
 
-https://developers.binance.com/docs/simple_earn/rwusd/account/Get-RWUSD-Quota-Details
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-quota-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  The value cannot be greater than 60000 (ms)
@@ -120,7 +128,15 @@ func (a *RwusdAPIService) GetRwusdQuotaDetailsExecute(r ApiGetRwusdQuotaDetailsR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdQuotaDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdQuotaDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -148,13 +164,13 @@ func (r ApiGetRwusdRateHistoryRequest) EndTime(endTime int64) ApiGetRwusdRateHis
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page
 func (r ApiGetRwusdRateHistoryRequest) Current(current int64) ApiGetRwusdRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page
 func (r ApiGetRwusdRateHistoryRequest) Size(size int64) ApiGetRwusdRateHistoryRequest {
 	r.size = &size
 	return r
@@ -174,13 +190,13 @@ func (r ApiGetRwusdRateHistoryRequest) Execute() (*common.RestApiResponse[models
 GetRwusdRateHistory Get RWUSD Rate History (USER_DATA)
 Get /sapi/v1/rwusd/history/rateHistory
 
-https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page
+@param size -  Number of results per page
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetRwusdRateHistoryRequest
 */
@@ -217,7 +233,15 @@ func (a *RwusdAPIService) GetRwusdRateHistoryExecute(r ApiGetRwusdRateHistoryReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -245,13 +269,13 @@ func (r ApiGetRwusdRedemptionHistoryRequest) EndTime(endTime int64) ApiGetRwusdR
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page
 func (r ApiGetRwusdRedemptionHistoryRequest) Current(current int64) ApiGetRwusdRedemptionHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page
 func (r ApiGetRwusdRedemptionHistoryRequest) Size(size int64) ApiGetRwusdRedemptionHistoryRequest {
 	r.size = &size
 	return r
@@ -271,13 +295,13 @@ func (r ApiGetRwusdRedemptionHistoryRequest) Execute() (*common.RestApiResponse[
 GetRwusdRedemptionHistory Get RWUSD Redemption History (USER_DATA)
 Get /sapi/v1/rwusd/history/redemptionHistory
 
-https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Redemption-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-redemption-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page
+@param size -  Number of results per page
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetRwusdRedemptionHistoryRequest
 */
@@ -314,7 +338,15 @@ func (a *RwusdAPIService) GetRwusdRedemptionHistoryExecute(r ApiGetRwusdRedempti
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdRedemptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdRedemptionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -342,13 +374,13 @@ func (r ApiGetRwusdRewardsHistoryRequest) EndTime(endTime int64) ApiGetRwusdRewa
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page
 func (r ApiGetRwusdRewardsHistoryRequest) Current(current int64) ApiGetRwusdRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page
 func (r ApiGetRwusdRewardsHistoryRequest) Size(size int64) ApiGetRwusdRewardsHistoryRequest {
 	r.size = &size
 	return r
@@ -368,13 +400,13 @@ func (r ApiGetRwusdRewardsHistoryRequest) Execute() (*common.RestApiResponse[mod
 GetRwusdRewardsHistory Get RWUSD Rewards History (USER_DATA)
 Get /sapi/v1/rwusd/history/rewardsHistory
 
-https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page
+@param size -  Number of results per page
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetRwusdRewardsHistoryRequest
 */
@@ -411,7 +443,15 @@ func (a *RwusdAPIService) GetRwusdRewardsHistoryExecute(r ApiGetRwusdRewardsHist
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -422,7 +462,7 @@ func (a *RwusdAPIService) GetRwusdRewardsHistoryExecute(r ApiGetRwusdRewardsHist
 type ApiGetRwusdSubscriptionHistoryRequest struct {
 	ctx        context.Context
 	ApiService *RwusdAPIService
-	asset      *string
+	asset      *models.GetBfusdSubscriptionHistoryAssetParameter
 	startTime  *int64
 	endTime    *int64
 	current    *int64
@@ -430,8 +470,7 @@ type ApiGetRwusdSubscriptionHistoryRequest struct {
 	recvWindow *int64
 }
 
-// USDC or USDT
-func (r ApiGetRwusdSubscriptionHistoryRequest) Asset(asset string) ApiGetRwusdSubscriptionHistoryRequest {
+func (r ApiGetRwusdSubscriptionHistoryRequest) Asset(asset models.GetBfusdSubscriptionHistoryAssetParameter) ApiGetRwusdSubscriptionHistoryRequest {
 	r.asset = &asset
 	return r
 }
@@ -446,13 +485,13 @@ func (r ApiGetRwusdSubscriptionHistoryRequest) EndTime(endTime int64) ApiGetRwus
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page
 func (r ApiGetRwusdSubscriptionHistoryRequest) Current(current int64) ApiGetRwusdSubscriptionHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page
 func (r ApiGetRwusdSubscriptionHistoryRequest) Size(size int64) ApiGetRwusdSubscriptionHistoryRequest {
 	r.size = &size
 	return r
@@ -469,17 +508,17 @@ func (r ApiGetRwusdSubscriptionHistoryRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-GetRwusdSubscriptionHistory Get RWUSD subscription history(USER_DATA)
+GetRwusdSubscriptionHistory Get RWUSD subscription history (USER_DATA)
 Get /sapi/v1/rwusd/history/subscriptionHistory
 
-https://developers.binance.com/docs/simple_earn/rwusd/history/Get-RWUSD-subscription-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#get-rwusd-subscription-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page
+@param size -  Number of results per page
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetRwusdSubscriptionHistoryRequest
 */
@@ -519,7 +558,15 @@ func (a *RwusdAPIService) GetRwusdSubscriptionHistoryExecute(r ApiGetRwusdSubscr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRwusdSubscriptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRwusdSubscriptionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -531,23 +578,22 @@ type ApiRedeemRwusdRequest struct {
 	ctx        context.Context
 	ApiService *RwusdAPIService
 	amount     *float32
-	type_      *string
+	type_      *models.RedeemBfusdTypeParameter
 	recvWindow *int64
 }
 
-// Amount
+// Amount in RWUSD
 func (r ApiRedeemRwusdRequest) Amount(amount float32) ApiRedeemRwusdRequest {
 	r.amount = &amount
 	return r
 }
 
-// FAST or STANDARD, defaults to STANDARD
-func (r ApiRedeemRwusdRequest) Type(type_ string) ApiRedeemRwusdRequest {
+func (r ApiRedeemRwusdRequest) Type(type_ models.RedeemBfusdTypeParameter) ApiRedeemRwusdRequest {
 	r.type_ = &type_
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiRedeemRwusdRequest) RecvWindow(recvWindow int64) ApiRedeemRwusdRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -558,15 +604,15 @@ func (r ApiRedeemRwusdRequest) Execute() (*common.RestApiResponse[models.RedeemR
 }
 
 /*
-RedeemRwusd Redeem RWUSD(TRADE)
+RedeemRwusd Redeem RWUSD (TRADE)
 Post /sapi/v1/rwusd/redeem
 
-https://developers.binance.com/docs/simple_earn/rwusd/earn/Redeem-RWUSD
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#redeem-rwusd
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param amount -  Amount
-@param type_ -  FAST or STANDARD, defaults to STANDARD
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param amount -  Amount in RWUSD
+@param type_ -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemRwusdRequest
 */
 func (a *RwusdAPIService) RedeemRwusd(ctx context.Context) ApiRedeemRwusdRequest {
@@ -589,6 +635,7 @@ func (a *RwusdAPIService) RedeemRwusdExecute(r ApiRedeemRwusdRequest) (*common.R
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -599,7 +646,15 @@ func (a *RwusdAPIService) RedeemRwusdExecute(r ApiRedeemRwusdRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemRwusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemRwusdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -610,13 +665,12 @@ func (a *RwusdAPIService) RedeemRwusdExecute(r ApiRedeemRwusdRequest) (*common.R
 type ApiSubscribeRwusdRequest struct {
 	ctx        context.Context
 	ApiService *RwusdAPIService
-	asset      *string
+	asset      *models.SubscribeRwusdAssetParameter
 	amount     *float32
 	recvWindow *int64
 }
 
-// USDT or USDC (whichever is eligible)
-func (r ApiSubscribeRwusdRequest) Asset(asset string) ApiSubscribeRwusdRequest {
+func (r ApiSubscribeRwusdRequest) Asset(asset models.SubscribeRwusdAssetParameter) ApiSubscribeRwusdRequest {
 	r.asset = &asset
 	return r
 }
@@ -627,7 +681,7 @@ func (r ApiSubscribeRwusdRequest) Amount(amount float32) ApiSubscribeRwusdReques
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSubscribeRwusdRequest) RecvWindow(recvWindow int64) ApiSubscribeRwusdRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -638,15 +692,15 @@ func (r ApiSubscribeRwusdRequest) Execute() (*common.RestApiResponse[models.Subs
 }
 
 /*
-SubscribeRwusd Subscribe RWUSD(TRADE)
+SubscribeRwusd Subscribe RWUSD (TRADE)
 Post /sapi/v1/rwusd/subscribe
 
-https://developers.binance.com/docs/simple_earn/rwusd/earn/Subscribe-RWUSD
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/rwusd#subscribe-rwusd
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDT or USDC (whichever is eligible)
+@param asset -
 @param amount -  Amount
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeRwusdRequest
 */
 func (a *RwusdAPIService) SubscribeRwusd(ctx context.Context) ApiSubscribeRwusdRequest {
@@ -669,6 +723,7 @@ func (a *RwusdAPIService) SubscribeRwusdExecute(r ApiSubscribeRwusdRequest) (*co
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -679,7 +734,15 @@ func (a *RwusdAPIService) SubscribeRwusdExecute(r ApiSubscribeRwusdRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeRwusdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeRwusdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

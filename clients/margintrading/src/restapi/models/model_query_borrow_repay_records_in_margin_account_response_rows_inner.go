@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &QueryBorrowRepayRecordsInMarginAccountResponseRow
 
 // QueryBorrowRepayRecordsInMarginAccountResponseRowsInner struct for QueryBorrowRepayRecordsInMarginAccountResponseRowsInner
 type QueryBorrowRepayRecordsInMarginAccountResponseRowsInner struct {
-	Type                 *string `json:"type,omitempty"`
-	IsolatedSymbol       *string `json:"isolatedSymbol,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Interest             *string `json:"interest,omitempty"`
-	Principal            *string `json:"principal,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
-	TxId                 *int64  `json:"txId,omitempty"`
+	// AUTO,MANUAL for Cross Margin Borrow; MANUAL，AUTO，BNB_AUTO_REPAY，POINT_AUTO_REPAY for Cross Margin Repay; AUTO，MANUAL for Isolated Margin Borrow/Repay;
+	Type *string `json:"type,omitempty"`
+	// isolated symbol, will not be returned for crossed margin
+	IsolatedSymbol *string `json:"isolatedSymbol,omitempty"`
+	// Total amount borrowed/repaid
+	Amount *string `json:"amount,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// Interest repaid
+	Interest *string `json:"interest,omitempty"`
+	// Principal repaid
+	Principal *string `json:"principal,omitempty"`
+	// one of PENDING (pending execution), CONFIRMED (successfully execution), FAILED (execution failed, nothing happened to your account);
+	Status *string `json:"status,omitempty"`
+	// timestamp.
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	// tx Id.
+	TxId                 *int64 `json:"txId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,5 +1,5 @@
 /*
-Binance Crypto Loan REST API TEST
+Crypto Loan REST API TEST
 
 Testing FlexibleRateAPIService
 
@@ -10,6 +10,7 @@ package binancecryptoloanrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,11 +26,15 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService CheckCollateralRepayRate Success", func(t *testing.T) {
 
-		mockedJSON := `{"loanCoin":"BUSD","collateralCoin":"BNB","rate":"300.36781234"}`
+		var mockedJSON string
+		mockedJSON = `{"loanCoin":"BUSD","collateralCoin":"BNB","rate":"300.36781234"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/repay/rate", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
-			require.Equal(t, "collateralCoin_example", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -46,7 +51,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.CheckCollateralRepayRate(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.CheckCollateralRepayRate(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -99,13 +104,17 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService FlexibleLoanAdjustLtv Success", func(t *testing.T) {
 
-		mockedJSON := `{"loanCoin":"BUSD","collateralCoin":"BNB","direction":"ADDITIONAL","adjustmentAmount":"5.235","currentLTV":"0.52","status":"Succeeds"}`
+		var mockedJSON string
+		mockedJSON = `{"loanCoin":"BUSD","collateralCoin":"BNB","direction":"ADDITIONAL","adjustmentAmount":"5.235","currentLTV":"0.52","status":"Succeeds"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/adjust/ltv", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
-			require.Equal(t, "collateralCoin_example", r.URL.Query().Get("collateralCoin"))
-			require.Equal(t, "1", r.URL.Query().Get("adjustmentAmount"))
-			require.Equal(t, "direction_example", r.URL.Query().Get("direction"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("adjustmentAmount"))
+			require.Equal(t, string(models.FlexibleLoanAdjustLtvDirectionParameterAdditional), r.URL.Query().Get("direction"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -122,7 +131,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").AdjustmentAmount(float32(1.0)).Direction("direction_example").Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").AdjustmentAmount(float32(1)).Direction(models.FlexibleLoanAdjustLtvDirectionParameterAdditional).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -175,11 +184,15 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService FlexibleLoanBorrow Success", func(t *testing.T) {
 
-		mockedJSON := `{"loanCoin":"BUSD","loanAmount":"100.5","collateralCoin":"BNB","collateralAmount":"50.5","status":"Succeeds"}`
+		var mockedJSON string
+		mockedJSON = `{"loanCoin":"BUSD","loanAmount":"100.5","collateralCoin":"BNB","collateralAmount":"50.5","status":"Succeeds"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/borrow", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
-			require.Equal(t, "collateralCoin_example", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -196,7 +209,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanBorrow(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanBorrow(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -249,12 +262,16 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService FlexibleLoanRepay Success", func(t *testing.T) {
 
-		mockedJSON := `{"loanCoin":"BUSD","collateralCoin":"BNB","remainingDebt":"100.5","remainingCollateral":"5.253","fullRepayment":false,"currentLTV":"0.25","repayStatus":"REPAID"}`
+		var mockedJSON string
+		mockedJSON = `{"loanCoin":"BUSD","collateralCoin":"BNB","remainingDebt":"100.5","remainingCollateral":"5.253","fullRepayment":false,"currentLTV":"0.25","repayStatus":"REPAID"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/repay", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
-			require.Equal(t, "collateralCoin_example", r.URL.Query().Get("collateralCoin"))
-			require.Equal(t, "1", r.URL.Query().Get("repayAmount"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("repayAmount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -271,7 +288,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").RepayAmount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").RepayAmount(float32(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -324,7 +341,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanAssetsData Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","flexibleInterestRate":"0.00000491","flexibleMinLimit":"100","flexibleMaxLimit":"1000000"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","flexibleInterestRate":"0.00000491","flexibleMinLimit":"100","flexibleMaxLimit":"1000000"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/loanable/data", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -379,7 +400,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanBorrowHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","initialLoanAmount":"10000","collateralCoin":"BNB","initialCollateralAmount":"49.27565492","borrowTime":1575018510000,"status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","initialLoanAmount":"10000","collateralCoin":"BNB","initialCollateralAmount":"49.27565492","borrowTime":1575018510000,"status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/borrow/history", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -434,7 +459,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanCollateralAssetsData Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"collateralCoin":"BNB","initialLTV":"0.65","marginCallLTV":"0.75","liquidationLTV":"0.83","maxLimit":"1000000"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"collateralCoin":"BNB","initialLTV":"0.65","marginCallLTV":"0.75","liquidationLTV":"0.83","maxLimit":"1000000"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/collateral/data", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -489,10 +518,14 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanInterestRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"coin":"USDT","annualizedInterestRate":"0.0647","time":1575018510000},{"coin":"USDT","annualizedInterestRate":"0.0647","time":1575018510000}],"total":2}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"coin":"USDT","annualizedInterestRate":"0.0647","time":1575018510000}],"total":2}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/interestRateHistory", r.URL.Path)
-			require.Equal(t, "coin_example", r.URL.Query().Get("coin"))
+			require.Equal(t, "USDT", r.URL.Query().Get("coin"))
 			require.Equal(t, "5000", r.URL.Query().Get("recvWindow"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -510,7 +543,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.GetFlexibleLoanInterestRateHistory(context.Background()).Coin("coin_example").RecvWindow(int64(5000)).Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.GetFlexibleLoanInterestRateHistory(context.Background()).Coin("USDT").RecvWindow(int64(5000)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -563,7 +596,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanLiquidationHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","liquidationDebt":"10000","collateralCoin":"BNB","liquidationCollateralAmount":"123","returnCollateralAmount":"0.2","liquidationFee":"1.2","liquidationStartingPrice":"49.27565492","liquidationStartingTime":1575018510000,"status":"Liquidated"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","liquidationDebt":"10000","collateralCoin":"BNB","liquidationCollateralAmount":"123","returnCollateralAmount":"0.2","liquidationFee":"1.2","liquidationStartingPrice":"49.27565492","liquidationStartingTime":1575018510000,"status":"Liquidated"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/liquidation/history", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -618,7 +655,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanLtvAdjustmentHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","collateralCoin":"BNB","direction":"ADDITIONAL","collateralAmount":"5.235","preLTV":"0.78","afterLTV":"0.56","adjustTime":1575018510000}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","collateralCoin":"BNB","direction":"ADDITIONAL","collateralAmount":"5.235","preLTV":"0.78","afterLTV":"0.56","adjustTime":1575018510000}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/ltv/adjustment/history", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -673,7 +714,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanOngoingOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","totalDebt":"10000","collateralCoin":"BNB","collateralAmount":"49.27565492","currentLTV":"0.57"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","totalDebt":"10000","collateralCoin":"BNB","collateralAmount":"49.27565492","currentLTV":"0.57"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/ongoing/orders", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -728,7 +773,11 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 
 	t.Run("Test FlexibleRateAPIService GetFlexibleLoanRepaymentHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","repayAmount":"10000","collateralCoin":"BNB","collateralReturn":"49.27565492","repayStatus":"REPAID","repayTime":1575018510000}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","repayAmount":"10000","collateralCoin":"BNB","collateralReturn":"49.27565492","repayStatus":"REPAID","repayTime":1575018510000}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/loan/flexible/repay/history", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

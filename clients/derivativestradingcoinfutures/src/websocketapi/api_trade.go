@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package binancederivativestradingcoinfutureswebsocketapi
@@ -30,7 +30,6 @@ func (r ApiCancelOrderRequest) Symbol(symbol string) ApiCancelOrderRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
 func (r ApiCancelOrderRequest) Id(id string) ApiCancelOrderRequest {
 	r.id = &id
 	return r
@@ -73,9 +72,9 @@ func (r ApiCancelOrderRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models
 CancelOrder Cancel Order (TRADE)
 /order.cancel
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Cancel-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#cancel-order
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId	@param origClientOrderId	@param recvWindow
+@param symbol	@param id	@param orderId	@param origClientOrderId	@param recvWindow
 @return ApiCancelOrderRequest
 */
 func (a *TradeAPIService) CancelOrder() ApiCancelOrderRequest {
@@ -140,7 +139,6 @@ func (r ApiModifyOrderRequest) Symbol(symbol string) ApiModifyOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiModifyOrderRequest) Side(side models.ModifyOrderSideParameter) ApiModifyOrderRequest {
 	r.side = &side
 	return r
@@ -157,7 +155,6 @@ func (r ApiModifyOrderRequest) Price(price float32) ApiModifyOrderRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
 func (r ApiModifyOrderRequest) Id(id string) ApiModifyOrderRequest {
 	r.id = &id
 	return r
@@ -173,7 +170,7 @@ func (r ApiModifyOrderRequest) OrigClientOrderId(origClientOrderId string) ApiMo
 	return r
 }
 
-// only available for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiModifyOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
@@ -206,9 +203,9 @@ func (r ApiModifyOrderRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models
 ModifyOrder Modify Order (TRADE)
 /order.modify
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Modify-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#modify-order
 
-@param symbol	@param side `SELL`, `BUY`	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price	@param id Unique WebSocket request ID.	@param orderId	@param origClientOrderId	@param priceMatch only available for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param recvWindow
+@param symbol	@param side	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price	@param id	@param orderId	@param origClientOrderId	@param priceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`	@param recvWindow
 @return ApiModifyOrderRequest
 */
 func (a *TradeAPIService) ModifyOrder() ApiModifyOrderRequest {
@@ -282,15 +279,15 @@ type ApiNewOrderRequest struct {
 	positionSide            *models.NewOrderPositionSideParameter
 	timeInForce             *models.NewOrderTimeInForceParameter
 	quantity                *float32
-	reduceOnly              *string
+	reduceOnly              *models.NewOrderReduceOnlyParameter
 	price                   *float32
 	newClientOrderId        *string
 	stopPrice               *float32
-	closePosition           *string
+	closePosition           *models.NewOrderReduceOnlyParameter
 	activationPrice         *float32
 	callbackRate            *float32
 	workingType             *models.NewOrderWorkingTypeParameter
-	priceProtect            *string
+	priceProtect            *models.NewOrderReduceOnlyParameter
 	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
 	priceMatch              *models.ModifyOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
@@ -302,19 +299,17 @@ func (r ApiNewOrderRequest) Symbol(symbol string) ApiNewOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiNewOrderRequest) Side(side models.ModifyOrderSideParameter) ApiNewOrderRequest {
 	r.side = &side
 	return r
 }
 
-// &#x60;LIMIT&#x60;, &#x60;MARKET&#x60;, &#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;. **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted and will return &#x60;-4120&#x60;. Use the REST &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.**
+// **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted and will return &#x60;-4120&#x60;. Use the REST &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.**
 func (r ApiNewOrderRequest) Type(type_ models.NewOrderTypeParameter) ApiNewOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Unique WebSocket request ID.
 func (r ApiNewOrderRequest) Id(id string) ApiNewOrderRequest {
 	r.id = &id
 	return r
@@ -337,8 +332,8 @@ func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
 	return r
 }
 
-// &#x60;true&#x60; or &#x60;false&#x60;. default &#x60;false&#x60;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; (Close-All)
-func (r ApiNewOrderRequest) ReduceOnly(reduceOnly string) ApiNewOrderRequest {
+// Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; (Close-All)\&quot;
+func (r ApiNewOrderRequest) ReduceOnly(reduceOnly models.NewOrderReduceOnlyParameter) ApiNewOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
@@ -361,7 +356,7 @@ func (r ApiNewOrderRequest) StopPrice(stopPrice float32) ApiNewOrderRequest {
 }
 
 // &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
-func (r ApiNewOrderRequest) ClosePosition(closePosition string) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) ClosePosition(closePosition models.NewOrderReduceOnlyParameter) ApiNewOrderRequest {
 	r.closePosition = &closePosition
 	return r
 }
@@ -384,25 +379,24 @@ func (r ApiNewOrderRequest) WorkingType(workingType models.NewOrderWorkingTypePa
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewOrderRequest) PriceProtect(priceProtect string) ApiNewOrderRequest {
+// Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.&#39;
+func (r ApiNewOrderRequest) PriceProtect(priceProtect models.NewOrderReduceOnlyParameter) ApiNewOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// &#x60;ACK&#x60;,&#x60;RESULT&#x60;, default &#x60;ACK&#x60;
 func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// only available for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only available for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiNewOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchParameter) ApiNewOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// &#x60;NONE&#x60;: No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
+// &#x60;NONE&#x60;: No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers
 func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -432,12 +426,12 @@ func (r ApiNewOrderRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Ne
 }
 
 /*
-NewOrder New Order(TRADE)
+NewOrder New Order (TRADE)
 /order.place
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/New-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#new-order
 
-@param symbol	@param side `SELL`, `BUY`	@param type_ `LIMIT`, `MARKET`, `STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`. **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted and will return `-4120`. Use the REST `/dapi/v1/algoOrder` endpoint instead.**	@param id Unique WebSocket request ID.	@param positionSide Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode.  It must be sent in Hedge Mode.	@param timeInForce	@param quantity Quantity measured by contract number, Cannot be sent with `closePosition`=`true`	@param reduceOnly `true` or `false`. default `false`. Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (Close-All)	@param price	@param newClientOrderId A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`	@param stopPrice Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param activationPrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different workingType)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceProtect \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param newOrderRespType `ACK`,`RESULT`, default `ACK`	@param priceMatch only available for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`	@param selfTradePreventionMode `NONE`: No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`	@param recvWindow
+@param symbol	@param side	@param type_ **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted and will return `-4120`. Use the REST `/dapi/v1/algoOrder` endpoint instead.**	@param id	@param positionSide Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode.  It must be sent in Hedge Mode.	@param timeInForce	@param quantity Quantity measured by contract number, Cannot be sent with `closePosition`=`true`	@param reduceOnly Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (Close-All)\"	@param price	@param newClientOrderId A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`	@param stopPrice Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.	@param closePosition `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.	@param activationPrice Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different workingType)	@param callbackRate Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1%	@param workingType stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"	@param priceProtect Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.'	@param newOrderRespType	@param priceMatch only available for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`	@param selfTradePreventionMode `NONE`: No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers	@param recvWindow
 @return ApiNewOrderRequest
 */
 func (a *TradeAPIService) NewOrder() ApiNewOrderRequest {
@@ -541,7 +535,6 @@ type ApiPositionInformationRequest struct {
 	recvWindow  *int64
 }
 
-// Unique WebSocket request ID.
 func (r ApiPositionInformationRequest) Id(id string) ApiPositionInformationRequest {
 	r.id = &id
 	return r
@@ -581,12 +574,12 @@ func (r ApiPositionInformationRequest) ExecuteAsync() (chan *common.ResponseOrRa
 }
 
 /*
-PositionInformation Position Information(USER_DATA)
+PositionInformation Position Information (USER_DATA)
 /account.position
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Position-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#position-information
 
-@param id Unique WebSocket request ID.	@param marginAsset	@param pair	@param recvWindow
+@param id	@param marginAsset	@param pair	@param recvWindow
 @return ApiPositionInformationRequest
 */
 func (a *TradeAPIService) PositionInformation() ApiPositionInformationRequest {
@@ -642,7 +635,6 @@ func (r ApiQueryOrderRequest) Symbol(symbol string) ApiQueryOrderRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
 func (r ApiQueryOrderRequest) Id(id string) ApiQueryOrderRequest {
 	r.id = &id
 	return r
@@ -685,9 +677,9 @@ func (r ApiQueryOrderRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.
 QueryOrder Query Order (USER_DATA)
 /order.status
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/trade/websocket-api/Query-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/trade#query-order
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId	@param origClientOrderId	@param recvWindow
+@param symbol	@param id	@param orderId	@param origClientOrderId	@param recvWindow
 @return ApiQueryOrderRequest
 */
 func (a *TradeAPIService) QueryOrder() ApiQueryOrderRequest {

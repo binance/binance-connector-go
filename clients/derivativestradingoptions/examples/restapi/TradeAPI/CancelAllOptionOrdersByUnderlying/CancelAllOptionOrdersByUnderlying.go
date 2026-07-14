@@ -22,7 +22,7 @@ func CancelAllOptionOrdersByUnderlying() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelAllOptionOrdersByUnderlying(context.Background()).Underlying("underlying_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelAllOptionOrdersByUnderlying(context.Background()).Underlying("BTCUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

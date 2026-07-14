@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &PartialBookDepthStreamsResponse{}
 
 // PartialBookDepthStreamsResponse struct for PartialBookDepthStreamsResponse
 type PartialBookDepthStreamsResponse struct {
-	Smalle               *string                                `json:"e,omitempty"`
-	E                    *int64                                 `json:"E,omitempty"`
-	T                    *int64                                 `json:"T,omitempty"`
-	Smalls               *string                                `json:"s,omitempty"`
-	Smallps              *string                                `json:"ps,omitempty"`
-	U                    *int64                                 `json:"U,omitempty"`
-	Smallu               *int64                                 `json:"u,omitempty"`
-	Smallpu              *int64                                 `json:"pu,omitempty"`
-	Smallb               []PartialBookDepthStreamsResponseBItem `json:"b,omitempty"`
-	Smalla               []PartialBookDepthStreamsResponseAItem `json:"a,omitempty"`
-	Smallst              *int64                                 `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Transaction time
+	T *int64 `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Pair
+	Smallps *string `json:"ps,omitempty"`
+	// First update ID in event
+	U *int64 `json:"U,omitempty"`
+	// updateId
+	Smallu *int64 `json:"u,omitempty"`
+	// Final update Id in last stream(ie `u` in last stream)
+	Smallpu *int64 `json:"pu,omitempty"`
+	// Bids to be updated
+	Smallb [][]string `json:"b,omitempty"`
+	// Asks to be updated
+	Smalla [][]string `json:"a,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -307,9 +318,9 @@ func (o *PartialBookDepthStreamsResponse) SetSmallpu(v int64) {
 }
 
 // GetB returns the B field value if set, zero value otherwise.
-func (o *PartialBookDepthStreamsResponse) GetSmallb() []PartialBookDepthStreamsResponseBItem {
+func (o *PartialBookDepthStreamsResponse) GetSmallb() [][]string {
 	if o == nil || common.IsNil(o.Smallb) {
-		var ret []PartialBookDepthStreamsResponseBItem
+		var ret [][]string
 		return ret
 	}
 	return o.Smallb
@@ -317,7 +328,7 @@ func (o *PartialBookDepthStreamsResponse) GetSmallb() []PartialBookDepthStreamsR
 
 // GetBOk returns a tuple with the B field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialBookDepthStreamsResponse) GetSmallbOk() ([]PartialBookDepthStreamsResponseBItem, bool) {
+func (o *PartialBookDepthStreamsResponse) GetSmallbOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Smallb) {
 		return nil, false
 	}
@@ -333,15 +344,15 @@ func (o *PartialBookDepthStreamsResponse) HasSmallb() bool {
 	return false
 }
 
-// SetB gets a reference to the given []PartialBookDepthStreamsResponseBItem and assigns it to the B field.
-func (o *PartialBookDepthStreamsResponse) SetSmallb(v []PartialBookDepthStreamsResponseBItem) {
+// SetB gets a reference to the given [][]string and assigns it to the B field.
+func (o *PartialBookDepthStreamsResponse) SetSmallb(v [][]string) {
 	o.Smallb = v
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *PartialBookDepthStreamsResponse) GetSmalla() []PartialBookDepthStreamsResponseAItem {
+func (o *PartialBookDepthStreamsResponse) GetSmalla() [][]string {
 	if o == nil || common.IsNil(o.Smalla) {
-		var ret []PartialBookDepthStreamsResponseAItem
+		var ret [][]string
 		return ret
 	}
 	return o.Smalla
@@ -349,7 +360,7 @@ func (o *PartialBookDepthStreamsResponse) GetSmalla() []PartialBookDepthStreamsR
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialBookDepthStreamsResponse) GetSmallaOk() ([]PartialBookDepthStreamsResponseAItem, bool) {
+func (o *PartialBookDepthStreamsResponse) GetSmallaOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
@@ -365,15 +376,15 @@ func (o *PartialBookDepthStreamsResponse) HasSmalla() bool {
 	return false
 }
 
-// SetA gets a reference to the given []PartialBookDepthStreamsResponseAItem and assigns it to the A field.
-func (o *PartialBookDepthStreamsResponse) SetSmalla(v []PartialBookDepthStreamsResponseAItem) {
+// SetA gets a reference to the given [][]string and assigns it to the A field.
+func (o *PartialBookDepthStreamsResponse) SetSmalla(v [][]string) {
 	o.Smalla = v
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *PartialBookDepthStreamsResponse) GetSmallst() int64 {
+func (o *PartialBookDepthStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -381,7 +392,7 @@ func (o *PartialBookDepthStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialBookDepthStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *PartialBookDepthStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -397,8 +408,8 @@ func (o *PartialBookDepthStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *PartialBookDepthStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *PartialBookDepthStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Si** | Pointer to **int64** |  | [optional] 
-**St** | Pointer to **string** |  | [optional] 
-**Ss** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Ut** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **int64** |  | [optional] 
+**Si** | Pointer to **int64** | Strategy ID | [optional] 
+**St** | Pointer to **string** | Strategy Type | [optional] 
+**Ss** | Pointer to **string** | Strategy Status | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Ut** | Pointer to **int64** | Update Time | [optional] 
+**C** | Pointer to **int64** | opCode | [optional] 
 
 ## Methods
 

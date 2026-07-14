@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading USDS Futures REST API TEST
+Futures (USDⓈ-M) REST API TEST
 
 Testing UserDataStreamsAPIService
 
@@ -65,7 +65,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_UserDataStreamsAPIService(
 
 	t.Run("Test UserDataStreamsAPIService KeepaliveUserDataStream Success", func(t *testing.T) {
 
-		mockedJSON := `{"listenKey":"3HBntNTepshgEdjIwSUIBgB9keLyOCg5qv3n6bYAtktG8ejcaW5HXz9Vx1JgIieg"}`
+		var mockedJSON string
+		mockedJSON = `{"listenKey":"3HBntNTepshgEdjIwSUIBgB9keLyOCg5qv3n6bYAtktG8ejcaW5HXz9Vx1JgIieg"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/listenKey", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -120,7 +124,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_UserDataStreamsAPIService(
 
 	t.Run("Test UserDataStreamsAPIService StartUserDataStream Success", func(t *testing.T) {
 
-		mockedJSON := `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1"}`
+		var mockedJSON string
+		mockedJSON = `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/listenKey", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

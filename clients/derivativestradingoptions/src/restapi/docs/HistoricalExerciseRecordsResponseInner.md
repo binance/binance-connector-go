@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**StrikePrice** | Pointer to **string** |  | [optional] 
-**RealStrikePrice** | Pointer to **string** |  | [optional] 
-**ExpiryDate** | Pointer to **int64** |  | [optional] 
-**StrikeResult** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol | [optional] 
+**StrikePrice** | Pointer to **string** | strike price | [optional] 
+**RealStrikePrice** | Pointer to **string** | real strike price | [optional] 
+**ExpiryDate** | Pointer to **int64** | Exercise time | [optional] 
+**StrikeResult** | Pointer to **string** | strike result | [optional] 
 
 ## Methods
 

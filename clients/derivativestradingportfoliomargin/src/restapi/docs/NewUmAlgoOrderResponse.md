@@ -16,7 +16,6 @@ Name         | Type          | Description.  | Notes
 **AlgoStatus** | Pointer to **string** |  | [optional] 
 **TriggerPrice** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**IcebergQuantity** | Pointer to **string** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 
 **PriceMatch** | Pointer to **string** |  | [optional] 
@@ -347,31 +346,6 @@ SetPrice sets Price field to given value.
 `func (o *NewUmAlgoOrderResponse) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
-
-### GetIcebergQuantity
-
-`func (o *NewUmAlgoOrderResponse) GetIcebergQuantity() string`
-
-GetIcebergQuantity returns the IcebergQuantity field if non-nil, zero value otherwise.
-
-### GetIcebergQuantityOk
-
-`func (o *NewUmAlgoOrderResponse) GetIcebergQuantityOk() (*string, bool)`
-
-GetIcebergQuantityOk returns a tuple with the IcebergQuantity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIcebergQuantity
-
-`func (o *NewUmAlgoOrderResponse) SetIcebergQuantity(v string)`
-
-SetIcebergQuantity sets IcebergQuantity field to given value.
-
-### HasIcebergQuantity
-
-`func (o *NewUmAlgoOrderResponse) HasIcebergQuantity() bool`
-
-HasIcebergQuantity returns a boolean if a field has been set.
 
 ### GetSelfTradePreventionMode
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &AccountInformationResponse{}
 
 // AccountInformationResponse struct for AccountInformationResponse
 type AccountInformationResponse struct {
-	Assets               []AccountInformationResponseAssetsInner    `json:"assets,omitempty"`
-	Positions            []AccountInformationResponsePositionsInner `json:"positions,omitempty"`
-	CanDeposit           *bool                                      `json:"canDeposit,omitempty"`
-	CanTrade             *bool                                      `json:"canTrade,omitempty"`
-	CanWithdraw          *bool                                      `json:"canWithdraw,omitempty"`
-	FeeTier              *int64                                     `json:"feeTier,omitempty"`
-	UpdateTime           *int64                                     `json:"updateTime,omitempty"`
+	// Supported assets.
+	Assets []AccountInformationResponseAssetsInner `json:"assets,omitempty"`
+	// Position list.
+	Positions []AccountInformationResponsePositionsInner `json:"positions,omitempty"`
+	// Whether deposits are enabled.
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// Whether trading is enabled.
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// Whether withdrawals are enabled.
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// Fee tier level.
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

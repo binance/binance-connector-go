@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionswebsocketstreams
@@ -17,8 +17,8 @@ type PublicAPIService Service
 type ApiDiffBookDepthStreamsRequest struct {
 	ApiService  *PublicAPIService
 	symbol      *string
+	updateSpeed *models.DiffBookDepthStreamsUpdateSpeedParameter
 	id          *int32
-	updateSpeed *string
 }
 
 // The symbol parameter
@@ -27,15 +27,15 @@ func (r ApiDiffBookDepthStreamsRequest) Symbol(symbol string) ApiDiffBookDepthSt
 	return r
 }
 
-// Unique WebSocket request ID.
-func (r ApiDiffBookDepthStreamsRequest) Id(id int32) ApiDiffBookDepthStreamsRequest {
-	r.id = &id
+// WebSocket stream update speed
+func (r ApiDiffBookDepthStreamsRequest) UpdateSpeed(updateSpeed models.DiffBookDepthStreamsUpdateSpeedParameter) ApiDiffBookDepthStreamsRequest {
+	r.updateSpeed = &updateSpeed
 	return r
 }
 
-// WebSocket stream update speed
-func (r ApiDiffBookDepthStreamsRequest) UpdateSpeed(updateSpeed string) ApiDiffBookDepthStreamsRequest {
-	r.updateSpeed = &updateSpeed
+// Unique WebSocket request ID.
+func (r ApiDiffBookDepthStreamsRequest) Id(id int32) ApiDiffBookDepthStreamsRequest {
+	r.id = &id
 	return r
 }
 
@@ -47,9 +47,9 @@ func (r ApiDiffBookDepthStreamsRequest) Execute() (*common.StreamHandler[models.
 DiffBookDepthStreams Diff Book Depth Streams
 /<symbol>@depth@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Diff-Book-Depth-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#diff-book-depth-streams
 
-@param symbol The symbol parameter	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
+@param symbol The symbol parameter	@param updateSpeed WebSocket stream update speed	@param id Unique WebSocket request ID.
 @return ApiDiffBookDepthStreamsRequest
 */
 func (a *PublicAPIService) DiffBookDepthStreams() ApiDiffBookDepthStreamsRequest {
@@ -65,9 +65,103 @@ func (a *PublicAPIService) DiffBookDepthStreamsExecute(r ApiDiffBookDepthStreams
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+	if r.updateSpeed == nil {
+		return nil, common.ReportError("updateSpeed is required and must be specified")
+	}
 
 	localStream := common.WsStreamsPlaceholder(
 		"/<symbol>@depth@<updateSpeed>"[1:],
+		map[string]string{
+			"symbol": func() string {
+				if r.symbol == nil {
+					return ""
+				}
+				return *r.symbol
+			}(),
+			"updateSpeed": func() string {
+				if r.updateSpeed == nil {
+					return ""
+				}
+				return string(*r.updateSpeed)
+			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return string(*r.id)
+			}(),
+		},
+	)
+	ws := a.client.WsPublic
+
+	id := []any{common.GenerateIntUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
+	resp, err := common.CreateStreamHandler[models.DiffBookDepthStreamsResponse](&common.StreamHandlerWrapper{
+		WebsocketStreams: ws,
+	}, localStream, id, true)
+
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
+type ApiHour24TickerRequest struct {
+	ApiService     *PublicAPIService
+	symbol         *string
+	id             *int32
+	expirationDate *string
+}
+
+// The symbol parameter
+func (r ApiHour24TickerRequest) Symbol(symbol string) ApiHour24TickerRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiHour24TickerRequest) Id(id int32) ApiHour24TickerRequest {
+	r.id = &id
+	return r
+}
+
+// The expiration date parameter
+func (r ApiHour24TickerRequest) ExpirationDate(expirationDate string) ApiHour24TickerRequest {
+	r.expirationDate = &expirationDate
+	return r
+}
+
+func (r ApiHour24TickerRequest) Execute() (*common.StreamHandler[models.Hour24TickerResponse], error) {
+	return r.ApiService.Hour24TickerExecute(r)
+}
+
+/*
+Hour24Ticker 24-hour TICKER
+/<symbol>@optionTicker<expirationDate>
+
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#hour24-ticker
+
+@param symbol The symbol parameter	@param id Unique WebSocket request ID.	@param expirationDate The expiration date parameter
+@return ApiHour24TickerRequest
+*/
+func (a *PublicAPIService) Hour24Ticker() ApiHour24TickerRequest {
+	return ApiHour24TickerRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Hour24TickerResponse
+func (a *PublicAPIService) Hour24TickerExecute(r ApiHour24TickerRequest) (*common.StreamHandler[models.Hour24TickerResponse], error) {
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	localStream := common.WsStreamsPlaceholder(
+		"/<symbol>@optionTicker<expirationDate>"[1:],
 		map[string]string{
 			"symbol": func() string {
 				if r.symbol == nil {
@@ -81,11 +175,11 @@ func (a *PublicAPIService) DiffBookDepthStreamsExecute(r ApiDiffBookDepthStreams
 				}
 				return string(*r.id)
 			}(),
-			"updateSpeed": func() string {
-				if r.updateSpeed == nil {
+			"expirationDate": func() string {
+				if r.expirationDate == nil {
 					return ""
 				}
-				return *r.updateSpeed
+				return *r.expirationDate
 			}(),
 		},
 	)
@@ -95,7 +189,7 @@ func (a *PublicAPIService) DiffBookDepthStreamsExecute(r ApiDiffBookDepthStreams
 	if r.id != nil {
 		id = []any{*r.id}
 	}
-	resp, err := common.CreateStreamHandler[models.DiffBookDepthStreamsResponse](&common.StreamHandlerWrapper{
+	resp, err := common.CreateStreamHandler[models.Hour24TickerResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, true)
 
@@ -131,7 +225,7 @@ func (r ApiIndividualSymbolBookTickerStreamsRequest) Execute() (*common.StreamHa
 IndividualSymbolBookTickerStreams Individual Symbol Book Ticker Streams
 /<symbol>@bookTicker
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Individual-Symbol-Book-Ticker-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#individual-symbol-book-ticker-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiIndividualSymbolBookTickerStreamsRequest
@@ -186,9 +280,9 @@ func (a *PublicAPIService) IndividualSymbolBookTickerStreamsExecute(r ApiIndivid
 type ApiPartialBookDepthStreamsRequest struct {
 	ApiService  *PublicAPIService
 	symbol      *string
-	level       *string
+	level       *models.PartialBookDepthStreamsLevelParameter
+	updateSpeed *models.DiffBookDepthStreamsUpdateSpeedParameter
 	id          *int32
-	updateSpeed *string
 }
 
 // The symbol parameter
@@ -198,20 +292,20 @@ func (r ApiPartialBookDepthStreamsRequest) Symbol(symbol string) ApiPartialBookD
 }
 
 // The level parameter
-func (r ApiPartialBookDepthStreamsRequest) Level(level string) ApiPartialBookDepthStreamsRequest {
+func (r ApiPartialBookDepthStreamsRequest) Level(level models.PartialBookDepthStreamsLevelParameter) ApiPartialBookDepthStreamsRequest {
 	r.level = &level
+	return r
+}
+
+// WebSocket stream update speed
+func (r ApiPartialBookDepthStreamsRequest) UpdateSpeed(updateSpeed models.DiffBookDepthStreamsUpdateSpeedParameter) ApiPartialBookDepthStreamsRequest {
+	r.updateSpeed = &updateSpeed
 	return r
 }
 
 // Unique WebSocket request ID.
 func (r ApiPartialBookDepthStreamsRequest) Id(id int32) ApiPartialBookDepthStreamsRequest {
 	r.id = &id
-	return r
-}
-
-// WebSocket stream update speed
-func (r ApiPartialBookDepthStreamsRequest) UpdateSpeed(updateSpeed string) ApiPartialBookDepthStreamsRequest {
-	r.updateSpeed = &updateSpeed
 	return r
 }
 
@@ -223,9 +317,9 @@ func (r ApiPartialBookDepthStreamsRequest) Execute() (*common.StreamHandler[mode
 PartialBookDepthStreams Partial Book Depth Streams
 /<symbol>@depth<level>@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Partial-Book-Depth-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#partial-book-depth-streams
 
-@param symbol The symbol parameter	@param level The level parameter	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
+@param symbol The symbol parameter	@param level The level parameter	@param updateSpeed WebSocket stream update speed	@param id Unique WebSocket request ID.
 @return ApiPartialBookDepthStreamsRequest
 */
 func (a *PublicAPIService) PartialBookDepthStreams() ApiPartialBookDepthStreamsRequest {
@@ -244,6 +338,9 @@ func (a *PublicAPIService) PartialBookDepthStreamsExecute(r ApiPartialBookDepthS
 	if r.level == nil {
 		return nil, common.ReportError("level is required and must be specified")
 	}
+	if r.updateSpeed == nil {
+		return nil, common.ReportError("updateSpeed is required and must be specified")
+	}
 
 	localStream := common.WsStreamsPlaceholder(
 		"/<symbol>@depth<level>@<updateSpeed>"[1:],
@@ -258,19 +355,19 @@ func (a *PublicAPIService) PartialBookDepthStreamsExecute(r ApiPartialBookDepthS
 				if r.level == nil {
 					return ""
 				}
-				return *r.level
+				return string(*r.level)
+			}(),
+			"updateSpeed": func() string {
+				if r.updateSpeed == nil {
+					return ""
+				}
+				return string(*r.updateSpeed)
 			}(),
 			"id": func() string {
 				if r.id == nil {
 					return ""
 				}
 				return string(*r.id)
-			}(),
-			"updateSpeed": func() string {
-				if r.updateSpeed == nil {
-					return ""
-				}
-				return *r.updateSpeed
 			}(),
 		},
 	)
@@ -281,84 +378,6 @@ func (a *PublicAPIService) PartialBookDepthStreamsExecute(r ApiPartialBookDepthS
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.PartialBookDepthStreamsResponse](&common.StreamHandlerWrapper{
-		WebsocketStreams: ws,
-	}, localStream, id, true)
-
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
-}
-
-type ApiTicker24HourRequest struct {
-	ApiService *PublicAPIService
-	symbol     *string
-	id         *int32
-}
-
-// The symbol parameter
-func (r ApiTicker24HourRequest) Symbol(symbol string) ApiTicker24HourRequest {
-	r.symbol = &symbol
-	return r
-}
-
-// Unique WebSocket request ID.
-func (r ApiTicker24HourRequest) Id(id int32) ApiTicker24HourRequest {
-	r.id = &id
-	return r
-}
-
-func (r ApiTicker24HourRequest) Execute() (*common.StreamHandler[models.Ticker24HourResponse], error) {
-	return r.ApiService.Ticker24HourExecute(r)
-}
-
-/*
-Ticker24Hour 24-hour TICKER
-/<symbol>@optionTicker
-
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/24-hour-TICKER
-
-@param symbol The symbol parameter	@param id Unique WebSocket request ID.
-@return ApiTicker24HourRequest
-*/
-func (a *PublicAPIService) Ticker24Hour() ApiTicker24HourRequest {
-	return ApiTicker24HourRequest{
-		ApiService: a,
-	}
-}
-
-// Execute executes the request
-//
-//	@return Ticker24HourResponse
-func (a *PublicAPIService) Ticker24HourExecute(r ApiTicker24HourRequest) (*common.StreamHandler[models.Ticker24HourResponse], error) {
-	if r.symbol == nil {
-		return nil, common.ReportError("symbol is required and must be specified")
-	}
-
-	localStream := common.WsStreamsPlaceholder(
-		"/<symbol>@optionTicker"[1:],
-		map[string]string{
-			"symbol": func() string {
-				if r.symbol == nil {
-					return ""
-				}
-				return *r.symbol
-			}(),
-			"id": func() string {
-				if r.id == nil {
-					return ""
-				}
-				return string(*r.id)
-			}(),
-		},
-	)
-	ws := a.client.WsPublic
-
-	id := []any{common.GenerateIntUUID()}
-	if r.id != nil {
-		id = []any{*r.id}
-	}
-	resp, err := common.CreateStreamHandler[models.Ticker24HourResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, true)
 
@@ -394,7 +413,7 @@ func (r ApiTradeStreamsRequest) Execute() (*common.StreamHandler[models.TradeStr
 TradeStreams Trade Streams
 /<symbol>@optionTrade
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Trade-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/public#trade-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiTradeStreamsRequest

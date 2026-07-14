@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package binancesubaccountrestapi
@@ -28,23 +28,24 @@ type ApiFuturesTransferForSubAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiFuturesTransferForSubAccountRequest) Email(email string) ApiFuturesTransferForSubAccountRequest {
 	r.email = &email
 	return r
 }
 
+// The asset being transferred
 func (r ApiFuturesTransferForSubAccountRequest) Asset(asset string) ApiFuturesTransferForSubAccountRequest {
 	r.asset = &asset
 	return r
 }
 
+// The amount to be transferred
 func (r ApiFuturesTransferForSubAccountRequest) Amount(amount float32) ApiFuturesTransferForSubAccountRequest {
 	r.amount = &amount
 	return r
 }
 
-// 1: transfer from subaccount&#39;s  spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account
+// 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from subaccount&#39;s COIN-margined futures account to its spot account
 func (r ApiFuturesTransferForSubAccountRequest) Type(type_ int64) ApiFuturesTransferForSubAccountRequest {
 	r.type_ = &type_
 	return r
@@ -63,13 +64,13 @@ func (r ApiFuturesTransferForSubAccountRequest) Execute() (*common.RestApiRespon
 FuturesTransferForSubAccount Futures Transfer for Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/futures/transfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Futures-Transfer-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#futures-transfer-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
-@param asset -
-@param amount -
-@param type_ -  1: transfer from subaccount's  spot account to margin account 2: transfer from subaccount's margin account to its spot account
+@param email -
+@param asset -  The asset being transferred
+@param amount -  The amount to be transferred
+@param type_ -  1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4:transfer from subaccount's COIN-margined futures account to its spot account
 @param recvWindow -
 @return ApiFuturesTransferForSubAccountRequest
 */
@@ -93,12 +94,15 @@ func (a *AssetManagementAPIService) FuturesTransferForSubAccountExecute(r ApiFut
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -111,7 +115,15 @@ func (a *AssetManagementAPIService) FuturesTransferForSubAccountExecute(r ApiFut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FuturesTransferForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FuturesTransferForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -126,7 +138,6 @@ type ApiGetDetailOnSubAccountsFuturesAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetDetailOnSubAccountsFuturesAccountRequest) Email(email string) ApiGetDetailOnSubAccountsFuturesAccountRequest {
 	r.email = &email
 	return r
@@ -145,10 +156,10 @@ func (r ApiGetDetailOnSubAccountsFuturesAccountRequest) Execute() (*common.RestA
 GetDetailOnSubAccountsFuturesAccount Get Detail on Sub-account's Futures Account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/futures/account
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiGetDetailOnSubAccountsFuturesAccountRequest
 */
@@ -178,7 +189,15 @@ func (a *AssetManagementAPIService) GetDetailOnSubAccountsFuturesAccountExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDetailOnSubAccountsFuturesAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDetailOnSubAccountsFuturesAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -194,7 +213,6 @@ type ApiGetDetailOnSubAccountsFuturesAccountV2Request struct {
 	recvWindow  *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetDetailOnSubAccountsFuturesAccountV2Request) Email(email string) ApiGetDetailOnSubAccountsFuturesAccountV2Request {
 	r.email = &email
 	return r
@@ -219,10 +237,10 @@ func (r ApiGetDetailOnSubAccountsFuturesAccountV2Request) Execute() (*common.Res
 GetDetailOnSubAccountsFuturesAccountV2 Get Detail on Sub-account's Futures Account V2 (For Master Account) (USER_DATA)
 Get /sapi/v2/sub-account/futures/account
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Futures-Account-V2
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-futures-account-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
 @param recvWindow -
 @return ApiGetDetailOnSubAccountsFuturesAccountV2Request
@@ -247,6 +265,7 @@ func (a *AssetManagementAPIService) GetDetailOnSubAccountsFuturesAccountV2Execut
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.futuresType == nil {
 		return nil, common.ReportError("futuresType is required and must be specified")
 	}
@@ -257,7 +276,15 @@ func (a *AssetManagementAPIService) GetDetailOnSubAccountsFuturesAccountV2Execut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDetailOnSubAccountsFuturesAccountV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDetailOnSubAccountsFuturesAccountV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -272,7 +299,6 @@ type ApiGetDetailOnSubAccountsMarginAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetDetailOnSubAccountsMarginAccountRequest) Email(email string) ApiGetDetailOnSubAccountsMarginAccountRequest {
 	r.email = &email
 	return r
@@ -291,10 +317,10 @@ func (r ApiGetDetailOnSubAccountsMarginAccountRequest) Execute() (*common.RestAp
 GetDetailOnSubAccountsMarginAccount Get Detail on Sub-account's Margin Account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/margin/account
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Detail-on-Sub-accounts-Margin-Account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-detail-on-sub-accounts-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiGetDetailOnSubAccountsMarginAccountRequest
 */
@@ -324,7 +350,15 @@ func (a *AssetManagementAPIService) GetDetailOnSubAccountsMarginAccountExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDetailOnSubAccountsMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDetailOnSubAccountsMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -348,7 +382,6 @@ func (r ApiGetMovePositionHistoryForSubAccountRequest) Symbol(symbol string) Api
 	return r
 }
 
-// Page
 func (r ApiGetMovePositionHistoryForSubAccountRequest) Page(page int64) ApiGetMovePositionHistoryForSubAccountRequest {
 	r.page = &page
 	return r
@@ -382,11 +415,11 @@ func (r ApiGetMovePositionHistoryForSubAccountRequest) Execute() (*common.RestAp
 GetMovePositionHistoryForSubAccount Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/futures/move-position
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Move-Position-History-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-move-position-history-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param page -  Page
+@param page -
 @param rows -
 @param startTime -
 @param endTime -
@@ -413,9 +446,11 @@ func (a *AssetManagementAPIService) GetMovePositionHistoryForSubAccountExecute(r
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
+
 	if r.rows == nil {
 		return nil, common.ReportError("rows is required and must be specified")
 	}
@@ -433,7 +468,15 @@ func (a *AssetManagementAPIService) GetMovePositionHistoryForSubAccountExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetMovePositionHistoryForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetMovePositionHistoryForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -451,7 +494,6 @@ type ApiGetSubAccountDepositAddressRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetSubAccountDepositAddressRequest) Email(email string) ApiGetSubAccountDepositAddressRequest {
 	r.email = &email
 	return r
@@ -486,10 +528,10 @@ func (r ApiGetSubAccountDepositAddressRequest) Execute() (*common.RestApiRespons
 GetSubAccountDepositAddress Get Sub-account Deposit Address (For Master Account) (USER_DATA)
 Get /sapi/v1/capital/deposit/subAddress
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-Address
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-address
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param coin -
 @param network -  networks can be found in `GET /sapi/v1/capital/deposit/address`
 @param amount -
@@ -516,6 +558,7 @@ func (a *AssetManagementAPIService) GetSubAccountDepositAddressExecute(r ApiGetS
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
@@ -532,7 +575,15 @@ func (a *AssetManagementAPIService) GetSubAccountDepositAddressExecute(r ApiGetS
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSubAccountDepositAddressResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSubAccountDepositAddressResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -555,13 +606,12 @@ type ApiGetSubAccountDepositHistoryRequest struct {
 	txId          *string
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetSubAccountDepositHistoryRequest) Email(email string) ApiGetSubAccountDepositHistoryRequest {
 	r.email = &email
 	return r
 }
 
-// Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60;
+// Default &#x60;false&#x60;, return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
 func (r ApiGetSubAccountDepositHistoryRequest) IncludeSource(includeSource bool) ApiGetSubAccountDepositHistoryRequest {
 	r.includeSource = &includeSource
 	return r
@@ -572,7 +622,7 @@ func (r ApiGetSubAccountDepositHistoryRequest) Coin(coin string) ApiGetSubAccoun
 	return r
 }
 
-// 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success)
+// Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success.
 func (r ApiGetSubAccountDepositHistoryRequest) Status(status int64) ApiGetSubAccountDepositHistoryRequest {
 	r.status = &status
 	return r
@@ -588,13 +638,11 @@ func (r ApiGetSubAccountDepositHistoryRequest) EndTime(endTime int64) ApiGetSubA
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiGetSubAccountDepositHistoryRequest) Limit(limit int64) ApiGetSubAccountDepositHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
-// default:0
 func (r ApiGetSubAccountDepositHistoryRequest) Offset(offset int64) ApiGetSubAccountDepositHistoryRequest {
 	r.offset = &offset
 	return r
@@ -618,17 +666,17 @@ func (r ApiGetSubAccountDepositHistoryRequest) Execute() (*common.RestApiRespons
 GetSubAccountDepositHistory Get Sub-account Deposit History (For Master Account) (USER_DATA)
 Get /sapi/v1/capital/deposit/subHisrec
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Sub-account-Deposit-History
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-sub-account-deposit-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
-@param includeSource -  Default: `false`, return `sourceAddress`field when set to `true`
+@param email -
+@param includeSource -  Default `false`, return `sourceAddress` field when set to `true`
 @param coin -
-@param status -  0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success)
+@param status -  Deposit status: 0=pending, 6=credited but cannot withdraw, 7=wrong deposit, 8=waiting user confirmation, 1=success.
 @param startTime -
 @param endTime -
-@param limit -  Default value: 1, Max value: 200
-@param offset -  default:0
+@param limit -
+@param offset -
 @param recvWindow -
 @param txId -
 @return ApiGetSubAccountDepositHistoryRequest
@@ -683,7 +731,15 @@ func (a *AssetManagementAPIService) GetSubAccountDepositHistoryExecute(r ApiGetS
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "txId", r.txId, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSubAccountDepositHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSubAccountDepositHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -699,13 +755,11 @@ type ApiGetSummaryOfSubAccountsFuturesAccountRequest struct {
 	recvWindow *int64
 }
 
-// Page
 func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) Page(page int64) ApiGetSummaryOfSubAccountsFuturesAccountRequest {
 	r.page = &page
 	return r
 }
 
-// Limit (Max: 500)
 func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) Limit(limit int64) ApiGetSummaryOfSubAccountsFuturesAccountRequest {
 	r.limit = &limit
 	return r
@@ -724,11 +778,11 @@ func (r ApiGetSummaryOfSubAccountsFuturesAccountRequest) Execute() (*common.Rest
 GetSummaryOfSubAccountsFuturesAccount Get Summary of Sub-account's Futures Account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/futures/accountSummary
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param page -  Page
-@param limit -  Limit (Max: 500)
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiGetSummaryOfSubAccountsFuturesAccountRequest
 */
@@ -752,8 +806,12 @@ func (a *AssetManagementAPIService) GetSummaryOfSubAccountsFuturesAccountExecute
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
+
 	if r.limit == nil {
 		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit > 500 {
+		return nil, common.ReportError("limit must be less than 500")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -762,7 +820,15 @@ func (a *AssetManagementAPIService) GetSummaryOfSubAccountsFuturesAccountExecute
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSummaryOfSubAccountsFuturesAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSummaryOfSubAccountsFuturesAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -785,13 +851,11 @@ func (r ApiGetSummaryOfSubAccountsFuturesAccountV2Request) FuturesType(futuresTy
 	return r
 }
 
-// Default value: 1
 func (r ApiGetSummaryOfSubAccountsFuturesAccountV2Request) Page(page int64) ApiGetSummaryOfSubAccountsFuturesAccountV2Request {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiGetSummaryOfSubAccountsFuturesAccountV2Request) Limit(limit int64) ApiGetSummaryOfSubAccountsFuturesAccountV2Request {
 	r.limit = &limit
 	return r
@@ -810,12 +874,12 @@ func (r ApiGetSummaryOfSubAccountsFuturesAccountV2Request) Execute() (*common.Re
 GetSummaryOfSubAccountsFuturesAccountV2 Get Summary of Sub-account's Futures Account V2 (For Master Account) (USER_DATA)
 Get /sapi/v2/sub-account/futures/accountSummary
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Futures-Account-V2
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiGetSummaryOfSubAccountsFuturesAccountV2Request
 */
@@ -851,7 +915,15 @@ func (a *AssetManagementAPIService) GetSummaryOfSubAccountsFuturesAccountV2Execu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSummaryOfSubAccountsFuturesAccountV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSummaryOfSubAccountsFuturesAccountV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -878,7 +950,7 @@ func (r ApiGetSummaryOfSubAccountsMarginAccountRequest) Execute() (*common.RestA
 GetSummaryOfSubAccountsMarginAccount Get Summary of Sub-account's Margin Account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/margin/accountSummary
 
-https://developers.binance.com/docs/sub_account/asset-management/Get-Summary-of-Sub-accounts-Margin-Account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -905,7 +977,15 @@ func (a *AssetManagementAPIService) GetSummaryOfSubAccountsMarginAccountExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSummaryOfSubAccountsMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSummaryOfSubAccountsMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -923,23 +1003,24 @@ type ApiMarginTransferForSubAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiMarginTransferForSubAccountRequest) Email(email string) ApiMarginTransferForSubAccountRequest {
 	r.email = &email
 	return r
 }
 
+// The asset being transferred
 func (r ApiMarginTransferForSubAccountRequest) Asset(asset string) ApiMarginTransferForSubAccountRequest {
 	r.asset = &asset
 	return r
 }
 
+// The amount to be transferred
 func (r ApiMarginTransferForSubAccountRequest) Amount(amount float32) ApiMarginTransferForSubAccountRequest {
 	r.amount = &amount
 	return r
 }
 
-// 1: transfer from subaccount&#39;s  spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account
+// 1: transfer from subaccount&#39;s spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account
 func (r ApiMarginTransferForSubAccountRequest) Type(type_ int64) ApiMarginTransferForSubAccountRequest {
 	r.type_ = &type_
 	return r
@@ -958,13 +1039,13 @@ func (r ApiMarginTransferForSubAccountRequest) Execute() (*common.RestApiRespons
 MarginTransferForSubAccount Margin Transfer for Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/margin/transfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Margin-Transfer-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#margin-transfer-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
-@param asset -
-@param amount -
-@param type_ -  1: transfer from subaccount's  spot account to margin account 2: transfer from subaccount's margin account to its spot account
+@param email -
+@param asset -  The asset being transferred
+@param amount -  The amount to be transferred
+@param type_ -  1: transfer from subaccount's spot account to margin account 2: transfer from subaccount's margin account to its spot account
 @param recvWindow -
 @return ApiMarginTransferForSubAccountRequest
 */
@@ -988,12 +1069,15 @@ func (a *AssetManagementAPIService) MarginTransferForSubAccountExecute(r ApiMarg
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -1006,7 +1090,15 @@ func (a *AssetManagementAPIService) MarginTransferForSubAccountExecute(r ApiMarg
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginTransferForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginTransferForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1019,7 +1111,7 @@ type ApiMovePositionForSubAccountRequest struct {
 	ApiService    *AssetManagementAPIService
 	fromUserEmail *string
 	toUserEmail   *string
-	productType   *string
+	productType   *models.MovePositionForSubAccountProductTypeParameter
 	orderArgs     *[]models.MovePositionForSubAccountOrderArgsParameterInner
 	recvWindow    *int64
 }
@@ -1034,8 +1126,7 @@ func (r ApiMovePositionForSubAccountRequest) ToUserEmail(toUserEmail string) Api
 	return r
 }
 
-// Only support UM
-func (r ApiMovePositionForSubAccountRequest) ProductType(productType string) ApiMovePositionForSubAccountRequest {
+func (r ApiMovePositionForSubAccountRequest) ProductType(productType models.MovePositionForSubAccountProductTypeParameter) ApiMovePositionForSubAccountRequest {
 	r.productType = &productType
 	return r
 }
@@ -1059,12 +1150,12 @@ func (r ApiMovePositionForSubAccountRequest) Execute() (*common.RestApiResponse[
 MovePositionForSubAccount Move Position for Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/futures/move-position
 
-https://developers.binance.com/docs/sub_account/asset-management/Move-Position-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#move-position-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromUserEmail -
 @param toUserEmail -
-@param productType -  Only support UM
+@param productType -
 @param orderArgs -  Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol=BTCUSDT,orderArgs[0].quantity=0.001,orderArgs[0].positionSide=BOTH. Example of the request parameter array: orderArgs[0].symbol=BTCUSDT orderArgs[0].quantity=0.001 orderArgs[0].positionSide=BOTH orderArgs[1].symbol=ETHUSDT orderArgs[1].quantity=0.01 orderArgs[1].positionSide=BOTH
 @param recvWindow -
 @return ApiMovePositionForSubAccountRequest
@@ -1089,12 +1180,15 @@ func (a *AssetManagementAPIService) MovePositionForSubAccountExecute(r ApiMovePo
 	if r.fromUserEmail == nil {
 		return nil, common.ReportError("fromUserEmail is required and must be specified")
 	}
+
 	if r.toUserEmail == nil {
 		return nil, common.ReportError("toUserEmail is required and must be specified")
 	}
+
 	if r.productType == nil {
 		return nil, common.ReportError("productType is required and must be specified")
 	}
+
 	if r.orderArgs == nil {
 		return nil, common.ReportError("orderArgs is required and must be specified")
 	}
@@ -1110,7 +1204,15 @@ func (a *AssetManagementAPIService) MovePositionForSubAccountExecute(r ApiMovePo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MovePositionForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MovePositionForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1125,7 +1227,6 @@ type ApiQuerySubAccountAssetsRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQuerySubAccountAssetsRequest) Email(email string) ApiQuerySubAccountAssetsRequest {
 	r.email = &email
 	return r
@@ -1144,10 +1245,10 @@ func (r ApiQuerySubAccountAssetsRequest) Execute() (*common.RestApiResponse[mode
 QuerySubAccountAssets Query Sub-account Assets (For Master Account) (USER_DATA)
 Get /sapi/v3/sub-account/assets
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiQuerySubAccountAssetsRequest
 */
@@ -1177,7 +1278,15 @@ func (a *AssetManagementAPIService) QuerySubAccountAssetsExecute(r ApiQuerySubAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountAssetsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1192,7 +1301,6 @@ type ApiQuerySubAccountAssetsAssetManagementRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQuerySubAccountAssetsAssetManagementRequest) Email(email string) ApiQuerySubAccountAssetsAssetManagementRequest {
 	r.email = &email
 	return r
@@ -1208,13 +1316,13 @@ func (r ApiQuerySubAccountAssetsAssetManagementRequest) Execute() (*common.RestA
 }
 
 /*
-QuerySubAccountAssetsAssetManagement Query Sub-account Assets (For Master Account) (USER_DATA)
+QuerySubAccountAssetsAssetManagement Query Sub-account Assets V4 (For Master Account) (USER_DATA)
 Get /sapi/v4/sub-account/assets
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Assets-V4
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-assets-asset-management
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiQuerySubAccountAssetsAssetManagementRequest
 */
@@ -1244,7 +1352,15 @@ func (a *AssetManagementAPIService) QuerySubAccountAssetsAssetManagementExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountAssetsAssetManagementResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountAssetsAssetManagementResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1264,7 +1380,6 @@ type ApiQuerySubAccountFuturesAssetTransferHistoryRequest struct {
 	recvWindow  *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) Email(email string) ApiQuerySubAccountFuturesAssetTransferHistoryRequest {
 	r.email = &email
 	return r
@@ -1276,6 +1391,7 @@ func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) FuturesType(future
 	return r
 }
 
+// Cannot be earlier than 1 month ago
 func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) StartTime(startTime int64) ApiQuerySubAccountFuturesAssetTransferHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -1286,13 +1402,11 @@ func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) EndTime(endTime in
 	return r
 }
 
-// Default value: 1
 func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) Page(page int64) ApiQuerySubAccountFuturesAssetTransferHistoryRequest {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) Limit(limit int64) ApiQuerySubAccountFuturesAssetTransferHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1311,15 +1425,15 @@ func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) Execute() (*common
 QuerySubAccountFuturesAssetTransferHistory Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/futures/internalTransfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Futures-Asset-Transfer-History
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-futures-asset-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
-@param startTime -
+@param startTime -  Cannot be earlier than 1 month ago
 @param endTime -
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiQuerySubAccountFuturesAssetTransferHistoryRequest
 */
@@ -1343,6 +1457,7 @@ func (a *AssetManagementAPIService) QuerySubAccountFuturesAssetTransferHistoryEx
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.futuresType == nil {
 		return nil, common.ReportError("futuresType is required and must be specified")
 	}
@@ -1365,7 +1480,15 @@ func (a *AssetManagementAPIService) QuerySubAccountFuturesAssetTransferHistoryEx
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountFuturesAssetTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountFuturesAssetTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1405,13 +1528,11 @@ func (r ApiQuerySubAccountSpotAssetTransferHistoryRequest) EndTime(endTime int64
 	return r
 }
 
-// Default value: 1
 func (r ApiQuerySubAccountSpotAssetTransferHistoryRequest) Page(page int64) ApiQuerySubAccountSpotAssetTransferHistoryRequest {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQuerySubAccountSpotAssetTransferHistoryRequest) Limit(limit int64) ApiQuerySubAccountSpotAssetTransferHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1430,15 +1551,15 @@ func (r ApiQuerySubAccountSpotAssetTransferHistoryRequest) Execute() (*common.Re
 QuerySubAccountSpotAssetTransferHistory Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/sub/transfer/history
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Asset-Transfer-History
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-asset-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromEmail -
 @param toEmail -
 @param startTime -
 @param endTime -
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiQuerySubAccountSpotAssetTransferHistoryRequest
 */
@@ -1481,7 +1602,15 @@ func (a *AssetManagementAPIService) QuerySubAccountSpotAssetTransferHistoryExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountSpotAssetTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountSpotAssetTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1504,13 +1633,11 @@ func (r ApiQuerySubAccountSpotAssetsSummaryRequest) Email(email string) ApiQuery
 	return r
 }
 
-// Default value: 1
 func (r ApiQuerySubAccountSpotAssetsSummaryRequest) Page(page int64) ApiQuerySubAccountSpotAssetsSummaryRequest {
 	r.page = &page
 	return r
 }
 
-// default 10, max 20
 func (r ApiQuerySubAccountSpotAssetsSummaryRequest) Size(size int64) ApiQuerySubAccountSpotAssetsSummaryRequest {
 	r.size = &size
 	return r
@@ -1529,12 +1656,12 @@ func (r ApiQuerySubAccountSpotAssetsSummaryRequest) Execute() (*common.RestApiRe
 QuerySubAccountSpotAssetsSummary Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/spotSummary
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Sub-account-Spot-Assets-Summary
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-sub-account-spot-assets-summary
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -  Managed sub-account email
-@param page -  Default value: 1
-@param size -  default 10, max 20
+@param page -
+@param size -
 @param recvWindow -
 @return ApiQuerySubAccountSpotAssetsSummaryRequest
 */
@@ -1568,7 +1695,15 @@ func (a *AssetManagementAPIService) QuerySubAccountSpotAssetsSummaryExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountSpotAssetsSummaryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountSpotAssetsSummaryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1614,13 +1749,11 @@ func (r ApiQueryUniversalTransferHistoryRequest) EndTime(endTime int64) ApiQuery
 	return r
 }
 
-// Default value: 1
 func (r ApiQueryUniversalTransferHistoryRequest) Page(page int64) ApiQueryUniversalTransferHistoryRequest {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQueryUniversalTransferHistoryRequest) Limit(limit int64) ApiQueryUniversalTransferHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1639,7 +1772,7 @@ func (r ApiQueryUniversalTransferHistoryRequest) Execute() (*common.RestApiRespo
 QueryUniversalTransferHistory Query Universal Transfer History (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/universalTransfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Query-Universal-Transfer-History
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#query-universal-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromEmail -
@@ -1647,8 +1780,8 @@ https://developers.binance.com/docs/sub_account/asset-management/Query-Universal
 @param clientTranId -
 @param startTime -
 @param endTime -
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiQueryUniversalTransferHistoryRequest
 */
@@ -1694,7 +1827,15 @@ func (a *AssetManagementAPIService) QueryUniversalTransferHistoryExecute(r ApiQu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUniversalTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUniversalTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1713,11 +1854,13 @@ type ApiSubAccountFuturesAssetTransferRequest struct {
 	recvWindow  *int64
 }
 
+// Sender email
 func (r ApiSubAccountFuturesAssetTransferRequest) FromEmail(fromEmail string) ApiSubAccountFuturesAssetTransferRequest {
 	r.fromEmail = &fromEmail
 	return r
 }
 
+// Recipient email
 func (r ApiSubAccountFuturesAssetTransferRequest) ToEmail(toEmail string) ApiSubAccountFuturesAssetTransferRequest {
 	r.toEmail = &toEmail
 	return r
@@ -1752,11 +1895,11 @@ func (r ApiSubAccountFuturesAssetTransferRequest) Execute() (*common.RestApiResp
 SubAccountFuturesAssetTransfer Sub-account Futures Asset Transfer (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/futures/internalTransfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Futures-Asset-Transfer
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-futures-asset-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param fromEmail -
-@param toEmail -
+@param fromEmail -  Sender email
+@param toEmail -  Recipient email
 @param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
 @param asset -
 @param amount -
@@ -1783,15 +1926,19 @@ func (a *AssetManagementAPIService) SubAccountFuturesAssetTransferExecute(r ApiS
 	if r.fromEmail == nil {
 		return nil, common.ReportError("fromEmail is required and must be specified")
 	}
+
 	if r.toEmail == nil {
 		return nil, common.ReportError("toEmail is required and must be specified")
 	}
+
 	if r.futuresType == nil {
 		return nil, common.ReportError("futuresType is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1805,7 +1952,15 @@ func (a *AssetManagementAPIService) SubAccountFuturesAssetTransferExecute(r ApiS
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubAccountFuturesAssetTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubAccountFuturesAssetTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1847,7 +2002,6 @@ func (r ApiSubAccountTransferHistoryRequest) EndTime(endTime int64) ApiSubAccoun
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiSubAccountTransferHistoryRequest) Limit(limit int64) ApiSubAccountTransferHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1872,14 +2026,14 @@ func (r ApiSubAccountTransferHistoryRequest) Execute() (*common.RestApiResponse[
 SubAccountTransferHistory Sub-account Transfer History (For Sub-account) (USER_DATA)
 Get /sapi/v1/sub-account/transfer/subUserHistory
 
-https://developers.binance.com/docs/sub_account/asset-management/Sub-account-Transfer-History
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#sub-account-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -  If not sent, result of all assets will be returned
 @param type_ -  1: transfer in, 2: transfer out
 @param startTime -
 @param endTime -
-@param limit -  Default value: 1, Max value: 200
+@param limit -
 @param returnFailHistory -  Default `False`, return PROCESS and SUCCESS status history; If `True`,return PROCESS and SUCCESS and FAILURE status history
 @param recvWindow -
 @return ApiSubAccountTransferHistoryRequest
@@ -1923,7 +2077,15 @@ func (a *AssetManagementAPIService) SubAccountTransferHistoryExecute(r ApiSubAcc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubAccountTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubAccountTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1962,7 +2124,7 @@ func (r ApiTransferToMasterRequest) Execute() (*common.RestApiResponse[models.Tr
 TransferToMaster Transfer to Master (For Sub-account) (USER_DATA)
 Post /sapi/v1/sub-account/transfer/subToMaster
 
-https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Master
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-master
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
@@ -1990,6 +2152,7 @@ func (a *AssetManagementAPIService) TransferToMasterExecute(r ApiTransferToMaste
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -2000,7 +2163,15 @@ func (a *AssetManagementAPIService) TransferToMasterExecute(r ApiTransferToMaste
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TransferToMasterResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TransferToMasterResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2045,7 +2216,7 @@ func (r ApiTransferToSubAccountOfSameMasterRequest) Execute() (*common.RestApiRe
 TransferToSubAccountOfSameMaster Transfer to Sub-account of Same Master (For Sub-account) (USER_DATA)
 Post /sapi/v1/sub-account/transfer/subToSub
 
-https://developers.binance.com/docs/sub_account/asset-management/Transfer-to-Sub-account-of-Same-Master
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#transfer-to-sub-account-of-same-master
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param toEmail -
@@ -2074,9 +2245,11 @@ func (a *AssetManagementAPIService) TransferToSubAccountOfSameMasterExecute(r Ap
 	if r.toEmail == nil {
 		return nil, common.ReportError("toEmail is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -2088,7 +2261,15 @@ func (a *AssetManagementAPIService) TransferToSubAccountOfSameMasterExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TransferToSubAccountOfSameMasterResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TransferToSubAccountOfSameMasterResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2099,8 +2280,8 @@ func (a *AssetManagementAPIService) TransferToSubAccountOfSameMasterExecute(r Ap
 type ApiUniversalTransferRequest struct {
 	ctx             context.Context
 	ApiService      *AssetManagementAPIService
-	fromAccountType *string
-	toAccountType   *string
+	fromAccountType *models.UniversalTransferFromAccountTypeParameter
+	toAccountType   *models.UniversalTransferFromAccountTypeParameter
 	asset           *string
 	amount          *float32
 	fromEmail       *string
@@ -2110,14 +2291,12 @@ type ApiUniversalTransferRequest struct {
 	recvWindow      *int64
 }
 
-// \&quot;SPOT\&quot;,\&quot;USDT_FUTURE\&quot;,\&quot;COIN_FUTURE\&quot;,\&quot;MARGIN\&quot;(Cross),\&quot;ISOLATED_MARGIN\&quot;
-func (r ApiUniversalTransferRequest) FromAccountType(fromAccountType string) ApiUniversalTransferRequest {
+func (r ApiUniversalTransferRequest) FromAccountType(fromAccountType models.UniversalTransferFromAccountTypeParameter) ApiUniversalTransferRequest {
 	r.fromAccountType = &fromAccountType
 	return r
 }
 
-// \&quot;SPOT\&quot;,\&quot;USDT_FUTURE\&quot;,\&quot;COIN_FUTURE\&quot;,\&quot;MARGIN\&quot;(Cross),\&quot;ISOLATED_MARGIN\&quot;
-func (r ApiUniversalTransferRequest) ToAccountType(toAccountType string) ApiUniversalTransferRequest {
+func (r ApiUniversalTransferRequest) ToAccountType(toAccountType models.UniversalTransferFromAccountTypeParameter) ApiUniversalTransferRequest {
 	r.toAccountType = &toAccountType
 	return r
 }
@@ -2142,6 +2321,7 @@ func (r ApiUniversalTransferRequest) ToEmail(toEmail string) ApiUniversalTransfe
 	return r
 }
 
+// Must be unique
 func (r ApiUniversalTransferRequest) ClientTranId(clientTranId string) ApiUniversalTransferRequest {
 	r.clientTranId = &clientTranId
 	return r
@@ -2166,16 +2346,16 @@ func (r ApiUniversalTransferRequest) Execute() (*common.RestApiResponse[models.U
 UniversalTransfer Universal Transfer (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/universalTransfer
 
-https://developers.binance.com/docs/sub_account/asset-management/Universal-Transfer
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#universal-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param fromAccountType -  \"SPOT\",\"USDT_FUTURE\",\"COIN_FUTURE\",\"MARGIN\"(Cross),\"ISOLATED_MARGIN\"
-@param toAccountType -  \"SPOT\",\"USDT_FUTURE\",\"COIN_FUTURE\",\"MARGIN\"(Cross),\"ISOLATED_MARGIN\"
+@param fromAccountType -
+@param toAccountType -
 @param asset -
 @param amount -
 @param fromEmail -
 @param toEmail -
-@param clientTranId -
+@param clientTranId -  Must be unique
 @param symbol -  Only supported under ISOLATED_MARGIN type
 @param recvWindow -
 @return ApiUniversalTransferRequest
@@ -2200,12 +2380,15 @@ func (a *AssetManagementAPIService) UniversalTransferExecute(r ApiUniversalTrans
 	if r.fromAccountType == nil {
 		return nil, common.ReportError("fromAccountType is required and must be specified")
 	}
+
 	if r.toAccountType == nil {
 		return nil, common.ReportError("toAccountType is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -2230,7 +2413,15 @@ func (a *AssetManagementAPIService) UniversalTransferExecute(r ApiUniversalTrans
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UniversalTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UniversalTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

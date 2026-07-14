@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -19,7 +19,7 @@ var _ common.MappedNullable = &SymbolPriceTickerResponse2{}
 type SymbolPriceTickerResponse2 struct {
 	Id                   *string                                         `json:"id,omitempty"`
 	Status               *int64                                          `json:"status,omitempty"`
-	Result               []SymbolPriceTickerResponse1Result              `json:"result,omitempty"`
+	Result               []SymbolPriceTickerResponse2ResultInner         `json:"result,omitempty"`
 	RateLimits           []SymbolOrderBookTickerResponse1RateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -108,9 +108,9 @@ func (o *SymbolPriceTickerResponse2) SetStatus(v int64) {
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *SymbolPriceTickerResponse2) GetResult() []SymbolPriceTickerResponse1Result {
+func (o *SymbolPriceTickerResponse2) GetResult() []SymbolPriceTickerResponse2ResultInner {
 	if o == nil || common.IsNil(o.Result) {
-		var ret []SymbolPriceTickerResponse1Result
+		var ret []SymbolPriceTickerResponse2ResultInner
 		return ret
 	}
 	return o.Result
@@ -118,7 +118,7 @@ func (o *SymbolPriceTickerResponse2) GetResult() []SymbolPriceTickerResponse1Res
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SymbolPriceTickerResponse2) GetResultOk() ([]SymbolPriceTickerResponse1Result, bool) {
+func (o *SymbolPriceTickerResponse2) GetResultOk() ([]SymbolPriceTickerResponse2ResultInner, bool) {
 	if o == nil || common.IsNil(o.Result) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *SymbolPriceTickerResponse2) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []SymbolPriceTickerResponse1Result and assigns it to the Result field.
-func (o *SymbolPriceTickerResponse2) SetResult(v []SymbolPriceTickerResponse1Result) {
+// SetResult gets a reference to the given []SymbolPriceTickerResponse2ResultInner and assigns it to the Result field.
+func (o *SymbolPriceTickerResponse2) SetResult(v []SymbolPriceTickerResponse2ResultInner) {
 	o.Result = v
 }
 

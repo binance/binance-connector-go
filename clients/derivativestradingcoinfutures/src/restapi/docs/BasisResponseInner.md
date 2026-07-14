@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**IndexPrice** | Pointer to **string** |  | [optional] 
-**ContractType** | Pointer to **string** |  | [optional] 
-**BasisRate** | Pointer to **string** |  | [optional] 
-**FuturesPrice** | Pointer to **string** |  | [optional] 
-**AnnualizedBasisRate** | Pointer to **string** |  | [optional] 
-**Basis** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**IndexPrice** | Pointer to **string** | index price | [optional] 
+**ContractType** | Pointer to **string** | Contract type. | [optional] 
+**BasisRate** | Pointer to **string** | Basis rate. | [optional] 
+**FuturesPrice** | Pointer to **string** | Futures price. | [optional] 
+**AnnualizedBasisRate** | Pointer to **string** | Annualized basis rate. | [optional] 
+**Basis** | Pointer to **string** | Basis value. | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 

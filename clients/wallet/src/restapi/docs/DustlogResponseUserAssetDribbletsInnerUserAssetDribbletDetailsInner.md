@@ -10,6 +10,7 @@ Name         | Type          | Description.  | Notes
 **OperateTime** | Pointer to **int64** |  | [optional] 
 **TransferedAmount** | Pointer to **string** |  | [optional] 
 **FromAsset** | Pointer to **string** |  | [optional] 
+**TargetAsset** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetFromAsset sets FromAsset field to given value.
 `func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) HasFromAsset() bool`
 
 HasFromAsset returns a boolean if a field has been set.
+
+### GetTargetAsset
+
+`func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) GetTargetAsset() string`
+
+GetTargetAsset returns the TargetAsset field if non-nil, zero value otherwise.
+
+### GetTargetAssetOk
+
+`func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) GetTargetAssetOk() (*string, bool)`
+
+GetTargetAssetOk returns a tuple with the TargetAsset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetAsset
+
+`func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) SetTargetAsset(v string)`
+
+SetTargetAsset sets TargetAsset field to given value.
+
+### HasTargetAsset
+
+`func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) HasTargetAsset() bool`
+
+HasTargetAsset returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

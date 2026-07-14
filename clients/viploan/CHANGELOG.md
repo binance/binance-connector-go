@@ -1,5 +1,15 @@
 ### Changelog
 
+## 1.7.0 - 2026-07-14
+
+### Added (1)
+
+- `getVIPLoanRepaymentHistory()` (`GET /sapi/v1/loan/vip/repay/history`)
+
+### Changed (1)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.4.0`.
+
 ## 1.6.0 - 2026-06-16
 
 ### Added (2)

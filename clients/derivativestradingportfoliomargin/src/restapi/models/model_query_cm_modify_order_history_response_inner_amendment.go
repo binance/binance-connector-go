@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -15,11 +15,12 @@ import (
 // checks if the QueryCmModifyOrderHistoryResponseInnerAmendment type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &QueryCmModifyOrderHistoryResponseInnerAmendment{}
 
-// QueryCmModifyOrderHistoryResponseInnerAmendment struct for QueryCmModifyOrderHistoryResponseInnerAmendment
+// QueryCmModifyOrderHistoryResponseInnerAmendment Amendment.
 type QueryCmModifyOrderHistoryResponseInnerAmendment struct {
-	Price                *QueryCmModifyOrderHistoryResponseInnerAmendmentPrice   `json:"price,omitempty"`
-	OrigQty              *QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty `json:"origQty,omitempty"`
-	Count                *int64                                                  `json:"count,omitempty"`
+	Price   *QueryCmModifyOrderHistoryResponseInnerAmendmentPrice   `json:"price,omitempty"`
+	OrigQty *QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty `json:"origQty,omitempty"`
+	// Order modification count, representing the number of times the order has been modified
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

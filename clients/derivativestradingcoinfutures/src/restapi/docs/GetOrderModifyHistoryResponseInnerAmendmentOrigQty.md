@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Before** | Pointer to **string** |  | [optional] 
-**After** | Pointer to **string** |  | [optional] 
+**Before** | Pointer to **string** | Before value. | [optional] 
+**After** | Pointer to **string** | After value. | [optional] 
 
 ## Methods
 

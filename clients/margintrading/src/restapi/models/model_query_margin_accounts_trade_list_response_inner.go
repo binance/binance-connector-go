@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,18 +17,30 @@ var _ common.MappedNullable = &QueryMarginAccountsTradeListResponseInner{}
 
 // QueryMarginAccountsTradeListResponseInner struct for QueryMarginAccountsTradeListResponseInner
 type QueryMarginAccountsTradeListResponseInner struct {
-	Commission           *string `json:"commission,omitempty"`
-	CommissionAsset      *string `json:"commissionAsset,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	IsBestMatch          *bool   `json:"isBestMatch,omitempty"`
-	IsBuyer              *bool   `json:"isBuyer,omitempty"`
-	IsMaker              *bool   `json:"isMaker,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	IsIsolated           *bool   `json:"isIsolated,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// commission.
+	Commission *string `json:"commission,omitempty"`
+	// commission Asset.
+	CommissionAsset *string `json:"commissionAsset,omitempty"`
+	// id.
+	Id *int64 `json:"id,omitempty"`
+	// is Best Match.
+	IsBestMatch *bool `json:"isBestMatch,omitempty"`
+	// is Buyer.
+	IsBuyer *bool `json:"isBuyer,omitempty"`
+	// is Maker.
+	IsMaker *bool `json:"isMaker,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// qty.
+	Qty *string `json:"qty,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// is Isolated.
+	IsIsolated *bool `json:"isIsolated,omitempty"`
+	// time.
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

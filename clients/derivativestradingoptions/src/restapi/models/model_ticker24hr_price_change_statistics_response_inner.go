@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,23 +17,41 @@ var _ common.MappedNullable = &Ticker24hrPriceChangeStatisticsResponseInner{}
 
 // Ticker24hrPriceChangeStatisticsResponseInner struct for Ticker24hrPriceChangeStatisticsResponseInner
 type Ticker24hrPriceChangeStatisticsResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PriceChange          *string `json:"priceChange,omitempty"`
-	PriceChangePercent   *string `json:"priceChangePercent,omitempty"`
-	LastPrice            *string `json:"lastPrice,omitempty"`
-	LastQty              *string `json:"lastQty,omitempty"`
-	Open                 *string `json:"open,omitempty"`
-	High                 *string `json:"high,omitempty"`
-	Low                  *string `json:"low,omitempty"`
-	Volume               *string `json:"volume,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	BidPrice             *string `json:"bidPrice,omitempty"`
-	AskPrice             *string `json:"askPrice,omitempty"`
-	OpenTime             *int64  `json:"openTime,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
-	FirstTradeId         *int64  `json:"firstTradeId,omitempty"`
-	TradeCount           *int64  `json:"tradeCount,omitempty"`
-	StrikePrice          *string `json:"strikePrice,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// 24-hour price change
+	PriceChange *string `json:"priceChange,omitempty"`
+	// 24-hour percent price change
+	PriceChangePercent *string `json:"priceChangePercent,omitempty"`
+	// Last trade price
+	LastPrice *string `json:"lastPrice,omitempty"`
+	// Last trade amount
+	LastQty *string `json:"lastQty,omitempty"`
+	// 24-hour open price
+	Open *string `json:"open,omitempty"`
+	// 24-hour high
+	High *string `json:"high,omitempty"`
+	// 24-hour low
+	Low *string `json:"low,omitempty"`
+	// Trading volume(contracts)
+	Volume *string `json:"volume,omitempty"`
+	// Trade amount(in quote asset)
+	Amount *string `json:"amount,omitempty"`
+	// The best buy price
+	BidPrice *string `json:"bidPrice,omitempty"`
+	// The best sell price
+	AskPrice *string `json:"askPrice,omitempty"`
+	// Time the first trade occurred within the last 24 hours
+	OpenTime *int64 `json:"openTime,omitempty"`
+	// Time the last trade occurred within the last 24 hours
+	CloseTime *int64 `json:"closeTime,omitempty"`
+	// First trade ID
+	FirstTradeId *int64 `json:"firstTradeId,omitempty"`
+	// Number of trades
+	TradeCount *int64 `json:"tradeCount,omitempty"`
+	// Strike price
+	StrikePrice *string `json:"strikePrice,omitempty"`
+	// return estimated settlement price one hour before exercise, return index price at other times
 	ExercisePrice        *string `json:"exercisePrice,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

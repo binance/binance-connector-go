@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**IndexPrice** | Pointer to **string** |  | [optional] 
-**EstimatedSettlePrice** | Pointer to **string** |  | [optional] 
-**LastFundingRate** | Pointer to **string** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**NextFundingTime** | Pointer to **int64** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**MarkPrice** | Pointer to **string** | mark price | [optional] 
+**IndexPrice** | Pointer to **string** | index price | [optional] 
+**EstimatedSettlePrice** | Pointer to **string** | Estimated Settle Price, only useful in the last hour before the settlement starts. | [optional] 
+**LastFundingRate** | Pointer to **string** | the lasted funding rate, for perpetual contract symbols only. For delivery symbols, \&quot;\&quot; will be shown. | [optional] 
+**InterestRate** | Pointer to **string** | the base asset interest rate, for perpetual contract symbols only. For delivery symbols, \&quot;\&quot; will be shown. | [optional] 
+**NextFundingTime** | Pointer to **int64** | For perpetual contract symbols only. For delivery symbols, 0 will be shown | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

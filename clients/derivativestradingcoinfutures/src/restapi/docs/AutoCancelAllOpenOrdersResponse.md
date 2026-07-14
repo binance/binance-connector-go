@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**CountdownTime** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**CountdownTime** | Pointer to **string** | Countdown cancellation time in milliseconds. | [optional] 
 
 ## Methods
 

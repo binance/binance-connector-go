@@ -31,8 +31,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"103.12345678","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0},{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","breakEvenPrice":"0.0","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0,"breakEvenPrice":"0.0"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -73,22 +87,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"103.12345678","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0},{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","breakEvenPrice":"0.0","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0,"breakEvenPrice":"0.0"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.status"[1:], sent["method"])
+		require.Equal(t, "/account.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountInformationResponse{}, typedResp)
@@ -157,8 +186,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","updateTime":1625474304765},{"asset":"USDC","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0},{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -199,22 +242,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","updateTime":1625474304765},{"asset":"USDC","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0},{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/v2/account.status"[1:], sent["method"])
+		require.Equal(t, "/v2/account.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountInformationV2Response{}, typedResp)
@@ -283,8 +341,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -325,22 +397,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.balance"[1:], sent["method"])
+		require.Equal(t, "/account.balance"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.FuturesAccountBalanceResponse{}, typedResp)
@@ -409,8 +496,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -451,22 +552,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/v2/account.balance"[1:], sent["method"])
+		require.Equal(t, "/v2/account.balance"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.FuturesAccountBalanceV2Response{}, typedResp)

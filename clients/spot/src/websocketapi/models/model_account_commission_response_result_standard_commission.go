@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -15,7 +15,7 @@ import (
 // checks if the AccountCommissionResponseResultStandardCommission type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountCommissionResponseResultStandardCommission{}
 
-// AccountCommissionResponseResultStandardCommission struct for AccountCommissionResponseResultStandardCommission
+// AccountCommissionResponseResultStandardCommission Standard commission rates on trades from the order.
 type AccountCommissionResponseResultStandardCommission struct {
 	Maker                *string `json:"maker,omitempty"`
 	Taker                *string `json:"taker,omitempty"`

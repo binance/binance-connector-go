@@ -1,5 +1,5 @@
 /*
-Binance Sub Account REST API TEST
+Sub Account REST API TEST
 
 Testing AccountManagementAPIService
 
@@ -25,10 +25,14 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService CreateAVirtualSubAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"email":"addsdd_virtual@aasaixwqnoemail.com"}`
+		var mockedJSON string
+		mockedJSON = `{"email":"addsdd_virtual@aasaixwqnoemail.com"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/virtualSubAccount", r.URL.Path)
-			require.Equal(t, "subAccountString_example", r.URL.Query().Get("subAccountString"))
+			require.Equal(t, "testSubAccount", r.URL.Query().Get("subAccountString"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -45,7 +49,7 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountManagementAPI.CreateAVirtualSubAccount(context.Background()).SubAccountString("subAccountString_example").Execute()
+		resp, err := apiClient.RestApi.AccountManagementAPI.CreateAVirtualSubAccount(context.Background()).SubAccountString("testSubAccount").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -98,10 +102,14 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService EnableFuturesForSubAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"email":"123@test.com","isFuturesEnabled":true}`
+		var mockedJSON string
+		mockedJSON = `{"email":"123@test.com","isFuturesEnabled":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/enable", r.URL.Path)
-			require.Equal(t, "sub-account-email@email.com", r.URL.Query().Get("email"))
+			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -118,7 +126,7 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountManagementAPI.EnableFuturesForSubAccount(context.Background()).Email("sub-account-email@email.com").Execute()
+		resp, err := apiClient.RestApi.AccountManagementAPI.EnableFuturesForSubAccount(context.Background()).Email("123@test.com").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -171,10 +179,14 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService EnableOptionsForSubAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"email":"123@test.com","isEOptionsEnabled":true}`
+		var mockedJSON string
+		mockedJSON = `{"email":"123@test.com","isEOptionsEnabled":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/eoptions/enable", r.URL.Path)
-			require.Equal(t, "sub-account-email@email.com", r.URL.Query().Get("email"))
+			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -191,7 +203,7 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountManagementAPI.EnableOptionsForSubAccount(context.Background()).Email("sub-account-email@email.com").Execute()
+		resp, err := apiClient.RestApi.AccountManagementAPI.EnableOptionsForSubAccount(context.Background()).Email("123@test.com").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -244,10 +256,14 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService GetFuturesPositionRiskOfSubAccount Success", func(t *testing.T) {
 
-		mockedJSON := `[{"entryPrice":"9975.12000","leverage":"50","maxNotional":"1000000","liquidationPrice":"7963.54","markPrice":"9973.50770517","positionAmount":"0.010","symbol":"BTCUSDT","unrealizedProfit":"-0.01612295"}]`
+		var mockedJSON string
+		mockedJSON = `[{"entryPrice":"9975.12000","leverage":"50","maxNotional":"1000000","liquidationPrice":"7963.54","markPrice":"9973.50770517","positionAmount":"0.010","symbol":"BTCUSDT","unrealizedProfit":"-0.01612295"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/positionRisk", r.URL.Path)
-			require.Equal(t, "sub-account-email@email.com", r.URL.Query().Get("email"))
+			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -264,7 +280,7 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccount(context.Background()).Email("sub-account-email@email.com").Execute()
+		resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccount(context.Background()).Email("123@test.com").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -317,11 +333,15 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService GetFuturesPositionRiskOfSubAccountV2 Success", func(t *testing.T) {
 
-		mockedJSON := `{"futurePositionRiskVos":[{"entryPrice":"9975.12000","leverage":"50","maxNotional":"1000000","liquidationPrice":"7963.54","markPrice":"9973.50770517","positionAmount":"0.010","symbol":"BTCUSDT","unrealizedProfit":"-0.01612295"}],"deliveryPositionRiskVos":[{"entryPrice":"9975.12000","markPrice":"9973.50770517","leverage":"20","isolated":"false","isolatedWallet":"9973.50770517","isolatedMargin":"0.00000000","isAutoAddMargin":"false","positionSide":"BOTH","positionAmount":"1.230","symbol":"BTCUSD_201225","unrealizedProfit":"-0.01612295"}]}`
+		var mockedJSON string
+		mockedJSON = `{"futurePositionRiskVos":[{"entryPrice":"9975.12000","leverage":"50","maxNotional":"1000000","liquidationPrice":"7963.54","markPrice":"9973.50770517","positionAmount":"0.010","symbol":"BTCUSDT","unrealizedProfit":"-0.01612295"}],"deliveryPositionRiskVos":[{"entryPrice":"9975.12000","markPrice":"9973.50770517","leverage":"20","isolated":"false","isolatedWallet":"9973.50770517","isolatedMargin":"0.00000000","isAutoAddMargin":"false","positionSide":"BOTH","positionAmount":"1.230","symbol":"BTCUSD_201225","unrealizedProfit":"-0.01612295"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/sub-account/futures/positionRisk", r.URL.Path)
-			require.Equal(t, "sub-account-email@email.com", r.URL.Query().Get("email"))
-			require.Equal(t, "789", r.URL.Query().Get("futuresType"))
+			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
+			require.Equal(t, "1", r.URL.Query().Get("futuresType"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -338,7 +358,7 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccountV2(context.Background()).Email("sub-account-email@email.com").FuturesType(int64(789)).Execute()
+		resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccountV2(context.Background()).Email("123@test.com").FuturesType(int64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -391,7 +411,11 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService GetSubAccountsStatusOnMarginOrFutures Success", func(t *testing.T) {
 
-		mockedJSON := `[{"email":"123@test.com","isSubUserEnabled":true,"isUserActive":true,"insertTime":1570791523523,"isMarginEnabled":true,"isFutureEnabled":true,"mobile":1570791523523}]`
+		var mockedJSON string
+		mockedJSON = `[{"email":"123@test.com","isSubUserEnabled":true,"isUserActive":true,"insertTime":1570791523523,"isMarginEnabled":true,"isFutureEnabled":true,"mobile":1570791523523}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/status", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -446,7 +470,11 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService QuerySubAccountList Success", func(t *testing.T) {
 
-		mockedJSON := `{"subAccounts":[{"subUserId":123456,"email":"testsub@gmail.com","remark":"remark","isFreeze":false,"createTime":1544433328000,"isManagedSubAccount":false,"isAssetManagementSubAccount":false},{"subUserId":1234567,"email":"virtual@oxebmvfonoemail.com","remark":"remarks","isFreeze":false,"createTime":1544433328000,"isManagedSubAccount":false,"isAssetManagementSubAccount":false}]}`
+		var mockedJSON string
+		mockedJSON = `{"subAccounts":[{"subUserId":123456,"email":"testsub@gmail.com","remark":"remark","isFreeze":false,"createTime":1544433328000,"isManagedSubAccount":false,"isAssetManagementSubAccount":false}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -501,7 +529,11 @@ func Test_binancesubaccountrestapi_AccountManagementAPIService(t *testing.T) {
 
 	t.Run("Test AccountManagementAPIService QuerySubAccountTransactionStatistics Success", func(t *testing.T) {
 
-		mockedJSON := `{"recent30BtcTotal":"0","recent30BtcFuturesTotal":"0","recent30BtcMarginTotal":"0","recent30BusdTotal":"0","recent30BusdFuturesTotal":"0","recent30BusdMarginTotal":"0","tradeInfoVos":[{"userId":1000138138384,"btc":0,"btcFutures":0,"btcMargin":0,"busd":0,"busdFutures":0,"busdMargin":0,"date":1676851200000},{"userId":1000138138384,"btc":0,"btcFutures":0,"btcMargin":0,"busd":0,"busdFutures":0,"busdMargin":0,"date":1677110400000},{"userId":1000138138384,"btc":0,"btcFutures":0,"btcMargin":0,"busd":0,"busdFutures":0,"busdMargin":0,"date":1677369600000}]}`
+		var mockedJSON string
+		mockedJSON = `{"recent30BtcTotal":"0","recent30BtcFuturesTotal":"0","recent30BtcMarginTotal":"0","recent30BusdTotal":"0","recent30BusdFuturesTotal":"0","recent30BusdMarginTotal":"0","tradeInfoVos":[{"userId":1000138138384,"btc":0,"btcFutures":0,"btcMargin":0,"busd":0,"busdFutures":0,"busdMargin":0,"date":1676851200000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/transaction-statistics", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

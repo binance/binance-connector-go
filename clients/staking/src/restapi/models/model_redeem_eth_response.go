@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package models
@@ -19,9 +19,9 @@ var _ common.MappedNullable = &RedeemEthResponse{}
 type RedeemEthResponse struct {
 	Success              *bool   `json:"success,omitempty"`
 	EthAmount            *string `json:"ethAmount,omitempty"`
+	RedeemId             *int64  `json:"redeemId,omitempty"`
 	ConversionRatio      *string `json:"conversionRatio,omitempty"`
 	ArrivalTime          *int64  `json:"arrivalTime,omitempty"`
-	RedeemId             *int64  `json:"redeemId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,6 +108,38 @@ func (o *RedeemEthResponse) SetEthAmount(v string) {
 	o.EthAmount = &v
 }
 
+// GetRedeemId returns the RedeemId field value if set, zero value otherwise.
+func (o *RedeemEthResponse) GetRedeemId() int64 {
+	if o == nil || common.IsNil(o.RedeemId) {
+		var ret int64
+		return ret
+	}
+	return *o.RedeemId
+}
+
+// GetRedeemIdOk returns a tuple with the RedeemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RedeemEthResponse) GetRedeemIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.RedeemId) {
+		return nil, false
+	}
+	return o.RedeemId, true
+}
+
+// HasRedeemId returns a boolean if a field has been set.
+func (o *RedeemEthResponse) HasRedeemId() bool {
+	if o != nil && !common.IsNil(o.RedeemId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRedeemId gets a reference to the given int64 and assigns it to the RedeemId field.
+func (o *RedeemEthResponse) SetRedeemId(v int64) {
+	o.RedeemId = &v
+}
+
 // GetConversionRatio returns the ConversionRatio field value if set, zero value otherwise.
 func (o *RedeemEthResponse) GetConversionRatio() string {
 	if o == nil || common.IsNil(o.ConversionRatio) {
@@ -172,38 +204,6 @@ func (o *RedeemEthResponse) SetArrivalTime(v int64) {
 	o.ArrivalTime = &v
 }
 
-// GetRedeemId returns the RedeemId field value if set, zero value otherwise.
-func (o *RedeemEthResponse) GetRedeemId() int64 {
-	if o == nil || common.IsNil(o.RedeemId) {
-		var ret int64
-		return ret
-	}
-	return *o.RedeemId
-}
-
-// GetRedeemIdOk returns a tuple with the RedeemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RedeemEthResponse) GetRedeemIdOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.RedeemId) {
-		return nil, false
-	}
-	return o.RedeemId, true
-}
-
-// HasRedeemId returns a boolean if a field has been set.
-func (o *RedeemEthResponse) HasRedeemId() bool {
-	if o != nil && !common.IsNil(o.RedeemId) {
-		return true
-	}
-
-	return false
-}
-
-// SetRedeemId gets a reference to the given int64 and assigns it to the RedeemId field.
-func (o *RedeemEthResponse) SetRedeemId(v int64) {
-	o.RedeemId = &v
-}
-
 func (o RedeemEthResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -220,14 +220,14 @@ func (o RedeemEthResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.EthAmount) {
 		toSerialize["ethAmount"] = o.EthAmount
 	}
+	if !common.IsNil(o.RedeemId) {
+		toSerialize["redeemId"] = o.RedeemId
+	}
 	if !common.IsNil(o.ConversionRatio) {
 		toSerialize["conversionRatio"] = o.ConversionRatio
 	}
 	if !common.IsNil(o.ArrivalTime) {
 		toSerialize["arrivalTime"] = o.ArrivalTime
-	}
-	if !common.IsNil(o.RedeemId) {
-		toSerialize["redeemId"] = o.RedeemId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -253,9 +253,9 @@ func (o *RedeemEthResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "success")
 		delete(additionalProperties, "ethAmount")
+		delete(additionalProperties, "redeemId")
 		delete(additionalProperties, "conversionRatio")
 		delete(additionalProperties, "arrivalTime")
-		delete(additionalProperties, "redeemId")
 		o.AdditionalProperties = additionalProperties
 	}
 

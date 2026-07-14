@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &CheckServerTimeResponse{}
 
 // CheckServerTimeResponse struct for CheckServerTimeResponse
 type CheckServerTimeResponse struct {
+	// Ignore please. If you want to check current server time, please check via \"GET /dapi/v1/time\"
 	ServerTime           *int64 `json:"serverTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

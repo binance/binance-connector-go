@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**UserName** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** | Type of hashrate bucket | [optional] 
+**UserName** | Pointer to **string** | Mining account | [optional] 
 **List** | Pointer to [**[]AccountListResponseDataInnerListInner**](AccountListResponseDataInnerListInner.md) |  | [optional] 
 
 ## Methods

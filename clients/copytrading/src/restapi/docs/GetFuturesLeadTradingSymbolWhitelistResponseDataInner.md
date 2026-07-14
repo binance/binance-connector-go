@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**BaseAsset** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**BaseAsset** | Pointer to **string** | Base asset | [optional] 
+**QuoteAsset** | Pointer to **string** | Quote asset | [optional] 
 
 ## Methods
 

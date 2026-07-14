@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Leverage** | Pointer to **int64** |  | [optional] 
-**MaxNotionalValue** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
+**Leverage** | Pointer to **int64** | Leverage. | [optional] 
+**MaxNotionalValue** | Pointer to **string** | Max Notional Value. | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
 
 ## Methods
 

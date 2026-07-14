@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package binancestakingrestapi
@@ -27,24 +27,23 @@ type ApiGetSoftStakingProductListRequest struct {
 	recvWindow *int64
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetSoftStakingProductListRequest) Asset(asset string) ApiGetSoftStakingProductListRequest {
 	r.asset = &asset
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetSoftStakingProductListRequest) Current(current int64) ApiGetSoftStakingProductListRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetSoftStakingProductListRequest) Size(size int64) ApiGetSoftStakingProductListRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetSoftStakingProductListRequest) RecvWindow(recvWindow int64) ApiGetSoftStakingProductListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -58,13 +57,13 @@ func (r ApiGetSoftStakingProductListRequest) Execute() (*common.RestApiResponse[
 GetSoftStakingProductList Get Soft Staking Product List (USER_DATA)
 Get /sapi/v1/soft-staking/list
 
-https://developers.binance.com/docs/staking/soft-staking/
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-product-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  WBETH or BETH, default to BETH
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param asset -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetSoftStakingProductListRequest
 */
 func (a *SoftStakingAPIService) GetSoftStakingProductList(ctx context.Context) ApiGetSoftStakingProductListRequest {
@@ -97,7 +96,15 @@ func (a *SoftStakingAPIService) GetSoftStakingProductListExecute(r ApiGetSoftSta
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSoftStakingProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSoftStakingProductListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -116,7 +123,6 @@ type ApiGetSoftStakingRewardsHistoryRequest struct {
 	recvWindow *int64
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetSoftStakingRewardsHistoryRequest) Asset(asset string) ApiGetSoftStakingRewardsHistoryRequest {
 	r.asset = &asset
 	return r
@@ -132,18 +138,18 @@ func (r ApiGetSoftStakingRewardsHistoryRequest) EndTime(endTime int64) ApiGetSof
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetSoftStakingRewardsHistoryRequest) Current(current int64) ApiGetSoftStakingRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetSoftStakingRewardsHistoryRequest) Size(size int64) ApiGetSoftStakingRewardsHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetSoftStakingRewardsHistoryRequest) RecvWindow(recvWindow int64) ApiGetSoftStakingRewardsHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -154,18 +160,18 @@ func (r ApiGetSoftStakingRewardsHistoryRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-GetSoftStakingRewardsHistory Get Soft Staking Rewards History(USER_DATA)
+GetSoftStakingRewardsHistory Get Soft Staking Rewards History (USER_DATA)
 Get /sapi/v1/soft-staking/history/rewardsRecord
 
-https://developers.binance.com/docs/staking/soft-staking/Get-Soft-Staking-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#get-soft-staking-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  WBETH or BETH, default to BETH
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetSoftStakingRewardsHistoryRequest
 */
 func (a *SoftStakingAPIService) GetSoftStakingRewardsHistory(ctx context.Context) ApiGetSoftStakingRewardsHistoryRequest {
@@ -204,7 +210,15 @@ func (a *SoftStakingAPIService) GetSoftStakingRewardsHistoryExecute(r ApiGetSoft
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSoftStakingRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSoftStakingRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -219,12 +233,12 @@ type ApiSetSoftStakingRequest struct {
 	recvWindow  *int64
 }
 
-// true or false
 func (r ApiSetSoftStakingRequest) SoftStaking(softStaking bool) ApiSetSoftStakingRequest {
 	r.softStaking = &softStaking
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSetSoftStakingRequest) RecvWindow(recvWindow int64) ApiSetSoftStakingRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -238,11 +252,11 @@ func (r ApiSetSoftStakingRequest) Execute() (*common.RestApiResponse[models.SetS
 SetSoftStaking Set Soft Staking (USER_DATA)
 Get /sapi/v1/soft-staking/set
 
-https://developers.binance.com/docs/staking/soft-staking/Set-Soft-Staking
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/soft-staking#set-soft-staking
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param softStaking -  true or false
-@param recvWindow -
+@param softStaking -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetSoftStakingRequest
 */
 func (a *SoftStakingAPIService) SetSoftStaking(ctx context.Context) ApiSetSoftStakingRequest {
@@ -271,7 +285,15 @@ func (a *SoftStakingAPIService) SetSoftStakingExecute(r ApiSetSoftStakingRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetSoftStakingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetSoftStakingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

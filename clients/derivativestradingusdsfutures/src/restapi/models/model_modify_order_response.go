@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,32 +17,36 @@ var _ common.MappedNullable = &ModifyOrderResponse{}
 
 // ModifyOrderResponse struct for ModifyOrderResponse
 type ModifyOrderResponse struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Pair                    *string `json:"pair,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	OrderId       *int64  `json:"orderId,omitempty"`
+	Symbol        *string `json:"symbol,omitempty"`
+	Pair          *string `json:"pair,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	Price         *string `json:"price,omitempty"`
+	// Average execution price. Will be removed after CM migration.
+	AvgPrice      *string `json:"avgPrice,omitempty"`
+	OrigQty       *string `json:"origQty,omitempty"`
+	ExecutedQty   *string `json:"executedQty,omitempty"`
+	CumQty        *string `json:"cumQty,omitempty"`
+	CumBase       *string `json:"cumBase,omitempty"`
+	TimeInForce   *string `json:"timeInForce,omitempty"`
+	Type          *string `json:"type,omitempty"`
+	ReduceOnly    *bool   `json:"reduceOnly,omitempty"`
+	ClosePosition *bool   `json:"closePosition,omitempty"`
+	Side          *string `json:"side,omitempty"`
+	PositionSide  *string `json:"positionSide,omitempty"`
+	StopPrice     *string `json:"stopPrice,omitempty"`
+	WorkingType   *string `json:"workingType,omitempty"`
+	PriceProtect  *bool   `json:"priceProtect,omitempty"`
+	OrigType      *string `json:"origType,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// order pre-set auot cancel time for TIF GTD order
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ModifyOrderResponse ModifyOrderResponse

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,17 +17,27 @@ var _ common.MappedNullable = &QueryPreventedMatchesResponseInner{}
 
 // QueryPreventedMatchesResponseInner struct for QueryPreventedMatchesResponseInner
 type QueryPreventedMatchesResponseInner struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	PreventedMatchId        *int64  `json:"preventedMatchId,omitempty"`
-	TakerOrderId            *int64  `json:"takerOrderId,omitempty"`
-	MakerSymbol             *string `json:"makerSymbol,omitempty"`
-	MakerOrderId            *int64  `json:"makerOrderId,omitempty"`
-	TradeGroupId            *int64  `json:"tradeGroupId,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// prevented Match Id.
+	PreventedMatchId *int64 `json:"preventedMatchId,omitempty"`
+	// taker Order Id.
+	TakerOrderId *int64 `json:"takerOrderId,omitempty"`
+	// maker Symbol.
+	MakerSymbol *string `json:"makerSymbol,omitempty"`
+	// maker Order Id.
+	MakerOrderId *int64 `json:"makerOrderId,omitempty"`
+	// trade Group Id.
+	TradeGroupId *int64 `json:"tradeGroupId,omitempty"`
+	// self Trade Prevention Mode.
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	MakerPreventedQuantity  *string `json:"makerPreventedQuantity,omitempty"`
-	TransactTime            *int64  `json:"transactTime,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// price.
+	Price *string `json:"price,omitempty"`
+	// maker Prevented Quantity.
+	MakerPreventedQuantity *string `json:"makerPreventedQuantity,omitempty"`
+	// transact Time.
+	TransactTime         *int64 `json:"transactTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryPreventedMatchesResponseInner QueryPreventedMatchesResponseInner

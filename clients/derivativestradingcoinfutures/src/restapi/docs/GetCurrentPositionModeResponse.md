@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DualSidePosition** | Pointer to **bool** |  | [optional] 
+**DualSidePosition** | Pointer to **bool** | Whether dual-side position mode is enabled. | [optional] 
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgCostTimestampOfLast30d** | Pointer to **int64** |  | [optional] 
-**DownloadId** | Pointer to **string** |  | [optional] 
+**AvgCostTimestampOfLast30d** | Pointer to **int64** | Average time taken for data download in the past 30 days | [optional] 
+**DownloadId** | Pointer to **string** | Download ID. | [optional] 
 
 ## Methods
 

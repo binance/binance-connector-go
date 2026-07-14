@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**D** | Pointer to **string** | Balance Delta | [optional] 
+**T** | Pointer to **int64** | Clear Time | [optional] 
 
 ## Methods
 

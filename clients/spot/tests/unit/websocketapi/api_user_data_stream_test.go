@@ -32,8 +32,22 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":1},{"subscriptionId":0}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -74,22 +88,37 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":1},{"subscriptionId":0}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/session.subscriptions"[1:], sent["method"])
+		require.Equal(t, "/session.subscriptions"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.SessionSubscriptionsResponse{}, typedResp)
@@ -161,13 +190,28 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"subscriptionId":0}}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
 		stream := res.Stream
-		err := res.Err
+		err = res.Err
 		require.NoError(t, err)
 
 		require.NotNil(t, resp)
@@ -260,13 +304,28 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"subscriptionId":0}}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
 		stream := res.Stream
-		err := res.Err
+		err = res.Err
 		require.NoError(t, err)
 
 		require.NotNil(t, resp)
@@ -356,8 +415,22 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{}}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -398,22 +471,37 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{}}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/userDataStream.unsubscribe"[1:], sent["method"])
+		require.Equal(t, "/userDataStream.unsubscribe"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.UserDataStreamUnsubscribeResponse{}, typedResp)

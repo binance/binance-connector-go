@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -16,7 +16,6 @@ type NewAlgoOrderPriceMatchParameter string
 
 // List of newAlgoOrder_priceMatch_parameter
 const (
-	NewAlgoOrderPriceMatchParameterNone       NewAlgoOrderPriceMatchParameter = "NONE"
 	NewAlgoOrderPriceMatchParameterOpponent   NewAlgoOrderPriceMatchParameter = "OPPONENT"
 	NewAlgoOrderPriceMatchParameterOpponent5  NewAlgoOrderPriceMatchParameter = "OPPONENT_5"
 	NewAlgoOrderPriceMatchParameterOpponent10 NewAlgoOrderPriceMatchParameter = "OPPONENT_10"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of NewAlgoOrderPriceMatchParameter enum
 var AllowedNewAlgoOrderPriceMatchParameterEnumValues = []NewAlgoOrderPriceMatchParameter{
-	"NONE",
 	"OPPONENT",
 	"OPPONENT_5",
 	"OPPONENT_10",

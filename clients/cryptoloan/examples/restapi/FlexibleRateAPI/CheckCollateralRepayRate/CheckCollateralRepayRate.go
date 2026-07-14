@@ -22,7 +22,7 @@ func CheckCollateralRepayRate() {
 	apiClient := client.NewBinanceCryptoLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleRateAPI.CheckCollateralRepayRate(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").Execute()
+	resp, err := apiClient.RestApi.FlexibleRateAPI.CheckCollateralRepayRate(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").Execute()
 	if err != nil {
 		log.Println(err)
 		return

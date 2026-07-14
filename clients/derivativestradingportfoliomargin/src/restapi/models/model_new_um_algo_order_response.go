@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -29,7 +29,6 @@ type NewUmAlgoOrderResponse struct {
 	AlgoStatus              *string `json:"algoStatus,omitempty"`
 	TriggerPrice            *string `json:"triggerPrice,omitempty"`
 	Price                   *string `json:"price,omitempty"`
-	IcebergQuantity         *string `json:"icebergQuantity,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	WorkingType             *string `json:"workingType,omitempty"`
 	PriceMatch              *string `json:"priceMatch,omitempty"`
@@ -447,38 +446,6 @@ func (o *NewUmAlgoOrderResponse) SetPrice(v string) {
 	o.Price = &v
 }
 
-// GetIcebergQuantity returns the IcebergQuantity field value if set, zero value otherwise.
-func (o *NewUmAlgoOrderResponse) GetIcebergQuantity() string {
-	if o == nil || common.IsNil(o.IcebergQuantity) {
-		var ret string
-		return ret
-	}
-	return *o.IcebergQuantity
-}
-
-// GetIcebergQuantityOk returns a tuple with the IcebergQuantity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewUmAlgoOrderResponse) GetIcebergQuantityOk() (*string, bool) {
-	if o == nil || common.IsNil(o.IcebergQuantity) {
-		return nil, false
-	}
-	return o.IcebergQuantity, true
-}
-
-// HasIcebergQuantity returns a boolean if a field has been set.
-func (o *NewUmAlgoOrderResponse) HasIcebergQuantity() bool {
-	if o != nil && !common.IsNil(o.IcebergQuantity) {
-		return true
-	}
-
-	return false
-}
-
-// SetIcebergQuantity gets a reference to the given string and assigns it to the IcebergQuantity field.
-func (o *NewUmAlgoOrderResponse) SetIcebergQuantity(v string) {
-	o.IcebergQuantity = &v
-}
-
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
 func (o *NewUmAlgoOrderResponse) GetSelfTradePreventionMode() string {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
@@ -877,9 +844,6 @@ func (o NewUmAlgoOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if !common.IsNil(o.IcebergQuantity) {
-		toSerialize["icebergQuantity"] = o.IcebergQuantity
-	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
 	}
@@ -947,7 +911,6 @@ func (o *NewUmAlgoOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "algoStatus")
 		delete(additionalProperties, "triggerPrice")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "icebergQuantity")
 		delete(additionalProperties, "selfTradePreventionMode")
 		delete(additionalProperties, "workingType")
 		delete(additionalProperties, "priceMatch")

@@ -4,15 +4,15 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetFuturesLeadTraderStatus**](FutureCopyTradingAPI.md#GetFuturesLeadTraderStatus) | **Get** /sapi/v1/copyTrading/futures/userStatus | Get Futures Lead Trader Status(TRADE)
-[**GetFuturesLeadTradingSymbolWhitelist**](FutureCopyTradingAPI.md#GetFuturesLeadTradingSymbolWhitelist) | **Get** /sapi/v1/copyTrading/futures/leadSymbol | Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+[**GetFuturesLeadTraderStatus**](FutureCopyTradingAPI.md#GetFuturesLeadTraderStatus) | **Get** /sapi/v1/copyTrading/futures/userStatus | Get Futures Lead Trader Status (TRADE)
+[**GetFuturesLeadTradingSymbolWhitelist**](FutureCopyTradingAPI.md#GetFuturesLeadTradingSymbolWhitelist) | **Get** /sapi/v1/copyTrading/futures/leadSymbol | Get Futures Lead Trading Symbol Whitelist (USER_DATA)
 
 
 ## GetFuturesLeadTraderStatus
 
 > GetFuturesLeadTraderStatusResponse GetFuturesLeadTraderStatus(ctx).RecvWindow(recvWindow).Execute()
 
-Get Futures Lead Trader Status(TRADE)
+Get Futures Lead Trader Status (TRADE)
 
 
 ### Example
@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -59,7 +59,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -80,7 +80,7 @@ No authorization required
 
 > GetFuturesLeadTradingSymbolWhitelistResponse GetFuturesLeadTradingSymbolWhitelist(ctx).RecvWindow(recvWindow).Execute()
 
-Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+Get Futures Lead Trading Symbol Whitelist (USER_DATA)
 
 
 ### Example
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -127,7 +127,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

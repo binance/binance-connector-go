@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionswebsocketstreams
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams v1.5.0
+// WebsocketStreamsClient manages communication with the Binance Options WebSocket Market Streams WebSocket Streams v1.6.0
 type WebsocketStreamsClient struct {
 	cfg        *common.ConfigurationWebsocketStreams
 	userAgent  string
@@ -27,13 +27,13 @@ type WebsocketStreamsClient struct {
 	PublicAPI *PublicAPIService
 }
 
-// NewWebsocketStreamsClient creates a new Binance Binance Derivatives Trading Options WebSocket Market Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Options WebSocket Market Streams WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingoptions/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingoptions/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	cfgMarket := *cfg
 	cfgMarket.BasePath = cfgMarket.BasePath + "/market/stream"

@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**VipLevel** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to [**[]QueryIsolatedMarginFeeDataResponseInnerDataInner**](QueryIsolatedMarginFeeDataResponseInnerDataInner.md) |  | [optional] 
+**VipLevel** | Pointer to **int64** | vip Level. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**Leverage** | Pointer to **string** | leverage. | [optional] 
+**Data** | Pointer to [**[]QueryIsolatedMarginFeeDataResponseInnerDataInner**](QueryIsolatedMarginFeeDataResponseInnerDataInner.md) | data list. | [optional] 
 
 ## Methods
 

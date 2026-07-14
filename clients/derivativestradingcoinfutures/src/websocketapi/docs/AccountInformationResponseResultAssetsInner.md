@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**WalletBalance** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**MarginBalance** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**WalletBalance** | Pointer to **string** | total wallet balance | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit or loss | [optional] 
+**MarginBalance** | Pointer to **string** | margin balance | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin | [optional] 
+**InitialMargin** | Pointer to **string** | total intial margin required with the latest mark price | [optional] 
+**PositionInitialMargin** | Pointer to **string** | positions margin required with the latest mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | open orders intial margin required with the latest mark price | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | maximum amount for transfer out | [optional] 
+**CrossWalletBalance** | Pointer to **string** | wallet balance for crossed margin | [optional] 
+**CrossUnPnl** | Pointer to **string** | total unrealized profit or loss of crossed positions | [optional] 
+**AvailableBalance** | Pointer to **string** | available margin balance | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
 
 ## Methods
 

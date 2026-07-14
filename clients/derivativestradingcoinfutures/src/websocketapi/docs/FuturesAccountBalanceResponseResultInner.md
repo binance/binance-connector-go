@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountAlias** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Balance** | Pointer to **string** |  | [optional] 
-**WithdrawAvailable** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**AccountAlias** | Pointer to **string** | unique account code | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**Balance** | Pointer to **string** | Account balance. | [optional] 
+**WithdrawAvailable** | Pointer to **string** | Available amount for withdrawal. | [optional] 
+**CrossWalletBalance** | Pointer to **string** | wallet balance for crossed margin | [optional] 
+**CrossUnPnl** | Pointer to **string** | total unrealized profit or loss of crossed positions | [optional] 
+**AvailableBalance** | Pointer to **string** | available margin balance | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
 
 ## Methods
 

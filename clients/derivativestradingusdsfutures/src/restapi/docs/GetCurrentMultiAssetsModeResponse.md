@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**MultiAssetsMargin** | Pointer to **bool** |  | [optional] 
+**MultiAssetsMargin** | Pointer to **bool** | \&quot;true\&quot;: Multi-Assets Mode; \&quot;false\&quot;: Single-Asset Mode | [optional] 
 
 ## Methods
 

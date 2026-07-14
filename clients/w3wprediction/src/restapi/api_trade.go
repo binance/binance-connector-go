@@ -49,10 +49,10 @@ func (r ApiBatchCancelOrdersRequest) Execute() (*common.RestApiResponse[models.B
 }
 
 /*
-BatchCancelOrders Batch Cancel Orders
+BatchCancelOrders Batch Cancel Orders (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/batch-cancel
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -80,6 +80,7 @@ func (a *TradeAPIService) BatchCancelOrdersExecute(r ApiBatchCancelOrdersRequest
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.walletId == nil {
 		return nil, common.ReportError("walletId is required and must be specified")
 	}
@@ -91,7 +92,15 @@ func (a *TradeAPIService) BatchCancelOrdersExecute(r ApiBatchCancelOrdersRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "cancelInfoList", t, "form", "multi")
 	}
 
-	resp, err := SendRequest[models.BatchCancelOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.BatchCancelOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -186,10 +195,10 @@ func (r ApiGetQuoteRequest) Execute() (*common.RestApiResponse[models.GetQuoteRe
 }
 
 /*
-GetQuote Get Quote
+GetQuote Get Quote (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/get-quote
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -225,18 +234,23 @@ func (a *TradeAPIService) GetQuoteExecute(r ApiGetQuoteRequest) (*common.RestApi
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.tokenId == nil {
 		return nil, common.ReportError("tokenId is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.amountIn == nil {
 		return nil, common.ReportError("amountIn is required and must be specified")
 	}
+
 	if r.orderType == nil {
 		return nil, common.ReportError("orderType is required and must be specified")
 	}
+
 	if r.slippageBps == nil {
 		return nil, common.ReportError("slippageBps is required and must be specified")
 	}
@@ -269,7 +283,15 @@ func (a *TradeAPIService) GetQuoteExecute(r ApiGetQuoteRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fundTransferAmount", r.fundTransferAmount, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetQuoteResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetQuoteResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -357,10 +379,10 @@ func (r ApiPlaceOrderRequest) Execute() (*common.RestApiResponse[models.PlaceOrd
 }
 
 /*
-PlaceOrder Place Order
+PlaceOrder Place Order (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -395,21 +417,27 @@ func (a *TradeAPIService) PlaceOrderExecute(r ApiPlaceOrderRequest) (*common.Res
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.walletId == nil {
 		return nil, common.ReportError("walletId is required and must be specified")
 	}
+
 	if r.quoteId == nil {
 		return nil, common.ReportError("quoteId is required and must be specified")
 	}
+
 	if r.timeInForce == nil {
 		return nil, common.ReportError("timeInForce is required and must be specified")
 	}
+
 	if r.accountType == nil {
 		return nil, common.ReportError("accountType is required and must be specified")
 	}
+
 	if r.orderType == nil {
 		return nil, common.ReportError("orderType is required and must be specified")
 	}
+
 	if r.slippageBps == nil {
 		return nil, common.ReportError("slippageBps is required and must be specified")
 	}
@@ -437,7 +465,15 @@ func (a *TradeAPIService) PlaceOrderExecute(r ApiPlaceOrderRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fundTransferAmount", r.fundTransferAmount, "form", "")
 	}
 
-	resp, err := SendRequest[models.PlaceOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PlaceOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -504,10 +540,10 @@ func (r ApiQueryActiveOrdersRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryActiveOrders Query Active Orders
+QueryActiveOrders Query Active Orders (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/order/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -560,7 +596,15 @@ func (a *TradeAPIService) QueryActiveOrdersExecute(r ApiQueryActiveOrdersRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryActiveOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryActiveOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -641,10 +685,10 @@ func (r ApiQueryOrderHistoryRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryOrderHistory Query Order History
+QueryOrderHistory Query Order History (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/order/history
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -705,7 +749,15 @@ func (a *TradeAPIService) QueryOrderHistoryExecute(r ApiQueryOrderHistoryRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

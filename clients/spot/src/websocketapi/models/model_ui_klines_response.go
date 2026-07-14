@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &UiKlinesResponse{}
 
 // UiKlinesResponse struct for UiKlinesResponse
 type UiKlinesResponse struct {
-	Id                   *string        `json:"id,omitempty"`
-	Status               *int64         `json:"status,omitempty"`
-	Result               []UiKlinesItem `json:"result,omitempty"`
-	RateLimits           []RateLimits   `json:"rateLimits,omitempty"`
+	Id                   *string                                    `json:"id,omitempty"`
+	Status               *int64                                     `json:"status,omitempty"`
+	Result               [][]KlinesResponseResultInnerInner         `json:"result,omitempty"`
+	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,9 +108,9 @@ func (o *UiKlinesResponse) SetStatus(v int64) {
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *UiKlinesResponse) GetResult() []UiKlinesItem {
+func (o *UiKlinesResponse) GetResult() [][]KlinesResponseResultInnerInner {
 	if o == nil || common.IsNil(o.Result) {
-		var ret []UiKlinesItem
+		var ret [][]KlinesResponseResultInnerInner
 		return ret
 	}
 	return o.Result
@@ -118,7 +118,7 @@ func (o *UiKlinesResponse) GetResult() []UiKlinesItem {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UiKlinesResponse) GetResultOk() ([]UiKlinesItem, bool) {
+func (o *UiKlinesResponse) GetResultOk() ([][]KlinesResponseResultInnerInner, bool) {
 	if o == nil || common.IsNil(o.Result) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *UiKlinesResponse) HasResult() bool {
 	return false
 }
 
-// SetResult gets a reference to the given []UiKlinesItem and assigns it to the Result field.
-func (o *UiKlinesResponse) SetResult(v []UiKlinesItem) {
+// SetResult gets a reference to the given [][]KlinesResponseResultInnerInner and assigns it to the Result field.
+func (o *UiKlinesResponse) SetResult(v [][]KlinesResponseResultInnerInner) {
 	o.Result = v
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *UiKlinesResponse) GetRateLimits() []RateLimits {
+func (o *UiKlinesResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []AccountCommissionResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *UiKlinesResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UiKlinesResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *UiKlinesResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *UiKlinesResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *UiKlinesResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *UiKlinesResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

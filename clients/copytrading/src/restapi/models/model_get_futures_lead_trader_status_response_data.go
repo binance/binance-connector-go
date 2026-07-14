@@ -1,7 +1,7 @@
 /*
-Binance Copy Trading REST API
+Copy Trading REST API
 
-OpenAPI Specification for the Binance Copy Trading REST API
+Automate lead trading via the Copy Trading API.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetFuturesLeadTraderStatusResponseData{}
 
 // GetFuturesLeadTraderStatusResponseData struct for GetFuturesLeadTraderStatusResponseData
 type GetFuturesLeadTraderStatusResponseData struct {
-	IsLeadTrader         *bool  `json:"isLeadTrader,omitempty"`
+	// Whether the user is a futures lead trader
+	IsLeadTrader *bool `json:"isLeadTrader,omitempty"`
+	// Server timestamp in milliseconds
 	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

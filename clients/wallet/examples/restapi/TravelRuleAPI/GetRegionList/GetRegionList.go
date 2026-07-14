@@ -22,7 +22,7 @@ func GetRegionList() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TravelRuleAPI.GetRegionList(context.Background()).CountryCode("countryCode_example").Execute()
+	resp, err := apiClient.RestApi.TravelRuleAPI.GetRegionList(context.Background()).CountryCode("au").Execute()
 	if err != nil {
 		log.Println(err)
 		return

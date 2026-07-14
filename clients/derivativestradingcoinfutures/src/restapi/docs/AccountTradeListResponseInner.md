@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**RealizedPnl** | Pointer to **string** |  | [optional] 
-**MarginAsset** | Pointer to **string** |  | [optional] 
-**BaseQty** | Pointer to **string** |  | [optional] 
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Buyer** | Pointer to **bool** |  | [optional] 
-**Maker** | Pointer to **bool** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Id** | Pointer to **int64** | positionId | [optional] 
+**OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**Side** | Pointer to **string** | Trading side | [optional] 
+**Price** | Pointer to **string** | Latest token price. | [optional] 
+**Qty** | Pointer to **string** | Quantity. | [optional] 
+**RealizedPnl** | Pointer to **string** | Realized PnL. | [optional] 
+**MarginAsset** | Pointer to **string** | Margin asset. | [optional] 
+**BaseQty** | Pointer to **string** | Base asset quantity. | [optional] 
+**Commission** | Pointer to **string** | Transaction Fee (in Crypto) | [optional] 
+**CommissionAsset** | Pointer to **string** | Commission asset. | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
+**Buyer** | Pointer to **bool** | Whether the trade is a buy side for the account. | [optional] 
+**Maker** | Pointer to **bool** | Whether the account is maker in this trade. | [optional] 
 
 ## Methods
 

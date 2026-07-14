@@ -22,7 +22,7 @@ func SubAccountFuturesAssetTransfer() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.SubAccountFuturesAssetTransfer(context.Background()).FromEmail("fromEmail_example").ToEmail("toEmail_example").FuturesType(789).Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.SubAccountFuturesAssetTransfer(context.Background()).FromEmail("abc@test.com").ToEmail("def@test.com").FuturesType(1).Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **InterestAmount** | Pointer to **string** |  | [optional] 
 **AnnualInterestRate** | Pointer to **string** |  | [optional] 
 **AccrualTime** | Pointer to **int64** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
+**OrderId** | Pointer to **int64** | Latest order ID for the renewal order. | [optional] 
 
 ## Methods
 

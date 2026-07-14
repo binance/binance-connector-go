@@ -1,7 +1,7 @@
 /*
 Binance Pay REST API
 
-OpenAPI Specification for the Binance Pay REST API
+Query Binance Pay transaction history.
 */
 
 package models
@@ -15,10 +15,13 @@ import (
 // checks if the GetPayTradeHistoryResponseDataInnerReceiverInfoExtend type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &GetPayTradeHistoryResponseDataInnerReceiverInfoExtend{}
 
-// GetPayTradeHistoryResponseDataInnerReceiverInfoExtend struct for GetPayTradeHistoryResponseDataInnerReceiverInfoExtend
+// GetPayTradeHistoryResponseDataInnerReceiverInfoExtend Extension fields.
 type GetPayTradeHistoryResponseDataInnerReceiverInfoExtend struct {
-	InstitutionName      *string `json:"institutionName,omitempty"`
-	CardNumber           *string `json:"cardNumber,omitempty"`
+	// Bank name or digital wallet name.
+	InstitutionName *string `json:"institutionName,omitempty"`
+	// Card number.
+	CardNumber *string `json:"cardNumber,omitempty"`
+	// Digital wallet ID.
 	DigitalWalletId      *string `json:"digitalWalletId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

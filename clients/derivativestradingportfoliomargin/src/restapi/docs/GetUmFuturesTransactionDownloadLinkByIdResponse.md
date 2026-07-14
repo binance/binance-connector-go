@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DownloadId** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
-**S3Link** | Pointer to **string** |  | [optional] 
-**Notified** | Pointer to **bool** |  | [optional] 
-**ExpirationTimestamp** | Pointer to **int64** |  | [optional] 
-**IsExpired** | Pointer to **string** |  | [optional] 
+**DownloadId** | Pointer to **string** | Download ID. | [optional] 
+**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Url** | Pointer to **string** | The link is mapped to download id | [optional] 
+**S3Link** | Pointer to **string** | S3 Link. | [optional] 
+**Notified** | Pointer to **bool** | ignore | [optional] 
+**ExpirationTimestamp** | Pointer to **int64** | The link would expire after this timestamp | [optional] 
+**IsExpired** | Pointer to **string** | Is Expired. | [optional] 
 
 ## Methods
 

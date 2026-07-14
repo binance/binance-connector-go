@@ -22,7 +22,7 @@ func TransferToSubAccountOfSameMaster() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.TransferToSubAccountOfSameMaster(context.Background()).ToEmail("toEmail_example").Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.TransferToSubAccountOfSameMaster(context.Background()).ToEmail("abc@test.com").Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

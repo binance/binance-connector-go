@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Leverage** | Pointer to **int64** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
+**Leverage** | Pointer to **int64** | Leverage value. | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
 
 ## Methods
 

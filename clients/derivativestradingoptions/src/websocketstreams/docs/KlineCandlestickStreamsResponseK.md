@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**H** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**N** | Pointer to **int64** |  | [optional] 
-**X** | Pointer to **bool** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
+**T** | Pointer to **int64** | kline start time | [optional] 
+**T** | Pointer to **int64** | kline end time | [optional] 
+**S** | Pointer to **string** | Option trading symbol | [optional] 
+**I** | Pointer to **string** | candle period | [optional] 
+**F** | Pointer to **int64** | first trade ID | [optional] 
+**L** | Pointer to **int64** | last trade ID | [optional] 
+**O** | Pointer to **string** | open | [optional] 
+**C** | Pointer to **string** | close | [optional] 
+**H** | Pointer to **string** | high | [optional] 
+**L** | Pointer to **string** | low | [optional] 
+**V** | Pointer to **string** | volume(in contracts) | [optional] 
+**N** | Pointer to **int64** | number of trades | [optional] 
+**X** | Pointer to **bool** | current candle has been completed Y/N | [optional] 
+**Q** | Pointer to **string** | completed trade amount   (in quote asset) | [optional] 
+**V** | Pointer to **string** | taker completed trade volume (in contracts) | [optional] 
+**Q** | Pointer to **string** | taker trade amount(in quote asset) | [optional] 
 
 ## Methods
 

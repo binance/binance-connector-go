@@ -1,7 +1,7 @@
 /*
-Binance Copy Trading REST API
+Copy Trading REST API
 
-OpenAPI Specification for the Binance Copy Trading REST API
+Automate lead trading via the Copy Trading API.
 */
 
 package binancecopytradingrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Copy Trading REST API v1.5.0
+// RestAPIClient manages communication with the Copy Trading REST API API v1.6.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -26,7 +26,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Copy Trading REST API REST API client
+// NewRestAPIClient creates a new Binance Copy Trading REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -36,7 +36,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-copytrading/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-copytrading/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

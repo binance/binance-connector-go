@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &CreateSpecialKeyResponse{}
 
 // CreateSpecialKeyResponse struct for CreateSpecialKeyResponse
 type CreateSpecialKeyResponse struct {
-	ApiKey               *string `json:"apiKey,omitempty"`
-	SecretKey            *string `json:"secretKey,omitempty"`
+	// api Key.
+	ApiKey *string `json:"apiKey,omitempty"`
+	// secretKey will be null when creating an RSA key
+	SecretKey *string `json:"secretKey,omitempty"`
+	// HMAC_SHA256 or RSA
 	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

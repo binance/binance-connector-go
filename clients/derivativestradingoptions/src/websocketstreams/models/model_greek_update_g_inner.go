@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &GreekUpdateGInner{}
 
 // GreekUpdateGInner struct for GreekUpdateGInner
 type GreekUpdateGInner struct {
-	Smallu               *string `json:"u,omitempty"`
-	Smalld               *string `json:"d,omitempty"`
-	Smallg               *string `json:"g,omitempty"`
-	Smallt               *string `json:"t,omitempty"`
+	// Underlying
+	Smallu *string `json:"u,omitempty"`
+	// Delta
+	Smalld *string `json:"d,omitempty"`
+	// Gamma
+	Smallg *string `json:"g,omitempty"`
+	// Theta
+	Smallt *string `json:"t,omitempty"`
+	// Vega
 	Smallv               *string `json:"v,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

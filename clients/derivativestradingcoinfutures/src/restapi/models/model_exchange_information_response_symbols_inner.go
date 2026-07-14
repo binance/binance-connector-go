@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,32 +17,57 @@ var _ common.MappedNullable = &ExchangeInformationResponseSymbolsInner{}
 
 // ExchangeInformationResponseSymbolsInner struct for ExchangeInformationResponseSymbolsInner
 type ExchangeInformationResponseSymbolsInner struct {
-	Filters               []ExchangeInformationResponseSymbolsInnerFiltersInner `json:"filters,omitempty"`
-	OrderTypes            []string                                              `json:"orderTypes,omitempty"`
-	TimeInForce           []string                                              `json:"timeInForce,omitempty"`
-	LiquidationFee        *string                                               `json:"liquidationFee,omitempty"`
-	MarketTakeBound       *string                                               `json:"marketTakeBound,omitempty"`
-	Symbol                *string                                               `json:"symbol,omitempty"`
-	Pair                  *string                                               `json:"pair,omitempty"`
-	ContractType          *string                                               `json:"contractType,omitempty"`
-	DeliveryDate          *int64                                                `json:"deliveryDate,omitempty"`
-	OnboardDate           *int64                                                `json:"onboardDate,omitempty"`
-	ContractStatus        *string                                               `json:"contractStatus,omitempty"`
-	ContractSize          *int64                                                `json:"contractSize,omitempty"`
-	QuoteAsset            *string                                               `json:"quoteAsset,omitempty"`
-	BaseAsset             *string                                               `json:"baseAsset,omitempty"`
-	MarginAsset           *string                                               `json:"marginAsset,omitempty"`
-	PricePrecision        *int64                                                `json:"pricePrecision,omitempty"`
-	QuantityPrecision     *int64                                                `json:"quantityPrecision,omitempty"`
-	BaseAssetPrecision    *int64                                                `json:"baseAssetPrecision,omitempty"`
-	QuotePrecision        *int64                                                `json:"quotePrecision,omitempty"`
-	EqualQtyPrecision     *int64                                                `json:"equalQtyPrecision,omitempty"`
-	TriggerProtect        *string                                               `json:"triggerProtect,omitempty"`
-	MaintMarginPercent    *string                                               `json:"maintMarginPercent,omitempty"`
-	RequiredMarginPercent *string                                               `json:"requiredMarginPercent,omitempty"`
-	UnderlyingType        *string                                               `json:"underlyingType,omitempty"`
-	UnderlyingSubType     []string                                              `json:"underlyingSubType,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	// Trading filters and constraints.
+	Filters []ExchangeInformationResponseSymbolsInnerFiltersInner `json:"filters,omitempty"`
+	// Supported order types.
+	OrderTypes []string `json:"orderTypes,omitempty"`
+	// Time in force
+	TimeInForce []string `json:"timeInForce,omitempty"`
+	// liquidation fee rate
+	LiquidationFee *string `json:"liquidationFee,omitempty"`
+	// the max price difference rate( from mark price) a market order can make
+	MarketTakeBound *string `json:"marketTakeBound,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Contract type.
+	ContractType *string `json:"contractType,omitempty"`
+	// Delivery timestamp.
+	DeliveryDate *int64 `json:"deliveryDate,omitempty"`
+	// Onboard timestamp.
+	OnboardDate *int64 `json:"onboardDate,omitempty"`
+	// Contract status.
+	ContractStatus *string `json:"contractStatus,omitempty"`
+	// Contract size.
+	ContractSize *int64 `json:"contractSize,omitempty"`
+	// Quote asset symbol.
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// Base asset symbol.
+	BaseAsset *string `json:"baseAsset,omitempty"`
+	// Margin asset.
+	MarginAsset *string `json:"marginAsset,omitempty"`
+	// please do not use it as tickSize
+	PricePrecision *int64 `json:"pricePrecision,omitempty"`
+	// please do not use it as stepSize
+	QuantityPrecision *int64 `json:"quantityPrecision,omitempty"`
+	// Base asset precision.
+	BaseAssetPrecision *int64 `json:"baseAssetPrecision,omitempty"`
+	// Quote asset precision.
+	QuotePrecision *int64 `json:"quotePrecision,omitempty"`
+	// ignore
+	EqualQtyPrecision *int64 `json:"equalQtyPrecision,omitempty"`
+	// threshold for algo order with \"priceProtect\"
+	TriggerProtect *string `json:"triggerProtect,omitempty"`
+	// ignore
+	MaintMarginPercent *string `json:"maintMarginPercent,omitempty"`
+	// ignore
+	RequiredMarginPercent *string `json:"requiredMarginPercent,omitempty"`
+	// Underlying asset type.
+	UnderlyingType *string `json:"underlyingType,omitempty"`
+	// Underlying asset sub-type.
+	UnderlyingSubType    []string `json:"underlyingSubType,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ExchangeInformationResponseSymbolsInner ExchangeInformationResponseSymbolsInner

@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **BidQty** | Pointer to **string** |  | [optional] 
 **AskPrice** | Pointer to **string** |  | [optional] 
 **AskQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | Transaction time | [optional] 
 
 ## Methods
 

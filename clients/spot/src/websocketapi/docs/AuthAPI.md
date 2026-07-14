@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**SessionLogon**](AuthAPI.md#SessionLogon) | /session.logon | WebSocket Log in with API key
-[**SessionLogout**](AuthAPI.md#SessionLogout) | /session.logout | WebSocket Log out of the session
-[**SessionStatus**](AuthAPI.md#SessionStatus) | /session.status | WebSocket Query session status
+[**SessionLogon**](AuthAPI.md#SessionLogon) | /session.logon | Log in with API key (USER_DATA)
+[**SessionLogout**](AuthAPI.md#SessionLogout) | /session.logout | Log out of the session
+[**SessionStatus**](AuthAPI.md#SessionStatus) | /session.status | Query session status
 
 
 ## SessionLogon
 
 > SessionLogonResponse SessionLogon().Id(id).RecvWindow(recvWindow).Execute()
 
-WebSocket Log in with API key
+Log in with API key (USER_DATA)
 
 
 ### Example
@@ -30,8 +30,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -69,8 +69,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ No authorization required
 
 > SessionLogoutResponse SessionLogout().Id(id).Execute()
 
-WebSocket Log out of the session
+Log out of the session
 
 
 ### Example
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -142,7 +142,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -159,7 +159,7 @@ No authorization required
 
 > SessionStatusResponse SessionStatus().Id(id).Execute()
 
-WebSocket Query session status
+Query session status
 
 
 ### Example
@@ -176,7 +176,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -214,7 +214,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 

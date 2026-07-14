@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package models
@@ -17,22 +17,25 @@ var _ common.MappedNullable = &GetDualInvestmentProductListResponseListInner{}
 
 // GetDualInvestmentProductListResponseListInner struct for GetDualInvestmentProductListResponseListInner
 type GetDualInvestmentProductListResponseListInner struct {
-	Id                   *string  `json:"id,omitempty"`
-	InvestCoin           *string  `json:"investCoin,omitempty"`
-	ExercisedCoin        *string  `json:"exercisedCoin,omitempty"`
-	StrikePrice          *string  `json:"strikePrice,omitempty"`
-	Duration             *int64   `json:"duration,omitempty"`
-	SettleDate           *int64   `json:"settleDate,omitempty"`
-	PurchaseDecimal      *int64   `json:"purchaseDecimal,omitempty"`
-	PurchaseEndTime      *int64   `json:"purchaseEndTime,omitempty"`
-	CanPurchase          *bool    `json:"canPurchase,omitempty"`
-	Apr                  *string  `json:"apr,omitempty"`
-	OrderId              *int64   `json:"orderId,omitempty"`
-	MinAmount            *string  `json:"minAmount,omitempty"`
-	MaxAmount            *string  `json:"maxAmount,omitempty"`
-	CreateTimestamp      *int64   `json:"createTimestamp,omitempty"`
-	OptionType           *string  `json:"optionType,omitempty"`
-	IsAutoCompoundEnable *bool    `json:"isAutoCompoundEnable,omitempty"`
+	Id              *string `json:"id,omitempty"`
+	InvestCoin      *string `json:"investCoin,omitempty"`
+	ExercisedCoin   *string `json:"exercisedCoin,omitempty"`
+	StrikePrice     *string `json:"strikePrice,omitempty"`
+	Duration        *int64  `json:"duration,omitempty"`
+	SettleDate      *int64  `json:"settleDate,omitempty"`
+	PurchaseDecimal *int64  `json:"purchaseDecimal,omitempty"`
+	PurchaseEndTime *int64  `json:"purchaseEndTime,omitempty"`
+	// Whether the product can be subscribed to currently
+	CanPurchase     *bool   `json:"canPurchase,omitempty"`
+	Apr             *string `json:"apr,omitempty"`
+	OrderId         *int64  `json:"orderId,omitempty"`
+	MinAmount       *string `json:"minAmount,omitempty"`
+	MaxAmount       *string `json:"maxAmount,omitempty"`
+	CreateTimestamp *int64  `json:"createTimestamp,omitempty"`
+	OptionType      *string `json:"optionType,omitempty"`
+	// Whether auto-compound is enabled for this product
+	IsAutoCompoundEnable *bool `json:"isAutoCompoundEnable,omitempty"`
+	// Available auto-compound plans for this product
 	AutoCompoundPlanList []string `json:"autoCompoundPlanList,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

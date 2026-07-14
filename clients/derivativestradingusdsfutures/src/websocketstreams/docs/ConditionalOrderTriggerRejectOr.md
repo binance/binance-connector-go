@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**I** | Pointer to **int64** | Order Id | [optional] 
+**R** | Pointer to **string** | Reject Reason | [optional] 
 
 ## Methods
 

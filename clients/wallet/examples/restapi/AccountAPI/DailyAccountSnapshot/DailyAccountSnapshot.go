@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/clients/wallet/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func DailyAccountSnapshot() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.DailyAccountSnapshot(context.Background()).Type("type__example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.DailyAccountSnapshot(context.Background()).Type(models.DailyAccountSnapshotTypeParameterSpot).Execute()
 	if err != nil {
 		log.Println(err)
 		return

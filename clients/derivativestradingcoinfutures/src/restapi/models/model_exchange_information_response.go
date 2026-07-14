@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &ExchangeInformationResponse{}
 
 // ExchangeInformationResponse struct for ExchangeInformationResponse
 type ExchangeInformationResponse struct {
-	ExchangeFilters      []string                                     `json:"exchangeFilters,omitempty"`
-	RateLimits           []ExchangeInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
-	ServerTime           *int64                                       `json:"serverTime,omitempty"`
-	Symbols              []ExchangeInformationResponseSymbolsInner    `json:"symbols,omitempty"`
-	Timezone             *string                                      `json:"timezone,omitempty"`
+	// Exchange filters.
+	ExchangeFilters []string `json:"exchangeFilters,omitempty"`
+	// Rate limit definitions.
+	RateLimits []ExchangeInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	// Ignore please. If you want to check current server time, please check via \"GET /dapi/v1/time\"
+	ServerTime *int64 `json:"serverTime,omitempty"`
+	// Supported trading symbols.
+	Symbols []ExchangeInformationResponseSymbolsInner `json:"symbols,omitempty"`
+	// Timezone of market data.
+	Timezone             *string `json:"timezone,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

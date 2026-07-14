@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package models
@@ -17,7 +17,8 @@ var _ common.MappedNullable = &ChangeAutoCompoundStatusResponse{}
 
 // ChangeAutoCompoundStatusResponse struct for ChangeAutoCompoundStatusResponse
 type ChangeAutoCompoundStatusResponse struct {
-	PositionId           *string `json:"positionId,omitempty"`
+	PositionId *string `json:"positionId,omitempty"`
+	// Auto-compound plan after the update
 	AutoCompoundPlan     *string `json:"autoCompoundPlan,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

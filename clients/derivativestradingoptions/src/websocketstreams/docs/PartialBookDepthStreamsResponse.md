@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**Pu** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to [**[]PartialBookDepthStreamsResponseBItem**](PartialBookDepthStreamsResponseBItem.md) |  | [optional] 
-**A** | Pointer to [**[]PartialBookDepthStreamsResponseAItem**](PartialBookDepthStreamsResponseAItem.md) |  | [optional] 
+**E** | Pointer to **string** | event type | [optional] 
+**E** | Pointer to **int64** | event time | [optional] 
+**T** | Pointer to **int64** | transaction time | [optional] 
+**S** | Pointer to **string** | Option symbol | [optional] 
+**U** | Pointer to **int64** | First update ID in event | [optional] 
+**U** | Pointer to **int64** | Final update ID in event | [optional] 
+**Pu** | Pointer to **int64** | Final update Id in last stream(ie &#x60;u&#x60; in last stream) | [optional] 
+**B** | Pointer to **[][]string** | Buy order | [optional] 
+**A** | Pointer to **[][]string** | Sell order | [optional] 
 
 ## Methods
 
@@ -210,20 +210,20 @@ HasPu returns a boolean if a field has been set.
 
 ### GetB
 
-`func (o *PartialBookDepthStreamsResponse) GetB() []PartialBookDepthStreamsResponseBItem`
+`func (o *PartialBookDepthStreamsResponse) GetB() [][]string`
 
 GetB returns the B field if non-nil, zero value otherwise.
 
 ### GetBOk
 
-`func (o *PartialBookDepthStreamsResponse) GetBOk() (*[]PartialBookDepthStreamsResponseBItem, bool)`
+`func (o *PartialBookDepthStreamsResponse) GetBOk() (*[][]string, bool)`
 
 GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetB
 
-`func (o *PartialBookDepthStreamsResponse) SetB(v []PartialBookDepthStreamsResponseBItem)`
+`func (o *PartialBookDepthStreamsResponse) SetB(v [][]string)`
 
 SetB sets B field to given value.
 
@@ -235,20 +235,20 @@ HasB returns a boolean if a field has been set.
 
 ### GetA
 
-`func (o *PartialBookDepthStreamsResponse) GetA() []PartialBookDepthStreamsResponseAItem`
+`func (o *PartialBookDepthStreamsResponse) GetA() [][]string`
 
 GetA returns the A field if non-nil, zero value otherwise.
 
 ### GetAOk
 
-`func (o *PartialBookDepthStreamsResponse) GetAOk() (*[]PartialBookDepthStreamsResponseAItem, bool)`
+`func (o *PartialBookDepthStreamsResponse) GetAOk() (*[][]string, bool)`
 
 GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetA
 
-`func (o *PartialBookDepthStreamsResponse) SetA(v []PartialBookDepthStreamsResponseAItem)`
+`func (o *PartialBookDepthStreamsResponse) SetA(v [][]string)`
 
 SetA sets A field to given value.
 

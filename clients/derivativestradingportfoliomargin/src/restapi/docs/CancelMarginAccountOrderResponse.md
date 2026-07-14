@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**OrigClientOrderId** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**CummulativeQuoteQty** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
+**OrigClientOrderId** | Pointer to **string** | Orig Client Order ID. | [optional] 
+**ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
+**CummulativeQuoteQty** | Pointer to **string** | Cummulative Quote Qty. | [optional] 
+**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
+**Type** | Pointer to **string** | Normal order type after trigger if appliable | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
 
 ## Methods
 

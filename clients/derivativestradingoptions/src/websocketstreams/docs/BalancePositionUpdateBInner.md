@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**A** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**Bc** | Pointer to **string** |  | [optional] 
+**A** | Pointer to **string** | Margin asset | [optional] 
+**B** | Pointer to **string** | Account balance | [optional] 
+**Bc** | Pointer to **string** | Balance Change except PnL and Commission | [optional] 
 
 ## Methods
 

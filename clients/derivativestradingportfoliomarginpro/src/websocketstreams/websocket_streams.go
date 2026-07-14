@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Portfolio Margin Pro WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package binancederivativestradingportfoliomarginprowebsocketstreams
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams WebSocket Streams v1.5.0
+// WebsocketStreamsClient manages communication with the Binance Portfolio Margin Pro WebSocket Market Streams WebSocket Streams v1.6.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -23,13 +23,13 @@ type WebsocketStreamsClient struct {
 	// API Services
 }
 
-// NewWebsocketStreamsClient creates a new Binance Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Portfolio Margin Pro WebSocket Market Streams WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingportfoliomarginpro/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingportfoliomarginpro/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -46,6 +46,7 @@ func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *Webso
 //
 // @return error - An error if the connection fails
 func (c *WebsocketStreamsClient) Connect(streams []string) error {
+
 	return c.Ws.Connect(c.userAgent, streams)
 }
 

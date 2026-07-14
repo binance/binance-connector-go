@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &QuerySpecialKeyResponse{}
 
 // QuerySpecialKeyResponse struct for QuerySpecialKeyResponse
 type QuerySpecialKeyResponse struct {
-	ApiKey               *string `json:"apiKey,omitempty"`
-	Ip                   *string `json:"ip,omitempty"`
-	ApiName              *string `json:"apiName,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	// api Key.
+	ApiKey *string `json:"apiKey,omitempty"`
+	// 0.0.0.0 is just an initial statereference (no extra meaning).
+	Ip *string `json:"ip,omitempty"`
+	// api Name.
+	ApiName *string `json:"apiName,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// permission Mode.
 	PermissionMode       *string `json:"permissionMode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

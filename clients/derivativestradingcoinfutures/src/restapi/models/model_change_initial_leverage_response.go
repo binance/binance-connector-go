@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &ChangeInitialLeverageResponse{}
 
 // ChangeInitialLeverageResponse struct for ChangeInitialLeverageResponse
 type ChangeInitialLeverageResponse struct {
-	Leverage             *int64  `json:"leverage,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
+	// Leverage value.
+	Leverage *int64 `json:"leverage,omitempty"`
+	// maximum quantity of base asset
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Trading symbol
 	Symbol               *string `json:"symbol,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

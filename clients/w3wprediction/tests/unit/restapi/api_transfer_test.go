@@ -25,7 +25,11 @@ func Test_binancew3wpredictionrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService CreateInboundTransfer Success", func(t *testing.T) {
 
-		mockedJSON := `{"transferId":"tf_20260525_in_001","status":"PROCESSING"}`
+		var mockedJSON string
+		mockedJSON = `{"transferId":"tf_20260525_in_001","status":"PROCESSING"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/transfer/inbound", r.URL.Path)
 			require.Equal(t, "5b5c1ec3be4e4416a5872b21c1ca5d20", r.URL.Query().Get("walletId"))
@@ -101,7 +105,11 @@ func Test_binancew3wpredictionrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService CreateOutboundTransfer Success", func(t *testing.T) {
 
-		mockedJSON := `{"transferId":"tf_20260525_out_001","status":"PROCESSING"}`
+		var mockedJSON string
+		mockedJSON = `{"transferId":"tf_20260525_out_001","status":"PROCESSING"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/transfer/outbound", r.URL.Path)
 			require.Equal(t, "5b5c1ec3be4e4416a5872b21c1ca5d20", r.URL.Query().Get("walletId"))
@@ -178,7 +186,11 @@ func Test_binancew3wpredictionrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService QueryTransferList Success", func(t *testing.T) {
 
-		mockedJSON := `{"transfers":[{"transferId":"tf_20260525_out_001","direction":"OUTBOUND","status":"SUCCESS","walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","fromToken":"USDT","fromTokenAmount":"100.00","toToken":"USDT","toTokenAmount":"100.00","errorCode":"errorCode","errorMessage":"errorMessage","createTime":"2026-05-25T04:00:00.000+00:00","updateTime":"2026-05-25T04:00:05.000+00:00","completeAt":"2026-05-25T04:00:05.000+00:00"}]}`
+		var mockedJSON string
+		mockedJSON = `{"transfers":[{"transferId":"tf_20260525_out_001","direction":"OUTBOUND","status":"SUCCESS","walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","fromToken":"USDT","fromTokenAmount":"100.00","toToken":"USDT","toTokenAmount":"100.00","errorCode":"errorCode","errorMessage":"errorMessage","createTime":"2026-05-25T04:00:00.000+00:00","updateTime":"2026-05-25T04:00:05.000+00:00","completeAt":"2026-05-25T04:00:05.000+00:00"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/transfer/list", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -253,7 +265,11 @@ func Test_binancew3wpredictionrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService QueryTransferStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"transferId":"tf_20260525_out_001","direction":"OUTBOUND","status":"COMPLETED","fromToken":"USDT","fromTokenAmount":"100.00","toToken":"USDT","toTokenAmount":"100.00","errorCode":"errorCode","errorMessage":"errorMessage","createTime":"2026-05-25T04:00:00.000+00:00","updateTime":"2026-05-25T04:00:05.000+00:00"}`
+		var mockedJSON string
+		mockedJSON = `{"transferId":"tf_20260525_out_001","direction":"OUTBOUND","status":"COMPLETED","fromToken":"USDT","fromTokenAmount":"100.00","toToken":"USDT","toTokenAmount":"100.00","errorCode":"errorCode","errorMessage":"errorMessage","createTime":"2026-05-25T04:00:00.000+00:00","updateTime":"2026-05-25T04:00:05.000+00:00"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/transfer/status", r.URL.Path)
 			require.Equal(t, "tf_20260525_out_001", r.URL.Query().Get("transferId"))

@@ -1,0 +1,36 @@
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+
+	client "github.com/binance/binance-connector-go/clients/mining"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	HashrateResaleRequest()
+}
+
+func HashrateResaleRequest() {
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.MiningRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := client.NewBinanceMiningClient(
+		client.WithRestAPI(configuration),
+	)
+	resp, err := apiClient.RestApi.DefaultAPI.HashrateResaleRequest(context.Background()).UserName("test").Algo("sha256").EndDate(1770736694138).StartDate(1770736694138).ToPoolUser("S19pro").HashRate(100000000).Execute()
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}

@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotrestapi
@@ -34,10 +34,10 @@ func (r ApiAccountCommissionRequest) Execute() (*common.RestApiResponse[models.A
 }
 
 /*
-AccountCommission Query Commission Rates
+AccountCommission Query Commission Rates (USER_DATA)
 Get /api/v3/account/commission
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-commission-rates-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#account-commission
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -66,7 +66,15 @@ func (a *AccountAPIService) AccountCommissionExecute(r ApiAccountCommissionReque
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.AccountCommissionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountCommissionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -84,31 +92,28 @@ type ApiAllOrderListRequest struct {
 	recvWindow *float32
 }
 
-// ID to get aggregate trades from INCLUSIVE.
+// If supplied, neither startTime or endTime can be provided
 func (r ApiAllOrderListRequest) FromId(fromId int64) ApiAllOrderListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiAllOrderListRequest) StartTime(startTime int64) ApiAllOrderListRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiAllOrderListRequest) EndTime(endTime int64) ApiAllOrderListRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiAllOrderListRequest) Limit(limit int32) ApiAllOrderListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiAllOrderListRequest) RecvWindow(recvWindow float32) ApiAllOrderListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -119,17 +124,17 @@ func (r ApiAllOrderListRequest) Execute() (*common.RestApiResponse[models.AllOrd
 }
 
 /*
-AllOrderList Query all Order lists
+AllOrderList Query all Order lists (USER_DATA)
 Get /api/v3/allOrderList
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-all-order-lists-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#all-order-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param fromId -  ID to get aggregate trades from INCLUSIVE.
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
-@param limit -  Default: 500; Maximum: 1000.
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param fromId -  If supplied, neither startTime or endTime can be provided
+@param startTime -
+@param endTime -
+@param limit -
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAllOrderListRequest
 */
 func (a *AccountAPIService) AllOrderList(ctx context.Context) ApiAllOrderListRequest {
@@ -165,7 +170,15 @@ func (a *AccountAPIService) AllOrderListExecute(r ApiAllOrderListRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AllOrderListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AllOrderListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -194,19 +207,16 @@ func (r ApiAllOrdersRequest) OrderId(orderId int64) ApiAllOrdersRequest {
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiAllOrdersRequest) StartTime(startTime int64) ApiAllOrdersRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiAllOrdersRequest) EndTime(endTime int64) ApiAllOrdersRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiAllOrdersRequest) Limit(limit int32) ApiAllOrdersRequest {
 	r.limit = &limit
 	return r
@@ -223,17 +233,17 @@ func (r ApiAllOrdersRequest) Execute() (*common.RestApiResponse[models.AllOrders
 }
 
 /*
-AllOrders All orders
+AllOrders All orders (USER_DATA)
 Get /api/v3/allOrders
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#all-orders-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#all-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param orderId -
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
-@param limit -  Default: 500; Maximum: 1000.
+@param startTime -
+@param endTime -
+@param limit -
 @param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAllOrdersRequest
 */
@@ -275,7 +285,15 @@ func (a *AccountAPIService) AllOrdersExecute(r ApiAllOrdersRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AllOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -290,13 +308,13 @@ type ApiGetAccountRequest struct {
 	recvWindow       *float32
 }
 
-// When set to &#x60;true&#x60;, emits only the non-zero balances of an account. &lt;br&gt;Default value: &#x60;false&#x60;
+// When set to &#x60;true&#x60;, emits only the non-zero balances of an account.
 func (r ApiGetAccountRequest) OmitZeroBalances(omitZeroBalances bool) ApiGetAccountRequest {
 	r.omitZeroBalances = &omitZeroBalances
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiGetAccountRequest) RecvWindow(recvWindow float32) ApiGetAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -307,14 +325,14 @@ func (r ApiGetAccountRequest) Execute() (*common.RestApiResponse[models.GetAccou
 }
 
 /*
-GetAccount Account information
+GetAccount Account information (USER_DATA)
 Get /api/v3/account
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-information-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#get-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param omitZeroBalances -  When set to `true`, emits only the non-zero balances of an account. <br>Default value: `false`
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param omitZeroBalances -  When set to `true`, emits only the non-zero balances of an account.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiGetAccountRequest
 */
 func (a *AccountAPIService) GetAccount(ctx context.Context) ApiGetAccountRequest {
@@ -341,7 +359,15 @@ func (a *AccountAPIService) GetAccountExecute(r ApiGetAccountRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -356,13 +382,12 @@ type ApiGetOpenOrdersRequest struct {
 	recvWindow *float32
 }
 
-// Symbol to query
 func (r ApiGetOpenOrdersRequest) Symbol(symbol string) ApiGetOpenOrdersRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiGetOpenOrdersRequest) RecvWindow(recvWindow float32) ApiGetOpenOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -373,14 +398,14 @@ func (r ApiGetOpenOrdersRequest) Execute() (*common.RestApiResponse[models.GetOp
 }
 
 /*
-GetOpenOrders Current open orders
+GetOpenOrders Current open orders (USER_DATA)
 Get /api/v3/openOrders
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#current-open-orders-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#get-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol -
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiGetOpenOrdersRequest
 */
 func (a *AccountAPIService) GetOpenOrders(ctx context.Context) ApiGetOpenOrdersRequest {
@@ -407,7 +432,15 @@ func (a *AccountAPIService) GetOpenOrdersExecute(r ApiGetOpenOrdersRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -439,7 +472,7 @@ func (r ApiGetOrderRequest) OrigClientOrderId(origClientOrderId string) ApiGetOr
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiGetOrderRequest) RecvWindow(recvWindow float32) ApiGetOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -450,16 +483,16 @@ func (r ApiGetOrderRequest) Execute() (*common.RestApiResponse[models.GetOrderRe
 }
 
 /*
-GetOrder Query order
+GetOrder Query order (USER_DATA)
 Get /api/v3/order
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#get-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param orderId -
 @param origClientOrderId -
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiGetOrderRequest
 */
 func (a *AccountAPIService) GetOrder(ctx context.Context) ApiGetOrderRequest {
@@ -494,7 +527,15 @@ func (a *AccountAPIService) GetOrderExecute(r ApiGetOrderRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -510,18 +551,19 @@ type ApiGetOrderListRequest struct {
 	recvWindow        *float32
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
+// Query order list by &#x60;orderListId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided.
 func (r ApiGetOrderListRequest) OrderListId(orderListId int64) ApiGetOrderListRequest {
 	r.orderListId = &orderListId
 	return r
 }
 
+// Query order list by &#x60;listClientOrderId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided.
 func (r ApiGetOrderListRequest) OrigClientOrderId(origClientOrderId string) ApiGetOrderListRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiGetOrderListRequest) RecvWindow(recvWindow float32) ApiGetOrderListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -532,15 +574,15 @@ func (r ApiGetOrderListRequest) Execute() (*common.RestApiResponse[models.GetOrd
 }
 
 /*
-GetOrderList Query Order list
+GetOrderList Query Order list (USER_DATA)
 Get /api/v3/orderList
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-list-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#get-order-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param orderListId -  Either `orderListId` or `listClientOrderId` must be provided
-@param origClientOrderId -
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param orderListId -  Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided.
+@param origClientOrderId -  Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiGetOrderListRequest
 */
 func (a *AccountAPIService) GetOrderList(ctx context.Context) ApiGetOrderListRequest {
@@ -570,7 +612,15 @@ func (a *AccountAPIService) GetOrderListExecute(r ApiGetOrderListRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOrderListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOrderListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -595,13 +645,11 @@ func (r ApiMyAllocationsRequest) Symbol(symbol string) ApiMyAllocationsRequest {
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiMyAllocationsRequest) StartTime(startTime int64) ApiMyAllocationsRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiMyAllocationsRequest) EndTime(endTime int64) ApiMyAllocationsRequest {
 	r.endTime = &endTime
 	return r
@@ -612,7 +660,6 @@ func (r ApiMyAllocationsRequest) FromAllocationId(fromAllocationId int32) ApiMyA
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiMyAllocationsRequest) Limit(limit int32) ApiMyAllocationsRequest {
 	r.limit = &limit
 	return r
@@ -623,7 +670,7 @@ func (r ApiMyAllocationsRequest) OrderId(orderId int64) ApiMyAllocationsRequest 
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyAllocationsRequest) RecvWindow(recvWindow float32) ApiMyAllocationsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -634,19 +681,19 @@ func (r ApiMyAllocationsRequest) Execute() (*common.RestApiResponse[models.MyAll
 }
 
 /*
-MyAllocations Query Allocations
+MyAllocations Query Allocations (USER_DATA)
 Get /api/v3/myAllocations
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-allocations-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#my-allocations
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
+@param startTime -
+@param endTime -
 @param fromAllocationId -
-@param limit -  Default: 500; Maximum: 1000.
+@param limit -
 @param orderId -
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyAllocationsRequest
 */
 func (a *AccountAPIService) MyAllocations(ctx context.Context) ApiMyAllocationsRequest {
@@ -690,7 +737,15 @@ func (a *AccountAPIService) MyAllocationsExecute(r ApiMyAllocationsRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MyAllocationsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MyAllocationsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -710,7 +765,7 @@ func (r ApiMyFiltersRequest) Symbol(symbol string) ApiMyFiltersRequest {
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyFiltersRequest) RecvWindow(recvWindow float32) ApiMyFiltersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -721,14 +776,14 @@ func (r ApiMyFiltersRequest) Execute() (*common.RestApiResponse[models.MyFilters
 }
 
 /*
-MyFilters Query relevant filters
+MyFilters Query relevant filters (USER_DATA)
 Get /api/v3/myFilters
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-relevant-filters-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#my-filters
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyFiltersRequest
 */
 func (a *AccountAPIService) MyFilters(ctx context.Context) ApiMyFiltersRequest {
@@ -757,7 +812,15 @@ func (a *AccountAPIService) MyFiltersExecute(r ApiMyFiltersRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MyFiltersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MyFiltersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -796,13 +859,12 @@ func (r ApiMyPreventedMatchesRequest) FromPreventedMatchId(fromPreventedMatchId 
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiMyPreventedMatchesRequest) Limit(limit int32) ApiMyPreventedMatchesRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyPreventedMatchesRequest) RecvWindow(recvWindow float32) ApiMyPreventedMatchesRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -813,18 +875,18 @@ func (r ApiMyPreventedMatchesRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-MyPreventedMatches Query Prevented Matches
+MyPreventedMatches Query Prevented Matches (USER_DATA)
 Get /api/v3/myPreventedMatches
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-prevented-matches-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#my-prevented-matches
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param preventedMatchId -
 @param orderId -
 @param fromPreventedMatchId -
-@param limit -  Default: 500; Maximum: 1000.
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param limit -
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyPreventedMatchesRequest
 */
 func (a *AccountAPIService) MyPreventedMatches(ctx context.Context) ApiMyPreventedMatchesRequest {
@@ -865,7 +927,15 @@ func (a *AccountAPIService) MyPreventedMatchesExecute(r ApiMyPreventedMatchesReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MyPreventedMatchesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MyPreventedMatchesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -890,36 +960,34 @@ func (r ApiMyTradesRequest) Symbol(symbol string) ApiMyTradesRequest {
 	return r
 }
 
+// This can only be used in combination with &#x60;symbol&#x60;.
 func (r ApiMyTradesRequest) OrderId(orderId int64) ApiMyTradesRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiMyTradesRequest) StartTime(startTime int64) ApiMyTradesRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiMyTradesRequest) EndTime(endTime int64) ApiMyTradesRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// ID to get aggregate trades from INCLUSIVE.
+// TradeId to fetch from. Default gets most recent trades.
 func (r ApiMyTradesRequest) FromId(fromId int64) ApiMyTradesRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiMyTradesRequest) Limit(limit int32) ApiMyTradesRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyTradesRequest) RecvWindow(recvWindow float32) ApiMyTradesRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -930,19 +998,19 @@ func (r ApiMyTradesRequest) Execute() (*common.RestApiResponse[models.MyTradesRe
 }
 
 /*
-MyTrades Account trade list
+MyTrades Account trade list (USER_DATA)
 Get /api/v3/myTrades
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#account-trade-list-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#my-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param orderId -
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
-@param fromId -  ID to get aggregate trades from INCLUSIVE.
-@param limit -  Default: 500; Maximum: 1000.
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param orderId -  This can only be used in combination with `symbol`.
+@param startTime -
+@param endTime -
+@param fromId -  TradeId to fetch from. Default gets most recent trades.
+@param limit -
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyTradesRequest
 */
 func (a *AccountAPIService) MyTrades(ctx context.Context) ApiMyTradesRequest {
@@ -986,7 +1054,15 @@ func (a *AccountAPIService) MyTradesExecute(r ApiMyTradesRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MyTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MyTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1000,7 +1076,7 @@ type ApiOpenOrderListRequest struct {
 	recvWindow *float32
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOpenOrderListRequest) RecvWindow(recvWindow float32) ApiOpenOrderListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1011,13 +1087,13 @@ func (r ApiOpenOrderListRequest) Execute() (*common.RestApiResponse[models.OpenO
 }
 
 /*
-OpenOrderList Query Open Order lists
+OpenOrderList Query Open Order lists (USER_DATA)
 Get /api/v3/openOrderList
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-open-order-lists-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#open-order-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOpenOrderListRequest
 */
 func (a *AccountAPIService) OpenOrderList(ctx context.Context) ApiOpenOrderListRequest {
@@ -1041,7 +1117,15 @@ func (a *AccountAPIService) OpenOrderListExecute(r ApiOpenOrderListRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.OpenOrderListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OpenOrderListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1074,13 +1158,12 @@ func (r ApiOrderAmendmentsRequest) FromExecutionId(fromExecutionId int64) ApiOrd
 	return r
 }
 
-// Default: 500; Maximum: 1000
 func (r ApiOrderAmendmentsRequest) Limit(limit int64) ApiOrderAmendmentsRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderAmendmentsRequest) RecvWindow(recvWindow float32) ApiOrderAmendmentsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1091,17 +1174,17 @@ func (r ApiOrderAmendmentsRequest) Execute() (*common.RestApiResponse[models.Ord
 }
 
 /*
-OrderAmendments Query Order Amendments
+OrderAmendments Query Order Amendments (USER_DATA)
 Get /api/v3/order/amendments
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-order-amendments-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#order-amendments
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param orderId -
 @param fromExecutionId -
-@param limit -  Default: 500; Maximum: 1000
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param limit -
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderAmendmentsRequest
 */
 func (a *AccountAPIService) OrderAmendments(ctx context.Context) ApiOrderAmendmentsRequest {
@@ -1124,6 +1207,7 @@ func (a *AccountAPIService) OrderAmendmentsExecute(r ApiOrderAmendmentsRequest) 
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.orderId == nil {
 		return nil, common.ReportError("orderId is required and must be specified")
 	}
@@ -1140,7 +1224,15 @@ func (a *AccountAPIService) OrderAmendmentsExecute(r ApiOrderAmendmentsRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.OrderAmendmentsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OrderAmendmentsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1154,7 +1246,7 @@ type ApiRateLimitOrderRequest struct {
 	recvWindow *float32
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiRateLimitOrderRequest) RecvWindow(recvWindow float32) ApiRateLimitOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1165,13 +1257,13 @@ func (r ApiRateLimitOrderRequest) Execute() (*common.RestApiResponse[models.Rate
 }
 
 /*
-RateLimitOrder Query Unfilled Order Count
+RateLimitOrder Query Unfilled Order Count (USER_DATA)
 Get /api/v3/rateLimit/order
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/account-endpoints#query-unfilled-order-count-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/account#rate-limit-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiRateLimitOrderRequest
 */
 func (a *AccountAPIService) RateLimitOrder(ctx context.Context) ApiRateLimitOrderRequest {
@@ -1195,7 +1287,15 @@ func (a *AccountAPIService) RateLimitOrderExecute(r ApiRateLimitOrderRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RateLimitOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RateLimitOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

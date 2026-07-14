@@ -5,9 +5,9 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Status** | Pointer to **int32** |  | [optional] 
 **Result** | Pointer to [**[]BlockTradesHistoricalResponseResultInner**](BlockTradesHistoricalResponseResultInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]BlockTradesHistoricalResponseRateLimitsInner**](BlockTradesHistoricalResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -55,20 +55,20 @@ HasId returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *BlockTradesHistoricalResponse) GetStatus() int64`
+`func (o *BlockTradesHistoricalResponse) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *BlockTradesHistoricalResponse) GetStatusOk() (*int64, bool)`
+`func (o *BlockTradesHistoricalResponse) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *BlockTradesHistoricalResponse) SetStatus(v int64)`
+`func (o *BlockTradesHistoricalResponse) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *BlockTradesHistoricalResponse) GetRateLimits() []RateLimits`
+`func (o *BlockTradesHistoricalResponse) GetRateLimits() []BlockTradesHistoricalResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *BlockTradesHistoricalResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *BlockTradesHistoricalResponse) GetRateLimitsOk() (*[]BlockTradesHistoricalResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *BlockTradesHistoricalResponse) SetRateLimits(v []RateLimits)`
+`func (o *BlockTradesHistoricalResponse) SetRateLimits(v []BlockTradesHistoricalResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

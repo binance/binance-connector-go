@@ -22,7 +22,7 @@ func OrderAmendments() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.OrderAmendments(context.Background()).Symbol("BNBUSDT").OrderId(1).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.OrderAmendments(context.Background()).Symbol("BTCUSDT").OrderId(9).Execute()
 	if err != nil {
 		log.Println(err)
 		return

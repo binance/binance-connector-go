@@ -1,7 +1,7 @@
 /*
-Binance Fiat REST API
+Fiat REST API
 
-OpenAPI Specification for the Binance Fiat REST API
+Query Binance fiat deposit and withdrawal history.
 */
 
 package models

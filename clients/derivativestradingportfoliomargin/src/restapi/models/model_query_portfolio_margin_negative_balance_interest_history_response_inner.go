@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &QueryPortfolioMarginNegativeBalanceInterestHistor
 
 // QueryPortfolioMarginNegativeBalanceInterestHistoryResponseInner struct for QueryPortfolioMarginNegativeBalanceInterestHistoryResponseInner
 type QueryPortfolioMarginNegativeBalanceInterestHistoryResponseInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	Interest             *string `json:"interest,omitempty"`
-	InterestAccuredTime  *int64  `json:"interestAccuredTime,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// interest amount
+	Interest *string `json:"interest,omitempty"`
+	// Interest Accured Time.
+	InterestAccuredTime *int64 `json:"interestAccuredTime,omitempty"`
+	// daily interest rate
+	InterestRate *string `json:"interestRate,omitempty"`
+	// Principal repaid
 	Principal            *string `json:"principal,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -4,25 +4,25 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CheckCollateralRepayRate**](FlexibleRateAPI.md#CheckCollateralRepayRate) | **Get** /sapi/v2/loan/flexible/repay/rate | Check Collateral Repay Rate (USER_DATA)
-[**FlexibleLoanAdjustLtv**](FlexibleRateAPI.md#FlexibleLoanAdjustLtv) | **Post** /sapi/v2/loan/flexible/adjust/ltv | Flexible Loan Adjust LTV(TRADE)
-[**FlexibleLoanBorrow**](FlexibleRateAPI.md#FlexibleLoanBorrow) | **Post** /sapi/v2/loan/flexible/borrow | Flexible Loan Borrow(TRADE)
-[**FlexibleLoanRepay**](FlexibleRateAPI.md#FlexibleLoanRepay) | **Post** /sapi/v2/loan/flexible/repay | Flexible Loan Repay(TRADE)
-[**GetFlexibleLoanAssetsData**](FlexibleRateAPI.md#GetFlexibleLoanAssetsData) | **Get** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data(USER_DATA)
-[**GetFlexibleLoanBorrowHistory**](FlexibleRateAPI.md#GetFlexibleLoanBorrowHistory) | **Get** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History(USER_DATA)
-[**GetFlexibleLoanCollateralAssetsData**](FlexibleRateAPI.md#GetFlexibleLoanCollateralAssetsData) | **Get** /sapi/v2/loan/flexible/collateral/data | Get Flexible Loan Collateral Assets Data(USER_DATA)
+[**CheckCollateralRepayRate**](FlexibleRateAPI.md#CheckCollateralRepayRate) | **Get** /sapi/v2/loan/flexible/repay/rate | Check Collateral Flexible Repay Rate (USER_DATA)
+[**FlexibleLoanAdjustLtv**](FlexibleRateAPI.md#FlexibleLoanAdjustLtv) | **Post** /sapi/v2/loan/flexible/adjust/ltv | Flexible Loan Adjust LTV (TRADE)
+[**FlexibleLoanBorrow**](FlexibleRateAPI.md#FlexibleLoanBorrow) | **Post** /sapi/v2/loan/flexible/borrow | Flexible Loan Borrow (TRADE)
+[**FlexibleLoanRepay**](FlexibleRateAPI.md#FlexibleLoanRepay) | **Post** /sapi/v2/loan/flexible/repay | Flexible Loan Repay (TRADE)
+[**GetFlexibleLoanAssetsData**](FlexibleRateAPI.md#GetFlexibleLoanAssetsData) | **Get** /sapi/v2/loan/flexible/loanable/data | Get Flexible Loan Assets Data (USER_DATA)
+[**GetFlexibleLoanBorrowHistory**](FlexibleRateAPI.md#GetFlexibleLoanBorrowHistory) | **Get** /sapi/v2/loan/flexible/borrow/history | Get Flexible Loan Borrow History (USER_DATA)
+[**GetFlexibleLoanCollateralAssetsData**](FlexibleRateAPI.md#GetFlexibleLoanCollateralAssetsData) | **Get** /sapi/v2/loan/flexible/collateral/data | Get Flexible Loan Collateral Assets Data (USER_DATA)
 [**GetFlexibleLoanInterestRateHistory**](FlexibleRateAPI.md#GetFlexibleLoanInterestRateHistory) | **Get** /sapi/v2/loan/interestRateHistory | Get Flexible Loan Interest Rate History (USER_DATA)
 [**GetFlexibleLoanLiquidationHistory**](FlexibleRateAPI.md#GetFlexibleLoanLiquidationHistory) | **Get** /sapi/v2/loan/flexible/liquidation/history | Get Flexible Loan Liquidation History (USER_DATA)
-[**GetFlexibleLoanLtvAdjustmentHistory**](FlexibleRateAPI.md#GetFlexibleLoanLtvAdjustmentHistory) | **Get** /sapi/v2/loan/flexible/ltv/adjustment/history | Get Flexible Loan LTV Adjustment History(USER_DATA)
-[**GetFlexibleLoanOngoingOrders**](FlexibleRateAPI.md#GetFlexibleLoanOngoingOrders) | **Get** /sapi/v2/loan/flexible/ongoing/orders | Get Flexible Loan Ongoing Orders(USER_DATA)
-[**GetFlexibleLoanRepaymentHistory**](FlexibleRateAPI.md#GetFlexibleLoanRepaymentHistory) | **Get** /sapi/v2/loan/flexible/repay/history | Get Flexible Loan Repayment History(USER_DATA)
+[**GetFlexibleLoanLtvAdjustmentHistory**](FlexibleRateAPI.md#GetFlexibleLoanLtvAdjustmentHistory) | **Get** /sapi/v2/loan/flexible/ltv/adjustment/history | Get Flexible Loan LTV Adjustment History (USER_DATA)
+[**GetFlexibleLoanOngoingOrders**](FlexibleRateAPI.md#GetFlexibleLoanOngoingOrders) | **Get** /sapi/v2/loan/flexible/ongoing/orders | Get Flexible Loan Ongoing Orders (USER_DATA)
+[**GetFlexibleLoanRepaymentHistory**](FlexibleRateAPI.md#GetFlexibleLoanRepaymentHistory) | **Get** /sapi/v2/loan/flexible/repay/history | Get Flexible Loan Repayment History (USER_DATA)
 
 
 ## CheckCollateralRepayRate
 
 > CheckCollateralRepayRateResponse CheckCollateralRepayRate(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).RecvWindow(recvWindow).Execute()
 
-Check Collateral Repay Rate (USER_DATA)
+Check Collateral Flexible Repay Rate (USER_DATA)
 
 
 ### Example
@@ -41,9 +41,9 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
-	collateralCoin := "collateralCoin_example" // string | 
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string | 
+	collateralCoin := "BNB" // string | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -73,7 +73,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -94,7 +94,7 @@ No authorization required
 
 > FlexibleLoanAdjustLtvResponse FlexibleLoanAdjustLtv(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).AdjustmentAmount(adjustmentAmount).Direction(direction).RecvWindow(recvWindow).Execute()
 
-Flexible Loan Adjust LTV(TRADE)
+Flexible Loan Adjust LTV (TRADE)
 
 
 ### Example
@@ -113,11 +113,11 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
-	collateralCoin := "collateralCoin_example" // string | 
-	adjustmentAmount := float32(1.0) // float32 | 
-	direction := "direction_example" // string | \"ADDITIONAL\", \"REDUCED\"
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string | 
+	collateralCoin := "BNB" // string | 
+	adjustmentAmount := float32(1) // float32 | 
+	direction := models.FlexibleLoanAdjustLtvDirectionParameterAdditional // FlexibleLoanAdjustLtvDirectionParameter | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -148,8 +148,8 @@ Name          | Type          | Description   | Notes
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
  **adjustmentAmount** | **float32** |  | 
- **direction** | **string** | \&quot;ADDITIONAL\&quot;, \&quot;REDUCED\&quot; | 
- **recvWindow** | **int64** |  | 
+ **direction** | [**FlexibleLoanAdjustLtvDirectionParameter**](FlexibleLoanAdjustLtvDirectionParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -170,7 +170,7 @@ No authorization required
 
 > FlexibleLoanBorrowResponse FlexibleLoanBorrow(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).LoanAmount(loanAmount).CollateralAmount(collateralAmount).RecvWindow(recvWindow).Execute()
 
-Flexible Loan Borrow(TRADE)
+Flexible Loan Borrow (TRADE)
 
 
 ### Example
@@ -189,11 +189,11 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
-	collateralCoin := "collateralCoin_example" // string | 
-	loanAmount := float32(1.0) // float32 | Mandatory when collateralAmount is empty (optional)
-	collateralAmount := float32(1.0) // float32 | Mandatory when loanAmount is empty (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string | 
+	collateralCoin := "BNB" // string | 
+	loanAmount := float32(1) // float32 | Mandatory when collateralAmount is empty (optional)
+	collateralAmount := float32(1) // float32 | Mandatory when loanAmount is empty (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -225,7 +225,7 @@ Name          | Type          | Description   | Notes
  **collateralCoin** | **string** |  | 
  **loanAmount** | **float32** | Mandatory when collateralAmount is empty | 
  **collateralAmount** | **float32** | Mandatory when loanAmount is empty | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -246,7 +246,7 @@ No authorization required
 
 > FlexibleLoanRepayResponse FlexibleLoanRepay(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).RepayAmount(repayAmount).CollateralReturn(collateralReturn).FullRepayment(fullRepayment).RepaymentType(repaymentType).RecvWindow(recvWindow).Execute()
 
-Flexible Loan Repay(TRADE)
+Flexible Loan Repay (TRADE)
 
 
 ### Example
@@ -265,13 +265,13 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
-	collateralCoin := "collateralCoin_example" // string | 
-	repayAmount := float32(1.0) // float32 | repay amount of loanCoin
-	collateralReturn := true // bool | Default: TRUE. TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order, and lower LTV. (optional)
-	fullRepayment := false // bool | Default: FALSE. TRUE: Full repayment; FALSE: Partial repayment, based on loanAmount (optional)
-	repaymentType := int64(1) // int64 | Default: 1. 1: Repayment with loan asset; 2: Repayment with collateral (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string | 
+	collateralCoin := "BNB" // string | 
+	repayAmount := float32(1) // float32 | 
+	collateralReturn := true // bool | TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV. (optional)
+	fullRepayment := false // bool | TRUE: Full repayment; FALSE: Partial repayment based on loan amount (optional)
+	repaymentType := models.FlexibleLoanRepayRepaymentTypeParameterRepaymentType1 // FlexibleLoanRepayRepaymentTypeParameter | 1: Repayment with loan asset; 2: Repayment with collateral (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -301,11 +301,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **repayAmount** | **float32** | repay amount of loanCoin | 
- **collateralReturn** | **bool** | Default: TRUE. TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order, and lower LTV. | 
- **fullRepayment** | **bool** | Default: FALSE. TRUE: Full repayment; FALSE: Partial repayment, based on loanAmount | 
- **repaymentType** | **int64** | Default: 1. 1: Repayment with loan asset; 2: Repayment with collateral | 
- **recvWindow** | **int64** |  | 
+ **repayAmount** | **float32** |  | 
+ **collateralReturn** | **bool** | TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV. | 
+ **fullRepayment** | **bool** | TRUE: Full repayment; FALSE: Partial repayment based on loan amount | 
+ **repaymentType** | [**FlexibleLoanRepayRepaymentTypeParameter**](FlexibleLoanRepayRepaymentTypeParameter.md) | 1: Repayment with loan asset; 2: Repayment with collateral | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -326,7 +326,7 @@ No authorization required
 
 > GetFlexibleLoanAssetsDataResponse GetFlexibleLoanAssetsData(ctx).LoanCoin(loanCoin).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan Assets Data(USER_DATA)
+Get Flexible Loan Assets Data (USER_DATA)
 
 
 ### Example
@@ -345,8 +345,8 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -375,7 +375,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -396,7 +396,7 @@ No authorization required
 
 > GetFlexibleLoanBorrowHistoryResponse GetFlexibleLoanBorrowHistory(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).StartTime(startTime).EndTime(endTime).Current(current).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan Borrow History(USER_DATA)
+Get Flexible Loan Borrow History (USER_DATA)
 
 
 ### Example
@@ -415,13 +415,13 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	collateralCoin := "collateralCoin_example" // string |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -453,9 +453,9 @@ Name          | Type          | Description   | Notes
  **collateralCoin** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -476,7 +476,7 @@ No authorization required
 
 > GetFlexibleLoanCollateralAssetsDataResponse GetFlexibleLoanCollateralAssetsData(ctx).CollateralCoin(collateralCoin).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan Collateral Assets Data(USER_DATA)
+Get Flexible Loan Collateral Assets Data (USER_DATA)
 
 
 ### Example
@@ -495,8 +495,8 @@ import (
 )
 
 func main() {
-	collateralCoin := "collateralCoin_example" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -525,7 +525,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **collateralCoin** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -565,12 +565,12 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string | 
-	recvWindow := int64(5000) // int64 | 
+	coin := "USDT" // string | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -599,11 +599,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
 
 ### Return type
 
@@ -643,13 +643,13 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	collateralCoin := "collateralCoin_example" // string |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -681,9 +681,9 @@ Name          | Type          | Description   | Notes
  **collateralCoin** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -704,7 +704,7 @@ No authorization required
 
 > GetFlexibleLoanLtvAdjustmentHistoryResponse GetFlexibleLoanLtvAdjustmentHistory(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).StartTime(startTime).EndTime(endTime).Current(current).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan LTV Adjustment History(USER_DATA)
+Get Flexible Loan LTV Adjustment History (USER_DATA)
 
 
 ### Example
@@ -723,13 +723,13 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	collateralCoin := "collateralCoin_example" // string |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -761,9 +761,9 @@ Name          | Type          | Description   | Notes
  **collateralCoin** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -784,7 +784,7 @@ No authorization required
 
 > GetFlexibleLoanOngoingOrdersResponse GetFlexibleLoanOngoingOrders(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).Current(current).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan Ongoing Orders(USER_DATA)
+Get Flexible Loan Ongoing Orders (USER_DATA)
 
 
 ### Example
@@ -803,11 +803,11 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	collateralCoin := "collateralCoin_example" // string |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -837,9 +837,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -860,7 +860,7 @@ No authorization required
 
 > GetFlexibleLoanRepaymentHistoryResponse GetFlexibleLoanRepaymentHistory(ctx).LoanCoin(loanCoin).CollateralCoin(collateralCoin).StartTime(startTime).EndTime(endTime).Current(current).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Flexible Loan Repayment History(USER_DATA)
+Get Flexible Loan Repayment History (USER_DATA)
 
 
 ### Example
@@ -879,13 +879,13 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	collateralCoin := "collateralCoin_example" // string |  (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	collateralCoin := "BNB" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Current querying page. Start from 1; default: 1; max: 1000 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Current querying page (optional)
+	limit := int64(10) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -917,9 +917,9 @@ Name          | Type          | Description   | Notes
  **collateralCoin** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Current querying page. Start from 1; default: 1; max: 1000 | 
- **limit** | **int64** | Default: 10; max: 100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Current querying page | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

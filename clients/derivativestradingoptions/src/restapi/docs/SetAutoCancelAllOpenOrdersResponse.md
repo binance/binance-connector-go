@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Underlying** | Pointer to **string** |  | [optional] 
-**CountdownTime** | Pointer to **int64** |  | [optional] 
+**Underlying** | Pointer to **string** | underlying | [optional] 
+**CountdownTime** | Pointer to **int64** | countdown Time | [optional] 
 
 ## Methods
 

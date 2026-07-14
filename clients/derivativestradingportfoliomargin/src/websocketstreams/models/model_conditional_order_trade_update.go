@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Portfolio Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &ConditionalOrderTradeUpdate{}
 
 // ConditionalOrderTradeUpdate struct for ConditionalOrderTradeUpdate
 type ConditionalOrderTradeUpdate struct {
-	T                    *int64                         `json:"T,omitempty"`
-	E                    *int64                         `json:"E,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Event business unit
 	Smallfs              *string                        `json:"fs,omitempty"`
 	Smallso              *ConditionalOrderTradeUpdateSo `json:"so,omitempty"`
 	AdditionalProperties map[string]interface{}

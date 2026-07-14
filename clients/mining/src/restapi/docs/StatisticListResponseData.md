@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FifteenMinHashRate** | Pointer to **string** |  | [optional] 
-**DayHashRate** | Pointer to **string** |  | [optional] 
-**ValidNum** | Pointer to **int64** |  | [optional] 
-**InvalidNum** | Pointer to **int64** |  | [optional] 
-**ProfitToday** | Pointer to [**StatisticListResponseDataProfitToday**](StatisticListResponseDataProfitToday.md) |  | [optional] 
-**ProfitYesterday** | Pointer to [**StatisticListResponseDataProfitToday**](StatisticListResponseDataProfitToday.md) |  | [optional] 
-**UserName** | Pointer to **string** |  | [optional] 
-**Unit** | Pointer to **string** |  | [optional] 
-**Algo** | Pointer to **string** |  | [optional] 
+**FifteenMinHashRate** | Pointer to **string** | 15-minute hashrate | [optional] 
+**DayHashRate** | Pointer to **string** | 24H hashrate | [optional] 
+**ValidNum** | Pointer to **int64** | Effective quantity | [optional] 
+**InvalidNum** | Pointer to **int64** | Invalid quantity | [optional] 
+**ProfitToday** | Pointer to **map[string]string** | Today&#39;s estimate. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning amounts as strings. | [optional] 
+**ProfitYesterday** | Pointer to **map[string]string** | Yesterday&#39;s earnings. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning amounts as strings. | [optional] 
+**UserName** | Pointer to **string** | Mining account | [optional] 
+**Unit** | Pointer to **string** | Unit | [optional] 
+**Algo** | Pointer to **string** | Algorithm | [optional] 
 
 ## Methods
 
@@ -135,20 +135,20 @@ HasInvalidNum returns a boolean if a field has been set.
 
 ### GetProfitToday
 
-`func (o *StatisticListResponseData) GetProfitToday() StatisticListResponseDataProfitToday`
+`func (o *StatisticListResponseData) GetProfitToday() map[string]string`
 
 GetProfitToday returns the ProfitToday field if non-nil, zero value otherwise.
 
 ### GetProfitTodayOk
 
-`func (o *StatisticListResponseData) GetProfitTodayOk() (*StatisticListResponseDataProfitToday, bool)`
+`func (o *StatisticListResponseData) GetProfitTodayOk() (*map[string]string, bool)`
 
 GetProfitTodayOk returns a tuple with the ProfitToday field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfitToday
 
-`func (o *StatisticListResponseData) SetProfitToday(v StatisticListResponseDataProfitToday)`
+`func (o *StatisticListResponseData) SetProfitToday(v map[string]string)`
 
 SetProfitToday sets ProfitToday field to given value.
 
@@ -160,20 +160,20 @@ HasProfitToday returns a boolean if a field has been set.
 
 ### GetProfitYesterday
 
-`func (o *StatisticListResponseData) GetProfitYesterday() StatisticListResponseDataProfitToday`
+`func (o *StatisticListResponseData) GetProfitYesterday() map[string]string`
 
 GetProfitYesterday returns the ProfitYesterday field if non-nil, zero value otherwise.
 
 ### GetProfitYesterdayOk
 
-`func (o *StatisticListResponseData) GetProfitYesterdayOk() (*StatisticListResponseDataProfitToday, bool)`
+`func (o *StatisticListResponseData) GetProfitYesterdayOk() (*map[string]string, bool)`
 
 GetProfitYesterdayOk returns a tuple with the ProfitYesterday field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfitYesterday
 
-`func (o *StatisticListResponseData) SetProfitYesterday(v StatisticListResponseDataProfitToday)`
+`func (o *StatisticListResponseData) SetProfitYesterday(v map[string]string)`
 
 SetProfitYesterday sets ProfitYesterday field to given value.
 

@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/simpleearn"
+	"github.com/binance/binance-connector-go/clients/simpleearn/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func SubscribeRwusd() {
 	apiClient := client.NewBinanceSimpleEarnClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset(models.SubscribeRwusdAssetParameterUsdt).Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

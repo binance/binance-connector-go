@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func ChangeAutoRepayFuturesStatus() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.ChangeAutoRepayFuturesStatus(context.Background()).AutoRepay("true").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.ChangeAutoRepayFuturesStatus(context.Background()).AutoRepay(models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -25,7 +25,11 @@ func Test_binancew3wpredictionrestapi_WalletAPIService(t *testing.T) {
 
 	t.Run("Test WalletAPIService GetPortfolio Success", func(t *testing.T) {
 
-		mockedJSON := `{"chainId":"56","walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","activePositionsCount":3,"totalRealizedPnl":"120.50","totalUnrealizedPnl":"15.30","totalPnl":"135.80","totalCostBasis":"450.00","totalCurrentValue":"465.30","positions":[{"id":10001,"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","marketTopicId":4229564,"marketId":5567895,"tokenId":"112233","vendor":"PREDICT_FUN","currentShares":"1923.07","avgPrice":"0.52","currentPrice":"0.55","realizedPnl":"0.00","unrealizedPnl":"0.06","totalPnl":"0.06","pnlPercentage":"6.00","isResolved":false}]}`
+		var mockedJSON string
+		mockedJSON = `{"chainId":"56","walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","activePositionsCount":3,"totalRealizedPnl":"120.50","totalUnrealizedPnl":"15.30","totalPnl":"135.80","totalCostBasis":"450.00","totalCurrentValue":"465.30","positions":[{"id":10001,"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","marketTopicId":4229564,"marketId":5567895,"tokenId":"112233","vendor":"PREDICT_FUN","currentShares":"1923.07","avgPrice":"0.52","currentPrice":"0.55","realizedPnl":"0.00","unrealizedPnl":"0.06","totalPnl":"0.06","pnlPercentage":"6.00","isResolved":false}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/pnl/portfolio", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -98,7 +102,11 @@ func Test_binancew3wpredictionrestapi_WalletAPIService(t *testing.T) {
 
 	t.Run("Test WalletAPIService GetQuotaStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"dailyLimit":"10000.00","remainingDailyLimit":"8500.00"}`
+		var mockedJSON string
+		mockedJSON = `{"dailyLimit":"10000.00","remainingDailyLimit":"8500.00"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/quota/limit/status", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -153,7 +161,11 @@ func Test_binancew3wpredictionrestapi_WalletAPIService(t *testing.T) {
 
 	t.Run("Test WalletAPIService ListPredictionWallets Success", func(t *testing.T) {
 
-		mockedJSON := `{"wallets":[{"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","walletId":"5b5c1ec3be4e4416a5872b21c1ca5d20","registeredTime":1748000000000}]}`
+		var mockedJSON string
+		mockedJSON = `{"wallets":[{"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","walletId":"5b5c1ec3be4e4416a5872b21c1ca5d20","registeredTime":1748000000000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/wallet/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -208,7 +220,11 @@ func Test_binancew3wpredictionrestapi_WalletAPIService(t *testing.T) {
 
 	t.Run("Test WalletAPIService QueryPaymentOptionBalances Success", func(t *testing.T) {
 
-		mockedJSON := `{"items":[{"accountType":"SPOT","availableBalanceDisplay":"1000.00","enabled":true}]}`
+		var mockedJSON string
+		mockedJSON = `{"items":[{"accountType":"SPOT","availableBalanceDisplay":"1000.00","enabled":true}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/balance/payment-options", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

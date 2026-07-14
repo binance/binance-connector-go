@@ -22,7 +22,7 @@ func GetVIPLoanInterestRateHistory() {
 	apiClient := client.NewBinanceVipLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.GetVIPLoanInterestRateHistory(context.Background()).Coin("coin_example").RecvWindow(5000).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.GetVIPLoanInterestRateHistory(context.Background()).Coin("USDT").RecvWindow(5000).Execute()
 	if err != nil {
 		log.Println(err)
 		return

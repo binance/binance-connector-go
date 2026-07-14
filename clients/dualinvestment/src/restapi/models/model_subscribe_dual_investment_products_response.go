@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package models
@@ -17,11 +17,12 @@ var _ common.MappedNullable = &SubscribeDualInvestmentProductsResponse{}
 
 // SubscribeDualInvestmentProductsResponse struct for SubscribeDualInvestmentProductsResponse
 type SubscribeDualInvestmentProductsResponse struct {
-	PositionId           *int64  `json:"positionId,omitempty"`
-	InvestCoin           *string `json:"investCoin,omitempty"`
-	ExercisedCoin        *string `json:"exercisedCoin,omitempty"`
-	SubscriptionAmount   *string `json:"subscriptionAmount,omitempty"`
-	Duration             *int64  `json:"duration,omitempty"`
+	PositionId         *int64  `json:"positionId,omitempty"`
+	InvestCoin         *string `json:"investCoin,omitempty"`
+	ExercisedCoin      *string `json:"exercisedCoin,omitempty"`
+	SubscriptionAmount *string `json:"subscriptionAmount,omitempty"`
+	Duration           *int64  `json:"duration,omitempty"`
+	// STANDARD, ADVANCED, this field won't display when autocompound is set to None
 	AutoCompoundPlan     *string `json:"autoCompoundPlan,omitempty"`
 	StrikePrice          *string `json:"strikePrice,omitempty"`
 	SettleDate           *int64  `json:"settleDate,omitempty"`

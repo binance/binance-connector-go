@@ -1,5 +1,5 @@
 /*
-Binance Wallet REST API TEST
+Wallet REST API TEST
 
 Testing OthersAPIService
 
@@ -25,7 +25,11 @@ func Test_binancewalletrestapi_OthersAPIService(t *testing.T) {
 
 	t.Run("Test OthersAPIService GetSymbolsDelistScheduleForSpot Success", func(t *testing.T) {
 
-		mockedJSON := `[{"delistTime":1686161202000,"symbols":["ADAUSDT","BNBUSDT"]},{"delistTime":1686222232000,"symbols":["ETHUSDT"]}]`
+		var mockedJSON string
+		mockedJSON = `[{"delistTime":1686161202000,"symbols":["ADAUSDT"]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/spot/delist-schedule", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancewalletrestapi_OthersAPIService(t *testing.T) {
 
 	t.Run("Test OthersAPIService SystemStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"status":0,"msg":"normal"}`
+		var mockedJSON string
+		mockedJSON = `{"status":0,"msg":"normal"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/system/status", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

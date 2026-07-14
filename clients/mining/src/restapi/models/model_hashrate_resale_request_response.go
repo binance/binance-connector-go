@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,9 +17,10 @@ var _ common.MappedNullable = &HashrateResaleRequestResponse{}
 
 // HashrateResaleRequestResponse struct for HashrateResaleRequestResponse
 type HashrateResaleRequestResponse struct {
-	Code                 *int64  `json:"code,omitempty"`
-	Msg                  *string `json:"msg,omitempty"`
-	Data                 *int64  `json:"data,omitempty"`
+	Code *int64  `json:"code,omitempty"`
+	Msg  *string `json:"msg,omitempty"`
+	// Configuration ID
+	Data                 *int64 `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

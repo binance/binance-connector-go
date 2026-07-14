@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
-**OrderListId** | Pointer to **int64** |  | [optional] 
+**OrderListId** | Pointer to **int64** | Unless it&#39;s part of an order list, value will be -1 | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **TransactTime** | Pointer to **int64** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &FuturesAccountConfigurationResponse{}
 
 // FuturesAccountConfigurationResponse struct for FuturesAccountConfigurationResponse
 type FuturesAccountConfigurationResponse struct {
-	FeeTier              *int64 `json:"feeTier,omitempty"`
-	CanTrade             *bool  `json:"canTrade,omitempty"`
-	CanDeposit           *bool  `json:"canDeposit,omitempty"`
-	CanWithdraw          *bool  `json:"canWithdraw,omitempty"`
-	DualSidePosition     *bool  `json:"dualSidePosition,omitempty"`
+	// account commission tier
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// if can trade
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// if can transfer in asset
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// if can transfer out asset
+	CanWithdraw      *bool `json:"canWithdraw,omitempty"`
+	DualSidePosition *bool `json:"dualSidePosition,omitempty"`
+	// reserved property, please ignore
 	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	MultiAssetsMargin    *bool  `json:"multiAssetsMargin,omitempty"`
 	TradeGroupId         *int64 `json:"tradeGroupId,omitempty"`

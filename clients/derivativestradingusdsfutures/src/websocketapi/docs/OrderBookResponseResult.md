@@ -5,10 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **LastUpdateId** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**Bids** | Pointer to [**[]OrderBookResponseResultBidsItem**](OrderBookResponseResultBidsItem.md) |  | [optional] 
-**Asks** | Pointer to [**[]OrderBookResponseResultAsksItem**](OrderBookResponseResultAsksItem.md) |  | [optional] 
+**E** | Pointer to **int64** | Message output time | [optional] 
+**T** | Pointer to **int64** | Transaction time | [optional] 
 
 ## Methods
 
@@ -103,56 +101,6 @@ SetT sets T field to given value.
 `func (o *OrderBookResponseResult) HasT() bool`
 
 HasT returns a boolean if a field has been set.
-
-### GetBids
-
-`func (o *OrderBookResponseResult) GetBids() []OrderBookResponseResultBidsItem`
-
-GetBids returns the Bids field if non-nil, zero value otherwise.
-
-### GetBidsOk
-
-`func (o *OrderBookResponseResult) GetBidsOk() (*[]OrderBookResponseResultBidsItem, bool)`
-
-GetBidsOk returns a tuple with the Bids field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBids
-
-`func (o *OrderBookResponseResult) SetBids(v []OrderBookResponseResultBidsItem)`
-
-SetBids sets Bids field to given value.
-
-### HasBids
-
-`func (o *OrderBookResponseResult) HasBids() bool`
-
-HasBids returns a boolean if a field has been set.
-
-### GetAsks
-
-`func (o *OrderBookResponseResult) GetAsks() []OrderBookResponseResultAsksItem`
-
-GetAsks returns the Asks field if non-nil, zero value otherwise.
-
-### GetAsksOk
-
-`func (o *OrderBookResponseResult) GetAsksOk() (*[]OrderBookResponseResultAsksItem, bool)`
-
-GetAsksOk returns a tuple with the Asks field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAsks
-
-`func (o *OrderBookResponseResult) SetAsks(v []OrderBookResponseResultAsksItem)`
-
-SetAsks sets Asks field to given value.
-
-### HasAsks
-
-`func (o *OrderBookResponseResult) HasAsks() bool`
-
-HasAsks returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

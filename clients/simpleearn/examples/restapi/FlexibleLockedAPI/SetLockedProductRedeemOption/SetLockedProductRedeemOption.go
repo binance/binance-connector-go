@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/simpleearn"
+	"github.com/binance/binance-connector-go/clients/simpleearn/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func SetLockedProductRedeemOption() {
 	apiClient := client.NewBinanceSimpleEarnClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleLockedAPI.SetLockedProductRedeemOption(context.Background()).PositionId("1").RedeemTo("redeemTo_example").Execute()
+	resp, err := apiClient.RestApi.FlexibleLockedAPI.SetLockedProductRedeemOption(context.Background()).PositionId("1").RedeemTo(models.SetLockedProductRedeemOptionRedeemToParameterSpot).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -25,7 +25,11 @@ func Test_binancew3wpredictionrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService BatchCancelOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"canceled":["54124"],"failed":[{"orderId":"54126","reason":"ORDER_NOT_FOUND"}]}`
+		var mockedJSON string
+		mockedJSON = `{"canceled":["54124"],"failed":[{"orderId":"54126","reason":"ORDER_NOT_FOUND"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/trade/batch-cancel", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -99,7 +103,11 @@ func Test_binancew3wpredictionrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService GetQuote Success", func(t *testing.T) {
 
-		mockedJSON := `{"quoteId":"q_20260525_abc123xyz","tokenId":"112233","chance":"0.52","vendor":"PREDICT_FUN","marketTitle":"UP","marketExtId":"ext_001","side":"BUY","amountIn":"1000000000000000000","amountOut":"1923070000000000000","isMinAmountOut":false,"feeAmount":"20000000000000000","feeDiscountBps":"0","averagePrice":0.52,"lastPrice":0.52,"priceImpact":0.001,"timestamp":1748131500000,"chainId":"56","userId":100103755893,"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","orderType":"MARKET","slippageBps":1200,"feeRateBps":200,"minReceive":"1900000000000000000","expireAt":1748131800000,"priceLimit":"priceLimit"}`
+		var mockedJSON string
+		mockedJSON = `{"quoteId":"q_20260525_abc123xyz","tokenId":"112233","chance":"0.52","vendor":"PREDICT_FUN","marketTitle":"UP","marketExtId":"ext_001","side":"BUY","amountIn":"1000000000000000000","amountOut":"1923070000000000000","isMinAmountOut":false,"feeAmount":"20000000000000000","feeDiscountBps":"0","averagePrice":0.52,"lastPrice":0.52,"priceImpact":0.001,"timestamp":1748131500000,"chainId":"56","userId":100103755893,"walletAddress":"0x12e32db8817e292508c34111cbc4b23340df542c","orderType":"MARKET","slippageBps":1200,"feeRateBps":200,"minReceive":"1900000000000000000","expireAt":1748131800000,"priceLimit":"priceLimit"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/trade/get-quote", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -177,7 +185,11 @@ func Test_binancew3wpredictionrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService PlaceOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"orderId":"54124"}`
+		var mockedJSON string
+		mockedJSON = `{"orderId":"54124"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/trade/place-order-bundle", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -256,7 +268,11 @@ func Test_binancew3wpredictionrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService QueryActiveOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":2,"offset":0,"limit":20,"orders":[{"orderId":"54124","vendorOrderId":"0x1234abcd...","vendor":"PREDICT_FUN","marketTopicId":4229564,"slug":"btc-price-1h-up-or-down","marketTopicTitle":"BTC Price 1h Up or Down?","marketId":5567895,"marketTitle":"UP","outcome":"YES","outcomeIndex":0,"status":"OPENING","side":"BUY","orderType":"LIMIT","createTime":1748131500000,"modifyTime":1748131500000,"makerUsdtAmount":"1.00","makerShareQty":"2000.00","filledUsdtAmount":"0.00","filledShareQty":"0.00","fillPercentage":"0.00","price":"0.50","marketProviderFee":"0.02","networkFee":"0.000001"}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":2,"offset":0,"limit":20,"orders":[{"orderId":"54124","vendorOrderId":"0x1234abcd...","vendor":"PREDICT_FUN","marketTopicId":4229564,"slug":"btc-price-1h-up-or-down","marketTopicTitle":"BTC Price 1h Up or Down?","marketId":5567895,"marketTitle":"UP","outcome":"YES","outcomeIndex":0,"status":"OPENING","side":"BUY","orderType":"LIMIT","createTime":1748131500000,"modifyTime":1748131500000,"makerUsdtAmount":"1.00","makerShareQty":"2000.00","filledUsdtAmount":"0.00","filledShareQty":"0.00","fillPercentage":"0.00","price":"0.50","marketProviderFee":"0.02","networkFee":"0.000001"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/order/list", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -329,7 +345,11 @@ func Test_binancew3wpredictionrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService QueryOrderHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":15,"offset":0,"limit":20,"orders":[{"orderId":"54100","vendorOrderId":"0xabcd5678...","vendor":"PREDICT_FUN","marketTopicId":4229500,"slug":"btc-price-1h-up-or-down-prev","marketTopicTitle":"BTC Price 1h Up or Down?","marketId":5567800,"marketTitle":"UP","outcome":"YES","outcomeIndex":0,"status":"CLOSED","side":"BUY","orderType":"MARKET","createTime":1748045100000,"modifyTime":1748045101000,"terminalTime":1748045101000,"makerUsdtAmount":"1.00","makerShareQty":"1923.07","filledUsdtAmount":"1.00","filledShareQty":"1923.07","fillPercentage":"1.00","price":"0.52","marketProviderFee":"0.02","networkFee":"0.000001"}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":15,"offset":0,"limit":20,"orders":[{"orderId":"54100","vendorOrderId":"0xabcd5678...","vendor":"PREDICT_FUN","marketTopicId":4229500,"slug":"btc-price-1h-up-or-down-prev","marketTopicTitle":"BTC Price 1h Up or Down?","marketId":5567800,"marketTitle":"UP","outcome":"YES","outcomeIndex":0,"status":"CLOSED","side":"BUY","orderType":"MARKET","createTime":1748045100000,"modifyTime":1748045101000,"terminalTime":1748045101000,"makerUsdtAmount":"1.00","makerShareQty":"1923.07","filledUsdtAmount":"1.00","filledShareQty":"1923.07","fillPercentage":"1.00","price":"0.52","marketProviderFee":"0.02","networkFee":"0.000001"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/order/history", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))

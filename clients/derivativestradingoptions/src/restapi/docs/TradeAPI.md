@@ -11,10 +11,11 @@ Method        | HTTP request  | Description
 [**CancelOptionOrder**](TradeAPI.md#CancelOptionOrder) | **Delete** /eapi/v1/order | Cancel Option Order (TRADE)
 [**NewOrder**](TradeAPI.md#NewOrder) | **Post** /eapi/v1/order | New Order (TRADE)
 [**OptionPositionInformation**](TradeAPI.md#OptionPositionInformation) | **Get** /eapi/v1/position | Option Position Information (USER_DATA)
-[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /eapi/v1/batchOrders | Place Multiple Orders(TRADE)
+[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /eapi/v1/batchOrders | Place Multiple Orders (TRADE)
 [**QueryCurrentOpenOptionOrders**](TradeAPI.md#QueryCurrentOpenOptionOrders) | **Get** /eapi/v1/openOrders | Query Current Open Option Orders (USER_DATA)
 [**QueryOptionOrderHistory**](TradeAPI.md#QueryOptionOrderHistory) | **Get** /eapi/v1/historyOrders | Query Option Order History (TRADE)
 [**QuerySingleOrder**](TradeAPI.md#QuerySingleOrder) | **Get** /eapi/v1/order | Query Single Order (TRADE)
+[**TradfiOptionsContract**](TradeAPI.md#TradfiOptionsContract) | **Post** /eapi/v1/stock/contract | TradFi Options Contract (USER_DATA)
 [**UserCommission**](TradeAPI.md#UserCommission) | **Get** /eapi/v1/commission | User Commission (USER_DATA)
 [**UserExerciseRecord**](TradeAPI.md#UserExerciseRecord) | **Get** /eapi/v1/exerciseRecord | User Exercise Record (USER_DATA)
 
@@ -42,12 +43,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
 	fromId := int64(1) // int64 | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	limit := int64(20) // int64 | Number of result sets returned. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -75,12 +76,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
+ **symbol** | **string** | Option trading pair. | 
  **fromId** | **int64** | Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376 | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
- **recvWindow** | **int64** |  | 
+ **limit** | **int64** | Number of result sets returned. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -120,8 +121,8 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | Option underlying, e.g BTCUSDT
-	recvWindow := int64(5000) // int64 |  (optional)
+	underlying := "BTCUSDT" // string | Underlying asset.
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -149,8 +150,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | Option underlying, e.g BTCUSDT | 
- **recvWindow** | **int64** |  | 
+ **underlying** | **string** | Underlying asset. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -190,8 +191,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	recvWindow := int64(5000) // int64 |  (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -219,8 +220,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **recvWindow** | **int64** |  | 
+ **symbol** | **string** | Option trading pair. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -260,10 +261,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	orderIds := []int64{int64(4611875134427365000)} // []int64 | Order ID, e.g [4611875134427365377,4611875134427365378] (optional)
-	clientOrderIds := []string{"my_id_1"} // []string | User-defined order ID, e.g [\"my_id_1\",\"my_id_2\"] (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
+	orderIds := []int64{int64(4611875134427365000)} // []int64 | Order ID list. (optional)
+	clientOrderIds := []string{"my_id_1"} // []string | Client order ID list. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -291,10 +292,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **orderIds** | **[]int64** | Order ID, e.g [4611875134427365377,4611875134427365378] | 
- **clientOrderIds** | **[]string** | User-defined order ID, e.g [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;] | 
- **recvWindow** | **int64** |  | 
+ **symbol** | **string** | Option trading pair. | 
+ **orderIds** | **[]int64** | Order ID list. | 
+ **clientOrderIds** | **[]string** | Client order ID list. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -334,10 +335,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	orderId := int64(1) // int64 | Order ID, e.g 4611875134427365377 (optional)
-	clientOrderId := "1" // string | User-defined order ID, e.g 10000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
+	orderId := int64(4611875134427365000) // int64 | Order ID. (optional)
+	clientOrderId := "10000" // string | clientOrderId (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -365,10 +366,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **orderId** | **int64** | Order ID, e.g 4611875134427365377 | 
- **clientOrderId** | **string** | User-defined order ID, e.g 10000 | 
- **recvWindow** | **int64** |  | 
+ **symbol** | **string** | Option trading pair. | 
+ **orderId** | **int64** | Order ID. | 
+ **clientOrderId** | **string** | clientOrderId | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -408,18 +409,18 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	side := models.PlaceMultipleOrdersOrdersParameterInnerSideBuy // PlaceMultipleOrdersOrdersParameterInnerSide | Buy/sell direction: SELL, BUY
-	type_ := models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit // PlaceMultipleOrdersOrdersParameterInnerType | Order Type: LIMIT(only support limit)
+	symbol := "BTC-200730-9000-C" // string | 
+	side := models.PlaceMultipleOrdersOrdersParameterInnerSideBuy // PlaceMultipleOrdersOrdersParameterInnerSide | 
+	type_ := models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit // PlaceMultipleOrdersOrdersParameterInnerType | 
 	quantity := float32(1.0) // float32 | Order Quantity
 	price := float32(1.0) // float32 | Order Price (optional)
-	timeInForce := models.PlaceMultipleOrdersOrdersParameterInnerTimeInForceGtc // PlaceMultipleOrdersOrdersParameterInnerTimeInForce | Time in force method（Default GTC） (optional)
-	reduceOnly := false // bool | Reduce Only（Default false） (optional)
-	postOnly := false // bool | Post Only（Default false） (optional)
-	newOrderRespType := models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespTypeAck // PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType | \"ACK\", \"RESULT\", Default \"ACK\" (optional)
-	clientOrderId := "1" // string | User-defined order ID, e.g 10000 (optional)
-	isMmp := true // bool | is market maker protection order, true/false (optional)
-	selfTradePreventionMode := models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker // PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire maker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; Default `EXPIRE_MAKER` (optional)
+	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
+	reduceOnly := false // bool |  (optional)
+	postOnly := false // bool |  (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
+	clientOrderId := "1" // string | User-defined order ID cannot be repeated in pending orders (optional)
+	isMmp := true // bool | is market maker protection order (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | Self-trade prevention mode (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -448,18 +449,18 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **side** | [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) | Buy/sell direction: SELL, BUY | 
- **type_** | [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) | Order Type: LIMIT(only support limit) | 
+ **symbol** | **string** |  | 
+ **side** | [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) |  | 
+ **type_** | [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) |  | 
  **quantity** | **float32** | Order Quantity | 
  **price** | **float32** | Order Price | 
- **timeInForce** | [**PlaceMultipleOrdersOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersOrdersParameterInnerTimeInForce.md) | Time in force method（Default GTC） | 
- **reduceOnly** | **bool** | Reduce Only（Default false） | 
- **postOnly** | **bool** | Post Only（Default false） | 
- **newOrderRespType** | [**PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, Default \&quot;ACK\&quot; | 
- **clientOrderId** | **string** | User-defined order ID, e.g 10000 | 
- **isMmp** | **bool** | is market maker protection order, true/false | 
- **selfTradePreventionMode** | [**PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire maker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; Default &#x60;EXPIRE_MAKER&#x60; | 
+ **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
+ **reduceOnly** | **bool** |  | 
+ **postOnly** | **bool** |  | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
+ **clientOrderId** | **string** | User-defined order ID cannot be repeated in pending orders | 
+ **isMmp** | **bool** | is market maker protection order | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | Self-trade prevention mode | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -500,8 +501,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -529,8 +530,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **recvWindow** | **int64** |  | 
+ **symbol** | **string** | Option trading pair. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -551,7 +552,7 @@ No authorization required
 
 > PlaceMultipleOrdersResponse PlaceMultipleOrders(ctx).Orders(orders).RecvWindow(recvWindow).Execute()
 
-Place Multiple Orders(TRADE)
+Place Multiple Orders (TRADE)
 
 
 ### Example
@@ -570,7 +571,7 @@ import (
 )
 
 func main() {
-	orders := []models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner()} // []PlaceMultipleOrdersOrdersParameterInner | order list. Max 10 orders
+	orders := []models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner("BTC-200730-9000-C", models.placeMultipleOrders_orders_parameter_inner_side("BUY"), models.placeMultipleOrders_orders_parameter_inner_type("LIMIT"), float32(1.0))} // []PlaceMultipleOrdersOrdersParameterInner | order list. Max 10 orders
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -640,11 +641,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
-	orderId := int64(1) // int64 | Order ID, e.g 4611875134427365377 (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair. (optional)
+	orderId := int64(4611875134427365000) // int64 | Order ID. (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -672,11 +673,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **orderId** | **int64** | Order ID, e.g 4611875134427365377 | 
+ **symbol** | **string** | Option trading pair. | 
+ **orderId** | **int64** | Order ID. | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -716,12 +717,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	orderId := int64(1) // int64 | Order ID, e.g 4611875134427365377 (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
+	orderId := int64(4611875134427365000) // int64 | Order ID. (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	limit := int64(20) // int64 | Number of result sets returned (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -749,12 +750,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **orderId** | **int64** | Order ID, e.g 4611875134427365377 | 
+ **symbol** | **string** | Option trading pair. | 
+ **orderId** | **int64** | Order ID. | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
- **recvWindow** | **int64** |  | 
+ **limit** | **int64** | Number of result sets returned | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -794,10 +795,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C
-	orderId := int64(1) // int64 | Order ID, e.g 4611875134427365377 (optional)
-	clientOrderId := "1" // string | User-defined order ID, e.g 10000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair.
+	orderId := int64(4611875134427365000) // int64 | Order ID. (optional)
+	clientOrderId := "abc123" // string | User-defined order ID; cannot be duplicated among open orders. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -825,14 +826,82 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
- **orderId** | **int64** | Order ID, e.g 4611875134427365377 | 
- **clientOrderId** | **string** | User-defined order ID, e.g 10000 | 
- **recvWindow** | **int64** |  | 
+ **symbol** | **string** | Option trading pair. | 
+ **orderId** | **int64** | Order ID. | 
+ **clientOrderId** | **string** | User-defined order ID; cannot be duplicated among open orders. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
 [**QuerySingleOrderResponse**](QuerySingleOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## TradfiOptionsContract
+
+> TradfiOptionsContractResponse TradfiOptionsContract(ctx).RecvWindow(recvWindow).Execute()
+
+TradFi Options Contract (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingOptionsClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.TradfiOptionsContract(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.TradfiOptionsContract``: %v\n", err)
+		return
+	}
+
+	// response from `TradfiOptionsContract`: TradfiOptionsContractResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**TradfiOptionsContractResponse**](TradfiOptionsContractResponse.md)
 
 ### Authorization
 
@@ -868,7 +937,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -896,7 +965,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -936,11 +1005,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Option trading pair, e.g BTC-200730-9000-C (optional)
+	symbol := "BTC-200730-9000-C" // string | Option trading pair. (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	limit := int64(20) // int64 | Number of result sets returned. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -968,11 +1037,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Option trading pair, e.g BTC-200730-9000-C | 
+ **symbol** | **string** | Option trading pair. | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
- **recvWindow** | **int64** |  | 
+ **limit** | **int64** | Number of result sets returned. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 

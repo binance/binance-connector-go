@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | Rebate asset. | [optional] 
+**Type** | Pointer to **int64** | 1 is commission rebate, 2 is referral kickback | [optional] 
+**Amount** | Pointer to **string** | Rebate amount. | [optional] 
+**UpdateTime** | Pointer to **int64** | Update timestamp. | [optional] 
 
 ## Methods
 

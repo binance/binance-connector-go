@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &FuturesTradingQuantitativeRulesIndicatorsResponse
 
 // FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner struct for FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner
 type FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner struct {
-	Indicator            *string `json:"indicator,omitempty"`
-	Value                *int64  `json:"value,omitempty"`
-	TriggerValue         *int64  `json:"triggerValue,omitempty"`
-	PlannedRecoverTime   *int64  `json:"plannedRecoverTime,omitempty"`
-	IsLocked             *bool   `json:"isLocked,omitempty"`
+	// Too many violations under multiple symbols trigger account violation
+	Indicator *string `json:"indicator,omitempty"`
+	// Current value
+	Value *int64 `json:"value,omitempty"`
+	// Trigger value
+	TriggerValue *int64 `json:"triggerValue,omitempty"`
+	// Planned Recover Time.
+	PlannedRecoverTime *int64 `json:"plannedRecoverTime,omitempty"`
+	// Is Locked.
+	IsLocked             *bool `json:"isLocked,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

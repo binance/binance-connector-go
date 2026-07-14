@@ -21,7 +21,7 @@ func Ticker() {
 	apiClient := client.NewBinanceAlphaClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.Ticker(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.Ticker(context.Background()).Symbol("ALPHA_175USDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

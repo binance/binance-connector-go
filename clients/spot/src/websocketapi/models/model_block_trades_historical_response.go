@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &BlockTradesHistoricalResponse{}
 
 // BlockTradesHistoricalResponse struct for BlockTradesHistoricalResponse
 type BlockTradesHistoricalResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               []BlockTradesHistoricalResponseResultInner `json:"result,omitempty"`
-	RateLimits           []RateLimits                               `json:"rateLimits,omitempty"`
+	Id                   *string                                        `json:"id,omitempty"`
+	Status               *int32                                         `json:"status,omitempty"`
+	Result               []BlockTradesHistoricalResponseResultInner     `json:"result,omitempty"`
+	RateLimits           []BlockTradesHistoricalResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,9 +76,9 @@ func (o *BlockTradesHistoricalResponse) SetId(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *BlockTradesHistoricalResponse) GetStatus() int64 {
+func (o *BlockTradesHistoricalResponse) GetStatus() int32 {
 	if o == nil || common.IsNil(o.Status) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Status
@@ -86,7 +86,7 @@ func (o *BlockTradesHistoricalResponse) GetStatus() int64 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BlockTradesHistoricalResponse) GetStatusOk() (*int64, bool) {
+func (o *BlockTradesHistoricalResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Status) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *BlockTradesHistoricalResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int64 and assigns it to the Status field.
-func (o *BlockTradesHistoricalResponse) SetStatus(v int64) {
+// SetStatus gets a reference to the given int32 and assigns it to the Status field.
+func (o *BlockTradesHistoricalResponse) SetStatus(v int32) {
 	o.Status = &v
 }
 
@@ -140,9 +140,9 @@ func (o *BlockTradesHistoricalResponse) SetResult(v []BlockTradesHistoricalRespo
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *BlockTradesHistoricalResponse) GetRateLimits() []RateLimits {
+func (o *BlockTradesHistoricalResponse) GetRateLimits() []BlockTradesHistoricalResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []BlockTradesHistoricalResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *BlockTradesHistoricalResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BlockTradesHistoricalResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *BlockTradesHistoricalResponse) GetRateLimitsOk() ([]BlockTradesHistoricalResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *BlockTradesHistoricalResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *BlockTradesHistoricalResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []BlockTradesHistoricalResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *BlockTradesHistoricalResponse) SetRateLimits(v []BlockTradesHistoricalResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

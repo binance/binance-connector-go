@@ -8,7 +8,6 @@
 * `NewOrderSelfTradePreventionModeParameterExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `NewOrderSelfTradePreventionModeParameterDecrement` (value: `"DECREMENT"`)
 * `NewOrderSelfTradePreventionModeParameterTransfer` (value: `"TRANSFER"`)
-* `NewOrderSelfTradePreventionModeParameterNonRepresentable` (value: `"NON_REPRESENTABLE"`)
 
 
 [[Back to README]](../README.md)

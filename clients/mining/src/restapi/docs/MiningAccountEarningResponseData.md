@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountProfits** | Pointer to [**[]MiningAccountEarningResponseDataAccountProfitsInner**](MiningAccountEarningResponseDataAccountProfitsInner.md) |  | [optional] 
-**TotalNum** | Pointer to **int64** |  | [optional] 
-**PageSize** | Pointer to **int64** |  | [optional] 
+**TotalNum** | Pointer to **int64** | Total records | [optional] 
+**PageSize** | Pointer to **int64** | Rows per page | [optional] 
 
 ## Methods
 

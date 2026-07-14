@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**TradeId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**QuoteQty** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **int64** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Id** | Pointer to **int64** | id | [optional] 
+**TradeId** | Pointer to **int64** | TradeId | [optional] 
+**Symbol** | Pointer to **string** | Option trading pair | [optional] 
+**Price** | Pointer to **string** | Completed trade price | [optional] 
+**Qty** | Pointer to **string** | Completed trade quantity | [optional] 
+**QuoteQty** | Pointer to **string** | Completed trade amount | [optional] 
+**Side** | Pointer to **int64** | Completed trade direction（-1 Sell，1 Buy） | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

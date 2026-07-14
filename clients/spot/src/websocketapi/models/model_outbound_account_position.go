@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &OutboundAccountPosition{}
 
 // OutboundAccountPosition struct for OutboundAccountPosition
 type OutboundAccountPosition struct {
-	E                    *int64                          `json:"E,omitempty"`
-	U                    *int64                          `json:"u,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Time of last account update
+	Smallu *int64 `json:"u,omitempty"`
+	// Balances Array
 	B                    []OutboundAccountPositionBInner `json:"B,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -75,26 +78,26 @@ func (o *OutboundAccountPosition) SetE(v int64) {
 }
 
 // GetU returns the U field value if set, zero value otherwise.
-func (o *OutboundAccountPosition) GetU() int64 {
-	if o == nil || common.IsNil(o.U) {
+func (o *OutboundAccountPosition) GetSmallu() int64 {
+	if o == nil || common.IsNil(o.Smallu) {
 		var ret int64
 		return ret
 	}
-	return *o.U
+	return *o.Smallu
 }
 
 // GetUOk returns a tuple with the U field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutboundAccountPosition) GetUOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.U) {
+func (o *OutboundAccountPosition) GetSmalluOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallu) {
 		return nil, false
 	}
-	return o.U, true
+	return o.Smallu, true
 }
 
 // HasU returns a boolean if a field has been set.
-func (o *OutboundAccountPosition) HasU() bool {
-	if o != nil && !common.IsNil(o.U) {
+func (o *OutboundAccountPosition) HasSmallu() bool {
+	if o != nil && !common.IsNil(o.Smallu) {
 		return true
 	}
 
@@ -102,8 +105,8 @@ func (o *OutboundAccountPosition) HasU() bool {
 }
 
 // SetU gets a reference to the given int64 and assigns it to the U field.
-func (o *OutboundAccountPosition) SetU(v int64) {
-	o.U = &v
+func (o *OutboundAccountPosition) SetSmallu(v int64) {
+	o.Smallu = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -151,8 +154,8 @@ func (o OutboundAccountPosition) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.U) {
-		toSerialize["u"] = o.U
+	if !common.IsNil(o.Smallu) {
+		toSerialize["u"] = o.Smallu
 	}
 	if !common.IsNil(o.B) {
 		toSerialize["B"] = o.B

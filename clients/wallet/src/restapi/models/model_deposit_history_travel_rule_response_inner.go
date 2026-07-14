@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,21 +17,23 @@ var _ common.MappedNullable = &DepositHistoryTravelRuleResponseInner{}
 
 // DepositHistoryTravelRuleResponseInner struct for DepositHistoryTravelRuleResponseInner
 type DepositHistoryTravelRuleResponseInner struct {
-	TrId                 *int64  `json:"trId,omitempty"`
-	TranId               *int64  `json:"tranId,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	Network              *string `json:"network,omitempty"`
-	DepositStatus        *int64  `json:"depositStatus,omitempty"`
-	TravelRuleStatus     *int64  `json:"travelRuleStatus,omitempty"`
-	Address              *string `json:"address,omitempty"`
-	AddressTag           *string `json:"addressTag,omitempty"`
-	TxId                 *string `json:"txId,omitempty"`
-	InsertTime           *int64  `json:"insertTime,omitempty"`
+	TrId             *int64  `json:"trId,omitempty"`
+	TranId           *int64  `json:"tranId,omitempty"`
+	Amount           *string `json:"amount,omitempty"`
+	Coin             *string `json:"coin,omitempty"`
+	Network          *string `json:"network,omitempty"`
+	DepositStatus    *int64  `json:"depositStatus,omitempty"`
+	TravelRuleStatus *int64  `json:"travelRuleStatus,omitempty"`
+	// Overall travel rule verification status (GTR + sanctions screening combined). \"PASSED\": verification complete, deposit released. \"PENDING\": verification in progress, deposit frozen. \"REJECTED\": verification failed.
+	TravelRuleStatusV2 *string `json:"travelRuleStatusV2,omitempty"`
+	Address            *string `json:"address,omitempty"`
+	AddressTag         *string `json:"addressTag,omitempty"`
+	TxId               *string `json:"txId,omitempty"`
+	InsertTime         *int64  `json:"insertTime,omitempty"`
+	// Timestamp when the deposit was fully completed/credited (epoch ms).
+	CompleteTime         *int64  `json:"completeTime,omitempty"`
 	TransferType         *int64  `json:"transferType,omitempty"`
 	ConfirmTimes         *string `json:"confirmTimes,omitempty"`
-	UnlockConfirm        *int64  `json:"unlockConfirm,omitempty"`
-	WalletType           *int64  `json:"walletType,omitempty"`
 	RequireQuestionnaire *bool   `json:"requireQuestionnaire,omitempty"`
 	Questionnaire        *string `json:"questionnaire,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -280,6 +282,38 @@ func (o *DepositHistoryTravelRuleResponseInner) SetTravelRuleStatus(v int64) {
 	o.TravelRuleStatus = &v
 }
 
+// GetTravelRuleStatusV2 returns the TravelRuleStatusV2 field value if set, zero value otherwise.
+func (o *DepositHistoryTravelRuleResponseInner) GetTravelRuleStatusV2() string {
+	if o == nil || common.IsNil(o.TravelRuleStatusV2) {
+		var ret string
+		return ret
+	}
+	return *o.TravelRuleStatusV2
+}
+
+// GetTravelRuleStatusV2Ok returns a tuple with the TravelRuleStatusV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DepositHistoryTravelRuleResponseInner) GetTravelRuleStatusV2Ok() (*string, bool) {
+	if o == nil || common.IsNil(o.TravelRuleStatusV2) {
+		return nil, false
+	}
+	return o.TravelRuleStatusV2, true
+}
+
+// HasTravelRuleStatusV2 returns a boolean if a field has been set.
+func (o *DepositHistoryTravelRuleResponseInner) HasTravelRuleStatusV2() bool {
+	if o != nil && !common.IsNil(o.TravelRuleStatusV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetTravelRuleStatusV2 gets a reference to the given string and assigns it to the TravelRuleStatusV2 field.
+func (o *DepositHistoryTravelRuleResponseInner) SetTravelRuleStatusV2(v string) {
+	o.TravelRuleStatusV2 = &v
+}
+
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *DepositHistoryTravelRuleResponseInner) GetAddress() string {
 	if o == nil || common.IsNil(o.Address) {
@@ -408,6 +442,38 @@ func (o *DepositHistoryTravelRuleResponseInner) SetInsertTime(v int64) {
 	o.InsertTime = &v
 }
 
+// GetCompleteTime returns the CompleteTime field value if set, zero value otherwise.
+func (o *DepositHistoryTravelRuleResponseInner) GetCompleteTime() int64 {
+	if o == nil || common.IsNil(o.CompleteTime) {
+		var ret int64
+		return ret
+	}
+	return *o.CompleteTime
+}
+
+// GetCompleteTimeOk returns a tuple with the CompleteTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DepositHistoryTravelRuleResponseInner) GetCompleteTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.CompleteTime) {
+		return nil, false
+	}
+	return o.CompleteTime, true
+}
+
+// HasCompleteTime returns a boolean if a field has been set.
+func (o *DepositHistoryTravelRuleResponseInner) HasCompleteTime() bool {
+	if o != nil && !common.IsNil(o.CompleteTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompleteTime gets a reference to the given int64 and assigns it to the CompleteTime field.
+func (o *DepositHistoryTravelRuleResponseInner) SetCompleteTime(v int64) {
+	o.CompleteTime = &v
+}
+
 // GetTransferType returns the TransferType field value if set, zero value otherwise.
 func (o *DepositHistoryTravelRuleResponseInner) GetTransferType() int64 {
 	if o == nil || common.IsNil(o.TransferType) {
@@ -470,70 +536,6 @@ func (o *DepositHistoryTravelRuleResponseInner) HasConfirmTimes() bool {
 // SetConfirmTimes gets a reference to the given string and assigns it to the ConfirmTimes field.
 func (o *DepositHistoryTravelRuleResponseInner) SetConfirmTimes(v string) {
 	o.ConfirmTimes = &v
-}
-
-// GetUnlockConfirm returns the UnlockConfirm field value if set, zero value otherwise.
-func (o *DepositHistoryTravelRuleResponseInner) GetUnlockConfirm() int64 {
-	if o == nil || common.IsNil(o.UnlockConfirm) {
-		var ret int64
-		return ret
-	}
-	return *o.UnlockConfirm
-}
-
-// GetUnlockConfirmOk returns a tuple with the UnlockConfirm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DepositHistoryTravelRuleResponseInner) GetUnlockConfirmOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.UnlockConfirm) {
-		return nil, false
-	}
-	return o.UnlockConfirm, true
-}
-
-// HasUnlockConfirm returns a boolean if a field has been set.
-func (o *DepositHistoryTravelRuleResponseInner) HasUnlockConfirm() bool {
-	if o != nil && !common.IsNil(o.UnlockConfirm) {
-		return true
-	}
-
-	return false
-}
-
-// SetUnlockConfirm gets a reference to the given int64 and assigns it to the UnlockConfirm field.
-func (o *DepositHistoryTravelRuleResponseInner) SetUnlockConfirm(v int64) {
-	o.UnlockConfirm = &v
-}
-
-// GetWalletType returns the WalletType field value if set, zero value otherwise.
-func (o *DepositHistoryTravelRuleResponseInner) GetWalletType() int64 {
-	if o == nil || common.IsNil(o.WalletType) {
-		var ret int64
-		return ret
-	}
-	return *o.WalletType
-}
-
-// GetWalletTypeOk returns a tuple with the WalletType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DepositHistoryTravelRuleResponseInner) GetWalletTypeOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.WalletType) {
-		return nil, false
-	}
-	return o.WalletType, true
-}
-
-// HasWalletType returns a boolean if a field has been set.
-func (o *DepositHistoryTravelRuleResponseInner) HasWalletType() bool {
-	if o != nil && !common.IsNil(o.WalletType) {
-		return true
-	}
-
-	return false
-}
-
-// SetWalletType gets a reference to the given int64 and assigns it to the WalletType field.
-func (o *DepositHistoryTravelRuleResponseInner) SetWalletType(v int64) {
-	o.WalletType = &v
 }
 
 // GetRequireQuestionnaire returns the RequireQuestionnaire field value if set, zero value otherwise.
@@ -631,6 +633,9 @@ func (o DepositHistoryTravelRuleResponseInner) ToMap() (map[string]interface{}, 
 	if !common.IsNil(o.TravelRuleStatus) {
 		toSerialize["travelRuleStatus"] = o.TravelRuleStatus
 	}
+	if !common.IsNil(o.TravelRuleStatusV2) {
+		toSerialize["travelRuleStatusV2"] = o.TravelRuleStatusV2
+	}
 	if !common.IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
@@ -643,17 +648,14 @@ func (o DepositHistoryTravelRuleResponseInner) ToMap() (map[string]interface{}, 
 	if !common.IsNil(o.InsertTime) {
 		toSerialize["insertTime"] = o.InsertTime
 	}
+	if !common.IsNil(o.CompleteTime) {
+		toSerialize["completeTime"] = o.CompleteTime
+	}
 	if !common.IsNil(o.TransferType) {
 		toSerialize["transferType"] = o.TransferType
 	}
 	if !common.IsNil(o.ConfirmTimes) {
 		toSerialize["confirmTimes"] = o.ConfirmTimes
-	}
-	if !common.IsNil(o.UnlockConfirm) {
-		toSerialize["unlockConfirm"] = o.UnlockConfirm
-	}
-	if !common.IsNil(o.WalletType) {
-		toSerialize["walletType"] = o.WalletType
 	}
 	if !common.IsNil(o.RequireQuestionnaire) {
 		toSerialize["requireQuestionnaire"] = o.RequireQuestionnaire
@@ -690,14 +692,14 @@ func (o *DepositHistoryTravelRuleResponseInner) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "depositStatus")
 		delete(additionalProperties, "travelRuleStatus")
+		delete(additionalProperties, "travelRuleStatusV2")
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "addressTag")
 		delete(additionalProperties, "txId")
 		delete(additionalProperties, "insertTime")
+		delete(additionalProperties, "completeTime")
 		delete(additionalProperties, "transferType")
 		delete(additionalProperties, "confirmTimes")
-		delete(additionalProperties, "unlockConfirm")
-		delete(additionalProperties, "walletType")
 		delete(additionalProperties, "requireQuestionnaire")
 		delete(additionalProperties, "questionnaire")
 		o.AdditionalProperties = additionalProperties

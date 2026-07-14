@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**InitialMargin** | Pointer to **string** | total intial margin required with the latest mark price | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit | [optional] 
+**PositionInitialMargin** | Pointer to **string** | positions margin required with the latest mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | open orders intial margin required with the latest mark price | [optional] 
+**Leverage** | Pointer to **string** | current initial leverage | [optional] 
+**PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 
+**EntryPrice** | Pointer to **string** | average entry price | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

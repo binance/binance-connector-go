@@ -22,7 +22,7 @@ func KlineCandlestickData() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("symbol_example").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("BTCUSDT").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

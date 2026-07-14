@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,14 +17,23 @@ var _ common.MappedNullable = &QueryMarginAccountsAllOcoResponseInner{}
 
 // QueryMarginAccountsAllOcoResponseInner struct for QueryMarginAccountsAllOcoResponseInner
 type QueryMarginAccountsAllOcoResponseInner struct {
-	OrderListId          *int64                                              `json:"orderListId,omitempty"`
-	ContingencyType      *string                                             `json:"contingencyType,omitempty"`
-	ListStatusType       *string                                             `json:"listStatusType,omitempty"`
-	ListOrderStatus      *string                                             `json:"listOrderStatus,omitempty"`
-	ListClientOrderId    *string                                             `json:"listClientOrderId,omitempty"`
-	TransactionTime      *int64                                              `json:"transactionTime,omitempty"`
-	Symbol               *string                                             `json:"symbol,omitempty"`
-	IsIsolated           *bool                                               `json:"isIsolated,omitempty"`
+	// order List Id.
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// contingency Type.
+	ContingencyType *string `json:"contingencyType,omitempty"`
+	// list Status Type.
+	ListStatusType *string `json:"listStatusType,omitempty"`
+	// list Order Status.
+	ListOrderStatus *string `json:"listOrderStatus,omitempty"`
+	// list Client Order Id.
+	ListClientOrderId *string `json:"listClientOrderId,omitempty"`
+	// transaction Time.
+	TransactionTime *int64 `json:"transactionTime,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// if isolated margin
+	IsIsolated *bool `json:"isIsolated,omitempty"`
+	// orders list.
 	Orders               []QueryMarginAccountsAllOcoResponseInnerOrdersInner `json:"orders,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &GetAllMarginAssetsResponseInner{}
 
 // GetAllMarginAssetsResponseInner struct for GetAllMarginAssetsResponseInner
 type GetAllMarginAssetsResponseInner struct {
-	AssetFullName        *string `json:"assetFullName,omitempty"`
-	AssetName            *string `json:"assetName,omitempty"`
-	IsBorrowable         *bool   `json:"isBorrowable,omitempty"`
-	IsMortgageable       *bool   `json:"isMortgageable,omitempty"`
-	UserMinBorrow        *string `json:"userMinBorrow,omitempty"`
-	UserMinRepay         *string `json:"userMinRepay,omitempty"`
-	DelistTime           *int64  `json:"delistTime,omitempty"`
+	// asset Full Name.
+	AssetFullName *string `json:"assetFullName,omitempty"`
+	// asset Name.
+	AssetName *string `json:"assetName,omitempty"`
+	// is Borrowable.
+	IsBorrowable *bool `json:"isBorrowable,omitempty"`
+	// is Mortgageable.
+	IsMortgageable *bool `json:"isMortgageable,omitempty"`
+	// user Min Borrow.
+	UserMinBorrow *string `json:"userMinBorrow,omitempty"`
+	// user Min Repay.
+	UserMinRepay *string `json:"userMinRepay,omitempty"`
+	// delist Time.
+	DelistTime           *int64 `json:"delistTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

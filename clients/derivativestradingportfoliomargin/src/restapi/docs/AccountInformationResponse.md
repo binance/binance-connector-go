@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**UniMMR** | Pointer to **string** |  | [optional] 
-**AccountEquity** | Pointer to **string** |  | [optional] 
-**ActualEquity** | Pointer to **string** |  | [optional] 
-**AccountInitialMargin** | Pointer to **string** |  | [optional] 
-**AccountMaintMargin** | Pointer to **string** |  | [optional] 
-**AccountStatus** | Pointer to **string** |  | [optional] 
-**VirtualMaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**TotalAvailableBalance** | Pointer to **string** |  | [optional] 
-**TotalMarginOpenLoss** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**UniMMR** | Pointer to **string** | Portfolio margin account maintenance margin rate | [optional] 
+**AccountEquity** | Pointer to **string** | Account equity, in USD value | [optional] 
+**ActualEquity** | Pointer to **string** | Account equity without collateral rate, in USD value | [optional] 
+**AccountInitialMargin** | Pointer to **string** | Account Initial Margin. | [optional] 
+**AccountMaintMargin** | Pointer to **string** | Portfolio margin account maintenance margin, unit：USD | [optional] 
+**AccountStatus** | Pointer to **string** | Portfolio margin account status:\&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;, \&quot;SUPPLY_MARGIN\&quot;, \&quot;REDUCE_ONLY\&quot;, \&quot;ACTIVE_LIQUIDATION\&quot;, \&quot;FORCE_LIQUIDATION\&quot;, \&quot;BANKRUPTED\&quot; | [optional] 
+**VirtualMaxWithdrawAmount** | Pointer to **string** | Portfolio margin maximum amount for transfer out in USD | [optional] 
+**TotalAvailableBalance** | Pointer to **string** | Total Available Balance. | [optional] 
+**TotalMarginOpenLoss** | Pointer to **string** | in USD margin open order | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

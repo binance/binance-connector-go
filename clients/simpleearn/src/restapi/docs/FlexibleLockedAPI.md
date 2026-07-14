@@ -4,37 +4,37 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetCollateralRecord**](FlexibleLockedAPI.md#GetCollateralRecord) | **Get** /sapi/v1/simple-earn/flexible/history/collateralRecord | Get Collateral Record(USER_DATA)
-[**GetFlexiblePersonalLeftQuota**](FlexibleLockedAPI.md#GetFlexiblePersonalLeftQuota) | **Get** /sapi/v1/simple-earn/flexible/personalLeftQuota | Get Flexible Personal Left Quota(USER_DATA)
-[**GetFlexibleProductPosition**](FlexibleLockedAPI.md#GetFlexibleProductPosition) | **Get** /sapi/v1/simple-earn/flexible/position | Get Flexible Product Position(USER_DATA)
-[**GetFlexibleRedemptionRecord**](FlexibleLockedAPI.md#GetFlexibleRedemptionRecord) | **Get** /sapi/v1/simple-earn/flexible/history/redemptionRecord | Get Flexible Redemption Record(USER_DATA)
-[**GetFlexibleRewardsHistory**](FlexibleLockedAPI.md#GetFlexibleRewardsHistory) | **Get** /sapi/v1/simple-earn/flexible/history/rewardsRecord | Get Flexible Rewards History(USER_DATA)
-[**GetFlexibleSubscriptionPreview**](FlexibleLockedAPI.md#GetFlexibleSubscriptionPreview) | **Get** /sapi/v1/simple-earn/flexible/subscriptionPreview | Get Flexible Subscription Preview(USER_DATA)
-[**GetFlexibleSubscriptionRecord**](FlexibleLockedAPI.md#GetFlexibleSubscriptionRecord) | **Get** /sapi/v1/simple-earn/flexible/history/subscriptionRecord | Get Flexible Subscription Record(USER_DATA)
-[**GetLockedPersonalLeftQuota**](FlexibleLockedAPI.md#GetLockedPersonalLeftQuota) | **Get** /sapi/v1/simple-earn/locked/personalLeftQuota | Get Locked Personal Left Quota(USER_DATA)
-[**GetLockedProductPosition**](FlexibleLockedAPI.md#GetLockedProductPosition) | **Get** /sapi/v1/simple-earn/locked/position | Get Locked Product Position
-[**GetLockedRedemptionRecord**](FlexibleLockedAPI.md#GetLockedRedemptionRecord) | **Get** /sapi/v1/simple-earn/locked/history/redemptionRecord | Get Locked Redemption Record(USER_DATA)
-[**GetLockedRewardsHistory**](FlexibleLockedAPI.md#GetLockedRewardsHistory) | **Get** /sapi/v1/simple-earn/locked/history/rewardsRecord | Get Locked Rewards History(USER_DATA)
-[**GetLockedSubscriptionPreview**](FlexibleLockedAPI.md#GetLockedSubscriptionPreview) | **Get** /sapi/v1/simple-earn/locked/subscriptionPreview | Get Locked Subscription Preview(USER_DATA)
-[**GetLockedSubscriptionRecord**](FlexibleLockedAPI.md#GetLockedSubscriptionRecord) | **Get** /sapi/v1/simple-earn/locked/history/subscriptionRecord | Get Locked Subscription Record(USER_DATA)
-[**GetRateHistory**](FlexibleLockedAPI.md#GetRateHistory) | **Get** /sapi/v1/simple-earn/flexible/history/rateHistory | Get Rate History(USER_DATA)
-[**GetSimpleEarnFlexibleProductList**](FlexibleLockedAPI.md#GetSimpleEarnFlexibleProductList) | **Get** /sapi/v1/simple-earn/flexible/list | Get Simple Earn Flexible Product List(USER_DATA)
-[**GetSimpleEarnLockedProductList**](FlexibleLockedAPI.md#GetSimpleEarnLockedProductList) | **Get** /sapi/v1/simple-earn/locked/list | Get Simple Earn Locked Product List(USER_DATA)
-[**RedeemFlexibleProduct**](FlexibleLockedAPI.md#RedeemFlexibleProduct) | **Post** /sapi/v1/simple-earn/flexible/redeem | Redeem Flexible Product(TRADE)
-[**RedeemLockedProduct**](FlexibleLockedAPI.md#RedeemLockedProduct) | **Post** /sapi/v1/simple-earn/locked/redeem | Redeem Locked Product(TRADE)
-[**SetFlexibleAutoSubscribe**](FlexibleLockedAPI.md#SetFlexibleAutoSubscribe) | **Post** /sapi/v1/simple-earn/flexible/setAutoSubscribe | Set Flexible Auto Subscribe(USER_DATA)
-[**SetLockedAutoSubscribe**](FlexibleLockedAPI.md#SetLockedAutoSubscribe) | **Post** /sapi/v1/simple-earn/locked/setAutoSubscribe | Set Locked Auto Subscribe(USER_DATA)
-[**SetLockedProductRedeemOption**](FlexibleLockedAPI.md#SetLockedProductRedeemOption) | **Post** /sapi/v1/simple-earn/locked/setRedeemOption | Set Locked Product Redeem Option(USER_DATA)
-[**SimpleAccount**](FlexibleLockedAPI.md#SimpleAccount) | **Get** /sapi/v1/simple-earn/account | Simple Account(USER_DATA)
-[**SubscribeFlexibleProduct**](FlexibleLockedAPI.md#SubscribeFlexibleProduct) | **Post** /sapi/v1/simple-earn/flexible/subscribe | Subscribe Flexible Product(TRADE)
-[**SubscribeLockedProduct**](FlexibleLockedAPI.md#SubscribeLockedProduct) | **Post** /sapi/v1/simple-earn/locked/subscribe | Subscribe Locked Product(TRADE)
+[**GetCollateralRecord**](FlexibleLockedAPI.md#GetCollateralRecord) | **Get** /sapi/v1/simple-earn/flexible/history/collateralRecord | Get Collateral Record (USER_DATA)
+[**GetFlexiblePersonalLeftQuota**](FlexibleLockedAPI.md#GetFlexiblePersonalLeftQuota) | **Get** /sapi/v1/simple-earn/flexible/personalLeftQuota | Get Flexible Personal Left Quota (USER_DATA)
+[**GetFlexibleProductPosition**](FlexibleLockedAPI.md#GetFlexibleProductPosition) | **Get** /sapi/v1/simple-earn/flexible/position | Get Flexible Product Position (USER_DATA)
+[**GetFlexibleRedemptionRecord**](FlexibleLockedAPI.md#GetFlexibleRedemptionRecord) | **Get** /sapi/v1/simple-earn/flexible/history/redemptionRecord | Get Flexible Redemption Record (USER_DATA)
+[**GetFlexibleRewardsHistory**](FlexibleLockedAPI.md#GetFlexibleRewardsHistory) | **Get** /sapi/v1/simple-earn/flexible/history/rewardsRecord | Get Flexible Rewards History (USER_DATA)
+[**GetFlexibleSubscriptionPreview**](FlexibleLockedAPI.md#GetFlexibleSubscriptionPreview) | **Get** /sapi/v1/simple-earn/flexible/subscriptionPreview | Get Flexible Subscription Preview (USER_DATA)
+[**GetFlexibleSubscriptionRecord**](FlexibleLockedAPI.md#GetFlexibleSubscriptionRecord) | **Get** /sapi/v1/simple-earn/flexible/history/subscriptionRecord | Get Flexible Subscription Record (USER_DATA)
+[**GetLockedPersonalLeftQuota**](FlexibleLockedAPI.md#GetLockedPersonalLeftQuota) | **Get** /sapi/v1/simple-earn/locked/personalLeftQuota | Get Locked Personal Left Quota (USER_DATA)
+[**GetLockedProductPosition**](FlexibleLockedAPI.md#GetLockedProductPosition) | **Get** /sapi/v1/simple-earn/locked/position | Get Locked Product Position (USER_DATA)
+[**GetLockedRedemptionRecord**](FlexibleLockedAPI.md#GetLockedRedemptionRecord) | **Get** /sapi/v1/simple-earn/locked/history/redemptionRecord | Get Locked Redemption Record (USER_DATA)
+[**GetLockedRewardsHistory**](FlexibleLockedAPI.md#GetLockedRewardsHistory) | **Get** /sapi/v1/simple-earn/locked/history/rewardsRecord | Get Locked Rewards History (USER_DATA)
+[**GetLockedSubscriptionPreview**](FlexibleLockedAPI.md#GetLockedSubscriptionPreview) | **Get** /sapi/v1/simple-earn/locked/subscriptionPreview | Get Locked Subscription Preview (USER_DATA)
+[**GetLockedSubscriptionRecord**](FlexibleLockedAPI.md#GetLockedSubscriptionRecord) | **Get** /sapi/v1/simple-earn/locked/history/subscriptionRecord | Get Locked Subscription Record (USER_DATA)
+[**GetRateHistory**](FlexibleLockedAPI.md#GetRateHistory) | **Get** /sapi/v1/simple-earn/flexible/history/rateHistory | Get Rate History (USER_DATA)
+[**GetSimpleEarnFlexibleProductList**](FlexibleLockedAPI.md#GetSimpleEarnFlexibleProductList) | **Get** /sapi/v1/simple-earn/flexible/list | Get Simple Earn Flexible Product List (USER_DATA)
+[**GetSimpleEarnLockedProductList**](FlexibleLockedAPI.md#GetSimpleEarnLockedProductList) | **Get** /sapi/v1/simple-earn/locked/list | Get Simple Earn Locked Product List (USER_DATA)
+[**RedeemFlexibleProduct**](FlexibleLockedAPI.md#RedeemFlexibleProduct) | **Post** /sapi/v1/simple-earn/flexible/redeem | Redeem Flexible Product (TRADE)
+[**RedeemLockedProduct**](FlexibleLockedAPI.md#RedeemLockedProduct) | **Post** /sapi/v1/simple-earn/locked/redeem | Redeem Locked Product (TRADE)
+[**SetFlexibleAutoSubscribe**](FlexibleLockedAPI.md#SetFlexibleAutoSubscribe) | **Post** /sapi/v1/simple-earn/flexible/setAutoSubscribe | Set Flexible Auto Subscribe (USER_DATA)
+[**SetLockedAutoSubscribe**](FlexibleLockedAPI.md#SetLockedAutoSubscribe) | **Post** /sapi/v1/simple-earn/locked/setAutoSubscribe | Set Locked Auto Subscribe (USER_DATA)
+[**SetLockedProductRedeemOption**](FlexibleLockedAPI.md#SetLockedProductRedeemOption) | **Post** /sapi/v1/simple-earn/locked/setRedeemOption | Set Locked Product Redeem Option (USER_DATA)
+[**SimpleAccount**](FlexibleLockedAPI.md#SimpleAccount) | **Get** /sapi/v1/simple-earn/account | Simple Account (USER_DATA)
+[**SubscribeFlexibleProduct**](FlexibleLockedAPI.md#SubscribeFlexibleProduct) | **Post** /sapi/v1/simple-earn/flexible/subscribe | Subscribe Flexible Product (TRADE)
+[**SubscribeLockedProduct**](FlexibleLockedAPI.md#SubscribeLockedProduct) | **Post** /sapi/v1/simple-earn/locked/subscribe | Subscribe Locked Product (TRADE)
 
 
 ## GetCollateralRecord
 
 > GetCollateralRecordResponse GetCollateralRecord(ctx).ProductId(productId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Collateral Record(USER_DATA)
+Get Collateral Record (USER_DATA)
 
 
 ### Example
@@ -56,8 +56,8 @@ func main() {
 	productId := "1" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -89,8 +89,8 @@ Name          | Type          | Description   | Notes
  **productId** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -112,7 +112,7 @@ No authorization required
 
 > GetFlexiblePersonalLeftQuotaResponse GetFlexiblePersonalLeftQuota(ctx).ProductId(productId).RecvWindow(recvWindow).Execute()
 
-Get Flexible Personal Left Quota(USER_DATA)
+Get Flexible Personal Left Quota (USER_DATA)
 
 
 ### Example
@@ -182,7 +182,7 @@ No authorization required
 
 > GetFlexibleProductPositionResponse GetFlexibleProductPosition(ctx).Asset(asset).ProductId(productId).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Flexible Product Position(USER_DATA)
+Get Flexible Product Position (USER_DATA)
 
 
 ### Example
@@ -201,10 +201,10 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	productId := "1" // string |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -233,10 +233,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **productId** | **string** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -258,7 +258,7 @@ No authorization required
 
 > GetFlexibleRedemptionRecordResponse GetFlexibleRedemptionRecord(ctx).ProductId(productId).RedeemId(redeemId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Flexible Redemption Record(USER_DATA)
+Get Flexible Redemption Record (USER_DATA)
 
 
 ### Example
@@ -279,11 +279,11 @@ import (
 func main() {
 	productId := "1" // string |  (optional)
 	redeemId := "1" // string |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -314,11 +314,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
  **redeemId** | **string** |  | 
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -338,9 +338,9 @@ No authorization required
 
 ## GetFlexibleRewardsHistory
 
-> GetFlexibleRewardsHistoryResponse GetFlexibleRewardsHistory(ctx).Type(type_).ProductId(productId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> GetFlexibleRewardsHistoryResponse GetFlexibleRewardsHistory(ctx).ProductId(productId).Asset(asset).StartTime(startTime).EndTime(endTime).Type(type_).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Flexible Rewards History(USER_DATA)
+Get Flexible Rewards History (USER_DATA)
 
 
 ### Example
@@ -359,13 +359,13 @@ import (
 )
 
 func main() {
-	type_ := "s" // string | FAST or STANDARD, defaults to STANDARD
 	productId := "1" // string |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	type_ := models.GetFlexibleRewardsHistoryTypeParameterBonus // GetFlexibleRewardsHistoryTypeParameter | `BONUS` - Bonus tiered APR, `REALTIME` - Real-time APR, `REWARDS` - Historical rewards, `ALL` - All types. Default: `ALL` (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -375,7 +375,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSimpleEarnClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleRewardsHistory(context.Background()).Type(type_).ProductId(productId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleRewardsHistory(context.Background()).ProductId(productId).Asset(asset).StartTime(startTime).EndTime(endTime).Type(type_).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `FlexibleLockedAPI.GetFlexibleRewardsHistory``: %v\n", err)
 		return
@@ -394,13 +394,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** | FAST or STANDARD, defaults to STANDARD | 
  **productId** | **string** |  | 
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **type_** | [**GetFlexibleRewardsHistoryTypeParameter**](GetFlexibleRewardsHistoryTypeParameter.md) | &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR, &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default: &#x60;ALL&#x60; | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -422,7 +422,7 @@ No authorization required
 
 > GetFlexibleSubscriptionPreviewResponse GetFlexibleSubscriptionPreview(ctx).ProductId(productId).Amount(amount).RecvWindow(recvWindow).Execute()
 
-Get Flexible Subscription Preview(USER_DATA)
+Get Flexible Subscription Preview (USER_DATA)
 
 
 ### Example
@@ -442,7 +442,7 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount
+	amount := float32(1.0) // float32 | 
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -472,7 +472,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **amount** | **float32** | Amount | 
+ **amount** | **float32** |  | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -494,7 +494,7 @@ No authorization required
 
 > GetFlexibleSubscriptionRecordResponse GetFlexibleSubscriptionRecord(ctx).ProductId(productId).PurchaseId(purchaseId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Flexible Subscription Record(USER_DATA)
+Get Flexible Subscription Record (USER_DATA)
 
 
 ### Example
@@ -515,11 +515,11 @@ import (
 func main() {
 	productId := "1" // string |  (optional)
 	purchaseId := "1" // string |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -550,11 +550,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
  **purchaseId** | **string** |  | 
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -576,7 +576,7 @@ No authorization required
 
 > GetLockedPersonalLeftQuotaResponse GetLockedPersonalLeftQuota(ctx).ProjectId(projectId).RecvWindow(recvWindow).Execute()
 
-Get Locked Personal Left Quota(USER_DATA)
+Get Locked Personal Left Quota (USER_DATA)
 
 
 ### Example
@@ -646,7 +646,7 @@ No authorization required
 
 > GetLockedProductPositionResponse GetLockedProductPosition(ctx).Asset(asset).PositionId(positionId).ProjectId(projectId).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Locked Product Position
+Get Locked Product Position (USER_DATA)
 
 
 ### Example
@@ -665,11 +665,11 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDC or USDT (optional)
-	positionId := int64(1) // int64 |  (optional)
+	asset := "USDC" // string |  (optional)
+	positionId := "1" // string |  (optional)
 	projectId := "1" // string |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -698,11 +698,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDC or USDT | 
- **positionId** | **int64** |  | 
+ **asset** | **string** |  | 
+ **positionId** | **string** |  | 
  **projectId** | **string** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -724,7 +724,7 @@ No authorization required
 
 > GetLockedRedemptionRecordResponse GetLockedRedemptionRecord(ctx).PositionId(positionId).RedeemId(redeemId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Locked Redemption Record(USER_DATA)
+Get Locked Redemption Record (USER_DATA)
 
 
 ### Example
@@ -743,13 +743,13 @@ import (
 )
 
 func main() {
-	positionId := int64(1) // int64 |  (optional)
+	positionId := "1" // string |  (optional)
 	redeemId := "1" // string |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -778,13 +778,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **positionId** | **int64** |  | 
+ **positionId** | **string** |  | 
  **redeemId** | **string** |  | 
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -806,7 +806,7 @@ No authorization required
 
 > GetLockedRewardsHistoryResponse GetLockedRewardsHistory(ctx).PositionId(positionId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Locked Rewards History(USER_DATA)
+Get Locked Rewards History (USER_DATA)
 
 
 ### Example
@@ -825,12 +825,12 @@ import (
 )
 
 func main() {
-	positionId := int64(1) // int64 |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	positionId := "1" // string |  (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -859,12 +859,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **positionId** | **int64** |  | 
- **asset** | **string** | USDC or USDT | 
+ **positionId** | **string** |  | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -886,7 +886,7 @@ No authorization required
 
 > GetLockedSubscriptionPreviewResponse GetLockedSubscriptionPreview(ctx).ProjectId(projectId).Amount(amount).AutoSubscribe(autoSubscribe).RecvWindow(recvWindow).Execute()
 
-Get Locked Subscription Preview(USER_DATA)
+Get Locked Subscription Preview (USER_DATA)
 
 
 ### Example
@@ -906,8 +906,8 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount
-	autoSubscribe := true // bool | true or false, default true. (optional)
+	amount := float32(1.0) // float32 | 
+	autoSubscribe := true // bool | default true. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -937,8 +937,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** | Amount | 
- **autoSubscribe** | **bool** | true or false, default true. | 
+ **amount** | **float32** |  | 
+ **autoSubscribe** | **bool** | default true. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -960,7 +960,7 @@ No authorization required
 
 > GetLockedSubscriptionRecordResponse GetLockedSubscriptionRecord(ctx).PurchaseId(purchaseId).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Locked Subscription Record(USER_DATA)
+Get Locked Subscription Record (USER_DATA)
 
 
 ### Example
@@ -980,11 +980,11 @@ import (
 
 func main() {
 	purchaseId := "1" // string |  (optional)
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := "USDC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1014,11 +1014,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **purchaseId** | **string** |  | 
- **asset** | **string** | USDC or USDT | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -1040,7 +1040,7 @@ No authorization required
 
 > GetRateHistoryResponse GetRateHistory(ctx).ProductId(productId).AprPeriod(aprPeriod).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Rate History(USER_DATA)
+Get Rate History (USER_DATA)
 
 
 ### Example
@@ -1060,11 +1060,11 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	aprPeriod := "DAY" // string | \"DAY\",\"YEAR\",default\"DAY\" (optional)
+	aprPeriod := models.GetRateHistoryAprPeriodParameterDay // GetRateHistoryAprPeriodParameter |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 | Number of results per page (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1094,11 +1094,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **aprPeriod** | **string** | \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot; | 
+ **aprPeriod** | [**GetRateHistoryAprPeriodParameter**](GetRateHistoryAprPeriodParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** | Number of results per page | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -1120,7 +1120,7 @@ No authorization required
 
 > GetSimpleEarnFlexibleProductListResponse GetSimpleEarnFlexibleProductList(ctx).Asset(asset).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Simple Earn Flexible Product List(USER_DATA)
+Get Simple Earn Flexible Product List (USER_DATA)
 
 
 ### Example
@@ -1139,9 +1139,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDC or USDT (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	asset := "USDC" // string |  (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1170,9 +1170,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDC or USDT | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **asset** | **string** |  | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -1194,7 +1194,7 @@ No authorization required
 
 > GetSimpleEarnLockedProductListResponse GetSimpleEarnLockedProductList(ctx).Asset(asset).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Simple Earn Locked Product List(USER_DATA)
+Get Simple Earn Locked Product List (USER_DATA)
 
 
 ### Example
@@ -1213,9 +1213,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDC or USDT (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
+	asset := "USDC" // string |  (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1244,9 +1244,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDC or USDT | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
+ **asset** | **string** |  | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -1268,7 +1268,7 @@ No authorization required
 
 > RedeemFlexibleProductResponse RedeemFlexibleProduct(ctx).ProductId(productId).RedeemAll(redeemAll).Amount(amount).DestAccount(destAccount).RecvWindow(recvWindow).Execute()
 
-Redeem Flexible Product(TRADE)
+Redeem Flexible Product (TRADE)
 
 
 ### Example
@@ -1288,10 +1288,10 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	redeemAll := false // bool | true or false, default to false (optional)
+	redeemAll := false // bool |  (optional)
 	amount := float32(1.0) // float32 | if redeemAll is false, amount is mandatory (optional)
-	destAccount := "SPOT" // string | `SPOT`,`FUND`, default `SPOT` (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	destAccount := models.RedeemFlexibleProductDestAccountParameterSpot // RedeemFlexibleProductDestAccountParameter |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1320,10 +1320,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **redeemAll** | **bool** | true or false, default to false | 
+ **redeemAll** | **bool** |  | 
  **amount** | **float32** | if redeemAll is false, amount is mandatory | 
- **destAccount** | **string** | &#x60;SPOT&#x60;,&#x60;FUND&#x60;, default &#x60;SPOT&#x60; | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **destAccount** | [**RedeemFlexibleProductDestAccountParameter**](RedeemFlexibleProductDestAccountParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1344,7 +1344,7 @@ No authorization required
 
 > RedeemLockedProductResponse RedeemLockedProduct(ctx).PositionId(positionId).RecvWindow(recvWindow).Execute()
 
-Redeem Locked Product(TRADE)
+Redeem Locked Product (TRADE)
 
 
 ### Example
@@ -1363,8 +1363,8 @@ import (
 )
 
 func main() {
-	positionId := "1" // string | 
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	positionId := "1" // string | Locked product position ID
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1392,8 +1392,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **positionId** | **string** |  | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **positionId** | **string** | Locked product position ID | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1414,7 +1414,7 @@ No authorization required
 
 > SetFlexibleAutoSubscribeResponse SetFlexibleAutoSubscribe(ctx).ProductId(productId).AutoSubscribe(autoSubscribe).RecvWindow(recvWindow).Execute()
 
-Set Flexible Auto Subscribe(USER_DATA)
+Set Flexible Auto Subscribe (USER_DATA)
 
 
 ### Example
@@ -1434,8 +1434,8 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	autoSubscribe := true // bool | true or false
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	autoSubscribe := true // bool | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1464,8 +1464,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **autoSubscribe** | **bool** | true or false | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **autoSubscribe** | **bool** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1486,7 +1486,7 @@ No authorization required
 
 > SetLockedAutoSubscribeResponse SetLockedAutoSubscribe(ctx).PositionId(positionId).AutoSubscribe(autoSubscribe).RecvWindow(recvWindow).Execute()
 
-Set Locked Auto Subscribe(USER_DATA)
+Set Locked Auto Subscribe (USER_DATA)
 
 
 ### Example
@@ -1506,8 +1506,8 @@ import (
 
 func main() {
 	positionId := "1" // string | 
-	autoSubscribe := true // bool | true or false
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	autoSubscribe := true // bool | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1536,8 +1536,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** |  | 
- **autoSubscribe** | **bool** | true or false | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **autoSubscribe** | **bool** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1558,7 +1558,7 @@ No authorization required
 
 > SetLockedProductRedeemOptionResponse SetLockedProductRedeemOption(ctx).PositionId(positionId).RedeemTo(redeemTo).RecvWindow(recvWindow).Execute()
 
-Set Locked Product Redeem Option(USER_DATA)
+Set Locked Product Redeem Option (USER_DATA)
 
 
 ### Example
@@ -1578,8 +1578,8 @@ import (
 
 func main() {
 	positionId := "1" // string | 
-	redeemTo := "redeemTo_example" // string | `SPOT`,'FLEXIBLE'
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	redeemTo := models.SetLockedProductRedeemOptionRedeemToParameterSpot // SetLockedProductRedeemOptionRedeemToParameter | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1608,8 +1608,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** |  | 
- **redeemTo** | **string** | &#x60;SPOT&#x60;,&#39;FLEXIBLE&#39; | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **redeemTo** | [**SetLockedProductRedeemOptionRedeemToParameter**](SetLockedProductRedeemOptionRedeemToParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1630,7 +1630,7 @@ No authorization required
 
 > SimpleAccountResponse SimpleAccount(ctx).RecvWindow(recvWindow).Execute()
 
-Simple Account(USER_DATA)
+Simple Account (USER_DATA)
 
 
 ### Example
@@ -1698,7 +1698,7 @@ No authorization required
 
 > SubscribeFlexibleProductResponse SubscribeFlexibleProduct(ctx).ProductId(productId).Amount(amount).AutoSubscribe(autoSubscribe).SourceAccount(sourceAccount).RecvWindow(recvWindow).Execute()
 
-Subscribe Flexible Product(TRADE)
+Subscribe Flexible Product (TRADE)
 
 
 ### Example
@@ -1718,10 +1718,10 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount
-	autoSubscribe := true // bool | true or false, default true. (optional)
-	sourceAccount := "SPOT" // string | `SPOT`,`FUND`,`ALL`, default `SPOT` (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	amount := float32(1.0) // float32 | 
+	autoSubscribe := true // bool |  (optional)
+	sourceAccount := models.SubscribeFlexibleProductSourceAccountParameterSpot // SubscribeFlexibleProductSourceAccountParameter |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1750,10 +1750,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **amount** | **float32** | Amount | 
- **autoSubscribe** | **bool** | true or false, default true. | 
- **sourceAccount** | **string** | &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60; | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **amount** | **float32** |  | 
+ **autoSubscribe** | **bool** |  | 
+ **sourceAccount** | [**SubscribeFlexibleProductSourceAccountParameter**](SubscribeFlexibleProductSourceAccountParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -1774,7 +1774,7 @@ No authorization required
 
 > SubscribeLockedProductResponse SubscribeLockedProduct(ctx).ProjectId(projectId).Amount(amount).AutoSubscribe(autoSubscribe).SourceAccount(sourceAccount).RedeemTo(redeemTo).RecvWindow(recvWindow).Execute()
 
-Subscribe Locked Product(TRADE)
+Subscribe Locked Product (TRADE)
 
 
 ### Example
@@ -1794,11 +1794,11 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount
-	autoSubscribe := true // bool | true or false, default true. (optional)
-	sourceAccount := "SPOT" // string | `SPOT`,`FUND`,`ALL`, default `SPOT` (optional)
-	redeemTo := "SPOT" // string | `SPOT`,`FLEXIBLE`, default `SPOT` (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	amount := float32(1.0) // float32 | 
+	autoSubscribe := false // bool |  (optional)
+	sourceAccount := models.SubscribeFlexibleProductSourceAccountParameterSpot // SubscribeFlexibleProductSourceAccountParameter |  (optional)
+	redeemTo := models.SetLockedProductRedeemOptionRedeemToParameterSpot // SetLockedProductRedeemOptionRedeemToParameter |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1827,11 +1827,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** | Amount | 
- **autoSubscribe** | **bool** | true or false, default true. | 
- **sourceAccount** | **string** | &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60; | 
- **redeemTo** | **string** | &#x60;SPOT&#x60;,&#x60;FLEXIBLE&#x60;, default &#x60;SPOT&#x60; | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **amount** | **float32** |  | 
+ **autoSubscribe** | **bool** |  | 
+ **sourceAccount** | [**SubscribeFlexibleProductSourceAccountParameter**](SubscribeFlexibleProductSourceAccountParameter.md) |  | 
+ **redeemTo** | [**SetLockedProductRedeemOptionRedeemToParameter**](SetLockedProductRedeemOptionRedeemToParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 

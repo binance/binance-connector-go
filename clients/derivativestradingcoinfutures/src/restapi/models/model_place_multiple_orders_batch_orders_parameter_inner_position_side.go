@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -11,7 +11,7 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide the model 'PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide'
+// PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
 type PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide string
 
 // List of placeMultipleOrders_batchOrders_parameter_inner_positionSide

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &UserCommissionRateResponse{}
 
 // UserCommissionRateResponse struct for UserCommissionRateResponse
 type UserCommissionRateResponse struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	MakerCommissionRate  *string `json:"makerCommissionRate,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// 0.015%
+	MakerCommissionRate *string `json:"makerCommissionRate,omitempty"`
+	// Taker commission rate.
 	TakerCommissionRate  *string `json:"takerCommissionRate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

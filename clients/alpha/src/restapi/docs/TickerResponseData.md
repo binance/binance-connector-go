@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PriceChange** | Pointer to **string** |  | [optional] 
-**PriceChangePercent** | Pointer to **string** |  | [optional] 
-**WeightedAvgPrice** | Pointer to **string** |  | [optional] 
-**LastPrice** | Pointer to **string** |  | [optional] 
-**LastQty** | Pointer to **string** |  | [optional] 
-**OpenPrice** | Pointer to **string** |  | [optional] 
-**HighPrice** | Pointer to **string** |  | [optional] 
-**LowPrice** | Pointer to **string** |  | [optional] 
-**Volume** | Pointer to **string** |  | [optional] 
-**QuoteVolume** | Pointer to **string** |  | [optional] 
-**OpenTime** | Pointer to **int64** |  | [optional] 
-**CloseTime** | Pointer to **int64** |  | [optional] 
-**FirstId** | Pointer to **int64** |  | [optional] 
-**LastId** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading pair symbol. | [optional] 
+**PriceChange** | Pointer to **string** | Absolute price change in the 24h window. | [optional] 
+**PriceChangePercent** | Pointer to **string** | Percentage price change in the 24h window. | [optional] 
+**WeightedAvgPrice** | Pointer to **string** | Weighted average price in the 24h window. | [optional] 
+**LastPrice** | Pointer to **string** | Latest traded price. | [optional] 
+**LastQty** | Pointer to **string** | Quantity of the latest trade. | [optional] 
+**OpenPrice** | Pointer to **string** | Opening price of the 24h window. | [optional] 
+**HighPrice** | Pointer to **string** | Highest price in the 24h window. | [optional] 
+**LowPrice** | Pointer to **string** | Lowest price in the 24h window. | [optional] 
+**Volume** | Pointer to **string** | Base asset volume in the 24h window. | [optional] 
+**QuoteVolume** | Pointer to **string** | Quote asset volume in the 24h window. | [optional] 
+**OpenTime** | Pointer to **int64** | Start time of the 24h window (milliseconds). | [optional] 
+**CloseTime** | Pointer to **int64** | End time of the 24h window (milliseconds). | [optional] 
+**FirstId** | Pointer to **int64** | First trade ID in the 24h window. | [optional] 
+**LastId** | Pointer to **int64** | Last trade ID in the 24h window. | [optional] 
+**Count** | Pointer to **int64** | Total number of trades in the 24h window. | [optional] 
 
 ## Methods
 

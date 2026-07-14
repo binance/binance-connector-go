@@ -22,7 +22,7 @@ func MarginTransferForSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.MarginTransferForSubAccount(context.Background()).Email("sub-account-email@email.com").Asset("asset_example").Amount(1.0).Type(789).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.MarginTransferForSubAccount(context.Background()).Email("123@test.com").Asset("BTC").Amount(1.0).Type(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

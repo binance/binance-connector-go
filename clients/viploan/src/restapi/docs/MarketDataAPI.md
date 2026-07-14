@@ -4,18 +4,18 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetBorrowInterestRate**](MarketDataAPI.md#GetBorrowInterestRate) | **Get** /sapi/v1/loan/vip/request/interestRate | Get Borrow Interest Rate(USER_DATA)
-[**GetCollateralAssetData**](MarketDataAPI.md#GetCollateralAssetData) | **Get** /sapi/v1/loan/vip/collateral/data | Get Collateral Asset Data(USER_DATA)
-[**GetLoanableAssetsData**](MarketDataAPI.md#GetLoanableAssetsData) | **Get** /sapi/v1/loan/vip/loanable/data | Get Loanable Assets Data(USER_DATA)
+[**GetBorrowInterestRate**](MarketDataAPI.md#GetBorrowInterestRate) | **Get** /sapi/v1/loan/vip/request/interestRate | Get Borrow Interest Rate (USER_DATA)
+[**GetCollateralAssetData**](MarketDataAPI.md#GetCollateralAssetData) | **Get** /sapi/v1/loan/vip/collateral/data | Get Collateral Asset Data (USER_DATA)
+[**GetLoanableAssetsData**](MarketDataAPI.md#GetLoanableAssetsData) | **Get** /sapi/v1/loan/vip/loanable/data | Get Loanable Assets Data (USER_DATA)
 [**GetVIPLoanInterestRateHistory**](MarketDataAPI.md#GetVIPLoanInterestRateHistory) | **Get** /sapi/v1/loan/vip/interestRateHistory | Get VIP Loan Interest Rate History (USER_DATA)
-[**QueryVIPLoanFixedRateMarket**](MarketDataAPI.md#QueryVIPLoanFixedRateMarket) | **Get** /sapi/v1/loan/vip/fixed/market | Query VIP Loan Fixed Rate Market(USER_DATA)
+[**QueryVIPLoanFixedRateMarket**](MarketDataAPI.md#QueryVIPLoanFixedRateMarket) | **Get** /sapi/v1/loan/vip/fixed/market | Query VIP Loan Fixed Rate Market (USER_DATA)
 
 
 ## GetBorrowInterestRate
 
 > GetBorrowInterestRateResponse GetBorrowInterestRate(ctx).LoanCoin(loanCoin).RecvWindow(recvWindow).Execute()
 
-Get Borrow Interest Rate(USER_DATA)
+Get Borrow Interest Rate (USER_DATA)
 
 
 ### Example
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
+	loanCoin := "BTC" // string | Max 10 assets, Multiple split by \",\"
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -63,7 +63,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **loanCoin** | **string** |  | 
+ **loanCoin** | **string** | Max 10 assets, Multiple split by \&quot;,\&quot; | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -85,7 +85,7 @@ No authorization required
 
 > GetCollateralAssetDataResponse GetCollateralAssetData(ctx).CollateralCoin(collateralCoin).RecvWindow(recvWindow).Execute()
 
-Get Collateral Asset Data(USER_DATA)
+Get Collateral Asset Data (USER_DATA)
 
 
 ### Example
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	collateralCoin := "collateralCoin_example" // string |  (optional)
+	collateralCoin := "BUSD" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -155,7 +155,7 @@ No authorization required
 
 > GetLoanableAssetsDataResponse GetLoanableAssetsData(ctx).LoanCoin(loanCoin).VipLevel(vipLevel).RecvWindow(recvWindow).Execute()
 
-Get Loanable Assets Data(USER_DATA)
+Get Loanable Assets Data (USER_DATA)
 
 
 ### Example
@@ -174,8 +174,8 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string |  (optional)
-	vipLevel := int64(1) // int64 | default:user's vip level (optional)
+	loanCoin := "BUSD" // string |  (optional)
+	vipLevel := int64(1) // int64 | Defaults to the user's VIP level. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -205,7 +205,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
- **vipLevel** | **int64** | default:user&#39;s vip level | 
+ **vipLevel** | **int64** | Defaults to the user&#39;s VIP level. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -246,12 +246,12 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string | 
+	coin := "USDT" // string | 
 	recvWindow := int64(5000) // int64 | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Page number, default 1, minimum 1 (optional)
-	limit := int64(10) // int64 | Default: 10; max: 100 (optional)
+	startTime := int64(1623319461670) // int64 | If both startTime and endTime are omitted, the most recent 90 days are returned. (optional)
+	endTime := int64(1641782889000) // int64 | Maximum interval between startTime and endTime is 180 days. Time is based on UTC+0. (optional)
+	current := int64(1) // int64 | Current page number, starting from 1. (optional)
+	limit := int64(10) // int64 | Number of records per page. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -281,10 +281,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
  **recvWindow** | **int64** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **current** | **int64** | Page number, default 1, minimum 1 | 
- **limit** | **int64** | Default: 10; max: 100 | 
+ **startTime** | **int64** | If both startTime and endTime are omitted, the most recent 90 days are returned. | 
+ **endTime** | **int64** | Maximum interval between startTime and endTime is 180 days. Time is based on UTC+0. | 
+ **current** | **int64** | Current page number, starting from 1. | 
+ **limit** | **int64** | Number of records per page. | 
 
 ### Return type
 
@@ -305,7 +305,7 @@ No authorization required
 
 > QueryVIPLoanFixedRateMarketResponse QueryVIPLoanFixedRateMarket(ctx).LoanCoin(loanCoin).Duration(duration).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Query VIP Loan Fixed Rate Market(USER_DATA)
+Query VIP Loan Fixed Rate Market (USER_DATA)
 
 
 ### Example
@@ -324,11 +324,11 @@ import (
 )
 
 func main() {
-	loanCoin := "loanCoin_example" // string | 
-	duration := int64(789) // int64 | Duration in days, minimum 1 (optional)
+	loanCoin := "USDT" // string | Loan coin
+	duration := int64(30) // int64 | Duration in days, minimum 1 (optional)
 	current := int64(1) // int64 | Page number, default 1, minimum 1 (optional)
-	size := int64(5000) // int64 | Page size, default 10, range [1, 100] (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	size := int64(10) // int64 | Page size, default 10, range [1, 100] (optional)
+	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000` (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -356,11 +356,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **loanCoin** | **string** |  | 
+ **loanCoin** | **string** | Loan coin | 
  **duration** | **int64** | Duration in days, minimum 1 | 
  **current** | **int64** | Page number, default 1, minimum 1 | 
  **size** | **int64** | Page size, default 10, range [1, 100] | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60; | 
 
 ### Return type
 

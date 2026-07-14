@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TxId** | Pointer to **int64** |  | [optional] 
-**InterestAccuredTime** | Pointer to **int64** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**RawAsset** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**TxId** | Pointer to **int64** | Tx ID. | [optional] 
+**InterestAccuredTime** | Pointer to **int64** | Interest Accured Time. | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**RawAsset** | Pointer to **string** | Raw Asset. | [optional] 
+**Principal** | Pointer to **string** | Principal repaid | [optional] 
+**Interest** | Pointer to **string** | Interest repaid | [optional] 
+**InterestRate** | Pointer to **string** | daily interest rate | [optional] 
+**Type** | Pointer to **string** | Normal order type after trigger if appliable | [optional] 
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**Cw** | Pointer to **string** |  | [optional] 
-**P** | Pointer to [**[]MarginCallPInner**](MarginCallPInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**I** | Pointer to **string** | Account Alias | [optional] 
+**Cw** | Pointer to **string** | Cross Wallet Balance. Only pushed with crossed position margin call | [optional] 
+**P** | Pointer to [**[]MarginCallPInner**](MarginCallPInner.md) | Position(s) of Margin Call | [optional] 
 
 ## Methods
 

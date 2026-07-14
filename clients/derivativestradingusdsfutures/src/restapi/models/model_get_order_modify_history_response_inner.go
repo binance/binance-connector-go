@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,13 @@ var _ common.MappedNullable = &GetOrderModifyHistoryResponseInner{}
 
 // GetOrderModifyHistoryResponseInner struct for GetOrderModifyHistoryResponseInner
 type GetOrderModifyHistoryResponseInner struct {
-	AmendmentId          *int64                                       `json:"amendmentId,omitempty"`
-	Symbol               *string                                      `json:"symbol,omitempty"`
-	Pair                 *string                                      `json:"pair,omitempty"`
-	OrderId              *int64                                       `json:"orderId,omitempty"`
-	ClientOrderId        *string                                      `json:"clientOrderId,omitempty"`
+	// Order modification ID
+	AmendmentId   *int64  `json:"amendmentId,omitempty"`
+	Symbol        *string `json:"symbol,omitempty"`
+	Pair          *string `json:"pair,omitempty"`
+	OrderId       *int64  `json:"orderId,omitempty"`
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Order modification time
 	Time                 *int64                                       `json:"time,omitempty"`
 	Amendment            *GetOrderModifyHistoryResponseInnerAmendment `json:"amendment,omitempty"`
 	AdditionalProperties map[string]interface{}

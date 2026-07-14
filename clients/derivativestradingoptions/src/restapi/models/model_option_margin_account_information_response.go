@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &OptionMarginAccountInformationResponse{}
 
 // OptionMarginAccountInformationResponse struct for OptionMarginAccountInformationResponse
 type OptionMarginAccountInformationResponse struct {
-	Asset                []OptionMarginAccountInformationResponseAssetInner `json:"asset,omitempty"`
-	Greek                []OptionMarginAccountInformationResponseGreekInner `json:"greek,omitempty"`
-	Time                 *int64                                             `json:"time,omitempty"`
-	CanTrade             *bool                                              `json:"canTrade,omitempty"`
-	CanDeposit           *bool                                              `json:"canDeposit,omitempty"`
-	CanWithdraw          *bool                                              `json:"canWithdraw,omitempty"`
-	ReduceOnly           *bool                                              `json:"reduceOnly,omitempty"`
-	TradeGroupId         *int64                                             `json:"tradeGroupId,omitempty"`
+	// asset
+	Asset []OptionMarginAccountInformationResponseAssetInner `json:"asset,omitempty"`
+	// greek
+	Greek []OptionMarginAccountInformationResponseGreekInner `json:"greek,omitempty"`
+	// time
+	Time *int64 `json:"time,omitempty"`
+	// can Trade
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// can Deposit
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// can Withdraw
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// reduce Only
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Trade group ID
+	TradeGroupId         *int64 `json:"tradeGroupId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

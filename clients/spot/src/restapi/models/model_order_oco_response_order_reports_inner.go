@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -31,9 +31,9 @@ type OrderOcoResponseOrderReportsInner struct {
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`
 	Side                    *string `json:"side,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
 	WorkingTime             *int64  `json:"workingTime,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	StopPrice               *string `json:"stopPrice,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -504,38 +504,6 @@ func (o *OrderOcoResponseOrderReportsInner) SetSide(v string) {
 	o.Side = &v
 }
 
-// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *OrderOcoResponseOrderReportsInner) GetStopPrice() string {
-	if o == nil || common.IsNil(o.StopPrice) {
-		var ret string
-		return ret
-	}
-	return *o.StopPrice
-}
-
-// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.StopPrice) {
-		return nil, false
-	}
-	return o.StopPrice, true
-}
-
-// HasStopPrice returns a boolean if a field has been set.
-func (o *OrderOcoResponseOrderReportsInner) HasStopPrice() bool {
-	if o != nil && !common.IsNil(o.StopPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
-func (o *OrderOcoResponseOrderReportsInner) SetStopPrice(v string) {
-	o.StopPrice = &v
-}
-
 // GetWorkingTime returns the WorkingTime field value if set, zero value otherwise.
 func (o *OrderOcoResponseOrderReportsInner) GetWorkingTime() int64 {
 	if o == nil || common.IsNil(o.WorkingTime) {
@@ -600,6 +568,38 @@ func (o *OrderOcoResponseOrderReportsInner) SetSelfTradePreventionMode(v string)
 	o.SelfTradePreventionMode = &v
 }
 
+// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
+func (o *OrderOcoResponseOrderReportsInner) GetStopPrice() string {
+	if o == nil || common.IsNil(o.StopPrice) {
+		var ret string
+		return ret
+	}
+	return *o.StopPrice
+}
+
+// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.StopPrice) {
+		return nil, false
+	}
+	return o.StopPrice, true
+}
+
+// HasStopPrice returns a boolean if a field has been set.
+func (o *OrderOcoResponseOrderReportsInner) HasStopPrice() bool {
+	if o != nil && !common.IsNil(o.StopPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
+func (o *OrderOcoResponseOrderReportsInner) SetStopPrice(v string) {
+	o.StopPrice = &v
+}
+
 func (o OrderOcoResponseOrderReportsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -652,14 +652,14 @@ func (o OrderOcoResponseOrderReportsInner) ToMap() (map[string]interface{}, erro
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
-	if !common.IsNil(o.StopPrice) {
-		toSerialize["stopPrice"] = o.StopPrice
-	}
 	if !common.IsNil(o.WorkingTime) {
 		toSerialize["workingTime"] = o.WorkingTime
 	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
+	if !common.IsNil(o.StopPrice) {
+		toSerialize["stopPrice"] = o.StopPrice
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -697,9 +697,9 @@ func (o *OrderOcoResponseOrderReportsInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "side")
-		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "workingTime")
 		delete(additionalProperties, "selfTradePreventionMode")
+		delete(additionalProperties, "stopPrice")
 		o.AdditionalProperties = additionalProperties
 	}
 

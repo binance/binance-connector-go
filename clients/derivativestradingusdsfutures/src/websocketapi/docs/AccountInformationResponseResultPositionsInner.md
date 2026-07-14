@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**Isolated** | Pointer to **bool** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**MaxNotional** | Pointer to **string** |  | [optional] 
-**BidNotional** | Pointer to **string** |  | [optional] 
-**AskNotional** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**BreakEvenPrice** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol name | [optional] 
+**InitialMargin** | Pointer to **string** | total initial margin required with current mark price | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin required | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit | [optional] 
+**PositionInitialMargin** | Pointer to **string** | initial margin required for positions with current mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | initial margin required for open orders with current mark price | [optional] 
+**Leverage** | Pointer to **string** | current initial leverage | [optional] 
+**Isolated** | Pointer to **bool** | if the position is isolated | [optional] 
+**EntryPrice** | Pointer to **string** | average entry price | [optional] 
+**MaxNotional** | Pointer to **string** | maximum available notional with current leverage | [optional] 
+**BidNotional** | Pointer to **string** | bids notional, ignore | [optional] 
+**AskNotional** | Pointer to **string** | ask notional, ignore | [optional] 
+**PositionSide** | Pointer to **string** | position side | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**UpdateTime** | Pointer to **int64** | reserved property, please ignore | [optional] 
+**BreakEvenPrice** | Pointer to **string** | average entry price | [optional] 
 
 ## Methods
 

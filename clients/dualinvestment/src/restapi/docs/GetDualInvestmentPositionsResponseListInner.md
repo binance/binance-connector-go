@@ -4,19 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | positionId | [optional] 
 **InvestCoin** | Pointer to **string** |  | [optional] 
 **ExercisedCoin** | Pointer to **string** |  | [optional] 
 **SubscriptionAmount** | Pointer to **string** |  | [optional] 
 **StrikePrice** | Pointer to **string** |  | [optional] 
 **Duration** | Pointer to **int64** |  | [optional] 
 **SettleDate** | Pointer to **int64** |  | [optional] 
-**PurchaseStatus** | Pointer to **string** |  | [optional] 
+**PurchaseStatus** | Pointer to **string** | Purchase status. Possible values include PENDING, PURCHASE_SUCCESS, SETTLED, PURCHASE_FAIL, REFUNDING, REFUND_SUCCESS, and SETTLING. | [optional] 
 **Apr** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **PurchaseEndTime** | Pointer to **int64** |  | [optional] 
 **OptionType** | Pointer to **string** |  | [optional] 
-**AutoCompoundPlan** | Pointer to **string** |  | [optional] 
+**AutoCompoundPlan** | Pointer to **string** | NULL, STANDARD, ADVANCED | [optional] 
+**SubscriptionTime** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ SetAutoCompoundPlan sets AutoCompoundPlan field to given value.
 `func (o *GetDualInvestmentPositionsResponseListInner) HasAutoCompoundPlan() bool`
 
 HasAutoCompoundPlan returns a boolean if a field has been set.
+
+### GetSubscriptionTime
+
+`func (o *GetDualInvestmentPositionsResponseListInner) GetSubscriptionTime() int64`
+
+GetSubscriptionTime returns the SubscriptionTime field if non-nil, zero value otherwise.
+
+### GetSubscriptionTimeOk
+
+`func (o *GetDualInvestmentPositionsResponseListInner) GetSubscriptionTimeOk() (*int64, bool)`
+
+GetSubscriptionTimeOk returns a tuple with the SubscriptionTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionTime
+
+`func (o *GetDualInvestmentPositionsResponseListInner) SetSubscriptionTime(v int64)`
+
+SetSubscriptionTime sets SubscriptionTime field to given value.
+
+### HasSubscriptionTime
+
+`func (o *GetDualInvestmentPositionsResponseListInner) HasSubscriptionTime() bool`
+
+HasSubscriptionTime returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

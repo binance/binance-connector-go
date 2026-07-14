@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &OptionMarginAccountInformationResponseGreekInner{
 
 // OptionMarginAccountInformationResponseGreekInner struct for OptionMarginAccountInformationResponseGreekInner
 type OptionMarginAccountInformationResponseGreekInner struct {
-	Underlying           *string `json:"underlying,omitempty"`
-	Delta                *string `json:"delta,omitempty"`
-	Theta                *string `json:"theta,omitempty"`
-	Gamma                *string `json:"gamma,omitempty"`
+	// underlying
+	Underlying *string `json:"underlying,omitempty"`
+	// delta
+	Delta *string `json:"delta,omitempty"`
+	// gamma
+	Gamma *string `json:"gamma,omitempty"`
+	// theta
+	Theta *string `json:"theta,omitempty"`
+	// vega
 	Vega                 *string `json:"vega,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -108,38 +113,6 @@ func (o *OptionMarginAccountInformationResponseGreekInner) SetDelta(v string) {
 	o.Delta = &v
 }
 
-// GetTheta returns the Theta field value if set, zero value otherwise.
-func (o *OptionMarginAccountInformationResponseGreekInner) GetTheta() string {
-	if o == nil || common.IsNil(o.Theta) {
-		var ret string
-		return ret
-	}
-	return *o.Theta
-}
-
-// GetThetaOk returns a tuple with the Theta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OptionMarginAccountInformationResponseGreekInner) GetThetaOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Theta) {
-		return nil, false
-	}
-	return o.Theta, true
-}
-
-// HasTheta returns a boolean if a field has been set.
-func (o *OptionMarginAccountInformationResponseGreekInner) HasTheta() bool {
-	if o != nil && !common.IsNil(o.Theta) {
-		return true
-	}
-
-	return false
-}
-
-// SetTheta gets a reference to the given string and assigns it to the Theta field.
-func (o *OptionMarginAccountInformationResponseGreekInner) SetTheta(v string) {
-	o.Theta = &v
-}
-
 // GetGamma returns the Gamma field value if set, zero value otherwise.
 func (o *OptionMarginAccountInformationResponseGreekInner) GetGamma() string {
 	if o == nil || common.IsNil(o.Gamma) {
@@ -170,6 +143,38 @@ func (o *OptionMarginAccountInformationResponseGreekInner) HasGamma() bool {
 // SetGamma gets a reference to the given string and assigns it to the Gamma field.
 func (o *OptionMarginAccountInformationResponseGreekInner) SetGamma(v string) {
 	o.Gamma = &v
+}
+
+// GetTheta returns the Theta field value if set, zero value otherwise.
+func (o *OptionMarginAccountInformationResponseGreekInner) GetTheta() string {
+	if o == nil || common.IsNil(o.Theta) {
+		var ret string
+		return ret
+	}
+	return *o.Theta
+}
+
+// GetThetaOk returns a tuple with the Theta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionMarginAccountInformationResponseGreekInner) GetThetaOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Theta) {
+		return nil, false
+	}
+	return o.Theta, true
+}
+
+// HasTheta returns a boolean if a field has been set.
+func (o *OptionMarginAccountInformationResponseGreekInner) HasTheta() bool {
+	if o != nil && !common.IsNil(o.Theta) {
+		return true
+	}
+
+	return false
+}
+
+// SetTheta gets a reference to the given string and assigns it to the Theta field.
+func (o *OptionMarginAccountInformationResponseGreekInner) SetTheta(v string) {
+	o.Theta = &v
 }
 
 // GetVega returns the Vega field value if set, zero value otherwise.
@@ -220,11 +225,11 @@ func (o OptionMarginAccountInformationResponseGreekInner) ToMap() (map[string]in
 	if !common.IsNil(o.Delta) {
 		toSerialize["delta"] = o.Delta
 	}
-	if !common.IsNil(o.Theta) {
-		toSerialize["theta"] = o.Theta
-	}
 	if !common.IsNil(o.Gamma) {
 		toSerialize["gamma"] = o.Gamma
+	}
+	if !common.IsNil(o.Theta) {
+		toSerialize["theta"] = o.Theta
 	}
 	if !common.IsNil(o.Vega) {
 		toSerialize["vega"] = o.Vega
@@ -253,8 +258,8 @@ func (o *OptionMarginAccountInformationResponseGreekInner) UnmarshalJSON(data []
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "underlying")
 		delete(additionalProperties, "delta")
-		delete(additionalProperties, "theta")
 		delete(additionalProperties, "gamma")
+		delete(additionalProperties, "theta")
 		delete(additionalProperties, "vega")
 		o.AdditionalProperties = additionalProperties
 	}

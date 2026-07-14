@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionsrestapi
@@ -43,7 +43,7 @@ func (r ApiAcceptBlockTradeOrderRequest) Execute() (*common.RestApiResponse[mode
 AcceptBlockTradeOrder Accept Block Trade Order (TRADE)
 Post /eapi/v1/block/order/execute
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Accept-Block-Trade-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#accept-block-trade-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param blockOrderMatchingKey -
@@ -76,7 +76,15 @@ func (a *MarketMakerBlockTradeAPIService) AcceptBlockTradeOrderExecute(r ApiAcce
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AcceptBlockTradeOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AcceptBlockTradeOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -105,12 +113,13 @@ func (r ApiAccountBlockTradeListRequest) StartTime(startTime int64) ApiAccountBl
 	return r
 }
 
-// underlying, e.g BTCUSDT
+// Underlying asset.
 func (r ApiAccountBlockTradeListRequest) Underlying(underlying string) ApiAccountBlockTradeListRequest {
 	r.underlying = &underlying
 	return r
 }
 
+// Recv Window.
 func (r ApiAccountBlockTradeListRequest) RecvWindow(recvWindow int64) ApiAccountBlockTradeListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -124,13 +133,13 @@ func (r ApiAccountBlockTradeListRequest) Execute() (*common.RestApiResponse[mode
 AccountBlockTradeList Account Block Trade List (USER_DATA)
 Get /eapi/v1/block/user-trades
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Account-Block-Trade-List
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#account-block-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param endTime -  End Time, e.g 1593512200000
 @param startTime -  Start Time, e.g 1593511200000
-@param underlying -  underlying, e.g BTCUSDT
-@param recvWindow -
+@param underlying -  Underlying asset.
+@param recvWindow -  Recv Window.
 @return ApiAccountBlockTradeListRequest
 */
 func (a *MarketMakerBlockTradeAPIService) AccountBlockTradeList(ctx context.Context) ApiAccountBlockTradeListRequest {
@@ -163,7 +172,15 @@ func (a *MarketMakerBlockTradeAPIService) AccountBlockTradeListExecute(r ApiAcco
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountBlockTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountBlockTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -178,11 +195,13 @@ type ApiCancelBlockTradeOrderRequest struct {
 	recvWindow            *int64
 }
 
+// Block trade matching key.
 func (r ApiCancelBlockTradeOrderRequest) BlockOrderMatchingKey(blockOrderMatchingKey string) ApiCancelBlockTradeOrderRequest {
 	r.blockOrderMatchingKey = &blockOrderMatchingKey
 	return r
 }
 
+// Recv Window.
 func (r ApiCancelBlockTradeOrderRequest) RecvWindow(recvWindow int64) ApiCancelBlockTradeOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -196,11 +215,11 @@ func (r ApiCancelBlockTradeOrderRequest) Execute() (struct{}, error) {
 CancelBlockTradeOrder Cancel Block Trade Order (TRADE)
 Delete /eapi/v1/block/order/create
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Cancel-Block-Trade-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#cancel-block-trade-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param blockOrderMatchingKey -
-@param recvWindow -
+@param blockOrderMatchingKey -  Block trade matching key.
+@param recvWindow -  Recv Window.
 @return ApiCancelBlockTradeOrderRequest
 */
 func (a *MarketMakerBlockTradeAPIService) CancelBlockTradeOrder(ctx context.Context) ApiCancelBlockTradeOrderRequest {
@@ -227,7 +246,15 @@ func (a *MarketMakerBlockTradeAPIService) CancelBlockTradeOrderExecute(r ApiCanc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -260,7 +287,7 @@ func (r ApiExtendBlockTradeOrderRequest) Execute() (*common.RestApiResponse[mode
 ExtendBlockTradeOrder Extend Block Trade Order (TRADE)
 Put /eapi/v1/block/order/create
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Extend-Block-Trade-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#extend-block-trade-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param blockOrderMatchingKey -
@@ -293,7 +320,15 @@ func (a *MarketMakerBlockTradeAPIService) ExtendBlockTradeOrderExecute(r ApiExte
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ExtendBlockTradeOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ExtendBlockTradeOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -304,19 +339,18 @@ func (a *MarketMakerBlockTradeAPIService) ExtendBlockTradeOrderExecute(r ApiExte
 type ApiNewBlockTradeOrderRequest struct {
 	ctx        context.Context
 	ApiService *MarketMakerBlockTradeAPIService
-	liquidity  *string
-	legs       *[]map[string]interface{}
+	liquidity  *models.NewBlockTradeOrderLiquidityParameter
+	legs       *[]models.NewBlockTradeOrderLegsParameterInner
 	recvWindow *int64
 }
 
-// Taker or Maker
-func (r ApiNewBlockTradeOrderRequest) Liquidity(liquidity string) ApiNewBlockTradeOrderRequest {
+func (r ApiNewBlockTradeOrderRequest) Liquidity(liquidity models.NewBlockTradeOrderLiquidityParameter) ApiNewBlockTradeOrderRequest {
 	r.liquidity = &liquidity
 	return r
 }
 
 // Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders&#x3D;[{\&quot;symbol\&quot;:\&quot;BTC-210115-35000-C\&quot;, \&quot;price\&quot;:\&quot;100\&quot;,\&quot;quantity\&quot;:\&quot;0.0002\&quot;,\&quot;side\&quot;:\&quot;BUY\&quot;,\&quot;type\&quot;:\&quot;LIMIT\&quot;}]
-func (r ApiNewBlockTradeOrderRequest) Legs(legs []map[string]interface{}) ApiNewBlockTradeOrderRequest {
+func (r ApiNewBlockTradeOrderRequest) Legs(legs []models.NewBlockTradeOrderLegsParameterInner) ApiNewBlockTradeOrderRequest {
 	r.legs = &legs
 	return r
 }
@@ -334,10 +368,10 @@ func (r ApiNewBlockTradeOrderRequest) Execute() (*common.RestApiResponse[models.
 NewBlockTradeOrder New Block Trade Order (TRADE)
 Post /eapi/v1/block/order/create
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/New-Block-Trade-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#new-block-trade-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param liquidity -  Taker or Maker
+@param liquidity -
 @param legs -  Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders=[{\"symbol\":\"BTC-210115-35000-C\", \"price\":\"100\",\"quantity\":\"0.0002\",\"side\":\"BUY\",\"type\":\"LIMIT\"}]
 @param recvWindow -
 @return ApiNewBlockTradeOrderRequest
@@ -362,6 +396,7 @@ func (a *MarketMakerBlockTradeAPIService) NewBlockTradeOrderExecute(r ApiNewBloc
 	if r.liquidity == nil {
 		return nil, common.ReportError("liquidity is required and must be specified")
 	}
+
 	if r.legs == nil {
 		return nil, common.ReportError("legs is required and must be specified")
 	}
@@ -375,7 +410,15 @@ func (a *MarketMakerBlockTradeAPIService) NewBlockTradeOrderExecute(r ApiNewBloc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewBlockTradeOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewBlockTradeOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -390,11 +433,13 @@ type ApiQueryBlockTradeDetailsRequest struct {
 	recvWindow            *int64
 }
 
+// Block trade matching key.
 func (r ApiQueryBlockTradeDetailsRequest) BlockOrderMatchingKey(blockOrderMatchingKey string) ApiQueryBlockTradeDetailsRequest {
 	r.blockOrderMatchingKey = &blockOrderMatchingKey
 	return r
 }
 
+// Recv Window.
 func (r ApiQueryBlockTradeDetailsRequest) RecvWindow(recvWindow int64) ApiQueryBlockTradeDetailsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -408,11 +453,11 @@ func (r ApiQueryBlockTradeDetailsRequest) Execute() (*common.RestApiResponse[mod
 QueryBlockTradeDetails Query Block Trade Details (USER_DATA)
 Get /eapi/v1/block/order/execute
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Detail
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param blockOrderMatchingKey -
-@param recvWindow -
+@param blockOrderMatchingKey -  Block trade matching key.
+@param recvWindow -  Recv Window.
 @return ApiQueryBlockTradeDetailsRequest
 */
 func (a *MarketMakerBlockTradeAPIService) QueryBlockTradeDetails(ctx context.Context) ApiQueryBlockTradeDetailsRequest {
@@ -441,7 +486,15 @@ func (a *MarketMakerBlockTradeAPIService) QueryBlockTradeDetailsExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryBlockTradeDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryBlockTradeDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -477,12 +530,13 @@ func (r ApiQueryBlockTradeOrderRequest) StartTime(startTime int64) ApiQueryBlock
 	return r
 }
 
-// underlying, e.g BTCUSDT
+// Underlying asset.
 func (r ApiQueryBlockTradeOrderRequest) Underlying(underlying string) ApiQueryBlockTradeOrderRequest {
 	r.underlying = &underlying
 	return r
 }
 
+// Recv Window.
 func (r ApiQueryBlockTradeOrderRequest) RecvWindow(recvWindow int64) ApiQueryBlockTradeOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -496,14 +550,14 @@ func (r ApiQueryBlockTradeOrderRequest) Execute() (*common.RestApiResponse[model
 QueryBlockTradeOrder Query Block Trade Order (TRADE)
 Get /eapi/v1/block/order/orders
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-block-trade/Query-Block-Trade-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-block-trade#query-block-trade-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param blockOrderMatchingKey -  If specified, returns the specific block trade associated with the blockOrderMatchingKey
 @param endTime -  End Time, e.g 1593512200000
 @param startTime -  Start Time, e.g 1593511200000
-@param underlying -  underlying, e.g BTCUSDT
-@param recvWindow -
+@param underlying -  Underlying asset.
+@param recvWindow -  Recv Window.
 @return ApiQueryBlockTradeOrderRequest
 */
 func (a *MarketMakerBlockTradeAPIService) QueryBlockTradeOrder(ctx context.Context) ApiQueryBlockTradeOrderRequest {
@@ -539,7 +593,15 @@ func (a *MarketMakerBlockTradeAPIService) QueryBlockTradeOrderExecute(r ApiQuery
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryBlockTradeOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryBlockTradeOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to [**[]GetFuturesLeadTradingSymbolWhitelistResponseDataInner**](GetFuturesLeadTradingSymbolWhitelistResponseDataInner.md) |  | [optional] 
+**Code** | Pointer to **string** | API response code. \&quot;000000\&quot; indicates success. | [optional] 
+**Message** | Pointer to **string** | Response message. | [optional] 
+**Data** | Pointer to [**[]GetFuturesLeadTradingSymbolWhitelistResponseDataInner**](GetFuturesLeadTradingSymbolWhitelistResponseDataInner.md) | Whitelisted symbols for futures lead trading | [optional] 
 
 ## Methods
 

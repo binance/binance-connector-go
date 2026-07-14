@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &AggregatedTradesResponseDataInner{}
 
 // AggregatedTradesResponseDataInner struct for AggregatedTradesResponseDataInner
 type AggregatedTradesResponseDataInner struct {
-	A                    *int64  `json:"a,omitempty"`
-	P                    *string `json:"p,omitempty"`
-	Q                    *string `json:"q,omitempty"`
-	F                    *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"l,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	M                    *bool   `json:"m,omitempty"`
+	// Aggregate trade ID.
+	A *int64 `json:"a,omitempty"`
+	// Trade price.
+	P *string `json:"p,omitempty"`
+	// Trade quantity.
+	Q *string `json:"q,omitempty"`
+	// First trade ID in the aggregation.
+	F *int64 `json:"f,omitempty"`
+	// Last trade ID in the aggregation.
+	L *int64 `json:"l,omitempty"`
+	// Trade timestamp in milliseconds.
+	T *int64 `json:"T,omitempty"`
+	// Whether buyer is the market maker (deprecated).
+	M                    *bool `json:"m,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

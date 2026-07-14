@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -11,21 +11,21 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode the model 'PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode'
+// PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire maker order when STP triggers/ EXPIRE_BOTH:expire both orders when STP triggers; Default EXPIRE_MAKER
 type PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode string
 
 // List of placeMultipleOrders_orders_parameter_inner_selfTradePreventionMode
 const (
 	PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_TAKER"
-	PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireBoth  PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_BOTH"
 	PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireMaker PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_MAKER"
+	PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireBoth  PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_BOTH"
 )
 
 // All allowed values of PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode enum
 var AllowedPlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeEnumValues = []PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode{
 	"EXPIRE_TAKER",
-	"EXPIRE_BOTH",
 	"EXPIRE_MAKER",
+	"EXPIRE_BOTH",
 }
 
 func (v *PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode) UnmarshalJSON(src []byte) error {

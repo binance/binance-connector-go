@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Options REST API TEST
+Options REST API TEST
 
 Testing MarketMakerBlockTradeAPIService
 
@@ -25,10 +25,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService AcceptBlockTradeOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"blockTradeSettlementKey":"7d046e6e-a429-4335-ab9d-6a681febcde5","expireTime":1730172115801,"liquidity":"MAKER","status":"ACCEPTED","createTime":1730170315803,"legs":[{"symbol":"BNB-241101-700-C","side":"SELL","quantity":"1.2","price":"2.8"}]}`
+		var mockedJSON string
+		mockedJSON = `{"blockTradeSettlementKey":"7d046e6e-a429-4335-ab9d-6a681febcde5","expireTime":1730172115801,"liquidity":"MAKER","status":"ACCEPTED","createTime":1730170315803,"legs":[{"symbol":"BNB-241101-700-C","side":"SELL","quantity":"1.2","price":"2.8"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/execute", r.URL.Path)
-			require.Equal(t, "blockOrderMatchingKey_example", r.URL.Query().Get("blockOrderMatchingKey"))
+			require.Equal(t, "7d046e6e-a429-4335-ab9d-6a681febcde5", r.URL.Query().Get("blockOrderMatchingKey"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -45,7 +49,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.AcceptBlockTradeOrder(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.AcceptBlockTradeOrder(context.Background()).BlockOrderMatchingKey("7d046e6e-a429-4335-ab9d-6a681febcde5").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -98,7 +102,11 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService AccountBlockTradeList Success", func(t *testing.T) {
 
-		mockedJSON := `[{"parentOrderId":"4675011431944499201","crossType":"USER_BLOCK","legs":[{"createTime":1730170445600,"updateTime":1730170445600,"symbol":"BNB-241101-700-C","orderId":"4675011431944499203","orderPrice":2.8,"orderQuantity":1.2,"orderStatus":"FILLED","executedQty":1.2,"executedAmount":3.36,"fee":0.336,"orderType":"PREV_QUOTED","orderSide":"BUY","id":"1125899906900937837","tradeId":1,"tradePrice":2.8,"tradeQty":1.2,"tradeTime":1730170445600,"liquidity":"TAKER","commission":0.336}],"blockTradeSettlementKey":"7d085e6e-a229-2335-ab9d-6a581febcd25"}]`
+		var mockedJSON string
+		mockedJSON = `[{"parentOrderId":"4675011431944499201","crossType":"USER_BLOCK","legs":[{"createTime":1730170445600,"updateTime":1730170445600,"symbol":"BNB-241101-700-C","orderId":"4675011431944499203","orderPrice":2.8,"orderQuantity":1.2,"orderStatus":"FILLED","executedQty":1.2,"executedAmount":3.36,"fee":0.336,"orderType":"PREV_QUOTED","orderSide":"BUY","id":"1125899906900937837","tradeId":1,"tradePrice":2.8,"tradeQty":1.2,"tradeTime":1730170445600,"liquidity":"TAKER","commission":0.336}],"blockTradeSettlementKey":"7d085e6e-a229-2335-ab9d-6a581febcd25"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/user-trades", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -155,7 +163,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/create", r.URL.Path)
-			require.Equal(t, "blockOrderMatchingKey_example", r.URL.Query().Get("blockOrderMatchingKey"))
+			require.Equal(t, "7d046e6e-a429-4335-ab9d-6a681febcde5", r.URL.Query().Get("blockOrderMatchingKey"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(`{}`))
 		}))
@@ -168,7 +176,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 			client.WithRestAPI(configuration),
 		)
 
-		_, err := apiClient.RestApi.MarketMakerBlockTradeAPI.CancelBlockTradeOrder(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+		_, err := apiClient.RestApi.MarketMakerBlockTradeAPI.CancelBlockTradeOrder(context.Background()).BlockOrderMatchingKey("7d046e6e-a429-4335-ab9d-6a681febcde5").Execute()
 		require.NoError(t, err)
 	})
 
@@ -210,10 +218,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService ExtendBlockTradeOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"blockTradeSettlementKey":"3668822b8-1baa-6a2f-adb8-d3de6289b361","expireTime":1730172007000,"liquidity":"TAKER","status":"RECEIVED","createTime":1730170088111,"legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]}`
+		var mockedJSON string
+		mockedJSON = `{"blockTradeSettlementKey":"3668822b8-1baa-6a2f-adb8-d3de6289b361","expireTime":1730172007000,"liquidity":"TAKER","status":"RECEIVED","createTime":1730170088111,"legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/create", r.URL.Path)
-			require.Equal(t, "blockOrderMatchingKey_example", r.URL.Query().Get("blockOrderMatchingKey"))
+			require.Equal(t, "3668822b8-1baa-6a2f-adb8-d3de6289b361", r.URL.Query().Get("blockOrderMatchingKey"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -230,7 +242,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.ExtendBlockTradeOrder(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.ExtendBlockTradeOrder(context.Background()).BlockOrderMatchingKey("3668822b8-1baa-6a2f-adb8-d3de6289b361").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -283,10 +295,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService NewBlockTradeOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"blockTradeSettlementKey":"3668822b8-1baa-6a2f-adb8-d3de6289b361","expireTime":1730171888109,"liquidity":"TAKER","status":"RECEIVED","legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]}`
+		var mockedJSON string
+		mockedJSON = `{"blockTradeSettlementKey":"3668822b8-1baa-6a2f-adb8-d3de6289b361","expireTime":1730171888109,"liquidity":"TAKER","status":"RECEIVED","legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/create", r.URL.Path)
-			require.Equal(t, "liquidity_example", r.URL.Query().Get("liquidity"))
+			require.Equal(t, string(models.NewBlockTradeOrderLiquidityParameterMaker), r.URL.Query().Get("liquidity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -303,7 +319,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.NewBlockTradeOrder(context.Background()).Liquidity("liquidity_example").Legs([]map[string]interface{}{{}}).Execute()
+		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.NewBlockTradeOrder(context.Background()).Liquidity(models.NewBlockTradeOrderLiquidityParameterMaker).Legs([]models.NewBlockTradeOrderLegsParameterInner{*models.NewNewBlockTradeOrderLegsParameterInner("BTC-210115-35000-C", models.NewBlockTradeOrderLegsParameterInnerSide("Buy"), models.NewBlockTradeOrderLegsParameterInnerType("Limit"), "0.0002")}).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -356,10 +372,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService QueryBlockTradeDetails Success", func(t *testing.T) {
 
-		mockedJSON := `{"blockTradeSettlementKey":"12b96c28-ba05-8906-c89t-703215cfb2e6","expireTime":1730171860460,"liquidity":"MAKER","status":"RECEIVED","createTime":1730170060462,"legs":[{"symbol":"BNB-241101-700-C","side":"SELL","quantity":"1.66","price":"20"}]}`
+		var mockedJSON string
+		mockedJSON = `{"blockTradeSettlementKey":"12b96c28-ba05-8906-c89t-703215cfb2e6","expireTime":1730171860460,"liquidity":"MAKER","status":"RECEIVED","createTime":1730170060462,"legs":[{"symbol":"BNB-241101-700-C","side":"SELL","quantity":"1.66","price":"20"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/execute", r.URL.Path)
-			require.Equal(t, "blockOrderMatchingKey_example", r.URL.Query().Get("blockOrderMatchingKey"))
+			require.Equal(t, "12b96c28-ba05-8906-c89t-703215cfb2e6", r.URL.Query().Get("blockOrderMatchingKey"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -376,7 +396,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.QueryBlockTradeDetails(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+		resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.QueryBlockTradeDetails(context.Background()).BlockOrderMatchingKey("12b96c28-ba05-8906-c89t-703215cfb2e6").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -429,7 +449,11 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerBlockTradeAPIServic
 
 	t.Run("Test MarketMakerBlockTradeAPIService QueryBlockTradeOrder Success", func(t *testing.T) {
 
-		mockedJSON := `[{"blockTradeSettlementKey":"7d046e6e-a429-4335-ab9d-6a681febcde5","expireTime":1730172115801,"liquidity":"TAKER","status":"RECEIVED","createTime":1730170315803,"legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]},{"blockTradeSettlementKey":"28b96c28-ba05-6906-a47c-703215cfbfe6","expireTime":1730171860460,"liquidity":"TAKER","status":"RECEIVED","createTime":1730170060462,"legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.66","price":"20"}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"blockTradeSettlementKey":"7d046e6e-a429-4335-ab9d-6a681febcde5","expireTime":1730172115801,"liquidity":"TAKER","status":"RECEIVED","createTime":1730170315803,"legs":[{"symbol":"BNB-241101-700-C","side":"BUY","quantity":"1.2","price":"2.8"}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/block/order/orders", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

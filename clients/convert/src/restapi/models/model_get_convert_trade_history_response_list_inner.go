@@ -1,7 +1,7 @@
 /*
-Binance Convert REST API
+Convert REST API
 
-OpenAPI Specification for the Binance Convert REST API
+Request quotes and execute cryptocurrency conversions via the Convert REST API.
 */
 
 package models
@@ -17,14 +17,21 @@ var _ common.MappedNullable = &GetConvertTradeHistoryResponseListInner{}
 
 // GetConvertTradeHistoryResponseListInner struct for GetConvertTradeHistoryResponseListInner
 type GetConvertTradeHistoryResponseListInner struct {
-	QuoteId              *string `json:"quoteId,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	OrderStatus          *string `json:"orderStatus,omitempty"`
-	FromAsset            *string `json:"fromAsset,omitempty"`
-	FromAmount           *string `json:"fromAmount,omitempty"`
-	ToAsset              *string `json:"toAsset,omitempty"`
-	ToAmount             *string `json:"toAmount,omitempty"`
-	Ratio                *string `json:"ratio,omitempty"`
+	QuoteId *string `json:"quoteId,omitempty"`
+	OrderId *int64  `json:"orderId,omitempty"`
+	// Order status
+	OrderStatus *string `json:"orderStatus,omitempty"`
+	// Source asset
+	FromAsset *string `json:"fromAsset,omitempty"`
+	// Source amount
+	FromAmount *string `json:"fromAmount,omitempty"`
+	// Destination asset
+	ToAsset *string `json:"toAsset,omitempty"`
+	// Destination amount
+	ToAmount *string `json:"toAmount,omitempty"`
+	// Price ratio
+	Ratio *string `json:"ratio,omitempty"`
+	// Inverse price ratio
 	InverseRatio         *string `json:"inverseRatio,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Countries** | Pointer to [**[]GetCountryListResponseCountriesInner**](GetCountryListResponseCountriesInner.md) |  | [optional] 
-**LastUpdated** | Pointer to **int64** |  | [optional] 
+**LastUpdated** | Pointer to **int64** | Last data update timestamp (epoch milliseconds); 0 if empty. | [optional] 
 
 ## Methods
 

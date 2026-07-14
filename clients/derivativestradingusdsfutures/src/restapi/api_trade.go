@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfuturesrestapi
@@ -35,28 +35,30 @@ func (r ApiAccountTradeListRequest) Symbol(symbol string) ApiAccountTradeListReq
 	return r
 }
 
+// Must be used together with parameter &#x60;symbol&#x60;.
 func (r ApiAccountTradeListRequest) OrderId(orderId int64) ApiAccountTradeListRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Start time
 func (r ApiAccountTradeListRequest) StartTime(startTime int64) ApiAccountTradeListRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiAccountTradeListRequest) EndTime(endTime int64) ApiAccountTradeListRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// ID to get aggregate trades from INCLUSIVE.
+// Trade id to fetch from. Default gets most recent trades.
 func (r ApiAccountTradeListRequest) FromId(fromId int64) ApiAccountTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiAccountTradeListRequest) Limit(limit int64) ApiAccountTradeListRequest {
 	r.limit = &limit
 	return r
@@ -75,15 +77,15 @@ func (r ApiAccountTradeListRequest) Execute() (*common.RestApiResponse[models.Ac
 AccountTradeList Account Trade List (USER_DATA)
 Get /fapi/v1/userTrades
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Account-Trade-List
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#account-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param orderId -
-@param startTime -
-@param endTime -
-@param fromId -  ID to get aggregate trades from INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param orderId -  Must be used together with parameter `symbol`.
+@param startTime -  Start time
+@param endTime -  End time
+@param fromId -  Trade id to fetch from. Default gets most recent trades.
+@param limit -
 @param recvWindow -
 @return ApiAccountTradeListRequest
 */
@@ -128,7 +130,15 @@ func (a *TradeAPIService) AccountTradeListExecute(r ApiAccountTradeListRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -157,17 +167,18 @@ func (r ApiAllOrdersRequest) OrderId(orderId int64) ApiAllOrdersRequest {
 	return r
 }
 
+// Start time
 func (r ApiAllOrdersRequest) StartTime(startTime int64) ApiAllOrdersRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiAllOrdersRequest) EndTime(endTime int64) ApiAllOrdersRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiAllOrdersRequest) Limit(limit int64) ApiAllOrdersRequest {
 	r.limit = &limit
 	return r
@@ -186,14 +197,14 @@ func (r ApiAllOrdersRequest) Execute() (*common.RestApiResponse[models.AllOrders
 AllOrders All Orders (USER_DATA)
 Get /fapi/v1/allOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#all-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param orderId -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @param recvWindow -
 @return ApiAllOrdersRequest
 */
@@ -235,7 +246,15 @@ func (a *TradeAPIService) AllOrdersExecute(r ApiAllOrdersRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AllOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -256,7 +275,7 @@ func (r ApiAutoCancelAllOpenOrdersRequest) Symbol(symbol string) ApiAutoCancelAl
 	return r
 }
 
-// countdown time, 1000 for 1 second. 0 to cancel the timer
+// Countdown in milliseconds. &#x60;1000&#x60; means 1 second; &#x60;0&#x60; disables countdown cancel-all.
 func (r ApiAutoCancelAllOpenOrdersRequest) CountdownTime(countdownTime int64) ApiAutoCancelAllOpenOrdersRequest {
 	r.countdownTime = &countdownTime
 	return r
@@ -275,11 +294,11 @@ func (r ApiAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse[mo
 AutoCancelAllOpenOrders Auto-Cancel All Open Orders (TRADE)
 Post /fapi/v1/countdownCancelAll
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#auto-cancel-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param countdownTime -  countdown time, 1000 for 1 second. 0 to cancel the timer
+@param countdownTime -  Countdown in milliseconds. `1000` means 1 second; `0` disables countdown cancel-all.
 @param recvWindow -
 @return ApiAutoCancelAllOpenOrdersRequest
 */
@@ -303,6 +322,7 @@ func (a *TradeAPIService) AutoCancelAllOpenOrdersExecute(r ApiAutoCancelAllOpenO
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.countdownTime == nil {
 		return nil, common.ReportError("countdownTime is required and must be specified")
 	}
@@ -313,7 +333,15 @@ func (a *TradeAPIService) AutoCancelAllOpenOrdersExecute(r ApiAutoCancelAllOpenO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -352,7 +380,7 @@ func (r ApiCancelAlgoOrderRequest) Execute() (*common.RestApiResponse[models.Can
 CancelAlgoOrder Cancel Algo Order (TRADE)
 Delete /fapi/v1/algoOrder
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Algo-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -
@@ -387,7 +415,15 @@ func (a *TradeAPIService) CancelAlgoOrderExecute(r ApiCancelAlgoOrderRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -420,7 +456,7 @@ func (r ApiCancelAllAlgoOpenOrdersRequest) Execute() (*common.RestApiResponse[mo
 CancelAllAlgoOpenOrders Cancel All Algo Open Orders (TRADE)
 Delete /fapi/v1/algoOpenOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Algo-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-algo-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -453,7 +489,15 @@ func (a *TradeAPIService) CancelAllAlgoOpenOrdersExecute(r ApiCancelAllAlgoOpenO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllAlgoOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllAlgoOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -486,7 +530,7 @@ func (r ApiCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse[models
 CancelAllOpenOrders Cancel All Open Orders (TRADE)
 Delete /fapi/v1/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -519,7 +563,15 @@ func (a *TradeAPIService) CancelAllOpenOrdersExecute(r ApiCancelAllOpenOrdersReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -541,13 +593,11 @@ func (r ApiCancelMultipleOrdersRequest) Symbol(symbol string) ApiCancelMultipleO
 	return r
 }
 
-// max length 10 &lt;br /&gt; e.g. [1234567,2345678]
 func (r ApiCancelMultipleOrdersRequest) OrderIdList(orderIdList []int64) ApiCancelMultipleOrdersRequest {
 	r.orderIdList = &orderIdList
 	return r
 }
 
-// max length 10&lt;br /&gt; e.g. [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after comma.
 func (r ApiCancelMultipleOrdersRequest) OrigClientOrderIdList(origClientOrderIdList []string) ApiCancelMultipleOrdersRequest {
 	r.origClientOrderIdList = &origClientOrderIdList
 	return r
@@ -566,12 +616,12 @@ func (r ApiCancelMultipleOrdersRequest) Execute() (*common.RestApiResponse[model
 CancelMultipleOrders Cancel Multiple Orders (TRADE)
 Delete /fapi/v1/batchOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Multiple-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-multiple-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param orderIdList -  max length 10 <br /> e.g. [1234567,2345678]
-@param origClientOrderIdList -  max length 10<br /> e.g. [\"my_id_1\",\"my_id_2\"], encode the double quotes. No space after comma.
+@param orderIdList -
+@param origClientOrderIdList -
 @param recvWindow -
 @return ApiCancelMultipleOrdersRequest
 */
@@ -609,7 +659,15 @@ func (a *TradeAPIService) CancelMultipleOrdersExecute(r ApiCancelMultipleOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelMultipleOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -654,7 +712,7 @@ func (r ApiCancelOrderRequest) Execute() (*common.RestApiResponse[models.CancelO
 CancelOrder Cancel Order (TRADE)
 Delete /fapi/v1/order
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#cancel-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -695,7 +753,15 @@ func (a *TradeAPIService) CancelOrderExecute(r ApiCancelOrderRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -716,7 +782,7 @@ func (r ApiChangeInitialLeverageRequest) Symbol(symbol string) ApiChangeInitialL
 	return r
 }
 
-// target initial leverage: int from 1 to 125
+// target initial leverage
 func (r ApiChangeInitialLeverageRequest) Leverage(leverage int64) ApiChangeInitialLeverageRequest {
 	r.leverage = &leverage
 	return r
@@ -732,14 +798,14 @@ func (r ApiChangeInitialLeverageRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-ChangeInitialLeverage Change Initial Leverage(TRADE)
+ChangeInitialLeverage Change Initial Leverage (TRADE)
 Post /fapi/v1/leverage
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Initial-Leverage
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-initial-leverage
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param leverage -  target initial leverage: int from 1 to 125
+@param leverage -  target initial leverage
 @param recvWindow -
 @return ApiChangeInitialLeverageRequest
 */
@@ -763,8 +829,15 @@ func (a *TradeAPIService) ChangeInitialLeverageExecute(r ApiChangeInitialLeverag
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.leverage == nil {
 		return nil, common.ReportError("leverage is required and must be specified")
+	}
+	if *r.leverage < 1 {
+		return nil, common.ReportError("leverage must be greater than 1")
+	}
+	if *r.leverage > 125 {
+		return nil, common.ReportError("leverage must be less than 125")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
@@ -773,7 +846,15 @@ func (a *TradeAPIService) ChangeInitialLeverageExecute(r ApiChangeInitialLeverag
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeInitialLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangeInitialLeverageResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -794,7 +875,6 @@ func (r ApiChangeMarginTypeRequest) Symbol(symbol string) ApiChangeMarginTypeReq
 	return r
 }
 
-// ISOLATED, CROSSED
 func (r ApiChangeMarginTypeRequest) MarginType(marginType models.ChangeMarginTypeMarginTypeParameter) ApiChangeMarginTypeRequest {
 	r.marginType = &marginType
 	return r
@@ -810,14 +890,14 @@ func (r ApiChangeMarginTypeRequest) Execute() (*common.RestApiResponse[models.Ch
 }
 
 /*
-ChangeMarginType Change Margin Type(TRADE)
+ChangeMarginType Change Margin Type (TRADE)
 Post /fapi/v1/marginType
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Margin-Type
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-margin-type
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param marginType -  ISOLATED, CROSSED
+@param marginType -
 @param recvWindow -
 @return ApiChangeMarginTypeRequest
 */
@@ -841,6 +921,7 @@ func (a *TradeAPIService) ChangeMarginTypeExecute(r ApiChangeMarginTypeRequest) 
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.marginType == nil {
 		return nil, common.ReportError("marginType is required and must be specified")
 	}
@@ -851,7 +932,15 @@ func (a *TradeAPIService) ChangeMarginTypeExecute(r ApiChangeMarginTypeRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeMarginTypeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangeMarginTypeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -885,7 +974,7 @@ func (r ApiChangeMultiAssetsModeRequest) Execute() (*common.RestApiResponse[mode
 ChangeMultiAssetsMode Change Multi-Assets Mode (TRADE)
 Post /fapi/v1/multiAssetsMargin
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Multi-Assets-Mode
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-multi-assets-mode
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param multiAssetsMargin -  \"true\": Multi-Assets Mode; \"false\": Single-Asset Mode
@@ -918,7 +1007,15 @@ func (a *TradeAPIService) ChangeMultiAssetsModeExecute(r ApiChangeMultiAssetsMod
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeMultiAssetsModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangeMultiAssetsModeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -949,10 +1046,10 @@ func (r ApiChangePositionModeRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-ChangePositionMode Change Position Mode(TRADE)
+ChangePositionMode Change Position Mode (TRADE)
 Post /fapi/v1/positionSide/dual
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#change-position-mode
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param dualSidePosition -  \"true\": Hedge Mode; \"false\": One-way Mode
@@ -985,7 +1082,15 @@ func (a *TradeAPIService) ChangePositionModeExecute(r ApiChangePositionModeReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangePositionModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangePositionModeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1030,7 +1135,7 @@ func (r ApiCurrentAllAlgoOpenOrdersRequest) Execute() (*common.RestApiResponse[m
 CurrentAllAlgoOpenOrders Current All Algo Open Orders (USER_DATA)
 Get /fapi/v1/openAlgoOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Algo-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-algo-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoType -
@@ -1069,7 +1174,15 @@ func (a *TradeAPIService) CurrentAllAlgoOpenOrdersExecute(r ApiCurrentAllAlgoOpe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CurrentAllAlgoOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CurrentAllAlgoOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1102,7 +1215,7 @@ func (r ApiCurrentAllOpenOrdersRequest) Execute() (*common.RestApiResponse[model
 CurrentAllOpenOrders Current All Open Orders (USER_DATA)
 Get /fapi/v1/openOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#current-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1133,7 +1246,15 @@ func (a *TradeAPIService) CurrentAllOpenOrdersExecute(r ApiCurrentAllOpenOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CurrentAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CurrentAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1152,15 +1273,15 @@ func (r ApiFuturesTradfiPerpsContractRequest) RecvWindow(recvWindow int64) ApiFu
 	return r
 }
 
-func (r ApiFuturesTradfiPerpsContractRequest) Execute() (struct{}, error) {
+func (r ApiFuturesTradfiPerpsContractRequest) Execute() (*common.RestApiResponse[models.FuturesTradfiPerpsContractResponse], error) {
 	return r.ApiService.FuturesTradfiPerpsContractExecute(r)
 }
 
 /*
-FuturesTradfiPerpsContract Futures TradFi Perps Contract(USER_DATA)
+FuturesTradfiPerpsContract Futures TradFi Perps Contract (USER_DATA)
 Post /fapi/v1/stock/contract
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Futures-TradFi-Perps-Contract
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#futures-tradfi-perps-contract
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -1174,7 +1295,9 @@ func (a *TradeAPIService) FuturesTradfiPerpsContract(ctx context.Context) ApiFut
 }
 
 // Execute executes the request
-func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPerpsContractRequest) (struct{}, error) {
+//
+//	@return FuturesTradfiPerpsContractResponse
+func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPerpsContractRequest) (*common.RestApiResponse[models.FuturesTradfiPerpsContractResponse], error) {
 	localVarHTTPMethod := http.MethodPost
 	localVarPath := a.client.cfg.BasePath + "/fapi/v1/stock/contract"
 
@@ -1185,12 +1308,20 @@ func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
-	if err != nil {
-		return struct{}{}, err
+	resp, err := SendRequest[models.FuturesTradfiPerpsContractResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
 	}
 
-	return struct{}{}, nil
+	return resp, nil
 }
 
 type ApiGetOrderModifyHistoryRequest struct {
@@ -1220,17 +1351,18 @@ func (r ApiGetOrderModifyHistoryRequest) OrigClientOrderId(origClientOrderId str
 	return r
 }
 
+// Timestamp in ms to get modification history from INCLUSIVE
 func (r ApiGetOrderModifyHistoryRequest) StartTime(startTime int64) ApiGetOrderModifyHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms to get modification history until INCLUSIVE
 func (r ApiGetOrderModifyHistoryRequest) EndTime(endTime int64) ApiGetOrderModifyHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiGetOrderModifyHistoryRequest) Limit(limit int64) ApiGetOrderModifyHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1249,15 +1381,15 @@ func (r ApiGetOrderModifyHistoryRequest) Execute() (*common.RestApiResponse[mode
 GetOrderModifyHistory Get Order Modify History (USER_DATA)
 Get /fapi/v1/orderAmendment
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Order-Modify-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-order-modify-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param orderId -
 @param origClientOrderId -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Timestamp in ms to get modification history from INCLUSIVE
+@param endTime -  Timestamp in ms to get modification history until INCLUSIVE
+@param limit -
 @param recvWindow -
 @return ApiGetOrderModifyHistoryRequest
 */
@@ -1302,7 +1434,15 @@ func (a *TradeAPIService) GetOrderModifyHistoryExecute(r ApiGetOrderModifyHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOrderModifyHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOrderModifyHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1314,7 +1454,7 @@ type ApiGetPositionMarginChangeHistoryRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	symbol     *string
-	type_      *int64
+	type_      *string
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
@@ -1327,22 +1467,23 @@ func (r ApiGetPositionMarginChangeHistoryRequest) Symbol(symbol string) ApiGetPo
 }
 
 // 1: Add position margin，2: Reduce position margin
-func (r ApiGetPositionMarginChangeHistoryRequest) Type(type_ int64) ApiGetPositionMarginChangeHistoryRequest {
+func (r ApiGetPositionMarginChangeHistoryRequest) Type(type_ string) ApiGetPositionMarginChangeHistoryRequest {
 	r.type_ = &type_
 	return r
 }
 
+// Start time
 func (r ApiGetPositionMarginChangeHistoryRequest) StartTime(startTime int64) ApiGetPositionMarginChangeHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// time if not pass
 func (r ApiGetPositionMarginChangeHistoryRequest) EndTime(endTime int64) ApiGetPositionMarginChangeHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiGetPositionMarginChangeHistoryRequest) Limit(limit int64) ApiGetPositionMarginChangeHistoryRequest {
 	r.limit = &limit
 	return r
@@ -1361,14 +1502,14 @@ func (r ApiGetPositionMarginChangeHistoryRequest) Execute() (*common.RestApiResp
 GetPositionMarginChangeHistory Get Position Margin Change History (TRADE)
 Get /fapi/v1/positionMargin/history
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Position-Margin-Change-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#get-position-margin-change-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param type_ -  1: Add position margin，2: Reduce position margin
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  time if not pass
+@param limit -
 @param recvWindow -
 @return ApiGetPositionMarginChangeHistoryRequest
 */
@@ -1410,7 +1551,15 @@ func (a *TradeAPIService) GetPositionMarginChangeHistoryExecute(r ApiGetPosition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPositionMarginChangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPositionMarginChangeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1423,8 +1572,8 @@ type ApiModifyIsolatedPositionMarginRequest struct {
 	ApiService   *TradeAPIService
 	symbol       *string
 	amount       *float32
-	type_        *string
-	positionSide *models.NewAlgoOrderPositionSideParameter
+	type_        *int32
+	positionSide *string
 	recvWindow   *int64
 }
 
@@ -1433,18 +1582,20 @@ func (r ApiModifyIsolatedPositionMarginRequest) Symbol(symbol string) ApiModifyI
 	return r
 }
 
+// Margin asset
 func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float32) ApiModifyIsolatedPositionMarginRequest {
 	r.amount = &amount
 	return r
 }
 
-func (r ApiModifyIsolatedPositionMarginRequest) Type(type_ string) ApiModifyIsolatedPositionMarginRequest {
+// 1: Add position margin，2: Reduce position margin
+func (r ApiModifyIsolatedPositionMarginRequest) Type(type_ int32) ApiModifyIsolatedPositionMarginRequest {
 	r.type_ = &type_
 	return r
 }
 
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiModifyIsolatedPositionMarginRequest) PositionSide(positionSide models.NewAlgoOrderPositionSideParameter) ApiModifyIsolatedPositionMarginRequest {
+func (r ApiModifyIsolatedPositionMarginRequest) PositionSide(positionSide string) ApiModifyIsolatedPositionMarginRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -1459,15 +1610,15 @@ func (r ApiModifyIsolatedPositionMarginRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-ModifyIsolatedPositionMargin Modify Isolated Position Margin(TRADE)
+ModifyIsolatedPositionMargin Modify Isolated Position Margin (TRADE)
 Post /fapi/v1/positionMargin
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Isolated-Position-Margin
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-isolated-position-margin
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param amount -
-@param type_ -
+@param amount -  Margin asset
+@param type_ -  1: Add position margin，2: Reduce position margin
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
 @param recvWindow -
 @return ApiModifyIsolatedPositionMarginRequest
@@ -1492,9 +1643,11 @@ func (a *TradeAPIService) ModifyIsolatedPositionMarginExecute(r ApiModifyIsolate
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -1509,7 +1662,15 @@ func (a *TradeAPIService) ModifyIsolatedPositionMarginExecute(r ApiModifyIsolate
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyIsolatedPositionMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ModifyIsolatedPositionMarginResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1540,10 +1701,10 @@ func (r ApiModifyMultipleOrdersRequest) Execute() (*common.RestApiResponse[model
 }
 
 /*
-ModifyMultipleOrders Modify Multiple Orders(TRADE)
+ModifyMultipleOrders Modify Multiple Orders (TRADE)
 Put /fapi/v1/batchOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Multiple-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-multiple-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param batchOrders -  order list. Max 5 orders
@@ -1579,7 +1740,15 @@ func (a *TradeAPIService) ModifyMultipleOrdersExecute(r ApiModifyMultipleOrdersR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ModifyMultipleOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1605,7 +1774,6 @@ func (r ApiModifyOrderRequest) Symbol(symbol string) ApiModifyOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiModifyOrderRequest) Side(side models.NewAlgoOrderSideParameter) ApiModifyOrderRequest {
 	r.side = &side
 	return r
@@ -1632,7 +1800,7 @@ func (r ApiModifyOrderRequest) OrigClientOrderId(origClientOrderId string) ApiMo
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatchParameter) ApiModifyOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
@@ -1651,16 +1819,16 @@ func (r ApiModifyOrderRequest) Execute() (*common.RestApiResponse[models.ModifyO
 ModifyOrder Modify Order (TRADE)
 Put /fapi/v1/order
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#modify-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param side -  `SELL`, `BUY`
+@param side -
 @param quantity -  Order quantity, cannot be sent with `closePosition=true`
 @param price -
 @param orderId -
 @param origClientOrderId -
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
+@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
 @param recvWindow -
 @return ApiModifyOrderRequest
 */
@@ -1684,12 +1852,15 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.price == nil {
 		return nil, common.ReportError("price is required and must be specified")
 	}
@@ -1711,7 +1882,15 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ModifyOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1722,20 +1901,20 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 type ApiNewAlgoOrderRequest struct {
 	ctx                     context.Context
 	ApiService              *TradeAPIService
-	algoType                *string
+	algoType                *models.NewAlgoOrderAlgoTypeParameter
 	symbol                  *string
 	side                    *models.NewAlgoOrderSideParameter
-	type_                   *string
-	positionSide            *models.NewAlgoOrderPositionSideParameter
+	type_                   *models.NewAlgoOrderTypeParameter
+	positionSide            *string
 	timeInForce             *models.NewAlgoOrderTimeInForceParameter
 	quantity                *float32
 	price                   *float32
 	triggerPrice            *float32
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
-	closePosition           *string
-	priceProtect            *string
-	reduceOnly              *string
+	closePosition           *models.NewAlgoOrderClosePositionParameter
+	priceProtect            *models.NewAlgoOrderClosePositionParameter
+	reduceOnly              *models.NewAlgoOrderClosePositionParameter
 	activatePrice           *float32
 	callbackRate            *float32
 	clientAlgoId            *string
@@ -1745,8 +1924,7 @@ type ApiNewAlgoOrderRequest struct {
 	recvWindow              *int64
 }
 
-// Only support &#x60;CONDITIONAL&#x60;
-func (r ApiNewAlgoOrderRequest) AlgoType(algoType string) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) AlgoType(algoType models.NewAlgoOrderAlgoTypeParameter) ApiNewAlgoOrderRequest {
 	r.algoType = &algoType
 	return r
 }
@@ -1756,19 +1934,18 @@ func (r ApiNewAlgoOrderRequest) Symbol(symbol string) ApiNewAlgoOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiNewAlgoOrderRequest) Side(side models.NewAlgoOrderSideParameter) ApiNewAlgoOrderRequest {
 	r.side = &side
 	return r
 }
 
-func (r ApiNewAlgoOrderRequest) Type(type_ string) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) Type(type_ models.NewAlgoOrderTypeParameter) ApiNewAlgoOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiNewAlgoOrderRequest) PositionSide(positionSide models.NewAlgoOrderPositionSideParameter) ApiNewAlgoOrderRequest {
+// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
+func (r ApiNewAlgoOrderRequest) PositionSide(positionSide string) ApiNewAlgoOrderRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -1778,6 +1955,7 @@ func (r ApiNewAlgoOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeI
 	return r
 }
 
+// Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
 func (r ApiNewAlgoOrderRequest) Quantity(quantity float32) ApiNewAlgoOrderRequest {
 	r.quantity = &quantity
 	return r
@@ -1788,37 +1966,37 @@ func (r ApiNewAlgoOrderRequest) Price(price float32) ApiNewAlgoOrderRequest {
 	return r
 }
 
+// Trigger price
 func (r ApiNewAlgoOrderRequest) TriggerPrice(triggerPrice float32) ApiNewAlgoOrderRequest {
 	r.triggerPrice = &triggerPrice
 	return r
 }
 
-// stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
 func (r ApiNewAlgoOrderRequest) WorkingType(workingType models.NewAlgoOrderWorkingTypeParameter) ApiNewAlgoOrderRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiNewAlgoOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatchParameter) ApiNewAlgoOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
-func (r ApiNewAlgoOrderRequest) ClosePosition(closePosition string) ApiNewAlgoOrderRequest {
+// Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
+func (r ApiNewAlgoOrderRequest) ClosePosition(closePosition models.NewAlgoOrderClosePositionParameter) ApiNewAlgoOrderRequest {
 	r.closePosition = &closePosition
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewAlgoOrderRequest) PriceProtect(priceProtect string) ApiNewAlgoOrderRequest {
+// Used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60; order. when price reaches the triggerPrice ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the Price Protection Threshold of the symbol.&#39;
+func (r ApiNewAlgoOrderRequest) PriceProtect(priceProtect models.NewAlgoOrderClosePositionParameter) ApiNewAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
-func (r ApiNewAlgoOrderRequest) ReduceOnly(reduceOnly string) ApiNewAlgoOrderRequest {
+// Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;&#39;
+func (r ApiNewAlgoOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePositionParameter) ApiNewAlgoOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
@@ -1829,24 +2007,24 @@ func (r ApiNewAlgoOrderRequest) ActivatePrice(activatePrice float32) ApiNewAlgoO
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1%
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders
 func (r ApiNewAlgoOrderRequest) CallbackRate(callbackRate float32) ApiNewAlgoOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
 
+// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
 func (r ApiNewAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiNewAlgoOrderRequest {
 	r.clientAlgoId = &clientAlgoId
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
 func (r ApiNewAlgoOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewAlgoOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
+// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers / &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiNewAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiNewAlgoOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -1868,31 +2046,31 @@ func (r ApiNewAlgoOrderRequest) Execute() (*common.RestApiResponse[models.NewAlg
 }
 
 /*
-NewAlgoOrder New Algo Order(TRADE)
+NewAlgoOrder New Algo Order (TRADE)
 Post /fapi/v1/algoOrder
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Algo-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param algoType -  Only support `CONDITIONAL`
+@param algoType -
 @param symbol -
-@param side -  `SELL`, `BUY`
+@param side -
 @param type_ -
-@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
+@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param timeInForce -
-@param quantity -
+@param quantity -  Cannot be sent with `closePosition`=`true`(Close-All)
 @param price -
-@param triggerPrice -
-@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param closePosition -  `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
-@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode
+@param triggerPrice -  Trigger price
+@param workingType -
+@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
+@param closePosition -  Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
+@param priceProtect -  Used with `STOP_MARKET` or `TAKE_PROFIT_MARKET` order. when price reaches the triggerPrice ，the difference rate between \"MARK_PRICE\" and \"CONTRACT_PRICE\" cannot be larger than the Price Protection Threshold of the symbol.'
+@param reduceOnly -  Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`'
 @param activatePrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
-@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
-@param clientAlgoId -
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
+@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders
+@param clientAlgoId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
+@param newOrderRespType -
+@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers / `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiNewAlgoOrderRequest
@@ -1917,12 +2095,15 @@ func (a *TradeAPIService) NewAlgoOrderExecute(r ApiNewAlgoOrderRequest) (*common
 	if r.algoType == nil {
 		return nil, common.ReportError("algoType is required and must be specified")
 	}
+
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -1983,7 +2164,15 @@ func (a *TradeAPIService) NewAlgoOrderExecute(r ApiNewAlgoOrderRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1996,16 +2185,16 @@ type ApiNewOrderRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.NewAlgoOrderSideParameter
-	type_                   *string
-	positionSide            *models.NewAlgoOrderPositionSideParameter
+	type_                   *models.PlaceMultipleOrdersBatchOrdersParameterInnerType
+	positionSide            *string
 	timeInForce             *models.NewAlgoOrderTimeInForceParameter
+	reduceOnly              *models.NewAlgoOrderClosePositionParameter
 	quantity                *float32
-	reduceOnly              *string
 	price                   *float32
 	newClientOrderId        *string
 	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
-	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
+	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
 	recvWindow              *int64
 }
@@ -2015,19 +2204,19 @@ func (r ApiNewOrderRequest) Symbol(symbol string) ApiNewOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiNewOrderRequest) Side(side models.NewAlgoOrderSideParameter) ApiNewOrderRequest {
 	r.side = &side
 	return r
 }
 
-func (r ApiNewOrderRequest) Type(type_ string) ApiNewOrderRequest {
+// Order type
+func (r ApiNewOrderRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiNewOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiNewOrderRequest) PositionSide(positionSide models.NewAlgoOrderPositionSideParameter) ApiNewOrderRequest {
+// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
+func (r ApiNewOrderRequest) PositionSide(positionSide string) ApiNewOrderRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -2037,14 +2226,14 @@ func (r ApiNewOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeInFor
 	return r
 }
 
-func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
-	r.quantity = &quantity
+// Cannot be sent in Hedge Mode
+func (r ApiNewOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePositionParameter) ApiNewOrderRequest {
+	r.reduceOnly = &reduceOnly
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
-func (r ApiNewOrderRequest) ReduceOnly(reduceOnly string) ApiNewOrderRequest {
-	r.reduceOnly = &reduceOnly
+func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
+	r.quantity = &quantity
 	return r
 }
 
@@ -2059,20 +2248,19 @@ func (r ApiNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewOrde
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
 func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiNewOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatchParameter) ApiNewOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
-func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
+// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60;
+func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
@@ -2093,24 +2281,24 @@ func (r ApiNewOrderRequest) Execute() (*common.RestApiResponse[models.NewOrderRe
 }
 
 /*
-NewOrder New Order(TRADE)
+NewOrder New Order (TRADE)
 Post /fapi/v1/order
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#new-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param side -  `SELL`, `BUY`
-@param type_ -
-@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
+@param side -
+@param type_ -  Order type
+@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param timeInForce -
+@param reduceOnly -  Cannot be sent in Hedge Mode
 @param quantity -
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode
 @param price -
 @param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
+@param newOrderRespType -
+@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
+@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiNewOrderRequest
@@ -2135,9 +2323,11 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -2151,11 +2341,11 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 	if r.timeInForce != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "timeInForce", r.timeInForce, "form", "")
 	}
-	if r.quantity != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
-	}
 	if r.reduceOnly != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "reduceOnly", r.reduceOnly, "form", "")
+	}
+	if r.quantity != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
 	}
 	if r.price != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "price", r.price, "form", "")
@@ -2179,7 +2369,15 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2210,10 +2408,10 @@ func (r ApiPlaceMultipleOrdersRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-PlaceMultipleOrders Place Multiple Orders(TRADE)
+PlaceMultipleOrders Place Multiple Orders (TRADE)
 Post /fapi/v1/batchOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#place-multiple-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param batchOrders -  order list. Max 5 orders
@@ -2249,7 +2447,15 @@ func (a *TradeAPIService) PlaceMultipleOrdersExecute(r ApiPlaceMultipleOrdersReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2279,10 +2485,10 @@ func (r ApiPositionAdlQuantileEstimationRequest) Execute() (*common.RestApiRespo
 }
 
 /*
-PositionAdlQuantileEstimation Position ADL Quantile Estimation(USER_DATA)
+PositionAdlQuantileEstimation Position ADL Quantile Estimation (USER_DATA)
 Get /fapi/v1/adlQuantile
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-adl-quantile-estimation
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2313,7 +2519,15 @@ func (a *TradeAPIService) PositionAdlQuantileEstimationExecute(r ApiPositionAdlQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PositionAdlQuantileEstimationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PositionAdlQuantileEstimationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2346,7 +2560,7 @@ func (r ApiPositionInformationV2Request) Execute() (*common.RestApiResponse[mode
 PositionInformationV2 Position Information V2 (USER_DATA)
 Get /fapi/v2/positionRisk
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V2
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2377,7 +2591,15 @@ func (a *TradeAPIService) PositionInformationV2Execute(r ApiPositionInformationV
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PositionInformationV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PositionInformationV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2410,7 +2632,7 @@ func (r ApiPositionInformationV3Request) Execute() (*common.RestApiResponse[mode
 PositionInformationV3 Position Information V3 (USER_DATA)
 Get /fapi/v3/positionRisk
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#position-information-v3
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2441,7 +2663,15 @@ func (a *TradeAPIService) PositionInformationV3Execute(r ApiPositionInformationV
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PositionInformationV3Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PositionInformationV3Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2457,11 +2687,13 @@ type ApiQueryAlgoOrderRequest struct {
 	recvWindow   *int64
 }
 
+// Order ID
 func (r ApiQueryAlgoOrderRequest) AlgoId(algoId int64) ApiQueryAlgoOrderRequest {
 	r.algoId = &algoId
 	return r
 }
 
+// Client order ID
 func (r ApiQueryAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiQueryAlgoOrderRequest {
 	r.clientAlgoId = &clientAlgoId
 	return r
@@ -2480,11 +2712,11 @@ func (r ApiQueryAlgoOrderRequest) Execute() (*common.RestApiResponse[models.Quer
 QueryAlgoOrder Query Algo Order (USER_DATA)
 Get /fapi/v1/algoOrder
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Algo-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param algoId -
-@param clientAlgoId -
+@param algoId -  Order ID
+@param clientAlgoId -  Client order ID
 @param recvWindow -
 @return ApiQueryAlgoOrderRequest
 */
@@ -2515,7 +2747,15 @@ func (a *TradeAPIService) QueryAlgoOrderExecute(r ApiQueryAlgoOrderRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2534,6 +2774,7 @@ type ApiQueryAllAlgoOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiQueryAllAlgoOrdersRequest) Symbol(symbol string) ApiQueryAllAlgoOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -2554,7 +2795,6 @@ func (r ApiQueryAllAlgoOrdersRequest) EndTime(endTime int64) ApiQueryAllAlgoOrde
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiQueryAllAlgoOrdersRequest) Limit(limit int64) ApiQueryAllAlgoOrdersRequest {
 	r.limit = &limit
 	return r
@@ -2573,14 +2813,14 @@ func (r ApiQueryAllAlgoOrdersRequest) Execute() (*common.RestApiResponse[models.
 QueryAllAlgoOrders Query All Algo Orders (USER_DATA)
 Get /fapi/v1/allAlgoOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-All-Algo-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-all-algo-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param algoId -
 @param startTime -
 @param endTime -
-@param limit -  Default 100; max 1000
+@param limit -
 @param recvWindow -
 @return ApiQueryAllAlgoOrdersRequest
 */
@@ -2622,7 +2862,15 @@ func (a *TradeAPIService) QueryAllAlgoOrdersExecute(r ApiQueryAllAlgoOrdersReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllAlgoOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllAlgoOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2667,7 +2915,7 @@ func (r ApiQueryCurrentOpenOrderRequest) Execute() (*common.RestApiResponse[mode
 QueryCurrentOpenOrder Query Current Open Order (USER_DATA)
 Get /fapi/v1/openOrder
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-current-open-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2708,7 +2956,15 @@ func (a *TradeAPIService) QueryCurrentOpenOrderExecute(r ApiQueryCurrentOpenOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentOpenOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2753,7 +3009,7 @@ func (r ApiQueryOrderRequest) Execute() (*common.RestApiResponse[models.QueryOrd
 QueryOrder Query Order (USER_DATA)
 Get /fapi/v1/order
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#query-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2794,7 +3050,15 @@ func (a *TradeAPIService) QueryOrderExecute(r ApiQueryOrderRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2807,19 +3071,19 @@ type ApiTestOrderRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.NewAlgoOrderSideParameter
-	type_                   *string
-	positionSide            *models.NewAlgoOrderPositionSideParameter
-	timeInForce             *models.NewAlgoOrderTimeInForceParameter
+	type_                   *models.PlaceMultipleOrdersBatchOrdersParameterInnerType
+	positionSide            *models.TestOrderPositionSideParameter
+	reduceOnly              *models.NewAlgoOrderClosePositionParameter
 	quantity                *float32
-	reduceOnly              *string
 	price                   *float32
 	newClientOrderId        *string
 	stopPrice               *float32
-	closePosition           *string
+	closePosition           *models.NewAlgoOrderClosePositionParameter
 	activationPrice         *float32
 	callbackRate            *float32
+	timeInForce             *models.NewAlgoOrderTimeInForceParameter
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
-	priceProtect            *string
+	priceProtect            *models.NewAlgoOrderClosePositionParameter
 	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
@@ -2832,36 +3096,31 @@ func (r ApiTestOrderRequest) Symbol(symbol string) ApiTestOrderRequest {
 	return r
 }
 
-// &#x60;SELL&#x60;, &#x60;BUY&#x60;
 func (r ApiTestOrderRequest) Side(side models.NewAlgoOrderSideParameter) ApiTestOrderRequest {
 	r.side = &side
 	return r
 }
 
-func (r ApiTestOrderRequest) Type(type_ string) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) Type(type_ models.PlaceMultipleOrdersBatchOrdersParameterInnerType) ApiTestOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode.
-func (r ApiTestOrderRequest) PositionSide(positionSide models.NewAlgoOrderPositionSideParameter) ApiTestOrderRequest {
+// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
+func (r ApiTestOrderRequest) PositionSide(positionSide models.TestOrderPositionSideParameter) ApiTestOrderRequest {
 	r.positionSide = &positionSide
 	return r
 }
 
-func (r ApiTestOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeInForceParameter) ApiTestOrderRequest {
-	r.timeInForce = &timeInForce
+// Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
+func (r ApiTestOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePositionParameter) ApiTestOrderRequest {
+	r.reduceOnly = &reduceOnly
 	return r
 }
 
+// Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
 func (r ApiTestOrderRequest) Quantity(quantity float32) ApiTestOrderRequest {
 	r.quantity = &quantity
-	return r
-}
-
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
-func (r ApiTestOrderRequest) ReduceOnly(reduceOnly string) ApiTestOrderRequest {
-	r.reduceOnly = &reduceOnly
 	return r
 }
 
@@ -2882,8 +3141,8 @@ func (r ApiTestOrderRequest) StopPrice(stopPrice float32) ApiTestOrderRequest {
 	return r
 }
 
-// &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
-func (r ApiTestOrderRequest) ClosePosition(closePosition string) ApiTestOrderRequest {
+// Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.\&quot;
+func (r ApiTestOrderRequest) ClosePosition(closePosition models.NewAlgoOrderClosePositionParameter) ApiTestOrderRequest {
 	r.closePosition = &closePosition
 	return r
 }
@@ -2894,37 +3153,39 @@ func (r ApiTestOrderRequest) ActivationPrice(activationPrice float32) ApiTestOrd
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1%
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders
 func (r ApiTestOrderRequest) CallbackRate(callbackRate float32) ApiTestOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
 
-// stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
+func (r ApiTestOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeInForceParameter) ApiTestOrderRequest {
+	r.timeInForce = &timeInForce
+	return r
+}
+
 func (r ApiTestOrderRequest) WorkingType(workingType models.NewAlgoOrderWorkingTypeParameter) ApiTestOrderRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiTestOrderRequest) PriceProtect(priceProtect string) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) PriceProtect(priceProtect models.NewAlgoOrderClosePositionParameter) ApiTestOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
 func (r ApiTestOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgoOrderNewOrderRespTypeParameter) ApiTestOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
+// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60;
 func (r ApiTestOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatchParameter) ApiTestOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
+// &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiTestOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiTestOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -2946,30 +3207,30 @@ func (r ApiTestOrderRequest) Execute() (*common.RestApiResponse[models.TestOrder
 }
 
 /*
-TestOrder Test Order(TRADE)
+TestOrder Test Order (TRADE)
 Post /fapi/v1/order/test
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#test-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param side -  `SELL`, `BUY`
+@param side -
 @param type_ -
-@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode.
-@param timeInForce -
-@param quantity -
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode
+@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
+@param reduceOnly -  Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`
+@param quantity -  Cannot be sent with `closePosition`=`true`(Close-All)
 @param price -
 @param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
 @param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param closePosition -  `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
+@param closePosition -  Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.\"
 @param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
-@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
-@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
+@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders
+@param timeInForce -
+@param workingType -
+@param priceProtect -
+@param newOrderRespType -
+@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
+@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiTestOrderRequest
@@ -2994,9 +3255,11 @@ func (a *TradeAPIService) TestOrderExecute(r ApiTestOrderRequest) (*common.RestA
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -3007,14 +3270,11 @@ func (a *TradeAPIService) TestOrderExecute(r ApiTestOrderRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "positionSide", r.positionSide, "form", "")
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
-	if r.timeInForce != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "timeInForce", r.timeInForce, "form", "")
+	if r.reduceOnly != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "reduceOnly", r.reduceOnly, "form", "")
 	}
 	if r.quantity != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
-	}
-	if r.reduceOnly != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "reduceOnly", r.reduceOnly, "form", "")
 	}
 	if r.price != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "price", r.price, "form", "")
@@ -3033,6 +3293,9 @@ func (a *TradeAPIService) TestOrderExecute(r ApiTestOrderRequest) (*common.RestA
 	}
 	if r.callbackRate != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "callbackRate", r.callbackRate, "form", "")
+	}
+	if r.timeInForce != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "timeInForce", r.timeInForce, "form", "")
 	}
 	if r.workingType != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "workingType", r.workingType, "form", "")
@@ -3056,7 +3319,15 @@ func (a *TradeAPIService) TestOrderExecute(r ApiTestOrderRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TestOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TestOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3096,7 +3367,6 @@ func (r ApiUsersForceOrdersRequest) EndTime(endTime int64) ApiUsersForceOrdersRe
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiUsersForceOrdersRequest) Limit(limit int64) ApiUsersForceOrdersRequest {
 	r.limit = &limit
 	return r
@@ -3115,14 +3385,14 @@ func (r ApiUsersForceOrdersRequest) Execute() (*common.RestApiResponse[models.Us
 UsersForceOrders User's Force Orders (USER_DATA)
 Get /fapi/v1/forceOrders
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/trade#users-force-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param autoCloseType -  \"LIQUIDATION\" for liquidation orders, \"ADL\" for ADL orders.
 @param startTime -
 @param endTime -
-@param limit -  Default 100; max 1000
+@param limit -
 @param recvWindow -
 @return ApiUsersForceOrdersRequest
 */
@@ -3162,7 +3432,15 @@ func (a *TradeAPIService) UsersForceOrdersExecute(r ApiUsersForceOrdersRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UsersForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UsersForceOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

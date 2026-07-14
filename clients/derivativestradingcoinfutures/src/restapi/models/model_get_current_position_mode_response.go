@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetCurrentPositionModeResponse{}
 
 // GetCurrentPositionModeResponse struct for GetCurrentPositionModeResponse
 type GetCurrentPositionModeResponse struct {
+	// Whether dual-side position mode is enabled.
 	DualSidePosition     *bool `json:"dualSidePosition,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

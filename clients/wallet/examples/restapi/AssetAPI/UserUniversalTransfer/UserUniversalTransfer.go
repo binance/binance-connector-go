@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/clients/wallet/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func UserUniversalTransfer() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type("type__example").Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type(models.UserUniversalTransferTypeParameterMainUmfuture).Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

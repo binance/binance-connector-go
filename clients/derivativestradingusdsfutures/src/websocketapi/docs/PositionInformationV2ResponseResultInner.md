@@ -5,25 +5,25 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**PositionSide** | Pointer to **string** | Position Side | [optional] 
 **PositionAmt** | Pointer to **string** |  | [optional] 
 **EntryPrice** | Pointer to **string** |  | [optional] 
 **BreakEvenPrice** | Pointer to **string** |  | [optional] 
 **MarkPrice** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Unrealized Profit | [optional] 
 **LiquidationPrice** | Pointer to **string** |  | [optional] 
 **IsolatedMargin** | Pointer to **string** |  | [optional] 
 **Notional** | Pointer to **string** |  | [optional] 
 **MarginAsset** | Pointer to **string** |  | [optional] 
 **IsolatedWallet** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
+**InitialMargin** | Pointer to **string** | Initial Margin | [optional] 
+**MaintMargin** | Pointer to **string** | Maintainance Margin | [optional] 
+**PositionInitialMargin** | Pointer to **string** | Position Initial Margin | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | Open Order Initial Margin | [optional] 
 **Adl** | Pointer to **int64** |  | [optional] 
 **BidNotional** | Pointer to **string** |  | [optional] 
 **AskNotional** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**UpdateTime** | Pointer to **int64** | Update Time | [optional] 
 
 ## Methods
 

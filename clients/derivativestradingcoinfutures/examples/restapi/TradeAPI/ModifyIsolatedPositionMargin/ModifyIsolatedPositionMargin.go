@@ -6,7 +6,6 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures"
-	"github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -23,7 +22,7 @@ func ModifyIsolatedPositionMargin() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("symbol_example").Amount(1.0).Type(models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("BTCUSDT").Amount(1.0).Type(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

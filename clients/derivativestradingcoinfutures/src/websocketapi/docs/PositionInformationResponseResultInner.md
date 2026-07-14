@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
-**LiquidationPrice** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**MarginType** | Pointer to **string** |  | [optional] 
-**IsolatedMargin** | Pointer to **string** |  | [optional] 
-**IsAutoAddMargin** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**NotionalValue** | Pointer to **string** |  | [optional] 
-**IsolatedWallet** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**BreakEvenPrice** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**EntryPrice** | Pointer to **string** | Position entry price. | [optional] 
+**MarkPrice** | Pointer to **string** | mark price | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Unrealized profit. | [optional] 
+**LiquidationPrice** | Pointer to **string** | Liquidation price. | [optional] 
+**Leverage** | Pointer to **string** | Leverage value. | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**MarginType** | Pointer to **string** | Margin type. | [optional] 
+**IsolatedMargin** | Pointer to **string** | Isolated margin amount. | [optional] 
+**IsAutoAddMargin** | Pointer to **string** | Whether auto-add margin is enabled. | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
+**NotionalValue** | Pointer to **string** | Notional value. | [optional] 
+**IsolatedWallet** | Pointer to **string** | Isolated wallet balance. | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
+**BreakEvenPrice** | Pointer to **string** | break-even price | [optional] 
 
 ## Methods
 

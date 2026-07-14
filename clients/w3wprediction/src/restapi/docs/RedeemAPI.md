@@ -4,15 +4,15 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**BatchRedeem**](RedeemAPI.md#BatchRedeem) | **Post** /sapi/v1/w3w/wallet/prediction/batch-redeem | Batch Redeem
-[**GetRedeemStatus**](RedeemAPI.md#GetRedeemStatus) | **Get** /sapi/v1/w3w/wallet/prediction/redeem/status | Get Redeem Status
+[**BatchRedeem**](RedeemAPI.md#BatchRedeem) | **Post** /sapi/v1/w3w/wallet/prediction/batch-redeem | Batch Redeem (TRADE)
+[**GetRedeemStatus**](RedeemAPI.md#GetRedeemStatus) | **Get** /sapi/v1/w3w/wallet/prediction/redeem/status | Get Redeem Status (USER_DATA)
 
 
 ## BatchRedeem
 
 > BatchRedeemResponse BatchRedeem(ctx).WalletAddress(walletAddress).WalletId(walletId).TokenIds(tokenIds).ChainId(chainId).Execute()
 
-Batch Redeem
+Batch Redeem (TRADE)
 
 
 ### Example
@@ -86,7 +86,7 @@ No authorization required
 
 > GetRedeemStatusResponse GetRedeemStatus(ctx).WalletAddress(walletAddress).TxHash(txHash).RecvWindow(recvWindow).Execute()
 
-Get Redeem Status
+Get Redeem Status (USER_DATA)
 
 
 ### Example

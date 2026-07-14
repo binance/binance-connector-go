@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Fs** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
+**Fs** | Pointer to **string** | Event business unit. &#39;UM&#39; for USDS-M futures and &#39;CM&#39; for COIN-M futures | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**I** | Pointer to **string** | Account Alias, ignore for UM | [optional] 
 **O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
 
 ## Methods

@@ -22,7 +22,7 @@ func SetAutoCancelAllOpenOrders() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetAutoCancelAllOpenOrders(context.Background()).Underlying("underlying_example").CountdownTime(789).Execute()
+	resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetAutoCancelAllOpenOrders(context.Background()).Underlying("BTCUSDT").CountdownTime(5000).Execute()
 	if err != nil {
 		log.Println(err)
 		return

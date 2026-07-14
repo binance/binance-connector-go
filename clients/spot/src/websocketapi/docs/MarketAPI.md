@@ -4,28 +4,28 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**AvgPrice**](MarketAPI.md#AvgPrice) | /avgPrice | WebSocket Current average price
-[**BlockTradesHistorical**](MarketAPI.md#BlockTradesHistorical) | /blockTrades.historical | WebSocket Historical Block Trades
-[**Depth**](MarketAPI.md#Depth) | /depth | WebSocket Order book
-[**Klines**](MarketAPI.md#Klines) | /klines | WebSocket Klines
-[**ReferencePrice**](MarketAPI.md#ReferencePrice) | /referencePrice | WebSocket Query Reference Price
-[**ReferencePriceCalculation**](MarketAPI.md#ReferencePriceCalculation) | /referencePrice.calculation | WebSocket Query Reference Price Calculation
-[**Ticker**](MarketAPI.md#Ticker) | /ticker | WebSocket Rolling window price change statistics
-[**Ticker24hr**](MarketAPI.md#Ticker24hr) | /ticker.24hr | WebSocket 24hr ticker price change statistics
-[**TickerBook**](MarketAPI.md#TickerBook) | /ticker.book | WebSocket Symbol order book ticker
-[**TickerPrice**](MarketAPI.md#TickerPrice) | /ticker.price | WebSocket Symbol price ticker
-[**TickerTradingDay**](MarketAPI.md#TickerTradingDay) | /ticker.tradingDay | WebSocket Trading Day Ticker
-[**TradesAggregate**](MarketAPI.md#TradesAggregate) | /trades.aggregate | WebSocket Aggregate trades
-[**TradesHistorical**](MarketAPI.md#TradesHistorical) | /trades.historical | WebSocket Historical trades
-[**TradesRecent**](MarketAPI.md#TradesRecent) | /trades.recent | WebSocket Recent trades
-[**UiKlines**](MarketAPI.md#UiKlines) | /uiKlines | WebSocket UI Klines
+[**AvgPrice**](MarketAPI.md#AvgPrice) | /avgPrice | Current average price
+[**BlockTradesHistorical**](MarketAPI.md#BlockTradesHistorical) | /blockTrades.historical | Historical Block Trades
+[**Depth**](MarketAPI.md#Depth) | /depth | Order book
+[**Klines**](MarketAPI.md#Klines) | /klines | Klines
+[**ReferencePrice**](MarketAPI.md#ReferencePrice) | /referencePrice | Query Reference Price
+[**ReferencePriceCalculation**](MarketAPI.md#ReferencePriceCalculation) | /referencePrice.calculation | Query Reference Price Calculation
+[**Ticker**](MarketAPI.md#Ticker) | /ticker | Rolling window price change statistics
+[**Ticker24hr**](MarketAPI.md#Ticker24hr) | /ticker.24hr | 24hr ticker price change statistics
+[**TickerBook**](MarketAPI.md#TickerBook) | /ticker.book | Symbol order book ticker
+[**TickerPrice**](MarketAPI.md#TickerPrice) | /ticker.price | Symbol price ticker
+[**TickerTradingDay**](MarketAPI.md#TickerTradingDay) | /ticker.tradingDay | Trading Day Ticker
+[**TradesAggregate**](MarketAPI.md#TradesAggregate) | /trades.aggregate | Aggregate trades
+[**TradesHistorical**](MarketAPI.md#TradesHistorical) | /trades.historical | Historical trades
+[**TradesRecent**](MarketAPI.md#TradesRecent) | /trades.recent | Recent trades
+[**UiKlines**](MarketAPI.md#UiKlines) | /uiKlines | UI Klines
 
 
 ## AvgPrice
 
 > AvgPriceResponse AvgPrice().Symbol(symbol).Id(id).Execute()
 
-WebSocket Current average price
+Current average price
 
 
 ### Example
@@ -43,7 +43,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -82,7 +82,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -99,7 +99,7 @@ No authorization required
 
 > BlockTradesHistoricalResponse BlockTradesHistorical().Symbol(symbol).FromId(fromId).Id(id).Limit(limit).Execute()
 
-WebSocket Historical Block Trades
+Historical Block Trades
 
 
 ### Example
@@ -116,9 +116,9 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	fromId := int64(1) // int64 | Block trade ID to fetch from
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	symbol := "BNBBTC" // string | 
+	fromId := int64(582) // int64 | Block trade ID to fetch from
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -159,7 +159,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **fromId** | **int64** | Block trade ID to fetch from | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
  **limit** | **int64** | Default: 500; Maximum: 1000 | 
 
 ### Return type
@@ -177,7 +177,7 @@ No authorization required
 
 > DepthResponse Depth().Symbol(symbol).Id(id).Limit(limit).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Order book
+Order book
 
 
 ### Example
@@ -195,9 +195,9 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	limit := int32(1) // int32 |  (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -236,9 +236,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **limit** | **int32** |  | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. | 
 
 ### Return type
 
@@ -255,7 +255,7 @@ No authorization required
 
 > KlinesResponse Klines().Symbol(symbol).Interval(interval).Id(id).StartTime(startTime).EndTime(endTime).TimeZone(timeZone).Limit(limit).Execute()
 
-WebSocket Klines
+Klines
 
 
 ### Example
@@ -274,11 +274,11 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -318,11 +318,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **interval** | [**KlinesIntervalParameter**](KlinesIntervalParameter.md) |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **timeZone** | **string** | Default: 0 (UTC) | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -339,7 +339,7 @@ No authorization required
 
 > ReferencePriceResponse ReferencePrice().Symbol(symbol).Id(id).Execute()
 
-WebSocket Query Reference Price
+Query Reference Price
 
 
 ### Example
@@ -356,8 +356,8 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	symbol := "BAZUSD" // string | 
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -396,7 +396,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -413,7 +413,7 @@ No authorization required
 
 > ReferencePriceCalculationResponse ReferencePriceCalculation().Symbol(symbol).Id(id).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Query Reference Price Calculation
+Query Reference Price Calculation
 
 
 ### Example
@@ -430,9 +430,9 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbol := "BAZUSD" // string | 
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbolStatus := models.ReferencePriceCalculationSymbolStatusParameterTrading // ReferencePriceCalculationSymbolStatusParameter |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -471,8 +471,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbolStatus** | [**ReferencePriceCalculationSymbolStatusParameter**](ReferencePriceCalculationSymbolStatusParameter.md) |  | 
 
 ### Return type
 
@@ -489,7 +489,7 @@ No authorization required
 
 > TickerResponse Ticker().Id(id).Symbol(symbol).Symbols(symbols).Type(type_).WindowSize(windowSize).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Rolling window price change statistics
+Rolling window price change statistics
 
 
 ### Example
@@ -506,12 +506,12 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	windowSize := models.TickerWindowSizeParameterWindowSize1m // TickerWindowSizeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string | Query ticker of a single symbol (optional)
+	symbols := []string{"BTCUSDT"} // []string | Query ticker for multiple symbols (optional)
+	type_ := models.TickerTypeParameterFull // TickerTypeParameter | Ticker type. Supported values: FULL (default) or MINI (optional)
+	windowSize := models.TickerWindowSizeParameterWindowSize1m // TickerWindowSizeParameter | Defaults to 1d if no parameter provided. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -549,12 +549,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **windowSize** | [**TickerWindowSizeParameter**](TickerWindowSizeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** | Query ticker of a single symbol | 
+ **symbols** | **[]string** | Query ticker for multiple symbols | 
+ **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) | Ticker type. Supported values: FULL (default) or MINI | 
+ **windowSize** | [**TickerWindowSizeParameter**](TickerWindowSizeParameter.md) | Defaults to 1d if no parameter provided. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -571,7 +571,7 @@ No authorization required
 
 > Ticker24hrResponse Ticker24hr().Id(id).Symbol(symbol).Symbols(symbols).Type(type_).SymbolStatus(symbolStatus).Execute()
 
-WebSocket 24hr ticker price change statistics
+24hr ticker price change statistics
 
 
 ### Example
@@ -588,11 +588,11 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string |  (optional)
+	symbols := []string{"BTCUSDT"} // []string |  (optional)
+	type_ := models.TickerTypeParameterFull // TickerTypeParameter | Ticker type. Supported values: FULL (default) or MINI (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -630,11 +630,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** |  | 
+ **symbols** | **[]string** |  | 
+ **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) | Ticker type. Supported values: FULL (default) or MINI | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -651,7 +651,7 @@ No authorization required
 
 > TickerBookResponse TickerBook().Id(id).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Symbol order book ticker
+Symbol order book ticker
 
 
 ### Example
@@ -668,10 +668,10 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string | Query ticker for a single symbol (optional)
+	symbols := []string{"BTCUSDT"} // []string | Query ticker for multiple symbols (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -709,10 +709,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** | Query ticker for a single symbol | 
+ **symbols** | **[]string** | Query ticker for multiple symbols | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -729,7 +729,7 @@ No authorization required
 
 > TickerPriceResponse TickerPrice().Id(id).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Symbol price ticker
+Symbol price ticker
 
 
 ### Example
@@ -746,10 +746,10 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string | Query price for a single symbol (optional)
+	symbols := []string{"BTCUSDT"} // []string | Query price for multiple symbols (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -787,10 +787,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** | Query price for a single symbol | 
+ **symbols** | **[]string** | Query price for multiple symbols | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -807,7 +807,7 @@ No authorization required
 
 > TickerTradingDayResponse TickerTradingDay().Id(id).Symbol(symbol).Symbols(symbols).TimeZone(timeZone).Type(type_).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Trading Day Ticker
+Trading Day Ticker
 
 
 ### Example
@@ -824,12 +824,12 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
-	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string |  (optional)
+	symbols := []string{"BTCUSDT"} // []string |  (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
+	type_ := models.TickerTypeParameterFull // TickerTypeParameter | Ticker type. Supported values: FULL (default) or MINI (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -867,12 +867,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** |  | 
+ **symbols** | **[]string** |  | 
  **timeZone** | **string** | Default: 0 (UTC) | 
- **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) | Ticker type. Supported values: FULL (default) or MINI | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -889,7 +889,7 @@ No authorization required
 
 > TradesAggregateResponse TradesAggregate().Symbol(symbol).Id(id).FromId(fromId).StartTime(startTime).EndTime(endTime).Limit(limit).Execute()
 
-WebSocket Aggregate trades
+Aggregate trades
 
 
 ### Example
@@ -907,11 +907,11 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	fromId := int64(1) // int64 | Aggregate trade ID to begin at (optional)
-	startTime := int64(1735693200000) // int64 |  (optional)
-	endTime := int64(1735693200000) // int64 |  (optional)
-	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
+	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -950,11 +950,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
  **fromId** | **int64** | Aggregate trade ID to begin at | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default: 500; Maximum: 1000 | 
+ **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
+ **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -971,7 +971,7 @@ No authorization required
 
 > TradesHistoricalResponse TradesHistorical().Symbol(symbol).Id(id).FromId(fromId).Limit(limit).Execute()
 
-WebSocket Historical trades
+Historical trades
 
 
 ### Example
@@ -989,9 +989,9 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromId := int32(1) // int32 | Trade ID to begin at (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	fromId := int64(1) // int64 | Trade ID to begin at (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1030,9 +1030,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **fromId** | **int32** | Trade ID to begin at | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **id** | **string** | Client-generated request identifier. | 
+ **fromId** | **int64** | Trade ID to begin at | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -1049,7 +1049,7 @@ No authorization required
 
 > TradesRecentResponse TradesRecent().Symbol(symbol).Id(id).Limit(limit).Execute()
 
-WebSocket Recent trades
+Recent trades
 
 
 ### Example
@@ -1067,8 +1067,8 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1107,8 +1107,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **id** | **string** | Client-generated request identifier. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -1125,7 +1125,7 @@ No authorization required
 
 > UiKlinesResponse UiKlines().Symbol(symbol).Interval(interval).Id(id).StartTime(startTime).EndTime(endTime).TimeZone(timeZone).Limit(limit).Execute()
 
-WebSocket UI Klines
+UI Klines
 
 
 ### Example
@@ -1144,11 +1144,11 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1188,11 +1188,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **interval** | [**KlinesIntervalParameter**](KlinesIntervalParameter.md) |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **timeZone** | **string** | Default: 0 (UTC) | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
+ **limit** | **int32** |  | 
 
 ### Return type
 

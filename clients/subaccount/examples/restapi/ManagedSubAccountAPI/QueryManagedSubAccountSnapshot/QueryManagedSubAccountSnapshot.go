@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/subaccount"
+	"github.com/binance/binance-connector-go/clients/subaccount/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func QueryManagedSubAccountSnapshot() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountSnapshot(context.Background()).Email("sub-account-email@email.com").Type("type__example").Execute()
+	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountSnapshot(context.Background()).Email("abc@test.com").Type(models.QueryManagedSubAccountSnapshotTypeParameterSpot).Execute()
 	if err != nil {
 		log.Println(err)
 		return

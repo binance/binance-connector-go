@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to [**[]OptionMarginAccountInformationResponseAssetInner**](OptionMarginAccountInformationResponseAssetInner.md) |  | [optional] 
-**Greek** | Pointer to [**[]OptionMarginAccountInformationResponseGreekInner**](OptionMarginAccountInformationResponseGreekInner.md) |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**CanTrade** | Pointer to **bool** |  | [optional] 
-**CanDeposit** | Pointer to **bool** |  | [optional] 
-**CanWithdraw** | Pointer to **bool** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**TradeGroupId** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to [**[]OptionMarginAccountInformationResponseAssetInner**](OptionMarginAccountInformationResponseAssetInner.md) | asset | [optional] 
+**Greek** | Pointer to [**[]OptionMarginAccountInformationResponseGreekInner**](OptionMarginAccountInformationResponseGreekInner.md) | greek | [optional] 
+**Time** | Pointer to **int64** | time | [optional] 
+**CanTrade** | Pointer to **bool** | can Trade | [optional] 
+**CanDeposit** | Pointer to **bool** | can Deposit | [optional] 
+**CanWithdraw** | Pointer to **bool** | can Withdraw | [optional] 
+**ReduceOnly** | Pointer to **bool** | reduce Only | [optional] 
+**TradeGroupId** | Pointer to **int64** | Trade group ID | [optional] 
 
 ## Methods
 

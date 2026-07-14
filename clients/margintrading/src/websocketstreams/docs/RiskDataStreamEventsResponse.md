@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**L** | Pointer to **string** | Margin level | [optional] 
+**S** | Pointer to **string** | Margin call status | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**T** | Pointer to **string** | Liability Update Type | [optional] 
+**P** | Pointer to **string** | Principle Quantity | [optional] 
+**I** | Pointer to **string** | Interest Quantity | [optional] 
 
 ## Methods
 
@@ -55,6 +55,56 @@ SetE sets E field to given value.
 `func (o *RiskDataStreamEventsResponse) HasE() bool`
 
 HasE returns a boolean if a field has been set.
+
+### GetL
+
+`func (o *RiskDataStreamEventsResponse) GetL() string`
+
+GetL returns the L field if non-nil, zero value otherwise.
+
+### GetLOk
+
+`func (o *RiskDataStreamEventsResponse) GetLOk() (*string, bool)`
+
+GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL
+
+`func (o *RiskDataStreamEventsResponse) SetL(v string)`
+
+SetL sets L field to given value.
+
+### HasL
+
+`func (o *RiskDataStreamEventsResponse) HasL() bool`
+
+HasL returns a boolean if a field has been set.
+
+### GetS
+
+`func (o *RiskDataStreamEventsResponse) GetS() string`
+
+GetS returns the S field if non-nil, zero value otherwise.
+
+### GetSOk
+
+`func (o *RiskDataStreamEventsResponse) GetSOk() (*string, bool)`
+
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS
+
+`func (o *RiskDataStreamEventsResponse) SetS(v string)`
+
+SetS sets S field to given value.
+
+### HasS
+
+`func (o *RiskDataStreamEventsResponse) HasS() bool`
+
+HasS returns a boolean if a field has been set.
 
 ### GetA
 
@@ -155,56 +205,6 @@ SetI sets I field to given value.
 `func (o *RiskDataStreamEventsResponse) HasI() bool`
 
 HasI returns a boolean if a field has been set.
-
-### GetL
-
-`func (o *RiskDataStreamEventsResponse) GetL() string`
-
-GetL returns the L field if non-nil, zero value otherwise.
-
-### GetLOk
-
-`func (o *RiskDataStreamEventsResponse) GetLOk() (*string, bool)`
-
-GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetL
-
-`func (o *RiskDataStreamEventsResponse) SetL(v string)`
-
-SetL sets L field to given value.
-
-### HasL
-
-`func (o *RiskDataStreamEventsResponse) HasL() bool`
-
-HasL returns a boolean if a field has been set.
-
-### GetS
-
-`func (o *RiskDataStreamEventsResponse) GetS() string`
-
-GetS returns the S field if non-nil, zero value otherwise.
-
-### GetSOk
-
-`func (o *RiskDataStreamEventsResponse) GetSOk() (*string, bool)`
-
-GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS
-
-`func (o *RiskDataStreamEventsResponse) SetS(v string)`
-
-SetS sets S field to given value.
-
-### HasS
-
-`func (o *RiskDataStreamEventsResponse) HasS() bool`
-
-HasS returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

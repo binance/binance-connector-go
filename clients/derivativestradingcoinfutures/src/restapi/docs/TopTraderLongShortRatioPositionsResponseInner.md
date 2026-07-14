@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Pair** | Pointer to **string** |  | [optional] 
-**LongShortRatio** | Pointer to **string** |  | [optional] 
-**LongPosition** | Pointer to **string** |  | [optional] 
-**ShortPosition** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**LongShortRatio** | Pointer to **string** | Long/short ratio. | [optional] 
+**LongPosition** | Pointer to **string** | 64.42% | [optional] 
+**ShortPosition** | Pointer to **string** | 44.04% | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 

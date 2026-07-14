@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &AccountStatusResponse{}
 
 // AccountStatusResponse struct for AccountStatusResponse
 type AccountStatusResponse struct {
-	Id                   *string                      `json:"id,omitempty"`
-	Status               *int64                       `json:"status,omitempty"`
-	Result               *AccountStatusResponseResult `json:"result,omitempty"`
-	RateLimits           []RateLimits                 `json:"rateLimits,omitempty"`
+	Id                   *string                                    `json:"id,omitempty"`
+	Status               *int64                                     `json:"status,omitempty"`
+	Result               *AccountStatusResponseResult               `json:"result,omitempty"`
+	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *AccountStatusResponse) SetResult(v AccountStatusResponseResult) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *AccountStatusResponse) GetRateLimits() []RateLimits {
+func (o *AccountStatusResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []AccountCommissionResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *AccountStatusResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountStatusResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *AccountStatusResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *AccountStatusResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *AccountStatusResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *AccountStatusResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

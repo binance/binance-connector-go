@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &UmFuturesAccountConfigurationResponse{}
 
 // UmFuturesAccountConfigurationResponse struct for UmFuturesAccountConfigurationResponse
 type UmFuturesAccountConfigurationResponse struct {
-	FeeTier              *int64 `json:"feeTier,omitempty"`
-	CanTrade             *bool  `json:"canTrade,omitempty"`
-	CanDeposit           *bool  `json:"canDeposit,omitempty"`
-	CanWithdraw          *bool  `json:"canWithdraw,omitempty"`
-	DualSidePosition     *bool  `json:"dualSidePosition,omitempty"`
-	UpdateTime           *int64 `json:"updateTime,omitempty"`
-	MultiAssetsMargin    *bool  `json:"multiAssetsMargin,omitempty"`
+	// account commission tier
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// if can trade
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// if can transfer in asset
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// if can transfer out asset
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// \"true\": Hedge Mode; \"false\": One-way Mode
+	DualSidePosition *bool `json:"dualSidePosition,omitempty"`
+	// reserved property, please ignore
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Multi Assets Margin.
+	MultiAssetsMargin *bool `json:"multiAssetsMargin,omitempty"`
+	// Trade Group ID.
 	TradeGroupId         *int64 `json:"tradeGroupId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

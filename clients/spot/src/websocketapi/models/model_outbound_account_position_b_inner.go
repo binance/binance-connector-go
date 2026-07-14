@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &OutboundAccountPositionBInner{}
 
 // OutboundAccountPositionBInner struct for OutboundAccountPositionBInner
 type OutboundAccountPositionBInner struct {
-	A                    *string `json:"a,omitempty"`
-	F                    *string `json:"f,omitempty"`
-	L                    *string `json:"l,omitempty"`
+	// Asset
+	Smalla *string `json:"a,omitempty"`
+	// Free
+	Smallf *string `json:"f,omitempty"`
+	// Locked
+	Smalll               *string `json:"l,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,26 +46,26 @@ func NewOutboundAccountPositionBInnerWithDefaults() *OutboundAccountPositionBInn
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *OutboundAccountPositionBInner) GetA() string {
-	if o == nil || common.IsNil(o.A) {
+func (o *OutboundAccountPositionBInner) GetSmalla() string {
+	if o == nil || common.IsNil(o.Smalla) {
 		var ret string
 		return ret
 	}
-	return *o.A
+	return *o.Smalla
 }
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutboundAccountPositionBInner) GetAOk() (*string, bool) {
-	if o == nil || common.IsNil(o.A) {
+func (o *OutboundAccountPositionBInner) GetSmallaOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
-	return o.A, true
+	return o.Smalla, true
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *OutboundAccountPositionBInner) HasA() bool {
-	if o != nil && !common.IsNil(o.A) {
+func (o *OutboundAccountPositionBInner) HasSmalla() bool {
+	if o != nil && !common.IsNil(o.Smalla) {
 		return true
 	}
 
@@ -70,31 +73,31 @@ func (o *OutboundAccountPositionBInner) HasA() bool {
 }
 
 // SetA gets a reference to the given string and assigns it to the A field.
-func (o *OutboundAccountPositionBInner) SetA(v string) {
-	o.A = &v
+func (o *OutboundAccountPositionBInner) SetSmalla(v string) {
+	o.Smalla = &v
 }
 
 // GetF returns the F field value if set, zero value otherwise.
-func (o *OutboundAccountPositionBInner) GetF() string {
-	if o == nil || common.IsNil(o.F) {
+func (o *OutboundAccountPositionBInner) GetSmallf() string {
+	if o == nil || common.IsNil(o.Smallf) {
 		var ret string
 		return ret
 	}
-	return *o.F
+	return *o.Smallf
 }
 
 // GetFOk returns a tuple with the F field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutboundAccountPositionBInner) GetFOk() (*string, bool) {
-	if o == nil || common.IsNil(o.F) {
+func (o *OutboundAccountPositionBInner) GetSmallfOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallf) {
 		return nil, false
 	}
-	return o.F, true
+	return o.Smallf, true
 }
 
 // HasF returns a boolean if a field has been set.
-func (o *OutboundAccountPositionBInner) HasF() bool {
-	if o != nil && !common.IsNil(o.F) {
+func (o *OutboundAccountPositionBInner) HasSmallf() bool {
+	if o != nil && !common.IsNil(o.Smallf) {
 		return true
 	}
 
@@ -102,31 +105,31 @@ func (o *OutboundAccountPositionBInner) HasF() bool {
 }
 
 // SetF gets a reference to the given string and assigns it to the F field.
-func (o *OutboundAccountPositionBInner) SetF(v string) {
-	o.F = &v
+func (o *OutboundAccountPositionBInner) SetSmallf(v string) {
+	o.Smallf = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
-func (o *OutboundAccountPositionBInner) GetL() string {
-	if o == nil || common.IsNil(o.L) {
+func (o *OutboundAccountPositionBInner) GetSmalll() string {
+	if o == nil || common.IsNil(o.Smalll) {
 		var ret string
 		return ret
 	}
-	return *o.L
+	return *o.Smalll
 }
 
 // GetLOk returns a tuple with the L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutboundAccountPositionBInner) GetLOk() (*string, bool) {
-	if o == nil || common.IsNil(o.L) {
+func (o *OutboundAccountPositionBInner) GetSmalllOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalll) {
 		return nil, false
 	}
-	return o.L, true
+	return o.Smalll, true
 }
 
 // HasL returns a boolean if a field has been set.
-func (o *OutboundAccountPositionBInner) HasL() bool {
-	if o != nil && !common.IsNil(o.L) {
+func (o *OutboundAccountPositionBInner) HasSmalll() bool {
+	if o != nil && !common.IsNil(o.Smalll) {
 		return true
 	}
 
@@ -134,8 +137,8 @@ func (o *OutboundAccountPositionBInner) HasL() bool {
 }
 
 // SetL gets a reference to the given string and assigns it to the L field.
-func (o *OutboundAccountPositionBInner) SetL(v string) {
-	o.L = &v
+func (o *OutboundAccountPositionBInner) SetSmalll(v string) {
+	o.Smalll = &v
 }
 
 func (o OutboundAccountPositionBInner) MarshalJSON() ([]byte, error) {
@@ -148,14 +151,14 @@ func (o OutboundAccountPositionBInner) MarshalJSON() ([]byte, error) {
 
 func (o OutboundAccountPositionBInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.A) {
-		toSerialize["a"] = o.A
+	if !common.IsNil(o.Smalla) {
+		toSerialize["a"] = o.Smalla
 	}
-	if !common.IsNil(o.F) {
-		toSerialize["f"] = o.F
+	if !common.IsNil(o.Smallf) {
+		toSerialize["f"] = o.Smallf
 	}
-	if !common.IsNil(o.L) {
-		toSerialize["l"] = o.L
+	if !common.IsNil(o.Smalll) {
+		toSerialize["l"] = o.Smalll
 	}
 
 	for key, value := range o.AdditionalProperties {

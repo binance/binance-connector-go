@@ -28,7 +28,7 @@ func PartialBookDepthStreams() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.PublicAPI.PartialBookDepthStreams().Symbol("btcusdt").Level("example_value").Execute()
+	handler, err := wsClient.WebsocketStreams.PublicAPI.PartialBookDepthStreams().Symbol("btcusdt").Level(models.PartialBookDepthStreamsLevelParameterLevel5).UpdateSpeed(models.DiffBookDepthStreamsUpdateSpeedParameterUpdateSpeed100ms).Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}

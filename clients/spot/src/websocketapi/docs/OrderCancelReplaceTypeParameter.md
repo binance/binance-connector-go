@@ -9,7 +9,6 @@
 * `OrderCancelReplaceTypeParameterTakeProfit` (value: `"TAKE_PROFIT"`)
 * `OrderCancelReplaceTypeParameterTakeProfitLimit` (value: `"TAKE_PROFIT_LIMIT"`)
 * `OrderCancelReplaceTypeParameterLimitMaker` (value: `"LIMIT_MAKER"`)
-* `OrderCancelReplaceTypeParameterNonRepresentable` (value: `"NON_REPRESENTABLE"`)
 
 
 [[Back to README]](../README.md)

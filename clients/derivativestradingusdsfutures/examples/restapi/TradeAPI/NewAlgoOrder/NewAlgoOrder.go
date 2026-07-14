@@ -23,7 +23,7 @@ func NewAlgoOrder() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.NewAlgoOrder(context.Background()).AlgoType("algoType_example").Symbol("symbol_example").Side(models.NewAlgoOrderSideParameterBuy).Type("type__example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewAlgoOrder(context.Background()).AlgoType(models.NewAlgoOrderAlgoTypeParameterConditional).Symbol("BNBUSDT").Side(models.NewAlgoOrderSideParameterBuy).Type(models.NewAlgoOrderTypeParameterLimit).Execute()
 	if err != nil {
 		log.Println(err)
 		return

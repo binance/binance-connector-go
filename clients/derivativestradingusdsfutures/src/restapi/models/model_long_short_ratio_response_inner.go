@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &LongShortRatioResponseInner{}
 
 // LongShortRatioResponseInner struct for LongShortRatioResponseInner
 type LongShortRatioResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	LongShortRatio       *string `json:"longShortRatio,omitempty"`
-	LongAccount          *string `json:"longAccount,omitempty"`
-	ShortAccount         *string `json:"shortAccount,omitempty"`
-	Timestamp            *string `json:"timestamp,omitempty"`
+	// long/short account num ratio of all traders
+	Symbol *string `json:"symbol,omitempty"`
+	// long account num ratio of all traders
+	LongShortRatio *string `json:"longShortRatio,omitempty"`
+	// short account num ratio of all traders
+	LongAccount *string `json:"longAccount,omitempty"`
+	// Short Account.
+	ShortAccount *string `json:"shortAccount,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -173,9 +178,9 @@ func (o *LongShortRatioResponseInner) SetShortAccount(v string) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *LongShortRatioResponseInner) GetTimestamp() string {
+func (o *LongShortRatioResponseInner) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Timestamp
@@ -183,7 +188,7 @@ func (o *LongShortRatioResponseInner) GetTimestamp() string {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LongShortRatioResponseInner) GetTimestampOk() (*string, bool) {
+func (o *LongShortRatioResponseInner) GetTimestampOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -199,8 +204,8 @@ func (o *LongShortRatioResponseInner) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *LongShortRatioResponseInner) SetTimestamp(v string) {
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
+func (o *LongShortRatioResponseInner) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 

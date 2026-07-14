@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,19 +17,32 @@ var _ common.MappedNullable = &MarginAccountCancelOrderResponse{}
 
 // MarginAccountCancelOrderResponse struct for MarginAccountCancelOrderResponse
 type MarginAccountCancelOrderResponse struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	IsIsolated           *bool   `json:"isIsolated,omitempty"`
-	OrderId              *string `json:"orderId,omitempty"`
-	OrigClientOrderId    *string `json:"origClientOrderId,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	CummulativeQuoteQty  *string `json:"cummulativeQuoteQty,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	Side                 *string `json:"side,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order Id.
+	OrderId *string `json:"orderId,omitempty"`
+	// orig Client Order Id.
+	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
+	// client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// status.
+	Status *string `json:"status,omitempty"`
+	// time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// side.
+	Side *string `json:"side,omitempty"`
+	// if isolated margin
+	IsIsolated           *bool `json:"isIsolated,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,38 +95,6 @@ func (o *MarginAccountCancelOrderResponse) HasSymbol() bool {
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
 func (o *MarginAccountCancelOrderResponse) SetSymbol(v string) {
 	o.Symbol = &v
-}
-
-// GetIsIsolated returns the IsIsolated field value if set, zero value otherwise.
-func (o *MarginAccountCancelOrderResponse) GetIsIsolated() bool {
-	if o == nil || common.IsNil(o.IsIsolated) {
-		var ret bool
-		return ret
-	}
-	return *o.IsIsolated
-}
-
-// GetIsIsolatedOk returns a tuple with the IsIsolated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MarginAccountCancelOrderResponse) GetIsIsolatedOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.IsIsolated) {
-		return nil, false
-	}
-	return o.IsIsolated, true
-}
-
-// HasIsIsolated returns a boolean if a field has been set.
-func (o *MarginAccountCancelOrderResponse) HasIsIsolated() bool {
-	if o != nil && !common.IsNil(o.IsIsolated) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsIsolated gets a reference to the given bool and assigns it to the IsIsolated field.
-func (o *MarginAccountCancelOrderResponse) SetIsIsolated(v bool) {
-	o.IsIsolated = &v
 }
 
 // GetOrderId returns the OrderId field value if set, zero value otherwise.
@@ -468,6 +449,38 @@ func (o *MarginAccountCancelOrderResponse) SetSide(v string) {
 	o.Side = &v
 }
 
+// GetIsIsolated returns the IsIsolated field value if set, zero value otherwise.
+func (o *MarginAccountCancelOrderResponse) GetIsIsolated() bool {
+	if o == nil || common.IsNil(o.IsIsolated) {
+		var ret bool
+		return ret
+	}
+	return *o.IsIsolated
+}
+
+// GetIsIsolatedOk returns a tuple with the IsIsolated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MarginAccountCancelOrderResponse) GetIsIsolatedOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.IsIsolated) {
+		return nil, false
+	}
+	return o.IsIsolated, true
+}
+
+// HasIsIsolated returns a boolean if a field has been set.
+func (o *MarginAccountCancelOrderResponse) HasIsIsolated() bool {
+	if o != nil && !common.IsNil(o.IsIsolated) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsIsolated gets a reference to the given bool and assigns it to the IsIsolated field.
+func (o *MarginAccountCancelOrderResponse) SetIsIsolated(v bool) {
+	o.IsIsolated = &v
+}
+
 func (o MarginAccountCancelOrderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -480,9 +493,6 @@ func (o MarginAccountCancelOrderResponse) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
-	}
-	if !common.IsNil(o.IsIsolated) {
-		toSerialize["isIsolated"] = o.IsIsolated
 	}
 	if !common.IsNil(o.OrderId) {
 		toSerialize["orderId"] = o.OrderId
@@ -517,6 +527,9 @@ func (o MarginAccountCancelOrderResponse) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
+	if !common.IsNil(o.IsIsolated) {
+		toSerialize["isIsolated"] = o.IsIsolated
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -540,7 +553,6 @@ func (o *MarginAccountCancelOrderResponse) UnmarshalJSON(data []byte) (err error
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "isIsolated")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origClientOrderId")
 		delete(additionalProperties, "clientOrderId")
@@ -552,6 +564,7 @@ func (o *MarginAccountCancelOrderResponse) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "side")
+		delete(additionalProperties, "isIsolated")
 		o.AdditionalProperties = additionalProperties
 	}
 

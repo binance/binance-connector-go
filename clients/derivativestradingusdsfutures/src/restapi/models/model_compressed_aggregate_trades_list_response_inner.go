@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &CompressedAggregateTradesListResponseInner{}
 
 // CompressedAggregateTradesListResponseInner struct for CompressedAggregateTradesListResponseInner
 type CompressedAggregateTradesListResponseInner struct {
-	A                    *int64  `json:"a,omitempty"`
-	P                    *string `json:"p,omitempty"`
-	Q                    *string `json:"q,omitempty"`
-	Nq                   *string `json:"nq,omitempty"`
-	F                    *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"l,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	M                    *bool   `json:"m,omitempty"`
+	// Aggregate tradeId
+	A *int64 `json:"a,omitempty"`
+	// Price
+	P *string `json:"p,omitempty"`
+	// Quantity
+	Q *string `json:"q,omitempty"`
+	// Normal quantity without the trades involving RPI orders
+	Nq *string `json:"nq,omitempty"`
+	// First tradeId
+	F *int64 `json:"f,omitempty"`
+	// Last tradeId
+	L *int64 `json:"l,omitempty"`
+	// Timestamp
+	T *int64 `json:"T,omitempty"`
+	// Was the buyer the maker?
+	M                    *bool `json:"m,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

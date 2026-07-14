@@ -31,8 +31,22 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"assets":[{"asset":"WLD","walletBalance":"0.00000000","unrealizedProfit":"0.00000000","marginBalance":"0.00000000","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","maxWithdrawAmount":"0.00000000","crossWalletBalance":"0.00000000","crossUnPnl":"0.00000000","availableBalance":"0.00000000","updateTime":0}],"positions":[{"symbol":"ETHUSD_220930","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"7","isolated":false,"positionSide":"BOTH","entryPrice":"0.00000000","maxQty":"1000","notionalValue":"0","isolatedWallet":"0","updateTime":0,"positionAmt":"0","breakEvenPrice":"0.00000000"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -73,22 +87,37 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"assets":[{"asset":"WLD","walletBalance":"0.00000000","unrealizedProfit":"0.00000000","marginBalance":"0.00000000","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","maxWithdrawAmount":"0.00000000","crossWalletBalance":"0.00000000","crossUnPnl":"0.00000000","availableBalance":"0.00000000","updateTime":0}],"positions":[{"symbol":"ETHUSD_220930","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"7","isolated":false,"positionSide":"BOTH","entryPrice":"0.00000000","maxQty":"1000","notionalValue":"0","isolatedWallet":"0","updateTime":0,"positionAmt":"0","breakEvenPrice":"0.00000000"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.status"[1:], sent["method"])
+		require.Equal(t, "/account.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountInformationResponse{}, typedResp)
@@ -157,8 +186,22 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"fWAuTiuXoCuXmY","asset":"WLD","balance":"0.00000000","withdrawAvailable":"0.00000000","crossWalletBalance":"0.00000000","crossUnPnl":"0.00000000","availableBalance":"0.00000000","updateTime":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -199,22 +242,37 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_AccountAPIService(t *
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"accountAlias":"fWAuTiuXoCuXmY","asset":"WLD","balance":"0.00000000","withdrawAvailable":"0.00000000","crossWalletBalance":"0.00000000","crossUnPnl":"0.00000000","availableBalance":"0.00000000","updateTime":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.balance"[1:], sent["method"])
+		require.Equal(t, "/account.balance"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.FuturesAccountBalanceResponse{}, typedResp)

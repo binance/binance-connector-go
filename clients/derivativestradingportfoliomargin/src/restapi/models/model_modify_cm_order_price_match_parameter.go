@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -16,7 +16,6 @@ type ModifyCmOrderPriceMatchParameter string
 
 // List of modifyCmOrder_priceMatch_parameter
 const (
-	ModifyCmOrderPriceMatchParameterNone       ModifyCmOrderPriceMatchParameter = "NONE"
 	ModifyCmOrderPriceMatchParameterOpponent   ModifyCmOrderPriceMatchParameter = "OPPONENT"
 	ModifyCmOrderPriceMatchParameterOpponent5  ModifyCmOrderPriceMatchParameter = "OPPONENT_5"
 	ModifyCmOrderPriceMatchParameterOpponent10 ModifyCmOrderPriceMatchParameter = "OPPONENT_10"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of ModifyCmOrderPriceMatchParameter enum
 var AllowedModifyCmOrderPriceMatchParameterEnumValues = []ModifyCmOrderPriceMatchParameter{
-	"NONE",
 	"OPPONENT",
 	"OPPONENT_5",
 	"OPPONENT_10",

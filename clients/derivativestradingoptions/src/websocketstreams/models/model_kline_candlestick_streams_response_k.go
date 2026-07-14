@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -15,23 +15,39 @@ import (
 // checks if the KlineCandlestickStreamsResponseK type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &KlineCandlestickStreamsResponseK{}
 
-// KlineCandlestickStreamsResponseK struct for KlineCandlestickStreamsResponseK
+// KlineCandlestickStreamsResponseK k
 type KlineCandlestickStreamsResponseK struct {
-	Smallt               *int64  `json:"t,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smalli               *string `json:"i,omitempty"`
-	Smallf               *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"L,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	Smallh               *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallv               *string `json:"v,omitempty"`
-	Smalln               *int64  `json:"n,omitempty"`
-	Smallx               *bool   `json:"x,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	V                    *string `json:"V,omitempty"`
+	// kline start time
+	Smallt *int64 `json:"t,omitempty"`
+	// kline end time
+	T *int64 `json:"T,omitempty"`
+	// Option trading symbol
+	Smalls *string `json:"s,omitempty"`
+	// candle period
+	Smalli *string `json:"i,omitempty"`
+	// first trade ID
+	Smallf *int64 `json:"f,omitempty"`
+	// last trade ID
+	L *int64 `json:"L,omitempty"`
+	// open
+	Smallo *string `json:"o,omitempty"`
+	// close
+	Smallc *string `json:"c,omitempty"`
+	// high
+	Smallh *string `json:"h,omitempty"`
+	// low
+	Smalll *string `json:"l,omitempty"`
+	// volume(in contracts)
+	Smallv *string `json:"v,omitempty"`
+	// number of trades
+	Smalln *int64 `json:"n,omitempty"`
+	// current candle has been completed Y/N
+	Smallx *bool `json:"x,omitempty"`
+	// completed trade amount   (in quote asset)
+	Smallq *string `json:"q,omitempty"`
+	// taker completed trade volume (in contracts)
+	V *string `json:"V,omitempty"`
+	// taker trade amount(in quote asset)
 	Q                    *string `json:"Q,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

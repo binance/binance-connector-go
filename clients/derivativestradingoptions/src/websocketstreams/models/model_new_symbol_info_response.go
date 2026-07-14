@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,16 +17,27 @@ var _ common.MappedNullable = &NewSymbolInfoResponse{}
 
 // NewSymbolInfoResponse struct for NewSymbolInfoResponse
 type NewSymbolInfoResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallqa              *string `json:"qa,omitempty"`
-	Smalld               *string `json:"d,omitempty"`
-	Smallsp              *string `json:"sp,omitempty"`
-	Smalldt              *int64  `json:"dt,omitempty"`
-	Smallu               *int64  `json:"u,omitempty"`
-	Smallot              *int64  `json:"ot,omitempty"`
+	// Event Type
+	Smalle *string `json:"e,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Underlying index of the contract
+	Smallps *string `json:"ps,omitempty"`
+	// Quotation asset
+	Smallqa *string `json:"qa,omitempty"`
+	// Option type
+	Smalld *string `json:"d,omitempty"`
+	// Strike price
+	Smallsp *string `json:"sp,omitempty"`
+	// Delivery date time
+	Smalldt *int64 `json:"dt,omitempty"`
+	// unit, the quantity of the underlying asset represented by a single contract.
+	Smallu *int64 `json:"u,omitempty"`
+	// onboard date time
+	Smallot *int64 `json:"ot,omitempty"`
+	// Contract status
 	Smallcs              *string `json:"cs,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

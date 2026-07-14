@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Pair** | Pointer to **string** |  | [optional] 
-**ContractType** | Pointer to **string** |  | [optional] 
-**TakerBuyVol** | Pointer to **string** |  | [optional] 
-**TakerSellVol** | Pointer to **string** |  | [optional] 
-**TakerBuyVolValue** | Pointer to **string** |  | [optional] 
-**TakerSellVolValue** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**ContractType** | Pointer to **string** | Contract type. | [optional] 
+**TakerBuyVol** | Pointer to **string** | unit: cont | [optional] 
+**TakerSellVol** | Pointer to **string** | unit: cont | [optional] 
+**TakerBuyVolValue** | Pointer to **string** | unit: base asset | [optional] 
+**TakerSellVolValue** | Pointer to **string** | unit: base asset | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,12 +17,17 @@ var _ common.MappedNullable = &GetFundingRateInfoResponseInner{}
 
 // GetFundingRateInfoResponseInner struct for GetFundingRateInfoResponseInner
 type GetFundingRateInfoResponseInner struct {
-	Symbol                   *string `json:"symbol,omitempty"`
-	AdjustedFundingRateCap   *string `json:"adjustedFundingRateCap,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Adjusted funding rate cap.
+	AdjustedFundingRateCap *string `json:"adjustedFundingRateCap,omitempty"`
+	// Adjusted funding rate floor.
 	AdjustedFundingRateFloor *string `json:"adjustedFundingRateFloor,omitempty"`
-	FundingIntervalHours     *int64  `json:"fundingIntervalHours,omitempty"`
-	Disclaimer               *bool   `json:"disclaimer,omitempty"`
-	AdditionalProperties     map[string]interface{}
+	// Funding interval in hours.
+	FundingIntervalHours *int64 `json:"fundingIntervalHours,omitempty"`
+	// Disclaimer text.
+	Disclaimer           *bool `json:"disclaimer,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetFundingRateInfoResponseInner GetFundingRateInfoResponseInner

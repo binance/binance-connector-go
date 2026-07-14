@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**MaxNotionalValue** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**Notional** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
-**LiquidationPrice** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**EntryPrice** | Pointer to **string** | average entry price | [optional] 
+**Leverage** | Pointer to **string** | current initial leverage | [optional] 
+**MarkPrice** | Pointer to **string** | Mark Price. | [optional] 
+**MaxNotionalValue** | Pointer to **string** | Max Notional Value. | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**Notional** | Pointer to **string** | Notional. | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Un Realized Profit. | [optional] 
+**LiquidationPrice** | Pointer to **string** | Liquidation Price. | [optional] 
+**PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

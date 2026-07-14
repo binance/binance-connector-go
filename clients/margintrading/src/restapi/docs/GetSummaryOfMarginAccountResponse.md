@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**NormalBar** | Pointer to **string** |  | [optional] 
-**MarginCallBar** | Pointer to **string** |  | [optional] 
-**ForceLiquidationBar** | Pointer to **string** |  | [optional] 
+**NormalBar** | Pointer to **string** | normal Bar. | [optional] 
+**MarginCallBar** | Pointer to **string** | margin Call Bar. | [optional] 
+**ForceLiquidationBar** | Pointer to **string** | force Liquidation Bar. | [optional] 
 
 ## Methods
 

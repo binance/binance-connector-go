@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package models
@@ -17,22 +17,22 @@ var _ common.MappedNullable = &GetDetailOnSubAccountsFuturesAccountResponse{}
 
 // GetDetailOnSubAccountsFuturesAccountResponse struct for GetDetailOnSubAccountsFuturesAccountResponse
 type GetDetailOnSubAccountsFuturesAccountResponse struct {
-	Email                       *string                                                                      `json:"email,omitempty"`
-	Asset                       *string                                                                      `json:"asset,omitempty"`
-	Assets                      []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner `json:"assets,omitempty"`
-	CanDeposit                  *bool                                                                        `json:"canDeposit,omitempty"`
-	CanTrade                    *bool                                                                        `json:"canTrade,omitempty"`
-	CanWithdraw                 *bool                                                                        `json:"canWithdraw,omitempty"`
-	FeeTier                     *int64                                                                       `json:"feeTier,omitempty"`
-	MaxWithdrawAmount           *string                                                                      `json:"maxWithdrawAmount,omitempty"`
-	TotalInitialMargin          *string                                                                      `json:"totalInitialMargin,omitempty"`
-	TotalMaintenanceMargin      *string                                                                      `json:"totalMaintenanceMargin,omitempty"`
-	TotalMarginBalance          *string                                                                      `json:"totalMarginBalance,omitempty"`
-	TotalOpenOrderInitialMargin *string                                                                      `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalPositionInitialMargin  *string                                                                      `json:"totalPositionInitialMargin,omitempty"`
-	TotalUnrealizedProfit       *string                                                                      `json:"totalUnrealizedProfit,omitempty"`
-	TotalWalletBalance          *string                                                                      `json:"totalWalletBalance,omitempty"`
-	UpdateTime                  *int64                                                                       `json:"updateTime,omitempty"`
+	Email                       *string                                                   `json:"email,omitempty"`
+	Asset                       *string                                                   `json:"asset,omitempty"`
+	Assets                      []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner `json:"assets,omitempty"`
+	CanDeposit                  *bool                                                     `json:"canDeposit,omitempty"`
+	CanTrade                    *bool                                                     `json:"canTrade,omitempty"`
+	CanWithdraw                 *bool                                                     `json:"canWithdraw,omitempty"`
+	FeeTier                     *int64                                                    `json:"feeTier,omitempty"`
+	MaxWithdrawAmount           *string                                                   `json:"maxWithdrawAmount,omitempty"`
+	TotalInitialMargin          *string                                                   `json:"totalInitialMargin,omitempty"`
+	TotalMaintenanceMargin      *string                                                   `json:"totalMaintenanceMargin,omitempty"`
+	TotalMarginBalance          *string                                                   `json:"totalMarginBalance,omitempty"`
+	TotalOpenOrderInitialMargin *string                                                   `json:"totalOpenOrderInitialMargin,omitempty"`
+	TotalPositionInitialMargin  *string                                                   `json:"totalPositionInitialMargin,omitempty"`
+	TotalUnrealizedProfit       *string                                                   `json:"totalUnrealizedProfit,omitempty"`
+	TotalWalletBalance          *string                                                   `json:"totalWalletBalance,omitempty"`
+	UpdateTime                  *int64                                                    `json:"updateTime,omitempty"`
 	AdditionalProperties        map[string]interface{}
 }
 
@@ -120,9 +120,9 @@ func (o *GetDetailOnSubAccountsFuturesAccountResponse) SetAsset(v string) {
 }
 
 // GetAssets returns the Assets field value if set, zero value otherwise.
-func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssets() []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner {
+func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssets() []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner {
 	if o == nil || common.IsNil(o.Assets) {
-		var ret []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner
+		var ret []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner
 		return ret
 	}
 	return o.Assets
@@ -130,7 +130,7 @@ func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssets() []GetDetailOn
 
 // GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssetsOk() ([]GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner, bool) {
+func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssetsOk() ([]GetDetailOnSubAccountsFuturesAccountResponseAssetsInner, bool) {
 	if o == nil || common.IsNil(o.Assets) {
 		return nil, false
 	}
@@ -146,8 +146,8 @@ func (o *GetDetailOnSubAccountsFuturesAccountResponse) HasAssets() bool {
 	return false
 }
 
-// SetAssets gets a reference to the given []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner and assigns it to the Assets field.
-func (o *GetDetailOnSubAccountsFuturesAccountResponse) SetAssets(v []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner) {
+// SetAssets gets a reference to the given []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner and assigns it to the Assets field.
+func (o *GetDetailOnSubAccountsFuturesAccountResponse) SetAssets(v []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner) {
 	o.Assets = v
 }
 

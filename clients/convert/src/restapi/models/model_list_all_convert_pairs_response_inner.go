@@ -1,7 +1,7 @@
 /*
-Binance Convert REST API
+Convert REST API
 
-OpenAPI Specification for the Binance Convert REST API
+Request quotes and execute cryptocurrency conversions via the Convert REST API.
 */
 
 package models
@@ -17,11 +17,12 @@ var _ common.MappedNullable = &ListAllConvertPairsResponseInner{}
 
 // ListAllConvertPairsResponseInner struct for ListAllConvertPairsResponseInner
 type ListAllConvertPairsResponseInner struct {
-	FromAsset            *string `json:"fromAsset,omitempty"`
-	ToAsset              *string `json:"toAsset,omitempty"`
-	FromAssetMinAmount   *string `json:"fromAssetMinAmount,omitempty"`
-	FromAssetMaxAmount   *string `json:"fromAssetMaxAmount,omitempty"`
-	ToAssetMinAmount     *string `json:"toAssetMinAmount,omitempty"`
+	FromAsset          *string `json:"fromAsset,omitempty"`
+	ToAsset            *string `json:"toAsset,omitempty"`
+	FromAssetMinAmount *string `json:"fromAssetMinAmount,omitempty"`
+	FromAssetMaxAmount *string `json:"fromAssetMaxAmount,omitempty"`
+	ToAssetMinAmount   *string `json:"toAssetMinAmount,omitempty"`
+	// 9E+24 signals that this symbol has a very large upper limit close to infinity
 	ToAssetMaxAmount     *string `json:"toAssetMaxAmount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

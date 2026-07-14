@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Bs** | Pointer to **int64** |  | [optional] 
-**Bnf** | Pointer to **int64** |  | [optional] 
-**Bnc** | Pointer to **int64** |  | [optional] 
-**Mmr** | Pointer to **float32** |  | [optional] 
-**Cf** | Pointer to **int64** |  | [optional] 
-**Mi** | Pointer to **int64** |  | [optional] 
-**Ma** | Pointer to **int64** |  | [optional] 
+**Bs** | Pointer to **int64** | Notional bracket | [optional] 
+**Bnf** | Pointer to **int64** | Floor notional of this bracket | [optional] 
+**Bnc** | Pointer to **int64** | Cap notional of this bracket | [optional] 
+**Mmr** | Pointer to **float32** | Maintenance ratio for this bracket | [optional] 
+**Cf** | Pointer to **int64** | Auxiliary number for quick calculation | [optional] 
+**Mi** | Pointer to **int64** | Min leverage for this bracket | [optional] 
+**Ma** | Pointer to **int64** | Max leverage for this bracket | [optional] 
 
 ## Methods
 

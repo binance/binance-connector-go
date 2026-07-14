@@ -2,10 +2,9 @@
 
 ## Enum
 
-* `PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone` (value: `"NONE"`)
 * `PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireTaker` (value: `"EXPIRE_TAKER"`)
-* `PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireMaker` (value: `"EXPIRE_MAKER"`)
+* `PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireBoth` (value: `"EXPIRE_BOTH"`)
 
 
 [[Back to README]](../README.md)

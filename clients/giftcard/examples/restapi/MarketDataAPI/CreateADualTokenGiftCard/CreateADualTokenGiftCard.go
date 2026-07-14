@@ -22,7 +22,7 @@ func CreateADualTokenGiftCard() {
 	apiClient := client.NewBinanceGiftCardClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("baseToken_example").FaceToken("faceToken_example").BaseTokenAmount(1.0).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("BUSD").FaceToken("BNB").BaseTokenAmount(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

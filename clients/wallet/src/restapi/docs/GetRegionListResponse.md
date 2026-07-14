@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**CountryCode** | Pointer to **string** |  | [optional] 
+**CountryCode** | Pointer to **string** | Echoed country code (lowercase). | [optional] 
 **Regions** | Pointer to [**[]GetRegionListResponseRegionsInner**](GetRegionListResponseRegionsInner.md) |  | [optional] 
-**LastUpdated** | Pointer to **int64** |  | [optional] 
+**LastUpdated** | Pointer to **int64** | Last data update timestamp (epoch milliseconds); 0 if empty. | [optional] 
 
 ## Methods
 

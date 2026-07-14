@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**A** | Pointer to **string** |  | [optional] 
-**Wb** | Pointer to **string** |  | [optional] 
-**Cw** | Pointer to **string** |  | [optional] 
-**Bc** | Pointer to **string** |  | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**Wb** | Pointer to **string** | Wallet Balance | [optional] 
+**Cw** | Pointer to **string** | Cross Wallet Balance | [optional] 
+**Bc** | Pointer to **string** | Balance Change except PnL and Commission | [optional] 
 
 ## Methods
 

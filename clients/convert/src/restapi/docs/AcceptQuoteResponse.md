@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **OrderId** | Pointer to **string** |  | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
-**OrderStatus** | Pointer to **string** |  | [optional] 
+**OrderStatus** | Pointer to **string** | Order processing status | [optional] 
 
 ## Methods
 

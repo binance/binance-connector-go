@@ -4,29 +4,32 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**OrigType** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**ClosePosition** | Pointer to **bool** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**ActivatePrice** | Pointer to **string** |  | [optional] 
-**PriceRate** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**WorkingType** | Pointer to **string** |  | [optional] 
-**PriceProtect** | Pointer to **bool** |  | [optional] 
+**AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
+**ClientOrderId** | Pointer to **string** | Client Order Id. | [optional] 
+**CumQuote** | Pointer to **string** | Cum Quote. | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
+**OrderId** | Pointer to **int64** | Order Id. | [optional] 
+**OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
+**OrigType** | Pointer to **string** | Orig Type. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
+**PositionSide** | Pointer to **string** | Position Side. | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
+**StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
+**ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Time** | Pointer to **int64** | order time | [optional] 
+**TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
+**Type** | Pointer to **string** | Type. | [optional] 
+**ActivatePrice** | Pointer to **string** | activation price, only return with TRAILING_STOP_MARKET order | [optional] 
+**PriceRate** | Pointer to **string** | callback rate, only return with TRAILING_STOP_MARKET order | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
+**WorkingType** | Pointer to **string** | Working Type. | [optional] 
+**PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
+**PriceMatch** | Pointer to **string** | Price Match. | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | Self Trade Prevention Mode. | [optional] 
+**GoodTillDate** | Pointer to **int64** | Good Till Date. | [optional] 
 
 ## Methods
 
@@ -621,6 +624,81 @@ SetPriceProtect sets PriceProtect field to given value.
 `func (o *QueryOrderResponse) HasPriceProtect() bool`
 
 HasPriceProtect returns a boolean if a field has been set.
+
+### GetPriceMatch
+
+`func (o *QueryOrderResponse) GetPriceMatch() string`
+
+GetPriceMatch returns the PriceMatch field if non-nil, zero value otherwise.
+
+### GetPriceMatchOk
+
+`func (o *QueryOrderResponse) GetPriceMatchOk() (*string, bool)`
+
+GetPriceMatchOk returns a tuple with the PriceMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceMatch
+
+`func (o *QueryOrderResponse) SetPriceMatch(v string)`
+
+SetPriceMatch sets PriceMatch field to given value.
+
+### HasPriceMatch
+
+`func (o *QueryOrderResponse) HasPriceMatch() bool`
+
+HasPriceMatch returns a boolean if a field has been set.
+
+### GetSelfTradePreventionMode
+
+`func (o *QueryOrderResponse) GetSelfTradePreventionMode() string`
+
+GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
+
+### GetSelfTradePreventionModeOk
+
+`func (o *QueryOrderResponse) GetSelfTradePreventionModeOk() (*string, bool)`
+
+GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfTradePreventionMode
+
+`func (o *QueryOrderResponse) SetSelfTradePreventionMode(v string)`
+
+SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
+
+### HasSelfTradePreventionMode
+
+`func (o *QueryOrderResponse) HasSelfTradePreventionMode() bool`
+
+HasSelfTradePreventionMode returns a boolean if a field has been set.
+
+### GetGoodTillDate
+
+`func (o *QueryOrderResponse) GetGoodTillDate() int64`
+
+GetGoodTillDate returns the GoodTillDate field if non-nil, zero value otherwise.
+
+### GetGoodTillDateOk
+
+`func (o *QueryOrderResponse) GetGoodTillDateOk() (*int64, bool)`
+
+GetGoodTillDateOk returns a tuple with the GoodTillDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoodTillDate
+
+`func (o *QueryOrderResponse) SetGoodTillDate(v int64)`
+
+SetGoodTillDate sets GoodTillDate field to given value.
+
+### HasGoodTillDate
+
+`func (o *QueryOrderResponse) HasGoodTillDate() bool`
+
+HasGoodTillDate returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**A** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**Nq** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
+**A** | Pointer to **int64** | Aggregate tradeId | [optional] 
+**P** | Pointer to **string** | Price | [optional] 
+**Q** | Pointer to **string** | Quantity | [optional] 
+**Nq** | Pointer to **string** | Normal quantity without the trades involving RPI orders | [optional] 
+**F** | Pointer to **int64** | First tradeId | [optional] 
+**L** | Pointer to **int64** | Last tradeId | [optional] 
+**T** | Pointer to **int64** | Timestamp | [optional] 
+**M** | Pointer to **bool** | Was the buyer the maker? | [optional] 
 
 ## Methods
 

@@ -22,7 +22,7 @@ func GetSummaryOfSubAccountsFuturesAccountV2() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccountV2(context.Background()).FuturesType(789).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetSummaryOfSubAccountsFuturesAccountV2(context.Background()).FuturesType(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

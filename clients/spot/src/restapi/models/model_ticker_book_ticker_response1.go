@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &TickerBookTickerResponse1{}
 
 // TickerBookTickerResponse1 struct for TickerBookTickerResponse1
 type TickerBookTickerResponse1 struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	BidPrice             *string `json:"bidPrice,omitempty"`
-	BidQty               *string `json:"bidQty,omitempty"`
-	AskPrice             *string `json:"askPrice,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// best bid price.
+	BidPrice *string `json:"bidPrice,omitempty"`
+	// bid/ask qty.
+	BidQty *string `json:"bidQty,omitempty"`
+	// best ask price.
+	AskPrice *string `json:"askPrice,omitempty"`
+	// bid/ask qty.
 	AskQty               *string `json:"askQty,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

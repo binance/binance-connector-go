@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -68,7 +68,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** |  | 
 
 ### Return type
 
@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -140,7 +140,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** |  | 
 
 ### Return type
 
@@ -174,7 +174,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -212,7 +212,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** |  | 
 
 ### Return type
 

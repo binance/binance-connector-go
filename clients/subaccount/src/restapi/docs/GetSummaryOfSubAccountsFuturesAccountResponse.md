@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
 **TotalWalletBalance** | Pointer to **string** |  | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
-**SubAccountList** | Pointer to [**[]GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner**](GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner.md) |  | [optional] 
+**SubAccountList** | Pointer to [**[]GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner**](GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner.md) |  | [optional] 
 
 ## Methods
 
@@ -235,20 +235,20 @@ HasAsset returns a boolean if a field has been set.
 
 ### GetSubAccountList
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner`
+`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner`
 
 GetSubAccountList returns the SubAccountList field if non-nil, zero value otherwise.
 
 ### GetSubAccountListOk
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) GetSubAccountListOk() (*[]GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner, bool)`
+`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) GetSubAccountListOk() (*[]GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner, bool)`
 
 GetSubAccountListOk returns a tuple with the SubAccountList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubAccountList
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner)`
+`func (o *GetSummaryOfSubAccountsFuturesAccountResponse) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner)`
 
 SetSubAccountList sets SubAccountList field to given value.
 

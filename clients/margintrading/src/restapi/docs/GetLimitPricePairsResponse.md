@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**CrossMarginSymbols** | Pointer to **[]string** |  | [optional] 
+**CrossMarginSymbols** | Pointer to **[]string** | cross Margin Symbols list. | [optional] 
 
 ## Methods
 

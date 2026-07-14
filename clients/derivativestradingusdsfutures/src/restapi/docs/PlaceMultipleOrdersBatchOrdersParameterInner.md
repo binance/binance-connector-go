@@ -6,17 +6,17 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | [optional] 
-**PositionSide** | Pointer to [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**PositionSide** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) |  | [optional] 
+**Type** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | [optional] 
 **TimeInForce** | Pointer to [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
+**Quantity** | Pointer to **float32** |  | [optional] 
+**ReduceOnly** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly**](PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly.md) |  | [optional] [default to PLACEMULTIPLEORDERSBATCHORDERSPARAMETERINNERREDUCEONLY_FALSE]
+**Price** | Pointer to **float32** |  | [optional] 
 **NewClientOrderId** | Pointer to **string** |  | [optional] 
-**NewOrderRespType** | Pointer to [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | [optional] 
-**PriceMatch** | Pointer to [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) |  | [optional] 
-**SelfTradePreventionMode** | Pointer to [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) |  | [optional] 
-**GoodTillDate** | Pointer to **string** |  | [optional] 
+**NewOrderRespType** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType.md) |  | [optional] [default to PLACEMULTIPLEORDERSBATCHORDERSPARAMETERINNERNEWORDERRESPTYPE_ACK]
+**PriceMatch** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch**](PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) |  | [optional] 
+**SelfTradePreventionMode** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode.md) |  | [optional] 
+**GoodTillDate** | Pointer to **int64** | Auto-cancel time for &#x60;GTD&#x60; orders. | [optional] 
 
 ## Methods
 
@@ -89,20 +89,20 @@ HasSide returns a boolean if a field has been set.
 
 ### GetPositionSide
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSide() NewAlgoOrderPositionSideParameter`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSide() PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide`
 
 GetPositionSide returns the PositionSide field if non-nil, zero value otherwise.
 
 ### GetPositionSideOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSideOk() (*NewAlgoOrderPositionSideParameter, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSideOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide, bool)`
 
 GetPositionSideOk returns a tuple with the PositionSide field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPositionSide
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPositionSide(v NewAlgoOrderPositionSideParameter)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPositionSide(v PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide)`
 
 SetPositionSide sets PositionSide field to given value.
 
@@ -114,20 +114,20 @@ HasPositionSide returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetType() string`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetType() PlaceMultipleOrdersBatchOrdersParameterInnerType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTypeOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetType(v string)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetType(v PlaceMultipleOrdersBatchOrdersParameterInnerType)`
 
 SetType sets Type field to given value.
 
@@ -164,20 +164,20 @@ HasTimeInForce returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() string`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v string)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32)`
 
 SetQuantity sets Quantity field to given value.
 
@@ -189,20 +189,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetReduceOnly
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnly() string`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnly() PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly`
 
 GetReduceOnly returns the ReduceOnly field if non-nil, zero value otherwise.
 
 ### GetReduceOnlyOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnlyOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnlyOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly, bool)`
 
 GetReduceOnlyOk returns a tuple with the ReduceOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReduceOnly
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v string)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly)`
 
 SetReduceOnly sets ReduceOnly field to given value.
 
@@ -214,20 +214,20 @@ HasReduceOnly returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() string`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v string)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32)`
 
 SetPrice sets Price field to given value.
 
@@ -264,20 +264,20 @@ HasNewClientOrderId returns a boolean if a field has been set.
 
 ### GetNewOrderRespType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() NewAlgoOrderNewOrderRespTypeParameter`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType`
 
 GetNewOrderRespType returns the NewOrderRespType field if non-nil, zero value otherwise.
 
 ### GetNewOrderRespTypeOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*NewAlgoOrderNewOrderRespTypeParameter, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType, bool)`
 
 GetNewOrderRespTypeOk returns a tuple with the NewOrderRespType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewOrderRespType
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v NewAlgoOrderNewOrderRespTypeParameter)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType)`
 
 SetNewOrderRespType sets NewOrderRespType field to given value.
 
@@ -289,20 +289,20 @@ HasNewOrderRespType returns a boolean if a field has been set.
 
 ### GetPriceMatch
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() NewAlgoOrderPriceMatchParameter`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch`
 
 GetPriceMatch returns the PriceMatch field if non-nil, zero value otherwise.
 
 ### GetPriceMatchOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*NewAlgoOrderPriceMatchParameter, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch, bool)`
 
 GetPriceMatchOk returns a tuple with the PriceMatch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceMatch
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v NewAlgoOrderPriceMatchParameter)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch)`
 
 SetPriceMatch sets PriceMatch field to given value.
 
@@ -314,20 +314,20 @@ HasPriceMatch returns a boolean if a field has been set.
 
 ### GetSelfTradePreventionMode
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionMode() NewAlgoOrderSelfTradePreventionModeParameter`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionMode() PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode`
 
 GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
 
 ### GetSelfTradePreventionModeOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionModeOk() (*NewAlgoOrderSelfTradePreventionModeParameter, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionModeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode, bool)`
 
 GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelfTradePreventionMode
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSelfTradePreventionMode(v NewAlgoOrderSelfTradePreventionModeParameter)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSelfTradePreventionMode(v PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode)`
 
 SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
 
@@ -339,20 +339,20 @@ HasSelfTradePreventionMode returns a boolean if a field has been set.
 
 ### GetGoodTillDate
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDate() string`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDate() int64`
 
 GetGoodTillDate returns the GoodTillDate field if non-nil, zero value otherwise.
 
 ### GetGoodTillDateOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDateOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDateOk() (*int64, bool)`
 
 GetGoodTillDateOk returns a tuple with the GoodTillDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGoodTillDate
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetGoodTillDate(v string)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetGoodTillDate(v int64)`
 
 SetGoodTillDate sets GoodTillDate field to given value.
 

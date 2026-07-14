@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -18,7 +18,7 @@ var _ common.MappedNullable = &OrderTestResponseResult{}
 // OrderTestResponseResult struct for OrderTestResponseResult
 type OrderTestResponseResult struct {
 	StandardCommissionForOrder *OrderTestResponseResultStandardCommissionForOrder `json:"standardCommissionForOrder,omitempty"`
-	SpecialCommissionForOrder  *OrderTestResponseResultSpecialCommissionForOrder  `json:"specialCommissionForOrder,omitempty"`
+	SpecialCommissionForOrder  *OrderTestResponseResultStandardCommissionForOrder `json:"specialCommissionForOrder,omitempty"`
 	TaxCommissionForOrder      *OrderTestResponseResultStandardCommissionForOrder `json:"taxCommissionForOrder,omitempty"`
 	Discount                   *OrderTestResponseResultDiscount                   `json:"discount,omitempty"`
 	AdditionalProperties       map[string]interface{}
@@ -76,9 +76,9 @@ func (o *OrderTestResponseResult) SetStandardCommissionForOrder(v OrderTestRespo
 }
 
 // GetSpecialCommissionForOrder returns the SpecialCommissionForOrder field value if set, zero value otherwise.
-func (o *OrderTestResponseResult) GetSpecialCommissionForOrder() OrderTestResponseResultSpecialCommissionForOrder {
+func (o *OrderTestResponseResult) GetSpecialCommissionForOrder() OrderTestResponseResultStandardCommissionForOrder {
 	if o == nil || common.IsNil(o.SpecialCommissionForOrder) {
-		var ret OrderTestResponseResultSpecialCommissionForOrder
+		var ret OrderTestResponseResultStandardCommissionForOrder
 		return ret
 	}
 	return *o.SpecialCommissionForOrder
@@ -86,7 +86,7 @@ func (o *OrderTestResponseResult) GetSpecialCommissionForOrder() OrderTestRespon
 
 // GetSpecialCommissionForOrderOk returns a tuple with the SpecialCommissionForOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderTestResponseResult) GetSpecialCommissionForOrderOk() (*OrderTestResponseResultSpecialCommissionForOrder, bool) {
+func (o *OrderTestResponseResult) GetSpecialCommissionForOrderOk() (*OrderTestResponseResultStandardCommissionForOrder, bool) {
 	if o == nil || common.IsNil(o.SpecialCommissionForOrder) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *OrderTestResponseResult) HasSpecialCommissionForOrder() bool {
 	return false
 }
 
-// SetSpecialCommissionForOrder gets a reference to the given OrderTestResponseResultSpecialCommissionForOrder and assigns it to the SpecialCommissionForOrder field.
-func (o *OrderTestResponseResult) SetSpecialCommissionForOrder(v OrderTestResponseResultSpecialCommissionForOrder) {
+// SetSpecialCommissionForOrder gets a reference to the given OrderTestResponseResultStandardCommissionForOrder and assigns it to the SpecialCommissionForOrder field.
+func (o *OrderTestResponseResult) SetSpecialCommissionForOrder(v OrderTestResponseResultStandardCommissionForOrder) {
 	o.SpecialCommissionForOrder = &v
 }
 

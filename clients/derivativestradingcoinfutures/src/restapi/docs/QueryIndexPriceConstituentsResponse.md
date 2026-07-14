@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**Constituents** | Pointer to [**[]QueryIndexPriceConstituentsResponseConstituentsInner**](QueryIndexPriceConstituentsResponseConstituentsInner.md) |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**Constituents** | Pointer to [**[]QueryIndexPriceConstituentsResponseConstituentsInner**](QueryIndexPriceConstituentsResponseConstituentsInner.md) | Constituent list. | [optional] 
 
 ## Methods
 

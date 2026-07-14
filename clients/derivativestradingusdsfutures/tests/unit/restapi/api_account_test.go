@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading USDS Futures REST API TEST
+Futures (USDⓈ-M) REST API TEST
 
 Testing AccountAPIService
 
@@ -25,7 +25,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService AccountInformationV2 Success", func(t *testing.T) {
 
-		mockedJSON := `{"feeTier":0,"feeBurn":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"103.12345678","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0},{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0}],"canTrade":true}`
+		var mockedJSON string
+		mockedJSON = `{"feeTier":0,"feeBurn":true,"canTrade":true,"canDeposit":true,"canWithdraw":true,"updateTime":0,"multiAssetsMargin":true,"tradeGroupId":-1,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"100","isolated":true,"entryPrice":"0.00000","maxNotional":"250000","bidNotional":"0","askNotional":"0","positionSide":"BOTH","positionAmt":"0","updateTime":0}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v2/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService AccountInformationV3 Success", func(t *testing.T) {
 
-		mockedJSON := `{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","updateTime":1625474304765},{"asset":"USDC","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","updateTime":1625474304765},{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"23.72469206","updateTime":1625474304765},{"asset":"BUSD","walletBalance":"103.12345678","unrealizedProfit":"0.00000000","marginBalance":"103.12345678","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"103.12345678","crossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"103.12345678","updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0},{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]}`
+		var mockedJSON string
+		mockedJSON = `{"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"126.72469206","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"126.72469206","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"126.72469206","totalCrossUnPnl":"0.00000000","availableBalance":"126.72469206","maxWithdrawAmount":"126.72469206","assets":[{"asset":"USDT","walletBalance":"23.72469206","unrealizedProfit":"0.00000000","marginBalance":"23.72469206","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","updateTime":1625474304765}],"positions":[{"symbol":"BTCUSDT","positionSide":"BOTH","positionAmt":"1.000","unrealizedProfit":"0.00000000","isolatedMargin":"0.00000000","notional":"0","isolatedWallet":"0","initialMargin":"0","maintMargin":"0","updateTime":0}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v3/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService FuturesAccountBalanceV2 Success", func(t *testing.T) {
 
-		mockedJSON := `[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}]`
+		var mockedJSON string
+		mockedJSON = `[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v2/balance", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +202,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService FuturesAccountBalanceV3 Success", func(t *testing.T) {
 
-		mockedJSON := `[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}]`
+		var mockedJSON string
+		mockedJSON = `[{"accountAlias":"SgsR","asset":"USDT","balance":"122607.35137903","crossWalletBalance":"23.72469206","crossUnPnl":"0.00000000","availableBalance":"23.72469206","maxWithdrawAmount":"23.72469206","marginAvailable":true,"updateTime":1617939110373}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v3/balance", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -245,7 +261,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService FuturesAccountConfiguration Success", func(t *testing.T) {
 
-		mockedJSON := `{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"dualSidePosition":true,"updateTime":0,"multiAssetsMargin":false,"tradeGroupId":-1}`
+		var mockedJSON string
+		mockedJSON = `{"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"dualSidePosition":true,"updateTime":0,"multiAssetsMargin":false,"tradeGroupId":-1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/accountConfig", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -300,7 +320,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService FuturesTradingQuantitativeRulesIndicators Success", func(t *testing.T) {
 
-		mockedJSON := `{"indicators":{"BTCUSDT":[{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"UFR","value":0.05,"triggerValue":0.995},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"IFER","value":0.99,"triggerValue":0.99},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"GCR","value":0.99,"triggerValue":0.99},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"DR","value":0.99,"triggerValue":0.99}],"ETHUSDT":[{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"UFR","value":0.05,"triggerValue":0.995},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"IFER","value":0.99,"triggerValue":0.99},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"GCR","value":0.99,"triggerValue":0.99},{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"DR","value":0.99,"triggerValue":0.99}],"ACCOUNT":[{"indicator":"TMV","value":10,"triggerValue":1,"plannedRecoverTime":1644919865000,"isLocked":true}]},"updateTime":1644913304748}`
+		var mockedJSON string
+		mockedJSON = `{"indicators":{"BTCUSDT":[{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"UFR","value":0.05,"triggerValue":0.995}],"ETHUSDT":[{"isLocked":true,"plannedRecoverTime":1545741270000,"indicator":"UFR","value":0.05,"triggerValue":0.995}],"ACCOUNT":[{"indicator":"TMV","value":10,"triggerValue":1,"plannedRecoverTime":1644919865000,"isLocked":true}]},"updateTime":1644913304748}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/apiTradingStatus", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -355,7 +379,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetBnbBurnStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"feeBurn":true}`
+		var mockedJSON string
+		mockedJSON = `{"feeBurn":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/feeBurn", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -410,7 +438,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetCurrentMultiAssetsMode Success", func(t *testing.T) {
 
-		mockedJSON := `{"multiAssetsMargin":true}`
+		var mockedJSON string
+		mockedJSON = `{"multiAssetsMargin":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/multiAssetsMargin", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -465,7 +497,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetCurrentPositionMode Success", func(t *testing.T) {
 
-		mockedJSON := `{"dualSidePosition":true}`
+		var mockedJSON string
+		mockedJSON = `{"dualSidePosition":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/positionSide/dual", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -520,7 +556,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesOrderHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/order/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -594,7 +634,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesTradeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/trade/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -668,7 +712,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesTransactionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/income/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -742,10 +790,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesOrderHistoryDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/order/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -762,7 +814,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -815,10 +867,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesTradeDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"www.binance.com","notified":false,"expirationTimestamp":1645009771000,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/trade/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -835,7 +891,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -888,10 +944,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesTransactionHistoryDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"www.binance.com","notified":false,"expirationTimestamp":1645009771000,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/income/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -908,7 +968,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTransactionHistoryDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTransactionHistoryDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -961,7 +1021,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetIncomeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"USDT","info":"TRANSFER","time":1570608000000,"tranId":9689322392,"tradeId":""},{"symbol":"BTCUSDT","incomeType":"COMMISSION","income":"-0.01000000","asset":"USDT","info":"COMMISSION","time":1570636800000,"tranId":9689322392,"tradeId":"2059192"}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"USDT","info":"TRANSFER","time":1570608000000,"tranId":9689322392,"tradeId":""}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/income", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1016,7 +1080,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService NotionalAndLeverageBrackets Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"ETHUSDT","notionalCoef":1.5,"brackets":[{"bracket":1,"initialLeverage":75,"notionalCap":10000,"notionalFloor":0,"maintMarginRatio":0.0065,"cum":0}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"ETHUSDT","notionalCoef":1.5,"brackets":[]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/leverageBracket", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1071,7 +1139,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService QueryUserRateLimit Success", func(t *testing.T) {
 
-		mockedJSON := `[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":10000},{"rateLimitType":"ORDERS","interval":"MINUTE","intervalNum":1,"limit":20000}]`
+		var mockedJSON string
+		mockedJSON = `[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":10000}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/rateLimit/order", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1126,7 +1198,11 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService SymbolConfiguration Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"BTCUSDT","marginType":"CROSSED","isAutoAddMargin":false,"leverage":21,"maxNotionalValue":"1000000"}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"BTCUSDT","marginType":"CROSSED","isAutoAddMargin":false,"leverage":21,"maxNotionalValue":"1000000"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/symbolConfig", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1181,10 +1257,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService ToggleBnbBurnOnFuturesTrade Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":200,"msg":"success"}`
+		var mockedJSON string
+		mockedJSON = `{"code":200,"msg":"success"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/feeBurn", r.URL.Path)
-			require.Equal(t, "feeBurn_example", r.URL.Query().Get("feeBurn"))
+			require.Equal(t, "true", r.URL.Query().Get("feeBurn"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1201,7 +1281,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.ToggleBnbBurnOnFuturesTrade(context.Background()).FeeBurn("feeBurn_example").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.ToggleBnbBurnOnFuturesTrade(context.Background()).FeeBurn("true").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1254,10 +1334,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService UserCommissionRate Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BTCUSDT","makerCommissionRate":"0.0002","takerCommissionRate":"0.0004","rpiCommissionRate":"0.00005"}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BTCUSDT","makerCommissionRate":"0.0002","takerCommissionRate":"0.0004","rpiCommissionRate":"0.00005"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/commissionRate", r.URL.Path)
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1274,7 +1358,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.UserCommissionRate(context.Background()).Symbol("symbol_example").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.UserCommissionRate(context.Background()).Symbol("BTCUSDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

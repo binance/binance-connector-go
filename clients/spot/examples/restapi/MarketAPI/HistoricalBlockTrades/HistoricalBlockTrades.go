@@ -21,7 +21,7 @@ func HistoricalBlockTrades() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol("BNBUSDT").FromId(1).Execute()
+	resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol("BNBBTC").FromId(582).Execute()
 	if err != nil {
 		log.Println(err)
 		return

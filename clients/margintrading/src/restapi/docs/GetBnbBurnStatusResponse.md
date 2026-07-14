@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**SpotBNBBurn** | Pointer to **bool** |  | [optional] 
-**InterestBNBBurn** | Pointer to **bool** |  | [optional] 
+**SpotBNBBurn** | Pointer to **bool** | spot BNBBurn. | [optional] 
+**InterestBNBBurn** | Pointer to **bool** | interest BNBBurn. | [optional] 
 
 ## Methods
 

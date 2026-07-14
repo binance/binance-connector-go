@@ -22,7 +22,7 @@ func QueryCmOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.QueryCmOrder(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QueryCmOrder(context.Background()).Symbol("BTCUSD_200925").Execute()
 	if err != nil {
 		log.Println(err)
 		return

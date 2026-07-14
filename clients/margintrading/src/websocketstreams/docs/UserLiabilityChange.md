@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**T** | Pointer to **string** | Liability Update Type | [optional] 
+**P** | Pointer to **string** | Principle Quantity | [optional] 
+**I** | Pointer to **string** | Interest Quantity | [optional] 
 
 ## Methods
 

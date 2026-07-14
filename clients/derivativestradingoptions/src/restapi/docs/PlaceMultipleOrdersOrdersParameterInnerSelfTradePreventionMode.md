@@ -3,8 +3,8 @@
 ## Enum
 
 * `PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker` (value: `"EXPIRE_TAKER"`)
-* `PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireMaker` (value: `"EXPIRE_MAKER"`)
+* `PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireBoth` (value: `"EXPIRE_BOTH"`)
 
 
 [[Back to README]](../README.md)

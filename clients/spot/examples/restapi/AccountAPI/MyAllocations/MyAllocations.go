@@ -22,7 +22,7 @@ func MyAllocations() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.MyAllocations(context.Background()).Symbol("BNBUSDT").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.MyAllocations(context.Background()).Symbol("BTCUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

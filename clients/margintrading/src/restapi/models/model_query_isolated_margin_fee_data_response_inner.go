@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &QueryIsolatedMarginFeeDataResponseInner{}
 
 // QueryIsolatedMarginFeeDataResponseInner struct for QueryIsolatedMarginFeeDataResponseInner
 type QueryIsolatedMarginFeeDataResponseInner struct {
-	VipLevel             *int64                                             `json:"vipLevel,omitempty"`
-	Symbol               *string                                            `json:"symbol,omitempty"`
-	Leverage             *string                                            `json:"leverage,omitempty"`
+	// vip Level.
+	VipLevel *int64 `json:"vipLevel,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// leverage.
+	Leverage *string `json:"leverage,omitempty"`
+	// data list.
 	Data                 []QueryIsolatedMarginFeeDataResponseInnerDataInner `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**[]SymbolOrderBookTickerResponse1Result**](SymbolOrderBookTickerResponse1Result.md) |  | [optional] 
+**Result** | Pointer to [**[]SymbolOrderBookTickerResponse2ResultInner**](SymbolOrderBookTickerResponse2ResultInner.md) |  | [optional] 
 **RateLimits** | Pointer to [**[]SymbolOrderBookTickerResponse1RateLimitsInner**](SymbolOrderBookTickerResponse1RateLimitsInner.md) |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *SymbolOrderBookTickerResponse) GetResult() []SymbolOrderBookTickerResponse1Result`
+`func (o *SymbolOrderBookTickerResponse) GetResult() []SymbolOrderBookTickerResponse2ResultInner`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *SymbolOrderBookTickerResponse) GetResultOk() (*[]SymbolOrderBookTickerResponse1Result, bool)`
+`func (o *SymbolOrderBookTickerResponse) GetResultOk() (*[]SymbolOrderBookTickerResponse2ResultInner, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *SymbolOrderBookTickerResponse) SetResult(v []SymbolOrderBookTickerResponse1Result)`
+`func (o *SymbolOrderBookTickerResponse) SetResult(v []SymbolOrderBookTickerResponse2ResultInner)`
 
 SetResult sets Result field to given value.
 

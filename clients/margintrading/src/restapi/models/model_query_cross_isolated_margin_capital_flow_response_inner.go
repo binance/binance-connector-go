@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,13 +17,22 @@ var _ common.MappedNullable = &QueryCrossIsolatedMarginCapitalFlowResponseInner{
 
 // QueryCrossIsolatedMarginCapitalFlowResponseInner struct for QueryCrossIsolatedMarginCapitalFlowResponseInner
 type QueryCrossIsolatedMarginCapitalFlowResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	TranId               *int64  `json:"tranId,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
+	// id.
+	Id *int64 `json:"id,omitempty"`
+	// tran Id.
+	TranId *int64 `json:"tranId,omitempty"`
+	// timestamp.
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// amount.
+	Amount *string `json:"amount,omitempty"`
+	// note.
+	Note                 *string `json:"note,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -270,6 +279,38 @@ func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) SetAmount(v string) {
 	o.Amount = &v
 }
 
+// GetNote returns the Note field value if set, zero value otherwise.
+func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) GetNote() string {
+	if o == nil || common.IsNil(o.Note) {
+		var ret string
+		return ret
+	}
+	return *o.Note
+}
+
+// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) GetNoteOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Note) {
+		return nil, false
+	}
+	return o.Note, true
+}
+
+// HasNote returns a boolean if a field has been set.
+func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) HasNote() bool {
+	if o != nil && !common.IsNil(o.Note) {
+		return true
+	}
+
+	return false
+}
+
+// SetNote gets a reference to the given string and assigns it to the Note field.
+func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) SetNote(v string) {
+	o.Note = &v
+}
+
 func (o QueryCrossIsolatedMarginCapitalFlowResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -301,6 +342,9 @@ func (o QueryCrossIsolatedMarginCapitalFlowResponseInner) ToMap() (map[string]in
 	if !common.IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
+	if !common.IsNil(o.Note) {
+		toSerialize["note"] = o.Note
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -330,6 +374,7 @@ func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) UnmarshalJSON(data []
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "amount")
+		delete(additionalProperties, "note")
 		o.AdditionalProperties = additionalProperties
 	}
 

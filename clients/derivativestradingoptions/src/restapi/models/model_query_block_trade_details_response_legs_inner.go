@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &QueryBlockTradeDetailsResponseLegsInner{}
 
 // QueryBlockTradeDetailsResponseLegsInner struct for QueryBlockTradeDetailsResponseLegsInner
 type QueryBlockTradeDetailsResponseLegsInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// side
+	Side *string `json:"side,omitempty"`
+	// quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// price
 	Price                *string `json:"price,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

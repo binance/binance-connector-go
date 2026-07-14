@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetSummaryOfMarginAccountResponse{}
 
 // GetSummaryOfMarginAccountResponse struct for GetSummaryOfMarginAccountResponse
 type GetSummaryOfMarginAccountResponse struct {
-	NormalBar            *string `json:"normalBar,omitempty"`
-	MarginCallBar        *string `json:"marginCallBar,omitempty"`
+	// normal Bar.
+	NormalBar *string `json:"normalBar,omitempty"`
+	// margin Call Bar.
+	MarginCallBar *string `json:"marginCallBar,omitempty"`
+	// force Liquidation Bar.
 	ForceLiquidationBar  *string `json:"forceLiquidationBar,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**TxId** | Pointer to **int64** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**TransFrom** | Pointer to **string** |  | [optional] 
-**TransTo** | Pointer to **string** |  | [optional] 
-**FromSymbol** | Pointer to **string** |  | [optional] 
-**ToSymbol** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | amount. | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Status** | Pointer to **string** | status. | [optional] 
+**Timestamp** | Pointer to **int64** | timestamp. | [optional] 
+**TxId** | Pointer to **int64** | tx Id. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**TransFrom** | Pointer to **string** | SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN | [optional] 
+**TransTo** | Pointer to **string** | SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN | [optional] 
+**FromSymbol** | Pointer to **string** | from Symbol. | [optional] 
+**ToSymbol** | Pointer to **string** | to Symbol. | [optional] 
 
 ## Methods
 

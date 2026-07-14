@@ -22,7 +22,7 @@ func ChangeInitialLeverage() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ChangeInitialLeverage(context.Background()).Symbol("symbol_example").Leverage(789).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ChangeInitialLeverage(context.Background()).Symbol("BTCUSD_200925").Leverage(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

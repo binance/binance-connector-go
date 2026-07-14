@@ -1,7 +1,7 @@
 /*
 Binance Pay REST API
 
-OpenAPI Specification for the Binance Pay REST API
+Query Binance Pay transaction history.
 */
 
 package models

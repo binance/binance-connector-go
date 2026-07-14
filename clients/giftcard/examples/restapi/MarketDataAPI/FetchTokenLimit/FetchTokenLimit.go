@@ -22,7 +22,7 @@ func FetchTokenLimit() {
 	apiClient := client.NewBinanceGiftCardClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.FetchTokenLimit(context.Background()).BaseToken("baseToken_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.FetchTokenLimit(context.Background()).BaseToken("BUSD").Execute()
 	if err != nil {
 		log.Println(err)
 		return

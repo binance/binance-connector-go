@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &ModifyIsolatedPositionMarginResponse{}
 
 // ModifyIsolatedPositionMarginResponse struct for ModifyIsolatedPositionMarginResponse
 type ModifyIsolatedPositionMarginResponse struct {
-	Amount               *float32 `json:"amount,omitempty"`
-	Code                 *int64   `json:"code,omitempty"`
-	Msg                  *string  `json:"msg,omitempty"`
-	Type                 *int64   `json:"type,omitempty"`
+	// Amount.
+	Amount *float32 `json:"amount,omitempty"`
+	// API response code. \"000000\" indicates success.
+	Code *int64 `json:"code,omitempty"`
+	// Message details.
+	Msg *string `json:"msg,omitempty"`
+	// Order type.
+	Type                 *int64 `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

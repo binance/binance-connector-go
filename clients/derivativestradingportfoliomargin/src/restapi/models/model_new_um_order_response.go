@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,26 +17,45 @@ var _ common.MappedNullable = &NewUmOrderResponse{}
 
 // NewUmOrderResponse struct for NewUmOrderResponse
 type NewUmOrderResponse struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumQuote                *string `json:"cumQuote,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cum Qty.
+	CumQty *string `json:"cumQty,omitempty"`
+	// Cum Quote.
+	CumQuote *string `json:"cumQuote,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Normal order type after trigger if appliable
+	Type *string `json:"type,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// order pre-set auot cancel time for TIF GTD order
+	GoodTillDate *int64 `json:"goodTillDate,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Price Match.
+	PriceMatch           *string `json:"priceMatch,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NewUmOrderResponse NewUmOrderResponse

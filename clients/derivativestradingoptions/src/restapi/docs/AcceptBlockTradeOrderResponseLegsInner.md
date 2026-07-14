@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol | [optional] 
+**Side** | Pointer to **string** | side | [optional] 
+**Quantity** | Pointer to **string** | quantity | [optional] 
+**Price** | Pointer to **string** | price | [optional] 
 
 ## Methods
 

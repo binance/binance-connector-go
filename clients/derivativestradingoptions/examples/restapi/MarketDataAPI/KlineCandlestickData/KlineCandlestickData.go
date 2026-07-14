@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
+	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -21,7 +22,7 @@ func KlineCandlestickData() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("symbol_example").Interval("interval_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("BTC-200730-9000-C").Interval(models.KlineCandlestickDataIntervalParameterInterval1m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

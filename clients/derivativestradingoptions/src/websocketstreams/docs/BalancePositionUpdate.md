@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **string** |  | [optional] 
-**B** | Pointer to [**[]BalancePositionUpdateBInner**](BalancePositionUpdateBInner.md) |  | [optional] 
-**P** | Pointer to [**[]BalancePositionUpdatePInner**](BalancePositionUpdatePInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**M** | Pointer to **string** | Event reason type | [optional] 
+**B** | Pointer to [**[]BalancePositionUpdateBInner**](BalancePositionUpdateBInner.md) | Balances | [optional] 
+**P** | Pointer to [**[]BalancePositionUpdatePInner**](BalancePositionUpdatePInner.md) | Positions | [optional] 
 
 ## Methods
 

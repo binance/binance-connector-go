@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package binancederivativestradingportfoliomarginrestapi
@@ -28,7 +28,7 @@ func (r ApiTestConnectivityRequest) Execute() (struct{}, error) {
 TestConnectivity Test Connectivity
 Get /papi/v1/ping
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/market-data/Test-Connectivity
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/market-data#test-connectivity
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiTestConnectivityRequest
@@ -48,7 +48,15 @@ func (a *MarketDataAPIService) TestConnectivityExecute(r ApiTestConnectivityRequ
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}

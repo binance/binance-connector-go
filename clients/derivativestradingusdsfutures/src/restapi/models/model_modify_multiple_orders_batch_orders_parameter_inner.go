@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,15 +17,20 @@ var _ common.MappedNullable = &ModifyMultipleOrdersBatchOrdersParameterInner{}
 
 // ModifyMultipleOrdersBatchOrdersParameterInner struct for ModifyMultipleOrdersBatchOrdersParameterInner
 type ModifyMultipleOrdersBatchOrdersParameterInner struct {
-	OrderId              *string                          `json:"orderId,omitempty"`
-	OrigClientOrderId    *string                          `json:"origClientOrderId,omitempty"`
-	Symbol               *string                          `json:"symbol,omitempty"`
-	Side                 *NewAlgoOrderSideParameter       `json:"side,omitempty"`
-	Quantity             *string                          `json:"quantity,omitempty"`
-	Price                *string                          `json:"price,omitempty"`
-	PriceMatch           *NewAlgoOrderPriceMatchParameter `json:"priceMatch,omitempty"`
-	StopPrice            *string                          `json:"stopPrice,omitempty"`
-	RecvWindow           *string                          `json:"recvWindow,omitempty"`
+	OrderId           *int64                     `json:"orderId,omitempty"`
+	OrigClientOrderId *string                    `json:"origClientOrderId,omitempty"`
+	Symbol            *string                    `json:"symbol,omitempty"`
+	Side              *NewAlgoOrderSideParameter `json:"side,omitempty"`
+	// Order quantity, cannot be sent with closePosition=true
+	Quantity   *float32                                                 `json:"quantity,omitempty"`
+	Price      *float32                                                 `json:"price,omitempty"`
+	PriceMatch *ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch `json:"priceMatch,omitempty"`
+	// stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need
+	StopPrice *float32 `json:"stopPrice,omitempty"`
+	// Validity window in milliseconds.
+	RecvWindow *int64 `json:"recvWindow,omitempty"`
+	// Unix timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,6 +42,10 @@ type _ModifyMultipleOrdersBatchOrdersParameterInner ModifyMultipleOrdersBatchOrd
 // will change when the set of required properties is changed
 func NewModifyMultipleOrdersBatchOrdersParameterInner() *ModifyMultipleOrdersBatchOrdersParameterInner {
 	this := ModifyMultipleOrdersBatchOrdersParameterInner{}
+	var side = NewAlgoOrderSideParameterBuy
+	this.Side = &side
+	var priceMatch = ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent
+	this.PriceMatch = &priceMatch
 	return &this
 }
 
@@ -45,13 +54,17 @@ func NewModifyMultipleOrdersBatchOrdersParameterInner() *ModifyMultipleOrdersBat
 // but it doesn't guarantee that properties required by API are set
 func NewModifyMultipleOrdersBatchOrdersParameterInnerWithDefaults() *ModifyMultipleOrdersBatchOrdersParameterInner {
 	this := ModifyMultipleOrdersBatchOrdersParameterInner{}
+	var side = NewAlgoOrderSideParameterBuy
+	this.Side = &side
+	var priceMatch = ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent
+	this.PriceMatch = &priceMatch
 	return &this
 }
 
 // GetOrderId returns the OrderId field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() int64 {
 	if o == nil || common.IsNil(o.OrderId) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.OrderId
@@ -59,7 +72,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() string {
 
 // GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderIdOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.OrderId) {
 		return nil, false
 	}
@@ -75,8 +88,8 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasOrderId() bool {
 	return false
 }
 
-// SetOrderId gets a reference to the given string and assigns it to the OrderId field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetOrderId(v string) {
+// SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetOrderId(v int64) {
 	o.OrderId = &v
 }
 
@@ -177,9 +190,9 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetSide(v NewAlgoOrderSi
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Quantity
@@ -187,7 +200,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -203,15 +216,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v string) {
+// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
 	o.Quantity = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Price
@@ -219,7 +232,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -235,15 +248,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v string) {
+// SetPrice gets a reference to the given float32 and assigns it to the Price field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
 	o.Price = &v
 }
 
 // GetPriceMatch returns the PriceMatch field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() NewAlgoOrderPriceMatchParameter {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch {
 	if o == nil || common.IsNil(o.PriceMatch) {
-		var ret NewAlgoOrderPriceMatchParameter
+		var ret ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch
 		return ret
 	}
 	return *o.PriceMatch
@@ -251,7 +264,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() NewAlgoO
 
 // GetPriceMatchOk returns a tuple with the PriceMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*NewAlgoOrderPriceMatchParameter, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch, bool) {
 	if o == nil || common.IsNil(o.PriceMatch) {
 		return nil, false
 	}
@@ -267,15 +280,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPriceMatch() bool {
 	return false
 }
 
-// SetPriceMatch gets a reference to the given NewAlgoOrderPriceMatchParameter and assigns it to the PriceMatch field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v NewAlgoOrderPriceMatchParameter) {
+// SetPriceMatch gets a reference to the given ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch and assigns it to the PriceMatch field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch) {
 	o.PriceMatch = &v
 }
 
 // GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32 {
 	if o == nil || common.IsNil(o.StopPrice) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.StopPrice
@@ -283,7 +296,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() string {
 
 // GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.StopPrice) {
 		return nil, false
 	}
@@ -299,15 +312,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool {
 	return false
 }
 
-// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v string) {
+// SetStopPrice gets a reference to the given float32 and assigns it to the StopPrice field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float32) {
 	o.StopPrice = &v
 }
 
 // GetRecvWindow returns the RecvWindow field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() int64 {
 	if o == nil || common.IsNil(o.RecvWindow) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.RecvWindow
@@ -315,7 +328,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() string {
 
 // GetRecvWindowOk returns a tuple with the RecvWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindowOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindowOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.RecvWindow) {
 		return nil, false
 	}
@@ -331,9 +344,41 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasRecvWindow() bool {
 	return false
 }
 
-// SetRecvWindow gets a reference to the given string and assigns it to the RecvWindow field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetRecvWindow(v string) {
+// SetRecvWindow gets a reference to the given int64 and assigns it to the RecvWindow field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetRecvWindow(v int64) {
 	o.RecvWindow = &v
+}
+
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetTimestamp() int64 {
+	if o == nil || common.IsNil(o.Timestamp) {
+		var ret int64
+		return ret
+	}
+	return *o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetTimestampOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Timestamp) {
+		return nil, false
+	}
+	return o.Timestamp, true
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasTimestamp() bool {
+	if o != nil && !common.IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetTimestamp(v int64) {
+	o.Timestamp = &v
 }
 
 func (o ModifyMultipleOrdersBatchOrdersParameterInner) MarshalJSON() ([]byte, error) {
@@ -373,6 +418,9 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.RecvWindow) {
 		toSerialize["recvWindow"] = o.RecvWindow
 	}
+	if !common.IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -404,6 +452,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "priceMatch")
 		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "recvWindow")
+		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

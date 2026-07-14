@@ -11,7 +11,7 @@ Name         | Type          | Description.  | Notes
 **ListClientOrderId** | Pointer to **string** |  | [optional] 
 **TransactionTime** | Pointer to **int64** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
-**Orders** | Pointer to [**[]OrderListCancelResponseResultOrdersInner**](OrderListCancelResponseResultOrdersInner.md) |  | [optional] 
+**Orders** | Pointer to [**[]AllOrderListsResponseResultInnerOrdersInner**](AllOrderListsResponseResultInnerOrdersInner.md) |  | [optional] 
 **OrderReports** | Pointer to [**[]OrderListPlaceResponseResultOrderReportsInner**](OrderListPlaceResponseResultOrderReportsInner.md) |  | [optional] 
 
 ## Methods
@@ -210,20 +210,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetOrders
 
-`func (o *OrderListPlaceResponseResult) GetOrders() []OrderListCancelResponseResultOrdersInner`
+`func (o *OrderListPlaceResponseResult) GetOrders() []AllOrderListsResponseResultInnerOrdersInner`
 
 GetOrders returns the Orders field if non-nil, zero value otherwise.
 
 ### GetOrdersOk
 
-`func (o *OrderListPlaceResponseResult) GetOrdersOk() (*[]OrderListCancelResponseResultOrdersInner, bool)`
+`func (o *OrderListPlaceResponseResult) GetOrdersOk() (*[]AllOrderListsResponseResultInnerOrdersInner, bool)`
 
 GetOrdersOk returns a tuple with the Orders field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrders
 
-`func (o *OrderListPlaceResponseResult) SetOrders(v []OrderListCancelResponseResultOrdersInner)`
+`func (o *OrderListPlaceResponseResult) SetOrders(v []AllOrderListsResponseResultInnerOrdersInner)`
 
 SetOrders sets Orders field to given value.
 

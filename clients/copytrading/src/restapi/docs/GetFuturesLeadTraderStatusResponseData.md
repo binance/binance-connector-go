@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**IsLeadTrader** | Pointer to **bool** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**IsLeadTrader** | Pointer to **bool** | Whether the user is a futures lead trader | [optional] 
+**Time** | Pointer to **int64** | Server timestamp in milliseconds | [optional] 
 
 ## Methods
 

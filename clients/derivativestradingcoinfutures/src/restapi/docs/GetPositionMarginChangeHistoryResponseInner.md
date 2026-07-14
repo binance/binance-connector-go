@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | Amount. | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**Type** | Pointer to **int64** | Order type. | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
 
 ## Methods
 

@@ -2,7 +2,6 @@
 
 ## Enum
 
-* `NewAlgoOrderPriceMatchParameterNone` (value: `"NONE"`)
 * `NewAlgoOrderPriceMatchParameterOpponent` (value: `"OPPONENT"`)
 * `NewAlgoOrderPriceMatchParameterOpponent5` (value: `"OPPONENT_5"`)
 * `NewAlgoOrderPriceMatchParameterOpponent10` (value: `"OPPONENT_10"`)

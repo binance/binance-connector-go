@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Margin Trading REST API API v1.7.0
+// RestAPIClient manages communication with the Margin REST API API v1.8.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -22,16 +22,16 @@ type RestAPIClient struct {
 	AccountAPI        *AccountAPIService
 	BorrowRepayAPI    *BorrowRepayAPIService
 	MarketDataAPI     *MarketDataAPIService
-	RiskDataStreamAPI *RiskDataStreamAPIService
 	TradeAPI          *TradeAPIService
 	TransferAPI       *TransferAPIService
+	UserDataStreamAPI *UserDataStreamAPIService
 }
 
 type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Margin Trading REST API REST API client
+// NewRestAPIClient creates a new Binance Margin REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -41,7 +41,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-margintrading/1.7.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-margintrading/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
@@ -49,9 +49,9 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	c.AccountAPI = &AccountAPIService{client: c}
 	c.BorrowRepayAPI = &BorrowRepayAPIService{client: c}
 	c.MarketDataAPI = &MarketDataAPIService{client: c}
-	c.RiskDataStreamAPI = &RiskDataStreamAPIService{client: c}
 	c.TradeAPI = &TradeAPIService{client: c}
 	c.TransferAPI = &TransferAPIService{client: c}
+	c.UserDataStreamAPI = &UserDataStreamAPIService{client: c}
 
 	return c
 }

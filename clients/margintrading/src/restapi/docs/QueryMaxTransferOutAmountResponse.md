@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | amount. | [optional] 
 
 ## Methods
 

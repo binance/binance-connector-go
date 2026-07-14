@@ -27,7 +27,7 @@ func OrderBook() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("symbol_example").ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("BTCUSDT").ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing OrderBook request: %v\n", err)
 		return

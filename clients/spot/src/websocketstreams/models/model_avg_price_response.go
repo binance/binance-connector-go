@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &AvgPriceResponse{}
 
 // AvgPriceResponse struct for AvgPriceResponse
 type AvgPriceResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	I                    *string `json:"i,omitempty"`
-	W                    *string `json:"w,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Average price interval
+	Smalli *string `json:"i,omitempty"`
+	// Average price
+	Smallw *string `json:"w,omitempty"`
+	// Last trade time
+	T                    *int64 `json:"T,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,26 +116,26 @@ func (o *AvgPriceResponse) SetE(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *AvgPriceResponse) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *AvgPriceResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AvgPriceResponse) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *AvgPriceResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *AvgPriceResponse) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *AvgPriceResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -137,31 +143,31 @@ func (o *AvgPriceResponse) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *AvgPriceResponse) SetS(v string) {
-	o.S = &v
+func (o *AvgPriceResponse) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetI returns the I field value if set, zero value otherwise.
-func (o *AvgPriceResponse) GetI() string {
-	if o == nil || common.IsNil(o.I) {
+func (o *AvgPriceResponse) GetSmalli() string {
+	if o == nil || common.IsNil(o.Smalli) {
 		var ret string
 		return ret
 	}
-	return *o.I
+	return *o.Smalli
 }
 
 // GetIOk returns a tuple with the I field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AvgPriceResponse) GetIOk() (*string, bool) {
-	if o == nil || common.IsNil(o.I) {
+func (o *AvgPriceResponse) GetSmalliOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalli) {
 		return nil, false
 	}
-	return o.I, true
+	return o.Smalli, true
 }
 
 // HasI returns a boolean if a field has been set.
-func (o *AvgPriceResponse) HasI() bool {
-	if o != nil && !common.IsNil(o.I) {
+func (o *AvgPriceResponse) HasSmalli() bool {
+	if o != nil && !common.IsNil(o.Smalli) {
 		return true
 	}
 
@@ -169,31 +175,31 @@ func (o *AvgPriceResponse) HasI() bool {
 }
 
 // SetI gets a reference to the given string and assigns it to the I field.
-func (o *AvgPriceResponse) SetI(v string) {
-	o.I = &v
+func (o *AvgPriceResponse) SetSmalli(v string) {
+	o.Smalli = &v
 }
 
 // GetW returns the W field value if set, zero value otherwise.
-func (o *AvgPriceResponse) GetW() string {
-	if o == nil || common.IsNil(o.W) {
+func (o *AvgPriceResponse) GetSmallw() string {
+	if o == nil || common.IsNil(o.Smallw) {
 		var ret string
 		return ret
 	}
-	return *o.W
+	return *o.Smallw
 }
 
 // GetWOk returns a tuple with the W field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AvgPriceResponse) GetWOk() (*string, bool) {
-	if o == nil || common.IsNil(o.W) {
+func (o *AvgPriceResponse) GetSmallwOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallw) {
 		return nil, false
 	}
-	return o.W, true
+	return o.Smallw, true
 }
 
 // HasW returns a boolean if a field has been set.
-func (o *AvgPriceResponse) HasW() bool {
-	if o != nil && !common.IsNil(o.W) {
+func (o *AvgPriceResponse) HasSmallw() bool {
+	if o != nil && !common.IsNil(o.Smallw) {
 		return true
 	}
 
@@ -201,8 +207,8 @@ func (o *AvgPriceResponse) HasW() bool {
 }
 
 // SetW gets a reference to the given string and assigns it to the W field.
-func (o *AvgPriceResponse) SetW(v string) {
-	o.W = &v
+func (o *AvgPriceResponse) SetSmallw(v string) {
+	o.Smallw = &v
 }
 
 // GetT returns the T field value if set, zero value otherwise.
@@ -253,14 +259,14 @@ func (o AvgPriceResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.I) {
-		toSerialize["i"] = o.I
+	if !common.IsNil(o.Smalli) {
+		toSerialize["i"] = o.Smalli
 	}
-	if !common.IsNil(o.W) {
-		toSerialize["w"] = o.W
+	if !common.IsNil(o.Smallw) {
+		toSerialize["w"] = o.Smallw
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T

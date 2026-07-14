@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &UmNotionalAndLeverageBracketsResponseInnerBracket
 
 // UmNotionalAndLeverageBracketsResponseInnerBracketsInner struct for UmNotionalAndLeverageBracketsResponseInnerBracketsInner
 type UmNotionalAndLeverageBracketsResponseInnerBracketsInner struct {
-	Bracket              *int64   `json:"bracket,omitempty"`
-	InitialLeverage      *int64   `json:"initialLeverage,omitempty"`
-	NotionalCap          *int64   `json:"notionalCap,omitempty"`
-	NotionalFloor        *int64   `json:"notionalFloor,omitempty"`
-	MaintMarginRatio     *float32 `json:"maintMarginRatio,omitempty"`
-	Cum                  *int64   `json:"cum,omitempty"`
+	// Notional bracket
+	Bracket *int64 `json:"bracket,omitempty"`
+	// Max initial leverage for this bracket
+	InitialLeverage *int64 `json:"initialLeverage,omitempty"`
+	// Cap notional of this bracket
+	NotionalCap *int64 `json:"notionalCap,omitempty"`
+	// Notional threshold of this bracket
+	NotionalFloor *int64 `json:"notionalFloor,omitempty"`
+	// Maintenance ratio for this bracket
+	MaintMarginRatio *float32 `json:"maintMarginRatio,omitempty"`
+	// Auxiliary number for quick calculation
+	Cum                  *int64 `json:"cum,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

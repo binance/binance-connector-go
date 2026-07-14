@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfuturesrestapi
@@ -24,6 +24,7 @@ type ApiAdlRiskRequest struct {
 	symbol     *string
 }
 
+// Symbol
 func (r ApiAdlRiskRequest) Symbol(symbol string) ApiAdlRiskRequest {
 	r.symbol = &symbol
 	return r
@@ -37,10 +38,10 @@ func (r ApiAdlRiskRequest) Execute() (*common.RestApiResponse[models.AdlRiskResp
 AdlRisk ADL Risk
 Get /fapi/v1/symbolAdlRisk
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/ADL-Risk
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#adl-risk
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @return ApiAdlRiskRequest
 */
 func (a *MarketDataAPIService) AdlRisk(ctx context.Context) ApiAdlRiskRequest {
@@ -64,7 +65,15 @@ func (a *MarketDataAPIService) AdlRiskExecute(r ApiAdlRiskRequest) (*common.Rest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.AdlRiskResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.AdlRiskResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -78,6 +87,7 @@ type ApiAssetIndexRequest struct {
 	symbol     *string
 }
 
+// Asset pair
 func (r ApiAssetIndexRequest) Symbol(symbol string) ApiAssetIndexRequest {
 	r.symbol = &symbol
 	return r
@@ -88,13 +98,13 @@ func (r ApiAssetIndexRequest) Execute() (*common.RestApiResponse[models.AssetInd
 }
 
 /*
-AssetIndex Asset Index
+AssetIndex Multi-Assets Mode Asset Index
 Get /fapi/v1/assetIndex
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Asset-Index
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#asset-index
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Asset pair
 @return ApiAssetIndexRequest
 */
 func (a *MarketDataAPIService) AssetIndex(ctx context.Context) ApiAssetIndexRequest {
@@ -118,7 +128,15 @@ func (a *MarketDataAPIService) AssetIndexExecute(r ApiAssetIndexRequest) (*commo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.AssetIndexResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.AssetIndexResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -137,7 +155,6 @@ type ApiBasisRequest struct {
 	endTime      *int64
 }
 
-// After CM migration, accepts both UM and CM pair values.
 func (r ApiBasisRequest) Pair(pair string) ApiBasisRequest {
 	r.pair = &pair
 	return r
@@ -148,13 +165,11 @@ func (r ApiBasisRequest) ContractType(contractType models.BasisContractTypeParam
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiBasisRequest) Period(period models.BasisPeriodParameter) ApiBasisRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiBasisRequest) Limit(limit int64) ApiBasisRequest {
 	r.limit = &limit
 	return r
@@ -178,13 +193,13 @@ func (r ApiBasisRequest) Execute() (*common.RestApiResponse[models.BasisResponse
 Basis Basis
 Get /futures/data/basis
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Basis
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#basis
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -  After CM migration, accepts both UM and CM pair values.
+@param pair -
 @param contractType -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiBasisRequest
@@ -209,9 +224,11 @@ func (a *MarketDataAPIService) BasisExecute(r ApiBasisRequest) (*common.RestApiR
 	if r.pair == nil {
 		return nil, common.ReportError("pair is required and must be specified")
 	}
+
 	if r.contractType == nil {
 		return nil, common.ReportError("contractType is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -229,7 +246,15 @@ func (a *MarketDataAPIService) BasisExecute(r ApiBasisRequest) (*common.RestApiR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.BasisResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.BasisResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -250,7 +275,7 @@ func (r ApiCheckServerTimeRequest) Execute() (*common.RestApiResponse[models.Che
 CheckServerTime Check Server Time
 Get /fapi/v1/time
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Check-Server-Time
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#check-server-time
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiCheckServerTimeRequest
@@ -272,7 +297,15 @@ func (a *MarketDataAPIService) CheckServerTimeExecute(r ApiCheckServerTimeReques
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.CheckServerTimeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.CheckServerTimeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -299,7 +332,7 @@ func (r ApiCompositeIndexSymbolInformationRequest) Execute() (*common.RestApiRes
 CompositeIndexSymbolInformation Composite Index Symbol Information
 Get /fapi/v1/indexInfo
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Composite-Index-Symbol-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#composite-index-symbol-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -326,7 +359,15 @@ func (a *MarketDataAPIService) CompositeIndexSymbolInformationExecute(r ApiCompo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.CompositeIndexSymbolInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.CompositeIndexSymbolInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -344,6 +385,7 @@ type ApiCompressedAggregateTradesListRequest struct {
 	limit      *int64
 }
 
+// Symbol
 func (r ApiCompressedAggregateTradesListRequest) Symbol(symbol string) ApiCompressedAggregateTradesListRequest {
 	r.symbol = &symbol
 	return r
@@ -355,17 +397,18 @@ func (r ApiCompressedAggregateTradesListRequest) FromId(fromId int64) ApiCompres
 	return r
 }
 
+// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiCompressedAggregateTradesListRequest) StartTime(startTime int64) ApiCompressedAggregateTradesListRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiCompressedAggregateTradesListRequest) EndTime(endTime int64) ApiCompressedAggregateTradesListRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiCompressedAggregateTradesListRequest) Limit(limit int64) ApiCompressedAggregateTradesListRequest {
 	r.limit = &limit
 	return r
@@ -379,14 +422,14 @@ func (r ApiCompressedAggregateTradesListRequest) Execute() (*common.RestApiRespo
 CompressedAggregateTradesList Compressed/Aggregate Trades List
 Get /fapi/v1/aggTrades
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Compressed-Aggregate-Trades-List
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#compressed-aggregate-trades-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param fromId -  ID to get aggregate trades from INCLUSIVE.
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
+@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
+@param limit -
 @return ApiCompressedAggregateTradesListRequest
 */
 func (a *MarketDataAPIService) CompressedAggregateTradesList(ctx context.Context) ApiCompressedAggregateTradesListRequest {
@@ -424,7 +467,15 @@ func (a *MarketDataAPIService) CompressedAggregateTradesListExecute(r ApiCompres
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.CompressedAggregateTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.CompressedAggregateTradesListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -436,7 +487,7 @@ type ApiContinuousContractKlineCandlestickDataRequest struct {
 	ctx          context.Context
 	ApiService   *MarketDataAPIService
 	pair         *string
-	contractType *models.BasisContractTypeParameter
+	contractType *models.ContinuousContractKlineCandlestickDataContractTypeParameter
 	interval     *models.ContinuousContractKlineCandlestickDataIntervalParameter
 	startTime    *int64
 	endTime      *int64
@@ -449,7 +500,8 @@ func (r ApiContinuousContractKlineCandlestickDataRequest) Pair(pair string) ApiC
 	return r
 }
 
-func (r ApiContinuousContractKlineCandlestickDataRequest) ContractType(contractType models.BasisContractTypeParameter) ApiContinuousContractKlineCandlestickDataRequest {
+// Futurestype
+func (r ApiContinuousContractKlineCandlestickDataRequest) ContractType(contractType models.ContinuousContractKlineCandlestickDataContractTypeParameter) ApiContinuousContractKlineCandlestickDataRequest {
 	r.contractType = &contractType
 	return r
 }
@@ -459,17 +511,18 @@ func (r ApiContinuousContractKlineCandlestickDataRequest) Interval(interval mode
 	return r
 }
 
+// Start time
 func (r ApiContinuousContractKlineCandlestickDataRequest) StartTime(startTime int64) ApiContinuousContractKlineCandlestickDataRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiContinuousContractKlineCandlestickDataRequest) EndTime(endTime int64) ApiContinuousContractKlineCandlestickDataRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiContinuousContractKlineCandlestickDataRequest) Limit(limit int64) ApiContinuousContractKlineCandlestickDataRequest {
 	r.limit = &limit
 	return r
@@ -483,15 +536,15 @@ func (r ApiContinuousContractKlineCandlestickDataRequest) Execute() (*common.Res
 ContinuousContractKlineCandlestickData Continuous Contract Kline/Candlestick Data
 Get /fapi/v1/continuousKlines
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Continuous-Contract-Kline-Candlestick-Data
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#continuous-contract-kline-candlestick-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -  After CM migration, accepts both UM and CM pair values.
-@param contractType -
+@param contractType -  Futurestype
 @param interval -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @return ApiContinuousContractKlineCandlestickDataRequest
 */
 func (a *MarketDataAPIService) ContinuousContractKlineCandlestickData(ctx context.Context) ApiContinuousContractKlineCandlestickDataRequest {
@@ -514,9 +567,11 @@ func (a *MarketDataAPIService) ContinuousContractKlineCandlestickDataExecute(r A
 	if r.pair == nil {
 		return nil, common.ReportError("pair is required and must be specified")
 	}
+
 	if r.contractType == nil {
 		return nil, common.ReportError("contractType is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -534,7 +589,15 @@ func (a *MarketDataAPIService) ContinuousContractKlineCandlestickDataExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.ContinuousContractKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ContinuousContractKlineCandlestickDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -555,7 +618,7 @@ func (r ApiExchangeInformationRequest) Execute() (*common.RestApiResponse[models
 ExchangeInformation Exchange Information
 Get /fapi/v1/exchangeInfo
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Exchange-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#exchange-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiExchangeInformationRequest
@@ -577,7 +640,15 @@ func (a *MarketDataAPIService) ExchangeInformationExecute(r ApiExchangeInformati
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.ExchangeInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ExchangeInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -599,17 +670,18 @@ func (r ApiGetFundingRateHistoryRequest) Symbol(symbol string) ApiGetFundingRate
 	return r
 }
 
+// Timestamp in ms to get funding rate from INCLUSIVE.
 func (r ApiGetFundingRateHistoryRequest) StartTime(startTime int64) ApiGetFundingRateHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms to get funding rate until INCLUSIVE.
 func (r ApiGetFundingRateHistoryRequest) EndTime(endTime int64) ApiGetFundingRateHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiGetFundingRateHistoryRequest) Limit(limit int64) ApiGetFundingRateHistoryRequest {
 	r.limit = &limit
 	return r
@@ -623,13 +695,13 @@ func (r ApiGetFundingRateHistoryRequest) Execute() (*common.RestApiResponse[mode
 GetFundingRateHistory Get Funding Rate History
 Get /fapi/v1/fundingRate
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Get-Funding-Rate-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#get-funding-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Timestamp in ms to get funding rate from INCLUSIVE.
+@param endTime -  Timestamp in ms to get funding rate until INCLUSIVE.
+@param limit -
 @return ApiGetFundingRateHistoryRequest
 */
 func (a *MarketDataAPIService) GetFundingRateHistory(ctx context.Context) ApiGetFundingRateHistoryRequest {
@@ -662,7 +734,15 @@ func (a *MarketDataAPIService) GetFundingRateHistoryExecute(r ApiGetFundingRateH
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFundingRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetFundingRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -683,7 +763,7 @@ func (r ApiGetFundingRateInfoRequest) Execute() (*common.RestApiResponse[models.
 GetFundingRateInfo Get Funding Rate Info
 Get /fapi/v1/fundingInfo
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Get-Funding-Rate-Info
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#get-funding-rate-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiGetFundingRateInfoRequest
@@ -705,7 +785,15 @@ func (a *MarketDataAPIService) GetFundingRateInfoExecute(r ApiGetFundingRateInfo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetFundingRateInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetFundingRateInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -734,17 +822,18 @@ func (r ApiIndexPriceKlineCandlestickDataRequest) Interval(interval models.Conti
 	return r
 }
 
+// Start time
 func (r ApiIndexPriceKlineCandlestickDataRequest) StartTime(startTime int64) ApiIndexPriceKlineCandlestickDataRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiIndexPriceKlineCandlestickDataRequest) EndTime(endTime int64) ApiIndexPriceKlineCandlestickDataRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiIndexPriceKlineCandlestickDataRequest) Limit(limit int64) ApiIndexPriceKlineCandlestickDataRequest {
 	r.limit = &limit
 	return r
@@ -758,14 +847,14 @@ func (r ApiIndexPriceKlineCandlestickDataRequest) Execute() (*common.RestApiResp
 IndexPriceKlineCandlestickData Index Price Kline/Candlestick Data
 Get /fapi/v1/indexPriceKlines
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Price-Kline-Candlestick-Data
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#index-price-kline-candlestick-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -  After CM migration, accepts both UM and CM pair values.
 @param interval -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @return ApiIndexPriceKlineCandlestickDataRequest
 */
 func (a *MarketDataAPIService) IndexPriceKlineCandlestickData(ctx context.Context) ApiIndexPriceKlineCandlestickDataRequest {
@@ -788,6 +877,7 @@ func (a *MarketDataAPIService) IndexPriceKlineCandlestickDataExecute(r ApiIndexP
 	if r.pair == nil {
 		return nil, common.ReportError("pair is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -804,7 +894,15 @@ func (a *MarketDataAPIService) IndexPriceKlineCandlestickDataExecute(r ApiIndexP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.IndexPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.IndexPriceKlineCandlestickDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -822,6 +920,7 @@ type ApiKlineCandlestickDataRequest struct {
 	limit      *int64
 }
 
+// After CM migration, accepts both UM and CM symbols.
 func (r ApiKlineCandlestickDataRequest) Symbol(symbol string) ApiKlineCandlestickDataRequest {
 	r.symbol = &symbol
 	return r
@@ -832,17 +931,18 @@ func (r ApiKlineCandlestickDataRequest) Interval(interval models.ContinuousContr
 	return r
 }
 
+// Start time
 func (r ApiKlineCandlestickDataRequest) StartTime(startTime int64) ApiKlineCandlestickDataRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiKlineCandlestickDataRequest) EndTime(endTime int64) ApiKlineCandlestickDataRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiKlineCandlestickDataRequest) Limit(limit int64) ApiKlineCandlestickDataRequest {
 	r.limit = &limit
 	return r
@@ -856,14 +956,14 @@ func (r ApiKlineCandlestickDataRequest) Execute() (*common.RestApiResponse[model
 KlineCandlestickData Kline/Candlestick Data
 Get /fapi/v1/klines
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Kline-Candlestick-Data
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#kline-candlestick-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  After CM migration, accepts both UM and CM symbols.
 @param interval -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @return ApiKlineCandlestickDataRequest
 */
 func (a *MarketDataAPIService) KlineCandlestickData(ctx context.Context) ApiKlineCandlestickDataRequest {
@@ -886,6 +986,7 @@ func (a *MarketDataAPIService) KlineCandlestickDataExecute(r ApiKlineCandlestick
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -902,7 +1003,15 @@ func (a *MarketDataAPIService) KlineCandlestickDataExecute(r ApiKlineCandlestick
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.KlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.KlineCandlestickDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -925,13 +1034,11 @@ func (r ApiLongShortRatioRequest) Symbol(symbol string) ApiLongShortRatioRequest
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiLongShortRatioRequest) Period(period models.BasisPeriodParameter) ApiLongShortRatioRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiLongShortRatioRequest) Limit(limit int64) ApiLongShortRatioRequest {
 	r.limit = &limit
 	return r
@@ -955,12 +1062,12 @@ func (r ApiLongShortRatioRequest) Execute() (*common.RestApiResponse[models.Long
 LongShortRatio Long/Short Ratio
 Get /futures/data/globalLongShortAccountRatio
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Long-Short-Ratio
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#long-short-ratio
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiLongShortRatioRequest
@@ -985,6 +1092,7 @@ func (a *MarketDataAPIService) LongShortRatioExecute(r ApiLongShortRatioRequest)
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -1001,7 +1109,15 @@ func (a *MarketDataAPIService) LongShortRatioExecute(r ApiLongShortRatioRequest)
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.LongShortRatioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.LongShortRatioResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1028,7 +1144,7 @@ func (r ApiMarkPriceRequest) Execute() (*common.RestApiResponse[models.MarkPrice
 MarkPrice Mark Price
 Get /fapi/v1/premiumIndex
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Mark-Price
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#mark-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1055,7 +1171,15 @@ func (a *MarketDataAPIService) MarkPriceExecute(r ApiMarkPriceRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarkPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.MarkPriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1073,6 +1197,7 @@ type ApiMarkPriceKlineCandlestickDataRequest struct {
 	limit      *int64
 }
 
+// After CM migration, accepts both UM and CM symbols.
 func (r ApiMarkPriceKlineCandlestickDataRequest) Symbol(symbol string) ApiMarkPriceKlineCandlestickDataRequest {
 	r.symbol = &symbol
 	return r
@@ -1083,17 +1208,18 @@ func (r ApiMarkPriceKlineCandlestickDataRequest) Interval(interval models.Contin
 	return r
 }
 
+// Start time
 func (r ApiMarkPriceKlineCandlestickDataRequest) StartTime(startTime int64) ApiMarkPriceKlineCandlestickDataRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiMarkPriceKlineCandlestickDataRequest) EndTime(endTime int64) ApiMarkPriceKlineCandlestickDataRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiMarkPriceKlineCandlestickDataRequest) Limit(limit int64) ApiMarkPriceKlineCandlestickDataRequest {
 	r.limit = &limit
 	return r
@@ -1107,14 +1233,14 @@ func (r ApiMarkPriceKlineCandlestickDataRequest) Execute() (*common.RestApiRespo
 MarkPriceKlineCandlestickData Mark Price Kline/Candlestick Data
 Get /fapi/v1/markPriceKlines
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Mark-Price-Kline-Candlestick-Data
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#mark-price-kline-candlestick-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  After CM migration, accepts both UM and CM symbols.
 @param interval -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @return ApiMarkPriceKlineCandlestickDataRequest
 */
 func (a *MarketDataAPIService) MarkPriceKlineCandlestickData(ctx context.Context) ApiMarkPriceKlineCandlestickDataRequest {
@@ -1137,6 +1263,7 @@ func (a *MarketDataAPIService) MarkPriceKlineCandlestickDataExecute(r ApiMarkPri
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -1153,7 +1280,15 @@ func (a *MarketDataAPIService) MarkPriceKlineCandlestickDataExecute(r ApiMarkPri
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarkPriceKlineCandlestickDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.MarkPriceKlineCandlestickDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1174,13 +1309,12 @@ func (r ApiOldTradesLookupRequest) Symbol(symbol string) ApiOldTradesLookupReque
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiOldTradesLookupRequest) Limit(limit int64) ApiOldTradesLookupRequest {
 	r.limit = &limit
 	return r
 }
 
-// ID to get aggregate trades from INCLUSIVE.
+// TradeId to fetch from. Default gets most recent trades.
 func (r ApiOldTradesLookupRequest) FromId(fromId int64) ApiOldTradesLookupRequest {
 	r.fromId = &fromId
 	return r
@@ -1194,12 +1328,12 @@ func (r ApiOldTradesLookupRequest) Execute() (*common.RestApiResponse[models.Old
 OldTradesLookup Old Trades Lookup (MARKET_DATA)
 Get /fapi/v1/historicalTrades
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Old-Trades-Lookup
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#old-trades-lookup
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default 100; max 1000
-@param fromId -  ID to get aggregate trades from INCLUSIVE.
+@param limit -
+@param fromId -  TradeId to fetch from. Default gets most recent trades.
 @return ApiOldTradesLookupRequest
 */
 func (a *MarketDataAPIService) OldTradesLookup(ctx context.Context) ApiOldTradesLookupRequest {
@@ -1231,7 +1365,15 @@ func (a *MarketDataAPIService) OldTradesLookupExecute(r ApiOldTradesLookupReques
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromId", r.fromId, "form", "")
 	}
 
-	resp, err := SendRequest[models.OldTradesLookupResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.OldTradesLookupResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1258,7 +1400,7 @@ func (r ApiOpenInterestRequest) Execute() (*common.RestApiResponse[models.OpenIn
 OpenInterest Open Interest
 Get /fapi/v1/openInterest
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#open-interest
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1287,7 +1429,15 @@ func (a *MarketDataAPIService) OpenInterestExecute(r ApiOpenInterestRequest) (*c
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.OpenInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.OpenInterestResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1310,13 +1460,11 @@ func (r ApiOpenInterestStatisticsRequest) Symbol(symbol string) ApiOpenInterestS
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiOpenInterestStatisticsRequest) Period(period models.BasisPeriodParameter) ApiOpenInterestStatisticsRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiOpenInterestStatisticsRequest) Limit(limit int64) ApiOpenInterestStatisticsRequest {
 	r.limit = &limit
 	return r
@@ -1340,12 +1488,12 @@ func (r ApiOpenInterestStatisticsRequest) Execute() (*common.RestApiResponse[mod
 OpenInterestStatistics Open Interest Statistics
 Get /futures/data/openInterestHist
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest-Statistics
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#open-interest-statistics
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiOpenInterestStatisticsRequest
@@ -1370,6 +1518,7 @@ func (a *MarketDataAPIService) OpenInterestStatisticsExecute(r ApiOpenInterestSt
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -1386,7 +1535,15 @@ func (a *MarketDataAPIService) OpenInterestStatisticsExecute(r ApiOpenInterestSt
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.OpenInterestStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.OpenInterestStatisticsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1406,7 +1563,7 @@ func (r ApiOrderBookRequest) Symbol(symbol string) ApiOrderBookRequest {
 	return r
 }
 
-// Default 100; max 1000
+// Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 func (r ApiOrderBookRequest) Limit(limit int64) ApiOrderBookRequest {
 	r.limit = &limit
 	return r
@@ -1420,11 +1577,11 @@ func (r ApiOrderBookRequest) Execute() (*common.RestApiResponse[models.OrderBook
 OrderBook Order Book
 Get /fapi/v1/depth
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#order-book
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default 100; max 1000
+@param limit -  Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 @return ApiOrderBookRequest
 */
 func (a *MarketDataAPIService) OrderBook(ctx context.Context) ApiOrderBookRequest {
@@ -1453,7 +1610,15 @@ func (a *MarketDataAPIService) OrderBookExecute(r ApiOrderBookRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.OrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.OrderBookResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1471,6 +1636,7 @@ type ApiPremiumIndexKlineDataRequest struct {
 	limit      *int64
 }
 
+// After CM migration, accepts both UM and CM symbols.
 func (r ApiPremiumIndexKlineDataRequest) Symbol(symbol string) ApiPremiumIndexKlineDataRequest {
 	r.symbol = &symbol
 	return r
@@ -1481,17 +1647,18 @@ func (r ApiPremiumIndexKlineDataRequest) Interval(interval models.ContinuousCont
 	return r
 }
 
+// Start time
 func (r ApiPremiumIndexKlineDataRequest) StartTime(startTime int64) ApiPremiumIndexKlineDataRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiPremiumIndexKlineDataRequest) EndTime(endTime int64) ApiPremiumIndexKlineDataRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiPremiumIndexKlineDataRequest) Limit(limit int64) ApiPremiumIndexKlineDataRequest {
 	r.limit = &limit
 	return r
@@ -1505,14 +1672,14 @@ func (r ApiPremiumIndexKlineDataRequest) Execute() (*common.RestApiResponse[mode
 PremiumIndexKlineData Premium index Kline Data
 Get /fapi/v1/premiumIndexKlines
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Premium-index-Kline-Data
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#premium-index-kline-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  After CM migration, accepts both UM and CM symbols.
 @param interval -
-@param startTime -
-@param endTime -
-@param limit -  Default 100; max 1000
+@param startTime -  Start time
+@param endTime -  End time
+@param limit -
 @return ApiPremiumIndexKlineDataRequest
 */
 func (a *MarketDataAPIService) PremiumIndexKlineData(ctx context.Context) ApiPremiumIndexKlineDataRequest {
@@ -1535,6 +1702,7 @@ func (a *MarketDataAPIService) PremiumIndexKlineDataExecute(r ApiPremiumIndexKli
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -1551,7 +1719,15 @@ func (a *MarketDataAPIService) PremiumIndexKlineDataExecute(r ApiPremiumIndexKli
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.PremiumIndexKlineDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.PremiumIndexKlineDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1565,7 +1741,6 @@ type ApiQuarterlyContractSettlementPriceRequest struct {
 	pair       *string
 }
 
-// After CM migration, accepts both UM and CM pair values.
 func (r ApiQuarterlyContractSettlementPriceRequest) Pair(pair string) ApiQuarterlyContractSettlementPriceRequest {
 	r.pair = &pair
 	return r
@@ -1579,10 +1754,10 @@ func (r ApiQuarterlyContractSettlementPriceRequest) Execute() (*common.RestApiRe
 QuarterlyContractSettlementPrice Quarterly Contract Settlement Price
 Get /futures/data/delivery-price
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Delivery-Price
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#quarterly-contract-settlement-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param pair -  After CM migration, accepts both UM and CM pair values.
+@param pair -
 @return ApiQuarterlyContractSettlementPriceRequest
 */
 func (a *MarketDataAPIService) QuarterlyContractSettlementPrice(ctx context.Context) ApiQuarterlyContractSettlementPriceRequest {
@@ -1608,7 +1783,15 @@ func (a *MarketDataAPIService) QuarterlyContractSettlementPriceExecute(r ApiQuar
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 
-	resp, err := SendRequest[models.QuarterlyContractSettlementPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.QuarterlyContractSettlementPriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1635,7 +1818,7 @@ func (r ApiQueryIndexPriceConstituentsRequest) Execute() (*common.RestApiRespons
 QueryIndexPriceConstituents Query Index Price Constituents
 Get /fapi/v1/constituents
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Index-Constituents
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#query-index-price-constituents
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1664,7 +1847,15 @@ func (a *MarketDataAPIService) QueryIndexPriceConstituentsExecute(r ApiQueryInde
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.QueryIndexPriceConstituentsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.QueryIndexPriceConstituentsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1678,6 +1869,7 @@ type ApiQueryInsuranceFundBalanceSnapshotRequest struct {
 	symbol     *string
 }
 
+// Symbol
 func (r ApiQueryInsuranceFundBalanceSnapshotRequest) Symbol(symbol string) ApiQueryInsuranceFundBalanceSnapshotRequest {
 	r.symbol = &symbol
 	return r
@@ -1691,10 +1883,10 @@ func (r ApiQueryInsuranceFundBalanceSnapshotRequest) Execute() (*common.RestApiR
 QueryInsuranceFundBalanceSnapshot Query Insurance Fund Balance Snapshot
 Get /fapi/v1/insuranceBalance
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Query-Insurance-Fund-Balance-Snapshot
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#query-insurance-fund-balance-snapshot
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @return ApiQueryInsuranceFundBalanceSnapshotRequest
 */
 func (a *MarketDataAPIService) QueryInsuranceFundBalanceSnapshot(ctx context.Context) ApiQueryInsuranceFundBalanceSnapshotRequest {
@@ -1718,7 +1910,15 @@ func (a *MarketDataAPIService) QueryInsuranceFundBalanceSnapshotExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryInsuranceFundBalanceSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.QueryInsuranceFundBalanceSnapshotResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1738,7 +1938,6 @@ func (r ApiRecentTradesListRequest) Symbol(symbol string) ApiRecentTradesListReq
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiRecentTradesListRequest) Limit(limit int64) ApiRecentTradesListRequest {
 	r.limit = &limit
 	return r
@@ -1752,11 +1951,11 @@ func (r ApiRecentTradesListRequest) Execute() (*common.RestApiResponse[models.Re
 RecentTradesList Recent Trades List
 Get /fapi/v1/trades
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Recent-Trades-List
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#recent-trades-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default 100; max 1000
+@param limit -
 @return ApiRecentTradesListRequest
 */
 func (a *MarketDataAPIService) RecentTradesList(ctx context.Context) ApiRecentTradesListRequest {
@@ -1785,7 +1984,15 @@ func (a *MarketDataAPIService) RecentTradesListExecute(r ApiRecentTradesListRequ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.RecentTradesListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.RecentTradesListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1805,7 +2012,7 @@ func (r ApiRpiOrderBookRequest) Symbol(symbol string) ApiRpiOrderBookRequest {
 	return r
 }
 
-// Default 100; max 1000
+// Valid limits:[1000]
 func (r ApiRpiOrderBookRequest) Limit(limit int64) ApiRpiOrderBookRequest {
 	r.limit = &limit
 	return r
@@ -1819,11 +2026,11 @@ func (r ApiRpiOrderBookRequest) Execute() (*common.RestApiResponse[models.RpiOrd
 RpiOrderBook RPI Order Book
 Get /fapi/v1/rpiDepth
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book-RPI
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#rpi-order-book
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default 100; max 1000
+@param limit -  Valid limits:[1000]
 @return ApiRpiOrderBookRequest
 */
 func (a *MarketDataAPIService) RpiOrderBook(ctx context.Context) ApiRpiOrderBookRequest {
@@ -1852,7 +2059,15 @@ func (a *MarketDataAPIService) RpiOrderBookExecute(r ApiRpiOrderBookRequest) (*c
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.RpiOrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.RpiOrderBookResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1879,7 +2094,7 @@ func (r ApiSymbolOrderBookTickerRequest) Execute() (*common.RestApiResponse[mode
 SymbolOrderBookTicker Symbol Order Book Ticker
 Get /fapi/v1/ticker/bookTicker
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Order-Book-Ticker
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-order-book-ticker
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1906,7 +2121,15 @@ func (a *MarketDataAPIService) SymbolOrderBookTickerExecute(r ApiSymbolOrderBook
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolOrderBookTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.SymbolOrderBookTickerResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1933,7 +2156,7 @@ func (r ApiSymbolPriceTickerRequest) Execute() (*common.RestApiResponse[models.S
 	SymbolPriceTicker Symbol Price Ticker
 	Get /fapi/v1/ticker/price
 
-	https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker
+	https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-price-ticker
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param symbol -
@@ -1964,7 +2187,15 @@ func (a *MarketDataAPIService) SymbolPriceTickerExecute(r ApiSymbolPriceTickerRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolPriceTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.SymbolPriceTickerResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1991,7 +2222,7 @@ func (r ApiSymbolPriceTickerV2Request) Execute() (*common.RestApiResponse[models
 SymbolPriceTickerV2 Symbol Price Ticker V2
 Get /fapi/v2/ticker/price
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Symbol-Price-Ticker-V2
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#symbol-price-ticker-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2018,7 +2249,15 @@ func (a *MarketDataAPIService) SymbolPriceTickerV2Execute(r ApiSymbolPriceTicker
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.SymbolPriceTickerV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.SymbolPriceTickerV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2041,13 +2280,11 @@ func (r ApiTakerBuySellVolumeRequest) Symbol(symbol string) ApiTakerBuySellVolum
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiTakerBuySellVolumeRequest) Period(period models.BasisPeriodParameter) ApiTakerBuySellVolumeRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiTakerBuySellVolumeRequest) Limit(limit int64) ApiTakerBuySellVolumeRequest {
 	r.limit = &limit
 	return r
@@ -2071,12 +2308,12 @@ func (r ApiTakerBuySellVolumeRequest) Execute() (*common.RestApiResponse[models.
 TakerBuySellVolume Taker Buy/Sell Volume
 Get /futures/data/takerlongshortRatio
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Taker-BuySell-Volume
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#taker-buy-sell-volume
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiTakerBuySellVolumeRequest
@@ -2101,6 +2338,7 @@ func (a *MarketDataAPIService) TakerBuySellVolumeExecute(r ApiTakerBuySellVolume
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -2117,7 +2355,15 @@ func (a *MarketDataAPIService) TakerBuySellVolumeExecute(r ApiTakerBuySellVolume
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TakerBuySellVolumeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TakerBuySellVolumeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2138,7 +2384,7 @@ func (r ApiTestConnectivityRequest) Execute() (struct{}, error) {
 TestConnectivity Test Connectivity
 Get /fapi/v1/ping
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Test-Connectivity
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#test-connectivity
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiTestConnectivityRequest
@@ -2158,7 +2404,15 @@ func (a *MarketDataAPIService) TestConnectivityExecute(r ApiTestConnectivityRequ
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -2185,7 +2439,7 @@ func (r ApiTicker24hrPriceChangeStatisticsRequest) Execute() (*common.RestApiRes
 Ticker24hrPriceChangeStatistics 24hr Ticker Price Change Statistics
 Get /fapi/v1/ticker/24hr
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/24hr-Ticker-Price-Change-Statistics
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#ticker24hr-price-change-statistics
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -2212,7 +2466,15 @@ func (a *MarketDataAPIService) Ticker24hrPriceChangeStatisticsExecute(r ApiTicke
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
 
-	resp, err := SendRequest[models.Ticker24hrPriceChangeStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.Ticker24hrPriceChangeStatisticsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2235,13 +2497,11 @@ func (r ApiTopTraderLongShortRatioAccountsRequest) Symbol(symbol string) ApiTopT
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiTopTraderLongShortRatioAccountsRequest) Period(period models.BasisPeriodParameter) ApiTopTraderLongShortRatioAccountsRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiTopTraderLongShortRatioAccountsRequest) Limit(limit int64) ApiTopTraderLongShortRatioAccountsRequest {
 	r.limit = &limit
 	return r
@@ -2262,15 +2522,15 @@ func (r ApiTopTraderLongShortRatioAccountsRequest) Execute() (*common.RestApiRes
 }
 
 /*
-TopTraderLongShortRatioAccounts Top Trader Long/Short Ratio (Accounts)
+TopTraderLongShortRatioAccounts Top Trader Long/Short Account Ratio (MARKET_DATA)
 Get /futures/data/topLongShortAccountRatio
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Long-Short-Account-Ratio
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-accounts
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiTopTraderLongShortRatioAccountsRequest
@@ -2295,6 +2555,7 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioAccountsExecute(r ApiTopTr
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -2311,7 +2572,15 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioAccountsExecute(r ApiTopTr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TopTraderLongShortRatioAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TopTraderLongShortRatioAccountsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2334,13 +2603,11 @@ func (r ApiTopTraderLongShortRatioPositionsRequest) Symbol(symbol string) ApiTop
 	return r
 }
 
-// \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot;
 func (r ApiTopTraderLongShortRatioPositionsRequest) Period(period models.BasisPeriodParameter) ApiTopTraderLongShortRatioPositionsRequest {
 	r.period = &period
 	return r
 }
 
-// Default 100; max 1000
 func (r ApiTopTraderLongShortRatioPositionsRequest) Limit(limit int64) ApiTopTraderLongShortRatioPositionsRequest {
 	r.limit = &limit
 	return r
@@ -2361,15 +2628,15 @@ func (r ApiTopTraderLongShortRatioPositionsRequest) Execute() (*common.RestApiRe
 }
 
 /*
-TopTraderLongShortRatioPositions Top Trader Long/Short Ratio (Positions)
+TopTraderLongShortRatioPositions Top Trader Long/Short Position Ratio (MARKET_DATA)
 Get /futures/data/topLongShortPositionRatio
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Top-Trader-Long-Short-Ratio
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-positions
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param period -  \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-@param limit -  Default 100; max 1000
+@param period -
+@param limit -
 @param startTime -
 @param endTime -
 @return ApiTopTraderLongShortRatioPositionsRequest
@@ -2394,6 +2661,7 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioPositionsExecute(r ApiTopT
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
@@ -2410,7 +2678,15 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioPositionsExecute(r ApiTopT
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.TopTraderLongShortRatioPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TopTraderLongShortRatioPositionsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2431,7 +2707,7 @@ func (r ApiTradingScheduleRequest) Execute() (*common.RestApiResponse[models.Tra
 TradingSchedule Trading Schedule
 Get /fapi/v1/tradingSchedule
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Trading-Schedule
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data#trading-schedule
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiTradingScheduleRequest
@@ -2453,7 +2729,15 @@ func (a *MarketDataAPIService) TradingScheduleExecute(r ApiTradingScheduleReques
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.TradingScheduleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TradingScheduleResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

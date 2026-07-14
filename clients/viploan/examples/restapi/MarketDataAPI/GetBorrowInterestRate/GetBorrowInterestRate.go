@@ -22,7 +22,7 @@ func GetBorrowInterestRate() {
 	apiClient := client.NewBinanceVipLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.GetBorrowInterestRate(context.Background()).LoanCoin("loanCoin_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.GetBorrowInterestRate(context.Background()).LoanCoin("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,12 @@ var _ common.MappedNullable = &ExchangeInfoResponse{}
 
 // ExchangeInfoResponse struct for ExchangeInfoResponse
 type ExchangeInfoResponse struct {
-	Id                   *string                     `json:"id,omitempty"`
-	Status               *int64                      `json:"status,omitempty"`
-	Result               *ExchangeInfoResponseResult `json:"result,omitempty"`
-	RateLimits           []RateLimits                `json:"rateLimits,omitempty"`
+	Timezone             *string                            `json:"timezone,omitempty"`
+	ServerTime           *int64                             `json:"serverTime,omitempty"`
+	RateLimits           []RateLimits                       `json:"rateLimits,omitempty"`
+	ExchangeFilters      []ExchangeFilters                  `json:"exchangeFilters,omitempty"`
+	Symbols              []ExchangeInfoResponseSymbolsInner `json:"symbols,omitempty"`
+	Sors                 []ExchangeInfoResponseSorsInner    `json:"sors,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,100 +45,68 @@ func NewExchangeInfoResponseWithDefaults() *ExchangeInfoResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *ExchangeInfoResponse) GetId() string {
-	if o == nil || common.IsNil(o.Id) {
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetTimezone() string {
+	if o == nil || common.IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Timezone
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponse) GetIdOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Id) {
+func (o *ExchangeInfoResponse) GetTimezoneOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Timezone) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Timezone, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *ExchangeInfoResponse) HasId() bool {
-	if o != nil && !common.IsNil(o.Id) {
+// HasTimezone returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasTimezone() bool {
+	if o != nil && !common.IsNil(o.Timezone) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ExchangeInfoResponse) SetId(v string) {
-	o.Id = &v
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *ExchangeInfoResponse) SetTimezone(v string) {
+	o.Timezone = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ExchangeInfoResponse) GetStatus() int64 {
-	if o == nil || common.IsNil(o.Status) {
+// GetServerTime returns the ServerTime field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetServerTime() int64 {
+	if o == nil || common.IsNil(o.ServerTime) {
 		var ret int64
 		return ret
 	}
-	return *o.Status
+	return *o.ServerTime
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetServerTimeOk returns a tuple with the ServerTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponse) GetStatusOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Status) {
+func (o *ExchangeInfoResponse) GetServerTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.ServerTime) {
 		return nil, false
 	}
-	return o.Status, true
+	return o.ServerTime, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ExchangeInfoResponse) HasStatus() bool {
-	if o != nil && !common.IsNil(o.Status) {
+// HasServerTime returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasServerTime() bool {
+	if o != nil && !common.IsNil(o.ServerTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given int64 and assigns it to the Status field.
-func (o *ExchangeInfoResponse) SetStatus(v int64) {
-	o.Status = &v
-}
-
-// GetResult returns the Result field value if set, zero value otherwise.
-func (o *ExchangeInfoResponse) GetResult() ExchangeInfoResponseResult {
-	if o == nil || common.IsNil(o.Result) {
-		var ret ExchangeInfoResponseResult
-		return ret
-	}
-	return *o.Result
-}
-
-// GetResultOk returns a tuple with the Result field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponse) GetResultOk() (*ExchangeInfoResponseResult, bool) {
-	if o == nil || common.IsNil(o.Result) {
-		return nil, false
-	}
-	return o.Result, true
-}
-
-// HasResult returns a boolean if a field has been set.
-func (o *ExchangeInfoResponse) HasResult() bool {
-	if o != nil && !common.IsNil(o.Result) {
-		return true
-	}
-
-	return false
-}
-
-// SetResult gets a reference to the given ExchangeInfoResponseResult and assigns it to the Result field.
-func (o *ExchangeInfoResponse) SetResult(v ExchangeInfoResponseResult) {
-	o.Result = &v
+// SetServerTime gets a reference to the given int64 and assigns it to the ServerTime field.
+func (o *ExchangeInfoResponse) SetServerTime(v int64) {
+	o.ServerTime = &v
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
@@ -171,6 +141,102 @@ func (o *ExchangeInfoResponse) SetRateLimits(v []RateLimits) {
 	o.RateLimits = v
 }
 
+// GetExchangeFilters returns the ExchangeFilters field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetExchangeFilters() []ExchangeFilters {
+	if o == nil || common.IsNil(o.ExchangeFilters) {
+		var ret []ExchangeFilters
+		return ret
+	}
+	return o.ExchangeFilters
+}
+
+// GetExchangeFiltersOk returns a tuple with the ExchangeFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponse) GetExchangeFiltersOk() ([]ExchangeFilters, bool) {
+	if o == nil || common.IsNil(o.ExchangeFilters) {
+		return nil, false
+	}
+	return o.ExchangeFilters, true
+}
+
+// HasExchangeFilters returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasExchangeFilters() bool {
+	if o != nil && !common.IsNil(o.ExchangeFilters) {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeFilters gets a reference to the given []ExchangeFilters and assigns it to the ExchangeFilters field.
+func (o *ExchangeInfoResponse) SetExchangeFilters(v []ExchangeFilters) {
+	o.ExchangeFilters = v
+}
+
+// GetSymbols returns the Symbols field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetSymbols() []ExchangeInfoResponseSymbolsInner {
+	if o == nil || common.IsNil(o.Symbols) {
+		var ret []ExchangeInfoResponseSymbolsInner
+		return ret
+	}
+	return o.Symbols
+}
+
+// GetSymbolsOk returns a tuple with the Symbols field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponse) GetSymbolsOk() ([]ExchangeInfoResponseSymbolsInner, bool) {
+	if o == nil || common.IsNil(o.Symbols) {
+		return nil, false
+	}
+	return o.Symbols, true
+}
+
+// HasSymbols returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasSymbols() bool {
+	if o != nil && !common.IsNil(o.Symbols) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbols gets a reference to the given []ExchangeInfoResponseSymbolsInner and assigns it to the Symbols field.
+func (o *ExchangeInfoResponse) SetSymbols(v []ExchangeInfoResponseSymbolsInner) {
+	o.Symbols = v
+}
+
+// GetSors returns the Sors field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetSors() []ExchangeInfoResponseSorsInner {
+	if o == nil || common.IsNil(o.Sors) {
+		var ret []ExchangeInfoResponseSorsInner
+		return ret
+	}
+	return o.Sors
+}
+
+// GetSorsOk returns a tuple with the Sors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponse) GetSorsOk() ([]ExchangeInfoResponseSorsInner, bool) {
+	if o == nil || common.IsNil(o.Sors) {
+		return nil, false
+	}
+	return o.Sors, true
+}
+
+// HasSors returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasSors() bool {
+	if o != nil && !common.IsNil(o.Sors) {
+		return true
+	}
+
+	return false
+}
+
+// SetSors gets a reference to the given []ExchangeInfoResponseSorsInner and assigns it to the Sors field.
+func (o *ExchangeInfoResponse) SetSors(v []ExchangeInfoResponseSorsInner) {
+	o.Sors = v
+}
+
 func (o ExchangeInfoResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -181,17 +247,23 @@ func (o ExchangeInfoResponse) MarshalJSON() ([]byte, error) {
 
 func (o ExchangeInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !common.IsNil(o.Timezone) {
+		toSerialize["timezone"] = o.Timezone
 	}
-	if !common.IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !common.IsNil(o.Result) {
-		toSerialize["result"] = o.Result
+	if !common.IsNil(o.ServerTime) {
+		toSerialize["serverTime"] = o.ServerTime
 	}
 	if !common.IsNil(o.RateLimits) {
 		toSerialize["rateLimits"] = o.RateLimits
+	}
+	if !common.IsNil(o.ExchangeFilters) {
+		toSerialize["exchangeFilters"] = o.ExchangeFilters
+	}
+	if !common.IsNil(o.Symbols) {
+		toSerialize["symbols"] = o.Symbols
+	}
+	if !common.IsNil(o.Sors) {
+		toSerialize["sors"] = o.Sors
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -215,10 +287,12 @@ func (o *ExchangeInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "result")
+		delete(additionalProperties, "timezone")
+		delete(additionalProperties, "serverTime")
 		delete(additionalProperties, "rateLimits")
+		delete(additionalProperties, "exchangeFilters")
+		delete(additionalProperties, "symbols")
+		delete(additionalProperties, "sors")
 		o.AdditionalProperties = additionalProperties
 	}
 

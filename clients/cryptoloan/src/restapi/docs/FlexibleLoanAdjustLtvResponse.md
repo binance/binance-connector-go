@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **Direction** | Pointer to **string** |  | [optional] 
 **AdjustmentAmount** | Pointer to **string** |  | [optional] 
 **CurrentLTV** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | Succeeds, Failed, Processing | [optional] 
 
 ## Methods
 

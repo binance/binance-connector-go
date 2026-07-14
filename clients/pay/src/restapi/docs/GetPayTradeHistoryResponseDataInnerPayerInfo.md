@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**BinanceId** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | Nickname or merchant name. | [optional] 
+**Type** | Pointer to **string** | Account type: USER for personal, MERCHANT for merchant. | [optional] 
+**BinanceId** | Pointer to **string** | Binance UID. | [optional] 
 
 ## Methods
 

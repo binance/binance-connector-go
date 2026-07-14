@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &PositionInformationResponse{}
 
 // PositionInformationResponse struct for PositionInformationResponse
 type PositionInformationResponse struct {
-	Id                   *string                                       `json:"id,omitempty"`
-	Status               *int64                                        `json:"status,omitempty"`
-	Result               []PositionInformationResponseResultInner      `json:"result,omitempty"`
-	RateLimits           []AccountInformationV2ResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                                     `json:"id,omitempty"`
+	Status               *int64                                      `json:"status,omitempty"`
+	Result               []PositionInformationResponseResultInner    `json:"result,omitempty"`
+	RateLimits           []AccountInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *PositionInformationResponse) SetResult(v []PositionInformationResponseR
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *PositionInformationResponse) GetRateLimits() []AccountInformationV2ResponseRateLimitsInner {
+func (o *PositionInformationResponse) GetRateLimits() []AccountInformationResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountInformationV2ResponseRateLimitsInner
+		var ret []AccountInformationResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *PositionInformationResponse) GetRateLimits() []AccountInformationV2Resp
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PositionInformationResponse) GetRateLimitsOk() ([]AccountInformationV2ResponseRateLimitsInner, bool) {
+func (o *PositionInformationResponse) GetRateLimitsOk() ([]AccountInformationResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *PositionInformationResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountInformationV2ResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *PositionInformationResponse) SetRateLimits(v []AccountInformationV2ResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []AccountInformationResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *PositionInformationResponse) SetRateLimits(v []AccountInformationResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

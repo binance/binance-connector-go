@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DelistTime** | Pointer to **int64** |  | [optional] 
-**CrossMarginAssets** | Pointer to **[]string** |  | [optional] 
-**IsolatedMarginSymbols** | Pointer to **[]string** |  | [optional] 
+**DelistTime** | Pointer to **int64** | delist Time. | [optional] 
+**CrossMarginAssets** | Pointer to **[]string** | cross Margin Assets list. | [optional] 
+**IsolatedMarginSymbols** | Pointer to **[]string** | isolated Margin Symbols list. | [optional] 
 
 ## Methods
 

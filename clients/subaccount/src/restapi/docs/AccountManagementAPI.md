@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	subAccountString := "subAccountString_example" // string | Please input a string. We will create a virtual email using that string for you to register
+	subAccountString := "testSubAccount" // string | Please input a string. We will create a virtual email using that string for you to register
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -107,7 +107,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -136,7 +136,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -177,7 +177,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -206,7 +206,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -247,7 +247,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -276,7 +276,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -317,8 +317,8 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	futuresType := int64(789) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	email := "123@test.com" // string | 
+	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -347,7 +347,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
  **recvWindow** | **int64** |  | 
 
@@ -389,7 +389,7 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Managed sub-account email (optional)
+	email := "123@test.com" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -418,7 +418,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | Managed sub-account email | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -459,10 +459,10 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Managed sub-account email (optional)
-	isFreeze := "isFreeze_example" // string | true or false (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	email := "123@test.com" // string |  (optional)
+	isFreeze := "true" // string |  (optional)
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -491,10 +491,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | Managed sub-account email | 
- **isFreeze** | **string** | true or false | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **email** | **string** |  | 
+ **isFreeze** | **string** |  | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -535,7 +535,7 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Managed sub-account email (optional)
+	email := "abc@test.com" // string | Managed sub-account email (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(

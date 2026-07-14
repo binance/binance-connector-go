@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package binancedualinvestmentrestapi
@@ -22,7 +22,7 @@ type ApiChangeAutoCompoundStatusRequest struct {
 	ctx              context.Context
 	ApiService       *TradeAPIService
 	positionId       *string
-	autoCompoundPlan *string
+	autoCompoundPlan *models.ChangeAutoCompoundStatusAutoCompoundPlanParameter
 	recvWindow       *int64
 }
 
@@ -32,12 +32,13 @@ func (r ApiChangeAutoCompoundStatusRequest) PositionId(positionId string) ApiCha
 	return r
 }
 
-func (r ApiChangeAutoCompoundStatusRequest) AutoCompoundPlan(autoCompoundPlan string) ApiChangeAutoCompoundStatusRequest {
+// &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan
+func (r ApiChangeAutoCompoundStatusRequest) AutoCompoundPlan(autoCompoundPlan models.ChangeAutoCompoundStatusAutoCompoundPlanParameter) ApiChangeAutoCompoundStatusRequest {
 	r.autoCompoundPlan = &autoCompoundPlan
 	return r
 }
 
-// The value cannot be greater than 60000
+// Request validity window in milliseconds
 func (r ApiChangeAutoCompoundStatusRequest) RecvWindow(recvWindow int64) ApiChangeAutoCompoundStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -48,15 +49,15 @@ func (r ApiChangeAutoCompoundStatusRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-ChangeAutoCompoundStatus Change Auto-Compound status(USER_DATA)
+ChangeAutoCompoundStatus Change Auto-Compound status (USER_DATA)
 Post /sapi/v1/dci/product/auto_compound/edit-status
 
-https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Change-Auto-Compound-status
+https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#change-auto-compound-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -  Get positionId from `/sapi/v1/dci/product/positions`
-@param autoCompoundPlan -
-@param recvWindow -  The value cannot be greater than 60000
+@param autoCompoundPlan -  `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
+@param recvWindow -  Request validity window in milliseconds
 @return ApiChangeAutoCompoundStatusRequest
 */
 func (a *TradeAPIService) ChangeAutoCompoundStatus(ctx context.Context) ApiChangeAutoCompoundStatusRequest {
@@ -80,15 +81,25 @@ func (a *TradeAPIService) ChangeAutoCompoundStatusExecute(r ApiChangeAutoCompoun
 		return nil, common.ReportError("positionId is required and must be specified")
 	}
 
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "positionId", r.positionId, "form", "")
-	if r.autoCompoundPlan != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "AutoCompoundPlan", r.autoCompoundPlan, "form", "")
+	if r.autoCompoundPlan == nil {
+		return nil, common.ReportError("autoCompoundPlan is required and must be specified")
 	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "positionId", r.positionId, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "autoCompoundPlan", r.autoCompoundPlan, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeAutoCompoundStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangeAutoCompoundStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -102,7 +113,7 @@ type ApiCheckDualInvestmentAccountsRequest struct {
 	recvWindow *int64
 }
 
-// The value cannot be greater than 60000
+// Request validity window in milliseconds
 func (r ApiCheckDualInvestmentAccountsRequest) RecvWindow(recvWindow int64) ApiCheckDualInvestmentAccountsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -113,13 +124,13 @@ func (r ApiCheckDualInvestmentAccountsRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-CheckDualInvestmentAccounts Check Dual Investment accounts(USER_DATA)
+CheckDualInvestmentAccounts Check Dual Investment accounts (USER_DATA)
 Get /sapi/v1/dci/product/accounts
 
-https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Check-Dual-Investment-accounts
+https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#check-dual-investment-accounts
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  The value cannot be greater than 60000
+@param recvWindow -  Request validity window in milliseconds
 @return ApiCheckDualInvestmentAccountsRequest
 */
 func (a *TradeAPIService) CheckDualInvestmentAccounts(ctx context.Context) ApiCheckDualInvestmentAccountsRequest {
@@ -143,7 +154,15 @@ func (a *TradeAPIService) CheckDualInvestmentAccountsExecute(r ApiCheckDualInves
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckDualInvestmentAccountsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CheckDualInvestmentAccountsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -154,31 +173,31 @@ func (a *TradeAPIService) CheckDualInvestmentAccountsExecute(r ApiCheckDualInves
 type ApiGetDualInvestmentPositionsRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	status     *string
+	status     *models.GetDualInvestmentPositionsStatusParameter
 	pageSize   *int64
 	pageIndex  *int64
 	recvWindow *int64
 }
 
-// &#x60;PENDING&#x60;:Products are purchasing, will give results later;&#x60;PURCHASE_SUCCESS&#x60;:purchase successfully;&#x60;SETTLED&#x60;: Products are finish settling;&#x60;PURCHASE_FAIL&#x60;:fail to purchase;&#x60;REFUNDING&#x60;:refund ongoing;&#x60;REFUND_SUCCESS&#x60;:refund to spot account successfully; &#x60;SETTLING&#x60;:Products are settling. If don&#39;t fill this field, will response all the position status.
-func (r ApiGetDualInvestmentPositionsRequest) Status(status string) ApiGetDualInvestmentPositionsRequest {
+// &#x60;PENDING&#x60;: Products are purchasing, will give results later; &#x60;PURCHASE_SUCCESS&#x60;: purchase successfully; &#x60;SETTLED&#x60;: Products are finish settling; &#x60;PURCHASE_FAIL&#x60;: fail to purchase; &#x60;REFUNDING&#x60;: refund ongoing; &#x60;REFUND_SUCCESS&#x60;: refund to spot account successfully; &#x60;SETTLING&#x60;: Products are settling. If don&#39;t fill this field, will response all the position status.
+func (r ApiGetDualInvestmentPositionsRequest) Status(status models.GetDualInvestmentPositionsStatusParameter) ApiGetDualInvestmentPositionsRequest {
 	r.status = &status
 	return r
 }
 
-// Default: 10, Maximum: 100
+// Number of records per page
 func (r ApiGetDualInvestmentPositionsRequest) PageSize(pageSize int64) ApiGetDualInvestmentPositionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Default: 1
+// Page index
 func (r ApiGetDualInvestmentPositionsRequest) PageIndex(pageIndex int64) ApiGetDualInvestmentPositionsRequest {
 	r.pageIndex = &pageIndex
 	return r
 }
 
-// The value cannot be greater than 60000
+// Request validity window in milliseconds
 func (r ApiGetDualInvestmentPositionsRequest) RecvWindow(recvWindow int64) ApiGetDualInvestmentPositionsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -189,16 +208,16 @@ func (r ApiGetDualInvestmentPositionsRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-GetDualInvestmentPositions Get Dual Investment positions(USER_DATA)
+GetDualInvestmentPositions Get Dual Investment positions (USER_DATA)
 Get /sapi/v1/dci/product/positions
 
-https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Get-Dual-Investment-positions
+https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#get-dual-investment-positions
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param status -  `PENDING`:Products are purchasing, will give results later;`PURCHASE_SUCCESS`:purchase successfully;`SETTLED`: Products are finish settling;`PURCHASE_FAIL`:fail to purchase;`REFUNDING`:refund ongoing;`REFUND_SUCCESS`:refund to spot account successfully; `SETTLING`:Products are settling. If don't fill this field, will response all the position status.
-@param pageSize -  Default: 10, Maximum: 100
-@param pageIndex -  Default: 1
-@param recvWindow -  The value cannot be greater than 60000
+@param status -  `PENDING`: Products are purchasing, will give results later; `PURCHASE_SUCCESS`: purchase successfully; `SETTLED`: Products are finish settling; `PURCHASE_FAIL`: fail to purchase; `REFUNDING`: refund ongoing; `REFUND_SUCCESS`: refund to spot account successfully; `SETTLING`: Products are settling. If don't fill this field, will response all the position status.
+@param pageSize -  Number of records per page
+@param pageIndex -  Page index
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetDualInvestmentPositionsRequest
 */
 func (a *TradeAPIService) GetDualInvestmentPositions(ctx context.Context) ApiGetDualInvestmentPositionsRequest {
@@ -231,7 +250,15 @@ func (a *TradeAPIService) GetDualInvestmentPositionsExecute(r ApiGetDualInvestme
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDualInvestmentPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDualInvestmentPositionsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -245,7 +272,7 @@ type ApiSubscribeDualInvestmentProductsRequest struct {
 	id               *string
 	orderId          *string
 	depositAmount    *float32
-	autoCompoundPlan *string
+	autoCompoundPlan *models.ChangeAutoCompoundStatusAutoCompoundPlanParameter
 	recvWindow       *int64
 }
 
@@ -267,13 +294,13 @@ func (r ApiSubscribeDualInvestmentProductsRequest) DepositAmount(depositAmount f
 	return r
 }
 
-// &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;:standard plan,&#x60;ADVANCED&#x60;:advanced plan
-func (r ApiSubscribeDualInvestmentProductsRequest) AutoCompoundPlan(autoCompoundPlan string) ApiSubscribeDualInvestmentProductsRequest {
+// &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan
+func (r ApiSubscribeDualInvestmentProductsRequest) AutoCompoundPlan(autoCompoundPlan models.ChangeAutoCompoundStatusAutoCompoundPlanParameter) ApiSubscribeDualInvestmentProductsRequest {
 	r.autoCompoundPlan = &autoCompoundPlan
 	return r
 }
 
-// The value cannot be greater than 60000
+// Request validity window in milliseconds
 func (r ApiSubscribeDualInvestmentProductsRequest) RecvWindow(recvWindow int64) ApiSubscribeDualInvestmentProductsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -284,17 +311,17 @@ func (r ApiSubscribeDualInvestmentProductsRequest) Execute() (*common.RestApiRes
 }
 
 /*
-SubscribeDualInvestmentProducts Subscribe Dual Investment products(USER_DATA)
+SubscribeDualInvestmentProducts Subscribe Dual Investment products (USER_DATA)
 Post /sapi/v1/dci/product/subscribe
 
-https://developers.binance.com/docs/advanced_earn/dual-investment/trade/Subscribe-Dual-Investment-products
+https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#subscribe-dual-investment-products
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param id -  get id from `/sapi/v1/dci/product/list`
 @param orderId -  get orderId from `/sapi/v1/dci/product/list`
 @param depositAmount -  the amount for subscribing
-@param autoCompoundPlan -  `NONE`: switch off the plan, `STANDARD`:standard plan,`ADVANCED`:advanced plan
-@param recvWindow -  The value cannot be greater than 60000
+@param autoCompoundPlan -  `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
+@param recvWindow -  Request validity window in milliseconds
 @return ApiSubscribeDualInvestmentProductsRequest
 */
 func (a *TradeAPIService) SubscribeDualInvestmentProducts(ctx context.Context) ApiSubscribeDualInvestmentProductsRequest {
@@ -317,12 +344,15 @@ func (a *TradeAPIService) SubscribeDualInvestmentProductsExecute(r ApiSubscribeD
 	if r.id == nil {
 		return nil, common.ReportError("id is required and must be specified")
 	}
+
 	if r.orderId == nil {
 		return nil, common.ReportError("orderId is required and must be specified")
 	}
+
 	if r.depositAmount == nil {
 		return nil, common.ReportError("depositAmount is required and must be specified")
 	}
+
 	if r.autoCompoundPlan == nil {
 		return nil, common.ReportError("autoCompoundPlan is required and must be specified")
 	}
@@ -335,7 +365,15 @@ func (a *TradeAPIService) SubscribeDualInvestmentProductsExecute(r ApiSubscribeD
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeDualInvestmentProductsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeDualInvestmentProductsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

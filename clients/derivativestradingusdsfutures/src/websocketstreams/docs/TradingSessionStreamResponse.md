@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event type, can also be CommodityUpdate or KR_EquityUpdate | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**T** | Pointer to **int64** | Session start time | [optional] 
+**T** | Pointer to **int64** | Session end time | [optional] 
+**S** | Pointer to **string** | Session type | [optional] 
 
 ## Methods
 

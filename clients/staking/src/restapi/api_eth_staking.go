@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package binancestakingrestapi
@@ -24,6 +24,7 @@ type ApiEthStakingAccountRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds.
 func (r ApiEthStakingAccountRequest) RecvWindow(recvWindow int64) ApiEthStakingAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -34,13 +35,13 @@ func (r ApiEthStakingAccountRequest) Execute() (*common.RestApiResponse[models.E
 }
 
 /*
-EthStakingAccount ETH Staking account(USER_DATA)
+EthStakingAccount ETH Staking account (USER_DATA)
 Get /sapi/v2/eth-staking/account
 
-https://developers.binance.com/docs/staking/eth-staking/account/ETH-Staking-account
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#eth-staking-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiEthStakingAccountRequest
 */
 func (a *EthStakingAPIService) EthStakingAccount(ctx context.Context) ApiEthStakingAccountRequest {
@@ -64,7 +65,15 @@ func (a *EthStakingAPIService) EthStakingAccountExecute(r ApiEthStakingAccountRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.EthStakingAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.EthStakingAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -78,6 +87,7 @@ type ApiGetCurrentEthStakingQuotaRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetCurrentEthStakingQuotaRequest) RecvWindow(recvWindow int64) ApiGetCurrentEthStakingQuotaRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -88,13 +98,13 @@ func (r ApiGetCurrentEthStakingQuotaRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetCurrentEthStakingQuota Get current ETH staking quota(USER_DATA)
+GetCurrentEthStakingQuota Get current ETH staking quota (USER_DATA)
 Get /sapi/v1/eth-staking/eth/quota
 
-https://developers.binance.com/docs/staking/eth-staking/account/Get-current-ETH-staking-quota
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-current-eth-staking-quota
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetCurrentEthStakingQuotaRequest
 */
 func (a *EthStakingAPIService) GetCurrentEthStakingQuota(ctx context.Context) ApiGetCurrentEthStakingQuotaRequest {
@@ -118,7 +128,15 @@ func (a *EthStakingAPIService) GetCurrentEthStakingQuotaExecute(r ApiGetCurrentE
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCurrentEthStakingQuotaResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCurrentEthStakingQuotaResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -152,18 +170,18 @@ func (r ApiGetEthRedemptionHistoryRequest) EndTime(endTime int64) ApiGetEthRedem
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetEthRedemptionHistoryRequest) Current(current int64) ApiGetEthRedemptionHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetEthRedemptionHistoryRequest) Size(size int64) ApiGetEthRedemptionHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetEthRedemptionHistoryRequest) RecvWindow(recvWindow int64) ApiGetEthRedemptionHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -174,18 +192,18 @@ func (r ApiGetEthRedemptionHistoryRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-GetEthRedemptionHistory Get ETH redemption history(USER_DATA)
+GetEthRedemptionHistory Get ETH redemption history (USER_DATA)
 Get /sapi/v1/eth-staking/eth/history/redemptionHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-redemption-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-redemption-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param redeemId -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetEthRedemptionHistoryRequest
 */
 func (a *EthStakingAPIService) GetEthRedemptionHistory(ctx context.Context) ApiGetEthRedemptionHistoryRequest {
@@ -224,7 +242,15 @@ func (a *EthStakingAPIService) GetEthRedemptionHistoryExecute(r ApiGetEthRedempt
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetEthRedemptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetEthRedemptionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -258,18 +284,18 @@ func (r ApiGetEthStakingHistoryRequest) EndTime(endTime int64) ApiGetEthStakingH
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetEthStakingHistoryRequest) Current(current int64) ApiGetEthStakingHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetEthStakingHistoryRequest) Size(size int64) ApiGetEthStakingHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetEthStakingHistoryRequest) RecvWindow(recvWindow int64) ApiGetEthStakingHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -280,18 +306,18 @@ func (r ApiGetEthStakingHistoryRequest) Execute() (*common.RestApiResponse[model
 }
 
 /*
-GetEthStakingHistory Get ETH staking history(USER_DATA)
+GetEthStakingHistory Get ETH staking history (USER_DATA)
 Get /sapi/v1/eth-staking/eth/history/stakingHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-ETH-staking-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-eth-staking-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param purchaseId -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetEthStakingHistoryRequest
 */
 func (a *EthStakingAPIService) GetEthStakingHistory(ctx context.Context) ApiGetEthStakingHistoryRequest {
@@ -330,7 +356,15 @@ func (a *EthStakingAPIService) GetEthStakingHistoryExecute(r ApiGetEthStakingHis
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetEthStakingHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetEthStakingHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -358,18 +392,18 @@ func (r ApiGetWbethRateHistoryRequest) EndTime(endTime int64) ApiGetWbethRateHis
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetWbethRateHistoryRequest) Current(current int64) ApiGetWbethRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetWbethRateHistoryRequest) Size(size int64) ApiGetWbethRateHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetWbethRateHistoryRequest) RecvWindow(recvWindow int64) ApiGetWbethRateHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -380,17 +414,17 @@ func (r ApiGetWbethRateHistoryRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-GetWbethRateHistory Get WBETH Rate History(USER_DATA)
+GetWbethRateHistory Get WBETH Rate History (USER_DATA)
 Get /sapi/v1/eth-staking/eth/history/rateHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-BETH-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetWbethRateHistoryRequest
 */
 func (a *EthStakingAPIService) GetWbethRateHistory(ctx context.Context) ApiGetWbethRateHistoryRequest {
@@ -426,7 +460,15 @@ func (a *EthStakingAPIService) GetWbethRateHistoryExecute(r ApiGetWbethRateHisto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetWbethRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetWbethRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -454,18 +496,18 @@ func (r ApiGetWbethRewardsHistoryRequest) EndTime(endTime int64) ApiGetWbethRewa
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetWbethRewardsHistoryRequest) Current(current int64) ApiGetWbethRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetWbethRewardsHistoryRequest) Size(size int64) ApiGetWbethRewardsHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetWbethRewardsHistoryRequest) RecvWindow(recvWindow int64) ApiGetWbethRewardsHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -476,17 +518,17 @@ func (r ApiGetWbethRewardsHistoryRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-GetWbethRewardsHistory Get WBETH rewards history(USER_DATA)
+GetWbethRewardsHistory Get WBETH rewards history (USER_DATA)
 Get /sapi/v1/eth-staking/eth/history/wbethRewardsHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-rewards-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetWbethRewardsHistoryRequest
 */
 func (a *EthStakingAPIService) GetWbethRewardsHistory(ctx context.Context) ApiGetWbethRewardsHistoryRequest {
@@ -522,7 +564,15 @@ func (a *EthStakingAPIService) GetWbethRewardsHistoryExecute(r ApiGetWbethReward
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetWbethRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetWbethRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -550,18 +600,18 @@ func (r ApiGetWbethUnwrapHistoryRequest) EndTime(endTime int64) ApiGetWbethUnwra
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetWbethUnwrapHistoryRequest) Current(current int64) ApiGetWbethUnwrapHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetWbethUnwrapHistoryRequest) Size(size int64) ApiGetWbethUnwrapHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetWbethUnwrapHistoryRequest) RecvWindow(recvWindow int64) ApiGetWbethUnwrapHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -572,17 +622,17 @@ func (r ApiGetWbethUnwrapHistoryRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-GetWbethUnwrapHistory Get WBETH unwrap history(USER_DATA)
+GetWbethUnwrapHistory Get WBETH unwrap history (USER_DATA)
 Get /sapi/v1/eth-staking/wbeth/history/unwrapHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-unwrap-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-unwrap-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetWbethUnwrapHistoryRequest
 */
 func (a *EthStakingAPIService) GetWbethUnwrapHistory(ctx context.Context) ApiGetWbethUnwrapHistoryRequest {
@@ -618,7 +668,15 @@ func (a *EthStakingAPIService) GetWbethUnwrapHistoryExecute(r ApiGetWbethUnwrapH
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetWbethUnwrapHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetWbethUnwrapHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -646,18 +704,18 @@ func (r ApiGetWbethWrapHistoryRequest) EndTime(endTime int64) ApiGetWbethWrapHis
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetWbethWrapHistoryRequest) Current(current int64) ApiGetWbethWrapHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetWbethWrapHistoryRequest) Size(size int64) ApiGetWbethWrapHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetWbethWrapHistoryRequest) RecvWindow(recvWindow int64) ApiGetWbethWrapHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -668,17 +726,17 @@ func (r ApiGetWbethWrapHistoryRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-GetWbethWrapHistory Get WBETH wrap history(USER_DATA)
+GetWbethWrapHistory Get WBETH wrap history (USER_DATA)
 Get /sapi/v1/eth-staking/wbeth/history/wrapHistory
 
-https://developers.binance.com/docs/staking/eth-staking/history/Get-WBETH-wrap-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#get-wbeth-wrap-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetWbethWrapHistoryRequest
 */
 func (a *EthStakingAPIService) GetWbethWrapHistory(ctx context.Context) ApiGetWbethWrapHistoryRequest {
@@ -714,7 +772,15 @@ func (a *EthStakingAPIService) GetWbethWrapHistoryExecute(r ApiGetWbethWrapHisto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetWbethWrapHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetWbethWrapHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -726,22 +792,22 @@ type ApiRedeemEthRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
 	amount     *float32
-	asset      *string
+	asset      *models.RedeemEthAssetParameter
 	recvWindow *int64
 }
 
-// Amount in SOL.
+// Amount in BETH, limit 8 decimals
 func (r ApiRedeemEthRequest) Amount(amount float32) ApiRedeemEthRequest {
 	r.amount = &amount
 	return r
 }
 
-// WBETH or BETH, default to BETH
-func (r ApiRedeemEthRequest) Asset(asset string) ApiRedeemEthRequest {
+func (r ApiRedeemEthRequest) Asset(asset models.RedeemEthAssetParameter) ApiRedeemEthRequest {
 	r.asset = &asset
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiRedeemEthRequest) RecvWindow(recvWindow int64) ApiRedeemEthRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -752,15 +818,15 @@ func (r ApiRedeemEthRequest) Execute() (*common.RestApiResponse[models.RedeemEth
 }
 
 /*
-RedeemEth Redeem ETH(TRADE)
+RedeemEth Redeem ETH (TRADE)
 Post /sapi/v1/eth-staking/eth/redeem
 
-https://developers.binance.com/docs/staking/eth-staking/staking/Redeem-ETH
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#redeem-eth
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param amount -  Amount in SOL.
-@param asset -  WBETH or BETH, default to BETH
-@param recvWindow -
+@param amount -  Amount in BETH, limit 8 decimals
+@param asset -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemEthRequest
 */
 func (a *EthStakingAPIService) RedeemEth(ctx context.Context) ApiRedeemEthRequest {
@@ -792,7 +858,15 @@ func (a *EthStakingAPIService) RedeemEthExecute(r ApiRedeemEthRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemEthResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemEthResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -807,12 +881,13 @@ type ApiSubscribeEthStakingRequest struct {
 	recvWindow *int64
 }
 
-// Amount in SOL.
+// Amount in ETH, limit 4 decimals
 func (r ApiSubscribeEthStakingRequest) Amount(amount float32) ApiSubscribeEthStakingRequest {
 	r.amount = &amount
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSubscribeEthStakingRequest) RecvWindow(recvWindow int64) ApiSubscribeEthStakingRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -823,14 +898,14 @@ func (r ApiSubscribeEthStakingRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-SubscribeEthStaking Subscribe ETH Staking(TRADE)
+SubscribeEthStaking Subscribe ETH Staking (TRADE)
 Post /sapi/v2/eth-staking/eth/stake
 
-https://developers.binance.com/docs/staking/eth-staking/staking/Subscribe-ETH-Staking
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#subscribe-eth-staking
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param amount -  Amount in SOL.
-@param recvWindow -
+@param amount -  Amount in ETH, limit 4 decimals
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeEthStakingRequest
 */
 func (a *EthStakingAPIService) SubscribeEthStaking(ctx context.Context) ApiSubscribeEthStakingRequest {
@@ -859,7 +934,15 @@ func (a *EthStakingAPIService) SubscribeEthStakingExecute(r ApiSubscribeEthStaki
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeEthStakingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeEthStakingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -874,12 +957,13 @@ type ApiWrapBethRequest struct {
 	recvWindow *int64
 }
 
-// Amount in SOL.
+// Amount in BETH, limit 4 decimals
 func (r ApiWrapBethRequest) Amount(amount float32) ApiWrapBethRequest {
 	r.amount = &amount
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiWrapBethRequest) RecvWindow(recvWindow int64) ApiWrapBethRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -890,14 +974,14 @@ func (r ApiWrapBethRequest) Execute() (*common.RestApiResponse[models.WrapBethRe
 }
 
 /*
-WrapBeth Wrap BETH(TRADE)
+WrapBeth Wrap BETH (TRADE)
 Post /sapi/v1/eth-staking/wbeth/wrap
 
-https://developers.binance.com/docs/staking/eth-staking/staking/Wrap-BETH
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/eth-staking#wrap-beth
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param amount -  Amount in SOL.
-@param recvWindow -
+@param amount -  Amount in BETH, limit 4 decimals
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiWrapBethRequest
 */
 func (a *EthStakingAPIService) WrapBeth(ctx context.Context) ApiWrapBethRequest {
@@ -926,7 +1010,15 @@ func (a *EthStakingAPIService) WrapBethExecute(r ApiWrapBethRequest) (*common.Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WrapBethResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WrapBethResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

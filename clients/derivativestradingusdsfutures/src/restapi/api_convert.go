@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfuturesrestapi
@@ -43,7 +43,7 @@ func (r ApiAcceptTheOfferedQuoteRequest) Execute() (*common.RestApiResponse[mode
 AcceptTheOfferedQuote Accept the offered quote (USER_DATA)
 Post /fapi/v1/convert/acceptQuote
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Accept-Quote
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#accept-the-offered-quote
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param quoteId -
@@ -76,7 +76,15 @@ func (a *ConvertAPIService) AcceptTheOfferedQuoteExecute(r ApiAcceptTheOfferedQu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AcceptTheOfferedQuoteResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AcceptTheOfferedQuoteResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -111,7 +119,7 @@ func (r ApiListAllConvertPairsRequest) Execute() (*common.RestApiResponse[models
 ListAllConvertPairs List All Convert Pairs
 Get /fapi/v1/convert/exchangeInfo
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#list-all-convert-pairs
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromAsset -  User spends coin
@@ -142,7 +150,15 @@ func (a *ConvertAPIService) ListAllConvertPairsExecute(r ApiListAllConvertPairsR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "toAsset", r.toAsset, "form", "")
 	}
 
-	resp, err := SendRequest[models.ListAllConvertPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ListAllConvertPairsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -174,10 +190,10 @@ func (r ApiOrderStatusRequest) Execute() (*common.RestApiResponse[models.OrderSt
 }
 
 /*
-OrderStatus Order status(USER_DATA)
+OrderStatus Order status (USER_DATA)
 Get /fapi/v1/convert/orderStatus
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Order-Status
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#order-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orderId -  Either orderId or quoteId is required
@@ -208,7 +224,15 @@ func (a *ConvertAPIService) OrderStatusExecute(r ApiOrderStatusRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteId", r.quoteId, "form", "")
 	}
 
-	resp, err := SendRequest[models.OrderStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OrderStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -265,10 +289,10 @@ func (r ApiSendQuoteRequestRequest) Execute() (*common.RestApiResponse[models.Se
 }
 
 /*
-SendQuoteRequest Send Quote Request(USER_DATA)
+SendQuoteRequest Send Quote Request (USER_DATA)
 Post /fapi/v1/convert/getQuote
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/convert/Send-quote-request
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/convert#send-quote-request
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromAsset -
@@ -299,6 +323,7 @@ func (a *ConvertAPIService) SendQuoteRequestExecute(r ApiSendQuoteRequestRequest
 	if r.fromAsset == nil {
 		return nil, common.ReportError("fromAsset is required and must be specified")
 	}
+
 	if r.toAsset == nil {
 		return nil, common.ReportError("toAsset is required and must be specified")
 	}
@@ -318,7 +343,15 @@ func (a *ConvertAPIService) SendQuoteRequestExecute(r ApiSendQuoteRequestRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SendQuoteRequestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SendQuoteRequestResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

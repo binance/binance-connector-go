@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **ReferencePrice** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp when the reference price was valid | [optional] 
 **Code** | Pointer to **int64** |  | [optional] 
 **Msg** | Pointer to **string** |  | [optional] 
 

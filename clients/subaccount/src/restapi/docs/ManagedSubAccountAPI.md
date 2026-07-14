@@ -11,8 +11,8 @@ Method        | HTTP request  | Description
 [**QueryManagedSubAccountList**](ManagedSubAccountAPI.md#QueryManagedSubAccountList) | **Get** /sapi/v1/managed-subaccount/info | Query Managed Sub-account List (For Investor) (USER_DATA)
 [**QueryManagedSubAccountMarginAssetDetails**](ManagedSubAccountAPI.md#QueryManagedSubAccountMarginAssetDetails) | **Get** /sapi/v1/managed-subaccount/marginAsset | Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
 [**QueryManagedSubAccountSnapshot**](ManagedSubAccountAPI.md#QueryManagedSubAccountSnapshot) | **Get** /sapi/v1/managed-subaccount/accountSnapshot | Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA)
-[**QueryManagedSubAccountTransferLogMasterAccountInvestor**](ManagedSubAccountAPI.md#QueryManagedSubAccountTransferLogMasterAccountInvestor) | **Get** /sapi/v1/managed-subaccount/queryTransLogForInvestor | Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
-[**QueryManagedSubAccountTransferLogMasterAccountTrading**](ManagedSubAccountAPI.md#QueryManagedSubAccountTransferLogMasterAccountTrading) | **Get** /sapi/v1/managed-subaccount/queryTransLogForTradeParent | Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+[**QueryManagedSubAccountTransferLogMasterAccountInvestor**](ManagedSubAccountAPI.md#QueryManagedSubAccountTransferLogMasterAccountInvestor) | **Get** /sapi/v1/managed-subaccount/queryTransLogForInvestor | Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
+[**QueryManagedSubAccountTransferLogMasterAccountTrading**](ManagedSubAccountAPI.md#QueryManagedSubAccountTransferLogMasterAccountTrading) | **Get** /sapi/v1/managed-subaccount/queryTransLogForTradeParent | Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
 [**QueryManagedSubAccountTransferLogSubAccountTrading**](ManagedSubAccountAPI.md#QueryManagedSubAccountTransferLogSubAccountTrading) | **Get** /sapi/v1/managed-subaccount/query-trans-log | Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
 [**WithdrawlAssetsFromTheManagedSubAccount**](ManagedSubAccountAPI.md#WithdrawlAssetsFromTheManagedSubAccount) | **Post** /sapi/v1/managed-subaccount/withdraw | Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
 
@@ -40,8 +40,8 @@ import (
 )
 
 func main() {
-	toEmail := "toEmail_example" // string | 
-	asset := "asset_example" // string | 
+	toEmail := "abc@test.com" // string | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -114,9 +114,9 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	coin := "coin_example" // string | 
-	network := "network_example" // string | networks can be found in `GET /sapi/v1/capital/deposit/address` (optional)
+	email := "abc@test.com" // string | 
+	coin := "USDT" // string | 
+	network := "LIGHTNING" // string | networks can be found in `GET /sapi/v1/capital/deposit/address` (optional)
 	amount := float32(1.0) // float32 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -146,7 +146,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **coin** | **string** |  | 
  **network** | **string** | networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | 
  **amount** | **float32** |  | 
@@ -190,7 +190,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "abc@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -219,7 +219,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -260,8 +260,8 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	accountType := "accountType_example" // string | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details. (optional)
+	email := "abc@test.com" // string | 
+	accountType := "MARGIN" // string | No input or input \"USDT_FUTURE\" to get UM Futures account details. Input \"COIN_FUTURE\" to get CM Futures account details. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -289,8 +289,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
- **accountType** | **string** | No input or input \&quot;MARGIN\&quot; to get Cross Margin account details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details. | 
+ **email** | **string** |  | 
+ **accountType** | **string** | No input or input \&quot;USDT_FUTURE\&quot; to get UM Futures account details. Input \&quot;COIN_FUTURE\&quot; to get CM Futures account details. | 
 
 ### Return type
 
@@ -330,9 +330,9 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Managed sub-account email (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	email := "abc@test.com" // string |  (optional)
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -361,9 +361,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | Managed sub-account email | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **email** | **string** |  | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -404,8 +404,8 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	accountType := "accountType_example" // string | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details. (optional)
+	email := "abc@test.com" // string | 
+	accountType := "MARGIN" // string | No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -433,7 +433,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **accountType** | **string** | No input or input \&quot;MARGIN\&quot; to get Cross Margin account details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details. | 
 
 ### Return type
@@ -474,11 +474,11 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	type_ := "type__example" // string | \"SPOT\", \"MARGIN\"（cross）, \"FUTURES\"（UM）
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	email := "abc@test.com" // string | 
+	type_ := models.QueryManagedSubAccountSnapshotTypeParameterSpot // QueryManagedSubAccountSnapshotTypeParameter | 
+	startTime := int64(1623319461670) // int64 | Query time range must be within 30 days and only supports data within the last month. (optional)
+	endTime := int64(1641782889000) // int64 | If both startTime and endTime are omitted, records from the last 7 days are returned by default. (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -507,11 +507,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
- **type_** | **string** | \&quot;SPOT\&quot;, \&quot;MARGIN\&quot;（cross）, \&quot;FUTURES\&quot;（UM） | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **email** | **string** |  | 
+ **type_** | [**QueryManagedSubAccountSnapshotTypeParameter**](QueryManagedSubAccountSnapshotTypeParameter.md) |  | 
+ **startTime** | **int64** | Query time range must be within 30 days and only supports data within the last month. | 
+ **endTime** | **int64** | If both startTime and endTime are omitted, records from the last 7 days are returned by default. | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -533,7 +533,7 @@ No authorization required
 
 > QueryManagedSubAccountTransferLogMasterAccountInvestorResponse QueryManagedSubAccountTransferLogMasterAccountInvestor(ctx).Email(email).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).Transfers(transfers).TransferFunctionAccountType(transferFunctionAccountType).Execute()
 
-Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
+Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
 
 
 ### Example
@@ -552,13 +552,13 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "abc@test.com" // string | 
 	startTime := int64(1623319461670) // int64 | Start Time
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
-	page := int64(789) // int64 | Page
-	limit := int64(789) // int64 | Limit (Max: 500)
-	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
-	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+	page := int64(1) // int64 | Page
+	limit := int64(1) // int64 | 
+	transfers := "transfers_example" // string | Transfer Direction (FROM/TO) (optional)
+	transferFunctionAccountType := models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameterSpot // QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -586,13 +586,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **startTime** | **int64** | Start Time | 
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
  **page** | **int64** | Page | 
- **limit** | **int64** | Limit (Max: 500) | 
- **transfers** | **string** | Transfer Direction (from/to) | 
- **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
+ **limit** | **int64** |  | 
+ **transfers** | **string** | Transfer Direction (FROM/TO) | 
+ **transferFunctionAccountType** | [**QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter**](QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter.md) |  | 
 
 ### Return type
 
@@ -613,7 +613,7 @@ No authorization required
 
 > QueryManagedSubAccountTransferLogMasterAccountTradingResponse QueryManagedSubAccountTransferLogMasterAccountTrading(ctx).Email(email).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).Transfers(transfers).TransferFunctionAccountType(transferFunctionAccountType).Execute()
 
-Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
 
 
 ### Example
@@ -632,13 +632,13 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "abc@test.com" // string | 
 	startTime := int64(1623319461670) // int64 | Start Time
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
-	page := int64(789) // int64 | Page
-	limit := int64(789) // int64 | Limit (Max: 500)
-	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
-	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+	page := int64(1) // int64 | 
+	limit := int64(10) // int64 | 
+	transfers := "transfers_example" // string | Transfer Direction (FROM/TO) (optional)
+	transferFunctionAccountType := models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameterSpot // QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -666,13 +666,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **startTime** | **int64** | Start Time | 
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
- **page** | **int64** | Page | 
- **limit** | **int64** | Limit (Max: 500) | 
- **transfers** | **string** | Transfer Direction (from/to) | 
- **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
+ **transfers** | **string** | Transfer Direction (FROM/TO) | 
+ **transferFunctionAccountType** | [**QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter**](QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter.md) |  | 
 
 ### Return type
 
@@ -714,10 +714,10 @@ import (
 func main() {
 	startTime := int64(1623319461670) // int64 | Start Time
 	endTime := int64(1641782889000) // int64 | End Time (The start time and end time interval cannot exceed half a year)
-	page := int64(789) // int64 | Page
-	limit := int64(789) // int64 | Limit (Max: 500)
+	page := int64(1) // int64 | 
+	limit := int64(10) // int64 | 
 	transfers := "transfers_example" // string | Transfer Direction (from/to) (optional)
-	transferFunctionAccountType := "transferFunctionAccountType_example" // string | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) (optional)
+	transferFunctionAccountType := models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameterSpot // QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -748,10 +748,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **startTime** | **int64** | Start Time | 
  **endTime** | **int64** | End Time (The start time and end time interval cannot exceed half a year) | 
- **page** | **int64** | Page | 
- **limit** | **int64** | Limit (Max: 500) | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **transfers** | **string** | Transfer Direction (from/to) | 
- **transferFunctionAccountType** | **string** | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) | 
+ **transferFunctionAccountType** | [**QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter**](QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -792,10 +792,10 @@ import (
 )
 
 func main() {
-	fromEmail := "fromEmail_example" // string | 
-	asset := "asset_example" // string | 
+	fromEmail := "from@test.com" // string | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
-	transferDate := int64(789) // int64 | Withdrawals is automatically occur on the transfer date(UTC0). If a date is not selected, the withdrawal occurs right now (optional)
+	transferDate := int64(789) // int64 | Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -827,7 +827,7 @@ Name          | Type          | Description   | Notes
  **fromEmail** | **string** |  | 
  **asset** | **string** |  | 
  **amount** | **float32** |  | 
- **transferDate** | **int64** | Withdrawals is automatically occur on the transfer date(UTC0). If a date is not selected, the withdrawal occurs right now | 
+ **transferDate** | **int64** | Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

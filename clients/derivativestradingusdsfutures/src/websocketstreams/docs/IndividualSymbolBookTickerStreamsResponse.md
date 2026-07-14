@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | event type | [optional] 
+**U** | Pointer to **int64** | order book updateId | [optional] 
+**E** | Pointer to **int64** | event time | [optional] 
+**T** | Pointer to **int64** | transaction time | [optional] 
+**S** | Pointer to **string** | symbol | [optional] 
+**Ps** | Pointer to **string** | pair (After CM migration) | [optional] 
+**B** | Pointer to **string** | best bid price | [optional] 
+**B** | Pointer to **string** | best bid qty | [optional] 
+**A** | Pointer to **string** | best ask price | [optional] 
+**A** | Pointer to **string** | best ask qty | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -85,56 +85,6 @@ SetU sets U field to given value.
 
 HasU returns a boolean if a field has been set.
 
-### GetS
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetS() string`
-
-GetS returns the S field if non-nil, zero value otherwise.
-
-### GetSOk
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetSOk() (*string, bool)`
-
-GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) SetS(v string)`
-
-SetS sets S field to given value.
-
-### HasS
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) HasS() bool`
-
-HasS returns a boolean if a field has been set.
-
-### GetPs
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetPs() string`
-
-GetPs returns the Ps field if non-nil, zero value otherwise.
-
-### GetPsOk
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetPsOk() (*string, bool)`
-
-GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPs
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) SetPs(v string)`
-
-SetPs sets Ps field to given value.
-
-### HasPs
-
-`func (o *IndividualSymbolBookTickerStreamsResponse) HasPs() bool`
-
-HasPs returns a boolean if a field has been set.
-
 ### GetE
 
 `func (o *IndividualSymbolBookTickerStreamsResponse) GetE() int64`
@@ -184,6 +134,56 @@ SetT sets T field to given value.
 `func (o *IndividualSymbolBookTickerStreamsResponse) HasT() bool`
 
 HasT returns a boolean if a field has been set.
+
+### GetS
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetS() string`
+
+GetS returns the S field if non-nil, zero value otherwise.
+
+### GetSOk
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetSOk() (*string, bool)`
+
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) SetS(v string)`
+
+SetS sets S field to given value.
+
+### HasS
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) HasS() bool`
+
+HasS returns a boolean if a field has been set.
+
+### GetPs
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetPs() string`
+
+GetPs returns the Ps field if non-nil, zero value otherwise.
+
+### GetPsOk
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetPsOk() (*string, bool)`
+
+GetPsOk returns a tuple with the Ps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPs
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) SetPs(v string)`
+
+SetPs sets Ps field to given value.
+
+### HasPs
+
+`func (o *IndividualSymbolBookTickerStreamsResponse) HasPs() bool`
+
+HasPs returns a boolean if a field has been set.
 
 ### GetB
 
@@ -287,20 +287,20 @@ HasA returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetSt() int64`
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *IndividualSymbolBookTickerStreamsResponse) GetStOk() (*int64, bool)`
+`func (o *IndividualSymbolBookTickerStreamsResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *IndividualSymbolBookTickerStreamsResponse) SetSt(v int64)`
+`func (o *IndividualSymbolBookTickerStreamsResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Rows** | Pointer to [**[]GetCrossMarginTransferHistoryResponseRowsInner**](GetCrossMarginTransferHistoryResponseRowsInner.md) |  | [optional] 
-**Total** | Pointer to **int64** |  | [optional] 
+**Rows** | Pointer to [**[]GetCrossMarginTransferHistoryResponseRowsInner**](GetCrossMarginTransferHistoryResponseRowsInner.md) | rows list. | [optional] 
+**Total** | Pointer to **int64** | total. | [optional] 
 
 ## Methods
 

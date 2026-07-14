@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**AdjustedFundingRateCap** | Pointer to **string** |  | [optional] 
-**AdjustedFundingRateFloor** | Pointer to **string** |  | [optional] 
-**FundingIntervalHours** | Pointer to **int64** |  | [optional] 
-**Disclaimer** | Pointer to **bool** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**AdjustedFundingRateCap** | Pointer to **string** | Adjusted funding rate cap. | [optional] 
+**AdjustedFundingRateFloor** | Pointer to **string** | Adjusted funding rate floor. | [optional] 
+**FundingIntervalHours** | Pointer to **int64** | Funding interval in hours. | [optional] 
+**Disclaimer** | Pointer to **bool** | Disclaimer text. | [optional] 
 
 ## Methods
 

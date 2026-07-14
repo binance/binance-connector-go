@@ -1,5 +1,42 @@
 ### Changelog
 
+## 1.7.0 - 2026-07-14
+
+### Changed (4)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.4.0`.
+- Deleted parameter `recvWindow`
+  - affected methods:
+    - `getC2CTradeHistory()` (`GET /sapi/v1/c2c/orderMatch/listUserOrderHistory`)
+- Modified parameter `tradeType`:
+  - enum added: `BUY`, `SELL`
+  - affected methods:
+    - `getC2CTradeHistory()` (`GET /sapi/v1/c2c/orderMatch/listUserOrderHistory`)
+- Modified response for `getC2CTradeHistory()` (`GET /sapi/v1/c2c/orderMatch/listUserOrderHistory`):
+  - property `code` added
+  - property `data` added
+  - property `message` added
+  - property `success` added
+  - property `total` added
+  - property `orderStatus` deleted
+  - property `tradeType` deleted
+  - property `additionalKycVerify` deleted
+  - property `asset` deleted
+  - property `commission` deleted
+  - property `payMethodName` deleted
+  - property `orderNumber` deleted
+  - property `takerCommissionRate` deleted
+  - property `takerCommission` deleted
+  - property `counterPartNickName` deleted
+  - property `fiat` deleted
+  - property `createTime` deleted
+  - property `amount` deleted
+  - property `unitPrice` deleted
+  - property `advNo` deleted
+  - property `totalPrice` deleted
+  - property `fiatSymbol` deleted
+  - property `takerAmount` deleted
+
 ## 1.6.0 - 2026-04-20
 
 ### Changed (1)

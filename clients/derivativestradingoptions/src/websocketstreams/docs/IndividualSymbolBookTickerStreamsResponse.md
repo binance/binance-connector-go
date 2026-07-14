@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | event type | [optional] 
+**U** | Pointer to **int64** | order book updateId | [optional] 
+**S** | Pointer to **string** | symbol | [optional] 
+**B** | Pointer to **string** | best bid price | [optional] 
+**B** | Pointer to **string** | bid bid quantity | [optional] 
+**A** | Pointer to **string** | best ask price | [optional] 
+**A** | Pointer to **string** | best ask quantity | [optional] 
+**T** | Pointer to **int64** | transaction time | [optional] 
+**E** | Pointer to **int64** | event time | [optional] 
 
 ## Methods
 

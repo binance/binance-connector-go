@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
-**OrderListId** | Pointer to **int64** |  | [optional] 
+**OrderListId** | Pointer to **int64** | Present only for orders that belong to an order list. | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
@@ -16,16 +16,27 @@ Name         | Type          | Description.  | Notes
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**IcebergQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | Order placement time. | [optional] 
+**UpdateTime** | Pointer to **int64** | Time of the last update to the order. | [optional] 
 **IsWorking** | Pointer to **bool** |  | [optional] 
 **WorkingTime** | Pointer to **int64** |  | [optional] 
-**OrigQuoteOrderQty** | Pointer to **string** |  | [optional] 
+**OrigQuoteOrderQty** | Pointer to **string** | Always present. Zero if the order type does not use &#x60;quoteOrderQty&#x60;. | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**PreventedMatchId** | Pointer to **int64** |  | [optional] 
-**PreventedQuantity** | Pointer to **string** |  | [optional] 
+**PreventedMatchId** | Pointer to **int64** | Present only if the order expired due to STP. | [optional] 
+**PreventedQuantity** | Pointer to **string** | Present only if the order expired due to STP. | [optional] 
+**IcebergQty** | Pointer to **string** | Appears only if the parameter icebergQty was sent in the request. | [optional] 
+**StopPrice** | Pointer to **string** | Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders. | [optional] 
+**StrategyId** | Pointer to **int64** | Appears only if the strategyId parameter was provided upon order placement. | [optional] 
+**StrategyType** | Pointer to **int64** | Appears only if the strategyType parameter was provided upon order placement. | [optional] 
+**TrailingDelta** | Pointer to **int64** | Delta price change required before order activation. | [optional] 
+**TrailingTime** | Pointer to **int64** | Time when the trailing order is now active and tracking price changes. | [optional] 
+**UsedSor** | Pointer to **bool** | Field that determines whether order used SOR. | [optional] 
+**WorkingFloor** | Pointer to **string** | Determines whether the order is being filled by the SOR or by the order book. | [optional] 
+**PegPriceType** | Pointer to **string** | Price peg type. Only for pegged orders. | [optional] 
+**PegOffsetType** | Pointer to **string** | Price peg offset type. Only for pegged orders, if requested. | [optional] 
+**PegOffsetValue** | Pointer to **int64** | Price peg offset value. Only for pegged orders, if requested. | [optional] 
+**PeggedPrice** | Pointer to **string** | Current price order is pegged at. Only for pegged orders, once determined. | [optional] 
+**ExpiryReason** | Pointer to **string** | Cause of the order&#39;s expiration. Appears when an order has expired. | [optional] 
 
 ## Methods
 
@@ -346,56 +357,6 @@ SetSide sets Side field to given value.
 
 HasSide returns a boolean if a field has been set.
 
-### GetStopPrice
-
-`func (o *AllOrdersResponseResultInner) GetStopPrice() string`
-
-GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
-
-### GetStopPriceOk
-
-`func (o *AllOrdersResponseResultInner) GetStopPriceOk() (*string, bool)`
-
-GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStopPrice
-
-`func (o *AllOrdersResponseResultInner) SetStopPrice(v string)`
-
-SetStopPrice sets StopPrice field to given value.
-
-### HasStopPrice
-
-`func (o *AllOrdersResponseResultInner) HasStopPrice() bool`
-
-HasStopPrice returns a boolean if a field has been set.
-
-### GetIcebergQty
-
-`func (o *AllOrdersResponseResultInner) GetIcebergQty() string`
-
-GetIcebergQty returns the IcebergQty field if non-nil, zero value otherwise.
-
-### GetIcebergQtyOk
-
-`func (o *AllOrdersResponseResultInner) GetIcebergQtyOk() (*string, bool)`
-
-GetIcebergQtyOk returns a tuple with the IcebergQty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIcebergQty
-
-`func (o *AllOrdersResponseResultInner) SetIcebergQty(v string)`
-
-SetIcebergQty sets IcebergQty field to given value.
-
-### HasIcebergQty
-
-`func (o *AllOrdersResponseResultInner) HasIcebergQty() bool`
-
-HasIcebergQty returns a boolean if a field has been set.
-
 ### GetTime
 
 `func (o *AllOrdersResponseResultInner) GetTime() int64`
@@ -595,6 +556,331 @@ SetPreventedQuantity sets PreventedQuantity field to given value.
 `func (o *AllOrdersResponseResultInner) HasPreventedQuantity() bool`
 
 HasPreventedQuantity returns a boolean if a field has been set.
+
+### GetIcebergQty
+
+`func (o *AllOrdersResponseResultInner) GetIcebergQty() string`
+
+GetIcebergQty returns the IcebergQty field if non-nil, zero value otherwise.
+
+### GetIcebergQtyOk
+
+`func (o *AllOrdersResponseResultInner) GetIcebergQtyOk() (*string, bool)`
+
+GetIcebergQtyOk returns a tuple with the IcebergQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIcebergQty
+
+`func (o *AllOrdersResponseResultInner) SetIcebergQty(v string)`
+
+SetIcebergQty sets IcebergQty field to given value.
+
+### HasIcebergQty
+
+`func (o *AllOrdersResponseResultInner) HasIcebergQty() bool`
+
+HasIcebergQty returns a boolean if a field has been set.
+
+### GetStopPrice
+
+`func (o *AllOrdersResponseResultInner) GetStopPrice() string`
+
+GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
+
+### GetStopPriceOk
+
+`func (o *AllOrdersResponseResultInner) GetStopPriceOk() (*string, bool)`
+
+GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopPrice
+
+`func (o *AllOrdersResponseResultInner) SetStopPrice(v string)`
+
+SetStopPrice sets StopPrice field to given value.
+
+### HasStopPrice
+
+`func (o *AllOrdersResponseResultInner) HasStopPrice() bool`
+
+HasStopPrice returns a boolean if a field has been set.
+
+### GetStrategyId
+
+`func (o *AllOrdersResponseResultInner) GetStrategyId() int64`
+
+GetStrategyId returns the StrategyId field if non-nil, zero value otherwise.
+
+### GetStrategyIdOk
+
+`func (o *AllOrdersResponseResultInner) GetStrategyIdOk() (*int64, bool)`
+
+GetStrategyIdOk returns a tuple with the StrategyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategyId
+
+`func (o *AllOrdersResponseResultInner) SetStrategyId(v int64)`
+
+SetStrategyId sets StrategyId field to given value.
+
+### HasStrategyId
+
+`func (o *AllOrdersResponseResultInner) HasStrategyId() bool`
+
+HasStrategyId returns a boolean if a field has been set.
+
+### GetStrategyType
+
+`func (o *AllOrdersResponseResultInner) GetStrategyType() int64`
+
+GetStrategyType returns the StrategyType field if non-nil, zero value otherwise.
+
+### GetStrategyTypeOk
+
+`func (o *AllOrdersResponseResultInner) GetStrategyTypeOk() (*int64, bool)`
+
+GetStrategyTypeOk returns a tuple with the StrategyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategyType
+
+`func (o *AllOrdersResponseResultInner) SetStrategyType(v int64)`
+
+SetStrategyType sets StrategyType field to given value.
+
+### HasStrategyType
+
+`func (o *AllOrdersResponseResultInner) HasStrategyType() bool`
+
+HasStrategyType returns a boolean if a field has been set.
+
+### GetTrailingDelta
+
+`func (o *AllOrdersResponseResultInner) GetTrailingDelta() int64`
+
+GetTrailingDelta returns the TrailingDelta field if non-nil, zero value otherwise.
+
+### GetTrailingDeltaOk
+
+`func (o *AllOrdersResponseResultInner) GetTrailingDeltaOk() (*int64, bool)`
+
+GetTrailingDeltaOk returns a tuple with the TrailingDelta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrailingDelta
+
+`func (o *AllOrdersResponseResultInner) SetTrailingDelta(v int64)`
+
+SetTrailingDelta sets TrailingDelta field to given value.
+
+### HasTrailingDelta
+
+`func (o *AllOrdersResponseResultInner) HasTrailingDelta() bool`
+
+HasTrailingDelta returns a boolean if a field has been set.
+
+### GetTrailingTime
+
+`func (o *AllOrdersResponseResultInner) GetTrailingTime() int64`
+
+GetTrailingTime returns the TrailingTime field if non-nil, zero value otherwise.
+
+### GetTrailingTimeOk
+
+`func (o *AllOrdersResponseResultInner) GetTrailingTimeOk() (*int64, bool)`
+
+GetTrailingTimeOk returns a tuple with the TrailingTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrailingTime
+
+`func (o *AllOrdersResponseResultInner) SetTrailingTime(v int64)`
+
+SetTrailingTime sets TrailingTime field to given value.
+
+### HasTrailingTime
+
+`func (o *AllOrdersResponseResultInner) HasTrailingTime() bool`
+
+HasTrailingTime returns a boolean if a field has been set.
+
+### GetUsedSor
+
+`func (o *AllOrdersResponseResultInner) GetUsedSor() bool`
+
+GetUsedSor returns the UsedSor field if non-nil, zero value otherwise.
+
+### GetUsedSorOk
+
+`func (o *AllOrdersResponseResultInner) GetUsedSorOk() (*bool, bool)`
+
+GetUsedSorOk returns a tuple with the UsedSor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsedSor
+
+`func (o *AllOrdersResponseResultInner) SetUsedSor(v bool)`
+
+SetUsedSor sets UsedSor field to given value.
+
+### HasUsedSor
+
+`func (o *AllOrdersResponseResultInner) HasUsedSor() bool`
+
+HasUsedSor returns a boolean if a field has been set.
+
+### GetWorkingFloor
+
+`func (o *AllOrdersResponseResultInner) GetWorkingFloor() string`
+
+GetWorkingFloor returns the WorkingFloor field if non-nil, zero value otherwise.
+
+### GetWorkingFloorOk
+
+`func (o *AllOrdersResponseResultInner) GetWorkingFloorOk() (*string, bool)`
+
+GetWorkingFloorOk returns a tuple with the WorkingFloor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkingFloor
+
+`func (o *AllOrdersResponseResultInner) SetWorkingFloor(v string)`
+
+SetWorkingFloor sets WorkingFloor field to given value.
+
+### HasWorkingFloor
+
+`func (o *AllOrdersResponseResultInner) HasWorkingFloor() bool`
+
+HasWorkingFloor returns a boolean if a field has been set.
+
+### GetPegPriceType
+
+`func (o *AllOrdersResponseResultInner) GetPegPriceType() string`
+
+GetPegPriceType returns the PegPriceType field if non-nil, zero value otherwise.
+
+### GetPegPriceTypeOk
+
+`func (o *AllOrdersResponseResultInner) GetPegPriceTypeOk() (*string, bool)`
+
+GetPegPriceTypeOk returns a tuple with the PegPriceType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPegPriceType
+
+`func (o *AllOrdersResponseResultInner) SetPegPriceType(v string)`
+
+SetPegPriceType sets PegPriceType field to given value.
+
+### HasPegPriceType
+
+`func (o *AllOrdersResponseResultInner) HasPegPriceType() bool`
+
+HasPegPriceType returns a boolean if a field has been set.
+
+### GetPegOffsetType
+
+`func (o *AllOrdersResponseResultInner) GetPegOffsetType() string`
+
+GetPegOffsetType returns the PegOffsetType field if non-nil, zero value otherwise.
+
+### GetPegOffsetTypeOk
+
+`func (o *AllOrdersResponseResultInner) GetPegOffsetTypeOk() (*string, bool)`
+
+GetPegOffsetTypeOk returns a tuple with the PegOffsetType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPegOffsetType
+
+`func (o *AllOrdersResponseResultInner) SetPegOffsetType(v string)`
+
+SetPegOffsetType sets PegOffsetType field to given value.
+
+### HasPegOffsetType
+
+`func (o *AllOrdersResponseResultInner) HasPegOffsetType() bool`
+
+HasPegOffsetType returns a boolean if a field has been set.
+
+### GetPegOffsetValue
+
+`func (o *AllOrdersResponseResultInner) GetPegOffsetValue() int64`
+
+GetPegOffsetValue returns the PegOffsetValue field if non-nil, zero value otherwise.
+
+### GetPegOffsetValueOk
+
+`func (o *AllOrdersResponseResultInner) GetPegOffsetValueOk() (*int64, bool)`
+
+GetPegOffsetValueOk returns a tuple with the PegOffsetValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPegOffsetValue
+
+`func (o *AllOrdersResponseResultInner) SetPegOffsetValue(v int64)`
+
+SetPegOffsetValue sets PegOffsetValue field to given value.
+
+### HasPegOffsetValue
+
+`func (o *AllOrdersResponseResultInner) HasPegOffsetValue() bool`
+
+HasPegOffsetValue returns a boolean if a field has been set.
+
+### GetPeggedPrice
+
+`func (o *AllOrdersResponseResultInner) GetPeggedPrice() string`
+
+GetPeggedPrice returns the PeggedPrice field if non-nil, zero value otherwise.
+
+### GetPeggedPriceOk
+
+`func (o *AllOrdersResponseResultInner) GetPeggedPriceOk() (*string, bool)`
+
+GetPeggedPriceOk returns a tuple with the PeggedPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeggedPrice
+
+`func (o *AllOrdersResponseResultInner) SetPeggedPrice(v string)`
+
+SetPeggedPrice sets PeggedPrice field to given value.
+
+### HasPeggedPrice
+
+`func (o *AllOrdersResponseResultInner) HasPeggedPrice() bool`
+
+HasPeggedPrice returns a boolean if a field has been set.
+
+### GetExpiryReason
+
+`func (o *AllOrdersResponseResultInner) GetExpiryReason() string`
+
+GetExpiryReason returns the ExpiryReason field if non-nil, zero value otherwise.
+
+### GetExpiryReasonOk
+
+`func (o *AllOrdersResponseResultInner) GetExpiryReasonOk() (*string, bool)`
+
+GetExpiryReasonOk returns a tuple with the ExpiryReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiryReason
+
+`func (o *AllOrdersResponseResultInner) SetExpiryReason(v string)`
+
+SetExpiryReason sets ExpiryReason field to given value.
+
+### HasExpiryReason
+
+`func (o *AllOrdersResponseResultInner) HasExpiryReason() bool`
+
+HasExpiryReason returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

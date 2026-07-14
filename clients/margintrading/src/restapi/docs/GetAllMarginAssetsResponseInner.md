@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AssetFullName** | Pointer to **string** |  | [optional] 
-**AssetName** | Pointer to **string** |  | [optional] 
-**IsBorrowable** | Pointer to **bool** |  | [optional] 
-**IsMortgageable** | Pointer to **bool** |  | [optional] 
-**UserMinBorrow** | Pointer to **string** |  | [optional] 
-**UserMinRepay** | Pointer to **string** |  | [optional] 
-**DelistTime** | Pointer to **int64** |  | [optional] 
+**AssetFullName** | Pointer to **string** | asset Full Name. | [optional] 
+**AssetName** | Pointer to **string** | asset Name. | [optional] 
+**IsBorrowable** | Pointer to **bool** | is Borrowable. | [optional] 
+**IsMortgageable** | Pointer to **bool** | is Mortgageable. | [optional] 
+**UserMinBorrow** | Pointer to **string** | user Min Borrow. | [optional] 
+**UserMinRepay** | Pointer to **string** | user Min Repay. | [optional] 
+**DelistTime** | Pointer to **int64** | delist Time. | [optional] 
 
 ## Methods
 

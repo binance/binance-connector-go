@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**ExchangeInfo**](GeneralAPI.md#ExchangeInfo) | /exchangeInfo | WebSocket Exchange information
-[**ExecutionRules**](GeneralAPI.md#ExecutionRules) | /executionRules | WebSocket Query Execution Rules
-[**Ping**](GeneralAPI.md#Ping) | /ping | WebSocket Test connectivity
-[**Time**](GeneralAPI.md#Time) | /time | WebSocket Check server time
+[**ExchangeInfo**](GeneralAPI.md#ExchangeInfo) | /exchangeInfo | Exchange information
+[**ExecutionRules**](GeneralAPI.md#ExecutionRules) | /executionRules | Query Execution Rules
+[**Ping**](GeneralAPI.md#Ping) | /ping | Test connectivity
+[**Time**](GeneralAPI.md#Time) | /time | Check server time
 
 
 ## ExchangeInfo
 
 > ExchangeInfoResponse ExchangeInfo().Id(id).Symbol(symbol).Symbols(symbols).Permissions(permissions).ShowPermissionSets(showPermissionSets).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Exchange information
+Exchange information
 
 
 ### Example
@@ -31,12 +31,12 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	permissions := []string{"Inner_example"} // []string |  (optional)
-	showPermissionSets := false // bool |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbols := []string{"BTCUSDT"} // []string | Describe multiple symbols (optional)
+	permissions := []string{"SPOT"} // []string | Filter symbols by permissions (optional)
+	showPermissionSets := true // bool | Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true`. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`. Cannot be used in combination with `symbol` or `symbols`. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -74,12 +74,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
  **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **permissions** | **[]string** |  | 
- **showPermissionSets** | **bool** |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbols** | **[]string** | Describe multiple symbols | 
+ **permissions** | **[]string** | Filter symbols by permissions | 
+ **showPermissionSets** | **bool** | Controls whether the content of the &#x60;permissionSets&#x60; field is populated or not. Defaults to &#x60;true&#x60;. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;. | 
 
 ### Return type
 
@@ -96,7 +96,7 @@ No authorization required
 
 > ExecutionRulesResponse ExecutionRules().Id(id).Symbol(symbol).Symbols(symbols).SymbolStatus(symbolStatus).Execute()
 
-WebSocket Query Execution Rules
+Query Execution Rules
 
 
 ### Example
@@ -113,10 +113,10 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BAZUSD" // string | Query for specified symbol. (optional)
+	symbols := []string{"BAZUSD"} // []string | Query for multiple symbols. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -154,10 +154,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** | Query for specified symbol. | 
+ **symbols** | **[]string** | Query for multiple symbols. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -174,7 +174,7 @@ No authorization required
 
 > PingResponse Ping().Id(id).Execute()
 
-WebSocket Test connectivity
+Test connectivity
 
 
 ### Example
@@ -191,7 +191,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -229,7 +229,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -246,7 +246,7 @@ No authorization required
 
 > TimeResponse Time().Id(id).Execute()
 
-WebSocket Check server time
+Check server time
 
 
 ### Example
@@ -263,7 +263,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -301,7 +301,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 

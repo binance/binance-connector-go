@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,27 +17,34 @@ var _ common.MappedNullable = &PositionInformationV2ResponseResultInner{}
 
 // PositionInformationV2ResponseResultInner struct for PositionInformationV2ResponseResultInner
 type PositionInformationV2ResponseResultInner struct {
-	Symbol                 *string `json:"symbol,omitempty"`
-	PositionSide           *string `json:"positionSide,omitempty"`
-	PositionAmt            *string `json:"positionAmt,omitempty"`
-	EntryPrice             *string `json:"entryPrice,omitempty"`
-	BreakEvenPrice         *string `json:"breakEvenPrice,omitempty"`
-	MarkPrice              *string `json:"markPrice,omitempty"`
-	UnRealizedProfit       *string `json:"unRealizedProfit,omitempty"`
-	LiquidationPrice       *string `json:"liquidationPrice,omitempty"`
-	IsolatedMargin         *string `json:"isolatedMargin,omitempty"`
-	Notional               *string `json:"notional,omitempty"`
-	MarginAsset            *string `json:"marginAsset,omitempty"`
-	IsolatedWallet         *string `json:"isolatedWallet,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// Position Side
+	PositionSide   *string `json:"positionSide,omitempty"`
+	PositionAmt    *string `json:"positionAmt,omitempty"`
+	EntryPrice     *string `json:"entryPrice,omitempty"`
+	BreakEvenPrice *string `json:"breakEvenPrice,omitempty"`
+	MarkPrice      *string `json:"markPrice,omitempty"`
+	// Unrealized Profit
+	UnRealizedProfit *string `json:"unRealizedProfit,omitempty"`
+	LiquidationPrice *string `json:"liquidationPrice,omitempty"`
+	IsolatedMargin   *string `json:"isolatedMargin,omitempty"`
+	Notional         *string `json:"notional,omitempty"`
+	MarginAsset      *string `json:"marginAsset,omitempty"`
+	IsolatedWallet   *string `json:"isolatedWallet,omitempty"`
+	// Initial Margin
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// Maintainance Margin
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// Position Initial Margin
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// Open Order Initial Margin
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
 	Adl                    *int64  `json:"adl,omitempty"`
 	BidNotional            *string `json:"bidNotional,omitempty"`
 	AskNotional            *string `json:"askNotional,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// Update Time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PositionInformationV2ResponseResultInner PositionInformationV2ResponseResultInner

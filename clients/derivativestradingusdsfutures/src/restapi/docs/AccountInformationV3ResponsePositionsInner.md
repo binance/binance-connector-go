@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**IsolatedMargin** | Pointer to **string** |  | [optional] 
-**Notional** | Pointer to **string** |  | [optional] 
-**IsolatedWallet** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**PositionSide** | Pointer to **string** | Position side. | [optional] 
+**PositionAmt** | Pointer to **string** | Position quantity. | [optional] 
+**UnrealizedProfit** | Pointer to **string** | Unrealized profit. | [optional] 
+**IsolatedMargin** | Pointer to **string** | Isolated margin. | [optional] 
+**Notional** | Pointer to **string** | Position notional value. | [optional] 
+**IsolatedWallet** | Pointer to **string** | Isolated wallet balance. | [optional] 
+**InitialMargin** | Pointer to **string** | Initial margin requirement. | [optional] 
+**MaintMargin** | Pointer to **string** | Maintenance margin requirement. | [optional] 
+**UpdateTime** | Pointer to **int64** | Last update time in milliseconds. | [optional] 
 
 ## Methods
 

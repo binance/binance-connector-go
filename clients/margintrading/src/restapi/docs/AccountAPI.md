@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-	maxLeverage := int64(789) // int64 | Can only adjust 3 , 5 or 10，Example: maxLeverage = 5 or 3 for Cross Margin Classic; maxLeverage=10 for Cross Margin Pro 10x leverage or 20x if compliance allows.
+	maxLeverage := int64(3) // int64 | Can only adjust 3 , 5 or 10，Example: maxLeverage = 5 or 3 for Cross Margin Classic; maxLeverage=10 for Cross Margin Pro 10x leverage or 20x if compliance allows.
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -108,8 +108,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string | 
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -138,7 +138,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -178,8 +178,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string | 
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -208,7 +208,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -248,7 +248,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -276,7 +276,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -344,7 +344,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -384,14 +384,14 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	type_ := "type__example" // string | Transfer Type: ROLL_IN, ROLL_OUT (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	asset := "USDT" // string |  (optional)
+	symbol := "BTCUSDT" // string | Mandatory for Isolated data (optional)
+	type_ := models.QueryCrossIsolatedMarginCapitalFlowTypeParameterTransfer // QueryCrossIsolatedMarginCapitalFlowTypeParameter |  (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	fromId := int64(1) // int64 | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned. (optional)
-	limit := int64(500) // int64 | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	fromId := int64(1) // int64 |  (optional)
+	limit := int64(500) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -420,13 +420,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **symbol** | **string** | isolated margin pair | 
- **type_** | **string** | Transfer Type: ROLL_IN, ROLL_OUT | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **symbol** | **string** | Mandatory for Isolated data | 
+ **type_** | [**QueryCrossIsolatedMarginCapitalFlowTypeParameter**](QueryCrossIsolatedMarginCapitalFlowTypeParameter.md) |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **fromId** | **int64** | If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | 
- **limit** | **int64** | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **fromId** | **int64** |  | 
+ **limit** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -466,7 +466,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -494,7 +494,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -535,8 +535,8 @@ import (
 
 func main() {
 	vipLevel := int64(1) // int64 | User's current specific margin data will be returned if vipLevel is omitted (optional)
-	coin := "coin_example" // string |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	coin := "BTC" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -566,7 +566,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **vipLevel** | **int64** | User&#39;s current specific margin data will be returned if vipLevel is omitted | 
  **coin** | **string** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -606,7 +606,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -634,7 +634,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -674,8 +674,8 @@ import (
 )
 
 func main() {
-	symbols := "symbols_example" // string | Max 5 symbols can be sent; separated by \",\". e.g. \"BTCUSDT,BNBUSDT,ADAUSDT\" (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbols := "BTCUSDT,BNBUSDT,ADAUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -703,8 +703,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbols** | **string** | Max 5 symbols can be sent; separated by \&quot;,\&quot;. e.g. \&quot;BTCUSDT,BNBUSDT,ADAUSDT\&quot; | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **symbols** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -744,9 +744,9 @@ import (
 )
 
 func main() {
-	vipLevel := int64(1) // int64 | User's current specific margin data will be returned if vipLevel is omitted (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	vipLevel := int64(1) // int64 |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -774,9 +774,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **vipLevel** | **int64** | User&#39;s current specific margin data will be returned if vipLevel is omitted | 
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **vipLevel** | **int64** |  | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 

@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -23,6 +23,7 @@ type DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner struct 
 	OperateTime          *int64  `json:"operateTime,omitempty"`
 	TransferedAmount     *string `json:"transferedAmount,omitempty"`
 	FromAsset            *string `json:"fromAsset,omitempty"`
+	TargetAsset          *string `json:"targetAsset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -237,6 +238,38 @@ func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) Se
 	o.FromAsset = &v
 }
 
+// GetTargetAsset returns the TargetAsset field value if set, zero value otherwise.
+func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) GetTargetAsset() string {
+	if o == nil || common.IsNil(o.TargetAsset) {
+		var ret string
+		return ret
+	}
+	return *o.TargetAsset
+}
+
+// GetTargetAssetOk returns a tuple with the TargetAsset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) GetTargetAssetOk() (*string, bool) {
+	if o == nil || common.IsNil(o.TargetAsset) {
+		return nil, false
+	}
+	return o.TargetAsset, true
+}
+
+// HasTargetAsset returns a boolean if a field has been set.
+func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) HasTargetAsset() bool {
+	if o != nil && !common.IsNil(o.TargetAsset) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetAsset gets a reference to the given string and assigns it to the TargetAsset field.
+func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) SetTargetAsset(v string) {
+	o.TargetAsset = &v
+}
+
 func (o DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -264,6 +297,9 @@ func (o DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) ToM
 	}
 	if !common.IsNil(o.FromAsset) {
 		toSerialize["fromAsset"] = o.FromAsset
+	}
+	if !common.IsNil(o.TargetAsset) {
+		toSerialize["targetAsset"] = o.TargetAsset
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -293,6 +329,7 @@ func (o *DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner) Un
 		delete(additionalProperties, "operateTime")
 		delete(additionalProperties, "transferedAmount")
 		delete(additionalProperties, "fromAsset")
+		delete(additionalProperties, "targetAsset")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,7 +21,7 @@ func RpiOrderBook() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.RpiOrderBook(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.RpiOrderBook(context.Background()).Symbol("BTCUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

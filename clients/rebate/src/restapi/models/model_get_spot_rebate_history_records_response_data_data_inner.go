@@ -1,7 +1,7 @@
 /*
-Binance Rebate REST API
+Rebate REST API
 
-OpenAPI Specification for the Binance Rebate REST API
+Query spot trading rebate history records.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &GetSpotRebateHistoryRecordsResponseDataDataInner{
 
 // GetSpotRebateHistoryRecordsResponseDataDataInner struct for GetSpotRebateHistoryRecordsResponseDataDataInner
 type GetSpotRebateHistoryRecordsResponseDataDataInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	Type                 *int64  `json:"type,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Rebate asset.
+	Asset *string `json:"asset,omitempty"`
+	// 1 is commission rebate, 2 is referral kickback
+	Type *int64 `json:"type,omitempty"`
+	// Rebate amount.
+	Amount *string `json:"amount,omitempty"`
+	// Update timestamp.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

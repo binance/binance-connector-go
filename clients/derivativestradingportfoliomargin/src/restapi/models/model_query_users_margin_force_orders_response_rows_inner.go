@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &QueryUsersMarginForceOrdersResponseRowsInner{}
 
 // QueryUsersMarginForceOrdersResponseRowsInner struct for QueryUsersMarginForceOrdersResponseRowsInner
 type QueryUsersMarginForceOrdersResponseRowsInner struct {
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	UpdatedTime          *int64  `json:"updatedTime,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Qty.
+	Qty *string `json:"qty,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Updated Time.
+	UpdatedTime          *int64 `json:"updatedTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

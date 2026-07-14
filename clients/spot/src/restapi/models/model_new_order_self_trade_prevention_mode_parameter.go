@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,13 +16,12 @@ type NewOrderSelfTradePreventionModeParameter string
 
 // List of newOrder_selfTradePreventionMode_parameter
 const (
-	NewOrderSelfTradePreventionModeParameterNone             NewOrderSelfTradePreventionModeParameter = "NONE"
-	NewOrderSelfTradePreventionModeParameterExpireTaker      NewOrderSelfTradePreventionModeParameter = "EXPIRE_TAKER"
-	NewOrderSelfTradePreventionModeParameterExpireMaker      NewOrderSelfTradePreventionModeParameter = "EXPIRE_MAKER"
-	NewOrderSelfTradePreventionModeParameterExpireBoth       NewOrderSelfTradePreventionModeParameter = "EXPIRE_BOTH"
-	NewOrderSelfTradePreventionModeParameterDecrement        NewOrderSelfTradePreventionModeParameter = "DECREMENT"
-	NewOrderSelfTradePreventionModeParameterTransfer         NewOrderSelfTradePreventionModeParameter = "TRANSFER"
-	NewOrderSelfTradePreventionModeParameterNonRepresentable NewOrderSelfTradePreventionModeParameter = "NON_REPRESENTABLE"
+	NewOrderSelfTradePreventionModeParameterNone        NewOrderSelfTradePreventionModeParameter = "NONE"
+	NewOrderSelfTradePreventionModeParameterExpireTaker NewOrderSelfTradePreventionModeParameter = "EXPIRE_TAKER"
+	NewOrderSelfTradePreventionModeParameterExpireMaker NewOrderSelfTradePreventionModeParameter = "EXPIRE_MAKER"
+	NewOrderSelfTradePreventionModeParameterExpireBoth  NewOrderSelfTradePreventionModeParameter = "EXPIRE_BOTH"
+	NewOrderSelfTradePreventionModeParameterDecrement   NewOrderSelfTradePreventionModeParameter = "DECREMENT"
+	NewOrderSelfTradePreventionModeParameterTransfer    NewOrderSelfTradePreventionModeParameter = "TRANSFER"
 )
 
 // All allowed values of NewOrderSelfTradePreventionModeParameter enum
@@ -33,7 +32,6 @@ var AllowedNewOrderSelfTradePreventionModeParameterEnumValues = []NewOrderSelfTr
 	"EXPIRE_BOTH",
 	"DECREMENT",
 	"TRANSFER",
-	"NON_REPRESENTABLE",
 }
 
 func (v *NewOrderSelfTradePreventionModeParameter) UnmarshalJSON(src []byte) error {

@@ -1,5 +1,5 @@
 /*
-Binance Staking REST API TEST
+Staking REST API TEST
 
 Testing EthStakingAPIService
 
@@ -10,6 +10,7 @@ package binancestakingrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,7 +26,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService EthStakingAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"holdingInETH":"1.22330928","holdings":{"wbethAmount":"1.10928781","bethAmount":"1.90002112"},"thirtyDaysProfitInETH":"0.22330928","profit":{"amountFromWBETH":"0.12330928","amountFromBETH":"0.1"}}`
+		var mockedJSON string
+		mockedJSON = `{"holdingInETH":"1.22330928","holdings":{"wbethAmount":"1.10928781","bethAmount":"1.90002112"},"thirtyDaysProfitInETH":"0.22330928","profit":{"amountFromWBETH":"0.12330928","amountFromBETH":"0.1"}}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/eth-staking/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +85,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetCurrentEthStakingQuota Success", func(t *testing.T) {
 
-		mockedJSON := `{"leftStakingPersonalQuota":"1000","leftRedemptionPersonalQuota":"1000","minStakeAmount":"0.00010000","minRedeemAmount":"0.00000001","redeemPeriod":20,"stakeable":true,"redeemable":true,"commissionFee":"0.05000000","calculating":false}`
+		var mockedJSON string
+		mockedJSON = `{"leftStakingPersonalQuota":"1000","leftRedemptionPersonalQuota":"1000","minStakeAmount":"0.00010000","minRedeemAmount":"0.00000001","redeemPeriod":20,"stakeable":true,"redeemable":true,"commissionFee":"0.05000000","calculating":false}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/quota", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +144,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetEthRedemptionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"arrivalTime":1575018510000,"asset":"WBETH","amount":"21312.23223","distributeAsset":"ETH","distributeAmount":"21338.0699","conversionRatio":"1.00121234","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"arrivalTime":1575018510000,"asset":"WBETH","amount":"21312.23223","distributeAsset":"ETH","distributeAmount":"21338.0699","conversionRatio":"1.00121234","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/history/redemptionHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +203,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetEthStakingHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"asset":"ETH","amount":"21312.23223","distributeAsset":"WBETH","distributeAmount":"21286.42584","conversionRatio":"1.00121234","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"asset":"ETH","amount":"21312.23223","distributeAsset":"WBETH","distributeAmount":"21286.42584","conversionRatio":"1.00121234","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/history/stakingHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -245,7 +262,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetWbethRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"annualPercentageRate":"0.00006408","exchangeRate":"1.00121234","time":1577233578000}],"total":"1"}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"annualPercentageRate":"0.00006408","exchangeRate":"1.00121234","time":1577233578000}],"total":"1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/history/rateHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -300,7 +321,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetWbethRewardsHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"estRewardsInETH":"1.23230920","rows":[{"time":1575018510000,"amountInETH":"0.23223","holding":"2.3223","holdingInETH":"2.4231","annualPercentageRate":"0.5"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"estRewardsInETH":"1.23230920","rows":[{"time":1575018510000,"amountInETH":"0.23223","holding":"2.3223","holdingInETH":"2.4231","annualPercentageRate":"0.5"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/history/wbethRewardsHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -355,7 +380,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetWbethUnwrapHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"fromAsset":"WBETH","fromAmount":"21312.23223","toAsset":"BETH","toAmount":"21312.23223","exchangeRate":"1.01243253","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"fromAsset":"WBETH","fromAmount":"21312.23223","toAsset":"BETH","toAmount":"21312.23223","exchangeRate":"1.01243253","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/wbeth/history/unwrapHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -410,7 +439,11 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService GetWbethWrapHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"fromAsset":"BETH","fromAmount":"21312.23223","toAsset":"WBETH","toAmount":"21312.23223","exchangeRate":"1.01243253","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"fromAsset":"BETH","fromAmount":"21312.23223","toAsset":"WBETH","toAmount":"21312.23223","exchangeRate":"1.01243253","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/wbeth/history/wrapHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -465,10 +498,14 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService RedeemEth Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"ethAmount":"0.23092091","conversionRatio":"1.00121234","arrivalTime":1575018510000,"redeemId":1234567}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"ethAmount":"0.23092091","redeemId":1234567,"conversionRatio":"1.00121234","arrivalTime":1575018510000}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/redeem", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -538,10 +575,14 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService SubscribeEthStaking Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"wbethAmount":"0.23092091","conversionRatio":"1.001212342342","purchaseId":1234567}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"wbethAmount":"0.23092091","purchaseId":1234567,"conversionRatio":"1.001212342342"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/eth-staking/eth/stake", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -611,10 +652,14 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 
 	t.Run("Test EthStakingAPIService WrapBeth Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"wbethAmount":"0.23092091","exchangeRate":"1.001212343432"}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"wbethAmount":"0.23092091","exchangeRate":"1.001212343432"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/wbeth/wrap", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))

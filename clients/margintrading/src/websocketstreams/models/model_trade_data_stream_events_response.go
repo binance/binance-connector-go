@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading WebSocket Market Streams
+Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -15,45 +15,61 @@ import (
 
 // TradeDataStreamEventsResponse - struct for TradeDataStreamEventsResponse
 type TradeDataStreamEventsResponse struct {
-	Balanceupdate           *Balanceupdate
-	Executionreport         *Executionreport
-	Listenkeyexpired        *Listenkeyexpired
-	Liststatus              *Liststatus
-	Outboundaccountposition *Outboundaccountposition
+	BalanceUpdate           *BalanceUpdate
+	ExecutionReport         *ExecutionReport
+	ListStatus              *ListStatus
+	ListenKeyExpired        *ListenKeyExpired
+	MarginLevelStatusChange *MarginLevelStatusChange
+	OutboundAccountPosition *OutboundAccountPosition
+	UserLiabilityChange     *UserLiabilityChange
 }
 
-// BalanceupdateAsTradeDataStreamEventsResponse is a convenience function that returns Balanceupdate wrapped in TradeDataStreamEventsResponse
-func BalanceupdateAsTradeDataStreamEventsResponse(v *Balanceupdate) TradeDataStreamEventsResponse {
+// BalanceUpdateAsTradeDataStreamEventsResponse is a convenience function that returns BalanceUpdate wrapped in TradeDataStreamEventsResponse
+func BalanceUpdateAsTradeDataStreamEventsResponse(v *BalanceUpdate) TradeDataStreamEventsResponse {
 	return TradeDataStreamEventsResponse{
-		Balanceupdate: v,
+		BalanceUpdate: v,
 	}
 }
 
-// ExecutionreportAsTradeDataStreamEventsResponse is a convenience function that returns Executionreport wrapped in TradeDataStreamEventsResponse
-func ExecutionreportAsTradeDataStreamEventsResponse(v *Executionreport) TradeDataStreamEventsResponse {
+// ExecutionReportAsTradeDataStreamEventsResponse is a convenience function that returns ExecutionReport wrapped in TradeDataStreamEventsResponse
+func ExecutionReportAsTradeDataStreamEventsResponse(v *ExecutionReport) TradeDataStreamEventsResponse {
 	return TradeDataStreamEventsResponse{
-		Executionreport: v,
+		ExecutionReport: v,
 	}
 }
 
-// ListenkeyexpiredAsTradeDataStreamEventsResponse is a convenience function that returns Listenkeyexpired wrapped in TradeDataStreamEventsResponse
-func ListenkeyexpiredAsTradeDataStreamEventsResponse(v *Listenkeyexpired) TradeDataStreamEventsResponse {
+// ListStatusAsTradeDataStreamEventsResponse is a convenience function that returns ListStatus wrapped in TradeDataStreamEventsResponse
+func ListStatusAsTradeDataStreamEventsResponse(v *ListStatus) TradeDataStreamEventsResponse {
 	return TradeDataStreamEventsResponse{
-		Listenkeyexpired: v,
+		ListStatus: v,
 	}
 }
 
-// ListstatusAsTradeDataStreamEventsResponse is a convenience function that returns Liststatus wrapped in TradeDataStreamEventsResponse
-func ListstatusAsTradeDataStreamEventsResponse(v *Liststatus) TradeDataStreamEventsResponse {
+// ListenKeyExpiredAsTradeDataStreamEventsResponse is a convenience function that returns ListenKeyExpired wrapped in TradeDataStreamEventsResponse
+func ListenKeyExpiredAsTradeDataStreamEventsResponse(v *ListenKeyExpired) TradeDataStreamEventsResponse {
 	return TradeDataStreamEventsResponse{
-		Liststatus: v,
+		ListenKeyExpired: v,
 	}
 }
 
-// OutboundaccountpositionAsTradeDataStreamEventsResponse is a convenience function that returns Outboundaccountposition wrapped in TradeDataStreamEventsResponse
-func OutboundaccountpositionAsTradeDataStreamEventsResponse(v *Outboundaccountposition) TradeDataStreamEventsResponse {
+// MarginLevelStatusChangeAsTradeDataStreamEventsResponse is a convenience function that returns MarginLevelStatusChange wrapped in TradeDataStreamEventsResponse
+func MarginLevelStatusChangeAsTradeDataStreamEventsResponse(v *MarginLevelStatusChange) TradeDataStreamEventsResponse {
 	return TradeDataStreamEventsResponse{
-		Outboundaccountposition: v,
+		MarginLevelStatusChange: v,
+	}
+}
+
+// OutboundAccountPositionAsTradeDataStreamEventsResponse is a convenience function that returns OutboundAccountPosition wrapped in TradeDataStreamEventsResponse
+func OutboundAccountPositionAsTradeDataStreamEventsResponse(v *OutboundAccountPosition) TradeDataStreamEventsResponse {
+	return TradeDataStreamEventsResponse{
+		OutboundAccountPosition: v,
+	}
+}
+
+// UserLiabilityChangeAsTradeDataStreamEventsResponse is a convenience function that returns UserLiabilityChange wrapped in TradeDataStreamEventsResponse
+func UserLiabilityChangeAsTradeDataStreamEventsResponse(v *UserLiabilityChange) TradeDataStreamEventsResponse {
+	return TradeDataStreamEventsResponse{
+		UserLiabilityChange: v,
 	}
 }
 
@@ -81,123 +97,87 @@ func (dst *TradeDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to remarshal JSON: %v", err)
 	}
 
+	// check if the discriminator value is 'MARGIN_LEVEL_STATUS_CHANGE'
+	if jsonDict["e"] == "MARGIN_LEVEL_STATUS_CHANGE" {
+		// try to unmarshal JSON data into MarginLevelStatusChange
+		err = json.Unmarshal(cleanedData, &dst.MarginLevelStatusChange)
+		if err == nil {
+			return nil // data stored in dst.MarginLevelStatusChange, return on the first match
+		} else {
+			dst.MarginLevelStatusChange = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as MarginLevelStatusChange: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'USER_LIABILITY_CHANGE'
+	if jsonDict["e"] == "USER_LIABILITY_CHANGE" {
+		// try to unmarshal JSON data into UserLiabilityChange
+		err = json.Unmarshal(cleanedData, &dst.UserLiabilityChange)
+		if err == nil {
+			return nil // data stored in dst.UserLiabilityChange, return on the first match
+		} else {
+			dst.UserLiabilityChange = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as UserLiabilityChange: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'balanceUpdate'
 	if jsonDict["e"] == "balanceUpdate" {
-		// try to unmarshal JSON data into Balanceupdate
-		err = json.Unmarshal(cleanedData, &dst.Balanceupdate)
+		// try to unmarshal JSON data into BalanceUpdate
+		err = json.Unmarshal(cleanedData, &dst.BalanceUpdate)
 		if err == nil {
-			return nil // data stored in dst.Balanceupdate, return on the first match
+			return nil // data stored in dst.BalanceUpdate, return on the first match
 		} else {
-			dst.Balanceupdate = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Balanceupdate: %s", err.Error())
+			dst.BalanceUpdate = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as BalanceUpdate: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'executionReport'
 	if jsonDict["e"] == "executionReport" {
-		// try to unmarshal JSON data into Executionreport
-		err = json.Unmarshal(cleanedData, &dst.Executionreport)
+		// try to unmarshal JSON data into ExecutionReport
+		err = json.Unmarshal(cleanedData, &dst.ExecutionReport)
 		if err == nil {
-			return nil // data stored in dst.Executionreport, return on the first match
+			return nil // data stored in dst.ExecutionReport, return on the first match
 		} else {
-			dst.Executionreport = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Executionreport: %s", err.Error())
+			dst.ExecutionReport = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as ExecutionReport: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'listStatus'
 	if jsonDict["e"] == "listStatus" {
-		// try to unmarshal JSON data into Liststatus
-		err = json.Unmarshal(cleanedData, &dst.Liststatus)
+		// try to unmarshal JSON data into ListStatus
+		err = json.Unmarshal(cleanedData, &dst.ListStatus)
 		if err == nil {
-			return nil // data stored in dst.Liststatus, return on the first match
+			return nil // data stored in dst.ListStatus, return on the first match
 		} else {
-			dst.Liststatus = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Liststatus: %s", err.Error())
+			dst.ListStatus = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as ListStatus: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'listenKeyExpired'
 	if jsonDict["e"] == "listenKeyExpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
+		// try to unmarshal JSON data into ListenKeyExpired
+		err = json.Unmarshal(cleanedData, &dst.ListenKeyExpired)
 		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
+			return nil // data stored in dst.ListenKeyExpired, return on the first match
 		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
+			dst.ListenKeyExpired = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as ListenKeyExpired: %s", err.Error())
 		}
 	}
 
 	// check if the discriminator value is 'outboundAccountPosition'
 	if jsonDict["e"] == "outboundAccountPosition" {
-		// try to unmarshal JSON data into Outboundaccountposition
-		err = json.Unmarshal(cleanedData, &dst.Outboundaccountposition)
+		// try to unmarshal JSON data into OutboundAccountPosition
+		err = json.Unmarshal(cleanedData, &dst.OutboundAccountPosition)
 		if err == nil {
-			return nil // data stored in dst.Outboundaccountposition, return on the first match
+			return nil // data stored in dst.OutboundAccountPosition, return on the first match
 		} else {
-			dst.Outboundaccountposition = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Outboundaccountposition: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'balanceupdate'
-	if jsonDict["e"] == "balanceupdate" {
-		// try to unmarshal JSON data into Balanceupdate
-		err = json.Unmarshal(cleanedData, &dst.Balanceupdate)
-		if err == nil {
-			return nil // data stored in dst.Balanceupdate, return on the first match
-		} else {
-			dst.Balanceupdate = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Balanceupdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'executionreport'
-	if jsonDict["e"] == "executionreport" {
-		// try to unmarshal JSON data into Executionreport
-		err = json.Unmarshal(cleanedData, &dst.Executionreport)
-		if err == nil {
-			return nil // data stored in dst.Executionreport, return on the first match
-		} else {
-			dst.Executionreport = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Executionreport: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'listenkeyexpired'
-	if jsonDict["e"] == "listenkeyexpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
-		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
-		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'liststatus'
-	if jsonDict["e"] == "liststatus" {
-		// try to unmarshal JSON data into Liststatus
-		err = json.Unmarshal(cleanedData, &dst.Liststatus)
-		if err == nil {
-			return nil // data stored in dst.Liststatus, return on the first match
-		} else {
-			dst.Liststatus = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Liststatus: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'outboundaccountposition'
-	if jsonDict["e"] == "outboundaccountposition" {
-		// try to unmarshal JSON data into Outboundaccountposition
-		err = json.Unmarshal(cleanedData, &dst.Outboundaccountposition)
-		if err == nil {
-			return nil // data stored in dst.Outboundaccountposition, return on the first match
-		} else {
-			dst.Outboundaccountposition = nil
-			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as Outboundaccountposition: %s", err.Error())
+			dst.OutboundAccountPosition = nil
+			return fmt.Errorf("failed to unmarshal TradeDataStreamEventsResponse as OutboundAccountPosition: %s", err.Error())
 		}
 	}
 
@@ -206,24 +186,32 @@ func (dst *TradeDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src TradeDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
-	if src.Balanceupdate != nil {
-		return json.Marshal(&src.Balanceupdate)
+	if src.BalanceUpdate != nil {
+		return json.Marshal(&src.BalanceUpdate)
 	}
 
-	if src.Executionreport != nil {
-		return json.Marshal(&src.Executionreport)
+	if src.ExecutionReport != nil {
+		return json.Marshal(&src.ExecutionReport)
 	}
 
-	if src.Listenkeyexpired != nil {
-		return json.Marshal(&src.Listenkeyexpired)
+	if src.ListStatus != nil {
+		return json.Marshal(&src.ListStatus)
 	}
 
-	if src.Liststatus != nil {
-		return json.Marshal(&src.Liststatus)
+	if src.ListenKeyExpired != nil {
+		return json.Marshal(&src.ListenKeyExpired)
 	}
 
-	if src.Outboundaccountposition != nil {
-		return json.Marshal(&src.Outboundaccountposition)
+	if src.MarginLevelStatusChange != nil {
+		return json.Marshal(&src.MarginLevelStatusChange)
+	}
+
+	if src.OutboundAccountPosition != nil {
+		return json.Marshal(&src.OutboundAccountPosition)
+	}
+
+	if src.UserLiabilityChange != nil {
+		return json.Marshal(&src.UserLiabilityChange)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -234,24 +222,32 @@ func (obj *TradeDataStreamEventsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.Balanceupdate != nil {
-		return obj.Balanceupdate
+	if obj.BalanceUpdate != nil {
+		return obj.BalanceUpdate
 	}
 
-	if obj.Executionreport != nil {
-		return obj.Executionreport
+	if obj.ExecutionReport != nil {
+		return obj.ExecutionReport
 	}
 
-	if obj.Listenkeyexpired != nil {
-		return obj.Listenkeyexpired
+	if obj.ListStatus != nil {
+		return obj.ListStatus
 	}
 
-	if obj.Liststatus != nil {
-		return obj.Liststatus
+	if obj.ListenKeyExpired != nil {
+		return obj.ListenKeyExpired
 	}
 
-	if obj.Outboundaccountposition != nil {
-		return obj.Outboundaccountposition
+	if obj.MarginLevelStatusChange != nil {
+		return obj.MarginLevelStatusChange
+	}
+
+	if obj.OutboundAccountPosition != nil {
+		return obj.OutboundAccountPosition
+	}
+
+	if obj.UserLiabilityChange != nil {
+		return obj.UserLiabilityChange
 	}
 
 	// all schemas are nil

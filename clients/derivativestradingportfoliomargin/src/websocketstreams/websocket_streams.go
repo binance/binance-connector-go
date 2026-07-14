@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Portfolio Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package binancederivativestradingportfoliomarginwebsocketstreams
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Derivatives Trading Portfolio Margin WebSocket Market Streams WebSocket Streams v1.8.0
+// WebsocketStreamsClient manages communication with the Binance Portfolio Margin WebSocket Market Streams WebSocket Streams v1.9.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -23,13 +23,13 @@ type WebsocketStreamsClient struct {
 	// API Services
 }
 
-// NewWebsocketStreamsClient creates a new Binance Binance Derivatives Trading Portfolio Margin WebSocket Market Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Portfolio Margin WebSocket Market Streams WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-derivativestradingportfoliomargin/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-derivativestradingportfoliomargin/1.9.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {

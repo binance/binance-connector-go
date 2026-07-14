@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** |  | [optional] 
+**CumQuote** | Pointer to **string** | Cum Quote. Will be removed after CM migration. | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 

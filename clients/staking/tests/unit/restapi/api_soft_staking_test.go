@@ -1,5 +1,5 @@
 /*
-Binance Staking REST API TEST
+Staking REST API TEST
 
 Testing SoftStakingAPIService
 
@@ -25,7 +25,11 @@ func Test_binancestakingrestapi_SoftStakingAPIService(t *testing.T) {
 
 	t.Run("Test SoftStakingAPIService GetSoftStakingProductList Success", func(t *testing.T) {
 
-		mockedJSON := `{"status":true,"totalRewardsUsdt":"3.09827182","rows":[{"asset":"BNB","minAmount":"0.5","maxCap":"1000","apr":"0.0015","stakedAmount":"2.14","totalProfit":"0.00171234"},{"asset":"SUI","minAmount":"100","maxCap":"50000","apr":"0.01","stakedAmount":"100","totalProfit":"0.1"}],"total":2}`
+		var mockedJSON string
+		mockedJSON = `{"status":true,"totalRewardsUsdt":"3.09827182","rows":[{"asset":"BNB","minAmount":"0.5","maxCap":"1000","apr":"0.0015","stakedAmount":"2.14","totalProfit":"0.00171234"}],"total":2}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/soft-staking/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancestakingrestapi_SoftStakingAPIService(t *testing.T) {
 
 	t.Run("Test SoftStakingAPIService GetSoftStakingRewardsHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"asset":"BNB","rewards":"0.00000557","rewardAsset":"BNB","avgAmount":"2.14","time":1754007978000},{"asset":"SUI","rewards":"0.00274257","rewardAsset":"SUI","avgAmount":"100","time":1754007978000}],"total":2}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"asset":"BNB","rewards":"0.00000557","rewardAsset":"BNB","avgAmount":"2.14","time":1754007978000}],"total":2}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/soft-staking/history/rewardsRecord", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancestakingrestapi_SoftStakingAPIService(t *testing.T) {
 
 	t.Run("Test SoftStakingAPIService SetSoftStaking Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/soft-staking/set", r.URL.Path)
 			require.Equal(t, "true", r.URL.Query().Get("softStaking"))

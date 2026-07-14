@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API TEST
+Portfolio Margin Pro REST API TEST
 
 Testing MarketDataAPIService
 
@@ -25,7 +25,11 @@ func Test_binancederivativestradingportfoliomarginprorestapi_MarketDataAPIServic
 
 	t.Run("Test MarketDataAPIService GetPortfolioMarginAssetLeverage Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"USDC","leverage":10},{"asset":"USDT","leverage":10}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"USDC","leverage":10}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/portfolio/margin-asset-leverage", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancederivativestradingportfoliomarginprorestapi_MarketDataAPIServic
 
 	t.Run("Test MarketDataAPIService PortfolioMarginCollateralRate Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"USDC","collateralRate":"1.0000"},{"asset":"BUSD","collateralRate":"1.0000"}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"USDC","collateralRate":"1.0000"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/portfolio/collateralRate", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancederivativestradingportfoliomarginprorestapi_MarketDataAPIServic
 
 	t.Run("Test MarketDataAPIService PortfolioMarginProTieredCollateralRate Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BNB","collateralInfo":[{"tierFloor":"0.0000","tierCap":"1000.0000","collateralRate":"1.0000","cum":"0.0000"},{"tierFloor":"1000.0000","tierCap":"2000.0000","collateralRate":"0.9000","cum":"0.0000"}]},{"asset":"USDT","collateralInfo":[{"tierFloor":"0.0000","tierCap":"1000.0000","collateralRate":"1.0000","cum":"0.0000"},{"tierFloor":"1000.0000","tierCap":"2000.0000","collateralRate":"0.9999","cum":"0.0000"}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BNB","collateralInfo":[{"tierFloor":"0.0000","tierCap":"1000.0000","collateralRate":"1.0000","cum":"0.0000"}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/portfolio/collateralRate", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +202,11 @@ func Test_binancederivativestradingportfoliomarginprorestapi_MarketDataAPIServic
 
 	t.Run("Test MarketDataAPIService QueryPortfolioMarginAssetIndexPrice Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BTC","assetIndexPrice":"28251.9136906","time":1683518338121}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BTC","assetIndexPrice":"28251.9136906","time":1683518338121}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/portfolio/asset-index-price", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

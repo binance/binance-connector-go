@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &ClassicPortfolioMarginAccountInformationResponse{
 
 // ClassicPortfolioMarginAccountInformationResponse struct for ClassicPortfolioMarginAccountInformationResponse
 type ClassicPortfolioMarginAccountInformationResponse struct {
+	// Classic Portfolio margin maximum virtual amount for transfer out in USD
 	MaxWithdrawAmountUSD *string `json:"maxWithdrawAmountUSD,omitempty"`
 	Asset                *string `json:"asset,omitempty"`
+	// maximum amount for transfer out
 	MaxWithdrawAmount    *string `json:"maxWithdrawAmount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

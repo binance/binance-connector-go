@@ -8,7 +8,7 @@ Method        | HTTP request  | Description
 [**AllMarketLiquidationOrderStreams**](MarketAPI.md#AllMarketLiquidationOrderStreams) | /!forceOrder@arr | All Market Liquidation Order Streams
 [**AllMarketMiniTickersStream**](MarketAPI.md#AllMarketMiniTickersStream) | /!miniTicker@arr | All Market Mini Tickers Stream
 [**AllMarketTickersStreams**](MarketAPI.md#AllMarketTickersStreams) | /!ticker@arr | All Market Tickers Streams
-[**AssetIndex**](MarketAPI.md#AssetIndex) | /!assetIndex@arr | Asset Index
+[**AssetIndex**](MarketAPI.md#AssetIndex) | /!assetIndex@arr | Multi-Assets Mode Asset Index
 [**CompositeIndexSymbolInformationStreams**](MarketAPI.md#CompositeIndexSymbolInformationStreams) | /&lt;symbol&gt;@compositeIndex | Composite Index Symbol Information Streams
 [**ContinuousContractKlineCandlestickStreams**](MarketAPI.md#ContinuousContractKlineCandlestickStreams) | /&lt;pair&gt;_&lt;contractType&gt;@continuousKline_&lt;interval&gt; | Continuous Contract Kline/Candlestick Streams
 [**ContractInfoStream**](MarketAPI.md#ContractInfoStream) | /!contractInfo | Contract Info Stream
@@ -321,7 +321,7 @@ No authorization required
 
 ## AssetIndex
 
-Asset Index
+Multi-Assets Mode Asset Index
 
 
 ### Example
@@ -491,9 +491,9 @@ import (
 )
 
 func main() {
-	pair := "btcusdt" // string | The pair parameter
-	contractType := "next_quarter" // string | The contractType parameter
-	interval := "1m" // string | The interval parameter
+	pair := "btcusdt" // string | 
+	contractType := models.ContinuousContractKlineCandlestickStreamsContractTypeParameterPerpetual // ContinuousContractKlineCandlestickStreamsContractTypeParameter | 
+	interval := models.ContinuousContractKlineCandlestickStreamsIntervalParameterInterval1s // ContinuousContractKlineCandlestickStreamsIntervalParameter | 
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
@@ -537,9 +537,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** | The pair parameter | 
- **contractType** | **string** | The contractType parameter | 
- **interval** | **string** | The interval parameter | 
+ **pair** | **string** |  | 
+ **contractType** | [**ContinuousContractKlineCandlestickStreamsContractTypeParameter**](ContinuousContractKlineCandlestickStreamsContractTypeParameter.md) |  | 
+ **interval** | [**ContinuousContractKlineCandlestickStreamsIntervalParameter**](ContinuousContractKlineCandlestickStreamsIntervalParameter.md) |  | 
  **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
@@ -798,7 +798,7 @@ import (
 
 func main() {
 	symbol := "btcusdt" // string | The symbol parameter
-	interval := "1m" // string | The interval parameter
+	interval := models.KlineCandlestickStreamsIntervalParameterInterval1m // KlineCandlestickStreamsIntervalParameter | The interval parameter
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
@@ -843,7 +843,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | The symbol parameter | 
- **interval** | **string** | The interval parameter | 
+ **interval** | [**KlineCandlestickStreamsIntervalParameter**](KlineCandlestickStreamsIntervalParameter.md) | The interval parameter | 
  **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
@@ -953,7 +953,7 @@ import (
 func main() {
 	symbol := "btcusdt" // string | The symbol parameter
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	updateSpeed := "updateSpeed_example" // string | WebSocket stream update speed (optional)
+	updateSpeed := models.MarkPriceStreamUpdateSpeedParameterUpdateSpeed1s // MarkPriceStreamUpdateSpeedParameter | WebSocket stream update speed (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -998,7 +998,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | The symbol parameter | 
  **id** | **string** | Unique WebSocket request ID. | 
- **updateSpeed** | **string** | WebSocket stream update speed | 
+ **updateSpeed** | [**MarkPriceStreamUpdateSpeedParameter**](MarkPriceStreamUpdateSpeedParameter.md) | WebSocket stream update speed | 
 
 ### Authorization
 
@@ -1030,7 +1030,7 @@ import (
 
 func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	updateSpeed := "updateSpeed_example" // string | WebSocket stream update speed (optional)
+	updateSpeed := models.MarkPriceStreamUpdateSpeedParameterUpdateSpeed1s // MarkPriceStreamUpdateSpeedParameter | WebSocket stream update speed (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -1074,7 +1074,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Unique WebSocket request ID. | 
- **updateSpeed** | **string** | WebSocket stream update speed | 
+ **updateSpeed** | [**MarkPriceStreamUpdateSpeedParameter**](MarkPriceStreamUpdateSpeedParameter.md) | WebSocket stream update speed | 
 
 ### Authorization
 

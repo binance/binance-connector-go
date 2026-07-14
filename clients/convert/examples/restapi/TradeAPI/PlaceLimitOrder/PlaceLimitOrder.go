@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/convert"
+	"github.com/binance/binance-connector-go/clients/convert/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func PlaceLimitOrder() {
 	apiClient := client.NewBinanceConvertClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("baseAsset_example").QuoteAsset("quoteAsset_example").LimitPrice(1.0).Side("BUY").ExpiredType("expiredType_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("BTC").QuoteAsset("USDT").LimitPrice(1).Side(models.PlaceLimitOrderSideParameterBuy).ExpiredType(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D).Execute()
 	if err != nil {
 		log.Println(err)
 		return

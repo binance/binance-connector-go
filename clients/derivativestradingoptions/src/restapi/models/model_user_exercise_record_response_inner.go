@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,18 +17,31 @@ var _ common.MappedNullable = &UserExerciseRecordResponseInner{}
 
 // UserExerciseRecordResponseInner struct for UserExerciseRecordResponseInner
 type UserExerciseRecordResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
-	Currency             *string `json:"currency,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	ExercisePrice        *string `json:"exercisePrice,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Fee                  *string `json:"fee,omitempty"`
-	CreateDate           *int64  `json:"createDate,omitempty"`
-	PriceScale           *int64  `json:"priceScale,omitempty"`
-	QuantityScale        *int64  `json:"quantityScale,omitempty"`
-	OptionSide           *string `json:"optionSide,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
+	// id
+	Id *string `json:"id,omitempty"`
+	// currency
+	Currency *string `json:"currency,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// exercise Price
+	ExercisePrice *string `json:"exercisePrice,omitempty"`
+	// quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// amount
+	Amount *string `json:"amount,omitempty"`
+	// fee
+	Fee *string `json:"fee,omitempty"`
+	// create Date
+	CreateDate *int64 `json:"createDate,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// position Side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// quote Asset
 	QuoteAsset           *string `json:"quoteAsset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

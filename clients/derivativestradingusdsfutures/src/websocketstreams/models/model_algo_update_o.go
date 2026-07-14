@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,30 +17,55 @@ var _ common.MappedNullable = &AlgoUpdateO{}
 
 // AlgoUpdateO struct for AlgoUpdateO
 type AlgoUpdateO struct {
-	Caid                 *string `json:"caid,omitempty"`
-	Aid                  *int64  `json:"aid,omitempty"`
-	Smallat              *string `json:"at,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallf               *string `json:"f,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	Smallai              *string `json:"ai,omitempty"`
-	Smallap              *string `json:"ap,omitempty"`
-	Smallaq              *string `json:"aq,omitempty"`
-	Act                  *string `json:"act,omitempty"`
-	Smalltp              *string `json:"tp,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Smallwt              *string `json:"wt,omitempty"`
-	Smallpm              *string `json:"pm,omitempty"`
-	Smallcp              *bool   `json:"cp,omitempty"`
-	PP                   *bool   `json:"pP,omitempty"`
-	R                    *bool   `json:"R,omitempty"`
-	Smalltt              *int64  `json:"tt,omitempty"`
-	Gtd                  *int64  `json:"gtd,omitempty"`
+	// Client Algo Id
+	Caid *string `json:"caid,omitempty"`
+	// Algo Id
+	Aid *int64 `json:"aid,omitempty"`
+	// Algo Type
+	Smallat *string `json:"at,omitempty"`
+	// Order Type
+	Smallo *string `json:"o,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Position Side
+	Smallps *string `json:"ps,omitempty"`
+	// Time in force
+	Smallf *string `json:"f,omitempty"`
+	// Quantity
+	Smallq *string `json:"q,omitempty"`
+	// Algo Status
+	X *string `json:"X,omitempty"`
+	// Order Id
+	Smallai *string `json:"ai,omitempty"`
+	// Avg fill price in matching engine, only display when order is triggered and placed in matching engine
+	Smallap *string `json:"ap,omitempty"`
+	// Executed quantity in matching engine, only display when order is triggered and placed in matching engine
+	Smallaq *string `json:"aq,omitempty"`
+	// Actual order type in matching engine, only display when order is triggered and placed in matching engine
+	Act *string `json:"act,omitempty"`
+	// Trigger Price
+	Smalltp *string `json:"tp,omitempty"`
+	// Order Price
+	Smallp *string `json:"p,omitempty"`
+	// STP mode
+	V *string `json:"V,omitempty"`
+	// Working type
+	Smallwt *string `json:"wt,omitempty"`
+	// Price match mode
+	Smallpm *string `json:"pm,omitempty"`
+	// If Close-All
+	Smallcp *bool `json:"cp,omitempty"`
+	// If price protection is turned on
+	SmallpP *bool `json:"pP,omitempty"`
+	// Is this reduce only
+	R *bool `json:"R,omitempty"`
+	// Trigger time
+	Smalltt *int64 `json:"tt,omitempty"`
+	// Good till time for GTD time in force
+	Gtd *int64 `json:"gtd,omitempty"`
+	// Algo order failed reason
 	Smallrm              *string `json:"rm,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -705,26 +730,26 @@ func (o *AlgoUpdateO) SetSmallcp(v bool) {
 }
 
 // GetPP returns the PP field value if set, zero value otherwise.
-func (o *AlgoUpdateO) GetPP() bool {
-	if o == nil || common.IsNil(o.PP) {
+func (o *AlgoUpdateO) GetSmallpP() bool {
+	if o == nil || common.IsNil(o.SmallpP) {
 		var ret bool
 		return ret
 	}
-	return *o.PP
+	return *o.SmallpP
 }
 
 // GetPPOk returns a tuple with the PP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlgoUpdateO) GetPPOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.PP) {
+func (o *AlgoUpdateO) GetSmallpPOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.SmallpP) {
 		return nil, false
 	}
-	return o.PP, true
+	return o.SmallpP, true
 }
 
 // HasPP returns a boolean if a field has been set.
-func (o *AlgoUpdateO) HasPP() bool {
-	if o != nil && !common.IsNil(o.PP) {
+func (o *AlgoUpdateO) HasSmallpP() bool {
+	if o != nil && !common.IsNil(o.SmallpP) {
 		return true
 	}
 
@@ -732,8 +757,8 @@ func (o *AlgoUpdateO) HasPP() bool {
 }
 
 // SetPP gets a reference to the given bool and assigns it to the PP field.
-func (o *AlgoUpdateO) SetPP(v bool) {
-	o.PP = &v
+func (o *AlgoUpdateO) SetSmallpP(v bool) {
+	o.SmallpP = &v
 }
 
 // GetR returns the R field value if set, zero value otherwise.
@@ -934,8 +959,8 @@ func (o AlgoUpdateO) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallcp) {
 		toSerialize["cp"] = o.Smallcp
 	}
-	if !common.IsNil(o.PP) {
-		toSerialize["pP"] = o.PP
+	if !common.IsNil(o.SmallpP) {
+		toSerialize["pP"] = o.SmallpP
 	}
 	if !common.IsNil(o.R) {
 		toSerialize["R"] = o.R

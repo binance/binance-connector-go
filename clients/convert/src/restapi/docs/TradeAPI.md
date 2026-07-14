@@ -5,12 +5,12 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AcceptQuote**](TradeAPI.md#AcceptQuote) | **Post** /sapi/v1/convert/acceptQuote | Accept Quote (TRADE)
-[**CancelLimitOrder**](TradeAPI.md#CancelLimitOrder) | **Post** /sapi/v1/convert/limit/cancelOrder | Cancel limit order (USER_DATA)
-[**GetConvertTradeHistory**](TradeAPI.md#GetConvertTradeHistory) | **Get** /sapi/v1/convert/tradeFlow | Get Convert Trade History(USER_DATA)
-[**OrderStatus**](TradeAPI.md#OrderStatus) | **Get** /sapi/v1/convert/orderStatus | Order status(USER_DATA)
-[**PlaceLimitOrder**](TradeAPI.md#PlaceLimitOrder) | **Post** /sapi/v1/convert/limit/placeOrder | Place limit order (USER_DATA)
+[**CancelLimitOrder**](TradeAPI.md#CancelLimitOrder) | **Post** /sapi/v1/convert/limit/cancelOrder | Cancel limit order (TRADE)
+[**GetConvertTradeHistory**](TradeAPI.md#GetConvertTradeHistory) | **Get** /sapi/v1/convert/tradeFlow | Get Convert Trade History (USER_DATA)
+[**OrderStatus**](TradeAPI.md#OrderStatus) | **Get** /sapi/v1/convert/orderStatus | Order status (USER_DATA)
+[**PlaceLimitOrder**](TradeAPI.md#PlaceLimitOrder) | **Post** /sapi/v1/convert/limit/placeOrder | Place limit order (TRADE)
 [**QueryLimitOpenOrders**](TradeAPI.md#QueryLimitOpenOrders) | **Get** /sapi/v1/convert/limit/queryOpenOrders | Query limit open orders (USER_DATA)
-[**SendQuoteRequest**](TradeAPI.md#SendQuoteRequest) | **Post** /sapi/v1/convert/getQuote | Send Quote Request(USER_DATA)
+[**SendQuoteRequest**](TradeAPI.md#SendQuoteRequest) | **Post** /sapi/v1/convert/getQuote | Send Quote Request (TRADE)
 
 
 ## AcceptQuote
@@ -37,7 +37,7 @@ import (
 
 func main() {
 	quoteId := "1" // string | 
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -66,7 +66,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **quoteId** | **string** |  | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ No authorization required
 
 > CancelLimitOrderResponse CancelLimitOrder(ctx).OrderId(orderId).RecvWindow(recvWindow).Execute()
 
-Cancel limit order (USER_DATA)
+Cancel limit order (TRADE)
 
 
 ### Example
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	orderId := int64(1) // int64 | The orderId from `placeOrder` api
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	orderId := int64(1603680255057330400) // int64 | The orderId from `placeOrder` api
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -136,7 +136,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **int64** | The orderId from &#x60;placeOrder&#x60; api | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -157,7 +157,7 @@ No authorization required
 
 > GetConvertTradeHistoryResponse GetConvertTradeHistory(ctx).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Convert Trade History(USER_DATA)
+Get Convert Trade History (USER_DATA)
 
 
 ### Example
@@ -178,8 +178,8 @@ import (
 func main() {
 	startTime := int64(1623319461670) // int64 | 
 	endTime := int64(1641782889000) // int64 | 
-	limit := int64(100) // int64 | Default 100, Max 1000 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	limit := int64(100) // int64 | Number of records to return (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -209,8 +209,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100, Max 1000 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **limit** | **int64** | Number of records to return | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -231,7 +231,7 @@ No authorization required
 
 > OrderStatusResponse OrderStatus(ctx).OrderId(orderId).QuoteId(quoteId).Execute()
 
-Order status(USER_DATA)
+Order status (USER_DATA)
 
 
 ### Example
@@ -301,7 +301,7 @@ No authorization required
 
 > PlaceLimitOrderResponse PlaceLimitOrder(ctx).BaseAsset(baseAsset).QuoteAsset(quoteAsset).LimitPrice(limitPrice).Side(side).ExpiredType(expiredType).BaseAmount(baseAmount).QuoteAmount(quoteAmount).WalletType(walletType).RecvWindow(recvWindow).Execute()
 
-Place limit order (USER_DATA)
+Place limit order (TRADE)
 
 
 ### Example
@@ -320,15 +320,15 @@ import (
 )
 
 func main() {
-	baseAsset := "baseAsset_example" // string | base asset (use the response `fromIsBase` from `GET /sapi/v1/convert/exchangeInfo` api to check which one is baseAsset )
-	quoteAsset := "quoteAsset_example" // string | quote asset
-	limitPrice := float32(1.0) // float32 | Symbol limit price (from baseAsset to quoteAsset)
-	side := "BUY" // string | `BUY` or `SELL`
-	expiredType := "expiredType_example" // string | 1_D, 3_D, 7_D, 30_D  (D means day)
-	baseAmount := float32(1.0) // float32 | Base asset amount.  (One of `baseAmount` or `quoteAmount` is required) (optional)
-	quoteAmount := float32(1.0) // float32 | Quote asset amount.  (One of `baseAmount` or `quoteAmount` is required) (optional)
-	walletType := "walletType_example" // string | It is to choose which wallet of assets. The wallet selection is `SPOT`, `FUNDING` and `EARN`. Combination of wallet is supported i.e. `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN` or `SPOT_EARN`  Default is `SPOT`. (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	baseAsset := "BTC" // string | base asset (use the response `fromIsBase` from `GET /sapi/v1/convert/exchangeInfo` api to check which one is baseAsset )
+	quoteAsset := "USDT" // string | quote asset
+	limitPrice := float32(1) // float32 | Symbol limit price (from baseAsset to quoteAsset)
+	side := models.PlaceLimitOrderSideParameterBuy // PlaceLimitOrderSideParameter | `BUY` or `SELL`
+	expiredType := models.PlaceLimitOrderExpiredTypeParameterExpiredType1D // PlaceLimitOrderExpiredTypeParameter | Order expiry duration. 1_D, 3_D, 7_D, 30_D (D means day)
+	baseAmount := float32(1) // float32 | Base asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
+	quoteAmount := float32(1) // float32 | Quote asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
+	walletType := models.PlaceLimitOrderWalletTypeParameterSpot // PlaceLimitOrderWalletTypeParameter | Wallet to use for payment. Supported values: `SPOT`, `FUNDING`, `EARN`. Combined wallets also supported: `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN`, `SPOT_EARN`. Default is `SPOT`. (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -359,12 +359,12 @@ Name          | Type          | Description   | Notes
  **baseAsset** | **string** | base asset (use the response &#x60;fromIsBase&#x60; from &#x60;GET /sapi/v1/convert/exchangeInfo&#x60; api to check which one is baseAsset ) | 
  **quoteAsset** | **string** | quote asset | 
  **limitPrice** | **float32** | Symbol limit price (from baseAsset to quoteAsset) | 
- **side** | **string** | &#x60;BUY&#x60; or &#x60;SELL&#x60; | 
- **expiredType** | **string** | 1_D, 3_D, 7_D, 30_D  (D means day) | 
- **baseAmount** | **float32** | Base asset amount.  (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
- **quoteAmount** | **float32** | Quote asset amount.  (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
- **walletType** | **string** | It is to choose which wallet of assets. The wallet selection is &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; and &#x60;EARN&#x60;. Combination of wallet is supported i.e. &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60; or &#x60;SPOT_EARN&#x60;  Default is &#x60;SPOT&#x60;. | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **side** | [**PlaceLimitOrderSideParameter**](PlaceLimitOrderSideParameter.md) | &#x60;BUY&#x60; or &#x60;SELL&#x60; | 
+ **expiredType** | [**PlaceLimitOrderExpiredTypeParameter**](PlaceLimitOrderExpiredTypeParameter.md) | Order expiry duration. 1_D, 3_D, 7_D, 30_D (D means day) | 
+ **baseAmount** | **float32** | Base asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
+ **quoteAmount** | **float32** | Quote asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
+ **walletType** | [**PlaceLimitOrderWalletTypeParameter**](PlaceLimitOrderWalletTypeParameter.md) | Wallet to use for payment. Supported values: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;, &#x60;EARN&#x60;. Combined wallets also supported: &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60;, &#x60;SPOT_EARN&#x60;. Default is &#x60;SPOT&#x60;. | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -404,7 +404,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -432,7 +432,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -453,7 +453,7 @@ No authorization required
 
 > SendQuoteRequestResponse SendQuoteRequest(ctx).FromAsset(fromAsset).ToAsset(toAsset).FromAmount(fromAmount).ToAmount(toAmount).WalletType(walletType).ValidTime(validTime).RecvWindow(recvWindow).Execute()
 
-Send Quote Request(USER_DATA)
+Send Quote Request (TRADE)
 
 
 ### Example
@@ -472,13 +472,13 @@ import (
 )
 
 func main() {
-	fromAsset := "fromAsset_example" // string | 
-	toAsset := "toAsset_example" // string | 
-	fromAmount := float32(1.0) // float32 | When specified, it is the amount you will be debited after the conversion (optional)
-	toAmount := float32(1.0) // float32 | When specified, it is the amount you will be credited after the conversion (optional)
-	walletType := "walletType_example" // string | It is to choose which wallet of assets. The wallet selection is `SPOT`, `FUNDING` and `EARN`. Combination of wallet is supported i.e. `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN` or `SPOT_EARN`  Default is `SPOT`. (optional)
-	validTime := "10s" // string | 10s, 30s, 1m, default 10s (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	fromAsset := "BTC" // string | 
+	toAsset := "USDT" // string | 
+	fromAmount := float32(1) // float32 | When specified, it is the amount you will be debited after the conversion (optional)
+	toAmount := float32(1) // float32 | When specified, it is the amount you will be credited after the conversion (optional)
+	walletType := models.PlaceLimitOrderWalletTypeParameterSpot // PlaceLimitOrderWalletTypeParameter | Wallet to use for payment. Supported values: `SPOT`, `FUNDING`, `EARN`. Combined wallets also supported: `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN`, `SPOT_EARN`. Default is `SPOT`. (optional)
+	validTime := models.SendQuoteRequestValidTimeParameterValidTime10s // SendQuoteRequestValidTimeParameter | Quote valid duration. Supported values: 10s, 30s, 1m. Default is 10s. (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -510,9 +510,9 @@ Name          | Type          | Description   | Notes
  **toAsset** | **string** |  | 
  **fromAmount** | **float32** | When specified, it is the amount you will be debited after the conversion | 
  **toAmount** | **float32** | When specified, it is the amount you will be credited after the conversion | 
- **walletType** | **string** | It is to choose which wallet of assets. The wallet selection is &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; and &#x60;EARN&#x60;. Combination of wallet is supported i.e. &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60; or &#x60;SPOT_EARN&#x60;  Default is &#x60;SPOT&#x60;. | 
- **validTime** | **string** | 10s, 30s, 1m, default 10s | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **walletType** | [**PlaceLimitOrderWalletTypeParameter**](PlaceLimitOrderWalletTypeParameter.md) | Wallet to use for payment. Supported values: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;, &#x60;EARN&#x60;. Combined wallets also supported: &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60;, &#x60;SPOT_EARN&#x60;. Default is &#x60;SPOT&#x60;. | 
+ **validTime** | [**SendQuoteRequestValidTimeParameter**](SendQuoteRequestValidTimeParameter.md) | Quote valid duration. Supported values: 10s, 30s, 1m. Default is 10s. | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

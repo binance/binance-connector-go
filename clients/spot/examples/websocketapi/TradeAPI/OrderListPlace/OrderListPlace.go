@@ -29,7 +29,7 @@ func OrderListPlace() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(1.0).Quantity(1.0).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(1).Quantity(1).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing OrderListPlace request: %v\n", err)
 		return

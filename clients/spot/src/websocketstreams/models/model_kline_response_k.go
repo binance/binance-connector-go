@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -15,24 +15,41 @@ import (
 // checks if the KlineResponseK type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &KlineResponseK{}
 
-// KlineResponseK struct for KlineResponseK
+// KlineResponseK Kline payload
 type KlineResponseK struct {
-	Smallt               *int64  `json:"t,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	I                    *string `json:"i,omitempty"`
-	F                    *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"L,omitempty"`
-	O                    *string `json:"o,omitempty"`
-	C                    *string `json:"c,omitempty"`
-	H                    *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallv               *string `json:"v,omitempty"`
-	N                    *int64  `json:"n,omitempty"`
-	X                    *bool   `json:"x,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Q                    *string `json:"Q,omitempty"`
+	// Kline start time
+	Smallt *int64 `json:"t,omitempty"`
+	// Kline close time
+	T *int64 `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Interval
+	Smalli *string `json:"i,omitempty"`
+	// First trade ID
+	Smallf *int64 `json:"f,omitempty"`
+	// Last trade ID
+	L *int64 `json:"L,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// Close price
+	Smallc *string `json:"c,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// Base asset volume
+	Smallv *string `json:"v,omitempty"`
+	// Number of trades
+	Smalln *int64 `json:"n,omitempty"`
+	// Is this kline closed?
+	Smallx *bool `json:"x,omitempty"`
+	// Quote asset volume
+	Smallq *string `json:"q,omitempty"`
+	// Taker buy base asset volume
+	V *string `json:"V,omitempty"`
+	// Taker buy quote asset volume
+	Q *string `json:"Q,omitempty"`
+	// Ignore
 	B                    *string `json:"B,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -121,26 +138,26 @@ func (o *KlineResponseK) SetT(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *KlineResponseK) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *KlineResponseK) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *KlineResponseK) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *KlineResponseK) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *KlineResponseK) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -148,31 +165,31 @@ func (o *KlineResponseK) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *KlineResponseK) SetS(v string) {
-	o.S = &v
+func (o *KlineResponseK) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetI returns the I field value if set, zero value otherwise.
-func (o *KlineResponseK) GetI() string {
-	if o == nil || common.IsNil(o.I) {
+func (o *KlineResponseK) GetSmalli() string {
+	if o == nil || common.IsNil(o.Smalli) {
 		var ret string
 		return ret
 	}
-	return *o.I
+	return *o.Smalli
 }
 
 // GetIOk returns a tuple with the I field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetIOk() (*string, bool) {
-	if o == nil || common.IsNil(o.I) {
+func (o *KlineResponseK) GetSmalliOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalli) {
 		return nil, false
 	}
-	return o.I, true
+	return o.Smalli, true
 }
 
 // HasI returns a boolean if a field has been set.
-func (o *KlineResponseK) HasI() bool {
-	if o != nil && !common.IsNil(o.I) {
+func (o *KlineResponseK) HasSmalli() bool {
+	if o != nil && !common.IsNil(o.Smalli) {
 		return true
 	}
 
@@ -180,31 +197,31 @@ func (o *KlineResponseK) HasI() bool {
 }
 
 // SetI gets a reference to the given string and assigns it to the I field.
-func (o *KlineResponseK) SetI(v string) {
-	o.I = &v
+func (o *KlineResponseK) SetSmalli(v string) {
+	o.Smalli = &v
 }
 
 // GetF returns the F field value if set, zero value otherwise.
-func (o *KlineResponseK) GetF() int64 {
-	if o == nil || common.IsNil(o.F) {
+func (o *KlineResponseK) GetSmallf() int64 {
+	if o == nil || common.IsNil(o.Smallf) {
 		var ret int64
 		return ret
 	}
-	return *o.F
+	return *o.Smallf
 }
 
 // GetFOk returns a tuple with the F field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetFOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.F) {
+func (o *KlineResponseK) GetSmallfOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallf) {
 		return nil, false
 	}
-	return o.F, true
+	return o.Smallf, true
 }
 
 // HasF returns a boolean if a field has been set.
-func (o *KlineResponseK) HasF() bool {
-	if o != nil && !common.IsNil(o.F) {
+func (o *KlineResponseK) HasSmallf() bool {
+	if o != nil && !common.IsNil(o.Smallf) {
 		return true
 	}
 
@@ -212,8 +229,8 @@ func (o *KlineResponseK) HasF() bool {
 }
 
 // SetF gets a reference to the given int64 and assigns it to the F field.
-func (o *KlineResponseK) SetF(v int64) {
-	o.F = &v
+func (o *KlineResponseK) SetSmallf(v int64) {
+	o.Smallf = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
@@ -249,26 +266,26 @@ func (o *KlineResponseK) SetL(v int64) {
 }
 
 // GetO returns the O field value if set, zero value otherwise.
-func (o *KlineResponseK) GetO() string {
-	if o == nil || common.IsNil(o.O) {
+func (o *KlineResponseK) GetSmallo() string {
+	if o == nil || common.IsNil(o.Smallo) {
 		var ret string
 		return ret
 	}
-	return *o.O
+	return *o.Smallo
 }
 
 // GetOOk returns a tuple with the O field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetOOk() (*string, bool) {
-	if o == nil || common.IsNil(o.O) {
+func (o *KlineResponseK) GetSmalloOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallo) {
 		return nil, false
 	}
-	return o.O, true
+	return o.Smallo, true
 }
 
 // HasO returns a boolean if a field has been set.
-func (o *KlineResponseK) HasO() bool {
-	if o != nil && !common.IsNil(o.O) {
+func (o *KlineResponseK) HasSmallo() bool {
+	if o != nil && !common.IsNil(o.Smallo) {
 		return true
 	}
 
@@ -276,31 +293,31 @@ func (o *KlineResponseK) HasO() bool {
 }
 
 // SetO gets a reference to the given string and assigns it to the O field.
-func (o *KlineResponseK) SetO(v string) {
-	o.O = &v
+func (o *KlineResponseK) SetSmallo(v string) {
+	o.Smallo = &v
 }
 
 // GetC returns the C field value if set, zero value otherwise.
-func (o *KlineResponseK) GetC() string {
-	if o == nil || common.IsNil(o.C) {
+func (o *KlineResponseK) GetSmallc() string {
+	if o == nil || common.IsNil(o.Smallc) {
 		var ret string
 		return ret
 	}
-	return *o.C
+	return *o.Smallc
 }
 
 // GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetCOk() (*string, bool) {
-	if o == nil || common.IsNil(o.C) {
+func (o *KlineResponseK) GetSmallcOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallc) {
 		return nil, false
 	}
-	return o.C, true
+	return o.Smallc, true
 }
 
 // HasC returns a boolean if a field has been set.
-func (o *KlineResponseK) HasC() bool {
-	if o != nil && !common.IsNil(o.C) {
+func (o *KlineResponseK) HasSmallc() bool {
+	if o != nil && !common.IsNil(o.Smallc) {
 		return true
 	}
 
@@ -308,31 +325,31 @@ func (o *KlineResponseK) HasC() bool {
 }
 
 // SetC gets a reference to the given string and assigns it to the C field.
-func (o *KlineResponseK) SetC(v string) {
-	o.C = &v
+func (o *KlineResponseK) SetSmallc(v string) {
+	o.Smallc = &v
 }
 
 // GetH returns the H field value if set, zero value otherwise.
-func (o *KlineResponseK) GetH() string {
-	if o == nil || common.IsNil(o.H) {
+func (o *KlineResponseK) GetSmallh() string {
+	if o == nil || common.IsNil(o.Smallh) {
 		var ret string
 		return ret
 	}
-	return *o.H
+	return *o.Smallh
 }
 
 // GetHOk returns a tuple with the H field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetHOk() (*string, bool) {
-	if o == nil || common.IsNil(o.H) {
+func (o *KlineResponseK) GetSmallhOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallh) {
 		return nil, false
 	}
-	return o.H, true
+	return o.Smallh, true
 }
 
 // HasH returns a boolean if a field has been set.
-func (o *KlineResponseK) HasH() bool {
-	if o != nil && !common.IsNil(o.H) {
+func (o *KlineResponseK) HasSmallh() bool {
+	if o != nil && !common.IsNil(o.Smallh) {
 		return true
 	}
 
@@ -340,8 +357,8 @@ func (o *KlineResponseK) HasH() bool {
 }
 
 // SetH gets a reference to the given string and assigns it to the H field.
-func (o *KlineResponseK) SetH(v string) {
-	o.H = &v
+func (o *KlineResponseK) SetSmallh(v string) {
+	o.Smallh = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
@@ -409,26 +426,26 @@ func (o *KlineResponseK) SetSmallv(v string) {
 }
 
 // GetN returns the N field value if set, zero value otherwise.
-func (o *KlineResponseK) GetN() int64 {
-	if o == nil || common.IsNil(o.N) {
+func (o *KlineResponseK) GetSmalln() int64 {
+	if o == nil || common.IsNil(o.Smalln) {
 		var ret int64
 		return ret
 	}
-	return *o.N
+	return *o.Smalln
 }
 
 // GetNOk returns a tuple with the N field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetNOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.N) {
+func (o *KlineResponseK) GetSmallnOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smalln) {
 		return nil, false
 	}
-	return o.N, true
+	return o.Smalln, true
 }
 
 // HasN returns a boolean if a field has been set.
-func (o *KlineResponseK) HasN() bool {
-	if o != nil && !common.IsNil(o.N) {
+func (o *KlineResponseK) HasSmalln() bool {
+	if o != nil && !common.IsNil(o.Smalln) {
 		return true
 	}
 
@@ -436,31 +453,31 @@ func (o *KlineResponseK) HasN() bool {
 }
 
 // SetN gets a reference to the given int64 and assigns it to the N field.
-func (o *KlineResponseK) SetN(v int64) {
-	o.N = &v
+func (o *KlineResponseK) SetSmalln(v int64) {
+	o.Smalln = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *KlineResponseK) GetX() bool {
-	if o == nil || common.IsNil(o.X) {
+func (o *KlineResponseK) GetSmallx() bool {
+	if o == nil || common.IsNil(o.Smallx) {
 		var ret bool
 		return ret
 	}
-	return *o.X
+	return *o.Smallx
 }
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponseK) GetXOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.X) {
+func (o *KlineResponseK) GetSmallxOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Smallx) {
 		return nil, false
 	}
-	return o.X, true
+	return o.Smallx, true
 }
 
 // HasX returns a boolean if a field has been set.
-func (o *KlineResponseK) HasX() bool {
-	if o != nil && !common.IsNil(o.X) {
+func (o *KlineResponseK) HasSmallx() bool {
+	if o != nil && !common.IsNil(o.Smallx) {
 		return true
 	}
 
@@ -468,8 +485,8 @@ func (o *KlineResponseK) HasX() bool {
 }
 
 // SetX gets a reference to the given bool and assigns it to the X field.
-func (o *KlineResponseK) SetX(v bool) {
-	o.X = &v
+func (o *KlineResponseK) SetSmallx(v bool) {
+	o.Smallx = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
@@ -616,26 +633,26 @@ func (o KlineResponseK) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.I) {
-		toSerialize["i"] = o.I
+	if !common.IsNil(o.Smalli) {
+		toSerialize["i"] = o.Smalli
 	}
-	if !common.IsNil(o.F) {
-		toSerialize["f"] = o.F
+	if !common.IsNil(o.Smallf) {
+		toSerialize["f"] = o.Smallf
 	}
 	if !common.IsNil(o.L) {
 		toSerialize["L"] = o.L
 	}
-	if !common.IsNil(o.O) {
-		toSerialize["o"] = o.O
+	if !common.IsNil(o.Smallo) {
+		toSerialize["o"] = o.Smallo
 	}
-	if !common.IsNil(o.C) {
-		toSerialize["c"] = o.C
+	if !common.IsNil(o.Smallc) {
+		toSerialize["c"] = o.Smallc
 	}
-	if !common.IsNil(o.H) {
-		toSerialize["h"] = o.H
+	if !common.IsNil(o.Smallh) {
+		toSerialize["h"] = o.Smallh
 	}
 	if !common.IsNil(o.Smalll) {
 		toSerialize["l"] = o.Smalll
@@ -643,11 +660,11 @@ func (o KlineResponseK) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallv) {
 		toSerialize["v"] = o.Smallv
 	}
-	if !common.IsNil(o.N) {
-		toSerialize["n"] = o.N
+	if !common.IsNil(o.Smalln) {
+		toSerialize["n"] = o.Smalln
 	}
-	if !common.IsNil(o.X) {
-		toSerialize["x"] = o.X
+	if !common.IsNil(o.Smallx) {
+		toSerialize["x"] = o.Smallx
 	}
 	if !common.IsNil(o.Smallq) {
 		toSerialize["q"] = o.Smallq

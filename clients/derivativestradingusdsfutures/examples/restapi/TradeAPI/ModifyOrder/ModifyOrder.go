@@ -23,7 +23,7 @@ func ModifyOrder() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol("symbol_example").Side(models.NewAlgoOrderSideParameterBuy).Quantity(1.0).Price(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol("BTCUSDT").Side(models.NewAlgoOrderSideParameterBuy).Quantity(1.0).Price(30005).Execute()
 	if err != nil {
 		log.Println(err)
 		return

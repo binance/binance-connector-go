@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,12 +17,17 @@ var _ common.MappedNullable = &ExchangeInformationResponse{}
 
 // ExchangeInformationResponse struct for ExchangeInformationResponse
 type ExchangeInformationResponse struct {
-	ExchangeFilters      []string                                     `json:"exchangeFilters,omitempty"`
-	RateLimits           []ExchangeInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
-	ServerTime           *int64                                       `json:"serverTime,omitempty"`
-	Assets               []ExchangeInformationResponseAssetsInner     `json:"assets,omitempty"`
-	Symbols              []ExchangeInformationResponseSymbolsInner    `json:"symbols,omitempty"`
-	Timezone             *string                                      `json:"timezone,omitempty"`
+	ExchangeFilters []string `json:"exchangeFilters,omitempty"`
+	// Rate Limits.
+	RateLimits []ExchangeInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	// Ignore please. If you want to check current server time, please check via \"GET /fapi/v1/time\"
+	ServerTime *int64 `json:"serverTime,omitempty"`
+	// assets information
+	Assets []ExchangeInformationResponseAssetsInner `json:"assets,omitempty"`
+	// Symbols.
+	Symbols []ExchangeInformationResponseSymbolsInner `json:"symbols,omitempty"`
+	// Timezone.
+	Timezone             *string `json:"timezone,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

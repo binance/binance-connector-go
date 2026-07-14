@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountAlias** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Balance** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**MarginAvailable** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**AccountAlias** | Pointer to **string** | Unique account alias. | [optional] 
+**Asset** | Pointer to **string** | Asset name. | [optional] 
+**Balance** | Pointer to **string** | Wallet balance. | [optional] 
+**CrossWalletBalance** | Pointer to **string** | Cross wallet balance. | [optional] 
+**CrossUnPnl** | Pointer to **string** | Unrealized PnL of cross positions. | [optional] 
+**AvailableBalance** | Pointer to **string** | Available balance. | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. | [optional] 
+**MarginAvailable** | Pointer to **bool** | Whether the asset can be used as margin in multi-assets mode. | [optional] 
+**UpdateTime** | Pointer to **int64** | Last update time in milliseconds. | [optional] 
 
 ## Methods
 

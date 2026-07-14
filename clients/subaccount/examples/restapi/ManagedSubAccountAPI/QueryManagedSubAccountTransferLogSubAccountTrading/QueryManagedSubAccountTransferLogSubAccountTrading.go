@@ -22,7 +22,7 @@ func QueryManagedSubAccountTransferLogSubAccountTrading() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountTransferLogSubAccountTrading(context.Background()).StartTime(1623319461670).EndTime(1641782889000).Page(789).Limit(789).Execute()
+	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountTransferLogSubAccountTrading(context.Background()).StartTime(1623319461670).EndTime(1641782889000).Page(1).Limit(10).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,9 +17,10 @@ var _ common.MappedNullable = &ReferencePriceResponse{}
 
 // ReferencePriceResponse struct for ReferencePriceResponse
 type ReferencePriceResponse struct {
-	Id                   *string                       `json:"id,omitempty"`
-	Status               *int64                        `json:"status,omitempty"`
-	Result               *ReferencePriceResponseResult `json:"result,omitempty"`
+	Id                   *string                                    `json:"id,omitempty"`
+	Status               *int64                                     `json:"status,omitempty"`
+	Result               *ReferencePriceResponseResult              `json:"result,omitempty"`
+	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +139,38 @@ func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponseResult) {
 	o.Result = &v
 }
 
+// GetRateLimits returns the RateLimits field value if set, zero value otherwise.
+func (o *ReferencePriceResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+	if o == nil || common.IsNil(o.RateLimits) {
+		var ret []AccountCommissionResponseRateLimitsInner
+		return ret
+	}
+	return o.RateLimits
+}
+
+// GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+	if o == nil || common.IsNil(o.RateLimits) {
+		return nil, false
+	}
+	return o.RateLimits, true
+}
+
+// HasRateLimits returns a boolean if a field has been set.
+func (o *ReferencePriceResponse) HasRateLimits() bool {
+	if o != nil && !common.IsNil(o.RateLimits) {
+		return true
+	}
+
+	return false
+}
+
+// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *ReferencePriceResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+	o.RateLimits = v
+}
+
 func (o ReferencePriceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o ReferencePriceResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Result) {
 		toSerialize["result"] = o.Result
+	}
+	if !common.IsNil(o.RateLimits) {
+		toSerialize["rateLimits"] = o.RateLimits
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +218,7 @@ func (o *ReferencePriceResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "result")
+		delete(additionalProperties, "rateLimits")
 		o.AdditionalProperties = additionalProperties
 	}
 

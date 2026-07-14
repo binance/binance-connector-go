@@ -22,7 +22,7 @@ func ChangeMultiAssetsMode() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ChangeMultiAssetsMode(context.Background()).MultiAssetsMargin("multiAssetsMargin_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ChangeMultiAssetsMode(context.Background()).MultiAssetsMargin("true").Execute()
 	if err != nil {
 		log.Println(err)
 		return

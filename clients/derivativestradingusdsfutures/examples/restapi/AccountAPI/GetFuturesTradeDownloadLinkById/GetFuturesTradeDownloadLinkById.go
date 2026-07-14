@@ -22,7 +22,7 @@ func GetFuturesTradeDownloadLinkById() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("1").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 	if err != nil {
 		log.Println(err)
 		return

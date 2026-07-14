@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &VaspListResponseInner{}
 
 // VaspListResponseInner struct for VaspListResponseInner
 type VaspListResponseInner struct {
-	VaspCode             *string `json:"vaspCode,omitempty"`
-	VaspName             *string `json:"vaspName,omitempty"`
+	VaspName *string `json:"vaspName,omitempty"`
+	VaspCode *string `json:"vaspCode,omitempty"`
+	// For populating the `vasp` field in the deposit/withdrawal questionnaire
 	Identifier           *string `json:"identifier,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -40,38 +41,6 @@ func NewVaspListResponseInner() *VaspListResponseInner {
 func NewVaspListResponseInnerWithDefaults() *VaspListResponseInner {
 	this := VaspListResponseInner{}
 	return &this
-}
-
-// GetVaspCode returns the VaspCode field value if set, zero value otherwise.
-func (o *VaspListResponseInner) GetVaspCode() string {
-	if o == nil || common.IsNil(o.VaspCode) {
-		var ret string
-		return ret
-	}
-	return *o.VaspCode
-}
-
-// GetVaspCodeOk returns a tuple with the VaspCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VaspListResponseInner) GetVaspCodeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.VaspCode) {
-		return nil, false
-	}
-	return o.VaspCode, true
-}
-
-// HasVaspCode returns a boolean if a field has been set.
-func (o *VaspListResponseInner) HasVaspCode() bool {
-	if o != nil && !common.IsNil(o.VaspCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetVaspCode gets a reference to the given string and assigns it to the VaspCode field.
-func (o *VaspListResponseInner) SetVaspCode(v string) {
-	o.VaspCode = &v
 }
 
 // GetVaspName returns the VaspName field value if set, zero value otherwise.
@@ -104,6 +73,38 @@ func (o *VaspListResponseInner) HasVaspName() bool {
 // SetVaspName gets a reference to the given string and assigns it to the VaspName field.
 func (o *VaspListResponseInner) SetVaspName(v string) {
 	o.VaspName = &v
+}
+
+// GetVaspCode returns the VaspCode field value if set, zero value otherwise.
+func (o *VaspListResponseInner) GetVaspCode() string {
+	if o == nil || common.IsNil(o.VaspCode) {
+		var ret string
+		return ret
+	}
+	return *o.VaspCode
+}
+
+// GetVaspCodeOk returns a tuple with the VaspCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaspListResponseInner) GetVaspCodeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.VaspCode) {
+		return nil, false
+	}
+	return o.VaspCode, true
+}
+
+// HasVaspCode returns a boolean if a field has been set.
+func (o *VaspListResponseInner) HasVaspCode() bool {
+	if o != nil && !common.IsNil(o.VaspCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetVaspCode gets a reference to the given string and assigns it to the VaspCode field.
+func (o *VaspListResponseInner) SetVaspCode(v string) {
+	o.VaspCode = &v
 }
 
 // GetIdentifier returns the Identifier field value if set, zero value otherwise.
@@ -148,11 +149,11 @@ func (o VaspListResponseInner) MarshalJSON() ([]byte, error) {
 
 func (o VaspListResponseInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.VaspCode) {
-		toSerialize["vaspCode"] = o.VaspCode
-	}
 	if !common.IsNil(o.VaspName) {
 		toSerialize["vaspName"] = o.VaspName
+	}
+	if !common.IsNil(o.VaspCode) {
+		toSerialize["vaspCode"] = o.VaspCode
 	}
 	if !common.IsNil(o.Identifier) {
 		toSerialize["identifier"] = o.Identifier
@@ -179,8 +180,8 @@ func (o *VaspListResponseInner) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "vaspCode")
 		delete(additionalProperties, "vaspName")
+		delete(additionalProperties, "vaspCode")
 		delete(additionalProperties, "identifier")
 		o.AdditionalProperties = additionalProperties
 	}

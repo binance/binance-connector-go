@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**A** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**F** | Pointer to **string** | Free | [optional] 
+**L** | Pointer to **string** | Locked | [optional] 
 
 ## Methods
 

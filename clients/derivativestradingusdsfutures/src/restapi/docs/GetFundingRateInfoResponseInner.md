@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **AdjustedFundingRateCap** | Pointer to **string** |  | [optional] 
 **AdjustedFundingRateFloor** | Pointer to **string** |  | [optional] 
 **FundingIntervalHours** | Pointer to **int64** |  | [optional] 
-**Disclaimer** | Pointer to **bool** |  | [optional] 
+**Disclaimer** | Pointer to **bool** | ingore | [optional] 
 
 ## Methods
 

@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**H** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**C** | Pointer to **string** | Close price | [optional] 
+**O** | Pointer to **string** | Open price | [optional] 
+**H** | Pointer to **string** | High price | [optional] 
+**L** | Pointer to **string** | Low price | [optional] 
+**V** | Pointer to **string** | Total traded base asset volume | [optional] 
+**Q** | Pointer to **string** | Total traded quote asset volume | [optional] 
 
 ## Methods
 

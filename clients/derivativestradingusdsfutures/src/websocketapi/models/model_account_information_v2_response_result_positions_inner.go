@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,16 +17,21 @@ var _ common.MappedNullable = &AccountInformationV2ResponseResultPositionsInner{
 
 // AccountInformationV2ResponseResultPositionsInner struct for AccountInformationV2ResponseResultPositionsInner
 type AccountInformationV2ResponseResultPositionsInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	UnrealizedProfit     *string `json:"unrealizedProfit,omitempty"`
-	IsolatedMargin       *string `json:"isolatedMargin,omitempty"`
-	Notional             *string `json:"notional,omitempty"`
-	IsolatedWallet       *string `json:"isolatedWallet,omitempty"`
-	InitialMargin        *string `json:"initialMargin,omitempty"`
-	MaintMargin          *string `json:"maintMargin,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	PositionAmt  *string `json:"positionAmt,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	IsolatedMargin   *string `json:"isolatedMargin,omitempty"`
+	Notional         *string `json:"notional,omitempty"`
+	IsolatedWallet   *string `json:"isolatedWallet,omitempty"`
+	// total initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

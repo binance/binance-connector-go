@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &HashrateResaleListResponseDataConfigDetailsInner{
 
 // HashrateResaleListResponseDataConfigDetailsInner struct for HashrateResaleListResponseDataConfigDetailsInner
 type HashrateResaleListResponseDataConfigDetailsInner struct {
-	ConfigId             *int64  `json:"configId,omitempty"`
-	PoolUsername         *string `json:"poolUsername,omitempty"`
-	ToPoolUsername       *string `json:"toPoolUsername,omitempty"`
-	AlgoName             *string `json:"algoName,omitempty"`
-	HashRate             *int64  `json:"hashRate,omitempty"`
-	StartDay             *int64  `json:"startDay,omitempty"`
-	EndDay               *int64  `json:"endDay,omitempty"`
-	Status               *int64  `json:"status,omitempty"`
-	Type                 *int64  `json:"type,omitempty"`
+	// Configuration ID
+	ConfigId *int64 `json:"configId,omitempty"`
+	// Transfer-out sub-account
+	PoolUsername *string `json:"poolUsername,omitempty"`
+	// Transfer-in sub-account
+	ToPoolUsername *string `json:"toPoolUsername,omitempty"`
+	// Transfer algorithm name
+	AlgoName *string `json:"algoName,omitempty"`
+	// Transferred hashrate
+	HashRate *int64 `json:"hashRate,omitempty"`
+	// Start date
+	StartDay *int64 `json:"startDay,omitempty"`
+	// End date
+	EndDay *int64 `json:"endDay,omitempty"`
+	// Status: 0 Processing, 1 Cancelled, 2 Terminated
+	Status *int64 `json:"status,omitempty"`
+	// Type: 0 Hashrate transfer record, 1 Hashrate receive record
+	Type                 *int64 `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

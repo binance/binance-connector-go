@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to [**[]OutboundAccountPositionBInner**](OutboundAccountPositionBInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**U** | Pointer to **int64** | Time of last account update | [optional] 
+**B** | Pointer to [**[]OutboundAccountPositionBInner**](OutboundAccountPositionBInner.md) | Balances Array | [optional] 
 
 ## Methods
 

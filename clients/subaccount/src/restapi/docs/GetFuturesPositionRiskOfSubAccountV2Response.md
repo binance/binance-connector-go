@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FuturePositionRiskVos** | Pointer to [**[]GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner**](GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner.md) |  | [optional] 
+**FuturePositionRiskVos** | Pointer to [**[]GetFuturesPositionRiskOfSubAccountResponseInner**](GetFuturesPositionRiskOfSubAccountResponseInner.md) |  | [optional] 
 **DeliveryPositionRiskVos** | Pointer to [**[]GetFuturesPositionRiskOfSubAccountV2ResponseDeliveryPositionRiskVosInner**](GetFuturesPositionRiskOfSubAccountV2ResponseDeliveryPositionRiskVosInner.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFuturePositionRiskVos
 
-`func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVos() []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner`
+`func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVos() []GetFuturesPositionRiskOfSubAccountResponseInner`
 
 GetFuturePositionRiskVos returns the FuturePositionRiskVos field if non-nil, zero value otherwise.
 
 ### GetFuturePositionRiskVosOk
 
-`func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVosOk() (*[]GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner, bool)`
+`func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVosOk() (*[]GetFuturesPositionRiskOfSubAccountResponseInner, bool)`
 
 GetFuturePositionRiskVosOk returns a tuple with the FuturePositionRiskVos field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFuturePositionRiskVos
 
-`func (o *GetFuturesPositionRiskOfSubAccountV2Response) SetFuturePositionRiskVos(v []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner)`
+`func (o *GetFuturesPositionRiskOfSubAccountV2Response) SetFuturePositionRiskVos(v []GetFuturesPositionRiskOfSubAccountResponseInner)`
 
 SetFuturePositionRiskVos sets FuturePositionRiskVos field to given value.
 

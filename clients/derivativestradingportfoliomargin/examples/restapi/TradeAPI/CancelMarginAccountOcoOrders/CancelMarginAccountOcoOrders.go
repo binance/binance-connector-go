@@ -22,7 +22,7 @@ func CancelMarginAccountOcoOrders() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelMarginAccountOcoOrders(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelMarginAccountOcoOrders(context.Background()).Symbol("LTCBTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

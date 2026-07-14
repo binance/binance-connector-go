@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Assets** | Pointer to [**[]AccountInformationResponseAssetsInner**](AccountInformationResponseAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]AccountInformationResponsePositionsInner**](AccountInformationResponsePositionsInner.md) |  | [optional] 
-**CanDeposit** | Pointer to **bool** |  | [optional] 
-**CanTrade** | Pointer to **bool** |  | [optional] 
-**CanWithdraw** | Pointer to **bool** |  | [optional] 
-**FeeTier** | Pointer to **int64** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Assets** | Pointer to [**[]AccountInformationResponseAssetsInner**](AccountInformationResponseAssetsInner.md) | Supported assets. | [optional] 
+**Positions** | Pointer to [**[]AccountInformationResponsePositionsInner**](AccountInformationResponsePositionsInner.md) | Position list. | [optional] 
+**CanDeposit** | Pointer to **bool** | Whether deposits are enabled. | [optional] 
+**CanTrade** | Pointer to **bool** | Whether trading is enabled. | [optional] 
+**CanWithdraw** | Pointer to **bool** | Whether withdrawals are enabled. | [optional] 
+**FeeTier** | Pointer to **int64** | Fee tier level. | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
 
 ## Methods
 

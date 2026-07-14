@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**C** | Pointer to [**[]CompositeIndexSymbolInformationStreamsResponseCInner**](CompositeIndexSymbolInformationStreamsResponseCInner.md) |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**P** | Pointer to **string** | Price | [optional] 
+**C** | Pointer to **string** | Base asset category. | [optional] 
+**C** | Pointer to [**[]CompositeIndexSymbolInformationStreamsResponseCInner**](CompositeIndexSymbolInformationStreamsResponseCInner.md) | Composition | [optional] 
 
 ## Methods
 

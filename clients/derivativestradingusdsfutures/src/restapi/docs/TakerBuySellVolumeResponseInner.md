@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **BuySellRatio** | Pointer to **string** |  | [optional] 
 **BuyVol** | Pointer to **string** |  | [optional] 
 **SellVol** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **string** |  | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasSellVol returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *TakerBuySellVolumeResponseInner) GetTimestamp() string`
+`func (o *TakerBuySellVolumeResponseInner) GetTimestamp() int64`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *TakerBuySellVolumeResponseInner) GetTimestampOk() (*string, bool)`
+`func (o *TakerBuySellVolumeResponseInner) GetTimestampOk() (*int64, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *TakerBuySellVolumeResponseInner) SetTimestamp(v string)`
+`func (o *TakerBuySellVolumeResponseInner) SetTimestamp(v int64)`
 
 SetTimestamp sets Timestamp field to given value.
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,25 +17,44 @@ var _ common.MappedNullable = &QueryOptionOrderHistoryResponseInner{}
 
 // QueryOptionOrderHistoryResponseInner struct for QueryOptionOrderHistoryResponseInner
 type QueryOptionOrderHistoryResponseInner struct {
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	CreateTime           *int64  `json:"createTime,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	PriceScale           *int64  `json:"priceScale,omitempty"`
-	QuantityScale        *int64  `json:"quantityScale,omitempty"`
-	OptionSide           *string `json:"optionSide,omitempty"`
-	QuoteAsset           *string `json:"quoteAsset,omitempty"`
-	Mmp                  *bool   `json:"mmp,omitempty"`
+	// order Id
+	OrderId *int64 `json:"orderId,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// price
+	Price *string `json:"price,omitempty"`
+	// quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// executed Qty
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// side
+	Side *string `json:"side,omitempty"`
+	// type
+	Type *string `json:"type,omitempty"`
+	// time In Force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// reduce Only
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// create Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// update Time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// status
+	Status *string `json:"status,omitempty"`
+	// avg Price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// client Order Id
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote Asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// mmp
+	Mmp                  *bool `json:"mmp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

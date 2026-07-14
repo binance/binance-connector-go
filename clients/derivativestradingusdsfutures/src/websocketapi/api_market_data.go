@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketapi
@@ -23,18 +23,19 @@ type ApiOrderBookRequest struct {
 	limit      *int64
 }
 
+// Symbol.
 func (r ApiOrderBookRequest) Symbol(symbol string) ApiOrderBookRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiOrderBookRequest) Id(id string) ApiOrderBookRequest {
 	r.id = &id
 	return r
 }
 
-// Default 500; Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+// Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 func (r ApiOrderBookRequest) Limit(limit int64) ApiOrderBookRequest {
 	r.limit = &limit
 	return r
@@ -62,9 +63,9 @@ func (r ApiOrderBookRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.O
 OrderBook Order Book
 /depth
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Order-Book
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#order-book
 
-@param symbol	@param id Unique WebSocket request ID.	@param limit Default 500; Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+@param symbol Symbol.	@param id Id.	@param limit Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 @return ApiOrderBookRequest
 */
 func (a *MarketDataAPIService) OrderBook() ApiOrderBookRequest {
@@ -111,12 +112,13 @@ type ApiSymbolOrderBookTickerRequest struct {
 	symbol     *string
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiSymbolOrderBookTickerRequest) Id(id string) ApiSymbolOrderBookTickerRequest {
 	r.id = &id
 	return r
 }
 
+// Symbol.
 func (r ApiSymbolOrderBookTickerRequest) Symbol(symbol string) ApiSymbolOrderBookTickerRequest {
 	r.symbol = &symbol
 	return r
@@ -144,9 +146,9 @@ func (r ApiSymbolOrderBookTickerRequest) ExecuteAsync() (chan *common.ResponseOr
 SymbolOrderBookTicker Symbol Order Book Ticker
 /ticker.book
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Order-Book-Ticker
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#symbol-order-book-ticker
 
-@param id Unique WebSocket request ID.	@param symbol
+@param id Id.	@param symbol Symbol.
 @return ApiSymbolOrderBookTickerRequest
 */
 func (a *MarketDataAPIService) SymbolOrderBookTicker() ApiSymbolOrderBookTickerRequest {
@@ -188,12 +190,13 @@ type ApiSymbolPriceTickerRequest struct {
 	symbol     *string
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiSymbolPriceTickerRequest) Id(id string) ApiSymbolPriceTickerRequest {
 	r.id = &id
 	return r
 }
 
+// Symbol.
 func (r ApiSymbolPriceTickerRequest) Symbol(symbol string) ApiSymbolPriceTickerRequest {
 	r.symbol = &symbol
 	return r
@@ -221,9 +224,9 @@ func (r ApiSymbolPriceTickerRequest) ExecuteAsync() (chan *common.ResponseOrRaw[
 SymbolPriceTicker Symbol Price Ticker
 /ticker.price
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/websocket-api/Symbol-Price-Ticker
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/market-data#symbol-price-ticker
 
-@param id Unique WebSocket request ID.	@param symbol
+@param id Id.	@param symbol Symbol.
 @return ApiSymbolPriceTickerRequest
 */
 func (a *MarketDataAPIService) SymbolPriceTicker() ApiSymbolPriceTickerRequest {

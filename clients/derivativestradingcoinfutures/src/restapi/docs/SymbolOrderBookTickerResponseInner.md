@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LastUpdateId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**BidPrice** | Pointer to **string** |  | [optional] 
-**BidQty** | Pointer to **string** |  | [optional] 
-**AskPrice** | Pointer to **string** |  | [optional] 
-**AskQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**LastUpdateId** | Pointer to **int64** | Last update ID. | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**BidPrice** | Pointer to **string** | Best bid price. | [optional] 
+**BidQty** | Pointer to **string** | Best bid quantity. | [optional] 
+**AskPrice** | Pointer to **string** | Best ask price. | [optional] 
+**AskQty** | Pointer to **string** | Best ask quantity. | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

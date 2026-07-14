@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Commissions** | Pointer to [**[]UserCommissionResponseCommissionsInner**](UserCommissionResponseCommissionsInner.md) |  | [optional] 
+**Commissions** | Pointer to [**[]UserCommissionResponseCommissionsInner**](UserCommissionResponseCommissionsInner.md) | commissions | [optional] 
 
 ## Methods
 

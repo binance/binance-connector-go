@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**AccountInformationV2ResponseResult**](AccountInformationV2ResponseResult.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]AccountInformationV2ResponseRateLimitsInner**](AccountInformationV2ResponseRateLimitsInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountInformationResponseRateLimitsInner**](AccountInformationResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *AccountInformationV2Response) GetRateLimits() []AccountInformationV2ResponseRateLimitsInner`
+`func (o *AccountInformationV2Response) GetRateLimits() []AccountInformationResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *AccountInformationV2Response) GetRateLimitsOk() (*[]AccountInformationV2ResponseRateLimitsInner, bool)`
+`func (o *AccountInformationV2Response) GetRateLimitsOk() (*[]AccountInformationResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *AccountInformationV2Response) SetRateLimits(v []AccountInformationV2ResponseRateLimitsInner)`
+`func (o *AccountInformationV2Response) SetRateLimits(v []AccountInformationResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

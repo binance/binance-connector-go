@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &MarginAccountTradeListResponseInner{}
 
 // MarginAccountTradeListResponseInner struct for MarginAccountTradeListResponseInner
 type MarginAccountTradeListResponseInner struct {
-	Commission           *string `json:"commission,omitempty"`
-	CommissionAsset      *string `json:"commissionAsset,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	IsBestMatch          *bool   `json:"isBestMatch,omitempty"`
-	IsBuyer              *bool   `json:"isBuyer,omitempty"`
-	IsMaker              *bool   `json:"isMaker,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// Commission.
+	Commission *string `json:"commission,omitempty"`
+	// Commission Asset.
+	CommissionAsset *string `json:"commissionAsset,omitempty"`
+	// ID.
+	Id *int64 `json:"id,omitempty"`
+	// Is Best Match.
+	IsBestMatch *bool `json:"isBestMatch,omitempty"`
+	// Is Buyer.
+	IsBuyer *bool `json:"isBuyer,omitempty"`
+	// Is Maker.
+	IsMaker *bool `json:"isMaker,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Qty.
+	Qty *string `json:"qty,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Event time.
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

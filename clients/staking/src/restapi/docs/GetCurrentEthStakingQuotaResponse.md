@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LeftStakingPersonalQuota** | Pointer to **string** |  | [optional] 
-**LeftRedemptionPersonalQuota** | Pointer to **string** |  | [optional] 
+**LeftStakingPersonalQuota** | Pointer to **string** | Show min (Daily available limit, total personal staking quota) | [optional] 
+**LeftRedemptionPersonalQuota** | Pointer to **string** | Show min (Daily personal redeem quota, total redemption limit) | [optional] 
 **MinStakeAmount** | Pointer to **string** |  | [optional] 
 **MinRedeemAmount** | Pointer to **string** |  | [optional] 
 **RedeemPeriod** | Pointer to **int64** |  | [optional] 

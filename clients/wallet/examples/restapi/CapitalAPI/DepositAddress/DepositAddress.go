@@ -22,7 +22,7 @@ func DepositAddress() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.CapitalAPI.DepositAddress(context.Background()).Coin("coin_example").Execute()
+	resp, err := apiClient.RestApi.CapitalAPI.DepositAddress(context.Background()).Coin("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

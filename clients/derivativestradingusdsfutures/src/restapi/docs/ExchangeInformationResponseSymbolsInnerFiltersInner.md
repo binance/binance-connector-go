@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterType** | Pointer to **string** |  | [optional] 
-**MaxPrice** | Pointer to **string** |  | [optional] 
-**MinPrice** | Pointer to **string** |  | [optional] 
-**TickSize** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**MinQty** | Pointer to **string** |  | [optional] 
-**StepSize** | Pointer to **string** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
+**FilterType** | Pointer to **string** | Filter Type. | [optional] 
+**MaxPrice** | Pointer to **string** | Max Price. | [optional] 
+**MinPrice** | Pointer to **string** | Min Price. | [optional] 
+**TickSize** | Pointer to **string** | Tick Size. | [optional] 
+**MaxQty** | Pointer to **string** | Max Qty. | [optional] 
+**MinQty** | Pointer to **string** | Min Qty. | [optional] 
+**StepSize** | Pointer to **string** | Step Size. | [optional] 
+**Limit** | Pointer to **int64** | Limit. | [optional] 
 **Notional** | Pointer to **string** |  | [optional] 
-**MultiplierUp** | Pointer to **string** |  | [optional] 
-**MultiplierDown** | Pointer to **string** |  | [optional] 
+**MultiplierUp** | Pointer to **string** | Multiplier Up. | [optional] 
+**MultiplierDown** | Pointer to **string** | Multiplier Down. | [optional] 
 **MultiplierDecimal** | Pointer to **string** |  | [optional] 
 
 ## Methods

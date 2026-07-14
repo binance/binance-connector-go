@@ -7,11 +7,11 @@ Method        | HTTP request  | Description
 [**AllCoinsInformation**](CapitalAPI.md#AllCoinsInformation) | **Get** /sapi/v1/capital/config/getall | All Coins&#39; Information (USER_DATA)
 [**DepositAddress**](CapitalAPI.md#DepositAddress) | **Get** /sapi/v1/capital/deposit/address | Deposit Address(supporting network) (USER_DATA)
 [**DepositHistory**](CapitalAPI.md#DepositHistory) | **Get** /sapi/v1/capital/deposit/hisrec | Deposit History (supporting network) (USER_DATA)
-[**FetchDepositAddressListWithNetwork**](CapitalAPI.md#FetchDepositAddressListWithNetwork) | **Get** /sapi/v1/capital/deposit/address/list | Fetch deposit address list with network(USER_DATA)
+[**FetchDepositAddressListWithNetwork**](CapitalAPI.md#FetchDepositAddressListWithNetwork) | **Get** /sapi/v1/capital/deposit/address/list | Fetch deposit address list with network (USER_DATA)
 [**FetchWithdrawAddressList**](CapitalAPI.md#FetchWithdrawAddressList) | **Get** /sapi/v1/capital/withdraw/address/list | Fetch withdraw address list (USER_DATA)
 [**FetchWithdrawQuota**](CapitalAPI.md#FetchWithdrawQuota) | **Get** /sapi/v1/capital/withdraw/quota | Fetch withdraw quota (USER_DATA)
 [**OneClickArrivalDepositApply**](CapitalAPI.md#OneClickArrivalDepositApply) | **Post** /sapi/v1/capital/deposit/credit-apply | One click arrival deposit apply (for expired address deposit) (USER_DATA)
-[**Withdraw**](CapitalAPI.md#Withdraw) | **Post** /sapi/v1/capital/withdraw/apply | Withdraw(USER_DATA)
+[**Withdraw**](CapitalAPI.md#Withdraw) | **Post** /sapi/v1/capital/withdraw/apply | Withdraw (USER_DATA)
 [**WithdrawHistory**](CapitalAPI.md#WithdrawHistory) | **Get** /sapi/v1/capital/withdraw/history | Withdraw History (supporting network) (USER_DATA)
 
 
@@ -106,7 +106,7 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string | 
+	coin := "BTC" // string | `coin` refers to the parent network address format that the address is using
 	network := "network_example" // string |  (optional)
 	amount := float32(1.0) // float32 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -137,7 +137,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **coin** | **string** |  | 
+ **coin** | **string** | &#x60;coin&#x60; refers to the parent network address format that the address is using | 
  **network** | **string** |  | 
  **amount** | **float32** |  | 
  **recvWindow** | **int64** |  | 
@@ -180,13 +180,13 @@ import (
 )
 
 func main() {
-	includeSource := false // bool | Default: `false`, return `sourceAddress`field when set to `true` (optional)
-	coin := "coin_example" // string |  (optional)
-	status := int64(789) // int64 | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	offset := int64(0) // int64 | Default: 0 (optional)
-	limit := int64(7) // int64 | min 7, max 30, default 7 (optional)
+	includeSource := false // bool | return `sourceAddress` field when set to `true` (optional)
+	coin := "BTC" // string |  (optional)
+	status := models.DepositHistoryStatusParameterStatus0 // DepositHistoryStatusParameter | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success (optional)
+	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
+	endTime := int64(1641782889000) // int64 | Default: present timestamp (optional)
+	offset := int64(0) // int64 |  (optional)
+	limit := int64(1000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 	txId := "1" // string |  (optional)
 
@@ -216,13 +216,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **includeSource** | **bool** | Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60; | 
+ **includeSource** | **bool** | return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | 
  **coin** | **string** |  | 
- **status** | **int64** | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **offset** | **int64** | Default: 0 | 
- **limit** | **int64** | min 7, max 30, default 7 | 
+ **status** | [**DepositHistoryStatusParameter**](DepositHistoryStatusParameter.md) | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success | 
+ **startTime** | **int64** | Default: 90 days from current timestamp | 
+ **endTime** | **int64** | Default: present timestamp | 
+ **offset** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
  **txId** | **string** |  | 
 
@@ -245,7 +245,7 @@ No authorization required
 
 > FetchDepositAddressListWithNetworkResponse FetchDepositAddressListWithNetwork(ctx).Coin(coin).Network(network).Execute()
 
-Fetch deposit address list with network(USER_DATA)
+Fetch deposit address list with network (USER_DATA)
 
 
 ### Example
@@ -264,8 +264,8 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string | 
-	network := "network_example" // string |  (optional)
+	coin := "BTC" // string | Coin name
+	network := "network_example" // string | If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of `Get /sapi/v1/capital/config/getall` (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -293,8 +293,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **coin** | **string** |  | 
- **network** | **string** |  | 
+ **coin** | **string** | Coin name | 
+ **network** | **string** | If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60; | 
 
 ### Return type
 
@@ -465,8 +465,8 @@ import (
 
 func main() {
 	depositId := int64(1) // int64 | Deposit record Id, priority use (optional)
-	txId := "1" // string |  (optional)
-	subAccountId := int64(1) // int64 | Sub-accountId of Cloud user (optional)
+	txId := "1" // string | Deposit txId, used when depositId is not specified (optional)
+	subAccountId := "1" // string | Sub-accountId of Cloud user (optional)
 	subUserId := int64(1) // int64 | Sub-userId of parent user (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -496,8 +496,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **depositId** | **int64** | Deposit record Id, priority use | 
- **txId** | **string** |  | 
- **subAccountId** | **int64** | Sub-accountId of Cloud user | 
+ **txId** | **string** | Deposit txId, used when depositId is not specified | 
+ **subAccountId** | **string** | Sub-accountId of Cloud user | 
  **subUserId** | **int64** | Sub-userId of parent user | 
 
 ### Return type
@@ -519,7 +519,7 @@ No authorization required
 
 > WithdrawResponse Withdraw(ctx).Coin(coin).Address(address).Amount(amount).WithdrawOrderId(withdrawOrderId).Network(network).AddressTag(addressTag).TransactionFeeFlag(transactionFeeFlag).Name(name).WalletType(walletType).RecvWindow(recvWindow).Execute()
 
-Withdraw(USER_DATA)
+Withdraw (USER_DATA)
 
 
 ### Example
@@ -538,14 +538,14 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string | 
-	address := "address_example" // string | 
-	amount := float32(1.0) // float32 | 
-	withdrawOrderId := "1" // string | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query. (optional)
-	network := "network_example" // string |  (optional)
+	coin := "BTC" // string | 
+	address := "address_example" // string | Withdrawal address
+	amount := float32(1.0) // float32 | Amount
+	withdrawOrderId := "1" // string | client side id for withdrawal, if provide here, can be used in GET `/sapi/v1/capital/withdraw/history` for query. (optional)
+	network := "network_example" // string | Withdrawal network (optional)
 	addressTag := "addressTag_example" // string | Secondary address identifier for coins like XRP,XMR etc. (optional)
-	transactionFeeFlag := false // bool | When making internal transfer, `true` for returning the fee to the destination account; `false` for returning the fee back to the departure account. Default `false`. (optional)
-	name := "name_example" // string | Description of the address. Address book cap is 200, space in name should be encoded into `%20` (optional)
+	transactionFeeFlag := true // bool | When making internal transfer, `true` for returning the fee to the destination account; `false` for returning the fee back to the departure account. Default `false`. (optional)
+	name := "name_example" // string |  (optional)
 	walletType := int64(0) // int64 | The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the current \"selected wallet\" under wallet->Fiat and Spot/Funding->Deposit (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -576,13 +576,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
- **address** | **string** |  | 
- **amount** | **float32** |  | 
- **withdrawOrderId** | **string** | client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | 
- **network** | **string** |  | 
+ **address** | **string** | Withdrawal address | 
+ **amount** | **float32** | Amount | 
+ **withdrawOrderId** | **string** | client side id for withdrawal, if provide here, can be used in GET &#x60;/sapi/v1/capital/withdraw/history&#x60; for query. | 
+ **network** | **string** | Withdrawal network | 
  **addressTag** | **string** | Secondary address identifier for coins like XRP,XMR etc. | 
  **transactionFeeFlag** | **bool** | When making internal transfer, &#x60;true&#x60; for returning the fee to the destination account; &#x60;false&#x60; for returning the fee back to the departure account. Default &#x60;false&#x60;. | 
- **name** | **string** | Description of the address. Address book cap is 200, space in name should be encoded into &#x60;%20&#x60; | 
+ **name** | **string** |  | 
  **walletType** | **int64** | The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the current \&quot;selected wallet\&quot; under wallet-&gt;Fiat and Spot/Funding-&gt;Deposit | 
  **recvWindow** | **int64** |  | 
 
@@ -624,14 +624,14 @@ import (
 )
 
 func main() {
-	coin := "coin_example" // string |  (optional)
+	coin := "BTC" // string |  (optional)
 	withdrawOrderId := "1" // string | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query. (optional)
-	status := int64(789) // int64 | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) (optional)
+	status := int64(0) // int64 | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) (optional)
 	offset := int64(0) // int64 | Default: 0 (optional)
-	limit := int64(7) // int64 | min 7, max 30, default 7 (optional)
+	limit := int64(1000) // int64 |  (optional)
 	idList := "idList_example" // string | id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,` (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
+	endTime := int64(1641782889000) // int64 | Default: present timestamp (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -664,10 +664,10 @@ Name          | Type          | Description   | Notes
  **withdrawOrderId** | **string** | client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | 
  **status** | **int64** | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | 
  **offset** | **int64** | Default: 0 | 
- **limit** | **int64** | min 7, max 30, default 7 | 
+ **limit** | **int64** |  | 
  **idList** | **string** | id list returned in the response of POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
+ **startTime** | **int64** | Default: 90 days from current timestamp | 
+ **endTime** | **int64** | Default: present timestamp | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &StatisticListResponseData{}
 
 // StatisticListResponseData struct for StatisticListResponseData
 type StatisticListResponseData struct {
-	FifteenMinHashRate   *string                               `json:"fifteenMinHashRate,omitempty"`
-	DayHashRate          *string                               `json:"dayHashRate,omitempty"`
-	ValidNum             *int64                                `json:"validNum,omitempty"`
-	InvalidNum           *int64                                `json:"invalidNum,omitempty"`
-	ProfitToday          *StatisticListResponseDataProfitToday `json:"profitToday,omitempty"`
-	ProfitYesterday      *StatisticListResponseDataProfitToday `json:"profitYesterday,omitempty"`
-	UserName             *string                               `json:"userName,omitempty"`
-	Unit                 *string                               `json:"unit,omitempty"`
-	Algo                 *string                               `json:"algo,omitempty"`
+	// 15-minute hashrate
+	FifteenMinHashRate *string `json:"fifteenMinHashRate,omitempty"`
+	// 24H hashrate
+	DayHashRate *string `json:"dayHashRate,omitempty"`
+	// Effective quantity
+	ValidNum *int64 `json:"validNum,omitempty"`
+	// Invalid quantity
+	InvalidNum *int64 `json:"invalidNum,omitempty"`
+	// Today's estimate. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning amounts as strings.
+	ProfitToday *map[string]string `json:"profitToday,omitempty"`
+	// Yesterday's earnings. Keys are coin symbols (e.g. BTC, BSV, BCH), values are earning amounts as strings.
+	ProfitYesterday *map[string]string `json:"profitYesterday,omitempty"`
+	// Mining account
+	UserName *string `json:"userName,omitempty"`
+	// Unit
+	Unit *string `json:"unit,omitempty"`
+	// Algorithm
+	Algo                 *string `json:"algo,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -177,9 +186,9 @@ func (o *StatisticListResponseData) SetInvalidNum(v int64) {
 }
 
 // GetProfitToday returns the ProfitToday field value if set, zero value otherwise.
-func (o *StatisticListResponseData) GetProfitToday() StatisticListResponseDataProfitToday {
+func (o *StatisticListResponseData) GetProfitToday() map[string]string {
 	if o == nil || common.IsNil(o.ProfitToday) {
-		var ret StatisticListResponseDataProfitToday
+		var ret map[string]string
 		return ret
 	}
 	return *o.ProfitToday
@@ -187,7 +196,7 @@ func (o *StatisticListResponseData) GetProfitToday() StatisticListResponseDataPr
 
 // GetProfitTodayOk returns a tuple with the ProfitToday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatisticListResponseData) GetProfitTodayOk() (*StatisticListResponseDataProfitToday, bool) {
+func (o *StatisticListResponseData) GetProfitTodayOk() (*map[string]string, bool) {
 	if o == nil || common.IsNil(o.ProfitToday) {
 		return nil, false
 	}
@@ -203,15 +212,15 @@ func (o *StatisticListResponseData) HasProfitToday() bool {
 	return false
 }
 
-// SetProfitToday gets a reference to the given StatisticListResponseDataProfitToday and assigns it to the ProfitToday field.
-func (o *StatisticListResponseData) SetProfitToday(v StatisticListResponseDataProfitToday) {
+// SetProfitToday gets a reference to the given map[string]string and assigns it to the ProfitToday field.
+func (o *StatisticListResponseData) SetProfitToday(v map[string]string) {
 	o.ProfitToday = &v
 }
 
 // GetProfitYesterday returns the ProfitYesterday field value if set, zero value otherwise.
-func (o *StatisticListResponseData) GetProfitYesterday() StatisticListResponseDataProfitToday {
+func (o *StatisticListResponseData) GetProfitYesterday() map[string]string {
 	if o == nil || common.IsNil(o.ProfitYesterday) {
-		var ret StatisticListResponseDataProfitToday
+		var ret map[string]string
 		return ret
 	}
 	return *o.ProfitYesterday
@@ -219,7 +228,7 @@ func (o *StatisticListResponseData) GetProfitYesterday() StatisticListResponseDa
 
 // GetProfitYesterdayOk returns a tuple with the ProfitYesterday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatisticListResponseData) GetProfitYesterdayOk() (*StatisticListResponseDataProfitToday, bool) {
+func (o *StatisticListResponseData) GetProfitYesterdayOk() (*map[string]string, bool) {
 	if o == nil || common.IsNil(o.ProfitYesterday) {
 		return nil, false
 	}
@@ -235,8 +244,8 @@ func (o *StatisticListResponseData) HasProfitYesterday() bool {
 	return false
 }
 
-// SetProfitYesterday gets a reference to the given StatisticListResponseDataProfitToday and assigns it to the ProfitYesterday field.
-func (o *StatisticListResponseData) SetProfitYesterday(v StatisticListResponseDataProfitToday) {
+// SetProfitYesterday gets a reference to the given map[string]string and assigns it to the ProfitYesterday field.
+func (o *StatisticListResponseData) SetProfitYesterday(v map[string]string) {
 	o.ProfitYesterday = &v
 }
 

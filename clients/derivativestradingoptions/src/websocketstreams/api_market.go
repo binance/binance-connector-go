@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionswebsocketstreams
@@ -33,7 +33,7 @@ func (r ApiIndexPriceStreamsRequest) Execute() (*common.StreamHandler[models.Ind
 IndexPriceStreams Index Price Streams
 /!index@arr
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Index-Price-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#index-price-streams
 
 @param id Unique WebSocket request ID.
 @return ApiIndexPriceStreamsRequest
@@ -79,7 +79,7 @@ func (a *MarketAPIService) IndexPriceStreamsExecute(r ApiIndexPriceStreamsReques
 type ApiKlineCandlestickStreamsRequest struct {
 	ApiService *MarketAPIService
 	symbol     *string
-	interval   *string
+	interval   *models.KlineCandlestickStreamsIntervalParameter
 	id         *int32
 }
 
@@ -90,7 +90,7 @@ func (r ApiKlineCandlestickStreamsRequest) Symbol(symbol string) ApiKlineCandles
 }
 
 // The interval parameter
-func (r ApiKlineCandlestickStreamsRequest) Interval(interval string) ApiKlineCandlestickStreamsRequest {
+func (r ApiKlineCandlestickStreamsRequest) Interval(interval models.KlineCandlestickStreamsIntervalParameter) ApiKlineCandlestickStreamsRequest {
 	r.interval = &interval
 	return r
 }
@@ -109,7 +109,7 @@ func (r ApiKlineCandlestickStreamsRequest) Execute() (*common.StreamHandler[mode
 KlineCandlestickStreams Kline/Candlestick Streams
 /<symbol>@kline_<interval>
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Kline-Candlestick-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#kline-candlestick-streams
 
 @param symbol The symbol parameter	@param interval The interval parameter	@param id Unique WebSocket request ID.
 @return ApiKlineCandlestickStreamsRequest
@@ -144,7 +144,7 @@ func (a *MarketAPIService) KlineCandlestickStreamsExecute(r ApiKlineCandlestickS
 				if r.interval == nil {
 					return ""
 				}
-				return *r.interval
+				return string(*r.interval)
 			}(),
 			"id": func() string {
 				if r.id == nil {
@@ -161,84 +161,6 @@ func (a *MarketAPIService) KlineCandlestickStreamsExecute(r ApiKlineCandlestickS
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.KlineCandlestickStreamsResponse](&common.StreamHandlerWrapper{
-		WebsocketStreams: ws,
-	}, localStream, id, true)
-
-	if err != nil {
-		return nil, err
-	}
-	return resp, nil
-}
-
-type ApiMarkPriceRequest struct {
-	ApiService *MarketAPIService
-	underlying *string
-	id         *int32
-}
-
-// The underlying parameter
-func (r ApiMarkPriceRequest) Underlying(underlying string) ApiMarkPriceRequest {
-	r.underlying = &underlying
-	return r
-}
-
-// Unique WebSocket request ID.
-func (r ApiMarkPriceRequest) Id(id int32) ApiMarkPriceRequest {
-	r.id = &id
-	return r
-}
-
-func (r ApiMarkPriceRequest) Execute() (*common.StreamHandler[models.MarkPriceResponse], error) {
-	return r.ApiService.MarkPriceExecute(r)
-}
-
-/*
-MarkPrice Mark Price
-/<underlying>@optionMarkPrice
-
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Mark-Price
-
-@param underlying The underlying parameter	@param id Unique WebSocket request ID.
-@return ApiMarkPriceRequest
-*/
-func (a *MarketAPIService) MarkPrice() ApiMarkPriceRequest {
-	return ApiMarkPriceRequest{
-		ApiService: a,
-	}
-}
-
-// Execute executes the request
-//
-//	@return MarkPriceResponse
-func (a *MarketAPIService) MarkPriceExecute(r ApiMarkPriceRequest) (*common.StreamHandler[models.MarkPriceResponse], error) {
-	if r.underlying == nil {
-		return nil, common.ReportError("underlying is required and must be specified")
-	}
-
-	localStream := common.WsStreamsPlaceholder(
-		"/<underlying>@optionMarkPrice"[1:],
-		map[string]string{
-			"underlying": func() string {
-				if r.underlying == nil {
-					return ""
-				}
-				return *r.underlying
-			}(),
-			"id": func() string {
-				if r.id == nil {
-					return ""
-				}
-				return string(*r.id)
-			}(),
-		},
-	)
-	ws := a.client.WsMarket
-
-	id := []any{common.GenerateIntUUID()}
-	if r.id != nil {
-		id = []any{*r.id}
-	}
-	resp, err := common.CreateStreamHandler[models.MarkPriceResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, true)
 
@@ -267,7 +189,7 @@ func (r ApiNewSymbolInfoRequest) Execute() (*common.StreamHandler[models.NewSymb
 NewSymbolInfo New Symbol Info
 /!optionSymbol
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/New-Symbol-Info
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#new-symbol-info
 
 @param id Unique WebSocket request ID.
 @return ApiNewSymbolInfoRequest
@@ -312,8 +234,15 @@ func (a *MarketAPIService) NewSymbolInfoExecute(r ApiNewSymbolInfoRequest) (*com
 
 type ApiOpenInterestRequest struct {
 	ApiService     *MarketAPIService
+	underlying     *string
 	expirationDate *string
 	id             *int32
+}
+
+// The underlying parameter
+func (r ApiOpenInterestRequest) Underlying(underlying string) ApiOpenInterestRequest {
+	r.underlying = &underlying
+	return r
 }
 
 // The expirationDate parameter
@@ -334,11 +263,11 @@ func (r ApiOpenInterestRequest) Execute() (*common.StreamHandler[models.OpenInte
 
 /*
 OpenInterest Open Interest
-/underlying@optionOpenInterest@<expirationDate>
+/<underlying>@openInterest@<expirationDate>
 
-https://developers.binance.com/docs/derivatives/options-trading/websocket-market-streams/Open-Interest
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#open-interest
 
-@param expirationDate The expirationDate parameter	@param id Unique WebSocket request ID.
+@param underlying The underlying parameter	@param expirationDate The expirationDate parameter	@param id Unique WebSocket request ID.
 @return ApiOpenInterestRequest
 */
 func (a *MarketAPIService) OpenInterest() ApiOpenInterestRequest {
@@ -351,13 +280,22 @@ func (a *MarketAPIService) OpenInterest() ApiOpenInterestRequest {
 //
 //	@return OpenInterestResponse
 func (a *MarketAPIService) OpenInterestExecute(r ApiOpenInterestRequest) (*common.StreamHandler[models.OpenInterestResponse], error) {
+	if r.underlying == nil {
+		return nil, common.ReportError("underlying is required and must be specified")
+	}
 	if r.expirationDate == nil {
 		return nil, common.ReportError("expirationDate is required and must be specified")
 	}
 
 	localStream := common.WsStreamsPlaceholder(
-		"/underlying@optionOpenInterest@<expirationDate>"[1:],
+		"/<underlying>@openInterest@<expirationDate>"[1:],
 		map[string]string{
+			"underlying": func() string {
+				if r.underlying == nil {
+					return ""
+				}
+				return *r.underlying
+			}(),
 			"expirationDate": func() string {
 				if r.expirationDate == nil {
 					return ""
@@ -379,6 +317,84 @@ func (a *MarketAPIService) OpenInterestExecute(r ApiOpenInterestRequest) (*commo
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.OpenInterestResponse](&common.StreamHandlerWrapper{
+		WebsocketStreams: ws,
+	}, localStream, id, true)
+
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
+type ApiOptionMarkPriceRequest struct {
+	ApiService *MarketAPIService
+	underlying *string
+	id         *int32
+}
+
+// The underlying parameter
+func (r ApiOptionMarkPriceRequest) Underlying(underlying string) ApiOptionMarkPriceRequest {
+	r.underlying = &underlying
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiOptionMarkPriceRequest) Id(id int32) ApiOptionMarkPriceRequest {
+	r.id = &id
+	return r
+}
+
+func (r ApiOptionMarkPriceRequest) Execute() (*common.StreamHandler[models.OptionMarkPriceResponse], error) {
+	return r.ApiService.OptionMarkPriceExecute(r)
+}
+
+/*
+OptionMarkPrice Option Mark Price
+/<underlying>@optionMarkPrice
+
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#option-mark-price
+
+@param underlying The underlying parameter	@param id Unique WebSocket request ID.
+@return ApiOptionMarkPriceRequest
+*/
+func (a *MarketAPIService) OptionMarkPrice() ApiOptionMarkPriceRequest {
+	return ApiOptionMarkPriceRequest{
+		ApiService: a,
+	}
+}
+
+// Execute executes the request
+//
+//	@return OptionMarkPriceResponse
+func (a *MarketAPIService) OptionMarkPriceExecute(r ApiOptionMarkPriceRequest) (*common.StreamHandler[models.OptionMarkPriceResponse], error) {
+	if r.underlying == nil {
+		return nil, common.ReportError("underlying is required and must be specified")
+	}
+
+	localStream := common.WsStreamsPlaceholder(
+		"/<underlying>@optionMarkPrice"[1:],
+		map[string]string{
+			"underlying": func() string {
+				if r.underlying == nil {
+					return ""
+				}
+				return *r.underlying
+			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return string(*r.id)
+			}(),
+		},
+	)
+	ws := a.client.WsMarket
+
+	id := []any{common.GenerateIntUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
+	resp, err := common.CreateStreamHandler[models.OptionMarkPriceResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, true)
 

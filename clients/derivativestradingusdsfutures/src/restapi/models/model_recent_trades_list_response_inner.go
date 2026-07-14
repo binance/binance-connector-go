@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &RecentTradesListResponseInner{}
 
 // RecentTradesListResponseInner struct for RecentTradesListResponseInner
 type RecentTradesListResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	QuoteQty             *string `json:"quoteQty,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	IsBuyerMaker         *bool   `json:"isBuyerMaker,omitempty"`
-	IsRPITrade           *bool   `json:"isRPITrade,omitempty"`
+	// Id.
+	Id *int64 `json:"id,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Qty.
+	Qty *string `json:"qty,omitempty"`
+	// Quote Qty.
+	QuoteQty *string `json:"quoteQty,omitempty"`
+	// Time.
+	Time *int64 `json:"time,omitempty"`
+	// Is Buyer Maker.
+	IsBuyerMaker *bool `json:"isBuyerMaker,omitempty"`
+	// Is RPITrade.
+	IsRPITrade           *bool `json:"isRPITrade,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

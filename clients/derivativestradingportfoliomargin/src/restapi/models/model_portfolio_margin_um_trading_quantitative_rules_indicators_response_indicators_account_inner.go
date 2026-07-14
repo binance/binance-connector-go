@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &PortfolioMarginUmTradingQuantitativeRulesIndicato
 
 // PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner struct for PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner
 type PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsACCOUNTInner struct {
-	Indicator            *string `json:"indicator,omitempty"`
-	Value                *int64  `json:"value,omitempty"`
-	TriggerValue         *int64  `json:"triggerValue,omitempty"`
-	PlannedRecoverTime   *int64  `json:"plannedRecoverTime,omitempty"`
-	IsLocked             *bool   `json:"isLocked,omitempty"`
+	// Indicator.
+	Indicator *string `json:"indicator,omitempty"`
+	// Value.
+	Value *int64 `json:"value,omitempty"`
+	// Trigger Value.
+	TriggerValue *int64 `json:"triggerValue,omitempty"`
+	// Planned Recover Time.
+	PlannedRecoverTime *int64 `json:"plannedRecoverTime,omitempty"`
+	// Is Locked.
+	IsLocked             *bool `json:"isLocked,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

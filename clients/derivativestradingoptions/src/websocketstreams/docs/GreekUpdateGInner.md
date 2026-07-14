@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**U** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
+**U** | Pointer to **string** | Underlying | [optional] 
+**D** | Pointer to **string** | Delta | [optional] 
+**G** | Pointer to **string** | Gamma | [optional] 
+**T** | Pointer to **string** | Theta | [optional] 
+**V** | Pointer to **string** | Vega | [optional] 
 
 ## Methods
 

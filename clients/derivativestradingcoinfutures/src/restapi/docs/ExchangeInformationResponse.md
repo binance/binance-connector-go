@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ExchangeFilters** | Pointer to **[]string** |  | [optional] 
-**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) |  | [optional] 
-**ServerTime** | Pointer to **int64** |  | [optional] 
-**Symbols** | Pointer to [**[]ExchangeInformationResponseSymbolsInner**](ExchangeInformationResponseSymbolsInner.md) |  | [optional] 
-**Timezone** | Pointer to **string** |  | [optional] 
+**ExchangeFilters** | Pointer to **[]string** | Exchange filters. | [optional] 
+**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
+**ServerTime** | Pointer to **int64** | Ignore please. If you want to check current server time, please check via \&quot;GET /dapi/v1/time\&quot; | [optional] 
+**Symbols** | Pointer to [**[]ExchangeInformationResponseSymbolsInner**](ExchangeInformationResponseSymbolsInner.md) | Supported trading symbols. | [optional] 
+**Timezone** | Pointer to **string** | Timezone of market data. | [optional] 
 
 ## Methods
 

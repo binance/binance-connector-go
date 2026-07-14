@@ -4,30 +4,33 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**BnbTransfer**](AccountAPI.md#BnbTransfer) | **Post** /sapi/v1/portfolio/bnb-transfer | BNB transfer(USER_DATA)
-[**ChangeAutoRepayFuturesStatus**](AccountAPI.md#ChangeAutoRepayFuturesStatus) | **Post** /sapi/v1/portfolio/repay-futures-switch | Change Auto-repay-futures Status(TRADE)
-[**FundAutoCollection**](AccountAPI.md#FundAutoCollection) | **Post** /sapi/v1/portfolio/auto-collection | Fund Auto-collection(USER_DATA)
-[**FundCollectionByAsset**](AccountAPI.md#FundCollectionByAsset) | **Post** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset(USER_DATA)
-[**GetAutoRepayFuturesStatus**](AccountAPI.md#GetAutoRepayFuturesStatus) | **Get** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status(USER_DATA)
-[**GetDeltaModeStatus**](AccountAPI.md#GetDeltaModeStatus) | **Get** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status(USER_DATA)
-[**GetPortfolioMarginProAccountBalance**](AccountAPI.md#GetPortfolioMarginProAccountBalance) | **Get** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance(USER_DATA)
-[**GetPortfolioMarginProAccountInfo**](AccountAPI.md#GetPortfolioMarginProAccountInfo) | **Get** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info(USER_DATA)
-[**GetPortfolioMarginProSpanAccountInfo**](AccountAPI.md#GetPortfolioMarginProSpanAccountInfo) | **Get** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
+[**BnbTransfer**](AccountAPI.md#BnbTransfer) | **Post** /sapi/v1/portfolio/bnb-transfer | BNB transfer (USER_DATA)
+[**ChangeAutoRepayFuturesStatus**](AccountAPI.md#ChangeAutoRepayFuturesStatus) | **Post** /sapi/v1/portfolio/repay-futures-switch | Change Auto-repay-futures Status (TRADE)
+[**DeleteMarginCallLevel**](AccountAPI.md#DeleteMarginCallLevel) | **Delete** /sapi/v1/portfolio/margin-call-level | Delete Margin Call Level (USER_DATA)
+[**FundAutoCollection**](AccountAPI.md#FundAutoCollection) | **Post** /sapi/v1/portfolio/auto-collection | Fund Auto-collection (USER_DATA)
+[**FundCollectionByAsset**](AccountAPI.md#FundCollectionByAsset) | **Post** /sapi/v1/portfolio/asset-collection | Fund Collection by Asset (USER_DATA)
+[**GetAutoRepayFuturesStatus**](AccountAPI.md#GetAutoRepayFuturesStatus) | **Get** /sapi/v1/portfolio/repay-futures-switch | Get Auto-repay-futures Status (USER_DATA)
+[**GetDeltaModeStatus**](AccountAPI.md#GetDeltaModeStatus) | **Get** /sapi/v1/portfolio/delta-mode | Get Delta Mode Status (USER_DATA)
+[**GetMarginCallLevel**](AccountAPI.md#GetMarginCallLevel) | **Get** /sapi/v1/portfolio/margin-call-level | Get Margin Call Level (USER_DATA)
+[**GetPortfolioMarginProAccountBalance**](AccountAPI.md#GetPortfolioMarginProAccountBalance) | **Get** /sapi/v1/portfolio/balance | Get Portfolio Margin Pro Account Balance (USER_DATA)
+[**GetPortfolioMarginProAccountInfo**](AccountAPI.md#GetPortfolioMarginProAccountInfo) | **Get** /sapi/v1/portfolio/account | Get Portfolio Margin Pro Account Info (USER_DATA)
+[**GetPortfolioMarginProSpanAccountInfo**](AccountAPI.md#GetPortfolioMarginProSpanAccountInfo) | **Get** /sapi/v2/portfolio/account | Get Portfolio Margin Pro SPAN Account Info (USER_DATA)
 [**GetTransferableEarnAssetBalanceForPortfolioMargin**](AccountAPI.md#GetTransferableEarnAssetBalanceForPortfolioMargin) | **Get** /sapi/v1/portfolio/earn-asset-balance | Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA)
-[**PortfolioMarginProBankruptcyLoanRepay**](AccountAPI.md#PortfolioMarginProBankruptcyLoanRepay) | **Post** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay
-[**QueryPortfolioMarginProBankruptcyLoanAmount**](AccountAPI.md#QueryPortfolioMarginProBankruptcyLoanAmount) | **Get** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
-[**QueryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountAPI.md#QueryPortfolioMarginProBankruptcyLoanRepayHistory) | **Get** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
-[**QueryPortfolioMarginProNegativeBalanceInterestHistory**](AccountAPI.md#QueryPortfolioMarginProNegativeBalanceInterestHistory) | **Get** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
-[**RepayFuturesNegativeBalance**](AccountAPI.md#RepayFuturesNegativeBalance) | **Post** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance(USER_DATA)
-[**SwitchDeltaMode**](AccountAPI.md#SwitchDeltaMode) | **Post** /sapi/v1/portfolio/delta-mode | Switch Delta Mode(TRADE)
-[**TransferLdusdtRwusdForPortfolioMargin**](AccountAPI.md#TransferLdusdtRwusdForPortfolioMargin) | **Post** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
+[**PortfolioMarginProBankruptcyLoanRepay**](AccountAPI.md#PortfolioMarginProBankruptcyLoanRepay) | **Post** /sapi/v1/portfolio/repay | Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
+[**QueryPortfolioMarginProBankruptcyLoanAmount**](AccountAPI.md#QueryPortfolioMarginProBankruptcyLoanAmount) | **Get** /sapi/v1/portfolio/pmLoan | Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
+[**QueryPortfolioMarginProBankruptcyLoanRepayHistory**](AccountAPI.md#QueryPortfolioMarginProBankruptcyLoanRepayHistory) | **Get** /sapi/v1/portfolio/pmloan-history | Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA)
+[**QueryPortfolioMarginProNegativeBalanceInterestHistory**](AccountAPI.md#QueryPortfolioMarginProNegativeBalanceInterestHistory) | **Get** /sapi/v1/portfolio/interest-history | Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
+[**RepayFuturesNegativeBalance**](AccountAPI.md#RepayFuturesNegativeBalance) | **Post** /sapi/v1/portfolio/repay-futures-negative-balance | Repay futures Negative Balance (USER_DATA)
+[**SetMarginCallLevel**](AccountAPI.md#SetMarginCallLevel) | **Post** /sapi/v1/portfolio/margin-call-level | Set Margin Call Level (USER_DATA)
+[**SwitchDeltaMode**](AccountAPI.md#SwitchDeltaMode) | **Post** /sapi/v1/portfolio/delta-mode | Switch Delta Mode (TRADE)
+[**TransferLdusdtRwusdForPortfolioMargin**](AccountAPI.md#TransferLdusdtRwusdForPortfolioMargin) | **Post** /sapi/v1/portfolio/earn-asset-transfer | Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
 
 
 ## BnbTransfer
 
 > BnbTransferResponse BnbTransfer(ctx).Amount(amount).TransferSide(transferSide).RecvWindow(recvWindow).Execute()
 
-BNB transfer(USER_DATA)
+BNB transfer (USER_DATA)
 
 
 ### Example
@@ -47,7 +50,7 @@ import (
 
 func main() {
 	amount := float32(1.0) // float32 | 
-	transferSide := "transferSide_example" // string | \"TO_UM\",\"FROM_UM\"
+	transferSide := models.BnbTransferTransferSideParameterToUm // BnbTransferTransferSideParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -77,7 +80,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **amount** | **float32** |  | 
- **transferSide** | **string** | \&quot;TO_UM\&quot;,\&quot;FROM_UM\&quot; | 
+ **transferSide** | [**BnbTransferTransferSideParameter**](BnbTransferTransferSideParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -99,7 +102,7 @@ No authorization required
 
 > ChangeAutoRepayFuturesStatusResponse ChangeAutoRepayFuturesStatus(ctx).AutoRepay(autoRepay).RecvWindow(recvWindow).Execute()
 
-Change Auto-repay-futures Status(TRADE)
+Change Auto-repay-futures Status (TRADE)
 
 
 ### Example
@@ -118,7 +121,7 @@ import (
 )
 
 func main() {
-	autoRepay := "true" // string | Default: `true`; `false` for turn off the auto-repay futures negative balance function
+	autoRepay := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | `false` for turn off the auto-repay futures negative balance function
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -147,7 +150,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **autoRepay** | **string** | Default: &#x60;true&#x60;; &#x60;false&#x60; for turn off the auto-repay futures negative balance function | 
+ **autoRepay** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | &#x60;false&#x60; for turn off the auto-repay futures negative balance function | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -165,11 +168,79 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
+## DeleteMarginCallLevel
+
+> DeleteMarginCallLevelResponse DeleteMarginCallLevel(ctx).RecvWindow(recvWindow).Execute()
+
+Delete Margin Call Level (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.DeleteMarginCallLevel(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.DeleteMarginCallLevel``: %v\n", err)
+		return
+	}
+
+	// response from `DeleteMarginCallLevel`: DeleteMarginCallLevelResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
+
+### Return type
+
+[**DeleteMarginCallLevelResponse**](DeleteMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
 ## FundAutoCollection
 
 > FundAutoCollectionResponse FundAutoCollection(ctx).RecvWindow(recvWindow).Execute()
 
-Fund Auto-collection(USER_DATA)
+Fund Auto-collection (USER_DATA)
 
 
 ### Example
@@ -237,7 +308,7 @@ No authorization required
 
 > FundCollectionByAssetResponse FundCollectionByAsset(ctx).Asset(asset).RecvWindow(recvWindow).Execute()
 
-Fund Collection by Asset(USER_DATA)
+Fund Collection by Asset (USER_DATA)
 
 
 ### Example
@@ -256,7 +327,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | `LDUSDT` and `RWUSD`
+	asset := "USDT" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -285,7 +356,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60; | 
+ **asset** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -307,7 +378,7 @@ No authorization required
 
 > GetAutoRepayFuturesStatusResponse GetAutoRepayFuturesStatus(ctx).RecvWindow(recvWindow).Execute()
 
-Get Auto-repay-futures Status(USER_DATA)
+Get Auto-repay-futures Status (USER_DATA)
 
 
 ### Example
@@ -375,7 +446,7 @@ No authorization required
 
 > GetDeltaModeStatusResponse GetDeltaModeStatus(ctx).RecvWindow(recvWindow).Execute()
 
-Get Delta Mode Status(USER_DATA)
+Get Delta Mode Status (USER_DATA)
 
 
 ### Example
@@ -439,11 +510,11 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## GetPortfolioMarginProAccountBalance
+## GetMarginCallLevel
 
-> GetPortfolioMarginProAccountBalanceResponse GetPortfolioMarginProAccountBalance(ctx).Asset(asset).RecvWindow(recvWindow).Execute()
+> GetMarginCallLevelResponse GetMarginCallLevel(ctx).RecvWindow(recvWindow).Execute()
 
-Get Portfolio Margin Pro Account Balance(USER_DATA)
+Get Margin Call Level (USER_DATA)
 
 
 ### Example
@@ -462,7 +533,75 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetMarginCallLevel(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetMarginCallLevel``: %v\n", err)
+		return
+	}
+
+	// response from `GetMarginCallLevel`: GetMarginCallLevelResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
+
+### Return type
+
+[**GetMarginCallLevelResponse**](GetMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetPortfolioMarginProAccountBalance
+
+> GetPortfolioMarginProAccountBalanceResponse GetPortfolioMarginProAccountBalance(ctx).Asset(asset).RecvWindow(recvWindow).Execute()
+
+Get Portfolio Margin Pro Account Balance (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	asset := "BTC" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -513,7 +652,7 @@ No authorization required
 
 > GetPortfolioMarginProAccountInfoResponse GetPortfolioMarginProAccountInfo(ctx).RecvWindow(recvWindow).Execute()
 
-Get Portfolio Margin Pro Account Info(USER_DATA)
+Get Portfolio Margin Pro Account Info (USER_DATA)
 
 
 ### Example
@@ -581,7 +720,7 @@ No authorization required
 
 > GetPortfolioMarginProSpanAccountInfoResponse GetPortfolioMarginProSpanAccountInfo(ctx).RecvWindow(recvWindow).Execute()
 
-Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
+Get Portfolio Margin Pro SPAN Account Info (USER_DATA)
 
 
 ### Example
@@ -668,8 +807,8 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | `LDUSDT` and `RWUSD`
-	transferType := "transferType_example" // string | `EARN_TO_FUTURE` /`FUTURE_TO_EARN`
+	asset := "LDUSDT" // string | `LDUSDT` only
+	transferType := models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture // GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -698,8 +837,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60; | 
- **transferType** | **string** | &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60; | 
+ **asset** | **string** | &#x60;LDUSDT&#x60; only | 
+ **transferType** | [**GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter**](GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -721,7 +860,7 @@ No authorization required
 
 > PortfolioMarginProBankruptcyLoanRepayResponse PortfolioMarginProBankruptcyLoanRepay(ctx).From(from).RecvWindow(recvWindow).Execute()
 
-Portfolio Margin Pro Bankruptcy Loan Repay
+Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
 
 
 ### Example
@@ -740,7 +879,7 @@ import (
 )
 
 func main() {
-	from := "SPOT" // string | SPOT or MARGIN，default SPOT (optional)
+	from := models.PortfolioMarginProBankruptcyLoanRepayFromParameterSpot // PortfolioMarginProBankruptcyLoanRepayFromParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -769,7 +908,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | SPOT or MARGIN，default SPOT | 
+ **from** | [**PortfolioMarginProBankruptcyLoanRepayFromParameter**](PortfolioMarginProBankruptcyLoanRepayFromParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -791,7 +930,7 @@ No authorization required
 
 > QueryPortfolioMarginProBankruptcyLoanAmountResponse QueryPortfolioMarginProBankruptcyLoanAmount(ctx).RecvWindow(recvWindow).Execute()
 
-Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
+Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
 
 
 ### Example
@@ -857,9 +996,9 @@ No authorization required
 
 ## QueryPortfolioMarginProBankruptcyLoanRepayHistory
 
-> QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse QueryPortfolioMarginProBankruptcyLoanRepayHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+> QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse QueryPortfolioMarginProBankruptcyLoanRepayHistory(ctx).StartTime(startTime).EndTime(endTime).Size(size).Current(current).RecvWindow(recvWindow).Execute()
 
-Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
+Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA)
 
 
 ### Example
@@ -878,10 +1017,10 @@ import (
 )
 
 func main() {
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	size := int64(10) // int64 | Number of results returned. (optional)
+	current := int64(1) // int64 | Currently querying page. Start from 1. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -891,7 +1030,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.QueryPortfolioMarginProBankruptcyLoanRepayHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.QueryPortfolioMarginProBankruptcyLoanRepayHistory(context.Background()).StartTime(startTime).EndTime(endTime).Size(size).Current(current).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.QueryPortfolioMarginProBankruptcyLoanRepayHistory``: %v\n", err)
 		return
@@ -910,10 +1049,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10 Max:100 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **size** | **int64** | Number of results returned. | 
+ **current** | **int64** | Currently querying page. Start from 1. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -935,7 +1074,7 @@ No authorization required
 
 > QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse QueryPortfolioMarginProNegativeBalanceInterestHistory(ctx).Asset(asset).StartTime(startTime).EndTime(endTime).Size(size).RecvWindow(recvWindow).Execute()
 
-Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
+Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
 
 
 ### Example
@@ -954,10 +1093,10 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
+	asset := "USDT" // string |  (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	size := int64(10) // int64 | Number of results returned. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -987,9 +1126,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **size** | **int64** | Default:10 Max:100 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **size** | **int64** | Number of results returned. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1011,7 +1150,7 @@ No authorization required
 
 > RepayFuturesNegativeBalanceResponse RepayFuturesNegativeBalance(ctx).From(from).RecvWindow(recvWindow).Execute()
 
-Repay futures Negative Balance(USER_DATA)
+Repay futures Negative Balance (USER_DATA)
 
 
 ### Example
@@ -1030,7 +1169,7 @@ import (
 )
 
 func main() {
-	from := "SPOT" // string | SPOT or MARGIN，default SPOT (optional)
+	from := models.PortfolioMarginProBankruptcyLoanRepayFromParameterSpot // PortfolioMarginProBankruptcyLoanRepayFromParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1059,7 +1198,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | SPOT or MARGIN，default SPOT | 
+ **from** | [**PortfolioMarginProBankruptcyLoanRepayFromParameter**](PortfolioMarginProBankruptcyLoanRepayFromParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1077,11 +1216,11 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## SwitchDeltaMode
+## SetMarginCallLevel
 
-> SwitchDeltaModeResponse SwitchDeltaMode(ctx).DeltaEnabled(deltaEnabled).RecvWindow(recvWindow).Execute()
+> SetMarginCallLevelResponse SetMarginCallLevel(ctx).MarginCallLevel(marginCallLevel).RecvWindow(recvWindow).Execute()
 
-Switch Delta Mode(TRADE)
+Set Margin Call Level (USER_DATA)
 
 
 ### Example
@@ -1100,7 +1239,77 @@ import (
 )
 
 func main() {
-	deltaEnabled := "deltaEnabled_example" // string | `true` to enable Delta mode; `false` to disable Delta mode
+	marginCallLevel := float32(1.5) // float32 | The value must be within the range [1.1, 2.0].
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.SetMarginCallLevel(context.Background()).MarginCallLevel(marginCallLevel).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.SetMarginCallLevel``: %v\n", err)
+		return
+	}
+
+	// response from `SetMarginCallLevel`: SetMarginCallLevelResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **marginCallLevel** | **float32** | The value must be within the range [1.1, 2.0]. | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
+
+### Return type
+
+[**SetMarginCallLevelResponse**](SetMarginCallLevelResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## SwitchDeltaMode
+
+> SwitchDeltaModeResponse SwitchDeltaMode(ctx).DeltaEnabled(deltaEnabled).RecvWindow(recvWindow).Execute()
+
+Switch Delta Mode (TRADE)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	deltaEnabled := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | `true` to enable Delta mode; `false` to disable Delta mode
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1129,7 +1338,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **deltaEnabled** | **string** | &#x60;true&#x60; to enable Delta mode; &#x60;false&#x60; to disable Delta mode | 
+ **deltaEnabled** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | &#x60;true&#x60; to enable Delta mode; &#x60;false&#x60; to disable Delta mode | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1151,7 +1360,7 @@ No authorization required
 
 > TransferLdusdtRwusdForPortfolioMarginResponse TransferLdusdtRwusdForPortfolioMargin(ctx).Asset(asset).TransferType(transferType).Amount(amount).RecvWindow(recvWindow).Execute()
 
-Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
+Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
 
 
 ### Example
@@ -1170,9 +1379,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | `LDUSDT` and `RWUSD`
-	transferType := "transferType_example" // string | `EARN_TO_FUTURE` /`FUTURE_TO_EARN`
-	amount := float32(1.0) // float32 | 
+	asset := models.TransferLdusdtRwusdForPortfolioMarginAssetParameterLdusdt // TransferLdusdtRwusdForPortfolioMarginAssetParameter | 
+	transferType := models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture // GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter | 
+	amount := float32(1) // float32 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1201,8 +1410,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60; | 
- **transferType** | **string** | &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60; | 
+ **asset** | [**TransferLdusdtRwusdForPortfolioMarginAssetParameter**](TransferLdusdtRwusdForPortfolioMarginAssetParameter.md) |  | 
+ **transferType** | [**GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter**](GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter.md) |  | 
  **amount** | **float32** |  | 
  **recvWindow** | **int64** |  | 
 

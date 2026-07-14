@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**J** | Pointer to **bool** |  | [optional] 
+**J** | Pointer to **bool** | Multi-Assets Mode | [optional] 
 
 ## Methods
 

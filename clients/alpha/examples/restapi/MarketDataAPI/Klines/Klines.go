@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/alpha"
+	"github.com/binance/binance-connector-go/clients/alpha/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -21,7 +22,7 @@ func Klines() {
 	apiClient := client.NewBinanceAlphaClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.Klines(context.Background()).Symbol("symbol_example").Interval("interval_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.Klines(context.Background()).Symbol("ALPHA_175USDT").Interval(models.KlinesIntervalParameterInterval1s).Execute()
 	if err != nil {
 		log.Println(err)
 		return

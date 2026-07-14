@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**TradeId** | Pointer to **int64** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
-**RealizedProfit** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Liquidity** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**OptionSide** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int64** | unique id | [optional] 
+**TradeId** | Pointer to **int64** | trade id | [optional] 
+**OrderId** | Pointer to **int64** | order id | [optional] 
+**Symbol** | Pointer to **string** | option symbol | [optional] 
+**Price** | Pointer to **string** | trade price | [optional] 
+**Quantity** | Pointer to **string** | trade quantity | [optional] 
+**Fee** | Pointer to **string** | fee(negative is fee deduction) | [optional] 
+**RealizedProfit** | Pointer to **string** | realized profit/loss | [optional] 
+**Side** | Pointer to **string** | order side | [optional] 
+**Type** | Pointer to **string** | order type | [optional] 
+**Liquidity** | Pointer to **string** | TAKER or MAKER | [optional] 
+**Time** | Pointer to **int64** | trade time | [optional] 
+**PriceScale** | Pointer to **int64** | price Scale | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity Scale | [optional] 
+**OptionSide** | Pointer to **string** | option Side | [optional] 
+**QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
 
 ## Methods
 

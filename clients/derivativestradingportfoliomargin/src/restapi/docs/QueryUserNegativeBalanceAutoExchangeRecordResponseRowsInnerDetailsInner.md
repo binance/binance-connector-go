@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**NegativeBalance** | Pointer to **float32** |  | [optional] 
-**NegativeMaxThreshold** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**NegativeBalance** | Pointer to **float32** | negative balance amount | [optional] 
+**NegativeMaxThreshold** | Pointer to **int64** | the max negative balance threshold | [optional] 
 
 ## Methods
 

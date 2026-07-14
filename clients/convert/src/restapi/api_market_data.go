@@ -1,7 +1,7 @@
 /*
-Binance Convert REST API
+Convert REST API
 
-OpenAPI Specification for the Binance Convert REST API
+Request quotes and execute cryptocurrency conversions via the Convert REST API.
 */
 
 package binanceconvertrestapi
@@ -45,7 +45,7 @@ func (r ApiListAllConvertPairsRequest) Execute() (*common.RestApiResponse[models
 ListAllConvertPairs List All Convert Pairs
 Get /sapi/v1/convert/exchangeInfo
 
-https://developers.binance.com/docs/convert/market-data/
+https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#list-all-convert-pairs
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromAsset -  User spends coin
@@ -76,7 +76,15 @@ func (a *MarketDataAPIService) ListAllConvertPairsExecute(r ApiListAllConvertPai
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "toAsset", r.toAsset, "form", "")
 	}
 
-	resp, err := SendRequest[models.ListAllConvertPairsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ListAllConvertPairsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -90,7 +98,7 @@ type ApiQueryOrderQuantityPrecisionPerAssetRequest struct {
 	recvWindow *int64
 }
 
-// The value cannot be greater than 60000
+// Request validity window in milliseconds
 func (r ApiQueryOrderQuantityPrecisionPerAssetRequest) RecvWindow(recvWindow int64) ApiQueryOrderQuantityPrecisionPerAssetRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -101,13 +109,13 @@ func (r ApiQueryOrderQuantityPrecisionPerAssetRequest) Execute() (*common.RestAp
 }
 
 /*
-QueryOrderQuantityPrecisionPerAsset Query order quantity precision per asset(USER_DATA)
+QueryOrderQuantityPrecisionPerAsset Query order quantity precision per asset (USER_DATA)
 Get /sapi/v1/convert/assetInfo
 
-https://developers.binance.com/docs/convert/market-data/Query-order-quantity-precision-per-asset
+https://developers.binance.com/en/docs/catalog/core-trading-convert/api/rest-api/market-data#query-order-quantity-precision-per-asset
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  The value cannot be greater than 60000
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQueryOrderQuantityPrecisionPerAssetRequest
 */
 func (a *MarketDataAPIService) QueryOrderQuantityPrecisionPerAsset(ctx context.Context) ApiQueryOrderQuantityPrecisionPerAssetRequest {
@@ -131,7 +139,15 @@ func (a *MarketDataAPIService) QueryOrderQuantityPrecisionPerAssetExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryOrderQuantityPrecisionPerAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryOrderQuantityPrecisionPerAssetResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

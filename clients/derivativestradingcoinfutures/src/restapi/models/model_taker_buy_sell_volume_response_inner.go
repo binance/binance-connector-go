@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &TakerBuySellVolumeResponseInner{}
 
 // TakerBuySellVolumeResponseInner struct for TakerBuySellVolumeResponseInner
 type TakerBuySellVolumeResponseInner struct {
-	Pair                 *string `json:"pair,omitempty"`
-	ContractType         *string `json:"contractType,omitempty"`
-	TakerBuyVol          *string `json:"takerBuyVol,omitempty"`
-	TakerSellVol         *string `json:"takerSellVol,omitempty"`
-	TakerBuyVolValue     *string `json:"takerBuyVolValue,omitempty"`
-	TakerSellVolValue    *string `json:"takerSellVolValue,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Contract type.
+	ContractType *string `json:"contractType,omitempty"`
+	// unit: cont
+	TakerBuyVol *string `json:"takerBuyVol,omitempty"`
+	// unit: cont
+	TakerSellVol *string `json:"takerSellVol,omitempty"`
+	// unit: base asset
+	TakerBuyVolValue *string `json:"takerBuyVolValue,omitempty"`
+	// unit: base asset
+	TakerSellVolValue *string `json:"takerSellVolValue,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

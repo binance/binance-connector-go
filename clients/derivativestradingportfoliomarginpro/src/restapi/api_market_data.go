@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package binancederivativestradingportfoliomarginprorestapi
@@ -28,10 +28,10 @@ func (r ApiGetPortfolioMarginAssetLeverageRequest) Execute() (*common.RestApiRes
 }
 
 /*
-GetPortfolioMarginAssetLeverage Get Portfolio Margin Asset Leverage(USER_DATA)
+GetPortfolioMarginAssetLeverage Get Portfolio Margin Asset Leverage (USER_DATA)
 Get /sapi/v1/portfolio/margin-asset-leverage
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Get-Portfolio-Margin-Asset-Leverage
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#get-portfolio-margin-asset-leverage
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiGetPortfolioMarginAssetLeverageRequest
@@ -53,7 +53,15 @@ func (a *MarketDataAPIService) GetPortfolioMarginAssetLeverageExecute(r ApiGetPo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetPortfolioMarginAssetLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPortfolioMarginAssetLeverageResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -71,10 +79,10 @@ func (r ApiPortfolioMarginCollateralRateRequest) Execute() (*common.RestApiRespo
 }
 
 /*
-PortfolioMarginCollateralRate Portfolio Margin Collateral Rate(MARKET_DATA)
+PortfolioMarginCollateralRate Portfolio Margin Collateral Rate (MARKET_DATA)
 Get /sapi/v1/portfolio/collateralRate
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Classic-Portfolio-Margin-Collateral-Rate
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-collateral-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiPortfolioMarginCollateralRateRequest
@@ -96,7 +104,15 @@ func (a *MarketDataAPIService) PortfolioMarginCollateralRateExecute(r ApiPortfol
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.PortfolioMarginCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.PortfolioMarginCollateralRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -120,10 +136,10 @@ func (r ApiPortfolioMarginProTieredCollateralRateRequest) Execute() (*common.Res
 }
 
 /*
-PortfolioMarginProTieredCollateralRate Portfolio Margin Pro Tiered Collateral Rate(USER_DATA)
+PortfolioMarginProTieredCollateralRate Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
 Get /sapi/v2/portfolio/collateralRate
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Portfolio-Margin-Pro-Tiered-Collateral-Rate
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#portfolio-margin-pro-tiered-collateral-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -150,7 +166,15 @@ func (a *MarketDataAPIService) PortfolioMarginProTieredCollateralRateExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PortfolioMarginProTieredCollateralRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PortfolioMarginProTieredCollateralRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -177,7 +201,7 @@ func (r ApiQueryPortfolioMarginAssetIndexPriceRequest) Execute() (*common.RestAp
 QueryPortfolioMarginAssetIndexPrice Query Portfolio Margin Asset Index Price (MARKET_DATA)
 Get /sapi/v1/portfolio/asset-index-price
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/market-data/Query-Portfolio-Margin-Asset-Index-Price
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#query-portfolio-margin-asset-index-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
@@ -204,7 +228,15 @@ func (a *MarketDataAPIService) QueryPortfolioMarginAssetIndexPriceExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginAssetIndexPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.QueryPortfolioMarginAssetIndexPriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

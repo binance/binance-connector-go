@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,17 +17,13 @@ type OrderCancelCancelRestrictionsParameter string
 // List of orderCancel_cancelRestrictions_parameter
 const (
 	OrderCancelCancelRestrictionsParameterOnlyNew             OrderCancelCancelRestrictionsParameter = "ONLY_NEW"
-	OrderCancelCancelRestrictionsParameterNew                 OrderCancelCancelRestrictionsParameter = "NEW"
 	OrderCancelCancelRestrictionsParameterOnlyPartiallyFilled OrderCancelCancelRestrictionsParameter = "ONLY_PARTIALLY_FILLED"
-	OrderCancelCancelRestrictionsParameterPartiallyFilled     OrderCancelCancelRestrictionsParameter = "PARTIALLY_FILLED"
 )
 
 // All allowed values of OrderCancelCancelRestrictionsParameter enum
 var AllowedOrderCancelCancelRestrictionsParameterEnumValues = []OrderCancelCancelRestrictionsParameter{
 	"ONLY_NEW",
-	"NEW",
 	"ONLY_PARTIALLY_FILLED",
-	"PARTIALLY_FILLED",
 }
 
 func (v *OrderCancelCancelRestrictionsParameter) UnmarshalJSON(src []byte) error {

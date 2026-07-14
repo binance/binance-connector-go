@@ -22,7 +22,7 @@ func ModifyIsolatedPositionMargin() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("symbol_example").Amount(1.0).Type("type__example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("BTCUSDT").Amount(1.0).Type(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &QueryVIPLoanFixedRateMarketResponseRowsInner{}
 
 // QueryVIPLoanFixedRateMarketResponseRowsInner struct for QueryVIPLoanFixedRateMarketResponseRowsInner
 type QueryVIPLoanFixedRateMarketResponseRowsInner struct {
-	RequestId            *int64  `json:"requestId,omitempty"`
-	RequestNo            *int64  `json:"requestNo,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
-	Duration             *int64  `json:"duration,omitempty"`
-	MinimumAmount        *string `json:"minimumAmount,omitempty"`
-	AvailableAmount      *string `json:"availableAmount,omitempty"`
+	// Supply request ID
+	RequestId *int64 `json:"requestId,omitempty"`
+	// Request number
+	RequestNo *int64 `json:"requestNo,omitempty"`
+	// Coin
+	Coin *string `json:"coin,omitempty"`
+	// Annual interest rate
+	InterestRate *string `json:"interestRate,omitempty"`
+	// Duration in days
+	Duration *int64 `json:"duration,omitempty"`
+	// Minimum borrow amount
+	MinimumAmount *string `json:"minimumAmount,omitempty"`
+	// Maximum available borrow amount
+	AvailableAmount *string `json:"availableAmount,omitempty"`
+	// Estimated interest
 	EstimatedInterest    *string `json:"estimatedInterest,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,10 @@ var _ common.MappedNullable = &SymbolPriceTickerResponse1Result{}
 
 // SymbolPriceTickerResponse1Result struct for SymbolPriceTickerResponse1Result
 type SymbolPriceTickerResponse1Result struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	Price  *string `json:"price,omitempty"`
+	// Transaction time
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Algo REST API
+Algo Trading REST API
 
-OpenAPI Specification for the Binance Algo REST API
+Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
 */
 
 package binancealgorestapi
@@ -31,6 +31,7 @@ func (r ApiCancelAlgoOrderFutureAlgoRequest) AlgoId(algoId int64) ApiCancelAlgoO
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiCancelAlgoOrderFutureAlgoRequest) RecvWindow(recvWindow int64) ApiCancelAlgoOrderFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -41,14 +42,14 @@ func (r ApiCancelAlgoOrderFutureAlgoRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-CancelAlgoOrderFutureAlgo Cancel Algo Order(TRADE)
+CancelAlgoOrderFutureAlgo Cancel Futures Algo Order (TRADE)
 Delete /sapi/v1/algo/futures/order
 
-https://developers.binance.com/docs/algo/future-algo/Cancel-Algo-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#cancel-algo-order-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -  eg. 14511
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiCancelAlgoOrderFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) CancelAlgoOrderFutureAlgo(ctx context.Context) ApiCancelAlgoOrderFutureAlgoRequest {
@@ -77,7 +78,15 @@ func (a *FutureAlgoAPIService) CancelAlgoOrderFutureAlgoExecute(r ApiCancelAlgoO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAlgoOrderFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAlgoOrderFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,6 +100,7 @@ type ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds
 func (r ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest) RecvWindow(recvWindow int64) ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -101,13 +111,13 @@ func (r ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest) Execute() (*common.RestA
 }
 
 /*
-QueryCurrentAlgoOpenOrdersFutureAlgo Query Current Algo Open Orders(USER_DATA)
+QueryCurrentAlgoOpenOrdersFutureAlgo Query Current Futures Algo Open Orders (USER_DATA)
 Get /sapi/v1/algo/futures/openOrders
 
-https://developers.binance.com/docs/algo/future-algo/Query-Current-Algo-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#query-current-algo-open-orders-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) QueryCurrentAlgoOpenOrdersFutureAlgo(ctx context.Context) ApiQueryCurrentAlgoOpenOrdersFutureAlgoRequest {
@@ -131,7 +141,15 @@ func (a *FutureAlgoAPIService) QueryCurrentAlgoOpenOrdersFutureAlgoExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentAlgoOpenOrdersFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentAlgoOpenOrdersFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -143,7 +161,7 @@ type ApiQueryHistoricalAlgoOrdersFutureAlgoRequest struct {
 	ctx        context.Context
 	ApiService *FutureAlgoAPIService
 	symbol     *string
-	side       *string
+	side       *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
 	startTime  *int64
 	endTime    *int64
 	page       *int64
@@ -158,7 +176,7 @@ func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) Symbol(symbol string) Api
 }
 
 // BUY or SELL
-func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) Side(side string) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
+func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
 	r.side = &side
 	return r
 }
@@ -175,18 +193,19 @@ func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) EndTime(endTime int64) Ap
 	return r
 }
 
-// Default is 1
+// Page number
 func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) Page(page int64) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
 	r.page = &page
 	return r
 }
 
-// MIN 1, MAX 100; Default 100
+// Records per page
 func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) PageSize(pageSize int64) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) RecvWindow(recvWindow int64) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -197,19 +216,19 @@ func (r ApiQueryHistoricalAlgoOrdersFutureAlgoRequest) Execute() (*common.RestAp
 }
 
 /*
-QueryHistoricalAlgoOrdersFutureAlgo Query Historical Algo Orders(USER_DATA)
+QueryHistoricalAlgoOrdersFutureAlgo Query Historical Futures Algo Orders (USER_DATA)
 Get /sapi/v1/algo/futures/historicalOrders
 
-https://developers.binance.com/docs/algo/future-algo/Query-Historical-Algo-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#query-historical-algo-orders-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  BUY or SELL
 @param startTime -  in milliseconds  eg.1641522717552
 @param endTime -  in milliseconds  eg.1641522526562
-@param page -  Default is 1
-@param pageSize -  MIN 1, MAX 100; Default 100
-@param recvWindow -
+@param page -  Page number
+@param pageSize -  Records per page
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQueryHistoricalAlgoOrdersFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) QueryHistoricalAlgoOrdersFutureAlgo(ctx context.Context) ApiQueryHistoricalAlgoOrdersFutureAlgoRequest {
@@ -251,7 +270,15 @@ func (a *FutureAlgoAPIService) QueryHistoricalAlgoOrdersFutureAlgoExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryHistoricalAlgoOrdersFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryHistoricalAlgoOrdersFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -274,18 +301,19 @@ func (r ApiQuerySubOrdersFutureAlgoRequest) AlgoId(algoId int64) ApiQuerySubOrde
 	return r
 }
 
-// Default is 1
+// Page number
 func (r ApiQuerySubOrdersFutureAlgoRequest) Page(page int64) ApiQuerySubOrdersFutureAlgoRequest {
 	r.page = &page
 	return r
 }
 
-// MIN 1, MAX 100; Default 100
+// Records per page
 func (r ApiQuerySubOrdersFutureAlgoRequest) PageSize(pageSize int64) ApiQuerySubOrdersFutureAlgoRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiQuerySubOrdersFutureAlgoRequest) RecvWindow(recvWindow int64) ApiQuerySubOrdersFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -296,16 +324,16 @@ func (r ApiQuerySubOrdersFutureAlgoRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-QuerySubOrdersFutureAlgo Query Sub Orders(USER_DATA)
+QuerySubOrdersFutureAlgo Query Futures Sub Orders (USER_DATA)
 Get /sapi/v1/algo/futures/subOrders
 
-https://developers.binance.com/docs/algo/future-algo/Query-Sub-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#query-sub-orders-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -  eg. 14511
-@param page -  Default is 1
-@param pageSize -  MIN 1, MAX 100; Default 100
-@param recvWindow -
+@param page -  Page number
+@param pageSize -  Records per page
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQuerySubOrdersFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) QuerySubOrdersFutureAlgo(ctx context.Context) ApiQuerySubOrdersFutureAlgoRequest {
@@ -340,7 +368,15 @@ func (a *FutureAlgoAPIService) QuerySubOrdersFutureAlgoExecute(r ApiQuerySubOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubOrdersFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubOrdersFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -352,10 +388,10 @@ type ApiTimeWeightedAveragePriceFutureAlgoRequest struct {
 	ctx          context.Context
 	ApiService   *FutureAlgoAPIService
 	symbol       *string
-	side         *string
+	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
 	quantity     *float32
 	duration     *int64
-	positionSide *string
+	positionSide *models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter
 	clientAlgoId *string
 	reduceOnly   *bool
 	limitPrice   *float32
@@ -369,25 +405,25 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Symbol(symbol string) ApiT
 }
 
 // Trading side ( BUY or SELL )
-func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Side(side string) ApiTimeWeightedAveragePriceFutureAlgoRequest {
+func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.side = &side
 	return r
 }
 
-// Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
+// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
 func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Quantity(quantity float32) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
 }
 
-// Duration for TWAP orders in seconds. [300, 86400]
+// Duration for TWAP orders in seconds
 func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Duration(duration int64) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.duration = &duration
 	return r
 }
 
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
-func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) PositionSide(positionSide string) ApiTimeWeightedAveragePriceFutureAlgoRequest {
+func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) PositionSide(positionSide models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -410,6 +446,7 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) LimitPrice(limitPrice floa
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) RecvWindow(recvWindow int64) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -420,21 +457,21 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Execute() (*common.RestApi
 }
 
 /*
-TimeWeightedAveragePriceFutureAlgo Time-Weighted Average Price(Twap) New Order(TRADE)
+TimeWeightedAveragePriceFutureAlgo Time-Weighted Futures Average Price (Twap) New Order (TRADE)
 Post /sapi/v1/algo/futures/newOrderTwap
 
-https://developers.binance.com/docs/algo/future-algo/Time-Weighted-Average-Price-New-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#time-weighted-average-price-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  Trading side ( BUY or SELL )
-@param quantity -  Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
-@param duration -  Duration for TWAP orders in seconds. [300, 86400]
+@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
+@param duration -  Duration for TWAP orders in seconds
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param clientAlgoId -  A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value
 @param reduceOnly -  \"true\" or \"false\". Default \"false\"; Cannot be sent in Hedge Mode; Cannot be sent when you open a position
 @param limitPrice -  Limit price of the order; If it is not sent, will place order by market price by default
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiTimeWeightedAveragePriceFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) TimeWeightedAveragePriceFutureAlgo(ctx context.Context) ApiTimeWeightedAveragePriceFutureAlgoRequest {
@@ -457,14 +494,23 @@ func (a *FutureAlgoAPIService) TimeWeightedAveragePriceFutureAlgoExecute(r ApiTi
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.duration == nil {
 		return nil, common.ReportError("duration is required and must be specified")
+	}
+	if *r.duration < 300 {
+		return nil, common.ReportError("duration must be greater than 300")
+	}
+	if *r.duration > 86400 {
+		return nil, common.ReportError("duration must be less than 86400")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
@@ -487,7 +533,15 @@ func (a *FutureAlgoAPIService) TimeWeightedAveragePriceFutureAlgoExecute(r ApiTi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TimeWeightedAveragePriceFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TimeWeightedAveragePriceFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -499,10 +553,10 @@ type ApiVolumeParticipationFutureAlgoRequest struct {
 	ctx          context.Context
 	ApiService   *FutureAlgoAPIService
 	symbol       *string
-	side         *string
+	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
 	quantity     *float32
-	urgency      *string
-	positionSide *string
+	urgency      *models.VolumeParticipationFutureAlgoUrgencyParameter
+	positionSide *models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter
 	clientAlgoId *string
 	reduceOnly   *bool
 	limitPrice   *float32
@@ -516,25 +570,25 @@ func (r ApiVolumeParticipationFutureAlgoRequest) Symbol(symbol string) ApiVolume
 }
 
 // Trading side ( BUY or SELL )
-func (r ApiVolumeParticipationFutureAlgoRequest) Side(side string) ApiVolumeParticipationFutureAlgoRequest {
+func (r ApiVolumeParticipationFutureAlgoRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiVolumeParticipationFutureAlgoRequest {
 	r.side = &side
 	return r
 }
 
-// Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
+// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
 func (r ApiVolumeParticipationFutureAlgoRequest) Quantity(quantity float32) ApiVolumeParticipationFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
-func (r ApiVolumeParticipationFutureAlgoRequest) Urgency(urgency string) ApiVolumeParticipationFutureAlgoRequest {
+func (r ApiVolumeParticipationFutureAlgoRequest) Urgency(urgency models.VolumeParticipationFutureAlgoUrgencyParameter) ApiVolumeParticipationFutureAlgoRequest {
 	r.urgency = &urgency
 	return r
 }
 
 // Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
-func (r ApiVolumeParticipationFutureAlgoRequest) PositionSide(positionSide string) ApiVolumeParticipationFutureAlgoRequest {
+func (r ApiVolumeParticipationFutureAlgoRequest) PositionSide(positionSide models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter) ApiVolumeParticipationFutureAlgoRequest {
 	r.positionSide = &positionSide
 	return r
 }
@@ -557,6 +611,7 @@ func (r ApiVolumeParticipationFutureAlgoRequest) LimitPrice(limitPrice float32) 
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiVolumeParticipationFutureAlgoRequest) RecvWindow(recvWindow int64) ApiVolumeParticipationFutureAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -567,21 +622,21 @@ func (r ApiVolumeParticipationFutureAlgoRequest) Execute() (*common.RestApiRespo
 }
 
 /*
-VolumeParticipationFutureAlgo Volume Participation(VP) New Order (TRADE)
+VolumeParticipationFutureAlgo Volume Participation (VP) New Order (TRADE)
 Post /sapi/v1/algo/futures/newOrderVp
 
-https://developers.binance.com/docs/algo/future-algo/Volume-Participation-New-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/future-algo#volume-participation-future-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  Trading side ( BUY or SELL )
-@param quantity -  Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
+@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
 @param urgency -  Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param clientAlgoId -  A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value
 @param reduceOnly -  \"true\" or \"false\". Default \"false\"; Cannot be sent in Hedge Mode; Cannot be sent when you open a position
 @param limitPrice -  Limit price of the order; If it is not sent, will place order by market price by default
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiVolumeParticipationFutureAlgoRequest
 */
 func (a *FutureAlgoAPIService) VolumeParticipationFutureAlgo(ctx context.Context) ApiVolumeParticipationFutureAlgoRequest {
@@ -604,12 +659,15 @@ func (a *FutureAlgoAPIService) VolumeParticipationFutureAlgoExecute(r ApiVolumeP
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.urgency == nil {
 		return nil, common.ReportError("urgency is required and must be specified")
 	}
@@ -634,7 +692,15 @@ func (a *FutureAlgoAPIService) VolumeParticipationFutureAlgoExecute(r ApiVolumeP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.VolumeParticipationFutureAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.VolumeParticipationFutureAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

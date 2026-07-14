@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &PartialBookDepthResponse{}
 
 // PartialBookDepthResponse struct for PartialBookDepthResponse
 type PartialBookDepthResponse struct {
-	LastUpdateId         *int64     `json:"lastUpdateId,omitempty"`
-	Bids                 [][]string `json:"bids,omitempty"`
+	// Last update ID
+	LastUpdateId *int64 `json:"lastUpdateId,omitempty"`
+	// Bids to be updated
+	Bids [][]string `json:"bids,omitempty"`
+	// Asks to be updated
 	Asks                 [][]string `json:"asks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

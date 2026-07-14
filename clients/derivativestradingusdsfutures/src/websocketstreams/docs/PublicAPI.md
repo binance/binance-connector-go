@@ -107,9 +107,9 @@ import (
 )
 
 func main() {
-	symbol := "btcusdt" // string | The symbol parameter
+	symbol := "btcusdt" // string | Trading pair symbol.
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	updateSpeed := "updateSpeed_example" // string | WebSocket stream update speed (optional)
+	updateSpeed := models.DiffBookDepthStreamsUpdateSpeedParameterUpdateSpeed100ms // DiffBookDepthStreamsUpdateSpeedParameter | WebSocket stream update speed (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -152,9 +152,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | The symbol parameter | 
+ **symbol** | **string** | Trading pair symbol. | 
  **id** | **string** | Unique WebSocket request ID. | 
- **updateSpeed** | **string** | WebSocket stream update speed | 
+ **updateSpeed** | [**DiffBookDepthStreamsUpdateSpeedParameter**](DiffBookDepthStreamsUpdateSpeedParameter.md) | WebSocket stream update speed | 
 
 ### Authorization
 
@@ -262,9 +262,9 @@ import (
 
 func main() {
 	symbol := "btcusdt" // string | The symbol parameter
-	levels := int64(10) // int64 | The levels parameter
+	levels := models.PartialBookDepthStreamsLevelsParameterLevels5 // PartialBookDepthStreamsLevelsParameter | The levels parameter
 	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	updateSpeed := "updateSpeed_example" // string | WebSocket stream update speed (optional)
+	updateSpeed := models.DiffBookDepthStreamsUpdateSpeedParameterUpdateSpeed100ms // DiffBookDepthStreamsUpdateSpeedParameter | WebSocket stream update speed (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -308,9 +308,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | The symbol parameter | 
- **levels** | **int64** | The levels parameter | 
+ **levels** | [**PartialBookDepthStreamsLevelsParameter**](PartialBookDepthStreamsLevelsParameter.md) | The levels parameter | 
  **id** | **string** | Unique WebSocket request ID. | 
- **updateSpeed** | **string** | WebSocket stream update speed | 
+ **updateSpeed** | [**DiffBookDepthStreamsUpdateSpeedParameter**](DiffBookDepthStreamsUpdateSpeedParameter.md) | WebSocket stream update speed | 
 
 ### Authorization
 

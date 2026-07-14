@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,8 +15,9 @@ import (
 // checks if the StartUserDataStreamResponseResult type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &StartUserDataStreamResponseResult{}
 
-// StartUserDataStreamResponseResult struct for StartUserDataStreamResponseResult
+// StartUserDataStreamResponseResult Indicates that combined is set to true.
 type StartUserDataStreamResponseResult struct {
+	// Listen key.
 	ListenKey            *string `json:"listenKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package binancederivativestradingportfoliomarginprorestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Derivatives Trading Portfolio Margin Pro REST API v1.5.0
+// RestAPIClient manages communication with the Portfolio Margin Pro REST API API v1.6.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -27,7 +27,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Derivatives Trading Portfolio Margin Pro REST API REST API client
+// NewRestAPIClient creates a new Binance Portfolio Margin Pro REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -37,7 +37,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-derivativestradingportfoliomarginpro/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-derivativestradingportfoliomarginpro/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

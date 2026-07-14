@@ -1,7 +1,7 @@
 /*
-Binance Copy Trading REST API
+Copy Trading REST API
 
-OpenAPI Specification for the Binance Copy Trading REST API
+Automate lead trading via the Copy Trading API.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetFuturesLeadTradingSymbolWhitelistResponse{}
 
 // GetFuturesLeadTradingSymbolWhitelistResponse struct for GetFuturesLeadTradingSymbolWhitelistResponse
 type GetFuturesLeadTradingSymbolWhitelistResponse struct {
-	Code                 *string                                                 `json:"code,omitempty"`
-	Message              *string                                                 `json:"message,omitempty"`
+	// API response code. \"000000\" indicates success.
+	Code *string `json:"code,omitempty"`
+	// Response message.
+	Message *string `json:"message,omitempty"`
+	// Whitelisted symbols for futures lead trading
 	Data                 []GetFuturesLeadTradingSymbolWhitelistResponseDataInner `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

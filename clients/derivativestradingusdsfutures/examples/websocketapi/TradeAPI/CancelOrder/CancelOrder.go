@@ -28,7 +28,7 @@ func CancelOrder() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("symbol_example").ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("BTCUSDT").ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing CancelOrder request: %v\n", err)
 		return

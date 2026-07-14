@@ -22,7 +22,7 @@ func BrokerWithdraw() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TravelRuleAPI.BrokerWithdraw(context.Background()).Address("address_example").Coin("coin_example").Amount(1.0).WithdrawOrderId("1").Questionnaire("questionnaire_example").OriginatorPii("originatorPii_example").Signature("signature_example").Execute()
+	resp, err := apiClient.RestApi.TravelRuleAPI.BrokerWithdraw(context.Background()).Address("address_example").Coin("BTC").Amount(1.0).WithdrawOrderId("1").Questionnaire("questionnaire_example").OriginatorPii("originatorPii_example").Execute()
 	if err != nil {
 		log.Println(err)
 		return

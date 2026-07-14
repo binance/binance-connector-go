@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **int64** |  | [optional] 
-**Rows** | Pointer to [**[]QueryVIPLoanFixedRateMarketResponseRowsInner**](QueryVIPLoanFixedRateMarketResponseRowsInner.md) |  | [optional] 
+**Total** | Pointer to **int64** | Total number of records | [optional] 
+**Rows** | Pointer to [**[]QueryVIPLoanFixedRateMarketResponseRowsInner**](QueryVIPLoanFixedRateMarketResponseRowsInner.md) | Current page data | [optional] 
 
 ## Methods
 

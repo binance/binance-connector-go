@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -27,7 +27,7 @@ func (r ApiAccountCommissionRequest) Symbol(symbol string) ApiAccountCommissionR
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAccountCommissionRequest) Id(id string) ApiAccountCommissionRequest {
 	r.id = &id
 	return r
@@ -52,12 +52,12 @@ func (r ApiAccountCommissionRequest) ExecuteAsync() (chan *common.ResponseOrRaw[
 }
 
 /*
-AccountCommission WebSocket Account Commission Rates
+AccountCommission Account Commission Rates (USER_DATA)
 /account.commission
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-commission-rates-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-commission
 
-@param symbol	@param id Unique WebSocket request ID.
+@param symbol	@param id Client-generated request identifier.
 @return ApiAccountCommissionRequest
 */
 func (a *AccountAPIService) AccountCommission() ApiAccountCommissionRequest {
@@ -101,13 +101,13 @@ type ApiAccountRateLimitsOrdersRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAccountRateLimitsOrdersRequest) Id(id string) ApiAccountRateLimitsOrdersRequest {
 	r.id = &id
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiAccountRateLimitsOrdersRequest) RecvWindow(recvWindow float32) ApiAccountRateLimitsOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -132,12 +132,12 @@ func (r ApiAccountRateLimitsOrdersRequest) ExecuteAsync() (chan *common.Response
 }
 
 /*
-AccountRateLimitsOrders WebSocket Unfilled Order Count
+AccountRateLimitsOrders Unfilled Order Count (USER_DATA)
 /account.rateLimits.orders
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#unfilled-order-count-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-rate-limits-orders
 
-@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAccountRateLimitsOrdersRequest
 */
 func (a *AccountAPIService) AccountRateLimitsOrders() ApiAccountRateLimitsOrdersRequest {
@@ -180,19 +180,19 @@ type ApiAccountStatusRequest struct {
 	recvWindow       *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAccountStatusRequest) Id(id string) ApiAccountStatusRequest {
 	r.id = &id
 	return r
 }
 
-// When set to &#x60;true&#x60;, emits only the non-zero balances of an account. &lt;br&gt;Default value: false
+// When set to &#x60;true&#x60;, emits only the non-zero balances of an account. Default value: &#x60;false&#x60;.
 func (r ApiAccountStatusRequest) OmitZeroBalances(omitZeroBalances bool) ApiAccountStatusRequest {
 	r.omitZeroBalances = &omitZeroBalances
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiAccountStatusRequest) RecvWindow(recvWindow float32) ApiAccountStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -217,12 +217,12 @@ func (r ApiAccountStatusRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mode
 }
 
 /*
-AccountStatus WebSocket Account information
+AccountStatus Account information (USER_DATA)
 /account.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-information-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#account-status
 
-@param id Unique WebSocket request ID.	@param omitZeroBalances When set to `true`, emits only the non-zero balances of an account. <br>Default value: false	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param omitZeroBalances When set to `true`, emits only the non-zero balances of an account. Default value: `false`.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAccountStatusRequest
 */
 func (a *AccountAPIService) AccountStatus() ApiAccountStatusRequest {
@@ -271,35 +271,37 @@ type ApiAllOrderListsRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAllOrderListsRequest) Id(id string) ApiAllOrderListsRequest {
 	r.id = &id
 	return r
 }
 
-// Trade ID to begin at
+// Order list ID to begin at
 func (r ApiAllOrderListsRequest) FromId(fromId int32) ApiAllOrderListsRequest {
 	r.fromId = &fromId
 	return r
 }
 
+// Timestamp in ms
 func (r ApiAllOrderListsRequest) StartTime(startTime int64) ApiAllOrderListsRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms
 func (r ApiAllOrderListsRequest) EndTime(endTime int64) ApiAllOrderListsRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 100; Maximum: 5000
+// Default: 500; Maximum: 1000
 func (r ApiAllOrderListsRequest) Limit(limit int32) ApiAllOrderListsRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiAllOrderListsRequest) RecvWindow(recvWindow float32) ApiAllOrderListsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -324,12 +326,12 @@ func (r ApiAllOrderListsRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mode
 }
 
 /*
-AllOrderLists WebSocket Account order list history
+AllOrderLists Account order list history (USER_DATA)
 /allOrderLists
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-list-history-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-order-lists
 
-@param id Unique WebSocket request ID.	@param fromId Trade ID to begin at	@param startTime	@param endTime	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param fromId Order list ID to begin at	@param startTime Timestamp in ms	@param endTime Timestamp in ms	@param limit Default: 500; Maximum: 1000	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAllOrderListsRequest
 */
 func (a *AccountAPIService) AllOrderLists() ApiAllOrderListsRequest {
@@ -393,35 +395,37 @@ func (r ApiAllOrdersRequest) Symbol(symbol string) ApiAllOrdersRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAllOrdersRequest) Id(id string) ApiAllOrdersRequest {
 	r.id = &id
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Order ID to begin at
 func (r ApiAllOrdersRequest) OrderId(orderId int64) ApiAllOrdersRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Timestamp in ms
 func (r ApiAllOrdersRequest) StartTime(startTime int64) ApiAllOrdersRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms
 func (r ApiAllOrdersRequest) EndTime(endTime int64) ApiAllOrdersRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 100; Maximum: 5000
+// Default: 500; Maximum: 1000
 func (r ApiAllOrdersRequest) Limit(limit int32) ApiAllOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiAllOrdersRequest) RecvWindow(recvWindow float32) ApiAllOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -446,12 +450,12 @@ func (r ApiAllOrdersRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.A
 }
 
 /*
-AllOrders WebSocket Account order history
+AllOrders Account order history (USER_DATA)
 /allOrders
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-order-history-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#all-orders
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param startTime	@param endTime	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param orderId Order ID to begin at	@param startTime Timestamp in ms	@param endTime Timestamp in ms	@param limit Default: 500; Maximum: 1000	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiAllOrdersRequest
 */
 func (a *AccountAPIService) AllOrders() ApiAllOrdersRequest {
@@ -521,40 +525,43 @@ func (r ApiMyAllocationsRequest) Symbol(symbol string) ApiMyAllocationsRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiMyAllocationsRequest) Id(id string) ApiMyAllocationsRequest {
 	r.id = &id
 	return r
 }
 
+// Timestamp in ms
 func (r ApiMyAllocationsRequest) StartTime(startTime int64) ApiMyAllocationsRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms
 func (r ApiMyAllocationsRequest) EndTime(endTime int64) ApiMyAllocationsRequest {
 	r.endTime = &endTime
 	return r
 }
 
+// Allocation ID to begin at
 func (r ApiMyAllocationsRequest) FromAllocationId(fromAllocationId int32) ApiMyAllocationsRequest {
 	r.fromAllocationId = &fromAllocationId
 	return r
 }
 
-// Default: 100; Maximum: 5000
+// Default: 500; Maximum: 1000
 func (r ApiMyAllocationsRequest) Limit(limit int32) ApiMyAllocationsRequest {
 	r.limit = &limit
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Order ID
 func (r ApiMyAllocationsRequest) OrderId(orderId int64) ApiMyAllocationsRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyAllocationsRequest) RecvWindow(recvWindow float32) ApiMyAllocationsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -579,12 +586,12 @@ func (r ApiMyAllocationsRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mode
 }
 
 /*
-MyAllocations WebSocket Account allocations
+MyAllocations Account allocations (USER_DATA)
 /myAllocations
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-allocations-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-allocations
 
-@param symbol	@param id Unique WebSocket request ID.	@param startTime	@param endTime	@param fromAllocationId	@param limit Default: 100; Maximum: 5000	@param orderId `orderId`or`origClientOrderId`mustbesent	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param startTime Timestamp in ms	@param endTime Timestamp in ms	@param fromAllocationId Allocation ID to begin at	@param limit Default: 500; Maximum: 1000	@param orderId Order ID	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyAllocationsRequest
 */
 func (a *AccountAPIService) MyAllocations() ApiMyAllocationsRequest {
@@ -652,13 +659,13 @@ func (r ApiMyFiltersRequest) Symbol(symbol string) ApiMyFiltersRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiMyFiltersRequest) Id(id string) ApiMyFiltersRequest {
 	r.id = &id
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyFiltersRequest) RecvWindow(recvWindow float32) ApiMyFiltersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -683,12 +690,12 @@ func (r ApiMyFiltersRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.M
 }
 
 /*
-MyFilters WebSocket Query Relevant Filters
+MyFilters Query Relevant Filters (USER_DATA)
 /myFilters
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-relevant-filters-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-filters
 
-@param symbol	@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyFiltersRequest
 */
 func (a *AccountAPIService) MyFilters() ApiMyFiltersRequest {
@@ -745,35 +752,37 @@ func (r ApiMyPreventedMatchesRequest) Symbol(symbol string) ApiMyPreventedMatche
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiMyPreventedMatchesRequest) Id(id string) ApiMyPreventedMatchesRequest {
 	r.id = &id
 	return r
 }
 
+// Prevented match ID
 func (r ApiMyPreventedMatchesRequest) PreventedMatchId(preventedMatchId int64) ApiMyPreventedMatchesRequest {
 	r.preventedMatchId = &preventedMatchId
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Order ID
 func (r ApiMyPreventedMatchesRequest) OrderId(orderId int64) ApiMyPreventedMatchesRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Prevented match ID to begin at
 func (r ApiMyPreventedMatchesRequest) FromPreventedMatchId(fromPreventedMatchId int64) ApiMyPreventedMatchesRequest {
 	r.fromPreventedMatchId = &fromPreventedMatchId
 	return r
 }
 
-// Default: 100; Maximum: 5000
+// Default: 500; Maximum: 1000
 func (r ApiMyPreventedMatchesRequest) Limit(limit int32) ApiMyPreventedMatchesRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyPreventedMatchesRequest) RecvWindow(recvWindow float32) ApiMyPreventedMatchesRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -798,12 +807,12 @@ func (r ApiMyPreventedMatchesRequest) ExecuteAsync() (chan *common.ResponseOrRaw
 }
 
 /*
-MyPreventedMatches WebSocket Account prevented matches
+MyPreventedMatches Account prevented matches (USER_DATA)
 /myPreventedMatches
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-prevented-matches-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-prevented-matches
 
-@param symbol	@param id Unique WebSocket request ID.	@param preventedMatchId	@param orderId `orderId`or`origClientOrderId`mustbesent	@param fromPreventedMatchId	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param preventedMatchId Prevented match ID	@param orderId Order ID	@param fromPreventedMatchId Prevented match ID to begin at	@param limit Default: 500; Maximum: 1000	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyPreventedMatchesRequest
 */
 func (a *AccountAPIService) MyPreventedMatches() ApiMyPreventedMatchesRequest {
@@ -873,41 +882,43 @@ func (r ApiMyTradesRequest) Symbol(symbol string) ApiMyTradesRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiMyTradesRequest) Id(id string) ApiMyTradesRequest {
 	r.id = &id
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// This can only be used in combination with &#x60;symbol&#x60;.
 func (r ApiMyTradesRequest) OrderId(orderId int64) ApiMyTradesRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Timestamp in ms
 func (r ApiMyTradesRequest) StartTime(startTime int64) ApiMyTradesRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms
 func (r ApiMyTradesRequest) EndTime(endTime int64) ApiMyTradesRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Trade ID to begin at
+// First trade ID to query
 func (r ApiMyTradesRequest) FromId(fromId int32) ApiMyTradesRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default: 100; Maximum: 5000
+// Default: 500; Maximum: 1000
 func (r ApiMyTradesRequest) Limit(limit int32) ApiMyTradesRequest {
 	r.limit = &limit
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiMyTradesRequest) RecvWindow(recvWindow float32) ApiMyTradesRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -932,12 +943,12 @@ func (r ApiMyTradesRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.My
 }
 
 /*
-MyTrades WebSocket Account trade history
+MyTrades Account trade history (USER_DATA)
 /myTrades
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#account-trade-history-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#my-trades
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param startTime	@param endTime	@param fromId Trade ID to begin at	@param limit Default: 100; Maximum: 5000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param orderId This can only be used in combination with `symbol`.	@param startTime Timestamp in ms	@param endTime Timestamp in ms	@param fromId First trade ID to query	@param limit Default: 500; Maximum: 1000	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiMyTradesRequest
 */
 func (a *AccountAPIService) MyTrades() ApiMyTradesRequest {
@@ -999,13 +1010,13 @@ type ApiOpenOrderListsStatusRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiOpenOrderListsStatusRequest) Id(id string) ApiOpenOrderListsStatusRequest {
 	r.id = &id
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOpenOrderListsStatusRequest) RecvWindow(recvWindow float32) ApiOpenOrderListsStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1030,12 +1041,12 @@ func (r ApiOpenOrderListsStatusRequest) ExecuteAsync() (chan *common.ResponseOrR
 }
 
 /*
-OpenOrderListsStatus WebSocket Current open Order lists
+OpenOrderListsStatus Current open Order lists (USER_DATA)
 /openOrderLists.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#current-open-order-lists-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-order-lists-status
 
-@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOpenOrderListsStatusRequest
 */
 func (a *AccountAPIService) OpenOrderListsStatus() ApiOpenOrderListsStatusRequest {
@@ -1078,19 +1089,19 @@ type ApiOpenOrdersStatusRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiOpenOrdersStatusRequest) Id(id string) ApiOpenOrdersStatusRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
+// If omitted, open orders for all symbols are returned
 func (r ApiOpenOrdersStatusRequest) Symbol(symbol string) ApiOpenOrdersStatusRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOpenOrdersStatusRequest) RecvWindow(recvWindow float32) ApiOpenOrdersStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1115,12 +1126,12 @@ func (r ApiOpenOrdersStatusRequest) ExecuteAsync() (chan *common.ResponseOrRaw[m
 }
 
 /*
-OpenOrdersStatus WebSocket Current open orders
+OpenOrdersStatus Current open orders (USER_DATA)
 /openOrders.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#current-open-orders-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#open-orders-status
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param symbol If omitted, open orders for all symbols are returned	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOpenOrdersStatusRequest
 */
 func (a *AccountAPIService) OpenOrdersStatus() ApiOpenOrdersStatusRequest {
@@ -1174,17 +1185,19 @@ func (r ApiOrderAmendmentsRequest) Symbol(symbol string) ApiOrderAmendmentsReque
 	return r
 }
 
+// Order ID
 func (r ApiOrderAmendmentsRequest) OrderId(orderId int64) ApiOrderAmendmentsRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiOrderAmendmentsRequest) Id(id string) ApiOrderAmendmentsRequest {
 	r.id = &id
 	return r
 }
 
+// Execution ID to begin at
 func (r ApiOrderAmendmentsRequest) FromExecutionId(fromExecutionId int64) ApiOrderAmendmentsRequest {
 	r.fromExecutionId = &fromExecutionId
 	return r
@@ -1196,7 +1209,7 @@ func (r ApiOrderAmendmentsRequest) Limit(limit int64) ApiOrderAmendmentsRequest 
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderAmendmentsRequest) RecvWindow(recvWindow float32) ApiOrderAmendmentsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1221,12 +1234,12 @@ func (r ApiOrderAmendmentsRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mo
 }
 
 /*
-OrderAmendments WebSocket Query Order Amendments
+OrderAmendments Query Order Amendments (USER_DATA)
 /order.amendments
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-amendments-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-amendments
 
-@param symbol	@param orderId	@param id Unique WebSocket request ID.	@param fromExecutionId	@param limit Default: 500; Maximum: 1000	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param orderId Order ID	@param id Client-generated request identifier.	@param fromExecutionId Execution ID to begin at	@param limit Default: 500; Maximum: 1000	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderAmendmentsRequest
 */
 func (a *AccountAPIService) OrderAmendments() ApiOrderAmendmentsRequest {
@@ -1286,25 +1299,25 @@ type ApiOrderListStatusRequest struct {
 	recvWindow        *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiOrderListStatusRequest) Id(id string) ApiOrderListStatusRequest {
 	r.id = &id
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Query order list by &#x60;listClientOrderId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided.
 func (r ApiOrderListStatusRequest) OrigClientOrderId(origClientOrderId string) ApiOrderListStatusRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
 }
 
-// Cancel order list by orderListId
+// Query order list by &#x60;orderListId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided.
 func (r ApiOrderListStatusRequest) OrderListId(orderListId int32) ApiOrderListStatusRequest {
 	r.orderListId = &orderListId
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListStatusRequest) RecvWindow(recvWindow float32) ApiOrderListStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1329,12 +1342,12 @@ func (r ApiOrderListStatusRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mo
 }
 
 /*
-OrderListStatus WebSocket Query Order list
+OrderListStatus Query Order list (USER_DATA)
 /orderList.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-list-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-list-status
 
-@param id Unique WebSocket request ID.	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param orderListId Cancel order list by orderListId	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param origClientOrderId Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided.	@param orderListId Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListStatusRequest
 */
 func (a *AccountAPIService) OrderListStatus() ApiOrderListStatusRequest {
@@ -1390,25 +1403,25 @@ func (r ApiOrderStatusRequest) Symbol(symbol string) ApiOrderStatusRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiOrderStatusRequest) Id(id string) ApiOrderStatusRequest {
 	r.id = &id
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Lookup order by &#x60;orderId&#x60;
 func (r ApiOrderStatusRequest) OrderId(orderId int64) ApiOrderStatusRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent
+// Lookup order by &#x60;clientOrderId&#x60;
 func (r ApiOrderStatusRequest) OrigClientOrderId(origClientOrderId string) ApiOrderStatusRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderStatusRequest) RecvWindow(recvWindow float32) ApiOrderStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1433,12 +1446,12 @@ func (r ApiOrderStatusRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models
 }
 
 /*
-OrderStatus WebSocket Query order
+OrderStatus Query order (USER_DATA)
 /order.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/account-requests#query-order-user_data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/account#order-status
 
-@param symbol	@param id Unique WebSocket request ID.	@param orderId `orderId`or`origClientOrderId`mustbesent	@param origClientOrderId `orderId`or`origClientOrderId`mustbesent	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param symbol	@param id Client-generated request identifier.	@param orderId Lookup order by `orderId`	@param origClientOrderId Lookup order by `clientOrderId`	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderStatusRequest
 */
 func (a *AccountAPIService) OrderStatus() ApiOrderStatusRequest {

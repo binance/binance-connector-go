@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &SetAutoCancelAllOpenOrdersResponse{}
 
 // SetAutoCancelAllOpenOrdersResponse struct for SetAutoCancelAllOpenOrdersResponse
 type SetAutoCancelAllOpenOrdersResponse struct {
-	Underlying           *string `json:"underlying,omitempty"`
-	CountdownTime        *int64  `json:"countdownTime,omitempty"`
+	// underlying
+	Underlying *string `json:"underlying,omitempty"`
+	// countdown Time
+	CountdownTime        *int64 `json:"countdownTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

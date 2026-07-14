@@ -22,7 +22,7 @@ func SetMarketMakerProtectionConfig() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Execute()
+	resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").WindowTimeInMilliseconds(1000).FrozenTimeInMilliseconds(1000).QtyLimit(1.0).DeltaLimit(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

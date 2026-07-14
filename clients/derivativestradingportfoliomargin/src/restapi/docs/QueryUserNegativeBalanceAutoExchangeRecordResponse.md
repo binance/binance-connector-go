@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **int64** |  | [optional] 
-**Rows** | Pointer to [**[]QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner.md) |  | [optional] 
+**Total** | Pointer to **int64** | Total. | [optional] 
+**Rows** | Pointer to [**[]QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInner.md) | Rows. | [optional] 
 
 ## Methods
 

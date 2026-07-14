@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &GetAllIsolatedMarginSymbolResponseInner{}
 
 // GetAllIsolatedMarginSymbolResponseInner struct for GetAllIsolatedMarginSymbolResponseInner
 type GetAllIsolatedMarginSymbolResponseInner struct {
-	Base                 *string `json:"base,omitempty"`
-	IsBuyAllowed         *bool   `json:"isBuyAllowed,omitempty"`
-	IsMarginTrade        *bool   `json:"isMarginTrade,omitempty"`
-	IsSellAllowed        *bool   `json:"isSellAllowed,omitempty"`
-	Quote                *string `json:"quote,omitempty"`
+	// base.
+	Base *string `json:"base,omitempty"`
+	// is Buy Allowed.
+	IsBuyAllowed *bool `json:"isBuyAllowed,omitempty"`
+	// is Margin Trade.
+	IsMarginTrade *bool `json:"isMarginTrade,omitempty"`
+	// is Sell Allowed.
+	IsSellAllowed *bool `json:"isSellAllowed,omitempty"`
+	// quote.
+	Quote *string `json:"quote,omitempty"`
+	// symbol.
 	Symbol               *string `json:"symbol,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

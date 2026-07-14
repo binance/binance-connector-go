@@ -22,7 +22,7 @@ func AdjustCrossMarginMaxLeverage() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.AdjustCrossMarginMaxLeverage(context.Background()).MaxLeverage(789).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.AdjustCrossMarginMaxLeverage(context.Background()).MaxLeverage(3).Execute()
 	if err != nil {
 		log.Println(err)
 		return

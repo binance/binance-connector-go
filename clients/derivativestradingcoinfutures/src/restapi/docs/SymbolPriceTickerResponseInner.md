@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
+**Price** | Pointer to **string** | Latest token price. | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

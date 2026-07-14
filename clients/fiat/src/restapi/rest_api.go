@@ -1,7 +1,7 @@
 /*
-Binance Fiat REST API
+Fiat REST API
 
-OpenAPI Specification for the Binance Fiat REST API
+Query Binance fiat deposit and withdrawal history.
 */
 
 package binancefiatrestapi
@@ -14,19 +14,19 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Fiat REST API API v1.6.0
+// RestAPIClient manages communication with the Fiat REST API API v1.7.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
 	// API Services
-	FiatAPI *FiatAPIService
+	DefaultAPI *DefaultAPIService
 }
 
 type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Fiat REST API REST API client
+// NewRestAPIClient creates a new Binance Fiat REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -36,12 +36,12 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-fiat/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-fiat/1.7.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
 	// API Services
-	c.FiatAPI = &FiatAPIService{client: c}
+	c.DefaultAPI = &DefaultAPIService{client: c}
 
 	return c
 }

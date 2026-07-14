@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/dualinvestment"
+	"github.com/binance/binance-connector-go/clients/dualinvestment/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -17,12 +18,11 @@ func GetDualInvestmentProductList() {
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.DualInvestmentRestApiProdUrl),
 		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
 	)
 	apiClient := client.NewBinanceDualInvestmentClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.GetDualInvestmentProductList(context.Background()).OptionType("optionType_example").ExercisedCoin("exercisedCoin_example").InvestCoin("investCoin_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.GetDualInvestmentProductList(context.Background()).OptionType(models.GetDualInvestmentProductListOptionTypeParameterCall).ExercisedCoin("USDT").InvestCoin("BNB").Execute()
 	if err != nil {
 		log.Println(err)
 		return

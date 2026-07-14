@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/cryptoloan"
+	"github.com/binance/binance-connector-go/clients/cryptoloan/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func FlexibleLoanAdjustLtv() {
 	apiClient := client.NewBinanceCryptoLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").AdjustmentAmount(1.0).Direction("direction_example").Execute()
+	resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").AdjustmentAmount(1).Direction(models.FlexibleLoanAdjustLtvDirectionParameterAdditional).Execute()
 	if err != nil {
 		log.Println(err)
 		return

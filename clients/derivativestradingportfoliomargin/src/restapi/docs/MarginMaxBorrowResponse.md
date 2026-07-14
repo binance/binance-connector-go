@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
-**BorrowLimit** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | account&#39;s currently max borrowable amount with sufficient system availability | [optional] 
+**BorrowLimit** | Pointer to **string** | max borrowable amount limited by the account level | [optional] 
 
 ## Methods
 

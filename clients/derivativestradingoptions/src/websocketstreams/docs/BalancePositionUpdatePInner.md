@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**C** | Pointer to **string** | Position quantity | [optional] 
+**P** | Pointer to **string** | Position value | [optional] 
+**A** | Pointer to **string** | Average entry price | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &QueryMarginAccountsOpenOcoResponseInnerOrdersInne
 
 // QueryMarginAccountsOpenOcoResponseInnerOrdersInner struct for QueryMarginAccountsOpenOcoResponseInnerOrdersInner
 type QueryMarginAccountsOpenOcoResponseInnerOrdersInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// client Order Id.
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

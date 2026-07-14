@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -104,6 +104,7 @@ const (
 	TickerWindowSizeParameterWindowSize4d  TickerWindowSizeParameter = "4d"
 	TickerWindowSizeParameterWindowSize5d  TickerWindowSizeParameter = "5d"
 	TickerWindowSizeParameterWindowSize6d  TickerWindowSizeParameter = "6d"
+	TickerWindowSizeParameterWindowSize7d  TickerWindowSizeParameter = "7d"
 )
 
 // All allowed values of TickerWindowSizeParameter enum
@@ -196,6 +197,7 @@ var AllowedTickerWindowSizeParameterEnumValues = []TickerWindowSizeParameter{
 	"4d",
 	"5d",
 	"6d",
+	"7d",
 }
 
 func (v *TickerWindowSizeParameter) UnmarshalJSON(src []byte) error {

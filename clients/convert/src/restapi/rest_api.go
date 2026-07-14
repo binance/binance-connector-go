@@ -1,7 +1,7 @@
 /*
-Binance Convert REST API
+Convert REST API
 
-OpenAPI Specification for the Binance Convert REST API
+Request quotes and execute cryptocurrency conversions via the Convert REST API.
 */
 
 package binanceconvertrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Convert REST API API v1.6.0
+// RestAPIClient manages communication with the Convert REST API API v1.7.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -27,7 +27,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Convert REST API REST API client
+// NewRestAPIClient creates a new Binance Convert REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -37,7 +37,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-convert/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-convert/1.7.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

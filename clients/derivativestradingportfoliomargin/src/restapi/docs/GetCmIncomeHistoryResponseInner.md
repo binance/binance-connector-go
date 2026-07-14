@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**IncomeType** | Pointer to **string** |  | [optional] 
-**Income** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Info** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**TranId** | Pointer to **string** |  | [optional] 
-**TradeId** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**IncomeType** | Pointer to **string** | Income type. | [optional] 
+**Income** | Pointer to **string** | Income amount. | [optional] 
+**Asset** | Pointer to **string** | Income asset. | [optional] 
+**Info** | Pointer to **string** | Extra information. | [optional] 
+**Time** | Pointer to **int64** | Event time. | [optional] 
+**TranId** | Pointer to **string** | Transaction ID. | [optional] 
+**TradeId** | Pointer to **string** | Trade ID, if existing. | [optional] 
 
 ## Methods
 

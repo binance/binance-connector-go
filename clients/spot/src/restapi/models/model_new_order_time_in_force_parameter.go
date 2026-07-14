@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,10 +16,9 @@ type NewOrderTimeInForceParameter string
 
 // List of newOrder_timeInForce_parameter
 const (
-	NewOrderTimeInForceParameterGtc              NewOrderTimeInForceParameter = "GTC"
-	NewOrderTimeInForceParameterIoc              NewOrderTimeInForceParameter = "IOC"
-	NewOrderTimeInForceParameterFok              NewOrderTimeInForceParameter = "FOK"
-	NewOrderTimeInForceParameterNonRepresentable NewOrderTimeInForceParameter = "NON_REPRESENTABLE"
+	NewOrderTimeInForceParameterGtc NewOrderTimeInForceParameter = "GTC"
+	NewOrderTimeInForceParameterIoc NewOrderTimeInForceParameter = "IOC"
+	NewOrderTimeInForceParameterFok NewOrderTimeInForceParameter = "FOK"
 )
 
 // All allowed values of NewOrderTimeInForceParameter enum
@@ -27,7 +26,6 @@ var AllowedNewOrderTimeInForceParameterEnumValues = []NewOrderTimeInForceParamet
 	"GTC",
 	"IOC",
 	"FOK",
-	"NON_REPRESENTABLE",
 }
 
 func (v *NewOrderTimeInForceParameter) UnmarshalJSON(src []byte) error {

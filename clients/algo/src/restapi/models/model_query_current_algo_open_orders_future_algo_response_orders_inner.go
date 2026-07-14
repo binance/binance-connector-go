@@ -1,7 +1,7 @@
 /*
-Binance Algo REST API
+Algo Trading REST API
 
-OpenAPI Specification for the Binance Algo REST API
+Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
 */
 
 package models
@@ -17,19 +17,33 @@ var _ common.MappedNullable = &QueryCurrentAlgoOpenOrdersFutureAlgoResponseOrder
 
 // QueryCurrentAlgoOpenOrdersFutureAlgoResponseOrdersInner struct for QueryCurrentAlgoOpenOrdersFutureAlgoResponseOrdersInner
 type QueryCurrentAlgoOpenOrdersFutureAlgoResponseOrdersInner struct {
-	AlgoId               *int64  `json:"algoId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	TotalQty             *string `json:"totalQty,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	ExecutedAmt          *string `json:"executedAmt,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ClientAlgoId         *string `json:"clientAlgoId,omitempty"`
-	BookTime             *int64  `json:"bookTime,omitempty"`
-	EndTime              *int64  `json:"endTime,omitempty"`
-	AlgoStatus           *string `json:"algoStatus,omitempty"`
-	AlgoType             *string `json:"algoType,omitempty"`
+	// Algo order ID
+	AlgoId *int64 `json:"algoId,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Total order quantity
+	TotalQty *string `json:"totalQty,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Executed amount
+	ExecutedAmt *string `json:"executedAmt,omitempty"`
+	// Average execution price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client-defined algo order ID
+	ClientAlgoId *string `json:"clientAlgoId,omitempty"`
+	// Order creation time
+	BookTime *int64 `json:"bookTime,omitempty"`
+	// End time
+	EndTime *int64 `json:"endTime,omitempty"`
+	// Algo order status
+	AlgoStatus *string `json:"algoStatus,omitempty"`
+	// Algo order type
+	AlgoType *string `json:"algoType,omitempty"`
+	// Execution urgency
 	Urgency              *string `json:"urgency,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

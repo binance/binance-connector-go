@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &GridUpdateGu{}
 
 // GridUpdateGu struct for GridUpdateGu
 type GridUpdateGu struct {
-	Smallsi              *int64  `json:"si,omitempty"`
-	Smallst              *string `json:"st,omitempty"`
-	Smallss              *string `json:"ss,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallr               *string `json:"r,omitempty"`
-	Smallup              *string `json:"up,omitempty"`
-	Smalluq              *string `json:"uq,omitempty"`
-	Smalluf              *string `json:"uf,omitempty"`
-	Smallmp              *string `json:"mp,omitempty"`
-	Smallut              *int64  `json:"ut,omitempty"`
+	// Strategy ID
+	Smallsi *int64 `json:"si,omitempty"`
+	// Strategy Type
+	Smallst *string `json:"st,omitempty"`
+	// Strategy Status
+	Smallss *string `json:"ss,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Realized PNL
+	Smallr *string `json:"r,omitempty"`
+	// Unmatched Average Price
+	Smallup *string `json:"up,omitempty"`
+	// Unmatched Qty
+	Smalluq *string `json:"uq,omitempty"`
+	// Unmatched Fee
+	Smalluf *string `json:"uf,omitempty"`
+	// Matched PNL
+	Smallmp *string `json:"mp,omitempty"`
+	// Update Time
+	Smallut              *int64 `json:"ut,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

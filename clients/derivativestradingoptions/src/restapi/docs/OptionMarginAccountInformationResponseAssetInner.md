@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**MarginBalance** | Pointer to **string** |  | [optional] 
-**Equity** | Pointer to **string** |  | [optional] 
-**Available** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedPNL** | Pointer to **string** |  | [optional] 
-**AdjustedEquity** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset | [optional] 
+**MarginBalance** | Pointer to **string** | margin Balance | [optional] 
+**Equity** | Pointer to **string** | equity | [optional] 
+**Available** | Pointer to **string** | available | [optional] 
+**InitialMargin** | Pointer to **string** | initial Margin | [optional] 
+**MaintMargin** | Pointer to **string** | maint Margin | [optional] 
+**UnrealizedPNL** | Pointer to **string** | unrealized PNL | [optional] 
+**AdjustedEquity** | Pointer to **string** | adjusted Equity | [optional] 
 
 ## Methods
 

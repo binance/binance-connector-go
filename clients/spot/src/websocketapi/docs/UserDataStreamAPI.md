@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**SessionSubscriptions**](UserDataStreamAPI.md#SessionSubscriptions) | /session.subscriptions | WebSocket Listing all subscriptions
-[**UserDataStreamSubscribe**](UserDataStreamAPI.md#UserDataStreamSubscribe) | /userDataStream.subscribe | WebSocket Subscribe to User Data Stream
-[**UserDataStreamSubscribeSignature**](UserDataStreamAPI.md#UserDataStreamSubscribeSignature) | /userDataStream.subscribe.signature | WebSocket Subscribe to User Data Stream through signature subscription
+[**SessionSubscriptions**](UserDataStreamAPI.md#SessionSubscriptions) | /session.subscriptions | Listing all subscriptions
+[**UserDataStreamSubscribe**](UserDataStreamAPI.md#UserDataStreamSubscribe) | /userDataStream.subscribe | Subscribe to User Data Stream
+[**UserDataStreamSubscribeSignature**](UserDataStreamAPI.md#UserDataStreamSubscribeSignature) | /userDataStream.subscribe.signature | Subscribe to User Data Stream through signature subscription (USER_STREAM)
 [**UserDataStreamUnsubscribe**](UserDataStreamAPI.md#UserDataStreamUnsubscribe) | /userDataStream.unsubscribe | WebSocket Unsubscribe from User Data Stream
 
 
@@ -14,7 +14,7 @@ Method        | HTTP request  | Description
 
 > SessionSubscriptionsResponse SessionSubscriptions().Id(id).Execute()
 
-WebSocket Listing all subscriptions
+Listing all subscriptions
 
 
 ### Example
@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -69,7 +69,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -86,7 +86,7 @@ No authorization required
 
 > UserDataStreamSubscribeResponse UserDataStreamSubscribe().Id(id).Execute()
 
-WebSocket Subscribe to User Data Stream
+Subscribe to User Data Stream
 
 
 ### Example
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -145,7 +145,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ No authorization required
 
 > UserDataStreamSubscribeSignatureResponse UserDataStreamSubscribeSignature().Id(id).RecvWindow(recvWindow).Execute()
 
-WebSocket Subscribe to User Data Stream through signature subscription
+Subscribe to User Data Stream through signature subscription (USER_STREAM)
 
 
 ### Example
@@ -179,8 +179,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -222,8 +222,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -257,8 +257,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	subscriptionId := int32(1) // int32 | When called with no parameter, this will close all subscriptions. <br>When called with the `subscriptionId` parameter, this will attempt to close the subscription with that subscription id, if it exists.  (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	subscriptionId := int32(1) // int32 | When called with no parameter, this will close all subscriptions. When called with the subscriptionId parameter, this will attempt to close the subscription with that subscription id, if it exists. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -296,8 +296,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **subscriptionId** | **int32** | When called with no parameter, this will close all subscriptions. &lt;br&gt;When called with the &#x60;subscriptionId&#x60; parameter, this will attempt to close the subscription with that subscription id, if it exists.  | 
+ **id** | **string** | Client-generated request identifier. | 
+ **subscriptionId** | **int32** | When called with no parameter, this will close all subscriptions. When called with the subscriptionId parameter, this will attempt to close the subscription with that subscription id, if it exists. | 
 
 ### Return type
 

@@ -4,15 +4,15 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetSymbolsDelistScheduleForSpot**](OthersAPI.md#GetSymbolsDelistScheduleForSpot) | **Get** /sapi/v1/spot/delist-schedule | Get symbols delist schedule for spot (MARKET_DATA)
-[**SystemStatus**](OthersAPI.md#SystemStatus) | **Get** /sapi/v1/system/status | System Status (System)
+[**GetSymbolsDelistScheduleForSpot**](OthersAPI.md#GetSymbolsDelistScheduleForSpot) | **Get** /sapi/v1/spot/delist-schedule | Get Spot Delist Schedule (MARKET_DATA)
+[**SystemStatus**](OthersAPI.md#SystemStatus) | **Get** /sapi/v1/system/status | System Status
 
 
 ## GetSymbolsDelistScheduleForSpot
 
 > GetSymbolsDelistScheduleForSpotResponse GetSymbolsDelistScheduleForSpot(ctx).RecvWindow(recvWindow).Execute()
 
-Get symbols delist schedule for spot (MARKET_DATA)
+Get Spot Delist Schedule (MARKET_DATA)
 
 
 ### Example
@@ -80,7 +80,7 @@ No authorization required
 
 > SystemStatusResponse SystemStatus(ctx).Execute()
 
-System Status (System)
+System Status
 
 
 ### Example

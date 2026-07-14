@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &CompositeIndexSymbolInformationResponseInnerBaseA
 
 // CompositeIndexSymbolInformationResponseInnerBaseAssetListInner struct for CompositeIndexSymbolInformationResponseInnerBaseAssetListInner
 type CompositeIndexSymbolInformationResponseInnerBaseAssetListInner struct {
-	BaseAsset            *string `json:"baseAsset,omitempty"`
-	QuoteAsset           *string `json:"quoteAsset,omitempty"`
-	WeightInQuantity     *string `json:"weightInQuantity,omitempty"`
+	// Base Asset.
+	BaseAsset *string `json:"baseAsset,omitempty"`
+	// Quote Asset.
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// Weight In Quantity.
+	WeightInQuantity *string `json:"weightInQuantity,omitempty"`
+	// Weight In Percentage.
 	WeightInPercentage   *string `json:"weightInPercentage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &TickerBookResponse2ResultInner{}
 
 // TickerBookResponse2ResultInner struct for TickerBookResponse2ResultInner
 type TickerBookResponse2ResultInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	BidPrice             *string `json:"bidPrice,omitempty"`
-	BidQty               *string `json:"bidQty,omitempty"`
-	AskPrice             *string `json:"askPrice,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// best bid price.
+	BidPrice *string `json:"bidPrice,omitempty"`
+	// bid/ask qty.
+	BidQty *string `json:"bidQty,omitempty"`
+	// best ask price.
+	AskPrice *string `json:"askPrice,omitempty"`
+	// bid/ask qty.
 	AskQty               *string `json:"askQty,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

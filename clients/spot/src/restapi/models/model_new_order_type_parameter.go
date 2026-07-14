@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,14 +16,13 @@ type NewOrderTypeParameter string
 
 // List of newOrder_type_parameter
 const (
-	NewOrderTypeParameterMarket           NewOrderTypeParameter = "MARKET"
-	NewOrderTypeParameterLimit            NewOrderTypeParameter = "LIMIT"
-	NewOrderTypeParameterStopLoss         NewOrderTypeParameter = "STOP_LOSS"
-	NewOrderTypeParameterStopLossLimit    NewOrderTypeParameter = "STOP_LOSS_LIMIT"
-	NewOrderTypeParameterTakeProfit       NewOrderTypeParameter = "TAKE_PROFIT"
-	NewOrderTypeParameterTakeProfitLimit  NewOrderTypeParameter = "TAKE_PROFIT_LIMIT"
-	NewOrderTypeParameterLimitMaker       NewOrderTypeParameter = "LIMIT_MAKER"
-	NewOrderTypeParameterNonRepresentable NewOrderTypeParameter = "NON_REPRESENTABLE"
+	NewOrderTypeParameterMarket          NewOrderTypeParameter = "MARKET"
+	NewOrderTypeParameterLimit           NewOrderTypeParameter = "LIMIT"
+	NewOrderTypeParameterStopLoss        NewOrderTypeParameter = "STOP_LOSS"
+	NewOrderTypeParameterStopLossLimit   NewOrderTypeParameter = "STOP_LOSS_LIMIT"
+	NewOrderTypeParameterTakeProfit      NewOrderTypeParameter = "TAKE_PROFIT"
+	NewOrderTypeParameterTakeProfitLimit NewOrderTypeParameter = "TAKE_PROFIT_LIMIT"
+	NewOrderTypeParameterLimitMaker      NewOrderTypeParameter = "LIMIT_MAKER"
 )
 
 // All allowed values of NewOrderTypeParameter enum
@@ -35,7 +34,6 @@ var AllowedNewOrderTypeParameterEnumValues = []NewOrderTypeParameter{
 	"TAKE_PROFIT",
 	"TAKE_PROFIT_LIMIT",
 	"LIMIT_MAKER",
-	"NON_REPRESENTABLE",
 }
 
 func (v *NewOrderTypeParameter) UnmarshalJSON(src []byte) error {

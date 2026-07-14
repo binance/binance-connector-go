@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &KlinesResponse{}
 
 // KlinesResponse struct for KlinesResponse
 type KlinesResponse struct {
-	Code                 *string                  `json:"code,omitempty"`
-	Message              *string                  `json:"message,omitempty"`
-	MessageDetail        *string                  `json:"messageDetail,omitempty"`
-	Success              *bool                    `json:"success,omitempty"`
-	Data                 []KlinesResponseDataItem `json:"data,omitempty"`
+	// API response code. \"000000\" indicates success.
+	Code *string `json:"code,omitempty"`
+	// Response message.
+	Message *string `json:"message,omitempty"`
+	// Detailed response message.
+	MessageDetail *string `json:"messageDetail,omitempty"`
+	// Whether request is successful.
+	Success *bool `json:"success,omitempty"`
+	// Array of kline rows. Each row contains: open time, open, high, low, close, volume, close time, quote volume, trade count, taker buy base volume, taker buy quote volume, and a static 0.
+	Data                 [][]KlinesResponseDataInnerInner `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -173,9 +178,9 @@ func (o *KlinesResponse) SetSuccess(v bool) {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *KlinesResponse) GetData() []KlinesResponseDataItem {
+func (o *KlinesResponse) GetData() [][]KlinesResponseDataInnerInner {
 	if o == nil || common.IsNil(o.Data) {
-		var ret []KlinesResponseDataItem
+		var ret [][]KlinesResponseDataInnerInner
 		return ret
 	}
 	return o.Data
@@ -183,7 +188,7 @@ func (o *KlinesResponse) GetData() []KlinesResponseDataItem {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlinesResponse) GetDataOk() ([]KlinesResponseDataItem, bool) {
+func (o *KlinesResponse) GetDataOk() ([][]KlinesResponseDataInnerInner, bool) {
 	if o == nil || common.IsNil(o.Data) {
 		return nil, false
 	}
@@ -199,8 +204,8 @@ func (o *KlinesResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []KlinesResponseDataItem and assigns it to the Data field.
-func (o *KlinesResponse) SetData(v []KlinesResponseDataItem) {
+// SetData gets a reference to the given [][]KlinesResponseDataInnerInner and assigns it to the Data field.
+func (o *KlinesResponse) SetData(v [][]KlinesResponseDataInnerInner) {
 	o.Data = v
 }
 

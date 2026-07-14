@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**ExercisePrice** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**Fee** | Pointer to **string** |  | [optional] 
-**CreateDate** | Pointer to **int64** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**OptionSide** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | id | [optional] 
+**Currency** | Pointer to **string** | currency | [optional] 
+**Symbol** | Pointer to **string** | symbol | [optional] 
+**ExercisePrice** | Pointer to **string** | exercise Price | [optional] 
+**Quantity** | Pointer to **string** | quantity | [optional] 
+**Amount** | Pointer to **string** | amount | [optional] 
+**Fee** | Pointer to **string** | fee | [optional] 
+**CreateDate** | Pointer to **int64** | create Date | [optional] 
+**PriceScale** | Pointer to **int64** | price Scale | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity Scale | [optional] 
+**OptionSide** | Pointer to **string** | option Side | [optional] 
+**PositionSide** | Pointer to **string** | position Side | [optional] 
+**QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
 
 ## Methods
 

@@ -4,18 +4,18 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**BatchCancelOrders**](TradeAPI.md#BatchCancelOrders) | **Post** /sapi/v1/w3w/wallet/prediction/trade/batch-cancel | Batch Cancel Orders
-[**GetQuote**](TradeAPI.md#GetQuote) | **Post** /sapi/v1/w3w/wallet/prediction/trade/get-quote | Get Quote
-[**PlaceOrder**](TradeAPI.md#PlaceOrder) | **Post** /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle | Place Order
-[**QueryActiveOrders**](TradeAPI.md#QueryActiveOrders) | **Get** /sapi/v1/w3w/wallet/prediction/order/list | Query Active Orders
-[**QueryOrderHistory**](TradeAPI.md#QueryOrderHistory) | **Get** /sapi/v1/w3w/wallet/prediction/order/history | Query Order History
+[**BatchCancelOrders**](TradeAPI.md#BatchCancelOrders) | **Post** /sapi/v1/w3w/wallet/prediction/trade/batch-cancel | Batch Cancel Orders (TRADE)
+[**GetQuote**](TradeAPI.md#GetQuote) | **Post** /sapi/v1/w3w/wallet/prediction/trade/get-quote | Get Quote (TRADE)
+[**PlaceOrder**](TradeAPI.md#PlaceOrder) | **Post** /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle | Place Order (TRADE)
+[**QueryActiveOrders**](TradeAPI.md#QueryActiveOrders) | **Get** /sapi/v1/w3w/wallet/prediction/order/list | Query Active Orders (USER_DATA)
+[**QueryOrderHistory**](TradeAPI.md#QueryOrderHistory) | **Get** /sapi/v1/w3w/wallet/prediction/order/history | Query Order History (USER_DATA)
 
 
 ## BatchCancelOrders
 
 > BatchCancelOrdersResponse BatchCancelOrders(ctx).WalletAddress(walletAddress).WalletId(walletId).CancelInfoList(cancelInfoList).Execute()
 
-Batch Cancel Orders
+Batch Cancel Orders (TRADE)
 
 
 ### Example
@@ -87,7 +87,7 @@ No authorization required
 
 > GetQuoteResponse GetQuote(ctx).WalletAddress(walletAddress).TokenId(tokenId).Side(side).AmountIn(amountIn).OrderType(orderType).SlippageBps(slippageBps).PriceLimit(priceLimit).ChainId(chainId).FeeRateBps(feeRateBps).FundingSource(fundingSource).FundTransferAmount(fundTransferAmount).Execute()
 
-Get Quote
+Get Quote (TRADE)
 
 
 ### Example
@@ -175,7 +175,7 @@ No authorization required
 
 > PlaceOrderResponse PlaceOrder(ctx).WalletAddress(walletAddress).WalletId(walletId).QuoteId(quoteId).TimeInForce(timeInForce).AccountType(accountType).OrderType(orderType).SlippageBps(slippageBps).PriceLimit(priceLimit).FundingSource(fundingSource).FundTransferAmount(fundTransferAmount).Execute()
 
-Place Order
+Place Order (TRADE)
 
 
 ### Example
@@ -261,7 +261,7 @@ No authorization required
 
 > QueryActiveOrdersResponse QueryActiveOrders(ctx).WalletAddress(walletAddress).TradeSide(tradeSide).L1Category(l1Category).MarketId(marketId).Offset(offset).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Active Orders
+Query Active Orders (USER_DATA)
 
 
 ### Example
@@ -341,7 +341,7 @@ No authorization required
 
 > QueryOrderHistoryResponse QueryOrderHistory(ctx).WalletAddress(walletAddress).L1Category(l1Category).OrderType(orderType).Status(status).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Order History
+Query Order History (USER_DATA)
 
 
 ### Example

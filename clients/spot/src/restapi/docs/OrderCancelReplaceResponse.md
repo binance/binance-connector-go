@@ -8,9 +8,6 @@ Name         | Type          | Description.  | Notes
 **NewOrderResult** | Pointer to **string** |  | [optional] 
 **CancelResponse** | Pointer to [**OrderCancelReplaceResponseCancelResponse**](OrderCancelReplaceResponseCancelResponse.md) |  | [optional] 
 **NewOrderResponse** | Pointer to [**OrderCancelReplaceResponseNewOrderResponse**](OrderCancelReplaceResponseNewOrderResponse.md) |  | [optional] 
-**Code** | Pointer to **int64** |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to [**OrderCancelReplaceResponseData**](OrderCancelReplaceResponseData.md) |  | [optional] 
 
 ## Methods
 
@@ -130,81 +127,6 @@ SetNewOrderResponse sets NewOrderResponse field to given value.
 `func (o *OrderCancelReplaceResponse) HasNewOrderResponse() bool`
 
 HasNewOrderResponse returns a boolean if a field has been set.
-
-### GetCode
-
-`func (o *OrderCancelReplaceResponse) GetCode() int64`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *OrderCancelReplaceResponse) GetCodeOk() (*int64, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCode
-
-`func (o *OrderCancelReplaceResponse) SetCode(v int64)`
-
-SetCode sets Code field to given value.
-
-### HasCode
-
-`func (o *OrderCancelReplaceResponse) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
-
-### GetMsg
-
-`func (o *OrderCancelReplaceResponse) GetMsg() string`
-
-GetMsg returns the Msg field if non-nil, zero value otherwise.
-
-### GetMsgOk
-
-`func (o *OrderCancelReplaceResponse) GetMsgOk() (*string, bool)`
-
-GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMsg
-
-`func (o *OrderCancelReplaceResponse) SetMsg(v string)`
-
-SetMsg sets Msg field to given value.
-
-### HasMsg
-
-`func (o *OrderCancelReplaceResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
-
-### GetData
-
-`func (o *OrderCancelReplaceResponse) GetData() OrderCancelReplaceResponseData`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *OrderCancelReplaceResponse) GetDataOk() (*OrderCancelReplaceResponseData, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *OrderCancelReplaceResponse) SetData(v OrderCancelReplaceResponseData)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *OrderCancelReplaceResponse) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

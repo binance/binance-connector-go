@@ -5,20 +5,20 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**PriceChange** | Pointer to **string** |  | [optional] 
-**PriceChangePercent** | Pointer to **string** |  | [optional] 
-**WeightedAvgPrice** | Pointer to **string** |  | [optional] 
+**PriceChange** | Pointer to **string** | Absolute price change | [optional] 
+**PriceChangePercent** | Pointer to **string** | Relative price change in percent | [optional] 
+**WeightedAvgPrice** | Pointer to **string** | quoteVolume / volume | [optional] 
 **OpenPrice** | Pointer to **string** |  | [optional] 
 **HighPrice** | Pointer to **string** |  | [optional] 
 **LowPrice** | Pointer to **string** |  | [optional] 
 **LastPrice** | Pointer to **string** |  | [optional] 
-**Volume** | Pointer to **string** |  | [optional] 
-**QuoteVolume** | Pointer to **string** |  | [optional] 
+**Volume** | Pointer to **string** | Volume in base asset | [optional] 
+**QuoteVolume** | Pointer to **string** | Volume in quote asset | [optional] 
 **OpenTime** | Pointer to **int64** |  | [optional] 
 **CloseTime** | Pointer to **int64** |  | [optional] 
-**FirstId** | Pointer to **int64** |  | [optional] 
-**LastId** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**FirstId** | Pointer to **int64** | Trade ID of the first trade in the interval | [optional] 
+**LastId** | Pointer to **int64** | Trade ID of the last trade in the interval | [optional] 
+**Count** | Pointer to **int64** | Number of trades in the interval | [optional] 
 
 ## Methods
 

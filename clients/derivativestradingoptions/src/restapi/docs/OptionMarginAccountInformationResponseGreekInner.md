@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Underlying** | Pointer to **string** |  | [optional] 
-**Delta** | Pointer to **string** |  | [optional] 
-**Theta** | Pointer to **string** |  | [optional] 
-**Gamma** | Pointer to **string** |  | [optional] 
-**Vega** | Pointer to **string** |  | [optional] 
+**Underlying** | Pointer to **string** | underlying | [optional] 
+**Delta** | Pointer to **string** | delta | [optional] 
+**Gamma** | Pointer to **string** | gamma | [optional] 
+**Theta** | Pointer to **string** | theta | [optional] 
+**Vega** | Pointer to **string** | vega | [optional] 
 
 ## Methods
 
@@ -79,31 +79,6 @@ SetDelta sets Delta field to given value.
 
 HasDelta returns a boolean if a field has been set.
 
-### GetTheta
-
-`func (o *OptionMarginAccountInformationResponseGreekInner) GetTheta() string`
-
-GetTheta returns the Theta field if non-nil, zero value otherwise.
-
-### GetThetaOk
-
-`func (o *OptionMarginAccountInformationResponseGreekInner) GetThetaOk() (*string, bool)`
-
-GetThetaOk returns a tuple with the Theta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTheta
-
-`func (o *OptionMarginAccountInformationResponseGreekInner) SetTheta(v string)`
-
-SetTheta sets Theta field to given value.
-
-### HasTheta
-
-`func (o *OptionMarginAccountInformationResponseGreekInner) HasTheta() bool`
-
-HasTheta returns a boolean if a field has been set.
-
 ### GetGamma
 
 `func (o *OptionMarginAccountInformationResponseGreekInner) GetGamma() string`
@@ -128,6 +103,31 @@ SetGamma sets Gamma field to given value.
 `func (o *OptionMarginAccountInformationResponseGreekInner) HasGamma() bool`
 
 HasGamma returns a boolean if a field has been set.
+
+### GetTheta
+
+`func (o *OptionMarginAccountInformationResponseGreekInner) GetTheta() string`
+
+GetTheta returns the Theta field if non-nil, zero value otherwise.
+
+### GetThetaOk
+
+`func (o *OptionMarginAccountInformationResponseGreekInner) GetThetaOk() (*string, bool)`
+
+GetThetaOk returns a tuple with the Theta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTheta
+
+`func (o *OptionMarginAccountInformationResponseGreekInner) SetTheta(v string)`
+
+SetTheta sets Theta field to given value.
+
+### HasTheta
+
+`func (o *OptionMarginAccountInformationResponseGreekInner) HasTheta() bool`
+
+HasTheta returns a boolean if a field has been set.
 
 ### GetVega
 

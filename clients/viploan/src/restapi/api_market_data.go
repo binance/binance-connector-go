@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package binanceviploanrestapi
@@ -25,6 +25,7 @@ type ApiGetBorrowInterestRateRequest struct {
 	recvWindow *int64
 }
 
+// Max 10 assets, Multiple split by \&quot;,\&quot;
 func (r ApiGetBorrowInterestRateRequest) LoanCoin(loanCoin string) ApiGetBorrowInterestRateRequest {
 	r.loanCoin = &loanCoin
 	return r
@@ -40,13 +41,13 @@ func (r ApiGetBorrowInterestRateRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-GetBorrowInterestRate Get Borrow Interest Rate(USER_DATA)
+GetBorrowInterestRate Get Borrow Interest Rate (USER_DATA)
 Get /sapi/v1/loan/vip/request/interestRate
 
-https://developers.binance.com/docs/vip_loan/market-data/Get-Borrow-Interest-Rate
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-borrow-interest-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param loanCoin -
+@param loanCoin -  Max 10 assets, Multiple split by \",\"
 @param recvWindow -
 @return ApiGetBorrowInterestRateRequest
 */
@@ -76,7 +77,15 @@ func (a *MarketDataAPIService) GetBorrowInterestRateExecute(r ApiGetBorrowIntere
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBorrowInterestRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetBorrowInterestRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -106,10 +115,10 @@ func (r ApiGetCollateralAssetDataRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-GetCollateralAssetData Get Collateral Asset Data(USER_DATA)
+GetCollateralAssetData Get Collateral Asset Data (USER_DATA)
 Get /sapi/v1/loan/vip/collateral/data
 
-https://developers.binance.com/docs/vip_loan/market-data/Get-Collateral-Asset-Data
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-collateral-asset-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param collateralCoin -
@@ -140,7 +149,15 @@ func (a *MarketDataAPIService) GetCollateralAssetDataExecute(r ApiGetCollateralA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCollateralAssetDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCollateralAssetDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -161,7 +178,7 @@ func (r ApiGetLoanableAssetsDataRequest) LoanCoin(loanCoin string) ApiGetLoanabl
 	return r
 }
 
-// default:user&#39;s vip level
+// Defaults to the user&#39;s VIP level.
 func (r ApiGetLoanableAssetsDataRequest) VipLevel(vipLevel int64) ApiGetLoanableAssetsDataRequest {
 	r.vipLevel = &vipLevel
 	return r
@@ -177,14 +194,14 @@ func (r ApiGetLoanableAssetsDataRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-GetLoanableAssetsData Get Loanable Assets Data(USER_DATA)
+GetLoanableAssetsData Get Loanable Assets Data (USER_DATA)
 Get /sapi/v1/loan/vip/loanable/data
 
-https://developers.binance.com/docs/vip_loan/market-data/Get-Loanable-Assets-Data
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-loanable-assets-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
-@param vipLevel -  default:user's vip level
+@param vipLevel -  Defaults to the user's VIP level.
 @param recvWindow -
 @return ApiGetLoanableAssetsDataRequest
 */
@@ -215,7 +232,15 @@ func (a *MarketDataAPIService) GetLoanableAssetsDataExecute(r ApiGetLoanableAsse
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLoanableAssetsDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLoanableAssetsDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -244,23 +269,25 @@ func (r ApiGetVIPLoanInterestRateHistoryRequest) RecvWindow(recvWindow int64) Ap
 	return r
 }
 
+// If both startTime and endTime are omitted, the most recent 90 days are returned.
 func (r ApiGetVIPLoanInterestRateHistoryRequest) StartTime(startTime int64) ApiGetVIPLoanInterestRateHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Maximum interval between startTime and endTime is 180 days. Time is based on UTC+0.
 func (r ApiGetVIPLoanInterestRateHistoryRequest) EndTime(endTime int64) ApiGetVIPLoanInterestRateHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Page number, default 1, minimum 1
+// Current page number, starting from 1.
 func (r ApiGetVIPLoanInterestRateHistoryRequest) Current(current int64) ApiGetVIPLoanInterestRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records per page.
 func (r ApiGetVIPLoanInterestRateHistoryRequest) Limit(limit int64) ApiGetVIPLoanInterestRateHistoryRequest {
 	r.limit = &limit
 	return r
@@ -274,15 +301,15 @@ func (r ApiGetVIPLoanInterestRateHistoryRequest) Execute() (*common.RestApiRespo
 GetVIPLoanInterestRateHistory Get VIP Loan Interest Rate History (USER_DATA)
 Get /sapi/v1/loan/vip/interestRateHistory
 
-https://developers.binance.com/docs/vip_loan/market-data/Get-VIP-Loan-Interest-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#get-viploan-interest-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
 @param recvWindow -
-@param startTime -
-@param endTime -
-@param current -  Page number, default 1, minimum 1
-@param limit -  Default: 10; max: 100
+@param startTime -  If both startTime and endTime are omitted, the most recent 90 days are returned.
+@param endTime -  Maximum interval between startTime and endTime is 180 days. Time is based on UTC+0.
+@param current -  Current page number, starting from 1.
+@param limit -  Number of records per page.
 @return ApiGetVIPLoanInterestRateHistoryRequest
 */
 func (a *MarketDataAPIService) GetVIPLoanInterestRateHistory(ctx context.Context) ApiGetVIPLoanInterestRateHistoryRequest {
@@ -305,8 +332,12 @@ func (a *MarketDataAPIService) GetVIPLoanInterestRateHistoryExecute(r ApiGetVIPL
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
+
 	if r.recvWindow == nil {
 		return nil, common.ReportError("recvWindow is required and must be specified")
+	}
+	if *r.recvWindow > 60000 {
+		return nil, common.ReportError("recvWindow must be less than 60000")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "coin", r.coin, "form", "")
@@ -324,7 +355,15 @@ func (a *MarketDataAPIService) GetVIPLoanInterestRateHistoryExecute(r ApiGetVIPL
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 
-	resp, err := SendRequest[models.GetVIPLoanInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetVIPLoanInterestRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -342,6 +381,7 @@ type ApiQueryVIPLoanFixedRateMarketRequest struct {
 	recvWindow *int64
 }
 
+// Loan coin
 func (r ApiQueryVIPLoanFixedRateMarketRequest) LoanCoin(loanCoin string) ApiQueryVIPLoanFixedRateMarketRequest {
 	r.loanCoin = &loanCoin
 	return r
@@ -365,6 +405,7 @@ func (r ApiQueryVIPLoanFixedRateMarketRequest) Size(size int64) ApiQueryVIPLoanF
 	return r
 }
 
+// The value cannot be greater than &#x60;60000&#x60;
 func (r ApiQueryVIPLoanFixedRateMarketRequest) RecvWindow(recvWindow int64) ApiQueryVIPLoanFixedRateMarketRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -375,17 +416,17 @@ func (r ApiQueryVIPLoanFixedRateMarketRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryVIPLoanFixedRateMarket Query VIP Loan Fixed Rate Market(USER_DATA)
+QueryVIPLoanFixedRateMarket Query VIP Loan Fixed Rate Market (USER_DATA)
 Get /sapi/v1/loan/vip/fixed/market
 
-https://developers.binance.com/docs/vip_loan/market-data/Query-VIP-Loan-Fixed-Rate-Market
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/market-data#query-viploan-fixed-rate-market
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param loanCoin -
+@param loanCoin -  Loan coin
 @param duration -  Duration in days, minimum 1
 @param current -  Page number, default 1, minimum 1
 @param size -  Page size, default 10, range [1, 100]
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than `60000`
 @return ApiQueryVIPLoanFixedRateMarketRequest
 */
 func (a *MarketDataAPIService) QueryVIPLoanFixedRateMarket(ctx context.Context) ApiQueryVIPLoanFixedRateMarketRequest {
@@ -423,7 +464,15 @@ func (a *MarketDataAPIService) QueryVIPLoanFixedRateMarketExecute(r ApiQueryVIPL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryVIPLoanFixedRateMarketResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryVIPLoanFixedRateMarketResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

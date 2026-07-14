@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,24 +17,43 @@ var _ common.MappedNullable = &AccountBlockTradeListResponseInnerLegsInner{}
 
 // AccountBlockTradeListResponseInnerLegsInner struct for AccountBlockTradeListResponseInnerLegsInner
 type AccountBlockTradeListResponseInnerLegsInner struct {
-	CreateTime           *int64   `json:"createTime,omitempty"`
-	UpdateTime           *int64   `json:"updateTime,omitempty"`
-	Symbol               *string  `json:"symbol,omitempty"`
-	OrderId              *string  `json:"orderId,omitempty"`
-	OrderPrice           *float32 `json:"orderPrice,omitempty"`
-	OrderQuantity        *float32 `json:"orderQuantity,omitempty"`
-	OrderStatus          *string  `json:"orderStatus,omitempty"`
-	ExecutedQty          *float32 `json:"executedQty,omitempty"`
-	ExecutedAmount       *float32 `json:"executedAmount,omitempty"`
-	Fee                  *float32 `json:"fee,omitempty"`
-	OrderType            *string  `json:"orderType,omitempty"`
-	OrderSide            *string  `json:"orderSide,omitempty"`
-	Id                   *string  `json:"id,omitempty"`
-	TradeId              *int64   `json:"tradeId,omitempty"`
-	TradePrice           *float32 `json:"tradePrice,omitempty"`
-	TradeQty             *float32 `json:"tradeQty,omitempty"`
-	TradeTime            *int64   `json:"tradeTime,omitempty"`
-	Liquidity            *string  `json:"liquidity,omitempty"`
+	// create Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// update Time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// order Id
+	OrderId *string `json:"orderId,omitempty"`
+	// order Price
+	OrderPrice *float32 `json:"orderPrice,omitempty"`
+	// order Quantity
+	OrderQuantity *float32 `json:"orderQuantity,omitempty"`
+	// order Status
+	OrderStatus *string `json:"orderStatus,omitempty"`
+	// executed Qty
+	ExecutedQty *float32 `json:"executedQty,omitempty"`
+	// executed Amount
+	ExecutedAmount *float32 `json:"executedAmount,omitempty"`
+	// fee
+	Fee *float32 `json:"fee,omitempty"`
+	// order Type
+	OrderType *string `json:"orderType,omitempty"`
+	// order Side
+	OrderSide *string `json:"orderSide,omitempty"`
+	// id
+	Id *string `json:"id,omitempty"`
+	// trade Id
+	TradeId *int64 `json:"tradeId,omitempty"`
+	// trade Price
+	TradePrice *float32 `json:"tradePrice,omitempty"`
+	// trade Qty
+	TradeQty *float32 `json:"tradeQty,omitempty"`
+	// trade Time
+	TradeTime *int64 `json:"tradeTime,omitempty"`
+	// liquidity
+	Liquidity *string `json:"liquidity,omitempty"`
+	// commission
 	Commission           *float32 `json:"commission,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

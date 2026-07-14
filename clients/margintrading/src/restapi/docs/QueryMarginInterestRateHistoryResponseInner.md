@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**DailyInterestRate** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**VipLevel** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**DailyInterestRate** | Pointer to **string** | daily Interest Rate. | [optional] 
+**Timestamp** | Pointer to **int64** | timestamp. | [optional] 
+**VipLevel** | Pointer to **int64** | vip Level. | [optional] 
 
 ## Methods
 

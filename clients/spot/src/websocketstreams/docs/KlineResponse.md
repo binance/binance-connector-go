@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
 **K** | Pointer to [**KlineResponseK**](KlineResponseK.md) |  | [optional] 
 
 ## Methods

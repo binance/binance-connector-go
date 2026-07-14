@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Bracket** | Pointer to **int64** |  | [optional] 
-**InitialLeverage** | Pointer to **int64** |  | [optional] 
-**QtyCap** | Pointer to **int64** |  | [optional] 
-**QtyFloor** | Pointer to **int64** |  | [optional] 
-**MaintMarginRatio** | Pointer to **float32** |  | [optional] 
-**Cum** | Pointer to **float32** |  | [optional] 
+**Bracket** | Pointer to **int64** | bracket level | [optional] 
+**InitialLeverage** | Pointer to **int64** | the maximum leverage | [optional] 
+**QtyCap** | Pointer to **int64** | upper edge of base asset quantity | [optional] 
+**QtyFloor** | Pointer to **int64** | lower edge of base asset quantity | [optional] 
+**MaintMarginRatio** | Pointer to **float32** | maintenance margin rate | [optional] 
+**Cum** | Pointer to **float32** | Auxiliary number for quick calculation | [optional] 
 
 ## Methods
 

@@ -22,7 +22,7 @@ func MarginAccountCancelOrder() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountCancelOrder(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountCancelOrder(context.Background()).Symbol("LTCBTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**ReferencePrice** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**ReferencePrice** | Pointer to **string** | Reference price. Can be &#x60;null&#x60; if no reference price is set. | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp when reference price was valid. | [optional] 
 
 ## Methods
 

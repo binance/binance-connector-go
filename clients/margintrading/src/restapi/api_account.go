@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingrestapi
@@ -38,7 +38,7 @@ func (r ApiAdjustCrossMarginMaxLeverageRequest) Execute() (*common.RestApiRespon
 AdjustCrossMarginMaxLeverage Adjust cross margin max leverage (USER_DATA)
 Post /sapi/v1/margin/max-leverage
 
-https://developers.binance.com/docs/margin_trading/account/Adjust-cross-margin-max-leverage
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#adjust-cross-margin-max-leverage
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param maxLeverage -  Can only adjust 3 , 5 or 10，Example: maxLeverage = 5 or 3 for Cross Margin Classic; maxLeverage=10 for Cross Margin Pro 10x leverage or 20x if compliance allows.
@@ -67,7 +67,15 @@ func (a *AccountAPIService) AdjustCrossMarginMaxLeverageExecute(r ApiAdjustCross
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "maxLeverage", r.maxLeverage, "form", "")
 
-	resp, err := SendRequest[models.AdjustCrossMarginMaxLeverageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AdjustCrossMarginMaxLeverageResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -87,7 +95,6 @@ func (r ApiDisableIsolatedMarginAccountRequest) Symbol(symbol string) ApiDisable
 	return r
 }
 
-// No more than 60000
 func (r ApiDisableIsolatedMarginAccountRequest) RecvWindow(recvWindow int64) ApiDisableIsolatedMarginAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -101,11 +108,11 @@ func (r ApiDisableIsolatedMarginAccountRequest) Execute() (*common.RestApiRespon
 DisableIsolatedMarginAccount Disable Isolated Margin Account (TRADE)
 Delete /sapi/v1/margin/isolated/account
 
-https://developers.binance.com/docs/margin_trading/account/Disable-Isolated-Margin-Account
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#disable-isolated-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiDisableIsolatedMarginAccountRequest
 */
 func (a *AccountAPIService) DisableIsolatedMarginAccount(ctx context.Context) ApiDisableIsolatedMarginAccountRequest {
@@ -134,7 +141,15 @@ func (a *AccountAPIService) DisableIsolatedMarginAccountExecute(r ApiDisableIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DisableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DisableIsolatedMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -154,7 +169,6 @@ func (r ApiEnableIsolatedMarginAccountRequest) Symbol(symbol string) ApiEnableIs
 	return r
 }
 
-// No more than 60000
 func (r ApiEnableIsolatedMarginAccountRequest) RecvWindow(recvWindow int64) ApiEnableIsolatedMarginAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -168,11 +182,11 @@ func (r ApiEnableIsolatedMarginAccountRequest) Execute() (*common.RestApiRespons
 EnableIsolatedMarginAccount Enable Isolated Margin Account (TRADE)
 Post /sapi/v1/margin/isolated/account
 
-https://developers.binance.com/docs/margin_trading/account/Enable-Isolated-Margin-Account
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#enable-isolated-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiEnableIsolatedMarginAccountRequest
 */
 func (a *AccountAPIService) EnableIsolatedMarginAccount(ctx context.Context) ApiEnableIsolatedMarginAccountRequest {
@@ -201,7 +215,15 @@ func (a *AccountAPIService) EnableIsolatedMarginAccountExecute(r ApiEnableIsolat
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.EnableIsolatedMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.EnableIsolatedMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -215,7 +237,6 @@ type ApiGetBnbBurnStatusRequest struct {
 	recvWindow *int64
 }
 
-// No more than 60000
 func (r ApiGetBnbBurnStatusRequest) RecvWindow(recvWindow int64) ApiGetBnbBurnStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -229,10 +250,10 @@ func (r ApiGetBnbBurnStatusRequest) Execute() (*common.RestApiResponse[models.Ge
 GetBnbBurnStatus Get BNB Burn Status (USER_DATA)
 Get /sapi/v1/bnbBurn
 
-https://developers.binance.com/docs/margin_trading/account/Get-BNB-Burn-Status
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-bnb-burn-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiGetBnbBurnStatusRequest
 */
 func (a *AccountAPIService) GetBnbBurnStatus(ctx context.Context) ApiGetBnbBurnStatusRequest {
@@ -256,7 +277,15 @@ func (a *AccountAPIService) GetBnbBurnStatusExecute(r ApiGetBnbBurnStatusRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBnbBurnStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetBnbBurnStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -270,7 +299,6 @@ type ApiGetSummaryOfMarginAccountRequest struct {
 	recvWindow *int64
 }
 
-// No more than 60000
 func (r ApiGetSummaryOfMarginAccountRequest) RecvWindow(recvWindow int64) ApiGetSummaryOfMarginAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -284,10 +312,10 @@ func (r ApiGetSummaryOfMarginAccountRequest) Execute() (*common.RestApiResponse[
 GetSummaryOfMarginAccount Get Summary of Margin account (USER_DATA)
 Get /sapi/v1/margin/tradeCoeff
 
-https://developers.binance.com/docs/margin_trading/account/Get-Summary-of-Margin-account
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#get-summary-of-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiGetSummaryOfMarginAccountRequest
 */
 func (a *AccountAPIService) GetSummaryOfMarginAccount(ctx context.Context) ApiGetSummaryOfMarginAccountRequest {
@@ -311,7 +339,15 @@ func (a *AccountAPIService) GetSummaryOfMarginAccountExecute(r ApiGetSummaryOfMa
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSummaryOfMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSummaryOfMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -324,7 +360,7 @@ type ApiQueryCrossIsolatedMarginCapitalFlowRequest struct {
 	ApiService *AccountAPIService
 	asset      *string
 	symbol     *string
-	type_      *string
+	type_      *models.QueryCrossIsolatedMarginCapitalFlowTypeParameter
 	startTime  *int64
 	endTime    *int64
 	fromId     *int64
@@ -337,19 +373,17 @@ func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Asset(asset string) ApiQu
 	return r
 }
 
-// isolated margin pair
+// Mandatory for Isolated data
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Symbol(symbol string) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Transfer Type: ROLL_IN, ROLL_OUT
-func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Type(type_ string) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
+func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Type(type_ models.QueryCrossIsolatedMarginCapitalFlowTypeParameter) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) StartTime(startTime int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.startTime = &startTime
 	return r
@@ -360,19 +394,16 @@ func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) EndTime(endTime int64) Ap
 	return r
 }
 
-// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) FromId(fromId int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Limit(limit int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.limit = &limit
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) RecvWindow(recvWindow int64) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -386,17 +417,17 @@ func (r ApiQueryCrossIsolatedMarginCapitalFlowRequest) Execute() (*common.RestAp
 QueryCrossIsolatedMarginCapitalFlow Query Cross Isolated Margin Capital Flow (USER_DATA)
 Get /sapi/v1/margin/capital-flow
 
-https://developers.binance.com/docs/margin_trading/account/Query-Cross-Isolated-Margin-Capital-Flow
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-isolated-margin-capital-flow
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param symbol -  isolated margin pair
-@param type_ -  Transfer Type: ROLL_IN, ROLL_OUT
-@param startTime -  Only supports querying data from the past 90 days.
+@param symbol -  Mandatory for Isolated data
+@param type_ -
+@param startTime -
 @param endTime -
-@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
-@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
-@param recvWindow -  No more than 60000
+@param fromId -
+@param limit -
+@param recvWindow -
 @return ApiQueryCrossIsolatedMarginCapitalFlowRequest
 */
 func (a *AccountAPIService) QueryCrossIsolatedMarginCapitalFlow(ctx context.Context) ApiQueryCrossIsolatedMarginCapitalFlowRequest {
@@ -441,7 +472,15 @@ func (a *AccountAPIService) QueryCrossIsolatedMarginCapitalFlowExecute(r ApiQuer
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossIsolatedMarginCapitalFlowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCrossIsolatedMarginCapitalFlowResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -455,7 +494,6 @@ type ApiQueryCrossMarginAccountDetailsRequest struct {
 	recvWindow *int64
 }
 
-// No more than 60000
 func (r ApiQueryCrossMarginAccountDetailsRequest) RecvWindow(recvWindow int64) ApiQueryCrossMarginAccountDetailsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -469,10 +507,10 @@ func (r ApiQueryCrossMarginAccountDetailsRequest) Execute() (*common.RestApiResp
 QueryCrossMarginAccountDetails Query Cross Margin Account Details (USER_DATA)
 Get /sapi/v1/margin/account
 
-https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Account-Details
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-account-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryCrossMarginAccountDetailsRequest
 */
 func (a *AccountAPIService) QueryCrossMarginAccountDetails(ctx context.Context) ApiQueryCrossMarginAccountDetailsRequest {
@@ -496,7 +534,15 @@ func (a *AccountAPIService) QueryCrossMarginAccountDetailsExecute(r ApiQueryCros
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossMarginAccountDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCrossMarginAccountDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -523,7 +569,6 @@ func (r ApiQueryCrossMarginFeeDataRequest) Coin(coin string) ApiQueryCrossMargin
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryCrossMarginFeeDataRequest) RecvWindow(recvWindow int64) ApiQueryCrossMarginFeeDataRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -537,12 +582,12 @@ func (r ApiQueryCrossMarginFeeDataRequest) Execute() (*common.RestApiResponse[mo
 QueryCrossMarginFeeData Query Cross Margin Fee Data (USER_DATA)
 Get /sapi/v1/margin/crossMarginData
 
-https://developers.binance.com/docs/margin_trading/account/Query-Cross-Margin-Fee-Data
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-cross-margin-fee-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param vipLevel -  User's current specific margin data will be returned if vipLevel is omitted
 @param coin -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryCrossMarginFeeDataRequest
 */
 func (a *AccountAPIService) QueryCrossMarginFeeData(ctx context.Context) ApiQueryCrossMarginFeeDataRequest {
@@ -572,7 +617,15 @@ func (a *AccountAPIService) QueryCrossMarginFeeDataExecute(r ApiQueryCrossMargin
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCrossMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCrossMarginFeeDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -586,7 +639,6 @@ type ApiQueryEnabledIsolatedMarginAccountLimitRequest struct {
 	recvWindow *int64
 }
 
-// No more than 60000
 func (r ApiQueryEnabledIsolatedMarginAccountLimitRequest) RecvWindow(recvWindow int64) ApiQueryEnabledIsolatedMarginAccountLimitRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -600,10 +652,10 @@ func (r ApiQueryEnabledIsolatedMarginAccountLimitRequest) Execute() (*common.Res
 QueryEnabledIsolatedMarginAccountLimit Query Enabled Isolated Margin Account Limit (USER_DATA)
 Get /sapi/v1/margin/isolated/accountLimit
 
-https://developers.binance.com/docs/margin_trading/account/Query-Enabled-Isolated-Margin-Account-Limit
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-enabled-isolated-margin-account-limit
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryEnabledIsolatedMarginAccountLimitRequest
 */
 func (a *AccountAPIService) QueryEnabledIsolatedMarginAccountLimit(ctx context.Context) ApiQueryEnabledIsolatedMarginAccountLimitRequest {
@@ -627,7 +679,15 @@ func (a *AccountAPIService) QueryEnabledIsolatedMarginAccountLimitExecute(r ApiQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryEnabledIsolatedMarginAccountLimitResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryEnabledIsolatedMarginAccountLimitResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -642,13 +702,11 @@ type ApiQueryIsolatedMarginAccountInfoRequest struct {
 	recvWindow *int64
 }
 
-// Max 5 symbols can be sent; separated by \&quot;,\&quot;. e.g. \&quot;BTCUSDT,BNBUSDT,ADAUSDT\&quot;
 func (r ApiQueryIsolatedMarginAccountInfoRequest) Symbols(symbols string) ApiQueryIsolatedMarginAccountInfoRequest {
 	r.symbols = &symbols
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryIsolatedMarginAccountInfoRequest) RecvWindow(recvWindow int64) ApiQueryIsolatedMarginAccountInfoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -662,11 +720,11 @@ func (r ApiQueryIsolatedMarginAccountInfoRequest) Execute() (*common.RestApiResp
 QueryIsolatedMarginAccountInfo Query Isolated Margin Account Info (USER_DATA)
 Get /sapi/v1/margin/isolated/account
 
-https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Account-Info
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-account-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbols -  Max 5 symbols can be sent; separated by \",\". e.g. \"BTCUSDT,BNBUSDT,ADAUSDT\"
-@param recvWindow -  No more than 60000
+@param symbols -
+@param recvWindow -
 @return ApiQueryIsolatedMarginAccountInfoRequest
 */
 func (a *AccountAPIService) QueryIsolatedMarginAccountInfo(ctx context.Context) ApiQueryIsolatedMarginAccountInfoRequest {
@@ -693,7 +751,15 @@ func (a *AccountAPIService) QueryIsolatedMarginAccountInfoExecute(r ApiQueryIsol
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryIsolatedMarginAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryIsolatedMarginAccountInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -709,19 +775,16 @@ type ApiQueryIsolatedMarginFeeDataRequest struct {
 	recvWindow *int64
 }
 
-// User&#39;s current specific margin data will be returned if vipLevel is omitted
 func (r ApiQueryIsolatedMarginFeeDataRequest) VipLevel(vipLevel int64) ApiQueryIsolatedMarginFeeDataRequest {
 	r.vipLevel = &vipLevel
 	return r
 }
 
-// isolated margin pair
 func (r ApiQueryIsolatedMarginFeeDataRequest) Symbol(symbol string) ApiQueryIsolatedMarginFeeDataRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryIsolatedMarginFeeDataRequest) RecvWindow(recvWindow int64) ApiQueryIsolatedMarginFeeDataRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -735,12 +798,12 @@ func (r ApiQueryIsolatedMarginFeeDataRequest) Execute() (*common.RestApiResponse
 QueryIsolatedMarginFeeData Query Isolated Margin Fee Data (USER_DATA)
 Get /sapi/v1/margin/isolatedMarginData
 
-https://developers.binance.com/docs/margin_trading/account/Query-Isolated-Margin-Fee-Data
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/account#query-isolated-margin-fee-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param vipLevel -  User's current specific margin data will be returned if vipLevel is omitted
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param vipLevel -
+@param symbol -
+@param recvWindow -
 @return ApiQueryIsolatedMarginFeeDataRequest
 */
 func (a *AccountAPIService) QueryIsolatedMarginFeeData(ctx context.Context) ApiQueryIsolatedMarginFeeDataRequest {
@@ -770,7 +833,15 @@ func (a *AccountAPIService) QueryIsolatedMarginFeeDataExecute(r ApiQueryIsolated
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryIsolatedMarginFeeDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryIsolatedMarginFeeDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,14 +16,13 @@ type OrderCancelReplaceTypeParameter string
 
 // List of orderCancelReplace_type_parameter
 const (
-	OrderCancelReplaceTypeParameterMarket           OrderCancelReplaceTypeParameter = "MARKET"
-	OrderCancelReplaceTypeParameterLimit            OrderCancelReplaceTypeParameter = "LIMIT"
-	OrderCancelReplaceTypeParameterStopLoss         OrderCancelReplaceTypeParameter = "STOP_LOSS"
-	OrderCancelReplaceTypeParameterStopLossLimit    OrderCancelReplaceTypeParameter = "STOP_LOSS_LIMIT"
-	OrderCancelReplaceTypeParameterTakeProfit       OrderCancelReplaceTypeParameter = "TAKE_PROFIT"
-	OrderCancelReplaceTypeParameterTakeProfitLimit  OrderCancelReplaceTypeParameter = "TAKE_PROFIT_LIMIT"
-	OrderCancelReplaceTypeParameterLimitMaker       OrderCancelReplaceTypeParameter = "LIMIT_MAKER"
-	OrderCancelReplaceTypeParameterNonRepresentable OrderCancelReplaceTypeParameter = "NON_REPRESENTABLE"
+	OrderCancelReplaceTypeParameterMarket          OrderCancelReplaceTypeParameter = "MARKET"
+	OrderCancelReplaceTypeParameterLimit           OrderCancelReplaceTypeParameter = "LIMIT"
+	OrderCancelReplaceTypeParameterStopLoss        OrderCancelReplaceTypeParameter = "STOP_LOSS"
+	OrderCancelReplaceTypeParameterStopLossLimit   OrderCancelReplaceTypeParameter = "STOP_LOSS_LIMIT"
+	OrderCancelReplaceTypeParameterTakeProfit      OrderCancelReplaceTypeParameter = "TAKE_PROFIT"
+	OrderCancelReplaceTypeParameterTakeProfitLimit OrderCancelReplaceTypeParameter = "TAKE_PROFIT_LIMIT"
+	OrderCancelReplaceTypeParameterLimitMaker      OrderCancelReplaceTypeParameter = "LIMIT_MAKER"
 )
 
 // All allowed values of OrderCancelReplaceTypeParameter enum
@@ -35,7 +34,6 @@ var AllowedOrderCancelReplaceTypeParameterEnumValues = []OrderCancelReplaceTypeP
 	"TAKE_PROFIT",
 	"TAKE_PROFIT_LIMIT",
 	"LIMIT_MAKER",
-	"NON_REPRESENTABLE",
 }
 
 func (v *OrderCancelReplaceTypeParameter) UnmarshalJSON(src []byte) error {

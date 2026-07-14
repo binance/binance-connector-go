@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,12 +17,19 @@ var _ common.MappedNullable = &GetUmFuturesTradeDownloadLinkByIdResponse{}
 
 // GetUmFuturesTradeDownloadLinkByIdResponse struct for GetUmFuturesTradeDownloadLinkByIdResponse
 type GetUmFuturesTradeDownloadLinkByIdResponse struct {
-	DownloadId           *string `json:"downloadId,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	Url                  *string `json:"url,omitempty"`
-	S3Link               *string `json:"s3Link,omitempty"`
-	Notified             *bool   `json:"notified,omitempty"`
-	ExpirationTimestamp  *int64  `json:"expirationTimestamp,omitempty"`
+	// Download ID.
+	DownloadId *string `json:"downloadId,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// The link is mapped to download id
+	Url *string `json:"url,omitempty"`
+	// S3 Link.
+	S3Link *string `json:"s3Link,omitempty"`
+	// ignore
+	Notified *bool `json:"notified,omitempty"`
+	// The link would expire after this timestamp
+	ExpirationTimestamp *int64 `json:"expirationTimestamp,omitempty"`
+	// Is Expired.
 	IsExpired            *string `json:"isExpired,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

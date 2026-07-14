@@ -17,7 +17,7 @@ Method        | HTTP request  | Description
 [**MarginTransferForSubAccount**](AssetManagementAPI.md#MarginTransferForSubAccount) | **Post** /sapi/v1/sub-account/margin/transfer | Margin Transfer for Sub-account (For Master Account) (USER_DATA)
 [**MovePositionForSubAccount**](AssetManagementAPI.md#MovePositionForSubAccount) | **Post** /sapi/v1/sub-account/futures/move-position | Move Position for Sub-account (For Master Account) (USER_DATA)
 [**QuerySubAccountAssets**](AssetManagementAPI.md#QuerySubAccountAssets) | **Get** /sapi/v3/sub-account/assets | Query Sub-account Assets (For Master Account) (USER_DATA)
-[**QuerySubAccountAssetsAssetManagement**](AssetManagementAPI.md#QuerySubAccountAssetsAssetManagement) | **Get** /sapi/v4/sub-account/assets | Query Sub-account Assets (For Master Account) (USER_DATA)
+[**QuerySubAccountAssetsAssetManagement**](AssetManagementAPI.md#QuerySubAccountAssetsAssetManagement) | **Get** /sapi/v4/sub-account/assets | Query Sub-account Assets V4 (For Master Account) (USER_DATA)
 [**QuerySubAccountFuturesAssetTransferHistory**](AssetManagementAPI.md#QuerySubAccountFuturesAssetTransferHistory) | **Get** /sapi/v1/sub-account/futures/internalTransfer | Query Sub-account Futures Asset Transfer History (For Master Account) (USER_DATA)
 [**QuerySubAccountSpotAssetTransferHistory**](AssetManagementAPI.md#QuerySubAccountSpotAssetTransferHistory) | **Get** /sapi/v1/sub-account/sub/transfer/history | Query Sub-account Spot Asset Transfer History (For Master Account) (USER_DATA)
 [**QuerySubAccountSpotAssetsSummary**](AssetManagementAPI.md#QuerySubAccountSpotAssetsSummary) | **Get** /sapi/v1/sub-account/spotSummary | Query Sub-account Spot Assets Summary (For Master Account) (USER_DATA)
@@ -52,10 +52,10 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	asset := "asset_example" // string | 
-	amount := float32(1.0) // float32 | 
-	type_ := int64(789) // int64 | 1: transfer from subaccount's  spot account to margin account 2: transfer from subaccount's margin account to its spot account
+	email := "123@test.com" // string | 
+	asset := "USDT" // string | The asset being transferred
+	amount := float32(1.0) // float32 | The amount to be transferred
+	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4:transfer from subaccount's COIN-margined futures account to its spot account
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -84,10 +84,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
- **asset** | **string** |  | 
- **amount** | **float32** |  | 
- **type_** | **int64** | 1: transfer from subaccount&#39;s  spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account | 
+ **email** | **string** |  | 
+ **asset** | **string** | The asset being transferred | 
+ **amount** | **float32** | The amount to be transferred | 
+ **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from subaccount&#39;s COIN-margined futures account to its spot account | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -128,7 +128,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -157,7 +157,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -198,8 +198,8 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	futuresType := int64(789) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	email := "123@test.com" // string | 
+	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -228,7 +228,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
  **recvWindow** | **int64** |  | 
 
@@ -270,7 +270,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -299,7 +299,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -340,9 +340,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	page := int64(789) // int64 | Page
-	rows := int64(789) // int64 | 
+	symbol := "BTCUSDT" // string | 
+	page := int64(1) // int64 | 
+	rows := int64(1) // int64 | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -374,7 +374,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **page** | **int64** | Page | 
+ **page** | **int64** |  | 
  **rows** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
@@ -418,8 +418,8 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	coin := "coin_example" // string | 
+	email := "123@test.com" // string | 
+	coin := "BTC" // string | 
 	network := "network_example" // string | networks can be found in `GET /sapi/v1/capital/deposit/address` (optional)
 	amount := float32(1.0) // float32 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -450,7 +450,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **coin** | **string** |  | 
  **network** | **string** | networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | 
  **amount** | **float32** |  | 
@@ -494,14 +494,14 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	includeSource := false // bool | Default: `false`, return `sourceAddress`field when set to `true` (optional)
-	coin := "coin_example" // string |  (optional)
-	status := int64(789) // int64 | 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success) (optional)
+	email := "123@test.com" // string | 
+	includeSource := false // bool | Default `false`, return `sourceAddress` field when set to `true` (optional)
+	coin := "BTC" // string |  (optional)
+	status := int64(0) // int64 | Deposit status: 0=pending, 6=credited but cannot withdraw, 7=wrong deposit, 8=waiting user confirmation, 1=success. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
-	offset := int64(0) // int64 | default:0 (optional)
+	limit := int64(1) // int64 |  (optional)
+	offset := int64(0) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 	txId := "1" // string |  (optional)
 
@@ -531,14 +531,14 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
- **includeSource** | **bool** | Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60; | 
+ **email** | **string** |  | 
+ **includeSource** | **bool** | Default &#x60;false&#x60;, return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | 
  **coin** | **string** |  | 
- **status** | **int64** | 0(0:pending,6: credited but cannot withdraw,7:Wrong Deposit,8:Waiting User confirm,1:success) | 
+ **status** | **int64** | Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
- **offset** | **int64** | default:0 | 
+ **limit** | **int64** |  | 
+ **offset** | **int64** |  | 
  **recvWindow** | **int64** |  | 
  **txId** | **string** |  | 
 
@@ -580,8 +580,8 @@ import (
 )
 
 func main() {
-	page := int64(789) // int64 | Page
-	limit := int64(789) // int64 | Limit (Max: 500)
+	page := int64(1) // int64 | 
+	limit := int64(1) // int64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -610,8 +610,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **int64** | Page | 
- **limit** | **int64** | Limit (Max: 500) | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -652,9 +652,9 @@ import (
 )
 
 func main() {
-	futuresType := int64(789) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -684,8 +684,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -794,10 +794,10 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	asset := "asset_example" // string | 
-	amount := float32(1.0) // float32 | 
-	type_ := int64(789) // int64 | 1: transfer from subaccount's  spot account to margin account 2: transfer from subaccount's margin account to its spot account
+	email := "123@test.com" // string | 
+	asset := "BTC" // string | The asset being transferred
+	amount := float32(1.0) // float32 | The amount to be transferred
+	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to margin account 2: transfer from subaccount's margin account to its spot account
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -826,10 +826,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
- **asset** | **string** |  | 
- **amount** | **float32** |  | 
- **type_** | **int64** | 1: transfer from subaccount&#39;s  spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account | 
+ **email** | **string** |  | 
+ **asset** | **string** | The asset being transferred | 
+ **amount** | **float32** | The amount to be transferred | 
+ **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -870,9 +870,9 @@ import (
 )
 
 func main() {
-	fromUserEmail := "fromUserEmail_example" // string | 
-	toUserEmail := "toUserEmail_example" // string | 
-	productType := "productType_example" // string | Only support UM
+	fromUserEmail := "testFrom@google.com" // string | 
+	toUserEmail := "testTo@google.com" // string | 
+	productType := models.MovePositionForSubAccountProductTypeParameterUm // MovePositionForSubAccountProductTypeParameter | 
 	orderArgs := []models.MovePositionForSubAccountOrderArgsParameterInner{*models.NewMovePositionForSubAccountOrderArgsParameterInner()} // []MovePositionForSubAccountOrderArgsParameterInner | Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol=BTCUSDT,orderArgs[0].quantity=0.001,orderArgs[0].positionSide=BOTH. Example of the request parameter array: orderArgs[0].symbol=BTCUSDT orderArgs[0].quantity=0.001 orderArgs[0].positionSide=BOTH orderArgs[1].symbol=ETHUSDT orderArgs[1].quantity=0.01 orderArgs[1].positionSide=BOTH
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -904,7 +904,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromUserEmail** | **string** |  | 
  **toUserEmail** | **string** |  | 
- **productType** | **string** | Only support UM | 
+ **productType** | [**MovePositionForSubAccountProductTypeParameter**](MovePositionForSubAccountProductTypeParameter.md) |  | 
  **orderArgs** | [**[]MovePositionForSubAccountOrderArgsParameterInner**](MovePositionForSubAccountOrderArgsParameterInner.md) | Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol&#x3D;BTCUSDT,orderArgs[0].quantity&#x3D;0.001,orderArgs[0].positionSide&#x3D;BOTH. Example of the request parameter array: orderArgs[0].symbol&#x3D;BTCUSDT orderArgs[0].quantity&#x3D;0.001 orderArgs[0].positionSide&#x3D;BOTH orderArgs[1].symbol&#x3D;ETHUSDT orderArgs[1].quantity&#x3D;0.01 orderArgs[1].positionSide&#x3D;BOTH | 
  **recvWindow** | **int64** |  | 
 
@@ -946,7 +946,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -975,7 +975,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -997,7 +997,7 @@ No authorization required
 
 > QuerySubAccountAssetsAssetManagementResponse QuerySubAccountAssetsAssetManagement(ctx).Email(email).RecvWindow(recvWindow).Execute()
 
-Query Sub-account Assets (For Master Account) (USER_DATA)
+Query Sub-account Assets V4 (For Master Account) (USER_DATA)
 
 
 ### Example
@@ -1016,7 +1016,7 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
+	email := "123@test.com" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1045,7 +1045,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1086,12 +1086,12 @@ import (
 )
 
 func main() {
-	email := "sub-account-email@email.com" // string | [Sub-account email](#email-address)
-	futuresType := int64(789) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
-	startTime := int64(1623319461670) // int64 |  (optional)
+	email := "123@test.com" // string | 
+	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	startTime := int64(1623319461670) // int64 | Cannot be earlier than 1 month ago (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1120,12 +1120,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string** | [Sub-account email](#email-address) | 
+ **email** | **string** |  | 
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
- **startTime** | **int64** |  | 
+ **startTime** | **int64** | Cannot be earlier than 1 month ago | 
  **endTime** | **int64** |  | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1166,12 +1166,12 @@ import (
 )
 
 func main() {
-	fromEmail := "fromEmail_example" // string |  (optional)
-	toEmail := "toEmail_example" // string |  (optional)
+	fromEmail := "aaa@test.com" // string |  (optional)
+	toEmail := "bbb@test.com" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1204,8 +1204,8 @@ Name          | Type          | Description   | Notes
  **toEmail** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1246,9 +1246,9 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Managed sub-account email (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	size := int64(10) // int64 | default 10, max 20 (optional)
+	email := "123@test.com" // string | Managed sub-account email (optional)
+	page := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1278,8 +1278,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** | Managed sub-account email | 
- **page** | **int64** | Default value: 1 | 
- **size** | **int64** | default 10, max 20 | 
+ **page** | **int64** |  | 
+ **size** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1320,13 +1320,13 @@ import (
 )
 
 func main() {
-	fromEmail := "fromEmail_example" // string |  (optional)
-	toEmail := "toEmail_example" // string |  (optional)
+	fromEmail := "abctest@gmail.com" // string |  (optional)
+	toEmail := "deftest@gmail.com" // string |  (optional)
 	clientTranId := "1" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(1) // int64 | Default value: 1 (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	page := int64(1) // int64 |  (optional)
+	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1360,8 +1360,8 @@ Name          | Type          | Description   | Notes
  **clientTranId** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **page** | **int64** | Default value: 1 | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **page** | **int64** |  | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1402,10 +1402,10 @@ import (
 )
 
 func main() {
-	fromEmail := "fromEmail_example" // string | 
-	toEmail := "toEmail_example" // string | 
-	futuresType := int64(789) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
-	asset := "asset_example" // string | 
+	fromEmail := "abc@test.com" // string | Sender email
+	toEmail := "def@test.com" // string | Recipient email
+	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1435,8 +1435,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **fromEmail** | **string** |  | 
- **toEmail** | **string** |  | 
+ **fromEmail** | **string** | Sender email | 
+ **toEmail** | **string** | Recipient email | 
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
  **asset** | **string** |  | 
  **amount** | **float32** |  | 
@@ -1480,11 +1480,11 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | If not sent, result of all assets will be returned (optional)
-	type_ := int64(789) // int64 | 1: transfer in, 2: transfer out (optional)
+	asset := "BTC" // string | If not sent, result of all assets will be returned (optional)
+	type_ := int64(1) // int64 | 1: transfer in, 2: transfer out (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(1) // int64 | Default value: 1, Max value: 200 (optional)
+	limit := int64(10) // int64 |  (optional)
 	returnFailHistory := false // bool | Default `False`, return PROCESS and SUCCESS status history; If `True`,return PROCESS and SUCCESS and FAILURE status history (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1518,7 +1518,7 @@ Name          | Type          | Description   | Notes
  **type_** | **int64** | 1: transfer in, 2: transfer out | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default value: 1, Max value: 200 | 
+ **limit** | **int64** |  | 
  **returnFailHistory** | **bool** | Default &#x60;False&#x60;, return PROCESS and SUCCESS status history; If &#x60;True&#x60;,return PROCESS and SUCCESS and FAILURE status history | 
  **recvWindow** | **int64** |  | 
 
@@ -1560,7 +1560,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1632,8 +1632,8 @@ import (
 )
 
 func main() {
-	toEmail := "toEmail_example" // string | 
-	asset := "asset_example" // string | 
+	toEmail := "abc@test.com" // string | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1706,14 +1706,14 @@ import (
 )
 
 func main() {
-	fromAccountType := "fromAccountType_example" // string | \"SPOT\",\"USDT_FUTURE\",\"COIN_FUTURE\",\"MARGIN\"(Cross),\"ISOLATED_MARGIN\"
-	toAccountType := "toAccountType_example" // string | \"SPOT\",\"USDT_FUTURE\",\"COIN_FUTURE\",\"MARGIN\"(Cross),\"ISOLATED_MARGIN\"
-	asset := "asset_example" // string | 
+	fromAccountType := models.UniversalTransferFromAccountTypeParameterSpot // UniversalTransferFromAccountTypeParameter | 
+	toAccountType := models.UniversalTransferFromAccountTypeParameterSpot // UniversalTransferFromAccountTypeParameter | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
-	fromEmail := "fromEmail_example" // string |  (optional)
-	toEmail := "toEmail_example" // string |  (optional)
-	clientTranId := "1" // string |  (optional)
-	symbol := "symbol_example" // string | Only supported under ISOLATED_MARGIN type (optional)
+	fromEmail := "abc@test.com" // string |  (optional)
+	toEmail := "def@test.com" // string |  (optional)
+	clientTranId := "1" // string | Must be unique (optional)
+	symbol := "BTCUSDT" // string | Only supported under ISOLATED_MARGIN type (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1742,13 +1742,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **fromAccountType** | **string** | \&quot;SPOT\&quot;,\&quot;USDT_FUTURE\&quot;,\&quot;COIN_FUTURE\&quot;,\&quot;MARGIN\&quot;(Cross),\&quot;ISOLATED_MARGIN\&quot; | 
- **toAccountType** | **string** | \&quot;SPOT\&quot;,\&quot;USDT_FUTURE\&quot;,\&quot;COIN_FUTURE\&quot;,\&quot;MARGIN\&quot;(Cross),\&quot;ISOLATED_MARGIN\&quot; | 
+ **fromAccountType** | [**UniversalTransferFromAccountTypeParameter**](UniversalTransferFromAccountTypeParameter.md) |  | 
+ **toAccountType** | [**UniversalTransferFromAccountTypeParameter**](UniversalTransferFromAccountTypeParameter.md) |  | 
  **asset** | **string** |  | 
  **amount** | **float32** |  | 
  **fromEmail** | **string** |  | 
  **toEmail** | **string** |  | 
- **clientTranId** | **string** |  | 
+ **clientTranId** | **string** | Must be unique | 
  **symbol** | **string** | Only supported under ISOLATED_MARGIN type | 
  **recvWindow** | **int64** |  | 
 

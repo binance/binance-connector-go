@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,23 +17,40 @@ var _ common.MappedNullable = &CancelCmOrderResponse{}
 
 // CancelCmOrderResponse struct for CancelCmOrderResponse
 type CancelCmOrderResponse struct {
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	CumQty               *string `json:"cumQty,omitempty"`
-	CumBase              *string `json:"cumBase,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cum Qty.
+	CumQty *string `json:"cumQty,omitempty"`
+	// Cum Base.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair *string `json:"pair,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Normal order type after trigger if appliable
+	Type *string `json:"type,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

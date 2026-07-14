@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &IndexPriceKlineCandlestickDataResponse{}
 
 // IndexPriceKlineCandlestickDataResponse struct for IndexPriceKlineCandlestickDataResponse
 type IndexPriceKlineCandlestickDataResponse struct {
-	Items []IndexPriceKlineCandlestickDataResponseItem
+	Items []IndexPriceKlineCandlestickDataItem
 }
 
 // NewIndexPriceKlineCandlestickDataResponse instantiates a new IndexPriceKlineCandlestickDataResponse object

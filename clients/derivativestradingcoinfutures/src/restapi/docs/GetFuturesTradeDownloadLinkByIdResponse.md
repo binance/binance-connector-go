@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DownloadId** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
-**Notified** | Pointer to **bool** |  | [optional] 
-**ExpirationTimestamp** | Pointer to **int64** |  | [optional] 
-**IsExpired** | Pointer to **string** |  | [optional] 
+**DownloadId** | Pointer to **string** | Download task ID. | [optional] 
+**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Url** | Pointer to **string** | The link is mapped to download id | [optional] 
+**Notified** | Pointer to **bool** | ignore | [optional] 
+**ExpirationTimestamp** | Pointer to **int64** | The link would expire after this timestamp | [optional] 
+**IsExpired** | Pointer to **string** | Whether the record is expired. | [optional] 
 
 ## Methods
 

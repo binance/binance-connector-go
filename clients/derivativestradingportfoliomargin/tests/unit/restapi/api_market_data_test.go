@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API TEST
+Portfolio Margin REST API TEST
 
 Testing MarketDataAPIService
 

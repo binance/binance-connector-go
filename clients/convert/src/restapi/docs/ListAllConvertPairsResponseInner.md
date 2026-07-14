@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **FromAssetMinAmount** | Pointer to **string** |  | [optional] 
 **FromAssetMaxAmount** | Pointer to **string** |  | [optional] 
 **ToAssetMinAmount** | Pointer to **string** |  | [optional] 
-**ToAssetMaxAmount** | Pointer to **string** |  | [optional] 
+**ToAssetMaxAmount** | Pointer to **string** | 9E+24 signals that this symbol has a very large upper limit close to infinity | [optional] 
 
 ## Methods
 

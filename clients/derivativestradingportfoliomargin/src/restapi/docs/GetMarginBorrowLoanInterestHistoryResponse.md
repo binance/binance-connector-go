@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Rows** | Pointer to [**[]GetMarginBorrowLoanInterestHistoryResponseRowsInner**](GetMarginBorrowLoanInterestHistoryResponseRowsInner.md) |  | [optional] 
-**Total** | Pointer to **int64** |  | [optional] 
+**Rows** | Pointer to [**[]GetMarginBorrowLoanInterestHistoryResponseRowsInner**](GetMarginBorrowLoanInterestHistoryResponseRowsInner.md) | Rows. | [optional] 
+**Total** | Pointer to **int64** | Total. | [optional] 
 
 ## Methods
 

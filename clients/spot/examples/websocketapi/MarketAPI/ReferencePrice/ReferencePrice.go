@@ -27,7 +27,7 @@ func ReferencePrice() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketAPI.ReferencePrice().Symbol("BNBUSDT").ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketAPI.ReferencePrice().Symbol("BAZUSD").ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing ReferencePrice request: %v\n", err)
 		return

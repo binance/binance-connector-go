@@ -1,7 +1,7 @@
 /*
-Binance Copy Trading REST API
+Copy Trading REST API
 
-OpenAPI Specification for the Binance Copy Trading REST API
+Automate lead trading via the Copy Trading API.
 */
 
 package binancecopytradingrestapi
@@ -24,6 +24,7 @@ type ApiGetFuturesLeadTraderStatusRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFuturesLeadTraderStatusRequest) RecvWindow(recvWindow int64) ApiGetFuturesLeadTraderStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -34,13 +35,13 @@ func (r ApiGetFuturesLeadTraderStatusRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-GetFuturesLeadTraderStatus Get Futures Lead Trader Status(TRADE)
+GetFuturesLeadTraderStatus Get Futures Lead Trader Status (TRADE)
 Get /sapi/v1/copyTrading/futures/userStatus
 
-https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trader-Status
+https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trader-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFuturesLeadTraderStatusRequest
 */
 func (a *FutureCopyTradingAPIService) GetFuturesLeadTraderStatus(ctx context.Context) ApiGetFuturesLeadTraderStatusRequest {
@@ -64,7 +65,15 @@ func (a *FutureCopyTradingAPIService) GetFuturesLeadTraderStatusExecute(r ApiGet
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesLeadTraderStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesLeadTraderStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -78,6 +87,7 @@ type ApiGetFuturesLeadTradingSymbolWhitelistRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFuturesLeadTradingSymbolWhitelistRequest) RecvWindow(recvWindow int64) ApiGetFuturesLeadTradingSymbolWhitelistRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -88,13 +98,13 @@ func (r ApiGetFuturesLeadTradingSymbolWhitelistRequest) Execute() (*common.RestA
 }
 
 /*
-GetFuturesLeadTradingSymbolWhitelist Get Futures Lead Trading Symbol Whitelist(USER_DATA)
+GetFuturesLeadTradingSymbolWhitelist Get Futures Lead Trading Symbol Whitelist (USER_DATA)
 Get /sapi/v1/copyTrading/futures/leadSymbol
 
-https://developers.binance.com/docs/copy_trading/future-copy-trading/Get-Futures-Lead-Trading-Symbol-Whitelist
+https://developers.binance.com/en/docs/catalog/advanced-trading-copy-trading/api/rest-api/future-copy-trading#get-futures-lead-trading-symbol-whitelist
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFuturesLeadTradingSymbolWhitelistRequest
 */
 func (a *FutureCopyTradingAPIService) GetFuturesLeadTradingSymbolWhitelist(ctx context.Context) ApiGetFuturesLeadTradingSymbolWhitelistRequest {
@@ -118,7 +128,15 @@ func (a *FutureCopyTradingAPIService) GetFuturesLeadTradingSymbolWhitelistExecut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesLeadTradingSymbolWhitelistResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesLeadTradingSymbolWhitelistResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

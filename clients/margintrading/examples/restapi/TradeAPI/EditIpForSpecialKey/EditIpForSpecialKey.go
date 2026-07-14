@@ -21,7 +21,7 @@ func EditIpForSpecialKey() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	_, err := apiClient.RestApi.TradeAPI.EditIpForSpecialKey(context.Background()).Ip("ip_example").Execute()
+	_, err := apiClient.RestApi.TradeAPI.EditIpForSpecialKey(context.Background()).Ip("24.156.99.202").Execute()
 	if err != nil {
 		log.Println(err)
 		return

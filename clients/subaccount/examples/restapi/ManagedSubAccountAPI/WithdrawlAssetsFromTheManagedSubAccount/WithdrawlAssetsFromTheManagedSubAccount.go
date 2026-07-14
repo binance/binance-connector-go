@@ -22,7 +22,7 @@ func WithdrawlAssetsFromTheManagedSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ManagedSubAccountAPI.WithdrawlAssetsFromTheManagedSubAccount(context.Background()).FromEmail("fromEmail_example").Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.ManagedSubAccountAPI.WithdrawlAssetsFromTheManagedSubAccount(context.Background()).FromEmail("from@test.com").Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

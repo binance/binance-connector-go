@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**P** | Pointer to **string** | Mark Price | [optional] 
+**P** | Pointer to **string** | Estimated Settle Price, only useful in the last hour before the settlement starts. | [optional] 
+**I** | Pointer to **string** | Index Price | [optional] 
+**R** | Pointer to **string** | funding rate for perpetual symbol, \&quot;\&quot; will be shown for delivery symbol | [optional] 
+**T** | Pointer to **int64** | next funding time for perpetual symbol, 0 will be shown for delivery symbol | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -235,20 +235,20 @@ HasT returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSt() int64`
+`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetStOk() (*int64, bool)`
+`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) SetSt(v int64)`
+`func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

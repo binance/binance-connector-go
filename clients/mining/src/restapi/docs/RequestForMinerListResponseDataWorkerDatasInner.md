@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**WorkerId** | Pointer to **string** |  | [optional] 
-**WorkerName** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**HashRate** | Pointer to **int64** |  | [optional] 
-**DayHashRate** | Pointer to **float32** |  | [optional] 
-**RejectRate** | Pointer to **int64** |  | [optional] 
-**LastShareTime** | Pointer to **int64** |  | [optional] 
+**WorkerId** | Pointer to **string** | Miner ID | [optional] 
+**WorkerName** | Pointer to **string** | Miner name | [optional] 
+**Status** | Pointer to **int64** | Status: 1 Valid, 2 Invalid, 3 No longer valid | [optional] 
+**HashRate** | Pointer to **int64** | Real-time rate | [optional] 
+**DayHashRate** | Pointer to **float32** | 24H hashrate | [optional] 
+**RejectRate** | Pointer to **int64** | Real-time rejection rate | [optional] 
+**LastShareTime** | Pointer to **int64** | Last share time | [optional] 
 
 ## Methods
 

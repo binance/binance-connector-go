@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &AutoCancelAllOpenOrdersResponse{}
 
 // AutoCancelAllOpenOrdersResponse struct for AutoCancelAllOpenOrdersResponse
 type AutoCancelAllOpenOrdersResponse struct {
-	Symbol               *string `json:"symbol,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Countdown cancellation time in milliseconds.
 	CountdownTime        *string `json:"countdownTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

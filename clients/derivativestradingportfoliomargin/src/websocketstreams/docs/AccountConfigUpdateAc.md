@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**L** | Pointer to **int64** | Leverage | [optional] 
 
 ## Methods
 

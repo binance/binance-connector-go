@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**NotionalCoef** | Pointer to **float32** |  | [optional] 
-**Brackets** | Pointer to [**[]NotionalBracketForPairResponseInnerBracketsInner**](NotionalBracketForPairResponseInnerBracketsInner.md) |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**NotionalCoef** | Pointer to **float32** | user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted | [optional] 
+**Brackets** | Pointer to [**[]NotionalBracketForPairResponseInnerBracketsInner**](NotionalBracketForPairResponseInnerBracketsInner.md) | Leverage bracket details. | [optional] 
 
 ## Methods
 

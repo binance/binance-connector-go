@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,20 +17,33 @@ var _ common.MappedNullable = &AccountInformationV3Response{}
 
 // AccountInformationV3Response struct for AccountInformationV3Response
 type AccountInformationV3Response struct {
-	TotalInitialMargin          *string                                      `json:"totalInitialMargin,omitempty"`
-	TotalMaintMargin            *string                                      `json:"totalMaintMargin,omitempty"`
-	TotalWalletBalance          *string                                      `json:"totalWalletBalance,omitempty"`
-	TotalUnrealizedProfit       *string                                      `json:"totalUnrealizedProfit,omitempty"`
-	TotalMarginBalance          *string                                      `json:"totalMarginBalance,omitempty"`
-	TotalPositionInitialMargin  *string                                      `json:"totalPositionInitialMargin,omitempty"`
-	TotalOpenOrderInitialMargin *string                                      `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalCrossWalletBalance     *string                                      `json:"totalCrossWalletBalance,omitempty"`
-	TotalCrossUnPnl             *string                                      `json:"totalCrossUnPnl,omitempty"`
-	AvailableBalance            *string                                      `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount           *string                                      `json:"maxWithdrawAmount,omitempty"`
-	Assets                      []AccountInformationV3ResponseAssetsInner    `json:"assets,omitempty"`
-	Positions                   []AccountInformationV3ResponsePositionsInner `json:"positions,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	// Total initial margin requirement.
+	TotalInitialMargin *string `json:"totalInitialMargin,omitempty"`
+	// Total maintenance margin requirement.
+	TotalMaintMargin *string `json:"totalMaintMargin,omitempty"`
+	// Total wallet balance.
+	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
+	// Total unrealized profit.
+	TotalUnrealizedProfit *string `json:"totalUnrealizedProfit,omitempty"`
+	// Total margin balance.
+	TotalMarginBalance *string `json:"totalMarginBalance,omitempty"`
+	// Initial margin required for positions.
+	TotalPositionInitialMargin *string `json:"totalPositionInitialMargin,omitempty"`
+	// Initial margin required for open orders.
+	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
+	// Cross wallet balance.
+	TotalCrossWalletBalance *string `json:"totalCrossWalletBalance,omitempty"`
+	// Unrealized PnL for cross positions.
+	TotalCrossUnPnl *string `json:"totalCrossUnPnl,omitempty"`
+	// Available balance.
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// Maximum transferable/withdrawable amount.
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// Asset-level account details.
+	Assets []AccountInformationV3ResponseAssetsInner `json:"assets,omitempty"`
+	// Position details for symbols.
+	Positions            []AccountInformationV3ResponsePositionsInner `json:"positions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV3Response AccountInformationV3Response

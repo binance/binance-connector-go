@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,31 +17,57 @@ var _ common.MappedNullable = &QueryCurrentOpenOrderResponse{}
 
 // QueryCurrentOpenOrderResponse struct for QueryCurrentOpenOrderResponse
 type QueryCurrentOpenOrderResponse struct {
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Pair                    *string `json:"pair,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Average execution price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cumulative base asset amount.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Original order quantity
+	OrigQty *string `json:"origQty,omitempty"`
+	// Original order type.
+	OrigType *string `json:"origType,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Whether the order is reduce-only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order type.
+	Type *string `json:"type,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Stop trigger price type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }

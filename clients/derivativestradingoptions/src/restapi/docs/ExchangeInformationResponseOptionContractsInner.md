@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseAsset** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**Underlying** | Pointer to **string** |  | [optional] 
-**SettleAsset** | Pointer to **string** |  | [optional] 
+**BaseAsset** | Pointer to **string** | Base currency | [optional] 
+**QuoteAsset** | Pointer to **string** | Quotation asset | [optional] 
+**Underlying** | Pointer to **string** | Name of the underlying asset of the option contract | [optional] 
+**SettleAsset** | Pointer to **string** | Settlement currency | [optional] 
 
 ## Methods
 

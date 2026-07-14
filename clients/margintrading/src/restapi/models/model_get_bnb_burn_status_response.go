@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetBnbBurnStatusResponse{}
 
 // GetBnbBurnStatusResponse struct for GetBnbBurnStatusResponse
 type GetBnbBurnStatusResponse struct {
-	SpotBNBBurn          *bool `json:"spotBNBBurn,omitempty"`
+	// spot BNBBurn.
+	SpotBNBBurn *bool `json:"spotBNBBurn,omitempty"`
+	// interest BNBBurn.
 	InterestBNBBurn      *bool `json:"interestBNBBurn,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

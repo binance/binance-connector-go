@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**LiabilityAsset** | Pointer to **string** |  | [optional] 
-**LiabilityQty** | Pointer to **float32** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Interest** | Pointer to **string** | interest. | [optional] 
+**Principal** | Pointer to **string** | principal. | [optional] 
+**LiabilityAsset** | Pointer to **string** | liability Asset. | [optional] 
+**LiabilityQty** | Pointer to **float32** | liability Qty. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetAutoRepayFuturesStatusResponse{}
 
 // GetAutoRepayFuturesStatusResponse struct for GetAutoRepayFuturesStatusResponse
 type GetAutoRepayFuturesStatusResponse struct {
+	// \"true\" for turn on the auto-repay futures; \"false\" for turn off the auto-repay futures
 	AutoRepay            *bool `json:"autoRepay,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

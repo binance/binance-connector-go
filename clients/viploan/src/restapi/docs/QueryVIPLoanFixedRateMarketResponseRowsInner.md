@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**RequestId** | Pointer to **int64** |  | [optional] 
-**RequestNo** | Pointer to **int64** |  | [optional] 
-**Coin** | Pointer to **string** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **int64** |  | [optional] 
-**MinimumAmount** | Pointer to **string** |  | [optional] 
-**AvailableAmount** | Pointer to **string** |  | [optional] 
-**EstimatedInterest** | Pointer to **string** |  | [optional] 
+**RequestId** | Pointer to **int64** | Supply request ID | [optional] 
+**RequestNo** | Pointer to **int64** | Request number | [optional] 
+**Coin** | Pointer to **string** | Coin | [optional] 
+**InterestRate** | Pointer to **string** | Annual interest rate | [optional] 
+**Duration** | Pointer to **int64** | Duration in days | [optional] 
+**MinimumAmount** | Pointer to **string** | Minimum borrow amount | [optional] 
+**AvailableAmount** | Pointer to **string** | Maximum available borrow amount | [optional] 
+**EstimatedInterest** | Pointer to **string** | Estimated interest | [optional] 
 
 ## Methods
 

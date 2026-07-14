@@ -21,7 +21,7 @@ func SmallLiabilityExchange() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	_, err := apiClient.RestApi.TradeAPI.SmallLiabilityExchange(context.Background()).AssetNames([]string{}).Execute()
+	_, err := apiClient.RestApi.TradeAPI.SmallLiabilityExchange(context.Background()).AssetNames("BTC,ETH").Execute()
 	if err != nil {
 		log.Println(err)
 		return

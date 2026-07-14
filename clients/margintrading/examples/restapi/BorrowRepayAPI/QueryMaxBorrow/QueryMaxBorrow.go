@@ -22,7 +22,7 @@ func QueryMaxBorrow() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMaxBorrow(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMaxBorrow(context.Background()).Asset("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

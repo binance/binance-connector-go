@@ -29,7 +29,7 @@ func NewOrder() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing NewOrder request: %v\n", err)
 		return

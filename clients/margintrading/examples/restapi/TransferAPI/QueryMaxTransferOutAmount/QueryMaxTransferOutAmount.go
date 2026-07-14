@@ -22,7 +22,7 @@ func QueryMaxTransferOutAmount() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TransferAPI.QueryMaxTransferOutAmount(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.TransferAPI.QueryMaxTransferOutAmount(context.Background()).Asset("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

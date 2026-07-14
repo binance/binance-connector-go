@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,12 +17,19 @@ var _ common.MappedNullable = &ExchangeInformationResponseOptionSymbolsInnerFilt
 
 // ExchangeInformationResponseOptionSymbolsInnerFiltersInner struct for ExchangeInformationResponseOptionSymbolsInnerFiltersInner
 type ExchangeInformationResponseOptionSymbolsInnerFiltersInner struct {
-	FilterType           *string `json:"filterType,omitempty"`
-	MinPrice             *string `json:"minPrice,omitempty"`
-	MaxPrice             *string `json:"maxPrice,omitempty"`
-	TickSize             *string `json:"tickSize,omitempty"`
-	MinQty               *string `json:"minQty,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
+	// filter Type
+	FilterType *string `json:"filterType,omitempty"`
+	// min Price
+	MinPrice *string `json:"minPrice,omitempty"`
+	// max Price
+	MaxPrice *string `json:"maxPrice,omitempty"`
+	// tick Size
+	TickSize *string `json:"tickSize,omitempty"`
+	// Minimum order quantity
+	MinQty *string `json:"minQty,omitempty"`
+	// Maximum order quantity
+	MaxQty *string `json:"maxQty,omitempty"`
+	// step Size
 	StepSize             *string `json:"stepSize,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

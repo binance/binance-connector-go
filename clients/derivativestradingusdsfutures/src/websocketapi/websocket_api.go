@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketapi
@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketAPIClient manages communication with the Binance Binance Derivatives Trading USDS Futures WebSocket API WebSocketAPI v1.11.0
+// WebsocketAPIClient manages communication with the Binance Futures (USDⓈ-M) WebSocket API WebSocketAPI v1.11.0
 type WebsocketAPIClient struct {
 	cfg       *common.ConfigurationWebsocketApi
 	userAgent string
@@ -26,7 +26,7 @@ type WebsocketAPIClient struct {
 	UserDataStreamsAPI *UserDataStreamsAPIService
 }
 
-// NewWebsocketAPIClient creates a new Binance Binance Derivatives Trading USDS Futures WebSocket API WebSocket API client
+// NewWebsocketAPIClient creates a new Binance Futures (USDⓈ-M) WebSocket API WebSocket API client
 //
 // @param cfg *common.ConfigurationWebsocketApi - The configuration for the WebSocket API client
 // @return *WebsocketAPIClient - The newly created WebSocket API client

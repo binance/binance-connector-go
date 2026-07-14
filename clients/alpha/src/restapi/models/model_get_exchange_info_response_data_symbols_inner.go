@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &GetExchangeInfoResponseDataSymbolsInner{}
 
 // GetExchangeInfoResponseDataSymbolsInner struct for GetExchangeInfoResponseDataSymbolsInner
 type GetExchangeInfoResponseDataSymbolsInner struct {
-	Symbol               *string                                               `json:"symbol,omitempty"`
-	Status               *string                                               `json:"status,omitempty"`
-	BaseAsset            *string                                               `json:"baseAsset,omitempty"`
-	QuoteAsset           *string                                               `json:"quoteAsset,omitempty"`
-	PricePrecision       *int64                                                `json:"pricePrecision,omitempty"`
-	QuantityPrecision    *int64                                                `json:"quantityPrecision,omitempty"`
-	BaseAssetPrecision   *int64                                                `json:"baseAssetPrecision,omitempty"`
-	QuotePrecision       *int64                                                `json:"quotePrecision,omitempty"`
-	Filters              []GetExchangeInfoResponseDataSymbolsInnerFiltersInner `json:"filters,omitempty"`
-	OrderTypes           []string                                              `json:"orderTypes,omitempty"`
+	// Trading symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Trading status.
+	Status *string `json:"status,omitempty"`
+	// Base asset symbol.
+	BaseAsset *string `json:"baseAsset,omitempty"`
+	// Quote asset symbol.
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// Allowed precision for price.
+	PricePrecision *int64 `json:"pricePrecision,omitempty"`
+	// Allowed precision for quantity.
+	QuantityPrecision *int64 `json:"quantityPrecision,omitempty"`
+	// Base asset precision.
+	BaseAssetPrecision *int64 `json:"baseAssetPrecision,omitempty"`
+	// Quote asset precision.
+	QuotePrecision *int64 `json:"quotePrecision,omitempty"`
+	// Trading filters and constraints.
+	Filters []GetExchangeInfoResponseDataSymbolsInnerFiltersInner `json:"filters,omitempty"`
+	// Supported order types for this symbol.
+	OrderTypes           []string `json:"orderTypes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

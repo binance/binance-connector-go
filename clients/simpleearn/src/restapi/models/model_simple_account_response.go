@@ -1,7 +1,7 @@
 /*
-Binance Simple Earn REST API
+Simple Earn REST API
 
-OpenAPI Specification for the Binance Simple Earn REST API
+Earn rewards by subscribing to flexible or locked Simple Earn products.
 */
 
 package models

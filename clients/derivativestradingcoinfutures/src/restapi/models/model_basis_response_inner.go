@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &BasisResponseInner{}
 
 // BasisResponseInner struct for BasisResponseInner
 type BasisResponseInner struct {
-	IndexPrice           *string `json:"indexPrice,omitempty"`
-	ContractType         *string `json:"contractType,omitempty"`
-	BasisRate            *string `json:"basisRate,omitempty"`
-	FuturesPrice         *string `json:"futuresPrice,omitempty"`
-	AnnualizedBasisRate  *string `json:"annualizedBasisRate,omitempty"`
-	Basis                *string `json:"basis,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
+	// index price
+	IndexPrice *string `json:"indexPrice,omitempty"`
+	// Contract type.
+	ContractType *string `json:"contractType,omitempty"`
+	// Basis rate.
+	BasisRate *string `json:"basisRate,omitempty"`
+	// Futures price.
+	FuturesPrice *string `json:"futuresPrice,omitempty"`
+	// Annualized basis rate.
+	AnnualizedBasisRate *string `json:"annualizedBasisRate,omitempty"`
+	// Basis value.
+	Basis *string `json:"basis,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

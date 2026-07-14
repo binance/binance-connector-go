@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &QueryPortfolioMarginAssetIndexPriceResponseInner{
 
 // QueryPortfolioMarginAssetIndexPriceResponseInner struct for QueryPortfolioMarginAssetIndexPriceResponseInner
 type QueryPortfolioMarginAssetIndexPriceResponseInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	AssetIndexPrice      *string `json:"assetIndexPrice,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// in USD
+	AssetIndexPrice *string `json:"assetIndexPrice,omitempty"`
+	// time.
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

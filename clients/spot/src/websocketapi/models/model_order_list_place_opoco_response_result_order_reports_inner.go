@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -23,7 +23,6 @@ type OrderListPlaceOpocoResponseResultOrderReportsInner struct {
 	ClientOrderId           *string `json:"clientOrderId,omitempty"`
 	TransactTime            *int64  `json:"transactTime,omitempty"`
 	Price                   *string `json:"price,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
 	ExecutedQty             *string `json:"executedQty,omitempty"`
 	OrigQuoteOrderQty       *string `json:"origQuoteOrderQty,omitempty"`
 	CummulativeQuoteQty     *string `json:"cummulativeQuoteQty,omitempty"`
@@ -33,8 +32,38 @@ type OrderListPlaceOpocoResponseResultOrderReportsInner struct {
 	Side                    *string `json:"side,omitempty"`
 	WorkingTime             *int64  `json:"workingTime,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
+	StopPrice *string `json:"stopPrice,omitempty"`
+	OrigQty   *string `json:"origQty,omitempty"`
+	// Appears only if the parameter icebergQty was sent in the request.
+	IcebergQty *string `json:"icebergQty,omitempty"`
+	// Appears only if the order expired due to STP.
+	PreventedMatchId *int64 `json:"preventedMatchId,omitempty"`
+	// Order quantity that expired due to STP.
+	PreventedQuantity *string `json:"preventedQuantity,omitempty"`
+	// Appears only if the strategyId parameter was provided upon order placement.
+	StrategyId *int64 `json:"strategyId,omitempty"`
+	// Appears only if the strategyType parameter was provided upon order placement.
+	StrategyType *int64 `json:"strategyType,omitempty"`
+	// Delta price change required before order activation.
+	TrailingDelta *int64 `json:"trailingDelta,omitempty"`
+	// Time when the trailing order is now active and tracking price changes.
+	TrailingTime *int64 `json:"trailingTime,omitempty"`
+	// Field that determines whether order used SOR.
+	UsedSor *bool `json:"usedSor,omitempty"`
+	// Determines whether the order is being filled by the SOR or by the order book.
+	WorkingFloor *string `json:"workingFloor,omitempty"`
+	// Price peg type. Only for pegged orders.
+	PegPriceType *string `json:"pegPriceType,omitempty"`
+	// Price peg offset type. Only for pegged orders, if requested.
+	PegOffsetType *string `json:"pegOffsetType,omitempty"`
+	// Price peg offset value. Only for pegged orders, if requested.
+	PegOffsetValue *int64 `json:"pegOffsetValue,omitempty"`
+	// Current price order is pegged at. Only for pegged orders, once determined.
+	PeggedPrice *string `json:"peggedPrice,omitempty"`
+	// Cause of the order's expiration. Appears when an order has expired.
+	ExpiryReason         *string `json:"expiryReason,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrderListPlaceOpocoResponseResultOrderReportsInner OrderListPlaceOpocoResponseResultOrderReportsInner
@@ -246,38 +275,6 @@ func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPrice() bool {
 // SetPrice gets a reference to the given string and assigns it to the Price field.
 func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPrice(v string) {
 	o.Price = &v
-}
-
-// GetOrigQty returns the OrigQty field value if set, zero value otherwise.
-func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetOrigQty() string {
-	if o == nil || common.IsNil(o.OrigQty) {
-		var ret string
-		return ret
-	}
-	return *o.OrigQty
-}
-
-// GetOrigQtyOk returns a tuple with the OrigQty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetOrigQtyOk() (*string, bool) {
-	if o == nil || common.IsNil(o.OrigQty) {
-		return nil, false
-	}
-	return o.OrigQty, true
-}
-
-// HasOrigQty returns a boolean if a field has been set.
-func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasOrigQty() bool {
-	if o != nil && !common.IsNil(o.OrigQty) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrigQty gets a reference to the given string and assigns it to the OrigQty field.
-func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetOrigQty(v string) {
-	o.OrigQty = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -600,6 +597,486 @@ func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetStopPrice(v stri
 	o.StopPrice = &v
 }
 
+// GetOrigQty returns the OrigQty field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetOrigQty() string {
+	if o == nil || common.IsNil(o.OrigQty) {
+		var ret string
+		return ret
+	}
+	return *o.OrigQty
+}
+
+// GetOrigQtyOk returns a tuple with the OrigQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetOrigQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.OrigQty) {
+		return nil, false
+	}
+	return o.OrigQty, true
+}
+
+// HasOrigQty returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasOrigQty() bool {
+	if o != nil && !common.IsNil(o.OrigQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigQty gets a reference to the given string and assigns it to the OrigQty field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetOrigQty(v string) {
+	o.OrigQty = &v
+}
+
+// GetIcebergQty returns the IcebergQty field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetIcebergQty() string {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		var ret string
+		return ret
+	}
+	return *o.IcebergQty
+}
+
+// GetIcebergQtyOk returns a tuple with the IcebergQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetIcebergQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		return nil, false
+	}
+	return o.IcebergQty, true
+}
+
+// HasIcebergQty returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasIcebergQty() bool {
+	if o != nil && !common.IsNil(o.IcebergQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetIcebergQty gets a reference to the given string and assigns it to the IcebergQty field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetIcebergQty(v string) {
+	o.IcebergQty = &v
+}
+
+// GetPreventedMatchId returns the PreventedMatchId field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPreventedMatchId() int64 {
+	if o == nil || common.IsNil(o.PreventedMatchId) {
+		var ret int64
+		return ret
+	}
+	return *o.PreventedMatchId
+}
+
+// GetPreventedMatchIdOk returns a tuple with the PreventedMatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPreventedMatchIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PreventedMatchId) {
+		return nil, false
+	}
+	return o.PreventedMatchId, true
+}
+
+// HasPreventedMatchId returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPreventedMatchId() bool {
+	if o != nil && !common.IsNil(o.PreventedMatchId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventedMatchId gets a reference to the given int64 and assigns it to the PreventedMatchId field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPreventedMatchId(v int64) {
+	o.PreventedMatchId = &v
+}
+
+// GetPreventedQuantity returns the PreventedQuantity field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPreventedQuantity() string {
+	if o == nil || common.IsNil(o.PreventedQuantity) {
+		var ret string
+		return ret
+	}
+	return *o.PreventedQuantity
+}
+
+// GetPreventedQuantityOk returns a tuple with the PreventedQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPreventedQuantityOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PreventedQuantity) {
+		return nil, false
+	}
+	return o.PreventedQuantity, true
+}
+
+// HasPreventedQuantity returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPreventedQuantity() bool {
+	if o != nil && !common.IsNil(o.PreventedQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventedQuantity gets a reference to the given string and assigns it to the PreventedQuantity field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPreventedQuantity(v string) {
+	o.PreventedQuantity = &v
+}
+
+// GetStrategyId returns the StrategyId field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetStrategyId() int64 {
+	if o == nil || common.IsNil(o.StrategyId) {
+		var ret int64
+		return ret
+	}
+	return *o.StrategyId
+}
+
+// GetStrategyIdOk returns a tuple with the StrategyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetStrategyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.StrategyId) {
+		return nil, false
+	}
+	return o.StrategyId, true
+}
+
+// HasStrategyId returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasStrategyId() bool {
+	if o != nil && !common.IsNil(o.StrategyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyId gets a reference to the given int64 and assigns it to the StrategyId field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetStrategyId(v int64) {
+	o.StrategyId = &v
+}
+
+// GetStrategyType returns the StrategyType field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetStrategyType() int64 {
+	if o == nil || common.IsNil(o.StrategyType) {
+		var ret int64
+		return ret
+	}
+	return *o.StrategyType
+}
+
+// GetStrategyTypeOk returns a tuple with the StrategyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetStrategyTypeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.StrategyType) {
+		return nil, false
+	}
+	return o.StrategyType, true
+}
+
+// HasStrategyType returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasStrategyType() bool {
+	if o != nil && !common.IsNil(o.StrategyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyType gets a reference to the given int64 and assigns it to the StrategyType field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetStrategyType(v int64) {
+	o.StrategyType = &v
+}
+
+// GetTrailingDelta returns the TrailingDelta field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetTrailingDelta() int64 {
+	if o == nil || common.IsNil(o.TrailingDelta) {
+		var ret int64
+		return ret
+	}
+	return *o.TrailingDelta
+}
+
+// GetTrailingDeltaOk returns a tuple with the TrailingDelta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetTrailingDeltaOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TrailingDelta) {
+		return nil, false
+	}
+	return o.TrailingDelta, true
+}
+
+// HasTrailingDelta returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasTrailingDelta() bool {
+	if o != nil && !common.IsNil(o.TrailingDelta) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrailingDelta gets a reference to the given int64 and assigns it to the TrailingDelta field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetTrailingDelta(v int64) {
+	o.TrailingDelta = &v
+}
+
+// GetTrailingTime returns the TrailingTime field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetTrailingTime() int64 {
+	if o == nil || common.IsNil(o.TrailingTime) {
+		var ret int64
+		return ret
+	}
+	return *o.TrailingTime
+}
+
+// GetTrailingTimeOk returns a tuple with the TrailingTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetTrailingTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TrailingTime) {
+		return nil, false
+	}
+	return o.TrailingTime, true
+}
+
+// HasTrailingTime returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasTrailingTime() bool {
+	if o != nil && !common.IsNil(o.TrailingTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrailingTime gets a reference to the given int64 and assigns it to the TrailingTime field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetTrailingTime(v int64) {
+	o.TrailingTime = &v
+}
+
+// GetUsedSor returns the UsedSor field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetUsedSor() bool {
+	if o == nil || common.IsNil(o.UsedSor) {
+		var ret bool
+		return ret
+	}
+	return *o.UsedSor
+}
+
+// GetUsedSorOk returns a tuple with the UsedSor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetUsedSorOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.UsedSor) {
+		return nil, false
+	}
+	return o.UsedSor, true
+}
+
+// HasUsedSor returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasUsedSor() bool {
+	if o != nil && !common.IsNil(o.UsedSor) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsedSor gets a reference to the given bool and assigns it to the UsedSor field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetUsedSor(v bool) {
+	o.UsedSor = &v
+}
+
+// GetWorkingFloor returns the WorkingFloor field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetWorkingFloor() string {
+	if o == nil || common.IsNil(o.WorkingFloor) {
+		var ret string
+		return ret
+	}
+	return *o.WorkingFloor
+}
+
+// GetWorkingFloorOk returns a tuple with the WorkingFloor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetWorkingFloorOk() (*string, bool) {
+	if o == nil || common.IsNil(o.WorkingFloor) {
+		return nil, false
+	}
+	return o.WorkingFloor, true
+}
+
+// HasWorkingFloor returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasWorkingFloor() bool {
+	if o != nil && !common.IsNil(o.WorkingFloor) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkingFloor gets a reference to the given string and assigns it to the WorkingFloor field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetWorkingFloor(v string) {
+	o.WorkingFloor = &v
+}
+
+// GetPegPriceType returns the PegPriceType field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegPriceType() string {
+	if o == nil || common.IsNil(o.PegPriceType) {
+		var ret string
+		return ret
+	}
+	return *o.PegPriceType
+}
+
+// GetPegPriceTypeOk returns a tuple with the PegPriceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegPriceTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PegPriceType) {
+		return nil, false
+	}
+	return o.PegPriceType, true
+}
+
+// HasPegPriceType returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPegPriceType() bool {
+	if o != nil && !common.IsNil(o.PegPriceType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegPriceType gets a reference to the given string and assigns it to the PegPriceType field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPegPriceType(v string) {
+	o.PegPriceType = &v
+}
+
+// GetPegOffsetType returns the PegOffsetType field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegOffsetType() string {
+	if o == nil || common.IsNil(o.PegOffsetType) {
+		var ret string
+		return ret
+	}
+	return *o.PegOffsetType
+}
+
+// GetPegOffsetTypeOk returns a tuple with the PegOffsetType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegOffsetTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PegOffsetType) {
+		return nil, false
+	}
+	return o.PegOffsetType, true
+}
+
+// HasPegOffsetType returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPegOffsetType() bool {
+	if o != nil && !common.IsNil(o.PegOffsetType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegOffsetType gets a reference to the given string and assigns it to the PegOffsetType field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPegOffsetType(v string) {
+	o.PegOffsetType = &v
+}
+
+// GetPegOffsetValue returns the PegOffsetValue field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegOffsetValue() int64 {
+	if o == nil || common.IsNil(o.PegOffsetValue) {
+		var ret int64
+		return ret
+	}
+	return *o.PegOffsetValue
+}
+
+// GetPegOffsetValueOk returns a tuple with the PegOffsetValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPegOffsetValueOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PegOffsetValue) {
+		return nil, false
+	}
+	return o.PegOffsetValue, true
+}
+
+// HasPegOffsetValue returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPegOffsetValue() bool {
+	if o != nil && !common.IsNil(o.PegOffsetValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegOffsetValue gets a reference to the given int64 and assigns it to the PegOffsetValue field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPegOffsetValue(v int64) {
+	o.PegOffsetValue = &v
+}
+
+// GetPeggedPrice returns the PeggedPrice field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPeggedPrice() string {
+	if o == nil || common.IsNil(o.PeggedPrice) {
+		var ret string
+		return ret
+	}
+	return *o.PeggedPrice
+}
+
+// GetPeggedPriceOk returns a tuple with the PeggedPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetPeggedPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PeggedPrice) {
+		return nil, false
+	}
+	return o.PeggedPrice, true
+}
+
+// HasPeggedPrice returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasPeggedPrice() bool {
+	if o != nil && !common.IsNil(o.PeggedPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeggedPrice gets a reference to the given string and assigns it to the PeggedPrice field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetPeggedPrice(v string) {
+	o.PeggedPrice = &v
+}
+
+// GetExpiryReason returns the ExpiryReason field value if set, zero value otherwise.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetExpiryReason() string {
+	if o == nil || common.IsNil(o.ExpiryReason) {
+		var ret string
+		return ret
+	}
+	return *o.ExpiryReason
+}
+
+// GetExpiryReasonOk returns a tuple with the ExpiryReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) GetExpiryReasonOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ExpiryReason) {
+		return nil, false
+	}
+	return o.ExpiryReason, true
+}
+
+// HasExpiryReason returns a boolean if a field has been set.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) HasExpiryReason() bool {
+	if o != nil && !common.IsNil(o.ExpiryReason) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiryReason gets a reference to the given string and assigns it to the ExpiryReason field.
+func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) SetExpiryReason(v string) {
+	o.ExpiryReason = &v
+}
+
 func (o OrderListPlaceOpocoResponseResultOrderReportsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -627,9 +1104,6 @@ func (o OrderListPlaceOpocoResponseResultOrderReportsInner) ToMap() (map[string]
 	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
-	}
-	if !common.IsNil(o.OrigQty) {
-		toSerialize["origQty"] = o.OrigQty
 	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
@@ -661,6 +1135,51 @@ func (o OrderListPlaceOpocoResponseResultOrderReportsInner) ToMap() (map[string]
 	if !common.IsNil(o.StopPrice) {
 		toSerialize["stopPrice"] = o.StopPrice
 	}
+	if !common.IsNil(o.OrigQty) {
+		toSerialize["origQty"] = o.OrigQty
+	}
+	if !common.IsNil(o.IcebergQty) {
+		toSerialize["icebergQty"] = o.IcebergQty
+	}
+	if !common.IsNil(o.PreventedMatchId) {
+		toSerialize["preventedMatchId"] = o.PreventedMatchId
+	}
+	if !common.IsNil(o.PreventedQuantity) {
+		toSerialize["preventedQuantity"] = o.PreventedQuantity
+	}
+	if !common.IsNil(o.StrategyId) {
+		toSerialize["strategyId"] = o.StrategyId
+	}
+	if !common.IsNil(o.StrategyType) {
+		toSerialize["strategyType"] = o.StrategyType
+	}
+	if !common.IsNil(o.TrailingDelta) {
+		toSerialize["trailingDelta"] = o.TrailingDelta
+	}
+	if !common.IsNil(o.TrailingTime) {
+		toSerialize["trailingTime"] = o.TrailingTime
+	}
+	if !common.IsNil(o.UsedSor) {
+		toSerialize["usedSor"] = o.UsedSor
+	}
+	if !common.IsNil(o.WorkingFloor) {
+		toSerialize["workingFloor"] = o.WorkingFloor
+	}
+	if !common.IsNil(o.PegPriceType) {
+		toSerialize["pegPriceType"] = o.PegPriceType
+	}
+	if !common.IsNil(o.PegOffsetType) {
+		toSerialize["pegOffsetType"] = o.PegOffsetType
+	}
+	if !common.IsNil(o.PegOffsetValue) {
+		toSerialize["pegOffsetValue"] = o.PegOffsetValue
+	}
+	if !common.IsNil(o.PeggedPrice) {
+		toSerialize["peggedPrice"] = o.PeggedPrice
+	}
+	if !common.IsNil(o.ExpiryReason) {
+		toSerialize["expiryReason"] = o.ExpiryReason
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -689,7 +1208,6 @@ func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) UnmarshalJSON(data 
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "transactTime")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "origQuoteOrderQty")
 		delete(additionalProperties, "cummulativeQuoteQty")
@@ -700,6 +1218,21 @@ func (o *OrderListPlaceOpocoResponseResultOrderReportsInner) UnmarshalJSON(data 
 		delete(additionalProperties, "workingTime")
 		delete(additionalProperties, "selfTradePreventionMode")
 		delete(additionalProperties, "stopPrice")
+		delete(additionalProperties, "origQty")
+		delete(additionalProperties, "icebergQty")
+		delete(additionalProperties, "preventedMatchId")
+		delete(additionalProperties, "preventedQuantity")
+		delete(additionalProperties, "strategyId")
+		delete(additionalProperties, "strategyType")
+		delete(additionalProperties, "trailingDelta")
+		delete(additionalProperties, "trailingTime")
+		delete(additionalProperties, "usedSor")
+		delete(additionalProperties, "workingFloor")
+		delete(additionalProperties, "pegPriceType")
+		delete(additionalProperties, "pegOffsetType")
+		delete(additionalProperties, "pegOffsetValue")
+		delete(additionalProperties, "peggedPrice")
+		delete(additionalProperties, "expiryReason")
 		o.AdditionalProperties = additionalProperties
 	}
 

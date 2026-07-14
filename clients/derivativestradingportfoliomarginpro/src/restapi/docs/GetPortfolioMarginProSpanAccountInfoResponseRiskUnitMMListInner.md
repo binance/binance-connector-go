@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**UniMaintainUsd** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**UniMaintainUsd** | Pointer to **string** | uni Maintain Usd. | [optional] 
 
 ## Methods
 

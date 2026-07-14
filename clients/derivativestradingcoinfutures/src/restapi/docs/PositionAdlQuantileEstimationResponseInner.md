@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
 **AdlQuantile** | Pointer to [**PositionAdlQuantileEstimationResponseInnerAdlQuantile**](PositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  | [optional] 
 
 ## Methods

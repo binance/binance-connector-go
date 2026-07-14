@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,11 +17,13 @@ var _ common.MappedNullable = &ExchangeInfoResponse{}
 
 // ExchangeInfoResponse struct for ExchangeInfoResponse
 type ExchangeInfoResponse struct {
-	Timezone             *string                            `json:"timezone,omitempty"`
-	ServerTime           *int64                             `json:"serverTime,omitempty"`
-	RateLimits           []RateLimits                       `json:"rateLimits,omitempty"`
-	ExchangeFilters      []ExchangeFilters                  `json:"exchangeFilters,omitempty"`
-	Symbols              []ExchangeInfoResponseSymbolsInner `json:"symbols,omitempty"`
+	Timezone        *string                                 `json:"timezone,omitempty"`
+	ServerTime      *int64                                  `json:"serverTime,omitempty"`
+	RateLimits      []MyFiltersResponseRateLimitsInner      `json:"rateLimits,omitempty"`
+	ExchangeFilters []MyFiltersResponseExchangeFiltersInner `json:"exchangeFilters,omitempty"`
+	Symbols         []ExchangeInfoResponseSymbolsInner      `json:"symbols,omitempty"`
+	// Optional. Present only when SOR is available.
+	Sors                 []ExchangeInfoResponseSorsInner `json:"sors,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,9 +111,9 @@ func (o *ExchangeInfoResponse) SetServerTime(v int64) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *ExchangeInfoResponse) GetRateLimits() []RateLimits {
+func (o *ExchangeInfoResponse) GetRateLimits() []MyFiltersResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []MyFiltersResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -119,7 +121,7 @@ func (o *ExchangeInfoResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *ExchangeInfoResponse) GetRateLimitsOk() ([]MyFiltersResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -135,15 +137,15 @@ func (o *ExchangeInfoResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *ExchangeInfoResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []MyFiltersResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *ExchangeInfoResponse) SetRateLimits(v []MyFiltersResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 
 // GetExchangeFilters returns the ExchangeFilters field value if set, zero value otherwise.
-func (o *ExchangeInfoResponse) GetExchangeFilters() []ExchangeFilters {
+func (o *ExchangeInfoResponse) GetExchangeFilters() []MyFiltersResponseExchangeFiltersInner {
 	if o == nil || common.IsNil(o.ExchangeFilters) {
-		var ret []ExchangeFilters
+		var ret []MyFiltersResponseExchangeFiltersInner
 		return ret
 	}
 	return o.ExchangeFilters
@@ -151,7 +153,7 @@ func (o *ExchangeInfoResponse) GetExchangeFilters() []ExchangeFilters {
 
 // GetExchangeFiltersOk returns a tuple with the ExchangeFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponse) GetExchangeFiltersOk() ([]ExchangeFilters, bool) {
+func (o *ExchangeInfoResponse) GetExchangeFiltersOk() ([]MyFiltersResponseExchangeFiltersInner, bool) {
 	if o == nil || common.IsNil(o.ExchangeFilters) {
 		return nil, false
 	}
@@ -167,8 +169,8 @@ func (o *ExchangeInfoResponse) HasExchangeFilters() bool {
 	return false
 }
 
-// SetExchangeFilters gets a reference to the given []ExchangeFilters and assigns it to the ExchangeFilters field.
-func (o *ExchangeInfoResponse) SetExchangeFilters(v []ExchangeFilters) {
+// SetExchangeFilters gets a reference to the given []MyFiltersResponseExchangeFiltersInner and assigns it to the ExchangeFilters field.
+func (o *ExchangeInfoResponse) SetExchangeFilters(v []MyFiltersResponseExchangeFiltersInner) {
 	o.ExchangeFilters = v
 }
 
@@ -204,6 +206,38 @@ func (o *ExchangeInfoResponse) SetSymbols(v []ExchangeInfoResponseSymbolsInner) 
 	o.Symbols = v
 }
 
+// GetSors returns the Sors field value if set, zero value otherwise.
+func (o *ExchangeInfoResponse) GetSors() []ExchangeInfoResponseSorsInner {
+	if o == nil || common.IsNil(o.Sors) {
+		var ret []ExchangeInfoResponseSorsInner
+		return ret
+	}
+	return o.Sors
+}
+
+// GetSorsOk returns a tuple with the Sors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponse) GetSorsOk() ([]ExchangeInfoResponseSorsInner, bool) {
+	if o == nil || common.IsNil(o.Sors) {
+		return nil, false
+	}
+	return o.Sors, true
+}
+
+// HasSors returns a boolean if a field has been set.
+func (o *ExchangeInfoResponse) HasSors() bool {
+	if o != nil && !common.IsNil(o.Sors) {
+		return true
+	}
+
+	return false
+}
+
+// SetSors gets a reference to the given []ExchangeInfoResponseSorsInner and assigns it to the Sors field.
+func (o *ExchangeInfoResponse) SetSors(v []ExchangeInfoResponseSorsInner) {
+	o.Sors = v
+}
+
 func (o ExchangeInfoResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -228,6 +262,9 @@ func (o ExchangeInfoResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Symbols) {
 		toSerialize["symbols"] = o.Symbols
+	}
+	if !common.IsNil(o.Sors) {
+		toSerialize["sors"] = o.Sors
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -256,6 +293,7 @@ func (o *ExchangeInfoResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "rateLimits")
 		delete(additionalProperties, "exchangeFilters")
 		delete(additionalProperties, "symbols")
+		delete(additionalProperties, "sors")
 		o.AdditionalProperties = additionalProperties
 	}
 

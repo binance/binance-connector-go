@@ -31,14 +31,14 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
-	type_ := "type__example" // string | Transfer Type: ROLL_IN, ROLL_OUT (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	asset := "BNB" // string |  (optional)
+	type_ := models.GetCrossMarginTransferHistoryTypeParameterRollIn // GetCrossMarginTransferHistoryTypeParameter |  (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
+	isolatedSymbol := "BNBUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -67,13 +67,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **type_** | **string** | Transfer Type: ROLL_IN, ROLL_OUT | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **type_** | [**GetCrossMarginTransferHistoryTypeParameter**](GetCrossMarginTransferHistoryTypeParameter.md) |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10 Max:100 | 
- **isolatedSymbol** | **string** | isolated symbol | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **isolatedSymbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -113,9 +113,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	asset := "BTC" // string | 
+	isolatedSymbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -144,8 +144,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **isolatedSymbol** | **string** | isolated symbol | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isolatedSymbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 

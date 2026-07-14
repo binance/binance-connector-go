@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,32 +17,32 @@ var _ common.MappedNullable = &ExchangeInfoResponseSymbolsInner{}
 
 // ExchangeInfoResponseSymbolsInner struct for ExchangeInfoResponseSymbolsInner
 type ExchangeInfoResponseSymbolsInner struct {
-	Symbol                          *string         `json:"symbol,omitempty"`
-	Status                          *string         `json:"status,omitempty"`
-	BaseAsset                       *string         `json:"baseAsset,omitempty"`
-	BaseAssetPrecision              *int64          `json:"baseAssetPrecision,omitempty"`
-	QuoteAsset                      *string         `json:"quoteAsset,omitempty"`
-	QuotePrecision                  *int64          `json:"quotePrecision,omitempty"`
-	QuoteAssetPrecision             *int64          `json:"quoteAssetPrecision,omitempty"`
-	BaseCommissionPrecision         *int64          `json:"baseCommissionPrecision,omitempty"`
-	QuoteCommissionPrecision        *int64          `json:"quoteCommissionPrecision,omitempty"`
-	OrderTypes                      []string        `json:"orderTypes,omitempty"`
-	IcebergAllowed                  *bool           `json:"icebergAllowed,omitempty"`
-	OcoAllowed                      *bool           `json:"ocoAllowed,omitempty"`
-	OtoAllowed                      *bool           `json:"otoAllowed,omitempty"`
-	OpoAllowed                      *bool           `json:"opoAllowed,omitempty"`
-	QuoteOrderQtyMarketAllowed      *bool           `json:"quoteOrderQtyMarketAllowed,omitempty"`
-	AllowTrailingStop               *bool           `json:"allowTrailingStop,omitempty"`
-	CancelReplaceAllowed            *bool           `json:"cancelReplaceAllowed,omitempty"`
-	AmendAllowed                    *bool           `json:"amendAllowed,omitempty"`
-	PegInstructionsAllowed          *bool           `json:"pegInstructionsAllowed,omitempty"`
-	IsSpotTradingAllowed            *bool           `json:"isSpotTradingAllowed,omitempty"`
-	IsMarginTradingAllowed          *bool           `json:"isMarginTradingAllowed,omitempty"`
-	Filters                         []SymbolFilters `json:"filters,omitempty"`
-	Permissions                     []string        `json:"permissions,omitempty"`
-	PermissionSets                  [][]string      `json:"permissionSets,omitempty"`
-	DefaultSelfTradePreventionMode  *string         `json:"defaultSelfTradePreventionMode,omitempty"`
-	AllowedSelfTradePreventionModes []string        `json:"allowedSelfTradePreventionModes,omitempty"`
+	Symbol                          *string                               `json:"symbol,omitempty"`
+	Status                          *string                               `json:"status,omitempty"`
+	BaseAsset                       *string                               `json:"baseAsset,omitempty"`
+	BaseAssetPrecision              *int64                                `json:"baseAssetPrecision,omitempty"`
+	QuoteAsset                      *string                               `json:"quoteAsset,omitempty"`
+	QuotePrecision                  *int64                                `json:"quotePrecision,omitempty"`
+	QuoteAssetPrecision             *int64                                `json:"quoteAssetPrecision,omitempty"`
+	BaseCommissionPrecision         *int64                                `json:"baseCommissionPrecision,omitempty"`
+	QuoteCommissionPrecision        *int64                                `json:"quoteCommissionPrecision,omitempty"`
+	OrderTypes                      []string                              `json:"orderTypes,omitempty"`
+	IcebergAllowed                  *bool                                 `json:"icebergAllowed,omitempty"`
+	OcoAllowed                      *bool                                 `json:"ocoAllowed,omitempty"`
+	OtoAllowed                      *bool                                 `json:"otoAllowed,omitempty"`
+	OpoAllowed                      *bool                                 `json:"opoAllowed,omitempty"`
+	QuoteOrderQtyMarketAllowed      *bool                                 `json:"quoteOrderQtyMarketAllowed,omitempty"`
+	AllowTrailingStop               *bool                                 `json:"allowTrailingStop,omitempty"`
+	CancelReplaceAllowed            *bool                                 `json:"cancelReplaceAllowed,omitempty"`
+	AmendAllowed                    *bool                                 `json:"amendAllowed,omitempty"`
+	PegInstructionsAllowed          *bool                                 `json:"pegInstructionsAllowed,omitempty"`
+	IsSpotTradingAllowed            *bool                                 `json:"isSpotTradingAllowed,omitempty"`
+	IsMarginTradingAllowed          *bool                                 `json:"isMarginTradingAllowed,omitempty"`
+	Filters                         []MyFiltersResponseSymbolFiltersInner `json:"filters,omitempty"`
+	Permissions                     []string                              `json:"permissions,omitempty"`
+	PermissionSets                  [][]string                            `json:"permissionSets,omitempty"`
+	DefaultSelfTradePreventionMode  *string                               `json:"defaultSelfTradePreventionMode,omitempty"`
+	AllowedSelfTradePreventionModes []string                              `json:"allowedSelfTradePreventionModes,omitempty"`
 	AdditionalProperties            map[string]interface{}
 }
 
@@ -738,9 +738,9 @@ func (o *ExchangeInfoResponseSymbolsInner) SetIsMarginTradingAllowed(v bool) {
 }
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
-func (o *ExchangeInfoResponseSymbolsInner) GetFilters() []SymbolFilters {
+func (o *ExchangeInfoResponseSymbolsInner) GetFilters() []MyFiltersResponseSymbolFiltersInner {
 	if o == nil || common.IsNil(o.Filters) {
-		var ret []SymbolFilters
+		var ret []MyFiltersResponseSymbolFiltersInner
 		return ret
 	}
 	return o.Filters
@@ -748,7 +748,7 @@ func (o *ExchangeInfoResponseSymbolsInner) GetFilters() []SymbolFilters {
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExchangeInfoResponseSymbolsInner) GetFiltersOk() ([]SymbolFilters, bool) {
+func (o *ExchangeInfoResponseSymbolsInner) GetFiltersOk() ([]MyFiltersResponseSymbolFiltersInner, bool) {
 	if o == nil || common.IsNil(o.Filters) {
 		return nil, false
 	}
@@ -764,8 +764,8 @@ func (o *ExchangeInfoResponseSymbolsInner) HasFilters() bool {
 	return false
 }
 
-// SetFilters gets a reference to the given []SymbolFilters and assigns it to the Filters field.
-func (o *ExchangeInfoResponseSymbolsInner) SetFilters(v []SymbolFilters) {
+// SetFilters gets a reference to the given []MyFiltersResponseSymbolFiltersInner and assigns it to the Filters field.
+func (o *ExchangeInfoResponseSymbolsInner) SetFilters(v []MyFiltersResponseSymbolFiltersInner) {
 	o.Filters = v
 }
 

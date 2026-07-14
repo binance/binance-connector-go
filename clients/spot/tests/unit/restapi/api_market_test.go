@@ -1,5 +1,5 @@
 /*
-Binance Spot REST API TEST
+Spot REST API TEST
 
 Testing MarketAPIService
 
@@ -25,7 +25,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService AggTrades Success", func(t *testing.T) {
 
-		mockedJSON := `[{"a":26129,"p":"0.01633102","q":"4.70443515","f":27781,"l":27781,"T":1498793709153,"m":true,"M":true}]`
+		var mockedJSON string
+		mockedJSON = `[{"a":26129,"p":"0.01633102","q":"4.70443515","f":27781,"l":27781,"T":1498793709153,"m":true,"M":true}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/aggTrades", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -98,7 +102,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService AvgPrice Success", func(t *testing.T) {
 
-		mockedJSON := `{"mins":5,"price":"9.35751834","closeTime":1694061154503}`
+		var mockedJSON string
+		mockedJSON = `{"mins":5,"price":"9.35751834","closeTime":1694061154503}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/avgPrice", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -171,7 +179,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService Depth Success", func(t *testing.T) {
 
-		mockedJSON := `{"lastUpdateId":1027024,"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]]}`
+		var mockedJSON string
+		mockedJSON = `{"lastUpdateId":1027024,"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/depth", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -244,7 +256,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService GetTrades Success", func(t *testing.T) {
 
-		mockedJSON := `[{"id":28457,"price":"4.00000100","qty":"12.00000000","quoteQty":"48.000012","time":1499865549590,"isBuyerMaker":true,"isBestMatch":true}]`
+		var mockedJSON string
+		mockedJSON = `[{"id":28457,"price":"4.00000100","qty":"12.00000000","quoteQty":"48.000012","time":1499865549590,"isBuyerMaker":true,"isBestMatch":true}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/trades", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -317,11 +333,15 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService HistoricalBlockTrades Success", func(t *testing.T) {
 
-		mockedJSON := `[{"id":582,"price":"0.052","qty":"5838","quoteQty":"303.576","time":1772506983321,"isBuyerMaker":true}]`
+		var mockedJSON string
+		mockedJSON = `[{"id":582,"price":"0.052","qty":"5838","quoteQty":"303.576","time":1772506983321,"isBuyerMaker":true}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/historicalBlockTrades", r.URL.Path)
-			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, "1", r.URL.Query().Get("fromId"))
+			require.Equal(t, "BNBBTC", r.URL.Query().Get("symbol"))
+			require.Equal(t, "582", r.URL.Query().Get("fromId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -338,7 +358,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol("BNBUSDT").FromId(int64(1)).Execute()
+		resp, err := apiClient.RestApi.MarketAPI.HistoricalBlockTrades(context.Background()).Symbol("BNBBTC").FromId(int64(582)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -391,7 +411,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService HistoricalTrades Success", func(t *testing.T) {
 
-		mockedJSON := `[{"id":28457,"price":"4.00000100","qty":"12.00000000","quoteQty":"48.000012","time":1499865549590,"isBuyerMaker":true,"isBestMatch":true}]`
+		var mockedJSON string
+		mockedJSON = `[{"id":28457,"price":"4.00000100","qty":"12.00000000","quoteQty":"48.000012","time":1499865549590,"isBuyerMaker":true,"isBestMatch":true}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/historicalTrades", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -464,7 +488,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService Klines Success", func(t *testing.T) {
 
-		mockedJSON := `[[1499040000000,"0.01634790","0.80000000","0.01575800","0.01577100","148976.11427815",1499644799999,"2434.19055334",308,"1756.87402397","28.46694368","0"]]`
+		var mockedJSON string
+		mockedJSON = `[[1499040000000]]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/klines", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -538,7 +566,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService ReferencePrice Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BAZUSD","referencePrice":"10.00","timestamp":1770736694138}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BAZUSD","referencePrice":"10.00","timestamp":1770736694138}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/referencePrice", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -611,7 +643,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService ReferencePriceCalculation Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BAZUSD","calculationType":"EXTERNAL","bucketCount":10,"bucketWidthMs":1000,"externalCalculationId":42}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BAZUSD","calculationType":"ARITHMETIC_MEAN","bucketCount":10,"bucketWidthMs":1000,"externalCalculationId":42}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/referencePrice/calculation", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
@@ -684,7 +720,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService Ticker Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"LTCBTC","priceChange":"-8.00000000","priceChangePercent":"-88.889","weightedAvgPrice":"2.60427807","openPrice":"0.10000000","highPrice":"2.00000000","lowPrice":"0.10000000","lastPrice":"2.00000000","volume":"39.00000000","quoteVolume":"13.40000000","openTime":1656986580000,"closeTime":1657001016795,"firstId":0,"lastId":34,"count":35}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"LTCBTC","openTime":1656986580000,"closeTime":1657001016795,"firstId":0,"lastId":34,"count":35}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/ticker", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -739,7 +779,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService Ticker24hr Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BNBBTC","priceChange":"-94.99999800","priceChangePercent":"-95.960","weightedAvgPrice":"0.29628482","prevClosePrice":"0.10002000","lastPrice":"4.00000200","lastQty":"200.00000000","bidPrice":"4.00000000","bidQty":"100.00000000","askPrice":"4.00000200","askQty":"100.00000000","openPrice":"99.00000000","highPrice":"100.00000000","lowPrice":"0.10000000","volume":"8913.30000000","quoteVolume":"15.30000000","openTime":1499783499040,"closeTime":1499869899040,"firstId":28385,"lastId":28460,"count":76}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BNBBTC","openTime":1499783499040,"closeTime":1499869899040,"firstId":28385,"lastId":28460,"count":76}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/ticker/24hr", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -794,7 +838,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService TickerBookTicker Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"LTCBTC","bidPrice":"4.00000000","bidQty":"431.00000000","askPrice":"4.00000200","askQty":"9.00000000"}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"LTCBTC"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/ticker/bookTicker", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -849,7 +897,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService TickerPrice Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"LTCBTC","price":"4.00000200"}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"LTCBTC"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/ticker/price", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -904,7 +956,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService TickerTradingDay Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BTCUSDT","priceChange":"-83.13000000","priceChangePercent":"-0.317","weightedAvgPrice":"26234.58803036","openPrice":"26304.80000000","highPrice":"26397.46000000","lowPrice":"26088.34000000","lastPrice":"26221.67000000","volume":"18495.35066000","quoteVolume":"485217905.04210480","openTime":1695686400000,"closeTime":1695772799999,"firstId":3220151555,"lastId":3220849281,"count":697727}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BTCUSDT","openTime":1695686400000,"closeTime":1695772799999,"firstId":3220151555,"lastId":3220849281,"count":697727}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/ticker/tradingDay", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -959,7 +1015,11 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 
 	t.Run("Test MarketAPIService UiKlines Success", func(t *testing.T) {
 
-		mockedJSON := `[[1499040000000,"0.01634790","0.80000000","0.01575800","0.01577100","148976.11427815",1499644799999,"2434.19055334",308,"1756.87402397","28.46694368","0"]]`
+		var mockedJSON string
+		mockedJSON = `[[1499040000000]]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/uiKlines", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))

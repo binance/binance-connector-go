@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &IndexPriceResponse{}
 
 // IndexPriceResponse struct for IndexPriceResponse
 type IndexPriceResponse struct {
-	Time                 *int64  `json:"time,omitempty"`
+	// time
+	Time *int64 `json:"time,omitempty"`
+	// index Price
 	IndexPrice           *string `json:"indexPrice,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

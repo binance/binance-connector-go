@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AlgoId** | Pointer to **int64** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**OrderStatus** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**ExecutedAmt** | Pointer to **string** |  | [optional] 
-**FeeAmt** | Pointer to **string** |  | [optional] 
-**FeeAsset** | Pointer to **string** |  | [optional] 
-**BookTime** | Pointer to **int64** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**SubId** | Pointer to **int64** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
+**AlgoId** | Pointer to **int64** | Algo order ID | [optional] 
+**OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
+**OrderStatus** | Pointer to **string** | Sub-order status | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
+**ExecutedAmt** | Pointer to **string** | Executed amount | [optional] 
+**FeeAmt** | Pointer to **string** | Fee amount | [optional] 
+**FeeAsset** | Pointer to **string** | Fee asset | [optional] 
+**BookTime** | Pointer to **int64** | Order creation time | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price | [optional] 
+**Side** | Pointer to **string** | Trading side | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**SubId** | Pointer to **int64** | Sub-order execution sequence ID | [optional] 
+**TimeInForce** | Pointer to **string** | Time in force | [optional] 
+**OrigQty** | Pointer to **string** | Original order quantity | [optional] 
 
 ## Methods
 

@@ -22,7 +22,7 @@ func WithdrawTravelRule() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TravelRuleAPI.WithdrawTravelRule(context.Background()).Coin("coin_example").Address("address_example").Amount(1.0).Questionnaire("questionnaire_example").Execute()
+	resp, err := apiClient.RestApi.TravelRuleAPI.WithdrawTravelRule(context.Background()).Coin("BTC").Address("address_example").Amount(1.0).Questionnaire("questionnaire_example").Execute()
 	if err != nil {
 		log.Println(err)
 		return

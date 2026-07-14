@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,14 +17,16 @@ var _ common.MappedNullable = &QueryApplicationStatusResponseRowsInner{}
 
 // QueryApplicationStatusResponseRowsInner struct for QueryApplicationStatusResponseRowsInner
 type QueryApplicationStatusResponseRowsInner struct {
-	LoanAccountId        *string `json:"loanAccountId,omitempty"`
-	OrderId              *string `json:"orderId,omitempty"`
-	RequestId            *string `json:"requestId,omitempty"`
-	LoanCoin             *string `json:"loanCoin,omitempty"`
-	LoanAmount           *string `json:"loanAmount,omitempty"`
-	CollateralAccountId  *string `json:"collateralAccountId,omitempty"`
-	CollateralCoin       *string `json:"collateralCoin,omitempty"`
-	LoanTerm             *string `json:"loanTerm,omitempty"`
+	// Loan receiving account.
+	LoanAccountId       *string `json:"loanAccountId,omitempty"`
+	OrderId             *string `json:"orderId,omitempty"`
+	RequestId           *string `json:"requestId,omitempty"`
+	LoanCoin            *string `json:"loanCoin,omitempty"`
+	LoanAmount          *string `json:"loanAmount,omitempty"`
+	CollateralAccountId *string `json:"collateralAccountId,omitempty"`
+	CollateralCoin      *string `json:"collateralCoin,omitempty"`
+	LoanTerm            *string `json:"loanTerm,omitempty"`
+	// Order status (`Accruing_Interest`, `Overdue`, `Liquidating`, `Repaying`, `Repaid`, `Liquidated`, `Pending`, `Failed`).
 	Status               *string `json:"status,omitempty"`
 	LoanDate             *string `json:"loanDate,omitempty"`
 	AdditionalProperties map[string]interface{}

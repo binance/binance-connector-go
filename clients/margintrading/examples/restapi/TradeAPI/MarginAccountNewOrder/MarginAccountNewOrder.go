@@ -23,7 +23,7 @@ func MarginAccountNewOrder() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOrder(context.Background()).Symbol("symbol_example").Side(models.MarginAccountNewOrderSideParameterBuy).Type("type__example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOrder(context.Background()).Symbol("BTCUSDT").Side(models.MarginAccountNewOrderSideParameterBuy).Type(models.MarginAccountNewOrderTypeParameterLimit).Execute()
 	if err != nil {
 		log.Println(err)
 		return

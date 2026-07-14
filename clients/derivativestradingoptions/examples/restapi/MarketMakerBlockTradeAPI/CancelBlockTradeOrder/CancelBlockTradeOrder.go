@@ -21,7 +21,7 @@ func CancelBlockTradeOrder() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	_, err := apiClient.RestApi.MarketMakerBlockTradeAPI.CancelBlockTradeOrder(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+	_, err := apiClient.RestApi.MarketMakerBlockTradeAPI.CancelBlockTradeOrder(context.Background()).BlockOrderMatchingKey("7d046e6e-a429-4335-ab9d-6a681febcde5").Execute()
 	if err != nil {
 		log.Println(err)
 		return

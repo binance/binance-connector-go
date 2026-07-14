@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading WebSocket Market Streams
+Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingwebsocketstreams
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Margin Trading WebSocket Market Streams WebSocket Streams v1.7.0
+// WebsocketStreamsClient manages communication with the Binance Margin WebSocket Market Streams WebSocket Streams v1.8.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -23,13 +23,13 @@ type WebsocketStreamsClient struct {
 	// API Services
 }
 
-// NewWebsocketStreamsClient creates a new Binance Binance Margin Trading WebSocket Market Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Margin WebSocket Market Streams WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-margintrading/1.7.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-margintrading/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {

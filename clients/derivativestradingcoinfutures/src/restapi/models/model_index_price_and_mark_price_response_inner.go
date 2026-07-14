@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &IndexPriceAndMarkPriceResponseInner{}
 
 // IndexPriceAndMarkPriceResponseInner struct for IndexPriceAndMarkPriceResponseInner
 type IndexPriceAndMarkPriceResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	IndexPrice           *string `json:"indexPrice,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// index price
+	IndexPrice *string `json:"indexPrice,omitempty"`
+	// Estimated Settle Price, only useful in the last hour before the settlement starts.
 	EstimatedSettlePrice *string `json:"estimatedSettlePrice,omitempty"`
-	LastFundingRate      *string `json:"lastFundingRate,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
-	NextFundingTime      *int64  `json:"nextFundingTime,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// the lasted funding rate, for perpetual contract symbols only. For delivery symbols, \"\" will be shown.
+	LastFundingRate *string `json:"lastFundingRate,omitempty"`
+	// the base asset interest rate, for perpetual contract symbols only. For delivery symbols, \"\" will be shown.
+	InterestRate *string `json:"interestRate,omitempty"`
+	// For perpetual contract symbols only. For delivery symbols, 0 will be shown
+	NextFundingTime *int64 `json:"nextFundingTime,omitempty"`
+	// Time
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &UserCommissionResponse{}
 
 // UserCommissionResponse struct for UserCommissionResponse
 type UserCommissionResponse struct {
+	// commissions
 	Commissions          []UserCommissionResponseCommissionsInner `json:"commissions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

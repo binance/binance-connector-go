@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -15,12 +15,16 @@ import (
 // checks if the GetExchangeInfoResponseData type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &GetExchangeInfoResponseData{}
 
-// GetExchangeInfoResponseData struct for GetExchangeInfoResponseData
+// GetExchangeInfoResponseData Exchange metadata, including assets and symbols.
 type GetExchangeInfoResponseData struct {
-	Timezone             *string                                   `json:"timezone,omitempty"`
-	Assets               []GetExchangeInfoResponseDataAssetsInner  `json:"assets,omitempty"`
-	Symbols              []GetExchangeInfoResponseDataSymbolsInner `json:"symbols,omitempty"`
-	OrderTypes           *string                                   `json:"orderTypes,omitempty"`
+	// Timezone of market data.
+	Timezone *string `json:"timezone,omitempty"`
+	// Supported assets.
+	Assets []GetExchangeInfoResponseDataAssetsInner `json:"assets,omitempty"`
+	// Supported trading symbols.
+	Symbols []GetExchangeInfoResponseDataSymbolsInner `json:"symbols,omitempty"`
+	// Order types metadata returned by backend.
+	OrderTypes           *string `json:"orderTypes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

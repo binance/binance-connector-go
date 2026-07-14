@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**Pa** | Pointer to **string** |  | [optional] 
-**Ep** | Pointer to **string** |  | [optional] 
-**Bep** | Pointer to **string** |  | [optional] 
-**Cr** | Pointer to **string** |  | [optional] 
-**Up** | Pointer to **string** |  | [optional] 
-**Mt** | Pointer to **string** |  | [optional] 
-**Iw** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Pa** | Pointer to **string** | Position Amount | [optional] 
+**Ep** | Pointer to **string** | Entry Price | [optional] 
+**Bep** | Pointer to **string** | Breakeven Price | [optional] 
+**Cr** | Pointer to **string** | (Pre-fee) Accumulated Realized | [optional] 
+**Up** | Pointer to **string** | Unrealized PnL | [optional] 
+**Mt** | Pointer to **string** | Margin Type | [optional] 
+**Iw** | Pointer to **string** | Isolated Wallet (if isolated position) | [optional] 
+**Ps** | Pointer to **string** | Position Side | [optional] 
 
 ## Methods
 

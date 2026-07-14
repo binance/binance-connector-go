@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**MarkValue** | Pointer to **string** |  | [optional] 
-**UnrealizedPNL** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**StrikePrice** | Pointer to **string** |  | [optional] 
-**ExpiryDate** | Pointer to **int64** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**OptionSide** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**BidQuantity** | Pointer to **string** |  | [optional] 
-**AskQuantity** | Pointer to **string** |  | [optional] 
+**EntryPrice** | Pointer to **string** | Average entry price | [optional] 
+**Symbol** | Pointer to **string** | Option trading pair | [optional] 
+**Side** | Pointer to **string** | Position direction | [optional] 
+**Quantity** | Pointer to **string** | Number of positions (positive numbers represent long positions, negative number represent short positions) | [optional] 
+**MarkValue** | Pointer to **string** | Current market value | [optional] 
+**UnrealizedPNL** | Pointer to **string** | Unrealized profit/loss | [optional] 
+**MarkPrice** | Pointer to **string** | Mark price | [optional] 
+**StrikePrice** | Pointer to **string** | Strike price | [optional] 
+**ExpiryDate** | Pointer to **int64** | Exercise time | [optional] 
+**PriceScale** | Pointer to **int64** | price Scale | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity Scale | [optional] 
+**OptionSide** | Pointer to **string** | option type | [optional] 
+**QuoteAsset** | Pointer to **string** | quote asset | [optional] 
+**Time** | Pointer to **int64** | last update time | [optional] 
+**BidQuantity** | Pointer to **string** | buy order qty | [optional] 
+**AskQuantity** | Pointer to **string** | sell order qty | [optional] 
 
 ## Methods
 

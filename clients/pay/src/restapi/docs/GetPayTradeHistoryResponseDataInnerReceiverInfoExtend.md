@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**InstitutionName** | Pointer to **string** |  | [optional] 
-**CardNumber** | Pointer to **string** |  | [optional] 
-**DigitalWalletId** | Pointer to **string** |  | [optional] 
+**InstitutionName** | Pointer to **string** | Bank name or digital wallet name. | [optional] 
+**CardNumber** | Pointer to **string** | Card number. | [optional] 
+**DigitalWalletId** | Pointer to **string** | Digital wallet ID. | [optional] 
 
 ## Methods
 

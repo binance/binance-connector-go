@@ -1,5 +1,5 @@
 /*
-Binance Simple Earn REST API TEST
+Simple Earn REST API TEST
 
 Testing RwusdAPIService
 
@@ -10,6 +10,7 @@ package binancesimpleearnrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,7 +26,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"rwusdAmount":"100","totalProfit":"12.81"}`
+		var mockedJSON string
+		mockedJSON = `{"rwusdAmount":"100","totalProfit":"12.81"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +85,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdQuotaDetails Success", func(t *testing.T) {
 
-		mockedJSON := `{"subscriptionQuota":{"assets":["USDT","USDC"],"leftQuota":"1000","minimum":"0.10000000"},"fastRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.0005","freeQuota":"100"},"standardRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.001","redeemPeriod":3},"subscribeEnable":true,"redeemEnable":true}`
+		var mockedJSON string
+		mockedJSON = `{"subscriptionQuota":{"assets":["USDT"],"leftQuota":"1000","minimum":"0.10000000"},"fastRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.0005","freeQuota":"100"},"standardRedemptionQuota":{"leftQuota":"2","minimum":"0.1","fee":"0.001","redeemPeriod":3},"subscribeEnable":true,"redeemEnable":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/quota", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +144,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"annualPercentageRate":"0.0418","time":1577233578000}],"total":"1"}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"annualPercentageRate":"0.0418","time":1577233578000}],"total":"1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/history/rateHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +203,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdRedemptionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"asset":"RWUSD","amount":"51","receiveAsset":"USDC","receiveAmount":"50","fee":"1","arrivalTime":1575018510000,"status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"asset":"RWUSD","amount":"51","receiveAsset":"USDC","receiveAmount":"50","fee":"1","arrivalTime":1575018510000,"status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/history/redemptionHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -245,7 +262,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdRewardsHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"rewardsAmount":"1","rwusdPosition":"100","annualPercentageRate":"0.0418"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"rewardsAmount":"1","rwusdPosition":"100","annualPercentageRate":"0.0418"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/history/rewardsHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -300,7 +321,11 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService GetRwusdSubscriptionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"asset":"USDC","amount":"100","receiveAsset":"RWUSD","receiveAmount":"100","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"asset":"USDC","amount":"100","receiveAsset":"RWUSD","receiveAmount":"100","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/history/subscriptionHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -355,11 +380,15 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService RedeemRwusd Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"receiveAmount":"0.23092091","fee":"0.00000012","arrivalTime":1575018510000}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"receiveAmount":"0.23092091","fee":"0.00000012","arrivalTime":1575018510000}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/redeem", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
-			require.Equal(t, "s", r.URL.Query().Get("type"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, string(models.RedeemBfusdTypeParameterFast), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -376,7 +405,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(float32(1.0)).Type("s").Execute()
+		resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(float32(1.0)).Type(models.RedeemBfusdTypeParameterFast).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -429,11 +458,15 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 
 	t.Run("Test RwusdAPIService SubscribeRwusd Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"rwusdAmount":"0.22091092"}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"rwusdAmount":"0.22091092"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/subscribe", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, string(models.SubscribeRwusdAssetParameterUsdt), r.URL.Query().Get("asset"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -450,7 +483,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset("asset_example").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset(models.SubscribeRwusdAssetParameterUsdt).Amount(float32(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

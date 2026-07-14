@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**Nq** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**A** | Pointer to **int64** | Aggregate trade ID | [optional] 
+**P** | Pointer to **string** | Price | [optional] 
+**Q** | Pointer to **string** | Quantity with all the market trades | [optional] 
+**Nq** | Pointer to **string** | Normal quantity without the trades involving RPI orders | [optional] 
+**F** | Pointer to **int64** | First trade ID | [optional] 
+**L** | Pointer to **int64** | Last trade ID | [optional] 
+**T** | Pointer to **int64** | Trade time | [optional] 
+**M** | Pointer to **bool** | Is the buyer the market maker? | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -313,20 +313,20 @@ HasM returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *AggregateTradeStreamsResponse) GetSt() int64`
+`func (o *AggregateTradeStreamsResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *AggregateTradeStreamsResponse) GetStOk() (*int64, bool)`
+`func (o *AggregateTradeStreamsResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *AggregateTradeStreamsResponse) SetSt(v int64)`
+`func (o *AggregateTradeStreamsResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

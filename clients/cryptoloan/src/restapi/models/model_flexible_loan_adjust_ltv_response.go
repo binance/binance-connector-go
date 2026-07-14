@@ -1,7 +1,7 @@
 /*
-Binance Crypto Loan REST API
+Crypto Loan REST API
 
-OpenAPI Specification for the Binance Crypto Loan REST API
+Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
 */
 
 package models
@@ -17,11 +17,12 @@ var _ common.MappedNullable = &FlexibleLoanAdjustLtvResponse{}
 
 // FlexibleLoanAdjustLtvResponse struct for FlexibleLoanAdjustLtvResponse
 type FlexibleLoanAdjustLtvResponse struct {
-	LoanCoin             *string `json:"loanCoin,omitempty"`
-	CollateralCoin       *string `json:"collateralCoin,omitempty"`
-	Direction            *string `json:"direction,omitempty"`
-	AdjustmentAmount     *string `json:"adjustmentAmount,omitempty"`
-	CurrentLTV           *string `json:"currentLTV,omitempty"`
+	LoanCoin         *string `json:"loanCoin,omitempty"`
+	CollateralCoin   *string `json:"collateralCoin,omitempty"`
+	Direction        *string `json:"direction,omitempty"`
+	AdjustmentAmount *string `json:"adjustmentAmount,omitempty"`
+	CurrentLTV       *string `json:"currentLTV,omitempty"`
+	// Succeeds, Failed, Processing
 	Status               *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

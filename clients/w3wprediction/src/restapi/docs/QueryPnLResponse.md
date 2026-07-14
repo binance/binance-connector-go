@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ChainId** | Pointer to **string** |  | [optional] 
 **WalletAddress** | Pointer to **string** |  | [optional] 
-**Pnl** | Pointer to **NullableString** |  | [optional] 
+**Pnl** | Pointer to **map[string]interface{}** |  | [optional] 
 **PnlList** | Pointer to [**[]GetPortfolioResponsePositionsInner**](GetPortfolioResponsePositionsInner.md) |  | [optional] 
 **TotalCount** | Pointer to **int32** |  | [optional] 
 **TotalRealizedPnl** | Pointer to **string** |  | [optional] 
@@ -84,20 +84,20 @@ HasWalletAddress returns a boolean if a field has been set.
 
 ### GetPnl
 
-`func (o *QueryPnLResponse) GetPnl() string`
+`func (o *QueryPnLResponse) GetPnl() map[string]interface{}`
 
 GetPnl returns the Pnl field if non-nil, zero value otherwise.
 
 ### GetPnlOk
 
-`func (o *QueryPnLResponse) GetPnlOk() (*string, bool)`
+`func (o *QueryPnLResponse) GetPnlOk() (*map[string]interface{}, bool)`
 
 GetPnlOk returns a tuple with the Pnl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPnl
 
-`func (o *QueryPnLResponse) SetPnl(v string)`
+`func (o *QueryPnLResponse) SetPnl(v map[string]interface{})`
 
 SetPnl sets Pnl field to given value.
 

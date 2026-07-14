@@ -1,7 +1,7 @@
 /*
-Binance Fiat REST API
+Fiat REST API
 
-OpenAPI Specification for the Binance Fiat REST API
+Query Binance fiat deposit and withdrawal history.
 */
 
 package models
@@ -17,12 +17,13 @@ var _ common.MappedNullable = &GetFiatDepositWithdrawHistoryResponseDataInner{}
 
 // GetFiatDepositWithdrawHistoryResponseDataInner struct for GetFiatDepositWithdrawHistoryResponseDataInner
 type GetFiatDepositWithdrawHistoryResponseDataInner struct {
-	OrderNo              *string `json:"orderNo,omitempty"`
-	FiatCurrency         *string `json:"fiatCurrency,omitempty"`
-	IndicatedAmount      *string `json:"indicatedAmount,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	TotalFee             *string `json:"totalFee,omitempty"`
-	Method               *string `json:"method,omitempty"`
+	OrderNo         *string `json:"orderNo,omitempty"`
+	FiatCurrency    *string `json:"fiatCurrency,omitempty"`
+	IndicatedAmount *string `json:"indicatedAmount,omitempty"`
+	Amount          *string `json:"amount,omitempty"`
+	TotalFee        *string `json:"totalFee,omitempty"`
+	Method          *string `json:"method,omitempty"`
+	// Processing, Failed, Successful, Finished, Refunding, Refunded, Refund Failed, Order Partial Credit Stopped
 	Status               *string `json:"status,omitempty"`
 	CreateTime           *int64  `json:"createTime,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`

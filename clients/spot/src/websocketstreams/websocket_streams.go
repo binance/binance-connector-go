@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketstreams
@@ -10,26 +10,27 @@ import (
 	"log"
 	"runtime"
 
+	"github.com/binance/binance-connector-go/clients/spot/src/websocketstreams/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Binance Spot WebSocket Streams WebSocket Streams v1.8.0
+// WebsocketStreamsClient manages communication with the Binance Spot WebSocket Market Streams WebSocket Streams v1.9.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
 	Ws        *common.WebsocketStreams
 
 	// API Services
-	WebSocketStreamsAPI *WebSocketStreamsAPIService
+	DefaultAPI *DefaultAPIService
 }
 
-// NewWebsocketStreamsClient creates a new Binance Binance Spot WebSocket Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Spot WebSocket Market Streams WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-spot/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-spot/1.9.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -38,7 +39,7 @@ func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *Webso
 	c.Ws = wsClient
 
 	// API Services
-	c.WebSocketStreamsAPI = &WebSocketStreamsAPIService{client: c}
+	c.DefaultAPI = &DefaultAPIService{client: c}
 
 	return c
 }
@@ -88,6 +89,25 @@ func (c *WebsocketStreamsClient) ListSubscriptions(id string) (map[string]interf
 // @return error - An error if the unsubscription fails
 func (c *WebsocketStreamsClient) Unsubscribe(streams []string) error {
 	return c.Ws.Unsubscribe(streams)
+}
+
+// UserData subscribes to user data stream events with an optional ID
+//
+// @param listenKey string - The listen key for the user data stream
+// @param id string - The optional ID for the subscription
+// @return *common.StreamHandler[models.UserDataStreamEventsResponse] - The stream handler for user data stream events
+// @return error - An error if the operation fails
+func (c *WebsocketStreamsClient) UserData(listenKey string, id any) (*common.StreamHandler[models.UserDataStreamEventsResponse], error) {
+	if id != "" {
+		return common.CreateStreamHandler[models.UserDataStreamEventsResponse](&common.StreamHandlerWrapper{
+			WebsocketStreams: c.Ws,
+		}, listenKey, []any{id}, false,
+		)
+	} else {
+		return common.CreateStreamHandler[models.UserDataStreamEventsResponse](&common.StreamHandlerWrapper{
+			WebsocketStreams: c.Ws,
+		}, listenKey, nil, false)
+	}
 }
 
 // CloseWebSocketStreamConnection closes the WebSocket stream connection

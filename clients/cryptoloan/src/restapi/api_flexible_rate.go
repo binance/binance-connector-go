@@ -1,7 +1,7 @@
 /*
-Binance Crypto Loan REST API
+Crypto Loan REST API
 
-OpenAPI Specification for the Binance Crypto Loan REST API
+Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
 */
 
 package binancecryptoloanrestapi
@@ -36,6 +36,7 @@ func (r ApiCheckCollateralRepayRateRequest) CollateralCoin(collateralCoin string
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiCheckCollateralRepayRateRequest) RecvWindow(recvWindow int64) ApiCheckCollateralRepayRateRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -46,15 +47,15 @@ func (r ApiCheckCollateralRepayRateRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-CheckCollateralRepayRate Check Collateral Repay Rate (USER_DATA)
+CheckCollateralRepayRate Check Collateral Flexible Repay Rate (USER_DATA)
 Get /sapi/v2/loan/flexible/repay/rate
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Check-Collateral-Repay-Rate
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#check-collateral-repay-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiCheckCollateralRepayRateRequest
 */
 func (a *FlexibleRateAPIService) CheckCollateralRepayRate(ctx context.Context) ApiCheckCollateralRepayRateRequest {
@@ -77,6 +78,7 @@ func (a *FlexibleRateAPIService) CheckCollateralRepayRateExecute(r ApiCheckColla
 	if r.loanCoin == nil {
 		return nil, common.ReportError("loanCoin is required and must be specified")
 	}
+
 	if r.collateralCoin == nil {
 		return nil, common.ReportError("collateralCoin is required and must be specified")
 	}
@@ -87,7 +89,15 @@ func (a *FlexibleRateAPIService) CheckCollateralRepayRateExecute(r ApiCheckColla
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckCollateralRepayRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CheckCollateralRepayRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -101,7 +111,7 @@ type ApiFlexibleLoanAdjustLtvRequest struct {
 	loanCoin         *string
 	collateralCoin   *string
 	adjustmentAmount *float32
-	direction        *string
+	direction        *models.FlexibleLoanAdjustLtvDirectionParameter
 	recvWindow       *int64
 }
 
@@ -120,12 +130,12 @@ func (r ApiFlexibleLoanAdjustLtvRequest) AdjustmentAmount(adjustmentAmount float
 	return r
 }
 
-// \&quot;ADDITIONAL\&quot;, \&quot;REDUCED\&quot;
-func (r ApiFlexibleLoanAdjustLtvRequest) Direction(direction string) ApiFlexibleLoanAdjustLtvRequest {
+func (r ApiFlexibleLoanAdjustLtvRequest) Direction(direction models.FlexibleLoanAdjustLtvDirectionParameter) ApiFlexibleLoanAdjustLtvRequest {
 	r.direction = &direction
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiFlexibleLoanAdjustLtvRequest) RecvWindow(recvWindow int64) ApiFlexibleLoanAdjustLtvRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -136,17 +146,17 @@ func (r ApiFlexibleLoanAdjustLtvRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-FlexibleLoanAdjustLtv Flexible Loan Adjust LTV(TRADE)
+FlexibleLoanAdjustLtv Flexible Loan Adjust LTV (TRADE)
 Post /sapi/v2/loan/flexible/adjust/ltv
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Adjust-LTV
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-adjust-ltv
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param adjustmentAmount -
-@param direction -  \"ADDITIONAL\", \"REDUCED\"
-@param recvWindow -
+@param direction -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiFlexibleLoanAdjustLtvRequest
 */
 func (a *FlexibleRateAPIService) FlexibleLoanAdjustLtv(ctx context.Context) ApiFlexibleLoanAdjustLtvRequest {
@@ -169,12 +179,15 @@ func (a *FlexibleRateAPIService) FlexibleLoanAdjustLtvExecute(r ApiFlexibleLoanA
 	if r.loanCoin == nil {
 		return nil, common.ReportError("loanCoin is required and must be specified")
 	}
+
 	if r.collateralCoin == nil {
 		return nil, common.ReportError("collateralCoin is required and must be specified")
 	}
+
 	if r.adjustmentAmount == nil {
 		return nil, common.ReportError("adjustmentAmount is required and must be specified")
 	}
+
 	if r.direction == nil {
 		return nil, common.ReportError("direction is required and must be specified")
 	}
@@ -187,7 +200,15 @@ func (a *FlexibleRateAPIService) FlexibleLoanAdjustLtvExecute(r ApiFlexibleLoanA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FlexibleLoanAdjustLtvResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FlexibleLoanAdjustLtvResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -227,6 +248,7 @@ func (r ApiFlexibleLoanBorrowRequest) CollateralAmount(collateralAmount float32)
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiFlexibleLoanBorrowRequest) RecvWindow(recvWindow int64) ApiFlexibleLoanBorrowRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -237,17 +259,17 @@ func (r ApiFlexibleLoanBorrowRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-FlexibleLoanBorrow Flexible Loan Borrow(TRADE)
+FlexibleLoanBorrow Flexible Loan Borrow (TRADE)
 Post /sapi/v2/loan/flexible/borrow
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Borrow
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-borrow
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param loanAmount -  Mandatory when collateralAmount is empty
 @param collateralAmount -  Mandatory when loanAmount is empty
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiFlexibleLoanBorrowRequest
 */
 func (a *FlexibleRateAPIService) FlexibleLoanBorrow(ctx context.Context) ApiFlexibleLoanBorrowRequest {
@@ -270,6 +292,7 @@ func (a *FlexibleRateAPIService) FlexibleLoanBorrowExecute(r ApiFlexibleLoanBorr
 	if r.loanCoin == nil {
 		return nil, common.ReportError("loanCoin is required and must be specified")
 	}
+
 	if r.collateralCoin == nil {
 		return nil, common.ReportError("collateralCoin is required and must be specified")
 	}
@@ -286,7 +309,15 @@ func (a *FlexibleRateAPIService) FlexibleLoanBorrowExecute(r ApiFlexibleLoanBorr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FlexibleLoanBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FlexibleLoanBorrowResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -302,7 +333,7 @@ type ApiFlexibleLoanRepayRequest struct {
 	repayAmount      *float32
 	collateralReturn *bool
 	fullRepayment    *bool
-	repaymentType    *int64
+	repaymentType    *models.FlexibleLoanRepayRepaymentTypeParameter
 	recvWindow       *int64
 }
 
@@ -316,30 +347,30 @@ func (r ApiFlexibleLoanRepayRequest) CollateralCoin(collateralCoin string) ApiFl
 	return r
 }
 
-// repay amount of loanCoin
 func (r ApiFlexibleLoanRepayRequest) RepayAmount(repayAmount float32) ApiFlexibleLoanRepayRequest {
 	r.repayAmount = &repayAmount
 	return r
 }
 
-// Default: TRUE. TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order, and lower LTV.
+// TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV.
 func (r ApiFlexibleLoanRepayRequest) CollateralReturn(collateralReturn bool) ApiFlexibleLoanRepayRequest {
 	r.collateralReturn = &collateralReturn
 	return r
 }
 
-// Default: FALSE. TRUE: Full repayment; FALSE: Partial repayment, based on loanAmount
+// TRUE: Full repayment; FALSE: Partial repayment based on loan amount
 func (r ApiFlexibleLoanRepayRequest) FullRepayment(fullRepayment bool) ApiFlexibleLoanRepayRequest {
 	r.fullRepayment = &fullRepayment
 	return r
 }
 
-// Default: 1. 1: Repayment with loan asset; 2: Repayment with collateral
-func (r ApiFlexibleLoanRepayRequest) RepaymentType(repaymentType int64) ApiFlexibleLoanRepayRequest {
+// 1: Repayment with loan asset; 2: Repayment with collateral
+func (r ApiFlexibleLoanRepayRequest) RepaymentType(repaymentType models.FlexibleLoanRepayRepaymentTypeParameter) ApiFlexibleLoanRepayRequest {
 	r.repaymentType = &repaymentType
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiFlexibleLoanRepayRequest) RecvWindow(recvWindow int64) ApiFlexibleLoanRepayRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -350,19 +381,19 @@ func (r ApiFlexibleLoanRepayRequest) Execute() (*common.RestApiResponse[models.F
 }
 
 /*
-FlexibleLoanRepay Flexible Loan Repay(TRADE)
+FlexibleLoanRepay Flexible Loan Repay (TRADE)
 Post /sapi/v2/loan/flexible/repay
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/trade/Flexible-Loan-Repay
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#flexible-loan-repay
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
-@param repayAmount -  repay amount of loanCoin
-@param collateralReturn -  Default: TRUE. TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order, and lower LTV.
-@param fullRepayment -  Default: FALSE. TRUE: Full repayment; FALSE: Partial repayment, based on loanAmount
-@param repaymentType -  Default: 1. 1: Repayment with loan asset; 2: Repayment with collateral
-@param recvWindow -
+@param repayAmount -
+@param collateralReturn -  TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV.
+@param fullRepayment -  TRUE: Full repayment; FALSE: Partial repayment based on loan amount
+@param repaymentType -  1: Repayment with loan asset; 2: Repayment with collateral
+@param recvWindow -  Request validity window in milliseconds
 @return ApiFlexibleLoanRepayRequest
 */
 func (a *FlexibleRateAPIService) FlexibleLoanRepay(ctx context.Context) ApiFlexibleLoanRepayRequest {
@@ -385,9 +416,11 @@ func (a *FlexibleRateAPIService) FlexibleLoanRepayExecute(r ApiFlexibleLoanRepay
 	if r.loanCoin == nil {
 		return nil, common.ReportError("loanCoin is required and must be specified")
 	}
+
 	if r.collateralCoin == nil {
 		return nil, common.ReportError("collateralCoin is required and must be specified")
 	}
+
 	if r.repayAmount == nil {
 		return nil, common.ReportError("repayAmount is required and must be specified")
 	}
@@ -408,7 +441,15 @@ func (a *FlexibleRateAPIService) FlexibleLoanRepayExecute(r ApiFlexibleLoanRepay
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FlexibleLoanRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FlexibleLoanRepayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -428,6 +469,7 @@ func (r ApiGetFlexibleLoanAssetsDataRequest) LoanCoin(loanCoin string) ApiGetFle
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanAssetsDataRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanAssetsDataRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -438,14 +480,14 @@ func (r ApiGetFlexibleLoanAssetsDataRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetFlexibleLoanAssetsData Get Flexible Loan Assets Data(USER_DATA)
+GetFlexibleLoanAssetsData Get Flexible Loan Assets Data (USER_DATA)
 Get /sapi/v2/loan/flexible/loanable/data
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Assets-Data
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-assets-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanAssetsDataRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanAssetsData(ctx context.Context) ApiGetFlexibleLoanAssetsDataRequest {
@@ -472,7 +514,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanAssetsDataExecute(r ApiGetFlexib
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanAssetsDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanAssetsDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -512,18 +562,19 @@ func (r ApiGetFlexibleLoanBorrowHistoryRequest) EndTime(endTime int64) ApiGetFle
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanBorrowHistoryRequest) Current(current int64) ApiGetFlexibleLoanBorrowHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanBorrowHistoryRequest) Limit(limit int64) ApiGetFlexibleLoanBorrowHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanBorrowHistoryRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanBorrowHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -534,19 +585,19 @@ func (r ApiGetFlexibleLoanBorrowHistoryRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-GetFlexibleLoanBorrowHistory Get Flexible Loan Borrow History(USER_DATA)
+GetFlexibleLoanBorrowHistory Get Flexible Loan Borrow History (USER_DATA)
 Get /sapi/v2/loan/flexible/borrow/history
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Borrow-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-borrow-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
-@param recvWindow -
+@param current -  Current querying page
+@param limit -  Number of records to return
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanBorrowHistoryRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanBorrowHistory(ctx context.Context) ApiGetFlexibleLoanBorrowHistoryRequest {
@@ -588,7 +639,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanBorrowHistoryExecute(r ApiGetFle
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanBorrowHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanBorrowHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -608,6 +667,7 @@ func (r ApiGetFlexibleLoanCollateralAssetsDataRequest) CollateralCoin(collateral
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanCollateralAssetsDataRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanCollateralAssetsDataRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -618,14 +678,14 @@ func (r ApiGetFlexibleLoanCollateralAssetsDataRequest) Execute() (*common.RestAp
 }
 
 /*
-GetFlexibleLoanCollateralAssetsData Get Flexible Loan Collateral Assets Data(USER_DATA)
+GetFlexibleLoanCollateralAssetsData Get Flexible Loan Collateral Assets Data (USER_DATA)
 Get /sapi/v2/loan/flexible/collateral/data
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Collateral-Assets-Data
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-collateral-assets-data
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param collateralCoin -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanCollateralAssetsDataRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanCollateralAssetsData(ctx context.Context) ApiGetFlexibleLoanCollateralAssetsDataRequest {
@@ -652,7 +712,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanCollateralAssetsDataExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanCollateralAssetsDataResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanCollateralAssetsDataResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -676,6 +744,7 @@ func (r ApiGetFlexibleLoanInterestRateHistoryRequest) Coin(coin string) ApiGetFl
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanInterestRateHistoryRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanInterestRateHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -691,13 +760,13 @@ func (r ApiGetFlexibleLoanInterestRateHistoryRequest) EndTime(endTime int64) Api
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanInterestRateHistoryRequest) Current(current int64) ApiGetFlexibleLoanInterestRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanInterestRateHistoryRequest) Limit(limit int64) ApiGetFlexibleLoanInterestRateHistoryRequest {
 	r.limit = &limit
 	return r
@@ -711,15 +780,15 @@ func (r ApiGetFlexibleLoanInterestRateHistoryRequest) Execute() (*common.RestApi
 GetFlexibleLoanInterestRateHistory Get Flexible Loan Interest Rate History (USER_DATA)
 Get /sapi/v2/loan/interestRateHistory
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/market-data/Get-Flexible-Loan-Interest-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-interest-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
+@param current -  Current querying page
+@param limit -  Number of records to return
 @return ApiGetFlexibleLoanInterestRateHistoryRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanInterestRateHistory(ctx context.Context) ApiGetFlexibleLoanInterestRateHistoryRequest {
@@ -742,8 +811,12 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanInterestRateHistoryExecute(r Api
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
+
 	if r.recvWindow == nil {
 		return nil, common.ReportError("recvWindow is required and must be specified")
+	}
+	if *r.recvWindow > 60000 {
+		return nil, common.ReportError("recvWindow must be less than 60000")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "coin", r.coin, "form", "")
@@ -761,7 +834,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanInterestRateHistoryExecute(r Api
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 
-	resp, err := SendRequest[models.GetFlexibleLoanInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanInterestRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -801,18 +882,19 @@ func (r ApiGetFlexibleLoanLiquidationHistoryRequest) EndTime(endTime int64) ApiG
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanLiquidationHistoryRequest) Current(current int64) ApiGetFlexibleLoanLiquidationHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanLiquidationHistoryRequest) Limit(limit int64) ApiGetFlexibleLoanLiquidationHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanLiquidationHistoryRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanLiquidationHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -826,16 +908,16 @@ func (r ApiGetFlexibleLoanLiquidationHistoryRequest) Execute() (*common.RestApiR
 GetFlexibleLoanLiquidationHistory Get Flexible Loan Liquidation History (USER_DATA)
 Get /sapi/v2/loan/flexible/liquidation/history
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Liquidation-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-liquidation-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
-@param recvWindow -
+@param current -  Current querying page
+@param limit -  Number of records to return
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanLiquidationHistoryRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanLiquidationHistory(ctx context.Context) ApiGetFlexibleLoanLiquidationHistoryRequest {
@@ -877,7 +959,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanLiquidationHistoryExecute(r ApiG
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanLiquidationHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanLiquidationHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -917,18 +1007,19 @@ func (r ApiGetFlexibleLoanLtvAdjustmentHistoryRequest) EndTime(endTime int64) Ap
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanLtvAdjustmentHistoryRequest) Current(current int64) ApiGetFlexibleLoanLtvAdjustmentHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanLtvAdjustmentHistoryRequest) Limit(limit int64) ApiGetFlexibleLoanLtvAdjustmentHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanLtvAdjustmentHistoryRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanLtvAdjustmentHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -939,19 +1030,19 @@ func (r ApiGetFlexibleLoanLtvAdjustmentHistoryRequest) Execute() (*common.RestAp
 }
 
 /*
-GetFlexibleLoanLtvAdjustmentHistory Get Flexible Loan LTV Adjustment History(USER_DATA)
+GetFlexibleLoanLtvAdjustmentHistory Get Flexible Loan LTV Adjustment History (USER_DATA)
 Get /sapi/v2/loan/flexible/ltv/adjustment/history
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-LTV-Adjustment-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ltv-adjustment-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
-@param recvWindow -
+@param current -  Current querying page
+@param limit -  Number of records to return
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanLtvAdjustmentHistoryRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanLtvAdjustmentHistory(ctx context.Context) ApiGetFlexibleLoanLtvAdjustmentHistoryRequest {
@@ -993,7 +1084,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanLtvAdjustmentHistoryExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanLtvAdjustmentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanLtvAdjustmentHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1021,18 +1120,19 @@ func (r ApiGetFlexibleLoanOngoingOrdersRequest) CollateralCoin(collateralCoin st
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanOngoingOrdersRequest) Current(current int64) ApiGetFlexibleLoanOngoingOrdersRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanOngoingOrdersRequest) Limit(limit int64) ApiGetFlexibleLoanOngoingOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanOngoingOrdersRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanOngoingOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1043,17 +1143,17 @@ func (r ApiGetFlexibleLoanOngoingOrdersRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-GetFlexibleLoanOngoingOrders Get Flexible Loan Ongoing Orders(USER_DATA)
+GetFlexibleLoanOngoingOrders Get Flexible Loan Ongoing Orders (USER_DATA)
 Get /sapi/v2/loan/flexible/ongoing/orders
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Ongoing-Orders
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-ongoing-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
-@param recvWindow -
+@param current -  Current querying page
+@param limit -  Number of records to return
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanOngoingOrdersRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanOngoingOrders(ctx context.Context) ApiGetFlexibleLoanOngoingOrdersRequest {
@@ -1089,7 +1189,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanOngoingOrdersExecute(r ApiGetFle
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanOngoingOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanOngoingOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1129,18 +1237,19 @@ func (r ApiGetFlexibleLoanRepaymentHistoryRequest) EndTime(endTime int64) ApiGet
 	return r
 }
 
-// Current querying page. Start from 1; default: 1; max: 1000
+// Current querying page
 func (r ApiGetFlexibleLoanRepaymentHistoryRequest) Current(current int64) ApiGetFlexibleLoanRepaymentHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records to return
 func (r ApiGetFlexibleLoanRepaymentHistoryRequest) Limit(limit int64) ApiGetFlexibleLoanRepaymentHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiGetFlexibleLoanRepaymentHistoryRequest) RecvWindow(recvWindow int64) ApiGetFlexibleLoanRepaymentHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1151,19 +1260,19 @@ func (r ApiGetFlexibleLoanRepaymentHistoryRequest) Execute() (*common.RestApiRes
 }
 
 /*
-GetFlexibleLoanRepaymentHistory Get Flexible Loan Repayment History(USER_DATA)
+GetFlexibleLoanRepaymentHistory Get Flexible Loan Repayment History (USER_DATA)
 Get /sapi/v2/loan/flexible/repay/history
 
-https://developers.binance.com/docs/crypto_loan/flexible-rate/user-information/Get-Flexible-Loan-Repayment-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-crypto-loan/api/rest-api/flexible-rate#get-flexible-loan-repayment-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param loanCoin -
 @param collateralCoin -
 @param startTime -
 @param endTime -
-@param current -  Current querying page. Start from 1; default: 1; max: 1000
-@param limit -  Default: 10; max: 100
-@param recvWindow -
+@param current -  Current querying page
+@param limit -  Number of records to return
+@param recvWindow -  Request validity window in milliseconds
 @return ApiGetFlexibleLoanRepaymentHistoryRequest
 */
 func (a *FlexibleRateAPIService) GetFlexibleLoanRepaymentHistory(ctx context.Context) ApiGetFlexibleLoanRepaymentHistoryRequest {
@@ -1205,7 +1314,15 @@ func (a *FlexibleRateAPIService) GetFlexibleLoanRepaymentHistoryExecute(r ApiGet
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleLoanRepaymentHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleLoanRepaymentHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

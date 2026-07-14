@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,33 +17,58 @@ var _ common.MappedNullable = &TestOrderResponse{}
 
 // TestOrderResponse struct for TestOrderResponse
 type TestOrderResponse struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumQuote                *string `json:"cumQuote,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	CumQty        *string `json:"cumQty,omitempty"`
+	// Cum Quote.
+	CumQuote *string `json:"cumQuote,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Position Side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Status.
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Type.
+	Type *string `json:"type,omitempty"`
+	// Orig Type.
+	OrigType *string `json:"origType,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// Update Time.
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Working Type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// order pre-set auot cancel time for TIF GTD order
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TestOrderResponse TestOrderResponse

@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Options REST API TEST
+Options REST API TEST
 
 Testing UserDataStreamsAPIService
 
@@ -105,7 +105,11 @@ func Test_binancederivativestradingoptionsrestapi_UserDataStreamsAPIService(t *t
 
 	t.Run("Test UserDataStreamsAPIService StartUserDataStream Success", func(t *testing.T) {
 
-		mockedJSON := `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1","expiration":1762855900452}`
+		var mockedJSON string
+		mockedJSON = `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1","expiration":1762855900452}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/listenKey", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**H** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**C** | Pointer to **string** | Close price | [optional] 
+**O** | Pointer to **string** | Open price | [optional] 
+**H** | Pointer to **string** | High price | [optional] 
+**L** | Pointer to **string** | Low price | [optional] 
+**V** | Pointer to **string** | Total traded base asset volume | [optional] 
+**Q** | Pointer to **string** | Total traded quote asset volume | [optional] 
+**Ps** | Pointer to **string** | (After CM migration) Pair symbol | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -287,20 +287,20 @@ HasPs returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *IndividualSymbolMiniTickerStreamResponse) GetSt() int64`
+`func (o *IndividualSymbolMiniTickerStreamResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *IndividualSymbolMiniTickerStreamResponse) GetStOk() (*int64, bool)`
+`func (o *IndividualSymbolMiniTickerStreamResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *IndividualSymbolMiniTickerStreamResponse) SetSt(v int64)`
+`func (o *IndividualSymbolMiniTickerStreamResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Leverage** | Pointer to **int64** | leverage. | [optional] 
 
 ## Methods
 

@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **CollateralCoin** | Pointer to **string** |  | [optional] 
 **InitialCollateralAmount** | Pointer to **string** |  | [optional] 
 **BorrowTime** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | Accruing_Interest, Overdue, Liquidating, Repaying, Repaid, Liquidated, Pending, Failed | [optional] 
 
 ## Methods
 

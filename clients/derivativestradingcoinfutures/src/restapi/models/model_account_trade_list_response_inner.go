@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,22 +17,38 @@ var _ common.MappedNullable = &AccountTradeListResponseInner{}
 
 // AccountTradeListResponseInner struct for AccountTradeListResponseInner
 type AccountTradeListResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	RealizedPnl          *string `json:"realizedPnl,omitempty"`
-	MarginAsset          *string `json:"marginAsset,omitempty"`
-	BaseQty              *string `json:"baseQty,omitempty"`
-	Commission           *string `json:"commission,omitempty"`
-	CommissionAsset      *string `json:"commissionAsset,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	Buyer                *bool   `json:"buyer,omitempty"`
-	Maker                *bool   `json:"maker,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// positionId
+	Id *int64 `json:"id,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Quantity.
+	Qty *string `json:"qty,omitempty"`
+	// Realized PnL.
+	RealizedPnl *string `json:"realizedPnl,omitempty"`
+	// Margin asset.
+	MarginAsset *string `json:"marginAsset,omitempty"`
+	// Base asset quantity.
+	BaseQty *string `json:"baseQty,omitempty"`
+	// Transaction Fee (in Crypto)
+	Commission *string `json:"commission,omitempty"`
+	// Commission asset.
+	CommissionAsset *string `json:"commissionAsset,omitempty"`
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Whether the trade is a buy side for the account.
+	Buyer *bool `json:"buyer,omitempty"`
+	// Whether the account is maker in this trade.
+	Maker                *bool `json:"maker,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

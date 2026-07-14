@@ -1,5 +1,5 @@
 /*
-Binance Wallet REST API TEST
+Wallet REST API TEST
 
 Testing AccountAPIService
 
@@ -25,7 +25,11 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 
 	t.Run("Test AccountAPIService AccountApiTradingStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"data":{"isLocked":false,"plannedRecoverTime":0,"triggerCondition":{"GCR":150,"IFER":150,"UFR":300},"updateTime":1547630471725}}`
+		var mockedJSON string
+		mockedJSON = `{"data":{"isLocked":false,"plannedRecoverTime":0,"triggerCondition":{"GCR":150,"IFER":150,"UFR":300},"updateTime":1547630471725}}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/account/apiTradingStatus", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 
 	t.Run("Test AccountAPIService AccountInfo Success", func(t *testing.T) {
 
-		mockedJSON := `{"vipLevel":0,"isMarginEnabled":true,"isFutureEnabled":true,"isOptionsEnabled":true,"isPortfolioMarginRetailEnabled":true}`
+		var mockedJSON string
+		mockedJSON = `{"vipLevel":0,"isMarginEnabled":true,"isFutureEnabled":true,"isOptionsEnabled":true,"isPortfolioMarginRetailEnabled":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/account/info", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 
 	t.Run("Test AccountAPIService AccountStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"data":"Normal"}`
+		var mockedJSON string
+		mockedJSON = `{"data":"Normal"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/account/status", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,10 +202,14 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 
 	t.Run("Test AccountAPIService DailyAccountSnapshot Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":200,"msg":"","snapshotVos":[{"data":{"balances":[{"asset":"BTC","free":"0.09905021","locked":"0.00000000"},{"asset":"USDT","free":"1.89109409","locked":"0.00000000"}],"totalAssetOfBtc":"0.09942700"},"type":"spot","updateTime":1576281599000},{"data":{"marginLevel":"2748.02909813","totalAssetOfBtc":"0.00274803","totalLiabilityOfBtc":"0.00000100","totalNetAssetOfBtc":"0.00274750","userAssets":[{"asset":"XRP","borrowed":"0.00000000","free":"1.00000000","interest":"0.00000000","locked":"0.00000000","netAsset":"1.00000000"}]},"type":"margin","updateTime":1576281599000},{"data":{"assets":[{"asset":"USDT","marginBalance":"118.99782335","walletBalance":"120.23811389"}],"position":[{"entryPrice":"7130.41000000","markPrice":"7257.66239673","positionAmt":"0.01000000","symbol":"BTCUSDT","unRealizedProfit":"1.24029054"}]},"type":"futures","updateTime":1576281599000}]}`
+		var mockedJSON string
+		mockedJSON = `{"code":200,"msg":"","snapshotVos":[{"data":{"balances":[{"asset":"BTC","free":"0.09905021","locked":"0.00000000"}],"totalAssetOfBtc":"0.09942700","marginLevel":"2748.02909813","totalLiabilityOfBtc":"0.00000100","totalNetAssetOfBtc":"0.00274750","userAssets":[{"asset":"XRP","borrowed":"0.00000000","free":"1.00000000","interest":"0.00000000","locked":"0.00000000","netAsset":"1.00000000"}],"assets":[{"asset":"USDT","marginBalance":"118.99782335","walletBalance":"120.23811389"}],"position":[{"entryPrice":"7130.41000000","markPrice":"7257.66239673","positionAmt":"0.01000000","symbol":"BTCUSDT","unRealizedProfit":"1.24029054"}]},"type":"spot","updateTime":1576281599000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/accountSnapshot", r.URL.Path)
-			require.Equal(t, "type__example", r.URL.Query().Get("type"))
+			require.Equal(t, string(models.DailyAccountSnapshotTypeParameterSpot), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -210,7 +226,7 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.DailyAccountSnapshot(context.Background()).Type("type__example").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.DailyAccountSnapshot(context.Background()).Type(models.DailyAccountSnapshotTypeParameterSpot).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -343,7 +359,11 @@ func Test_binancewalletrestapi_AccountAPIService(t *testing.T) {
 
 	t.Run("Test AccountAPIService GetApiKeyPermission Success", func(t *testing.T) {
 
-		mockedJSON := `{"ipRestrict":false,"createTime":1698645219000,"enableReading":true,"enableWithdrawals":false,"enableInternalTransfer":false,"enableMargin":false,"enableFutures":false,"permitsUniversalTransfer":false,"enableVanillaOptions":false,"enableFixApiTrade":false,"enableFixReadOnly":true,"enableSpotAndMarginTrading":false,"enablePortfolioMarginTrading":true}`
+		var mockedJSON string
+		mockedJSON = `{"ipRestrict":false,"createTime":1623840271000,"enableReading":true,"enableWithdrawals":false,"enableInternalTransfer":true,"enableMargin":false,"enableFutures":false,"permitsUniversalTransfer":true,"enableVanillaOptions":false,"enableFixApiTrade":false,"enableFixReadOnly":true,"enableSpotAndMarginTrading":false,"enablePortfolioMarginTrading":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/account/apiRestrictions", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

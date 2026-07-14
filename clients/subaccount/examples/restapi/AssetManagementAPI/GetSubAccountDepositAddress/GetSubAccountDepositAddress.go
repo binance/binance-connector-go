@@ -22,7 +22,7 @@ func GetSubAccountDepositAddress() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetSubAccountDepositAddress(context.Background()).Email("sub-account-email@email.com").Coin("coin_example").Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetSubAccountDepositAddress(context.Background()).Email("123@test.com").Coin("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

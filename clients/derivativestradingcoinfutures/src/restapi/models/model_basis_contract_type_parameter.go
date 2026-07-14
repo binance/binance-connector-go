@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -16,12 +16,9 @@ type BasisContractTypeParameter string
 
 // List of basis_contractType_parameter
 const (
-	BasisContractTypeParameterPerpetual                BasisContractTypeParameter = "PERPETUAL"
-	BasisContractTypeParameterCurrentQuarter           BasisContractTypeParameter = "CURRENT_QUARTER"
-	BasisContractTypeParameterNextQuarter              BasisContractTypeParameter = "NEXT_QUARTER"
-	BasisContractTypeParameterCurrentQuarterDelivering BasisContractTypeParameter = "CURRENT_QUARTER_DELIVERING"
-	BasisContractTypeParameterNextQuarterDelivering    BasisContractTypeParameter = "NEXT_QUARTER_DELIVERING"
-	BasisContractTypeParameterPerpetualDelivering      BasisContractTypeParameter = "PERPETUAL_DELIVERING"
+	BasisContractTypeParameterPerpetual      BasisContractTypeParameter = "PERPETUAL"
+	BasisContractTypeParameterCurrentQuarter BasisContractTypeParameter = "CURRENT_QUARTER"
+	BasisContractTypeParameterNextQuarter    BasisContractTypeParameter = "NEXT_QUARTER"
 )
 
 // All allowed values of BasisContractTypeParameter enum
@@ -29,9 +26,6 @@ var AllowedBasisContractTypeParameterEnumValues = []BasisContractTypeParameter{
 	"PERPETUAL",
 	"CURRENT_QUARTER",
 	"NEXT_QUARTER",
-	"CURRENT_QUARTER_DELIVERING",
-	"NEXT_QUARTER_DELIVERING",
-	"PERPETUAL_DELIVERING",
 }
 
 func (v *BasisContractTypeParameter) UnmarshalJSON(src []byte) error {

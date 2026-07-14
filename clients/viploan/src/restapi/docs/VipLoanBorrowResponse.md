@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LoanAccountId** | Pointer to **string** |  | [optional] 
+**LoanAccountId** | Pointer to **string** | Loan receiving account. | [optional] 
 **RequestId** | Pointer to **string** |  | [optional] 
 **LoanCoin** | Pointer to **string** |  | [optional] 
 **IsFlexibleRate** | Pointer to **string** |  | [optional] 

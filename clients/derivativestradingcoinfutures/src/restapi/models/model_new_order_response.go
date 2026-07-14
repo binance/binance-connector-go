@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,31 +17,57 @@ var _ common.MappedNullable = &NewOrderResponse{}
 
 // NewOrderResponse struct for NewOrderResponse
 type NewOrderResponse struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Pair                    *string `json:"pair,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Client order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cumulative filled quantity.
+	CumQty *string `json:"cumQty,omitempty"`
+	// Cumulative base asset amount. Will be removed after CM migration.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Average execution price. Will be removed after CM migration.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Original order quantity
+	OrigQty *string `json:"origQty,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Whether the order is reduce-only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order type.
+	Type *string `json:"type,omitempty"`
+	// Original order type.
+	OrigType *string `json:"origType,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Stop trigger price type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -353,6 +379,38 @@ func (o *NewOrderResponse) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
+// GetClosePosition returns the ClosePosition field value if set, zero value otherwise.
+func (o *NewOrderResponse) GetClosePosition() bool {
+	if o == nil || common.IsNil(o.ClosePosition) {
+		var ret bool
+		return ret
+	}
+	return *o.ClosePosition
+}
+
+// GetClosePositionOk returns a tuple with the ClosePosition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewOrderResponse) GetClosePositionOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.ClosePosition) {
+		return nil, false
+	}
+	return o.ClosePosition, true
+}
+
+// HasClosePosition returns a boolean if a field has been set.
+func (o *NewOrderResponse) HasClosePosition() bool {
+	if o != nil && !common.IsNil(o.ClosePosition) {
+		return true
+	}
+
+	return false
+}
+
+// SetClosePosition gets a reference to the given bool and assigns it to the ClosePosition field.
+func (o *NewOrderResponse) SetClosePosition(v bool) {
+	o.ClosePosition = &v
+}
+
 // GetSide returns the Side field value if set, zero value otherwise.
 func (o *NewOrderResponse) GetSide() string {
 	if o == nil || common.IsNil(o.Side) {
@@ -479,38 +537,6 @@ func (o *NewOrderResponse) HasStopPrice() bool {
 // SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
 func (o *NewOrderResponse) SetStopPrice(v string) {
 	o.StopPrice = &v
-}
-
-// GetClosePosition returns the ClosePosition field value if set, zero value otherwise.
-func (o *NewOrderResponse) GetClosePosition() bool {
-	if o == nil || common.IsNil(o.ClosePosition) {
-		var ret bool
-		return ret
-	}
-	return *o.ClosePosition
-}
-
-// GetClosePositionOk returns a tuple with the ClosePosition field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewOrderResponse) GetClosePositionOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.ClosePosition) {
-		return nil, false
-	}
-	return o.ClosePosition, true
-}
-
-// HasClosePosition returns a boolean if a field has been set.
-func (o *NewOrderResponse) HasClosePosition() bool {
-	if o != nil && !common.IsNil(o.ClosePosition) {
-		return true
-	}
-
-	return false
-}
-
-// SetClosePosition gets a reference to the given bool and assigns it to the ClosePosition field.
-func (o *NewOrderResponse) SetClosePosition(v bool) {
-	o.ClosePosition = &v
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
@@ -934,6 +960,9 @@ func (o NewOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
+	if !common.IsNil(o.ClosePosition) {
+		toSerialize["closePosition"] = o.ClosePosition
+	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -945,9 +974,6 @@ func (o NewOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.StopPrice) {
 		toSerialize["stopPrice"] = o.StopPrice
-	}
-	if !common.IsNil(o.ClosePosition) {
-		toSerialize["closePosition"] = o.ClosePosition
 	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
@@ -1016,11 +1042,11 @@ func (o *NewOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")
+		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "positionSide")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "stopPrice")
-		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "pair")
 		delete(additionalProperties, "timeInForce")

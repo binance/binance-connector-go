@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetUserCommissionRateForCmResponse{}
 
 // GetUserCommissionRateForCmResponse struct for GetUserCommissionRateForCmResponse
 type GetUserCommissionRateForCmResponse struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	MakerCommissionRate  *string `json:"makerCommissionRate,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// 0.015%
+	MakerCommissionRate *string `json:"makerCommissionRate,omitempty"`
+	// 0.040%
 	TakerCommissionRate  *string `json:"takerCommissionRate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

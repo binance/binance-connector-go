@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **LastUpdateId** | Pointer to **int64** |  | [optional] 
-**Bids** | Pointer to **[][]string** |  | [optional] 
-**Asks** | Pointer to **[][]string** |  | [optional] 
+**Bids** | Pointer to **[][]string** | Bid orders. Each entry is [price, quantity]. | [optional] 
+**Asks** | Pointer to **[][]string** | Ask orders. Each entry is [price, quantity]. | [optional] 
 
 ## Methods
 

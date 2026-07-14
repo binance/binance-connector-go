@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Fs** | Pointer to **string** |  | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**Fs** | Pointer to **string** | Event business unit | [optional] 
 **So** | Pointer to [**ConditionalOrderTradeUpdateSo**](ConditionalOrderTradeUpdateSo.md) |  | [optional] 
 
 ## Methods

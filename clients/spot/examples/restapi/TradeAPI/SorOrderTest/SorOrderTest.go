@@ -23,7 +23,7 @@ func SorOrderTest() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.SorOrderTest(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.NewOrderTypeParameterMarket).Quantity(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.SorOrderTest(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.SorOrderTypeParameterMarket).Quantity(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

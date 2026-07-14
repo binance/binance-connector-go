@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &CheckDualInvestmentAccountsResponse{}
 
 // CheckDualInvestmentAccountsResponse struct for CheckDualInvestmentAccountsResponse
 type CheckDualInvestmentAccountsResponse struct {
-	TotalAmountInBTC     *string `json:"totalAmountInBTC,omitempty"`
+	// Total BTC amount in Dual Investment
+	TotalAmountInBTC *string `json:"totalAmountInBTC,omitempty"`
+	// Total USDT equivalent amount in Dual Investment
 	TotalAmountInUSDT    *string `json:"totalAmountInUSDT,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

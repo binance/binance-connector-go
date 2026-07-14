@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package models
@@ -19,8 +19,8 @@ var _ common.MappedNullable = &SubscribeEthStakingResponse{}
 type SubscribeEthStakingResponse struct {
 	Success              *bool   `json:"success,omitempty"`
 	WbethAmount          *string `json:"wbethAmount,omitempty"`
-	ConversionRatio      *string `json:"conversionRatio,omitempty"`
 	PurchaseId           *int64  `json:"purchaseId,omitempty"`
+	ConversionRatio      *string `json:"conversionRatio,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,38 +107,6 @@ func (o *SubscribeEthStakingResponse) SetWbethAmount(v string) {
 	o.WbethAmount = &v
 }
 
-// GetConversionRatio returns the ConversionRatio field value if set, zero value otherwise.
-func (o *SubscribeEthStakingResponse) GetConversionRatio() string {
-	if o == nil || common.IsNil(o.ConversionRatio) {
-		var ret string
-		return ret
-	}
-	return *o.ConversionRatio
-}
-
-// GetConversionRatioOk returns a tuple with the ConversionRatio field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SubscribeEthStakingResponse) GetConversionRatioOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ConversionRatio) {
-		return nil, false
-	}
-	return o.ConversionRatio, true
-}
-
-// HasConversionRatio returns a boolean if a field has been set.
-func (o *SubscribeEthStakingResponse) HasConversionRatio() bool {
-	if o != nil && !common.IsNil(o.ConversionRatio) {
-		return true
-	}
-
-	return false
-}
-
-// SetConversionRatio gets a reference to the given string and assigns it to the ConversionRatio field.
-func (o *SubscribeEthStakingResponse) SetConversionRatio(v string) {
-	o.ConversionRatio = &v
-}
-
 // GetPurchaseId returns the PurchaseId field value if set, zero value otherwise.
 func (o *SubscribeEthStakingResponse) GetPurchaseId() int64 {
 	if o == nil || common.IsNil(o.PurchaseId) {
@@ -171,6 +139,38 @@ func (o *SubscribeEthStakingResponse) SetPurchaseId(v int64) {
 	o.PurchaseId = &v
 }
 
+// GetConversionRatio returns the ConversionRatio field value if set, zero value otherwise.
+func (o *SubscribeEthStakingResponse) GetConversionRatio() string {
+	if o == nil || common.IsNil(o.ConversionRatio) {
+		var ret string
+		return ret
+	}
+	return *o.ConversionRatio
+}
+
+// GetConversionRatioOk returns a tuple with the ConversionRatio field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscribeEthStakingResponse) GetConversionRatioOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ConversionRatio) {
+		return nil, false
+	}
+	return o.ConversionRatio, true
+}
+
+// HasConversionRatio returns a boolean if a field has been set.
+func (o *SubscribeEthStakingResponse) HasConversionRatio() bool {
+	if o != nil && !common.IsNil(o.ConversionRatio) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversionRatio gets a reference to the given string and assigns it to the ConversionRatio field.
+func (o *SubscribeEthStakingResponse) SetConversionRatio(v string) {
+	o.ConversionRatio = &v
+}
+
 func (o SubscribeEthStakingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -187,11 +187,11 @@ func (o SubscribeEthStakingResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.WbethAmount) {
 		toSerialize["wbethAmount"] = o.WbethAmount
 	}
-	if !common.IsNil(o.ConversionRatio) {
-		toSerialize["conversionRatio"] = o.ConversionRatio
-	}
 	if !common.IsNil(o.PurchaseId) {
 		toSerialize["purchaseId"] = o.PurchaseId
+	}
+	if !common.IsNil(o.ConversionRatio) {
+		toSerialize["conversionRatio"] = o.ConversionRatio
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -217,8 +217,8 @@ func (o *SubscribeEthStakingResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "success")
 		delete(additionalProperties, "wbethAmount")
-		delete(additionalProperties, "conversionRatio")
 		delete(additionalProperties, "purchaseId")
+		delete(additionalProperties, "conversionRatio")
 		o.AdditionalProperties = additionalProperties
 	}
 

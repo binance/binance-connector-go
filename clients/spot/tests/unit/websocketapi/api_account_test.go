@@ -31,8 +31,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","standardCommission":{"maker":"0.00000010","taker":"0.00000020","buyer":"0.00000030","seller":"0.00000040"},"specialCommission":{"maker":"0.01000000","taker":"0.02000000","buyer":"0.03000000","seller":"0.04000000"},"taxCommission":{"maker":"0.00000112","taker":"0.00000114","buyer":"0.00000118","seller":"0.00000116"},"discount":{"enabledForAccount":true,"enabledForSymbol":true,"discountAsset":"BNB","discount":"0.75000000"}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","standardCommission":{"maker":"0.00000010","taker":"0.00000020","buyer":"0.00000030","seller":"0.00000040"},"specialCommission":{"maker":"0.01000000","taker":"0.02000000","buyer":"0.03000000","seller":"0.04000000"},"discount":{"enabledForAccount":true,"enabledForSymbol":true,"discountAsset":"BNB","discount":"0.75000000"}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -73,22 +87,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","standardCommission":{"maker":"0.00000010","taker":"0.00000020","buyer":"0.00000030","seller":"0.00000040"},"specialCommission":{"maker":"0.01000000","taker":"0.02000000","buyer":"0.03000000","seller":"0.04000000"},"taxCommission":{"maker":"0.00000112","taker":"0.00000114","buyer":"0.00000118","seller":"0.00000116"},"discount":{"enabledForAccount":true,"enabledForSymbol":true,"discountAsset":"BNB","discount":"0.75000000"}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","standardCommission":{"maker":"0.00000010","taker":"0.00000020","buyer":"0.00000030","seller":"0.00000040"},"specialCommission":{"maker":"0.01000000","taker":"0.02000000","buyer":"0.03000000","seller":"0.04000000"},"discount":{"enabledForAccount":true,"enabledForSymbol":true,"discountAsset":"BNB","discount":"0.75000000"}},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.commission"[1:], sent["method"])
+		require.Equal(t, "/account.commission"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountCommissionResponse{}, typedResp)
@@ -177,8 +206,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"rateLimitType":"ORDERS","interval":"DAY","intervalNum":1,"limit":160000,"count":0},{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":50,"count":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":40}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":50,"count":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -219,22 +262,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"rateLimitType":"ORDERS","interval":"DAY","intervalNum":1,"limit":160000,"count":0},{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":50,"count":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":40}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":50,"count":0}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.rateLimits.orders"[1:], sent["method"])
+		require.Equal(t, "/account.rateLimits.orders"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountRateLimitsOrdersResponse{}, typedResp)
@@ -303,8 +361,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"makerCommission":15,"takerCommission":15,"buyerCommission":0,"sellerCommission":0,"canTrade":true,"canWithdraw":true,"canDeposit":true,"commissionRates":{"maker":"0.00150000","taker":"0.00150000","buyer":"0.00000000","seller":"0.00000000"},"brokered":false,"requireSelfTradePrevention":false,"preventSor":false,"updateTime":1660801833000,"accountType":"SPOT","balances":[{"asset":"USDT","free":"1021.21000000","locked":"0.00000000"},{"asset":"BTC","free":"1.3447112","locked":"0.08600000"},{"asset":"BNB","free":"0.00000000","locked":"0.00000000"}],"permissions":["SPOT"],"uid":354937868},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"makerCommission":15,"takerCommission":15,"buyerCommission":0,"sellerCommission":0,"canTrade":true,"canWithdraw":true,"canDeposit":true,"brokered":false,"requireSelfTradePrevention":false,"preventSor":false,"updateTime":1660801833000,"accountType":"SPOT","balances":[{"asset":"BNB"}],"permissions":["SPOT"],"uid":354937868},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -345,22 +417,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"makerCommission":15,"takerCommission":15,"buyerCommission":0,"sellerCommission":0,"canTrade":true,"canWithdraw":true,"canDeposit":true,"commissionRates":{"maker":"0.00150000","taker":"0.00150000","buyer":"0.00000000","seller":"0.00000000"},"brokered":false,"requireSelfTradePrevention":false,"preventSor":false,"updateTime":1660801833000,"accountType":"SPOT","balances":[{"asset":"USDT","free":"1021.21000000","locked":"0.00000000"},{"asset":"BTC","free":"1.3447112","locked":"0.08600000"},{"asset":"BNB","free":"0.00000000","locked":"0.00000000"}],"permissions":["SPOT"],"uid":354937868},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"makerCommission":15,"takerCommission":15,"buyerCommission":0,"sellerCommission":0,"canTrade":true,"canWithdraw":true,"canDeposit":true,"brokered":false,"requireSelfTradePrevention":false,"preventSor":false,"updateTime":1660801833000,"accountType":"SPOT","balances":[{"asset":"BNB"}],"permissions":["SPOT"],"uid":354937868},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.status"[1:], sent["method"])
+		require.Equal(t, "/account.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AccountStatusResponse{}, typedResp)
@@ -429,8 +516,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138902,"clientOrderId":"jLnZpj5enfMXTuhKB1d0us"},{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -471,22 +572,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138902,"clientOrderId":"jLnZpj5enfMXTuhKB1d0us"},{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/allOrderLists"[1:], sent["method"])
+		require.Equal(t, "/allOrderLists"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AllOrderListsResponse{}, typedResp)
@@ -555,8 +671,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00847000","cummulativeQuoteQty":"198.33521500","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"origQuoteOrderQty":"0.00000000","selfTradePreventionMode":"NONE","preventedMatchId":0,"preventedQuantity":"1.200000"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE","preventedMatchId":0,"icebergQty":"0.00000000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -597,22 +727,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00847000","cummulativeQuoteQty":"198.33521500","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"origQuoteOrderQty":"0.00000000","selfTradePreventionMode":"NONE","preventedMatchId":0,"preventedQuantity":"1.200000"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE","preventedMatchId":0,"icebergQty":"0.00000000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/allOrders"[1:], sent["method"])
+		require.Equal(t, "/allOrders"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.AllOrdersResponse{}, typedResp)
@@ -701,8 +846,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","allocationId":0,"allocationType":"SOR","orderId":500,"orderListId":-1,"price":"1.00000000","qty":"0.10000000","quoteQty":"0.10000000","commission":"0.00000000","commissionAsset":"BTC","time":1687319487614,"isBuyer":false,"isMaker":false,"isAllocator":false}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","allocationId":0,"allocationType":"SOR","orderId":500,"orderListId":-1,"commissionAsset":"BTC","time":1687319487614,"isBuyer":false,"isMaker":false,"isAllocator":false}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -743,22 +902,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","allocationId":0,"allocationType":"SOR","orderId":500,"orderListId":-1,"price":"1.00000000","qty":"0.10000000","quoteQty":"0.10000000","commission":"0.00000000","commissionAsset":"BTC","time":1687319487614,"isBuyer":false,"isMaker":false,"isAllocator":false}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","allocationId":0,"allocationType":"SOR","orderId":500,"orderListId":-1,"commissionAsset":"BTC","time":1687319487614,"isBuyer":false,"isMaker":false,"isAllocator":false}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/myAllocations"[1:], sent["method"])
+		require.Equal(t, "/myAllocations"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.MyAllocationsResponse{}, typedResp)
@@ -847,8 +1021,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"exchangeFilters":[{"filterType":"EXCHANGE_MAX_NUM_ORDERS","maxNumOrders":1000}],"symbolFilters":[{"filterType":"MAX_NUM_ORDER_LISTS","maxNumOrderLists":20}],"assetFilters":[{"filterType":"MAX_ASSET","asset":"JPY","limit":"1000000.00000000"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000},{"rateLimitType":"ORDERS","interval":"DAY","intervalNum":1,"limit":160000},{"rateLimitType":"RAW_REQUESTS","interval":"MINUTE","intervalNum":5,"limit":61000}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"status":200,"result":{"exchangeFilters":[{"filterType":"EXCHANGE_MAX_NUM_ORDERS","maxNumOrders":1000}],"symbolFilters":[{"filterType":"PRICE_FILTER","priceExponent":8,"minPrice":"0.00000100","maxPrice":"100000.00000000","tickSize":"0.00000100"}],"assetFilters":[{"filterType":"MAX_ASSET","qtyExponent":8,"limit":"1000000.00000000","asset":"JPY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -889,22 +1077,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"exchangeFilters":[{"filterType":"EXCHANGE_MAX_NUM_ORDERS","maxNumOrders":1000}],"symbolFilters":[{"filterType":"MAX_NUM_ORDER_LISTS","maxNumOrderLists":20}],"assetFilters":[{"filterType":"MAX_ASSET","asset":"JPY","limit":"1000000.00000000"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000},{"rateLimitType":"ORDERS","interval":"DAY","intervalNum":1,"limit":160000},{"rateLimitType":"RAW_REQUESTS","interval":"MINUTE","intervalNum":5,"limit":61000}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"status":200,"result":{"exchangeFilters":[{"filterType":"EXCHANGE_MAX_NUM_ORDERS","maxNumOrders":1000}],"symbolFilters":[{"filterType":"PRICE_FILTER","priceExponent":8,"minPrice":"0.00000100","maxPrice":"100000.00000000","tickSize":"0.00000100"}],"assetFilters":[{"filterType":"MAX_ASSET","qtyExponent":8,"limit":"1000000.00000000","asset":"JPY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/myFilters"[1:], sent["method"])
+		require.Equal(t, "/myFilters"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.MyFiltersResponse{}, typedResp)
@@ -993,8 +1196,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","preventedMatchId":1,"takerOrderId":5,"makerSymbol":"BTCUSDT","makerOrderId":3,"tradeGroupId":1,"selfTradePreventionMode":"EXPIRE_MAKER","price":"1.100000","makerPreventedQuantity":"1.300000","transactTime":1669101687094}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","preventedMatchId":1,"takerOrderId":5,"makerSymbol":"BTCUSDT","makerOrderId":3,"tradeGroupId":1,"selfTradePreventionMode":"EXPIRE_MAKER","transactTime":1669101687094}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1035,22 +1252,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","preventedMatchId":1,"takerOrderId":5,"makerSymbol":"BTCUSDT","makerOrderId":3,"tradeGroupId":1,"selfTradePreventionMode":"EXPIRE_MAKER","price":"1.100000","makerPreventedQuantity":"1.300000","transactTime":1669101687094}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","preventedMatchId":1,"takerOrderId":5,"makerSymbol":"BTCUSDT","makerOrderId":3,"tradeGroupId":1,"selfTradePreventionMode":"EXPIRE_MAKER","transactTime":1669101687094}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/myPreventedMatches"[1:], sent["method"])
+		require.Equal(t, "/myPreventedMatches"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.MyPreventedMatchesResponse{}, typedResp)
@@ -1139,8 +1371,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","id":1650422482,"orderId":12569099453,"orderListId":-1,"price":"23416.50000000","qty":"0.00212000","quoteQty":"49.64298000","commission":"0.00000000","commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true},{"symbol":"BTCUSDT","id":1650422481,"orderId":12569099453,"orderListId":-1,"price":"23416.10000000","qty":"0.00635000","quoteQty":"148.69223500","commission":"0.00000000","commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","id":1650422481,"orderId":12569099453,"orderListId":-1,"commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1181,22 +1427,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","id":1650422482,"orderId":12569099453,"orderListId":-1,"price":"23416.50000000","qty":"0.00212000","quoteQty":"49.64298000","commission":"0.00000000","commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true},{"symbol":"BTCUSDT","id":1650422481,"orderId":12569099453,"orderListId":-1,"price":"23416.10000000","qty":"0.00635000","quoteQty":"148.69223500","commission":"0.00000000","commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":20}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","id":1650422481,"orderId":12569099453,"orderListId":-1,"commissionAsset":"BNB","time":1660801715793,"isBuyer":false,"isMaker":true,"isBestMatch":true}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/myTrades"[1:], sent["method"])
+		require.Equal(t, "/myTrades"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.MyTradesResponse{}, typedResp)
@@ -1285,8 +1546,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":0,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":5,"clientOrderId":"1ZqG7bBuYwaF4SU8CwnwHm"},{"symbol":"BTCUSDT","orderId":4,"clientOrderId":"CUhLgTXnX5n2c0gWiLpV4d"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":0,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":4,"clientOrderId":"CUhLgTXnX5n2c0gWiLpV4d"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1327,22 +1602,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":0,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":5,"clientOrderId":"1ZqG7bBuYwaF4SU8CwnwHm"},{"symbol":"BTCUSDT","orderId":4,"clientOrderId":"CUhLgTXnX5n2c0gWiLpV4d"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"orderListId":0,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":4,"clientOrderId":"CUhLgTXnX5n2c0gWiLpV4d"}]}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/openOrderLists.status"[1:], sent["method"])
+		require.Equal(t, "/openOrderLists.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OpenOrderListsStatusResponse{}, typedResp)
@@ -1411,8 +1701,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00720000","origQuoteOrderQty":"0.00000000","cummulativeQuoteQty":"172.43931000","status":"PARTIALLY_FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"PARTIALLY_FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1453,22 +1757,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00720000","origQuoteOrderQty":"0.00000000","cummulativeQuoteQty":"172.43931000","status":"PARTIALLY_FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"PARTIALLY_FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/openOrders.status"[1:], sent["method"])
+		require.Equal(t, "/openOrders.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OpenOrdersStatusResponse{}, typedResp)
@@ -1537,8 +1856,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":23,"executionId":60,"origClientOrderId":"my_pending_order","newClientOrderId":"xbxXh5SSwaHS7oUEOCI88B","origQty":"7.00000000","newQty":"5.00000000","time":1741924229819}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":23,"executionId":60,"origClientOrderId":"my_pending_order","newClientOrderId":"xbxXh5SSwaHS7oUEOCI88B","time":1741924229819}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1579,22 +1912,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":23,"executionId":60,"origClientOrderId":"my_pending_order","newClientOrderId":"xbxXh5SSwaHS7oUEOCI88B","origQty":"7.00000000","newQty":"5.00000000","time":1741924229819}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSDT","orderId":23,"executionId":60,"origClientOrderId":"my_pending_order","newClientOrderId":"xbxXh5SSwaHS7oUEOCI88B","time":1741924229819}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.amendments"[1:], sent["method"])
+		require.Equal(t, "/order.amendments"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OrderAmendmentsResponse{}, typedResp)
@@ -1703,8 +2051,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138902,"clientOrderId":"jLnZpj5enfMXTuhKB1d0us"},{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1745,22 +2107,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138902,"clientOrderId":"jLnZpj5enfMXTuhKB1d0us"},{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderListId":1274512,"contingencyType":"OCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"08985fedd9ea2cf6b28996","transactionTime":1660801713793,"symbol":"BTCUSDT","orders":[{"symbol":"BTCUSDT","orderId":12569138901,"clientOrderId":"BqtFCj5odMoWtSqGk2X9tU"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/orderList.status"[1:], sent["method"])
+		require.Equal(t, "/orderList.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OrderListStatusResponse{}, typedResp)
@@ -1829,8 +2206,22 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00847000","cummulativeQuoteQty":"198.33521500","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","trailingDelta":10,"trailingTime":-1,"icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"origQuoteOrderQty":"0.00000000","strategyId":37463720,"strategyType":1000000,"selfTradePreventionMode":"NONE","preventedMatchId":0,"preventedQuantity":"1.200000"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","trailingDelta":10,"trailingTime":-1,"time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"strategyId":37463720,"strategyType":1000000,"selfTradePreventionMode":"NONE","preventedMatchId":0,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -1871,22 +2262,37 @@ func Test_binancespotwebsocketapi_AccountAPIService(t *testing.T) {
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","price":"23416.10000000","origQty":"0.00847000","executedQty":"0.00847000","cummulativeQuoteQty":"198.33521500","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","stopPrice":"0.00000000","trailingDelta":10,"trailingTime":-1,"icebergQty":"0.00000000","time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"origQuoteOrderQty":"0.00000000","strategyId":37463720,"strategyType":1000000,"selfTradePreventionMode":"NONE","preventedMatchId":0,"preventedQuantity":"1.200000"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":4}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","orderId":12569099453,"orderListId":-1,"clientOrderId":"4d96324ff9d44481926157","status":"FILLED","timeInForce":"GTC","type":"LIMIT","side":"SELL","trailingDelta":10,"trailingTime":-1,"time":1660801715639,"updateTime":1660801717945,"isWorking":true,"workingTime":1660801715639,"strategyId":37463720,"strategyType":1000000,"selfTradePreventionMode":"NONE","preventedMatchId":0,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.status"[1:], sent["method"])
+		require.Equal(t, "/order.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OrderStatusResponse{}, typedResp)

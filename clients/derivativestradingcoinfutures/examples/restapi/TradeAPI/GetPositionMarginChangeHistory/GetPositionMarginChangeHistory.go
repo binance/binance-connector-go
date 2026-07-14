@@ -22,7 +22,7 @@ func GetPositionMarginChangeHistory() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.GetPositionMarginChangeHistory(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.GetPositionMarginChangeHistory(context.Background()).Symbol("BTCUSD").Execute()
 	if err != nil {
 		log.Println(err)
 		return

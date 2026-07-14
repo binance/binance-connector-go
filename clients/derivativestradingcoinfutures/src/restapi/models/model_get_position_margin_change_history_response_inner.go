@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &GetPositionMarginChangeHistoryResponseInner{}
 
 // GetPositionMarginChangeHistoryResponseInner struct for GetPositionMarginChangeHistoryResponseInner
 type GetPositionMarginChangeHistoryResponseInner struct {
-	Amount               *string `json:"amount,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	Type                 *int64  `json:"type,omitempty"`
+	// Amount.
+	Amount *string `json:"amount,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// Order type.
+	Type *int64 `json:"type,omitempty"`
+	// Position side
 	PositionSide         *string `json:"positionSide,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

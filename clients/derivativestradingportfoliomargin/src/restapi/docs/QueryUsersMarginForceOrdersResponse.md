@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Rows** | Pointer to [**[]QueryUsersMarginForceOrdersResponseRowsInner**](QueryUsersMarginForceOrdersResponseRowsInner.md) |  | [optional] 
-**Total** | Pointer to **int64** |  | [optional] 
+**Rows** | Pointer to [**[]QueryUsersMarginForceOrdersResponseRowsInner**](QueryUsersMarginForceOrdersResponseRowsInner.md) | Rows. | [optional] 
+**Total** | Pointer to **int64** | Total. | [optional] 
 
 ## Methods
 

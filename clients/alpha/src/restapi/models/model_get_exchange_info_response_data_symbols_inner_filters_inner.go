@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,21 +17,37 @@ var _ common.MappedNullable = &GetExchangeInfoResponseDataSymbolsInnerFiltersInn
 
 // GetExchangeInfoResponseDataSymbolsInnerFiltersInner struct for GetExchangeInfoResponseDataSymbolsInnerFiltersInner
 type GetExchangeInfoResponseDataSymbolsInnerFiltersInner struct {
-	FilterType           *string `json:"filterType,omitempty"`
-	MinPrice             *string `json:"minPrice,omitempty"`
-	MaxPrice             *string `json:"maxPrice,omitempty"`
-	TickSize             *string `json:"tickSize,omitempty"`
-	StepSize             *string `json:"stepSize,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
-	MinQty               *string `json:"minQty,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
-	MinNotional          *string `json:"minNotional,omitempty"`
-	MaxNotional          *string `json:"maxNotional,omitempty"`
-	MultiplierDown       *string `json:"multiplierDown,omitempty"`
-	MultiplierUp         *string `json:"multiplierUp,omitempty"`
-	BidMultiplierUp      *string `json:"bidMultiplierUp,omitempty"`
-	AskMultiplierUp      *string `json:"askMultiplierUp,omitempty"`
-	BidMultiplierDown    *string `json:"bidMultiplierDown,omitempty"`
+	// Filter type.
+	FilterType *string `json:"filterType,omitempty"`
+	// Minimum price.
+	MinPrice *string `json:"minPrice,omitempty"`
+	// Maximum price.
+	MaxPrice *string `json:"maxPrice,omitempty"`
+	// Tick size.
+	TickSize *string `json:"tickSize,omitempty"`
+	// Step size.
+	StepSize *string `json:"stepSize,omitempty"`
+	// Maximum quantity.
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Minimum quantity.
+	MinQty *string `json:"minQty,omitempty"`
+	// Maximum allowed orders for this rule.
+	Limit *int64 `json:"limit,omitempty"`
+	// Minimum notional value.
+	MinNotional *string `json:"minNotional,omitempty"`
+	// Maximum notional value.
+	MaxNotional *string `json:"maxNotional,omitempty"`
+	// Lower multiplier bound.
+	MultiplierDown *string `json:"multiplierDown,omitempty"`
+	// Upper multiplier bound.
+	MultiplierUp *string `json:"multiplierUp,omitempty"`
+	// Upper multiplier bound for bids.
+	BidMultiplierUp *string `json:"bidMultiplierUp,omitempty"`
+	// Upper multiplier bound for asks.
+	AskMultiplierUp *string `json:"askMultiplierUp,omitempty"`
+	// Lower multiplier bound for bids.
+	BidMultiplierDown *string `json:"bidMultiplierDown,omitempty"`
+	// Lower multiplier bound for asks.
 	AskMultiplierDown    *string `json:"askMultiplierDown,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

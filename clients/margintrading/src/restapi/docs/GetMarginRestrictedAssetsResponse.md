@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OpenLongRestrictedAsset** | Pointer to **[]string** |  | [optional] 
-**MaxCollateralExceededAsset** | Pointer to **[]string** |  | [optional] 
+**OpenLongRestrictedAsset** | Pointer to **[]string** | open Long Restricted Asset list. | [optional] 
+**MaxCollateralExceededAsset** | Pointer to **[]string** | max Collateral Exceeded Asset list. | [optional] 
 
 ## Methods
 

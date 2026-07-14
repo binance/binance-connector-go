@@ -1,7 +1,7 @@
 /*
 Binance Pay REST API
 
-OpenAPI Specification for the Binance Pay REST API
+Query Binance Pay transaction history.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetPayTradeHistoryResponseDataInner{}
 
 // GetPayTradeHistoryResponseDataInner struct for GetPayTradeHistoryResponseDataInner
 type GetPayTradeHistoryResponseDataInner struct {
-	OrderType            *string                                               `json:"orderType,omitempty"`
-	TransactionId        *string                                               `json:"transactionId,omitempty"`
-	TransactionTime      *int64                                                `json:"transactionTime,omitempty"`
-	Amount               *string                                               `json:"amount,omitempty"`
-	Currency             *string                                               `json:"currency,omitempty"`
-	WalletType           *int64                                                `json:"walletType,omitempty"`
-	WalletTypes          []int64                                               `json:"walletTypes,omitempty"`
+	// Order type. Enum: PAY, PAY_REFUND, C2C, CRYPTO_BOX, CRYPTO_BOX_RF, C2C_HOLDING, C2C_HOLDING_RF, PAYOUT, REMITTANCE.
+	OrderType *string `json:"orderType,omitempty"`
+	// Transaction ID.
+	TransactionId *string `json:"transactionId,omitempty"`
+	// Trade timestamp.
+	TransactionTime *int64 `json:"transactionTime,omitempty"`
+	// Order amount (up to 8 decimal places). Positive means income; negative means expenditure.
+	Amount *string `json:"amount,omitempty"`
+	// Order asset.
+	Currency *string `json:"currency,omitempty"`
+	// Main wallet type: 1=funding wallet, 2=spot wallet, 3=fiat wallet, 4 or 6=card payment, 5=earn wallet.
+	WalletType *int64 `json:"walletType,omitempty"`
+	// Array format of wallet types. Multiple values may appear for combined payments.
+	WalletTypes []int64 `json:"walletTypes,omitempty"`
+	// Funds usage details.
 	FundsDetail          []GetPayTradeHistoryResponseDataInnerFundsDetailInner `json:"fundsDetail,omitempty"`
 	PayerInfo            *GetPayTradeHistoryResponseDataInnerPayerInfo         `json:"payerInfo,omitempty"`
 	ReceiverInfo         *GetPayTradeHistoryResponseDataInnerReceiverInfo      `json:"receiverInfo,omitempty"`

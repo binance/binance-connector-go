@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**InterestAccuredTime** | Pointer to **int64** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**Interest** | Pointer to **string** | interest amount | [optional] 
+**InterestAccuredTime** | Pointer to **int64** | Interest Accured Time. | [optional] 
+**InterestRate** | Pointer to **string** | daily interest rate | [optional] 
+**Principal** | Pointer to **string** | Principal repaid | [optional] 
 
 ## Methods
 

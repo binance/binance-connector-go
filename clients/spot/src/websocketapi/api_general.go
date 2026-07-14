@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -26,7 +26,7 @@ type ApiExchangeInfoRequest struct {
 	symbolStatus       *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiExchangeInfoRequest) Id(id string) ApiExchangeInfoRequest {
 	r.id = &id
 	return r
@@ -38,22 +38,25 @@ func (r ApiExchangeInfoRequest) Symbol(symbol string) ApiExchangeInfoRequest {
 	return r
 }
 
-// List of symbols to query
+// Describe multiple symbols
 func (r ApiExchangeInfoRequest) Symbols(symbols []string) ApiExchangeInfoRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Filter symbols by permissions
 func (r ApiExchangeInfoRequest) Permissions(permissions []string) ApiExchangeInfoRequest {
 	r.permissions = &permissions
 	return r
 }
 
+// Controls whether the content of the &#x60;permissionSets&#x60; field is populated or not. Defaults to &#x60;true&#x60;.
 func (r ApiExchangeInfoRequest) ShowPermissionSets(showPermissionSets bool) ApiExchangeInfoRequest {
 	r.showPermissionSets = &showPermissionSets
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;.
 func (r ApiExchangeInfoRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExchangeInfoRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -78,12 +81,12 @@ func (r ApiExchangeInfoRequest) ExecuteAsync() (chan *common.ResponseOrRaw[model
 }
 
 /*
-ExchangeInfo WebSocket Exchange information
+ExchangeInfo Exchange information
 /exchangeInfo
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#exchange-information
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#exchange-info
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param permissions	@param showPermissionSets	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol Describe a single symbol	@param symbols Describe multiple symbols	@param permissions Filter symbols by permissions	@param showPermissionSets Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true`.	@param symbolStatus Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`. Cannot be used in combination with `symbol` or `symbols`.
 @return ApiExchangeInfoRequest
 */
 func (a *GeneralAPIService) ExchangeInfo() ApiExchangeInfoRequest {
@@ -139,24 +142,25 @@ type ApiExecutionRulesRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiExecutionRulesRequest) Id(id string) ApiExecutionRulesRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
+// Query for specified symbol.
 func (r ApiExecutionRulesRequest) Symbol(symbol string) ApiExecutionRulesRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Query for multiple symbols.
 func (r ApiExecutionRulesRequest) Symbols(symbols []string) ApiExecutionRulesRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiExecutionRulesRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExecutionRulesRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -181,12 +185,12 @@ func (r ApiExecutionRulesRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mod
 }
 
 /*
-ExecutionRules WebSocket Query Execution Rules
+ExecutionRules Query Execution Rules
 /executionRules
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#query-execution-rules
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#execution-rules
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol Query for specified symbol.	@param symbols Query for multiple symbols.	@param symbolStatus Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK`
 @return ApiExecutionRulesRequest
 */
 func (a *GeneralAPIService) ExecutionRules() ApiExecutionRulesRequest {
@@ -233,7 +237,7 @@ type ApiPingRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiPingRequest) Id(id string) ApiPingRequest {
 	r.id = &id
 	return r
@@ -258,12 +262,12 @@ func (r ApiPingRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.PingRe
 }
 
 /*
-Ping WebSocket Test connectivity
+Ping Test connectivity
 /ping
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#test-connectivity
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#ping
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiPingRequest
 */
 func (a *GeneralAPIService) Ping() ApiPingRequest {
@@ -301,7 +305,7 @@ type ApiTimeRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTimeRequest) Id(id string) ApiTimeRequest {
 	r.id = &id
 	return r
@@ -326,12 +330,12 @@ func (r ApiTimeRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.TimeRe
 }
 
 /*
-Time WebSocket Check server time
+Time Check server time
 /time
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/general-requests#check-server-time
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#time
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiTimeRequest
 */
 func (a *GeneralAPIService) Time() ApiTimeRequest {

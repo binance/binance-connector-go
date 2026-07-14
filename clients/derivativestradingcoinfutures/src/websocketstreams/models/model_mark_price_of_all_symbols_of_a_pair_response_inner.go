@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &MarkPriceOfAllSymbolsOfAPairResponseInner{}
 
 // MarkPriceOfAllSymbolsOfAPairResponseInner struct for MarkPriceOfAllSymbolsOfAPairResponseInner
 type MarkPriceOfAllSymbolsOfAPairResponseInner struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	P                    *string `json:"P,omitempty"`
-	Smalli               *string `json:"i,omitempty"`
-	Smallr               *string `json:"r,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Mark Price
+	Smallp *string `json:"p,omitempty"`
+	// Estimated Settle Price, only useful in the last hour before the settlement starts.
+	P *string `json:"P,omitempty"`
+	// Index Price
+	Smalli *string `json:"i,omitempty"`
+	// funding rate for perpetual symbol, \"\" will be shown for delivery symbol
+	Smallr *string `json:"r,omitempty"`
+	// next funding time for perpetual symbol, 0 will be shown for delivery symbol
+	T *int64 `json:"T,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -305,9 +314,9 @@ func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) SetT(v int64) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSmallst() int64 {
+func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -315,7 +324,7 @@ func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSmallstOk() (*int64, bool) {
+func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -331,8 +340,8 @@ func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *MarkPriceOfAllSymbolsOfAPairResponseInner) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

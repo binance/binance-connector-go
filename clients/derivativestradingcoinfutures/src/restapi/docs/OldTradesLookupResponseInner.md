@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**BaseQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**IsBuyerMaker** | Pointer to **bool** |  | [optional] 
+**Id** | Pointer to **int64** | positionId | [optional] 
+**Price** | Pointer to **string** | Latest token price. | [optional] 
+**Qty** | Pointer to **string** | Quantity. | [optional] 
+**BaseQty** | Pointer to **string** | Base asset quantity. | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**IsBuyerMaker** | Pointer to **bool** | Whether buyer is market maker. | [optional] 
 
 ## Methods
 

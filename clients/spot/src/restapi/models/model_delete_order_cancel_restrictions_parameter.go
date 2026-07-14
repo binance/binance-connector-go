@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,17 +17,13 @@ type DeleteOrderCancelRestrictionsParameter string
 // List of deleteOrder_cancelRestrictions_parameter
 const (
 	DeleteOrderCancelRestrictionsParameterOnlyNew             DeleteOrderCancelRestrictionsParameter = "ONLY_NEW"
-	DeleteOrderCancelRestrictionsParameterNew                 DeleteOrderCancelRestrictionsParameter = "NEW"
 	DeleteOrderCancelRestrictionsParameterOnlyPartiallyFilled DeleteOrderCancelRestrictionsParameter = "ONLY_PARTIALLY_FILLED"
-	DeleteOrderCancelRestrictionsParameterPartiallyFilled     DeleteOrderCancelRestrictionsParameter = "PARTIALLY_FILLED"
 )
 
 // All allowed values of DeleteOrderCancelRestrictionsParameter enum
 var AllowedDeleteOrderCancelRestrictionsParameterEnumValues = []DeleteOrderCancelRestrictionsParameter{
 	"ONLY_NEW",
-	"NEW",
 	"ONLY_PARTIALLY_FILLED",
-	"PARTIALLY_FILLED",
 }
 
 func (v *DeleteOrderCancelRestrictionsParameter) UnmarshalJSON(src []byte) error {

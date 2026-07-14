@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**CalculationType** | Pointer to **string** |  | [optional] 
-**BucketCount** | Pointer to **int64** |  | [optional] 
-**BucketWidthMs** | Pointer to **int64** |  | [optional] 
-**ExternalCalculationId** | Pointer to **int64** |  | [optional] 
+**CalculationType** | Pointer to **string** | Either &#x60;ARITHMETIC_MEAN&#x60; or &#x60;EXTERNAL&#x60;. | [optional] 
+**BucketCount** | Pointer to **int64** | Present when calculationType is ARITHMETIC_MEAN. | [optional] 
+**BucketWidthMs** | Pointer to **int64** | Present when calculationType is ARITHMETIC_MEAN. | [optional] 
+**ExternalCalculationId** | Pointer to **int64** | Present when calculationType is EXTERNAL. | [optional] 
 
 ## Methods
 

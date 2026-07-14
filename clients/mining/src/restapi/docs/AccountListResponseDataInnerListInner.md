@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **int64** |  | [optional] 
-**Hashrate** | Pointer to **string** |  | [optional] 
-**Reject** | Pointer to **string** |  | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**Hashrate** | Pointer to **string** | Hashrate | [optional] 
+**Reject** | Pointer to **string** | Rejection rate | [optional] 
 
 ## Methods
 

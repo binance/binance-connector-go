@@ -22,7 +22,7 @@ func QueryUmAlgoOrderHistory() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.QueryUmAlgoOrderHistory(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QueryUmAlgoOrderHistory(context.Background()).Symbol("BNBUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

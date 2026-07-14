@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &GetAllCrossMarginPairsResponseInner{}
 
 // GetAllCrossMarginPairsResponseInner struct for GetAllCrossMarginPairsResponseInner
 type GetAllCrossMarginPairsResponseInner struct {
-	Base                 *string `json:"base,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	IsBuyAllowed         *bool   `json:"isBuyAllowed,omitempty"`
-	IsMarginTrade        *bool   `json:"isMarginTrade,omitempty"`
-	IsSellAllowed        *bool   `json:"isSellAllowed,omitempty"`
-	Quote                *string `json:"quote,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	DelistTime           *int64  `json:"delistTime,omitempty"`
+	// base.
+	Base *string `json:"base,omitempty"`
+	// id.
+	Id *int64 `json:"id,omitempty"`
+	// is Buy Allowed.
+	IsBuyAllowed *bool `json:"isBuyAllowed,omitempty"`
+	// is Margin Trade.
+	IsMarginTrade *bool `json:"isMarginTrade,omitempty"`
+	// is Sell Allowed.
+	IsSellAllowed *bool `json:"isSellAllowed,omitempty"`
+	// quote.
+	Quote *string `json:"quote,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// delist Time.
+	DelistTime           *int64 `json:"delistTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

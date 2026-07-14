@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -16,9 +16,10 @@ type NewMarginOrderSideEffectTypeParameter string
 
 // List of newMarginOrder_sideEffectType_parameter
 const (
-	NewMarginOrderSideEffectTypeParameterNoSideEffect NewMarginOrderSideEffectTypeParameter = "NO_SIDE_EFFECT"
-	NewMarginOrderSideEffectTypeParameterMarginBuy    NewMarginOrderSideEffectTypeParameter = "MARGIN_BUY"
-	NewMarginOrderSideEffectTypeParameterAutoRepay    NewMarginOrderSideEffectTypeParameter = "AUTO_REPAY"
+	NewMarginOrderSideEffectTypeParameterNoSideEffect    NewMarginOrderSideEffectTypeParameter = "NO_SIDE_EFFECT"
+	NewMarginOrderSideEffectTypeParameterMarginBuy       NewMarginOrderSideEffectTypeParameter = "MARGIN_BUY"
+	NewMarginOrderSideEffectTypeParameterAutoRepay       NewMarginOrderSideEffectTypeParameter = "AUTO_REPAY"
+	NewMarginOrderSideEffectTypeParameterAutoBorrowRepay NewMarginOrderSideEffectTypeParameter = "AUTO_BORROW_REPAY"
 )
 
 // All allowed values of NewMarginOrderSideEffectTypeParameter enum
@@ -26,6 +27,7 @@ var AllowedNewMarginOrderSideEffectTypeParameterEnumValues = []NewMarginOrderSid
 	"NO_SIDE_EFFECT",
 	"MARGIN_BUY",
 	"AUTO_REPAY",
+	"AUTO_BORROW_REPAY",
 }
 
 func (v *NewMarginOrderSideEffectTypeParameter) UnmarshalJSON(src []byte) error {

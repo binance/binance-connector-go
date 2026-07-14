@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**[]FuturesAccountBalanceV2ResponseResultInner**](FuturesAccountBalanceV2ResponseResultInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]AccountInformationV2ResponseRateLimitsInner**](AccountInformationV2ResponseRateLimitsInner.md) |  | [optional] 
+**Result** | Pointer to [**[]FuturesAccountBalanceResponseResultInner**](FuturesAccountBalanceResponseResultInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountInformationResponseRateLimitsInner**](AccountInformationResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *FuturesAccountBalanceResponse) GetResult() []FuturesAccountBalanceV2ResponseResultInner`
+`func (o *FuturesAccountBalanceResponse) GetResult() []FuturesAccountBalanceResponseResultInner`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *FuturesAccountBalanceResponse) GetResultOk() (*[]FuturesAccountBalanceV2ResponseResultInner, bool)`
+`func (o *FuturesAccountBalanceResponse) GetResultOk() (*[]FuturesAccountBalanceResponseResultInner, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *FuturesAccountBalanceResponse) SetResult(v []FuturesAccountBalanceV2ResponseResultInner)`
+`func (o *FuturesAccountBalanceResponse) SetResult(v []FuturesAccountBalanceResponseResultInner)`
 
 SetResult sets Result field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *FuturesAccountBalanceResponse) GetRateLimits() []AccountInformationV2ResponseRateLimitsInner`
+`func (o *FuturesAccountBalanceResponse) GetRateLimits() []AccountInformationResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *FuturesAccountBalanceResponse) GetRateLimitsOk() (*[]AccountInformationV2ResponseRateLimitsInner, bool)`
+`func (o *FuturesAccountBalanceResponse) GetRateLimitsOk() (*[]AccountInformationResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *FuturesAccountBalanceResponse) SetRateLimits(v []AccountInformationV2ResponseRateLimitsInner)`
+`func (o *FuturesAccountBalanceResponse) SetRateLimits(v []AccountInformationResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

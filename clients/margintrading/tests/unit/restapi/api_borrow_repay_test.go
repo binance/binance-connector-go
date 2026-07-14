@@ -1,5 +1,5 @@
 /*
-Binance Margin Trading REST API TEST
+Margin REST API TEST
 
 Testing BorrowRepayAPIService
 
@@ -25,11 +25,15 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService GetFutureHourlyInterestRate Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BTC","nextHourlyInterestRate":"0.00000571"},{"asset":"ETH","nextHourlyInterestRate":"0.00000578"}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BTC","nextHourlyInterestRate":"0.00000571"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/next-hourly-interest-rate", r.URL.Path)
-			require.Equal(t, "assets_example", r.URL.Query().Get("assets"))
-			require.Equal(t, "false", r.URL.Query().Get("isIsolated"))
+			require.Equal(t, "BTC,ETH", r.URL.Query().Get("assets"))
+			require.Equal(t, string(models.GetFutureHourlyInterestRateIsIsolatedParameterTrue), r.URL.Query().Get("isIsolated"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -46,7 +50,7 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.BorrowRepayAPI.GetFutureHourlyInterestRate(context.Background()).Assets("assets_example").IsIsolated(false).Execute()
+		resp, err := apiClient.RestApi.BorrowRepayAPI.GetFutureHourlyInterestRate(context.Background()).Assets("BTC,ETH").IsIsolated(models.GetFutureHourlyInterestRateIsIsolatedParameterTrue).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -99,7 +103,11 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService GetInterestHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"txId":1352286576452864800,"interestAccuredTime":1672160400000,"asset":"USDT","rawAsset":"USDT","principal":"45.3313","interest":"0.00024995","interestRate":"0.00013233","type":"ON_BORROW","isolatedSymbol":"BNBUSDT"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"txId":1352286576452864800,"interestAccuredTime":1672160400000,"asset":"USDT","rawAsset":"USDT","principal":"45.3313","interest":"0.00024995","interestRate":"0.00013233","type":"ON_BORROW","isolatedSymbol":"BNBUSDT"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/interestHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -154,14 +162,17 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService MarginAccountBorrowRepay Success", func(t *testing.T) {
 
-		mockedJSON := `{"tranId":100000001}`
+		var mockedJSON string
+		mockedJSON = `{"tranId":100000001}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/borrow-repay", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
-			require.Equal(t, "FALSE", r.URL.Query().Get("isIsolated"))
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
-			require.Equal(t, "amount_example", r.URL.Query().Get("amount"))
-			require.Equal(t, "type__example", r.URL.Query().Get("type"))
+			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
+			require.Equal(t, string(models.MarginAccountBorrowRepayIsIsolatedParameterTrue), r.URL.Query().Get("isIsolated"))
+			require.Equal(t, "1.0", r.URL.Query().Get("amount"))
+			require.Equal(t, string(models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -178,7 +189,7 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.BorrowRepayAPI.MarginAccountBorrowRepay(context.Background()).Asset("asset_example").IsIsolated("FALSE").Symbol("symbol_example").Amount("amount_example").Type("type__example").Execute()
+		resp, err := apiClient.RestApi.BorrowRepayAPI.MarginAccountBorrowRepay(context.Background()).Asset("USDT").IsIsolated(models.MarginAccountBorrowRepayIsIsolatedParameterTrue).Amount("1.0").Type(models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -231,10 +242,14 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService QueryBorrowRepayRecordsInMarginAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"type":"AUTO","isolatedSymbol":"BNBUSDT","amount":"14.00000000","asset":"BNB","interest":"0.01866667","principal":"13.98133333","status":"CONFIRMED","timestamp":1563438204000,"txId":2970933056}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"type":"AUTO","isolatedSymbol":"BNBUSDT","amount":"14.00000000","asset":"BNB","interest":"0.01866667","principal":"13.98133333","status":"CONFIRMED","timestamp":1563438204000,"txId":2970933056}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/borrow-repay", r.URL.Path)
-			require.Equal(t, "type__example", r.URL.Query().Get("type"))
+			require.Equal(t, string(models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -251,7 +266,7 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryBorrowRepayRecordsInMarginAccount(context.Background()).Type("type__example").Execute()
+		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryBorrowRepayRecordsInMarginAccount(context.Background()).Type(models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -304,10 +319,14 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService QueryMarginInterestRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BTC","dailyInterestRate":"0.00025000","timestamp":1611544731000,"vipLevel":1},{"asset":"BTC","dailyInterestRate":"0.00035000","timestamp":1610248118000,"vipLevel":1}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BTC","dailyInterestRate":"0.00025000","timestamp":1611544731000,"vipLevel":1}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/interestRateHistory", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -324,7 +343,7 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMarginInterestRateHistory(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMarginInterestRateHistory(context.Background()).Asset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -377,10 +396,14 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 
 	t.Run("Test BorrowRepayAPIService QueryMaxBorrow Success", func(t *testing.T) {
 
-		mockedJSON := `{"amount":"1.69248805","borrowLimit":"60"}`
+		var mockedJSON string
+		mockedJSON = `{"amount":"1.69248805","borrowLimit":"60"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/maxBorrowable", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -397,7 +420,7 @@ func Test_binancemargintradingrestapi_BorrowRepayAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMaxBorrow(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.BorrowRepayAPI.QueryMaxBorrow(context.Background()).Asset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

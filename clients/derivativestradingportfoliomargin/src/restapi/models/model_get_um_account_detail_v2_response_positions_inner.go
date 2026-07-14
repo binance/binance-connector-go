@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetUmAccountDetailV2ResponsePositionsInner{}
 
 // GetUmAccountDetailV2ResponsePositionsInner struct for GetUmAccountDetailV2ResponsePositionsInner
 type GetUmAccountDetailV2ResponsePositionsInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	InitialMargin        *string `json:"initialMargin,omitempty"`
-	MaintMargin          *string `json:"maintMargin,omitempty"`
-	UnrealizedProfit     *string `json:"unrealizedProfit,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// symbol name
+	Symbol *string `json:"symbol,omitempty"`
+	// total initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Notional.
 	Notional             *string `json:"notional,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

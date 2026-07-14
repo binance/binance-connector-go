@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossMarginAsset** | Pointer to **string** |  | [optional] 
-**CrossMarginBorrowed** | Pointer to **string** |  | [optional] 
-**CrossMarginFree** | Pointer to **string** |  | [optional] 
-**CrossMarginInterest** | Pointer to **string** |  | [optional] 
-**CrossMarginLocked** | Pointer to **string** |  | [optional] 
-**UmWalletBalance** | Pointer to **string** |  | [optional] 
-**UmUnrealizedPNL** | Pointer to **string** |  | [optional] 
-**CmWalletBalance** | Pointer to **string** |  | [optional] 
-**CmUnrealizedPNL** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**NegativeBalance** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**TotalWalletBalance** | Pointer to **string** | Total Wallet Balance. | [optional] 
+**CrossMarginAsset** | Pointer to **string** | Cross Margin Asset. | [optional] 
+**CrossMarginBorrowed** | Pointer to **string** | Cross Margin Borrowed. | [optional] 
+**CrossMarginFree** | Pointer to **string** | Cross Margin Free. | [optional] 
+**CrossMarginInterest** | Pointer to **string** | Cross Margin Interest. | [optional] 
+**CrossMarginLocked** | Pointer to **string** | Cross Margin Locked. | [optional] 
+**UmWalletBalance** | Pointer to **string** | Um Wallet Balance. | [optional] 
+**UmUnrealizedPNL** | Pointer to **string** | Um Unrealized PNL. | [optional] 
+**CmWalletBalance** | Pointer to **string** | Cm Wallet Balance. | [optional] 
+**CmUnrealizedPNL** | Pointer to **string** | Cm Unrealized PNL. | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
+**NegativeBalance** | Pointer to **string** | negative balance amount | [optional] 
 
 ## Methods
 

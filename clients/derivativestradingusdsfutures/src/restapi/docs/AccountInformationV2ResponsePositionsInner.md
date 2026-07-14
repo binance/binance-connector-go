@@ -4,21 +4,21 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**Isolated** | Pointer to **bool** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**MaxNotional** | Pointer to **string** |  | [optional] 
-**BidNotional** | Pointer to **string** |  | [optional] 
-**AskNotional** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**InitialMargin** | Pointer to **string** | Initial margin requirement. | [optional] 
+**MaintMargin** | Pointer to **string** | Maintenance margin requirement. | [optional] 
+**UnrealizedProfit** | Pointer to **string** | Unrealized profit. | [optional] 
+**PositionInitialMargin** | Pointer to **string** | Initial margin required for positions. | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. | [optional] 
+**Leverage** | Pointer to **string** | Current initial leverage. | [optional] 
+**Isolated** | Pointer to **bool** | Whether the position uses isolated margin mode. | [optional] 
+**EntryPrice** | Pointer to **string** | Average entry price. | [optional] 
+**MaxNotional** | Pointer to **string** | Maximum available notional under current leverage. | [optional] 
+**BidNotional** | Pointer to **string** | Bid notional (ignore). | [optional] 
+**AskNotional** | Pointer to **string** | Ask notional (ignore). | [optional] 
+**PositionSide** | Pointer to **string** | Position side. | [optional] 
+**PositionAmt** | Pointer to **string** | Position quantity. | [optional] 
+**UpdateTime** | Pointer to **int64** | Last update time in milliseconds. | [optional] 
 
 ## Methods
 

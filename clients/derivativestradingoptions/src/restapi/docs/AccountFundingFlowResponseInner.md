@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**CreateDate** | Pointer to **int64** |  | [optional] 
+**Id** | Pointer to **int64** | id | [optional] 
+**Asset** | Pointer to **string** | Asset type | [optional] 
+**Amount** | Pointer to **string** | Amount (positive numbers represent inflow, negative numbers represent outflow) | [optional] 
+**Type** | Pointer to **string** | type (fees) | [optional] 
+**CreateDate** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

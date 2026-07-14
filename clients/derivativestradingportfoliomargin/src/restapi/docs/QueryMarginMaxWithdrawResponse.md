@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | account&#39;s currently max withdrawable amount with sufficient system availability | [optional] 
 
 ## Methods
 

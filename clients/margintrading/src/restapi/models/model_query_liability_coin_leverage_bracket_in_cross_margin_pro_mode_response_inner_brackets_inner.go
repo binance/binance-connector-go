@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,12 +17,17 @@ var _ common.MappedNullable = &QueryLiabilityCoinLeverageBracketInCrossMarginPro
 
 // QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner struct for QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner
 type QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner struct {
-	Leverage              *int64   `json:"leverage,omitempty"`
-	MaxDebt               *float32 `json:"maxDebt,omitempty"`
+	// leverage.
+	Leverage *int64 `json:"leverage,omitempty"`
+	// max Debt.
+	MaxDebt *float32 `json:"maxDebt,omitempty"`
+	// maintenance Margin Rate.
 	MaintenanceMarginRate *float32 `json:"maintenanceMarginRate,omitempty"`
-	InitialMarginRate     *float32 `json:"initialMarginRate,omitempty"`
-	FastNum               *float32 `json:"fastNum,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	// initial Margin Rate.
+	InitialMarginRate *float32 `json:"initialMarginRate,omitempty"`
+	// fast Num.
+	FastNum              *float32 `json:"fastNum,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner

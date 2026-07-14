@@ -18,10 +18,10 @@ Name         | Type          | Description.  | Notes
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
 **WorkingTime** | Pointer to **int64** |  | [optional] 
-**IcebergQty** | Pointer to **string** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**StopPrice** | Pointer to **string** |  | [optional] 
+**IcebergQty** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -392,31 +392,6 @@ SetSide sets Side field to given value.
 
 HasSide returns a boolean if a field has been set.
 
-### GetStopPrice
-
-`func (o *OrderListOcoResponseOrderReportsInner) GetStopPrice() string`
-
-GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
-
-### GetStopPriceOk
-
-`func (o *OrderListOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool)`
-
-GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStopPrice
-
-`func (o *OrderListOcoResponseOrderReportsInner) SetStopPrice(v string)`
-
-SetStopPrice sets StopPrice field to given value.
-
-### HasStopPrice
-
-`func (o *OrderListOcoResponseOrderReportsInner) HasStopPrice() bool`
-
-HasStopPrice returns a boolean if a field has been set.
-
 ### GetWorkingTime
 
 `func (o *OrderListOcoResponseOrderReportsInner) GetWorkingTime() int64`
@@ -442,31 +417,6 @@ SetWorkingTime sets WorkingTime field to given value.
 
 HasWorkingTime returns a boolean if a field has been set.
 
-### GetIcebergQty
-
-`func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQty() string`
-
-GetIcebergQty returns the IcebergQty field if non-nil, zero value otherwise.
-
-### GetIcebergQtyOk
-
-`func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQtyOk() (*string, bool)`
-
-GetIcebergQtyOk returns a tuple with the IcebergQty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIcebergQty
-
-`func (o *OrderListOcoResponseOrderReportsInner) SetIcebergQty(v string)`
-
-SetIcebergQty sets IcebergQty field to given value.
-
-### HasIcebergQty
-
-`func (o *OrderListOcoResponseOrderReportsInner) HasIcebergQty() bool`
-
-HasIcebergQty returns a boolean if a field has been set.
-
 ### GetSelfTradePreventionMode
 
 `func (o *OrderListOcoResponseOrderReportsInner) GetSelfTradePreventionMode() string`
@@ -491,6 +441,56 @@ SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
 `func (o *OrderListOcoResponseOrderReportsInner) HasSelfTradePreventionMode() bool`
 
 HasSelfTradePreventionMode returns a boolean if a field has been set.
+
+### GetStopPrice
+
+`func (o *OrderListOcoResponseOrderReportsInner) GetStopPrice() string`
+
+GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
+
+### GetStopPriceOk
+
+`func (o *OrderListOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool)`
+
+GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopPrice
+
+`func (o *OrderListOcoResponseOrderReportsInner) SetStopPrice(v string)`
+
+SetStopPrice sets StopPrice field to given value.
+
+### HasStopPrice
+
+`func (o *OrderListOcoResponseOrderReportsInner) HasStopPrice() bool`
+
+HasStopPrice returns a boolean if a field has been set.
+
+### GetIcebergQty
+
+`func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQty() string`
+
+GetIcebergQty returns the IcebergQty field if non-nil, zero value otherwise.
+
+### GetIcebergQtyOk
+
+`func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQtyOk() (*string, bool)`
+
+GetIcebergQtyOk returns a tuple with the IcebergQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIcebergQty
+
+`func (o *OrderListOcoResponseOrderReportsInner) SetIcebergQty(v string)`
+
+SetIcebergQty sets IcebergQty field to given value.
+
+### HasIcebergQty
+
+`func (o *OrderListOcoResponseOrderReportsInner) HasIcebergQty() bool`
+
+HasIcebergQty returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

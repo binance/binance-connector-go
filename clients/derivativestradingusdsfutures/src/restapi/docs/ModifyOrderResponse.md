@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **Status** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
@@ -25,9 +25,9 @@ Name         | Type          | Description.  | Notes
 **WorkingType** | Pointer to **string** |  | [optional] 
 **PriceProtect** | Pointer to **bool** |  | [optional] 
 **OrigType** | Pointer to **string** |  | [optional] 
-**PriceMatch** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**GoodTillDate** | Pointer to **int64** |  | [optional] 
+**PriceMatch** | Pointer to **string** | price match mode | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading preventation mode | [optional] 
+**GoodTillDate** | Pointer to **int64** | order pre-set auot cancel time for TIF GTD order | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 
 ## Methods

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,17 +17,29 @@ var _ common.MappedNullable = &OptionMarkPriceResponseInner{}
 
 // OptionMarkPriceResponseInner struct for OptionMarkPriceResponseInner
 type OptionMarkPriceResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	BidIV                *string `json:"bidIV,omitempty"`
-	AskIV                *string `json:"askIV,omitempty"`
-	MarkIV               *string `json:"markIV,omitempty"`
-	Delta                *string `json:"delta,omitempty"`
-	Theta                *string `json:"theta,omitempty"`
-	Gamma                *string `json:"gamma,omitempty"`
-	Vega                 *string `json:"vega,omitempty"`
-	HighPriceLimit       *string `json:"highPriceLimit,omitempty"`
-	LowPriceLimit        *string `json:"lowPriceLimit,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// Implied volatility Buy
+	BidIV *string `json:"bidIV,omitempty"`
+	// Implied volatility Sell
+	AskIV *string `json:"askIV,omitempty"`
+	// Implied volatility mark
+	MarkIV *string `json:"markIV,omitempty"`
+	// delta
+	Delta *string `json:"delta,omitempty"`
+	// theta
+	Theta *string `json:"theta,omitempty"`
+	// gamma
+	Gamma *string `json:"gamma,omitempty"`
+	// vega
+	Vega *string `json:"vega,omitempty"`
+	// Current highest buy price
+	HighPriceLimit *string `json:"highPriceLimit,omitempty"`
+	// Current lowest sell price
+	LowPriceLimit *string `json:"lowPriceLimit,omitempty"`
+	// risk free rate
 	RiskFreeInterest     *string `json:"riskFreeInterest,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

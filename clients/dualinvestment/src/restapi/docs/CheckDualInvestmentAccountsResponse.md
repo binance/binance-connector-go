@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalAmountInBTC** | Pointer to **string** |  | [optional] 
-**TotalAmountInUSDT** | Pointer to **string** |  | [optional] 
+**TotalAmountInBTC** | Pointer to **string** | Total BTC amount in Dual Investment | [optional] 
+**TotalAmountInUSDT** | Pointer to **string** | Total USDT equivalent amount in Dual Investment | [optional] 
 
 ## Methods
 

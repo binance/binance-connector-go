@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Underlying** | Pointer to **string** |  | [optional] 
-**MakerFee** | Pointer to **string** |  | [optional] 
-**TakerFee** | Pointer to **string** |  | [optional] 
+**Underlying** | Pointer to **string** | underlying | [optional] 
+**MakerFee** | Pointer to **string** | maker Fee | [optional] 
+**TakerFee** | Pointer to **string** | taker Fee | [optional] 
 
 ## Methods
 

@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**MakerCommissionRate** | Pointer to **string** |  | [optional] 
-**TakerCommissionRate** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**MakerCommissionRate** | Pointer to **string** | 0.02% | [optional] 
+**TakerCommissionRate** | Pointer to **string** | 0.04% | [optional] 
 
 ## Methods
 

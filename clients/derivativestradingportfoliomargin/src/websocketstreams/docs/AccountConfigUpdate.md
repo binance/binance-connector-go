@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Fs** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**Fs** | Pointer to **string** | Event business unit | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 
 ## Methods

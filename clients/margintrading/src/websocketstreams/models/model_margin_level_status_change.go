@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading WebSocket Market Streams
+Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &MarginLevelStatusChange{}
 
 // MarginLevelStatusChange struct for MarginLevelStatusChange
 type MarginLevelStatusChange struct {
-	E                    *int64  `json:"E,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Margin level
+	Smalll *string `json:"l,omitempty"`
+	// Margin call status
 	Smalls               *string `json:"s,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

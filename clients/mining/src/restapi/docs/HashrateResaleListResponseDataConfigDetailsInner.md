@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfigId** | Pointer to **int64** |  | [optional] 
-**PoolUsername** | Pointer to **string** |  | [optional] 
-**ToPoolUsername** | Pointer to **string** |  | [optional] 
-**AlgoName** | Pointer to **string** |  | [optional] 
-**HashRate** | Pointer to **int64** |  | [optional] 
-**StartDay** | Pointer to **int64** |  | [optional] 
-**EndDay** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
+**ConfigId** | Pointer to **int64** | Configuration ID | [optional] 
+**PoolUsername** | Pointer to **string** | Transfer-out sub-account | [optional] 
+**ToPoolUsername** | Pointer to **string** | Transfer-in sub-account | [optional] 
+**AlgoName** | Pointer to **string** | Transfer algorithm name | [optional] 
+**HashRate** | Pointer to **int64** | Transferred hashrate | [optional] 
+**StartDay** | Pointer to **int64** | Start date | [optional] 
+**EndDay** | Pointer to **int64** | End date | [optional] 
+**Status** | Pointer to **int64** | Status: 0 Processing, 1 Cancelled, 2 Terminated | [optional] 
+**Type** | Pointer to **int64** | Type: 0 Hashrate transfer record, 1 Hashrate receive record | [optional] 
 
 ## Methods
 

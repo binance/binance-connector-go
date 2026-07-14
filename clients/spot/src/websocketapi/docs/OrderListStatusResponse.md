@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**AllOrderListsResponseResultInner**](AllOrderListsResponseResultInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**Result** | Pointer to [**OrderListStatusResponseResult**](OrderListStatusResponseResult.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *OrderListStatusResponse) GetResult() AllOrderListsResponseResultInner`
+`func (o *OrderListStatusResponse) GetResult() OrderListStatusResponseResult`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *OrderListStatusResponse) GetResultOk() (*AllOrderListsResponseResultInner, bool)`
+`func (o *OrderListStatusResponse) GetResultOk() (*OrderListStatusResponseResult, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *OrderListStatusResponse) SetResult(v AllOrderListsResponseResultInner)`
+`func (o *OrderListStatusResponse) SetResult(v OrderListStatusResponseResult)`
 
 SetResult sets Result field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *OrderListStatusResponse) GetRateLimits() []RateLimits`
+`func (o *OrderListStatusResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *OrderListStatusResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *OrderListStatusResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *OrderListStatusResponse) SetRateLimits(v []RateLimits)`
+`func (o *OrderListStatusResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

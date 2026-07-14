@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**IsLocked** | Pointer to **bool** |  | [optional] 
-**PlannedRecoverTime** | Pointer to **int64** |  | [optional] 
-**Indicator** | Pointer to **string** |  | [optional] 
-**Value** | Pointer to **float32** |  | [optional] 
-**TriggerValue** | Pointer to **float32** |  | [optional] 
+**IsLocked** | Pointer to **bool** | Is Locked. | [optional] 
+**PlannedRecoverTime** | Pointer to **int64** | Planned Recover Time. | [optional] 
+**Indicator** | Pointer to **string** | Too many violations under multiple symbols trigger account violation | [optional] 
+**Value** | Pointer to **float32** | Current value | [optional] 
+**TriggerValue** | Pointer to **float32** | Trigger value | [optional] 
 
 ## Methods
 

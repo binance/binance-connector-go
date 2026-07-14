@@ -22,7 +22,7 @@ func GetFuturesPositionRiskOfSubAccountV2() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccountV2(context.Background()).Email("sub-account-email@email.com").FuturesType(789).Execute()
+	resp, err := apiClient.RestApi.AccountManagementAPI.GetFuturesPositionRiskOfSubAccountV2(context.Background()).Email("123@test.com").FuturesType(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

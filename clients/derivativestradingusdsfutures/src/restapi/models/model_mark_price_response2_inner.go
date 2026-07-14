@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &MarkPriceResponse2Inner{}
 
 // MarkPriceResponse2Inner struct for MarkPriceResponse2Inner
 type MarkPriceResponse2Inner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	IndexPrice           *string `json:"indexPrice,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// index price
+	IndexPrice *string `json:"indexPrice,omitempty"`
+	// Estimated Settle Price, only useful in the last hour before the settlement starts.
 	EstimatedSettlePrice *string `json:"estimatedSettlePrice,omitempty"`
-	LastFundingRate      *string `json:"lastFundingRate,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
-	NextFundingTime      *int64  `json:"nextFundingTime,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// This is the Latest funding rate
+	LastFundingRate *string `json:"lastFundingRate,omitempty"`
+	// Interest Rate.
+	InterestRate *string `json:"interestRate,omitempty"`
+	// Next Funding Time.
+	NextFundingTime *int64 `json:"nextFundingTime,omitempty"`
+	// Time.
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

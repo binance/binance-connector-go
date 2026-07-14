@@ -23,7 +23,7 @@ func NewCmConditionalOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.NewCmConditionalOrder(context.Background()).Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).StrategyType(models.NewCmConditionalOrderStrategyTypeParameterStop).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewCmConditionalOrder(context.Background()).Symbol("BTCUSDT").Side(models.NewCmConditionalOrderSideParameterBuy).StrategyType(models.NewCmConditionalOrderStrategyTypeParameterStop).Execute()
 	if err != nil {
 		log.Println(err)
 		return

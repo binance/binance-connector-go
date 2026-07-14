@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TierFloor** | Pointer to **string** |  | [optional] 
-**TierCap** | Pointer to **string** |  | [optional] 
-**CollateralRate** | Pointer to **string** |  | [optional] 
-**Cum** | Pointer to **string** |  | [optional] 
+**TierFloor** | Pointer to **string** | tier Floor. | [optional] 
+**TierCap** | Pointer to **string** | tier Cap. | [optional] 
+**CollateralRate** | Pointer to **string** | collateral Rate. | [optional] 
+**Cum** | Pointer to **string** | account equity quick addition number | [optional] 
 
 ## Methods
 

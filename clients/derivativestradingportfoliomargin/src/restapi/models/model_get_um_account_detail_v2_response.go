@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetUmAccountDetailV2Response{}
 
 // GetUmAccountDetailV2Response struct for GetUmAccountDetailV2Response
 type GetUmAccountDetailV2Response struct {
-	Assets               []GetUmAccountDetailV2ResponseAssetsInner    `json:"assets,omitempty"`
+	// Assets.
+	Assets []GetUmAccountDetailResponseAssetsInner `json:"assets,omitempty"`
+	// positions of all symbols in the market are returned
 	Positions            []GetUmAccountDetailV2ResponsePositionsInner `json:"positions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -42,9 +44,9 @@ func NewGetUmAccountDetailV2ResponseWithDefaults() *GetUmAccountDetailV2Response
 }
 
 // GetAssets returns the Assets field value if set, zero value otherwise.
-func (o *GetUmAccountDetailV2Response) GetAssets() []GetUmAccountDetailV2ResponseAssetsInner {
+func (o *GetUmAccountDetailV2Response) GetAssets() []GetUmAccountDetailResponseAssetsInner {
 	if o == nil || common.IsNil(o.Assets) {
-		var ret []GetUmAccountDetailV2ResponseAssetsInner
+		var ret []GetUmAccountDetailResponseAssetsInner
 		return ret
 	}
 	return o.Assets
@@ -52,7 +54,7 @@ func (o *GetUmAccountDetailV2Response) GetAssets() []GetUmAccountDetailV2Respons
 
 // GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetUmAccountDetailV2Response) GetAssetsOk() ([]GetUmAccountDetailV2ResponseAssetsInner, bool) {
+func (o *GetUmAccountDetailV2Response) GetAssetsOk() ([]GetUmAccountDetailResponseAssetsInner, bool) {
 	if o == nil || common.IsNil(o.Assets) {
 		return nil, false
 	}
@@ -68,8 +70,8 @@ func (o *GetUmAccountDetailV2Response) HasAssets() bool {
 	return false
 }
 
-// SetAssets gets a reference to the given []GetUmAccountDetailV2ResponseAssetsInner and assigns it to the Assets field.
-func (o *GetUmAccountDetailV2Response) SetAssets(v []GetUmAccountDetailV2ResponseAssetsInner) {
+// SetAssets gets a reference to the given []GetUmAccountDetailResponseAssetsInner and assigns it to the Assets field.
+func (o *GetUmAccountDetailV2Response) SetAssets(v []GetUmAccountDetailResponseAssetsInner) {
 	o.Assets = v
 }
 

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Assets** | Pointer to [**QueryMarginAvailableInventoryResponseAssets**](QueryMarginAvailableInventoryResponseAssets.md) |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Assets** | Pointer to **map[string]string** | Available inventory per asset. Keys are asset symbols, values are available amounts. | [optional] 
+**UpdateTime** | Pointer to **int64** | update Time. | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssets
 
-`func (o *QueryMarginAvailableInventoryResponse) GetAssets() QueryMarginAvailableInventoryResponseAssets`
+`func (o *QueryMarginAvailableInventoryResponse) GetAssets() map[string]string`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *QueryMarginAvailableInventoryResponse) GetAssetsOk() (*QueryMarginAvailableInventoryResponseAssets, bool)`
+`func (o *QueryMarginAvailableInventoryResponse) GetAssetsOk() (*map[string]string, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *QueryMarginAvailableInventoryResponse) SetAssets(v QueryMarginAvailableInventoryResponseAssets)`
+`func (o *QueryMarginAvailableInventoryResponse) SetAssets(v map[string]string)`
 
 SetAssets sets Assets field to given value.
 

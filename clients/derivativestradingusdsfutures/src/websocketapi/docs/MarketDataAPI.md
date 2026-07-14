@@ -30,9 +30,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	limit := int64(10) // int64 | Default 500; Valid limits:[5, 10, 20, 50, 100, 500, 1000] (optional)
+	symbol := "BTCUSDT" // string | Symbol.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	limit := int64(10) // int64 | Valid limits:[5, 10, 20, 50, 100, 500, 1000] (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -70,9 +70,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **limit** | **int64** | Default 500; Valid limits:[5, 10, 20, 50, 100, 500, 1000] | 
+ **symbol** | **string** | Symbol. | 
+ **id** | **string** | Id. | 
+ **limit** | **int64** | Valid limits:[5, 10, 20, 50, 100, 500, 1000] | 
 
 ### Return type
 
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "symbol_example" // string |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	symbol := "BTCUSDT" // string | Symbol. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -145,8 +145,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** |  | 
+ **id** | **string** | Id. | 
+ **symbol** | **string** | Symbol. | 
 
 ### Return type
 
@@ -180,8 +180,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "symbol_example" // string |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	symbol := "BTCUSDT" // string | Symbol. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -219,8 +219,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** |  | 
+ **id** | **string** | Id. | 
+ **symbol** | **string** | Symbol. | 
 
 ### Return type
 

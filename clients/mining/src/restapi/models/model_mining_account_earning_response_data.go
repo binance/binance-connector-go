@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,9 +17,11 @@ var _ common.MappedNullable = &MiningAccountEarningResponseData{}
 
 // MiningAccountEarningResponseData struct for MiningAccountEarningResponseData
 type MiningAccountEarningResponseData struct {
-	AccountProfits       []MiningAccountEarningResponseDataAccountProfitsInner `json:"accountProfits,omitempty"`
-	TotalNum             *int64                                                `json:"totalNum,omitempty"`
-	PageSize             *int64                                                `json:"pageSize,omitempty"`
+	AccountProfits []MiningAccountEarningResponseDataAccountProfitsInner `json:"accountProfits,omitempty"`
+	// Total records
+	TotalNum *int64 `json:"totalNum,omitempty"`
+	// Rows per page
+	PageSize             *int64 `json:"pageSize,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

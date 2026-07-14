@@ -26,13 +26,27 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("symbol_example").ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("BTCUSDT").ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"E":1589436922972,"T":1589436922959,"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":5}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"E":1589436922972,"T":1589436922959},"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":5}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -67,28 +81,43 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderBookResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("symbol_example").Execute()
+			resp, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("BTCUSDT").Execute()
 			resultChan <- common.ResultWebsocket[models.OrderBookResponse]{Value: resp, Err: err}
 		}()
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"E":1589436922972,"T":1589436922959,"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":5}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"E":1589436922972,"T":1589436922959},"bids":[["4.00000000","431.00000000"]],"asks":[["4.00000200","12.00000000"]],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":5}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/depth"[1:], sent["method"])
+		require.Equal(t, "/depth"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.OrderBookResponse{}, typedResp)
@@ -131,7 +160,7 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("symbol_example").ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.MarketDataAPI.OrderBook().Symbol("BTCUSDT").ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -177,8 +206,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"symbol":"BTCUSDT","bidPrice":"4.00000000","bidQty":"431.00000000","askPrice":"4.00000200","askQty":"9.00000000","time":1589437530011},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":2}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -219,22 +262,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"lastUpdateId":1027024,"symbol":"BTCUSDT","bidPrice":"4.00000000","bidQty":"431.00000000","askPrice":"4.00000200","askQty":"9.00000000","time":1589437530011},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":2}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/ticker.book"[1:], sent["method"])
+		require.Equal(t, "/ticker.book"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.SymbolOrderBookTickerResponse{}, typedResp)
@@ -303,8 +361,22 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","price":"6000.01","time":1589437530011},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":2}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -345,22 +417,37 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_MarketDataAPIService(
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"symbol":"BTCUSDT","price":"6000.01","time":1589437530011},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":2}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/ticker.price"[1:], sent["method"])
+		require.Equal(t, "/ticker.price"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.SymbolPriceTickerResponse{}, typedResp)

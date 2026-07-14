@@ -22,7 +22,7 @@ func QueryBlockTradeDetails() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.QueryBlockTradeDetails(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.QueryBlockTradeDetails(context.Background()).BlockOrderMatchingKey("12b96c28-ba05-8906-c89t-703215cfb2e6").Execute()
 	if err != nil {
 		log.Println(err)
 		return

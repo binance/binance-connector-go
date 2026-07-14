@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AssetNames** | Pointer to **[]string** |  | [optional] 
-**Rank** | Pointer to **int64** |  | [optional] 
-**Brackets** | Pointer to [**[]QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner**](QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner.md) |  | [optional] 
+**AssetNames** | Pointer to **[]string** | asset Names list. | [optional] 
+**Rank** | Pointer to **int64** | rank. | [optional] 
+**Brackets** | Pointer to [**[]QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner**](QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner.md) | brackets list. | [optional] 
 
 ## Methods
 

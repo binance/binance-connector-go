@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,10 +17,13 @@ var _ common.MappedNullable = &StartUserDataStreamResponse{}
 
 // StartUserDataStreamResponse struct for StartUserDataStreamResponse
 type StartUserDataStreamResponse struct {
-	Id                   *string                                      `json:"id,omitempty"`
-	Status               *int64                                       `json:"status,omitempty"`
-	Result               *StartUserDataStreamResponseResult           `json:"result,omitempty"`
-	RateLimits           []StartUserDataStreamResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	// positionId
+	Id *string `json:"id,omitempty"`
+	// Enum：completed，processing
+	Status *int64                             `json:"status,omitempty"`
+	Result *StartUserDataStreamResponseResult `json:"result,omitempty"`
+	// Rate limit definitions.
+	RateLimits           []CloseUserDataStreamResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +143,9 @@ func (o *StartUserDataStreamResponse) SetResult(v StartUserDataStreamResponseRes
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *StartUserDataStreamResponse) GetRateLimits() []StartUserDataStreamResponseRateLimitsInner {
+func (o *StartUserDataStreamResponse) GetRateLimits() []CloseUserDataStreamResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []StartUserDataStreamResponseRateLimitsInner
+		var ret []CloseUserDataStreamResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +153,7 @@ func (o *StartUserDataStreamResponse) GetRateLimits() []StartUserDataStreamRespo
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StartUserDataStreamResponse) GetRateLimitsOk() ([]StartUserDataStreamResponseRateLimitsInner, bool) {
+func (o *StartUserDataStreamResponse) GetRateLimitsOk() ([]CloseUserDataStreamResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +169,8 @@ func (o *StartUserDataStreamResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []StartUserDataStreamResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *StartUserDataStreamResponse) SetRateLimits(v []StartUserDataStreamResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []CloseUserDataStreamResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *StartUserDataStreamResponse) SetRateLimits(v []CloseUserDataStreamResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

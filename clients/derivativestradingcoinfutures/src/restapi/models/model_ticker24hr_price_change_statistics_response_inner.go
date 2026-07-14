@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,23 +17,40 @@ var _ common.MappedNullable = &Ticker24hrPriceChangeStatisticsResponseInner{}
 
 // Ticker24hrPriceChangeStatisticsResponseInner struct for Ticker24hrPriceChangeStatisticsResponseInner
 type Ticker24hrPriceChangeStatisticsResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	PriceChange          *string `json:"priceChange,omitempty"`
-	PriceChangePercent   *string `json:"priceChangePercent,omitempty"`
-	WeightedAvgPrice     *string `json:"weightedAvgPrice,omitempty"`
-	LastPrice            *string `json:"lastPrice,omitempty"`
-	LastQty              *string `json:"lastQty,omitempty"`
-	OpenPrice            *string `json:"openPrice,omitempty"`
-	HighPrice            *string `json:"highPrice,omitempty"`
-	LowPrice             *string `json:"lowPrice,omitempty"`
-	Volume               *string `json:"volume,omitempty"`
-	BaseVolume           *string `json:"baseVolume,omitempty"`
-	OpenTime             *int64  `json:"openTime,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
-	FirstId              *int64  `json:"firstId,omitempty"`
-	LastId               *int64  `json:"lastId,omitempty"`
-	Count                *int64  `json:"count,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Absolute price change in the 24h window.
+	PriceChange *string `json:"priceChange,omitempty"`
+	// Percentage price change in the 24h window.
+	PriceChangePercent *string `json:"priceChangePercent,omitempty"`
+	// Weighted average price in the 24h window.
+	WeightedAvgPrice *string `json:"weightedAvgPrice,omitempty"`
+	// Latest traded price.
+	LastPrice *string `json:"lastPrice,omitempty"`
+	// Quantity of the latest trade.
+	LastQty *string `json:"lastQty,omitempty"`
+	// Opening price of the 24h window.
+	OpenPrice *string `json:"openPrice,omitempty"`
+	// Highest price in the 24h window.
+	HighPrice *string `json:"highPrice,omitempty"`
+	// Lowest price in the 24h window.
+	LowPrice *string `json:"lowPrice,omitempty"`
+	// Base asset volume in the 24h window.
+	Volume *string `json:"volume,omitempty"`
+	// Base asset volume.
+	BaseVolume *string `json:"baseVolume,omitempty"`
+	// Start time of the 24h window (milliseconds).
+	OpenTime *int64 `json:"openTime,omitempty"`
+	// End time of the 24h window (milliseconds).
+	CloseTime *int64 `json:"closeTime,omitempty"`
+	// First tradeId
+	FirstId *int64 `json:"firstId,omitempty"`
+	// Last tradeId
+	LastId *int64 `json:"lastId,omitempty"`
+	// Total number of trades in the 24h window.
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

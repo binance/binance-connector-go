@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,21 +17,35 @@ var _ common.MappedNullable = &AccountInformationResponseResultAssetsInner{}
 
 // AccountInformationResponseResultAssetsInner struct for AccountInformationResponseResultAssetsInner
 type AccountInformationResponseResultAssetsInner struct {
-	Asset                  *string `json:"asset,omitempty"`
-	WalletBalance          *string `json:"walletBalance,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	MarginBalance          *string `json:"marginBalance,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// wallet balance
+	WalletBalance *string `json:"walletBalance,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// margin balance
+	MarginBalance *string `json:"marginBalance,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// total initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// initial margin required for positions with current mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	CrossWalletBalance     *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl             *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance       *string `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount      *string `json:"maxWithdrawAmount,omitempty"`
-	MarginAvailable        *bool   `json:"marginAvailable,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// crossed wallet balance
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// unrealized profit of crossed positions
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// available balance, only for USDT asset
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// maximum amount for transfer out, only for USDT asset
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// whether the asset can be used as margin in Multi-Assets mode
+	MarginAvailable *bool `json:"marginAvailable,omitempty"`
+	// reserved property, please ignore
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationResponseResultAssetsInner AccountInformationResponseResultAssetsInner

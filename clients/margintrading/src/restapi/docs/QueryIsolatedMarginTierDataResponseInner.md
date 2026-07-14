@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Tier** | Pointer to **int64** |  | [optional] 
-**EffectiveMultiple** | Pointer to **string** |  | [optional] 
-**InitialRiskRatio** | Pointer to **string** |  | [optional] 
-**LiquidationRiskRatio** | Pointer to **string** |  | [optional] 
-**BaseAssetMaxBorrowable** | Pointer to **string** |  | [optional] 
-**QuoteAssetMaxBorrowable** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**Tier** | Pointer to **int64** | tier. | [optional] 
+**EffectiveMultiple** | Pointer to **string** | effective Multiple. | [optional] 
+**InitialRiskRatio** | Pointer to **string** | initial Risk Ratio. | [optional] 
+**LiquidationRiskRatio** | Pointer to **string** | liquidation Risk Ratio. | [optional] 
+**BaseAssetMaxBorrowable** | Pointer to **string** | base Asset Max Borrowable. | [optional] 
+**QuoteAssetMaxBorrowable** | Pointer to **string** | quote Asset Max Borrowable. | [optional] 
 
 ## Methods
 

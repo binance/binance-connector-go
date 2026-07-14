@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerTime** | Pointer to **int64** |  | [optional] 
+**ServerTime** | Pointer to **int64** | Server Time. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetLimitPricePairsResponse{}
 
 // GetLimitPricePairsResponse struct for GetLimitPricePairsResponse
 type GetLimitPricePairsResponse struct {
+	// cross Margin Symbols list.
 	CrossMarginSymbols   []string `json:"crossMarginSymbols,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

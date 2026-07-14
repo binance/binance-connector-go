@@ -16,7 +16,7 @@ func main() {
 
 func PartialBookDepthStreams() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath("wss://fstream.binance.com"),
+		common.WithWsStreamsBasePath(common.DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl),
 	)
 
 	wsClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
@@ -28,7 +28,7 @@ func PartialBookDepthStreams() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.PublicAPI.PartialBookDepthStreams().Symbol("btcusdt").Levels(10).Execute()
+	handler, err := wsClient.WebsocketStreams.PublicAPI.PartialBookDepthStreams().Symbol("btcusdt").Levels(models.PartialBookDepthStreamsLevelsParameterLevels5).Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}

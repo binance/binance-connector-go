@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **int64** |  | [optional] 
+**Total** | Pointer to **int64** | total. | [optional] 
 **Rows** | Pointer to [**[]QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponseRowsInner**](QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponseRowsInner.md) |  | [optional] 
 
 ## Methods

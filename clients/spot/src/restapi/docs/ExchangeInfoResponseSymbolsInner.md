@@ -25,7 +25,7 @@ Name         | Type          | Description.  | Notes
 **PegInstructionsAllowed** | Pointer to **bool** |  | [optional] 
 **IsSpotTradingAllowed** | Pointer to **bool** |  | [optional] 
 **IsMarginTradingAllowed** | Pointer to **bool** |  | [optional] 
-**Filters** | Pointer to [**[]SymbolFilters**](SymbolFilters.md) |  | [optional] 
+**Filters** | Pointer to [**[]MyFiltersResponseSymbolFiltersInner**](MyFiltersResponseSymbolFiltersInner.md) |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **PermissionSets** | Pointer to **[][]string** |  | [optional] 
 **DefaultSelfTradePreventionMode** | Pointer to **string** |  | [optional] 
@@ -577,20 +577,20 @@ HasIsMarginTradingAllowed returns a boolean if a field has been set.
 
 ### GetFilters
 
-`func (o *ExchangeInfoResponseSymbolsInner) GetFilters() []SymbolFilters`
+`func (o *ExchangeInfoResponseSymbolsInner) GetFilters() []MyFiltersResponseSymbolFiltersInner`
 
 GetFilters returns the Filters field if non-nil, zero value otherwise.
 
 ### GetFiltersOk
 
-`func (o *ExchangeInfoResponseSymbolsInner) GetFiltersOk() (*[]SymbolFilters, bool)`
+`func (o *ExchangeInfoResponseSymbolsInner) GetFiltersOk() (*[]MyFiltersResponseSymbolFiltersInner, bool)`
 
 GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFilters
 
-`func (o *ExchangeInfoResponseSymbolsInner) SetFilters(v []SymbolFilters)`
+`func (o *ExchangeInfoResponseSymbolsInner) SetFilters(v []MyFiltersResponseSymbolFiltersInner)`
 
 SetFilters sets Filters field to given value.
 

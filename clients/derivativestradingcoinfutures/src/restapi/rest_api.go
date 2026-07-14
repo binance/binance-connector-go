@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package binancederivativestradingcoinfuturesrestapi
@@ -14,23 +14,22 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Derivatives Trading COIN Futures REST API API v1.9.0
+// RestAPIClient manages communication with the Futures (COIN-M) REST API API v1.10.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
 	// API Services
-	AccountAPI                  *AccountAPIService
-	MarketDataAPI               *MarketDataAPIService
-	PortfolioMarginEndpointsAPI *PortfolioMarginEndpointsAPIService
-	TradeAPI                    *TradeAPIService
-	UserDataStreamsAPI          *UserDataStreamsAPIService
+	AccountAPI         *AccountAPIService
+	MarketDataAPI      *MarketDataAPIService
+	TradeAPI           *TradeAPIService
+	UserDataStreamsAPI *UserDataStreamsAPIService
 }
 
 type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Derivatives Trading COIN Futures REST API REST API client
+// NewRestAPIClient creates a new Binance Futures (COIN-M) REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -40,14 +39,13 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-derivativestradingcoinfutures/1.9.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-derivativestradingcoinfutures/1.10.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
 	// API Services
 	c.AccountAPI = &AccountAPIService{client: c}
 	c.MarketDataAPI = &MarketDataAPIService{client: c}
-	c.PortfolioMarginEndpointsAPI = &PortfolioMarginEndpointsAPIService{client: c}
 	c.TradeAPI = &TradeAPIService{client: c}
 	c.UserDataStreamsAPI = &UserDataStreamsAPIService{client: c}
 

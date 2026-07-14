@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **StandardCommissionForOrder** | Pointer to [**OrderTestResponseResultStandardCommissionForOrder**](OrderTestResponseResultStandardCommissionForOrder.md) |  | [optional] 
-**SpecialCommissionForOrder** | Pointer to [**OrderTestResponseResultSpecialCommissionForOrder**](OrderTestResponseResultSpecialCommissionForOrder.md) |  | [optional] 
+**SpecialCommissionForOrder** | Pointer to [**OrderTestResponseResultStandardCommissionForOrder**](OrderTestResponseResultStandardCommissionForOrder.md) |  | [optional] 
 **TaxCommissionForOrder** | Pointer to [**OrderTestResponseResultStandardCommissionForOrder**](OrderTestResponseResultStandardCommissionForOrder.md) |  | [optional] 
 **Discount** | Pointer to [**OrderTestResponseResultDiscount**](OrderTestResponseResultDiscount.md) |  | [optional] 
 
@@ -55,20 +55,20 @@ HasStandardCommissionForOrder returns a boolean if a field has been set.
 
 ### GetSpecialCommissionForOrder
 
-`func (o *OrderTestResponseResult) GetSpecialCommissionForOrder() OrderTestResponseResultSpecialCommissionForOrder`
+`func (o *OrderTestResponseResult) GetSpecialCommissionForOrder() OrderTestResponseResultStandardCommissionForOrder`
 
 GetSpecialCommissionForOrder returns the SpecialCommissionForOrder field if non-nil, zero value otherwise.
 
 ### GetSpecialCommissionForOrderOk
 
-`func (o *OrderTestResponseResult) GetSpecialCommissionForOrderOk() (*OrderTestResponseResultSpecialCommissionForOrder, bool)`
+`func (o *OrderTestResponseResult) GetSpecialCommissionForOrderOk() (*OrderTestResponseResultStandardCommissionForOrder, bool)`
 
 GetSpecialCommissionForOrderOk returns a tuple with the SpecialCommissionForOrder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpecialCommissionForOrder
 
-`func (o *OrderTestResponseResult) SetSpecialCommissionForOrder(v OrderTestResponseResultSpecialCommissionForOrder)`
+`func (o *OrderTestResponseResult) SetSpecialCommissionForOrder(v OrderTestResponseResultStandardCommissionForOrder)`
 
 SetSpecialCommissionForOrder sets SpecialCommissionForOrder field to given value.
 

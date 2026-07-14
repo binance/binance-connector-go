@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &EarningsListResponseDataAccountProfitsInner{}
 
 // EarningsListResponseDataAccountProfitsInner struct for EarningsListResponseDataAccountProfitsInner
 type EarningsListResponseDataAccountProfitsInner struct {
-	Time                 *int64   `json:"time,omitempty"`
-	Type                 *int64   `json:"type,omitempty"`
-	HashTransfer         *int64   `json:"hashTransfer,omitempty"`
-	TransferAmount       *float32 `json:"transferAmount,omitempty"`
-	DayHashRate          *int64   `json:"dayHashRate,omitempty"`
-	ProfitAmount         *float32 `json:"profitAmount,omitempty"`
-	CoinName             *string  `json:"coinName,omitempty"`
-	Status               *int64   `json:"status,omitempty"`
+	// Mining date
+	Time *int64 `json:"time,omitempty"`
+	// 0: Mining Wallet, 5: Mining Address, 7: Pool Savings, 8: Transferred, 31: Income Transfer, 32: Hashrate Resale-Mining Wallet, 33: Hashrate Resale-Pool Savings
+	Type *int64 `json:"type,omitempty"`
+	// Transferred hashrate
+	HashTransfer *int64 `json:"hashTransfer,omitempty"`
+	// Transferred income
+	TransferAmount *float32 `json:"transferAmount,omitempty"`
+	// Daily hashrate
+	DayHashRate *int64 `json:"dayHashRate,omitempty"`
+	// Earnings amount
+	ProfitAmount *float32 `json:"profitAmount,omitempty"`
+	// Coin type
+	CoinName *string `json:"coinName,omitempty"`
+	// Status: 0 Unpaid, 1 Paying, 2 Paid
+	Status               *int64 `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

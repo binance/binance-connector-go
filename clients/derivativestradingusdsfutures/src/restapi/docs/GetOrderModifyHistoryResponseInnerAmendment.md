@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Price** | Pointer to [**GetOrderModifyHistoryResponseInnerAmendmentPrice**](GetOrderModifyHistoryResponseInnerAmendmentPrice.md) |  | [optional] 
 **OrigQty** | Pointer to [**GetOrderModifyHistoryResponseInnerAmendmentOrigQty**](GetOrderModifyHistoryResponseInnerAmendmentOrigQty.md) |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**Count** | Pointer to **int64** | Order modification count, representing the number of times the order has been modified | [optional] 
 
 ## Methods
 

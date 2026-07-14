@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | Asset symbol. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,18 +15,28 @@ import (
 // checks if the AccountInformationV3ResponsePositionsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountInformationV3ResponsePositionsInner{}
 
-// AccountInformationV3ResponsePositionsInner struct for AccountInformationV3ResponsePositionsInner
+// AccountInformationV3ResponsePositionsInner positions of all symbols user had position/ open orders are returned
 type AccountInformationV3ResponsePositionsInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	UnrealizedProfit     *string `json:"unrealizedProfit,omitempty"`
-	IsolatedMargin       *string `json:"isolatedMargin,omitempty"`
-	Notional             *string `json:"notional,omitempty"`
-	IsolatedWallet       *string `json:"isolatedWallet,omitempty"`
-	InitialMargin        *string `json:"initialMargin,omitempty"`
-	MaintMargin          *string `json:"maintMargin,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Position side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Position quantity.
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// Unrealized profit.
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// Isolated margin.
+	IsolatedMargin *string `json:"isolatedMargin,omitempty"`
+	// Position notional value.
+	Notional *string `json:"notional,omitempty"`
+	// Isolated wallet balance.
+	IsolatedWallet *string `json:"isolatedWallet,omitempty"`
+	// Initial margin requirement.
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// Maintenance margin requirement.
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// Last update time in milliseconds.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

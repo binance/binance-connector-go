@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FeeBurn** | Pointer to **bool** |  | [optional] 
+**FeeBurn** | Pointer to **bool** | \&quot;true\&quot;: Fee Discount On; \&quot;false\&quot;: Fee Discount Off | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionsrestapi
@@ -25,7 +25,6 @@ type ApiAutoCancelAllOpenOrdersRequest struct {
 	recvWindow  *int64
 }
 
-// Option Underlying Symbols, e.g BTCUSDT,ETHUSDT
 func (r ApiAutoCancelAllOpenOrdersRequest) Underlyings(underlyings string) ApiAutoCancelAllOpenOrdersRequest {
 	r.underlyings = &underlyings
 	return r
@@ -44,10 +43,10 @@ func (r ApiAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse[mo
 AutoCancelAllOpenOrders Auto-Cancel All Open Orders (Kill-Switch) Heartbeat (TRADE)
 Post /eapi/v1/countdownCancelAllHeartBeat
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Auto-Cancel-All-Open-Orders-Heartbeat
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#auto-cancel-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlyings -  Option Underlying Symbols, e.g BTCUSDT,ETHUSDT
+@param underlyings -
 @param recvWindow -
 @return ApiAutoCancelAllOpenOrdersRequest
 */
@@ -77,7 +76,15 @@ func (a *MarketMakerEndpointsAPIService) AutoCancelAllOpenOrdersExecute(r ApiAut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AutoCancelAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -92,12 +99,13 @@ type ApiGetAutoCancelAllOpenOrdersRequest struct {
 	recvWindow *int64
 }
 
-// underlying, e.g BTCUSDT
+// Underlying asset.
 func (r ApiGetAutoCancelAllOpenOrdersRequest) Underlying(underlying string) ApiGetAutoCancelAllOpenOrdersRequest {
 	r.underlying = &underlying
 	return r
 }
 
+// Recv Window.
 func (r ApiGetAutoCancelAllOpenOrdersRequest) RecvWindow(recvWindow int64) ApiGetAutoCancelAllOpenOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -111,11 +119,11 @@ func (r ApiGetAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse
 GetAutoCancelAllOpenOrders Get Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE)
 Get /eapi/v1/countdownCancelAll
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Auto-Cancel-All-Open-Orders-Config
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-auto-cancel-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  underlying, e.g BTCUSDT
-@param recvWindow -
+@param underlying -  Underlying asset.
+@param recvWindow -  Recv Window.
 @return ApiGetAutoCancelAllOpenOrdersRequest
 */
 func (a *MarketMakerEndpointsAPIService) GetAutoCancelAllOpenOrders(ctx context.Context) ApiGetAutoCancelAllOpenOrdersRequest {
@@ -142,7 +150,15 @@ func (a *MarketMakerEndpointsAPIService) GetAutoCancelAllOpenOrdersExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetAutoCancelAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -157,12 +173,13 @@ type ApiGetMarketMakerProtectionConfigRequest struct {
 	recvWindow *int64
 }
 
-// underlying, e.g BTCUSDT
+// Underlying asset.
 func (r ApiGetMarketMakerProtectionConfigRequest) Underlying(underlying string) ApiGetMarketMakerProtectionConfigRequest {
 	r.underlying = &underlying
 	return r
 }
 
+// Recv Window.
 func (r ApiGetMarketMakerProtectionConfigRequest) RecvWindow(recvWindow int64) ApiGetMarketMakerProtectionConfigRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -176,11 +193,11 @@ func (r ApiGetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiResp
 GetMarketMakerProtectionConfig Get Market Maker Protection Config (TRADE)
 Get /eapi/v1/mmp
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Get-Market-Maker-Protection-Config
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#get-market-maker-protection-config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  underlying, e.g BTCUSDT
-@param recvWindow -
+@param underlying -  Underlying asset.
+@param recvWindow -  Recv Window.
 @return ApiGetMarketMakerProtectionConfigRequest
 */
 func (a *MarketMakerEndpointsAPIService) GetMarketMakerProtectionConfig(ctx context.Context) ApiGetMarketMakerProtectionConfigRequest {
@@ -200,14 +217,24 @@ func (a *MarketMakerEndpointsAPIService) GetMarketMakerProtectionConfigExecute(r
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.underlying != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
+	if r.underlying == nil {
+		return nil, common.ReportError("underlying is required and must be specified")
 	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetMarketMakerProtectionConfigResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -222,7 +249,6 @@ type ApiResetMarketMakerProtectionConfigRequest struct {
 	recvWindow *int64
 }
 
-// underlying, e.g BTCUSDT
 func (r ApiResetMarketMakerProtectionConfigRequest) Underlying(underlying string) ApiResetMarketMakerProtectionConfigRequest {
 	r.underlying = &underlying
 	return r
@@ -241,10 +267,10 @@ func (r ApiResetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiRe
 ResetMarketMakerProtectionConfig Reset Market Maker Protection Config (TRADE)
 Post /eapi/v1/mmpReset
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Reset-Market-Maker-Protection-Config
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#reset-market-maker-protection-config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  underlying, e.g BTCUSDT
+@param underlying -
 @param recvWindow -
 @return ApiResetMarketMakerProtectionConfigRequest
 */
@@ -265,14 +291,24 @@ func (a *MarketMakerEndpointsAPIService) ResetMarketMakerProtectionConfigExecute
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.underlying != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
+	if r.underlying == nil {
+		return nil, common.ReportError("underlying is required and must be specified")
 	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ResetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ResetMarketMakerProtectionConfigResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -288,7 +324,6 @@ type ApiSetAutoCancelAllOpenOrdersRequest struct {
 	recvWindow    *int64
 }
 
-// Option underlying, e.g BTCUSDT
 func (r ApiSetAutoCancelAllOpenOrdersRequest) Underlying(underlying string) ApiSetAutoCancelAllOpenOrdersRequest {
 	r.underlying = &underlying
 	return r
@@ -313,10 +348,10 @@ func (r ApiSetAutoCancelAllOpenOrdersRequest) Execute() (*common.RestApiResponse
 SetAutoCancelAllOpenOrders Set Auto-Cancel All Open Orders (Kill-Switch) Config (TRADE)
 Post /eapi/v1/countdownCancelAll
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Auto-Cancel-All-Open-Orders-Config
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-auto-cancel-all-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  Option underlying, e.g BTCUSDT
+@param underlying -
 @param countdownTime -  Countdown time in milliseconds (ex. 1,000 for 1 second). 0 to disable the timer. Negative values (ex. -10000) are not accepted. Minimum acceptable value is 5,000
 @param recvWindow -
 @return ApiSetAutoCancelAllOpenOrdersRequest
@@ -341,6 +376,7 @@ func (a *MarketMakerEndpointsAPIService) SetAutoCancelAllOpenOrdersExecute(r Api
 	if r.underlying == nil {
 		return nil, common.ReportError("underlying is required and must be specified")
 	}
+
 	if r.countdownTime == nil {
 		return nil, common.ReportError("countdownTime is required and must be specified")
 	}
@@ -351,7 +387,15 @@ func (a *MarketMakerEndpointsAPIService) SetAutoCancelAllOpenOrdersExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetAutoCancelAllOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetAutoCancelAllOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -370,13 +414,12 @@ type ApiSetMarketMakerProtectionConfigRequest struct {
 	recvWindow               *int64
 }
 
-// underlying, e.g BTCUSDT
 func (r ApiSetMarketMakerProtectionConfigRequest) Underlying(underlying string) ApiSetMarketMakerProtectionConfigRequest {
 	r.underlying = &underlying
 	return r
 }
 
-// MMP Interval in milliseconds; Range (0,5000]
+// MMP Interval in milliseconds
 func (r ApiSetMarketMakerProtectionConfigRequest) WindowTimeInMilliseconds(windowTimeInMilliseconds int64) ApiSetMarketMakerProtectionConfigRequest {
 	r.windowTimeInMilliseconds = &windowTimeInMilliseconds
 	return r
@@ -413,11 +456,11 @@ func (r ApiSetMarketMakerProtectionConfigRequest) Execute() (*common.RestApiResp
 SetMarketMakerProtectionConfig Set Market Maker Protection Config (TRADE)
 Post /eapi/v1/mmpSet
 
-https://developers.binance.com/docs/derivatives/options-trading/market-maker-endpoints/Set-Market-Maker-Protection-Config
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/market-maker-endpoints#set-market-maker-protection-config
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  underlying, e.g BTCUSDT
-@param windowTimeInMilliseconds -  MMP Interval in milliseconds; Range (0,5000]
+@param underlying -
+@param windowTimeInMilliseconds -  MMP Interval in milliseconds
 @param frozenTimeInMilliseconds -  MMP frozen time in milliseconds, if set to 0 manual reset is required
 @param qtyLimit -  quantity limit
 @param deltaLimit -  net delta limit
@@ -441,26 +484,50 @@ func (a *MarketMakerEndpointsAPIService) SetMarketMakerProtectionConfigExecute(r
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.underlying != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
+	if r.underlying == nil {
+		return nil, common.ReportError("underlying is required and must be specified")
 	}
-	if r.windowTimeInMilliseconds != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "windowTimeInMilliseconds", r.windowTimeInMilliseconds, "form", "")
+
+	if r.windowTimeInMilliseconds == nil {
+		return nil, common.ReportError("windowTimeInMilliseconds is required and must be specified")
 	}
-	if r.frozenTimeInMilliseconds != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "frozenTimeInMilliseconds", r.frozenTimeInMilliseconds, "form", "")
+	if *r.windowTimeInMilliseconds < 0 {
+		return nil, common.ReportError("windowTimeInMilliseconds must be greater than 0")
 	}
-	if r.qtyLimit != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "qtyLimit", r.qtyLimit, "form", "")
+	if *r.windowTimeInMilliseconds > 5000 {
+		return nil, common.ReportError("windowTimeInMilliseconds must be less than 5000")
 	}
-	if r.deltaLimit != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "deltaLimit", r.deltaLimit, "form", "")
+
+	if r.frozenTimeInMilliseconds == nil {
+		return nil, common.ReportError("frozenTimeInMilliseconds is required and must be specified")
 	}
+
+	if r.qtyLimit == nil {
+		return nil, common.ReportError("qtyLimit is required and must be specified")
+	}
+
+	if r.deltaLimit == nil {
+		return nil, common.ReportError("deltaLimit is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "underlying", r.underlying, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "windowTimeInMilliseconds", r.windowTimeInMilliseconds, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "frozenTimeInMilliseconds", r.frozenTimeInMilliseconds, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "qtyLimit", r.qtyLimit, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "deltaLimit", r.deltaLimit, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetMarketMakerProtectionConfigResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetMarketMakerProtectionConfigResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

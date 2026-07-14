@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &ExchangeInformationResponseRateLimitsInner{}
 
 // ExchangeInformationResponseRateLimitsInner struct for ExchangeInformationResponseRateLimitsInner
 type ExchangeInformationResponseRateLimitsInner struct {
-	RateLimitType        *string `json:"rateLimitType,omitempty"`
-	Interval             *string `json:"interval,omitempty"`
-	IntervalNum          *int64  `json:"intervalNum,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
+	// rate Limit Type
+	RateLimitType *string `json:"rateLimitType,omitempty"`
+	// interval
+	Interval *string `json:"interval,omitempty"`
+	// interval Num
+	IntervalNum *int64 `json:"intervalNum,omitempty"`
+	// limit
+	Limit                *int64 `json:"limit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

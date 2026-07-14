@@ -21,7 +21,7 @@ func RecentTradesList() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.RecentTradesList(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.RecentTradesList(context.Background()).Symbol("BTC-200730-9000-C").Execute()
 	if err != nil {
 		log.Println(err)
 		return

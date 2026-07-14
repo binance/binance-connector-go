@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &GetCountryListResponseCountriesInner{}
 
 // GetCountryListResponseCountriesInner struct for GetCountryListResponseCountriesInner
 type GetCountryListResponseCountriesInner struct {
-	CountryCode           *string `json:"countryCode,omitempty"`
-	CountryName           *string `json:"countryName,omitempty"`
-	BlockType             *string `json:"blockType,omitempty"`
-	DepositAllowed        *bool   `json:"depositAllowed,omitempty"`
-	WithdrawalAllowed     *bool   `json:"withdrawalAllowed,omitempty"`
-	HasRegionRestrictions *bool   `json:"hasRegionRestrictions,omitempty"`
+	// ISO 2-digit country code, lowercase.
+	CountryCode *string `json:"countryCode,omitempty"`
+	// Country display name.
+	CountryName *string `json:"countryName,omitempty"`
+	// `supported`, `limited`, or `blocked`.
+	BlockType *string `json:"blockType,omitempty"`
+	// Whether deposit is allowed for this country.
+	DepositAllowed *bool `json:"depositAllowed,omitempty"`
+	// Whether withdrawal is allowed for this country.
+	WithdrawalAllowed *bool `json:"withdrawalAllowed,omitempty"`
+	// Whether this country has region-level restrictions.
+	HasRegionRestrictions *bool `json:"hasRegionRestrictions,omitempty"`
 	AdditionalProperties  map[string]interface{}
 }
 

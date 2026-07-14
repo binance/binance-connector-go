@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading WebSocket Market Streams
+Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Margin Trading WebSocket Market Streams
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -71,30 +71,6 @@ func (dst *RiskDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'USER_LIABILITY_CHANGE'
 	if jsonDict["e"] == "USER_LIABILITY_CHANGE" {
-		// try to unmarshal JSON data into UserLiabilityChange
-		err = json.Unmarshal(cleanedData, &dst.UserLiabilityChange)
-		if err == nil {
-			return nil // data stored in dst.UserLiabilityChange, return on the first match
-		} else {
-			dst.UserLiabilityChange = nil
-			return fmt.Errorf("failed to unmarshal RiskDataStreamEventsResponse as UserLiabilityChange: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'marginLevelStatusChange'
-	if jsonDict["e"] == "marginLevelStatusChange" {
-		// try to unmarshal JSON data into MarginLevelStatusChange
-		err = json.Unmarshal(cleanedData, &dst.MarginLevelStatusChange)
-		if err == nil {
-			return nil // data stored in dst.MarginLevelStatusChange, return on the first match
-		} else {
-			dst.MarginLevelStatusChange = nil
-			return fmt.Errorf("failed to unmarshal RiskDataStreamEventsResponse as MarginLevelStatusChange: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'userLiabilityChange'
-	if jsonDict["e"] == "userLiabilityChange" {
 		// try to unmarshal JSON data into UserLiabilityChange
 		err = json.Unmarshal(cleanedData, &dst.UserLiabilityChange)
 		if err == nil {

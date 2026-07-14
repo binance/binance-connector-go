@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package binancewalletrestapi
@@ -37,7 +37,7 @@ func (r ApiAccountApiTradingStatusRequest) Execute() (*common.RestApiResponse[mo
 AccountApiTradingStatus Account API Trading Status (USER_DATA)
 Get /sapi/v1/account/apiTradingStatus
 
-https://developers.binance.com/docs/wallet/account/Account-API-Trading-Status
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-api-trading-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -64,7 +64,15 @@ func (a *AccountAPIService) AccountApiTradingStatusExecute(r ApiAccountApiTradin
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountApiTradingStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountApiTradingStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,7 +99,7 @@ func (r ApiAccountInfoRequest) Execute() (*common.RestApiResponse[models.Account
 AccountInfo Account info (USER_DATA)
 Get /sapi/v1/account/info
 
-https://developers.binance.com/docs/wallet/account/Account-info
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -118,7 +126,15 @@ func (a *AccountAPIService) AccountInfoExecute(r ApiAccountInfoRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -145,7 +161,7 @@ func (r ApiAccountStatusRequest) Execute() (*common.RestApiResponse[models.Accou
 AccountStatus Account Status (USER_DATA)
 Get /sapi/v1/account/status
 
-https://developers.binance.com/docs/wallet/account/Account-Status
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#account-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -172,7 +188,15 @@ func (a *AccountAPIService) AccountStatusExecute(r ApiAccountStatusRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -183,14 +207,14 @@ func (a *AccountAPIService) AccountStatusExecute(r ApiAccountStatusRequest) (*co
 type ApiDailyAccountSnapshotRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	type_      *string
+	type_      *models.DailyAccountSnapshotTypeParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
 	recvWindow *int64
 }
 
-func (r ApiDailyAccountSnapshotRequest) Type(type_ string) ApiDailyAccountSnapshotRequest {
+func (r ApiDailyAccountSnapshotRequest) Type(type_ models.DailyAccountSnapshotTypeParameter) ApiDailyAccountSnapshotRequest {
 	r.type_ = &type_
 	return r
 }
@@ -205,7 +229,6 @@ func (r ApiDailyAccountSnapshotRequest) EndTime(endTime int64) ApiDailyAccountSn
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiDailyAccountSnapshotRequest) Limit(limit int64) ApiDailyAccountSnapshotRequest {
 	r.limit = &limit
 	return r
@@ -224,13 +247,13 @@ func (r ApiDailyAccountSnapshotRequest) Execute() (*common.RestApiResponse[model
 DailyAccountSnapshot Daily Account Snapshot (USER_DATA)
 Get /sapi/v1/accountSnapshot
 
-https://developers.binance.com/docs/wallet/account/daily-account-snapshoot
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#daily-account-snapshot
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param type_ -
 @param startTime -
 @param endTime -
-@param limit -  min 7, max 30, default 7
+@param limit -
 @param recvWindow -
 @return ApiDailyAccountSnapshotRequest
 */
@@ -269,7 +292,15 @@ func (a *AccountAPIService) DailyAccountSnapshotExecute(r ApiDailyAccountSnapsho
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DailyAccountSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DailyAccountSnapshotResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -296,7 +327,7 @@ func (r ApiDisableFastWithdrawSwitchRequest) Execute() (struct{}, error) {
 DisableFastWithdrawSwitch Disable Fast Withdraw Switch (USER_DATA)
 Post /sapi/v1/account/disableFastWithdrawSwitch
 
-https://developers.binance.com/docs/wallet/account/Disable-Fast-Withdraw-Switch
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#disable-fast-withdraw-switch
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -321,7 +352,15 @@ func (a *AccountAPIService) DisableFastWithdrawSwitchExecute(r ApiDisableFastWit
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -348,7 +387,7 @@ func (r ApiEnableFastWithdrawSwitchRequest) Execute() (struct{}, error) {
 EnableFastWithdrawSwitch Enable Fast Withdraw Switch (USER_DATA)
 Post /sapi/v1/account/enableFastWithdrawSwitch
 
-https://developers.binance.com/docs/wallet/account/Enable-Fast-Withdraw-Switch
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#enable-fast-withdraw-switch
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -373,7 +412,15 @@ func (a *AccountAPIService) EnableFastWithdrawSwitchExecute(r ApiEnableFastWithd
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -400,7 +447,7 @@ func (r ApiGetApiKeyPermissionRequest) Execute() (*common.RestApiResponse[models
 GetApiKeyPermission Get API Key Permission (USER_DATA)
 Get /sapi/v1/account/apiRestrictions
 
-https://developers.binance.com/docs/wallet/account/api-key-permission
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/account#get-api-key-permission
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -427,7 +474,15 @@ func (a *AccountAPIService) GetApiKeyPermissionExecute(r ApiGetApiKeyPermissionR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetApiKeyPermissionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetApiKeyPermissionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

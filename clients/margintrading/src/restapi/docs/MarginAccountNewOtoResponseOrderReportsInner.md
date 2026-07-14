@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**OrderListId** | Pointer to **int64** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**TransactTime** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**CummulativeQuoteQty** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**OrderId** | Pointer to **int64** | order Id. | [optional] 
+**OrderListId** | Pointer to **int64** | order List Id. | [optional] 
+**ClientOrderId** | Pointer to **string** | client Order Id. | [optional] 
+**TransactTime** | Pointer to **int64** | transact Time. | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**OrigQty** | Pointer to **string** | orig Qty. | [optional] 
+**ExecutedQty** | Pointer to **string** | executed Qty. | [optional] 
+**CummulativeQuoteQty** | Pointer to **string** | cummulative Quote Qty. | [optional] 
+**Status** | Pointer to **string** | status. | [optional] 
+**TimeInForce** | Pointer to **string** | time In Force. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**Side** | Pointer to **string** | side. | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self Trade Prevention Mode. | [optional] 
 
 ## Methods
 

@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Time** | Pointer to **int64** | Transaction time | [optional] 
 
 ## Methods
 

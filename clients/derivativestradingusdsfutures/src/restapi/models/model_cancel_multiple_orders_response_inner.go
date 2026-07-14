@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,34 +17,58 @@ var _ common.MappedNullable = &CancelMultipleOrdersResponseInner{}
 
 // CancelMultipleOrdersResponseInner struct for CancelMultipleOrdersResponseInner
 type CancelMultipleOrdersResponseInner struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumQuote                *string `json:"cumQuote,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	CumQty        *string `json:"cumQty,omitempty"`
+	// Cum Quote. Will be removed after CM migration.
+	CumQuote *string `json:"cumQuote,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Position Side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Status.
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Orig Type.
+	OrigType *string `json:"origType,omitempty"`
+	// Type.
+	Type *string `json:"type,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// Update Time.
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Working Type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	Code                    *int64  `json:"code,omitempty"`
-	Msg                     *string `json:"msg,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// order pre-set auot cancel time for TIF GTD order
+	GoodTillDate         *int64  `json:"goodTillDate,omitempty"`
+	Code                 *int64  `json:"code,omitempty"`
+	Msg                  *string `json:"msg,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CancelMultipleOrdersResponseInner CancelMultipleOrdersResponseInner
@@ -256,38 +280,6 @@ func (o *CancelMultipleOrdersResponseInner) HasOrigQty() bool {
 // SetOrigQty gets a reference to the given string and assigns it to the OrigQty field.
 func (o *CancelMultipleOrdersResponseInner) SetOrigQty(v string) {
 	o.OrigQty = &v
-}
-
-// GetOrigType returns the OrigType field value if set, zero value otherwise.
-func (o *CancelMultipleOrdersResponseInner) GetOrigType() string {
-	if o == nil || common.IsNil(o.OrigType) {
-		var ret string
-		return ret
-	}
-	return *o.OrigType
-}
-
-// GetOrigTypeOk returns a tuple with the OrigType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelMultipleOrdersResponseInner) GetOrigTypeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.OrigType) {
-		return nil, false
-	}
-	return o.OrigType, true
-}
-
-// HasOrigType returns a boolean if a field has been set.
-func (o *CancelMultipleOrdersResponseInner) HasOrigType() bool {
-	if o != nil && !common.IsNil(o.OrigType) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrigType gets a reference to the given string and assigns it to the OrigType field.
-func (o *CancelMultipleOrdersResponseInner) SetOrigType(v string) {
-	o.OrigType = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -576,6 +568,38 @@ func (o *CancelMultipleOrdersResponseInner) HasTimeInForce() bool {
 // SetTimeInForce gets a reference to the given string and assigns it to the TimeInForce field.
 func (o *CancelMultipleOrdersResponseInner) SetTimeInForce(v string) {
 	o.TimeInForce = &v
+}
+
+// GetOrigType returns the OrigType field value if set, zero value otherwise.
+func (o *CancelMultipleOrdersResponseInner) GetOrigType() string {
+	if o == nil || common.IsNil(o.OrigType) {
+		var ret string
+		return ret
+	}
+	return *o.OrigType
+}
+
+// GetOrigTypeOk returns a tuple with the OrigType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOrdersResponseInner) GetOrigTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.OrigType) {
+		return nil, false
+	}
+	return o.OrigType, true
+}
+
+// HasOrigType returns a boolean if a field has been set.
+func (o *CancelMultipleOrdersResponseInner) HasOrigType() bool {
+	if o != nil && !common.IsNil(o.OrigType) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigType gets a reference to the given string and assigns it to the OrigType field.
+func (o *CancelMultipleOrdersResponseInner) SetOrigType(v string) {
+	o.OrigType = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -958,9 +982,6 @@ func (o CancelMultipleOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
 	}
-	if !common.IsNil(o.OrigType) {
-		toSerialize["origType"] = o.OrigType
-	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
@@ -987,6 +1008,9 @@ func (o CancelMultipleOrdersResponseInner) ToMap() (map[string]interface{}, erro
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
+	}
+	if !common.IsNil(o.OrigType) {
+		toSerialize["origType"] = o.OrigType
 	}
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
@@ -1049,7 +1073,6 @@ func (o *CancelMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")
-		delete(additionalProperties, "origType")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "side")
@@ -1059,6 +1082,7 @@ func (o *CancelMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "timeInForce")
+		delete(additionalProperties, "origType")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "activatePrice")
 		delete(additionalProperties, "priceRate")

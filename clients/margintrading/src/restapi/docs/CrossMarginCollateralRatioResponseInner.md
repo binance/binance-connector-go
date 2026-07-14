@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Collaterals** | Pointer to [**[]CrossMarginCollateralRatioResponseInnerCollateralsInner**](CrossMarginCollateralRatioResponseInnerCollateralsInner.md) |  | [optional] 
-**AssetNames** | Pointer to **[]string** |  | [optional] 
+**Collaterals** | Pointer to [**[]CrossMarginCollateralRatioResponseInnerCollateralsInner**](CrossMarginCollateralRatioResponseInnerCollateralsInner.md) | collaterals list. | [optional] 
+**AssetNames** | Pointer to **[]string** | asset Names list. | [optional] 
 
 ## Methods
 

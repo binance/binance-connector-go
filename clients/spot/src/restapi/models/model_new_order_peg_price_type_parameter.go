@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,16 +16,14 @@ type NewOrderPegPriceTypeParameter string
 
 // List of newOrder_pegPriceType_parameter
 const (
-	NewOrderPegPriceTypeParameterPrimaryPeg       NewOrderPegPriceTypeParameter = "PRIMARY_PEG"
-	NewOrderPegPriceTypeParameterMarketPeg        NewOrderPegPriceTypeParameter = "MARKET_PEG"
-	NewOrderPegPriceTypeParameterNonRepresentable NewOrderPegPriceTypeParameter = "NON_REPRESENTABLE"
+	NewOrderPegPriceTypeParameterPrimaryPeg NewOrderPegPriceTypeParameter = "PRIMARY_PEG"
+	NewOrderPegPriceTypeParameterMarketPeg  NewOrderPegPriceTypeParameter = "MARKET_PEG"
 )
 
 // All allowed values of NewOrderPegPriceTypeParameter enum
 var AllowedNewOrderPegPriceTypeParameterEnumValues = []NewOrderPegPriceTypeParameter{
 	"PRIMARY_PEG",
 	"MARKET_PEG",
-	"NON_REPRESENTABLE",
 }
 
 func (v *NewOrderPegPriceTypeParameter) UnmarshalJSON(src []byte) error {

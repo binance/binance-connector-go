@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Coin** | Pointer to **string** |  | [optional] 
-**DailyInterest** | Pointer to **string** |  | [optional] 
-**BorrowLimit** | Pointer to **string** |  | [optional] 
+**Coin** | Pointer to **string** | coin. | [optional] 
+**DailyInterest** | Pointer to **string** | daily Interest. | [optional] 
+**BorrowLimit** | Pointer to **string** | borrow Limit. | [optional] 
 
 ## Methods
 

@@ -22,7 +22,7 @@ func OrderAmendKeepPriority() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.OrderAmendKeepPriority(context.Background()).Symbol("BNBUSDT").NewQty(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.OrderAmendKeepPriority(context.Background()).Symbol("BNBUSDT").NewQty(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

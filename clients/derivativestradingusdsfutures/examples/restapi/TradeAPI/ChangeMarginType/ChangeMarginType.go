@@ -23,7 +23,7 @@ func ChangeMarginType() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ChangeMarginType(context.Background()).Symbol("symbol_example").MarginType(models.ChangeMarginTypeMarginTypeParameterIsolated).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ChangeMarginType(context.Background()).Symbol("BTCUSDT").MarginType(models.ChangeMarginTypeMarginTypeParameterIsolated).Execute()
 	if err != nil {
 		log.Println(err)
 		return

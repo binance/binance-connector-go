@@ -22,7 +22,7 @@ func CancelLimitOrder() {
 	apiClient := client.NewBinanceConvertClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelLimitOrder(context.Background()).OrderId(1).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelLimitOrder(context.Background()).OrderId(1603680255057330400).Execute()
 	if err != nil {
 		log.Println(err)
 		return
