@@ -1,5 +1,11 @@
 ### Changelog
 
+## 2.5.0 - 2026-07-14
+
+### Changed (1)
+
+- Updated dependencies
+
 ## 2.4.0 - 2026-07-14
 
 ### Added (1)
