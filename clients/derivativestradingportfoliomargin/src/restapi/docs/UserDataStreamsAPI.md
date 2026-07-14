@@ -4,16 +4,16 @@ All URIs are relative to *https://papi.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CloseUserDataStream**](UserDataStreamsAPI.md#CloseUserDataStream) | **Delete** /papi/v1/listenKey | Close User Data Stream(USER_STREAM)
+[**CloseUserDataStream**](UserDataStreamsAPI.md#CloseUserDataStream) | **Delete** /papi/v1/listenKey | Close User Data Stream (USER_STREAM)
 [**KeepaliveUserDataStream**](UserDataStreamsAPI.md#KeepaliveUserDataStream) | **Put** /papi/v1/listenKey | Keepalive User Data Stream (USER_STREAM)
-[**StartUserDataStream**](UserDataStreamsAPI.md#StartUserDataStream) | **Post** /papi/v1/listenKey | Start User Data Stream(USER_STREAM)
+[**StartUserDataStream**](UserDataStreamsAPI.md#StartUserDataStream) | **Post** /papi/v1/listenKey | Start User Data Stream (USER_STREAM)
 
 
 ## CloseUserDataStream
 
 > CloseUserDataStream(ctx).Execute()
 
-Close User Data Stream(USER_STREAM)
+Close User Data Stream (USER_STREAM)
 
 
 ### Example
@@ -131,7 +131,7 @@ No authorization required
 
 > StartUserDataStreamResponse StartUserDataStream(ctx).Execute()
 
-Start User Data Stream(USER_STREAM)
+Start User Data Stream (USER_STREAM)
 
 
 ### Example

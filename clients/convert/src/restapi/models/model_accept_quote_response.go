@@ -1,7 +1,7 @@
 /*
-Binance Convert REST API
+Convert REST API
 
-OpenAPI Specification for the Binance Convert REST API
+Request quotes and execute cryptocurrency conversions via the Convert REST API.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &AcceptQuoteResponse{}
 
 // AcceptQuoteResponse struct for AcceptQuoteResponse
 type AcceptQuoteResponse struct {
-	OrderId              *string `json:"orderId,omitempty"`
-	CreateTime           *int64  `json:"createTime,omitempty"`
+	OrderId    *string `json:"orderId,omitempty"`
+	CreateTime *int64  `json:"createTime,omitempty"`
+	// Order processing status
 	OrderStatus          *string `json:"orderStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

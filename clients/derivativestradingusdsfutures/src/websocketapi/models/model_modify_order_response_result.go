@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,15 +17,17 @@ var _ common.MappedNullable = &ModifyOrderResponseResult{}
 
 // ModifyOrderResponseResult struct for ModifyOrderResponseResult
 type ModifyOrderResponseResult struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
+	OrderId       *int64  `json:"orderId,omitempty"`
+	Symbol        *string `json:"symbol,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	Price         *string `json:"price,omitempty"`
+	// Average execution price. Will be removed after CM migration.
+	AvgPrice    *string `json:"avgPrice,omitempty"`
+	OrigQty     *string `json:"origQty,omitempty"`
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	CumQty      *string `json:"cumQty,omitempty"`
+	// Cum Quote. Will be removed after CM migration.
 	CumQuote                *string `json:"cumQuote,omitempty"`
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`

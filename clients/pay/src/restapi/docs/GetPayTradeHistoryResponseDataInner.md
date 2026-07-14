@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderType** | Pointer to **string** |  | [optional] 
-**TransactionId** | Pointer to **string** |  | [optional] 
-**TransactionTime** | Pointer to **int64** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
-**WalletType** | Pointer to **int64** |  | [optional] 
-**WalletTypes** | Pointer to **[]int64** |  | [optional] 
-**FundsDetail** | Pointer to [**[]GetPayTradeHistoryResponseDataInnerFundsDetailInner**](GetPayTradeHistoryResponseDataInnerFundsDetailInner.md) |  | [optional] 
+**OrderType** | Pointer to **string** | Order type. Enum: PAY, PAY_REFUND, C2C, CRYPTO_BOX, CRYPTO_BOX_RF, C2C_HOLDING, C2C_HOLDING_RF, PAYOUT, REMITTANCE. | [optional] 
+**TransactionId** | Pointer to **string** | Transaction ID. | [optional] 
+**TransactionTime** | Pointer to **int64** | Trade timestamp. | [optional] 
+**Amount** | Pointer to **string** | Order amount (up to 8 decimal places). Positive means income; negative means expenditure. | [optional] 
+**Currency** | Pointer to **string** | Order asset. | [optional] 
+**WalletType** | Pointer to **int64** | Main wallet type: 1&#x3D;funding wallet, 2&#x3D;spot wallet, 3&#x3D;fiat wallet, 4 or 6&#x3D;card payment, 5&#x3D;earn wallet. | [optional] 
+**WalletTypes** | Pointer to **[]int64** | Array format of wallet types. Multiple values may appear for combined payments. | [optional] 
+**FundsDetail** | Pointer to [**[]GetPayTradeHistoryResponseDataInnerFundsDetailInner**](GetPayTradeHistoryResponseDataInnerFundsDetailInner.md) | Funds usage details. | [optional] 
 **PayerInfo** | Pointer to [**GetPayTradeHistoryResponseDataInnerPayerInfo**](GetPayTradeHistoryResponseDataInnerPayerInfo.md) |  | [optional] 
 **ReceiverInfo** | Pointer to [**GetPayTradeHistoryResponseDataInnerReceiverInfo**](GetPayTradeHistoryResponseDataInnerReceiverInfo.md) |  | [optional] 
 

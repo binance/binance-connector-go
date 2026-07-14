@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner**](GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner.md) |  | [optional] 
+**Assets** | Pointer to [**[]GetDetailOnSubAccountsFuturesAccountResponseAssetsInner**](GetDetailOnSubAccountsFuturesAccountResponseAssetsInner.md) |  | [optional] 
 **CanDeposit** | Pointer to **bool** |  | [optional] 
 **CanTrade** | Pointer to **bool** |  | [optional] 
 **CanWithdraw** | Pointer to **bool** |  | [optional] 
@@ -66,20 +66,20 @@ HasEmail returns a boolean if a field has been set.
 
 ### GetAssets
 
-`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) GetAssets() []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner`
+`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) GetAssets() []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) GetAssetsOk() (*[]GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner, bool)`
+`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) GetAssetsOk() (*[]GetDetailOnSubAccountsFuturesAccountResponseAssetsInner, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) SetAssets(v []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner)`
+`func (o *GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountResp) SetAssets(v []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner)`
 
 SetAssets sets Assets field to given value.
 

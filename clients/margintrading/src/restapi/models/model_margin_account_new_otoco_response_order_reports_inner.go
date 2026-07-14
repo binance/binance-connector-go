@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,22 +17,37 @@ var _ common.MappedNullable = &MarginAccountNewOtocoResponseOrderReportsInner{}
 
 // MarginAccountNewOtocoResponseOrderReportsInner struct for MarginAccountNewOtocoResponseOrderReportsInner
 type MarginAccountNewOtocoResponseOrderReportsInner struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrderListId             *int64  `json:"orderListId,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	TransactTime            *int64  `json:"transactTime,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	CummulativeQuoteQty     *string `json:"cummulativeQuoteQty,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	Side                    *string `json:"side,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// order List Id.
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// transact Time.
+	TransactTime *int64 `json:"transactTime,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// status.
+	Status *string `json:"status,omitempty"`
+	// time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// side.
+	Side *string `json:"side,omitempty"`
+	// self Trade Prevention Mode.
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// stop Price.
+	StopPrice            *string `json:"stopPrice,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MarginAccountNewOtocoResponseOrderReportsInner MarginAccountNewOtocoResponseOrderReportsInner

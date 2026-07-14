@@ -13,9 +13,9 @@ Method        | HTTP request  | Description
 [**GetOnChainYieldsLockedSubscriptionRecord**](OnChainYieldsAPI.md#GetOnChainYieldsLockedSubscriptionRecord) | **Get** /sapi/v1/onchain-yields/locked/history/subscriptionRecord | Get On-chain Yields Locked Subscription Record (USER_DATA)
 [**OnChainYieldsAccount**](OnChainYieldsAPI.md#OnChainYieldsAccount) | **Get** /sapi/v1/onchain-yields/account | On-chain Yields Account (USER_DATA)
 [**RedeemOnChainYieldsLockedProduct**](OnChainYieldsAPI.md#RedeemOnChainYieldsLockedProduct) | **Post** /sapi/v1/onchain-yields/locked/redeem | Redeem On-chain Yields Locked Product (TRADE)
-[**SetOnChainYieldsLockedAutoSubscribe**](OnChainYieldsAPI.md#SetOnChainYieldsLockedAutoSubscribe) | **Post** /sapi/v1/onchain-yields/locked/setAutoSubscribe | Set On-chain Yields Locked Auto Subscribe(USER_DATA)
-[**SetOnChainYieldsLockedProductRedeemOption**](OnChainYieldsAPI.md#SetOnChainYieldsLockedProductRedeemOption) | **Post** /sapi/v1/onchain-yields/locked/setRedeemOption | Set On-chain Yields Locked Product Redeem Option(USER_DATA)
-[**SubscribeOnChainYieldsLockedProduct**](OnChainYieldsAPI.md#SubscribeOnChainYieldsLockedProduct) | **Post** /sapi/v1/onchain-yields/locked/subscribe | Subscribe On-chain Yields Locked Product(TRADE)
+[**SetOnChainYieldsLockedAutoSubscribe**](OnChainYieldsAPI.md#SetOnChainYieldsLockedAutoSubscribe) | **Post** /sapi/v1/onchain-yields/locked/setAutoSubscribe | Set On-chain Yields Locked Auto Subscribe (USER_DATA)
+[**SetOnChainYieldsLockedProductRedeemOption**](OnChainYieldsAPI.md#SetOnChainYieldsLockedProductRedeemOption) | **Post** /sapi/v1/onchain-yields/locked/setRedeemOption | Set On-chain Yields Locked Product Redeem Option (USER_DATA)
+[**SubscribeOnChainYieldsLockedProduct**](OnChainYieldsAPI.md#SubscribeOnChainYieldsLockedProduct) | **Post** /sapi/v1/onchain-yields/locked/subscribe | Subscribe On-chain Yields Locked Product (TRADE)
 
 
 ## GetOnChainYieldsLockedPersonalLeftQuota
@@ -42,7 +42,7 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -71,7 +71,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -111,10 +111,10 @@ import (
 )
 
 func main() {
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	asset := "SOL" // string |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -142,10 +142,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | WBETH or BETH, default to BETH | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **asset** | **string** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -185,12 +185,12 @@ import (
 )
 
 func main() {
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
-	positionId := int64(1) // int64 |  (optional)
+	asset := "BTC" // string |  (optional)
+	positionId := "1" // string |  (optional)
 	projectId := "1" // string |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -218,12 +218,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | WBETH or BETH, default to BETH | 
- **positionId** | **int64** |  | 
+ **asset** | **string** |  | 
+ **positionId** | **string** |  | 
  **projectId** | **string** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -263,14 +263,14 @@ import (
 )
 
 func main() {
-	positionId := int64(1) // int64 |  (optional)
+	positionId := "1" // string |  (optional)
 	redeemId := "1" // string |  (optional)
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
+	asset := "BTC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -298,14 +298,14 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **positionId** | **int64** |  | 
+ **positionId** | **string** |  | 
  **redeemId** | **string** |  | 
- **asset** | **string** | WBETH or BETH, default to BETH | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -346,12 +346,12 @@ import (
 
 func main() {
 	positionId := "1" // string |  (optional)
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
+	asset := "BTC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -380,12 +380,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** |  | 
- **asset** | **string** | WBETH or BETH, default to BETH | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -426,9 +426,9 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount in SOL.
-	autoSubscribe := true // bool | true or false, default true. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	amount := float32(1.0) // float32 | 
+	autoSubscribe := true // bool |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -457,9 +457,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** | Amount in SOL. | 
- **autoSubscribe** | **bool** | true or false, default true. | 
- **recvWindow** | **int64** |  | 
+ **amount** | **float32** |  | 
+ **autoSubscribe** | **bool** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -501,12 +501,12 @@ import (
 func main() {
 	purchaseId := "1" // string |  (optional)
 	clientId := "1" // string |  (optional)
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
+	asset := "BTC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -536,12 +536,12 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **purchaseId** | **string** |  | 
  **clientId** | **string** |  | 
- **asset** | **string** | WBETH or BETH, default to BETH | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -581,7 +581,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000` (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -609,7 +609,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60; | 
 
 ### Return type
 
@@ -649,9 +649,9 @@ import (
 )
 
 func main() {
-	positionId := "1" // string | 
+	positionId := "1" // string | Locked product position ID
 	channelId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -679,9 +679,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **positionId** | **string** |  | 
+ **positionId** | **string** | Locked product position ID | 
  **channelId** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -702,7 +702,7 @@ No authorization required
 
 > SetOnChainYieldsLockedAutoSubscribeResponse SetOnChainYieldsLockedAutoSubscribe(ctx).PositionId(positionId).AutoSubscribe(autoSubscribe).RecvWindow(recvWindow).Execute()
 
-Set On-chain Yields Locked Auto Subscribe(USER_DATA)
+Set On-chain Yields Locked Auto Subscribe (USER_DATA)
 
 
 ### Example
@@ -722,8 +722,8 @@ import (
 
 func main() {
 	positionId := "1" // string | 
-	autoSubscribe := true // bool | true or false
-	recvWindow := int64(5000) // int64 |  (optional)
+	autoSubscribe := true // bool | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -752,8 +752,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** |  | 
- **autoSubscribe** | **bool** | true or false | 
- **recvWindow** | **int64** |  | 
+ **autoSubscribe** | **bool** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -774,7 +774,7 @@ No authorization required
 
 > SetOnChainYieldsLockedProductRedeemOptionResponse SetOnChainYieldsLockedProductRedeemOption(ctx).PositionId(positionId).RedeemTo(redeemTo).RecvWindow(recvWindow).Execute()
 
-Set On-chain Yields Locked Product Redeem Option(USER_DATA)
+Set On-chain Yields Locked Product Redeem Option (USER_DATA)
 
 
 ### Example
@@ -794,8 +794,8 @@ import (
 
 func main() {
 	positionId := "1" // string | 
-	redeemTo := "redeemTo_example" // string | 'SPOT','FLEXIBLE'
-	recvWindow := int64(5000) // int64 |  (optional)
+	redeemTo := models.SetOnChainYieldsLockedProductRedeemOptionRedeemToParameterSpot // SetOnChainYieldsLockedProductRedeemOptionRedeemToParameter | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -824,8 +824,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** |  | 
- **redeemTo** | **string** | &#39;SPOT&#39;,&#39;FLEXIBLE&#39; | 
- **recvWindow** | **int64** |  | 
+ **redeemTo** | [**SetOnChainYieldsLockedProductRedeemOptionRedeemToParameter**](SetOnChainYieldsLockedProductRedeemOptionRedeemToParameter.md) |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -846,7 +846,7 @@ No authorization required
 
 > SubscribeOnChainYieldsLockedProductResponse SubscribeOnChainYieldsLockedProduct(ctx).ProjectId(projectId).Amount(amount).AutoSubscribe(autoSubscribe).SourceAccount(sourceAccount).RedeemTo(redeemTo).ChannelId(channelId).ClientId(clientId).RecvWindow(recvWindow).Execute()
 
-Subscribe On-chain Yields Locked Product(TRADE)
+Subscribe On-chain Yields Locked Product (TRADE)
 
 
 ### Example
@@ -866,13 +866,13 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | Amount in SOL.
-	autoSubscribe := true // bool | true or false, default true. (optional)
-	sourceAccount := "SPOT" // string | `SPOT`,`FUND`,`ALL`, default `SPOT` (optional)
-	redeemTo := "redeemTo_example" // string | `SPOT`,`FLEXIBLE`, default `FLEXIBLE` Takes effect when Auto Subscribe is false (optional)
+	amount := float32(1.0) // float32 | 
+	autoSubscribe := false // bool |  (optional)
+	sourceAccount := models.SubscribeOnChainYieldsLockedProductSourceAccountParameterSpot // SubscribeOnChainYieldsLockedProductSourceAccountParameter |  (optional)
+	redeemTo := models.SubscribeOnChainYieldsLockedProductRedeemToParameterSpot // SubscribeOnChainYieldsLockedProductRedeemToParameter | Takes effect when Auto Subscribe is false (optional)
 	channelId := "1" // string |  (optional)
 	clientId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -901,13 +901,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** | Amount in SOL. | 
- **autoSubscribe** | **bool** | true or false, default true. | 
- **sourceAccount** | **string** | &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60; | 
- **redeemTo** | **string** | &#x60;SPOT&#x60;,&#x60;FLEXIBLE&#x60;, default &#x60;FLEXIBLE&#x60; Takes effect when Auto Subscribe is false | 
+ **amount** | **float32** |  | 
+ **autoSubscribe** | **bool** |  | 
+ **sourceAccount** | [**SubscribeOnChainYieldsLockedProductSourceAccountParameter**](SubscribeOnChainYieldsLockedProductSourceAccountParameter.md) |  | 
+ **redeemTo** | [**SubscribeOnChainYieldsLockedProductRedeemToParameter**](SubscribeOnChainYieldsLockedProductRedeemToParameter.md) | Takes effect when Auto Subscribe is false | 
  **channelId** | **string** |  | 
  **clientId** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 

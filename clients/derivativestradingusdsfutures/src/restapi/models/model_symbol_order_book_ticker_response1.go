@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &SymbolOrderBookTickerResponse1{}
 
 // SymbolOrderBookTickerResponse1 struct for SymbolOrderBookTickerResponse1
 type SymbolOrderBookTickerResponse1 struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	BidPrice             *string `json:"bidPrice,omitempty"`
-	BidQty               *string `json:"bidQty,omitempty"`
-	AskPrice             *string `json:"askPrice,omitempty"`
-	AskQty               *string `json:"askQty,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Bid Price.
+	BidPrice *string `json:"bidPrice,omitempty"`
+	// Bid Qty.
+	BidQty *string `json:"bidQty,omitempty"`
+	// Ask Price.
+	AskPrice *string `json:"askPrice,omitempty"`
+	// Ask Qty.
+	AskQty *string `json:"askQty,omitempty"`
+	// Transaction time
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

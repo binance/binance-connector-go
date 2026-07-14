@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**U** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
+**U** | Pointer to **int64** | Order book updateId | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**B** | Pointer to **string** | Best bid price | [optional] 
+**B** | Pointer to **string** | Best bid qty | [optional] 
+**A** | Pointer to **string** | Best ask price | [optional] 
+**A** | Pointer to **string** | Best ask qty | [optional] 
 
 ## Methods
 

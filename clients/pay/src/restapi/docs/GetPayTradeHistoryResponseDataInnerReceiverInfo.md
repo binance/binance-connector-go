@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**BinanceId** | Pointer to **string** |  | [optional] 
-**AccountId** | Pointer to **string** |  | [optional] 
-**CountryCode** | Pointer to **string** |  | [optional] 
-**PhoneNumber** | Pointer to **string** |  | [optional] 
-**MobileCode** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | Nickname or merchant name. | [optional] 
+**Type** | Pointer to **string** | Account type: USER for personal, MERCHANT for merchant. | [optional] 
+**Email** | Pointer to **string** | Email. | [optional] 
+**BinanceId** | Pointer to **string** | Binance UID. | [optional] 
+**AccountId** | Pointer to **string** | Binance Pay ID. | [optional] 
+**CountryCode** | Pointer to **string** | International area code. | [optional] 
+**PhoneNumber** | Pointer to **string** | Phone number. | [optional] 
+**MobileCode** | Pointer to **string** | Country code. | [optional] 
 **Extend** | Pointer to [**GetPayTradeHistoryResponseDataInnerReceiverInfoExtend**](GetPayTradeHistoryResponseDataInnerReceiverInfoExtend.md) |  | [optional] 
 
 ## Methods

@@ -56,10 +56,10 @@ func (r ApiBatchRedeemRequest) Execute() (*common.RestApiResponse[models.BatchRe
 }
 
 /*
-BatchRedeem Batch Redeem
+BatchRedeem Batch Redeem (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/batch-redeem
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -88,9 +88,11 @@ func (a *RedeemAPIService) BatchRedeemExecute(r ApiBatchRedeemRequest) (*common.
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.walletId == nil {
 		return nil, common.ReportError("walletId is required and must be specified")
 	}
+
 	if r.tokenIds == nil {
 		return nil, common.ReportError("tokenIds is required and must be specified")
 	}
@@ -105,7 +107,15 @@ func (a *RedeemAPIService) BatchRedeemExecute(r ApiBatchRedeemRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "chainId", r.chainId, "form", "")
 	}
 
-	resp, err := SendRequest[models.BatchRedeemResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.BatchRedeemResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -144,10 +154,10 @@ func (r ApiGetRedeemStatusRequest) Execute() (*common.RestApiResponse[models.Get
 }
 
 /*
-GetRedeemStatus Get Redeem Status
+GetRedeemStatus Get Redeem Status (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/redeem/status
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -175,6 +185,7 @@ func (a *RedeemAPIService) GetRedeemStatusExecute(r ApiGetRedeemStatusRequest) (
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.txHash == nil {
 		return nil, common.ReportError("txHash is required and must be specified")
 	}
@@ -185,7 +196,15 @@ func (a *RedeemAPIService) GetRedeemStatusExecute(r ApiGetRedeemStatusRequest) (
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRedeemStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRedeemStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

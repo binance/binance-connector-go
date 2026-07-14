@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &OpenInterestStatisticsResponseInner{}
 
 // OpenInterestStatisticsResponseInner struct for OpenInterestStatisticsResponseInner
 type OpenInterestStatisticsResponseInner struct {
-	Pair                 *string `json:"pair,omitempty"`
-	ContractType         *string `json:"contractType,omitempty"`
-	SumOpenInterest      *string `json:"sumOpenInterest,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Contract type.
+	ContractType *string `json:"contractType,omitempty"`
+	// unit: cont
+	SumOpenInterest *string `json:"sumOpenInterest,omitempty"`
+	// unit: base asset
 	SumOpenInterestValue *string `json:"sumOpenInterestValue,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

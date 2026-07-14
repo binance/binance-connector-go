@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **PositionId** | Pointer to **string** |  | [optional] 
-**AutoCompoundPlan** | Pointer to **string** |  | [optional] 
+**AutoCompoundPlan** | Pointer to **string** | Auto-compound plan after the update | [optional] 
 
 ## Methods
 

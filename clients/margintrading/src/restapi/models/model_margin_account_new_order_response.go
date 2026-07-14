@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,24 +17,41 @@ var _ common.MappedNullable = &MarginAccountNewOrderResponse{}
 
 // MarginAccountNewOrderResponse struct for MarginAccountNewOrderResponse
 type MarginAccountNewOrderResponse struct {
-	Symbol                  *string                                   `json:"symbol,omitempty"`
-	OrderId                 *int64                                    `json:"orderId,omitempty"`
-	ClientOrderId           *string                                   `json:"clientOrderId,omitempty"`
-	IsIsolated              *bool                                     `json:"isIsolated,omitempty"`
-	TransactTime            *int64                                    `json:"transactTime,omitempty"`
-	Price                   *string                                   `json:"price,omitempty"`
-	OrigQty                 *string                                   `json:"origQty,omitempty"`
-	ExecutedQty             *string                                   `json:"executedQty,omitempty"`
-	CummulativeQuoteQty     *string                                   `json:"cummulativeQuoteQty,omitempty"`
-	Status                  *string                                   `json:"status,omitempty"`
-	TimeInForce             *string                                   `json:"timeInForce,omitempty"`
-	Type                    *string                                   `json:"type,omitempty"`
-	Side                    *string                                   `json:"side,omitempty"`
-	SelfTradePreventionMode *string                                   `json:"selfTradePreventionMode,omitempty"`
-	MarginBuyBorrowAmount   *int64                                    `json:"marginBuyBorrowAmount,omitempty"`
-	MarginBuyBorrowAsset    *string                                   `json:"marginBuyBorrowAsset,omitempty"`
-	Fills                   []MarginAccountNewOrderResponseFillsInner `json:"fills,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// if isolated margin
+	IsIsolated *bool `json:"isIsolated,omitempty"`
+	// transact Time.
+	TransactTime *int64 `json:"transactTime,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// status.
+	Status *string `json:"status,omitempty"`
+	// time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// side.
+	Side *string `json:"side,omitempty"`
+	// self Trade Prevention Mode.
+	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	// margin Buy Borrow Amount.
+	MarginBuyBorrowAmount *int64 `json:"marginBuyBorrowAmount,omitempty"`
+	// margin Buy Borrow Asset.
+	MarginBuyBorrowAsset *string `json:"marginBuyBorrowAsset,omitempty"`
+	// fills list.
+	Fills                []MarginAccountNewOrderResponseFillsInner `json:"fills,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MarginAccountNewOrderResponse MarginAccountNewOrderResponse

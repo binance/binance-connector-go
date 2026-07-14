@@ -4,12 +4,14 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CreateSpecialKey**](TradeAPI.md#CreateSpecialKey) | **Post** /sapi/v1/margin/apiKey | Create Special Key(Low-Latency Trading)(TRADE)
-[**DeleteSpecialKey**](TradeAPI.md#DeleteSpecialKey) | **Delete** /sapi/v1/margin/apiKey | Delete Special Key(Low-Latency Trading)(TRADE)
-[**EditIpForSpecialKey**](TradeAPI.md#EditIpForSpecialKey) | **Put** /sapi/v1/margin/apiKey/ip | Edit ip for Special Key(Low-Latency Trading)(TRADE)
+[**CreateSpecialKey**](TradeAPI.md#CreateSpecialKey) | **Post** /sapi/v1/margin/apiKey | Create Special Key(Low-Latency Trading) (TRADE)
+[**DeleteSpecialKey**](TradeAPI.md#DeleteSpecialKey) | **Delete** /sapi/v1/margin/apiKey | Delete Special Key(Low-Latency Trading) (TRADE)
+[**EditIpForSpecialKey**](TradeAPI.md#EditIpForSpecialKey) | **Put** /sapi/v1/margin/apiKey/ip | Edit ip for Special Key(Low-Latency Trading) (TRADE)
+[**ExitSpecialKeyMode**](TradeAPI.md#ExitSpecialKeyMode) | **Post** /sapi/v1/margin/exit-special-key-mode | Exit Special Key Mode (TRADE)
 [**GetForceLiquidationRecord**](TradeAPI.md#GetForceLiquidationRecord) | **Get** /sapi/v1/margin/forceLiquidationRec | Get Force Liquidation Record (USER_DATA)
 [**GetSmallLiabilityExchangeCoinList**](TradeAPI.md#GetSmallLiabilityExchangeCoinList) | **Get** /sapi/v1/margin/exchange-small-liability | Get Small Liability Exchange Coin List (USER_DATA)
 [**GetSmallLiabilityExchangeHistory**](TradeAPI.md#GetSmallLiabilityExchangeHistory) | **Get** /sapi/v1/margin/exchange-small-liability-history | Get Small Liability Exchange History (USER_DATA)
+[**LiquidationLoanRepay**](TradeAPI.md#LiquidationLoanRepay) | **Post** /sapi/v1/margin/liquidation-loan/repay | Liquidation Loan Repay (MARGIN)
 [**MarginAccountCancelAllOpenOrdersOnASymbol**](TradeAPI.md#MarginAccountCancelAllOpenOrdersOnASymbol) | **Delete** /sapi/v1/margin/openOrders | Margin Account Cancel all Open Orders on a Symbol (TRADE)
 [**MarginAccountCancelOco**](TradeAPI.md#MarginAccountCancelOco) | **Delete** /sapi/v1/margin/orderList | Margin Account Cancel OCO (TRADE)
 [**MarginAccountCancelOrder**](TradeAPI.md#MarginAccountCancelOrder) | **Delete** /sapi/v1/margin/order | Margin Account Cancel Order (TRADE)
@@ -17,8 +19,10 @@ Method        | HTTP request  | Description
 [**MarginAccountNewOrder**](TradeAPI.md#MarginAccountNewOrder) | **Post** /sapi/v1/margin/order | Margin Account New Order (TRADE)
 [**MarginAccountNewOto**](TradeAPI.md#MarginAccountNewOto) | **Post** /sapi/v1/margin/order/oto | Margin Account New OTO (TRADE)
 [**MarginAccountNewOtoco**](TradeAPI.md#MarginAccountNewOtoco) | **Post** /sapi/v1/margin/order/otoco | Margin Account New OTOCO (TRADE)
-[**MarginManualLiquidation**](TradeAPI.md#MarginManualLiquidation) | **Post** /sapi/v1/margin/manual-liquidation | Margin Manual Liquidation(MARGIN)
+[**MarginManualLiquidation**](TradeAPI.md#MarginManualLiquidation) | **Post** /sapi/v1/margin/manual-liquidation | Margin Manual Liquidation (TRADE)
 [**QueryCurrentMarginOrderCountUsage**](TradeAPI.md#QueryCurrentMarginOrderCountUsage) | **Get** /sapi/v1/margin/rateLimit/order | Query Current Margin Order Count Usage (TRADE)
+[**QueryLiquidationLoan**](TradeAPI.md#QueryLiquidationLoan) | **Get** /sapi/v1/margin/liquidation-loan | Query Liquidation Loan (USER_DATA)
+[**QueryLiquidationLoanRepayHistory**](TradeAPI.md#QueryLiquidationLoanRepayHistory) | **Get** /sapi/v1/margin/liquidation-loan/repay-history | Query Liquidation Loan Repay History (USER_DATA)
 [**QueryMarginAccountsAllOco**](TradeAPI.md#QueryMarginAccountsAllOco) | **Get** /sapi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA)
 [**QueryMarginAccountsAllOrders**](TradeAPI.md#QueryMarginAccountsAllOrders) | **Get** /sapi/v1/margin/allOrders | Query Margin Account&#39;s All Orders (USER_DATA)
 [**QueryMarginAccountsOco**](TradeAPI.md#QueryMarginAccountsOco) | **Get** /sapi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA)
@@ -26,9 +30,9 @@ Method        | HTTP request  | Description
 [**QueryMarginAccountsOpenOrders**](TradeAPI.md#QueryMarginAccountsOpenOrders) | **Get** /sapi/v1/margin/openOrders | Query Margin Account&#39;s Open Orders (USER_DATA)
 [**QueryMarginAccountsOrder**](TradeAPI.md#QueryMarginAccountsOrder) | **Get** /sapi/v1/margin/order | Query Margin Account&#39;s Order (USER_DATA)
 [**QueryMarginAccountsTradeList**](TradeAPI.md#QueryMarginAccountsTradeList) | **Get** /sapi/v1/margin/myTrades | Query Margin Account&#39;s Trade List (USER_DATA)
-[**QueryPreventedMatches**](TradeAPI.md#QueryPreventedMatches) | **Get** /sapi/v1/margin/myPreventedMatches | Query Prevented Matches(USER_DATA)
-[**QuerySpecialKey**](TradeAPI.md#QuerySpecialKey) | **Get** /sapi/v1/margin/apiKey | Query Special key(Low Latency Trading)(TRADE)
-[**QuerySpecialKeyList**](TradeAPI.md#QuerySpecialKeyList) | **Get** /sapi/v1/margin/api-key-list | Query Special key List(Low Latency Trading)(TRADE)
+[**QueryPreventedMatches**](TradeAPI.md#QueryPreventedMatches) | **Get** /sapi/v1/margin/myPreventedMatches | Query Prevented Matches (USER_DATA)
+[**QuerySpecialKey**](TradeAPI.md#QuerySpecialKey) | **Get** /sapi/v1/margin/apiKey | Query Special key(Low Latency Trading) (TRADE)
+[**QuerySpecialKeyList**](TradeAPI.md#QuerySpecialKeyList) | **Get** /sapi/v1/margin/api-key-list | Query Special key List(Low Latency Trading) (TRADE)
 [**SmallLiabilityExchange**](TradeAPI.md#SmallLiabilityExchange) | **Post** /sapi/v1/margin/exchange-small-liability | Small Liability Exchange (MARGIN)
 
 
@@ -36,7 +40,7 @@ Method        | HTTP request  | Description
 
 > CreateSpecialKeyResponse CreateSpecialKey(ctx).ApiName(apiName).Symbol(symbol).Ip(ip).PublicKey(publicKey).PermissionMode(permissionMode).RecvWindow(recvWindow).Execute()
 
-Create Special Key(Low-Latency Trading)(TRADE)
+Create Special Key(Low-Latency Trading) (TRADE)
 
 
 ### Example
@@ -55,12 +59,12 @@ import (
 )
 
 func main() {
-	apiName := "apiName_example" // string | 
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	ip := "ip_example" // string | Can be added in batches, separated by commas. Max 30 for an API key (optional)
-	publicKey := "publicKey_example" // string | 1. If publicKey is inputted it will create an RSA or Ed25519 key. <br />2. Need to be encoded to URL-encoded format (optional)
-	permissionMode := "value" // string | This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE. (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	apiName := "apiName" // string | 
+	symbol := "BTCUSDT" // string |  (optional)
+	ip := "69.210.67.14,69.210.67.15" // string | Can be added in batches, separated by commas. Max 30 for an API key (optional)
+	publicKey := "publicKey" // string | 1. If publicKey is inputted it will create an RSA or Ed25519 key.  2. Need to be encoded to URL-encoded format (optional)
+	permissionMode := models.CreateSpecialKeyPermissionModeParameterTrade // CreateSpecialKeyPermissionModeParameter | This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -89,11 +93,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **apiName** | **string** |  | 
- **symbol** | **string** | isolated margin pair | 
+ **symbol** | **string** |  | 
  **ip** | **string** | Can be added in batches, separated by commas. Max 30 for an API key | 
- **publicKey** | **string** | 1. If publicKey is inputted it will create an RSA or Ed25519 key. &lt;br /&gt;2. Need to be encoded to URL-encoded format | 
- **permissionMode** | **string** | This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE. | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **publicKey** | **string** | 1. If publicKey is inputted it will create an RSA or Ed25519 key.  2. Need to be encoded to URL-encoded format | 
+ **permissionMode** | [**CreateSpecialKeyPermissionModeParameter**](CreateSpecialKeyPermissionModeParameter.md) | This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -114,7 +118,7 @@ No authorization required
 
 > DeleteSpecialKey(ctx).ApiName(apiName).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Delete Special Key(Low-Latency Trading)(TRADE)
+Delete Special Key(Low-Latency Trading) (TRADE)
 
 
 ### Example
@@ -133,9 +137,9 @@ import (
 )
 
 func main() {
-	apiName := "apiName_example" // string |  (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	apiName := "apiName" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -158,8 +162,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **apiName** | **string** |  | 
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -180,7 +184,7 @@ No authorization required
 
 > EditIpForSpecialKey(ctx).Ip(ip).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Edit ip for Special Key(Low-Latency Trading)(TRADE)
+Edit ip for Special Key(Low-Latency Trading) (TRADE)
 
 
 ### Example
@@ -199,9 +203,9 @@ import (
 )
 
 func main() {
-	ip := "ip_example" // string | Can be added in batches, separated by commas. Max 30 for an API key
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	ip := "24.156.99.202" // string | Can be added in batches, separated by commas. Max 30 for an API key
+	symbol := "BTCUSDT" // string | isolated margin pair (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -225,7 +229,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **ip** | **string** | Can be added in batches, separated by commas. Max 30 for an API key | 
  **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -238,6 +242,74 @@ No authorization required
 ### HTTP request headers
 
 - **Accept**: Not defined
+
+[[Back to README]](../../../README.md)
+
+
+## ExitSpecialKeyMode
+
+> map[string]interface{} ExitSpecialKeyMode(ctx).RecvWindow(recvWindow).Execute()
+
+Exit Special Key Mode (TRADE)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000` (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.ExitSpecialKeyMode(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.ExitSpecialKeyMode``: %v\n", err)
+		return
+	}
+
+	// response from `ExitSpecialKeyMode`: map[string]interface{}
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60; | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
 
 [[Back to README]](../../../README.md)
 
@@ -265,12 +337,12 @@ import (
 )
 
 func main() {
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	isolatedSymbol := "BTCUSDT" // string |  (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -298,12 +370,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **isolatedSymbol** | **string** | isolated symbol | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10 Max:100 | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isolatedSymbol** | **string** |  | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -343,7 +415,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -371,7 +443,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -411,11 +483,11 @@ import (
 )
 
 func main() {
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1
-	size := int64(10) // int64 | Default:10, Max:100
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	current := int64(1) // int64 | 
+	size := int64(10) // int64 | 
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -443,15 +515,87 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
 [**GetSmallLiabilityExchangeHistoryResponse**](GetSmallLiabilityExchangeHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## LiquidationLoanRepay
+
+> LiquidationLoanRepayResponse LiquidationLoanRepay(ctx).Asset(asset).Amount(amount).RecvWindow(recvWindow).Execute()
+
+Liquidation Loan Repay (MARGIN)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	asset := "USDT" // string | The asset to repay (e.g. USDT, USDC)
+	amount := float32(300.00) // float32 | Repayment amount, must be greater than 0
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.LiquidationLoanRepay(context.Background()).Asset(asset).Amount(amount).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.LiquidationLoanRepay``: %v\n", err)
+		return
+	}
+
+	// response from `LiquidationLoanRepay`: LiquidationLoanRepayResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **string** | The asset to repay (e.g. USDT, USDC) | 
+ **amount** | **float32** | Repayment amount, must be greater than 0 | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**LiquidationLoanRepayResponse**](LiquidationLoanRepayResponse.md)
 
 ### Authorization
 
@@ -487,9 +631,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -518,8 +662,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -559,12 +703,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	orderListId := int64(1) // int64 | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	listClientOrderId := "1" // string | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	newClientOrderId := "1" // string | Used to uniquely identify this cancel. Automatically generated by default (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	orderListId := int64(1) // int64 |  (optional)
+	listClientOrderId := "1" // string |  (optional)
+	newClientOrderId := "1" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -593,11 +737,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **orderListId** | **int64** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **listClientOrderId** | **string** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **newClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **orderListId** | **int64** |  | 
+ **listClientOrderId** | **string** |  | 
+ **newClientOrderId** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -637,12 +781,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	symbol := "LTCBTC" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	orderId := int64(1) // int64 |  (optional)
 	origClientOrderId := "1" // string |  (optional)
-	newClientOrderId := "1" // string | Used to uniquely identify this cancel. Automatically generated by default (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	newClientOrderId := "1" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -671,11 +815,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **newClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **newClientOrderId** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -715,24 +859,24 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "LTCBTC" // string | 
 	side := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
 	quantity := float32(1.0) // float32 | 
 	price := float32(1.0) // float32 | 
 	stopPrice := float32(1.0) // float32 | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	listClientOrderId := "1" // string | Either `orderListId` or `listClientOrderId` must be provided (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	listClientOrderId := "1" // string | A unique Id for the entire orderList (optional)
 	limitClientOrderId := "1" // string | A unique Id for the limit order (optional)
 	limitIcebergQty := float32(1.0) // float32 |  (optional)
 	stopClientOrderId := "1" // string | A unique Id for the stop loss/stop loss limit leg (optional)
 	stopLimitPrice := float32(1.0) // float32 | If provided, `stopLimitTimeInForce` is required. (optional)
 	stopIcebergQty := float32(1.0) // float32 |  (optional)
-	stopLimitTimeInForce := "stopLimitTimeInForce_example" // string | Valid values are `GTC`/`FOK`/`IOC` (optional)
-	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
-	sideEffectType := "NO_SIDE_EFFECT" // string | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) (optional)
-	selfTradePreventionMode := "NONE" // string | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE (optional)
-	autoRepayAtCancel := true // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	stopLimitTimeInForce := models.MarginAccountNewOcoStopLimitTimeInForceParameterGtc // MarginAccountNewOcoStopLimitTimeInForceParameter |  (optional)
+	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter |  (optional)
+	sideEffectType := models.MarginAccountNewOrderSideEffectTypeParameterNoSideEffect // MarginAccountNewOrderSideEffectTypeParameter |  (optional)
+	selfTradePreventionMode := models.MarginAccountNewOrderSelfTradePreventionModeParameterExpireTaker // MarginAccountNewOrderSelfTradePreventionModeParameter |  (optional)
+	autoRepayAtCancel := false // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -765,19 +909,19 @@ Name          | Type          | Description   | Notes
  **quantity** | **float32** |  | 
  **price** | **float32** |  | 
  **stopPrice** | **float32** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **listClientOrderId** | **string** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **listClientOrderId** | **string** | A unique Id for the entire orderList | 
  **limitClientOrderId** | **string** | A unique Id for the limit order | 
  **limitIcebergQty** | **float32** |  | 
  **stopClientOrderId** | **string** | A unique Id for the stop loss/stop loss limit leg | 
  **stopLimitPrice** | **float32** | If provided, &#x60;stopLimitTimeInForce&#x60; is required. | 
  **stopIcebergQty** | **float32** |  | 
- **stopLimitTimeInForce** | **string** | Valid values are &#x60;GTC&#x60;/&#x60;FOK&#x60;/&#x60;IOC&#x60; | 
- **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
- **sideEffectType** | **string** | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) | 
- **selfTradePreventionMode** | **string** | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE | 
- **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **stopLimitTimeInForce** | [**MarginAccountNewOcoStopLimitTimeInForceParameter**](MarginAccountNewOcoStopLimitTimeInForceParameter.md) |  | 
+ **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) |  | 
+ **sideEffectType** | [**MarginAccountNewOrderSideEffectTypeParameter**](MarginAccountNewOrderSideEffectTypeParameter.md) |  | 
+ **selfTradePreventionMode** | [**MarginAccountNewOrderSelfTradePreventionModeParameter**](MarginAccountNewOrderSelfTradePreventionModeParameter.md) |  | 
+ **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -796,7 +940,7 @@ No authorization required
 
 ## MarginAccountNewOrder
 
-> MarginAccountNewOrderResponse MarginAccountNewOrder(ctx).Symbol(symbol).Side(side).Type(type_).IsIsolated(isIsolated).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).StopPrice(stopPrice).NewClientOrderId(newClientOrderId).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SideEffectType(sideEffectType).TimeInForce(timeInForce).SelfTradePreventionMode(selfTradePreventionMode).AutoRepayAtCancel(autoRepayAtCancel).RecvWindow(recvWindow).Execute()
+> MarginAccountNewOrderResponse MarginAccountNewOrder(ctx).Symbol(symbol).Side(side).Type(type_).IsIsolated(isIsolated).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).StopPrice(stopPrice).NewClientOrderId(newClientOrderId).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SideEffectType(sideEffectType).TimeInForce(timeInForce).SelfTradePreventionMode(selfTradePreventionMode).TrailingDelta(trailingDelta).AutoRepayAtCancel(autoRepayAtCancel).RecvWindow(recvWindow).Execute()
 
 Margin Account New Order (TRADE)
 
@@ -817,22 +961,23 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 	side := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
-	type_ := "type__example" // string | `MARGIN`,`ISOLATED`
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	type_ := models.MarginAccountNewOrderTypeParameterLimit // MarginAccountNewOrderTypeParameter | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	quantity := float32(1.0) // float32 |  (optional)
 	quoteOrderQty := float32(1.0) // float32 |  (optional)
 	price := float32(1.0) // float32 |  (optional)
 	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
-	newClientOrderId := "1" // string | Used to uniquely identify this cancel. Automatically generated by default (optional)
+	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. (optional)
 	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
-	sideEffectType := "NO_SIDE_EFFECT" // string | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) (optional)
-	timeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter | GTC,IOC,FOK (optional)
-	selfTradePreventionMode := "NONE" // string | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE (optional)
-	autoRepayAtCancel := true // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
+	sideEffectType := models.MarginAccountNewOrderSideEffectTypeParameterNoSideEffect // MarginAccountNewOrderSideEffectTypeParameter |  (optional)
+	timeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
+	selfTradePreventionMode := models.MarginAccountNewOrderSelfTradePreventionModeParameterExpireTaker // MarginAccountNewOrderSelfTradePreventionModeParameter |  (optional)
+	trailingDelta := int64(100) // int64 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
+	autoRepayAtCancel := true // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -841,7 +986,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).IsIsolated(isIsolated).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).StopPrice(stopPrice).NewClientOrderId(newClientOrderId).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SideEffectType(sideEffectType).TimeInForce(timeInForce).SelfTradePreventionMode(selfTradePreventionMode).AutoRepayAtCancel(autoRepayAtCancel).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).IsIsolated(isIsolated).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).StopPrice(stopPrice).NewClientOrderId(newClientOrderId).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SideEffectType(sideEffectType).TimeInForce(timeInForce).SelfTradePreventionMode(selfTradePreventionMode).TrailingDelta(trailingDelta).AutoRepayAtCancel(autoRepayAtCancel).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.MarginAccountNewOrder``: %v\n", err)
 		return
@@ -862,20 +1007,21 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
- **type_** | **string** | &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60; | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **type_** | [**MarginAccountNewOrderTypeParameter**](MarginAccountNewOrderTypeParameter.md) |  | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **quantity** | **float32** |  | 
  **quoteOrderQty** | **float32** |  | 
  **price** | **float32** |  | 
  **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
- **newClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default | 
+ **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. | 
  **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
- **sideEffectType** | **string** | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) | 
- **timeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) | GTC,IOC,FOK | 
- **selfTradePreventionMode** | **string** | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE | 
- **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
+ **sideEffectType** | [**MarginAccountNewOrderSideEffectTypeParameter**](MarginAccountNewOrderSideEffectTypeParameter.md) |  | 
+ **timeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
+ **selfTradePreventionMode** | [**MarginAccountNewOrderSelfTradePreventionModeParameter**](MarginAccountNewOrderSelfTradePreventionModeParameter.md) |  | 
+ **trailingDelta** | **int64** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
+ **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -915,29 +1061,29 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	workingType := "workingType_example" // string | Supported values: `LIMIT`, `LIMIT_MAKER`
-	workingSide := "workingSide_example" // string | BUY, SELL
+	symbol := "BTCUSDT" // string | 
+	workingType := models.MarginAccountNewOtoWorkingTypeParameterLimit // MarginAccountNewOtoWorkingTypeParameter | 
+	workingSide := models.MarginAccountNewOtoWorkingSideParameterBuy // MarginAccountNewOtoWorkingSideParameter | 
 	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | 
+	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order.
 	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`.
-	pendingType := "Order Types" // string | Supported values: [Order Types](https://developers.binance.com/docs/binance-spot-api-docs/enums#order-types-ordertypes-type) Note that `MARKET` orders using `quoteOrderQty` are not supported.
-	pendingSide := "pendingSide_example" // string | BUY, SELL
-	pendingQuantity := float32(1.0) // float32 | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	listClientOrderId := "1" // string | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
-	sideEffectType := "NO_SIDE_EFFECT" // string | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) (optional)
-	selfTradePreventionMode := "NONE" // string | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE (optional)
-	autoRepayAtCancel := true // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true (optional)
+	pendingType := models.MarginAccountNewOrderTypeParameterLimit // MarginAccountNewOrderTypeParameter | 
+	pendingSide := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
+	pendingQuantity := float32(1.0) // float32 | Sets the quantity for the pending order.
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	listClientOrderId := "1" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br/>A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.<br/>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
+	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
+	sideEffectType := models.MarginAccountNewOtoSideEffectTypeParameterNoSideEffect // MarginAccountNewOtoSideEffectTypeParameter |  (optional)
+	selfTradePreventionMode := models.MarginAccountNewOrderSelfTradePreventionModeParameterExpireTaker // MarginAccountNewOrderSelfTradePreventionModeParameter |  (optional)
+	autoRepayAtCancel := true // bool | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. (optional)
 	workingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
-	workingTimeInForce := "workingTimeInForce_example" // string | GTC,IOC,FOK (optional)
+	workingTimeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
 	pendingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. (optional)
 	pendingPrice := float32(1.0) // float32 |  (optional)
 	pendingStopPrice := float32(1.0) // float32 |  (optional)
 	pendingTrailingDelta := float32(1.0) // float32 |  (optional)
 	pendingIcebergQty := float32(1.0) // float32 | This can only be used if `pendingTimeInForce` is `GTC`. (optional)
-	pendingTimeInForce := "pendingTimeInForce_example" // string | GTC,IOC,FOK (optional)
+	pendingTimeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -966,28 +1112,28 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | **string** | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
- **workingSide** | **string** | BUY, SELL | 
+ **workingType** | [**MarginAccountNewOtoWorkingTypeParameter**](MarginAccountNewOtoWorkingTypeParameter.md) |  | 
+ **workingSide** | [**MarginAccountNewOtoWorkingSideParameter**](MarginAccountNewOtoWorkingSideParameter.md) |  | 
  **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** |  | 
+ **workingQuantity** | **float32** | Sets the quantity for the working order. | 
  **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **pendingType** | **string** | Supported values: [Order Types](https://developers.binance.com/docs/binance-spot-api-docs/enums#order-types-ordertypes-type) Note that &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; are not supported. | 
- **pendingSide** | **string** | BUY, SELL | 
- **pendingQuantity** | **float32** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **listClientOrderId** | **string** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
- **sideEffectType** | **string** | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) | 
- **selfTradePreventionMode** | **string** | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE | 
- **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true | 
+ **pendingType** | [**MarginAccountNewOrderTypeParameter**](MarginAccountNewOrderTypeParameter.md) |  | 
+ **pendingSide** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
+ **pendingQuantity** | **float32** | Sets the quantity for the pending order. | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent.&lt;br/&gt;A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.&lt;br/&gt;&#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
+ **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
+ **sideEffectType** | [**MarginAccountNewOtoSideEffectTypeParameter**](MarginAccountNewOtoSideEffectTypeParameter.md) |  | 
+ **selfTradePreventionMode** | [**MarginAccountNewOrderSelfTradePreventionModeParameter**](MarginAccountNewOrderSelfTradePreventionModeParameter.md) |  | 
+ **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. | 
  **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
- **workingTimeInForce** | **string** | GTC,IOC,FOK | 
+ **workingTimeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
  **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. | 
  **pendingPrice** | **float32** |  | 
  **pendingStopPrice** | **float32** |  | 
  **pendingTrailingDelta** | **float32** |  | 
  **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **pendingTimeInForce** | **string** | GTC,IOC,FOK | 
+ **pendingTimeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
 
 ### Return type
 
@@ -1027,36 +1173,36 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	workingType := "workingType_example" // string | Supported values: `LIMIT`, `LIMIT_MAKER`
-	workingSide := "workingSide_example" // string | BUY, SELL
+	symbol := "BTCUSDT" // string | 
+	workingType := models.MarginAccountNewOtoWorkingTypeParameterLimit // MarginAccountNewOtoWorkingTypeParameter | 
+	workingSide := models.MarginAccountNewOtoWorkingSideParameterBuy // MarginAccountNewOtoWorkingSideParameter | 
 	workingPrice := float32(1.0) // float32 | 
 	workingQuantity := float32(1.0) // float32 | 
-	pendingSide := "pendingSide_example" // string | BUY, SELL
+	pendingSide := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
 	pendingQuantity := float32(1.0) // float32 | 
-	pendingAboveType := "pendingAboveType_example" // string | Supported values: `LIMIT_MAKER`, `STOP_LOSS`, and `STOP_LOSS_LIMIT`
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	sideEffectType := "NO_SIDE_EFFECT" // string | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) (optional)
-	autoRepayAtCancel := true // bool | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true (optional)
-	listClientOrderId := "1" // string | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
-	selfTradePreventionMode := "NONE" // string | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE (optional)
+	pendingAboveType := models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker // MarginAccountNewOtocoPendingAboveTypeParameter | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	sideEffectType := models.MarginAccountNewOtoSideEffectTypeParameterNoSideEffect // MarginAccountNewOtoSideEffectTypeParameter |  (optional)
+	autoRepayAtCancel := true // bool | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. (optional)
+	listClientOrderId := "1" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId`, `pendingAboveClientOrderId`, and the `pendingBelowClientOrderId`. (optional)
+	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter |  (optional)
+	selfTradePreventionMode := models.MarginAccountNewOrderSelfTradePreventionModeParameterExpireTaker // MarginAccountNewOrderSelfTradePreventionModeParameter |  (optional)
 	workingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
 	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`. (optional)
-	workingTimeInForce := "workingTimeInForce_example" // string | GTC,IOC,FOK (optional)
+	workingTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
 	pendingAboveClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. (optional)
 	pendingAbovePrice := float32(1.0) // float32 |  (optional)
 	pendingAboveStopPrice := float32(1.0) // float32 |  (optional)
 	pendingAboveTrailingDelta := float32(1.0) // float32 |  (optional)
 	pendingAboveIcebergQty := float32(1.0) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC`. (optional)
-	pendingAboveTimeInForce := "pendingAboveTimeInForce_example" // string |  (optional)
-	pendingBelowType := "pendingBelowType_example" // string | Supported values: `LIMIT_MAKER`, `STOP_LOSS`, and `STOP_LOSS_LIMIT` (optional)
+	pendingAboveTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
+	pendingBelowType := models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker // MarginAccountNewOtocoPendingAboveTypeParameter |  (optional)
 	pendingBelowClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. (optional)
 	pendingBelowPrice := float32(1.0) // float32 |  (optional)
 	pendingBelowStopPrice := float32(1.0) // float32 |  (optional)
 	pendingBelowTrailingDelta := float32(1.0) // float32 |  (optional)
 	pendingBelowIcebergQty := float32(1.0) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC`. (optional)
-	pendingBelowTimeInForce := "pendingBelowTimeInForce_example" // string |  (optional)
+	pendingBelowTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1085,35 +1231,35 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | **string** | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
- **workingSide** | **string** | BUY, SELL | 
+ **workingType** | [**MarginAccountNewOtoWorkingTypeParameter**](MarginAccountNewOtoWorkingTypeParameter.md) |  | 
+ **workingSide** | [**MarginAccountNewOtoWorkingSideParameter**](MarginAccountNewOtoWorkingSideParameter.md) |  | 
  **workingPrice** | **float32** |  | 
  **workingQuantity** | **float32** |  | 
- **pendingSide** | **string** | BUY, SELL | 
+ **pendingSide** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
  **pendingQuantity** | **float32** |  | 
- **pendingAboveType** | **string** | Supported values: &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS&#x60;, and &#x60;STOP_LOSS_LIMIT&#x60; | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **sideEffectType** | **string** | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc) | 
- **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true | 
- **listClientOrderId** | **string** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
- **selfTradePreventionMode** | **string** | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE | 
+ **pendingAboveType** | [**MarginAccountNewOtocoPendingAboveTypeParameter**](MarginAccountNewOtocoPendingAboveTypeParameter.md) |  | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **sideEffectType** | [**MarginAccountNewOtoSideEffectTypeParameter**](MarginAccountNewOtoSideEffectTypeParameter.md) |  | 
+ **autoRepayAtCancel** | **bool** | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled. | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60;, &#x60;pendingAboveClientOrderId&#x60;, and the &#x60;pendingBelowClientOrderId&#x60;. | 
+ **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) |  | 
+ **selfTradePreventionMode** | [**MarginAccountNewOrderSelfTradePreventionModeParameter**](MarginAccountNewOrderSelfTradePreventionModeParameter.md) |  | 
  **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
  **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **workingTimeInForce** | **string** | GTC,IOC,FOK | 
+ **workingTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
  **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. | 
  **pendingAbovePrice** | **float32** |  | 
  **pendingAboveStopPrice** | **float32** |  | 
  **pendingAboveTrailingDelta** | **float32** |  | 
  **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **pendingAboveTimeInForce** | **string** |  | 
- **pendingBelowType** | **string** | Supported values: &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS&#x60;, and &#x60;STOP_LOSS_LIMIT&#x60; | 
+ **pendingAboveTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
+ **pendingBelowType** | [**MarginAccountNewOtocoPendingAboveTypeParameter**](MarginAccountNewOtocoPendingAboveTypeParameter.md) |  | 
  **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. | 
  **pendingBelowPrice** | **float32** |  | 
  **pendingBelowStopPrice** | **float32** |  | 
  **pendingBelowTrailingDelta** | **float32** |  | 
  **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **pendingBelowTimeInForce** | **string** |  | 
+ **pendingBelowTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
 
 ### Return type
 
@@ -1134,7 +1280,7 @@ No authorization required
 
 > MarginManualLiquidationResponse MarginManualLiquidation(ctx).Type(type_).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Margin Manual Liquidation(MARGIN)
+Margin Manual Liquidation (TRADE)
 
 
 ### Example
@@ -1153,9 +1299,9 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | `MARGIN`,`ISOLATED`
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	type_ := models.QueryMarginAvailableInventoryTypeParameterMargin // QueryMarginAvailableInventoryTypeParameter | 
+	symbol := "ETHUSDT" // string | When type selects `ISOLATED`, `symbol` must be filled in (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1183,9 +1329,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** | &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60; | 
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **type_** | [**QueryMarginAvailableInventoryTypeParameter**](QueryMarginAvailableInventoryTypeParameter.md) |  | 
+ **symbol** | **string** | When type selects &#x60;ISOLATED&#x60;, &#x60;symbol&#x60; must be filled in | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1225,9 +1371,9 @@ import (
 )
 
 func main() {
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1255,13 +1401,157 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
 [**QueryCurrentMarginOrderCountUsageResponse**](QueryCurrentMarginOrderCountUsageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## QueryLiquidationLoan
+
+> QueryLiquidationLoanResponse QueryLiquidationLoan(ctx).RecvWindow(recvWindow).Execute()
+
+Query Liquidation Loan (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.QueryLiquidationLoan(context.Background()).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryLiquidationLoan``: %v\n", err)
+		return
+	}
+
+	// response from `QueryLiquidationLoan`: QueryLiquidationLoanResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**QueryLiquidationLoanResponse**](QueryLiquidationLoanResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## QueryLiquidationLoanRepayHistory
+
+> QueryLiquidationLoanRepayHistoryResponse QueryLiquidationLoanRepayHistory(ctx).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+
+Query Liquidation Loan Repay History (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	startTime := int64(1714492800000) // int64 | Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not specified (optional)
+	endTime := int64(1714579200000) // int64 | End time in Unix timestamp (milliseconds). Defaults to now if not specified (optional)
+	current := int64(1) // int64 | Current page number, default `1` (optional)
+	size := int64(50) // int64 | Page size, default `50` (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.QueryLiquidationLoanRepayHistory(context.Background()).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryLiquidationLoanRepayHistory``: %v\n", err)
+		return
+	}
+
+	// response from `QueryLiquidationLoanRepayHistory`: QueryLiquidationLoanRepayHistoryResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **startTime** | **int64** | Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not specified | 
+ **endTime** | **int64** | End time in Unix timestamp (milliseconds). Defaults to now if not specified | 
+ **current** | **int64** | Current page number, default &#x60;1&#x60; | 
+ **size** | **int64** | Page size, default &#x60;50&#x60; | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**QueryLiquidationLoanRepayHistoryResponse**](QueryLiquidationLoanRepayHistoryResponse.md)
 
 ### Authorization
 
@@ -1297,13 +1587,13 @@ import (
 )
 
 func main() {
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	fromId := int64(1) // int64 | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned. (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	symbol := "LTCBTC" // string |  (optional)
+	fromId := int64(1) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(500) // int64 | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	limit := int64(100) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1331,13 +1621,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **symbol** | **string** | isolated margin pair | 
- **fromId** | **int64** | If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **symbol** | **string** |  | 
+ **fromId** | **int64** |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **limit** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1377,13 +1667,13 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	symbol := "BNBBTC" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(500) // int64 | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	limit := int64(100) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1412,12 +1702,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **orderId** | **int64** |  | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **limit** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1457,11 +1747,11 @@ import (
 )
 
 func main() {
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	orderListId := int64(1) // int64 | Either `orderListId` or `listClientOrderId` must be provided (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	symbol := "LTCBTC" // string |  (optional)
+	orderListId := int64(1) // int64 |  (optional)
 	origClientOrderId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1489,11 +1779,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **symbol** | **string** | isolated margin pair | 
- **orderListId** | **int64** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **symbol** | **string** |  | 
+ **orderListId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1533,9 +1823,9 @@ import (
 )
 
 func main() {
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	symbol := "LTCBTC" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1563,9 +1853,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1605,9 +1895,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BNBBTC" // string | isolated margin pair (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1636,8 +1926,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | isolated margin pair | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1677,11 +1967,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	symbol := "BNBBTC" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	orderId := int64(1) // int64 |  (optional)
 	origClientOrderId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1710,10 +2000,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1753,14 +2043,14 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	symbol := "BNBBTC" // string | 
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	fromId := int64(1) // int64 | If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned. (optional)
-	limit := int64(500) // int64 | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	fromId := int64(1) // int64 |  (optional)
+	limit := int64(500) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1789,13 +2079,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **orderId** | **int64** |  | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **fromId** | **int64** | If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned. | 
- **limit** | **int64** | Limit on the number of data records returned per request. Default: 500; Maximum: 1000. | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **fromId** | **int64** |  | 
+ **limit** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1814,9 +2104,9 @@ No authorization required
 
 ## QueryPreventedMatches
 
-> QueryPreventedMatchesResponse QueryPreventedMatches(ctx).Symbol(symbol).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).RecvWindow(recvWindow).IsIsolated(isIsolated).Execute()
+> QueryPreventedMatchesResponse QueryPreventedMatches(ctx).Symbol(symbol).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).IsIsolated(isIsolated).RecvWindow(recvWindow).Execute()
 
-Query Prevented Matches(USER_DATA)
+Query Prevented Matches (USER_DATA)
 
 
 ### Example
@@ -1835,12 +2125,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 	preventedMatchId := int64(1) // int64 |  (optional)
 	orderId := int64(1) // int64 |  (optional)
 	fromPreventedMatchId := int64(1) // int64 |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
-	isIsolated := "false" // string | For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\" (optional)
+	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1849,7 +2139,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.QueryPreventedMatches(context.Background()).Symbol(symbol).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).RecvWindow(recvWindow).IsIsolated(isIsolated).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QueryPreventedMatches(context.Background()).Symbol(symbol).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).IsIsolated(isIsolated).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryPreventedMatches``: %v\n", err)
 		return
@@ -1872,8 +2162,8 @@ Name          | Type          | Description   | Notes
  **preventedMatchId** | **int64** |  | 
  **orderId** | **int64** |  | 
  **fromPreventedMatchId** | **int64** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
- **isIsolated** | **string** | For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot; | 
+ **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1894,7 +2184,7 @@ No authorization required
 
 > QuerySpecialKeyResponse QuerySpecialKey(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Query Special key(Low Latency Trading)(TRADE)
+Query Special key(Low Latency Trading) (TRADE)
 
 
 ### Example
@@ -1913,8 +2203,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1942,8 +2232,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -1964,7 +2254,7 @@ No authorization required
 
 > QuerySpecialKeyListResponse QuerySpecialKeyList(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Query Special key List(Low Latency Trading)(TRADE)
+Query Special key List(Low Latency Trading) (TRADE)
 
 
 ### Example
@@ -1983,8 +2273,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -2012,8 +2302,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -2053,8 +2343,8 @@ import (
 )
 
 func main() {
-	assetNames := []string{"BTC"} // []string | The assets list of small liability exchange， Example: assetNames = BTC,ETH
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	assetNames := "BTC,ETH" // string | The assets list of small liability exchange
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -2076,8 +2366,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **assetNames** | **[]string** | The assets list of small liability exchange， Example: assetNames &#x3D; BTC,ETH | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **assetNames** | **string** | The assets list of small liability exchange | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 

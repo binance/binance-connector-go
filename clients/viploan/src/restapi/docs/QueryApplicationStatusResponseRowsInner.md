@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LoanAccountId** | Pointer to **string** |  | [optional] 
+**LoanAccountId** | Pointer to **string** | Loan receiving account. | [optional] 
 **OrderId** | Pointer to **string** |  | [optional] 
 **RequestId** | Pointer to **string** |  | [optional] 
 **LoanCoin** | Pointer to **string** |  | [optional] 
@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **CollateralAccountId** | Pointer to **string** |  | [optional] 
 **CollateralCoin** | Pointer to **string** |  | [optional] 
 **LoanTerm** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | Order status (&#x60;Accruing_Interest&#x60;, &#x60;Overdue&#x60;, &#x60;Liquidating&#x60;, &#x60;Repaying&#x60;, &#x60;Repaid&#x60;, &#x60;Liquidated&#x60;, &#x60;Pending&#x60;, &#x60;Failed&#x60;). | [optional] 
 **LoanDate** | Pointer to **string** |  | [optional] 
 
 ## Methods

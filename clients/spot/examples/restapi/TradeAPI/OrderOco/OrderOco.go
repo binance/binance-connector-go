@@ -23,7 +23,7 @@ func OrderOco() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.OrderOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(1.0).Price(1.0).StopPrice(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.OrderOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(1).Price(1).StopPrice(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

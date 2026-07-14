@@ -5,7 +5,7 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**ListAllConvertPairs**](MarketDataAPI.md#ListAllConvertPairs) | **Get** /sapi/v1/convert/exchangeInfo | List All Convert Pairs
-[**QueryOrderQuantityPrecisionPerAsset**](MarketDataAPI.md#QueryOrderQuantityPrecisionPerAsset) | **Get** /sapi/v1/convert/assetInfo | Query order quantity precision per asset(USER_DATA)
+[**QueryOrderQuantityPrecisionPerAsset**](MarketDataAPI.md#QueryOrderQuantityPrecisionPerAsset) | **Get** /sapi/v1/convert/assetInfo | Query order quantity precision per asset (USER_DATA)
 
 
 ## ListAllConvertPairs
@@ -31,8 +31,8 @@ import (
 )
 
 func main() {
-	fromAsset := "fromAsset_example" // string | User spends coin (optional)
-	toAsset := "toAsset_example" // string | User receives coin (optional)
+	fromAsset := "BTC" // string | User spends coin (optional)
+	toAsset := "USDT" // string | User receives coin (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -82,7 +82,7 @@ No authorization required
 
 > QueryOrderQuantityPrecisionPerAssetResponse QueryOrderQuantityPrecisionPerAsset(ctx).RecvWindow(recvWindow).Execute()
 
-Query order quantity precision per asset(USER_DATA)
+Query order quantity precision per asset (USER_DATA)
 
 
 ### Example
@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -129,7 +129,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

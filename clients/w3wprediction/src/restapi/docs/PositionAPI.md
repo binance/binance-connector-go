@@ -4,18 +4,18 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetPositionByToken**](PositionAPI.md#GetPositionByToken) | **Get** /sapi/v1/w3w/wallet/prediction/position/token | Get Position by Token
-[**QueryPnL**](PositionAPI.md#QueryPnL) | **Get** /sapi/v1/w3w/wallet/prediction/pnl/query | Query PnL
-[**QueryPositions**](PositionAPI.md#QueryPositions) | **Get** /sapi/v1/w3w/wallet/prediction/position/list | Query Positions
-[**QueryPositionsByFilter**](PositionAPI.md#QueryPositionsByFilter) | **Get** /sapi/v1/w3w/wallet/prediction/position/filter | Query Positions by Filter
-[**QuerySettledPositionHistory**](PositionAPI.md#QuerySettledPositionHistory) | **Get** /sapi/v1/w3w/wallet/prediction/position/settled-history | Query Settled Position History
+[**GetPositionByToken**](PositionAPI.md#GetPositionByToken) | **Get** /sapi/v1/w3w/wallet/prediction/position/token | Get Position by Token (USER_DATA)
+[**QueryPnL**](PositionAPI.md#QueryPnL) | **Get** /sapi/v1/w3w/wallet/prediction/pnl/query | Query PnL (USER_DATA)
+[**QueryPositions**](PositionAPI.md#QueryPositions) | **Get** /sapi/v1/w3w/wallet/prediction/position/list | Query Positions (USER_DATA)
+[**QueryPositionsByFilter**](PositionAPI.md#QueryPositionsByFilter) | **Get** /sapi/v1/w3w/wallet/prediction/position/filter | Query Positions by Filter (USER_DATA)
+[**QuerySettledPositionHistory**](PositionAPI.md#QuerySettledPositionHistory) | **Get** /sapi/v1/w3w/wallet/prediction/position/settled-history | Query Settled Position History (USER_DATA)
 
 
 ## GetPositionByToken
 
 > GetPositionByTokenResponse GetPositionByToken(ctx).WalletAddress(walletAddress).TokenId(tokenId).RecvWindow(recvWindow).Execute()
 
-Get Position by Token
+Get Position by Token (USER_DATA)
 
 
 ### Example
@@ -87,7 +87,7 @@ No authorization required
 
 > QueryPnLResponse QueryPnL(ctx).WalletAddress(walletAddress).TokenId(tokenId).MarketId(marketId).MarketTopicId(marketTopicId).ActiveOnly(activeOnly).RecvWindow(recvWindow).Execute()
 
-Query PnL
+Query PnL (USER_DATA)
 
 
 ### Example
@@ -165,7 +165,7 @@ No authorization required
 
 > QueryPositionsResponse QueryPositions(ctx).WalletAddress(walletAddress).Tab(tab).Offset(offset).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Positions
+Query Positions (USER_DATA)
 
 
 ### Example
@@ -241,7 +241,7 @@ No authorization required
 
 > QueryPositionsByFilterResponse QueryPositionsByFilter(ctx).WalletAddress(walletAddress).MarketTopicId(marketTopicId).RecvWindow(recvWindow).Execute()
 
-Query Positions by Filter
+Query Positions by Filter (USER_DATA)
 
 
 ### Example
@@ -313,7 +313,7 @@ No authorization required
 
 > QuerySettledPositionHistoryResponse QuerySettledPositionHistory(ctx).WalletAddress(walletAddress).L1Category(l1Category).Result(result).StartDate(startDate).EndDate(endDate).Offset(offset).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Settled Position History
+Query Settled Position History (USER_DATA)
 
 
 ### Example

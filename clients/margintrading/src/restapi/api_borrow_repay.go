@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingrestapi
@@ -22,17 +22,15 @@ type ApiGetFutureHourlyInterestRateRequest struct {
 	ctx        context.Context
 	ApiService *BorrowRepayAPIService
 	assets     *string
-	isIsolated *bool
+	isIsolated *models.GetFutureHourlyInterestRateIsIsolatedParameter
 }
 
-// List of assets, separated by commas, up to 20
 func (r ApiGetFutureHourlyInterestRateRequest) Assets(assets string) ApiGetFutureHourlyInterestRateRequest {
 	r.assets = &assets
 	return r
 }
 
-// for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;
-func (r ApiGetFutureHourlyInterestRateRequest) IsIsolated(isIsolated bool) ApiGetFutureHourlyInterestRateRequest {
+func (r ApiGetFutureHourlyInterestRateRequest) IsIsolated(isIsolated models.GetFutureHourlyInterestRateIsIsolatedParameter) ApiGetFutureHourlyInterestRateRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -45,11 +43,11 @@ func (r ApiGetFutureHourlyInterestRateRequest) Execute() (*common.RestApiRespons
 GetFutureHourlyInterestRate Get future hourly interest rate (USER_DATA)
 Get /sapi/v1/margin/next-hourly-interest-rate
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-a-future-hourly-interest-rate
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-future-hourly-interest-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param assets -  List of assets, separated by commas, up to 20
-@param isIsolated -  for isolated margin or not, \"TRUE\", \"FALSE\"
+@param assets -
+@param isIsolated -
 @return ApiGetFutureHourlyInterestRateRequest
 */
 func (a *BorrowRepayAPIService) GetFutureHourlyInterestRate(ctx context.Context) ApiGetFutureHourlyInterestRateRequest {
@@ -72,6 +70,7 @@ func (a *BorrowRepayAPIService) GetFutureHourlyInterestRateExecute(r ApiGetFutur
 	if r.assets == nil {
 		return nil, common.ReportError("assets is required and must be specified")
 	}
+
 	if r.isIsolated == nil {
 		return nil, common.ReportError("isIsolated is required and must be specified")
 	}
@@ -79,7 +78,15 @@ func (a *BorrowRepayAPIService) GetFutureHourlyInterestRateExecute(r ApiGetFutur
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "assets", r.assets, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "isIsolated", r.isIsolated, "form", "")
 
-	resp, err := SendRequest[models.GetFutureHourlyInterestRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFutureHourlyInterestRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -104,7 +111,6 @@ func (r ApiGetInterestHistoryRequest) Asset(asset string) ApiGetInterestHistoryR
 	return r
 }
 
-// isolated symbol
 func (r ApiGetInterestHistoryRequest) IsolatedSymbol(isolatedSymbol string) ApiGetInterestHistoryRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
@@ -121,19 +127,16 @@ func (r ApiGetInterestHistoryRequest) EndTime(endTime int64) ApiGetInterestHisto
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
 func (r ApiGetInterestHistoryRequest) Current(current int64) ApiGetInterestHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10 Max:100
 func (r ApiGetInterestHistoryRequest) Size(size int64) ApiGetInterestHistoryRequest {
 	r.size = &size
 	return r
 }
 
-// No more than 60000
 func (r ApiGetInterestHistoryRequest) RecvWindow(recvWindow int64) ApiGetInterestHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -147,16 +150,16 @@ func (r ApiGetInterestHistoryRequest) Execute() (*common.RestApiResponse[models.
 GetInterestHistory Get Interest History (USER_DATA)
 Get /sapi/v1/margin/interestHistory
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Get-Interest-History
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#get-interest-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param isolatedSymbol -  isolated symbol
+@param isolatedSymbol -
 @param startTime -  Only supports querying data from the past 90 days.
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
-@param recvWindow -  No more than 60000
+@param current -
+@param size -
+@param recvWindow -
 @return ApiGetInterestHistoryRequest
 */
 func (a *BorrowRepayAPIService) GetInterestHistory(ctx context.Context) ApiGetInterestHistoryRequest {
@@ -198,7 +201,15 @@ func (a *BorrowRepayAPIService) GetInterestHistoryExecute(r ApiGetInterestHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetInterestHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -210,10 +221,10 @@ type ApiMarginAccountBorrowRepayRequest struct {
 	ctx        context.Context
 	ApiService *BorrowRepayAPIService
 	asset      *string
-	isIsolated *string
-	symbol     *string
+	isIsolated *models.MarginAccountBorrowRepayIsIsolatedParameter
 	amount     *string
-	type_      *string
+	type_      *models.QueryBorrowRepayRecordsInMarginAccountTypeParameter
+	symbol     *string
 	recvWindow *int64
 }
 
@@ -222,14 +233,9 @@ func (r ApiMarginAccountBorrowRepayRequest) Asset(asset string) ApiMarginAccount
 	return r
 }
 
-// &#x60;TRUE&#x60; for Isolated Margin, &#x60;FALSE&#x60; for Cross Margin, Default &#x60;FALSE&#x60;
-func (r ApiMarginAccountBorrowRepayRequest) IsIsolated(isIsolated string) ApiMarginAccountBorrowRepayRequest {
+// &#x60;TRUE&#x60; for Isolated Margin, &#x60;FALSE&#x60; for Cross Margin
+func (r ApiMarginAccountBorrowRepayRequest) IsIsolated(isIsolated models.MarginAccountBorrowRepayIsIsolatedParameter) ApiMarginAccountBorrowRepayRequest {
 	r.isIsolated = &isIsolated
-	return r
-}
-
-func (r ApiMarginAccountBorrowRepayRequest) Symbol(symbol string) ApiMarginAccountBorrowRepayRequest {
-	r.symbol = &symbol
 	return r
 }
 
@@ -238,13 +244,17 @@ func (r ApiMarginAccountBorrowRepayRequest) Amount(amount string) ApiMarginAccou
 	return r
 }
 
-// &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60;
-func (r ApiMarginAccountBorrowRepayRequest) Type(type_ string) ApiMarginAccountBorrowRepayRequest {
+func (r ApiMarginAccountBorrowRepayRequest) Type(type_ models.QueryBorrowRepayRecordsInMarginAccountTypeParameter) ApiMarginAccountBorrowRepayRequest {
 	r.type_ = &type_
 	return r
 }
 
-// No more than 60000
+// Only for Isolated margin
+func (r ApiMarginAccountBorrowRepayRequest) Symbol(symbol string) ApiMarginAccountBorrowRepayRequest {
+	r.symbol = &symbol
+	return r
+}
+
 func (r ApiMarginAccountBorrowRepayRequest) RecvWindow(recvWindow int64) ApiMarginAccountBorrowRepayRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -255,18 +265,18 @@ func (r ApiMarginAccountBorrowRepayRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-MarginAccountBorrowRepay Margin account borrow/repay(MARGIN)
+MarginAccountBorrowRepay Margin account borrow/repay (USER_DATA)
 Post /sapi/v1/margin/borrow-repay
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Margin-account-borrow-repay
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#margin-account-borrow-repay
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param isIsolated -  `TRUE` for Isolated Margin, `FALSE` for Cross Margin, Default `FALSE`
-@param symbol -
+@param isIsolated -  `TRUE` for Isolated Margin, `FALSE` for Cross Margin
 @param amount -
-@param type_ -  `MARGIN`,`ISOLATED`
-@param recvWindow -  No more than 60000
+@param type_ -
+@param symbol -  Only for Isolated margin
+@param recvWindow -
 @return ApiMarginAccountBorrowRepayRequest
 */
 func (a *BorrowRepayAPIService) MarginAccountBorrowRepay(ctx context.Context) ApiMarginAccountBorrowRepayRequest {
@@ -289,29 +299,39 @@ func (a *BorrowRepayAPIService) MarginAccountBorrowRepayExecute(r ApiMarginAccou
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.isIsolated == nil {
 		return nil, common.ReportError("isIsolated is required and must be specified")
 	}
-	if r.symbol == nil {
-		return nil, common.ReportError("symbol is required and must be specified")
-	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "isIsolated", r.isIsolated, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "amount", r.amount, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountBorrowRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountBorrowRepayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -322,7 +342,7 @@ func (a *BorrowRepayAPIService) MarginAccountBorrowRepayExecute(r ApiMarginAccou
 type ApiQueryBorrowRepayRecordsInMarginAccountRequest struct {
 	ctx            context.Context
 	ApiService     *BorrowRepayAPIService
-	type_          *string
+	type_          *models.QueryBorrowRepayRecordsInMarginAccountTypeParameter
 	asset          *string
 	isolatedSymbol *string
 	txId           *int64
@@ -333,8 +353,7 @@ type ApiQueryBorrowRepayRecordsInMarginAccountRequest struct {
 	recvWindow     *int64
 }
 
-// &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60;
-func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Type(type_ string) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
+func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Type(type_ models.QueryBorrowRepayRecordsInMarginAccountTypeParameter) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.type_ = &type_
 	return r
 }
@@ -344,19 +363,16 @@ func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Asset(asset string) Ap
 	return r
 }
 
-// isolated symbol
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) IsolatedSymbol(isolatedSymbol string) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
 }
 
-// &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60;
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) TxId(txId int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.txId = &txId
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) StartTime(startTime int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.startTime = &startTime
 	return r
@@ -367,19 +383,16 @@ func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) EndTime(endTime int64)
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Current(current int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10 Max:100
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Size(size int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.size = &size
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) RecvWindow(recvWindow int64) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -390,21 +403,21 @@ func (r ApiQueryBorrowRepayRecordsInMarginAccountRequest) Execute() (*common.Res
 }
 
 /*
-QueryBorrowRepayRecordsInMarginAccount Query borrow/repay records in Margin account(USER_DATA)
+QueryBorrowRepayRecordsInMarginAccount Query borrow/repay records in Margin account (USER_DATA)
 Get /sapi/v1/margin/borrow-repay
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Borrow-Repay
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-borrow-repay-records-in-margin-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param type_ -  `MARGIN`,`ISOLATED`
+@param type_ -
 @param asset -
-@param isolatedSymbol -  isolated symbol
-@param txId -  `tranId` in `POST /sapi/v1/margin/loan`
-@param startTime -  Only supports querying data from the past 90 days.
+@param isolatedSymbol -
+@param txId -
+@param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
-@param recvWindow -  No more than 60000
+@param current -
+@param size -
+@param recvWindow -
 @return ApiQueryBorrowRepayRecordsInMarginAccountRequest
 */
 func (a *BorrowRepayAPIService) QueryBorrowRepayRecordsInMarginAccount(ctx context.Context) ApiQueryBorrowRepayRecordsInMarginAccountRequest {
@@ -454,7 +467,15 @@ func (a *BorrowRepayAPIService) QueryBorrowRepayRecordsInMarginAccountExecute(r 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryBorrowRepayRecordsInMarginAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryBorrowRepayRecordsInMarginAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -477,13 +498,11 @@ func (r ApiQueryMarginInterestRateHistoryRequest) Asset(asset string) ApiQueryMa
 	return r
 }
 
-// User&#39;s current specific margin data will be returned if vipLevel is omitted
 func (r ApiQueryMarginInterestRateHistoryRequest) VipLevel(vipLevel int64) ApiQueryMarginInterestRateHistoryRequest {
 	r.vipLevel = &vipLevel
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginInterestRateHistoryRequest) StartTime(startTime int64) ApiQueryMarginInterestRateHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -494,7 +513,6 @@ func (r ApiQueryMarginInterestRateHistoryRequest) EndTime(endTime int64) ApiQuer
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginInterestRateHistoryRequest) RecvWindow(recvWindow int64) ApiQueryMarginInterestRateHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -508,14 +526,14 @@ func (r ApiQueryMarginInterestRateHistoryRequest) Execute() (*common.RestApiResp
 QueryMarginInterestRateHistory Query Margin Interest Rate History (USER_DATA)
 Get /sapi/v1/margin/interestRateHistory
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Margin-Interest-Rate-History
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-margin-interest-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param vipLevel -  User's current specific margin data will be returned if vipLevel is omitted
-@param startTime -  Only supports querying data from the past 90 days.
+@param vipLevel -
+@param startTime -
 @param endTime -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryMarginInterestRateHistoryRequest
 */
 func (a *BorrowRepayAPIService) QueryMarginInterestRateHistory(ctx context.Context) ApiQueryMarginInterestRateHistoryRequest {
@@ -553,7 +571,15 @@ func (a *BorrowRepayAPIService) QueryMarginInterestRateHistoryExecute(r ApiQuery
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginInterestRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginInterestRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -574,13 +600,11 @@ func (r ApiQueryMaxBorrowRequest) Asset(asset string) ApiQueryMaxBorrowRequest {
 	return r
 }
 
-// isolated symbol
 func (r ApiQueryMaxBorrowRequest) IsolatedSymbol(isolatedSymbol string) ApiQueryMaxBorrowRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMaxBorrowRequest) RecvWindow(recvWindow int64) ApiQueryMaxBorrowRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -594,12 +618,12 @@ func (r ApiQueryMaxBorrowRequest) Execute() (*common.RestApiResponse[models.Quer
 QueryMaxBorrow Query Max Borrow (USER_DATA)
 Get /sapi/v1/margin/maxBorrowable
 
-https://developers.binance.com/docs/margin_trading/borrow-and-repay/Query-Max-Borrow
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/borrow-repay#query-max-borrow
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param isolatedSymbol -  isolated symbol
-@param recvWindow -  No more than 60000
+@param isolatedSymbol -
+@param recvWindow -
 @return ApiQueryMaxBorrowRequest
 */
 func (a *BorrowRepayAPIService) QueryMaxBorrow(ctx context.Context) ApiQueryMaxBorrowRequest {
@@ -631,7 +655,15 @@ func (a *BorrowRepayAPIService) QueryMaxBorrowExecute(r ApiQueryMaxBorrowRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMaxBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMaxBorrowResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

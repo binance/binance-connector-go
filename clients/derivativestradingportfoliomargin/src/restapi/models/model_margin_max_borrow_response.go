@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &MarginMaxBorrowResponse{}
 
 // MarginMaxBorrowResponse struct for MarginMaxBorrowResponse
 type MarginMaxBorrowResponse struct {
-	Amount               *string `json:"amount,omitempty"`
+	// account's currently max borrowable amount with sufficient system availability
+	Amount *string `json:"amount,omitempty"`
+	// max borrowable amount limited by the account level
 	BorrowLimit          *string `json:"borrowLimit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

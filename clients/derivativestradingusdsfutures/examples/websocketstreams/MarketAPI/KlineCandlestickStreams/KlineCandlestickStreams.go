@@ -16,7 +16,7 @@ func main() {
 
 func KlineCandlestickStreams() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath("wss://fstream.binance.com"),
+		common.WithWsStreamsBasePath(common.DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl),
 	)
 
 	wsClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
@@ -28,7 +28,7 @@ func KlineCandlestickStreams() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketAPI.KlineCandlestickStreams().Symbol("btcusdt").Interval("1m").Execute()
+	handler, err := wsClient.WebsocketStreams.MarketAPI.KlineCandlestickStreams().Symbol("btcusdt").Interval(models.KlineCandlestickStreamsIntervalParameterInterval1m).Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}

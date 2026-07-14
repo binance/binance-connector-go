@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**NotionalCoef** | Pointer to **string** |  | [optional] 
-**Brackets** | Pointer to [**[]UmNotionalAndLeverageBracketsResponseInnerBracketsInner**](UmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**NotionalCoef** | Pointer to **string** | Notional Coef. | [optional] 
+**Brackets** | Pointer to [**[]UmNotionalAndLeverageBracketsResponseInnerBracketsInner**](UmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) | Brackets. | [optional] 
 
 ## Methods
 

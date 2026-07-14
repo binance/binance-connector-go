@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func SwitchDeltaMode() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginProClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).DeltaEnabled("deltaEnabled_example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.SwitchDeltaMode(context.Background()).DeltaEnabled(models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue).Execute()
 	if err != nil {
 		log.Println(err)
 		return

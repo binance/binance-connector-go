@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -16,7 +16,6 @@ type ModifyOrderPriceMatchParameter string
 
 // List of modifyOrder_priceMatch_parameter
 const (
-	ModifyOrderPriceMatchParameterNone       ModifyOrderPriceMatchParameter = "NONE"
 	ModifyOrderPriceMatchParameterOpponent   ModifyOrderPriceMatchParameter = "OPPONENT"
 	ModifyOrderPriceMatchParameterOpponent5  ModifyOrderPriceMatchParameter = "OPPONENT_5"
 	ModifyOrderPriceMatchParameterOpponent10 ModifyOrderPriceMatchParameter = "OPPONENT_10"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of ModifyOrderPriceMatchParameter enum
 var AllowedModifyOrderPriceMatchParameterEnumValues = []ModifyOrderPriceMatchParameter{
-	"NONE",
 	"OPPONENT",
 	"OPPONENT_5",
 	"OPPONENT_10",

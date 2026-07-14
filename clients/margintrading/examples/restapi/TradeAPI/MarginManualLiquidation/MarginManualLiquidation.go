@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/clients/margintrading/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func MarginManualLiquidation() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginManualLiquidation(context.Background()).Type("type__example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginManualLiquidation(context.Background()).Type(models.QueryMarginAvailableInventoryTypeParameterMargin).Execute()
 	if err != nil {
 		log.Println(err)
 		return

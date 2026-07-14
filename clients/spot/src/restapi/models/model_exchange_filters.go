@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -104,54 +104,6 @@ func (dst *ExchangeFilters) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.ExchangeMaxNumOrderListsFilter = nil
 			return fmt.Errorf("failed to unmarshal ExchangeFilters as ExchangeMaxNumOrderListsFilter: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ExchangeMaxNumAlgoOrdersFilter'
-	if jsonDict["filterType"] == "ExchangeMaxNumAlgoOrdersFilter" {
-		// try to unmarshal JSON data into ExchangeMaxNumAlgoOrdersFilter
-		err = json.Unmarshal(data, &dst.ExchangeMaxNumAlgoOrdersFilter)
-		if err == nil {
-			return nil // data stored in dst.ExchangeMaxNumAlgoOrdersFilter, return on the first match
-		} else {
-			dst.ExchangeMaxNumAlgoOrdersFilter = nil
-			return fmt.Errorf("failed to unmarshal ExchangeFilters as ExchangeMaxNumAlgoOrdersFilter: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ExchangeMaxNumIcebergOrdersFilter'
-	if jsonDict["filterType"] == "ExchangeMaxNumIcebergOrdersFilter" {
-		// try to unmarshal JSON data into ExchangeMaxNumIcebergOrdersFilter
-		err = json.Unmarshal(data, &dst.ExchangeMaxNumIcebergOrdersFilter)
-		if err == nil {
-			return nil // data stored in dst.ExchangeMaxNumIcebergOrdersFilter, return on the first match
-		} else {
-			dst.ExchangeMaxNumIcebergOrdersFilter = nil
-			return fmt.Errorf("failed to unmarshal ExchangeFilters as ExchangeMaxNumIcebergOrdersFilter: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ExchangeMaxNumOrderListsFilter'
-	if jsonDict["filterType"] == "ExchangeMaxNumOrderListsFilter" {
-		// try to unmarshal JSON data into ExchangeMaxNumOrderListsFilter
-		err = json.Unmarshal(data, &dst.ExchangeMaxNumOrderListsFilter)
-		if err == nil {
-			return nil // data stored in dst.ExchangeMaxNumOrderListsFilter, return on the first match
-		} else {
-			dst.ExchangeMaxNumOrderListsFilter = nil
-			return fmt.Errorf("failed to unmarshal ExchangeFilters as ExchangeMaxNumOrderListsFilter: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'ExchangeMaxNumOrdersFilter'
-	if jsonDict["filterType"] == "ExchangeMaxNumOrdersFilter" {
-		// try to unmarshal JSON data into ExchangeMaxNumOrdersFilter
-		err = json.Unmarshal(data, &dst.ExchangeMaxNumOrdersFilter)
-		if err == nil {
-			return nil // data stored in dst.ExchangeMaxNumOrdersFilter, return on the first match
-		} else {
-			dst.ExchangeMaxNumOrdersFilter = nil
-			return fmt.Errorf("failed to unmarshal ExchangeFilters as ExchangeMaxNumOrdersFilter: %s", err.Error())
 		}
 	}
 

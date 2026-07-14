@@ -4,24 +4,24 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) |  | [optional] 
-**Type** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersOrdersParameterInnerTimeInForce.md) |  | [optional] 
-**ReduceOnly** | Pointer to **string** |  | [optional] 
-**PostOnly** | Pointer to **string** |  | [optional] 
-**NewOrderRespType** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType.md) |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**IsMmp** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode.md) |  | [optional] 
+**Symbol** | **string** |  | 
+**Side** | [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) |  | 
+**Type** | [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) |  | 
+**Quantity** | **float32** | Order Quantity | 
+**Price** | Pointer to **float32** | Order Price | [optional] 
+**TimeInForce** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersOrdersParameterInnerTimeInForce.md) |  | [optional] [default to PLACEMULTIPLEORDERSORDERSPARAMETERINNERTIMEINFORCE_GTC]
+**ReduceOnly** | Pointer to **bool** |  | [optional] [default to false]
+**PostOnly** | Pointer to **bool** |  | [optional] [default to false]
+**NewOrderRespType** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType.md) |  | [optional] [default to PLACEMULTIPLEORDERSORDERSPARAMETERINNERNEWORDERRESPTYPE_ACK]
+**ClientOrderId** | Pointer to **string** | User-defined order ID cannot be repeated in pending orders | [optional] 
+**IsMmp** | Pointer to **bool** | is market maker protection order | [optional] 
+**SelfTradePreventionMode** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode.md) |  | [optional] [default to PLACEMULTIPLEORDERSORDERSPARAMETERINNERSELFTRADEPREVENTIONMODE_EXPIRE_MAKER]
 
 ## Methods
 
 ### NewPlaceMultipleOrdersOrdersParameterInner
 
-`func NewPlaceMultipleOrdersOrdersParameterInner() *PlaceMultipleOrdersOrdersParameterInner`
+`func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float32, ) *PlaceMultipleOrdersOrdersParameterInner`
 
 NewPlaceMultipleOrdersOrdersParameterInner instantiates a new PlaceMultipleOrdersOrdersParameterInner object
 This constructor will assign default values to properties that have it defined,
@@ -55,11 +55,6 @@ and a boolean to check if the value has been set.
 
 SetSymbol sets Symbol field to given value.
 
-### HasSymbol
-
-`func (o *PlaceMultipleOrdersOrdersParameterInner) HasSymbol() bool`
-
-HasSymbol returns a boolean if a field has been set.
 
 ### GetSide
 
@@ -80,11 +75,6 @@ and a boolean to check if the value has been set.
 
 SetSide sets Side field to given value.
 
-### HasSide
-
-`func (o *PlaceMultipleOrdersOrdersParameterInner) HasSide() bool`
-
-HasSide returns a boolean if a field has been set.
 
 ### GetType
 
@@ -105,53 +95,43 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PlaceMultipleOrdersOrdersParameterInner) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() string`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float32`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float32, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v string)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float32)`
 
 SetQuantity sets Quantity field to given value.
 
-### HasQuantity
-
-`func (o *PlaceMultipleOrdersOrdersParameterInner) HasQuantity() bool`
-
-HasQuantity returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() string`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float32`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v string)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float32)`
 
 SetPrice sets Price field to given value.
 
@@ -188,20 +168,20 @@ HasTimeInForce returns a boolean if a field has been set.
 
 ### GetReduceOnly
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnly() string`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnly() bool`
 
 GetReduceOnly returns the ReduceOnly field if non-nil, zero value otherwise.
 
 ### GetReduceOnlyOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnlyOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnlyOk() (*bool, bool)`
 
 GetReduceOnlyOk returns a tuple with the ReduceOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReduceOnly
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetReduceOnly(v string)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetReduceOnly(v bool)`
 
 SetReduceOnly sets ReduceOnly field to given value.
 
@@ -213,20 +193,20 @@ HasReduceOnly returns a boolean if a field has been set.
 
 ### GetPostOnly
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnly() string`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnly() bool`
 
 GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
 
 ### GetPostOnlyOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnlyOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnlyOk() (*bool, bool)`
 
 GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPostOnly
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPostOnly(v string)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPostOnly(v bool)`
 
 SetPostOnly sets PostOnly field to given value.
 
@@ -288,20 +268,20 @@ HasClientOrderId returns a boolean if a field has been set.
 
 ### GetIsMmp
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmp() string`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmp() bool`
 
 GetIsMmp returns the IsMmp field if non-nil, zero value otherwise.
 
 ### GetIsMmpOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmpOk() (*string, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmpOk() (*bool, bool)`
 
 GetIsMmpOk returns a tuple with the IsMmp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsMmp
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetIsMmp(v string)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetIsMmp(v bool)`
 
 SetIsMmp sets IsMmp field to given value.
 

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &TradesAggregateResponse{}
 
 // TradesAggregateResponse struct for TradesAggregateResponse
 type TradesAggregateResponse struct {
-	Id                   *string                              `json:"id,omitempty"`
-	Status               *int64                               `json:"status,omitempty"`
-	Result               []TradesAggregateResponseResultInner `json:"result,omitempty"`
-	RateLimits           []RateLimits                         `json:"rateLimits,omitempty"`
+	Smallid              *string                                    `json:"id,omitempty"`
+	Status               *int64                                     `json:"status,omitempty"`
+	Result               []TradesAggregateResponseResultInner       `json:"result,omitempty"`
+	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,26 +44,26 @@ func NewTradesAggregateResponseWithDefaults() *TradesAggregateResponse {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *TradesAggregateResponse) GetId() string {
-	if o == nil || common.IsNil(o.Id) {
+func (o *TradesAggregateResponse) GetSmallid() string {
+	if o == nil || common.IsNil(o.Smallid) {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Smallid
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponse) GetIdOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Id) {
+func (o *TradesAggregateResponse) GetSmallidOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallid) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Smallid, true
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *TradesAggregateResponse) HasId() bool {
-	if o != nil && !common.IsNil(o.Id) {
+func (o *TradesAggregateResponse) HasSmallid() bool {
+	if o != nil && !common.IsNil(o.Smallid) {
 		return true
 	}
 
@@ -71,8 +71,8 @@ func (o *TradesAggregateResponse) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *TradesAggregateResponse) SetId(v string) {
-	o.Id = &v
+func (o *TradesAggregateResponse) SetSmallid(v string) {
+	o.Smallid = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -140,9 +140,9 @@ func (o *TradesAggregateResponse) SetResult(v []TradesAggregateResponseResultInn
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *TradesAggregateResponse) GetRateLimits() []RateLimits {
+func (o *TradesAggregateResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []AccountCommissionResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *TradesAggregateResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *TradesAggregateResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *TradesAggregateResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *TradesAggregateResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *TradesAggregateResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 
@@ -181,8 +181,8 @@ func (o TradesAggregateResponse) MarshalJSON() ([]byte, error) {
 
 func (o TradesAggregateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !common.IsNil(o.Smallid) {
+		toSerialize["id"] = o.Smallid
 	}
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status

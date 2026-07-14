@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &IndividualSymbolMiniTickerStreamResponse{}
 
 // IndividualSymbolMiniTickerStreamResponse struct for IndividualSymbolMiniTickerStreamResponse
 type IndividualSymbolMiniTickerStreamResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallh               *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallv               *string `json:"v,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Pair
+	Smallps *string `json:"ps,omitempty"`
+	// Close price
+	Smallc *string `json:"c,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// Total traded volume
+	Smallv *string `json:"v,omitempty"`
+	// Total traded base asset volume
+	Smallq *string `json:"q,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -371,9 +382,9 @@ func (o *IndividualSymbolMiniTickerStreamResponse) SetSmallq(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *IndividualSymbolMiniTickerStreamResponse) GetSmallst() int64 {
+func (o *IndividualSymbolMiniTickerStreamResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -381,7 +392,7 @@ func (o *IndividualSymbolMiniTickerStreamResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndividualSymbolMiniTickerStreamResponse) GetSmallstOk() (*int64, bool) {
+func (o *IndividualSymbolMiniTickerStreamResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -397,8 +408,8 @@ func (o *IndividualSymbolMiniTickerStreamResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *IndividualSymbolMiniTickerStreamResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *IndividualSymbolMiniTickerStreamResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

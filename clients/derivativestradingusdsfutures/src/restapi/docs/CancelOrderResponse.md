@@ -4,32 +4,32 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientOrderId** | Pointer to **string** |  | [optional] 
+**ClientOrderId** | Pointer to **string** | Client Order Id. | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**OrigType** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**ClosePosition** | Pointer to **bool** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**ActivatePrice** | Pointer to **string** |  | [optional] 
-**PriceRate** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**WorkingType** | Pointer to **string** |  | [optional] 
-**PriceProtect** | Pointer to **bool** |  | [optional] 
-**PriceMatch** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**GoodTillDate** | Pointer to **int64** |  | [optional] 
+**CumQuote** | Pointer to **string** | Cum Quote. Will be removed after CM migration. | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
+**OrderId** | Pointer to **int64** | Order Id. | [optional] 
+**OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
+**ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
+**PositionSide** | Pointer to **string** | Position Side. | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
+**StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
+**ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
+**OrigType** | Pointer to **string** | Orig Type. | [optional] 
+**Type** | Pointer to **string** | Type. | [optional] 
+**ActivatePrice** | Pointer to **string** | activation price, only return with TRAILING_STOP_MARKET order | [optional] 
+**PriceRate** | Pointer to **string** | callback rate, only return with TRAILING_STOP_MARKET order | [optional] 
+**UpdateTime** | Pointer to **int64** | Update Time. | [optional] 
+**WorkingType** | Pointer to **string** | Working Type. | [optional] 
+**PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
+**PriceMatch** | Pointer to **string** | price match mode | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading preventation mode | [optional] 
+**GoodTillDate** | Pointer to **int64** | order pre-set auot cancel time for TIF GTD order | [optional] 
 
 ## Methods
 
@@ -199,31 +199,6 @@ SetOrigQty sets OrigQty field to given value.
 `func (o *CancelOrderResponse) HasOrigQty() bool`
 
 HasOrigQty returns a boolean if a field has been set.
-
-### GetOrigType
-
-`func (o *CancelOrderResponse) GetOrigType() string`
-
-GetOrigType returns the OrigType field if non-nil, zero value otherwise.
-
-### GetOrigTypeOk
-
-`func (o *CancelOrderResponse) GetOrigTypeOk() (*string, bool)`
-
-GetOrigTypeOk returns a tuple with the OrigType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOrigType
-
-`func (o *CancelOrderResponse) SetOrigType(v string)`
-
-SetOrigType sets OrigType field to given value.
-
-### HasOrigType
-
-`func (o *CancelOrderResponse) HasOrigType() bool`
-
-HasOrigType returns a boolean if a field has been set.
 
 ### GetPrice
 
@@ -474,6 +449,31 @@ SetTimeInForce sets TimeInForce field to given value.
 `func (o *CancelOrderResponse) HasTimeInForce() bool`
 
 HasTimeInForce returns a boolean if a field has been set.
+
+### GetOrigType
+
+`func (o *CancelOrderResponse) GetOrigType() string`
+
+GetOrigType returns the OrigType field if non-nil, zero value otherwise.
+
+### GetOrigTypeOk
+
+`func (o *CancelOrderResponse) GetOrigTypeOk() (*string, bool)`
+
+GetOrigTypeOk returns a tuple with the OrigType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrigType
+
+`func (o *CancelOrderResponse) SetOrigType(v string)`
+
+SetOrigType sets OrigType field to given value.
+
+### HasOrigType
+
+`func (o *CancelOrderResponse) HasOrigType() bool`
+
+HasOrigType returns a boolean if a field has been set.
 
 ### GetType
 

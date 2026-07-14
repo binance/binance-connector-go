@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction | [optional] 
+**I** | Pointer to **string** | Account Alias | [optional] 
 **A** | Pointer to [**AccountUpdateA**](AccountUpdateA.md) |  | [optional] 
 
 ## Methods

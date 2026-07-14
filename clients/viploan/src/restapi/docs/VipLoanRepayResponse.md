@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **RemainingInterest** | Pointer to **string** |  | [optional] 
 **CollateralCoin** | Pointer to **string** |  | [optional] 
 **CurrentLTV** | Pointer to **string** |  | [optional] 
-**RepayStatus** | Pointer to **string** |  | [optional] 
+**RepayStatus** | Pointer to **string** | Repayment status (&#x60;Repaid&#x60;, &#x60;Repaying&#x60;, &#x60;Failed&#x60;). | [optional] 
 
 ## Methods
 

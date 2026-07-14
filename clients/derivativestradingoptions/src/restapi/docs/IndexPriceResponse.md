@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **int64** |  | [optional] 
-**IndexPrice** | Pointer to **string** |  | [optional] 
+**Time** | Pointer to **int64** | time | [optional] 
+**IndexPrice** | Pointer to **string** | index Price | [optional] 
 
 ## Methods
 

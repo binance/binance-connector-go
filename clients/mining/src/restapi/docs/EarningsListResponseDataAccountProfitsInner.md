@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **int64** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**HashTransfer** | Pointer to **int64** |  | [optional] 
-**TransferAmount** | Pointer to **float32** |  | [optional] 
-**DayHashRate** | Pointer to **int64** |  | [optional] 
-**ProfitAmount** | Pointer to **float32** |  | [optional] 
-**CoinName** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | Mining date | [optional] 
+**Type** | Pointer to **int64** | 0: Mining Wallet, 5: Mining Address, 7: Pool Savings, 8: Transferred, 31: Income Transfer, 32: Hashrate Resale-Mining Wallet, 33: Hashrate Resale-Pool Savings | [optional] 
+**HashTransfer** | Pointer to **int64** | Transferred hashrate | [optional] 
+**TransferAmount** | Pointer to **float32** | Transferred income | [optional] 
+**DayHashRate** | Pointer to **int64** | Daily hashrate | [optional] 
+**ProfitAmount** | Pointer to **float32** | Earnings amount | [optional] 
+**CoinName** | Pointer to **string** | Coin type | [optional] 
+**Status** | Pointer to **int64** | Status: 0 Unpaid, 1 Paying, 2 Paid | [optional] 
 
 ## Methods
 

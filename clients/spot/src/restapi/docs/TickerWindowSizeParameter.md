@@ -90,6 +90,7 @@
 * `TickerWindowSizeParameterWindowSize4d` (value: `"4d"`)
 * `TickerWindowSizeParameterWindowSize5d` (value: `"5d"`)
 * `TickerWindowSizeParameterWindowSize6d` (value: `"6d"`)
+* `TickerWindowSizeParameterWindowSize7d` (value: `"7d"`)
 
 
 [[Back to README]](../README.md)

@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.7.0 - 2026-07-14
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.4.0`.
+- Modified response for `getPayTradeHistory()` (`GET /sapi/v1/pay/transactions`):
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `2` deleted
+  - `data`.items.`fundsDetail`.items.`walletAssetCost`: property `1` deleted
+
 ## 1.6.0 - 2026-04-20
 
 ### Changed (1)

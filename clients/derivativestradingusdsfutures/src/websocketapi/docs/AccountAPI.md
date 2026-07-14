@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**AccountInformation**](AccountAPI.md#AccountInformation) | /account.status | Account Information(USER_DATA)
-[**AccountInformationV2**](AccountAPI.md#AccountInformationV2) | /v2/account.status | Account Information V2(USER_DATA)
-[**FuturesAccountBalance**](AccountAPI.md#FuturesAccountBalance) | /account.balance | Futures Account Balance(USER_DATA)
-[**FuturesAccountBalanceV2**](AccountAPI.md#FuturesAccountBalanceV2) | /v2/account.balance | Futures Account Balance V2(USER_DATA)
+[**AccountInformation**](AccountAPI.md#AccountInformation) | /account.status | Account Information (USER_DATA)
+[**AccountInformationV2**](AccountAPI.md#AccountInformationV2) | /v2/account.status | Account Information V2 (USER_DATA)
+[**FuturesAccountBalance**](AccountAPI.md#FuturesAccountBalance) | /account.balance | Futures Account Balance (USER_DATA)
+[**FuturesAccountBalanceV2**](AccountAPI.md#FuturesAccountBalanceV2) | /v2/account.balance | Futures Account Balance V2 (USER_DATA)
 
 
 ## AccountInformation
 
 > AccountInformationResponse AccountInformation().Id(id).RecvWindow(recvWindow).Execute()
 
-Account Information(USER_DATA)
+Account Information (USER_DATA)
 
 
 ### Example
@@ -31,8 +31,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -70,8 +70,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **int64** |  | 
+ **id** | **string** | Id. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -88,7 +88,7 @@ No authorization required
 
 > AccountInformationV2Response AccountInformationV2().Id(id).RecvWindow(recvWindow).Execute()
 
-Account Information V2(USER_DATA)
+Account Information V2 (USER_DATA)
 
 
 ### Example
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -144,8 +144,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **int64** |  | 
+ **id** | **string** | Id. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ No authorization required
 
 > FuturesAccountBalanceResponse FuturesAccountBalance().Id(id).RecvWindow(recvWindow).Execute()
 
-Futures Account Balance(USER_DATA)
+Futures Account Balance (USER_DATA)
 
 
 ### Example
@@ -179,8 +179,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -218,8 +218,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **int64** |  | 
+ **id** | **string** | Id. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -236,7 +236,7 @@ No authorization required
 
 > FuturesAccountBalanceV2Response FuturesAccountBalanceV2().Id(id).RecvWindow(recvWindow).Execute()
 
-Futures Account Balance V2(USER_DATA)
+Futures Account Balance V2 (USER_DATA)
 
 
 ### Example
@@ -253,8 +253,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -292,8 +292,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **int64** |  | 
+ **id** | **string** | Id. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 

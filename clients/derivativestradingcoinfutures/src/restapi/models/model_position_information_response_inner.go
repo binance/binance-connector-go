@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,20 +17,34 @@ var _ common.MappedNullable = &PositionInformationResponseInner{}
 
 // PositionInformationResponseInner struct for PositionInformationResponseInner
 type PositionInformationResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	BreakEvenPrice       *string `json:"breakEvenPrice,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
-	LiquidationPrice     *string `json:"liquidationPrice,omitempty"`
-	Leverage             *string `json:"leverage,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
-	MarginType           *string `json:"marginType,omitempty"`
-	IsolatedMargin       *string `json:"isolatedMargin,omitempty"`
-	IsAutoAddMargin      *string `json:"isAutoAddMargin,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// Position entry price.
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// break-even price
+	BreakEvenPrice *string `json:"breakEvenPrice,omitempty"`
+	// mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// Unrealized profit.
+	UnRealizedProfit *string `json:"unRealizedProfit,omitempty"`
+	// Liquidation price.
+	LiquidationPrice *string `json:"liquidationPrice,omitempty"`
+	// Leverage value.
+	Leverage *string `json:"leverage,omitempty"`
+	// maximum quantity of base asset
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Margin type.
+	MarginType *string `json:"marginType,omitempty"`
+	// Isolated margin amount.
+	IsolatedMargin *string `json:"isolatedMargin,omitempty"`
+	// Whether auto-add margin is enabled.
+	IsAutoAddMargin *string `json:"isAutoAddMargin,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

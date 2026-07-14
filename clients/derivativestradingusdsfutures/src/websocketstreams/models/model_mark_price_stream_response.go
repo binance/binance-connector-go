@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &MarkPriceStreamResponse{}
 
 // MarkPriceStreamResponse struct for MarkPriceStreamResponse
 type MarkPriceStreamResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallap              *string `json:"ap,omitempty"`
-	Smalli               *string `json:"i,omitempty"`
-	P                    *string `json:"P,omitempty"`
-	Smallr               *string `json:"r,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Mark price
+	Smallp *string `json:"p,omitempty"`
+	// Index price
+	Smalli *string `json:"i,omitempty"`
+	// Estimated Settle Price, only useful in the last hour before the settlement starts
+	P *string `json:"P,omitempty"`
+	// Funding rate
+	Smallr *string `json:"r,omitempty"`
+	// Mark price moving average
+	Smallap *string `json:"ap,omitempty"`
+	// Next funding time
+	T *int64 `json:"T,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -177,38 +187,6 @@ func (o *MarkPriceStreamResponse) SetSmallp(v string) {
 	o.Smallp = &v
 }
 
-// GetAp returns the Ap field value if set, zero value otherwise.
-func (o *MarkPriceStreamResponse) GetSmallap() string {
-	if o == nil || common.IsNil(o.Smallap) {
-		var ret string
-		return ret
-	}
-	return *o.Smallap
-}
-
-// GetApOk returns a tuple with the Ap field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MarkPriceStreamResponse) GetSmallapOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallap) {
-		return nil, false
-	}
-	return o.Smallap, true
-}
-
-// HasAp returns a boolean if a field has been set.
-func (o *MarkPriceStreamResponse) HasSmallap() bool {
-	if o != nil && !common.IsNil(o.Smallap) {
-		return true
-	}
-
-	return false
-}
-
-// SetAp gets a reference to the given string and assigns it to the Ap field.
-func (o *MarkPriceStreamResponse) SetSmallap(v string) {
-	o.Smallap = &v
-}
-
 // GetI returns the I field value if set, zero value otherwise.
 func (o *MarkPriceStreamResponse) GetSmalli() string {
 	if o == nil || common.IsNil(o.Smalli) {
@@ -305,6 +283,38 @@ func (o *MarkPriceStreamResponse) SetSmallr(v string) {
 	o.Smallr = &v
 }
 
+// GetAp returns the Ap field value if set, zero value otherwise.
+func (o *MarkPriceStreamResponse) GetSmallap() string {
+	if o == nil || common.IsNil(o.Smallap) {
+		var ret string
+		return ret
+	}
+	return *o.Smallap
+}
+
+// GetApOk returns a tuple with the Ap field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MarkPriceStreamResponse) GetSmallapOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallap) {
+		return nil, false
+	}
+	return o.Smallap, true
+}
+
+// HasAp returns a boolean if a field has been set.
+func (o *MarkPriceStreamResponse) HasSmallap() bool {
+	if o != nil && !common.IsNil(o.Smallap) {
+		return true
+	}
+
+	return false
+}
+
+// SetAp gets a reference to the given string and assigns it to the Ap field.
+func (o *MarkPriceStreamResponse) SetSmallap(v string) {
+	o.Smallap = &v
+}
+
 // GetT returns the T field value if set, zero value otherwise.
 func (o *MarkPriceStreamResponse) GetT() int64 {
 	if o == nil || common.IsNil(o.T) {
@@ -338,9 +348,9 @@ func (o *MarkPriceStreamResponse) SetT(v int64) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *MarkPriceStreamResponse) GetSmallst() int64 {
+func (o *MarkPriceStreamResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -348,7 +358,7 @@ func (o *MarkPriceStreamResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MarkPriceStreamResponse) GetSmallstOk() (*int64, bool) {
+func (o *MarkPriceStreamResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -364,8 +374,8 @@ func (o *MarkPriceStreamResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *MarkPriceStreamResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *MarkPriceStreamResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 
@@ -391,9 +401,6 @@ func (o MarkPriceStreamResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallp) {
 		toSerialize["p"] = o.Smallp
 	}
-	if !common.IsNil(o.Smallap) {
-		toSerialize["ap"] = o.Smallap
-	}
 	if !common.IsNil(o.Smalli) {
 		toSerialize["i"] = o.Smalli
 	}
@@ -402,6 +409,9 @@ func (o MarkPriceStreamResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Smallr) {
 		toSerialize["r"] = o.Smallr
+	}
+	if !common.IsNil(o.Smallap) {
+		toSerialize["ap"] = o.Smallap
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T
@@ -435,10 +445,10 @@ func (o *MarkPriceStreamResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "s")
 		delete(additionalProperties, "p")
-		delete(additionalProperties, "ap")
 		delete(additionalProperties, "i")
 		delete(additionalProperties, "P")
 		delete(additionalProperties, "r")
+		delete(additionalProperties, "ap")
 		delete(additionalProperties, "T")
 		delete(additionalProperties, "st")
 		o.AdditionalProperties = additionalProperties

@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**IncomeType** | Pointer to **string** |  | [optional] 
-**Income** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Info** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**TranId** | Pointer to **int64** |  | [optional] 
-**TradeId** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**IncomeType** | Pointer to **string** | Income type. | [optional] 
+**Income** | Pointer to **string** | Income amount. | [optional] 
+**Asset** | Pointer to **string** | Income asset. | [optional] 
+**Info** | Pointer to **string** | Extra information. | [optional] 
+**Time** | Pointer to **int64** | Event time. | [optional] 
+**TranId** | Pointer to **string** | Transaction ID. | [optional] 
+**TradeId** | Pointer to **string** | Trade ID, if existing. | [optional] 
 
 ## Methods
 
@@ -184,20 +184,20 @@ HasTime returns a boolean if a field has been set.
 
 ### GetTranId
 
-`func (o *GetUmIncomeHistoryResponseInner) GetTranId() int64`
+`func (o *GetUmIncomeHistoryResponseInner) GetTranId() string`
 
 GetTranId returns the TranId field if non-nil, zero value otherwise.
 
 ### GetTranIdOk
 
-`func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*int64, bool)`
+`func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*string, bool)`
 
 GetTranIdOk returns a tuple with the TranId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTranId
 
-`func (o *GetUmIncomeHistoryResponseInner) SetTranId(v int64)`
+`func (o *GetUmIncomeHistoryResponseInner) SetTranId(v string)`
 
 SetTranId sets TranId field to given value.
 

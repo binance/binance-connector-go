@@ -22,7 +22,7 @@ func AccountTradeList() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.AccountTradeList(context.Background()).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.AccountTradeList(context.Background()).Symbol("BTC-200730-9000-C").Execute()
 	if err != nil {
 		log.Println(err)
 		return

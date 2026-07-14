@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**W** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**I** | Pointer to **string** | Average price interval | [optional] 
+**W** | Pointer to **string** | Average price | [optional] 
+**T** | Pointer to **int64** | Last trade time | [optional] 
 
 ## Methods
 

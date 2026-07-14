@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -19,7 +19,7 @@ var _ common.MappedNullable = &OrderTestResponse{}
 type OrderTestResponse struct {
 	StandardCommissionForOrder *OrderTestResponseStandardCommissionForOrder `json:"standardCommissionForOrder,omitempty"`
 	SpecialCommissionForOrder  *OrderTestResponseSpecialCommissionForOrder  `json:"specialCommissionForOrder,omitempty"`
-	TaxCommissionForOrder      *OrderTestResponseStandardCommissionForOrder `json:"taxCommissionForOrder,omitempty"`
+	TaxCommissionForOrder      *OrderTestResponseTaxCommissionForOrder      `json:"taxCommissionForOrder,omitempty"`
 	Discount                   *OrderTestResponseDiscount                   `json:"discount,omitempty"`
 	AdditionalProperties       map[string]interface{}
 }
@@ -108,9 +108,9 @@ func (o *OrderTestResponse) SetSpecialCommissionForOrder(v OrderTestResponseSpec
 }
 
 // GetTaxCommissionForOrder returns the TaxCommissionForOrder field value if set, zero value otherwise.
-func (o *OrderTestResponse) GetTaxCommissionForOrder() OrderTestResponseStandardCommissionForOrder {
+func (o *OrderTestResponse) GetTaxCommissionForOrder() OrderTestResponseTaxCommissionForOrder {
 	if o == nil || common.IsNil(o.TaxCommissionForOrder) {
-		var ret OrderTestResponseStandardCommissionForOrder
+		var ret OrderTestResponseTaxCommissionForOrder
 		return ret
 	}
 	return *o.TaxCommissionForOrder
@@ -118,7 +118,7 @@ func (o *OrderTestResponse) GetTaxCommissionForOrder() OrderTestResponseStandard
 
 // GetTaxCommissionForOrderOk returns a tuple with the TaxCommissionForOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderTestResponse) GetTaxCommissionForOrderOk() (*OrderTestResponseStandardCommissionForOrder, bool) {
+func (o *OrderTestResponse) GetTaxCommissionForOrderOk() (*OrderTestResponseTaxCommissionForOrder, bool) {
 	if o == nil || common.IsNil(o.TaxCommissionForOrder) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *OrderTestResponse) HasTaxCommissionForOrder() bool {
 	return false
 }
 
-// SetTaxCommissionForOrder gets a reference to the given OrderTestResponseStandardCommissionForOrder and assigns it to the TaxCommissionForOrder field.
-func (o *OrderTestResponse) SetTaxCommissionForOrder(v OrderTestResponseStandardCommissionForOrder) {
+// SetTaxCommissionForOrder gets a reference to the given OrderTestResponseTaxCommissionForOrder and assigns it to the TaxCommissionForOrder field.
+func (o *OrderTestResponse) SetTaxCommissionForOrder(v OrderTestResponseTaxCommissionForOrder) {
 	o.TaxCommissionForOrder = &v
 }
 

@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API TEST
+Portfolio Margin REST API TEST
 
 Testing UserDataStreamsAPIService
 
@@ -105,7 +105,11 @@ func Test_binancederivativestradingportfoliomarginrestapi_UserDataStreamsAPIServ
 
 	t.Run("Test UserDataStreamsAPIService StartUserDataStream Success", func(t *testing.T) {
 
-		mockedJSON := `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1"}`
+		var mockedJSON string
+		mockedJSON = `{"listenKey":"pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/listenKey", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

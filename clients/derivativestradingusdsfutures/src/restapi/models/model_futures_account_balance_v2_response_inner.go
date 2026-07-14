@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &FuturesAccountBalanceV2ResponseInner{}
 
 // FuturesAccountBalanceV2ResponseInner struct for FuturesAccountBalanceV2ResponseInner
 type FuturesAccountBalanceV2ResponseInner struct {
-	AccountAlias         *string `json:"accountAlias,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Balance              *string `json:"balance,omitempty"`
-	CrossWalletBalance   *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl           *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance     *string `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount    *string `json:"maxWithdrawAmount,omitempty"`
-	MarginAvailable      *bool   `json:"marginAvailable,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Unique account alias.
+	AccountAlias *string `json:"accountAlias,omitempty"`
+	// Asset name.
+	Asset *string `json:"asset,omitempty"`
+	// Wallet balance.
+	Balance *string `json:"balance,omitempty"`
+	// Cross wallet balance.
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// Unrealized PnL of cross positions.
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// Available balance.
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// Maximum transferable/withdrawable amount.
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// Whether the asset can be used as margin in multi-assets mode.
+	MarginAvailable *bool `json:"marginAvailable,omitempty"`
+	// Last update time in milliseconds.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

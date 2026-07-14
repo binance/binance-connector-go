@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetExchangeInfoResponseDataAssetsInner{}
 
 // GetExchangeInfoResponseDataAssetsInner struct for GetExchangeInfoResponseDataAssetsInner
 type GetExchangeInfoResponseDataAssetsInner struct {
+	// Asset symbol.
 	Asset                *string `json:"asset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,61 +17,116 @@ var _ common.MappedNullable = &ExecutionReport{}
 
 // ExecutionReport struct for ExecutionReport
 type ExecutionReport struct {
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallf               *string `json:"f,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	P                    *string `json:"P,omitempty"`
-	F                    *string `json:"F,omitempty"`
-	Smallg               *int64  `json:"g,omitempty"`
-	C                    *string `json:"C,omitempty"`
-	Smallx               *string `json:"x,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	Smallr               *string `json:"r,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallz               *string `json:"z,omitempty"`
-	L                    *string `json:"L,omitempty"`
-	Smalln               *string `json:"n,omitempty"`
-	N                    *string `json:"N,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallt               *int64  `json:"t,omitempty"`
-	Smallv               *int64  `json:"v,omitempty"`
-	I                    *int64  `json:"I,omitempty"`
-	Smallw               *bool   `json:"w,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	M                    *bool   `json:"M,omitempty"`
-	O                    *int64  `json:"O,omitempty"`
-	Z                    *string `json:"Z,omitempty"`
-	Y                    *string `json:"Y,omitempty"`
-	Q                    *string `json:"Q,omitempty"`
-	W                    *int64  `json:"W,omitempty"`
-	V                    *string `json:"V,omitempty"`
-	Smalld               *int64  `json:"d,omitempty"`
-	D                    *int64  `json:"D,omitempty"`
-	Smallj               *int64  `json:"j,omitempty"`
-	J                    *int64  `json:"J,omitempty"`
-	A                    *string `json:"A,omitempty"`
-	B                    *string `json:"B,omitempty"`
-	Smallu               *int64  `json:"u,omitempty"`
-	U                    *int64  `json:"U,omitempty"`
-	Cs                   *string `json:"Cs,omitempty"`
-	Smallpl              *string `json:"pl,omitempty"`
-	PL                   *string `json:"pL,omitempty"`
-	PY                   *string `json:"pY,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	Smalla               *int64  `json:"a,omitempty"`
-	Smallk               *string `json:"k,omitempty"`
-	US                   *bool   `json:"uS,omitempty"`
-	GP                   *string `json:"gP,omitempty"`
-	GOT                  *string `json:"gOT,omitempty"`
-	GOV                  *int64  `json:"gOV,omitempty"`
-	Smallgp              *string `json:"gp,omitempty"`
-	ER                   *string `json:"eR,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Client order ID
+	Smallc *string `json:"c,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Order type
+	Smallo *string `json:"o,omitempty"`
+	// Time in force
+	Smallf *string `json:"f,omitempty"`
+	// Order quantity
+	Smallq *string `json:"q,omitempty"`
+	// Order price
+	Smallp *string `json:"p,omitempty"`
+	// Stop price
+	P *string `json:"P,omitempty"`
+	// Iceberg quantity
+	F *string `json:"F,omitempty"`
+	// OrderListId
+	Smallg *int64 `json:"g,omitempty"`
+	// Original client order ID; This is the ID of the order being canceled
+	C *string `json:"C,omitempty"`
+	// Current execution type
+	Smallx *string `json:"x,omitempty"`
+	// Current order status
+	X *string `json:"X,omitempty"`
+	// Order reject reason; Please see Order Reject Reason for more information.
+	Smallr *string `json:"r,omitempty"`
+	// Order ID
+	Smalli *int64 `json:"i,omitempty"`
+	// Last executed quantity
+	Smalll *string `json:"l,omitempty"`
+	// Cumulative filled quantity
+	Smallz *string `json:"z,omitempty"`
+	// Last executed price
+	L *string `json:"L,omitempty"`
+	// Commission amount
+	Smalln *string `json:"n,omitempty"`
+	// Commission asset
+	N *string `json:"N,omitempty"`
+	// Transaction time
+	T *int64 `json:"T,omitempty"`
+	// Trade ID
+	Smallt *int64 `json:"t,omitempty"`
+	// Prevented Match Id; This is only visible if the order expired due to STP
+	Smallv *int64 `json:"v,omitempty"`
+	// Execution Id
+	I *int64 `json:"I,omitempty"`
+	// Is the order on the book?
+	Smallw *bool `json:"w,omitempty"`
+	// Is this trade the maker side?
+	Smallm *bool `json:"m,omitempty"`
+	// Ignore
+	M *bool `json:"M,omitempty"`
+	// Order creation time
+	O *int64 `json:"O,omitempty"`
+	// Cumulative quote asset transacted quantity
+	Z *string `json:"Z,omitempty"`
+	// Last quote asset transacted quantity (i.e. lastPrice * lastQty)
+	Y *string `json:"Y,omitempty"`
+	// Quote Order Quantity
+	Q *string `json:"Q,omitempty"`
+	// Working Time; This is only visible if the order has been placed on the book.
+	W *int64 `json:"W,omitempty"`
+	// SelfTradePreventionMode
+	V *string `json:"V,omitempty"`
+	// Trailing Delta
+	Smalld *int64 `json:"d,omitempty"`
+	// Trailing Time
+	D *int64 `json:"D,omitempty"`
+	// Strategy Id
+	Smallj *int64 `json:"j,omitempty"`
+	// Strategy Type
+	J *int64 `json:"J,omitempty"`
+	// Prevented Quantity
+	A *string `json:"A,omitempty"`
+	// Last Prevented Quantity
+	B *string `json:"B,omitempty"`
+	// Trade Group Id
+	Smallu *int64 `json:"u,omitempty"`
+	// Counter Order Id
+	U *int64 `json:"U,omitempty"`
+	// Counter Symbol
+	Cs *string `json:"Cs,omitempty"`
+	// Prevented Execution Quantity
+	Smallpl *string `json:"pl,omitempty"`
+	// Prevented Execution Price
+	SmallpL *string `json:"pL,omitempty"`
+	// Prevented Execution Quote Qty
+	SmallpY *string `json:"pY,omitempty"`
+	// Match Type
+	Smallb *string `json:"b,omitempty"`
+	// Allocation ID
+	Smalla *int64 `json:"a,omitempty"`
+	// Working Floor
+	Smallk *string `json:"k,omitempty"`
+	// UsedSor
+	SmalluS *bool `json:"uS,omitempty"`
+	// Pegged Price Type
+	SmallgP *string `json:"gP,omitempty"`
+	// Pegged Offset Type
+	GOT *string `json:"gOT,omitempty"`
+	// Pegged Offset Value
+	GOV *int64 `json:"gOV,omitempty"`
+	// Pegged Price
+	Smallgp *string `json:"gp,omitempty"`
+	// Expiry Reason. Appears when the order has expired.
+	SmalleR              *string `json:"eR,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -1503,26 +1558,26 @@ func (o *ExecutionReport) SetSmallpl(v string) {
 }
 
 // GetPL returns the PL field value if set, zero value otherwise.
-func (o *ExecutionReport) GetPL() string {
-	if o == nil || common.IsNil(o.PL) {
+func (o *ExecutionReport) GetSmallpL() string {
+	if o == nil || common.IsNil(o.SmallpL) {
 		var ret string
 		return ret
 	}
-	return *o.PL
+	return *o.SmallpL
 }
 
 // GetPLOk returns a tuple with the PL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetPLOk() (*string, bool) {
-	if o == nil || common.IsNil(o.PL) {
+func (o *ExecutionReport) GetSmallpLOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SmallpL) {
 		return nil, false
 	}
-	return o.PL, true
+	return o.SmallpL, true
 }
 
 // HasPL returns a boolean if a field has been set.
-func (o *ExecutionReport) HasPL() bool {
-	if o != nil && !common.IsNil(o.PL) {
+func (o *ExecutionReport) HasSmallpL() bool {
+	if o != nil && !common.IsNil(o.SmallpL) {
 		return true
 	}
 
@@ -1530,31 +1585,31 @@ func (o *ExecutionReport) HasPL() bool {
 }
 
 // SetPL gets a reference to the given string and assigns it to the PL field.
-func (o *ExecutionReport) SetPL(v string) {
-	o.PL = &v
+func (o *ExecutionReport) SetSmallpL(v string) {
+	o.SmallpL = &v
 }
 
 // GetPY returns the PY field value if set, zero value otherwise.
-func (o *ExecutionReport) GetPY() string {
-	if o == nil || common.IsNil(o.PY) {
+func (o *ExecutionReport) GetSmallpY() string {
+	if o == nil || common.IsNil(o.SmallpY) {
 		var ret string
 		return ret
 	}
-	return *o.PY
+	return *o.SmallpY
 }
 
 // GetPYOk returns a tuple with the PY field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetPYOk() (*string, bool) {
-	if o == nil || common.IsNil(o.PY) {
+func (o *ExecutionReport) GetSmallpYOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SmallpY) {
 		return nil, false
 	}
-	return o.PY, true
+	return o.SmallpY, true
 }
 
 // HasPY returns a boolean if a field has been set.
-func (o *ExecutionReport) HasPY() bool {
-	if o != nil && !common.IsNil(o.PY) {
+func (o *ExecutionReport) HasSmallpY() bool {
+	if o != nil && !common.IsNil(o.SmallpY) {
 		return true
 	}
 
@@ -1562,8 +1617,8 @@ func (o *ExecutionReport) HasPY() bool {
 }
 
 // SetPY gets a reference to the given string and assigns it to the PY field.
-func (o *ExecutionReport) SetPY(v string) {
-	o.PY = &v
+func (o *ExecutionReport) SetSmallpY(v string) {
+	o.SmallpY = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -1663,26 +1718,26 @@ func (o *ExecutionReport) SetSmallk(v string) {
 }
 
 // GetUS returns the US field value if set, zero value otherwise.
-func (o *ExecutionReport) GetUS() bool {
-	if o == nil || common.IsNil(o.US) {
+func (o *ExecutionReport) GetSmalluS() bool {
+	if o == nil || common.IsNil(o.SmalluS) {
 		var ret bool
 		return ret
 	}
-	return *o.US
+	return *o.SmalluS
 }
 
 // GetUSOk returns a tuple with the US field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetUSOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.US) {
+func (o *ExecutionReport) GetSmalluSOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.SmalluS) {
 		return nil, false
 	}
-	return o.US, true
+	return o.SmalluS, true
 }
 
 // HasUS returns a boolean if a field has been set.
-func (o *ExecutionReport) HasUS() bool {
-	if o != nil && !common.IsNil(o.US) {
+func (o *ExecutionReport) HasSmalluS() bool {
+	if o != nil && !common.IsNil(o.SmalluS) {
 		return true
 	}
 
@@ -1690,31 +1745,31 @@ func (o *ExecutionReport) HasUS() bool {
 }
 
 // SetUS gets a reference to the given bool and assigns it to the US field.
-func (o *ExecutionReport) SetUS(v bool) {
-	o.US = &v
+func (o *ExecutionReport) SetSmalluS(v bool) {
+	o.SmalluS = &v
 }
 
 // GetGP returns the GP field value if set, zero value otherwise.
-func (o *ExecutionReport) GetGP() string {
-	if o == nil || common.IsNil(o.GP) {
+func (o *ExecutionReport) GetSmallgP() string {
+	if o == nil || common.IsNil(o.SmallgP) {
 		var ret string
 		return ret
 	}
-	return *o.GP
+	return *o.SmallgP
 }
 
 // GetGPOk returns a tuple with the GP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetGPOk() (*string, bool) {
-	if o == nil || common.IsNil(o.GP) {
+func (o *ExecutionReport) GetSmallgPOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SmallgP) {
 		return nil, false
 	}
-	return o.GP, true
+	return o.SmallgP, true
 }
 
 // HasGP returns a boolean if a field has been set.
-func (o *ExecutionReport) HasGP() bool {
-	if o != nil && !common.IsNil(o.GP) {
+func (o *ExecutionReport) HasSmallgP() bool {
+	if o != nil && !common.IsNil(o.SmallgP) {
 		return true
 	}
 
@@ -1722,8 +1777,8 @@ func (o *ExecutionReport) HasGP() bool {
 }
 
 // SetGP gets a reference to the given string and assigns it to the GP field.
-func (o *ExecutionReport) SetGP(v string) {
-	o.GP = &v
+func (o *ExecutionReport) SetSmallgP(v string) {
+	o.SmallgP = &v
 }
 
 // GetGOT returns the GOT field value if set, zero value otherwise.
@@ -1823,26 +1878,26 @@ func (o *ExecutionReport) SetSmallgp(v string) {
 }
 
 // GetER returns the ER field value if set, zero value otherwise.
-func (o *ExecutionReport) GetER() string {
-	if o == nil || common.IsNil(o.ER) {
+func (o *ExecutionReport) GetSmalleR() string {
+	if o == nil || common.IsNil(o.SmalleR) {
 		var ret string
 		return ret
 	}
-	return *o.ER
+	return *o.SmalleR
 }
 
 // GetEROk returns a tuple with the ER field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetEROk() (*string, bool) {
-	if o == nil || common.IsNil(o.ER) {
+func (o *ExecutionReport) GetSmalleROk() (*string, bool) {
+	if o == nil || common.IsNil(o.SmalleR) {
 		return nil, false
 	}
-	return o.ER, true
+	return o.SmalleR, true
 }
 
 // HasER returns a boolean if a field has been set.
-func (o *ExecutionReport) HasER() bool {
-	if o != nil && !common.IsNil(o.ER) {
+func (o *ExecutionReport) HasSmalleR() bool {
+	if o != nil && !common.IsNil(o.SmalleR) {
 		return true
 	}
 
@@ -1850,8 +1905,8 @@ func (o *ExecutionReport) HasER() bool {
 }
 
 // SetER gets a reference to the given string and assigns it to the ER field.
-func (o *ExecutionReport) SetER(v string) {
-	o.ER = &v
+func (o *ExecutionReport) SetSmalleR(v string) {
+	o.SmalleR = &v
 }
 
 func (o ExecutionReport) MarshalJSON() ([]byte, error) {
@@ -1996,11 +2051,11 @@ func (o ExecutionReport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallpl) {
 		toSerialize["pl"] = o.Smallpl
 	}
-	if !common.IsNil(o.PL) {
-		toSerialize["pL"] = o.PL
+	if !common.IsNil(o.SmallpL) {
+		toSerialize["pL"] = o.SmallpL
 	}
-	if !common.IsNil(o.PY) {
-		toSerialize["pY"] = o.PY
+	if !common.IsNil(o.SmallpY) {
+		toSerialize["pY"] = o.SmallpY
 	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb
@@ -2011,11 +2066,11 @@ func (o ExecutionReport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallk) {
 		toSerialize["k"] = o.Smallk
 	}
-	if !common.IsNil(o.US) {
-		toSerialize["uS"] = o.US
+	if !common.IsNil(o.SmalluS) {
+		toSerialize["uS"] = o.SmalluS
 	}
-	if !common.IsNil(o.GP) {
-		toSerialize["gP"] = o.GP
+	if !common.IsNil(o.SmallgP) {
+		toSerialize["gP"] = o.SmallgP
 	}
 	if !common.IsNil(o.GOT) {
 		toSerialize["gOT"] = o.GOT
@@ -2026,8 +2081,8 @@ func (o ExecutionReport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallgp) {
 		toSerialize["gp"] = o.Smallgp
 	}
-	if !common.IsNil(o.ER) {
-		toSerialize["eR"] = o.ER
+	if !common.IsNil(o.SmalleR) {
+		toSerialize["eR"] = o.SmalleR
 	}
 
 	for key, value := range o.AdditionalProperties {

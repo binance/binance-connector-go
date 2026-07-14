@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,29 +17,58 @@ var _ common.MappedNullable = &QueryOrderResponse{}
 
 // QueryOrderResponse struct for QueryOrderResponse
 type QueryOrderResponse struct {
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	CumQuote             *string `json:"cumQuote,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	OrigType             *string `json:"origType,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	StopPrice            *string `json:"stopPrice,omitempty"`
-	ClosePosition        *bool   `json:"closePosition,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	ActivatePrice        *string `json:"activatePrice,omitempty"`
-	PriceRate            *string `json:"priceRate,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
-	WorkingType          *string `json:"workingType,omitempty"`
-	PriceProtect         *bool   `json:"priceProtect,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cum Quote.
+	CumQuote *string `json:"cumQuote,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Orig Type.
+	OrigType *string `json:"origType,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Position Side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Status.
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order time
+	Time *int64 `json:"time,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Type.
+	Type *string `json:"type,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Working Type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// Price Match.
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// Self Trade Prevention Mode.
+	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	// Good Till Date.
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -798,6 +827,102 @@ func (o *QueryOrderResponse) SetPriceProtect(v bool) {
 	o.PriceProtect = &v
 }
 
+// GetPriceMatch returns the PriceMatch field value if set, zero value otherwise.
+func (o *QueryOrderResponse) GetPriceMatch() string {
+	if o == nil || common.IsNil(o.PriceMatch) {
+		var ret string
+		return ret
+	}
+	return *o.PriceMatch
+}
+
+// GetPriceMatchOk returns a tuple with the PriceMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryOrderResponse) GetPriceMatchOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PriceMatch) {
+		return nil, false
+	}
+	return o.PriceMatch, true
+}
+
+// HasPriceMatch returns a boolean if a field has been set.
+func (o *QueryOrderResponse) HasPriceMatch() bool {
+	if o != nil && !common.IsNil(o.PriceMatch) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceMatch gets a reference to the given string and assigns it to the PriceMatch field.
+func (o *QueryOrderResponse) SetPriceMatch(v string) {
+	o.PriceMatch = &v
+}
+
+// GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
+func (o *QueryOrderResponse) GetSelfTradePreventionMode() string {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		var ret string
+		return ret
+	}
+	return *o.SelfTradePreventionMode
+}
+
+// GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryOrderResponse) GetSelfTradePreventionModeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
+		return nil, false
+	}
+	return o.SelfTradePreventionMode, true
+}
+
+// HasSelfTradePreventionMode returns a boolean if a field has been set.
+func (o *QueryOrderResponse) HasSelfTradePreventionMode() bool {
+	if o != nil && !common.IsNil(o.SelfTradePreventionMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfTradePreventionMode gets a reference to the given string and assigns it to the SelfTradePreventionMode field.
+func (o *QueryOrderResponse) SetSelfTradePreventionMode(v string) {
+	o.SelfTradePreventionMode = &v
+}
+
+// GetGoodTillDate returns the GoodTillDate field value if set, zero value otherwise.
+func (o *QueryOrderResponse) GetGoodTillDate() int64 {
+	if o == nil || common.IsNil(o.GoodTillDate) {
+		var ret int64
+		return ret
+	}
+	return *o.GoodTillDate
+}
+
+// GetGoodTillDateOk returns a tuple with the GoodTillDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryOrderResponse) GetGoodTillDateOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.GoodTillDate) {
+		return nil, false
+	}
+	return o.GoodTillDate, true
+}
+
+// HasGoodTillDate returns a boolean if a field has been set.
+func (o *QueryOrderResponse) HasGoodTillDate() bool {
+	if o != nil && !common.IsNil(o.GoodTillDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetGoodTillDate gets a reference to the given int64 and assigns it to the GoodTillDate field.
+func (o *QueryOrderResponse) SetGoodTillDate(v int64) {
+	o.GoodTillDate = &v
+}
+
 func (o QueryOrderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -877,6 +1002,15 @@ func (o QueryOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.PriceProtect) {
 		toSerialize["priceProtect"] = o.PriceProtect
 	}
+	if !common.IsNil(o.PriceMatch) {
+		toSerialize["priceMatch"] = o.PriceMatch
+	}
+	if !common.IsNil(o.SelfTradePreventionMode) {
+		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
+	if !common.IsNil(o.GoodTillDate) {
+		toSerialize["goodTillDate"] = o.GoodTillDate
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -922,6 +1056,9 @@ func (o *QueryOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "workingType")
 		delete(additionalProperties, "priceProtect")
+		delete(additionalProperties, "priceMatch")
+		delete(additionalProperties, "selfTradePreventionMode")
+		delete(additionalProperties, "goodTillDate")
 		o.AdditionalProperties = additionalProperties
 	}
 

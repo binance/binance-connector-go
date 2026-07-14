@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	permissions := []string{"Inner_example"} // []string | List of permissions to query (optional)
-	showPermissionSets := true // bool | Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true` (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbol := "ETHBTC" // string | Example: curl -X GET \"https://api.binance.com/api/v3/exchangeInfo?symbol=BNBBTC\" (optional)
+	symbols := []string{"BTCUSDT"} // []string | Examples: curl -X GET \"https://api.binance.com/api/v3/exchangeInfo?symbols=%5B%22BNBBTC%22,%22BTCUSDT%22%5D\" or curl -g -X GET 'https://api.binance.com/api/v3/exchangeInfo?symbols=[\"BTCUSDT\",\"BNBBTC\"]' (optional)
+	permissions := []models.ExchangeInfoPermissionsParameterInner{models.exchangeInfo_permissions_parameter_inner("SPOT")} // []ExchangeInfoPermissionsParameterInner | Examples: curl -X GET \"https://api.binance.com/api/v3/exchangeInfo?permissions=SPOT\"  curl -X GET \"https://api.binance.com/api/v3/exchangeInfo?permissions=%5B%22MARGIN%22%2C%22LEVERAGED%22%5D\" or curl -g -X GET 'https://api.binance.com/api/v3/exchangeInfo?permissions=[\"MARGIN\",\"LEVERAGED\"]' (optional)
+	showPermissionSets := false // bool | Controls whether the content of the `permissionSets` field is populated or not. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. Cannot be used in combination with `symbols` or `symbol`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -65,11 +65,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
- **permissions** | **[]string** | List of permissions to query | 
- **showPermissionSets** | **bool** | Controls whether the content of the &#x60;permissionSets&#x60; field is populated or not. Defaults to &#x60;true&#x60; | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbol** | **string** | Example: curl -X GET \&quot;https://api.binance.com/api/v3/exchangeInfo?symbol&#x3D;BNBBTC\&quot; | 
+ **symbols** | **[]string** | Examples: curl -X GET \&quot;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;%5B%22BNBBTC%22,%22BTCUSDT%22%5D\&quot; or curl -g -X GET &#39;https://api.binance.com/api/v3/exchangeInfo?symbols&#x3D;[\&quot;BTCUSDT\&quot;,\&quot;BNBBTC\&quot;]&#39; | 
+ **permissions** | [**[]ExchangeInfoPermissionsParameterInner**](ExchangeInfoPermissionsParameterInner.md) | Examples: curl -X GET \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;SPOT\&quot;  curl -X GET \&quot;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;%5B%22MARGIN%22%2C%22LEVERAGED%22%5D\&quot; or curl -g -X GET &#39;https://api.binance.com/api/v3/exchangeInfo?permissions&#x3D;[\&quot;MARGIN\&quot;,\&quot;LEVERAGED\&quot;]&#39; | 
+ **showPermissionSets** | **bool** | Controls whether the content of the &#x60;permissionSets&#x60; field is populated or not. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. Cannot be used in combination with &#x60;symbols&#x60; or &#x60;symbol&#x60;. | 
 
 ### Return type
 
@@ -109,9 +109,9 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbol := "BAZUSD" // string | Query for specified symbol. (optional)
+	symbols := []string{"BAZUSD"} // []string | Query for multiple symbols. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Query for all symbols with the specified status. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -139,9 +139,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbol** | **string** | Query for specified symbol. | 
+ **symbols** | **[]string** | Query for multiple symbols. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Query for all symbols with the specified status. | 
 
 ### Return type
 

@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TxId** | Pointer to **int64** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**TxId** | Pointer to **int64** | Tx ID. | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**Principal** | Pointer to **string** | Principal repaid | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp. | [optional] 
+**Status** | Pointer to **string** | one of PENDING (pending execution), CONFIRMED (successfully loaned), FAILED (execution failed, nothing happened to your account); | [optional] 
 
 ## Methods
 

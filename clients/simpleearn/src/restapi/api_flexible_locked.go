@@ -1,7 +1,7 @@
 /*
-Binance Simple Earn REST API
+Simple Earn REST API
 
-OpenAPI Specification for the Binance Simple Earn REST API
+Earn rewards by subscribing to flexible or locked Simple Earn products.
 */
 
 package binancesimpleearnrestapi
@@ -44,13 +44,13 @@ func (r ApiGetCollateralRecordRequest) EndTime(endTime int64) ApiGetCollateralRe
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page.
 func (r ApiGetCollateralRecordRequest) Current(current int64) ApiGetCollateralRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetCollateralRecordRequest) Size(size int64) ApiGetCollateralRecordRequest {
 	r.size = &size
 	return r
@@ -67,17 +67,17 @@ func (r ApiGetCollateralRecordRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-GetCollateralRecord Get Collateral Record(USER_DATA)
+GetCollateralRecord Get Collateral Record (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/history/collateralRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Collateral-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-collateral-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetCollateralRecordRequest
 */
@@ -117,7 +117,15 @@ func (a *FlexibleLockedAPIService) GetCollateralRecordExecute(r ApiGetCollateral
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCollateralRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCollateralRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -148,10 +156,10 @@ func (r ApiGetFlexiblePersonalLeftQuotaRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-GetFlexiblePersonalLeftQuota Get Flexible Personal Left Quota(USER_DATA)
+GetFlexiblePersonalLeftQuota Get Flexible Personal Left Quota (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/personalLeftQuota
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Personal-Left-Quota
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-personal-left-quota
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
@@ -184,7 +192,15 @@ func (a *FlexibleLockedAPIService) GetFlexiblePersonalLeftQuotaExecute(r ApiGetF
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexiblePersonalLeftQuotaResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexiblePersonalLeftQuotaResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -202,7 +218,6 @@ type ApiGetFlexibleProductPositionRequest struct {
 	recvWindow *int64
 }
 
-// USDC or USDT
 func (r ApiGetFlexibleProductPositionRequest) Asset(asset string) ApiGetFlexibleProductPositionRequest {
 	r.asset = &asset
 	return r
@@ -213,13 +228,13 @@ func (r ApiGetFlexibleProductPositionRequest) ProductId(productId string) ApiGet
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetFlexibleProductPositionRequest) Current(current int64) ApiGetFlexibleProductPositionRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetFlexibleProductPositionRequest) Size(size int64) ApiGetFlexibleProductPositionRequest {
 	r.size = &size
 	return r
@@ -236,16 +251,16 @@ func (r ApiGetFlexibleProductPositionRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-GetFlexibleProductPosition Get Flexible Product Position(USER_DATA)
+GetFlexibleProductPosition Get Flexible Product Position (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/position
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Flexible-Product-Position
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-product-position
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDC or USDT
+@param asset -
 @param productId -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetFlexibleProductPositionRequest
 */
@@ -282,7 +297,15 @@ func (a *FlexibleLockedAPIService) GetFlexibleProductPositionExecute(r ApiGetFle
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleProductPositionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleProductPositionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -313,7 +336,6 @@ func (r ApiGetFlexibleRedemptionRecordRequest) RedeemId(redeemId string) ApiGetF
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetFlexibleRedemptionRecordRequest) Asset(asset string) ApiGetFlexibleRedemptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -329,13 +351,13 @@ func (r ApiGetFlexibleRedemptionRecordRequest) EndTime(endTime int64) ApiGetFlex
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetFlexibleRedemptionRecordRequest) Current(current int64) ApiGetFlexibleRedemptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetFlexibleRedemptionRecordRequest) Size(size int64) ApiGetFlexibleRedemptionRecordRequest {
 	r.size = &size
 	return r
@@ -352,19 +374,19 @@ func (r ApiGetFlexibleRedemptionRecordRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-GetFlexibleRedemptionRecord Get Flexible Redemption Record(USER_DATA)
+GetFlexibleRedemptionRecord Get Flexible Redemption Record (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/history/redemptionRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Redemption-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-redemption-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
 @param redeemId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetFlexibleRedemptionRecordRequest
 */
@@ -410,7 +432,15 @@ func (a *FlexibleLockedAPIService) GetFlexibleRedemptionRecordExecute(r ApiGetFl
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleRedemptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleRedemptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -421,20 +451,14 @@ func (a *FlexibleLockedAPIService) GetFlexibleRedemptionRecordExecute(r ApiGetFl
 type ApiGetFlexibleRewardsHistoryRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
-	type_      *string
 	productId  *string
 	asset      *string
 	startTime  *int64
 	endTime    *int64
+	type_      *models.GetFlexibleRewardsHistoryTypeParameter
 	current    *int64
 	size       *int64
 	recvWindow *int64
-}
-
-// FAST or STANDARD, defaults to STANDARD
-func (r ApiGetFlexibleRewardsHistoryRequest) Type(type_ string) ApiGetFlexibleRewardsHistoryRequest {
-	r.type_ = &type_
-	return r
 }
 
 func (r ApiGetFlexibleRewardsHistoryRequest) ProductId(productId string) ApiGetFlexibleRewardsHistoryRequest {
@@ -442,7 +466,6 @@ func (r ApiGetFlexibleRewardsHistoryRequest) ProductId(productId string) ApiGetF
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetFlexibleRewardsHistoryRequest) Asset(asset string) ApiGetFlexibleRewardsHistoryRequest {
 	r.asset = &asset
 	return r
@@ -458,13 +481,19 @@ func (r ApiGetFlexibleRewardsHistoryRequest) EndTime(endTime int64) ApiGetFlexib
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// &#x60;BONUS&#x60; - Bonus tiered APR, &#x60;REALTIME&#x60; - Real-time APR, &#x60;REWARDS&#x60; - Historical rewards, &#x60;ALL&#x60; - All types. Default: &#x60;ALL&#x60;
+func (r ApiGetFlexibleRewardsHistoryRequest) Type(type_ models.GetFlexibleRewardsHistoryTypeParameter) ApiGetFlexibleRewardsHistoryRequest {
+	r.type_ = &type_
+	return r
+}
+
+// Currently querying page. Starts from 1.
 func (r ApiGetFlexibleRewardsHistoryRequest) Current(current int64) ApiGetFlexibleRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetFlexibleRewardsHistoryRequest) Size(size int64) ApiGetFlexibleRewardsHistoryRequest {
 	r.size = &size
 	return r
@@ -481,19 +510,19 @@ func (r ApiGetFlexibleRewardsHistoryRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetFlexibleRewardsHistory Get Flexible Rewards History(USER_DATA)
+GetFlexibleRewardsHistory Get Flexible Rewards History (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/history/rewardsRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param type_ -  FAST or STANDARD, defaults to STANDARD
 @param productId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param type_ -  `BONUS` - Bonus tiered APR, `REALTIME` - Real-time APR, `REWARDS` - Historical rewards, `ALL` - All types. Default: `ALL`
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetFlexibleRewardsHistoryRequest
 */
@@ -514,10 +543,6 @@ func (a *FlexibleLockedAPIService) GetFlexibleRewardsHistoryExecute(r ApiGetFlex
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.type_ == nil {
-		return nil, common.ReportError("type_ is required and must be specified")
-	}
-
 	if r.productId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "productId", r.productId, "form", "")
 	}
@@ -530,7 +555,9 @@ func (a *FlexibleLockedAPIService) GetFlexibleRewardsHistoryExecute(r ApiGetFlex
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	if r.type_ != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	}
 	if r.current != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
 	}
@@ -541,7 +568,15 @@ func (a *FlexibleLockedAPIService) GetFlexibleRewardsHistoryExecute(r ApiGetFlex
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -562,7 +597,6 @@ func (r ApiGetFlexibleSubscriptionPreviewRequest) ProductId(productId string) Ap
 	return r
 }
 
-// Amount
 func (r ApiGetFlexibleSubscriptionPreviewRequest) Amount(amount float32) ApiGetFlexibleSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
@@ -579,14 +613,14 @@ func (r ApiGetFlexibleSubscriptionPreviewRequest) Execute() (*common.RestApiResp
 }
 
 /*
-GetFlexibleSubscriptionPreview Get Flexible Subscription Preview(USER_DATA)
+GetFlexibleSubscriptionPreview Get Flexible Subscription Preview (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/subscriptionPreview
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Flexible-Subscription-Preview
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-preview
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
-@param amount -  Amount
+@param amount -
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetFlexibleSubscriptionPreviewRequest
 */
@@ -610,6 +644,7 @@ func (a *FlexibleLockedAPIService) GetFlexibleSubscriptionPreviewExecute(r ApiGe
 	if r.productId == nil {
 		return nil, common.ReportError("productId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -620,7 +655,15 @@ func (a *FlexibleLockedAPIService) GetFlexibleSubscriptionPreviewExecute(r ApiGe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleSubscriptionPreviewResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleSubscriptionPreviewResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -651,7 +694,6 @@ func (r ApiGetFlexibleSubscriptionRecordRequest) PurchaseId(purchaseId string) A
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetFlexibleSubscriptionRecordRequest) Asset(asset string) ApiGetFlexibleSubscriptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -667,13 +709,13 @@ func (r ApiGetFlexibleSubscriptionRecordRequest) EndTime(endTime int64) ApiGetFl
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetFlexibleSubscriptionRecordRequest) Current(current int64) ApiGetFlexibleSubscriptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetFlexibleSubscriptionRecordRequest) Size(size int64) ApiGetFlexibleSubscriptionRecordRequest {
 	r.size = &size
 	return r
@@ -690,19 +732,19 @@ func (r ApiGetFlexibleSubscriptionRecordRequest) Execute() (*common.RestApiRespo
 }
 
 /*
-GetFlexibleSubscriptionRecord Get Flexible Subscription Record(USER_DATA)
+GetFlexibleSubscriptionRecord Get Flexible Subscription Record (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/history/subscriptionRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Flexible-Subscription-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-flexible-subscription-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
 @param purchaseId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetFlexibleSubscriptionRecordRequest
 */
@@ -748,7 +790,15 @@ func (a *FlexibleLockedAPIService) GetFlexibleSubscriptionRecordExecute(r ApiGet
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFlexibleSubscriptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFlexibleSubscriptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -779,10 +829,10 @@ func (r ApiGetLockedPersonalLeftQuotaRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-GetLockedPersonalLeftQuota Get Locked Personal Left Quota(USER_DATA)
+GetLockedPersonalLeftQuota Get Locked Personal Left Quota (USER_DATA)
 Get /sapi/v1/simple-earn/locked/personalLeftQuota
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Personal-Left-Quota
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-personal-left-quota
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
@@ -815,7 +865,15 @@ func (a *FlexibleLockedAPIService) GetLockedPersonalLeftQuotaExecute(r ApiGetLoc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedPersonalLeftQuotaResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedPersonalLeftQuotaResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -827,20 +885,19 @@ type ApiGetLockedProductPositionRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
 	asset      *string
-	positionId *int64
+	positionId *string
 	projectId  *string
 	current    *int64
 	size       *int64
 	recvWindow *int64
 }
 
-// USDC or USDT
 func (r ApiGetLockedProductPositionRequest) Asset(asset string) ApiGetLockedProductPositionRequest {
 	r.asset = &asset
 	return r
 }
 
-func (r ApiGetLockedProductPositionRequest) PositionId(positionId int64) ApiGetLockedProductPositionRequest {
+func (r ApiGetLockedProductPositionRequest) PositionId(positionId string) ApiGetLockedProductPositionRequest {
 	r.positionId = &positionId
 	return r
 }
@@ -850,13 +907,13 @@ func (r ApiGetLockedProductPositionRequest) ProjectId(projectId string) ApiGetLo
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetLockedProductPositionRequest) Current(current int64) ApiGetLockedProductPositionRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetLockedProductPositionRequest) Size(size int64) ApiGetLockedProductPositionRequest {
 	r.size = &size
 	return r
@@ -873,17 +930,17 @@ func (r ApiGetLockedProductPositionRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-GetLockedProductPosition Get Locked Product Position
+GetLockedProductPosition Get Locked Product Position (USER_DATA)
 Get /sapi/v1/simple-earn/locked/position
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Locked-Product-Position
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-product-position
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDC or USDT
+@param asset -
 @param positionId -
 @param projectId -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetLockedProductPositionRequest
 */
@@ -923,7 +980,15 @@ func (a *FlexibleLockedAPIService) GetLockedProductPositionExecute(r ApiGetLocke
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedProductPositionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedProductPositionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -934,7 +999,7 @@ func (a *FlexibleLockedAPIService) GetLockedProductPositionExecute(r ApiGetLocke
 type ApiGetLockedRedemptionRecordRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
-	positionId *int64
+	positionId *string
 	redeemId   *string
 	asset      *string
 	startTime  *int64
@@ -944,7 +1009,7 @@ type ApiGetLockedRedemptionRecordRequest struct {
 	recvWindow *int64
 }
 
-func (r ApiGetLockedRedemptionRecordRequest) PositionId(positionId int64) ApiGetLockedRedemptionRecordRequest {
+func (r ApiGetLockedRedemptionRecordRequest) PositionId(positionId string) ApiGetLockedRedemptionRecordRequest {
 	r.positionId = &positionId
 	return r
 }
@@ -954,7 +1019,6 @@ func (r ApiGetLockedRedemptionRecordRequest) RedeemId(redeemId string) ApiGetLoc
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetLockedRedemptionRecordRequest) Asset(asset string) ApiGetLockedRedemptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -970,13 +1034,13 @@ func (r ApiGetLockedRedemptionRecordRequest) EndTime(endTime int64) ApiGetLocked
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetLockedRedemptionRecordRequest) Current(current int64) ApiGetLockedRedemptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetLockedRedemptionRecordRequest) Size(size int64) ApiGetLockedRedemptionRecordRequest {
 	r.size = &size
 	return r
@@ -993,19 +1057,19 @@ func (r ApiGetLockedRedemptionRecordRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetLockedRedemptionRecord Get Locked Redemption Record(USER_DATA)
+GetLockedRedemptionRecord Get Locked Redemption Record (USER_DATA)
 Get /sapi/v1/simple-earn/locked/history/redemptionRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Redemption-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-redemption-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
 @param redeemId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetLockedRedemptionRecordRequest
 */
@@ -1051,7 +1115,15 @@ func (a *FlexibleLockedAPIService) GetLockedRedemptionRecordExecute(r ApiGetLock
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedRedemptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedRedemptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1062,7 +1134,7 @@ func (a *FlexibleLockedAPIService) GetLockedRedemptionRecordExecute(r ApiGetLock
 type ApiGetLockedRewardsHistoryRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
-	positionId *int64
+	positionId *string
 	asset      *string
 	startTime  *int64
 	endTime    *int64
@@ -1071,12 +1143,11 @@ type ApiGetLockedRewardsHistoryRequest struct {
 	recvWindow *int64
 }
 
-func (r ApiGetLockedRewardsHistoryRequest) PositionId(positionId int64) ApiGetLockedRewardsHistoryRequest {
+func (r ApiGetLockedRewardsHistoryRequest) PositionId(positionId string) ApiGetLockedRewardsHistoryRequest {
 	r.positionId = &positionId
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetLockedRewardsHistoryRequest) Asset(asset string) ApiGetLockedRewardsHistoryRequest {
 	r.asset = &asset
 	return r
@@ -1092,13 +1163,13 @@ func (r ApiGetLockedRewardsHistoryRequest) EndTime(endTime int64) ApiGetLockedRe
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetLockedRewardsHistoryRequest) Current(current int64) ApiGetLockedRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetLockedRewardsHistoryRequest) Size(size int64) ApiGetLockedRewardsHistoryRequest {
 	r.size = &size
 	return r
@@ -1115,18 +1186,18 @@ func (r ApiGetLockedRewardsHistoryRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-GetLockedRewardsHistory Get Locked Rewards History(USER_DATA)
+GetLockedRewardsHistory Get Locked Rewards History (USER_DATA)
 Get /sapi/v1/simple-earn/locked/history/rewardsRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetLockedRewardsHistoryRequest
 */
@@ -1169,7 +1240,15 @@ func (a *FlexibleLockedAPIService) GetLockedRewardsHistoryExecute(r ApiGetLocked
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1191,13 +1270,12 @@ func (r ApiGetLockedSubscriptionPreviewRequest) ProjectId(projectId string) ApiG
 	return r
 }
 
-// Amount
 func (r ApiGetLockedSubscriptionPreviewRequest) Amount(amount float32) ApiGetLockedSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
 }
 
-// true or false, default true.
+// default true.
 func (r ApiGetLockedSubscriptionPreviewRequest) AutoSubscribe(autoSubscribe bool) ApiGetLockedSubscriptionPreviewRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
@@ -1214,15 +1292,15 @@ func (r ApiGetLockedSubscriptionPreviewRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-GetLockedSubscriptionPreview Get Locked Subscription Preview(USER_DATA)
+GetLockedSubscriptionPreview Get Locked Subscription Preview (USER_DATA)
 Get /sapi/v1/simple-earn/locked/subscriptionPreview
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Get-Locked-Subscription-Preview
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-preview
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
-@param amount -  Amount
-@param autoSubscribe -  true or false, default true.
+@param amount -
+@param autoSubscribe -  default true.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetLockedSubscriptionPreviewRequest
 */
@@ -1246,6 +1324,7 @@ func (a *FlexibleLockedAPIService) GetLockedSubscriptionPreviewExecute(r ApiGetL
 	if r.projectId == nil {
 		return nil, common.ReportError("projectId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1259,7 +1338,15 @@ func (a *FlexibleLockedAPIService) GetLockedSubscriptionPreviewExecute(r ApiGetL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedSubscriptionPreviewResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedSubscriptionPreviewResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1284,7 +1371,6 @@ func (r ApiGetLockedSubscriptionRecordRequest) PurchaseId(purchaseId string) Api
 	return r
 }
 
-// USDC or USDT
 func (r ApiGetLockedSubscriptionRecordRequest) Asset(asset string) ApiGetLockedSubscriptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -1300,13 +1386,13 @@ func (r ApiGetLockedSubscriptionRecordRequest) EndTime(endTime int64) ApiGetLock
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetLockedSubscriptionRecordRequest) Current(current int64) ApiGetLockedSubscriptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetLockedSubscriptionRecordRequest) Size(size int64) ApiGetLockedSubscriptionRecordRequest {
 	r.size = &size
 	return r
@@ -1323,18 +1409,18 @@ func (r ApiGetLockedSubscriptionRecordRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-GetLockedSubscriptionRecord Get Locked Subscription Record(USER_DATA)
+GetLockedSubscriptionRecord Get Locked Subscription Record (USER_DATA)
 Get /sapi/v1/simple-earn/locked/history/subscriptionRecord
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Locked-Subscription-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-locked-subscription-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param purchaseId -
-@param asset -  USDC or USDT
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetLockedSubscriptionRecordRequest
 */
@@ -1377,7 +1463,15 @@ func (a *FlexibleLockedAPIService) GetLockedSubscriptionRecordExecute(r ApiGetLo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetLockedSubscriptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetLockedSubscriptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1389,7 +1483,7 @@ type ApiGetRateHistoryRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
 	productId  *string
-	aprPeriod  *string
+	aprPeriod  *models.GetRateHistoryAprPeriodParameter
 	startTime  *int64
 	endTime    *int64
 	current    *int64
@@ -1402,8 +1496,7 @@ func (r ApiGetRateHistoryRequest) ProductId(productId string) ApiGetRateHistoryR
 	return r
 }
 
-// \&quot;DAY\&quot;,\&quot;YEAR\&quot;,default\&quot;DAY\&quot;
-func (r ApiGetRateHistoryRequest) AprPeriod(aprPeriod string) ApiGetRateHistoryRequest {
+func (r ApiGetRateHistoryRequest) AprPeriod(aprPeriod models.GetRateHistoryAprPeriodParameter) ApiGetRateHistoryRequest {
 	r.aprPeriod = &aprPeriod
 	return r
 }
@@ -1418,13 +1511,13 @@ func (r ApiGetRateHistoryRequest) EndTime(endTime int64) ApiGetRateHistoryReques
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page
 func (r ApiGetRateHistoryRequest) Current(current int64) ApiGetRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page
 func (r ApiGetRateHistoryRequest) Size(size int64) ApiGetRateHistoryRequest {
 	r.size = &size
 	return r
@@ -1441,18 +1534,18 @@ func (r ApiGetRateHistoryRequest) Execute() (*common.RestApiResponse[models.GetR
 }
 
 /*
-GetRateHistory Get Rate History(USER_DATA)
+GetRateHistory Get Rate History (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/history/rateHistory
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/history/Get-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
-@param aprPeriod -  \"DAY\",\"YEAR\",default\"DAY\"
+@param aprPeriod -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param current -  Currently querying page
+@param size -  Number of results per page
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetRateHistoryRequest
 */
@@ -1497,7 +1590,15 @@ func (a *FlexibleLockedAPIService) GetRateHistoryExecute(r ApiGetRateHistoryRequ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1514,19 +1615,18 @@ type ApiGetSimpleEarnFlexibleProductListRequest struct {
 	recvWindow *int64
 }
 
-// USDC or USDT
 func (r ApiGetSimpleEarnFlexibleProductListRequest) Asset(asset string) ApiGetSimpleEarnFlexibleProductListRequest {
 	r.asset = &asset
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetSimpleEarnFlexibleProductListRequest) Current(current int64) ApiGetSimpleEarnFlexibleProductListRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetSimpleEarnFlexibleProductListRequest) Size(size int64) ApiGetSimpleEarnFlexibleProductListRequest {
 	r.size = &size
 	return r
@@ -1543,15 +1643,15 @@ func (r ApiGetSimpleEarnFlexibleProductListRequest) Execute() (*common.RestApiRe
 }
 
 /*
-GetSimpleEarnFlexibleProductList Get Simple Earn Flexible Product List(USER_DATA)
+GetSimpleEarnFlexibleProductList Get Simple Earn Flexible Product List (USER_DATA)
 Get /sapi/v1/simple-earn/flexible/list
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Flexible-Product-List
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-flexible-product-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDC or USDT
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param asset -
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetSimpleEarnFlexibleProductListRequest
 */
@@ -1585,7 +1685,15 @@ func (a *FlexibleLockedAPIService) GetSimpleEarnFlexibleProductListExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSimpleEarnFlexibleProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSimpleEarnFlexibleProductListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1602,19 +1710,18 @@ type ApiGetSimpleEarnLockedProductListRequest struct {
 	recvWindow *int64
 }
 
-// USDC or USDT
 func (r ApiGetSimpleEarnLockedProductListRequest) Asset(asset string) ApiGetSimpleEarnLockedProductListRequest {
 	r.asset = &asset
 	return r
 }
 
-// Currently querying page. Starts from 1. Default: 1
+// Currently querying page. Starts from 1.
 func (r ApiGetSimpleEarnLockedProductListRequest) Current(current int64) ApiGetSimpleEarnLockedProductListRequest {
 	r.current = &current
 	return r
 }
 
-// Number of results per page. Default: 10, Max: 100
+// Number of results per page.
 func (r ApiGetSimpleEarnLockedProductListRequest) Size(size int64) ApiGetSimpleEarnLockedProductListRequest {
 	r.size = &size
 	return r
@@ -1631,15 +1738,15 @@ func (r ApiGetSimpleEarnLockedProductListRequest) Execute() (*common.RestApiResp
 }
 
 /*
-GetSimpleEarnLockedProductList Get Simple Earn Locked Product List(USER_DATA)
+GetSimpleEarnLockedProductList Get Simple Earn Locked Product List (USER_DATA)
 Get /sapi/v1/simple-earn/locked/list
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Get-Simple-Earn-Locked-Product-List
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#get-simple-earn-locked-product-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  USDC or USDT
-@param current -  Currently querying page. Starts from 1. Default: 1
-@param size -  Number of results per page. Default: 10, Max: 100
+@param asset -
+@param current -  Currently querying page. Starts from 1.
+@param size -  Number of results per page.
 @param recvWindow -  The value cannot be greater than 60000 (ms)
 @return ApiGetSimpleEarnLockedProductListRequest
 */
@@ -1673,7 +1780,15 @@ func (a *FlexibleLockedAPIService) GetSimpleEarnLockedProductListExecute(r ApiGe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSimpleEarnLockedProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSimpleEarnLockedProductListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1687,7 +1802,7 @@ type ApiRedeemFlexibleProductRequest struct {
 	productId   *string
 	redeemAll   *bool
 	amount      *float32
-	destAccount *string
+	destAccount *models.RedeemFlexibleProductDestAccountParameter
 	recvWindow  *int64
 }
 
@@ -1696,7 +1811,6 @@ func (r ApiRedeemFlexibleProductRequest) ProductId(productId string) ApiRedeemFl
 	return r
 }
 
-// true or false, default to false
 func (r ApiRedeemFlexibleProductRequest) RedeemAll(redeemAll bool) ApiRedeemFlexibleProductRequest {
 	r.redeemAll = &redeemAll
 	return r
@@ -1708,13 +1822,12 @@ func (r ApiRedeemFlexibleProductRequest) Amount(amount float32) ApiRedeemFlexibl
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FUND&#x60;, default &#x60;SPOT&#x60;
-func (r ApiRedeemFlexibleProductRequest) DestAccount(destAccount string) ApiRedeemFlexibleProductRequest {
+func (r ApiRedeemFlexibleProductRequest) DestAccount(destAccount models.RedeemFlexibleProductDestAccountParameter) ApiRedeemFlexibleProductRequest {
 	r.destAccount = &destAccount
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiRedeemFlexibleProductRequest) RecvWindow(recvWindow int64) ApiRedeemFlexibleProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1725,17 +1838,17 @@ func (r ApiRedeemFlexibleProductRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-RedeemFlexibleProduct Redeem Flexible Product(TRADE)
+RedeemFlexibleProduct Redeem Flexible Product (TRADE)
 Post /sapi/v1/simple-earn/flexible/redeem
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Flexible-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-flexible-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
-@param redeemAll -  true or false, default to false
+@param redeemAll -
 @param amount -  if redeemAll is false, amount is mandatory
-@param destAccount -  `SPOT`,`FUND`, default `SPOT`
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param destAccount -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemFlexibleProductRequest
 */
 func (a *FlexibleLockedAPIService) RedeemFlexibleProduct(ctx context.Context) ApiRedeemFlexibleProductRequest {
@@ -1773,7 +1886,15 @@ func (a *FlexibleLockedAPIService) RedeemFlexibleProductExecute(r ApiRedeemFlexi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemFlexibleProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemFlexibleProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1788,12 +1909,13 @@ type ApiRedeemLockedProductRequest struct {
 	recvWindow *int64
 }
 
+// Locked product position ID
 func (r ApiRedeemLockedProductRequest) PositionId(positionId string) ApiRedeemLockedProductRequest {
 	r.positionId = &positionId
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiRedeemLockedProductRequest) RecvWindow(recvWindow int64) ApiRedeemLockedProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1804,14 +1926,14 @@ func (r ApiRedeemLockedProductRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-RedeemLockedProduct Redeem Locked Product(TRADE)
+RedeemLockedProduct Redeem Locked Product (TRADE)
 Post /sapi/v1/simple-earn/locked/redeem
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Redeem-Locked-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#redeem-locked-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param positionId -
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param positionId -  Locked product position ID
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemLockedProductRequest
 */
 func (a *FlexibleLockedAPIService) RedeemLockedProduct(ctx context.Context) ApiRedeemLockedProductRequest {
@@ -1840,7 +1962,15 @@ func (a *FlexibleLockedAPIService) RedeemLockedProductExecute(r ApiRedeemLockedP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemLockedProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemLockedProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1861,13 +1991,12 @@ func (r ApiSetFlexibleAutoSubscribeRequest) ProductId(productId string) ApiSetFl
 	return r
 }
 
-// true or false
 func (r ApiSetFlexibleAutoSubscribeRequest) AutoSubscribe(autoSubscribe bool) ApiSetFlexibleAutoSubscribeRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSetFlexibleAutoSubscribeRequest) RecvWindow(recvWindow int64) ApiSetFlexibleAutoSubscribeRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1878,15 +2007,15 @@ func (r ApiSetFlexibleAutoSubscribeRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-SetFlexibleAutoSubscribe Set Flexible Auto Subscribe(USER_DATA)
+SetFlexibleAutoSubscribe Set Flexible Auto Subscribe (USER_DATA)
 Post /sapi/v1/simple-earn/flexible/setAutoSubscribe
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Flexible-Auto-Subscribe
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-flexible-auto-subscribe
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
-@param autoSubscribe -  true or false
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param autoSubscribe -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetFlexibleAutoSubscribeRequest
 */
 func (a *FlexibleLockedAPIService) SetFlexibleAutoSubscribe(ctx context.Context) ApiSetFlexibleAutoSubscribeRequest {
@@ -1909,6 +2038,7 @@ func (a *FlexibleLockedAPIService) SetFlexibleAutoSubscribeExecute(r ApiSetFlexi
 	if r.productId == nil {
 		return nil, common.ReportError("productId is required and must be specified")
 	}
+
 	if r.autoSubscribe == nil {
 		return nil, common.ReportError("autoSubscribe is required and must be specified")
 	}
@@ -1919,7 +2049,15 @@ func (a *FlexibleLockedAPIService) SetFlexibleAutoSubscribeExecute(r ApiSetFlexi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetFlexibleAutoSubscribeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetFlexibleAutoSubscribeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1940,13 +2078,12 @@ func (r ApiSetLockedAutoSubscribeRequest) PositionId(positionId string) ApiSetLo
 	return r
 }
 
-// true or false
 func (r ApiSetLockedAutoSubscribeRequest) AutoSubscribe(autoSubscribe bool) ApiSetLockedAutoSubscribeRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSetLockedAutoSubscribeRequest) RecvWindow(recvWindow int64) ApiSetLockedAutoSubscribeRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1957,15 +2094,15 @@ func (r ApiSetLockedAutoSubscribeRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-SetLockedAutoSubscribe Set Locked Auto Subscribe(USER_DATA)
+SetLockedAutoSubscribe Set Locked Auto Subscribe (USER_DATA)
 Post /sapi/v1/simple-earn/locked/setAutoSubscribe
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Auto-Subscribe
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-auto-subscribe
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param autoSubscribe -  true or false
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param autoSubscribe -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetLockedAutoSubscribeRequest
 */
 func (a *FlexibleLockedAPIService) SetLockedAutoSubscribe(ctx context.Context) ApiSetLockedAutoSubscribeRequest {
@@ -1988,6 +2125,7 @@ func (a *FlexibleLockedAPIService) SetLockedAutoSubscribeExecute(r ApiSetLockedA
 	if r.positionId == nil {
 		return nil, common.ReportError("positionId is required and must be specified")
 	}
+
 	if r.autoSubscribe == nil {
 		return nil, common.ReportError("autoSubscribe is required and must be specified")
 	}
@@ -1998,7 +2136,15 @@ func (a *FlexibleLockedAPIService) SetLockedAutoSubscribeExecute(r ApiSetLockedA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetLockedAutoSubscribeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetLockedAutoSubscribeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2010,7 +2156,7 @@ type ApiSetLockedProductRedeemOptionRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
 	positionId *string
-	redeemTo   *string
+	redeemTo   *models.SetLockedProductRedeemOptionRedeemToParameter
 	recvWindow *int64
 }
 
@@ -2019,13 +2165,12 @@ func (r ApiSetLockedProductRedeemOptionRequest) PositionId(positionId string) Ap
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#39;FLEXIBLE&#39;
-func (r ApiSetLockedProductRedeemOptionRequest) RedeemTo(redeemTo string) ApiSetLockedProductRedeemOptionRequest {
+func (r ApiSetLockedProductRedeemOptionRequest) RedeemTo(redeemTo models.SetLockedProductRedeemOptionRedeemToParameter) ApiSetLockedProductRedeemOptionRequest {
 	r.redeemTo = &redeemTo
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSetLockedProductRedeemOptionRequest) RecvWindow(recvWindow int64) ApiSetLockedProductRedeemOptionRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2036,15 +2181,15 @@ func (r ApiSetLockedProductRedeemOptionRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-SetLockedProductRedeemOption Set Locked Product Redeem Option(USER_DATA)
+SetLockedProductRedeemOption Set Locked Product Redeem Option (USER_DATA)
 Post /sapi/v1/simple-earn/locked/setRedeemOption
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Set-Locked-Redeem-Option
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#set-locked-product-redeem-option
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param redeemTo -  `SPOT`,'FLEXIBLE'
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param redeemTo -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetLockedProductRedeemOptionRequest
 */
 func (a *FlexibleLockedAPIService) SetLockedProductRedeemOption(ctx context.Context) ApiSetLockedProductRedeemOptionRequest {
@@ -2067,6 +2212,7 @@ func (a *FlexibleLockedAPIService) SetLockedProductRedeemOptionExecute(r ApiSetL
 	if r.positionId == nil {
 		return nil, common.ReportError("positionId is required and must be specified")
 	}
+
 	if r.redeemTo == nil {
 		return nil, common.ReportError("redeemTo is required and must be specified")
 	}
@@ -2077,7 +2223,15 @@ func (a *FlexibleLockedAPIService) SetLockedProductRedeemOptionExecute(r ApiSetL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetLockedProductRedeemOptionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetLockedProductRedeemOptionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2102,10 +2256,10 @@ func (r ApiSimpleAccountRequest) Execute() (*common.RestApiResponse[models.Simpl
 }
 
 /*
-SimpleAccount Simple Account(USER_DATA)
+SimpleAccount Simple Account (USER_DATA)
 Get /sapi/v1/simple-earn/account
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/account/Simple-Account
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#simple-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  The value cannot be greater than 60000 (ms)
@@ -2132,7 +2286,15 @@ func (a *FlexibleLockedAPIService) SimpleAccountExecute(r ApiSimpleAccountReques
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SimpleAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SimpleAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2146,7 +2308,7 @@ type ApiSubscribeFlexibleProductRequest struct {
 	productId     *string
 	amount        *float32
 	autoSubscribe *bool
-	sourceAccount *string
+	sourceAccount *models.SubscribeFlexibleProductSourceAccountParameter
 	recvWindow    *int64
 }
 
@@ -2155,25 +2317,22 @@ func (r ApiSubscribeFlexibleProductRequest) ProductId(productId string) ApiSubsc
 	return r
 }
 
-// Amount
 func (r ApiSubscribeFlexibleProductRequest) Amount(amount float32) ApiSubscribeFlexibleProductRequest {
 	r.amount = &amount
 	return r
 }
 
-// true or false, default true.
 func (r ApiSubscribeFlexibleProductRequest) AutoSubscribe(autoSubscribe bool) ApiSubscribeFlexibleProductRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60;
-func (r ApiSubscribeFlexibleProductRequest) SourceAccount(sourceAccount string) ApiSubscribeFlexibleProductRequest {
+func (r ApiSubscribeFlexibleProductRequest) SourceAccount(sourceAccount models.SubscribeFlexibleProductSourceAccountParameter) ApiSubscribeFlexibleProductRequest {
 	r.sourceAccount = &sourceAccount
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSubscribeFlexibleProductRequest) RecvWindow(recvWindow int64) ApiSubscribeFlexibleProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2184,17 +2343,17 @@ func (r ApiSubscribeFlexibleProductRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-SubscribeFlexibleProduct Subscribe Flexible Product(TRADE)
+SubscribeFlexibleProduct Subscribe Flexible Product (TRADE)
 Post /sapi/v1/simple-earn/flexible/subscribe
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Flexible-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-flexible-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param productId -
-@param amount -  Amount
-@param autoSubscribe -  true or false, default true.
-@param sourceAccount -  `SPOT`,`FUND`,`ALL`, default `SPOT`
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param amount -
+@param autoSubscribe -
+@param sourceAccount -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeFlexibleProductRequest
 */
 func (a *FlexibleLockedAPIService) SubscribeFlexibleProduct(ctx context.Context) ApiSubscribeFlexibleProductRequest {
@@ -2217,6 +2376,7 @@ func (a *FlexibleLockedAPIService) SubscribeFlexibleProductExecute(r ApiSubscrib
 	if r.productId == nil {
 		return nil, common.ReportError("productId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -2233,7 +2393,15 @@ func (a *FlexibleLockedAPIService) SubscribeFlexibleProductExecute(r ApiSubscrib
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeFlexibleProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeFlexibleProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2247,8 +2415,8 @@ type ApiSubscribeLockedProductRequest struct {
 	projectId     *string
 	amount        *float32
 	autoSubscribe *bool
-	sourceAccount *string
-	redeemTo      *string
+	sourceAccount *models.SubscribeFlexibleProductSourceAccountParameter
+	redeemTo      *models.SetLockedProductRedeemOptionRedeemToParameter
 	recvWindow    *int64
 }
 
@@ -2257,31 +2425,27 @@ func (r ApiSubscribeLockedProductRequest) ProjectId(projectId string) ApiSubscri
 	return r
 }
 
-// Amount
 func (r ApiSubscribeLockedProductRequest) Amount(amount float32) ApiSubscribeLockedProductRequest {
 	r.amount = &amount
 	return r
 }
 
-// true or false, default true.
 func (r ApiSubscribeLockedProductRequest) AutoSubscribe(autoSubscribe bool) ApiSubscribeLockedProductRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60;
-func (r ApiSubscribeLockedProductRequest) SourceAccount(sourceAccount string) ApiSubscribeLockedProductRequest {
+func (r ApiSubscribeLockedProductRequest) SourceAccount(sourceAccount models.SubscribeFlexibleProductSourceAccountParameter) ApiSubscribeLockedProductRequest {
 	r.sourceAccount = &sourceAccount
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FLEXIBLE&#x60;, default &#x60;SPOT&#x60;
-func (r ApiSubscribeLockedProductRequest) RedeemTo(redeemTo string) ApiSubscribeLockedProductRequest {
+func (r ApiSubscribeLockedProductRequest) RedeemTo(redeemTo models.SetLockedProductRedeemOptionRedeemToParameter) ApiSubscribeLockedProductRequest {
 	r.redeemTo = &redeemTo
 	return r
 }
 
-// The value cannot be greater than 60000 (ms)
+// Request validity window in milliseconds.
 func (r ApiSubscribeLockedProductRequest) RecvWindow(recvWindow int64) ApiSubscribeLockedProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2292,18 +2456,18 @@ func (r ApiSubscribeLockedProductRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-SubscribeLockedProduct Subscribe Locked Product(TRADE)
+SubscribeLockedProduct Subscribe Locked Product (TRADE)
 Post /sapi/v1/simple-earn/locked/subscribe
 
-https://developers.binance.com/docs/simple_earn/flexible-locked/earn/Subscribe-Locked-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-simple-earn/api/rest-api/flexible-locked#subscribe-locked-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
-@param amount -  Amount
-@param autoSubscribe -  true or false, default true.
-@param sourceAccount -  `SPOT`,`FUND`,`ALL`, default `SPOT`
-@param redeemTo -  `SPOT`,`FLEXIBLE`, default `SPOT`
-@param recvWindow -  The value cannot be greater than 60000 (ms)
+@param amount -
+@param autoSubscribe -
+@param sourceAccount -
+@param redeemTo -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeLockedProductRequest
 */
 func (a *FlexibleLockedAPIService) SubscribeLockedProduct(ctx context.Context) ApiSubscribeLockedProductRequest {
@@ -2326,6 +2490,7 @@ func (a *FlexibleLockedAPIService) SubscribeLockedProductExecute(r ApiSubscribeL
 	if r.projectId == nil {
 		return nil, common.ReportError("projectId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -2345,7 +2510,15 @@ func (a *FlexibleLockedAPIService) SubscribeLockedProductExecute(r ApiSubscribeL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeLockedProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeLockedProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**AdlRisk** | Pointer to **string** |  | [optional] 
+**AdlRisk** | Pointer to **string** | ADL Risk rating | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 
 ## Methods

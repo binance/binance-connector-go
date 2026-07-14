@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &ContractInfoStreamResponseBksInner{}
 
 // ContractInfoStreamResponseBksInner struct for ContractInfoStreamResponseBksInner
 type ContractInfoStreamResponseBksInner struct {
-	Smallbs              *int64   `json:"bs,omitempty"`
-	Bnf                  *int64   `json:"bnf,omitempty"`
-	Bnc                  *int64   `json:"bnc,omitempty"`
-	Mmr                  *float32 `json:"mmr,omitempty"`
-	Smallcf              *int64   `json:"cf,omitempty"`
-	Smallmi              *int64   `json:"mi,omitempty"`
-	Smallma              *int64   `json:"ma,omitempty"`
+	// Notional bracket
+	Smallbs *int64 `json:"bs,omitempty"`
+	// Floor notional of this bracket
+	Bnf *int64 `json:"bnf,omitempty"`
+	// Cap notional of this bracket
+	Bnc *int64 `json:"bnc,omitempty"`
+	// Maintenance ratio for this bracket
+	Mmr *float32 `json:"mmr,omitempty"`
+	// Auxiliary number for quick calculation
+	Smallcf *int64 `json:"cf,omitempty"`
+	// Min leverage for this bracket
+	Smallmi *int64 `json:"mi,omitempty"`
+	// Max leverage for this bracket
+	Smallma              *int64 `json:"ma,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

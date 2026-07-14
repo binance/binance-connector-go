@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -21,9 +21,6 @@ type OrderCancelReplaceResponse struct {
 	NewOrderResult       *string                                     `json:"newOrderResult,omitempty"`
 	CancelResponse       *OrderCancelReplaceResponseCancelResponse   `json:"cancelResponse,omitempty"`
 	NewOrderResponse     *OrderCancelReplaceResponseNewOrderResponse `json:"newOrderResponse,omitempty"`
-	Code                 *int64                                      `json:"code,omitempty"`
-	Msg                  *string                                     `json:"msg,omitempty"`
-	Data                 *OrderCancelReplaceResponseData             `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -174,102 +171,6 @@ func (o *OrderCancelReplaceResponse) SetNewOrderResponse(v OrderCancelReplaceRes
 	o.NewOrderResponse = &v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
-func (o *OrderCancelReplaceResponse) GetCode() int64 {
-	if o == nil || common.IsNil(o.Code) {
-		var ret int64
-		return ret
-	}
-	return *o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderCancelReplaceResponse) GetCodeOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Code) {
-		return nil, false
-	}
-	return o.Code, true
-}
-
-// HasCode returns a boolean if a field has been set.
-func (o *OrderCancelReplaceResponse) HasCode() bool {
-	if o != nil && !common.IsNil(o.Code) {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *OrderCancelReplaceResponse) SetCode(v int64) {
-	o.Code = &v
-}
-
-// GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *OrderCancelReplaceResponse) GetMsg() string {
-	if o == nil || common.IsNil(o.Msg) {
-		var ret string
-		return ret
-	}
-	return *o.Msg
-}
-
-// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderCancelReplaceResponse) GetMsgOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Msg) {
-		return nil, false
-	}
-	return o.Msg, true
-}
-
-// HasMsg returns a boolean if a field has been set.
-func (o *OrderCancelReplaceResponse) HasMsg() bool {
-	if o != nil && !common.IsNil(o.Msg) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *OrderCancelReplaceResponse) SetMsg(v string) {
-	o.Msg = &v
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *OrderCancelReplaceResponse) GetData() OrderCancelReplaceResponseData {
-	if o == nil || common.IsNil(o.Data) {
-		var ret OrderCancelReplaceResponseData
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderCancelReplaceResponse) GetDataOk() (*OrderCancelReplaceResponseData, bool) {
-	if o == nil || common.IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *OrderCancelReplaceResponse) HasData() bool {
-	if o != nil && !common.IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given OrderCancelReplaceResponseData and assigns it to the Data field.
-func (o *OrderCancelReplaceResponse) SetData(v OrderCancelReplaceResponseData) {
-	o.Data = &v
-}
-
 func (o OrderCancelReplaceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -291,15 +192,6 @@ func (o OrderCancelReplaceResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.NewOrderResponse) {
 		toSerialize["newOrderResponse"] = o.NewOrderResponse
-	}
-	if !common.IsNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !common.IsNil(o.Msg) {
-		toSerialize["msg"] = o.Msg
-	}
-	if !common.IsNil(o.Data) {
-		toSerialize["data"] = o.Data
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -327,9 +219,6 @@ func (o *OrderCancelReplaceResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "newOrderResult")
 		delete(additionalProperties, "cancelResponse")
 		delete(additionalProperties, "newOrderResponse")
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "msg")
-		delete(additionalProperties, "data")
 		o.AdditionalProperties = additionalProperties
 	}
 

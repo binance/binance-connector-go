@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -23,7 +23,7 @@ type ApiSessionSubscriptionsRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiSessionSubscriptionsRequest) Id(id string) ApiSessionSubscriptionsRequest {
 	r.id = &id
 	return r
@@ -48,12 +48,12 @@ func (r ApiSessionSubscriptionsRequest) ExecuteAsync() (chan *common.ResponseOrR
 }
 
 /*
-SessionSubscriptions WebSocket Listing all subscriptions
+SessionSubscriptions Listing all subscriptions
 /session.subscriptions
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#listing-all-subscriptions
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#session-subscriptions
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiSessionSubscriptionsRequest
 */
 func (a *UserDataStreamAPIService) SessionSubscriptions() ApiSessionSubscriptionsRequest {
@@ -91,7 +91,7 @@ type ApiUserDataStreamSubscribeRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiUserDataStreamSubscribeRequest) Id(id string) ApiUserDataStreamSubscribeRequest {
 	r.id = &id
 	return r
@@ -102,12 +102,12 @@ func (r ApiUserDataStreamSubscribeRequest) Execute() (*common.ResponseOrRaw[mode
 }
 
 /*
-UserDataStreamSubscribe WebSocket Subscribe to User Data Stream
+UserDataStreamSubscribe Subscribe to User Data Stream
 /userDataStream.subscribe
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-user_stream
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiUserDataStreamSubscribeRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamSubscribe() ApiUserDataStreamSubscribeRequest {
@@ -175,13 +175,13 @@ type ApiUserDataStreamSubscribeSignatureRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiUserDataStreamSubscribeSignatureRequest) Id(id string) ApiUserDataStreamSubscribeSignatureRequest {
 	r.id = &id
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiUserDataStreamSubscribeSignatureRequest) RecvWindow(recvWindow float32) ApiUserDataStreamSubscribeSignatureRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -192,12 +192,12 @@ func (r ApiUserDataStreamSubscribeSignatureRequest) Execute() (*common.ResponseO
 }
 
 /*
-UserDataStreamSubscribeSignature WebSocket Subscribe to User Data Stream through signature subscription
+UserDataStreamSubscribeSignature Subscribe to User Data Stream through signature subscription (USER_STREAM)
 /userDataStream.subscribe.signature
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#subscribe-to-user-data-stream-through-signature-subscription-user_stream
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe-signature
 
-@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiUserDataStreamSubscribeSignatureRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignature() ApiUserDataStreamSubscribeSignatureRequest {
@@ -268,13 +268,13 @@ type ApiUserDataStreamUnsubscribeRequest struct {
 	subscriptionId *int32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiUserDataStreamUnsubscribeRequest) Id(id string) ApiUserDataStreamUnsubscribeRequest {
 	r.id = &id
 	return r
 }
 
-// When called with no parameter, this will close all subscriptions. &lt;br&gt;When called with the &#x60;subscriptionId&#x60; parameter, this will attempt to close the subscription with that subscription id, if it exists.
+// When called with no parameter, this will close all subscriptions. When called with the subscriptionId parameter, this will attempt to close the subscription with that subscription id, if it exists.
 func (r ApiUserDataStreamUnsubscribeRequest) SubscriptionId(subscriptionId int32) ApiUserDataStreamUnsubscribeRequest {
 	r.subscriptionId = &subscriptionId
 	return r
@@ -302,9 +302,9 @@ func (r ApiUserDataStreamUnsubscribeRequest) ExecuteAsync() (chan *common.Respon
 UserDataStreamUnsubscribe WebSocket Unsubscribe from User Data Stream
 /userDataStream.unsubscribe
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/user-Data-Stream-requests#unsubscribe-from-user-data-stream
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-unsubscribe
 
-@param id Unique WebSocket request ID.	@param subscriptionId When called with no parameter, this will close all subscriptions. <br>When called with the `subscriptionId` parameter, this will attempt to close the subscription with that subscription id, if it exists.
+@param id Client-generated request identifier.	@param subscriptionId When called with no parameter, this will close all subscriptions. When called with the subscriptionId parameter, this will attempt to close the subscription with that subscription id, if it exists.
 @return ApiUserDataStreamUnsubscribeRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamUnsubscribe() ApiUserDataStreamUnsubscribeRequest {

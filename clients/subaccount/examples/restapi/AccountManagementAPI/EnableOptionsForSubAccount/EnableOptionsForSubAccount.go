@@ -22,7 +22,7 @@ func EnableOptionsForSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountManagementAPI.EnableOptionsForSubAccount(context.Background()).Email("sub-account-email@email.com").Execute()
+	resp, err := apiClient.RestApi.AccountManagementAPI.EnableOptionsForSubAccount(context.Background()).Email("123@test.com").Execute()
 	if err != nil {
 		log.Println(err)
 		return

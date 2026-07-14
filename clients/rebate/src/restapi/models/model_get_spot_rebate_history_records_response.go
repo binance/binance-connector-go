@@ -1,7 +1,7 @@
 /*
-Binance Rebate REST API
+Rebate REST API
 
-OpenAPI Specification for the Binance Rebate REST API
+Query spot trading rebate history records.
 */
 
 package models

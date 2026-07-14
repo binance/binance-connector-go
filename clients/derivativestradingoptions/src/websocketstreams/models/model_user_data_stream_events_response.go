@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -15,11 +15,19 @@ import (
 
 // UserDataStreamEventsResponse - struct for UserDataStreamEventsResponse
 type UserDataStreamEventsResponse struct {
+	AccountUpdate         *AccountUpdate
 	BalancePositionUpdate *BalancePositionUpdate
 	GreekUpdate           *GreekUpdate
-	Listenkeyexpired      *Listenkeyexpired
+	ListenKeyExpired      *ListenKeyExpired
 	OrderTradeUpdate      *OrderTradeUpdate
 	RiskLevelChange       *RiskLevelChange
+}
+
+// AccountUpdateAsUserDataStreamEventsResponse is a convenience function that returns AccountUpdate wrapped in UserDataStreamEventsResponse
+func AccountUpdateAsUserDataStreamEventsResponse(v *AccountUpdate) UserDataStreamEventsResponse {
+	return UserDataStreamEventsResponse{
+		AccountUpdate: v,
+	}
 }
 
 // BalancePositionUpdateAsUserDataStreamEventsResponse is a convenience function that returns BalancePositionUpdate wrapped in UserDataStreamEventsResponse
@@ -36,10 +44,10 @@ func GreekUpdateAsUserDataStreamEventsResponse(v *GreekUpdate) UserDataStreamEve
 	}
 }
 
-// ListenkeyexpiredAsUserDataStreamEventsResponse is a convenience function that returns Listenkeyexpired wrapped in UserDataStreamEventsResponse
-func ListenkeyexpiredAsUserDataStreamEventsResponse(v *Listenkeyexpired) UserDataStreamEventsResponse {
+// ListenKeyExpiredAsUserDataStreamEventsResponse is a convenience function that returns ListenKeyExpired wrapped in UserDataStreamEventsResponse
+func ListenKeyExpiredAsUserDataStreamEventsResponse(v *ListenKeyExpired) UserDataStreamEventsResponse {
 	return UserDataStreamEventsResponse{
-		Listenkeyexpired: v,
+		ListenKeyExpired: v,
 	}
 }
 
@@ -79,6 +87,18 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 	cleanedData, err := json.Marshal(modifiedData)
 	if err != nil {
 		return fmt.Errorf("failed to remarshal JSON: %v", err)
+	}
+
+	// check if the discriminator value is 'ACCOUNT_UPDATE'
+	if jsonDict["e"] == "ACCOUNT_UPDATE" {
+		// try to unmarshal JSON data into AccountUpdate
+		err = json.Unmarshal(cleanedData, &dst.AccountUpdate)
+		if err == nil {
+			return nil // data stored in dst.AccountUpdate, return on the first match
+		} else {
+			dst.AccountUpdate = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AccountUpdate: %s", err.Error())
+		}
 	}
 
 	// check if the discriminator value is 'BALANCE_POSITION_UPDATE'
@@ -131,73 +151,13 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'listenKeyExpired'
 	if jsonDict["e"] == "listenKeyExpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
+		// try to unmarshal JSON data into ListenKeyExpired
+		err = json.Unmarshal(cleanedData, &dst.ListenKeyExpired)
 		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
+			return nil // data stored in dst.ListenKeyExpired, return on the first match
 		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'balancePositionUpdate'
-	if jsonDict["e"] == "balancePositionUpdate" {
-		// try to unmarshal JSON data into BalancePositionUpdate
-		err = json.Unmarshal(cleanedData, &dst.BalancePositionUpdate)
-		if err == nil {
-			return nil // data stored in dst.BalancePositionUpdate, return on the first match
-		} else {
-			dst.BalancePositionUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as BalancePositionUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'greekUpdate'
-	if jsonDict["e"] == "greekUpdate" {
-		// try to unmarshal JSON data into GreekUpdate
-		err = json.Unmarshal(cleanedData, &dst.GreekUpdate)
-		if err == nil {
-			return nil // data stored in dst.GreekUpdate, return on the first match
-		} else {
-			dst.GreekUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as GreekUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'listenkeyexpired'
-	if jsonDict["e"] == "listenkeyexpired" {
-		// try to unmarshal JSON data into Listenkeyexpired
-		err = json.Unmarshal(cleanedData, &dst.Listenkeyexpired)
-		if err == nil {
-			return nil // data stored in dst.Listenkeyexpired, return on the first match
-		} else {
-			dst.Listenkeyexpired = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as Listenkeyexpired: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'orderTradeUpdate'
-	if jsonDict["e"] == "orderTradeUpdate" {
-		// try to unmarshal JSON data into OrderTradeUpdate
-		err = json.Unmarshal(cleanedData, &dst.OrderTradeUpdate)
-		if err == nil {
-			return nil // data stored in dst.OrderTradeUpdate, return on the first match
-		} else {
-			dst.OrderTradeUpdate = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as OrderTradeUpdate: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'riskLevelChange'
-	if jsonDict["e"] == "riskLevelChange" {
-		// try to unmarshal JSON data into RiskLevelChange
-		err = json.Unmarshal(cleanedData, &dst.RiskLevelChange)
-		if err == nil {
-			return nil // data stored in dst.RiskLevelChange, return on the first match
-		} else {
-			dst.RiskLevelChange = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as RiskLevelChange: %s", err.Error())
+			dst.ListenKeyExpired = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as ListenKeyExpired: %s", err.Error())
 		}
 	}
 
@@ -206,6 +166,10 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
+	if src.AccountUpdate != nil {
+		return json.Marshal(&src.AccountUpdate)
+	}
+
 	if src.BalancePositionUpdate != nil {
 		return json.Marshal(&src.BalancePositionUpdate)
 	}
@@ -214,8 +178,8 @@ func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.GreekUpdate)
 	}
 
-	if src.Listenkeyexpired != nil {
-		return json.Marshal(&src.Listenkeyexpired)
+	if src.ListenKeyExpired != nil {
+		return json.Marshal(&src.ListenKeyExpired)
 	}
 
 	if src.OrderTradeUpdate != nil {
@@ -234,6 +198,10 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
+	if obj.AccountUpdate != nil {
+		return obj.AccountUpdate
+	}
+
 	if obj.BalancePositionUpdate != nil {
 		return obj.BalancePositionUpdate
 	}
@@ -242,8 +210,8 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 		return obj.GreekUpdate
 	}
 
-	if obj.Listenkeyexpired != nil {
-		return obj.Listenkeyexpired
+	if obj.ListenKeyExpired != nil {
+		return obj.ListenKeyExpired
 	}
 
 	if obj.OrderTradeUpdate != nil {

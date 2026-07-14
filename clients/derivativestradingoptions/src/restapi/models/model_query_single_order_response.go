@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,25 +17,47 @@ var _ common.MappedNullable = &QuerySingleOrderResponse{}
 
 // QuerySingleOrderResponse struct for QuerySingleOrderResponse
 type QuerySingleOrderResponse struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	Quantity                *string `json:"quantity,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	CreateTime              *int64  `json:"createTime,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	PriceScale              *int64  `json:"priceScale,omitempty"`
-	QuantityScale           *int64  `json:"quantityScale,omitempty"`
-	OptionSide              *string `json:"optionSide,omitempty"`
-	QuoteAsset              *string `json:"quoteAsset,omitempty"`
-	Mmp                     *bool   `json:"mmp,omitempty"`
+	// System order id
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Option trading pair
+	Symbol *string `json:"symbol,omitempty"`
+	// Order Price
+	Price *string `json:"price,omitempty"`
+	// Order Quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// Number of executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Buy/sell direction
+	Side *string `json:"side,omitempty"`
+	// Order type
+	Type *string `json:"type,omitempty"`
+	// Time in force method
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order is reduce only Y/N
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// post Only
+	PostOnly *bool `json:"postOnly,omitempty"`
+	// Order Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// Update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Order status
+	Status *string `json:"status,omitempty"`
+	// Average price of completed trade
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client order ID
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote Asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// mmp
+	Mmp *bool `json:"mmp,omitempty"`
+	// Self trade prevention mode.
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -345,6 +367,38 @@ func (o *QuerySingleOrderResponse) HasReduceOnly() bool {
 // SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
 func (o *QuerySingleOrderResponse) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
+}
+
+// GetPostOnly returns the PostOnly field value if set, zero value otherwise.
+func (o *QuerySingleOrderResponse) GetPostOnly() bool {
+	if o == nil || common.IsNil(o.PostOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.PostOnly
+}
+
+// GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QuerySingleOrderResponse) GetPostOnlyOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.PostOnly) {
+		return nil, false
+	}
+	return o.PostOnly, true
+}
+
+// HasPostOnly returns a boolean if a field has been set.
+func (o *QuerySingleOrderResponse) HasPostOnly() bool {
+	if o != nil && !common.IsNil(o.PostOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
+func (o *QuerySingleOrderResponse) SetPostOnly(v bool) {
+	o.PostOnly = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
@@ -736,6 +790,9 @@ func (o QuerySingleOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
 	}
+	if !common.IsNil(o.PostOnly) {
+		toSerialize["postOnly"] = o.PostOnly
+	}
 	if !common.IsNil(o.CreateTime) {
 		toSerialize["createTime"] = o.CreateTime
 	}
@@ -800,6 +857,7 @@ func (o *QuerySingleOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "reduceOnly")
+		delete(additionalProperties, "postOnly")
 		delete(additionalProperties, "createTime")
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")

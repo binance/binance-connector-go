@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &PositionAdlQuantileEstimationResponseInnerAdlQuan
 
 // PositionAdlQuantileEstimationResponseInnerAdlQuantile struct for PositionAdlQuantileEstimationResponseInnerAdlQuantile
 type PositionAdlQuantileEstimationResponseInnerAdlQuantile struct {
-	LONG                 *int64 `json:"LONG,omitempty"`
-	SHORT                *int64 `json:"SHORT,omitempty"`
-	HEDGE                *int64 `json:"HEDGE,omitempty"`
+	// adl quantile for \"LONG\" position in hedge mode
+	LONG *int64 `json:"LONG,omitempty"`
+	// adl qauntile for \"SHORT\" position in hedge mode
+	SHORT *int64 `json:"SHORT,omitempty"`
+	// only a sign, ignore the value
+	HEDGE *int64 `json:"HEDGE,omitempty"`
+	// adl qunatile for position in one-way mode
 	BOTH                 *int64 `json:"BOTH,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

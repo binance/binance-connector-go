@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,7 +17,8 @@ var _ common.MappedNullable = &NotionalAndLeverageBracketsResponse1Inner{}
 
 // NotionalAndLeverageBracketsResponse1Inner struct for NotionalAndLeverageBracketsResponse1Inner
 type NotionalAndLeverageBracketsResponse1Inner struct {
-	Symbol               *string                                                  `json:"symbol,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// user symbol bracket multiplier, only appears when user's symbol bracket is adjusted
 	NotionalCoef         *float32                                                 `json:"notionalCoef,omitempty"`
 	Brackets             []NotionalAndLeverageBracketsResponse1InnerBracketsInner `json:"brackets,omitempty"`
 	AdditionalProperties map[string]interface{}

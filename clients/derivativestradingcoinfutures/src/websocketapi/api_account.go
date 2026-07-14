@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package binancederivativestradingcoinfutureswebsocketapi
@@ -22,7 +22,6 @@ type ApiAccountInformationRequest struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
 func (r ApiAccountInformationRequest) Id(id string) ApiAccountInformationRequest {
 	r.id = &id
 	return r
@@ -52,12 +51,12 @@ func (r ApiAccountInformationRequest) ExecuteAsync() (chan *common.ResponseOrRaw
 }
 
 /*
-AccountInformation Account Information(USER_DATA)
+AccountInformation Account Information (USER_DATA)
 /account.status
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/websocket-api/Account-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/account#account-information
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id	@param recvWindow
 @return ApiAccountInformationRequest
 */
 func (a *AccountAPIService) AccountInformation() ApiAccountInformationRequest {
@@ -99,7 +98,6 @@ type ApiFuturesAccountBalanceRequest struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
 func (r ApiFuturesAccountBalanceRequest) Id(id string) ApiFuturesAccountBalanceRequest {
 	r.id = &id
 	return r
@@ -129,12 +127,12 @@ func (r ApiFuturesAccountBalanceRequest) ExecuteAsync() (chan *common.ResponseOr
 }
 
 /*
-FuturesAccountBalance Futures Account Balance(USER_DATA)
+FuturesAccountBalance Futures Account Balance (USER_DATA)
 /account.balance
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/websocket-api/Futures-Account-Balance
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/ws-api/account#futures-account-balance
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id	@param recvWindow
 @return ApiFuturesAccountBalanceRequest
 */
 func (a *AccountAPIService) FuturesAccountBalance() ApiFuturesAccountBalanceRequest {

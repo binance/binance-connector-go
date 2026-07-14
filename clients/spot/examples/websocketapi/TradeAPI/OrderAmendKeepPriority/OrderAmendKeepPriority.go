@@ -28,7 +28,7 @@ func OrderAmendKeepPriority() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(1.0).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(1).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing OrderAmendKeepPriority request: %v\n", err)
 		return

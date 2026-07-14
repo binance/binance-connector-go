@@ -1,7 +1,7 @@
 /*
-Binance Crypto Loan REST API
+Crypto Loan REST API
 
-OpenAPI Specification for the Binance Crypto Loan REST API
+Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
 */
 
 package models
@@ -25,8 +25,9 @@ type GetLoanBorrowHistoryResponseRowsInner struct {
 	CollateralCoin          *string `json:"collateralCoin,omitempty"`
 	InitialCollateralAmount *string `json:"initialCollateralAmount,omitempty"`
 	BorrowTime              *int64  `json:"borrowTime,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// Accruing_Interest, Overdue, Liquidating, Repaying, Repaid, Liquidated, Pending, Failed
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLoanBorrowHistoryResponseRowsInner GetLoanBorrowHistoryResponseRowsInner

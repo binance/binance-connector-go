@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading COIN Futures REST API TEST
+Futures (COIN-M) REST API TEST
 
 Testing AccountAPIService
 
@@ -25,7 +25,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService AccountInformation Success", func(t *testing.T) {
 
-		mockedJSON := `{"assets":[{"asset":"BTC","walletBalance":"0.00241969","unrealizedProfit":"0.00000000","marginBalance":"0.00241969","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","maxWithdrawAmount":"0.00241969","crossWalletBalance":"0.00241969","crossUnPnl":"0.00000000","availableBalance":"0.00241969","updateTime":1625474304765}],"positions":[{"symbol":"BTCUSD_201225","positionAmt":"0","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"125","isolated":false,"positionSide":"BOTH","entryPrice":"0.0","breakEvenPrice":"0.0","maxQty":"50","updateTime":0},{"symbol":"BTCUSD_201225","positionAmt":"0","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"125","isolated":false,"positionSide":"LONG","entryPrice":"0.0","breakEvenPrice":"0.0","maxQty":"50","updateTime":0},{"symbol":"BTCUSD_201225","positionAmt":"0","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"125","isolated":false,"positionSide":"SHORT","entryPrice":"0.0","breakEvenPrice":"0.0","maxQty":"50","notionalValue":"0","updateTime":1627026881327}],"canDeposit":true,"canTrade":true,"canWithdraw":true,"feeTier":2,"updateTime":0}`
+		var mockedJSON string
+		mockedJSON = `{"assets":[{"asset":"BTC","walletBalance":"0.00241969","unrealizedProfit":"0.00000000","marginBalance":"0.00241969","maintMargin":"0.00000000","initialMargin":"0.00000000","positionInitialMargin":"0.00000000","openOrderInitialMargin":"0.00000000","maxWithdrawAmount":"0.00241969","crossWalletBalance":"0.00241969","crossUnPnl":"0.00000000","availableBalance":"0.00241969","updateTime":1625474304765}],"positions":[{"symbol":"BTCUSD_201225","positionAmt":"0","initialMargin":"0","maintMargin":"0","unrealizedProfit":"0.00000000","positionInitialMargin":"0","openOrderInitialMargin":"0","leverage":"125","isolated":false,"positionSide":"BOTH","entryPrice":"0.0","breakEvenPrice":"0.0","maxQty":"50","updateTime":0,"notionalValue":"0"}],"canDeposit":true,"canTrade":true,"canWithdraw":true,"feeTier":2,"updateTime":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService FuturesAccountBalance Success", func(t *testing.T) {
 
-		mockedJSON := `[{"accountAlias":"SgsR","asset":"BTC","balance":"0.00250000","withdrawAvailable":"0.00250000","crossWalletBalance":"0.00241969","crossUnPnl":"0.00000000","availableBalance":"0.00241969","updateTime":1592468353979}]`
+		var mockedJSON string
+		mockedJSON = `[{"accountAlias":"SgsR","asset":"BTC","balance":"0.00250000","withdrawAvailable":"0.00250000","crossWalletBalance":"0.00241969","crossUnPnl":"0.00000000","availableBalance":"0.00241969","updateTime":1592468353979}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/balance", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetCurrentPositionMode Success", func(t *testing.T) {
 
-		mockedJSON := `{"dualSidePosition":true}`
+		var mockedJSON string
+		mockedJSON = `{"dualSidePosition":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/positionSide/dual", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +202,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesOrderHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/order/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -264,7 +280,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesTradeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/trade/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -338,7 +358,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetDownloadIdForFuturesTransactionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		var mockedJSON string
+		mockedJSON = `{"avgCostTimestampOfLast30d":7241837,"downloadId":"546975389218332672"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/income/asyn", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -412,10 +436,14 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesOrderHistoryDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/order/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -432,7 +460,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesOrderHistoryDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -485,10 +513,14 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesTradeDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/trade/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -505,7 +537,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTradeDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -558,10 +590,14 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetFuturesTransactionHistoryDownloadLinkById Success", func(t *testing.T) {
 
-		mockedJSON := `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":null}`
+		var mockedJSON string
+		mockedJSON = `{"downloadId":"545923594199212032","status":"processing","url":"","notified":false,"expirationTimestamp":-1,"isExpired":"null"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/income/asyn/id", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("downloadId"))
+			require.Equal(t, "545923594199212032", r.URL.Query().Get("downloadId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -578,7 +614,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTransactionHistoryDownloadLinkById(context.Background()).DownloadId("1").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.GetFuturesTransactionHistoryDownloadLinkById(context.Background()).DownloadId("545923594199212032").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -631,7 +667,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService GetIncomeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"BTC","info":"WITHDRAW","time":1570608000000,"tranId":"9689322392","tradeId":""},{"symbol":"BTCUSD_200925","incomeType":"COMMISSION","income":"-0.01000000","asset":"BTC","info":"","time":1570636800000,"tranId":"9689322392","tradeId":"2059192"}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"","incomeType":"TRANSFER","income":"-0.37500000","asset":"BTC","info":"WITHDRAW","time":1570608000000,"tranId":"9689322392","tradeId":""}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/income", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -686,7 +726,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService NotionalBracketForPair Success", func(t *testing.T) {
 
-		mockedJSON := `[{"pair":"BTCUSD","brackets":[{"bracket":1,"initialLeverage":125,"qtyCap":50,"qtylFloor":0,"maintMarginRatio":0.004,"cum":0}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"pair":"BTCUSD","brackets":[{"bracket":1,"initialLeverage":125,"qtyCap":50,"qtylFloor":0,"maintMarginRatio":0.004,"cum":0}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/leverageBracket", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -741,7 +785,11 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService NotionalBracketForSymbol Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"BTCUSD_PERP","notionalCoef":1.5,"brackets":[{"bracket":1,"initialLeverage":125,"qtyCap":50,"qtylFloor":0,"maintMarginRatio":0.004,"cum":0}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"BTCUSD_PERP","notionalCoef":1.5,"brackets":[{"bracket":1,"initialLeverage":125,"qtyCap":50,"qtylFloor":0,"maintMarginRatio":0.004,"cum":0}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v2/leverageBracket", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -796,10 +844,14 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 
 	t.Run("Test AccountAPIService UserCommissionRate Success", func(t *testing.T) {
 
-		mockedJSON := `{"symbol":"BTCUSD_PERP","makerCommissionRate":"0.00015","takerCommissionRate":"0.00040"}`
+		var mockedJSON string
+		mockedJSON = `{"symbol":"BTCUSD_PERP","makerCommissionRate":"0.00015","takerCommissionRate":"0.00040"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/commissionRate", r.URL.Path)
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -816,7 +868,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_AccountAPIService(t *testi
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.UserCommissionRate(context.Background()).Symbol("symbol_example").Execute()
+		resp, err := apiClient.RestApi.AccountAPI.UserCommissionRate(context.Background()).Symbol("BTCUSD_PERP").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

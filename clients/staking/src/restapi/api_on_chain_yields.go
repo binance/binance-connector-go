@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package binancestakingrestapi
@@ -30,6 +30,7 @@ func (r ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest) ProjectId(projectId s
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -43,11 +44,11 @@ func (r ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest) Execute() (*common.Re
 GetOnChainYieldsLockedPersonalLeftQuota Get On-chain Yields Locked Personal Left Quota (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/personalLeftQuota
 
-https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Personal-Left-Quota
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-personal-left-quota
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedPersonalLeftQuota(ctx context.Context) ApiGetOnChainYieldsLockedPersonalLeftQuotaRequest {
@@ -76,7 +77,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedPersonalLeftQuotaExecute
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedPersonalLeftQuotaResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedPersonalLeftQuotaResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -93,24 +102,24 @@ type ApiGetOnChainYieldsLockedProductListRequest struct {
 	recvWindow *int64
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetOnChainYieldsLockedProductListRequest) Asset(asset string) ApiGetOnChainYieldsLockedProductListRequest {
 	r.asset = &asset
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetOnChainYieldsLockedProductListRequest) Current(current int64) ApiGetOnChainYieldsLockedProductListRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
+// Number of results per page.
 func (r ApiGetOnChainYieldsLockedProductListRequest) Size(size int64) ApiGetOnChainYieldsLockedProductListRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedProductListRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedProductListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -124,13 +133,13 @@ func (r ApiGetOnChainYieldsLockedProductListRequest) Execute() (*common.RestApiR
 GetOnChainYieldsLockedProductList Get On-chain Yields Locked Product List (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/list
 
-https://developers.binance.com/docs/staking/on-chain-yields/account/
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  WBETH or BETH, default to BETH
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param asset -
+@param current -  Currently querying page
+@param size -  Number of results per page.
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedProductListRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedProductList(ctx context.Context) ApiGetOnChainYieldsLockedProductListRequest {
@@ -163,7 +172,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedProductListExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedProductListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedProductListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -175,20 +192,19 @@ type ApiGetOnChainYieldsLockedProductPositionRequest struct {
 	ctx        context.Context
 	ApiService *OnChainYieldsAPIService
 	asset      *string
-	positionId *int64
+	positionId *string
 	projectId  *string
 	current    *int64
 	size       *int64
 	recvWindow *int64
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetOnChainYieldsLockedProductPositionRequest) Asset(asset string) ApiGetOnChainYieldsLockedProductPositionRequest {
 	r.asset = &asset
 	return r
 }
 
-func (r ApiGetOnChainYieldsLockedProductPositionRequest) PositionId(positionId int64) ApiGetOnChainYieldsLockedProductPositionRequest {
+func (r ApiGetOnChainYieldsLockedProductPositionRequest) PositionId(positionId string) ApiGetOnChainYieldsLockedProductPositionRequest {
 	r.positionId = &positionId
 	return r
 }
@@ -198,18 +214,19 @@ func (r ApiGetOnChainYieldsLockedProductPositionRequest) ProjectId(projectId str
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetOnChainYieldsLockedProductPositionRequest) Current(current int64) ApiGetOnChainYieldsLockedProductPositionRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
+// Number of results per page.
 func (r ApiGetOnChainYieldsLockedProductPositionRequest) Size(size int64) ApiGetOnChainYieldsLockedProductPositionRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedProductPositionRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedProductPositionRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -223,15 +240,15 @@ func (r ApiGetOnChainYieldsLockedProductPositionRequest) Execute() (*common.Rest
 GetOnChainYieldsLockedProductPosition Get On-chain Yields Locked Product Position (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/position
 
-https://developers.binance.com/docs/staking/on-chain-yields/account/Get-Onchain-Locked-Product-Position
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-product-position
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  WBETH or BETH, default to BETH
+@param asset -
 @param positionId -
 @param projectId -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -  Number of results per page.
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedProductPositionRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedProductPosition(ctx context.Context) ApiGetOnChainYieldsLockedProductPositionRequest {
@@ -270,7 +287,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedProductPositionExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedProductPositionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedProductPositionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -281,7 +306,7 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedProductPositionExecute(r
 type ApiGetOnChainYieldsLockedRedemptionRecordRequest struct {
 	ctx        context.Context
 	ApiService *OnChainYieldsAPIService
-	positionId *int64
+	positionId *string
 	redeemId   *string
 	asset      *string
 	startTime  *int64
@@ -291,7 +316,7 @@ type ApiGetOnChainYieldsLockedRedemptionRecordRequest struct {
 	recvWindow *int64
 }
 
-func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) PositionId(positionId int64) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
+func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) PositionId(positionId string) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
 	r.positionId = &positionId
 	return r
 }
@@ -301,7 +326,6 @@ func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) RedeemId(redeemId stri
 	return r
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) Asset(asset string) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -317,18 +341,18 @@ func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) EndTime(endTime int64)
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) Current(current int64) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) Size(size int64) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -342,17 +366,17 @@ func (r ApiGetOnChainYieldsLockedRedemptionRecordRequest) Execute() (*common.Res
 GetOnChainYieldsLockedRedemptionRecord Get On-chain Yields Locked Redemption Record (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/history/redemptionRecord
 
-https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Redemption-Record
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-redemption-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
 @param redeemId -
-@param asset -  WBETH or BETH, default to BETH
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedRedemptionRecordRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedRedemptionRecord(ctx context.Context) ApiGetOnChainYieldsLockedRedemptionRecordRequest {
@@ -397,7 +421,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedRedemptionRecordExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedRedemptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedRedemptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -422,7 +454,6 @@ func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) PositionId(positionId st
 	return r
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) Asset(asset string) ApiGetOnChainYieldsLockedRewardsHistoryRequest {
 	r.asset = &asset
 	return r
@@ -438,18 +469,18 @@ func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) EndTime(endTime int64) A
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) Current(current int64) ApiGetOnChainYieldsLockedRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) Size(size int64) ApiGetOnChainYieldsLockedRewardsHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedRewardsHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -463,16 +494,16 @@ func (r ApiGetOnChainYieldsLockedRewardsHistoryRequest) Execute() (*common.RestA
 GetOnChainYieldsLockedRewardsHistory Get On-chain Yields Locked Rewards History (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/history/rewardsRecord
 
-https://developers.binance.com/docs/staking/on-chain-yields/history/Get-Onchain-Locked-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param asset -  WBETH or BETH, default to BETH
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedRewardsHistoryRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedRewardsHistory(ctx context.Context) ApiGetOnChainYieldsLockedRewardsHistoryRequest {
@@ -514,7 +545,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedRewardsHistoryExecute(r 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -536,18 +575,17 @@ func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) ProjectId(projectId
 	return r
 }
 
-// Amount in SOL.
 func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) Amount(amount float32) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
 }
 
-// true or false, default true.
 func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) AutoSubscribe(autoSubscribe bool) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -561,13 +599,13 @@ func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) Execute() (*common.
 GetOnChainYieldsLockedSubscriptionPreview Get On-chain Yields Locked Subscription Preview (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/subscriptionPreview
 
-https://developers.binance.com/docs/staking/on-chain-yields/earn/
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-preview
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
-@param amount -  Amount in SOL.
-@param autoSubscribe -  true or false, default true.
-@param recvWindow -
+@param amount -
+@param autoSubscribe -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedSubscriptionPreviewRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedSubscriptionPreview(ctx context.Context) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
@@ -590,6 +628,7 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedSubscriptionPreviewExecu
 	if r.projectId == nil {
 		return nil, common.ReportError("projectId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -603,7 +642,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedSubscriptionPreviewExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedSubscriptionPreviewResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedSubscriptionPreviewResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -634,7 +681,6 @@ func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) ClientId(clientId st
 	return r
 }
 
-// WBETH or BETH, default to BETH
 func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) Asset(asset string) ApiGetOnChainYieldsLockedSubscriptionRecordRequest {
 	r.asset = &asset
 	return r
@@ -650,18 +696,18 @@ func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) EndTime(endTime int6
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) Current(current int64) ApiGetOnChainYieldsLockedSubscriptionRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) Size(size int64) ApiGetOnChainYieldsLockedSubscriptionRecordRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) RecvWindow(recvWindow int64) ApiGetOnChainYieldsLockedSubscriptionRecordRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -675,17 +721,17 @@ func (r ApiGetOnChainYieldsLockedSubscriptionRecordRequest) Execute() (*common.R
 GetOnChainYieldsLockedSubscriptionRecord Get On-chain Yields Locked Subscription Record (USER_DATA)
 Get /sapi/v1/onchain-yields/locked/history/subscriptionRecord
 
-https://developers.binance.com/docs/staking/on-chain-yields/history/
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#get-on-chain-yields-locked-subscription-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param purchaseId -
 @param clientId -
-@param asset -  WBETH or BETH, default to BETH
+@param asset -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetOnChainYieldsLockedSubscriptionRecordRequest
 */
 func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedSubscriptionRecord(ctx context.Context) ApiGetOnChainYieldsLockedSubscriptionRecordRequest {
@@ -730,7 +776,15 @@ func (a *OnChainYieldsAPIService) GetOnChainYieldsLockedSubscriptionRecordExecut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetOnChainYieldsLockedSubscriptionRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetOnChainYieldsLockedSubscriptionRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -744,6 +798,7 @@ type ApiOnChainYieldsAccountRequest struct {
 	recvWindow *int64
 }
 
+// The value cannot be greater than &#x60;60000&#x60;
 func (r ApiOnChainYieldsAccountRequest) RecvWindow(recvWindow int64) ApiOnChainYieldsAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -757,10 +812,10 @@ func (r ApiOnChainYieldsAccountRequest) Execute() (*common.RestApiResponse[model
 OnChainYieldsAccount On-chain Yields Account (USER_DATA)
 Get /sapi/v1/onchain-yields/account
 
-https://developers.binance.com/docs/staking/on-chain-yields/account/Onchain-Account
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#on-chain-yields-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than `60000`
 @return ApiOnChainYieldsAccountRequest
 */
 func (a *OnChainYieldsAPIService) OnChainYieldsAccount(ctx context.Context) ApiOnChainYieldsAccountRequest {
@@ -784,7 +839,15 @@ func (a *OnChainYieldsAPIService) OnChainYieldsAccountExecute(r ApiOnChainYields
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.OnChainYieldsAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OnChainYieldsAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -800,6 +863,7 @@ type ApiRedeemOnChainYieldsLockedProductRequest struct {
 	recvWindow *int64
 }
 
+// Locked product position ID
 func (r ApiRedeemOnChainYieldsLockedProductRequest) PositionId(positionId string) ApiRedeemOnChainYieldsLockedProductRequest {
 	r.positionId = &positionId
 	return r
@@ -810,6 +874,7 @@ func (r ApiRedeemOnChainYieldsLockedProductRequest) ChannelId(channelId string) 
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiRedeemOnChainYieldsLockedProductRequest) RecvWindow(recvWindow int64) ApiRedeemOnChainYieldsLockedProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -823,12 +888,12 @@ func (r ApiRedeemOnChainYieldsLockedProductRequest) Execute() (*common.RestApiRe
 RedeemOnChainYieldsLockedProduct Redeem On-chain Yields Locked Product (TRADE)
 Post /sapi/v1/onchain-yields/locked/redeem
 
-https://developers.binance.com/docs/staking/on-chain-yields/earn/Redeem-Onchain-Locked-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#redeem-on-chain-yields-locked-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param positionId -
+@param positionId -  Locked product position ID
 @param channelId -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemOnChainYieldsLockedProductRequest
 */
 func (a *OnChainYieldsAPIService) RedeemOnChainYieldsLockedProduct(ctx context.Context) ApiRedeemOnChainYieldsLockedProductRequest {
@@ -860,7 +925,15 @@ func (a *OnChainYieldsAPIService) RedeemOnChainYieldsLockedProductExecute(r ApiR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemOnChainYieldsLockedProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemOnChainYieldsLockedProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -881,12 +954,12 @@ func (r ApiSetOnChainYieldsLockedAutoSubscribeRequest) PositionId(positionId str
 	return r
 }
 
-// true or false
 func (r ApiSetOnChainYieldsLockedAutoSubscribeRequest) AutoSubscribe(autoSubscribe bool) ApiSetOnChainYieldsLockedAutoSubscribeRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSetOnChainYieldsLockedAutoSubscribeRequest) RecvWindow(recvWindow int64) ApiSetOnChainYieldsLockedAutoSubscribeRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -897,15 +970,15 @@ func (r ApiSetOnChainYieldsLockedAutoSubscribeRequest) Execute() (*common.RestAp
 }
 
 /*
-SetOnChainYieldsLockedAutoSubscribe Set On-chain Yields Locked Auto Subscribe(USER_DATA)
+SetOnChainYieldsLockedAutoSubscribe Set On-chain Yields Locked Auto Subscribe (USER_DATA)
 Post /sapi/v1/onchain-yields/locked/setAutoSubscribe
 
-https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Auto-Subscribe
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-auto-subscribe
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param autoSubscribe -  true or false
-@param recvWindow -
+@param autoSubscribe -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetOnChainYieldsLockedAutoSubscribeRequest
 */
 func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedAutoSubscribe(ctx context.Context) ApiSetOnChainYieldsLockedAutoSubscribeRequest {
@@ -928,6 +1001,7 @@ func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedAutoSubscribeExecute(r A
 	if r.positionId == nil {
 		return nil, common.ReportError("positionId is required and must be specified")
 	}
+
 	if r.autoSubscribe == nil {
 		return nil, common.ReportError("autoSubscribe is required and must be specified")
 	}
@@ -938,7 +1012,15 @@ func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedAutoSubscribeExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetOnChainYieldsLockedAutoSubscribeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetOnChainYieldsLockedAutoSubscribeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -950,7 +1032,7 @@ type ApiSetOnChainYieldsLockedProductRedeemOptionRequest struct {
 	ctx        context.Context
 	ApiService *OnChainYieldsAPIService
 	positionId *string
-	redeemTo   *string
+	redeemTo   *models.SetOnChainYieldsLockedProductRedeemOptionRedeemToParameter
 	recvWindow *int64
 }
 
@@ -959,12 +1041,12 @@ func (r ApiSetOnChainYieldsLockedProductRedeemOptionRequest) PositionId(position
 	return r
 }
 
-// &#39;SPOT&#39;,&#39;FLEXIBLE&#39;
-func (r ApiSetOnChainYieldsLockedProductRedeemOptionRequest) RedeemTo(redeemTo string) ApiSetOnChainYieldsLockedProductRedeemOptionRequest {
+func (r ApiSetOnChainYieldsLockedProductRedeemOptionRequest) RedeemTo(redeemTo models.SetOnChainYieldsLockedProductRedeemOptionRedeemToParameter) ApiSetOnChainYieldsLockedProductRedeemOptionRequest {
 	r.redeemTo = &redeemTo
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSetOnChainYieldsLockedProductRedeemOptionRequest) RecvWindow(recvWindow int64) ApiSetOnChainYieldsLockedProductRedeemOptionRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -975,15 +1057,15 @@ func (r ApiSetOnChainYieldsLockedProductRedeemOptionRequest) Execute() (*common.
 }
 
 /*
-SetOnChainYieldsLockedProductRedeemOption Set On-chain Yields Locked Product Redeem Option(USER_DATA)
+SetOnChainYieldsLockedProductRedeemOption Set On-chain Yields Locked Product Redeem Option (USER_DATA)
 Post /sapi/v1/onchain-yields/locked/setRedeemOption
 
-https://developers.binance.com/docs/staking/on-chain-yields/earn/Set-Onchain-Locked-Redeem-Option
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#set-on-chain-yields-locked-product-redeem-option
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param positionId -
-@param redeemTo -  'SPOT','FLEXIBLE'
-@param recvWindow -
+@param redeemTo -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSetOnChainYieldsLockedProductRedeemOptionRequest
 */
 func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedProductRedeemOption(ctx context.Context) ApiSetOnChainYieldsLockedProductRedeemOptionRequest {
@@ -1006,6 +1088,7 @@ func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedProductRedeemOptionExecu
 	if r.positionId == nil {
 		return nil, common.ReportError("positionId is required and must be specified")
 	}
+
 	if r.redeemTo == nil {
 		return nil, common.ReportError("redeemTo is required and must be specified")
 	}
@@ -1016,7 +1099,15 @@ func (a *OnChainYieldsAPIService) SetOnChainYieldsLockedProductRedeemOptionExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SetOnChainYieldsLockedProductRedeemOptionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SetOnChainYieldsLockedProductRedeemOptionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1030,8 +1121,8 @@ type ApiSubscribeOnChainYieldsLockedProductRequest struct {
 	projectId     *string
 	amount        *float32
 	autoSubscribe *bool
-	sourceAccount *string
-	redeemTo      *string
+	sourceAccount *models.SubscribeOnChainYieldsLockedProductSourceAccountParameter
+	redeemTo      *models.SubscribeOnChainYieldsLockedProductRedeemToParameter
 	channelId     *string
 	clientId      *string
 	recvWindow    *int64
@@ -1042,26 +1133,23 @@ func (r ApiSubscribeOnChainYieldsLockedProductRequest) ProjectId(projectId strin
 	return r
 }
 
-// Amount in SOL.
 func (r ApiSubscribeOnChainYieldsLockedProductRequest) Amount(amount float32) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.amount = &amount
 	return r
 }
 
-// true or false, default true.
 func (r ApiSubscribeOnChainYieldsLockedProductRequest) AutoSubscribe(autoSubscribe bool) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.autoSubscribe = &autoSubscribe
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FUND&#x60;,&#x60;ALL&#x60;, default &#x60;SPOT&#x60;
-func (r ApiSubscribeOnChainYieldsLockedProductRequest) SourceAccount(sourceAccount string) ApiSubscribeOnChainYieldsLockedProductRequest {
+func (r ApiSubscribeOnChainYieldsLockedProductRequest) SourceAccount(sourceAccount models.SubscribeOnChainYieldsLockedProductSourceAccountParameter) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.sourceAccount = &sourceAccount
 	return r
 }
 
-// &#x60;SPOT&#x60;,&#x60;FLEXIBLE&#x60;, default &#x60;FLEXIBLE&#x60; Takes effect when Auto Subscribe is false
-func (r ApiSubscribeOnChainYieldsLockedProductRequest) RedeemTo(redeemTo string) ApiSubscribeOnChainYieldsLockedProductRequest {
+// Takes effect when Auto Subscribe is false
+func (r ApiSubscribeOnChainYieldsLockedProductRequest) RedeemTo(redeemTo models.SubscribeOnChainYieldsLockedProductRedeemToParameter) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.redeemTo = &redeemTo
 	return r
 }
@@ -1076,6 +1164,7 @@ func (r ApiSubscribeOnChainYieldsLockedProductRequest) ClientId(clientId string)
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSubscribeOnChainYieldsLockedProductRequest) RecvWindow(recvWindow int64) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1086,20 +1175,20 @@ func (r ApiSubscribeOnChainYieldsLockedProductRequest) Execute() (*common.RestAp
 }
 
 /*
-SubscribeOnChainYieldsLockedProduct Subscribe On-chain Yields Locked Product(TRADE)
+SubscribeOnChainYieldsLockedProduct Subscribe On-chain Yields Locked Product (TRADE)
 Post /sapi/v1/onchain-yields/locked/subscribe
 
-https://developers.binance.com/docs/staking/on-chain-yields/earn/Subscribe-Onchain-Locked-Product
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/on-chain-yields#subscribe-on-chain-yields-locked-product
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param projectId -
-@param amount -  Amount in SOL.
-@param autoSubscribe -  true or false, default true.
-@param sourceAccount -  `SPOT`,`FUND`,`ALL`, default `SPOT`
-@param redeemTo -  `SPOT`,`FLEXIBLE`, default `FLEXIBLE` Takes effect when Auto Subscribe is false
+@param amount -
+@param autoSubscribe -
+@param sourceAccount -
+@param redeemTo -  Takes effect when Auto Subscribe is false
 @param channelId -
 @param clientId -
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeOnChainYieldsLockedProductRequest
 */
 func (a *OnChainYieldsAPIService) SubscribeOnChainYieldsLockedProduct(ctx context.Context) ApiSubscribeOnChainYieldsLockedProductRequest {
@@ -1122,6 +1211,7 @@ func (a *OnChainYieldsAPIService) SubscribeOnChainYieldsLockedProductExecute(r A
 	if r.projectId == nil {
 		return nil, common.ReportError("projectId is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1147,7 +1237,15 @@ func (a *OnChainYieldsAPIService) SubscribeOnChainYieldsLockedProductExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeOnChainYieldsLockedProductResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeOnChainYieldsLockedProductResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -1,7 +1,7 @@
 /*
-Binance Simple Earn REST API
+Simple Earn REST API
 
-OpenAPI Specification for the Binance Simple Earn REST API
+Earn rewards by subscribing to flexible or locked Simple Earn products.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &GetYieldArenaActivitiesResponseActivitiesInner{}
 
 // GetYieldArenaActivitiesResponseActivitiesInner struct for GetYieldArenaActivitiesResponseActivitiesInner
 type GetYieldArenaActivitiesResponseActivitiesInner struct {
-	ActivityId           *int64   `json:"activityId,omitempty"`
-	ActivityType         *string  `json:"activityType,omitempty"`
-	Title                *string  `json:"title,omitempty"`
-	Description          *string  `json:"description,omitempty"`
-	RewardPoolInUsd      *string  `json:"rewardPoolInUsd,omitempty"`
-	RewardToken          []string `json:"rewardToken,omitempty"`
-	RedirectUrl          *string  `json:"redirectUrl,omitempty"`
-	StartTime            *int64   `json:"startTime,omitempty"`
-	EndTime              *int64   `json:"endTime,omitempty"`
+	// Activity ID.
+	ActivityId *int64 `json:"activityId,omitempty"`
+	// Activity category: `AIRDROP`, `LEADERBOARD`, or `EVENT`.
+	ActivityType *string `json:"activityType,omitempty"`
+	// Activity title, localized via the `lang` header.
+	Title *string `json:"title,omitempty"`
+	// Activity description, localized via the `lang` header.
+	Description *string `json:"description,omitempty"`
+	// USD value of the reward pool.
+	RewardPoolInUsd *string `json:"rewardPoolInUsd,omitempty"`
+	// Reward token symbols (e.g. `[\"BNB\"]`); may be empty.
+	RewardToken []string `json:"rewardToken,omitempty"`
+	// Web URL to the activity landing page.
+	RedirectUrl *string `json:"redirectUrl,omitempty"`
+	// Activity start time in milliseconds; may be null for activities that are immediately effective.
+	StartTime *int64 `json:"startTime,omitempty"`
+	// Activity end time in milliseconds; may be null for activities with no fixed end.
+	EndTime              *int64 `json:"endTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

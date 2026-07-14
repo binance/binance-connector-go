@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &StrategyUpdate{}
 
 // StrategyUpdate struct for StrategyUpdate
 type StrategyUpdate struct {
-	T                    *int64            `json:"T,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// Event Time
 	E                    *int64            `json:"E,omitempty"`
 	Smallsu              *StrategyUpdateSu `json:"su,omitempty"`
 	AdditionalProperties map[string]interface{}

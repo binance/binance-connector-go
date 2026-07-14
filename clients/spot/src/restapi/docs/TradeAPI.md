@@ -4,28 +4,28 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**DeleteOpenOrders**](TradeAPI.md#DeleteOpenOrders) | **Delete** /api/v3/openOrders | Cancel All Open Orders on a Symbol
-[**DeleteOrder**](TradeAPI.md#DeleteOrder) | **Delete** /api/v3/order | Cancel order
-[**DeleteOrderList**](TradeAPI.md#DeleteOrderList) | **Delete** /api/v3/orderList | Cancel Order list
-[**NewOrder**](TradeAPI.md#NewOrder) | **Post** /api/v3/order | New order
-[**OrderAmendKeepPriority**](TradeAPI.md#OrderAmendKeepPriority) | **Put** /api/v3/order/amend/keepPriority | Order Amend Keep Priority
-[**OrderCancelReplace**](TradeAPI.md#OrderCancelReplace) | **Post** /api/v3/order/cancelReplace | Cancel an Existing Order and Send a New Order
-[**OrderListOco**](TradeAPI.md#OrderListOco) | **Post** /api/v3/orderList/oco | New Order list - OCO
-[**OrderListOpo**](TradeAPI.md#OrderListOpo) | **Post** /api/v3/orderList/opo | New Order List - OPO
-[**OrderListOpoco**](TradeAPI.md#OrderListOpoco) | **Post** /api/v3/orderList/opoco | New Order List - OPOCO
-[**OrderListOto**](TradeAPI.md#OrderListOto) | **Post** /api/v3/orderList/oto | New Order list - OTO
-[**OrderListOtoco**](TradeAPI.md#OrderListOtoco) | **Post** /api/v3/orderList/otoco | New Order list - OTOCO
-[**OrderOco**](TradeAPI.md#OrderOco) | **Post** /api/v3/order/oco | New OCO - Deprecated
-[**OrderTest**](TradeAPI.md#OrderTest) | **Post** /api/v3/order/test | Test new order
-[**SorOrder**](TradeAPI.md#SorOrder) | **Post** /api/v3/sor/order | New order using SOR
-[**SorOrderTest**](TradeAPI.md#SorOrderTest) | **Post** /api/v3/sor/order/test | Test new order using SOR
+[**DeleteOpenOrders**](TradeAPI.md#DeleteOpenOrders) | **Delete** /api/v3/openOrders | Cancel All Open Orders on a Symbol (TRADE)
+[**DeleteOrder**](TradeAPI.md#DeleteOrder) | **Delete** /api/v3/order | Cancel order (TRADE)
+[**DeleteOrderList**](TradeAPI.md#DeleteOrderList) | **Delete** /api/v3/orderList | Cancel Order list (TRADE)
+[**NewOrder**](TradeAPI.md#NewOrder) | **Post** /api/v3/order | New order (TRADE)
+[**OrderAmendKeepPriority**](TradeAPI.md#OrderAmendKeepPriority) | **Put** /api/v3/order/amend/keepPriority | Order Amend Keep Priority (TRADE)
+[**OrderCancelReplace**](TradeAPI.md#OrderCancelReplace) | **Post** /api/v3/order/cancelReplace | Cancel an Existing Order and Send a New Order (TRADE)
+[**OrderListOco**](TradeAPI.md#OrderListOco) | **Post** /api/v3/orderList/oco | New Order list - OCO (TRADE)
+[**OrderListOpo**](TradeAPI.md#OrderListOpo) | **Post** /api/v3/orderList/opo | New Order List - OPO (TRADE)
+[**OrderListOpoco**](TradeAPI.md#OrderListOpoco) | **Post** /api/v3/orderList/opoco | New Order List - OPOCO (TRADE)
+[**OrderListOto**](TradeAPI.md#OrderListOto) | **Post** /api/v3/orderList/oto | New Order list - OTO (TRADE)
+[**OrderListOtoco**](TradeAPI.md#OrderListOtoco) | **Post** /api/v3/orderList/otoco | New Order list - OTOCO (TRADE)
+[**OrderOco**](TradeAPI.md#OrderOco) | **Post** /api/v3/order/oco | New OCO - Deprecated (TRADE)
+[**OrderTest**](TradeAPI.md#OrderTest) | **Post** /api/v3/order/test | Test new order (TRADE)
+[**SorOrder**](TradeAPI.md#SorOrder) | **Post** /api/v3/sor/order | New order using SOR (TRADE)
+[**SorOrderTest**](TradeAPI.md#SorOrderTest) | **Post** /api/v3/sor/order/test | Test new order using SOR (TRADE)
 
 
 ## DeleteOpenOrders
 
 > DeleteOpenOrdersResponse DeleteOpenOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Cancel All Open Orders on a Symbol
+Cancel All Open Orders on a Symbol (TRADE)
 
 
 ### Example
@@ -45,7 +45,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -74,7 +74,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -95,7 +95,7 @@ No authorization required
 
 > DeleteOrderResponse DeleteOrder(ctx).Symbol(symbol).OrderId(orderId).OrigClientOrderId(origClientOrderId).NewClientOrderId(newClientOrderId).CancelRestrictions(cancelRestrictions).RecvWindow(recvWindow).Execute()
 
-Cancel order
+Cancel order (TRADE)
 
 
 ### Example
@@ -116,10 +116,10 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
-	cancelRestrictions := models.DeleteOrderCancelRestrictionsParameterOnlyNew // DeleteOrderCancelRestrictionsParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	origClientOrderId := "myOrder1" // string |  (optional)
+	newClientOrderId := "cancelMyOrder1" // string | Used to uniquely identify this cancel. Automatically generated by default. (optional)
+	cancelRestrictions := models.DeleteOrderCancelRestrictionsParameterOnlyNew // DeleteOrderCancelRestrictionsParameter | Supported values: <br>`ONLY_NEW` - Cancel will succeed if the order status is `NEW`.<br> `ONLY_PARTIALLY_FILLED` - Cancel will succeed if order status is `PARTIALLY_FILLED`. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -150,9 +150,9 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
- **cancelRestrictions** | [**DeleteOrderCancelRestrictionsParameter**](DeleteOrderCancelRestrictionsParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **newClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default. | 
+ **cancelRestrictions** | [**DeleteOrderCancelRestrictionsParameter**](DeleteOrderCancelRestrictionsParameter.md) | Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt; &#x60;ONLY_PARTIALLY_FILLED&#x60; - Cancel will succeed if order status is &#x60;PARTIALLY_FILLED&#x60;. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -173,7 +173,7 @@ No authorization required
 
 > DeleteOrderListResponse DeleteOrderList(ctx).Symbol(symbol).OrderListId(orderListId).ListClientOrderId(listClientOrderId).NewClientOrderId(newClientOrderId).RecvWindow(recvWindow).Execute()
 
-Cancel Order list
+Cancel Order list (TRADE)
 
 
 ### Example
@@ -194,9 +194,9 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	orderListId := int64(1) // int64 | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	listClientOrderId := "C3wyj4WVEktd7u9aVBRXcN" // string | Either `orderListId` or `listClientOrderId` must be provided (optional)
+	newClientOrderId := "cancelMyOrder1" // string | Used to uniquely identify this cancel. Automatically generated by default. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -226,9 +226,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **orderListId** | **int64** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **listClientOrderId** | **string** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
+ **newClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -249,7 +249,7 @@ No authorization required
 
 > NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).TimeInForce(timeInForce).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).NewClientOrderId(newClientOrderId).StrategyId(strategyId).StrategyType(strategyType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
 
-New order
+New order (TRADE)
 
 
 ### Example
@@ -269,24 +269,24 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | 
-	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	quoteOrderQty := float32(1.0) // float32 |  (optional)
-	price := float32(400.0) // float32 |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
+	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | Please see [Enums](/products/spot/enums#side) for supported values.
+	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | Please see [Enums](/products/spot/enums#ordertypes) for supported values.
+	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Please see [Enums](/products/spot/enums#timeinforce) for supported values. (optional)
+	quantity := float32(1) // float32 |  (optional)
+	quoteOrderQty := float32(1) // float32 |  (optional)
+	price := float32(400) // float32 |  (optional)
+	newClientOrderId := "myOrder1" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
 	strategyId := int64(1) // int64 |  (optional)
 	strategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
-	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter |  (optional)
-	pegOffsetValue := int32(1) // int32 | Priceleveltopegthepriceto(max:100).<br>See[PeggedOrdersInfo](#pegged-orders-info) (optional)
-	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	stopPrice := float32(1) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
+	trailingDelta := int64(1) // int64 | See Trailing Stop order FAQ (optional)
+	icebergQty := float32(1) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`. (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. (optional)
+	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See Pegged Orders Info (optional)
+	pegOffsetValue := int32(1) // int32 | Price level to peg the price to (max: 100). See Pegged Orders Info (optional)
+	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter | Only `PRICE_LEVEL` is supported. See Pegged Orders Info (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -315,9 +315,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) |  | 
- **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
+ **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Please see [Enums](/products/spot/enums#side) for supported values. | 
+ **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) | Please see [Enums](/products/spot/enums#ordertypes) for supported values. | 
+ **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Please see [Enums](/products/spot/enums#timeinforce) for supported values. | 
  **quantity** | **float32** |  | 
  **quoteOrderQty** | **float32** |  | 
  **price** | **float32** |  | 
@@ -325,14 +325,14 @@ Name          | Type          | Description   | Notes
  **strategyId** | **int64** |  | 
  **strategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
  **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
- **trailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
+ **trailingDelta** | **int64** | See Trailing Stop order FAQ | 
  **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) |  | 
- **pegOffsetValue** | **int32** | Priceleveltopegthepriceto(max:100).&lt;br&gt;See[PeggedOrdersInfo](#pegged-orders-info) | 
- **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | &#x60;MARKET&#x60; and &#x60;LIMIT&#x60; order types default to &#x60;FULL&#x60;, all other orders default to &#x60;ACK&#x60;. | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. | 
+ **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See Pegged Orders Info | 
+ **pegOffsetValue** | **int32** | Price level to peg the price to (max: 100). See Pegged Orders Info | 
+ **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported. See Pegged Orders Info | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -353,7 +353,7 @@ No authorization required
 
 > OrderAmendKeepPriorityResponse OrderAmendKeepPriority(ctx).Symbol(symbol).NewQty(newQty).OrderId(orderId).OrigClientOrderId(origClientOrderId).NewClientOrderId(newClientOrderId).RecvWindow(recvWindow).Execute()
 
-Order Amend Keep Priority
+Order Amend Keep Priority (TRADE)
 
 
 ### Example
@@ -373,11 +373,11 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	newQty := float32(1.0) // float32 | `newQty` must be greater than 0 and less than the order's quantity.
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	newQty := float32(1) // float32 | `newQty` must be greater than 0 and less than the order's quantity.
+	orderId := int64(1) // int64 | `orderId` or `origClientOrderId` must be sent (optional)
+	origClientOrderId := "myOrder1" // string | `orderId` or `origClientOrderId` must be sent (optional)
+	newClientOrderId := "myOrder2" // string | The new client order ID for the order after being amended. <br> If not sent, one will be randomly generated. <br> It is possible to reuse the current clientOrderId by sending it as the `newClientOrderId`. (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -407,9 +407,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **newQty** | **float32** | &#x60;newQty&#x60; must be greater than 0 and less than the order&#39;s quantity. | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
+ **orderId** | **int64** | &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent | 
+ **origClientOrderId** | **string** | &#x60;orderId&#x60; or &#x60;origClientOrderId&#x60; must be sent | 
+ **newClientOrderId** | **string** | The new client order ID for the order after being amended. &lt;br&gt; If not sent, one will be randomly generated. &lt;br&gt; It is possible to reuse the current clientOrderId by sending it as the &#x60;newClientOrderId&#x60;. | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -431,7 +431,7 @@ No authorization required
 
 > OrderCancelReplaceResponse OrderCancelReplace(ctx).Symbol(symbol).Side(side).Type(type_).CancelReplaceMode(cancelReplaceMode).TimeInForce(timeInForce).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).CancelNewClientOrderId(cancelNewClientOrderId).CancelOrigClientOrderId(cancelOrigClientOrderId).CancelOrderId(cancelOrderId).NewClientOrderId(newClientOrderId).StrategyId(strategyId).StrategyType(strategyType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).CancelRestrictions(cancelRestrictions).OrderRateLimitExceededMode(orderRateLimitExceededMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
 
-Cancel an Existing Order and Send a New Order
+Cancel an Existing Order and Send a New Order (TRADE)
 
 
 ### Example
@@ -453,28 +453,28 @@ func main() {
 	symbol := "BNBUSDT" // string | 
 	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
 	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | 
-	cancelReplaceMode := models.OrderCancelReplaceCancelReplaceModeParameterStopOnFailure // OrderCancelReplaceCancelReplaceModeParameter | 
+	cancelReplaceMode := models.OrderCancelReplaceCancelReplaceModeParameterStopOnFailure // OrderCancelReplaceCancelReplaceModeParameter | The allowed values are: <br/> `STOP_ON_FAILURE` - If the cancel request fails, the new order placement will not be attempted. <br/> `ALLOW_FAILURE` - new order placement will be attempted even if cancel request fails.
 	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	quoteOrderQty := float32(1.0) // float32 |  (optional)
-	price := float32(400.0) // float32 |  (optional)
-	cancelNewClientOrderId := "cancelNewClientOrderId_example" // string | Used to uniquely identify this cancel. Automatically generated by default. (optional)
-	cancelOrigClientOrderId := "cancelOrigClientOrderId_example" // string | Either `cancelOrderId` or `cancelOrigClientOrderId` must be sent. <br></br> If both `cancelOrderId` and `cancelOrigClientOrderId` parameters are provided, the `cancelOrderId` is searched first, then the `cancelOrigClientOrderId` from that result is checked against that order. <br></br> If both conditions are not met the request will be rejected. (optional)
+	quantity := float32(1) // float32 |  (optional)
+	quoteOrderQty := float32(1) // float32 |  (optional)
+	price := float32(400) // float32 |  (optional)
+	cancelNewClientOrderId := "cancelMyOrder1" // string | Used to uniquely identify this cancel. Automatically generated by default. (optional)
+	cancelOrigClientOrderId := "myOrder1" // string | Either `cancelOrderId` or `cancelOrigClientOrderId` must be sent. <br></br> If both `cancelOrderId` and `cancelOrigClientOrderId` parameters are provided, the `cancelOrderId` is searched first, then the `cancelOrigClientOrderId` from that result is checked against that order. <br></br> If both conditions are not met the request will be rejected. (optional)
 	cancelOrderId := int64(1) // int64 | Either `cancelOrderId` or `cancelOrigClientOrderId` must be sent. <br></br>If both `cancelOrderId` and `cancelOrigClientOrderId` parameters are provided, the `cancelOrderId` is searched first, then the `cancelOrigClientOrderId` from that result is checked against that order. <br></br>If both conditions are not met the request will be rejected. (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
+	newClientOrderId := "myOrder2" // string | Used to identify the new order. (optional)
 	strategyId := int64(1) // int64 |  (optional)
 	strategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
-	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	cancelRestrictions := models.DeleteOrderCancelRestrictionsParameterOnlyNew // DeleteOrderCancelRestrictionsParameter |  (optional)
-	orderRateLimitExceededMode := models.OrderCancelReplaceOrderRateLimitExceededModeParameterDoNothing // OrderCancelReplaceOrderRateLimitExceededModeParameter |  (optional)
-	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter |  (optional)
-	pegOffsetValue := int32(1) // int32 | Priceleveltopegthepriceto(max:100).<br>See[PeggedOrdersInfo](#pegged-orders-info) (optional)
-	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	stopPrice := float32(1) // float32 |  (optional)
+	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	icebergQty := float32(1) // float32 |  (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Allowed values: <br/> `ACK`, `RESULT`, `FULL` <br/> `MARKET` and `LIMIT` orders types default to `FULL`; all other orders default to `ACK` (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. The possible supported values are: [STP Modes](/products/spot/enums#stpmodes). (optional)
+	cancelRestrictions := models.DeleteOrderCancelRestrictionsParameterOnlyNew // DeleteOrderCancelRestrictionsParameter | Supported values: <br>`ONLY_NEW` - Cancel will succeed if the order status is `NEW`.<br> `ONLY_PARTIALLY_FILLED ` - Cancel will succeed if order status is `PARTIALLY_FILLED`. (optional)
+	orderRateLimitExceededMode := models.OrderCancelReplaceOrderRateLimitExceededModeParameterDoNothing // OrderCancelReplaceOrderRateLimitExceededModeParameter | Supported values: <br> `DO_NOTHING` (default)- will only attempt to cancel the order if account has not exceeded the unfilled order rate limit<br> `CANCEL_ONLY` - will always cancel the order (optional)
+	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | `PRIMARY_PEG` or `MARKET_PEG` <br> See Pegged Orders (optional)
+	pegOffsetValue := int32(1) // int32 | Price level to peg the price to (max: 100) <br> See Pegged Orders (optional)
+	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter | Only `PRICE_LEVEL` is supported <br> See Pegged Orders. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -505,7 +505,7 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
  **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) |  | 
- **cancelReplaceMode** | [**OrderCancelReplaceCancelReplaceModeParameter**](OrderCancelReplaceCancelReplaceModeParameter.md) |  | 
+ **cancelReplaceMode** | [**OrderCancelReplaceCancelReplaceModeParameter**](OrderCancelReplaceCancelReplaceModeParameter.md) | The allowed values are: &lt;br/&gt; &#x60;STOP_ON_FAILURE&#x60; - If the cancel request fails, the new order placement will not be attempted. &lt;br/&gt; &#x60;ALLOW_FAILURE&#x60; - new order placement will be attempted even if cancel request fails. | 
  **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
  **quantity** | **float32** |  | 
  **quoteOrderQty** | **float32** |  | 
@@ -513,20 +513,20 @@ Name          | Type          | Description   | Notes
  **cancelNewClientOrderId** | **string** | Used to uniquely identify this cancel. Automatically generated by default. | 
  **cancelOrigClientOrderId** | **string** | Either &#x60;cancelOrderId&#x60; or &#x60;cancelOrigClientOrderId&#x60; must be sent. &lt;br&gt;&lt;/br&gt; If both &#x60;cancelOrderId&#x60; and &#x60;cancelOrigClientOrderId&#x60; parameters are provided, the &#x60;cancelOrderId&#x60; is searched first, then the &#x60;cancelOrigClientOrderId&#x60; from that result is checked against that order. &lt;br&gt;&lt;/br&gt; If both conditions are not met the request will be rejected. | 
  **cancelOrderId** | **int64** | Either &#x60;cancelOrderId&#x60; or &#x60;cancelOrigClientOrderId&#x60; must be sent. &lt;br&gt;&lt;/br&gt;If both &#x60;cancelOrderId&#x60; and &#x60;cancelOrigClientOrderId&#x60; parameters are provided, the &#x60;cancelOrderId&#x60; is searched first, then the &#x60;cancelOrigClientOrderId&#x60; from that result is checked against that order. &lt;br&gt;&lt;/br&gt;If both conditions are not met the request will be rejected. | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
+ **newClientOrderId** | **string** | Used to identify the new order. | 
  **strategyId** | **int64** |  | 
  **strategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
- **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
- **trailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
- **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **cancelRestrictions** | [**DeleteOrderCancelRestrictionsParameter**](DeleteOrderCancelRestrictionsParameter.md) |  | 
- **orderRateLimitExceededMode** | [**OrderCancelReplaceOrderRateLimitExceededModeParameter**](OrderCancelReplaceOrderRateLimitExceededModeParameter.md) |  | 
- **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) |  | 
- **pegOffsetValue** | **int32** | Priceleveltopegthepriceto(max:100).&lt;br&gt;See[PeggedOrdersInfo](#pegged-orders-info) | 
- **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **stopPrice** | **float32** |  | 
+ **trailingDelta** | **int64** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **icebergQty** | **float32** |  | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Allowed values: &lt;br/&gt; &#x60;ACK&#x60;, &#x60;RESULT&#x60;, &#x60;FULL&#x60; &lt;br/&gt; &#x60;MARKET&#x60; and &#x60;LIMIT&#x60; orders types default to &#x60;FULL&#x60;; all other orders default to &#x60;ACK&#x60; | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. The possible supported values are: [STP Modes](/products/spot/enums#stpmodes). | 
+ **cancelRestrictions** | [**DeleteOrderCancelRestrictionsParameter**](DeleteOrderCancelRestrictionsParameter.md) | Supported values: &lt;br&gt;&#x60;ONLY_NEW&#x60; - Cancel will succeed if the order status is &#x60;NEW&#x60;.&lt;br&gt; &#x60;ONLY_PARTIALLY_FILLED &#x60; - Cancel will succeed if order status is &#x60;PARTIALLY_FILLED&#x60;. | 
+ **orderRateLimitExceededMode** | [**OrderCancelReplaceOrderRateLimitExceededModeParameter**](OrderCancelReplaceOrderRateLimitExceededModeParameter.md) | Supported values: &lt;br&gt; &#x60;DO_NOTHING&#x60; (default)- will only attempt to cancel the order if account has not exceeded the unfilled order rate limit&lt;br&gt; &#x60;CANCEL_ONLY&#x60; - will always cancel the order | 
+ **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60; &lt;br&gt; See Pegged Orders | 
+ **pegOffsetValue** | **int32** | Price level to peg the price to (max: 100) &lt;br&gt; See Pegged Orders | 
+ **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported &lt;br&gt; See Pegged Orders. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -547,7 +547,7 @@ No authorization required
 
 > OrderListOcoResponse OrderListOco(ctx).Symbol(symbol).Side(side).Quantity(quantity).AboveType(aboveType).BelowType(belowType).ListClientOrderId(listClientOrderId).AboveClientOrderId(aboveClientOrderId).AboveIcebergQty(aboveIcebergQty).AbovePrice(abovePrice).AboveStopPrice(aboveStopPrice).AboveTrailingDelta(aboveTrailingDelta).AboveTimeInForce(aboveTimeInForce).AboveStrategyId(aboveStrategyId).AboveStrategyType(aboveStrategyType).AbovePegPriceType(abovePegPriceType).AbovePegOffsetType(abovePegOffsetType).AbovePegOffsetValue(abovePegOffsetValue).BelowClientOrderId(belowClientOrderId).BelowIcebergQty(belowIcebergQty).BelowPrice(belowPrice).BelowStopPrice(belowStopPrice).BelowTrailingDelta(belowTrailingDelta).BelowTimeInForce(belowTimeInForce).BelowStrategyId(belowStrategyId).BelowStrategyType(belowStrategyType).BelowPegPriceType(belowPegPriceType).BelowPegOffsetType(belowPegOffsetType).BelowPegOffsetValue(belowPegOffsetValue).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
-New Order list - OCO
+New Order list - OCO (TRADE)
 
 
 ### Example
@@ -568,35 +568,35 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	quantity := float32(1.0) // float32 | 
+	quantity := float32(1) // float32 | Quantity for both orders of the order list.
 	aboveType := models.OrderListOcoAboveTypeParameterStopLossLimit // OrderListOcoAboveTypeParameter | 
-	belowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter | 
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	aboveClientOrderId := "aboveClientOrderId_example" // string | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent (optional)
+	belowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter | Supported values: `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`
+	listClientOrderId := "lH1YDkuQKWiXVXHPSKYEIp" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `aboveClientOrderId` and the `belowClientOrderId`. (optional)
+	aboveClientOrderId := "aboveOrder1" // string | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent. (optional)
 	aboveIcebergQty := int64(1) // int64 | Note that this can only be used if `aboveTimeInForce` is `GTC`. (optional)
-	abovePrice := float32(1.0) // float32 | Can be used if `aboveType` is `STOP_LOSS_LIMIT` , `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
-	aboveStopPrice := float32(1.0) // float32 | Can be used if `aboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. <br>Either `aboveStopPrice` or `aboveTrailingDelta` or both, must be specified. (optional)
-	aboveTrailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	aboveTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
+	abovePrice := float32(1) // float32 | Can be used if `aboveType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	aboveStopPrice := float32(1) // float32 | Can be used if `aboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `aboveStopPrice` or `aboveTrailingDelta` or both, must be specified. (optional)
+	aboveTrailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	aboveTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Required if `aboveType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT`. (optional)
 	aboveStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the above order within an order strategy. (optional)
-	aboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the above order strategy. <br>Values smaller than 1000000 are reserved and cannot be used. (optional)
-	abovePegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	abovePegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	aboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the above order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	abovePegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | `PRIMARY_PEG` or `MARKET_PEG`. See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	abovePegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	abovePegOffsetValue := int32(1) // int32 |  (optional)
-	belowClientOrderId := "belowClientOrderId_example" // string | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent (optional)
+	belowClientOrderId := "belowOrder1" // string | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent. (optional)
 	belowIcebergQty := int64(1) // int64 | Note that this can only be used if `belowTimeInForce` is `GTC`. (optional)
-	belowPrice := float32(1.0) // float32 | Can be used if `belowType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
-	belowStopPrice := float32(1.0) // float32 | Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT` or `TAKE_PROFIT_LIMIT` <br>Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified. (optional)
-	belowTrailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	belowTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
+	belowPrice := float32(1) // float32 | Can be used if `belowType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	belowStopPrice := float32(1) // float32 | Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified. (optional)
+	belowTrailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	belowTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Required if `belowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT`. (optional)
 	belowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the below order within an order strategy. (optional)
-	belowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the below order strategy. <br>Values smaller than 1000000 are reserved and cannot be used. (optional)
-	belowPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	belowPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	belowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the below order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	belowPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	belowPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	belowPegOffsetValue := int32(1) // int32 |  (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Select response format: `ACK`, `RESULT`, `FULL`. (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -626,35 +626,35 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **quantity** | **float32** |  | 
+ **quantity** | **float32** | Quantity for both orders of the order list. | 
  **aboveType** | [**OrderListOcoAboveTypeParameter**](OrderListOcoAboveTypeParameter.md) |  | 
- **belowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) |  | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **aboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent | 
+ **belowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) | Supported values: &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;aboveClientOrderId&#x60; and the &#x60;belowClientOrderId&#x60;. | 
+ **aboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent. | 
  **aboveIcebergQty** | **int64** | Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
- **abovePrice** | **float32** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; , &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
- **aboveStopPrice** | **float32** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. &lt;br&gt;Either &#x60;aboveStopPrice&#x60; or &#x60;aboveTrailingDelta&#x60; or both, must be specified. | 
- **aboveTrailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
- **aboveTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
+ **abovePrice** | **float32** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
+ **aboveStopPrice** | **float32** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or &#x60;aboveTrailingDelta&#x60; or both, must be specified. | 
+ **aboveTrailingDelta** | **int64** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **aboveTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Required if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
  **aboveStrategyId** | **int64** | Arbitrary numeric value identifying the above order within an order strategy. | 
- **aboveStrategyType** | **int32** | Arbitrary numeric value identifying the above order strategy. &lt;br&gt;Values smaller than 1000000 are reserved and cannot be used. | 
- **abovePegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **abovePegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **aboveStrategyType** | **int32** | Arbitrary numeric value identifying the above order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **abovePegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60;. See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **abovePegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **abovePegOffsetValue** | **int32** |  | 
- **belowClientOrderId** | **string** | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent | 
+ **belowClientOrderId** | **string** | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent. | 
  **belowIcebergQty** | **int64** | Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **belowPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
- **belowStopPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; &lt;br&gt;Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified. | 
- **belowTrailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
- **belowTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
+ **belowStopPrice** | **float32** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified. | 
+ **belowTrailingDelta** | **int64** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **belowTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Required if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
  **belowStrategyId** | **int64** | Arbitrary numeric value identifying the below order within an order strategy. | 
- **belowStrategyType** | **int32** | Arbitrary numeric value identifying the below order strategy. &lt;br&gt;Values smaller than 1000000 are reserved and cannot be used. | 
- **belowPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **belowPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **belowStrategyType** | **int32** | Arbitrary numeric value identifying the below order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **belowPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **belowPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **belowPegOffsetValue** | **int32** |  | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Select response format: &#x60;ACK&#x60;, &#x60;RESULT&#x60;, &#x60;FULL&#x60;. | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -675,7 +675,7 @@ No authorization required
 
 > OrderListOpoResponse OrderListOpo(ctx).Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
 
-New Order List - OPO
+New Order List - OPO (TRADE)
 
 
 ### Example
@@ -695,35 +695,35 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | 
-	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order. 
-	pendingType := models.OrderListOpoPendingTypeParameterLimit // OrderListOpoPendingTypeParameter | 
-	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	workingClientOrderId := "workingClientOrderId_example" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  (optional)
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`.  (optional)
-	workingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy.  (optional)
-	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	workingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	workingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | Supported values: `LIMIT`, `LIMIT_MAKER`
+	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	workingPrice := float32(1) // float32 | Price for the working order.
+	workingQuantity := float32(1) // float32 | Sets the quantity for the working order.
+	pendingType := models.OrderListOpoPendingTypeParameterLimit // OrderListOpoPendingTypeParameter | Supported values: [Order Types](/products/spot/enums#ordertypes). Note that `MARKET` orders using `quoteOrderQty` are not supported.
+	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	listClientOrderId := "H94qCqO27P74OEiO4X8HOG" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	workingClientOrderId := "workingOrder1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
+	workingIcebergQty := float32(1) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`. (optional)
+	workingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy. (optional)
+	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	workingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	workingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	workingPegOffsetValue := int32(1) // int32 |  (optional)
-	pendingClientOrderId := "pendingClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.  (optional)
-	pendingPrice := float32(1.0) // float32 |  (optional)
-	pendingStopPrice := float32(1.0) // float32 |  (optional)
-	pendingTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingIcebergQty := float32(1.0) // float32 | This can only be used if `pendingTimeInForce` is `GTC` or if `pendingType` is `LIMIT_MAKER`.  (optional)
-	pendingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending order within an order strategy.  (optional)
-	pendingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	pendingClientOrderId := "pendingOrder1" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. (optional)
+	pendingPrice := float32(1) // float32 | Price for the pending order. (optional)
+	pendingStopPrice := float32(1) // float32 | Stop price for the pending order. (optional)
+	pendingTrailingDelta := float32(1) // float32 | Trailing delta for the pending order. (optional)
+	pendingIcebergQty := float32(1) // float32 | This can only be used if `pendingTimeInForce` is `GTC` or if `pendingType` is `LIMIT_MAKER`. (optional)
+	pendingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	pendingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending order within an order strategy. (optional)
+	pendingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	pendingPegOffsetValue := int32(1) // int32 |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -752,35 +752,35 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) |  | 
- **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** | Sets the quantity for the working order.  | 
- **pendingType** | [**OrderListOpoPendingTypeParameter**](OrderListOpoPendingTypeParameter.md) |  | 
- **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **workingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy.  | 
- **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **workingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **workingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
+ **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
+ **workingPrice** | **float32** | Price for the working order. | 
+ **workingQuantity** | **float32** | Sets the quantity for the working order. | 
+ **pendingType** | [**OrderListOpoPendingTypeParameter**](OrderListOpoPendingTypeParameter.md) | Supported values: [Order Types](/products/spot/enums#ordertypes). Note that &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; are not supported. | 
+ **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
+ **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **workingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy. | 
+ **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **workingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **workingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **workingPegOffsetValue** | **int32** |  | 
- **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.  | 
- **pendingPrice** | **float32** |  | 
- **pendingStopPrice** | **float32** |  | 
- **pendingTrailingDelta** | **float32** |  | 
- **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingStrategyId** | **int64** | Arbitrary numeric value identifying the pending order within an order strategy.  | 
- **pendingStrategyType** | **int32** | Arbitrary numeric value identifying the pending order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. | 
+ **pendingPrice** | **float32** | Price for the pending order. | 
+ **pendingStopPrice** | **float32** | Stop price for the pending order. | 
+ **pendingTrailingDelta** | **float32** | Trailing delta for the pending order. | 
+ **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **pendingStrategyId** | **int64** | Arbitrary numeric value identifying the pending order within an order strategy. | 
+ **pendingStrategyType** | **int32** | Arbitrary numeric value identifying the pending order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **pendingPegOffsetValue** | **int32** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -801,7 +801,7 @@ No authorization required
 
 > OrderListOpocoResponse OrderListOpoco(ctx).Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingAboveType(pendingAboveType).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
 
-New Order List - OPOCO
+New Order List - OPOCO (TRADE)
 
 
 ### Example
@@ -822,46 +822,46 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | 
-	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order. 
-	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	pendingAboveType := models.OrderListOcoAboveTypeParameterStopLossLimit // OrderListOcoAboveTypeParameter | 
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	workingClientOrderId := "workingClientOrderId_example" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  (optional)
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`.  (optional)
-	workingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy.  (optional)
-	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	workingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	workingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
-	workingPegOffsetValue := int32(1) // int32 |  (optional)
-	pendingAboveClientOrderId := "pendingAboveClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.  (optional)
-	pendingAbovePrice := float32(1.0) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS_LIMIT` , `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price.  (optional)
-	pendingAboveStopPrice := float32(1.0) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`  (optional)
-	pendingAboveTrailingDelta := float32(1.0) // float32 | See [Trailing Stop FAQ](./faqs/trailing-stop-faq.md)  (optional)
-	pendingAboveIcebergQty := float32(1.0) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC` or if `pendingAboveType` is `LIMIT_MAKER`.  (optional)
-	pendingAboveTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingAboveStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending above order within an order strategy.  (optional)
-	pendingAboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending above order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingAbovePegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingAbovePegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
-	pendingAbovePegOffsetValue := int32(1) // int32 |  (optional)
-	pendingBelowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter |  (optional)
-	pendingBelowClientOrderId := "pendingBelowClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.  (optional)
-	pendingBelowPrice := float32(1.0) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT` to specify limit price  (optional)
-	pendingBelowStopPrice := float32(1.0) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT, TAKE_PROFIT or TAKE_PROFIT_LIMIT`. Either `pendingBelowStopPrice` or `pendingBelowTrailingDelta` or both, must be specified.  (optional)
-	pendingBelowTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingBelowIcebergQty := float32(1.0) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC`, or if `pendingBelowType` is `LIMIT_MAKER`.  (optional)
-	pendingBelowTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingBelowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending below order within an order strategy.  (optional)
-	pendingBelowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending below order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingBelowPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingBelowPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	workingPrice := float32(1) // float32 | Price for the working order.
+	workingQuantity := float32(1) // float32 | Sets the quantity for the working order.
+	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	pendingAboveType := models.OrderListOcoAboveTypeParameterStopLossLimit // OrderListOcoAboveTypeParameter | Supported values: `STOP_LOSS_LIMIT`, `STOP_LOSS`, `LIMIT_MAKER`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`
+	listClientOrderId := "bcedxMpQG6nFrZUPQyshoL" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	workingClientOrderId := "workingOrder1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
+	workingIcebergQty := float32(1) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`. (optional)
+	workingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy. (optional)
+	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	workingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	workingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	workingPegOffsetValue := int32(1) // int32 | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingAboveClientOrderId := "pendingAboveOrder1" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. (optional)
+	pendingAbovePrice := float32(1) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	pendingAboveStopPrice := float32(1) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. (optional)
+	pendingAboveTrailingDelta := float32(1) // float32 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	pendingAboveIcebergQty := float32(1) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC` or `pendingAboveType` is `LIMIT_MAKER`. (optional)
+	pendingAboveTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Required if `pendingAboveType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT`. (optional)
+	pendingAboveStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending above order within an order strategy. (optional)
+	pendingAboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending above order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingAbovePegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingAbovePegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingAbovePegOffsetValue := int32(1) // int32 | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingBelowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter | Supported values: `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT` (optional)
+	pendingBelowClientOrderId := "pendingBelowOrder1" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. (optional)
+	pendingBelowPrice := float32(1) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	pendingBelowStopPrice := float32(1) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `pendingBelowStopPrice` or `pendingBelowTrailingDelta` or both, must be specified. (optional)
+	pendingBelowTrailingDelta := float32(1) // float32 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	pendingBelowIcebergQty := float32(1) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC` or `pendingBelowType` is `LIMIT_MAKER`. (optional)
+	pendingBelowTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	pendingBelowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending below order within an order strategy. (optional)
+	pendingBelowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending below order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingBelowPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingBelowPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	pendingBelowPegOffsetValue := int32(1) // int32 |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -891,46 +891,46 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) |  | 
- **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** | Sets the quantity for the working order.  | 
- **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **pendingAboveType** | [**OrderListOcoAboveTypeParameter**](OrderListOcoAboveTypeParameter.md) |  | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **workingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy.  | 
- **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **workingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **workingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
- **workingPegOffsetValue** | **int32** |  | 
- **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.  | 
- **pendingAbovePrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; , &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.  | 
- **pendingAboveStopPrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;  | 
- **pendingAboveTrailingDelta** | **float32** | See [Trailing Stop FAQ](./faqs/trailing-stop-faq.md)  | 
- **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingAboveTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingAboveStrategyId** | **int64** | Arbitrary numeric value identifying the pending above order within an order strategy.  | 
- **pendingAboveStrategyType** | **int32** | Arbitrary numeric value identifying the pending above order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingAbovePegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingAbovePegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
- **pendingAbovePegOffsetValue** | **int32** |  | 
- **pendingBelowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) |  | 
- **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.  | 
- **pendingBelowPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify limit price  | 
- **pendingBelowStopPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT, TAKE_PROFIT or TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified.  | 
- **pendingBelowTrailingDelta** | **float32** |  | 
- **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingBelowTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingBelowStrategyId** | **int64** | Arbitrary numeric value identifying the pending below order within an order strategy.  | 
- **pendingBelowStrategyType** | **int32** | Arbitrary numeric value identifying the pending below order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingBelowPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingBelowPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
+ **workingPrice** | **float32** | Price for the working order. | 
+ **workingQuantity** | **float32** | Sets the quantity for the working order. | 
+ **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
+ **pendingAboveType** | [**OrderListOcoAboveTypeParameter**](OrderListOcoAboveTypeParameter.md) | Supported values: &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;STOP_LOSS&#x60;, &#x60;LIMIT_MAKER&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
+ **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **workingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy. | 
+ **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **workingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **workingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **workingPegOffsetValue** | **int32** | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. | 
+ **pendingAbovePrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
+ **pendingAboveStopPrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
+ **pendingAboveTrailingDelta** | **float32** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingAboveTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Required if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
+ **pendingAboveStrategyId** | **int64** | Arbitrary numeric value identifying the pending above order within an order strategy. | 
+ **pendingAboveStrategyType** | **int32** | Arbitrary numeric value identifying the pending above order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingAbovePegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingAbovePegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingAbovePegOffsetValue** | **int32** | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingBelowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) | Supported values: &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
+ **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. | 
+ **pendingBelowPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
+ **pendingBelowStopPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified. | 
+ **pendingBelowTrailingDelta** | **float32** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60; or &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingBelowTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **pendingBelowStrategyId** | **int64** | Arbitrary numeric value identifying the pending below order within an order strategy. | 
+ **pendingBelowStrategyType** | **int32** | Arbitrary numeric value identifying the pending below order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingBelowPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingBelowPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **pendingBelowPegOffsetValue** | **int32** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -951,7 +951,7 @@ No authorization required
 
 > OrderListOtoResponse OrderListOto(ctx).Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).PendingQuantity(pendingQuantity).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
 
-New Order list - OTO
+New Order list - OTO (TRADE)
 
 
 ### Example
@@ -971,36 +971,36 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | 
-	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order. 
-	pendingType := models.OrderListOpoPendingTypeParameterLimit // OrderListOpoPendingTypeParameter | 
-	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	pendingQuantity := float32(1.0) // float32 | Sets the quantity for the pending order.
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	workingClientOrderId := "workingClientOrderId_example" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  (optional)
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`.  (optional)
-	workingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy.  (optional)
-	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	workingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	workingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | Supported values: `LIMIT`, `LIMIT_MAKER`
+	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	workingPrice := float32(1) // float32 | 
+	workingQuantity := float32(1) // float32 | Sets the quantity for the working order.
+	pendingType := models.OrderListOpoPendingTypeParameterLimit // OrderListOpoPendingTypeParameter | Supported values: [Order Types](/products/spot/enums#ordertypes). Note that `MARKET` orders using `quoteOrderQty` are not supported.
+	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	pendingQuantity := float32(1) // float32 | Sets the quantity for the pending order.
+	listClientOrderId := "yl2ERtcar1o25zcWtqVBTC" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	workingClientOrderId := "workingOrder1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
+	workingIcebergQty := float32(1) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`. (optional)
+	workingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy. (optional)
+	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	workingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	workingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	workingPegOffsetValue := int32(1) // int32 |  (optional)
-	pendingClientOrderId := "pendingClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.  (optional)
-	pendingPrice := float32(1.0) // float32 |  (optional)
-	pendingStopPrice := float32(1.0) // float32 |  (optional)
-	pendingTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingIcebergQty := float32(1.0) // float32 | This can only be used if `pendingTimeInForce` is `GTC` or if `pendingType` is `LIMIT_MAKER`.  (optional)
-	pendingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending order within an order strategy.  (optional)
-	pendingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	pendingClientOrderId := "pendingOrder1" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. (optional)
+	pendingPrice := float32(1) // float32 |  (optional)
+	pendingStopPrice := float32(1) // float32 |  (optional)
+	pendingTrailingDelta := float32(1) // float32 |  (optional)
+	pendingIcebergQty := float32(1) // float32 | This can only be used if `pendingTimeInForce` is `GTC` or if `pendingType` is `LIMIT_MAKER`. (optional)
+	pendingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	pendingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending order within an order strategy. (optional)
+	pendingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	pendingPegOffsetValue := int32(1) // int32 |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1029,36 +1029,36 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) |  | 
- **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
+ **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
+ **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
  **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** | Sets the quantity for the working order.  | 
- **pendingType** | [**OrderListOpoPendingTypeParameter**](OrderListOpoPendingTypeParameter.md) |  | 
- **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
+ **workingQuantity** | **float32** | Sets the quantity for the working order. | 
+ **pendingType** | [**OrderListOpoPendingTypeParameter**](OrderListOpoPendingTypeParameter.md) | Supported values: [Order Types](/products/spot/enums#ordertypes). Note that &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; are not supported. | 
+ **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
  **pendingQuantity** | **float32** | Sets the quantity for the pending order. | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **workingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy.  | 
- **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **workingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **workingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
+ **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **workingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy. | 
+ **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **workingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **workingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **workingPegOffsetValue** | **int32** |  | 
- **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.  | 
+ **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. | 
  **pendingPrice** | **float32** |  | 
  **pendingStopPrice** | **float32** |  | 
  **pendingTrailingDelta** | **float32** |  | 
- **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingStrategyId** | **int64** | Arbitrary numeric value identifying the pending order within an order strategy.  | 
- **pendingStrategyType** | **int32** | Arbitrary numeric value identifying the pending order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **pendingStrategyId** | **int64** | Arbitrary numeric value identifying the pending order within an order strategy. | 
+ **pendingStrategyType** | **int32** | Arbitrary numeric value identifying the pending order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **pendingPegOffsetValue** | **int32** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -1079,7 +1079,7 @@ No authorization required
 
 > OrderListOtocoResponse OrderListOtoco(ctx).Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingQuantity(pendingQuantity).PendingAboveType(pendingAboveType).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
 
-New Order list - OTOCO
+New Order list - OTOCO (TRADE)
 
 
 ### Example
@@ -1099,48 +1099,48 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | 
-	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order. 
-	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	pendingQuantity := float32(1.0) // float32 | Sets the quantity for the pending order.
-	pendingAboveType := models.OrderListOcoAboveTypeParameterStopLossLimit // OrderListOcoAboveTypeParameter | 
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	workingClientOrderId := "workingClientOrderId_example" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  (optional)
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`.  (optional)
-	workingTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy.  (optional)
-	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	workingPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	workingPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	workingType := models.OrderListOpoWorkingTypeParameterLimit // OrderListOpoWorkingTypeParameter | Supported values: `LIMIT`, `LIMIT_MAKER`
+	workingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	workingPrice := float32(1) // float32 | 
+	workingQuantity := float32(1) // float32 | Sets the quantity for the working order.
+	pendingSide := models.NewOrderSideParameterBuy // NewOrderSideParameter | Supported values: [Order Side](/products/spot/enums#side)
+	pendingQuantity := float32(1) // float32 | Sets the quantity for the pending orders.
+	pendingAboveType := models.OrderListOcoAboveTypeParameterStopLossLimit // OrderListOcoAboveTypeParameter | Supported values: `STOP_LOSS_LIMIT`, `STOP_LOSS`, `LIMIT_MAKER`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`
+	listClientOrderId := "RumwQpBaDctlUu5jyG5rs0" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	workingClientOrderId := "workingOrder1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
+	workingIcebergQty := float32(1) // float32 | This can only be used if `workingTimeInForce` is `GTC`, or if `workingType` is `LIMIT_MAKER`. (optional)
+	workingTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Supported values: [Time In Force](/products/spot/enums#timeinforce) (optional)
+	workingStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the working order within an order strategy. (optional)
+	workingStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the working order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	workingPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	workingPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	workingPegOffsetValue := int32(1) // int32 |  (optional)
-	pendingAboveClientOrderId := "pendingAboveClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.  (optional)
-	pendingAbovePrice := float32(1.0) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS_LIMIT` , `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price.  (optional)
-	pendingAboveStopPrice := float32(1.0) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`  (optional)
-	pendingAboveTrailingDelta := float32(1.0) // float32 | See [Trailing Stop FAQ](./faqs/trailing-stop-faq.md)  (optional)
-	pendingAboveIcebergQty := float32(1.0) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC` or if `pendingAboveType` is `LIMIT_MAKER`.  (optional)
-	pendingAboveTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingAboveStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending above order within an order strategy.  (optional)
-	pendingAboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending above order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingAbovePegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingAbovePegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	pendingAboveClientOrderId := "pendingAboveOrder1" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. (optional)
+	pendingAbovePrice := float32(1) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	pendingAboveStopPrice := float32(1) // float32 | Can be used if `pendingAboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. (optional)
+	pendingAboveTrailingDelta := float32(1) // float32 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	pendingAboveIcebergQty := float32(1) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC` or if `pendingAboveType` is `LIMIT_MAKER`. (optional)
+	pendingAboveTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Required if `pendingAboveType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT`. (optional)
+	pendingAboveStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending above order within an order strategy. (optional)
+	pendingAboveStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending above order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingAbovePegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingAbovePegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	pendingAbovePegOffsetValue := int32(1) // int32 |  (optional)
-	pendingBelowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter |  (optional)
-	pendingBelowClientOrderId := "pendingBelowClientOrderId_example" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.  (optional)
-	pendingBelowPrice := float32(1.0) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT` to specify limit price  (optional)
-	pendingBelowStopPrice := float32(1.0) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT, TAKE_PROFIT or TAKE_PROFIT_LIMIT`. Either `pendingBelowStopPrice` or `pendingBelowTrailingDelta` or both, must be specified.  (optional)
-	pendingBelowTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingBelowIcebergQty := float32(1.0) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC`, or if `pendingBelowType` is `LIMIT_MAKER`.  (optional)
-	pendingBelowTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	pendingBelowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending below order within an order strategy.  (optional)
-	pendingBelowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending below order strategy. Values smaller than 1000000 are reserved and cannot be used.  (optional)
-	pendingBelowPegPriceType := models.OrderListOcoAbovePegPriceTypeParameterPrimaryPeg // OrderListOcoAbovePegPriceTypeParameter |  (optional)
-	pendingBelowPegOffsetType := models.OrderListOcoAbovePegOffsetTypeParameterPriceLevel // OrderListOcoAbovePegOffsetTypeParameter |  (optional)
+	pendingBelowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter | Supported values: `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT` (optional)
+	pendingBelowClientOrderId := "pendingBelowOrder1" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. (optional)
+	pendingBelowPrice := float32(1) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
+	pendingBelowStopPrice := float32(1) // float32 | Can be used if `pendingBelowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `pendingBelowStopPrice` or `pendingBelowTrailingDelta` or both, must be specified. (optional)
+	pendingBelowTrailingDelta := float32(1) // float32 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	pendingBelowIcebergQty := float32(1) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC`, or if `pendingBelowType` is `LIMIT_MAKER`. (optional)
+	pendingBelowTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Required if `pendingBelowType` is `STOP_LOSS_LIMIT` or `TAKE_PROFIT_LIMIT`. (optional)
+	pendingBelowStrategyId := int64(1) // int64 | Arbitrary numeric value identifying the pending below order within an order strategy. (optional)
+	pendingBelowStrategyType := int32(1) // int32 | Arbitrary numeric value identifying the pending below order strategy. Values smaller than `1000000` are reserved and cannot be used. (optional)
+	pendingBelowPegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pendingBelowPegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	pendingBelowPegOffsetValue := int32(1) // int32 |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1169,48 +1169,48 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) |  | 
- **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
+ **workingType** | [**OrderListOpoWorkingTypeParameter**](OrderListOpoWorkingTypeParameter.md) | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
+ **workingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
  **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** | Sets the quantity for the working order.  | 
- **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **pendingQuantity** | **float32** | Sets the quantity for the pending order. | 
- **pendingAboveType** | [**OrderListOcoAboveTypeParameter**](OrderListOcoAboveTypeParameter.md) |  | 
- **listClientOrderId** | **string** | A unique Id for the entire orderList | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.  | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **workingTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy.  | 
- **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **workingPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **workingPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **workingQuantity** | **float32** | Sets the quantity for the working order. | 
+ **pendingSide** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Supported values: [Order Side](/products/spot/enums#side) | 
+ **pendingQuantity** | **float32** | Sets the quantity for the pending orders. | 
+ **pendingAboveType** | [**OrderListOcoAboveTypeParameter**](OrderListOcoAboveTypeParameter.md) | Supported values: &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;STOP_LOSS&#x60;, &#x60;LIMIT_MAKER&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
+ **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
+ **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **workingTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Supported values: [Time In Force](/products/spot/enums#timeinforce) | 
+ **workingStrategyId** | **int64** | Arbitrary numeric value identifying the working order within an order strategy. | 
+ **workingStrategyType** | **int32** | Arbitrary numeric value identifying the working order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **workingPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **workingPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **workingPegOffsetValue** | **int32** |  | 
- **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.  | 
- **pendingAbovePrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; , &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.  | 
- **pendingAboveStopPrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;  | 
- **pendingAboveTrailingDelta** | **float32** | See [Trailing Stop FAQ](./faqs/trailing-stop-faq.md)  | 
- **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingAboveTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingAboveStrategyId** | **int64** | Arbitrary numeric value identifying the pending above order within an order strategy.  | 
- **pendingAboveStrategyType** | **int32** | Arbitrary numeric value identifying the pending above order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingAbovePegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingAbovePegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. | 
+ **pendingAbovePrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
+ **pendingAboveStopPrice** | **float32** | Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
+ **pendingAboveTrailingDelta** | **float32** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingAboveTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Required if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
+ **pendingAboveStrategyId** | **int64** | Arbitrary numeric value identifying the pending above order within an order strategy. | 
+ **pendingAboveStrategyType** | **int32** | Arbitrary numeric value identifying the pending above order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingAbovePegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingAbovePegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **pendingAbovePegOffsetValue** | **int32** |  | 
- **pendingBelowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) |  | 
- **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.  | 
- **pendingBelowPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify limit price  | 
- **pendingBelowStopPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT, TAKE_PROFIT or TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified.  | 
- **pendingBelowTrailingDelta** | **float32** |  | 
- **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;.  | 
- **pendingBelowTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **pendingBelowStrategyId** | **int64** | Arbitrary numeric value identifying the pending below order within an order strategy.  | 
- **pendingBelowStrategyType** | **int32** | Arbitrary numeric value identifying the pending below order strategy. Values smaller than 1000000 are reserved and cannot be used.  | 
- **pendingBelowPegPriceType** | [**OrderListOcoAbovePegPriceTypeParameter**](OrderListOcoAbovePegPriceTypeParameter.md) |  | 
- **pendingBelowPegOffsetType** | [**OrderListOcoAbovePegOffsetTypeParameter**](OrderListOcoAbovePegOffsetTypeParameter.md) |  | 
+ **pendingBelowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) | Supported values: &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
+ **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. | 
+ **pendingBelowPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
+ **pendingBelowStopPrice** | **float32** | Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified. | 
+ **pendingBelowTrailingDelta** | **float32** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
+ **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;. | 
+ **pendingBelowTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Required if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60;. | 
+ **pendingBelowStrategyId** | **int64** | Arbitrary numeric value identifying the pending below order within an order strategy. | 
+ **pendingBelowStrategyType** | **int32** | Arbitrary numeric value identifying the pending below order strategy. Values smaller than &#x60;1000000&#x60; are reserved and cannot be used. | 
+ **pendingBelowPegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pendingBelowPegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **pendingBelowPegOffsetValue** | **int32** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -1231,7 +1231,7 @@ No authorization required
 
 > OrderOcoResponse OrderOco(ctx).Symbol(symbol).Side(side).Quantity(quantity).Price(price).StopPrice(stopPrice).ListClientOrderId(listClientOrderId).LimitClientOrderId(limitClientOrderId).LimitStrategyId(limitStrategyId).LimitStrategyType(limitStrategyType).LimitIcebergQty(limitIcebergQty).TrailingDelta(trailingDelta).StopClientOrderId(stopClientOrderId).StopStrategyId(stopStrategyId).StopStrategyType(stopStrategyType).StopLimitPrice(stopLimitPrice).StopIcebergQty(stopIcebergQty).StopLimitTimeInForce(stopLimitTimeInForce).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
-New OCO - Deprecated
+New OCO - Deprecated (TRADE)
 
 
 ### Example
@@ -1252,24 +1252,24 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	quantity := float32(1.0) // float32 | 
-	price := float32(1.0) // float32 | 
-	stopPrice := float32(1.0) // float32 | 
-	listClientOrderId := "listClientOrderId_example" // string | A unique Id for the entire orderList (optional)
-	limitClientOrderId := "limitClientOrderId_example" // string | A unique Id for the limit order (optional)
+	quantity := float32(1) // float32 | 
+	price := float32(1) // float32 | 
+	stopPrice := float32(1) // float32 | 
+	listClientOrderId := "JYVpp3F0f5CAG15DhtrqLp" // string | A unique Id for the entire orderList (optional)
+	limitClientOrderId := "limitOrder1" // string | A unique Id for the limit order (optional)
 	limitStrategyId := int64(1) // int64 |  (optional)
 	limitStrategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	limitIcebergQty := float32(1.0) // float32 | Used to make the `LIMIT_MAKER` leg an iceberg order. (optional)
-	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	stopClientOrderId := "stopClientOrderId_example" // string | A unique Id for the stop loss/stop loss limit leg (optional)
+	limitIcebergQty := float32(1) // float32 | Used to make the `LIMIT_MAKER` leg an iceberg order. (optional)
+	trailingDelta := int64(1) // int64 |  (optional)
+	stopClientOrderId := "stopOrder1" // string | A unique Id for the stop loss/stop loss limit leg (optional)
 	stopStrategyId := int64(1) // int64 |  (optional)
 	stopStrategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	stopLimitPrice := float32(1.0) // float32 | If provided, `stopLimitTimeInForce` is required. (optional)
-	stopIcebergQty := float32(1.0) // float32 | Used with `STOP_LOSS_LIMIT` leg to make an iceberg order. (optional)
-	stopLimitTimeInForce := models.OrderOcoStopLimitTimeInForceParameterGtc // OrderOcoStopLimitTimeInForceParameter |  (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	stopLimitPrice := float32(1) // float32 | If provided, `stopLimitTimeInForce` is required. (optional)
+	stopIcebergQty := float32(1) // float32 | Used with `STOP_LOSS_LIMIT` leg to make an iceberg order. (optional)
+	stopLimitTimeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Valid values are `GTC`/`FOK`/`IOC` (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed values are dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1307,15 +1307,15 @@ Name          | Type          | Description   | Notes
  **limitStrategyId** | **int64** |  | 
  **limitStrategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
  **limitIcebergQty** | **float32** | Used to make the &#x60;LIMIT_MAKER&#x60; leg an iceberg order. | 
- **trailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
+ **trailingDelta** | **int64** |  | 
  **stopClientOrderId** | **string** | A unique Id for the stop loss/stop loss limit leg | 
  **stopStrategyId** | **int64** |  | 
  **stopStrategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
  **stopLimitPrice** | **float32** | If provided, &#x60;stopLimitTimeInForce&#x60; is required. | 
  **stopIcebergQty** | **float32** | Used with &#x60;STOP_LOSS_LIMIT&#x60; leg to make an iceberg order. | 
- **stopLimitTimeInForce** | [**OrderOcoStopLimitTimeInForceParameter**](OrderOcoStopLimitTimeInForceParameter.md) |  | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
+ **stopLimitTimeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Valid values are &#x60;GTC&#x60;/&#x60;FOK&#x60;/&#x60;IOC&#x60; | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Format of the JSON response. Supported values: [Order Response Type](/products/spot/enums#orderresponsetype) | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed values are dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1337,7 +1337,7 @@ No authorization required
 
 > OrderTestResponse OrderTest(ctx).Symbol(symbol).Side(side).Type(type_).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Quantity(quantity).QuoteOrderQty(quoteOrderQty).Price(price).NewClientOrderId(newClientOrderId).StrategyId(strategyId).StrategyType(strategyType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
 
-Test new order
+Test new order (TRADE)
 
 
 ### Example
@@ -1357,25 +1357,25 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | 
-	computeCommissionRates := false // bool | Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more. (optional)
-	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	quoteOrderQty := float32(1.0) // float32 |  (optional)
-	price := float32(400.0) // float32 |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
+	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | Please see [Enums](/products/spot/enums#side) for supported values.
+	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | Please see [Enums](/products/spot/enums#ordertypes) for supported values.
+	computeCommissionRates := false // bool | Default: `false` <br> See [Commissions FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more. (optional)
+	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Please see [Enums](/products/spot/enums#timeinforce) for supported values. (optional)
+	quantity := float32(1) // float32 |  (optional)
+	quoteOrderQty := float32(1) // float32 |  (optional)
+	price := float32(400) // float32 |  (optional)
+	newClientOrderId := "myOrder1" // string | A unique id among open orders. Automatically generated if not sent. Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
 	strategyId := int64(1) // int64 |  (optional)
 	strategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
-	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter |  (optional)
-	pegOffsetValue := int32(1) // int32 | Priceleveltopegthepriceto(max:100).<br>See[PeggedOrdersInfo](#pegged-orders-info) (optional)
-	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	stopPrice := float32(1) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
+	trailingDelta := int64(1) // int64 | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) (optional)
+	icebergQty := float32(1) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Set the response JSON. `ACK`, `RESULT`, or `FULL`; `MARKET` and `LIMIT` order types default to `FULL`, all other orders default to `ACK`. (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	pegPriceType := models.NewOrderPegPriceTypeParameterPrimaryPeg // NewOrderPegPriceTypeParameter | `PRIMARY_PEG` or `MARKET_PEG`. See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pegOffsetValue := int32(1) // int32 | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	pegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter | Only `PRICE_LEVEL` is supported. See [Pegged Orders](/products/spot/faqs/pegged_orders) (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1404,25 +1404,25 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) |  | 
- **computeCommissionRates** | **bool** | Default: &#x60;false&#x60; &lt;br&gt; See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more. | 
- **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
+ **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Please see [Enums](/products/spot/enums#side) for supported values. | 
+ **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) | Please see [Enums](/products/spot/enums#ordertypes) for supported values. | 
+ **computeCommissionRates** | **bool** | Default: &#x60;false&#x60; &lt;br&gt; See [Commissions FAQ](/products/spot/faqs/commission_faq#test-order-diferences) to learn more. | 
+ **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Please see [Enums](/products/spot/enums#timeinforce) for supported values. | 
  **quantity** | **float32** |  | 
  **quoteOrderQty** | **float32** |  | 
  **price** | **float32** |  | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
+ **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
  **strategyId** | **int64** |  | 
  **strategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
  **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
- **trailingDelta** | **int64** | See [Trailing Stop order FAQ](faqs/trailing-stop-faq.md). | 
+ **trailingDelta** | **int64** | See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq) | 
  **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) |  | 
- **pegOffsetValue** | **int32** | Priceleveltopegthepriceto(max:100).&lt;br&gt;See[PeggedOrdersInfo](#pegged-orders-info) | 
- **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Set the response JSON. &#x60;ACK&#x60;, &#x60;RESULT&#x60;, or &#x60;FULL&#x60;; &#x60;MARKET&#x60; and &#x60;LIMIT&#x60; order types default to &#x60;FULL&#x60;, all other orders default to &#x60;ACK&#x60;. | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **pegPriceType** | [**NewOrderPegPriceTypeParameter**](NewOrderPegPriceTypeParameter.md) | &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60;. See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pegOffsetValue** | **int32** | Price level for pegging (max: 100). See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **pegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported. See [Pegged Orders](/products/spot/faqs/pegged_orders) | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -1443,7 +1443,7 @@ No authorization required
 
 > SorOrderResponse SorOrder(ctx).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).TimeInForce(timeInForce).Price(price).NewClientOrderId(newClientOrderId).StrategyId(strategyId).StrategyType(strategyType).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
-New order using SOR
+New order using SOR (TRADE)
 
 
 ### Example
@@ -1464,17 +1464,17 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | 
-	quantity := float32(1.0) // float32 | 
+	type_ := models.SorOrderTypeParameterMarket // SorOrderTypeParameter | 
+	quantity := float32(1) // float32 | 
 	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	price := float32(400.0) // float32 |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
+	price := float32(400) // float32 |  (optional)
+	newClientOrderId := "myOrder1" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
 	strategyId := int64(1) // int64 |  (optional)
 	strategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	icebergQty := float32(1) // float32 | Used with `LIMIT` to create an iceberg order. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Set the response JSON. `ACK`, `RESULT`, or `FULL`. Default to `FULL` (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. The possible supported values are: [STP Modes](/products/spot/enums#stpmodes). (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1504,16 +1504,16 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) |  | 
+ **type_** | [**SorOrderTypeParameter**](SorOrderTypeParameter.md) |  | 
  **quantity** | **float32** |  | 
  **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
  **price** | **float32** |  | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
  **strategyId** | **int64** |  | 
  **strategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
- **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
+ **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60; to create an iceberg order. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Set the response JSON. &#x60;ACK&#x60;, &#x60;RESULT&#x60;, or &#x60;FULL&#x60;. Default to &#x60;FULL&#x60; | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. The possible supported values are: [STP Modes](/products/spot/enums#stpmodes). | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1535,7 +1535,7 @@ No authorization required
 
 > SorOrderTestResponse SorOrderTest(ctx).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Price(price).NewClientOrderId(newClientOrderId).StrategyId(strategyId).StrategyType(strategyType).IcebergQty(icebergQty).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
-Test new order using SOR
+Test new order using SOR (TRADE)
 
 
 ### Example
@@ -1555,19 +1555,19 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | 
-	type_ := models.NewOrderTypeParameterMarket // NewOrderTypeParameter | 
-	quantity := float32(1.0) // float32 | 
-	computeCommissionRates := false // bool | Default: `false` <br> See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more. (optional)
-	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	price := float32(400.0) // float32 |  (optional)
-	newClientOrderId := "newClientOrderId_example" // string | A unique id among open orders. Automatically generated if not sent.<br/> Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
+	side := models.NewOrderSideParameterBuy // NewOrderSideParameter | Please see [Enums](/products/spot/enums#side) for supported values.
+	type_ := models.SorOrderTypeParameterMarket // SorOrderTypeParameter | Please see [Enums](/products/spot/enums#ordertypes) for supported values.
+	quantity := float32(1) // float32 | 
+	computeCommissionRates := false // bool |  (optional)
+	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Please see [Enums](/products/spot/enums#timeinforce) for supported values. (optional)
+	price := float32(400) // float32 |  (optional)
+	newClientOrderId := "myOrder1" // string | A unique id among open orders. Automatically generated if not sent. Orders with the same `newClientOrderID` can be accepted only when the previous one is filled, otherwise the order will be rejected. (optional)
 	strategyId := int64(1) // int64 |  (optional)
 	strategyType := int32(1) // int32 | The value cannot be less than `1000000`. (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
-	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
-	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	icebergQty := float32(1) // float32 | Used with `LIMIT` to create an iceberg order. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter | Set the response JSON. `ACK`, `RESULT`, or `FULL`. Default to `FULL`. (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1596,19 +1596,19 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) |  | 
- **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) |  | 
+ **side** | [**NewOrderSideParameter**](NewOrderSideParameter.md) | Please see [Enums](/products/spot/enums#side) for supported values. | 
+ **type_** | [**SorOrderTypeParameter**](SorOrderTypeParameter.md) | Please see [Enums](/products/spot/enums#ordertypes) for supported values. | 
  **quantity** | **float32** |  | 
- **computeCommissionRates** | **bool** | Default: &#x60;false&#x60; &lt;br&gt; See [Commissions FAQ](faqs/commission_faq.md#test-order-diferences) to learn more. | 
- **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
+ **computeCommissionRates** | **bool** |  | 
+ **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Please see [Enums](/products/spot/enums#timeinforce) for supported values. | 
  **price** | **float32** |  | 
- **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent.&lt;br/&gt; Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
+ **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Orders with the same &#x60;newClientOrderID&#x60; can be accepted only when the previous one is filled, otherwise the order will be rejected. | 
  **strategyId** | **int64** |  | 
  **strategyType** | **int32** | The value cannot be less than &#x60;1000000&#x60;. | 
- **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
- **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
- **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60; to create an iceberg order. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) | Set the response JSON. &#x60;ACK&#x60;, &#x60;RESULT&#x60;, or &#x60;FULL&#x60;. Default to &#x60;FULL&#x60;. | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: [STP Modes](/products/spot/enums#stpmodes) | 
+ **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 

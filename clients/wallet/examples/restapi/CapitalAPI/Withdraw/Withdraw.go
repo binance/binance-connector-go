@@ -22,7 +22,7 @@ func Withdraw() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.CapitalAPI.Withdraw(context.Background()).Coin("coin_example").Address("address_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.CapitalAPI.Withdraw(context.Background()).Coin("BTC").Address("address_example").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

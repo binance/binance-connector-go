@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**M** | Pointer to **string** |  | [optional] 
-**B** | Pointer to [**[]AccountUpdateABInner**](AccountUpdateABInner.md) |  | [optional] 
+**M** | Pointer to **string** | Event reason type | [optional] 
+**B** | Pointer to [**[]AccountUpdateABInner**](AccountUpdateABInner.md) | Balances | [optional] 
 **P** | Pointer to [**[]AccountUpdateAPInner**](AccountUpdateAPInner.md) |  | [optional] 
 
 ## Methods

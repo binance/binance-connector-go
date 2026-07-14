@@ -16,17 +16,20 @@ Name         | Type          | Description.  | Notes
 **Side** | Pointer to **string** |  | [optional] 
 **PositionSide** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**ClosePosition** | Pointer to **bool** |  | [optional] 
+**StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
+**ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | order time | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**ActivatePrice** | Pointer to **string** |  | [optional] 
-**PriceRate** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**ActivatePrice** | Pointer to **string** | activation price, only return with TRAILING_STOP_MARKET order | [optional] 
+**PriceRate** | Pointer to **string** | callback rate, only return with TRAILING_STOP_MARKET order | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 
-**PriceProtect** | Pointer to **bool** |  | [optional] 
+**PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
+**PriceMatch** | Pointer to **string** |  | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | Self-trade prevention mode | [optional] 
+**GoodTillDate** | Pointer to **int64** | Order good till date timestamp | [optional] 
 
 ## Methods
 
@@ -621,6 +624,81 @@ SetPriceProtect sets PriceProtect field to given value.
 `func (o *QueryOrderResponseResult) HasPriceProtect() bool`
 
 HasPriceProtect returns a boolean if a field has been set.
+
+### GetPriceMatch
+
+`func (o *QueryOrderResponseResult) GetPriceMatch() string`
+
+GetPriceMatch returns the PriceMatch field if non-nil, zero value otherwise.
+
+### GetPriceMatchOk
+
+`func (o *QueryOrderResponseResult) GetPriceMatchOk() (*string, bool)`
+
+GetPriceMatchOk returns a tuple with the PriceMatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceMatch
+
+`func (o *QueryOrderResponseResult) SetPriceMatch(v string)`
+
+SetPriceMatch sets PriceMatch field to given value.
+
+### HasPriceMatch
+
+`func (o *QueryOrderResponseResult) HasPriceMatch() bool`
+
+HasPriceMatch returns a boolean if a field has been set.
+
+### GetSelfTradePreventionMode
+
+`func (o *QueryOrderResponseResult) GetSelfTradePreventionMode() string`
+
+GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
+
+### GetSelfTradePreventionModeOk
+
+`func (o *QueryOrderResponseResult) GetSelfTradePreventionModeOk() (*string, bool)`
+
+GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfTradePreventionMode
+
+`func (o *QueryOrderResponseResult) SetSelfTradePreventionMode(v string)`
+
+SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
+
+### HasSelfTradePreventionMode
+
+`func (o *QueryOrderResponseResult) HasSelfTradePreventionMode() bool`
+
+HasSelfTradePreventionMode returns a boolean if a field has been set.
+
+### GetGoodTillDate
+
+`func (o *QueryOrderResponseResult) GetGoodTillDate() int64`
+
+GetGoodTillDate returns the GoodTillDate field if non-nil, zero value otherwise.
+
+### GetGoodTillDateOk
+
+`func (o *QueryOrderResponseResult) GetGoodTillDateOk() (*int64, bool)`
+
+GetGoodTillDateOk returns a tuple with the GoodTillDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoodTillDate
+
+`func (o *QueryOrderResponseResult) SetGoodTillDate(v int64)`
+
+SetGoodTillDate sets GoodTillDate field to given value.
+
+### HasGoodTillDate
+
+`func (o *QueryOrderResponseResult) HasGoodTillDate() bool`
+
+HasGoodTillDate returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

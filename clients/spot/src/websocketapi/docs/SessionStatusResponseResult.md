@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **ConnectedSince** | Pointer to **int64** |  | [optional] 
 **ReturnRateLimits** | Pointer to **bool** |  | [optional] 
 **ServerTime** | Pointer to **int64** |  | [optional] 
-**UserDataStream** | Pointer to **bool** |  | [optional] 
+**UserDataStream** | Pointer to **bool** | Is User Data Stream subscription active? | [optional] 
 
 ## Methods
 

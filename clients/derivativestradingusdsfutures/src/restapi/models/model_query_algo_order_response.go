@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,19 +17,23 @@ var _ common.MappedNullable = &QueryAlgoOrderResponse{}
 
 // QueryAlgoOrderResponse struct for QueryAlgoOrderResponse
 type QueryAlgoOrderResponse struct {
-	AlgoId                  *int64  `json:"algoId,omitempty"`
-	ClientAlgoId            *string `json:"clientAlgoId,omitempty"`
-	AlgoType                *string `json:"algoType,omitempty"`
-	OrderType               *string `json:"orderType,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Quantity                *string `json:"quantity,omitempty"`
-	AlgoStatus              *string `json:"algoStatus,omitempty"`
-	ActualOrderId           *string `json:"actualOrderId,omitempty"`
-	ActualPrice             *string `json:"actualPrice,omitempty"`
-	ActualType              *string `json:"actualType,omitempty"`
+	AlgoId       *int64  `json:"algoId,omitempty"`
+	ClientAlgoId *string `json:"clientAlgoId,omitempty"`
+	AlgoType     *string `json:"algoType,omitempty"`
+	OrderType    *string `json:"orderType,omitempty"`
+	Symbol       *string `json:"symbol,omitempty"`
+	Side         *string `json:"side,omitempty"`
+	PositionSide *string `json:"positionSide,omitempty"`
+	TimeInForce  *string `json:"timeInForce,omitempty"`
+	Quantity     *string `json:"quantity,omitempty"`
+	AlgoStatus   *string `json:"algoStatus,omitempty"`
+	// Empty string if not triggered; orderId if triggered.
+	ActualOrderId *string `json:"actualOrderId,omitempty"`
+	// 0 if not triggered; average price if filled/partially filled.
+	ActualPrice *string `json:"actualPrice,omitempty"`
+	// Optional field, only present when triggered.
+	ActualType *string `json:"actualType,omitempty"`
+	// Optional field, only present when filled/partially filled.
 	ActualQty               *string `json:"actualQty,omitempty"`
 	TriggerPrice            *string `json:"triggerPrice,omitempty"`
 	Price                   *string `json:"price,omitempty"`

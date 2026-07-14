@@ -5,7 +5,7 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**GetSoftStakingProductList**](SoftStakingAPI.md#GetSoftStakingProductList) | **Get** /sapi/v1/soft-staking/list | Get Soft Staking Product List (USER_DATA)
-[**GetSoftStakingRewardsHistory**](SoftStakingAPI.md#GetSoftStakingRewardsHistory) | **Get** /sapi/v1/soft-staking/history/rewardsRecord | Get Soft Staking Rewards History(USER_DATA)
+[**GetSoftStakingRewardsHistory**](SoftStakingAPI.md#GetSoftStakingRewardsHistory) | **Get** /sapi/v1/soft-staking/history/rewardsRecord | Get Soft Staking Rewards History (USER_DATA)
 [**SetSoftStaking**](SoftStakingAPI.md#SetSoftStaking) | **Get** /sapi/v1/soft-staking/set | Set Soft Staking (USER_DATA)
 
 
@@ -32,10 +32,10 @@ import (
 )
 
 func main() {
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	asset := "BTC" // string |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -63,10 +63,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | WBETH or BETH, default to BETH | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **asset** | **string** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ No authorization required
 
 > GetSoftStakingRewardsHistoryResponse GetSoftStakingRewardsHistory(ctx).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get Soft Staking Rewards History(USER_DATA)
+Get Soft Staking Rewards History (USER_DATA)
 
 
 ### Example
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-	asset := "BETH" // string | WBETH or BETH, default to BETH (optional)
+	asset := "BTC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10, Max:100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	current := int64(1) // int64 | Currently querying page (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -139,12 +139,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | WBETH or BETH, default to BETH | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10, Max:100 | 
- **recvWindow** | **int64** |  | 
+ **current** | **int64** | Currently querying page | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -184,8 +184,8 @@ import (
 )
 
 func main() {
-	softStaking := true // bool | true or false
-	recvWindow := int64(5000) // int64 |  (optional)
+	softStaking := true // bool | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -213,8 +213,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **softStaking** | **bool** | true or false | 
- **recvWindow** | **int64** |  | 
+ **softStaking** | **bool** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 

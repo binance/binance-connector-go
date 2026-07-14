@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &ConditionalOrderTriggerRejectOr{}
 
 // ConditionalOrderTriggerRejectOr struct for ConditionalOrderTriggerRejectOr
 type ConditionalOrderTriggerRejectOr struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Order Id
+	Smalli *int64 `json:"i,omitempty"`
+	// Reject Reason
 	Smallr               *string `json:"r,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

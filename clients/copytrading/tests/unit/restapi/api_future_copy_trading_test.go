@@ -1,5 +1,5 @@
 /*
-Binance Copy Trading REST API TEST
+Copy Trading REST API TEST
 
 Testing FutureCopyTradingAPIService
 
@@ -25,7 +25,11 @@ func Test_binancecopytradingrestapi_FutureCopyTradingAPIService(t *testing.T) {
 
 	t.Run("Test FutureCopyTradingAPIService GetFuturesLeadTraderStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":{"isLeadTrader":true,"time":1717382310843},"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":{"isLeadTrader":true,"time":1717382310843},"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/copyTrading/futures/userStatus", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancecopytradingrestapi_FutureCopyTradingAPIService(t *testing.T) {
 
 	t.Run("Test FutureCopyTradingAPIService GetFuturesLeadTradingSymbolWhitelist Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":[{"symbol":"BTCUSDT","baseAsset":"BTC","quoteAsset":"USDT"},{"symbol":"ETHUSDT","baseAsset":"ETH","quoteAsset":"USDT"}]}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":[{"symbol":"BTCUSDT","baseAsset":"BTC","quoteAsset":"USDT"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/copyTrading/futures/leadSymbol", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

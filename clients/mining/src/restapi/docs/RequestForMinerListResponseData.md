@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **WorkerDatas** | Pointer to [**[]RequestForMinerListResponseDataWorkerDatasInner**](RequestForMinerListResponseDataWorkerDatasInner.md) |  | [optional] 
-**TotalNum** | Pointer to **int64** |  | [optional] 
-**PageSize** | Pointer to **int64** |  | [optional] 
+**TotalNum** | Pointer to **int64** | Total amount | [optional] 
+**PageSize** | Pointer to **int64** | Rows per page | [optional] 
 
 ## Methods
 

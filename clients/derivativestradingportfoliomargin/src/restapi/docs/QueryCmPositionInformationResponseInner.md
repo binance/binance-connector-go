@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
-**LiquidationPrice** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**NotionalValue** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**EntryPrice** | Pointer to **string** | average entry price | [optional] 
+**MarkPrice** | Pointer to **string** | Mark Price. | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Un Realized Profit. | [optional] 
+**LiquidationPrice** | Pointer to **string** | Liquidation Price. | [optional] 
+**Leverage** | Pointer to **string** | current initial leverage | [optional] 
+**PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**NotionalValue** | Pointer to **string** | Notional Value. | [optional] 
 
 ## Methods
 

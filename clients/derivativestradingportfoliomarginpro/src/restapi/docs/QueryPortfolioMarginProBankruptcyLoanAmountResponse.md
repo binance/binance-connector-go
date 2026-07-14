@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Amount** | Pointer to **string** | portfolio margin bankruptcy loan amount in BUSD | [optional] 
 
 ## Methods
 

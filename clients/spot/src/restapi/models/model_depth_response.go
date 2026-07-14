@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &DepthResponse{}
 
 // DepthResponse struct for DepthResponse
 type DepthResponse struct {
-	LastUpdateId         *int64     `json:"lastUpdateId,omitempty"`
-	Bids                 [][]string `json:"bids,omitempty"`
+	LastUpdateId *int64 `json:"lastUpdateId,omitempty"`
+	// Bid orders. Each entry is [price, quantity].
+	Bids [][]string `json:"bids,omitempty"`
+	// Ask orders. Each entry is [price, quantity].
 	Asks                 [][]string `json:"asks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

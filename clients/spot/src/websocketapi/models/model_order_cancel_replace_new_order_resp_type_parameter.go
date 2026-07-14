@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -19,8 +19,6 @@ const (
 	OrderCancelReplaceNewOrderRespTypeParameterAck    OrderCancelReplaceNewOrderRespTypeParameter = "ACK"
 	OrderCancelReplaceNewOrderRespTypeParameterResult OrderCancelReplaceNewOrderRespTypeParameter = "RESULT"
 	OrderCancelReplaceNewOrderRespTypeParameterFull   OrderCancelReplaceNewOrderRespTypeParameter = "FULL"
-	OrderCancelReplaceNewOrderRespTypeParameterMarket OrderCancelReplaceNewOrderRespTypeParameter = "MARKET"
-	OrderCancelReplaceNewOrderRespTypeParameterLimit  OrderCancelReplaceNewOrderRespTypeParameter = "LIMIT"
 )
 
 // All allowed values of OrderCancelReplaceNewOrderRespTypeParameter enum
@@ -28,8 +26,6 @@ var AllowedOrderCancelReplaceNewOrderRespTypeParameterEnumValues = []OrderCancel
 	"ACK",
 	"RESULT",
 	"FULL",
-	"MARKET",
-	"LIMIT",
 }
 
 func (v *OrderCancelReplaceNewOrderRespTypeParameter) UnmarshalJSON(src []byte) error {

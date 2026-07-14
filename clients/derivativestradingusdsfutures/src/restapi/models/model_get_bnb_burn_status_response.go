@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetBnbBurnStatusResponse{}
 
 // GetBnbBurnStatusResponse struct for GetBnbBurnStatusResponse
 type GetBnbBurnStatusResponse struct {
+	// \"true\": Fee Discount On; \"false\": Fee Discount Off
 	FeeBurn              *bool `json:"feeBurn,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

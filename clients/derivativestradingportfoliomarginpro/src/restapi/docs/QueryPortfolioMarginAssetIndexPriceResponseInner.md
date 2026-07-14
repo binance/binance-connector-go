@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**AssetIndexPrice** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**AssetIndexPrice** | Pointer to **string** | in USD | [optional] 
+**Time** | Pointer to **int64** | time. | [optional] 
 
 ## Methods
 

@@ -4,13 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**TranId** | Pointer to **int64** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int64** | id. | [optional] 
+**TranId** | Pointer to **int64** | tran Id. | [optional] 
+**Timestamp** | Pointer to **int64** | timestamp. | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**Amount** | Pointer to **string** | amount. | [optional] 
+**Note** | Pointer to **string** | note. | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetAmount sets Amount field to given value.
 `func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
+
+### GetNote
+
+`func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) GetNote() string`
+
+GetNote returns the Note field if non-nil, zero value otherwise.
+
+### GetNoteOk
+
+`func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) GetNoteOk() (*string, bool)`
+
+GetNoteOk returns a tuple with the Note field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNote
+
+`func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) SetNote(v string)`
+
+SetNote sets Note field to given value.
+
+### HasNote
+
+`func (o *QueryCrossIsolatedMarginCapitalFlowResponseInner) HasNote() bool`
+
+HasNote returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

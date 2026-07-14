@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &QueryLiabilityCoinLeverageBracketInCrossMarginPro
 
 // QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInner struct for QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInner
 type QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInner struct {
-	AssetNames           []string                                                                          `json:"assetNames,omitempty"`
-	Rank                 *int64                                                                            `json:"rank,omitempty"`
+	// asset Names list.
+	AssetNames []string `json:"assetNames,omitempty"`
+	// rank.
+	Rank *int64 `json:"rank,omitempty"`
+	// brackets list.
 	Brackets             []QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner `json:"brackets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

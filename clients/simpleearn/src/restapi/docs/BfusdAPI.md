@@ -9,9 +9,9 @@ Method        | HTTP request  | Description
 [**GetBfusdRateHistory**](BfusdAPI.md#GetBfusdRateHistory) | **Get** /sapi/v1/bfusd/history/rateHistory | Get BFUSD Rate History (USER_DATA)
 [**GetBfusdRedemptionHistory**](BfusdAPI.md#GetBfusdRedemptionHistory) | **Get** /sapi/v1/bfusd/history/redemptionHistory | Get BFUSD Redemption History (USER_DATA)
 [**GetBfusdRewardsHistory**](BfusdAPI.md#GetBfusdRewardsHistory) | **Get** /sapi/v1/bfusd/history/rewardsHistory | Get BFUSD Rewards History (USER_DATA)
-[**GetBfusdSubscriptionHistory**](BfusdAPI.md#GetBfusdSubscriptionHistory) | **Get** /sapi/v1/bfusd/history/subscriptionHistory | Get BFUSD subscription history(USER_DATA)
-[**RedeemBfusd**](BfusdAPI.md#RedeemBfusd) | **Post** /sapi/v1/bfusd/redeem | Redeem BFUSD(TRADE)
-[**SubscribeBfusd**](BfusdAPI.md#SubscribeBfusd) | **Post** /sapi/v1/bfusd/subscribe | Subscribe BFUSD(TRADE)
+[**GetBfusdSubscriptionHistory**](BfusdAPI.md#GetBfusdSubscriptionHistory) | **Get** /sapi/v1/bfusd/history/subscriptionHistory | Get BFUSD subscription history (USER_DATA)
+[**RedeemBfusd**](BfusdAPI.md#RedeemBfusd) | **Post** /sapi/v1/bfusd/redeem | Redeem BFUSD (TRADE)
+[**SubscribeBfusd**](BfusdAPI.md#SubscribeBfusd) | **Post** /sapi/v1/bfusd/subscribe | Subscribe BFUSD (TRADE)
 
 
 ## GetBfusdAccount
@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -65,7 +65,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -105,7 +105,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -133,7 +133,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -175,9 +175,9 @@ import (
 func main() {
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	current := int64(1) // int64 | Currently querying page. Starts from 1. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -207,9 +207,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **current** | **int64** | Currently querying page. Starts from 1. | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -251,9 +251,9 @@ import (
 func main() {
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	current := int64(1) // int64 | Currently querying page. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -283,9 +283,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **current** | **int64** | Currently querying page. | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -327,9 +327,9 @@ import (
 func main() {
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	current := int64(1) // int64 | Currently querying page. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -359,9 +359,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **current** | **int64** | Currently querying page. | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -382,7 +382,7 @@ No authorization required
 
 > GetBfusdSubscriptionHistoryResponse GetBfusdSubscriptionHistory(ctx).Asset(asset).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Get BFUSD subscription history(USER_DATA)
+Get BFUSD subscription history (USER_DATA)
 
 
 ### Example
@@ -401,12 +401,12 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDC or USDT (optional)
+	asset := models.GetBfusdSubscriptionHistoryAssetParameterUsdc // GetBfusdSubscriptionHistoryAssetParameter |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Starts from 1. Default: 1 (optional)
-	size := int64(10) // int64 | Number of results per page. Default: 10, Max: 100 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	current := int64(1) // int64 | Currently querying page. (optional)
+	size := int64(10) // int64 | Number of results per page. (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -434,12 +434,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDC or USDT | 
+ **asset** | [**GetBfusdSubscriptionHistoryAssetParameter**](GetBfusdSubscriptionHistoryAssetParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Starts from 1. Default: 1 | 
- **size** | **int64** | Number of results per page. Default: 10, Max: 100 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **current** | **int64** | Currently querying page. | 
+ **size** | **int64** | Number of results per page. | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -460,7 +460,7 @@ No authorization required
 
 > RedeemBfusdResponse RedeemBfusd(ctx).Amount(amount).Type(type_).RecvWindow(recvWindow).Execute()
 
-Redeem BFUSD(TRADE)
+Redeem BFUSD (TRADE)
 
 
 ### Example
@@ -479,9 +479,9 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount
-	type_ := "s" // string | FAST or STANDARD, defaults to STANDARD
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	amount := float32(1.0) // float32 | Amount in BFUSD
+	type_ := models.RedeemBfusdTypeParameterFast // RedeemBfusdTypeParameter | defaults to STANDARD
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -509,9 +509,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount | 
- **type_** | **string** | FAST or STANDARD, defaults to STANDARD | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **amount** | **float32** | Amount in BFUSD | 
+ **type_** | [**RedeemBfusdTypeParameter**](RedeemBfusdTypeParameter.md) | defaults to STANDARD | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 
@@ -532,7 +532,7 @@ No authorization required
 
 > SubscribeBfusdResponse SubscribeBfusd(ctx).Asset(asset).Amount(amount).RecvWindow(recvWindow).Execute()
 
-Subscribe BFUSD(TRADE)
+Subscribe BFUSD (TRADE)
 
 
 ### Example
@@ -551,9 +551,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | USDT or USDC (whichever is eligible)
+	asset := "USDT" // string | 
 	amount := float32(1.0) // float32 | Amount
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -581,9 +581,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | USDT or USDC (whichever is eligible) | 
+ **asset** | **string** |  | 
  **amount** | **float32** | Amount | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
+ **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
 

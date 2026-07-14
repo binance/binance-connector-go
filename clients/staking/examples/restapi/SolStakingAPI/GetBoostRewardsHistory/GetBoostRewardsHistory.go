@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/staking"
+	"github.com/binance/binance-connector-go/clients/staking/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func GetBoostRewardsHistory() {
 	apiClient := client.NewBinanceStakingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.SolStakingAPI.GetBoostRewardsHistory(context.Background()).Type("CLAIM").Execute()
+	resp, err := apiClient.RestApi.SolStakingAPI.GetBoostRewardsHistory(context.Background()).Type(models.GetBoostRewardsHistoryTypeParameterClaim).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetCmIncomeHistoryResponseInner{}
 
 // GetCmIncomeHistoryResponseInner struct for GetCmIncomeHistoryResponseInner
 type GetCmIncomeHistoryResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	IncomeType           *string `json:"incomeType,omitempty"`
-	Income               *string `json:"income,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Info                 *string `json:"info,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	TranId               *string `json:"tranId,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Income type.
+	IncomeType *string `json:"incomeType,omitempty"`
+	// Income amount.
+	Income *string `json:"income,omitempty"`
+	// Income asset.
+	Asset *string `json:"asset,omitempty"`
+	// Extra information.
+	Info *string `json:"info,omitempty"`
+	// Event time.
+	Time *int64 `json:"time,omitempty"`
+	// Transaction ID.
+	TranId *string `json:"tranId,omitempty"`
+	// Trade ID, if existing.
 	TradeId              *string `json:"tradeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

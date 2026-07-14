@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -16,12 +16,14 @@ type NewCmConditionalOrderWorkingTypeParameter string
 
 // List of newCmConditionalOrder_workingType_parameter
 const (
-	NewCmConditionalOrderWorkingTypeParameterMarkPrice NewCmConditionalOrderWorkingTypeParameter = "MARK_PRICE"
+	NewCmConditionalOrderWorkingTypeParameterMarkPrice     NewCmConditionalOrderWorkingTypeParameter = "MARK_PRICE"
+	NewCmConditionalOrderWorkingTypeParameterContractPrice NewCmConditionalOrderWorkingTypeParameter = "CONTRACT_PRICE"
 )
 
 // All allowed values of NewCmConditionalOrderWorkingTypeParameter enum
 var AllowedNewCmConditionalOrderWorkingTypeParameterEnumValues = []NewCmConditionalOrderWorkingTypeParameter{
 	"MARK_PRICE",
+	"CONTRACT_PRICE",
 }
 
 func (v *NewCmConditionalOrderWorkingTypeParameter) UnmarshalJSON(src []byte) error {

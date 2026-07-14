@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &ContractInfoStreamResponse{}
 
 // ContractInfoStreamResponse struct for ContractInfoStreamResponse
 type ContractInfoStreamResponse struct {
-	Smalle               *string                              `json:"e,omitempty"`
-	E                    *int64                               `json:"E,omitempty"`
-	Smalls               *string                              `json:"s,omitempty"`
-	Smallct              *string                              `json:"ct,omitempty"`
-	Smalldt              *int64                               `json:"dt,omitempty"`
-	Smallot              *int64                               `json:"ot,omitempty"`
-	Smallcs              *string                              `json:"cs,omitempty"`
-	Bks                  []ContractInfoStreamResponseBksInner `json:"bks,omitempty"`
-	Smallst              *int64                               `json:"st,omitempty"`
+	// Event type.
+	Smalle *string `json:"e,omitempty"`
+	// Event time.
+	E *int64 `json:"E,omitempty"`
+	// Symbol.
+	Smalls *string `json:"s,omitempty"`
+	// Contract type.
+	Smallct *string `json:"ct,omitempty"`
+	// Delivery date time.
+	Smalldt *int64 `json:"dt,omitempty"`
+	// Onboard date time.
+	Smallot *int64 `json:"ot,omitempty"`
+	// Contract status.
+	Smallcs *string `json:"cs,omitempty"`
+	// Notional bracket updates.
+	Bks []ContractInfoStreamResponseBksInner `json:"bks,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -305,9 +314,9 @@ func (o *ContractInfoStreamResponse) SetBks(v []ContractInfoStreamResponseBksInn
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *ContractInfoStreamResponse) GetSmallst() int64 {
+func (o *ContractInfoStreamResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -315,7 +324,7 @@ func (o *ContractInfoStreamResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContractInfoStreamResponse) GetSmallstOk() (*int64, bool) {
+func (o *ContractInfoStreamResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -331,8 +340,8 @@ func (o *ContractInfoStreamResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *ContractInfoStreamResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *ContractInfoStreamResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

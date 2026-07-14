@@ -4,57 +4,57 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**L** | Pointer to **string** | List Status Type | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**A** | Pointer to **string** | Allocation ID | [optional] 
+**T** | Pointer to **int64** | Trade ID | [optional] 
+**P** | Pointer to **string** | Order price | [optional] 
+**I** | Pointer to **int64** | Order ID | [optional] 
+**D** | Pointer to **string** | Trailing Delta; This is only visible if the order was a trailing stop order. | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**C** | Pointer to **string** | Contingency Type | [optional] 
+**S** | Pointer to **string** | Side | [optional] 
+**O** | Pointer to **string** | Order type | [optional] 
+**F** | Pointer to **string** | Time in force | [optional] 
+**Q** | Pointer to **string** | Order quantity | [optional] 
+**P** | Pointer to **string** | Stop price | [optional] 
+**F** | Pointer to **string** | Iceberg quantity | [optional] 
+**G** | Pointer to **int64** | OrderListId | [optional] 
+**C** | Pointer to **string** | List Client Order ID | [optional] 
+**X** | Pointer to **string** | Current execution type | [optional] 
+**X** | Pointer to **string** | Current order status | [optional] 
+**R** | Pointer to **string** | List Reject Reason | [optional] 
+**Z** | Pointer to **string** | Cumulative filled quantity | [optional] 
+**L** | Pointer to **string** | List Order Status | [optional] 
+**N** | Pointer to **string** | Commission amount | [optional] 
+**N** | Pointer to **string** | Commission asset | [optional] 
+**I** | Pointer to **int64** | Ignore | [optional] 
+**W** | Pointer to **bool** | Is the order on the book? | [optional] 
+**M** | Pointer to **bool** | Is this trade the maker side? | [optional] 
+**M** | Pointer to **bool** | Ignore | [optional] 
+**O** | Pointer to [**[]ListStatusOInner**](ListStatusOInner.md) | An array of objects | [optional] 
+**Z** | Pointer to **string** | Cumulative quote asset transacted quantity | [optional] 
+**Y** | Pointer to **string** | Last quote asset transacted quantity (i.e. lastPrice * lastQty) | [optional] 
+**Q** | Pointer to **string** | Quote Order Quantity | [optional] 
+**W** | Pointer to **int64** | Working Time; This is only visible if the order has been placed on the book. | [optional] 
+**V** | Pointer to **string** | selfTradePreventionMode | [optional] 
+**D** | Pointer to **string** | Trailing Time | [optional] 
+**J** | Pointer to **string** | Strategy Id | [optional] 
+**J** | Pointer to **string** | Strategy Type | [optional] 
+**V** | Pointer to **string** | Prevented Match Id | [optional] 
+**A** | Pointer to **string** | Prevented Quantity | [optional] 
+**B** | Pointer to [**[]OutboundAccountPositionBInner**](OutboundAccountPositionBInner.md) | Balances Array | [optional] 
+**U** | Pointer to **int64** | Time of last account update | [optional] 
+**U** | Pointer to **string** | Counter Order Id | [optional] 
+**Cs** | Pointer to **string** | Counter Symbol | [optional] 
+**Pl** | Pointer to **string** | Prevented Execution Quantity | [optional] 
+**PL** | Pointer to **string** | Prevented Execution Price | [optional] 
+**PY** | Pointer to **string** | Prevented Execution Quote Qty | [optional] 
+**B** | Pointer to **string** | Match Type | [optional] 
+**K** | Pointer to **string** | Working Floor | [optional] 
+**US** | Pointer to **bool** | UsedSor | [optional] 
 **ListenKey** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**Z** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**N** | Pointer to **string** |  | [optional] 
-**N** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**W** | Pointer to **bool** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**O** | Pointer to [**[]ListstatusOInner**](ListstatusOInner.md) |  | [optional] 
-**Z** | Pointer to **string** |  | [optional] 
-**Y** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**W** | Pointer to **int64** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **string** |  | [optional] 
-**J** | Pointer to **string** |  | [optional] 
-**J** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **string** |  | [optional] 
-**Cs** | Pointer to **string** |  | [optional] 
-**Pl** | Pointer to **string** |  | [optional] 
-**PL** | Pointer to **string** |  | [optional] 
-**PY** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**K** | Pointer to **string** |  | [optional] 
-**US** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -100,55 +100,55 @@ SetE sets E field to given value.
 
 HasE returns a boolean if a field has been set.
 
-### GetU
+### GetL
 
-`func (o *TradeDataStreamEventsResponse) GetU() string`
+`func (o *TradeDataStreamEventsResponse) GetL() string`
 
-GetU returns the U field if non-nil, zero value otherwise.
+GetL returns the L field if non-nil, zero value otherwise.
 
-### GetUOk
+### GetLOk
 
-`func (o *TradeDataStreamEventsResponse) GetUOk() (*string, bool)`
+`func (o *TradeDataStreamEventsResponse) GetLOk() (*string, bool)`
 
-GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
+GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetU
+### SetL
 
-`func (o *TradeDataStreamEventsResponse) SetU(v string)`
+`func (o *TradeDataStreamEventsResponse) SetL(v string)`
 
-SetU sets U field to given value.
+SetL sets L field to given value.
 
-### HasU
+### HasL
 
-`func (o *TradeDataStreamEventsResponse) HasU() bool`
+`func (o *TradeDataStreamEventsResponse) HasL() bool`
 
-HasU returns a boolean if a field has been set.
+HasL returns a boolean if a field has been set.
 
-### GetB
+### GetS
 
-`func (o *TradeDataStreamEventsResponse) GetB() string`
+`func (o *TradeDataStreamEventsResponse) GetS() string`
 
-GetB returns the B field if non-nil, zero value otherwise.
+GetS returns the S field if non-nil, zero value otherwise.
 
-### GetBOk
+### GetSOk
 
-`func (o *TradeDataStreamEventsResponse) GetBOk() (*string, bool)`
+`func (o *TradeDataStreamEventsResponse) GetSOk() (*string, bool)`
 
-GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetB
+### SetS
 
-`func (o *TradeDataStreamEventsResponse) SetB(v string)`
+`func (o *TradeDataStreamEventsResponse) SetS(v string)`
 
-SetB sets B field to given value.
+SetS sets S field to given value.
 
-### HasB
+### HasS
 
-`func (o *TradeDataStreamEventsResponse) HasB() bool`
+`func (o *TradeDataStreamEventsResponse) HasS() bool`
 
-HasB returns a boolean if a field has been set.
+HasS returns a boolean if a field has been set.
 
 ### GetA
 
@@ -174,6 +174,81 @@ SetA sets A field to given value.
 `func (o *TradeDataStreamEventsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *TradeDataStreamEventsResponse) GetT() int64`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *TradeDataStreamEventsResponse) GetTOk() (*int64, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *TradeDataStreamEventsResponse) SetT(v int64)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *TradeDataStreamEventsResponse) HasT() bool`
+
+HasT returns a boolean if a field has been set.
+
+### GetP
+
+`func (o *TradeDataStreamEventsResponse) GetP() string`
+
+GetP returns the P field if non-nil, zero value otherwise.
+
+### GetPOk
+
+`func (o *TradeDataStreamEventsResponse) GetPOk() (*string, bool)`
+
+GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetP
+
+`func (o *TradeDataStreamEventsResponse) SetP(v string)`
+
+SetP sets P field to given value.
+
+### HasP
+
+`func (o *TradeDataStreamEventsResponse) HasP() bool`
+
+HasP returns a boolean if a field has been set.
+
+### GetI
+
+`func (o *TradeDataStreamEventsResponse) GetI() int64`
+
+GetI returns the I field if non-nil, zero value otherwise.
+
+### GetIOk
+
+`func (o *TradeDataStreamEventsResponse) GetIOk() (*int64, bool)`
+
+GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetI
+
+`func (o *TradeDataStreamEventsResponse) SetI(v int64)`
+
+SetI sets I field to given value.
+
+### HasI
+
+`func (o *TradeDataStreamEventsResponse) HasI() bool`
+
+HasI returns a boolean if a field has been set.
 
 ### GetD
 
@@ -224,56 +299,6 @@ SetT sets T field to given value.
 `func (o *TradeDataStreamEventsResponse) HasT() bool`
 
 HasT returns a boolean if a field has been set.
-
-### GetListenKey
-
-`func (o *TradeDataStreamEventsResponse) GetListenKey() string`
-
-GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
-
-### GetListenKeyOk
-
-`func (o *TradeDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
-
-GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetListenKey
-
-`func (o *TradeDataStreamEventsResponse) SetListenKey(v string)`
-
-SetListenKey sets ListenKey field to given value.
-
-### HasListenKey
-
-`func (o *TradeDataStreamEventsResponse) HasListenKey() bool`
-
-HasListenKey returns a boolean if a field has been set.
-
-### GetS
-
-`func (o *TradeDataStreamEventsResponse) GetS() string`
-
-GetS returns the S field if non-nil, zero value otherwise.
-
-### GetSOk
-
-`func (o *TradeDataStreamEventsResponse) GetSOk() (*string, bool)`
-
-GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetS
-
-`func (o *TradeDataStreamEventsResponse) SetS(v string)`
-
-SetS sets S field to given value.
-
-### HasS
-
-`func (o *TradeDataStreamEventsResponse) HasS() bool`
-
-HasS returns a boolean if a field has been set.
 
 ### GetC
 
@@ -399,31 +424,6 @@ SetQ sets Q field to given value.
 `func (o *TradeDataStreamEventsResponse) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
-
-### GetP
-
-`func (o *TradeDataStreamEventsResponse) GetP() string`
-
-GetP returns the P field if non-nil, zero value otherwise.
-
-### GetPOk
-
-`func (o *TradeDataStreamEventsResponse) GetPOk() (*string, bool)`
-
-GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetP
-
-`func (o *TradeDataStreamEventsResponse) SetP(v string)`
-
-SetP sets P field to given value.
-
-### HasP
-
-`func (o *TradeDataStreamEventsResponse) HasP() bool`
-
-HasP returns a boolean if a field has been set.
 
 ### GetP
 
@@ -600,56 +600,6 @@ SetR sets R field to given value.
 
 HasR returns a boolean if a field has been set.
 
-### GetI
-
-`func (o *TradeDataStreamEventsResponse) GetI() int64`
-
-GetI returns the I field if non-nil, zero value otherwise.
-
-### GetIOk
-
-`func (o *TradeDataStreamEventsResponse) GetIOk() (*int64, bool)`
-
-GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetI
-
-`func (o *TradeDataStreamEventsResponse) SetI(v int64)`
-
-SetI sets I field to given value.
-
-### HasI
-
-`func (o *TradeDataStreamEventsResponse) HasI() bool`
-
-HasI returns a boolean if a field has been set.
-
-### GetL
-
-`func (o *TradeDataStreamEventsResponse) GetL() string`
-
-GetL returns the L field if non-nil, zero value otherwise.
-
-### GetLOk
-
-`func (o *TradeDataStreamEventsResponse) GetLOk() (*string, bool)`
-
-GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetL
-
-`func (o *TradeDataStreamEventsResponse) SetL(v string)`
-
-SetL sets L field to given value.
-
-### HasL
-
-`func (o *TradeDataStreamEventsResponse) HasL() bool`
-
-HasL returns a boolean if a field has been set.
-
 ### GetZ
 
 `func (o *TradeDataStreamEventsResponse) GetZ() string`
@@ -749,31 +699,6 @@ SetN sets N field to given value.
 `func (o *TradeDataStreamEventsResponse) HasN() bool`
 
 HasN returns a boolean if a field has been set.
-
-### GetT
-
-`func (o *TradeDataStreamEventsResponse) GetT() int64`
-
-GetT returns the T field if non-nil, zero value otherwise.
-
-### GetTOk
-
-`func (o *TradeDataStreamEventsResponse) GetTOk() (*int64, bool)`
-
-GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetT
-
-`func (o *TradeDataStreamEventsResponse) SetT(v int64)`
-
-SetT sets T field to given value.
-
-### HasT
-
-`func (o *TradeDataStreamEventsResponse) HasT() bool`
-
-HasT returns a boolean if a field has been set.
 
 ### GetI
 
@@ -877,20 +802,20 @@ HasM returns a boolean if a field has been set.
 
 ### GetO
 
-`func (o *TradeDataStreamEventsResponse) GetO() []ListstatusOInner`
+`func (o *TradeDataStreamEventsResponse) GetO() []ListStatusOInner`
 
 GetO returns the O field if non-nil, zero value otherwise.
 
 ### GetOOk
 
-`func (o *TradeDataStreamEventsResponse) GetOOk() (*[]ListstatusOInner, bool)`
+`func (o *TradeDataStreamEventsResponse) GetOOk() (*[]ListStatusOInner, bool)`
 
 GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetO
 
-`func (o *TradeDataStreamEventsResponse) SetO(v []ListstatusOInner)`
+`func (o *TradeDataStreamEventsResponse) SetO(v []ListStatusOInner)`
 
 SetO sets O field to given value.
 
@@ -1150,6 +1075,56 @@ SetA sets A field to given value.
 
 HasA returns a boolean if a field has been set.
 
+### GetB
+
+`func (o *TradeDataStreamEventsResponse) GetB() []OutboundAccountPositionBInner`
+
+GetB returns the B field if non-nil, zero value otherwise.
+
+### GetBOk
+
+`func (o *TradeDataStreamEventsResponse) GetBOk() (*[]OutboundAccountPositionBInner, bool)`
+
+GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetB
+
+`func (o *TradeDataStreamEventsResponse) SetB(v []OutboundAccountPositionBInner)`
+
+SetB sets B field to given value.
+
+### HasB
+
+`func (o *TradeDataStreamEventsResponse) HasB() bool`
+
+HasB returns a boolean if a field has been set.
+
+### GetU
+
+`func (o *TradeDataStreamEventsResponse) GetU() int64`
+
+GetU returns the U field if non-nil, zero value otherwise.
+
+### GetUOk
+
+`func (o *TradeDataStreamEventsResponse) GetUOk() (*int64, bool)`
+
+GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetU
+
+`func (o *TradeDataStreamEventsResponse) SetU(v int64)`
+
+SetU sets U field to given value.
+
+### HasU
+
+`func (o *TradeDataStreamEventsResponse) HasU() bool`
+
+HasU returns a boolean if a field has been set.
+
 ### GetU
 
 `func (o *TradeDataStreamEventsResponse) GetU() string`
@@ -1349,6 +1324,31 @@ SetUS sets US field to given value.
 `func (o *TradeDataStreamEventsResponse) HasUS() bool`
 
 HasUS returns a boolean if a field has been set.
+
+### GetListenKey
+
+`func (o *TradeDataStreamEventsResponse) GetListenKey() string`
+
+GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
+
+### GetListenKeyOk
+
+`func (o *TradeDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
+
+GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetListenKey
+
+`func (o *TradeDataStreamEventsResponse) SetListenKey(v string)`
+
+SetListenKey sets ListenKey field to given value.
+
+### HasListenKey
+
+`func (o *TradeDataStreamEventsResponse) HasListenKey() bool`
+
+HasListenKey returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

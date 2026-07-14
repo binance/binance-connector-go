@@ -1,5 +1,5 @@
 /*
-Binance Simple Earn REST API TEST
+Simple Earn REST API TEST
 
 Testing YieldArenaAPIService
 
@@ -25,7 +25,11 @@ func Test_binancesimpleearnrestapi_YieldArenaAPIService(t *testing.T) {
 
 	t.Run("Test YieldArenaAPIService GetYieldArenaActivities Success", func(t *testing.T) {
 
-		mockedJSON := `{"activities":[{"activityId":10001,"activityType":"AIRDROP","title":"Hold FDUSD & Earn BNB Airdrop","description":"Subscribe to FDUSD Flexible and earn bonus BNB airdrop.","rewardPoolInUsd":"50000","rewardToken":["BNB"],"redirectUrl":"https://www.binance.com/en/earn/arena/airdrop-123","startTime":1713052800000,"endTime":1713657600000}]}`
+		var mockedJSON string
+		mockedJSON = `{"activities":[{"activityId":10001,"activityType":"AIRDROP","title":"Hold FDUSD & Earn BNB Airdrop","description":"Subscribe to FDUSD Flexible and earn bonus BNB airdrop.","rewardPoolInUsd":"50000","rewardToken":["BNB"],"redirectUrl":"https://www.binance.com/en/earn/arena/airdrop-123","startTime":1713052800000,"endTime":1713657600000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/earn/arena/activities", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

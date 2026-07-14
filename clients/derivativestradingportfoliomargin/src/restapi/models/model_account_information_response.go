@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,17 +17,27 @@ var _ common.MappedNullable = &AccountInformationResponse{}
 
 // AccountInformationResponse struct for AccountInformationResponse
 type AccountInformationResponse struct {
-	UniMMR                   *string `json:"uniMMR,omitempty"`
-	AccountEquity            *string `json:"accountEquity,omitempty"`
-	ActualEquity             *string `json:"actualEquity,omitempty"`
-	AccountInitialMargin     *string `json:"accountInitialMargin,omitempty"`
-	AccountMaintMargin       *string `json:"accountMaintMargin,omitempty"`
-	AccountStatus            *string `json:"accountStatus,omitempty"`
+	// Portfolio margin account maintenance margin rate
+	UniMMR *string `json:"uniMMR,omitempty"`
+	// Account equity, in USD value
+	AccountEquity *string `json:"accountEquity,omitempty"`
+	// Account equity without collateral rate, in USD value
+	ActualEquity *string `json:"actualEquity,omitempty"`
+	// Account Initial Margin.
+	AccountInitialMargin *string `json:"accountInitialMargin,omitempty"`
+	// Portfolio margin account maintenance margin, unit：USD
+	AccountMaintMargin *string `json:"accountMaintMargin,omitempty"`
+	// Portfolio margin account status:\"NORMAL\", \"MARGIN_CALL\", \"SUPPLY_MARGIN\", \"REDUCE_ONLY\", \"ACTIVE_LIQUIDATION\", \"FORCE_LIQUIDATION\", \"BANKRUPTED\"
+	AccountStatus *string `json:"accountStatus,omitempty"`
+	// Portfolio margin maximum amount for transfer out in USD
 	VirtualMaxWithdrawAmount *string `json:"virtualMaxWithdrawAmount,omitempty"`
-	TotalAvailableBalance    *string `json:"totalAvailableBalance,omitempty"`
-	TotalMarginOpenLoss      *string `json:"totalMarginOpenLoss,omitempty"`
-	UpdateTime               *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties     map[string]interface{}
+	// Total Available Balance.
+	TotalAvailableBalance *string `json:"totalAvailableBalance,omitempty"`
+	// in USD margin open order
+	TotalMarginOpenLoss *string `json:"totalMarginOpenLoss,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationResponse AccountInformationResponse

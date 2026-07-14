@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**CollateralRate** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**CollateralRate** | Pointer to **string** | collateral Rate. | [optional] 
 
 ## Methods
 

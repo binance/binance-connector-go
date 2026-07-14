@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerTime** | Pointer to **int64** |  | [optional] 
+**ServerTime** | Pointer to **int64** | Ignore please. If you want to check current server time, please check via \&quot;GET /dapi/v1/time\&quot; | [optional] 
 
 ## Methods
 

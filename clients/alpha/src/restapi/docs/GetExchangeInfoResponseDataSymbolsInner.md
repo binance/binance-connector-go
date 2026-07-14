@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**BaseAsset** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**PricePrecision** | Pointer to **int64** |  | [optional] 
-**QuantityPrecision** | Pointer to **int64** |  | [optional] 
-**BaseAssetPrecision** | Pointer to **int64** |  | [optional] 
-**QuotePrecision** | Pointer to **int64** |  | [optional] 
-**Filters** | Pointer to [**[]GetExchangeInfoResponseDataSymbolsInnerFiltersInner**](GetExchangeInfoResponseDataSymbolsInnerFiltersInner.md) |  | [optional] 
-**OrderTypes** | Pointer to **[]string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol. | [optional] 
+**Status** | Pointer to **string** | Trading status. | [optional] 
+**BaseAsset** | Pointer to **string** | Base asset symbol. | [optional] 
+**QuoteAsset** | Pointer to **string** | Quote asset symbol. | [optional] 
+**PricePrecision** | Pointer to **int64** | Allowed precision for price. | [optional] 
+**QuantityPrecision** | Pointer to **int64** | Allowed precision for quantity. | [optional] 
+**BaseAssetPrecision** | Pointer to **int64** | Base asset precision. | [optional] 
+**QuotePrecision** | Pointer to **int64** | Quote asset precision. | [optional] 
+**Filters** | Pointer to [**[]GetExchangeInfoResponseDataSymbolsInnerFiltersInner**](GetExchangeInfoResponseDataSymbolsInnerFiltersInner.md) | Trading filters and constraints. | [optional] 
+**OrderTypes** | Pointer to **[]string** | Supported order types for this symbol. | [optional] 
 
 ## Methods
 

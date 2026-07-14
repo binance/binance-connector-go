@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &ExchangeInformationResponseRateLimitsInner{}
 
 // ExchangeInformationResponseRateLimitsInner struct for ExchangeInformationResponseRateLimitsInner
 type ExchangeInformationResponseRateLimitsInner struct {
-	Interval             *string `json:"interval,omitempty"`
-	IntervalNum          *int64  `json:"intervalNum,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
+	// Rate limit interval.
+	Interval *string `json:"interval,omitempty"`
+	// Rate limit interval multiplier.
+	IntervalNum *int64 `json:"intervalNum,omitempty"`
+	// Maximum allowed orders for this rule.
+	Limit *int64 `json:"limit,omitempty"`
+	// Rate limit type.
 	RateLimitType        *string `json:"rateLimitType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

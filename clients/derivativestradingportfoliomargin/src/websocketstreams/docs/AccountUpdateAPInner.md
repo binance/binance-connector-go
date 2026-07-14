@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**Pa** | Pointer to **string** |  | [optional] 
-**Ep** | Pointer to **string** |  | [optional] 
-**Cr** | Pointer to **string** |  | [optional] 
-**Up** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**Bep** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Pa** | Pointer to **string** | Position Amount | [optional] 
+**Ep** | Pointer to **string** | Entry Price | [optional] 
+**Cr** | Pointer to **string** | (Pre-fee) Accumulated Realized | [optional] 
+**Up** | Pointer to **string** | Unrealized PnL | [optional] 
+**Ps** | Pointer to **string** | Position Side | [optional] 
+**Bep** | Pointer to **string** | Breakeven Price | [optional] 
 
 ## Methods
 

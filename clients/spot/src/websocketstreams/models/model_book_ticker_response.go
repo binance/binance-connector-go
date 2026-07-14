@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &BookTickerResponse{}
 
 // BookTickerResponse struct for BookTickerResponse
 type BookTickerResponse struct {
-	U                    *int64  `json:"u,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	B                    *string `json:"B,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
+	// Order book updateId
+	Smallu *int64 `json:"u,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Best bid price
+	Smallb *string `json:"b,omitempty"`
+	// Best bid qty
+	B *string `json:"B,omitempty"`
+	// Best ask price
+	Smalla *string `json:"a,omitempty"`
+	// Best ask qty
 	A                    *string `json:"A,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -46,26 +52,26 @@ func NewBookTickerResponseWithDefaults() *BookTickerResponse {
 }
 
 // GetU returns the U field value if set, zero value otherwise.
-func (o *BookTickerResponse) GetU() int64 {
-	if o == nil || common.IsNil(o.U) {
+func (o *BookTickerResponse) GetSmallu() int64 {
+	if o == nil || common.IsNil(o.Smallu) {
 		var ret int64
 		return ret
 	}
-	return *o.U
+	return *o.Smallu
 }
 
 // GetUOk returns a tuple with the U field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BookTickerResponse) GetUOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.U) {
+func (o *BookTickerResponse) GetSmalluOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallu) {
 		return nil, false
 	}
-	return o.U, true
+	return o.Smallu, true
 }
 
 // HasU returns a boolean if a field has been set.
-func (o *BookTickerResponse) HasU() bool {
-	if o != nil && !common.IsNil(o.U) {
+func (o *BookTickerResponse) HasSmallu() bool {
+	if o != nil && !common.IsNil(o.Smallu) {
 		return true
 	}
 
@@ -73,31 +79,31 @@ func (o *BookTickerResponse) HasU() bool {
 }
 
 // SetU gets a reference to the given int64 and assigns it to the U field.
-func (o *BookTickerResponse) SetU(v int64) {
-	o.U = &v
+func (o *BookTickerResponse) SetSmallu(v int64) {
+	o.Smallu = &v
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *BookTickerResponse) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *BookTickerResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BookTickerResponse) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *BookTickerResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *BookTickerResponse) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *BookTickerResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -105,8 +111,8 @@ func (o *BookTickerResponse) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *BookTickerResponse) SetS(v string) {
-	o.S = &v
+func (o *BookTickerResponse) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -247,11 +253,11 @@ func (o BookTickerResponse) MarshalJSON() ([]byte, error) {
 
 func (o BookTickerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.U) {
-		toSerialize["u"] = o.U
+	if !common.IsNil(o.Smallu) {
+		toSerialize["u"] = o.Smallu
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb

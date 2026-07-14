@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**WorkerName** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**WorkerName** | Pointer to **string** | Mining account name | [optional] 
+**Type** | Pointer to **string** | Type of hashrate bucket | [optional] 
 **HashrateDatas** | Pointer to [**[]RequestForDetailMinerListResponseDataInnerHashrateDatasInner**](RequestForDetailMinerListResponseDataInnerHashrateDatasInner.md) |  | [optional] 
 
 ## Methods

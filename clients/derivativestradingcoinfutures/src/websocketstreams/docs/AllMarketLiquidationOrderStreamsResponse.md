@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event Type | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
 **O** | Pointer to [**AllMarketLiquidationOrderStreamsResponseO**](AllMarketLiquidationOrderStreamsResponseO.md) |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasO returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *AllMarketLiquidationOrderStreamsResponse) GetSt() int64`
+`func (o *AllMarketLiquidationOrderStreamsResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *AllMarketLiquidationOrderStreamsResponse) GetStOk() (*int64, bool)`
+`func (o *AllMarketLiquidationOrderStreamsResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *AllMarketLiquidationOrderStreamsResponse) SetSt(v int64)`
+`func (o *AllMarketLiquidationOrderStreamsResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

@@ -4,25 +4,25 @@ All URIs are relative to *https://fapi.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**AccountInformationV2**](AccountAPI.md#AccountInformationV2) | **Get** /fapi/v2/account | Account Information V2(USER_DATA)
-[**AccountInformationV3**](AccountAPI.md#AccountInformationV3) | **Get** /fapi/v3/account | Account Information V3(USER_DATA)
+[**AccountInformationV2**](AccountAPI.md#AccountInformationV2) | **Get** /fapi/v2/account | Account Information V2 (USER_DATA)
+[**AccountInformationV3**](AccountAPI.md#AccountInformationV3) | **Get** /fapi/v3/account | Account Information V3 (USER_DATA)
 [**FuturesAccountBalanceV2**](AccountAPI.md#FuturesAccountBalanceV2) | **Get** /fapi/v2/balance | Futures Account Balance V2 (USER_DATA)
 [**FuturesAccountBalanceV3**](AccountAPI.md#FuturesAccountBalanceV3) | **Get** /fapi/v3/balance | Futures Account Balance V3 (USER_DATA)
-[**FuturesAccountConfiguration**](AccountAPI.md#FuturesAccountConfiguration) | **Get** /fapi/v1/accountConfig | Futures Account Configuration(USER_DATA)
+[**FuturesAccountConfiguration**](AccountAPI.md#FuturesAccountConfiguration) | **Get** /fapi/v1/accountConfig | Futures Account Configuration (USER_DATA)
 [**FuturesTradingQuantitativeRulesIndicators**](AccountAPI.md#FuturesTradingQuantitativeRulesIndicators) | **Get** /fapi/v1/apiTradingStatus | Futures Trading Quantitative Rules Indicators (USER_DATA)
 [**GetBnbBurnStatus**](AccountAPI.md#GetBnbBurnStatus) | **Get** /fapi/v1/feeBurn | Get BNB Burn Status (USER_DATA)
 [**GetCurrentMultiAssetsMode**](AccountAPI.md#GetCurrentMultiAssetsMode) | **Get** /fapi/v1/multiAssetsMargin | Get Current Multi-Assets Mode (USER_DATA)
-[**GetCurrentPositionMode**](AccountAPI.md#GetCurrentPositionMode) | **Get** /fapi/v1/positionSide/dual | Get Current Position Mode(USER_DATA)
+[**GetCurrentPositionMode**](AccountAPI.md#GetCurrentPositionMode) | **Get** /fapi/v1/positionSide/dual | Get Current Position Mode (USER_DATA)
 [**GetDownloadIdForFuturesOrderHistory**](AccountAPI.md#GetDownloadIdForFuturesOrderHistory) | **Get** /fapi/v1/order/asyn | Get Download Id For Futures Order History (USER_DATA)
 [**GetDownloadIdForFuturesTradeHistory**](AccountAPI.md#GetDownloadIdForFuturesTradeHistory) | **Get** /fapi/v1/trade/asyn | Get Download Id For Futures Trade History (USER_DATA)
-[**GetDownloadIdForFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForFuturesTransactionHistory) | **Get** /fapi/v1/income/asyn | Get Download Id For Futures Transaction History(USER_DATA)
+[**GetDownloadIdForFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForFuturesTransactionHistory) | **Get** /fapi/v1/income/asyn | Get Download Id For Futures Transaction History (USER_DATA)
 [**GetFuturesOrderHistoryDownloadLinkById**](AccountAPI.md#GetFuturesOrderHistoryDownloadLinkById) | **Get** /fapi/v1/order/asyn/id | Get Futures Order History Download Link by Id (USER_DATA)
-[**GetFuturesTradeDownloadLinkById**](AccountAPI.md#GetFuturesTradeDownloadLinkById) | **Get** /fapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id(USER_DATA)
+[**GetFuturesTradeDownloadLinkById**](AccountAPI.md#GetFuturesTradeDownloadLinkById) | **Get** /fapi/v1/trade/asyn/id | Get Futures Trade Download Link by Id (USER_DATA)
 [**GetFuturesTransactionHistoryDownloadLinkById**](AccountAPI.md#GetFuturesTransactionHistoryDownloadLinkById) | **Get** /fapi/v1/income/asyn/id | Get Futures Transaction History Download Link by Id (USER_DATA)
 [**GetIncomeHistory**](AccountAPI.md#GetIncomeHistory) | **Get** /fapi/v1/income | Get Income History (USER_DATA)
 [**NotionalAndLeverageBrackets**](AccountAPI.md#NotionalAndLeverageBrackets) | **Get** /fapi/v1/leverageBracket | Notional and Leverage Brackets (USER_DATA)
 [**QueryUserRateLimit**](AccountAPI.md#QueryUserRateLimit) | **Get** /fapi/v1/rateLimit/order | Query User Rate Limit (USER_DATA)
-[**SymbolConfiguration**](AccountAPI.md#SymbolConfiguration) | **Get** /fapi/v1/symbolConfig | Symbol Configuration(USER_DATA)
+[**SymbolConfiguration**](AccountAPI.md#SymbolConfiguration) | **Get** /fapi/v1/symbolConfig | Symbol Configuration (USER_DATA)
 [**ToggleBnbBurnOnFuturesTrade**](AccountAPI.md#ToggleBnbBurnOnFuturesTrade) | **Post** /fapi/v1/feeBurn | Toggle BNB Burn On Futures Trade (TRADE)
 [**UserCommissionRate**](AccountAPI.md#UserCommissionRate) | **Get** /fapi/v1/commissionRate | User Commission Rate (USER_DATA)
 
@@ -31,7 +31,7 @@ Method        | HTTP request  | Description
 
 > AccountInformationV2Response AccountInformationV2(ctx).RecvWindow(recvWindow).Execute()
 
-Account Information V2(USER_DATA)
+Account Information V2 (USER_DATA)
 
 
 ### Example
@@ -99,7 +99,7 @@ No authorization required
 
 > AccountInformationV3Response AccountInformationV3(ctx).RecvWindow(recvWindow).Execute()
 
-Account Information V3(USER_DATA)
+Account Information V3 (USER_DATA)
 
 
 ### Example
@@ -303,7 +303,7 @@ No authorization required
 
 > FuturesAccountConfigurationResponse FuturesAccountConfiguration(ctx).RecvWindow(recvWindow).Execute()
 
-Futures Account Configuration(USER_DATA)
+Futures Account Configuration (USER_DATA)
 
 
 ### Example
@@ -390,7 +390,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -577,7 +577,7 @@ No authorization required
 
 > GetCurrentPositionModeResponse GetCurrentPositionMode(ctx).RecvWindow(recvWindow).Execute()
 
-Get Current Position Mode(USER_DATA)
+Get Current Position Mode (USER_DATA)
 
 
 ### Example
@@ -789,7 +789,7 @@ No authorization required
 
 > GetDownloadIdForFuturesTransactionHistoryResponse GetDownloadIdForFuturesTransactionHistory(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
-Get Download Id For Futures Transaction History(USER_DATA)
+Get Download Id For Futures Transaction History (USER_DATA)
 
 
 ### Example
@@ -880,7 +880,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -931,7 +931,7 @@ No authorization required
 
 > GetFuturesTradeDownloadLinkByIdResponse GetFuturesTradeDownloadLinkById(ctx).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
 
-Get Futures Trade Download Link by Id(USER_DATA)
+Get Futures Trade Download Link by Id (USER_DATA)
 
 
 ### Example
@@ -950,7 +950,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1020,7 +1020,7 @@ import (
 )
 
 func main() {
-	downloadId := "1" // string | get by download id api
+	downloadId := "545923594199212032" // string | get by download id api
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1090,12 +1090,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	incomeType := "incomeType_example" // string | TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE, STRATEGY_UMFUTURES_TRANSFER，FEE_RETURN，BFUSD_REWARD (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	page := int64(789) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | Trading symbol. (optional)
+	incomeType := models.GetIncomeHistoryIncomeTypeParameterTransfer // GetIncomeHistoryIncomeTypeParameter | Income type. (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in milliseconds (inclusive start). (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in milliseconds (inclusive end). (optional)
+	page := int64(1) // int64 | Pagination page number. (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1124,12 +1124,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **incomeType** | **string** | TRANSFER, WELCOME_BONUS, REALIZED_PNL, FUNDING_FEE, COMMISSION, INSURANCE_CLEAR, REFERRAL_KICKBACK, COMMISSION_REBATE, API_REBATE, CONTEST_REWARD, CROSS_COLLATERAL_TRANSFER, OPTIONS_PREMIUM_FEE, OPTIONS_SETTLE_PROFIT, INTERNAL_TRANSFER, AUTO_EXCHANGE, DELIVERED_SETTELMENT, COIN_SWAP_DEPOSIT, COIN_SWAP_WITHDRAW, POSITION_LIMIT_INCREASE_FEE, STRATEGY_UMFUTURES_TRANSFER，FEE_RETURN，BFUSD_REWARD | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **page** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **symbol** | **string** | Trading symbol. | 
+ **incomeType** | [**GetIncomeHistoryIncomeTypeParameter**](GetIncomeHistoryIncomeTypeParameter.md) | Income type. | 
+ **startTime** | **int64** | Timestamp in milliseconds (inclusive start). | 
+ **endTime** | **int64** | Timestamp in milliseconds (inclusive end). | 
+ **page** | **int64** | Pagination page number. | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1170,7 +1170,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "ETHUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1289,7 +1289,7 @@ No authorization required
 
 > SymbolConfigurationResponse SymbolConfiguration(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Symbol Configuration(USER_DATA)
+Symbol Configuration (USER_DATA)
 
 
 ### Example
@@ -1308,7 +1308,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string | Symbol (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1337,7 +1337,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1378,7 +1378,7 @@ import (
 )
 
 func main() {
-	feeBurn := "feeBurn_example" // string | \"true\": Fee Discount On; \"false\": Fee Discount Off
+	feeBurn := "true" // string | \"true\": Fee Discount On; \"false\": Fee Discount Off
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1448,7 +1448,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | Symbol
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1477,7 +1477,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

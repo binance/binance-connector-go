@@ -22,7 +22,7 @@ func DustConvert() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset("USDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

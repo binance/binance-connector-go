@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**OpenInterest** | Pointer to **string** |  | [optional] 
-**ContractType** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**OpenInterest** | Pointer to **string** | Open interest. | [optional] 
+**ContractType** | Pointer to **string** | Contract type. | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
 
 ## Methods
 

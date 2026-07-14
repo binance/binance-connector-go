@@ -6,16 +6,16 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseAsset** | Pointer to [**QueryIsolatedMarginAccountInfoResponseAssetsInnerBaseAsset**](QueryIsolatedMarginAccountInfoResponseAssetsInnerBaseAsset.md) |  | [optional] 
 **QuoteAsset** | Pointer to [**QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset**](QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset.md) |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**IsolatedCreated** | Pointer to **bool** |  | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] 
-**MarginLevel** | Pointer to **string** |  | [optional] 
-**MarginLevelStatus** | Pointer to **string** |  | [optional] 
-**MarginRatio** | Pointer to **string** |  | [optional] 
-**IndexPrice** | Pointer to **string** |  | [optional] 
-**LiquidatePrice** | Pointer to **string** |  | [optional] 
-**LiquidateRate** | Pointer to **string** |  | [optional] 
-**TradeEnabled** | Pointer to **bool** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**IsolatedCreated** | Pointer to **bool** | isolated Created. | [optional] 
+**Enabled** | Pointer to **bool** | true-enabled, false-disabled | [optional] 
+**MarginLevel** | Pointer to **string** | margin Level. | [optional] 
+**MarginLevelStatus** | Pointer to **string** | \&quot;EXCESSIVE\&quot;, \&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;, \&quot;PRE_LIQUIDATION\&quot;, \&quot;FORCE_LIQUIDATION\&quot; | [optional] 
+**MarginRatio** | Pointer to **string** | margin Ratio. | [optional] 
+**IndexPrice** | Pointer to **string** | index Price. | [optional] 
+**LiquidatePrice** | Pointer to **string** | liquidate Price. | [optional] 
+**LiquidateRate** | Pointer to **string** | liquidate Rate. | [optional] 
+**TradeEnabled** | Pointer to **bool** | trade Enabled. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package binancederivativestradingcoinfuturesrestapi
@@ -37,7 +37,7 @@ func (r ApiAccountInformationRequest) Execute() (*common.RestApiResponse[models.
 AccountInformation Account Information (USER_DATA)
 Get /dapi/v1/account
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Account-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#account-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -64,7 +64,15 @@ func (a *AccountAPIService) AccountInformationExecute(r ApiAccountInformationReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,7 +99,7 @@ func (r ApiFuturesAccountBalanceRequest) Execute() (*common.RestApiResponse[mode
 FuturesAccountBalance Futures Account Balance (USER_DATA)
 Get /dapi/v1/balance
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Futures-Account-Balance
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#futures-account-balance
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -118,7 +126,15 @@ func (a *AccountAPIService) FuturesAccountBalanceExecute(r ApiFuturesAccountBala
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FuturesAccountBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FuturesAccountBalanceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -142,10 +158,10 @@ func (r ApiGetCurrentPositionModeRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-GetCurrentPositionMode Get Current Position Mode(USER_DATA)
+GetCurrentPositionMode Get Current Position Mode (USER_DATA)
 Get /dapi/v1/positionSide/dual
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Current-Position-Mode
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-current-position-mode
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -172,7 +188,15 @@ func (a *AccountAPIService) GetCurrentPositionModeExecute(r ApiGetCurrentPositio
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCurrentPositionModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCurrentPositionModeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -213,7 +237,7 @@ func (r ApiGetDownloadIdForFuturesOrderHistoryRequest) Execute() (*common.RestAp
 GetDownloadIdForFuturesOrderHistory Get Download Id For Futures Order History (USER_DATA)
 Get /dapi/v1/order/asyn
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Order-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -  Timestamp in ms
@@ -241,6 +265,7 @@ func (a *AccountAPIService) GetDownloadIdForFuturesOrderHistoryExecute(r ApiGetD
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
@@ -251,7 +276,15 @@ func (a *AccountAPIService) GetDownloadIdForFuturesOrderHistoryExecute(r ApiGetD
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDownloadIdForFuturesOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDownloadIdForFuturesOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -292,7 +325,7 @@ func (r ApiGetDownloadIdForFuturesTradeHistoryRequest) Execute() (*common.RestAp
 GetDownloadIdForFuturesTradeHistory Get Download Id For Futures Trade History (USER_DATA)
 Get /dapi/v1/trade/asyn
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Trade-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-trade-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -  Timestamp in ms
@@ -320,6 +353,7 @@ func (a *AccountAPIService) GetDownloadIdForFuturesTradeHistoryExecute(r ApiGetD
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
@@ -330,7 +364,15 @@ func (a *AccountAPIService) GetDownloadIdForFuturesTradeHistoryExecute(r ApiGetD
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDownloadIdForFuturesTradeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDownloadIdForFuturesTradeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -368,10 +410,10 @@ func (r ApiGetDownloadIdForFuturesTransactionHistoryRequest) Execute() (*common.
 }
 
 /*
-GetDownloadIdForFuturesTransactionHistory Get Download Id For Futures Transaction History(USER_DATA)
+GetDownloadIdForFuturesTransactionHistory Get Download Id For Futures Transaction History (USER_DATA)
 Get /dapi/v1/income/asyn
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Transaction-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-download-id-for-futures-transaction-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -  Timestamp in ms
@@ -399,6 +441,7 @@ func (a *AccountAPIService) GetDownloadIdForFuturesTransactionHistoryExecute(r A
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
@@ -409,7 +452,15 @@ func (a *AccountAPIService) GetDownloadIdForFuturesTransactionHistoryExecute(r A
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDownloadIdForFuturesTransactionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDownloadIdForFuturesTransactionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -443,7 +494,7 @@ func (r ApiGetFuturesOrderHistoryDownloadLinkByIdRequest) Execute() (*common.Res
 GetFuturesOrderHistoryDownloadLinkById Get Futures Order History Download Link by Id (USER_DATA)
 Get /dapi/v1/order/asyn/id
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Order-History-Download-Link-by-Id
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-order-history-download-link-by-id
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param downloadId -  get by download id api
@@ -476,7 +527,15 @@ func (a *AccountAPIService) GetFuturesOrderHistoryDownloadLinkByIdExecute(r ApiG
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesOrderHistoryDownloadLinkByIdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesOrderHistoryDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -507,10 +566,10 @@ func (r ApiGetFuturesTradeDownloadLinkByIdRequest) Execute() (*common.RestApiRes
 }
 
 /*
-GetFuturesTradeDownloadLinkById Get Futures Trade Download Link by Id(USER_DATA)
+GetFuturesTradeDownloadLinkById Get Futures Trade Download Link by Id (USER_DATA)
 Get /dapi/v1/trade/asyn/id
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Trade-Download-Link-by-Id
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-trade-download-link-by-id
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param downloadId -  get by download id api
@@ -543,7 +602,15 @@ func (a *AccountAPIService) GetFuturesTradeDownloadLinkByIdExecute(r ApiGetFutur
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesTradeDownloadLinkByIdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesTradeDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -577,7 +644,7 @@ func (r ApiGetFuturesTransactionHistoryDownloadLinkByIdRequest) Execute() (*comm
 GetFuturesTransactionHistoryDownloadLinkById Get Futures Transaction History Download Link by Id (USER_DATA)
 Get /dapi/v1/income/asyn/id
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Futures-Transaction-History-Download-Link-by-Id
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-futures-transaction-history-download-link-by-id
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param downloadId -  get by download id api
@@ -610,7 +677,15 @@ func (a *AccountAPIService) GetFuturesTransactionHistoryDownloadLinkByIdExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesTransactionHistoryDownloadLinkByIdResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesTransactionHistoryDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -622,7 +697,7 @@ type ApiGetIncomeHistoryRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
 	symbol     *string
-	incomeType *string
+	incomeType *models.GetIncomeHistoryIncomeTypeParameter
 	startTime  *int64
 	endTime    *int64
 	page       *int64
@@ -630,33 +705,37 @@ type ApiGetIncomeHistoryRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiGetIncomeHistoryRequest) Symbol(symbol string) ApiGetIncomeHistoryRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// \&quot;TRANSFER\&quot;,\&quot;WELCOME_BONUS\&quot;, \&quot;FUNDING_FEE\&quot;, \&quot;REALIZED_PNL\&quot;, \&quot;COMMISSION\&quot;, \&quot;INSURANCE_CLEAR\&quot;, and \&quot;DELIVERED_SETTELMENT\&quot;
-func (r ApiGetIncomeHistoryRequest) IncomeType(incomeType string) ApiGetIncomeHistoryRequest {
+// Income type.
+func (r ApiGetIncomeHistoryRequest) IncomeType(incomeType models.GetIncomeHistoryIncomeTypeParameter) ApiGetIncomeHistoryRequest {
 	r.incomeType = &incomeType
 	return r
 }
 
+// Timestamp in ms to get funding from INCLUSIVE.
 func (r ApiGetIncomeHistoryRequest) StartTime(startTime int64) ApiGetIncomeHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms to get funding until INCLUSIVE.
 func (r ApiGetIncomeHistoryRequest) EndTime(endTime int64) ApiGetIncomeHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
+// Page number
 func (r ApiGetIncomeHistoryRequest) Page(page int64) ApiGetIncomeHistoryRequest {
 	r.page = &page
 	return r
 }
 
-// Default 100; max 1000
+// Maximum number of records to return.
 func (r ApiGetIncomeHistoryRequest) Limit(limit int64) ApiGetIncomeHistoryRequest {
 	r.limit = &limit
 	return r
@@ -672,18 +751,18 @@ func (r ApiGetIncomeHistoryRequest) Execute() (*common.RestApiResponse[models.Ge
 }
 
 /*
-GetIncomeHistory Get Income History(USER_DATA)
+GetIncomeHistory Get Income History (USER_DATA)
 Get /dapi/v1/income
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Get-Income-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#get-income-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param incomeType -  \"TRANSFER\",\"WELCOME_BONUS\", \"FUNDING_FEE\", \"REALIZED_PNL\", \"COMMISSION\", \"INSURANCE_CLEAR\", and \"DELIVERED_SETTELMENT\"
-@param startTime -
-@param endTime -
-@param page -
-@param limit -  Default 100; max 1000
+@param symbol -  Symbol
+@param incomeType -  Income type.
+@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
+@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
+@param page -  Page number
+@param limit -  Maximum number of records to return.
 @param recvWindow -
 @return ApiGetIncomeHistoryRequest
 */
@@ -726,7 +805,15 @@ func (a *AccountAPIService) GetIncomeHistoryExecute(r ApiGetIncomeHistoryRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetIncomeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetIncomeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -756,10 +843,10 @@ func (r ApiNotionalBracketForPairRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-NotionalBracketForPair Notional Bracket for Pair(USER_DATA)
+NotionalBracketForPair Notional Bracket for Pair (USER_DATA)
 Get /dapi/v1/leverageBracket
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Pair
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-pair
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -
@@ -790,7 +877,15 @@ func (a *AccountAPIService) NotionalBracketForPairExecute(r ApiNotionalBracketFo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NotionalBracketForPairResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NotionalBracketForPairResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -820,10 +915,10 @@ func (r ApiNotionalBracketForSymbolRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-NotionalBracketForSymbol Notional Bracket for Symbol(USER_DATA)
+NotionalBracketForSymbol Notional Bracket for Symbol (USER_DATA)
 Get /dapi/v2/leverageBracket
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/Notional-Bracket-for-Symbol
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#notional-bracket-for-symbol
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -854,7 +949,15 @@ func (a *AccountAPIService) NotionalBracketForSymbolExecute(r ApiNotionalBracket
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NotionalBracketForSymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NotionalBracketForSymbolResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -869,6 +972,7 @@ type ApiUserCommissionRateRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiUserCommissionRateRequest) Symbol(symbol string) ApiUserCommissionRateRequest {
 	r.symbol = &symbol
 	return r
@@ -887,10 +991,10 @@ func (r ApiUserCommissionRateRequest) Execute() (*common.RestApiResponse[models.
 UserCommissionRate User Commission Rate (USER_DATA)
 Get /dapi/v1/commissionRate
 
-https://developers.binance.com/docs/derivatives/coin-margined-futures/account/rest-api/User-Commission-Rate
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/account#user-commission-rate
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiUserCommissionRateRequest
 */
@@ -920,7 +1024,15 @@ func (a *AccountAPIService) UserCommissionRateExecute(r ApiUserCommissionRateReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserCommissionRateResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UserCommissionRateResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

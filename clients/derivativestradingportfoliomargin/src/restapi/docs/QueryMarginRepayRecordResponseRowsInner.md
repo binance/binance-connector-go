@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**TxId** | Pointer to **int64** |  | [optional] 
+**Amount** | Pointer to **string** | Total amount repaid | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**Interest** | Pointer to **string** | Interest repaid | [optional] 
+**Principal** | Pointer to **string** | Principal repaid | [optional] 
+**Status** | Pointer to **string** | one of PENDING (pending execution), CONFIRMED (successfully execution), FAILED (execution failed, nothing happened to your account) | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp. | [optional] 
+**TxId** | Pointer to **int64** | Tx ID. | [optional] 
 
 ## Methods
 

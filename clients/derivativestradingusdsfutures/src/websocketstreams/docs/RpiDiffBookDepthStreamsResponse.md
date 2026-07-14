@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**Pu** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to [**[]RpiDiffBookDepthStreamsResponseBItem**](RpiDiffBookDepthStreamsResponseBItem.md) |  | [optional] 
-**A** | Pointer to [**[]RpiDiffBookDepthStreamsResponseAItem**](RpiDiffBookDepthStreamsResponseAItem.md) |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**T** | Pointer to **int64** | Transaction time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**U** | Pointer to **int64** | First update ID in event | [optional] 
+**U** | Pointer to **int64** | Final update ID in event | [optional] 
+**Pu** | Pointer to **int64** | Final update Id in last stream(ie &#x60;u&#x60; in last stream) | [optional] 
+**B** | Pointer to **[][]string** | Bids to be updated | [optional] 
+**A** | Pointer to **[][]string** | Asks to be updated | [optional] 
+**Ps** | Pointer to **string** | (After CM migration) Pair symbol | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -212,20 +212,20 @@ HasPu returns a boolean if a field has been set.
 
 ### GetB
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetB() []RpiDiffBookDepthStreamsResponseBItem`
+`func (o *RpiDiffBookDepthStreamsResponse) GetB() [][]string`
 
 GetB returns the B field if non-nil, zero value otherwise.
 
 ### GetBOk
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetBOk() (*[]RpiDiffBookDepthStreamsResponseBItem, bool)`
+`func (o *RpiDiffBookDepthStreamsResponse) GetBOk() (*[][]string, bool)`
 
 GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetB
 
-`func (o *RpiDiffBookDepthStreamsResponse) SetB(v []RpiDiffBookDepthStreamsResponseBItem)`
+`func (o *RpiDiffBookDepthStreamsResponse) SetB(v [][]string)`
 
 SetB sets B field to given value.
 
@@ -237,20 +237,20 @@ HasB returns a boolean if a field has been set.
 
 ### GetA
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetA() []RpiDiffBookDepthStreamsResponseAItem`
+`func (o *RpiDiffBookDepthStreamsResponse) GetA() [][]string`
 
 GetA returns the A field if non-nil, zero value otherwise.
 
 ### GetAOk
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetAOk() (*[]RpiDiffBookDepthStreamsResponseAItem, bool)`
+`func (o *RpiDiffBookDepthStreamsResponse) GetAOk() (*[][]string, bool)`
 
 GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetA
 
-`func (o *RpiDiffBookDepthStreamsResponse) SetA(v []RpiDiffBookDepthStreamsResponseAItem)`
+`func (o *RpiDiffBookDepthStreamsResponse) SetA(v [][]string)`
 
 SetA sets A field to given value.
 
@@ -287,20 +287,20 @@ HasPs returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetSt() int64`
+`func (o *RpiDiffBookDepthStreamsResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *RpiDiffBookDepthStreamsResponse) GetStOk() (*int64, bool)`
+`func (o *RpiDiffBookDepthStreamsResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *RpiDiffBookDepthStreamsResponse) SetSt(v int64)`
+`func (o *RpiDiffBookDepthStreamsResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

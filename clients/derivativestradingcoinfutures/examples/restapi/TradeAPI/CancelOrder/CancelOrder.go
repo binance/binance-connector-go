@@ -22,7 +22,7 @@ func CancelOrder() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelOrder(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelOrder(context.Background()).Symbol("BTCUSD_200925").Execute()
 	if err != nil {
 		log.Println(err)
 		return

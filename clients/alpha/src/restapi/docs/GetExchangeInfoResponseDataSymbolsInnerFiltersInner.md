@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterType** | Pointer to **string** |  | [optional] 
-**MinPrice** | Pointer to **string** |  | [optional] 
-**MaxPrice** | Pointer to **string** |  | [optional] 
-**TickSize** | Pointer to **string** |  | [optional] 
-**StepSize** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**MinQty** | Pointer to **string** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**MinNotional** | Pointer to **string** |  | [optional] 
-**MaxNotional** | Pointer to **string** |  | [optional] 
-**MultiplierDown** | Pointer to **string** |  | [optional] 
-**MultiplierUp** | Pointer to **string** |  | [optional] 
-**BidMultiplierUp** | Pointer to **string** |  | [optional] 
-**AskMultiplierUp** | Pointer to **string** |  | [optional] 
-**BidMultiplierDown** | Pointer to **string** |  | [optional] 
-**AskMultiplierDown** | Pointer to **string** |  | [optional] 
+**FilterType** | Pointer to **string** | Filter type. | [optional] 
+**MinPrice** | Pointer to **string** | Minimum price. | [optional] 
+**MaxPrice** | Pointer to **string** | Maximum price. | [optional] 
+**TickSize** | Pointer to **string** | Tick size. | [optional] 
+**StepSize** | Pointer to **string** | Step size. | [optional] 
+**MaxQty** | Pointer to **string** | Maximum quantity. | [optional] 
+**MinQty** | Pointer to **string** | Minimum quantity. | [optional] 
+**Limit** | Pointer to **int64** | Maximum allowed orders for this rule. | [optional] 
+**MinNotional** | Pointer to **string** | Minimum notional value. | [optional] 
+**MaxNotional** | Pointer to **string** | Maximum notional value. | [optional] 
+**MultiplierDown** | Pointer to **string** | Lower multiplier bound. | [optional] 
+**MultiplierUp** | Pointer to **string** | Upper multiplier bound. | [optional] 
+**BidMultiplierUp** | Pointer to **string** | Upper multiplier bound for bids. | [optional] 
+**AskMultiplierUp** | Pointer to **string** | Upper multiplier bound for asks. | [optional] 
+**BidMultiplierDown** | Pointer to **string** | Lower multiplier bound for bids. | [optional] 
+**AskMultiplierDown** | Pointer to **string** | Lower multiplier bound for asks. | [optional] 
 
 ## Methods
 

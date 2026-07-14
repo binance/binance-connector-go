@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &ReferencePriceResponse{}
 
 // ReferencePriceResponse struct for ReferencePriceResponse
 type ReferencePriceResponse struct {
-	E                    *string `json:"e,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	R                    *string `json:"r,omitempty"`
-	T                    *int64  `json:"t,omitempty"`
+	// Event type
+	E *string `json:"e,omitempty"`
+	// Symbol
+	S *string `json:"s,omitempty"`
+	// Reference price (null if no reference price)
+	R *string `json:"r,omitempty"`
+	// Engine timestamp when reference price was valid
+	T                    *int64 `json:"t,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

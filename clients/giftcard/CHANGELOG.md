@@ -1,5 +1,15 @@
 ### Changelog
 
+## 1.6.0 - 2026-07-14
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.4.0`.
+- Modified parameter `externalUid`:
+  - maxLength `null` → `400`
+  - affected methods:
+    - `redeemABinanceGiftCard()` (`POST /sapi/v1/giftcard/redeemCode`)
+
 ## 1.5.0 - 2026-03-26
 
 ### Changed (1)

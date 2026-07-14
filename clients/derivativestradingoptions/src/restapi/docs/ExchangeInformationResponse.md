@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Timezone** | Pointer to **string** |  | [optional] 
-**ServerTime** | Pointer to **int64** |  | [optional] 
-**OptionContracts** | Pointer to [**[]ExchangeInformationResponseOptionContractsInner**](ExchangeInformationResponseOptionContractsInner.md) |  | [optional] 
-**OptionAssets** | Pointer to [**[]ExchangeInformationResponseOptionAssetsInner**](ExchangeInformationResponseOptionAssetsInner.md) |  | [optional] 
-**OptionSymbols** | Pointer to [**[]ExchangeInformationResponseOptionSymbolsInner**](ExchangeInformationResponseOptionSymbolsInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) |  | [optional] 
+**Timezone** | Pointer to **string** | Time zone used by the server | [optional] 
+**ServerTime** | Pointer to **int64** | Current system time | [optional] 
+**OptionContracts** | Pointer to [**[]ExchangeInformationResponseOptionContractsInner**](ExchangeInformationResponseOptionContractsInner.md) | Option contract underlying asset info | [optional] 
+**OptionAssets** | Pointer to [**[]ExchangeInformationResponseOptionAssetsInner**](ExchangeInformationResponseOptionAssetsInner.md) | Option asset info | [optional] 
+**OptionSymbols** | Pointer to [**[]ExchangeInformationResponseOptionSymbolsInner**](ExchangeInformationResponseOptionSymbolsInner.md) | Option trading pair info | [optional] 
+**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) | rate Limits | [optional] 
 
 ## Methods
 

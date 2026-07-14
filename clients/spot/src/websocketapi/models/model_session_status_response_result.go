@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,12 +17,13 @@ var _ common.MappedNullable = &SessionStatusResponseResult{}
 
 // SessionStatusResponseResult struct for SessionStatusResponseResult
 type SessionStatusResponseResult struct {
-	ApiKey               *string `json:"apiKey,omitempty"`
-	AuthorizedSince      *int64  `json:"authorizedSince,omitempty"`
-	ConnectedSince       *int64  `json:"connectedSince,omitempty"`
-	ReturnRateLimits     *bool   `json:"returnRateLimits,omitempty"`
-	ServerTime           *int64  `json:"serverTime,omitempty"`
-	UserDataStream       *bool   `json:"userDataStream,omitempty"`
+	ApiKey           *string `json:"apiKey,omitempty"`
+	AuthorizedSince  *int64  `json:"authorizedSince,omitempty"`
+	ConnectedSince   *int64  `json:"connectedSince,omitempty"`
+	ReturnRateLimits *bool   `json:"returnRateLimits,omitempty"`
+	ServerTime       *int64  `json:"serverTime,omitempty"`
+	// Is User Data Stream subscription active?
+	UserDataStream       *bool `json:"userDataStream,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

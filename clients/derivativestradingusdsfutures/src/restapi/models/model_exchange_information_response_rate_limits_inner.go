@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,11 +15,15 @@ import (
 // checks if the ExchangeInformationResponseRateLimitsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &ExchangeInformationResponseRateLimitsInner{}
 
-// ExchangeInformationResponseRateLimitsInner struct for ExchangeInformationResponseRateLimitsInner
+// ExchangeInformationResponseRateLimitsInner API
 type ExchangeInformationResponseRateLimitsInner struct {
-	Interval             *string `json:"interval,omitempty"`
-	IntervalNum          *int64  `json:"intervalNum,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
+	// Interval.
+	Interval *string `json:"interval,omitempty"`
+	// Interval Num.
+	IntervalNum *int64 `json:"intervalNum,omitempty"`
+	// Limit.
+	Limit *int64 `json:"limit,omitempty"`
+	// Rate Limit Type.
 	RateLimitType        *string `json:"rateLimitType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

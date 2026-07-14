@@ -2,7 +2,6 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/binance/binance-connector-go/ci.yaml)](https://github.com/binance/binance-connector-go/actions)
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-go)](https://github.com/binance/binance-connector-go/issues)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/binance/binance-connector-go/common)](https://github.com/binance/binance-connector-go/common)
 [![Known Vulnerabilities](https://img.shields.io/badge/security-scanned-brightgreen)](https://github.com/binance/binance-connector-go/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -11,7 +10,7 @@ Collection of auto-generated Go SDK for Binance APIs.
 ## Prerequisites
 
 Before using the SDK, ensure you have:
-- **Go** (version 1.24 or later)
+- **Go** (version 1.25 or later)
 - **Go Modules** (for dependency management)
 
 ## Available SDK
@@ -32,7 +31,7 @@ Before using the SDK, ensure you have:
 - [binance-gift-card](./clients/gift-card/) - Gift Card connector
 - [binance-margin-trading](./clients/margin-trading/) - Margin Trading connector
 - [binance-mining](./clients/mining/) - Mining connector
-- [binance-nft](./clients/nft/) - NFT connector
+- **Deprecated**: ~~[binance-nft](./clients/nft/) - NFT connector~~
 - [binance-pay](./clients/pay/) - Pay connector
 - [binance-rebate](./clients/rebate/) - Rebate connector
 - [binance-simple-earn](./clients/simple-earn/) - Simple Earn connector

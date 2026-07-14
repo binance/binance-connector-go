@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**Notional** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol name | [optional] 
+**InitialMargin** | Pointer to **string** | total initial margin required with current mark price | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin required | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit | [optional] 
+**PositionSide** | Pointer to **string** | position side | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
+**Notional** | Pointer to **string** | Notional. | [optional] 
 
 ## Methods
 

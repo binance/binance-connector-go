@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**UnderlyingId** | Pointer to **int64** |  | [optional] 
-**Underlying** | Pointer to **string** |  | [optional] 
-**WindowTimeInMilliseconds** | Pointer to **int64** |  | [optional] 
-**FrozenTimeInMilliseconds** | Pointer to **int64** |  | [optional] 
-**QtyLimit** | Pointer to **string** |  | [optional] 
-**DeltaLimit** | Pointer to **string** |  | [optional] 
-**LastTriggerTime** | Pointer to **int64** |  | [optional] 
+**UnderlyingId** | Pointer to **int64** | underlying Id | [optional] 
+**Underlying** | Pointer to **string** | underlying | [optional] 
+**WindowTimeInMilliseconds** | Pointer to **int64** | window Time In Milliseconds | [optional] 
+**FrozenTimeInMilliseconds** | Pointer to **int64** | frozen Time In Milliseconds | [optional] 
+**QtyLimit** | Pointer to **string** | qty Limit | [optional] 
+**DeltaLimit** | Pointer to **string** | delta Limit | [optional] 
+**LastTriggerTime** | Pointer to **int64** | last Trigger Time | [optional] 
 
 ## Methods
 

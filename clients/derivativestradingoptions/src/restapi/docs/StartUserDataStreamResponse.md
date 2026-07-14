@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ListenKey** | Pointer to **string** |  | [optional] 
-**Expiration** | Pointer to **int64** |  | [optional] 
+**ListenKey** | Pointer to **string** | listen Key | [optional] 
+**Expiration** | Pointer to **int64** | Listen key expiration timestamp in milliseconds | [optional] 
 
 ## Methods
 

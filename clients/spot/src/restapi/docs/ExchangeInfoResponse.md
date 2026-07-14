@@ -6,9 +6,10 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Timezone** | Pointer to **string** |  | [optional] 
 **ServerTime** | Pointer to **int64** |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
-**ExchangeFilters** | Pointer to [**[]ExchangeFilters**](ExchangeFilters.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]MyFiltersResponseRateLimitsInner**](MyFiltersResponseRateLimitsInner.md) |  | [optional] 
+**ExchangeFilters** | Pointer to [**[]MyFiltersResponseExchangeFiltersInner**](MyFiltersResponseExchangeFiltersInner.md) |  | [optional] 
 **Symbols** | Pointer to [**[]ExchangeInfoResponseSymbolsInner**](ExchangeInfoResponseSymbolsInner.md) |  | [optional] 
+**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) | Optional. Present only when SOR is available. | [optional] 
 
 ## Methods
 
@@ -81,20 +82,20 @@ HasServerTime returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *ExchangeInfoResponse) GetRateLimits() []RateLimits`
+`func (o *ExchangeInfoResponse) GetRateLimits() []MyFiltersResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *ExchangeInfoResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *ExchangeInfoResponse) GetRateLimitsOk() (*[]MyFiltersResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *ExchangeInfoResponse) SetRateLimits(v []RateLimits)`
+`func (o *ExchangeInfoResponse) SetRateLimits(v []MyFiltersResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 
@@ -106,20 +107,20 @@ HasRateLimits returns a boolean if a field has been set.
 
 ### GetExchangeFilters
 
-`func (o *ExchangeInfoResponse) GetExchangeFilters() []ExchangeFilters`
+`func (o *ExchangeInfoResponse) GetExchangeFilters() []MyFiltersResponseExchangeFiltersInner`
 
 GetExchangeFilters returns the ExchangeFilters field if non-nil, zero value otherwise.
 
 ### GetExchangeFiltersOk
 
-`func (o *ExchangeInfoResponse) GetExchangeFiltersOk() (*[]ExchangeFilters, bool)`
+`func (o *ExchangeInfoResponse) GetExchangeFiltersOk() (*[]MyFiltersResponseExchangeFiltersInner, bool)`
 
 GetExchangeFiltersOk returns a tuple with the ExchangeFilters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExchangeFilters
 
-`func (o *ExchangeInfoResponse) SetExchangeFilters(v []ExchangeFilters)`
+`func (o *ExchangeInfoResponse) SetExchangeFilters(v []MyFiltersResponseExchangeFiltersInner)`
 
 SetExchangeFilters sets ExchangeFilters field to given value.
 
@@ -153,6 +154,31 @@ SetSymbols sets Symbols field to given value.
 `func (o *ExchangeInfoResponse) HasSymbols() bool`
 
 HasSymbols returns a boolean if a field has been set.
+
+### GetSors
+
+`func (o *ExchangeInfoResponse) GetSors() []ExchangeInfoResponseSorsInner`
+
+GetSors returns the Sors field if non-nil, zero value otherwise.
+
+### GetSorsOk
+
+`func (o *ExchangeInfoResponse) GetSorsOk() (*[]ExchangeInfoResponseSorsInner, bool)`
+
+GetSorsOk returns a tuple with the Sors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSors
+
+`func (o *ExchangeInfoResponse) SetSors(v []ExchangeInfoResponseSorsInner)`
+
+SetSors sets Sors field to given value.
+
+### HasSors
+
+`func (o *ExchangeInfoResponse) HasSors() bool`
+
+HasSors returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

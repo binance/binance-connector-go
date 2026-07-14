@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GridUpdate{}
 
 // GridUpdate struct for GridUpdate
 type GridUpdate struct {
-	T                    *int64        `json:"T,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// Event Time
 	E                    *int64        `json:"E,omitempty"`
 	Smallgu              *GridUpdateGu `json:"gu,omitempty"`
 	AdditionalProperties map[string]interface{}

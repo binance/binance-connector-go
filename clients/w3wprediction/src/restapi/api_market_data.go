@@ -38,7 +38,7 @@ func (r ApiGetMarketDetailRequest) Execute() (*common.RestApiResponse[models.Get
 GetMarketDetail Get Market Detail
 Get /sapi/v1/w3w/wallet/prediction/market/detail
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#get-market-detail
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param marketTopicId -  Market topic ID. Must be > 0
@@ -70,7 +70,15 @@ func (a *MarketDataAPIService) GetMarketDetailExecute(r ApiGetMarketDetailReques
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "marketTopicId", r.marketTopicId, "form", "")
 
-	resp, err := SendRequest[models.GetMarketDetailResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetMarketDetailResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,7 +99,7 @@ func (r ApiListPredictionCategoriesRequest) Execute() (*common.RestApiResponse[m
 ListPredictionCategories List Prediction Categories
 Get /sapi/v1/w3w/wallet/prediction/category/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-categories
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiListPredictionCategoriesRequest
@@ -113,7 +121,15 @@ func (a *MarketDataAPIService) ListPredictionCategoriesExecute(r ApiListPredicti
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.ListPredictionCategoriesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ListPredictionCategoriesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -176,7 +192,7 @@ func (r ApiListPredictionMarketsRequest) Execute() (*common.RestApiResponse[mode
 ListPredictionMarkets List Prediction Markets
 Get /sapi/v1/w3w/wallet/prediction/market/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#list-prediction-markets
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param l1Category -  Level-1 category filter
@@ -223,7 +239,15 @@ func (a *MarketDataAPIService) ListPredictionMarketsExecute(r ApiListPredictionM
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.ListPredictionMarketsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ListPredictionMarketsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -258,7 +282,7 @@ func (r ApiMarketSearchRequest) Execute() (*common.RestApiResponse[models.Market
 MarketSearch Market Search
 Get /sapi/v1/w3w/wallet/prediction/market/search
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#market-search
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param query -  Search keyword. Not blank
@@ -291,7 +315,15 @@ func (a *MarketDataAPIService) MarketSearchExecute(r ApiMarketSearchRequest) (*c
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "topK", r.topK, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarketSearchResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarketSearchResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -319,7 +351,7 @@ func (r ApiQueryLastTradePriceRequest) Execute() (*common.RestApiResponse[models
 QueryLastTradePrice Query Last Trade Price
 Get /sapi/v1/w3w/wallet/prediction/order-book/last-trade-price
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-last-trade-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param marketId -  Market ID. Must be > 0
@@ -351,7 +383,15 @@ func (a *MarketDataAPIService) QueryLastTradePriceExecute(r ApiQueryLastTradePri
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "marketId", r.marketId, "form", "")
 
-	resp, err := SendRequest[models.QueryLastTradePriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryLastTradePriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -393,7 +433,7 @@ func (r ApiQueryOrderBookRequest) Execute() (*common.RestApiResponse[models.Quer
 QueryOrderBook Query Order Book
 Get /sapi/v1/w3w/wallet/prediction/order-book
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/market-data#query-order-book
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param vendor -  Vendor identifier (e.g. `predict_fun`)
@@ -421,12 +461,14 @@ func (a *MarketDataAPIService) QueryOrderBookExecute(r ApiQueryOrderBookRequest)
 	if r.vendor == nil {
 		return nil, common.ReportError("vendor is required and must be specified")
 	}
+
 	if r.marketId == nil {
 		return nil, common.ReportError("marketId is required and must be specified")
 	}
 	if *r.marketId < 1 {
 		return nil, common.ReportError("marketId must be greater than 1")
 	}
+
 	if r.tokenId == nil {
 		return nil, common.ReportError("tokenId is required and must be specified")
 	}
@@ -435,7 +477,15 @@ func (a *MarketDataAPIService) QueryOrderBookExecute(r ApiQueryOrderBookRequest)
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "marketId", r.marketId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenId", r.tokenId, "form", "")
 
-	resp, err := SendRequest[models.QueryOrderBookResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryOrderBookResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

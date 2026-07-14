@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | event type | [optional] 
+**E** | Pointer to **int64** | event time | [optional] 
+**S** | Pointer to **string** | Option trading symbol | [optional] 
 **K** | Pointer to [**KlineCandlestickStreamsResponseK**](KlineCandlestickStreamsResponseK.md) |  | [optional] 
 
 ## Methods

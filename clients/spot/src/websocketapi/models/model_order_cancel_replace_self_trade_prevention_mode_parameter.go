@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,13 +16,12 @@ type OrderCancelReplaceSelfTradePreventionModeParameter string
 
 // List of orderCancelReplace_selfTradePreventionMode_parameter
 const (
-	OrderCancelReplaceSelfTradePreventionModeParameterNone             OrderCancelReplaceSelfTradePreventionModeParameter = "NONE"
-	OrderCancelReplaceSelfTradePreventionModeParameterExpireTaker      OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_TAKER"
-	OrderCancelReplaceSelfTradePreventionModeParameterExpireMaker      OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_MAKER"
-	OrderCancelReplaceSelfTradePreventionModeParameterExpireBoth       OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_BOTH"
-	OrderCancelReplaceSelfTradePreventionModeParameterDecrement        OrderCancelReplaceSelfTradePreventionModeParameter = "DECREMENT"
-	OrderCancelReplaceSelfTradePreventionModeParameterTransfer         OrderCancelReplaceSelfTradePreventionModeParameter = "TRANSFER"
-	OrderCancelReplaceSelfTradePreventionModeParameterNonRepresentable OrderCancelReplaceSelfTradePreventionModeParameter = "NON_REPRESENTABLE"
+	OrderCancelReplaceSelfTradePreventionModeParameterNone        OrderCancelReplaceSelfTradePreventionModeParameter = "NONE"
+	OrderCancelReplaceSelfTradePreventionModeParameterExpireTaker OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_TAKER"
+	OrderCancelReplaceSelfTradePreventionModeParameterExpireMaker OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_MAKER"
+	OrderCancelReplaceSelfTradePreventionModeParameterExpireBoth  OrderCancelReplaceSelfTradePreventionModeParameter = "EXPIRE_BOTH"
+	OrderCancelReplaceSelfTradePreventionModeParameterDecrement   OrderCancelReplaceSelfTradePreventionModeParameter = "DECREMENT"
+	OrderCancelReplaceSelfTradePreventionModeParameterTransfer    OrderCancelReplaceSelfTradePreventionModeParameter = "TRANSFER"
 )
 
 // All allowed values of OrderCancelReplaceSelfTradePreventionModeParameter enum
@@ -33,7 +32,6 @@ var AllowedOrderCancelReplaceSelfTradePreventionModeParameterEnumValues = []Orde
 	"EXPIRE_BOTH",
 	"DECREMENT",
 	"TRANSFER",
-	"NON_REPRESENTABLE",
 }
 
 func (v *OrderCancelReplaceSelfTradePreventionModeParameter) UnmarshalJSON(src []byte) error {

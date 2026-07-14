@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,21 +17,35 @@ var _ common.MappedNullable = &QueryCrossMarginAccountDetailsResponse{}
 
 // QueryCrossMarginAccountDetailsResponse struct for QueryCrossMarginAccountDetailsResponse
 type QueryCrossMarginAccountDetailsResponse struct {
-	Created                    *bool                                                   `json:"created,omitempty"`
-	BorrowEnabled              *bool                                                   `json:"borrowEnabled,omitempty"`
-	MarginLevel                *string                                                 `json:"marginLevel,omitempty"`
-	CollateralMarginLevel      *string                                                 `json:"collateralMarginLevel,omitempty"`
-	TotalAssetOfBtc            *string                                                 `json:"totalAssetOfBtc,omitempty"`
-	TotalLiabilityOfBtc        *string                                                 `json:"totalLiabilityOfBtc,omitempty"`
-	TotalNetAssetOfBtc         *string                                                 `json:"totalNetAssetOfBtc,omitempty"`
-	TotalCollateralValueInUSDT *string                                                 `json:"TotalCollateralValueInUSDT,omitempty"`
-	TotalOpenOrderLossInUSDT   *string                                                 `json:"totalOpenOrderLossInUSDT,omitempty"`
-	TradeEnabled               *bool                                                   `json:"tradeEnabled,omitempty"`
-	TransferInEnabled          *bool                                                   `json:"transferInEnabled,omitempty"`
-	TransferOutEnabled         *bool                                                   `json:"transferOutEnabled,omitempty"`
-	AccountType                *string                                                 `json:"accountType,omitempty"`
-	UserAssets                 []QueryCrossMarginAccountDetailsResponseUserAssetsInner `json:"userAssets,omitempty"`
-	AdditionalProperties       map[string]interface{}
+	// True means margin account created , false means margin account not created.
+	Created *bool `json:"created,omitempty"`
+	// borrow Enabled.
+	BorrowEnabled *bool `json:"borrowEnabled,omitempty"`
+	// margin Level.
+	MarginLevel *string `json:"marginLevel,omitempty"`
+	// collateral Margin Level.
+	CollateralMarginLevel *string `json:"collateralMarginLevel,omitempty"`
+	// total Asset Of Btc.
+	TotalAssetOfBtc *string `json:"totalAssetOfBtc,omitempty"`
+	// total Liability Of Btc.
+	TotalLiabilityOfBtc *string `json:"totalLiabilityOfBtc,omitempty"`
+	// total Net Asset Of Btc.
+	TotalNetAssetOfBtc *string `json:"totalNetAssetOfBtc,omitempty"`
+	// Total Collateral Value In USDT.
+	TotalCollateralValueInUSDT *string `json:"TotalCollateralValueInUSDT,omitempty"`
+	// total Open Order Loss In USDT.
+	TotalOpenOrderLossInUSDT *string `json:"totalOpenOrderLossInUSDT,omitempty"`
+	// trade Enabled.
+	TradeEnabled *bool `json:"tradeEnabled,omitempty"`
+	// transfer In Enabled.
+	TransferInEnabled *bool `json:"transferInEnabled,omitempty"`
+	// transfer Out Enabled.
+	TransferOutEnabled *bool `json:"transferOutEnabled,omitempty"`
+	// // MARGIN_1 for Cross Margin Classic, MARGIN_2 for Cross Margin Pro
+	AccountType *string `json:"accountType,omitempty"`
+	// user Assets list.
+	UserAssets           []QueryCrossMarginAccountDetailsResponseUserAssetsInner `json:"userAssets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryCrossMarginAccountDetailsResponse QueryCrossMarginAccountDetailsResponse

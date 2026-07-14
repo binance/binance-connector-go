@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &CompositeIndexSymbolInformationStreamsResponseCIn
 
 // CompositeIndexSymbolInformationStreamsResponseCInner struct for CompositeIndexSymbolInformationStreamsResponseCInner
 type CompositeIndexSymbolInformationStreamsResponseCInner struct {
-	Smallb               *string `json:"b,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallw               *string `json:"w,omitempty"`
-	W                    *string `json:"W,omitempty"`
+	// Base asset
+	Smallb *string `json:"b,omitempty"`
+	// Quote asset
+	Smallq *string `json:"q,omitempty"`
+	// Weight in quantity
+	Smallw *string `json:"w,omitempty"`
+	// Weight in percentage
+	W *string `json:"W,omitempty"`
+	// Index price
 	Smalli               *string `json:"i,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

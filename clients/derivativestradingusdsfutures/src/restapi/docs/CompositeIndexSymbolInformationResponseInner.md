@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**Component** | Pointer to **string** |  | [optional] 
+**Time** | Pointer to **int64** | Current time | [optional] 
+**Component** | Pointer to **string** | Component asset | [optional] 
 **BaseAssetList** | Pointer to [**[]CompositeIndexSymbolInformationResponseInnerBaseAssetListInner**](CompositeIndexSymbolInformationResponseInnerBaseAssetListInner.md) |  | [optional] 
 
 ## Methods

@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**[]SymbolPriceTickerResponse1Result**](SymbolPriceTickerResponse1Result.md) |  | [optional] 
+**Result** | Pointer to [**[]SymbolPriceTickerResponse2ResultInner**](SymbolPriceTickerResponse2ResultInner.md) |  | [optional] 
 **RateLimits** | Pointer to [**[]SymbolOrderBookTickerResponse1RateLimitsInner**](SymbolOrderBookTickerResponse1RateLimitsInner.md) |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *SymbolPriceTickerResponse2) GetResult() []SymbolPriceTickerResponse1Result`
+`func (o *SymbolPriceTickerResponse2) GetResult() []SymbolPriceTickerResponse2ResultInner`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *SymbolPriceTickerResponse2) GetResultOk() (*[]SymbolPriceTickerResponse1Result, bool)`
+`func (o *SymbolPriceTickerResponse2) GetResultOk() (*[]SymbolPriceTickerResponse2ResultInner, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *SymbolPriceTickerResponse2) SetResult(v []SymbolPriceTickerResponse1Result)`
+`func (o *SymbolPriceTickerResponse2) SetResult(v []SymbolPriceTickerResponse2ResultInner)`
 
 SetResult sets Result field to given value.
 

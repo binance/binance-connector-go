@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Message send time | [optional] 
 **Or** | Pointer to [**ConditionalOrderTriggerRejectOr**](ConditionalOrderTriggerRejectOr.md) |  | [optional] 
 
 ## Methods

@@ -29,7 +29,7 @@ func NewAlgoOrder() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.NewAlgoOrder().AlgoType("algoType_example").Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Type("type__example").ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.NewAlgoOrder().AlgoType(models.NewAlgoOrderAlgoTypeParameterConditional).Symbol("BTCUSDT").Side(models.ModifyOrderSideParameterBuy).Type(models.NewAlgoOrderTypeParameterStopMarket).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing NewAlgoOrder request: %v\n", err)
 		return

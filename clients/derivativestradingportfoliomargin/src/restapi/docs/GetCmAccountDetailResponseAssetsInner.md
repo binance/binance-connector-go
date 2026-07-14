@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**CrossWalletBalance** | Pointer to **string** | total wallet balance | [optional] 
+**CrossUnPnl** | Pointer to **string** | unrealized profit or loss | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin | [optional] 
+**InitialMargin** | Pointer to **string** | total intial margin required with the latest mark price | [optional] 
+**PositionInitialMargin** | Pointer to **string** | positions margin required with the latest mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | open orders intial margin required with the latest mark price | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

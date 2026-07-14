@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,15 +17,23 @@ var _ common.MappedNullable = &GetPortfolioMarginProAccountInfoResponse{}
 
 // GetPortfolioMarginProAccountInfoResponse struct for GetPortfolioMarginProAccountInfoResponse
 type GetPortfolioMarginProAccountInfoResponse struct {
-	UniMMR                *string `json:"uniMMR,omitempty"`
-	AccountEquity         *string `json:"accountEquity,omitempty"`
-	ActualEquity          *string `json:"actualEquity,omitempty"`
-	AccountMaintMargin    *string `json:"accountMaintMargin,omitempty"`
-	AccountInitialMargin  *string `json:"accountInitialMargin,omitempty"`
+	// Classic Portfolio margin account maintenance margin rate
+	UniMMR *string `json:"uniMMR,omitempty"`
+	// Account equity, unit：USD
+	AccountEquity *string `json:"accountEquity,omitempty"`
+	// Actual equity, unit：USD
+	ActualEquity *string `json:"actualEquity,omitempty"`
+	// Classic Portfolio margin account maintenance margin, unit：USD
+	AccountMaintMargin *string `json:"accountMaintMargin,omitempty"`
+	// Ignored for PM PRO and PM PRO SPAN
+	AccountInitialMargin *string `json:"accountInitialMargin,omitempty"`
+	// Ignored for PM PRO and PM PRO SPAN
 	TotalAvailableBalance *string `json:"totalAvailableBalance,omitempty"`
-	AccountStatus         *string `json:"accountStatus,omitempty"`
-	AccountType           *string `json:"accountType,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	// Classic Portfolio margin account status:\"NORMAL\", \"MARGIN_CALL\", \"SUPPLY_MARGIN\", \"REDUCE_ONLY\", \"ACTIVE_LIQUIDATION\", \"FORCE_LIQUIDATION\", \"BANKRUPTED\"
+	AccountStatus *string `json:"accountStatus,omitempty"`
+	// PM_1 for PM PRO, PM_2 for PM, PM_3 for PM PRO SPAN
+	AccountType          *string `json:"accountType,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetPortfolioMarginProAccountInfoResponse GetPortfolioMarginProAccountInfoResponse

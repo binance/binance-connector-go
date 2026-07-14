@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionsrestapi
@@ -21,7 +21,7 @@ type AccountAPIService Service
 type ApiAccountFundingFlowRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	currency   *string
+	currency   *models.AccountFundingFlowCurrencyParameter
 	recordId   *int64
 	startTime  *int64
 	endTime    *int64
@@ -30,12 +30,12 @@ type ApiAccountFundingFlowRequest struct {
 }
 
 // Asset type, only support USDT  as of now
-func (r ApiAccountFundingFlowRequest) Currency(currency string) ApiAccountFundingFlowRequest {
+func (r ApiAccountFundingFlowRequest) Currency(currency models.AccountFundingFlowCurrencyParameter) ApiAccountFundingFlowRequest {
 	r.currency = &currency
 	return r
 }
 
-// Return the recordId and subsequent data, the latest data is returned by default, e.g 100000
+// Return the recordId and subsequent data, the latest data is returned by default
 func (r ApiAccountFundingFlowRequest) RecordId(recordId int64) ApiAccountFundingFlowRequest {
 	r.recordId = &recordId
 	return r
@@ -53,12 +53,13 @@ func (r ApiAccountFundingFlowRequest) EndTime(endTime int64) ApiAccountFundingFl
 	return r
 }
 
-// Number of result sets returned Default:100 Max:1000
+// Number of result sets returned
 func (r ApiAccountFundingFlowRequest) Limit(limit int64) ApiAccountFundingFlowRequest {
 	r.limit = &limit
 	return r
 }
 
+// Recv Window.
 func (r ApiAccountFundingFlowRequest) RecvWindow(recvWindow int64) ApiAccountFundingFlowRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -72,15 +73,15 @@ func (r ApiAccountFundingFlowRequest) Execute() (*common.RestApiResponse[models.
 AccountFundingFlow Account Funding Flow (USER_DATA)
 Get /eapi/v1/bill
 
-https://developers.binance.com/docs/derivatives/options-trading/account/Account-Funding-Flow
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#account-funding-flow
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param currency -  Asset type, only support USDT  as of now
-@param recordId -  Return the recordId and subsequent data, the latest data is returned by default, e.g 100000
+@param recordId -  Return the recordId and subsequent data, the latest data is returned by default
 @param startTime -  Start Time, e.g 1593511200000
 @param endTime -  End Time, e.g 1593512200000
-@param limit -  Number of result sets returned Default:100 Max:1000
-@param recvWindow -
+@param limit -  Number of result sets returned
+@param recvWindow -  Recv Window.
 @return ApiAccountFundingFlowRequest
 */
 func (a *AccountAPIService) AccountFundingFlow(ctx context.Context) ApiAccountFundingFlowRequest {
@@ -121,7 +122,15 @@ func (a *AccountAPIService) AccountFundingFlowExecute(r ApiAccountFundingFlowReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountFundingFlowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountFundingFlowResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -135,6 +144,7 @@ type ApiOptionMarginAccountInformationRequest struct {
 	recvWindow *int64
 }
 
+// Recv Window.
 func (r ApiOptionMarginAccountInformationRequest) RecvWindow(recvWindow int64) ApiOptionMarginAccountInformationRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -148,10 +158,10 @@ func (r ApiOptionMarginAccountInformationRequest) Execute() (*common.RestApiResp
 OptionMarginAccountInformation Option Margin Account Information (USER_DATA)
 Get /eapi/v1/marginAccount
 
-https://developers.binance.com/docs/derivatives/options-trading/account/Option-Margin-Account-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/account#option-margin-account-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Recv Window.
 @return ApiOptionMarginAccountInformationRequest
 */
 func (a *AccountAPIService) OptionMarginAccountInformation(ctx context.Context) ApiOptionMarginAccountInformationRequest {
@@ -175,7 +185,15 @@ func (a *AccountAPIService) OptionMarginAccountInformationExecute(r ApiOptionMar
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.OptionMarginAccountInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OptionMarginAccountInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

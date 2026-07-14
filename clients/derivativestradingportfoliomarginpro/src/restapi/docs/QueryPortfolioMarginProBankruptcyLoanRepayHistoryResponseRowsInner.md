@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**RepayTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Amount** | Pointer to **string** | amount. | [optional] 
+**RepayTime** | Pointer to **int64** | repay Time. | [optional] 
 
 ## Methods
 

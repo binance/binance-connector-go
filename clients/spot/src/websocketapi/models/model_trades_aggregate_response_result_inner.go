@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &TradesAggregateResponseResultInner{}
 
 // TradesAggregateResponseResultInner struct for TradesAggregateResponseResultInner
 type TradesAggregateResponseResultInner struct {
-	A                    *int64  `json:"a,omitempty"`
-	P                    *string `json:"p,omitempty"`
-	Q                    *string `json:"q,omitempty"`
-	F                    *int64  `json:"f,omitempty"`
-	L                    *int64  `json:"l,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	M                    *bool   `json:"M,omitempty"`
+	// Aggregate tradeId
+	Smalla *int64 `json:"a,omitempty"`
+	// Price
+	Smallp *string `json:"p,omitempty"`
+	// Quantity
+	Smallq *string `json:"q,omitempty"`
+	// First tradeId
+	Smallf *int64 `json:"f,omitempty"`
+	// Last tradeId
+	Smalll *int64 `json:"l,omitempty"`
+	// Timestamp
+	T *int64 `json:"T,omitempty"`
+	// Was the buyer the maker?
+	Smallm *bool `json:"m,omitempty"`
+	// Was the trade the best price match?
+	M                    *bool `json:"M,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,26 +56,26 @@ func NewTradesAggregateResponseResultInnerWithDefaults() *TradesAggregateRespons
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *TradesAggregateResponseResultInner) GetA() int64 {
-	if o == nil || common.IsNil(o.A) {
+func (o *TradesAggregateResponseResultInner) GetSmalla() int64 {
+	if o == nil || common.IsNil(o.Smalla) {
 		var ret int64
 		return ret
 	}
-	return *o.A
+	return *o.Smalla
 }
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponseResultInner) GetAOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.A) {
+func (o *TradesAggregateResponseResultInner) GetSmallaOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
-	return o.A, true
+	return o.Smalla, true
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *TradesAggregateResponseResultInner) HasA() bool {
-	if o != nil && !common.IsNil(o.A) {
+func (o *TradesAggregateResponseResultInner) HasSmalla() bool {
+	if o != nil && !common.IsNil(o.Smalla) {
 		return true
 	}
 
@@ -75,31 +83,31 @@ func (o *TradesAggregateResponseResultInner) HasA() bool {
 }
 
 // SetA gets a reference to the given int64 and assigns it to the A field.
-func (o *TradesAggregateResponseResultInner) SetA(v int64) {
-	o.A = &v
+func (o *TradesAggregateResponseResultInner) SetSmalla(v int64) {
+	o.Smalla = &v
 }
 
 // GetP returns the P field value if set, zero value otherwise.
-func (o *TradesAggregateResponseResultInner) GetP() string {
-	if o == nil || common.IsNil(o.P) {
+func (o *TradesAggregateResponseResultInner) GetSmallp() string {
+	if o == nil || common.IsNil(o.Smallp) {
 		var ret string
 		return ret
 	}
-	return *o.P
+	return *o.Smallp
 }
 
 // GetPOk returns a tuple with the P field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponseResultInner) GetPOk() (*string, bool) {
-	if o == nil || common.IsNil(o.P) {
+func (o *TradesAggregateResponseResultInner) GetSmallpOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallp) {
 		return nil, false
 	}
-	return o.P, true
+	return o.Smallp, true
 }
 
 // HasP returns a boolean if a field has been set.
-func (o *TradesAggregateResponseResultInner) HasP() bool {
-	if o != nil && !common.IsNil(o.P) {
+func (o *TradesAggregateResponseResultInner) HasSmallp() bool {
+	if o != nil && !common.IsNil(o.Smallp) {
 		return true
 	}
 
@@ -107,31 +115,31 @@ func (o *TradesAggregateResponseResultInner) HasP() bool {
 }
 
 // SetP gets a reference to the given string and assigns it to the P field.
-func (o *TradesAggregateResponseResultInner) SetP(v string) {
-	o.P = &v
+func (o *TradesAggregateResponseResultInner) SetSmallp(v string) {
+	o.Smallp = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *TradesAggregateResponseResultInner) GetQ() string {
-	if o == nil || common.IsNil(o.Q) {
+func (o *TradesAggregateResponseResultInner) GetSmallq() string {
+	if o == nil || common.IsNil(o.Smallq) {
 		var ret string
 		return ret
 	}
-	return *o.Q
+	return *o.Smallq
 }
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponseResultInner) GetQOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Q) {
+func (o *TradesAggregateResponseResultInner) GetSmallqOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallq) {
 		return nil, false
 	}
-	return o.Q, true
+	return o.Smallq, true
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *TradesAggregateResponseResultInner) HasQ() bool {
-	if o != nil && !common.IsNil(o.Q) {
+func (o *TradesAggregateResponseResultInner) HasSmallq() bool {
+	if o != nil && !common.IsNil(o.Smallq) {
 		return true
 	}
 
@@ -139,31 +147,31 @@ func (o *TradesAggregateResponseResultInner) HasQ() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *TradesAggregateResponseResultInner) SetQ(v string) {
-	o.Q = &v
+func (o *TradesAggregateResponseResultInner) SetSmallq(v string) {
+	o.Smallq = &v
 }
 
 // GetF returns the F field value if set, zero value otherwise.
-func (o *TradesAggregateResponseResultInner) GetF() int64 {
-	if o == nil || common.IsNil(o.F) {
+func (o *TradesAggregateResponseResultInner) GetSmallf() int64 {
+	if o == nil || common.IsNil(o.Smallf) {
 		var ret int64
 		return ret
 	}
-	return *o.F
+	return *o.Smallf
 }
 
 // GetFOk returns a tuple with the F field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponseResultInner) GetFOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.F) {
+func (o *TradesAggregateResponseResultInner) GetSmallfOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smallf) {
 		return nil, false
 	}
-	return o.F, true
+	return o.Smallf, true
 }
 
 // HasF returns a boolean if a field has been set.
-func (o *TradesAggregateResponseResultInner) HasF() bool {
-	if o != nil && !common.IsNil(o.F) {
+func (o *TradesAggregateResponseResultInner) HasSmallf() bool {
+	if o != nil && !common.IsNil(o.Smallf) {
 		return true
 	}
 
@@ -171,31 +179,31 @@ func (o *TradesAggregateResponseResultInner) HasF() bool {
 }
 
 // SetF gets a reference to the given int64 and assigns it to the F field.
-func (o *TradesAggregateResponseResultInner) SetF(v int64) {
-	o.F = &v
+func (o *TradesAggregateResponseResultInner) SetSmallf(v int64) {
+	o.Smallf = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
-func (o *TradesAggregateResponseResultInner) GetL() int64 {
-	if o == nil || common.IsNil(o.L) {
+func (o *TradesAggregateResponseResultInner) GetSmalll() int64 {
+	if o == nil || common.IsNil(o.Smalll) {
 		var ret int64
 		return ret
 	}
-	return *o.L
+	return *o.Smalll
 }
 
 // GetLOk returns a tuple with the L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TradesAggregateResponseResultInner) GetLOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.L) {
+func (o *TradesAggregateResponseResultInner) GetSmalllOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smalll) {
 		return nil, false
 	}
-	return o.L, true
+	return o.Smalll, true
 }
 
 // HasL returns a boolean if a field has been set.
-func (o *TradesAggregateResponseResultInner) HasL() bool {
-	if o != nil && !common.IsNil(o.L) {
+func (o *TradesAggregateResponseResultInner) HasSmalll() bool {
+	if o != nil && !common.IsNil(o.Smalll) {
 		return true
 	}
 
@@ -203,8 +211,8 @@ func (o *TradesAggregateResponseResultInner) HasL() bool {
 }
 
 // SetL gets a reference to the given int64 and assigns it to the L field.
-func (o *TradesAggregateResponseResultInner) SetL(v int64) {
-	o.L = &v
+func (o *TradesAggregateResponseResultInner) SetSmalll(v int64) {
+	o.Smalll = &v
 }
 
 // GetT returns the T field value if set, zero value otherwise.
@@ -313,20 +321,20 @@ func (o TradesAggregateResponseResultInner) MarshalJSON() ([]byte, error) {
 
 func (o TradesAggregateResponseResultInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.A) {
-		toSerialize["a"] = o.A
+	if !common.IsNil(o.Smalla) {
+		toSerialize["a"] = o.Smalla
 	}
-	if !common.IsNil(o.P) {
-		toSerialize["p"] = o.P
+	if !common.IsNil(o.Smallp) {
+		toSerialize["p"] = o.Smallp
 	}
-	if !common.IsNil(o.Q) {
-		toSerialize["q"] = o.Q
+	if !common.IsNil(o.Smallq) {
+		toSerialize["q"] = o.Smallq
 	}
-	if !common.IsNil(o.F) {
-		toSerialize["f"] = o.F
+	if !common.IsNil(o.Smallf) {
+		toSerialize["f"] = o.Smallf
 	}
-	if !common.IsNil(o.L) {
-		toSerialize["l"] = o.L
+	if !common.IsNil(o.Smalll) {
+		toSerialize["l"] = o.Smalll
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,23 +17,40 @@ var _ common.MappedNullable = &AllMarketRollingWindowTickerResponseInner{}
 
 // AllMarketRollingWindowTickerResponseInner struct for AllMarketRollingWindowTickerResponseInner
 type AllMarketRollingWindowTickerResponseInner struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	P                    *string `json:"P,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	H                    *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	W                    *string `json:"w,omitempty"`
-	V                    *string `json:"v,omitempty"`
-	Q                    *string `json:"q,omitempty"`
-	O                    *int64  `json:"O,omitempty"`
-	C                    *int64  `json:"C,omitempty"`
-	F                    *int64  `json:"F,omitempty"`
-	L                    *int64  `json:"L,omitempty"`
-	N                    *int64  `json:"n,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Price change
+	Smallp *string `json:"p,omitempty"`
+	// Price change percent
+	P *string `json:"P,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// Last price
+	Smallc *string `json:"c,omitempty"`
+	// Weighted average price
+	Smallw *string `json:"w,omitempty"`
+	// Total traded base asset volume
+	Smallv *string `json:"v,omitempty"`
+	// Total traded quote asset volume
+	Smallq *string `json:"q,omitempty"`
+	// Statistics open time
+	O *int64 `json:"O,omitempty"`
+	// Statistics close time
+	C *int64 `json:"C,omitempty"`
+	// First trade ID
+	F *int64 `json:"F,omitempty"`
+	// Last trade Id
+	L *int64 `json:"L,omitempty"`
+	// Total number of trades
+	Smalln               *int64 `json:"n,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -121,26 +138,26 @@ func (o *AllMarketRollingWindowTickerResponseInner) SetE(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -148,8 +165,8 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetS(v string) {
-	o.S = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetP returns the P field value if set, zero value otherwise.
@@ -249,26 +266,26 @@ func (o *AllMarketRollingWindowTickerResponseInner) SetSmallo(v string) {
 }
 
 // GetH returns the H field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetH() string {
-	if o == nil || common.IsNil(o.H) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallh() string {
+	if o == nil || common.IsNil(o.Smallh) {
 		var ret string
 		return ret
 	}
-	return *o.H
+	return *o.Smallh
 }
 
 // GetHOk returns a tuple with the H field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetHOk() (*string, bool) {
-	if o == nil || common.IsNil(o.H) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallhOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallh) {
 		return nil, false
 	}
-	return o.H, true
+	return o.Smallh, true
 }
 
 // HasH returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasH() bool {
-	if o != nil && !common.IsNil(o.H) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmallh() bool {
+	if o != nil && !common.IsNil(o.Smallh) {
 		return true
 	}
 
@@ -276,8 +293,8 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasH() bool {
 }
 
 // SetH gets a reference to the given string and assigns it to the H field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetH(v string) {
-	o.H = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmallh(v string) {
+	o.Smallh = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
@@ -345,26 +362,26 @@ func (o *AllMarketRollingWindowTickerResponseInner) SetSmallc(v string) {
 }
 
 // GetW returns the W field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetW() string {
-	if o == nil || common.IsNil(o.W) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallw() string {
+	if o == nil || common.IsNil(o.Smallw) {
 		var ret string
 		return ret
 	}
-	return *o.W
+	return *o.Smallw
 }
 
 // GetWOk returns a tuple with the W field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetWOk() (*string, bool) {
-	if o == nil || common.IsNil(o.W) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallwOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallw) {
 		return nil, false
 	}
-	return o.W, true
+	return o.Smallw, true
 }
 
 // HasW returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasW() bool {
-	if o != nil && !common.IsNil(o.W) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmallw() bool {
+	if o != nil && !common.IsNil(o.Smallw) {
 		return true
 	}
 
@@ -372,31 +389,31 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasW() bool {
 }
 
 // SetW gets a reference to the given string and assigns it to the W field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetW(v string) {
-	o.W = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmallw(v string) {
+	o.Smallw = &v
 }
 
 // GetV returns the V field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetV() string {
-	if o == nil || common.IsNil(o.V) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallv() string {
+	if o == nil || common.IsNil(o.Smallv) {
 		var ret string
 		return ret
 	}
-	return *o.V
+	return *o.Smallv
 }
 
 // GetVOk returns a tuple with the V field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetVOk() (*string, bool) {
-	if o == nil || common.IsNil(o.V) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallvOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallv) {
 		return nil, false
 	}
-	return o.V, true
+	return o.Smallv, true
 }
 
 // HasV returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasV() bool {
-	if o != nil && !common.IsNil(o.V) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmallv() bool {
+	if o != nil && !common.IsNil(o.Smallv) {
 		return true
 	}
 
@@ -404,31 +421,31 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasV() bool {
 }
 
 // SetV gets a reference to the given string and assigns it to the V field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetV(v string) {
-	o.V = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmallv(v string) {
+	o.Smallv = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetQ() string {
-	if o == nil || common.IsNil(o.Q) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallq() string {
+	if o == nil || common.IsNil(o.Smallq) {
 		var ret string
 		return ret
 	}
-	return *o.Q
+	return *o.Smallq
 }
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetQOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Q) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallqOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallq) {
 		return nil, false
 	}
-	return o.Q, true
+	return o.Smallq, true
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasQ() bool {
-	if o != nil && !common.IsNil(o.Q) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmallq() bool {
+	if o != nil && !common.IsNil(o.Smallq) {
 		return true
 	}
 
@@ -436,8 +453,8 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasQ() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetQ(v string) {
-	o.Q = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmallq(v string) {
+	o.Smallq = &v
 }
 
 // GetO returns the O field value if set, zero value otherwise.
@@ -569,26 +586,26 @@ func (o *AllMarketRollingWindowTickerResponseInner) SetL(v int64) {
 }
 
 // GetN returns the N field value if set, zero value otherwise.
-func (o *AllMarketRollingWindowTickerResponseInner) GetN() int64 {
-	if o == nil || common.IsNil(o.N) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmalln() int64 {
+	if o == nil || common.IsNil(o.Smalln) {
 		var ret int64
 		return ret
 	}
-	return *o.N
+	return *o.Smalln
 }
 
 // GetNOk returns a tuple with the N field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) GetNOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.N) {
+func (o *AllMarketRollingWindowTickerResponseInner) GetSmallnOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Smalln) {
 		return nil, false
 	}
-	return o.N, true
+	return o.Smalln, true
 }
 
 // HasN returns a boolean if a field has been set.
-func (o *AllMarketRollingWindowTickerResponseInner) HasN() bool {
-	if o != nil && !common.IsNil(o.N) {
+func (o *AllMarketRollingWindowTickerResponseInner) HasSmalln() bool {
+	if o != nil && !common.IsNil(o.Smalln) {
 		return true
 	}
 
@@ -596,8 +613,8 @@ func (o *AllMarketRollingWindowTickerResponseInner) HasN() bool {
 }
 
 // SetN gets a reference to the given int64 and assigns it to the N field.
-func (o *AllMarketRollingWindowTickerResponseInner) SetN(v int64) {
-	o.N = &v
+func (o *AllMarketRollingWindowTickerResponseInner) SetSmalln(v int64) {
+	o.Smalln = &v
 }
 
 func (o AllMarketRollingWindowTickerResponseInner) MarshalJSON() ([]byte, error) {
@@ -616,8 +633,8 @@ func (o AllMarketRollingWindowTickerResponseInner) ToMap() (map[string]interface
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
 	if !common.IsNil(o.Smallp) {
 		toSerialize["p"] = o.Smallp
@@ -628,8 +645,8 @@ func (o AllMarketRollingWindowTickerResponseInner) ToMap() (map[string]interface
 	if !common.IsNil(o.Smallo) {
 		toSerialize["o"] = o.Smallo
 	}
-	if !common.IsNil(o.H) {
-		toSerialize["h"] = o.H
+	if !common.IsNil(o.Smallh) {
+		toSerialize["h"] = o.Smallh
 	}
 	if !common.IsNil(o.Smalll) {
 		toSerialize["l"] = o.Smalll
@@ -637,14 +654,14 @@ func (o AllMarketRollingWindowTickerResponseInner) ToMap() (map[string]interface
 	if !common.IsNil(o.Smallc) {
 		toSerialize["c"] = o.Smallc
 	}
-	if !common.IsNil(o.W) {
-		toSerialize["w"] = o.W
+	if !common.IsNil(o.Smallw) {
+		toSerialize["w"] = o.Smallw
 	}
-	if !common.IsNil(o.V) {
-		toSerialize["v"] = o.V
+	if !common.IsNil(o.Smallv) {
+		toSerialize["v"] = o.Smallv
 	}
-	if !common.IsNil(o.Q) {
-		toSerialize["q"] = o.Q
+	if !common.IsNil(o.Smallq) {
+		toSerialize["q"] = o.Smallq
 	}
 	if !common.IsNil(o.O) {
 		toSerialize["O"] = o.O
@@ -658,8 +675,8 @@ func (o AllMarketRollingWindowTickerResponseInner) ToMap() (map[string]interface
 	if !common.IsNil(o.L) {
 		toSerialize["L"] = o.L
 	}
-	if !common.IsNil(o.N) {
-		toSerialize["n"] = o.N
+	if !common.IsNil(o.Smalln) {
+		toSerialize["n"] = o.Smalln
 	}
 
 	for key, value := range o.AdditionalProperties {

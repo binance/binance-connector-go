@@ -23,7 +23,7 @@ func MarginAccountNewOco() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).StopPrice(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("LTCBTC").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).StopPrice(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

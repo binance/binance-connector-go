@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &ContinuousContractKlineCandlestickStreamsResponse
 
 // ContinuousContractKlineCandlestickStreamsResponse struct for ContinuousContractKlineCandlestickStreamsResponse
 type ContinuousContractKlineCandlestickStreamsResponse struct {
-	Smalle               *string                                             `json:"e,omitempty"`
-	E                    *int64                                              `json:"E,omitempty"`
-	Smallps              *string                                             `json:"ps,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Pair
+	Smallps *string `json:"ps,omitempty"`
+	// Contract type
 	Smallct              *string                                             `json:"ct,omitempty"`
 	Smallk               *ContinuousContractKlineCandlestickStreamsResponseK `json:"k,omitempty"`
 	AdditionalProperties map[string]interface{}

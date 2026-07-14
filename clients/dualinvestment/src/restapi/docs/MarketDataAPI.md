@@ -30,12 +30,12 @@ import (
 )
 
 func main() {
-	optionType := "optionType_example" // string | Input CALL or PUT
-	exercisedCoin := "exercisedCoin_example" // string | Target exercised asset, e.g.: if you subscribe to a high sell product (call option), you should input: `optionType`:CALL,`exercisedCoin`:USDT,`investCoin`:BNB; if you subscribe to a low buy product (put option), you should input: `optionType`:PUT,`exercisedCoin`:BNB,`investCoin`:USDT
-	investCoin := "investCoin_example" // string | Asset used for subscribing, e.g.: if you subscribe to a high sell product (call option), you should input: `optionType`:CALL,`exercisedCoin`:USDT,`investCoin`:BNB; if you subscribe to a low buy product (put option), you should input: `optionType`:PUT,`exercisedCoin`:BNB,`investCoin`:USDT
-	pageSize := int64(10) // int64 | Default: 10, Maximum: 100 (optional)
-	pageIndex := int64(1) // int64 | Default: 1 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	optionType := models.GetDualInvestmentProductListOptionTypeParameterCall // GetDualInvestmentProductListOptionTypeParameter | Input CALL or PUT
+	exercisedCoin := "USDT" // string | Target exercised asset, e.g.: if you subscribe to a high sell product (call option), you should input: `optionType: CALL`, `exercisedCoin: USDT`, `investCoin: BNB`; if you subscribe to a low buy product (put option), you should input: `optionType: PUT`, `exercisedCoin: BNB`, `investCoin: USDT`
+	investCoin := "BNB" // string | Asset used for subscribing, e.g.: if you subscribe to a high sell product (call option), you should input: `optionType: CALL`, `exercisedCoin: USDT`, `investCoin: BNB`; if you subscribe to a low buy product (put option), you should input: `optionType: PUT`, `exercisedCoin: BNB`, `investCoin: USDT`
+	pageSize := int64(10) // int64 | Number of records per page (optional)
+	pageIndex := int64(1) // int64 | Page index (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -63,12 +63,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **optionType** | **string** | Input CALL or PUT | 
- **exercisedCoin** | **string** | Target exercised asset, e.g.: if you subscribe to a high sell product (call option), you should input: &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if you subscribe to a low buy product (put option), you should input: &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT | 
- **investCoin** | **string** | Asset used for subscribing, e.g.: if you subscribe to a high sell product (call option), you should input: &#x60;optionType&#x60;:CALL,&#x60;exercisedCoin&#x60;:USDT,&#x60;investCoin&#x60;:BNB; if you subscribe to a low buy product (put option), you should input: &#x60;optionType&#x60;:PUT,&#x60;exercisedCoin&#x60;:BNB,&#x60;investCoin&#x60;:USDT | 
- **pageSize** | **int64** | Default: 10, Maximum: 100 | 
- **pageIndex** | **int64** | Default: 1 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **optionType** | [**GetDualInvestmentProductListOptionTypeParameter**](GetDualInvestmentProductListOptionTypeParameter.md) | Input CALL or PUT | 
+ **exercisedCoin** | **string** | Target exercised asset, e.g.: if you subscribe to a high sell product (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin: USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;, &#x60;investCoin: USDT&#x60; | 
+ **investCoin** | **string** | Asset used for subscribing, e.g.: if you subscribe to a high sell product (call option), you should input: &#x60;optionType: CALL&#x60;, &#x60;exercisedCoin: USDT&#x60;, &#x60;investCoin: BNB&#x60;; if you subscribe to a low buy product (put option), you should input: &#x60;optionType: PUT&#x60;, &#x60;exercisedCoin: BNB&#x60;, &#x60;investCoin: USDT&#x60; | 
+ **pageSize** | **int64** | Number of records per page | 
+ **pageIndex** | **int64** | Page index | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

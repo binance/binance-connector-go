@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FeeTier** | Pointer to **int64** |  | [optional] 
-**CanTrade** | Pointer to **bool** |  | [optional] 
-**CanDeposit** | Pointer to **bool** |  | [optional] 
-**CanWithdraw** | Pointer to **bool** |  | [optional] 
+**FeeTier** | Pointer to **int64** | account commission tier | [optional] 
+**CanTrade** | Pointer to **bool** | if can trade | [optional] 
+**CanDeposit** | Pointer to **bool** | if can transfer in asset | [optional] 
+**CanWithdraw** | Pointer to **bool** | if can transfer out asset | [optional] 
 **DualSidePosition** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**UpdateTime** | Pointer to **int64** | reserved property, please ignore | [optional] 
 **MultiAssetsMargin** | Pointer to **bool** |  | [optional] 
 **TradeGroupId** | Pointer to **int64** |  | [optional] 
 

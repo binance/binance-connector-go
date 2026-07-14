@@ -29,7 +29,7 @@ func OrderListPlaceOtoco() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(1.0).WorkingQuantity(1.0).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(1.0).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(1).WorkingQuantity(1).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(1).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing OrderListPlaceOtoco request: %v\n", err)
 		return

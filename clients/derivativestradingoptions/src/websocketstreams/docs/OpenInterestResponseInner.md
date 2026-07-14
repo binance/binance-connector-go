@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**H** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Option symbol | [optional] 
+**O** | Pointer to **string** | Open interest in contracts | [optional] 
+**H** | Pointer to **string** | Open interest in USDT | [optional] 
 
 ## Methods
 

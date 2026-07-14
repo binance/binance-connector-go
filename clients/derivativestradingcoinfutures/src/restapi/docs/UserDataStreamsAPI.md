@@ -4,7 +4,7 @@ All URIs are relative to *https://dapi.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CloseUserDataStream**](UserDataStreamsAPI.md#CloseUserDataStream) | **Delete** /dapi/v1/listenKey | Close User Data Stream(USER_STREAM)
+[**CloseUserDataStream**](UserDataStreamsAPI.md#CloseUserDataStream) | **Delete** /dapi/v1/listenKey | Close User Data Stream (USER_STREAM)
 [**KeepaliveUserDataStream**](UserDataStreamsAPI.md#KeepaliveUserDataStream) | **Put** /dapi/v1/listenKey | Keepalive User Data Stream (USER_STREAM)
 [**StartUserDataStream**](UserDataStreamsAPI.md#StartUserDataStream) | **Post** /dapi/v1/listenKey | Start User Data Stream (USER_STREAM)
 
@@ -13,7 +13,7 @@ Method        | HTTP request  | Description
 
 > CloseUserDataStream(ctx).Execute()
 
-Close User Data Stream(USER_STREAM)
+Close User Data Stream (USER_STREAM)
 
 
 ### Example

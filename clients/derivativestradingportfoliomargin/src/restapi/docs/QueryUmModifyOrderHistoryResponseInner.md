@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AmendmentId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**AmendmentId** | Pointer to **int64** | Order modification ID | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**Pair** | Pointer to **string** | Pair. | [optional] 
+**OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
+**ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
+**Time** | Pointer to **int64** | Order modification time | [optional] 
 **Amendment** | Pointer to [**QueryCmModifyOrderHistoryResponseInnerAmendment**](QueryCmModifyOrderHistoryResponseInnerAmendment.md) |  | [optional] 
-**PriceMatch** | Pointer to **string** |  | [optional] 
+**PriceMatch** | Pointer to **string** | Price Match. | [optional] 
 
 ## Methods
 

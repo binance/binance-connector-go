@@ -5,7 +5,7 @@ All URIs are relative to *https://fapi.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AdlRisk**](MarketDataAPI.md#AdlRisk) | **Get** /fapi/v1/symbolAdlRisk | ADL Risk
-[**AssetIndex**](MarketDataAPI.md#AssetIndex) | **Get** /fapi/v1/assetIndex | Asset Index
+[**AssetIndex**](MarketDataAPI.md#AssetIndex) | **Get** /fapi/v1/assetIndex | Multi-Assets Mode Asset Index
 [**Basis**](MarketDataAPI.md#Basis) | **Get** /futures/data/basis | Basis
 [**CheckServerTime**](MarketDataAPI.md#CheckServerTime) | **Get** /fapi/v1/time | Check Server Time
 [**CompositeIndexSymbolInformation**](MarketDataAPI.md#CompositeIndexSymbolInformation) | **Get** /fapi/v1/indexInfo | Composite Index Symbol Information
@@ -35,8 +35,8 @@ Method        | HTTP request  | Description
 [**TakerBuySellVolume**](MarketDataAPI.md#TakerBuySellVolume) | **Get** /futures/data/takerlongshortRatio | Taker Buy/Sell Volume
 [**TestConnectivity**](MarketDataAPI.md#TestConnectivity) | **Get** /fapi/v1/ping | Test Connectivity
 [**Ticker24hrPriceChangeStatistics**](MarketDataAPI.md#Ticker24hrPriceChangeStatistics) | **Get** /fapi/v1/ticker/24hr | 24hr Ticker Price Change Statistics
-[**TopTraderLongShortRatioAccounts**](MarketDataAPI.md#TopTraderLongShortRatioAccounts) | **Get** /futures/data/topLongShortAccountRatio | Top Trader Long/Short Ratio (Accounts)
-[**TopTraderLongShortRatioPositions**](MarketDataAPI.md#TopTraderLongShortRatioPositions) | **Get** /futures/data/topLongShortPositionRatio | Top Trader Long/Short Ratio (Positions)
+[**TopTraderLongShortRatioAccounts**](MarketDataAPI.md#TopTraderLongShortRatioAccounts) | **Get** /futures/data/topLongShortAccountRatio | Top Trader Long/Short Account Ratio (MARKET_DATA)
+[**TopTraderLongShortRatioPositions**](MarketDataAPI.md#TopTraderLongShortRatioPositions) | **Get** /futures/data/topLongShortPositionRatio | Top Trader Long/Short Position Ratio (MARKET_DATA)
 [**TradingSchedule**](MarketDataAPI.md#TradingSchedule) | **Get** /fapi/v1/tradingSchedule | Trading Schedule
 
 
@@ -63,7 +63,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string | Symbol (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -91,7 +91,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
 
 ### Return type
 
@@ -112,7 +112,7 @@ No authorization required
 
 > AssetIndexResponse AssetIndex(ctx).Symbol(symbol).Execute()
 
-Asset Index
+Multi-Assets Mode Asset Index
 
 
 ### Example
@@ -131,7 +131,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "ADAUSD" // string | Asset pair (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -159,7 +159,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Asset pair | 
 
 ### Return type
 
@@ -199,10 +199,10 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
+	pair := "BTCUSDT" // string | 
 	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(30) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -232,10 +232,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
+ **pair** | **string** |  | 
  **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -342,7 +342,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "DEFIUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -410,11 +410,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | Symbol
 	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -442,11 +442,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
+ **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -486,12 +486,12 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
-	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	pair := "BTCUSDT" // string | After CM migration, accepts both UM and CM pair values.
+	contractType := models.ContinuousContractKlineCandlestickDataContractTypeParameterPerpetual // ContinuousContractKlineCandlestickDataContractTypeParameter | Futurestype
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -520,11 +520,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
- **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) |  | 
+ **contractType** | [**ContinuousContractKlineCandlestickDataContractTypeParameter**](ContinuousContractKlineCandlestickDataContractTypeParameter.md) | Futurestype | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -629,10 +629,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string |  (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in ms to get funding rate from INCLUSIVE. (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in ms to get funding rate until INCLUSIVE. (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -661,9 +661,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Timestamp in ms to get funding rate from INCLUSIVE. | 
+ **endTime** | **int64** | Timestamp in ms to get funding rate until INCLUSIVE. | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -768,11 +768,11 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	pair := "BTCUSDT" // string | After CM migration, accepts both UM and CM pair values.
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -802,9 +802,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -844,11 +844,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -876,11 +876,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -920,9 +920,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(50) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -953,8 +953,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -996,7 +996,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1064,11 +1064,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1096,11 +1096,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -1140,9 +1140,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
+	symbol := "BTCUSDT" // string | 
+	limit := int64(50) // int64 |  (optional)
+	fromId := int64(1) // int64 | TradeId to fetch from. Default gets most recent trades. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1171,8 +1171,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
+ **limit** | **int64** |  | 
+ **fromId** | **int64** | TradeId to fetch from. Default gets most recent trades. | 
 
 ### Return type
 
@@ -1212,7 +1212,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1280,9 +1280,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(50) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -1313,8 +1313,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -1356,8 +1356,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	limit := int64(50) // int64 | Valid limits:[5, 10, 20, 50, 100, 500, 1000] (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1386,7 +1386,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** | Valid limits:[5, 10, 20, 50, 100, 500, 1000] | 
 
 ### Return type
 
@@ -1426,11 +1426,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1458,11 +1458,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
  **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -1502,7 +1502,7 @@ import (
 )
 
 func main() {
-	pair := "pair_example" // string | After CM migration, accepts both UM and CM pair values.
+	pair := "BTCUSDT" // string | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1530,7 +1530,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
+ **pair** | **string** |  | 
 
 ### Return type
 
@@ -1570,7 +1570,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSDT" // string | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1638,7 +1638,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BNBUSDT" // string | Symbol (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1666,7 +1666,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
 
 ### Return type
 
@@ -1706,8 +1706,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	limit := int64(50) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1736,7 +1736,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** |  | 
 
 ### Return type
 
@@ -1776,8 +1776,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	limit := int64(1000) // int64 | Valid limits:[1000] (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1806,7 +1806,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** | Valid limits:[1000] | 
 
 ### Return type
 
@@ -1846,7 +1846,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1914,7 +1914,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1982,7 +1982,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -2050,9 +2050,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(50) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -2083,8 +2083,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -2185,7 +2185,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSDT" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -2234,7 +2234,7 @@ No authorization required
 
 > TopTraderLongShortRatioAccountsResponse TopTraderLongShortRatioAccounts(ctx).Symbol(symbol).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
-Top Trader Long/Short Ratio (Accounts)
+Top Trader Long/Short Account Ratio (MARKET_DATA)
 
 
 ### Example
@@ -2253,9 +2253,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(50) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -2286,8 +2286,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 
@@ -2310,7 +2310,7 @@ No authorization required
 
 > TopTraderLongShortRatioPositionsResponse TopTraderLongShortRatioPositions(ctx).Symbol(symbol).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
-Top Trader Long/Short Ratio (Positions)
+Top Trader Long/Short Position Ratio (MARKET_DATA)
 
 
 ### Example
@@ -2329,9 +2329,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | \"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\"
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSDT" // string | 
+	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	limit := int64(50) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 
@@ -2362,8 +2362,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) | \&quot;5m\&quot;,\&quot;15m\&quot;,\&quot;30m\&quot;,\&quot;1h\&quot;,\&quot;2h\&quot;,\&quot;4h\&quot;,\&quot;6h\&quot;,\&quot;12h\&quot;,\&quot;1d\&quot; | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **limit** | **int64** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
 

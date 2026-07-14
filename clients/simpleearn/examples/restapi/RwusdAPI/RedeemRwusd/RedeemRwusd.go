@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/simpleearn"
+	"github.com/binance/binance-connector-go/clients/simpleearn/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func RedeemRwusd() {
 	apiClient := client.NewBinanceSimpleEarnClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(1.0).Type("s").Execute()
+	resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(1.0).Type(models.RedeemBfusdTypeParameterFast).Execute()
 	if err != nil {
 		log.Println(err)
 		return

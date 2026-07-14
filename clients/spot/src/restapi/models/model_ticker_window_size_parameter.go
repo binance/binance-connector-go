@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -104,6 +104,7 @@ const (
 	TickerWindowSizeParameterWindowSize4d  TickerWindowSizeParameter = "4d"
 	TickerWindowSizeParameterWindowSize5d  TickerWindowSizeParameter = "5d"
 	TickerWindowSizeParameterWindowSize6d  TickerWindowSizeParameter = "6d"
+	TickerWindowSizeParameterWindowSize7d  TickerWindowSizeParameter = "7d"
 )
 
 // All allowed values of TickerWindowSizeParameter enum
@@ -196,6 +197,7 @@ var AllowedTickerWindowSizeParameterEnumValues = []TickerWindowSizeParameter{
 	"4d",
 	"5d",
 	"6d",
+	"7d",
 }
 
 func (v *TickerWindowSizeParameter) UnmarshalJSON(src []byte) error {

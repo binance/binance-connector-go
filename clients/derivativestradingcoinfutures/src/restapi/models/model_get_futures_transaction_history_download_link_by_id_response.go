@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &GetFuturesTransactionHistoryDownloadLinkByIdRespo
 
 // GetFuturesTransactionHistoryDownloadLinkByIdResponse struct for GetFuturesTransactionHistoryDownloadLinkByIdResponse
 type GetFuturesTransactionHistoryDownloadLinkByIdResponse struct {
-	DownloadId           *string `json:"downloadId,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	Url                  *string `json:"url,omitempty"`
-	Notified             *bool   `json:"notified,omitempty"`
-	ExpirationTimestamp  *int64  `json:"expirationTimestamp,omitempty"`
+	// Download task ID.
+	DownloadId *string `json:"downloadId,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// The link is mapped to download id
+	Url *string `json:"url,omitempty"`
+	// ignore
+	Notified *bool `json:"notified,omitempty"`
+	// The link would expire after this timestamp
+	ExpirationTimestamp *int64 `json:"expirationTimestamp,omitempty"`
+	// Whether the record is expired.
 	IsExpired            *string `json:"isExpired,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

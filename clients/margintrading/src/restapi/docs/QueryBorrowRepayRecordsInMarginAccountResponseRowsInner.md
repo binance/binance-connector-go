@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**IsolatedSymbol** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
-**TxId** | Pointer to **int64** |  | [optional] 
+**Type** | Pointer to **string** | AUTO,MANUAL for Cross Margin Borrow; MANUAL，AUTO，BNB_AUTO_REPAY，POINT_AUTO_REPAY for Cross Margin Repay; AUTO，MANUAL for Isolated Margin Borrow/Repay; | [optional] 
+**IsolatedSymbol** | Pointer to **string** | isolated symbol, will not be returned for crossed margin | [optional] 
+**Amount** | Pointer to **string** | Total amount borrowed/repaid | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Interest** | Pointer to **string** | Interest repaid | [optional] 
+**Principal** | Pointer to **string** | Principal repaid | [optional] 
+**Status** | Pointer to **string** | one of PENDING (pending execution), CONFIRMED (successfully execution), FAILED (execution failed, nothing happened to your account); | [optional] 
+**Timestamp** | Pointer to **int64** | timestamp. | [optional] 
+**TxId** | Pointer to **int64** | tx Id. | [optional] 
 
 ## Methods
 

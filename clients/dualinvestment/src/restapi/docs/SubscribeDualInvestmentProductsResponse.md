@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **ExercisedCoin** | Pointer to **string** |  | [optional] 
 **SubscriptionAmount** | Pointer to **string** |  | [optional] 
 **Duration** | Pointer to **int64** |  | [optional] 
-**AutoCompoundPlan** | Pointer to **string** |  | [optional] 
+**AutoCompoundPlan** | Pointer to **string** | STANDARD, ADVANCED, this field won&#39;t display when autocompound is set to None | [optional] 
 **StrikePrice** | Pointer to **string** |  | [optional] 
 **SettleDate** | Pointer to **int64** |  | [optional] 
 **PurchaseStatus** | Pointer to **string** |  | [optional] 

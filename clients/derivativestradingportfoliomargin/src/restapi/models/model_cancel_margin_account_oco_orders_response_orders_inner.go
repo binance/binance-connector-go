@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &CancelMarginAccountOcoOrdersResponseOrdersInner{}
 
 // CancelMarginAccountOcoOrdersResponseOrdersInner struct for CancelMarginAccountOcoOrdersResponseOrdersInner
 type CancelMarginAccountOcoOrdersResponseOrdersInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Client Order ID.
 	ClientOrderId        *string `json:"clientOrderId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

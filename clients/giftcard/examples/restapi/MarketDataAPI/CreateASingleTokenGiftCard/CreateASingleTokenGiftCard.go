@@ -22,7 +22,7 @@ func CreateASingleTokenGiftCard() {
 	apiClient := client.NewBinanceGiftCardClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("token_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("BNB").Amount(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

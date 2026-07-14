@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetSmallLiabilityExchangeHistoryResponse{}
 
 // GetSmallLiabilityExchangeHistoryResponse struct for GetSmallLiabilityExchangeHistoryResponse
 type GetSmallLiabilityExchangeHistoryResponse struct {
-	Total                *int64                                              `json:"total,omitempty"`
+	// total.
+	Total *int64 `json:"total,omitempty"`
+	// rows list.
 	Rows                 []GetSmallLiabilityExchangeHistoryResponseRowsInner `json:"rows,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

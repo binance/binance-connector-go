@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,13 @@ var _ common.MappedNullable = &KlineResponse{}
 
 // KlineResponse struct for KlineResponse
 type KlineResponse struct {
-	Smalle               *string         `json:"e,omitempty"`
-	E                    *int64          `json:"E,omitempty"`
-	S                    *string         `json:"s,omitempty"`
-	K                    *KlineResponseK `json:"k,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls               *string         `json:"s,omitempty"`
+	Smallk               *KlineResponseK `json:"k,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,26 +111,26 @@ func (o *KlineResponse) SetE(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *KlineResponse) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *KlineResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponse) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *KlineResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *KlineResponse) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *KlineResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -135,31 +138,31 @@ func (o *KlineResponse) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *KlineResponse) SetS(v string) {
-	o.S = &v
+func (o *KlineResponse) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetK returns the K field value if set, zero value otherwise.
-func (o *KlineResponse) GetK() KlineResponseK {
-	if o == nil || common.IsNil(o.K) {
+func (o *KlineResponse) GetSmallk() KlineResponseK {
+	if o == nil || common.IsNil(o.Smallk) {
 		var ret KlineResponseK
 		return ret
 	}
-	return *o.K
+	return *o.Smallk
 }
 
 // GetKOk returns a tuple with the K field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KlineResponse) GetKOk() (*KlineResponseK, bool) {
-	if o == nil || common.IsNil(o.K) {
+func (o *KlineResponse) GetSmallkOk() (*KlineResponseK, bool) {
+	if o == nil || common.IsNil(o.Smallk) {
 		return nil, false
 	}
-	return o.K, true
+	return o.Smallk, true
 }
 
 // HasK returns a boolean if a field has been set.
-func (o *KlineResponse) HasK() bool {
-	if o != nil && !common.IsNil(o.K) {
+func (o *KlineResponse) HasSmallk() bool {
+	if o != nil && !common.IsNil(o.Smallk) {
 		return true
 	}
 
@@ -167,8 +170,8 @@ func (o *KlineResponse) HasK() bool {
 }
 
 // SetK gets a reference to the given KlineResponseK and assigns it to the K field.
-func (o *KlineResponse) SetK(v KlineResponseK) {
-	o.K = &v
+func (o *KlineResponse) SetSmallk(v KlineResponseK) {
+	o.Smallk = &v
 }
 
 func (o KlineResponse) MarshalJSON() ([]byte, error) {
@@ -187,11 +190,11 @@ func (o KlineResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.K) {
-		toSerialize["k"] = o.K
+	if !common.IsNil(o.Smallk) {
+		toSerialize["k"] = o.Smallk
 	}
 
 	for key, value := range o.AdditionalProperties {

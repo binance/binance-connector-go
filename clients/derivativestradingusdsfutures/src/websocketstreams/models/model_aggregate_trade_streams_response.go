@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,18 +17,30 @@ var _ common.MappedNullable = &AggregateTradeStreamsResponse{}
 
 // AggregateTradeStreamsResponse struct for AggregateTradeStreamsResponse
 type AggregateTradeStreamsResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smalla               *int64  `json:"a,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallnq              *string `json:"nq,omitempty"`
-	Smallf               *int64  `json:"f,omitempty"`
-	Smalll               *int64  `json:"l,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Aggregate trade ID
+	Smalla *int64 `json:"a,omitempty"`
+	// Price
+	Smallp *string `json:"p,omitempty"`
+	// Quantity with all the market trades
+	Smallq *string `json:"q,omitempty"`
+	// Normal quantity without the trades involving RPI orders
+	Smallnq *string `json:"nq,omitempty"`
+	// First trade ID
+	Smallf *int64 `json:"f,omitempty"`
+	// Last trade ID
+	Smalll *int64 `json:"l,omitempty"`
+	// Trade time
+	T *int64 `json:"T,omitempty"`
+	// Is the buyer the market maker?
+	Smallm *bool `json:"m,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -404,9 +416,9 @@ func (o *AggregateTradeStreamsResponse) SetSmallm(v bool) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *AggregateTradeStreamsResponse) GetSmallst() int64 {
+func (o *AggregateTradeStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -414,7 +426,7 @@ func (o *AggregateTradeStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggregateTradeStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *AggregateTradeStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -430,8 +442,8 @@ func (o *AggregateTradeStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *AggregateTradeStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *AggregateTradeStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

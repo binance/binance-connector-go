@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -19,8 +19,6 @@ const (
 	NewOrderNewOrderRespTypeParameterAck    NewOrderNewOrderRespTypeParameter = "ACK"
 	NewOrderNewOrderRespTypeParameterResult NewOrderNewOrderRespTypeParameter = "RESULT"
 	NewOrderNewOrderRespTypeParameterFull   NewOrderNewOrderRespTypeParameter = "FULL"
-	NewOrderNewOrderRespTypeParameterMarket NewOrderNewOrderRespTypeParameter = "MARKET"
-	NewOrderNewOrderRespTypeParameterLimit  NewOrderNewOrderRespTypeParameter = "LIMIT"
 )
 
 // All allowed values of NewOrderNewOrderRespTypeParameter enum
@@ -28,8 +26,6 @@ var AllowedNewOrderNewOrderRespTypeParameterEnumValues = []NewOrderNewOrderRespT
 	"ACK",
 	"RESULT",
 	"FULL",
-	"MARKET",
-	"LIMIT",
 }
 
 func (v *NewOrderNewOrderRespTypeParameter) UnmarshalJSON(src []byte) error {

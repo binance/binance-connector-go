@@ -4,17 +4,23 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **string** |  | [optional] 
-**B** | Pointer to [**[]BalancePositionUpdateBInner**](BalancePositionUpdateBInner.md) |  | [optional] 
-**P** | Pointer to [**[]BalancePositionUpdatePInner**](BalancePositionUpdatePInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**Eq** | Pointer to **string** | Account equity in USDT | [optional] 
+**Aeq** | Pointer to **string** | Account adjusted equity in USDT | [optional] 
+**B** | Pointer to **string** | Account wallet balance in USDT | [optional] 
+**M** | Pointer to **string** | Event reason type | [optional] 
+**U** | Pointer to **string** | Unrealized PnL | [optional] 
+**I** | Pointer to **string** | Initial margin in USDT | [optional] 
+**M** | Pointer to **string** | Maintenance margin in USDT | [optional] 
+**B** | Pointer to [**[]BalancePositionUpdateBInner**](BalancePositionUpdateBInner.md) | Balances | [optional] 
+**P** | Pointer to [**[]BalancePositionUpdatePInner**](BalancePositionUpdatePInner.md) | Positions | [optional] 
 **G** | Pointer to [**[]GreekUpdateGInner**](GreekUpdateGInner.md) |  | [optional] 
-**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Mb** | Pointer to **string** |  | [optional] 
-**Mm** | Pointer to **string** |  | [optional] 
 **ListenKey** | Pointer to **string** |  | [optional] 
+**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
+**S** | Pointer to **string** | Risk level. This feature only applies to VIP and Market Maker accounts. Risk level is re-evaluated on: funds transfer, trade fill, option expiry. | [optional] 
+**Mb** | Pointer to **string** | Margin balance | [optional] 
+**Mm** | Pointer to **string** | Maintenance margin | [optional] 
 
 ## Methods
 
@@ -37,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetE
 
-`func (o *UserDataStreamEventsResponse) GetE() string`
+`func (o *UserDataStreamEventsResponse) GetE() int64`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *UserDataStreamEventsResponse) GetEOk() (*string, bool)`
+`func (o *UserDataStreamEventsResponse) GetEOk() (*int64, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *UserDataStreamEventsResponse) SetE(v string)`
+`func (o *UserDataStreamEventsResponse) SetE(v int64)`
 
 SetE sets E field to given value.
 
@@ -84,6 +90,156 @@ SetT sets T field to given value.
 `func (o *UserDataStreamEventsResponse) HasT() bool`
 
 HasT returns a boolean if a field has been set.
+
+### GetEq
+
+`func (o *UserDataStreamEventsResponse) GetEq() string`
+
+GetEq returns the Eq field if non-nil, zero value otherwise.
+
+### GetEqOk
+
+`func (o *UserDataStreamEventsResponse) GetEqOk() (*string, bool)`
+
+GetEqOk returns a tuple with the Eq field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEq
+
+`func (o *UserDataStreamEventsResponse) SetEq(v string)`
+
+SetEq sets Eq field to given value.
+
+### HasEq
+
+`func (o *UserDataStreamEventsResponse) HasEq() bool`
+
+HasEq returns a boolean if a field has been set.
+
+### GetAeq
+
+`func (o *UserDataStreamEventsResponse) GetAeq() string`
+
+GetAeq returns the Aeq field if non-nil, zero value otherwise.
+
+### GetAeqOk
+
+`func (o *UserDataStreamEventsResponse) GetAeqOk() (*string, bool)`
+
+GetAeqOk returns a tuple with the Aeq field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAeq
+
+`func (o *UserDataStreamEventsResponse) SetAeq(v string)`
+
+SetAeq sets Aeq field to given value.
+
+### HasAeq
+
+`func (o *UserDataStreamEventsResponse) HasAeq() bool`
+
+HasAeq returns a boolean if a field has been set.
+
+### GetB
+
+`func (o *UserDataStreamEventsResponse) GetB() string`
+
+GetB returns the B field if non-nil, zero value otherwise.
+
+### GetBOk
+
+`func (o *UserDataStreamEventsResponse) GetBOk() (*string, bool)`
+
+GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetB
+
+`func (o *UserDataStreamEventsResponse) SetB(v string)`
+
+SetB sets B field to given value.
+
+### HasB
+
+`func (o *UserDataStreamEventsResponse) HasB() bool`
+
+HasB returns a boolean if a field has been set.
+
+### GetM
+
+`func (o *UserDataStreamEventsResponse) GetM() string`
+
+GetM returns the M field if non-nil, zero value otherwise.
+
+### GetMOk
+
+`func (o *UserDataStreamEventsResponse) GetMOk() (*string, bool)`
+
+GetMOk returns a tuple with the M field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetM
+
+`func (o *UserDataStreamEventsResponse) SetM(v string)`
+
+SetM sets M field to given value.
+
+### HasM
+
+`func (o *UserDataStreamEventsResponse) HasM() bool`
+
+HasM returns a boolean if a field has been set.
+
+### GetU
+
+`func (o *UserDataStreamEventsResponse) GetU() string`
+
+GetU returns the U field if non-nil, zero value otherwise.
+
+### GetUOk
+
+`func (o *UserDataStreamEventsResponse) GetUOk() (*string, bool)`
+
+GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetU
+
+`func (o *UserDataStreamEventsResponse) SetU(v string)`
+
+SetU sets U field to given value.
+
+### HasU
+
+`func (o *UserDataStreamEventsResponse) HasU() bool`
+
+HasU returns a boolean if a field has been set.
+
+### GetI
+
+`func (o *UserDataStreamEventsResponse) GetI() string`
+
+GetI returns the I field if non-nil, zero value otherwise.
+
+### GetIOk
+
+`func (o *UserDataStreamEventsResponse) GetIOk() (*string, bool)`
+
+GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetI
+
+`func (o *UserDataStreamEventsResponse) SetI(v string)`
+
+SetI sets I field to given value.
+
+### HasI
+
+`func (o *UserDataStreamEventsResponse) HasI() bool`
+
+HasI returns a boolean if a field has been set.
 
 ### GetM
 
@@ -185,6 +341,31 @@ SetG sets G field to given value.
 
 HasG returns a boolean if a field has been set.
 
+### GetListenKey
+
+`func (o *UserDataStreamEventsResponse) GetListenKey() string`
+
+GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
+
+### GetListenKeyOk
+
+`func (o *UserDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
+
+GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetListenKey
+
+`func (o *UserDataStreamEventsResponse) SetListenKey(v string)`
+
+SetListenKey sets ListenKey field to given value.
+
+### HasListenKey
+
+`func (o *UserDataStreamEventsResponse) HasListenKey() bool`
+
+HasListenKey returns a boolean if a field has been set.
+
 ### GetO
 
 `func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
@@ -284,31 +465,6 @@ SetMm sets Mm field to given value.
 `func (o *UserDataStreamEventsResponse) HasMm() bool`
 
 HasMm returns a boolean if a field has been set.
-
-### GetListenKey
-
-`func (o *UserDataStreamEventsResponse) GetListenKey() string`
-
-GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
-
-### GetListenKeyOk
-
-`func (o *UserDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
-
-GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetListenKey
-
-`func (o *UserDataStreamEventsResponse) SetListenKey(v string)`
-
-SetListenKey sets ListenKey field to given value.
-
-### HasListenKey
-
-`func (o *UserDataStreamEventsResponse) HasListenKey() bool`
-
-HasListenKey returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Timezone** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]GetExchangeInfoResponseDataAssetsInner**](GetExchangeInfoResponseDataAssetsInner.md) |  | [optional] 
-**Symbols** | Pointer to [**[]GetExchangeInfoResponseDataSymbolsInner**](GetExchangeInfoResponseDataSymbolsInner.md) |  | [optional] 
-**OrderTypes** | Pointer to **string** |  | [optional] 
+**Timezone** | Pointer to **string** | Timezone of market data. | [optional] 
+**Assets** | Pointer to [**[]GetExchangeInfoResponseDataAssetsInner**](GetExchangeInfoResponseDataAssetsInner.md) | Supported assets. | [optional] 
+**Symbols** | Pointer to [**[]GetExchangeInfoResponseDataSymbolsInner**](GetExchangeInfoResponseDataSymbolsInner.md) | Supported trading symbols. | [optional] 
+**OrderTypes** | Pointer to **string** | Order types metadata returned by backend. | [optional] 
 
 ## Methods
 

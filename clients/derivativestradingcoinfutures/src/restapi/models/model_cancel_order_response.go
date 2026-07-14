@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,31 +17,57 @@ var _ common.MappedNullable = &CancelOrderResponse{}
 
 // CancelOrderResponse struct for CancelOrderResponse
 type CancelOrderResponse struct {
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Pair                    *string `json:"pair,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Average execution price. Will be removed after CM migration.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cumulative filled quantity.
+	CumQty *string `json:"cumQty,omitempty"`
+	// Cumulative base asset amount. Will be removed after CM migration.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Original order quantity
+	OrigQty *string `json:"origQty,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Whether the order is reduce-only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Original order type.
+	OrigType *string `json:"origType,omitempty"`
+	// Order type.
+	Type *string `json:"type,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Stop trigger price type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -287,38 +313,6 @@ func (o *CancelOrderResponse) HasOrigQty() bool {
 // SetOrigQty gets a reference to the given string and assigns it to the OrigQty field.
 func (o *CancelOrderResponse) SetOrigQty(v string) {
 	o.OrigQty = &v
-}
-
-// GetOrigType returns the OrigType field value if set, zero value otherwise.
-func (o *CancelOrderResponse) GetOrigType() string {
-	if o == nil || common.IsNil(o.OrigType) {
-		var ret string
-		return ret
-	}
-	return *o.OrigType
-}
-
-// GetOrigTypeOk returns a tuple with the OrigType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOrderResponse) GetOrigTypeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.OrigType) {
-		return nil, false
-	}
-	return o.OrigType, true
-}
-
-// HasOrigType returns a boolean if a field has been set.
-func (o *CancelOrderResponse) HasOrigType() bool {
-	if o != nil && !common.IsNil(o.OrigType) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrigType gets a reference to the given string and assigns it to the OrigType field.
-func (o *CancelOrderResponse) SetOrigType(v string) {
-	o.OrigType = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -641,6 +635,38 @@ func (o *CancelOrderResponse) SetTimeInForce(v string) {
 	o.TimeInForce = &v
 }
 
+// GetOrigType returns the OrigType field value if set, zero value otherwise.
+func (o *CancelOrderResponse) GetOrigType() string {
+	if o == nil || common.IsNil(o.OrigType) {
+		var ret string
+		return ret
+	}
+	return *o.OrigType
+}
+
+// GetOrigTypeOk returns a tuple with the OrigType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelOrderResponse) GetOrigTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.OrigType) {
+		return nil, false
+	}
+	return o.OrigType, true
+}
+
+// HasOrigType returns a boolean if a field has been set.
+func (o *CancelOrderResponse) HasOrigType() bool {
+	if o != nil && !common.IsNil(o.OrigType) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigType gets a reference to the given string and assigns it to the OrigType field.
+func (o *CancelOrderResponse) SetOrigType(v string) {
+	o.OrigType = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CancelOrderResponse) GetType() string {
 	if o == nil || common.IsNil(o.Type) {
@@ -928,9 +954,6 @@ func (o CancelOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
 	}
-	if !common.IsNil(o.OrigType) {
-		toSerialize["origType"] = o.OrigType
-	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
@@ -960,6 +983,9 @@ func (o CancelOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
+	}
+	if !common.IsNil(o.OrigType) {
+		toSerialize["origType"] = o.OrigType
 	}
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
@@ -1014,7 +1040,6 @@ func (o *CancelOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")
-		delete(additionalProperties, "origType")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "side")
@@ -1025,6 +1050,7 @@ func (o *CancelOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "pair")
 		delete(additionalProperties, "timeInForce")
+		delete(additionalProperties, "origType")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "activatePrice")
 		delete(additionalProperties, "priceRate")

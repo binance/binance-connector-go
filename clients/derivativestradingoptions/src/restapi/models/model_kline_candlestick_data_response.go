@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &KlineCandlestickDataResponse{}
 
 // KlineCandlestickDataResponse struct for KlineCandlestickDataResponse
 type KlineCandlestickDataResponse struct {
-	Items []KlineCandlestickDataResponseItem
+	Items []KlineCandlestickDataItem
 }
 
 // NewKlineCandlestickDataResponse instantiates a new KlineCandlestickDataResponse object

@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package models
@@ -17,15 +17,15 @@ var _ common.MappedNullable = &GetSummaryOfSubAccountsFuturesAccountV2ResponseFu
 
 // GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp struct for GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
 type GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp struct {
-	TotalInitialMargin          *string                                                                                      `json:"totalInitialMargin,omitempty"`
-	TotalMaintenanceMargin      *string                                                                                      `json:"totalMaintenanceMargin,omitempty"`
-	TotalMarginBalance          *string                                                                                      `json:"totalMarginBalance,omitempty"`
-	TotalOpenOrderInitialMargin *string                                                                                      `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalPositionInitialMargin  *string                                                                                      `json:"totalPositionInitialMargin,omitempty"`
-	TotalUnrealizedProfit       *string                                                                                      `json:"totalUnrealizedProfit,omitempty"`
-	TotalWalletBalance          *string                                                                                      `json:"totalWalletBalance,omitempty"`
-	Asset                       *string                                                                                      `json:"asset,omitempty"`
-	SubAccountList              []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner `json:"subAccountList,omitempty"`
+	TotalInitialMargin          *string                                                            `json:"totalInitialMargin,omitempty"`
+	TotalMaintenanceMargin      *string                                                            `json:"totalMaintenanceMargin,omitempty"`
+	TotalMarginBalance          *string                                                            `json:"totalMarginBalance,omitempty"`
+	TotalOpenOrderInitialMargin *string                                                            `json:"totalOpenOrderInitialMargin,omitempty"`
+	TotalPositionInitialMargin  *string                                                            `json:"totalPositionInitialMargin,omitempty"`
+	TotalUnrealizedProfit       *string                                                            `json:"totalUnrealizedProfit,omitempty"`
+	TotalWalletBalance          *string                                                            `json:"totalWalletBalance,omitempty"`
+	Asset                       *string                                                            `json:"asset,omitempty"`
+	SubAccountList              []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner `json:"subAccountList,omitempty"`
 	AdditionalProperties        map[string]interface{}
 }
 
@@ -305,9 +305,9 @@ func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
 }
 
 // GetSubAccountList returns the SubAccountList field value if set, zero value otherwise.
-func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner {
+func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner {
 	if o == nil || common.IsNil(o.SubAccountList) {
-		var ret []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner
+		var ret []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner
 		return ret
 	}
 	return o.SubAccountList
@@ -315,7 +315,7 @@ func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
 
 // GetSubAccountListOk returns a tuple with the SubAccountList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountListOk() ([]GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner, bool) {
+func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountListOk() ([]GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner, bool) {
 	if o == nil || common.IsNil(o.SubAccountList) {
 		return nil, false
 	}
@@ -331,8 +331,8 @@ func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp
 	return false
 }
 
-// SetSubAccountList gets a reference to the given []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner and assigns it to the SubAccountList field.
-func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner) {
+// SetSubAccountList gets a reference to the given []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner and assigns it to the SubAccountList field.
+func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner) {
 	o.SubAccountList = v
 }
 

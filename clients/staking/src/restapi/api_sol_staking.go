@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package binancestakingrestapi
@@ -24,6 +24,7 @@ type ApiClaimBoostRewardsRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds.
 func (r ApiClaimBoostRewardsRequest) RecvWindow(recvWindow int64) ApiClaimBoostRewardsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -34,13 +35,13 @@ func (r ApiClaimBoostRewardsRequest) Execute() (*common.RestApiResponse[models.C
 }
 
 /*
-ClaimBoostRewards Claim Boost Rewards(TRADE)
+ClaimBoostRewards Claim Boost Rewards (TRADE)
 Post /sapi/v1/sol-staking/sol/claim
 
-https://developers.binance.com/docs/staking/sol-staking/staking/Claim-Boost-Rewards
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#claim-boost-rewards
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiClaimBoostRewardsRequest
 */
 func (a *SolStakingAPIService) ClaimBoostRewards(ctx context.Context) ApiClaimBoostRewardsRequest {
@@ -64,7 +65,15 @@ func (a *SolStakingAPIService) ClaimBoostRewardsExecute(r ApiClaimBoostRewardsRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ClaimBoostRewardsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ClaimBoostRewardsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -92,18 +101,18 @@ func (r ApiGetBnsolRateHistoryRequest) EndTime(endTime int64) ApiGetBnsolRateHis
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetBnsolRateHistoryRequest) Current(current int64) ApiGetBnsolRateHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetBnsolRateHistoryRequest) Size(size int64) ApiGetBnsolRateHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiGetBnsolRateHistoryRequest) RecvWindow(recvWindow int64) ApiGetBnsolRateHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -114,17 +123,17 @@ func (r ApiGetBnsolRateHistoryRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-GetBnsolRateHistory Get BNSOL Rate History(USER_DATA)
+GetBnsolRateHistory Get BNSOL Rate History (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/rateHistory
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-Rate-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rate-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiGetBnsolRateHistoryRequest
 */
 func (a *SolStakingAPIService) GetBnsolRateHistory(ctx context.Context) ApiGetBnsolRateHistoryRequest {
@@ -160,7 +169,15 @@ func (a *SolStakingAPIService) GetBnsolRateHistoryExecute(r ApiGetBnsolRateHisto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBnsolRateHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetBnsolRateHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -188,18 +205,18 @@ func (r ApiGetBnsolRewardsHistoryRequest) EndTime(endTime int64) ApiGetBnsolRewa
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetBnsolRewardsHistoryRequest) Current(current int64) ApiGetBnsolRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetBnsolRewardsHistoryRequest) Size(size int64) ApiGetBnsolRewardsHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetBnsolRewardsHistoryRequest) RecvWindow(recvWindow int64) ApiGetBnsolRewardsHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -210,17 +227,17 @@ func (r ApiGetBnsolRewardsHistoryRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-GetBnsolRewardsHistory Get BNSOL rewards history(USER_DATA)
+GetBnsolRewardsHistory Get BNSOL rewards history (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/bnsolRewardsHistory
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-BNSOL-rewards-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-bnsol-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetBnsolRewardsHistoryRequest
 */
 func (a *SolStakingAPIService) GetBnsolRewardsHistory(ctx context.Context) ApiGetBnsolRewardsHistoryRequest {
@@ -256,7 +273,15 @@ func (a *SolStakingAPIService) GetBnsolRewardsHistoryExecute(r ApiGetBnsolReward
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBnsolRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetBnsolRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -267,7 +292,7 @@ func (a *SolStakingAPIService) GetBnsolRewardsHistoryExecute(r ApiGetBnsolReward
 type ApiGetBoostRewardsHistoryRequest struct {
 	ctx        context.Context
 	ApiService *SolStakingAPIService
-	type_      *string
+	type_      *models.GetBoostRewardsHistoryTypeParameter
 	startTime  *int64
 	endTime    *int64
 	current    *int64
@@ -275,8 +300,7 @@ type ApiGetBoostRewardsHistoryRequest struct {
 	recvWindow *int64
 }
 
-// \&quot;CLAIM\&quot;, \&quot;DISTRIBUTE\&quot;, default \&quot;CLAIM\&quot;
-func (r ApiGetBoostRewardsHistoryRequest) Type(type_ string) ApiGetBoostRewardsHistoryRequest {
+func (r ApiGetBoostRewardsHistoryRequest) Type(type_ models.GetBoostRewardsHistoryTypeParameter) ApiGetBoostRewardsHistoryRequest {
 	r.type_ = &type_
 	return r
 }
@@ -291,18 +315,18 @@ func (r ApiGetBoostRewardsHistoryRequest) EndTime(endTime int64) ApiGetBoostRewa
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetBoostRewardsHistoryRequest) Current(current int64) ApiGetBoostRewardsHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetBoostRewardsHistoryRequest) Size(size int64) ApiGetBoostRewardsHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetBoostRewardsHistoryRequest) RecvWindow(recvWindow int64) ApiGetBoostRewardsHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -313,18 +337,18 @@ func (r ApiGetBoostRewardsHistoryRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-GetBoostRewardsHistory Get Boost Rewards History(USER_DATA)
+GetBoostRewardsHistory Get Boost Rewards History (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/boostRewardsHistory
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-Boost-Rewards-History
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-boost-rewards-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param type_ -  \"CLAIM\", \"DISTRIBUTE\", default \"CLAIM\"
+@param type_ -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetBoostRewardsHistoryRequest
 */
 func (a *SolStakingAPIService) GetBoostRewardsHistory(ctx context.Context) ApiGetBoostRewardsHistoryRequest {
@@ -365,7 +389,15 @@ func (a *SolStakingAPIService) GetBoostRewardsHistoryExecute(r ApiGetBoostReward
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetBoostRewardsHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetBoostRewardsHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -399,18 +431,18 @@ func (r ApiGetSolRedemptionHistoryRequest) EndTime(endTime int64) ApiGetSolRedem
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetSolRedemptionHistoryRequest) Current(current int64) ApiGetSolRedemptionHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetSolRedemptionHistoryRequest) Size(size int64) ApiGetSolRedemptionHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetSolRedemptionHistoryRequest) RecvWindow(recvWindow int64) ApiGetSolRedemptionHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -421,18 +453,18 @@ func (r ApiGetSolRedemptionHistoryRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-GetSolRedemptionHistory Get SOL redemption history(USER_DATA)
+GetSolRedemptionHistory Get SOL redemption history (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/redemptionHistory
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-redemption-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-redemption-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param redeemId -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetSolRedemptionHistoryRequest
 */
 func (a *SolStakingAPIService) GetSolRedemptionHistory(ctx context.Context) ApiGetSolRedemptionHistoryRequest {
@@ -471,7 +503,15 @@ func (a *SolStakingAPIService) GetSolRedemptionHistoryExecute(r ApiGetSolRedempt
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSolRedemptionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSolRedemptionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -505,18 +545,18 @@ func (r ApiGetSolStakingHistoryRequest) EndTime(endTime int64) ApiGetSolStakingH
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Currently querying page
 func (r ApiGetSolStakingHistoryRequest) Current(current int64) ApiGetSolStakingHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetSolStakingHistoryRequest) Size(size int64) ApiGetSolStakingHistoryRequest {
 	r.size = &size
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetSolStakingHistoryRequest) RecvWindow(recvWindow int64) ApiGetSolStakingHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -527,18 +567,18 @@ func (r ApiGetSolStakingHistoryRequest) Execute() (*common.RestApiResponse[model
 }
 
 /*
-GetSolStakingHistory Get SOL staking history(USER_DATA)
+GetSolStakingHistory Get SOL staking history (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/stakingHistory
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-SOL-staking-history
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param purchaseId -
 @param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param recvWindow -
+@param current -  Currently querying page
+@param size -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetSolStakingHistoryRequest
 */
 func (a *SolStakingAPIService) GetSolStakingHistory(ctx context.Context) ApiGetSolStakingHistoryRequest {
@@ -577,7 +617,15 @@ func (a *SolStakingAPIService) GetSolStakingHistoryExecute(r ApiGetSolStakingHis
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSolStakingHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSolStakingHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -591,6 +639,7 @@ type ApiGetSolStakingQuotaDetailsRequest struct {
 	recvWindow *int64
 }
 
+// The value cannot be greater than 60000
 func (r ApiGetSolStakingQuotaDetailsRequest) RecvWindow(recvWindow int64) ApiGetSolStakingQuotaDetailsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -601,13 +650,13 @@ func (r ApiGetSolStakingQuotaDetailsRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetSolStakingQuotaDetails Get SOL staking quota details(USER_DATA)
+GetSolStakingQuotaDetails Get SOL staking quota details (USER_DATA)
 Get /sapi/v1/sol-staking/sol/quota
 
-https://developers.binance.com/docs/staking/sol-staking/account/Get-SOL-staking-quota-details
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-sol-staking-quota-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiGetSolStakingQuotaDetailsRequest
 */
 func (a *SolStakingAPIService) GetSolStakingQuotaDetails(ctx context.Context) ApiGetSolStakingQuotaDetailsRequest {
@@ -631,7 +680,15 @@ func (a *SolStakingAPIService) GetSolStakingQuotaDetailsExecute(r ApiGetSolStaki
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSolStakingQuotaDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSolStakingQuotaDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -645,6 +702,7 @@ type ApiGetUnclaimedRewardsRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds.
 func (r ApiGetUnclaimedRewardsRequest) RecvWindow(recvWindow int64) ApiGetUnclaimedRewardsRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -655,13 +713,13 @@ func (r ApiGetUnclaimedRewardsRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-GetUnclaimedRewards Get Unclaimed Rewards(USER_DATA)
+GetUnclaimedRewards Get Unclaimed Rewards (USER_DATA)
 Get /sapi/v1/sol-staking/sol/history/unclaimedRewards
 
-https://developers.binance.com/docs/staking/sol-staking/history/Get-Unclaimed-Rewards
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#get-unclaimed-rewards
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiGetUnclaimedRewardsRequest
 */
 func (a *SolStakingAPIService) GetUnclaimedRewards(ctx context.Context) ApiGetUnclaimedRewardsRequest {
@@ -685,7 +743,15 @@ func (a *SolStakingAPIService) GetUnclaimedRewardsExecute(r ApiGetUnclaimedRewar
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetUnclaimedRewardsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetUnclaimedRewardsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -700,12 +766,13 @@ type ApiRedeemSolRequest struct {
 	recvWindow *int64
 }
 
-// Amount in SOL.
+// Amount in BNSOL, limit 8 decimals
 func (r ApiRedeemSolRequest) Amount(amount float32) ApiRedeemSolRequest {
 	r.amount = &amount
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiRedeemSolRequest) RecvWindow(recvWindow int64) ApiRedeemSolRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -716,14 +783,14 @@ func (r ApiRedeemSolRequest) Execute() (*common.RestApiResponse[models.RedeemSol
 }
 
 /*
-RedeemSol Redeem SOL(TRADE)
+RedeemSol Redeem SOL (TRADE)
 Post /sapi/v1/sol-staking/sol/redeem
 
-https://developers.binance.com/docs/staking/sol-staking/staking/Redeem-SOL
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#redeem-sol
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param amount -  Amount in SOL.
-@param recvWindow -
+@param amount -  Amount in BNSOL, limit 8 decimals
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiRedeemSolRequest
 */
 func (a *SolStakingAPIService) RedeemSol(ctx context.Context) ApiRedeemSolRequest {
@@ -752,7 +819,15 @@ func (a *SolStakingAPIService) RedeemSolExecute(r ApiRedeemSolRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemSolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemSolResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -766,6 +841,7 @@ type ApiSolStakingAccountRequest struct {
 	recvWindow *int64
 }
 
+// The value cannot be greater than 60000
 func (r ApiSolStakingAccountRequest) RecvWindow(recvWindow int64) ApiSolStakingAccountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -776,13 +852,13 @@ func (r ApiSolStakingAccountRequest) Execute() (*common.RestApiResponse[models.S
 }
 
 /*
-SolStakingAccount SOL Staking account(USER_DATA)
+SolStakingAccount SOL Staking account (USER_DATA)
 Get /sapi/v1/sol-staking/account
 
-https://developers.binance.com/docs/staking/sol-staking/account/SOL-Staking-account
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#sol-staking-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiSolStakingAccountRequest
 */
 func (a *SolStakingAPIService) SolStakingAccount(ctx context.Context) ApiSolStakingAccountRequest {
@@ -806,7 +882,15 @@ func (a *SolStakingAPIService) SolStakingAccountExecute(r ApiSolStakingAccountRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SolStakingAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SolStakingAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -827,6 +911,7 @@ func (r ApiSubscribeSolStakingRequest) Amount(amount float32) ApiSubscribeSolSta
 	return r
 }
 
+// Request validity window in milliseconds.
 func (r ApiSubscribeSolStakingRequest) RecvWindow(recvWindow int64) ApiSubscribeSolStakingRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -837,14 +922,14 @@ func (r ApiSubscribeSolStakingRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-SubscribeSolStaking Subscribe SOL Staking(TRADE)
+SubscribeSolStaking Subscribe SOL Staking (TRADE)
 Post /sapi/v1/sol-staking/sol/stake
 
-https://developers.binance.com/docs/staking/sol-staking/staking/Subscribe-SOL-Staking
+https://developers.binance.com/en/docs/catalog/investment-and-services-staking/api/rest-api/sol-staking#subscribe-sol-staking
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param amount -  Amount in SOL.
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds.
 @return ApiSubscribeSolStakingRequest
 */
 func (a *SolStakingAPIService) SubscribeSolStaking(ctx context.Context) ApiSubscribeSolStakingRequest {
@@ -873,7 +958,15 @@ func (a *SolStakingAPIService) SubscribeSolStakingExecute(r ApiSubscribeSolStaki
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SubscribeSolStakingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubscribeSolStakingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

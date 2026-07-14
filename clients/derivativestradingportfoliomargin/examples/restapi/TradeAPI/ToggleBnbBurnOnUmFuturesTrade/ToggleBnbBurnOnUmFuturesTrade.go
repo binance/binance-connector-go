@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func ToggleBnbBurnOnUmFuturesTrade() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ToggleBnbBurnOnUmFuturesTrade(context.Background()).FeeBurn("feeBurn_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ToggleBnbBurnOnUmFuturesTrade(context.Background()).FeeBurn(models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue).Execute()
 	if err != nil {
 		log.Println(err)
 		return

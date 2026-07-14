@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &NotionalBracketForSymbolResponseInner{}
 
 // NotionalBracketForSymbolResponseInner struct for NotionalBracketForSymbolResponseInner
 type NotionalBracketForSymbolResponseInner struct {
-	Symbol               *string                                            `json:"symbol,omitempty"`
-	NotionalCoef         *float32                                           `json:"notionalCoef,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// user symbol bracket multiplier, only appears when user's symbol bracket is adjusted
+	NotionalCoef *float32 `json:"notionalCoef,omitempty"`
+	// Leverage bracket details.
 	Brackets             []NotionalBracketForPairResponseInnerBracketsInner `json:"brackets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,12 +17,19 @@ var _ common.MappedNullable = &GetPositionMarginChangeHistoryResponseInner{}
 
 // GetPositionMarginChangeHistoryResponseInner struct for GetPositionMarginChangeHistoryResponseInner
 type GetPositionMarginChangeHistoryResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Type                 *int64  `json:"type,omitempty"`
-	DeltaType            *string `json:"deltaType,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Type.
+	Type *int64 `json:"type,omitempty"`
+	// Delta Type.
+	DeltaType *string `json:"deltaType,omitempty"`
+	// Amount.
+	Amount *string `json:"amount,omitempty"`
+	// Asset.
+	Asset *string `json:"asset,omitempty"`
+	// Time.
+	Time *int64 `json:"time,omitempty"`
+	// Position Side.
 	PositionSide         *string `json:"positionSide,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

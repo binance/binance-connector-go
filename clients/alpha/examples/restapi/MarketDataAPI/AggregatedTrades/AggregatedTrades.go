@@ -21,7 +21,7 @@ func AggregatedTrades() {
 	apiClient := client.NewBinanceAlphaClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.AggregatedTrades(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.AggregatedTrades(context.Background()).Symbol("ALPHA_118USDC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
 Binance Pay REST API
 
-OpenAPI Specification for the Binance Pay REST API
+Query Binance Pay transaction history.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &GetPayTradeHistoryResponseDataInnerFundsDetailInn
 
 // GetPayTradeHistoryResponseDataInnerFundsDetailInner struct for GetPayTradeHistoryResponseDataInnerFundsDetailInner
 type GetPayTradeHistoryResponseDataInnerFundsDetailInner struct {
-	Currency             *string                                                             `json:"currency,omitempty"`
-	Amount               *string                                                             `json:"amount,omitempty"`
-	WalletAssetCost      *GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost `json:"walletAssetCost,omitempty"`
+	// Asset.
+	Currency *string `json:"currency,omitempty"`
+	// Asset amount.
+	Amount *string `json:"amount,omitempty"`
+	// Asset cost details per wallet type. Keys are wallet type IDs (e.g. \"1\", \"2\"), values are cost amounts.
+	WalletAssetCost      *map[string]string `json:"walletAssetCost,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,9 +110,9 @@ func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetAmount(v string
 }
 
 // GetWalletAssetCost returns the WalletAssetCost field value if set, zero value otherwise.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost {
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() map[string]string {
 	if o == nil || common.IsNil(o.WalletAssetCost) {
-		var ret GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost
+		var ret map[string]string
 		return ret
 	}
 	return *o.WalletAssetCost
@@ -117,7 +120,7 @@ func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost
 
 // GetWalletAssetCostOk returns a tuple with the WalletAssetCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost, bool) {
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*map[string]string, bool) {
 	if o == nil || common.IsNil(o.WalletAssetCost) {
 		return nil, false
 	}
@@ -133,8 +136,8 @@ func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) HasWalletAssetCost
 	return false
 }
 
-// SetWalletAssetCost gets a reference to the given GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost and assigns it to the WalletAssetCost field.
-func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost) {
+// SetWalletAssetCost gets a reference to the given map[string]string and assigns it to the WalletAssetCost field.
+func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v map[string]string) {
 	o.WalletAssetCost = &v
 }
 

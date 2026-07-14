@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**RateLimitType** | Pointer to **string** |  | [optional] 
-**Interval** | Pointer to **string** |  | [optional] 
-**IntervalNum** | Pointer to **int64** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**RateLimitType** | Pointer to **string** | Rate limit type. | [optional] 
+**Interval** | Pointer to **string** | Rate limit interval. | [optional] 
+**IntervalNum** | Pointer to **int64** | Rate limit interval multiplier. | [optional] 
+**Limit** | Pointer to **int64** | Maximum allowed orders for this rule. | [optional] 
+**Count** | Pointer to **int64** | Total number of trades in the 24h window. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package binancewalletrestapi
@@ -27,7 +27,6 @@ type ApiBrokerWithdrawRequest struct {
 	withdrawOrderId    *string
 	questionnaire      *string
 	originatorPii      *string
-	signature          *string
 	addressTag         *string
 	network            *string
 	addressName        *string
@@ -68,12 +67,6 @@ func (r ApiBrokerWithdrawRequest) OriginatorPii(originatorPii string) ApiBrokerW
 	return r
 }
 
-// Must be the last parameter.
-func (r ApiBrokerWithdrawRequest) Signature(signature string) ApiBrokerWithdrawRequest {
-	r.signature = &signature
-	return r
-}
-
 // Secondary address identifier for coins like XRP,XMR etc.
 func (r ApiBrokerWithdrawRequest) AddressTag(addressTag string) ApiBrokerWithdrawRequest {
 	r.addressTag = &addressTag
@@ -111,7 +104,7 @@ func (r ApiBrokerWithdrawRequest) Execute() (*common.RestApiResponse[models.Brok
 BrokerWithdraw Broker Withdraw (for brokers of local entities that require travel rule) (USER_DATA)
 Post /sapi/v1/localentity/broker/withdraw/apply
 
-https://developers.binance.com/docs/wallet/travel-rule/Broker-Withdraw
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#broker-withdraw
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param address -
@@ -120,7 +113,6 @@ https://developers.binance.com/docs/wallet/travel-rule/Broker-Withdraw
 @param withdrawOrderId -  withdrawID defined by the client (i.e. client's internal withdrawID)
 @param questionnaire -  JSON format questionnaire answers.
 @param originatorPii -  JSON format originator Pii, see StandardPii section below
-@param signature -  Must be the last parameter.
 @param addressTag -  Secondary address identifier for coins like XRP,XMR etc.
 @param network -
 @param addressName -  Description of the address. Address book cap is 200, space in name should be encoded into `%20`
@@ -148,23 +140,25 @@ func (a *TravelRuleAPIService) BrokerWithdrawExecute(r ApiBrokerWithdrawRequest)
 	if r.address == nil {
 		return nil, common.ReportError("address is required and must be specified")
 	}
+
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.withdrawOrderId == nil {
 		return nil, common.ReportError("withdrawOrderId is required and must be specified")
 	}
+
 	if r.questionnaire == nil {
 		return nil, common.ReportError("questionnaire is required and must be specified")
 	}
+
 	if r.originatorPii == nil {
 		return nil, common.ReportError("originatorPii is required and must be specified")
-	}
-	if r.signature == nil {
-		return nil, common.ReportError("signature is required and must be specified")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "address", r.address, "form", "")
@@ -188,9 +182,16 @@ func (a *TravelRuleAPIService) BrokerWithdrawExecute(r ApiBrokerWithdrawRequest)
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "originatorPii", r.originatorPii, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "signature", r.signature, "form", "")
 
-	resp, err := SendRequest[models.BrokerWithdrawResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.BrokerWithdrawResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -217,7 +218,7 @@ func (r ApiCheckQuestionnaireRequirementsRequest) Execute() (*common.RestApiResp
 CheckQuestionnaireRequirements Check Questionnaire Requirements (for local entities that require travel rule) (supporting network) (USER_DATA)
 Get /sapi/v1/localentity/questionnaire-requirements
 
-https://developers.binance.com/docs/wallet/travel-rule/questionnaire-requirements
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#check-questionnaire-requirements
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -244,7 +245,15 @@ func (a *TravelRuleAPIService) CheckQuestionnaireRequirementsExecute(r ApiCheckQ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckQuestionnaireRequirementsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CheckQuestionnaireRequirementsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -274,6 +283,7 @@ func (r ApiDepositHistoryTravelRuleRequest) TrId(trId string) ApiDepositHistoryT
 	return r
 }
 
+// Comma(,) separated list of transaction Ids.
 func (r ApiDepositHistoryTravelRuleRequest) TxId(txId string) ApiDepositHistoryTravelRuleRequest {
 	r.txId = &txId
 	return r
@@ -307,11 +317,13 @@ func (r ApiDepositHistoryTravelRuleRequest) PendingQuestionnaire(pendingQuestion
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiDepositHistoryTravelRuleRequest) StartTime(startTime int64) ApiDepositHistoryTravelRuleRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiDepositHistoryTravelRuleRequest) EndTime(endTime int64) ApiDepositHistoryTravelRuleRequest {
 	r.endTime = &endTime
 	return r
@@ -323,7 +335,6 @@ func (r ApiDepositHistoryTravelRuleRequest) Offset(offset int64) ApiDepositHisto
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiDepositHistoryTravelRuleRequest) Limit(limit int64) ApiDepositHistoryTravelRuleRequest {
 	r.limit = &limit
 	return r
@@ -334,23 +345,23 @@ func (r ApiDepositHistoryTravelRuleRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-DepositHistoryTravelRule Deposit History (for local entities that required travel rule) (supporting network) (USER_DATA)
+DepositHistoryTravelRule Deposit History Travel Rule (for local entities that required travel rule) (supporting network) (USER_DATA)
 Get /sapi/v1/localentity/deposit/history
 
-https://developers.binance.com/docs/wallet/travel-rule/Deposit-History
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#deposit-history-travel-rule
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param trId -  Comma(,) separated list of travel rule record Ids.
-@param txId -
+@param txId -  Comma(,) separated list of transaction Ids.
 @param tranId -  Comma(,) separated list of wallet tran Ids.
 @param network -
 @param coin -
 @param travelRuleStatus -  0:Completed,1:Pending,2:Failed
 @param pendingQuestionnaire -  true: Only return records that pending deposit questionnaire. false/not provided: return all records.
-@param startTime -
-@param endTime -
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
 @param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
+@param limit -
 @return ApiDepositHistoryTravelRuleRequest
 */
 func (a *TravelRuleAPIService) DepositHistoryTravelRule(ctx context.Context) ApiDepositHistoryTravelRuleRequest {
@@ -404,7 +415,15 @@ func (a *TravelRuleAPIService) DepositHistoryTravelRuleExecute(r ApiDepositHisto
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositHistoryTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DepositHistoryTravelRuleResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -415,7 +434,7 @@ func (a *TravelRuleAPIService) DepositHistoryTravelRuleExecute(r ApiDepositHisto
 type ApiDepositHistoryV2Request struct {
 	ctx                   context.Context
 	ApiService            *TravelRuleAPIService
-	depositId             *string
+	depositId             *int64
 	txId                  *string
 	network               *string
 	coin                  *string
@@ -427,11 +446,12 @@ type ApiDepositHistoryV2Request struct {
 }
 
 // Comma(,) separated list of wallet tran Ids.
-func (r ApiDepositHistoryV2Request) DepositId(depositId string) ApiDepositHistoryV2Request {
+func (r ApiDepositHistoryV2Request) DepositId(depositId int64) ApiDepositHistoryV2Request {
 	r.depositId = &depositId
 	return r
 }
 
+// Comma(,) separated list of transaction Ids.
 func (r ApiDepositHistoryV2Request) TxId(txId string) ApiDepositHistoryV2Request {
 	r.txId = &txId
 	return r
@@ -453,23 +473,23 @@ func (r ApiDepositHistoryV2Request) RetrieveQuestionnaire(retrieveQuestionnaire 
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiDepositHistoryV2Request) StartTime(startTime int64) ApiDepositHistoryV2Request {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiDepositHistoryV2Request) EndTime(endTime int64) ApiDepositHistoryV2Request {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 0
 func (r ApiDepositHistoryV2Request) Offset(offset int64) ApiDepositHistoryV2Request {
 	r.offset = &offset
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiDepositHistoryV2Request) Limit(limit int64) ApiDepositHistoryV2Request {
 	r.limit = &limit
 	return r
@@ -483,18 +503,18 @@ func (r ApiDepositHistoryV2Request) Execute() (*common.RestApiResponse[models.De
 DepositHistoryV2 Deposit History V2 (for local entities that required travel rule) (supporting network) (USER_DATA)
 Get /sapi/v2/localentity/deposit/history
 
-https://developers.binance.com/docs/wallet/travel-rule/Deposit-History-V2
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#deposit-history-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param depositId -  Comma(,) separated list of wallet tran Ids.
-@param txId -
+@param txId -  Comma(,) separated list of transaction Ids.
 @param network -
 @param coin -
 @param retrieveQuestionnaire -  true: return `questionnaire` within response.
-@param startTime -
-@param endTime -
-@param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
+@param offset -
+@param limit -
 @return ApiDepositHistoryV2Request
 */
 func (a *TravelRuleAPIService) DepositHistoryV2(ctx context.Context) ApiDepositHistoryV2Request {
@@ -542,7 +562,15 @@ func (a *TravelRuleAPIService) DepositHistoryV2Execute(r ApiDepositHistoryV2Requ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DepositHistoryV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -569,7 +597,7 @@ func (r ApiFetchAddressVerificationListRequest) Execute() (*common.RestApiRespon
 FetchAddressVerificationList Fetch address verification list (USER_DATA)
 Get /sapi/v1/addressVerify/list
 
-https://developers.binance.com/docs/wallet/travel-rule/address-verification-list
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#fetch-address-verification-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -596,7 +624,15 @@ func (a *TravelRuleAPIService) FetchAddressVerificationListExecute(r ApiFetchAdd
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FetchAddressVerificationListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchAddressVerificationListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -607,6 +643,12 @@ func (a *TravelRuleAPIService) FetchAddressVerificationListExecute(r ApiFetchAdd
 type ApiGetCountryListRequest struct {
 	ctx        context.Context
 	ApiService *TravelRuleAPIService
+	recvWindow *int64
+}
+
+func (r ApiGetCountryListRequest) RecvWindow(recvWindow int64) ApiGetCountryListRequest {
+	r.recvWindow = &recvWindow
+	return r
 }
 
 func (r ApiGetCountryListRequest) Execute() (*common.RestApiResponse[models.GetCountryListResponse], error) {
@@ -617,9 +659,10 @@ func (r ApiGetCountryListRequest) Execute() (*common.RestApiResponse[models.GetC
 GetCountryList Get Country List (USER_DATA)
 Get /sapi/v1/localentity/country/list
 
-https://developers.binance.com/docs/wallet/travel-rule/country-list
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#get-country-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -
 @return ApiGetCountryListRequest
 */
 func (a *TravelRuleAPIService) GetCountryList(ctx context.Context) ApiGetCountryListRequest {
@@ -639,7 +682,19 @@ func (a *TravelRuleAPIService) GetCountryListExecute(r ApiGetCountryListRequest)
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetCountryListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetCountryListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -651,11 +706,17 @@ type ApiGetRegionListRequest struct {
 	ctx         context.Context
 	ApiService  *TravelRuleAPIService
 	countryCode *string
+	recvWindow  *int64
 }
 
-// ISO 2-digit country code (from &#x60;Country List&#x60; API).
+// ISO 2-digit country code (from Country List API).
 func (r ApiGetRegionListRequest) CountryCode(countryCode string) ApiGetRegionListRequest {
 	r.countryCode = &countryCode
+	return r
+}
+
+func (r ApiGetRegionListRequest) RecvWindow(recvWindow int64) ApiGetRegionListRequest {
+	r.recvWindow = &recvWindow
 	return r
 }
 
@@ -667,10 +728,11 @@ func (r ApiGetRegionListRequest) Execute() (*common.RestApiResponse[models.GetRe
 GetRegionList Get Region List (USER_DATA)
 Get /sapi/v1/localentity/region/list
 
-https://developers.binance.com/docs/wallet/travel-rule/region-list
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#get-region-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param countryCode -  ISO 2-digit country code (from `Country List` API).
+@param countryCode -  ISO 2-digit country code (from Country List API).
+@param recvWindow -
 @return ApiGetRegionListRequest
 */
 func (a *TravelRuleAPIService) GetRegionList(ctx context.Context) ApiGetRegionListRequest {
@@ -695,8 +757,19 @@ func (a *TravelRuleAPIService) GetRegionListExecute(r ApiGetRegionListRequest) (
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "countryCode", r.countryCode, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
 
-	resp, err := SendRequest[models.GetRegionListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetRegionListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -711,7 +784,6 @@ type ApiSubmitDepositQuestionnaireRequest struct {
 	depositId      *int64
 	questionnaire  *string
 	beneficiaryPii *string
-	signature      *string
 	network        *string
 	coin           *string
 	amount         *float32
@@ -725,7 +797,7 @@ func (r ApiSubmitDepositQuestionnaireRequest) SubAccountId(subAccountId string) 
 	return r
 }
 
-// Wallet deposit ID
+// Wallet deposit ID.
 func (r ApiSubmitDepositQuestionnaireRequest) DepositId(depositId int64) ApiSubmitDepositQuestionnaireRequest {
 	r.depositId = &depositId
 	return r
@@ -740,12 +812,6 @@ func (r ApiSubmitDepositQuestionnaireRequest) Questionnaire(questionnaire string
 // JSON format beneficiary Pii.
 func (r ApiSubmitDepositQuestionnaireRequest) BeneficiaryPii(beneficiaryPii string) ApiSubmitDepositQuestionnaireRequest {
 	r.beneficiaryPii = &beneficiaryPii
-	return r
-}
-
-// Must be the last parameter.
-func (r ApiSubmitDepositQuestionnaireRequest) Signature(signature string) ApiSubmitDepositQuestionnaireRequest {
-	r.signature = &signature
 	return r
 }
 
@@ -769,7 +835,6 @@ func (r ApiSubmitDepositQuestionnaireRequest) Address(address string) ApiSubmitD
 	return r
 }
 
-// Secondary address identifier for coins like XRP,XMR etc.
 func (r ApiSubmitDepositQuestionnaireRequest) AddressTag(addressTag string) ApiSubmitDepositQuestionnaireRequest {
 	r.addressTag = &addressTag
 	return r
@@ -780,22 +845,21 @@ func (r ApiSubmitDepositQuestionnaireRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-SubmitDepositQuestionnaire Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
+SubmitDepositQuestionnaire Submit Deposit Questionnaire Broker (For local entities that require travel rule) (supporting network) (USER_DATA)
 Put /sapi/v1/localentity/broker/deposit/provide-info
 
-https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param subAccountId -  External user ID.
-@param depositId -  Wallet deposit ID
+@param depositId -  Wallet deposit ID.
 @param questionnaire -  JSON format questionnaire answers.
 @param beneficiaryPii -  JSON format beneficiary Pii.
-@param signature -  Must be the last parameter.
 @param network -
 @param coin -
 @param amount -
 @param address -
-@param addressTag -  Secondary address identifier for coins like XRP,XMR etc.
+@param addressTag -
 @return ApiSubmitDepositQuestionnaireRequest
 */
 func (a *TravelRuleAPIService) SubmitDepositQuestionnaire(ctx context.Context) ApiSubmitDepositQuestionnaireRequest {
@@ -818,17 +882,17 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireExecute(r ApiSubmitDepo
 	if r.subAccountId == nil {
 		return nil, common.ReportError("subAccountId is required and must be specified")
 	}
+
 	if r.depositId == nil {
 		return nil, common.ReportError("depositId is required and must be specified")
 	}
+
 	if r.questionnaire == nil {
 		return nil, common.ReportError("questionnaire is required and must be specified")
 	}
+
 	if r.beneficiaryPii == nil {
 		return nil, common.ReportError("beneficiaryPii is required and must be specified")
-	}
-	if r.signature == nil {
-		return nil, common.ReportError("signature is required and must be specified")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "subAccountId", r.subAccountId, "form", "")
@@ -850,9 +914,16 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireExecute(r ApiSubmitDepo
 	if r.addressTag != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "addressTag", r.addressTag, "form", "")
 	}
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "signature", r.signature, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -887,7 +958,7 @@ func (r ApiSubmitDepositQuestionnaireTravelRuleRequest) Execute() (*common.RestA
 SubmitDepositQuestionnaireTravelRule Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) (USER_DATA)
 Put /sapi/v1/localentity/deposit/provide-info
 
-https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire-travel-rule
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param tranId -  Wallet tran ID
@@ -914,6 +985,7 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireTravelRuleExecute(r Api
 	if r.tranId == nil {
 		return nil, common.ReportError("tranId is required and must be specified")
 	}
+
 	if r.questionnaire == nil {
 		return nil, common.ReportError("questionnaire is required and must be specified")
 	}
@@ -921,7 +993,15 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireTravelRuleExecute(r Api
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tranId", r.tranId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireTravelRuleResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -956,7 +1036,7 @@ func (r ApiSubmitDepositQuestionnaireV2Request) Execute() (*common.RestApiRespon
 SubmitDepositQuestionnaireV2 Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) (USER_DATA)
 Put /sapi/v2/localentity/deposit/provide-info
 
-https://developers.binance.com/docs/wallet/travel-rule/deposit-provide-info-v2
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#submit-deposit-questionnaire-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param depositId -  Wallet deposit ID
@@ -983,6 +1063,7 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireV2Execute(r ApiSubmitDe
 	if r.depositId == nil {
 		return nil, common.ReportError("depositId is required and must be specified")
 	}
+
 	if r.questionnaire == nil {
 		return nil, common.ReportError("questionnaire is required and must be specified")
 	}
@@ -990,7 +1071,15 @@ func (a *TravelRuleAPIService) SubmitDepositQuestionnaireV2Execute(r ApiSubmitDe
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "depositId", r.depositId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.SubmitDepositQuestionnaireV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SubmitDepositQuestionnaireV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1017,7 +1106,7 @@ func (r ApiVaspListRequest) Execute() (*common.RestApiResponse[models.VaspListRe
 VaspList VASP list (for local entities that require travel rule) (supporting network) (USER_DATA)
 Get /sapi/v1/localentity/vasp
 
-https://developers.binance.com/docs/wallet/travel-rule/onboarded-vasp-list
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#vasp-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -1044,7 +1133,15 @@ func (a *TravelRuleAPIService) VaspListExecute(r ApiVaspListRequest) (*common.Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.VaspListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.VaspListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1074,6 +1171,7 @@ func (r ApiWithdrawHistoryV1Request) TrId(trId string) ApiWithdrawHistoryV1Reque
 	return r
 }
 
+// Comma(,) separated list of transaction Ids.
 func (r ApiWithdrawHistoryV1Request) TxId(txId string) ApiWithdrawHistoryV1Request {
 	r.txId = &txId
 	return r
@@ -1101,23 +1199,23 @@ func (r ApiWithdrawHistoryV1Request) TravelRuleStatus(travelRuleStatus int64) Ap
 	return r
 }
 
-// Default: 0
 func (r ApiWithdrawHistoryV1Request) Offset(offset int64) ApiWithdrawHistoryV1Request {
 	r.offset = &offset
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiWithdrawHistoryV1Request) Limit(limit int64) ApiWithdrawHistoryV1Request {
 	r.limit = &limit
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiWithdrawHistoryV1Request) StartTime(startTime int64) ApiWithdrawHistoryV1Request {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiWithdrawHistoryV1Request) EndTime(endTime int64) ApiWithdrawHistoryV1Request {
 	r.endTime = &endTime
 	return r
@@ -1133,22 +1231,22 @@ func (r ApiWithdrawHistoryV1Request) Execute() (*common.RestApiResponse[models.W
 }
 
 /*
-WithdrawHistoryV1 Withdraw History (for local entities that require travel rule) (supporting network) (USER_DATA)
+WithdrawHistoryV1 Withdraw History Travel Rule (supporting network) (USER_DATA)
 Get /sapi/v1/localentity/withdraw/history
 
-https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-history-v1
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param trId -  Comma(,) separated list of travel rule record Ids.
-@param txId -
+@param txId -  Comma(,) separated list of transaction Ids.
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
 @param network -
 @param coin -
 @param travelRuleStatus -  0:Completed,1:Pending,2:Failed
-@param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
-@param startTime -
-@param endTime -
+@param offset -
+@param limit -
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
 @param recvWindow -
 @return ApiWithdrawHistoryV1Request
 */
@@ -1203,7 +1301,15 @@ func (a *TravelRuleAPIService) WithdrawHistoryV1Execute(r ApiWithdrawHistoryV1Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawHistoryV1Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawHistoryV1Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1233,6 +1339,7 @@ func (r ApiWithdrawHistoryV2Request) TrId(trId string) ApiWithdrawHistoryV2Reque
 	return r
 }
 
+// Comma(,) separated list of transaction Ids.
 func (r ApiWithdrawHistoryV2Request) TxId(txId string) ApiWithdrawHistoryV2Request {
 	r.txId = &txId
 	return r
@@ -1260,23 +1367,23 @@ func (r ApiWithdrawHistoryV2Request) TravelRuleStatus(travelRuleStatus int64) Ap
 	return r
 }
 
-// Default: 0
 func (r ApiWithdrawHistoryV2Request) Offset(offset int64) ApiWithdrawHistoryV2Request {
 	r.offset = &offset
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiWithdrawHistoryV2Request) Limit(limit int64) ApiWithdrawHistoryV2Request {
 	r.limit = &limit
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiWithdrawHistoryV2Request) StartTime(startTime int64) ApiWithdrawHistoryV2Request {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiWithdrawHistoryV2Request) EndTime(endTime int64) ApiWithdrawHistoryV2Request {
 	r.endTime = &endTime
 	return r
@@ -1295,19 +1402,19 @@ func (r ApiWithdrawHistoryV2Request) Execute() (*common.RestApiResponse[models.W
 WithdrawHistoryV2 Withdraw History V2 (for local entities that require travel rule) (supporting network) (USER_DATA)
 Get /sapi/v2/localentity/withdraw/history
 
-https://developers.binance.com/docs/wallet/travel-rule/Withdraw-History-V2
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-history-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param trId -  Comma(,) separated list of travel rule record Ids.
-@param txId -
+@param txId -  Comma(,) separated list of transaction Ids.
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
 @param network -
 @param coin -
 @param travelRuleStatus -  0:Completed,1:Pending,2:Failed
-@param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
-@param startTime -
-@param endTime -
+@param offset -
+@param limit -
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
 @param recvWindow -
 @return ApiWithdrawHistoryV2Request
 */
@@ -1362,7 +1469,15 @@ func (a *TravelRuleAPIService) WithdrawHistoryV2Execute(r ApiWithdrawHistoryV2Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawHistoryV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawHistoryV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1391,11 +1506,13 @@ func (r ApiWithdrawTravelRuleRequest) Coin(coin string) ApiWithdrawTravelRuleReq
 	return r
 }
 
+// Withdrawal address
 func (r ApiWithdrawTravelRuleRequest) Address(address string) ApiWithdrawTravelRuleRequest {
 	r.address = &address
 	return r
 }
 
+// Amount
 func (r ApiWithdrawTravelRuleRequest) Amount(amount float32) ApiWithdrawTravelRuleRequest {
 	r.amount = &amount
 	return r
@@ -1407,12 +1524,13 @@ func (r ApiWithdrawTravelRuleRequest) Questionnaire(questionnaire string) ApiWit
 	return r
 }
 
-// client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query.
+// withdrawID defined by the client (i.e. client&#39;s internal withdrawID)
 func (r ApiWithdrawTravelRuleRequest) WithdrawOrderId(withdrawOrderId string) ApiWithdrawTravelRuleRequest {
 	r.withdrawOrderId = &withdrawOrderId
 	return r
 }
 
+// Withdrawal network
 func (r ApiWithdrawTravelRuleRequest) Network(network string) ApiWithdrawTravelRuleRequest {
 	r.network = &network
 	return r
@@ -1430,7 +1548,6 @@ func (r ApiWithdrawTravelRuleRequest) TransactionFeeFlag(transactionFeeFlag bool
 	return r
 }
 
-// Description of the address. Address book cap is 200, space in name should be encoded into &#x60;%20&#x60;
 func (r ApiWithdrawTravelRuleRequest) Name(name string) ApiWithdrawTravelRuleRequest {
 	r.name = &name
 	return r
@@ -1452,21 +1569,21 @@ func (r ApiWithdrawTravelRuleRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-WithdrawTravelRule Withdraw (for local entities that require travel rule) (USER_DATA)
+WithdrawTravelRule Withdraw Travel Rule (USER_DATA)
 Post /sapi/v1/localentity/withdraw/apply
 
-https://developers.binance.com/docs/wallet/travel-rule/Withdraw
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/travel-rule#withdraw-travel-rule
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
-@param address -
-@param amount -
+@param address -  Withdrawal address
+@param amount -  Amount
 @param questionnaire -  JSON format questionnaire answers.
-@param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
-@param network -
+@param withdrawOrderId -  withdrawID defined by the client (i.e. client's internal withdrawID)
+@param network -  Withdrawal network
 @param addressTag -  Secondary address identifier for coins like XRP,XMR etc.
 @param transactionFeeFlag -  When making internal transfer, `true` for returning the fee to the destination account; `false` for returning the fee back to the departure account. Default `false`.
-@param name -  Description of the address. Address book cap is 200, space in name should be encoded into `%20`
+@param name -
 @param walletType -  The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the current \"selected wallet\" under wallet->Fiat and Spot/Funding->Deposit
 @param recvWindow -
 @return ApiWithdrawTravelRuleRequest
@@ -1491,12 +1608,15 @@ func (a *TravelRuleAPIService) WithdrawTravelRuleExecute(r ApiWithdrawTravelRule
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
+
 	if r.address == nil {
 		return nil, common.ReportError("address is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.questionnaire == nil {
 		return nil, common.ReportError("questionnaire is required and must be specified")
 	}
@@ -1527,7 +1647,15 @@ func (a *TravelRuleAPIService) WithdrawTravelRuleExecute(r ApiWithdrawTravelRule
 	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "questionnaire", r.questionnaire, "form", "")
 
-	resp, err := SendRequest[models.WithdrawTravelRuleResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawTravelRuleResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

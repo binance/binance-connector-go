@@ -77,10 +77,10 @@ func (r ApiCreateInboundTransferRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-CreateInboundTransfer Create Inbound Transfer
+CreateInboundTransfer Create Inbound Transfer (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/transfer/inbound
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletId -  Wallet ID
@@ -112,12 +112,15 @@ func (a *TransferAPIService) CreateInboundTransferExecute(r ApiCreateInboundTran
 	if r.walletId == nil {
 		return nil, common.ReportError("walletId is required and must be specified")
 	}
+
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.fromTokenAmount == nil {
 		return nil, common.ReportError("fromTokenAmount is required and must be specified")
 	}
+
 	if r.accountType == nil {
 		return nil, common.ReportError("accountType is required and must be specified")
 	}
@@ -136,7 +139,15 @@ func (a *TransferAPIService) CreateInboundTransferExecute(r ApiCreateInboundTran
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "chainId", r.chainId, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateInboundTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateInboundTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -210,10 +221,10 @@ func (r ApiCreateOutboundTransferRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-CreateOutboundTransfer Create Outbound Transfer
+CreateOutboundTransfer Create Outbound Transfer (TRADE)
 Post /sapi/v1/w3w/wallet/prediction/transfer/outbound
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletId -  Wallet ID
@@ -246,15 +257,19 @@ func (a *TransferAPIService) CreateOutboundTransferExecute(r ApiCreateOutboundTr
 	if r.walletId == nil {
 		return nil, common.ReportError("walletId is required and must be specified")
 	}
+
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.fromTokenAmount == nil {
 		return nil, common.ReportError("fromTokenAmount is required and must be specified")
 	}
+
 	if r.accountType == nil {
 		return nil, common.ReportError("accountType is required and must be specified")
 	}
+
 	if r.sourceBiz == nil {
 		return nil, common.ReportError("sourceBiz is required and must be specified")
 	}
@@ -274,7 +289,15 @@ func (a *TransferAPIService) CreateOutboundTransferExecute(r ApiCreateOutboundTr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "chainId", r.chainId, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateOutboundTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateOutboundTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -348,10 +371,10 @@ func (r ApiQueryTransferListRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryTransferList Query Transfer List
+QueryTransferList Query Transfer List (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/transfer/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -384,9 +407,11 @@ func (a *TransferAPIService) QueryTransferListExecute(r ApiQueryTransferListRequ
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.startDate == nil {
 		return nil, common.ReportError("startDate is required and must be specified")
 	}
+
 	if r.endDate == nil {
 		return nil, common.ReportError("endDate is required and must be specified")
 	}
@@ -410,7 +435,15 @@ func (a *TransferAPIService) QueryTransferListExecute(r ApiQueryTransferListRequ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryTransferListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryTransferListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -442,10 +475,10 @@ func (r ApiQueryTransferStatusRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-QueryTransferStatus Query Transfer Status
+QueryTransferStatus Query Transfer Status (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/transfer/status
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param transferId -  Transfer ID returned from outbound/inbound transfer
@@ -478,7 +511,15 @@ func (a *TransferAPIService) QueryTransferStatusExecute(r ApiQueryTransferStatus
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryTransferStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryTransferStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

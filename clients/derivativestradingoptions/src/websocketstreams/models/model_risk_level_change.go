@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &RiskLevelChange{}
 
 // RiskLevelChange struct for RiskLevelChange
 type RiskLevelChange struct {
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallmb              *string `json:"mb,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Risk level. This feature only applies to VIP and Market Maker accounts. Risk level is re-evaluated on: funds transfer, trade fill, option expiry.
+	Smalls *string `json:"s,omitempty"`
+	// Margin balance
+	Smallmb *string `json:"mb,omitempty"`
+	// Maintenance margin
 	Smallmm              *string `json:"mm,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

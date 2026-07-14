@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,18 +17,30 @@ var _ common.MappedNullable = &TradeLite{}
 
 // TradeLite struct for TradeLite
 type TradeLite struct {
-	E                    *int64  `json:"E,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	L                    *string `json:"L,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallt               *int64  `json:"t,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Original Quantity
+	Smallq *string `json:"q,omitempty"`
+	// Original Price
+	Smallp *string `json:"p,omitempty"`
+	// Is this trade the maker side?
+	Smallm *bool `json:"m,omitempty"`
+	// Client Order Id
+	Smallc *string `json:"c,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Last Filled Price
+	L *string `json:"L,omitempty"`
+	// Order Last Filled Quantity
+	Smalll *string `json:"l,omitempty"`
+	// Trade Id
+	Smallt *int64 `json:"t,omitempty"`
+	// Order Id
+	Smalli               *int64 `json:"i,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

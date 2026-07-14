@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
 **TotalWalletBalance** | Pointer to **string** |  | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
-**SubAccountList** | Pointer to [**[]GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner**](GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner.md) |  | [optional] 
+**SubAccountList** | Pointer to [**[]GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner**](GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner.md) |  | [optional] 
 
 ## Methods
 
@@ -235,20 +235,20 @@ HasAsset returns a boolean if a field has been set.
 
 ### GetSubAccountList
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner`
+`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountList() []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner`
 
 GetSubAccountList returns the SubAccountList field if non-nil, zero value otherwise.
 
 ### GetSubAccountListOk
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountListOk() (*[]GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner, bool)`
+`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) GetSubAccountListOk() (*[]GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner, bool)`
 
 GetSubAccountListOk returns a tuple with the SubAccountList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubAccountList
 
-`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryRespSubAccountListInner)`
+`func (o *GetSummaryOfSubAccountsFuturesAccountV2ResponseFutureAccountSummaryResp) SetSubAccountList(v []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner)`
 
 SetSubAccountList sets SubAccountList field to given value.
 

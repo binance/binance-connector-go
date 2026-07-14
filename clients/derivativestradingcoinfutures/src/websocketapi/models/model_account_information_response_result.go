@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,14 +15,21 @@ import (
 // checks if the AccountInformationResponseResult type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountInformationResponseResult{}
 
-// AccountInformationResponseResult struct for AccountInformationResponseResult
+// AccountInformationResponseResult Indicates that combined is set to true.
 type AccountInformationResponseResult struct {
-	FeeTier              *int64                                           `json:"feeTier,omitempty"`
-	CanTrade             *bool                                            `json:"canTrade,omitempty"`
-	CanDeposit           *bool                                            `json:"canDeposit,omitempty"`
-	CanWithdraw          *bool                                            `json:"canWithdraw,omitempty"`
-	UpdateTime           *int64                                           `json:"updateTime,omitempty"`
-	Assets               []AccountInformationResponseResultAssetsInner    `json:"assets,omitempty"`
+	// Fee tier level.
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// Whether trading is enabled.
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// Whether deposits are enabled.
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// Whether withdrawals are enabled.
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Supported assets.
+	Assets []AccountInformationResponseResultAssetsInner `json:"assets,omitempty"`
+	// Position list.
 	Positions            []AccountInformationResponseResultPositionsInner `json:"positions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &OptionMarginAccountInformationResponseAssetInner{
 
 // OptionMarginAccountInformationResponseAssetInner struct for OptionMarginAccountInformationResponseAssetInner
 type OptionMarginAccountInformationResponseAssetInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	MarginBalance        *string `json:"marginBalance,omitempty"`
-	Equity               *string `json:"equity,omitempty"`
-	Available            *string `json:"available,omitempty"`
-	InitialMargin        *string `json:"initialMargin,omitempty"`
-	MaintMargin          *string `json:"maintMargin,omitempty"`
-	UnrealizedPNL        *string `json:"unrealizedPNL,omitempty"`
+	// asset
+	Asset *string `json:"asset,omitempty"`
+	// margin Balance
+	MarginBalance *string `json:"marginBalance,omitempty"`
+	// equity
+	Equity *string `json:"equity,omitempty"`
+	// available
+	Available *string `json:"available,omitempty"`
+	// initial Margin
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maint Margin
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// unrealized PNL
+	UnrealizedPNL *string `json:"unrealizedPNL,omitempty"`
+	// adjusted Equity
 	AdjustedEquity       *string `json:"adjustedEquity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

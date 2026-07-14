@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Mb** | Pointer to **string** |  | [optional] 
-**Mm** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**S** | Pointer to **string** | Risk level. This feature only applies to VIP and Market Maker accounts. Risk level is re-evaluated on: funds transfer, trade fill, option expiry. | [optional] 
+**Mb** | Pointer to **string** | Margin balance | [optional] 
+**Mm** | Pointer to **string** | Maintenance margin | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -11,7 +11,7 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersBatchOrdersParameterInnerType the model 'PlaceMultipleOrdersBatchOrdersParameterInnerType'
+// PlaceMultipleOrdersBatchOrdersParameterInnerType **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted on a per-element basis and will return element-level `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 type PlaceMultipleOrdersBatchOrdersParameterInnerType string
 
 // List of placeMultipleOrders_batchOrders_parameter_inner_type

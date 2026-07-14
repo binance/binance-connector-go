@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingrestapi
@@ -25,7 +25,7 @@ type ApiCreateSpecialKeyRequest struct {
 	symbol         *string
 	ip             *string
 	publicKey      *string
-	permissionMode *string
+	permissionMode *models.CreateSpecialKeyPermissionModeParameter
 	recvWindow     *int64
 }
 
@@ -34,7 +34,6 @@ func (r ApiCreateSpecialKeyRequest) ApiName(apiName string) ApiCreateSpecialKeyR
 	return r
 }
 
-// isolated margin pair
 func (r ApiCreateSpecialKeyRequest) Symbol(symbol string) ApiCreateSpecialKeyRequest {
 	r.symbol = &symbol
 	return r
@@ -46,19 +45,18 @@ func (r ApiCreateSpecialKeyRequest) Ip(ip string) ApiCreateSpecialKeyRequest {
 	return r
 }
 
-// 1. If publicKey is inputted it will create an RSA or Ed25519 key. &lt;br /&gt;2. Need to be encoded to URL-encoded format
+// 1. If publicKey is inputted it will create an RSA or Ed25519 key.  2. Need to be encoded to URL-encoded format
 func (r ApiCreateSpecialKeyRequest) PublicKey(publicKey string) ApiCreateSpecialKeyRequest {
 	r.publicKey = &publicKey
 	return r
 }
 
 // This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE.
-func (r ApiCreateSpecialKeyRequest) PermissionMode(permissionMode string) ApiCreateSpecialKeyRequest {
+func (r ApiCreateSpecialKeyRequest) PermissionMode(permissionMode models.CreateSpecialKeyPermissionModeParameter) ApiCreateSpecialKeyRequest {
 	r.permissionMode = &permissionMode
 	return r
 }
 
-// No more than 60000
 func (r ApiCreateSpecialKeyRequest) RecvWindow(recvWindow int64) ApiCreateSpecialKeyRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -69,18 +67,18 @@ func (r ApiCreateSpecialKeyRequest) Execute() (*common.RestApiResponse[models.Cr
 }
 
 /*
-CreateSpecialKey Create Special Key(Low-Latency Trading)(TRADE)
+CreateSpecialKey Create Special Key(Low-Latency Trading) (TRADE)
 Post /sapi/v1/margin/apiKey
 
-https://developers.binance.com/docs/margin_trading/trade/Create-Special-Key-of-Low-Latency-Trading
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#create-special-key
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param apiName -
-@param symbol -  isolated margin pair
+@param symbol -
 @param ip -  Can be added in batches, separated by commas. Max 30 for an API key
-@param publicKey -  1. If publicKey is inputted it will create an RSA or Ed25519 key. <br />2. Need to be encoded to URL-encoded format
+@param publicKey -  1. If publicKey is inputted it will create an RSA or Ed25519 key.  2. Need to be encoded to URL-encoded format
 @param permissionMode -  This parameter is only for the Ed25519 API key, and does not effact for other encryption methods. The value can be TRADE (TRADE for all permissions) or READ (READ for USER_DATA, FIX_API_READ_ONLY). The default value is TRADE.
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiCreateSpecialKeyRequest
 */
 func (a *TradeAPIService) CreateSpecialKey(ctx context.Context) ApiCreateSpecialKeyRequest {
@@ -121,7 +119,15 @@ func (a *TradeAPIService) CreateSpecialKeyExecute(r ApiCreateSpecialKeyRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateSpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateSpecialKeyResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -142,13 +148,11 @@ func (r ApiDeleteSpecialKeyRequest) ApiName(apiName string) ApiDeleteSpecialKeyR
 	return r
 }
 
-// isolated margin pair
 func (r ApiDeleteSpecialKeyRequest) Symbol(symbol string) ApiDeleteSpecialKeyRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiDeleteSpecialKeyRequest) RecvWindow(recvWindow int64) ApiDeleteSpecialKeyRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -159,15 +163,15 @@ func (r ApiDeleteSpecialKeyRequest) Execute() (struct{}, error) {
 }
 
 /*
-DeleteSpecialKey Delete Special Key(Low-Latency Trading)(TRADE)
+DeleteSpecialKey Delete Special Key(Low-Latency Trading) (TRADE)
 Delete /sapi/v1/margin/apiKey
 
-https://developers.binance.com/docs/margin_trading/trade/Delete-Special-Key-of-Low-Latency-Trading
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#delete-special-key
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param apiName -
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param symbol -
+@param recvWindow -
 @return ApiDeleteSpecialKeyRequest
 */
 func (a *TradeAPIService) DeleteSpecialKey(ctx context.Context) ApiDeleteSpecialKeyRequest {
@@ -195,7 +199,15 @@ func (a *TradeAPIService) DeleteSpecialKeyExecute(r ApiDeleteSpecialKeyRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
@@ -223,7 +235,6 @@ func (r ApiEditIpForSpecialKeyRequest) Symbol(symbol string) ApiEditIpForSpecial
 	return r
 }
 
-// No more than 60000
 func (r ApiEditIpForSpecialKeyRequest) RecvWindow(recvWindow int64) ApiEditIpForSpecialKeyRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -234,15 +245,15 @@ func (r ApiEditIpForSpecialKeyRequest) Execute() (struct{}, error) {
 }
 
 /*
-EditIpForSpecialKey Edit ip for Special Key(Low-Latency Trading)(TRADE)
+EditIpForSpecialKey Edit ip for Special Key(Low-Latency Trading) (TRADE)
 Put /sapi/v1/margin/apiKey/ip
 
-https://developers.binance.com/docs/margin_trading/trade/Edit-ip-for-Special-Key-of-Low-Latency-Trading
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#edit-ip-for-special-key
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param ip -  Can be added in batches, separated by commas. Max 30 for an API key
 @param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiEditIpForSpecialKeyRequest
 */
 func (a *TradeAPIService) EditIpForSpecialKey(ctx context.Context) ApiEditIpForSpecialKeyRequest {
@@ -272,12 +283,83 @@ func (a *TradeAPIService) EditIpForSpecialKeyExecute(r ApiEditIpForSpecialKeyReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}
 
 	return struct{}{}, nil
+}
+
+type ApiExitSpecialKeyModeRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	recvWindow *int64
+}
+
+// The value cannot be greater than &#x60;60000&#x60;
+func (r ApiExitSpecialKeyModeRequest) RecvWindow(recvWindow int64) ApiExitSpecialKeyModeRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiExitSpecialKeyModeRequest) Execute() (*common.RestApiResponse[map[string]interface{}], error) {
+	return r.ApiService.ExitSpecialKeyModeExecute(r)
+}
+
+/*
+ExitSpecialKeyMode Exit Special Key Mode (TRADE)
+Post /sapi/v1/margin/exit-special-key-mode
+
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#exit-special-key-mode
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -  The value cannot be greater than `60000`
+@return ApiExitSpecialKeyModeRequest
+*/
+func (a *TradeAPIService) ExitSpecialKeyMode(ctx context.Context) ApiExitSpecialKeyModeRequest {
+	return ApiExitSpecialKeyModeRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return map[string]interface{}
+func (a *TradeAPIService) ExitSpecialKeyModeExecute(r ApiExitSpecialKeyModeRequest) (*common.RestApiResponse[map[string]interface{}], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/exit-special-key-mode"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[map[string]interface{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
 
 type ApiGetForceLiquidationRecordRequest struct {
@@ -291,7 +373,6 @@ type ApiGetForceLiquidationRecordRequest struct {
 	recvWindow     *int64
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiGetForceLiquidationRecordRequest) StartTime(startTime int64) ApiGetForceLiquidationRecordRequest {
 	r.startTime = &startTime
 	return r
@@ -302,25 +383,21 @@ func (r ApiGetForceLiquidationRecordRequest) EndTime(endTime int64) ApiGetForceL
 	return r
 }
 
-// isolated symbol
 func (r ApiGetForceLiquidationRecordRequest) IsolatedSymbol(isolatedSymbol string) ApiGetForceLiquidationRecordRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
 func (r ApiGetForceLiquidationRecordRequest) Current(current int64) ApiGetForceLiquidationRecordRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10 Max:100
 func (r ApiGetForceLiquidationRecordRequest) Size(size int64) ApiGetForceLiquidationRecordRequest {
 	r.size = &size
 	return r
 }
 
-// No more than 60000
 func (r ApiGetForceLiquidationRecordRequest) RecvWindow(recvWindow int64) ApiGetForceLiquidationRecordRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -334,15 +411,15 @@ func (r ApiGetForceLiquidationRecordRequest) Execute() (*common.RestApiResponse[
 GetForceLiquidationRecord Get Force Liquidation Record (USER_DATA)
 Get /sapi/v1/margin/forceLiquidationRec
 
-https://developers.binance.com/docs/margin_trading/trade/Get-Force-Liquidation-Record
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-force-liquidation-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param startTime -  Only supports querying data from the past 90 days.
+@param startTime -
 @param endTime -
-@param isolatedSymbol -  isolated symbol
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
-@param recvWindow -  No more than 60000
+@param isolatedSymbol -
+@param current -
+@param size -
+@param recvWindow -
 @return ApiGetForceLiquidationRecordRequest
 */
 func (a *TradeAPIService) GetForceLiquidationRecord(ctx context.Context) ApiGetForceLiquidationRecordRequest {
@@ -381,7 +458,15 @@ func (a *TradeAPIService) GetForceLiquidationRecordExecute(r ApiGetForceLiquidat
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetForceLiquidationRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetForceLiquidationRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -395,7 +480,6 @@ type ApiGetSmallLiabilityExchangeCoinListRequest struct {
 	recvWindow *int64
 }
 
-// No more than 60000
 func (r ApiGetSmallLiabilityExchangeCoinListRequest) RecvWindow(recvWindow int64) ApiGetSmallLiabilityExchangeCoinListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -409,10 +493,10 @@ func (r ApiGetSmallLiabilityExchangeCoinListRequest) Execute() (*common.RestApiR
 GetSmallLiabilityExchangeCoinList Get Small Liability Exchange Coin List (USER_DATA)
 Get /sapi/v1/margin/exchange-small-liability
 
-https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-Coin-List
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-coin-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiGetSmallLiabilityExchangeCoinListRequest
 */
 func (a *TradeAPIService) GetSmallLiabilityExchangeCoinList(ctx context.Context) ApiGetSmallLiabilityExchangeCoinListRequest {
@@ -436,7 +520,15 @@ func (a *TradeAPIService) GetSmallLiabilityExchangeCoinListExecute(r ApiGetSmall
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSmallLiabilityExchangeCoinListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSmallLiabilityExchangeCoinListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -454,19 +546,16 @@ type ApiGetSmallLiabilityExchangeHistoryRequest struct {
 	recvWindow *int64
 }
 
-// Currently querying page. Start from 1. Default:1
 func (r ApiGetSmallLiabilityExchangeHistoryRequest) Current(current int64) ApiGetSmallLiabilityExchangeHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10, Max:100
 func (r ApiGetSmallLiabilityExchangeHistoryRequest) Size(size int64) ApiGetSmallLiabilityExchangeHistoryRequest {
 	r.size = &size
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiGetSmallLiabilityExchangeHistoryRequest) StartTime(startTime int64) ApiGetSmallLiabilityExchangeHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -477,7 +566,6 @@ func (r ApiGetSmallLiabilityExchangeHistoryRequest) EndTime(endTime int64) ApiGe
 	return r
 }
 
-// No more than 60000
 func (r ApiGetSmallLiabilityExchangeHistoryRequest) RecvWindow(recvWindow int64) ApiGetSmallLiabilityExchangeHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -491,14 +579,14 @@ func (r ApiGetSmallLiabilityExchangeHistoryRequest) Execute() (*common.RestApiRe
 GetSmallLiabilityExchangeHistory Get Small Liability Exchange History (USER_DATA)
 Get /sapi/v1/margin/exchange-small-liability-history
 
-https://developers.binance.com/docs/margin_trading/trade/Get-Small-Liability-Exchange-History
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#get-small-liability-exchange-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10, Max:100
-@param startTime -  Only supports querying data from the past 90 days.
+@param current -
+@param size -
+@param startTime -
 @param endTime -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiGetSmallLiabilityExchangeHistoryRequest
 */
 func (a *TradeAPIService) GetSmallLiabilityExchangeHistory(ctx context.Context) ApiGetSmallLiabilityExchangeHistoryRequest {
@@ -521,8 +609,15 @@ func (a *TradeAPIService) GetSmallLiabilityExchangeHistoryExecute(r ApiGetSmallL
 	if r.current == nil {
 		return nil, common.ReportError("current is required and must be specified")
 	}
+	if *r.current < 1 {
+		return nil, common.ReportError("current must be greater than 1")
+	}
+
 	if r.size == nil {
 		return nil, common.ReportError("size is required and must be specified")
+	}
+	if *r.size > 100 {
+		return nil, common.ReportError("size must be less than 100")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
@@ -537,7 +632,103 @@ func (a *TradeAPIService) GetSmallLiabilityExchangeHistoryExecute(r ApiGetSmallL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSmallLiabilityExchangeHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSmallLiabilityExchangeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiLiquidationLoanRepayRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	asset      *string
+	amount     *float32
+	recvWindow *int64
+}
+
+// The asset to repay (e.g. USDT, USDC)
+func (r ApiLiquidationLoanRepayRequest) Asset(asset string) ApiLiquidationLoanRepayRequest {
+	r.asset = &asset
+	return r
+}
+
+// Repayment amount, must be greater than 0
+func (r ApiLiquidationLoanRepayRequest) Amount(amount float32) ApiLiquidationLoanRepayRequest {
+	r.amount = &amount
+	return r
+}
+
+func (r ApiLiquidationLoanRepayRequest) RecvWindow(recvWindow int64) ApiLiquidationLoanRepayRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiLiquidationLoanRepayRequest) Execute() (*common.RestApiResponse[models.LiquidationLoanRepayResponse], error) {
+	return r.ApiService.LiquidationLoanRepayExecute(r)
+}
+
+/*
+LiquidationLoanRepay Liquidation Loan Repay (MARGIN)
+Post /sapi/v1/margin/liquidation-loan/repay
+
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#liquidation-loan-repay
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param asset -  The asset to repay (e.g. USDT, USDC)
+@param amount -  Repayment amount, must be greater than 0
+@param recvWindow -
+@return ApiLiquidationLoanRepayRequest
+*/
+func (a *TradeAPIService) LiquidationLoanRepay(ctx context.Context) ApiLiquidationLoanRepayRequest {
+	return ApiLiquidationLoanRepayRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return LiquidationLoanRepayResponse
+func (a *TradeAPIService) LiquidationLoanRepayExecute(r ApiLiquidationLoanRepayRequest) (*common.RestApiResponse[models.LiquidationLoanRepayResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/liquidation-loan/repay"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.asset == nil {
+		return nil, common.ReportError("asset is required and must be specified")
+	}
+
+	if r.amount == nil {
+		return nil, common.ReportError("amount is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "amount", r.amount, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.LiquidationLoanRepayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -549,7 +740,7 @@ type ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	symbol     *string
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	recvWindow *int64
 }
 
@@ -558,13 +749,11 @@ func (r ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest) Symbol(symbol strin
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest) IsIsolated(isIsolated string) ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest {
+func (r ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest) RecvWindow(recvWindow int64) ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -578,12 +767,12 @@ func (r ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest) Execute() (*common.
 MarginAccountCancelAllOpenOrdersOnASymbol Margin Account Cancel all Open Orders on a Symbol (TRADE)
 Delete /sapi/v1/margin/openOrders
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-All-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-all-open-orders-on-asymbol
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param recvWindow -  No more than 60000
+@param isIsolated -
+@param recvWindow -
 @return ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest
 */
 func (a *TradeAPIService) MarginAccountCancelAllOpenOrdersOnASymbol(ctx context.Context) ApiMarginAccountCancelAllOpenOrdersOnASymbolRequest {
@@ -615,7 +804,15 @@ func (a *TradeAPIService) MarginAccountCancelAllOpenOrdersOnASymbolExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelAllOpenOrdersOnASymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountCancelAllOpenOrdersOnASymbolResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -627,7 +824,7 @@ type ApiMarginAccountCancelOcoRequest struct {
 	ctx               context.Context
 	ApiService        *TradeAPIService
 	symbol            *string
-	isIsolated        *string
+	isIsolated        *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	orderListId       *int64
 	listClientOrderId *string
 	newClientOrderId  *string
@@ -639,31 +836,26 @@ func (r ApiMarginAccountCancelOcoRequest) Symbol(symbol string) ApiMarginAccount
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountCancelOcoRequest) IsIsolated(isIsolated string) ApiMarginAccountCancelOcoRequest {
+func (r ApiMarginAccountCancelOcoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountCancelOcoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
 func (r ApiMarginAccountCancelOcoRequest) OrderListId(orderListId int64) ApiMarginAccountCancelOcoRequest {
 	r.orderListId = &orderListId
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
 func (r ApiMarginAccountCancelOcoRequest) ListClientOrderId(listClientOrderId string) ApiMarginAccountCancelOcoRequest {
 	r.listClientOrderId = &listClientOrderId
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
 func (r ApiMarginAccountCancelOcoRequest) NewClientOrderId(newClientOrderId string) ApiMarginAccountCancelOcoRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginAccountCancelOcoRequest) RecvWindow(recvWindow int64) ApiMarginAccountCancelOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -677,15 +869,15 @@ func (r ApiMarginAccountCancelOcoRequest) Execute() (*common.RestApiResponse[mod
 MarginAccountCancelOco Margin Account Cancel OCO (TRADE)
 Delete /sapi/v1/margin/orderList
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-OCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param orderListId -  Either `orderListId` or `listClientOrderId` must be provided
-@param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param recvWindow -  No more than 60000
+@param isIsolated -
+@param orderListId -
+@param listClientOrderId -
+@param newClientOrderId -
+@param recvWindow -
 @return ApiMarginAccountCancelOcoRequest
 */
 func (a *TradeAPIService) MarginAccountCancelOco(ctx context.Context) ApiMarginAccountCancelOcoRequest {
@@ -726,7 +918,15 @@ func (a *TradeAPIService) MarginAccountCancelOcoExecute(r ApiMarginAccountCancel
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountCancelOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -738,7 +938,7 @@ type ApiMarginAccountCancelOrderRequest struct {
 	ctx               context.Context
 	ApiService        *TradeAPIService
 	symbol            *string
-	isIsolated        *string
+	isIsolated        *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	orderId           *int64
 	origClientOrderId *string
 	newClientOrderId  *string
@@ -750,8 +950,7 @@ func (r ApiMarginAccountCancelOrderRequest) Symbol(symbol string) ApiMarginAccou
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountCancelOrderRequest) IsIsolated(isIsolated string) ApiMarginAccountCancelOrderRequest {
+func (r ApiMarginAccountCancelOrderRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountCancelOrderRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -766,13 +965,11 @@ func (r ApiMarginAccountCancelOrderRequest) OrigClientOrderId(origClientOrderId 
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
 func (r ApiMarginAccountCancelOrderRequest) NewClientOrderId(newClientOrderId string) ApiMarginAccountCancelOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginAccountCancelOrderRequest) RecvWindow(recvWindow int64) ApiMarginAccountCancelOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -786,15 +983,15 @@ func (r ApiMarginAccountCancelOrderRequest) Execute() (*common.RestApiResponse[m
 MarginAccountCancelOrder Margin Account Cancel Order (TRADE)
 Delete /sapi/v1/margin/order
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-Cancel-Order
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-cancel-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param isIsolated -
 @param orderId -
 @param origClientOrderId -
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param recvWindow -  No more than 60000
+@param newClientOrderId -
+@param recvWindow -
 @return ApiMarginAccountCancelOrderRequest
 */
 func (a *TradeAPIService) MarginAccountCancelOrder(ctx context.Context) ApiMarginAccountCancelOrderRequest {
@@ -835,7 +1032,15 @@ func (a *TradeAPIService) MarginAccountCancelOrderExecute(r ApiMarginAccountCanc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountCancelOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountCancelOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -851,17 +1056,17 @@ type ApiMarginAccountNewOcoRequest struct {
 	quantity                *float32
 	price                   *float32
 	stopPrice               *float32
-	isIsolated              *string
+	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	listClientOrderId       *string
 	limitClientOrderId      *string
 	limitIcebergQty         *float32
 	stopClientOrderId       *string
 	stopLimitPrice          *float32
 	stopIcebergQty          *float32
-	stopLimitTimeInForce    *string
+	stopLimitTimeInForce    *models.MarginAccountNewOcoStopLimitTimeInForceParameter
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
-	sideEffectType          *string
-	selfTradePreventionMode *string
+	sideEffectType          *models.MarginAccountNewOrderSideEffectTypeParameter
+	selfTradePreventionMode *models.MarginAccountNewOrderSelfTradePreventionModeParameter
 	autoRepayAtCancel       *bool
 	recvWindow              *int64
 }
@@ -891,13 +1096,12 @@ func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float32) ApiMarginAcc
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountNewOcoRequest) IsIsolated(isIsolated string) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountNewOcoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
+// A unique Id for the entire orderList
 func (r ApiMarginAccountNewOcoRequest) ListClientOrderId(listClientOrderId string) ApiMarginAccountNewOcoRequest {
 	r.listClientOrderId = &listClientOrderId
 	return r
@@ -931,37 +1135,32 @@ func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float32) Ap
 	return r
 }
 
-// Valid values are &#x60;GTC&#x60;/&#x60;FOK&#x60;/&#x60;IOC&#x60;
-func (r ApiMarginAccountNewOcoRequest) StopLimitTimeInForce(stopLimitTimeInForce string) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopLimitTimeInForce(stopLimitTimeInForce models.MarginAccountNewOcoStopLimitTimeInForceParameter) ApiMarginAccountNewOcoRequest {
 	r.stopLimitTimeInForce = &stopLimitTimeInForce
 	return r
 }
 
-// Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
 func (r ApiMarginAccountNewOcoRequest) NewOrderRespType(newOrderRespType models.MarginAccountNewOrderNewOrderRespTypeParameter) ApiMarginAccountNewOcoRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-func (r ApiMarginAccountNewOcoRequest) SideEffectType(sideEffectType string) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) SideEffectType(sideEffectType models.MarginAccountNewOrderSideEffectTypeParameter) ApiMarginAccountNewOcoRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
 
-// The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-func (r ApiMarginAccountNewOcoRequest) SelfTradePreventionMode(selfTradePreventionMode string) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) SelfTradePreventionMode(selfTradePreventionMode models.MarginAccountNewOrderSelfTradePreventionModeParameter) ApiMarginAccountNewOcoRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
 
-// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled.
 func (r ApiMarginAccountNewOcoRequest) AutoRepayAtCancel(autoRepayAtCancel bool) ApiMarginAccountNewOcoRequest {
 	r.autoRepayAtCancel = &autoRepayAtCancel
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginAccountNewOcoRequest) RecvWindow(recvWindow int64) ApiMarginAccountNewOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -975,7 +1174,7 @@ func (r ApiMarginAccountNewOcoRequest) Execute() (*common.RestApiResponse[models
 MarginAccountNewOco Margin Account New OCO (TRADE)
 Post /sapi/v1/margin/order/oco
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -983,19 +1182,19 @@ https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OCO
 @param quantity -
 @param price -
 @param stopPrice -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
+@param isIsolated -
+@param listClientOrderId -  A unique Id for the entire orderList
 @param limitClientOrderId -  A unique Id for the limit order
 @param limitIcebergQty -
 @param stopClientOrderId -  A unique Id for the stop loss/stop loss limit leg
 @param stopLimitPrice -  If provided, `stopLimitTimeInForce` is required.
 @param stopIcebergQty -
-@param stopLimitTimeInForce -  Valid values are `GTC`/`FOK`/`IOC`
-@param newOrderRespType -  Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
-@param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-@param selfTradePreventionMode -  The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
-@param recvWindow -  No more than 60000
+@param stopLimitTimeInForce -
+@param newOrderRespType -
+@param sideEffectType -
+@param selfTradePreventionMode -
+@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled.
+@param recvWindow -
 @return ApiMarginAccountNewOcoRequest
 */
 func (a *TradeAPIService) MarginAccountNewOco(ctx context.Context) ApiMarginAccountNewOcoRequest {
@@ -1018,15 +1217,19 @@ func (a *TradeAPIService) MarginAccountNewOcoExecute(r ApiMarginAccountNewOcoReq
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.price == nil {
 		return nil, common.ReportError("price is required and must be specified")
 	}
+
 	if r.stopPrice == nil {
 		return nil, common.ReportError("stopPrice is required and must be specified")
 	}
@@ -1076,7 +1279,15 @@ func (a *TradeAPIService) MarginAccountNewOcoExecute(r ApiMarginAccountNewOcoReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountNewOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1089,8 +1300,8 @@ type ApiMarginAccountNewOrderRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.MarginAccountNewOrderSideParameter
-	type_                   *string
-	isIsolated              *string
+	type_                   *models.MarginAccountNewOrderTypeParameter
+	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	quantity                *float32
 	quoteOrderQty           *float32
 	price                   *float32
@@ -1098,9 +1309,10 @@ type ApiMarginAccountNewOrderRequest struct {
 	newClientOrderId        *string
 	icebergQty              *float32
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
-	sideEffectType          *string
+	sideEffectType          *models.MarginAccountNewOrderSideEffectTypeParameter
 	timeInForce             *models.MarginAccountNewOrderTimeInForceParameter
-	selfTradePreventionMode *string
+	selfTradePreventionMode *models.MarginAccountNewOrderSelfTradePreventionModeParameter
+	trailingDelta           *int64
 	autoRepayAtCancel       *bool
 	recvWindow              *int64
 }
@@ -1115,14 +1327,12 @@ func (r ApiMarginAccountNewOrderRequest) Side(side models.MarginAccountNewOrderS
 	return r
 }
 
-// &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60;
-func (r ApiMarginAccountNewOrderRequest) Type(type_ string) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) Type(type_ models.MarginAccountNewOrderTypeParameter) ApiMarginAccountNewOrderRequest {
 	r.type_ = &type_
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountNewOrderRequest) IsIsolated(isIsolated string) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountNewOrderRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -1148,7 +1358,7 @@ func (r ApiMarginAccountNewOrderRequest) StopPrice(stopPrice float32) ApiMarginA
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// A unique id among open orders. Automatically generated if not sent.
 func (r ApiMarginAccountNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiMarginAccountNewOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -1160,37 +1370,39 @@ func (r ApiMarginAccountNewOrderRequest) IcebergQty(icebergQty float32) ApiMargi
 	return r
 }
 
-// Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
+// MARKET and LIMIT order types default to FULL, all other orders default to ACK.
 func (r ApiMarginAccountNewOrderRequest) NewOrderRespType(newOrderRespType models.MarginAccountNewOrderNewOrderRespTypeParameter) ApiMarginAccountNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-func (r ApiMarginAccountNewOrderRequest) SideEffectType(sideEffectType string) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) SideEffectType(sideEffectType models.MarginAccountNewOrderSideEffectTypeParameter) ApiMarginAccountNewOrderRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
 
-// GTC,IOC,FOK
 func (r ApiMarginAccountNewOrderRequest) TimeInForce(timeInForce models.MarginAccountNewOrderTimeInForceParameter) ApiMarginAccountNewOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
 
-// The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-func (r ApiMarginAccountNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode string) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.MarginAccountNewOrderSelfTradePreventionModeParameter) ApiMarginAccountNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
 
-// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+// Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
+func (r ApiMarginAccountNewOrderRequest) TrailingDelta(trailingDelta int64) ApiMarginAccountNewOrderRequest {
+	r.trailingDelta = &trailingDelta
+	return r
+}
+
+// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
 func (r ApiMarginAccountNewOrderRequest) AutoRepayAtCancel(autoRepayAtCancel bool) ApiMarginAccountNewOrderRequest {
 	r.autoRepayAtCancel = &autoRepayAtCancel
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginAccountNewOrderRequest) RecvWindow(recvWindow int64) ApiMarginAccountNewOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1204,25 +1416,26 @@ func (r ApiMarginAccountNewOrderRequest) Execute() (*common.RestApiResponse[mode
 MarginAccountNewOrder Margin Account New Order (TRADE)
 Post /sapi/v1/margin/order
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-Order
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param side -
-@param type_ -  `MARGIN`,`ISOLATED`
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param type_ -
+@param isIsolated -
 @param quantity -
 @param quoteOrderQty -
 @param price -
 @param stopPrice -  Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
+@param newClientOrderId -  A unique id among open orders. Automatically generated if not sent.
 @param icebergQty -  Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order.
-@param newOrderRespType -  Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
-@param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-@param timeInForce -  GTC,IOC,FOK
-@param selfTradePreventionMode -  The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
-@param recvWindow -  No more than 60000
+@param newOrderRespType -  MARKET and LIMIT order types default to FULL, all other orders default to ACK.
+@param sideEffectType -
+@param timeInForce -
+@param selfTradePreventionMode -
+@param trailingDelta -  Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
+@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
+@param recvWindow -
 @return ApiMarginAccountNewOrderRequest
 */
 func (a *TradeAPIService) MarginAccountNewOrder(ctx context.Context) ApiMarginAccountNewOrderRequest {
@@ -1245,9 +1458,11 @@ func (a *TradeAPIService) MarginAccountNewOrderExecute(r ApiMarginAccountNewOrde
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -1288,6 +1503,9 @@ func (a *TradeAPIService) MarginAccountNewOrderExecute(r ApiMarginAccountNewOrde
 	if r.selfTradePreventionMode != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "selfTradePreventionMode", r.selfTradePreventionMode, "form", "")
 	}
+	if r.trailingDelta != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "trailingDelta", r.trailingDelta, "form", "")
+	}
 	if r.autoRepayAtCancel != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "autoRepayAtCancel", r.autoRepayAtCancel, "form", "")
 	}
@@ -1295,7 +1513,15 @@ func (a *TradeAPIService) MarginAccountNewOrderExecute(r ApiMarginAccountNewOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountNewOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1307,28 +1533,28 @@ type ApiMarginAccountNewOtoRequest struct {
 	ctx                     context.Context
 	ApiService              *TradeAPIService
 	symbol                  *string
-	workingType             *string
-	workingSide             *string
+	workingType             *models.MarginAccountNewOtoWorkingTypeParameter
+	workingSide             *models.MarginAccountNewOtoWorkingSideParameter
 	workingPrice            *float32
 	workingQuantity         *float32
 	workingIcebergQty       *float32
-	pendingType             *string
-	pendingSide             *string
+	pendingType             *models.MarginAccountNewOrderTypeParameter
+	pendingSide             *models.MarginAccountNewOrderSideParameter
 	pendingQuantity         *float32
-	isIsolated              *string
+	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	listClientOrderId       *string
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
-	sideEffectType          *string
-	selfTradePreventionMode *string
+	sideEffectType          *models.MarginAccountNewOtoSideEffectTypeParameter
+	selfTradePreventionMode *models.MarginAccountNewOrderSelfTradePreventionModeParameter
 	autoRepayAtCancel       *bool
 	workingClientOrderId    *string
-	workingTimeInForce      *string
+	workingTimeInForce      *models.MarginAccountNewOrderTimeInForceParameter
 	pendingClientOrderId    *string
 	pendingPrice            *float32
 	pendingStopPrice        *float32
 	pendingTrailingDelta    *float32
 	pendingIcebergQty       *float32
-	pendingTimeInForce      *string
+	pendingTimeInForce      *models.MarginAccountNewOrderTimeInForceParameter
 }
 
 func (r ApiMarginAccountNewOtoRequest) Symbol(symbol string) ApiMarginAccountNewOtoRequest {
@@ -1336,14 +1562,12 @@ func (r ApiMarginAccountNewOtoRequest) Symbol(symbol string) ApiMarginAccountNew
 	return r
 }
 
-// Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;
-func (r ApiMarginAccountNewOtoRequest) WorkingType(workingType string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingType(workingType models.MarginAccountNewOtoWorkingTypeParameter) ApiMarginAccountNewOtoRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// BUY, SELL
-func (r ApiMarginAccountNewOtoRequest) WorkingSide(workingSide string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingSide(workingSide models.MarginAccountNewOtoWorkingSideParameter) ApiMarginAccountNewOtoRequest {
 	r.workingSide = &workingSide
 	return r
 }
@@ -1353,6 +1577,7 @@ func (r ApiMarginAccountNewOtoRequest) WorkingPrice(workingPrice float32) ApiMar
 	return r
 }
 
+// Sets the quantity for the working order.
 func (r ApiMarginAccountNewOtoRequest) WorkingQuantity(workingQuantity float32) ApiMarginAccountNewOtoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
@@ -1364,54 +1589,50 @@ func (r ApiMarginAccountNewOtoRequest) WorkingIcebergQty(workingIcebergQty float
 	return r
 }
 
-// Supported values: [Order Types](https://developers.binance.com/docs/binance-spot-api-docs/enums#order-types-ordertypes-type) Note that &#x60;MARKET&#x60; orders using &#x60;quoteOrderQty&#x60; are not supported.
-func (r ApiMarginAccountNewOtoRequest) PendingType(pendingType string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingType(pendingType models.MarginAccountNewOrderTypeParameter) ApiMarginAccountNewOtoRequest {
 	r.pendingType = &pendingType
 	return r
 }
 
-// BUY, SELL
-func (r ApiMarginAccountNewOtoRequest) PendingSide(pendingSide string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingSide(pendingSide models.MarginAccountNewOrderSideParameter) ApiMarginAccountNewOtoRequest {
 	r.pendingSide = &pendingSide
 	return r
 }
 
+// Sets the quantity for the pending order.
 func (r ApiMarginAccountNewOtoRequest) PendingQuantity(pendingQuantity float32) ApiMarginAccountNewOtoRequest {
 	r.pendingQuantity = &pendingQuantity
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountNewOtoRequest) IsIsolated(isIsolated string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountNewOtoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
+// Arbitrary unique ID among open order lists. Automatically generated if not sent.&lt;br/&gt;A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.&lt;br/&gt;&#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;.
 func (r ApiMarginAccountNewOtoRequest) ListClientOrderId(listClientOrderId string) ApiMarginAccountNewOtoRequest {
 	r.listClientOrderId = &listClientOrderId
 	return r
 }
 
-// Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
+// MARKET and LIMIT order types default to FULL, all other orders default to ACK.
 func (r ApiMarginAccountNewOtoRequest) NewOrderRespType(newOrderRespType models.MarginAccountNewOrderNewOrderRespTypeParameter) ApiMarginAccountNewOtoRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-func (r ApiMarginAccountNewOtoRequest) SideEffectType(sideEffectType string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) SideEffectType(sideEffectType models.MarginAccountNewOtoSideEffectTypeParameter) ApiMarginAccountNewOtoRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
 
-// The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-func (r ApiMarginAccountNewOtoRequest) SelfTradePreventionMode(selfTradePreventionMode string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) SelfTradePreventionMode(selfTradePreventionMode models.MarginAccountNewOrderSelfTradePreventionModeParameter) ApiMarginAccountNewOtoRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
 
-// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+// Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
 func (r ApiMarginAccountNewOtoRequest) AutoRepayAtCancel(autoRepayAtCancel bool) ApiMarginAccountNewOtoRequest {
 	r.autoRepayAtCancel = &autoRepayAtCancel
 	return r
@@ -1423,8 +1644,7 @@ func (r ApiMarginAccountNewOtoRequest) WorkingClientOrderId(workingClientOrderId
 	return r
 }
 
-// GTC,IOC,FOK
-func (r ApiMarginAccountNewOtoRequest) WorkingTimeInForce(workingTimeInForce string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingTimeInForce(workingTimeInForce models.MarginAccountNewOrderTimeInForceParameter) ApiMarginAccountNewOtoRequest {
 	r.workingTimeInForce = &workingTimeInForce
 	return r
 }
@@ -1456,8 +1676,7 @@ func (r ApiMarginAccountNewOtoRequest) PendingIcebergQty(pendingIcebergQty float
 	return r
 }
 
-// GTC,IOC,FOK
-func (r ApiMarginAccountNewOtoRequest) PendingTimeInForce(pendingTimeInForce string) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingTimeInForce(pendingTimeInForce models.MarginAccountNewOrderTimeInForceParameter) ApiMarginAccountNewOtoRequest {
 	r.pendingTimeInForce = &pendingTimeInForce
 	return r
 }
@@ -1470,32 +1689,32 @@ func (r ApiMarginAccountNewOtoRequest) Execute() (*common.RestApiResponse[models
 MarginAccountNewOto Margin Account New OTO (TRADE)
 Post /sapi/v1/margin/order/oto
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-oto
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param workingType -  Supported values: `LIMIT`, `LIMIT_MAKER`
-@param workingSide -  BUY, SELL
+@param workingType -
+@param workingSide -
 @param workingPrice -
-@param workingQuantity -
+@param workingQuantity -  Sets the quantity for the working order.
 @param workingIcebergQty -  This can only be used if `workingTimeInForce` is `GTC`.
-@param pendingType -  Supported values: [Order Types](https://developers.binance.com/docs/binance-spot-api-docs/enums#order-types-ordertypes-type) Note that `MARKET` orders using `quoteOrderQty` are not supported.
-@param pendingSide -  BUY, SELL
-@param pendingQuantity -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
-@param newOrderRespType -  Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
-@param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-@param selfTradePreventionMode -  The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+@param pendingType -
+@param pendingSide -
+@param pendingQuantity -  Sets the quantity for the pending order.
+@param isIsolated -
+@param listClientOrderId -  Arbitrary unique ID among open order lists. Automatically generated if not sent.<br/>A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.<br/>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`.
+@param newOrderRespType -  MARKET and LIMIT order types default to FULL, all other orders default to ACK.
+@param sideEffectType -
+@param selfTradePreventionMode -
+@param autoRepayAtCancel -  Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
 @param workingClientOrderId -  Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.
-@param workingTimeInForce -  GTC,IOC,FOK
+@param workingTimeInForce -
 @param pendingClientOrderId -  Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.
 @param pendingPrice -
 @param pendingStopPrice -
 @param pendingTrailingDelta -
 @param pendingIcebergQty -  This can only be used if `pendingTimeInForce` is `GTC`.
-@param pendingTimeInForce -  GTC,IOC,FOK
+@param pendingTimeInForce -
 @return ApiMarginAccountNewOtoRequest
 */
 func (a *TradeAPIService) MarginAccountNewOto(ctx context.Context) ApiMarginAccountNewOtoRequest {
@@ -1518,27 +1737,35 @@ func (a *TradeAPIService) MarginAccountNewOtoExecute(r ApiMarginAccountNewOtoReq
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.workingType == nil {
 		return nil, common.ReportError("workingType is required and must be specified")
 	}
+
 	if r.workingSide == nil {
 		return nil, common.ReportError("workingSide is required and must be specified")
 	}
+
 	if r.workingPrice == nil {
 		return nil, common.ReportError("workingPrice is required and must be specified")
 	}
+
 	if r.workingQuantity == nil {
 		return nil, common.ReportError("workingQuantity is required and must be specified")
 	}
+
 	if r.workingIcebergQty == nil {
 		return nil, common.ReportError("workingIcebergQty is required and must be specified")
 	}
+
 	if r.pendingType == nil {
 		return nil, common.ReportError("pendingType is required and must be specified")
 	}
+
 	if r.pendingSide == nil {
 		return nil, common.ReportError("pendingSide is required and must be specified")
 	}
+
 	if r.pendingQuantity == nil {
 		return nil, common.ReportError("pendingQuantity is required and must be specified")
 	}
@@ -1595,7 +1822,15 @@ func (a *TradeAPIService) MarginAccountNewOtoExecute(r ApiMarginAccountNewOtoReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingTimeInForce", r.pendingTimeInForce, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOtoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountNewOtoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1607,35 +1842,35 @@ type ApiMarginAccountNewOtocoRequest struct {
 	ctx                       context.Context
 	ApiService                *TradeAPIService
 	symbol                    *string
-	workingType               *string
-	workingSide               *string
+	workingType               *models.MarginAccountNewOtoWorkingTypeParameter
+	workingSide               *models.MarginAccountNewOtoWorkingSideParameter
 	workingPrice              *float32
 	workingQuantity           *float32
-	pendingSide               *string
+	pendingSide               *models.MarginAccountNewOrderSideParameter
 	pendingQuantity           *float32
-	pendingAboveType          *string
-	isIsolated                *string
-	sideEffectType            *string
+	pendingAboveType          *models.MarginAccountNewOtocoPendingAboveTypeParameter
+	isIsolated                *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
+	sideEffectType            *models.MarginAccountNewOtoSideEffectTypeParameter
 	autoRepayAtCancel         *bool
 	listClientOrderId         *string
 	newOrderRespType          *models.MarginAccountNewOrderNewOrderRespTypeParameter
-	selfTradePreventionMode   *string
+	selfTradePreventionMode   *models.MarginAccountNewOrderSelfTradePreventionModeParameter
 	workingClientOrderId      *string
 	workingIcebergQty         *float32
-	workingTimeInForce        *string
+	workingTimeInForce        *models.MarginAccountNewOtocoWorkingTimeInForceParameter
 	pendingAboveClientOrderId *string
 	pendingAbovePrice         *float32
 	pendingAboveStopPrice     *float32
 	pendingAboveTrailingDelta *float32
 	pendingAboveIcebergQty    *float32
-	pendingAboveTimeInForce   *string
-	pendingBelowType          *string
+	pendingAboveTimeInForce   *models.MarginAccountNewOtocoWorkingTimeInForceParameter
+	pendingBelowType          *models.MarginAccountNewOtocoPendingAboveTypeParameter
 	pendingBelowClientOrderId *string
 	pendingBelowPrice         *float32
 	pendingBelowStopPrice     *float32
 	pendingBelowTrailingDelta *float32
 	pendingBelowIcebergQty    *float32
-	pendingBelowTimeInForce   *string
+	pendingBelowTimeInForce   *models.MarginAccountNewOtocoWorkingTimeInForceParameter
 }
 
 func (r ApiMarginAccountNewOtocoRequest) Symbol(symbol string) ApiMarginAccountNewOtocoRequest {
@@ -1643,14 +1878,12 @@ func (r ApiMarginAccountNewOtocoRequest) Symbol(symbol string) ApiMarginAccountN
 	return r
 }
 
-// Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;
-func (r ApiMarginAccountNewOtocoRequest) WorkingType(workingType string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingType(workingType models.MarginAccountNewOtoWorkingTypeParameter) ApiMarginAccountNewOtocoRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// BUY, SELL
-func (r ApiMarginAccountNewOtocoRequest) WorkingSide(workingSide string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingSide(workingSide models.MarginAccountNewOtoWorkingSideParameter) ApiMarginAccountNewOtocoRequest {
 	r.workingSide = &workingSide
 	return r
 }
@@ -1665,8 +1898,7 @@ func (r ApiMarginAccountNewOtocoRequest) WorkingQuantity(workingQuantity float32
 	return r
 }
 
-// BUY, SELL
-func (r ApiMarginAccountNewOtocoRequest) PendingSide(pendingSide string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingSide(pendingSide models.MarginAccountNewOrderSideParameter) ApiMarginAccountNewOtocoRequest {
 	r.pendingSide = &pendingSide
 	return r
 }
@@ -1676,44 +1908,39 @@ func (r ApiMarginAccountNewOtocoRequest) PendingQuantity(pendingQuantity float32
 	return r
 }
 
-// Supported values: &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS&#x60;, and &#x60;STOP_LOSS_LIMIT&#x60;
-func (r ApiMarginAccountNewOtocoRequest) PendingAboveType(pendingAboveType string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAboveType(pendingAboveType models.MarginAccountNewOtocoPendingAboveTypeParameter) ApiMarginAccountNewOtocoRequest {
 	r.pendingAboveType = &pendingAboveType
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiMarginAccountNewOtocoRequest) IsIsolated(isIsolated string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiMarginAccountNewOtocoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-func (r ApiMarginAccountNewOtocoRequest) SideEffectType(sideEffectType string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) SideEffectType(sideEffectType models.MarginAccountNewOtoSideEffectTypeParameter) ApiMarginAccountNewOtocoRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
 
-// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+// Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
 func (r ApiMarginAccountNewOtocoRequest) AutoRepayAtCancel(autoRepayAtCancel bool) ApiMarginAccountNewOtocoRequest {
 	r.autoRepayAtCancel = &autoRepayAtCancel
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
+// Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60;, &#x60;pendingAboveClientOrderId&#x60;, and the &#x60;pendingBelowClientOrderId&#x60;.
 func (r ApiMarginAccountNewOtocoRequest) ListClientOrderId(listClientOrderId string) ApiMarginAccountNewOtocoRequest {
 	r.listClientOrderId = &listClientOrderId
 	return r
 }
 
-// Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
 func (r ApiMarginAccountNewOtocoRequest) NewOrderRespType(newOrderRespType models.MarginAccountNewOrderNewOrderRespTypeParameter) ApiMarginAccountNewOtocoRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
-func (r ApiMarginAccountNewOtocoRequest) SelfTradePreventionMode(selfTradePreventionMode string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) SelfTradePreventionMode(selfTradePreventionMode models.MarginAccountNewOrderSelfTradePreventionModeParameter) ApiMarginAccountNewOtocoRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
@@ -1730,8 +1957,7 @@ func (r ApiMarginAccountNewOtocoRequest) WorkingIcebergQty(workingIcebergQty flo
 	return r
 }
 
-// GTC,IOC,FOK
-func (r ApiMarginAccountNewOtocoRequest) WorkingTimeInForce(workingTimeInForce string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingTimeInForce(workingTimeInForce models.MarginAccountNewOtocoWorkingTimeInForceParameter) ApiMarginAccountNewOtocoRequest {
 	r.workingTimeInForce = &workingTimeInForce
 	return r
 }
@@ -1763,13 +1989,12 @@ func (r ApiMarginAccountNewOtocoRequest) PendingAboveIcebergQty(pendingAboveIceb
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingAboveTimeInForce(pendingAboveTimeInForce string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAboveTimeInForce(pendingAboveTimeInForce models.MarginAccountNewOtocoWorkingTimeInForceParameter) ApiMarginAccountNewOtocoRequest {
 	r.pendingAboveTimeInForce = &pendingAboveTimeInForce
 	return r
 }
 
-// Supported values: &#x60;LIMIT_MAKER&#x60;, &#x60;STOP_LOSS&#x60;, and &#x60;STOP_LOSS_LIMIT&#x60;
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowType(pendingBelowType string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowType(pendingBelowType models.MarginAccountNewOtocoPendingAboveTypeParameter) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowType = &pendingBelowType
 	return r
 }
@@ -1801,7 +2026,7 @@ func (r ApiMarginAccountNewOtocoRequest) PendingBelowIcebergQty(pendingBelowIceb
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowTimeInForce(pendingBelowTimeInForce string) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowTimeInForce(pendingBelowTimeInForce models.MarginAccountNewOtocoWorkingTimeInForceParameter) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowTimeInForce = &pendingBelowTimeInForce
 	return r
 }
@@ -1814,33 +2039,33 @@ func (r ApiMarginAccountNewOtocoRequest) Execute() (*common.RestApiResponse[mode
 MarginAccountNewOtoco Margin Account New OTOCO (TRADE)
 Post /sapi/v1/margin/order/otoco
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Account-New-OTOCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-account-new-otoco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param workingType -  Supported values: `LIMIT`, `LIMIT_MAKER`
-@param workingSide -  BUY, SELL
+@param workingType -
+@param workingSide -
 @param workingPrice -
 @param workingQuantity -
-@param pendingSide -  BUY, SELL
+@param pendingSide -
 @param pendingQuantity -
-@param pendingAboveType -  Supported values: `LIMIT_MAKER`, `STOP_LOSS`, and `STOP_LOSS_LIMIT`
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY,AUTO_BORROW_REPAY; default NO_SIDE_EFFECT. More info in [FAQ](https://www.binance.com/en/support/faq/how-to-use-the-sideeffecttype-parameter-with-the-margin-order-endpoints-f9fc51cda1984bf08b95e0d96c4570bc)
-@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
-@param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
-@param newOrderRespType -  Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
-@param selfTradePreventionMode -  The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE
+@param pendingAboveType -
+@param isIsolated -
+@param sideEffectType -
+@param autoRepayAtCancel -  Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
+@param listClientOrderId -  Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `workingClientOrderId`, `pendingAboveClientOrderId`, and the `pendingBelowClientOrderId`.
+@param newOrderRespType -
+@param selfTradePreventionMode -
 @param workingClientOrderId -  Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.
 @param workingIcebergQty -  This can only be used if `workingTimeInForce` is `GTC`.
-@param workingTimeInForce -  GTC,IOC,FOK
+@param workingTimeInForce -
 @param pendingAboveClientOrderId -  Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.
 @param pendingAbovePrice -
 @param pendingAboveStopPrice -
 @param pendingAboveTrailingDelta -
 @param pendingAboveIcebergQty -  This can only be used if `pendingAboveTimeInForce` is `GTC`.
 @param pendingAboveTimeInForce -
-@param pendingBelowType -  Supported values: `LIMIT_MAKER`, `STOP_LOSS`, and `STOP_LOSS_LIMIT`
+@param pendingBelowType -
 @param pendingBelowClientOrderId -  Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.
 @param pendingBelowPrice -
 @param pendingBelowStopPrice -
@@ -1869,24 +2094,31 @@ func (a *TradeAPIService) MarginAccountNewOtocoExecute(r ApiMarginAccountNewOtoc
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.workingType == nil {
 		return nil, common.ReportError("workingType is required and must be specified")
 	}
+
 	if r.workingSide == nil {
 		return nil, common.ReportError("workingSide is required and must be specified")
 	}
+
 	if r.workingPrice == nil {
 		return nil, common.ReportError("workingPrice is required and must be specified")
 	}
+
 	if r.workingQuantity == nil {
 		return nil, common.ReportError("workingQuantity is required and must be specified")
 	}
+
 	if r.pendingSide == nil {
 		return nil, common.ReportError("pendingSide is required and must be specified")
 	}
+
 	if r.pendingQuantity == nil {
 		return nil, common.ReportError("pendingQuantity is required and must be specified")
 	}
+
 	if r.pendingAboveType == nil {
 		return nil, common.ReportError("pendingAboveType is required and must be specified")
 	}
@@ -1966,7 +2198,15 @@ func (a *TradeAPIService) MarginAccountNewOtocoExecute(r ApiMarginAccountNewOtoc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingBelowTimeInForce", r.pendingBelowTimeInForce, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOtocoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountNewOtocoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1977,24 +2217,22 @@ func (a *TradeAPIService) MarginAccountNewOtocoExecute(r ApiMarginAccountNewOtoc
 type ApiMarginManualLiquidationRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	type_      *string
+	type_      *models.QueryMarginAvailableInventoryTypeParameter
 	symbol     *string
 	recvWindow *int64
 }
 
-// &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60;
-func (r ApiMarginManualLiquidationRequest) Type(type_ string) ApiMarginManualLiquidationRequest {
+func (r ApiMarginManualLiquidationRequest) Type(type_ models.QueryMarginAvailableInventoryTypeParameter) ApiMarginManualLiquidationRequest {
 	r.type_ = &type_
 	return r
 }
 
-// isolated margin pair
+// When type selects &#x60;ISOLATED&#x60;, &#x60;symbol&#x60; must be filled in
 func (r ApiMarginManualLiquidationRequest) Symbol(symbol string) ApiMarginManualLiquidationRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiMarginManualLiquidationRequest) RecvWindow(recvWindow int64) ApiMarginManualLiquidationRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2005,15 +2243,15 @@ func (r ApiMarginManualLiquidationRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-MarginManualLiquidation Margin Manual Liquidation(MARGIN)
+MarginManualLiquidation Margin Manual Liquidation (TRADE)
 Post /sapi/v1/margin/manual-liquidation
 
-https://developers.binance.com/docs/margin_trading/trade/Margin-Manual-Liquidation
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#margin-manual-liquidation
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param type_ -  `MARGIN`,`ISOLATED`
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param type_ -
+@param symbol -  When type selects `ISOLATED`, `symbol` must be filled in
+@param recvWindow -
 @return ApiMarginManualLiquidationRequest
 */
 func (a *TradeAPIService) MarginManualLiquidation(ctx context.Context) ApiMarginManualLiquidationRequest {
@@ -2045,7 +2283,15 @@ func (a *TradeAPIService) MarginManualLiquidationExecute(r ApiMarginManualLiquid
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginManualLiquidationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginManualLiquidationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2056,24 +2302,21 @@ func (a *TradeAPIService) MarginManualLiquidationExecute(r ApiMarginManualLiquid
 type ApiQueryCurrentMarginOrderCountUsageRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	symbol     *string
 	recvWindow *int64
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryCurrentMarginOrderCountUsageRequest) IsIsolated(isIsolated string) ApiQueryCurrentMarginOrderCountUsageRequest {
+func (r ApiQueryCurrentMarginOrderCountUsageRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryCurrentMarginOrderCountUsageRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// isolated margin pair
 func (r ApiQueryCurrentMarginOrderCountUsageRequest) Symbol(symbol string) ApiQueryCurrentMarginOrderCountUsageRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryCurrentMarginOrderCountUsageRequest) RecvWindow(recvWindow int64) ApiQueryCurrentMarginOrderCountUsageRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2087,12 +2330,12 @@ func (r ApiQueryCurrentMarginOrderCountUsageRequest) Execute() (*common.RestApiR
 QueryCurrentMarginOrderCountUsage Query Current Margin Order Count Usage (TRADE)
 Get /sapi/v1/margin/rateLimit/order
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Current-Margin-Order-Count-Usage
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-current-margin-order-count-usage
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param isIsolated -
+@param symbol -
+@param recvWindow -
 @return ApiQueryCurrentMarginOrderCountUsageRequest
 */
 func (a *TradeAPIService) QueryCurrentMarginOrderCountUsage(ctx context.Context) ApiQueryCurrentMarginOrderCountUsageRequest {
@@ -2122,7 +2365,183 @@ func (a *TradeAPIService) QueryCurrentMarginOrderCountUsageExecute(r ApiQueryCur
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentMarginOrderCountUsageResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentMarginOrderCountUsageResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiQueryLiquidationLoanRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	recvWindow *int64
+}
+
+func (r ApiQueryLiquidationLoanRequest) RecvWindow(recvWindow int64) ApiQueryLiquidationLoanRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiQueryLiquidationLoanRequest) Execute() (*common.RestApiResponse[models.QueryLiquidationLoanResponse], error) {
+	return r.ApiService.QueryLiquidationLoanExecute(r)
+}
+
+/*
+QueryLiquidationLoan Query Liquidation Loan (USER_DATA)
+Get /sapi/v1/margin/liquidation-loan
+
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -
+@return ApiQueryLiquidationLoanRequest
+*/
+func (a *TradeAPIService) QueryLiquidationLoan(ctx context.Context) ApiQueryLiquidationLoanRequest {
+	return ApiQueryLiquidationLoanRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return QueryLiquidationLoanResponse
+func (a *TradeAPIService) QueryLiquidationLoanExecute(r ApiQueryLiquidationLoanRequest) (*common.RestApiResponse[models.QueryLiquidationLoanResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/liquidation-loan"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.QueryLiquidationLoanResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiQueryLiquidationLoanRepayHistoryRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	startTime  *int64
+	endTime    *int64
+	current    *int64
+	size       *int64
+	recvWindow *int64
+}
+
+// Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not specified
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) StartTime(startTime int64) ApiQueryLiquidationLoanRepayHistoryRequest {
+	r.startTime = &startTime
+	return r
+}
+
+// End time in Unix timestamp (milliseconds). Defaults to now if not specified
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) EndTime(endTime int64) ApiQueryLiquidationLoanRepayHistoryRequest {
+	r.endTime = &endTime
+	return r
+}
+
+// Current page number, default &#x60;1&#x60;
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) Current(current int64) ApiQueryLiquidationLoanRepayHistoryRequest {
+	r.current = &current
+	return r
+}
+
+// Page size, default &#x60;50&#x60;
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) Size(size int64) ApiQueryLiquidationLoanRepayHistoryRequest {
+	r.size = &size
+	return r
+}
+
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) RecvWindow(recvWindow int64) ApiQueryLiquidationLoanRepayHistoryRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiQueryLiquidationLoanRepayHistoryRequest) Execute() (*common.RestApiResponse[models.QueryLiquidationLoanRepayHistoryResponse], error) {
+	return r.ApiService.QueryLiquidationLoanRepayHistoryExecute(r)
+}
+
+/*
+QueryLiquidationLoanRepayHistory Query Liquidation Loan Repay History (USER_DATA)
+Get /sapi/v1/margin/liquidation-loan/repay-history
+
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-liquidation-loan-repay-history
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param startTime -  Start time in Unix timestamp (milliseconds). Defaults to 7 days ago if not specified
+@param endTime -  End time in Unix timestamp (milliseconds). Defaults to now if not specified
+@param current -  Current page number, default `1`
+@param size -  Page size, default `50`
+@param recvWindow -
+@return ApiQueryLiquidationLoanRepayHistoryRequest
+*/
+func (a *TradeAPIService) QueryLiquidationLoanRepayHistory(ctx context.Context) ApiQueryLiquidationLoanRepayHistoryRequest {
+	return ApiQueryLiquidationLoanRepayHistoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return QueryLiquidationLoanRepayHistoryResponse
+func (a *TradeAPIService) QueryLiquidationLoanRepayHistoryExecute(r ApiQueryLiquidationLoanRepayHistoryRequest) (*common.RestApiResponse[models.QueryLiquidationLoanRepayHistoryResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/liquidation-loan/repay-history"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.startTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
+	}
+	if r.endTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
+	}
+	if r.current != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
+	}
+	if r.size != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.QueryLiquidationLoanRepayHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2133,7 +2552,7 @@ func (a *TradeAPIService) QueryCurrentMarginOrderCountUsageExecute(r ApiQueryCur
 type ApiQueryMarginAccountsAllOcoRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	symbol     *string
 	fromId     *int64
 	startTime  *int64
@@ -2142,25 +2561,21 @@ type ApiQueryMarginAccountsAllOcoRequest struct {
 	recvWindow *int64
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsAllOcoRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsAllOcoRequest {
+func (r ApiQueryMarginAccountsAllOcoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsAllOcoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// isolated margin pair
 func (r ApiQueryMarginAccountsAllOcoRequest) Symbol(symbol string) ApiQueryMarginAccountsAllOcoRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryMarginAccountsAllOcoRequest) FromId(fromId int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsAllOcoRequest) StartTime(startTime int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.startTime = &startTime
 	return r
@@ -2171,13 +2586,11 @@ func (r ApiQueryMarginAccountsAllOcoRequest) EndTime(endTime int64) ApiQueryMarg
 	return r
 }
 
-// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsAllOcoRequest) Limit(limit int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.limit = &limit
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsAllOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2191,16 +2604,16 @@ func (r ApiQueryMarginAccountsAllOcoRequest) Execute() (*common.RestApiResponse[
 QueryMarginAccountsAllOco Query Margin Account's all OCO (USER_DATA)
 Get /sapi/v1/margin/allOrderList
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-all-OCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param symbol -  isolated margin pair
-@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
-@param startTime -  Only supports querying data from the past 90 days.
+@param isIsolated -
+@param symbol -
+@param fromId -
+@param startTime -
 @param endTime -
-@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
-@param recvWindow -  No more than 60000
+@param limit -
+@param recvWindow -
 @return ApiQueryMarginAccountsAllOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsAllOco(ctx context.Context) ApiQueryMarginAccountsAllOcoRequest {
@@ -2242,7 +2655,15 @@ func (a *TradeAPIService) QueryMarginAccountsAllOcoExecute(r ApiQueryMarginAccou
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2254,7 +2675,7 @@ type ApiQueryMarginAccountsAllOrdersRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	symbol     *string
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	orderId    *int64
 	startTime  *int64
 	endTime    *int64
@@ -2267,8 +2688,7 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) Symbol(symbol string) ApiQueryMa
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsAllOrdersRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsAllOrdersRequest {
+func (r ApiQueryMarginAccountsAllOrdersRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsAllOrdersRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -2278,7 +2698,6 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) OrderId(orderId int64) ApiQueryM
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsAllOrdersRequest) StartTime(startTime int64) ApiQueryMarginAccountsAllOrdersRequest {
 	r.startTime = &startTime
 	return r
@@ -2289,13 +2708,11 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) EndTime(endTime int64) ApiQueryM
 	return r
 }
 
-// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsAllOrdersRequest) Limit(limit int64) ApiQueryMarginAccountsAllOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsAllOrdersRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsAllOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2309,16 +2726,16 @@ func (r ApiQueryMarginAccountsAllOrdersRequest) Execute() (*common.RestApiRespon
 QueryMarginAccountsAllOrders Query Margin Account's All Orders (USER_DATA)
 Get /sapi/v1/margin/allOrders
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-All-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-all-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param isIsolated -
 @param orderId -
-@param startTime -  Only supports querying data from the past 90 days.
+@param startTime -
 @param endTime -
-@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
-@param recvWindow -  No more than 60000
+@param limit -
+@param recvWindow -
 @return ApiQueryMarginAccountsAllOrdersRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsAllOrders(ctx context.Context) ApiQueryMarginAccountsAllOrdersRequest {
@@ -2362,7 +2779,15 @@ func (a *TradeAPIService) QueryMarginAccountsAllOrdersExecute(r ApiQueryMarginAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsAllOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsAllOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2373,26 +2798,23 @@ func (a *TradeAPIService) QueryMarginAccountsAllOrdersExecute(r ApiQueryMarginAc
 type ApiQueryMarginAccountsOcoRequest struct {
 	ctx               context.Context
 	ApiService        *TradeAPIService
-	isIsolated        *string
+	isIsolated        *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	symbol            *string
 	orderListId       *int64
 	origClientOrderId *string
 	recvWindow        *int64
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsOcoRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsOcoRequest {
+func (r ApiQueryMarginAccountsOcoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsOcoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// isolated margin pair
 func (r ApiQueryMarginAccountsOcoRequest) Symbol(symbol string) ApiQueryMarginAccountsOcoRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
 func (r ApiQueryMarginAccountsOcoRequest) OrderListId(orderListId int64) ApiQueryMarginAccountsOcoRequest {
 	r.orderListId = &orderListId
 	return r
@@ -2403,7 +2825,6 @@ func (r ApiQueryMarginAccountsOcoRequest) OrigClientOrderId(origClientOrderId st
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2417,14 +2838,14 @@ func (r ApiQueryMarginAccountsOcoRequest) Execute() (*common.RestApiResponse[mod
 QueryMarginAccountsOco Query Margin Account's OCO (USER_DATA)
 Get /sapi/v1/margin/orderList
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-OCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param symbol -  isolated margin pair
-@param orderListId -  Either `orderListId` or `listClientOrderId` must be provided
+@param isIsolated -
+@param symbol -
+@param orderListId -
 @param origClientOrderId -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryMarginAccountsOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOco(ctx context.Context) ApiQueryMarginAccountsOcoRequest {
@@ -2460,7 +2881,15 @@ func (a *TradeAPIService) QueryMarginAccountsOcoExecute(r ApiQueryMarginAccounts
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2471,24 +2900,21 @@ func (a *TradeAPIService) QueryMarginAccountsOcoExecute(r ApiQueryMarginAccounts
 type ApiQueryMarginAccountsOpenOcoRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	symbol     *string
 	recvWindow *int64
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsOpenOcoRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsOpenOcoRequest {
+func (r ApiQueryMarginAccountsOpenOcoRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsOpenOcoRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// isolated margin pair
 func (r ApiQueryMarginAccountsOpenOcoRequest) Symbol(symbol string) ApiQueryMarginAccountsOpenOcoRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsOpenOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOpenOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2502,12 +2928,12 @@ func (r ApiQueryMarginAccountsOpenOcoRequest) Execute() (*common.RestApiResponse
 QueryMarginAccountsOpenOco Query Margin Account's Open OCO (USER_DATA)
 Get /sapi/v1/margin/openOrderList
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-OCO
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param isIsolated -
+@param symbol -
+@param recvWindow -
 @return ApiQueryMarginAccountsOpenOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOpenOco(ctx context.Context) ApiQueryMarginAccountsOpenOcoRequest {
@@ -2537,7 +2963,15 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOcoExecute(r ApiQueryMarginAcco
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2549,7 +2983,7 @@ type ApiQueryMarginAccountsOpenOrdersRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	symbol     *string
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	recvWindow *int64
 }
 
@@ -2559,13 +2993,11 @@ func (r ApiQueryMarginAccountsOpenOrdersRequest) Symbol(symbol string) ApiQueryM
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsOpenOrdersRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsOpenOrdersRequest {
+func (r ApiQueryMarginAccountsOpenOrdersRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsOpenOrdersRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsOpenOrdersRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOpenOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2579,12 +3011,12 @@ func (r ApiQueryMarginAccountsOpenOrdersRequest) Execute() (*common.RestApiRespo
 QueryMarginAccountsOpenOrders Query Margin Account's Open Orders (USER_DATA)
 Get /sapi/v1/margin/openOrders
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Open-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  isolated margin pair
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
-@param recvWindow -  No more than 60000
+@param isIsolated -
+@param recvWindow -
 @return ApiQueryMarginAccountsOpenOrdersRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOpenOrders(ctx context.Context) ApiQueryMarginAccountsOpenOrdersRequest {
@@ -2614,7 +3046,15 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOrdersExecute(r ApiQueryMarginA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2626,7 +3066,7 @@ type ApiQueryMarginAccountsOrderRequest struct {
 	ctx               context.Context
 	ApiService        *TradeAPIService
 	symbol            *string
-	isIsolated        *string
+	isIsolated        *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	orderId           *int64
 	origClientOrderId *string
 	recvWindow        *int64
@@ -2637,8 +3077,7 @@ func (r ApiQueryMarginAccountsOrderRequest) Symbol(symbol string) ApiQueryMargin
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsOrderRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsOrderRequest {
+func (r ApiQueryMarginAccountsOrderRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsOrderRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -2653,7 +3092,6 @@ func (r ApiQueryMarginAccountsOrderRequest) OrigClientOrderId(origClientOrderId 
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsOrderRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2667,14 +3105,14 @@ func (r ApiQueryMarginAccountsOrderRequest) Execute() (*common.RestApiResponse[m
 QueryMarginAccountsOrder Query Margin Account's Order (USER_DATA)
 Get /sapi/v1/margin/order
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Order
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param isIsolated -
 @param orderId -
 @param origClientOrderId -
-@param recvWindow -  No more than 60000
+@param recvWindow -
 @return ApiQueryMarginAccountsOrderRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOrder(ctx context.Context) ApiQueryMarginAccountsOrderRequest {
@@ -2712,7 +3150,15 @@ func (a *TradeAPIService) QueryMarginAccountsOrderExecute(r ApiQueryMarginAccoun
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2724,7 +3170,7 @@ type ApiQueryMarginAccountsTradeListRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	symbol     *string
-	isIsolated *string
+	isIsolated *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	orderId    *int64
 	startTime  *int64
 	endTime    *int64
@@ -2738,8 +3184,7 @@ func (r ApiQueryMarginAccountsTradeListRequest) Symbol(symbol string) ApiQueryMa
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryMarginAccountsTradeListRequest) IsIsolated(isIsolated string) ApiQueryMarginAccountsTradeListRequest {
+func (r ApiQueryMarginAccountsTradeListRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryMarginAccountsTradeListRequest {
 	r.isIsolated = &isIsolated
 	return r
 }
@@ -2749,7 +3194,6 @@ func (r ApiQueryMarginAccountsTradeListRequest) OrderId(orderId int64) ApiQueryM
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiQueryMarginAccountsTradeListRequest) StartTime(startTime int64) ApiQueryMarginAccountsTradeListRequest {
 	r.startTime = &startTime
 	return r
@@ -2760,19 +3204,16 @@ func (r ApiQueryMarginAccountsTradeListRequest) EndTime(endTime int64) ApiQueryM
 	return r
 }
 
-// If &#x60;fromId&#x60; is set, data with &#x60;id&#x60; greater than &#x60;fromId&#x60; will be returned. Otherwise, the latest data will be returned.
 func (r ApiQueryMarginAccountsTradeListRequest) FromId(fromId int64) ApiQueryMarginAccountsTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
 func (r ApiQueryMarginAccountsTradeListRequest) Limit(limit int64) ApiQueryMarginAccountsTradeListRequest {
 	r.limit = &limit
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMarginAccountsTradeListRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsTradeListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2786,17 +3227,17 @@ func (r ApiQueryMarginAccountsTradeListRequest) Execute() (*common.RestApiRespon
 QueryMarginAccountsTradeList Query Margin Account's Trade List (USER_DATA)
 Get /sapi/v1/margin/myTrades
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Account-Trade-List
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param isIsolated -
 @param orderId -
-@param startTime -  Only supports querying data from the past 90 days.
+@param startTime -
 @param endTime -
-@param fromId -  If `fromId` is set, data with `id` greater than `fromId` will be returned. Otherwise, the latest data will be returned.
-@param limit -  Limit on the number of data records returned per request. Default: 500; Maximum: 1000.
-@param recvWindow -  No more than 60000
+@param fromId -
+@param limit -
+@param recvWindow -
 @return ApiQueryMarginAccountsTradeListRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsTradeList(ctx context.Context) ApiQueryMarginAccountsTradeListRequest {
@@ -2843,7 +3284,15 @@ func (a *TradeAPIService) QueryMarginAccountsTradeListExecute(r ApiQueryMarginAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2858,8 +3307,8 @@ type ApiQueryPreventedMatchesRequest struct {
 	preventedMatchId     *int64
 	orderId              *int64
 	fromPreventedMatchId *int64
+	isIsolated           *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	recvWindow           *int64
-	isIsolated           *string
 }
 
 func (r ApiQueryPreventedMatchesRequest) Symbol(symbol string) ApiQueryPreventedMatchesRequest {
@@ -2882,15 +3331,13 @@ func (r ApiQueryPreventedMatchesRequest) FromPreventedMatchId(fromPreventedMatch
 	return r
 }
 
-// No more than 60000
-func (r ApiQueryPreventedMatchesRequest) RecvWindow(recvWindow int64) ApiQueryPreventedMatchesRequest {
-	r.recvWindow = &recvWindow
+func (r ApiQueryPreventedMatchesRequest) IsIsolated(isIsolated models.QueryMarginAccountsOpenOrdersIsIsolatedParameter) ApiQueryPreventedMatchesRequest {
+	r.isIsolated = &isIsolated
 	return r
 }
 
-// For isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot;, default \&quot;FALSE\&quot;
-func (r ApiQueryPreventedMatchesRequest) IsIsolated(isIsolated string) ApiQueryPreventedMatchesRequest {
-	r.isIsolated = &isIsolated
+func (r ApiQueryPreventedMatchesRequest) RecvWindow(recvWindow int64) ApiQueryPreventedMatchesRequest {
+	r.recvWindow = &recvWindow
 	return r
 }
 
@@ -2899,18 +3346,18 @@ func (r ApiQueryPreventedMatchesRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-QueryPreventedMatches Query Prevented Matches(USER_DATA)
+QueryPreventedMatches Query Prevented Matches (USER_DATA)
 Get /sapi/v1/margin/myPreventedMatches
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Margin-Prevented-Matches
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-prevented-matches
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param preventedMatchId -
 @param orderId -
 @param fromPreventedMatchId -
-@param recvWindow -  No more than 60000
-@param isIsolated -  For isolated margin or not, \"TRUE\", \"FALSE\", default \"FALSE\"
+@param isIsolated -
+@param recvWindow -
 @return ApiQueryPreventedMatchesRequest
 */
 func (a *TradeAPIService) QueryPreventedMatches(ctx context.Context) ApiQueryPreventedMatchesRequest {
@@ -2944,14 +3391,22 @@ func (a *TradeAPIService) QueryPreventedMatchesExecute(r ApiQueryPreventedMatche
 	if r.fromPreventedMatchId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromPreventedMatchId", r.fromPreventedMatchId, "form", "")
 	}
-	if r.recvWindow != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
-	}
 	if r.isIsolated != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "isIsolated", r.isIsolated, "form", "")
 	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
 
-	resp, err := SendRequest[models.QueryPreventedMatchesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPreventedMatchesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2966,13 +3421,11 @@ type ApiQuerySpecialKeyRequest struct {
 	recvWindow *int64
 }
 
-// isolated margin pair
 func (r ApiQuerySpecialKeyRequest) Symbol(symbol string) ApiQuerySpecialKeyRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQuerySpecialKeyRequest) RecvWindow(recvWindow int64) ApiQuerySpecialKeyRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2983,14 +3436,14 @@ func (r ApiQuerySpecialKeyRequest) Execute() (*common.RestApiResponse[models.Que
 }
 
 /*
-QuerySpecialKey Query Special key(Low Latency Trading)(TRADE)
+QuerySpecialKey Query Special key(Low Latency Trading) (TRADE)
 Get /sapi/v1/margin/apiKey
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-of-Low-Latency-Trading
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param symbol -
+@param recvWindow -
 @return ApiQuerySpecialKeyRequest
 */
 func (a *TradeAPIService) QuerySpecialKey(ctx context.Context) ApiQuerySpecialKeyRequest {
@@ -3017,7 +3470,15 @@ func (a *TradeAPIService) QuerySpecialKeyExecute(r ApiQuerySpecialKeyRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySpecialKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySpecialKeyResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3032,13 +3493,11 @@ type ApiQuerySpecialKeyListRequest struct {
 	recvWindow *int64
 }
 
-// isolated margin pair
 func (r ApiQuerySpecialKeyListRequest) Symbol(symbol string) ApiQuerySpecialKeyListRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQuerySpecialKeyListRequest) RecvWindow(recvWindow int64) ApiQuerySpecialKeyListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -3049,14 +3508,14 @@ func (r ApiQuerySpecialKeyListRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-QuerySpecialKeyList Query Special key List(Low Latency Trading)(TRADE)
+QuerySpecialKeyList Query Special key List(Low Latency Trading) (TRADE)
 Get /sapi/v1/margin/api-key-list
 
-https://developers.binance.com/docs/margin_trading/trade/Query-Special-Key-List-of-Low-Latency-Trading
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-special-key-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  isolated margin pair
-@param recvWindow -  No more than 60000
+@param symbol -
+@param recvWindow -
 @return ApiQuerySpecialKeyListRequest
 */
 func (a *TradeAPIService) QuerySpecialKeyList(ctx context.Context) ApiQuerySpecialKeyListRequest {
@@ -3083,7 +3542,15 @@ func (a *TradeAPIService) QuerySpecialKeyListExecute(r ApiQuerySpecialKeyListReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySpecialKeyListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySpecialKeyListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3094,17 +3561,16 @@ func (a *TradeAPIService) QuerySpecialKeyListExecute(r ApiQuerySpecialKeyListReq
 type ApiSmallLiabilityExchangeRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	assetNames *[]string
+	assetNames *string
 	recvWindow *int64
 }
 
-// The assets list of small liability exchange， Example: assetNames &#x3D; BTC,ETH
-func (r ApiSmallLiabilityExchangeRequest) AssetNames(assetNames []string) ApiSmallLiabilityExchangeRequest {
+// The assets list of small liability exchange
+func (r ApiSmallLiabilityExchangeRequest) AssetNames(assetNames string) ApiSmallLiabilityExchangeRequest {
 	r.assetNames = &assetNames
 	return r
 }
 
-// No more than 60000
 func (r ApiSmallLiabilityExchangeRequest) RecvWindow(recvWindow int64) ApiSmallLiabilityExchangeRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -3118,11 +3584,11 @@ func (r ApiSmallLiabilityExchangeRequest) Execute() (struct{}, error) {
 SmallLiabilityExchange Small Liability Exchange (MARGIN)
 Post /sapi/v1/margin/exchange-small-liability
 
-https://developers.binance.com/docs/margin_trading/trade/Small-Liability-Exchange
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#small-liability-exchange
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param assetNames -  The assets list of small liability exchange， Example: assetNames = BTC,ETH
-@param recvWindow -  No more than 60000
+@param assetNames -  The assets list of small liability exchange
+@param recvWindow -
 @return ApiSmallLiabilityExchangeRequest
 */
 func (a *TradeAPIService) SmallLiabilityExchange(ctx context.Context) ApiSmallLiabilityExchangeRequest {
@@ -3144,15 +3610,20 @@ func (a *TradeAPIService) SmallLiabilityExchangeExecute(r ApiSmallLiabilityExcha
 		return struct{}{}, common.ReportError("assetNames is required and must be specified")
 	}
 
-	{
-		t := *r.assetNames
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "assetNames", t, "form", "multi")
-	}
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "assetNames", r.assetNames, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	_, err := SendRequest[struct{}](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	_, err := SendRequest[struct{}](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil {
 		return struct{}{}, err
 	}

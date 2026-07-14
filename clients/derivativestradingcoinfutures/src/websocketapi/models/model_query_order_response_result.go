@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,33 +15,59 @@ import (
 // checks if the QueryOrderResponseResult type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &QueryOrderResponseResult{}
 
-// QueryOrderResponseResult struct for QueryOrderResponseResult
+// QueryOrderResponseResult Indicates that combined is set to true.
 type QueryOrderResponseResult struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Pair                    *string `json:"pair,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	CumBase                 *string `json:"cumBase,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Client order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Average execution price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Original order quantity
+	OrigQty *string `json:"origQty,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Cumulative filled quantity.
+	CumQty *string `json:"cumQty,omitempty"`
+	// Cumulative base asset amount.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order type.
+	Type *string `json:"type,omitempty"`
+	// Whether the order is reduce-only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Stop trigger price type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// Original order type.
+	OrigType *string `json:"origType,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// price match mode
+	PriceMatch           *string `json:"priceMatch,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryOrderResponseResult QueryOrderResponseResult
@@ -349,6 +375,38 @@ func (o *QueryOrderResponseResult) HasExecutedQty() bool {
 // SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
 func (o *QueryOrderResponseResult) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
+}
+
+// GetCumQty returns the CumQty field value if set, zero value otherwise.
+func (o *QueryOrderResponseResult) GetCumQty() string {
+	if o == nil || common.IsNil(o.CumQty) {
+		var ret string
+		return ret
+	}
+	return *o.CumQty
+}
+
+// GetCumQtyOk returns a tuple with the CumQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryOrderResponseResult) GetCumQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.CumQty) {
+		return nil, false
+	}
+	return o.CumQty, true
+}
+
+// HasCumQty returns a boolean if a field has been set.
+func (o *QueryOrderResponseResult) HasCumQty() bool {
+	if o != nil && !common.IsNil(o.CumQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetCumQty gets a reference to the given string and assigns it to the CumQty field.
+func (o *QueryOrderResponseResult) SetCumQty(v string) {
+	o.CumQty = &v
 }
 
 // GetCumBase returns the CumBase field value if set, zero value otherwise.
@@ -868,6 +926,9 @@ func (o QueryOrderResponseResult) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
+	if !common.IsNil(o.CumQty) {
+		toSerialize["cumQty"] = o.CumQty
+	}
 	if !common.IsNil(o.CumBase) {
 		toSerialize["cumBase"] = o.CumBase
 	}
@@ -944,6 +1005,7 @@ func (o *QueryOrderResponseResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
+		delete(additionalProperties, "cumQty")
 		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")

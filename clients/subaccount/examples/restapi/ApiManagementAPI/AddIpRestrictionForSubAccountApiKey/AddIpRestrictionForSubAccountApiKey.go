@@ -22,7 +22,7 @@ func AddIpRestrictionForSubAccountApiKey() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ApiManagementAPI.AddIpRestrictionForSubAccountApiKey(context.Background()).Email("sub-account-email@email.com").SubAccountApiKey("subAccountApiKey_example").Status("status_example").Execute()
+	resp, err := apiClient.RestApi.ApiManagementAPI.AddIpRestrictionForSubAccountApiKey(context.Background()).Email("123@test.com").SubAccountApiKey("k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf").Status(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

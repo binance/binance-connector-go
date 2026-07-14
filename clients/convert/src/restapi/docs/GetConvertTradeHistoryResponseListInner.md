@@ -6,13 +6,13 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **QuoteId** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
-**OrderStatus** | Pointer to **string** |  | [optional] 
-**FromAsset** | Pointer to **string** |  | [optional] 
-**FromAmount** | Pointer to **string** |  | [optional] 
-**ToAsset** | Pointer to **string** |  | [optional] 
-**ToAmount** | Pointer to **string** |  | [optional] 
-**Ratio** | Pointer to **string** |  | [optional] 
-**InverseRatio** | Pointer to **string** |  | [optional] 
+**OrderStatus** | Pointer to **string** | Order status | [optional] 
+**FromAsset** | Pointer to **string** | Source asset | [optional] 
+**FromAmount** | Pointer to **string** | Source amount | [optional] 
+**ToAsset** | Pointer to **string** | Destination asset | [optional] 
+**ToAmount** | Pointer to **string** | Destination amount | [optional] 
+**Ratio** | Pointer to **string** | Price ratio | [optional] 
+**InverseRatio** | Pointer to **string** | Inverse price ratio | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
 
 ## Methods

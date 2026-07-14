@@ -26,13 +26,27 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("symbol_example").ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("BTCUSD_PERP").ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"CANCELED","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728416138285},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -67,28 +81,43 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		resultChan := make(chan common.ResultWebsocket[models.CancelOrderResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("symbol_example").Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("BTCUSD_PERP").Execute()
 			resultChan <- common.ResultWebsocket[models.CancelOrderResponse]{Value: resp, Err: err}
 		}()
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"CANCELED","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728416138285},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.cancel"[1:], sent["method"])
+		require.Equal(t, "/order.cancel"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.CancelOrderResponse{}, typedResp)
@@ -131,7 +160,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("symbol_example").ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.CancelOrder().Symbol("BTCUSD_PERP").ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -172,13 +201,27 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728415765493},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6},{"rateLimitType":"ORDERS","interval":"MINUTE","intervalNum":1,"limit":1200,"count":1}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728415765493},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -213,28 +256,43 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		resultChan := make(chan common.ResultWebsocket[models.ModifyOrderResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).Execute()
 			resultChan <- common.ResultWebsocket[models.ModifyOrderResponse]{Value: resp, Err: err}
 		}()
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728415765493},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6},{"rateLimitType":"ORDERS","interval":"MINUTE","intervalNum":1,"limit":1200,"count":1}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"51000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728415765493},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.modify"[1:], sent["method"])
+		require.Equal(t, "/order.modify"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.ModifyOrderResponse{}, typedResp)
@@ -337,7 +395,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -378,13 +436,27 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"50000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728413795125},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6},{"rateLimitType":"ORDERS","interval":"MINUTE","intervalNum":1,"limit":1200,"count":1}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"50000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728413795125},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -419,28 +491,43 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		resultChan := make(chan common.ResultWebsocket[models.NewOrderResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).Execute()
 			resultChan <- common.ResultWebsocket[models.NewOrderResponse]{Value: resp, Err: err}
 		}()
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"50000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728413795125},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6},{"rateLimitType":"ORDERS","interval":"MINUTE","intervalNum":1,"limit":1200,"count":1}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":333245211,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"5SztZiGFAxgAqw4J9EN9fA","price":"50000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1728413795125},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.place"[1:], sent["method"])
+		require.Equal(t, "/order.place"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.NewOrderResponse{}, typedResp)
@@ -523,7 +610,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.NewOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -569,8 +656,22 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		<-mockWS.HasSentChan
 
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSD_PERP","positionAmt":"0","entryPrice":"0.00000000","markPrice":"62297.60417296","unRealizedProfit":"0.00000000","liquidationPrice":"0","leverage":"7","maxQty":"100","marginType":"cross","isolatedMargin":"0.00000000","isAutoAddMargin":"false","positionSide":"BOTH","notionalValue":"0","isolatedWallet":"0","updateTime":1726731195634,"breakEvenPrice":"0.00000000"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -611,22 +712,37 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		<-mockWS.HasSentChan
 
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
 		mockedJSON := `{"id":"123","status":200,"result":[{"symbol":"BTCUSD_PERP","positionAmt":"0","entryPrice":"0.00000000","markPrice":"62297.60417296","unRealizedProfit":"0.00000000","liquidationPrice":"0","leverage":"7","maxQty":"100","marginType":"cross","isolatedMargin":"0.00000000","isAutoAddMargin":"false","positionSide":"BOTH","notionalValue":"0","isolatedWallet":"0","updateTime":1726731195634,"breakEvenPrice":"0.00000000"}],"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":10}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/account.position"[1:], sent["method"])
+		require.Equal(t, "/account.position"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.PositionInformationResponse{}, typedResp)
@@ -690,13 +806,27 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("symbol_example").ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("BTCUSD_PERP").ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328999071,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"ArY8Ng1rln0s9x3fclmAHy","price":"58000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"LONG","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","selfTradePreventionMode":"EXPIRE_TAKER","time":1733740063619,"updateTime":1733740063619,"priceMatch":"NONE"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328999071,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"ArY8Ng1rln0s9x3fclmAHy","price":"58000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"LONG","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","selfTradePreventionMode":"EXPIRE_TAKER","time":1733740063619,"updateTime":1733740063619,"priceMatch":"NONE"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		select {
 		case resp := <-responseChan:
@@ -731,28 +861,43 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		resultChan := make(chan common.ResultWebsocket[models.QueryOrderResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("symbol_example").Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("BTCUSD_PERP").Execute()
 			resultChan <- common.ResultWebsocket[models.QueryOrderResponse]{Value: resp, Err: err}
 		}()
 
 		<-mockWS.HasSentChan
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328999071,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"ArY8Ng1rln0s9x3fclmAHy","price":"58000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"LONG","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","selfTradePreventionMode":"EXPIRE_TAKER","time":1733740063619,"updateTime":1733740063619,"priceMatch":"NONE"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
-		mockWS.QueueMessage([]byte(mockedJSON))
+		var err error
+		var sent map[string]interface{}
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		require.NoError(t, err)
+
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328999071,"symbol":"BTCUSD_PERP","pair":"BTCUSD","status":"NEW","clientOrderId":"ArY8Ng1rln0s9x3fclmAHy","price":"58000","avgPrice":"0.00","origQty":"1","executedQty":"0","cumQty":"0","cumBase":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"LONG","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","selfTradePreventionMode":"EXPIRE_TAKER","time":1733740063619,"updateTime":1733740063619,"priceMatch":"NONE"},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":2400,"count":6}]}`
+
+		var mocked map[string]interface{}
+		err = json.Unmarshal([]byte(mockedJSON), &mocked)
+		require.NoError(t, err)
+
+		mocked["id"] = sent["id"]
+
+		finalJSON, err := json.Marshal(mocked)
+		require.NoError(t, err)
+
+		mockWS.QueueMessage(finalJSON)
 
 		res := <-resultChan
 		resp := res.Value
-		err := res.Err
+		err = res.Err
 
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.NotEmpty(t, mockWS.MessagesWritten)
 
 		require.Len(t, mockWS.MessagesWritten, 1)
-		var sent map[string]any
-		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
+		var sentCheck map[string]any
+		err = json.Unmarshal(mockWS.MessagesWritten[0], &sentCheck)
 		require.NoError(t, err)
-		require.Equal(t, "/order.status"[1:], sent["method"])
+		require.Equal(t, "/order.status"[1:], sentCheck["method"])
 
 		typedResp := resp.Typed
 		require.IsType(t, &models.QueryOrderResponse{}, typedResp)
@@ -795,7 +940,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("symbol_example").ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("BTCUSD_PERP").ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &ListStatusOInner{}
 
 // ListStatusOInner struct for ListStatusOInner
 type ListStatusOInner struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smalli               *int64  `json:"i,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// OrderId
+	Smalli *int64 `json:"i,omitempty"`
+	// ClientOrderId
 	Smallc               *string `json:"c,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

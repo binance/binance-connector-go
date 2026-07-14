@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetMarginRestrictedAssetsResponse{}
 
 // GetMarginRestrictedAssetsResponse struct for GetMarginRestrictedAssetsResponse
 type GetMarginRestrictedAssetsResponse struct {
-	OpenLongRestrictedAsset    []string `json:"openLongRestrictedAsset,omitempty"`
+	// open Long Restricted Asset list.
+	OpenLongRestrictedAsset []string `json:"openLongRestrictedAsset,omitempty"`
+	// max Collateral Exceeded Asset list.
 	MaxCollateralExceededAsset []string `json:"maxCollateralExceededAsset,omitempty"`
 	AdditionalProperties       map[string]interface{}
 }

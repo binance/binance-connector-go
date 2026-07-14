@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,25 +17,45 @@ var _ common.MappedNullable = &CancelMarginAccountAllOpenOrdersOnASymbolResponse
 
 // CancelMarginAccountAllOpenOrdersOnASymbolResponseInner struct for CancelMarginAccountAllOpenOrdersOnASymbolResponseInner
 type CancelMarginAccountAllOpenOrdersOnASymbolResponseInner struct {
-	Symbol               *string                                                                   `json:"symbol,omitempty"`
-	OrigClientOrderId    *string                                                                   `json:"origClientOrderId,omitempty"`
-	OrderId              *int64                                                                    `json:"orderId,omitempty"`
-	OrderListId          *int64                                                                    `json:"orderListId,omitempty"`
-	ClientOrderId        *string                                                                   `json:"clientOrderId,omitempty"`
-	Price                *string                                                                   `json:"price,omitempty"`
-	OrigQty              *string                                                                   `json:"origQty,omitempty"`
-	ExecutedQty          *string                                                                   `json:"executedQty,omitempty"`
-	CummulativeQuoteQty  *string                                                                   `json:"cummulativeQuoteQty,omitempty"`
-	Status               *string                                                                   `json:"status,omitempty"`
-	TimeInForce          *string                                                                   `json:"timeInForce,omitempty"`
-	Type                 *string                                                                   `json:"type,omitempty"`
-	Side                 *string                                                                   `json:"side,omitempty"`
-	ContingencyType      *string                                                                   `json:"contingencyType,omitempty"`
-	ListStatusType       *string                                                                   `json:"listStatusType,omitempty"`
-	ListOrderStatus      *string                                                                   `json:"listOrderStatus,omitempty"`
-	ListClientOrderId    *string                                                                   `json:"listClientOrderId,omitempty"`
-	TransactionTime      *int64                                                                    `json:"transactionTime,omitempty"`
-	Orders               []CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrdersInner       `json:"orders,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Orig Client Order ID.
+	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Order List ID.
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Normal order type after trigger if appliable
+	Type *string `json:"type,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Contingency Type.
+	ContingencyType *string `json:"contingencyType,omitempty"`
+	// List Status Type.
+	ListStatusType *string `json:"listStatusType,omitempty"`
+	// List Order Status.
+	ListOrderStatus *string `json:"listOrderStatus,omitempty"`
+	// List Client Order ID.
+	ListClientOrderId *string `json:"listClientOrderId,omitempty"`
+	// Transaction Time.
+	TransactionTime *int64 `json:"transactionTime,omitempty"`
+	// Orders.
+	Orders []CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrdersInner `json:"orders,omitempty"`
+	// Order Reports.
 	OrderReports         []CancelMarginAccountAllOpenOrdersOnASymbolResponseInnerOrderReportsInner `json:"orderReports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

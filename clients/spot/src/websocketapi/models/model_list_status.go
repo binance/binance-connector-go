@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,15 +17,25 @@ var _ common.MappedNullable = &ListStatus{}
 
 // ListStatus struct for ListStatus
 type ListStatus struct {
-	E                    *int64             `json:"E,omitempty"`
-	Smalls               *string            `json:"s,omitempty"`
-	Smallg               *int64             `json:"g,omitempty"`
-	Smallc               *string            `json:"c,omitempty"`
-	Smalll               *string            `json:"l,omitempty"`
-	L                    *string            `json:"L,omitempty"`
-	Smallr               *string            `json:"r,omitempty"`
-	C                    *string            `json:"C,omitempty"`
-	T                    *int64             `json:"T,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// OrderListId
+	Smallg *int64 `json:"g,omitempty"`
+	// Contingency Type
+	Smallc *string `json:"c,omitempty"`
+	// List Status Type
+	Smalll *string `json:"l,omitempty"`
+	// List Order Status
+	L *string `json:"L,omitempty"`
+	// List Reject Reason
+	Smallr *string `json:"r,omitempty"`
+	// List Client Order ID
+	C *string `json:"C,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// An array of objects
 	O                    []ListStatusOInner `json:"O,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

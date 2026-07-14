@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -16,22 +16,16 @@ type NewAlgoOrderTimeInForceParameter string
 
 // List of newAlgoOrder_timeInForce_parameter
 const (
-	NewAlgoOrderTimeInForceParameterGtc NewAlgoOrderTimeInForceParameter = "GTC"
 	NewAlgoOrderTimeInForceParameterIoc NewAlgoOrderTimeInForceParameter = "IOC"
+	NewAlgoOrderTimeInForceParameterGtc NewAlgoOrderTimeInForceParameter = "GTC"
 	NewAlgoOrderTimeInForceParameterFok NewAlgoOrderTimeInForceParameter = "FOK"
-	NewAlgoOrderTimeInForceParameterGtx NewAlgoOrderTimeInForceParameter = "GTX"
-	NewAlgoOrderTimeInForceParameterGtd NewAlgoOrderTimeInForceParameter = "GTD"
-	NewAlgoOrderTimeInForceParameterRpi NewAlgoOrderTimeInForceParameter = "RPI"
 )
 
 // All allowed values of NewAlgoOrderTimeInForceParameter enum
 var AllowedNewAlgoOrderTimeInForceParameterEnumValues = []NewAlgoOrderTimeInForceParameter{
-	"GTC",
 	"IOC",
+	"GTC",
 	"FOK",
-	"GTX",
-	"GTD",
-	"RPI",
 }
 
 func (v *NewAlgoOrderTimeInForceParameter) UnmarshalJSON(src []byte) error {

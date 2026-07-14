@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,13 +17,19 @@ var _ common.MappedNullable = &AcceptBlockTradeOrderResponse{}
 
 // AcceptBlockTradeOrderResponse struct for AcceptBlockTradeOrderResponse
 type AcceptBlockTradeOrderResponse struct {
-	BlockTradeSettlementKey *string                                  `json:"blockTradeSettlementKey,omitempty"`
-	ExpireTime              *int64                                   `json:"expireTime,omitempty"`
-	Liquidity               *string                                  `json:"liquidity,omitempty"`
-	Status                  *string                                  `json:"status,omitempty"`
-	CreateTime              *int64                                   `json:"createTime,omitempty"`
-	Legs                    []AcceptBlockTradeOrderResponseLegsInner `json:"legs,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// block Trade Settlement Key
+	BlockTradeSettlementKey *string `json:"blockTradeSettlementKey,omitempty"`
+	// expire Time
+	ExpireTime *int64 `json:"expireTime,omitempty"`
+	// liquidity
+	Liquidity *string `json:"liquidity,omitempty"`
+	// status
+	Status *string `json:"status,omitempty"`
+	// create Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// legs
+	Legs                 []AcceptBlockTradeOrderResponseLegsInner `json:"legs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AcceptBlockTradeOrderResponse AcceptBlockTradeOrderResponse

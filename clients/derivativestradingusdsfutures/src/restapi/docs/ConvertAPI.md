@@ -6,8 +6,8 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AcceptTheOfferedQuote**](ConvertAPI.md#AcceptTheOfferedQuote) | **Post** /fapi/v1/convert/acceptQuote | Accept the offered quote (USER_DATA)
 [**ListAllConvertPairs**](ConvertAPI.md#ListAllConvertPairs) | **Get** /fapi/v1/convert/exchangeInfo | List All Convert Pairs
-[**OrderStatus**](ConvertAPI.md#OrderStatus) | **Get** /fapi/v1/convert/orderStatus | Order status(USER_DATA)
-[**SendQuoteRequest**](ConvertAPI.md#SendQuoteRequest) | **Post** /fapi/v1/convert/getQuote | Send Quote Request(USER_DATA)
+[**OrderStatus**](ConvertAPI.md#OrderStatus) | **Get** /fapi/v1/convert/orderStatus | Order status (USER_DATA)
+[**SendQuoteRequest**](ConvertAPI.md#SendQuoteRequest) | **Post** /fapi/v1/convert/getQuote | Send Quote Request (USER_DATA)
 
 
 ## AcceptTheOfferedQuote
@@ -103,8 +103,8 @@ import (
 )
 
 func main() {
-	fromAsset := "fromAsset_example" // string | User spends coin (optional)
-	toAsset := "toAsset_example" // string | User receives coin (optional)
+	fromAsset := "BTC" // string | User spends coin (optional)
+	toAsset := "USDT" // string | User receives coin (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -154,7 +154,7 @@ No authorization required
 
 > OrderStatusResponse OrderStatus(ctx).OrderId(orderId).QuoteId(quoteId).Execute()
 
-Order status(USER_DATA)
+Order status (USER_DATA)
 
 
 ### Example
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	orderId := "1" // string | Either orderId or quoteId is required (optional)
+	orderId := "933256278426274400" // string | Either orderId or quoteId is required (optional)
 	quoteId := "1" // string | Either orderId or quoteId is required (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -224,7 +224,7 @@ No authorization required
 
 > SendQuoteRequestResponse SendQuoteRequest(ctx).FromAsset(fromAsset).ToAsset(toAsset).FromAmount(fromAmount).ToAmount(toAmount).ValidTime(validTime).RecvWindow(recvWindow).Execute()
 
-Send Quote Request(USER_DATA)
+Send Quote Request (USER_DATA)
 
 
 ### Example
@@ -243,8 +243,8 @@ import (
 )
 
 func main() {
-	fromAsset := "fromAsset_example" // string | 
-	toAsset := "toAsset_example" // string | 
+	fromAsset := "BTC" // string | 
+	toAsset := "USDT" // string | 
 	fromAmount := float32(1.0) // float32 | When specified, it is the amount you will be debited after the conversion (optional)
 	toAmount := float32(1.0) // float32 | When specified, it is the amount you will be credited after the conversion (optional)
 	validTime := "10s" // string | 10s, default 10s (optional)

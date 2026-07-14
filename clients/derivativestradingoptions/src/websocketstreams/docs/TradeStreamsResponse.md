@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
+**E** | Pointer to **string** | event type | [optional] 
+**E** | Pointer to **int64** | event time | [optional] 
+**T** | Pointer to **int64** | trade completed time | [optional] 
+**S** | Pointer to **string** | Option trading symbol | [optional] 
+**T** | Pointer to **int64** | trade ID | [optional] 
+**P** | Pointer to **string** | price | [optional] 
+**Q** | Pointer to **string** | quantity, always positive | [optional] 
+**X** | Pointer to **string** | trade type enum, \&quot;MARKET\&quot; for Orderbook trading, \&quot;BLOCK\&quot; for Block trade | [optional] 
+**S** | Pointer to **string** | direction | [optional] 
+**M** | Pointer to **bool** | Is the buyer the market maker? | [optional] 
 
 ## Methods
 

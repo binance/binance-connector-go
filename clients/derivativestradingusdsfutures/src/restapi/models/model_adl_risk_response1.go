@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,7 +17,8 @@ var _ common.MappedNullable = &AdlRiskResponse1{}
 
 // AdlRiskResponse1 struct for AdlRiskResponse1
 type AdlRiskResponse1 struct {
-	Symbol               *string `json:"symbol,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// ADL Risk rating
 	AdlRisk              *string `json:"adlRisk,omitempty"`
 	UpdateTime           *int64  `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}

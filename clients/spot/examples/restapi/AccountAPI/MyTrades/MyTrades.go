@@ -22,7 +22,7 @@ func MyTrades() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.MyTrades(context.Background()).Symbol("BNBUSDT").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.MyTrades(context.Background()).Symbol("BNBBTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

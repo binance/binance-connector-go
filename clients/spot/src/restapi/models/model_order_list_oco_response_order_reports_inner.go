@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -31,10 +31,10 @@ type OrderListOcoResponseOrderReportsInner struct {
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`
 	Side                    *string `json:"side,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
 	WorkingTime             *int64  `json:"workingTime,omitempty"`
-	IcebergQty              *string `json:"icebergQty,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
+	StopPrice               *string `json:"stopPrice,omitempty"`
+	IcebergQty              *string `json:"icebergQty,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -505,38 +505,6 @@ func (o *OrderListOcoResponseOrderReportsInner) SetSide(v string) {
 	o.Side = &v
 }
 
-// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *OrderListOcoResponseOrderReportsInner) GetStopPrice() string {
-	if o == nil || common.IsNil(o.StopPrice) {
-		var ret string
-		return ret
-	}
-	return *o.StopPrice
-}
-
-// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderListOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.StopPrice) {
-		return nil, false
-	}
-	return o.StopPrice, true
-}
-
-// HasStopPrice returns a boolean if a field has been set.
-func (o *OrderListOcoResponseOrderReportsInner) HasStopPrice() bool {
-	if o != nil && !common.IsNil(o.StopPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
-func (o *OrderListOcoResponseOrderReportsInner) SetStopPrice(v string) {
-	o.StopPrice = &v
-}
-
 // GetWorkingTime returns the WorkingTime field value if set, zero value otherwise.
 func (o *OrderListOcoResponseOrderReportsInner) GetWorkingTime() int64 {
 	if o == nil || common.IsNil(o.WorkingTime) {
@@ -569,38 +537,6 @@ func (o *OrderListOcoResponseOrderReportsInner) SetWorkingTime(v int64) {
 	o.WorkingTime = &v
 }
 
-// GetIcebergQty returns the IcebergQty field value if set, zero value otherwise.
-func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQty() string {
-	if o == nil || common.IsNil(o.IcebergQty) {
-		var ret string
-		return ret
-	}
-	return *o.IcebergQty
-}
-
-// GetIcebergQtyOk returns a tuple with the IcebergQty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQtyOk() (*string, bool) {
-	if o == nil || common.IsNil(o.IcebergQty) {
-		return nil, false
-	}
-	return o.IcebergQty, true
-}
-
-// HasIcebergQty returns a boolean if a field has been set.
-func (o *OrderListOcoResponseOrderReportsInner) HasIcebergQty() bool {
-	if o != nil && !common.IsNil(o.IcebergQty) {
-		return true
-	}
-
-	return false
-}
-
-// SetIcebergQty gets a reference to the given string and assigns it to the IcebergQty field.
-func (o *OrderListOcoResponseOrderReportsInner) SetIcebergQty(v string) {
-	o.IcebergQty = &v
-}
-
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
 func (o *OrderListOcoResponseOrderReportsInner) GetSelfTradePreventionMode() string {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
@@ -631,6 +567,70 @@ func (o *OrderListOcoResponseOrderReportsInner) HasSelfTradePreventionMode() boo
 // SetSelfTradePreventionMode gets a reference to the given string and assigns it to the SelfTradePreventionMode field.
 func (o *OrderListOcoResponseOrderReportsInner) SetSelfTradePreventionMode(v string) {
 	o.SelfTradePreventionMode = &v
+}
+
+// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
+func (o *OrderListOcoResponseOrderReportsInner) GetStopPrice() string {
+	if o == nil || common.IsNil(o.StopPrice) {
+		var ret string
+		return ret
+	}
+	return *o.StopPrice
+}
+
+// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.StopPrice) {
+		return nil, false
+	}
+	return o.StopPrice, true
+}
+
+// HasStopPrice returns a boolean if a field has been set.
+func (o *OrderListOcoResponseOrderReportsInner) HasStopPrice() bool {
+	if o != nil && !common.IsNil(o.StopPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
+func (o *OrderListOcoResponseOrderReportsInner) SetStopPrice(v string) {
+	o.StopPrice = &v
+}
+
+// GetIcebergQty returns the IcebergQty field value if set, zero value otherwise.
+func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQty() string {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		var ret string
+		return ret
+	}
+	return *o.IcebergQty
+}
+
+// GetIcebergQtyOk returns a tuple with the IcebergQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderListOcoResponseOrderReportsInner) GetIcebergQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		return nil, false
+	}
+	return o.IcebergQty, true
+}
+
+// HasIcebergQty returns a boolean if a field has been set.
+func (o *OrderListOcoResponseOrderReportsInner) HasIcebergQty() bool {
+	if o != nil && !common.IsNil(o.IcebergQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetIcebergQty gets a reference to the given string and assigns it to the IcebergQty field.
+func (o *OrderListOcoResponseOrderReportsInner) SetIcebergQty(v string) {
+	o.IcebergQty = &v
 }
 
 func (o OrderListOcoResponseOrderReportsInner) MarshalJSON() ([]byte, error) {
@@ -685,17 +685,17 @@ func (o OrderListOcoResponseOrderReportsInner) ToMap() (map[string]interface{}, 
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
-	if !common.IsNil(o.StopPrice) {
-		toSerialize["stopPrice"] = o.StopPrice
-	}
 	if !common.IsNil(o.WorkingTime) {
 		toSerialize["workingTime"] = o.WorkingTime
 	}
-	if !common.IsNil(o.IcebergQty) {
-		toSerialize["icebergQty"] = o.IcebergQty
-	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
+	if !common.IsNil(o.StopPrice) {
+		toSerialize["stopPrice"] = o.StopPrice
+	}
+	if !common.IsNil(o.IcebergQty) {
+		toSerialize["icebergQty"] = o.IcebergQty
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -733,10 +733,10 @@ func (o *OrderListOcoResponseOrderReportsInner) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "side")
-		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "workingTime")
-		delete(additionalProperties, "icebergQty")
 		delete(additionalProperties, "selfTradePreventionMode")
+		delete(additionalProperties, "stopPrice")
+		delete(additionalProperties, "icebergQty")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,9 +17,11 @@ var _ common.MappedNullable = &GetDownloadIdForUmFuturesOrderHistoryResponse{}
 
 // GetDownloadIdForUmFuturesOrderHistoryResponse struct for GetDownloadIdForUmFuturesOrderHistoryResponse
 type GetDownloadIdForUmFuturesOrderHistoryResponse struct {
-	AvgCostTimestampOfLast30d *int64  `json:"avgCostTimestampOfLast30d,omitempty"`
-	DownloadId                *string `json:"downloadId,omitempty"`
-	AdditionalProperties      map[string]interface{}
+	// Average time taken for data download in the past 30 days
+	AvgCostTimestampOfLast30d *int64 `json:"avgCostTimestampOfLast30d,omitempty"`
+	// Download ID.
+	DownloadId           *string `json:"downloadId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetDownloadIdForUmFuturesOrderHistoryResponse GetDownloadIdForUmFuturesOrderHistoryResponse

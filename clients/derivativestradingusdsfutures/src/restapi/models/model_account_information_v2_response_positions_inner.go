@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,24 +15,39 @@ import (
 // checks if the AccountInformationV2ResponsePositionsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountInformationV2ResponsePositionsInner{}
 
-// AccountInformationV2ResponsePositionsInner struct for AccountInformationV2ResponsePositionsInner
+// AccountInformationV2ResponsePositionsInner positions of all symbols in the market are returned
 type AccountInformationV2ResponsePositionsInner struct {
-	Symbol                 *string `json:"symbol,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Initial margin requirement.
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// Maintenance margin requirement.
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// Unrealized profit.
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// Initial margin required for positions.
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// Initial margin required for open orders.
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	Leverage               *string `json:"leverage,omitempty"`
-	Isolated               *bool   `json:"isolated,omitempty"`
-	EntryPrice             *string `json:"entryPrice,omitempty"`
-	MaxNotional            *string `json:"maxNotional,omitempty"`
-	BidNotional            *string `json:"bidNotional,omitempty"`
-	AskNotional            *string `json:"askNotional,omitempty"`
-	PositionSide           *string `json:"positionSide,omitempty"`
-	PositionAmt            *string `json:"positionAmt,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// Current initial leverage.
+	Leverage *string `json:"leverage,omitempty"`
+	// Whether the position uses isolated margin mode.
+	Isolated *bool `json:"isolated,omitempty"`
+	// Average entry price.
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// Maximum available notional under current leverage.
+	MaxNotional *string `json:"maxNotional,omitempty"`
+	// Bid notional (ignore).
+	BidNotional *string `json:"bidNotional,omitempty"`
+	// Ask notional (ignore).
+	AskNotional *string `json:"askNotional,omitempty"`
+	// Position side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Position quantity.
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// Last update time in milliseconds.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV2ResponsePositionsInner AccountInformationV2ResponsePositionsInner

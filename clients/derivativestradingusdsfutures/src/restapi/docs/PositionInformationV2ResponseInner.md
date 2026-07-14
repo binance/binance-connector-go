@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**BreakEvenPrice** | Pointer to **string** |  | [optional] 
-**MarginType** | Pointer to **string** |  | [optional] 
+**EntryPrice** | Pointer to **string** | Entry Price. | [optional] 
+**BreakEvenPrice** | Pointer to **string** | Break Even Price. | [optional] 
+**MarginType** | Pointer to **string** | Margin Type. | [optional] 
 **IsAutoAddMargin** | Pointer to **string** |  | [optional] 
-**IsolatedMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**LiquidationPrice** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**MaxNotionalValue** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
+**IsolatedMargin** | Pointer to **string** | Isolated Margin. | [optional] 
+**Leverage** | Pointer to **string** | Leverage. | [optional] 
+**LiquidationPrice** | Pointer to **string** | Liquidation Price. | [optional] 
+**MarkPrice** | Pointer to **string** | Mark Price. | [optional] 
+**MaxNotionalValue** | Pointer to **string** | Max Notional Value. | [optional] 
+**PositionAmt** | Pointer to **string** | Position Amt. | [optional] 
 **Notional** | Pointer to **string** |  | [optional] 
 **IsolatedWallet** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Un Realized Profit. | [optional] 
+**PositionSide** | Pointer to **string** | Position Side. | [optional] 
+**UpdateTime** | Pointer to **int64** | Update Time. | [optional] 
 
 ## Methods
 

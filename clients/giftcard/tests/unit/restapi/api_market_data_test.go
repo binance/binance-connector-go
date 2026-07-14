@@ -1,5 +1,5 @@
 /*
-Binance Gift Card REST API TEST
+Gift Card REST API TEST
 
 Testing MarketDataAPIService
 
@@ -10,6 +10,7 @@ package binancegiftcardrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,12 +26,16 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService CreateADualTokenGiftCard Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":{"referenceNo":"0033002144060553","code":"6H9EKF5ECCWFBHGE","expiredTime":1727417154000},"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":{"referenceNo":"0033002144060553","code":"6H9EKF5ECCWFBHGE","expiredTime":1727417154000},"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/buyCode", r.URL.Path)
-			require.Equal(t, "baseToken_example", r.URL.Query().Get("baseToken"))
-			require.Equal(t, "faceToken_example", r.URL.Query().Get("faceToken"))
-			require.Equal(t, "1", r.URL.Query().Get("baseTokenAmount"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("baseToken"))
+			require.Equal(t, "BNB", r.URL.Query().Get("faceToken"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("baseTokenAmount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -47,7 +52,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("baseToken_example").FaceToken("faceToken_example").BaseTokenAmount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("BUSD").FaceToken("BNB").BaseTokenAmount(float32(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -100,11 +105,15 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService CreateASingleTokenGiftCard Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":{"referenceNo":"0033002144060553","code":"6H9EKF5ECCWFBHGE","expiredTime":1727417154000},"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":{"referenceNo":"0033002144060553","code":"6H9EKF5ECCWFBHGE","expiredTime":1727417154000},"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/createCode", r.URL.Path)
-			require.Equal(t, "token_example", r.URL.Query().Get("token"))
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, "BNB", r.URL.Query().Get("token"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -121,7 +130,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("token_example").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("BNB").Amount(float32(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -174,7 +183,11 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService FetchRsaPublicKey Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXBBVKLAc1GQ5FsIFFqOHrPTox5noBONIKr+IAedTR9FkVxq6e65updEbfdhRNkMOeYIO2i0UylrjGC0X8YSoIszmrVHeV0l06Zh1oJuZos1+7N+WLuz9JvlPaawof3GUakTxYWWCa9+8KIbLKsoKMdfS96VT+8iOXO3quMGKUmQIDAQAB","success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXBBVKLAc1GQ5FsIFFqOHrPTox5noBONIKr+IAedTR9FkVxq6e65updEbfdhRNkMOeYIO2i0UylrjGC0X8YSoIszmrVHeV0l06Zh1oJuZos1+7N+WLuz9JvlPaawof3GUakTxYWWCa9+8KIbLKsoKMdfS96VT+8iOXO3quMGKUmQIDAQAB","success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/cryptography/rsa-public-key", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -229,10 +242,14 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService FetchTokenLimit Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":[{"coin":"BNB","fromMin":"0.01","fromMax":"1"}],"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":[{"coin":"BNB","fromMin":"0.01","fromMax":"1"}],"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/buyCode/token-limit", r.URL.Path)
-			require.Equal(t, "baseToken_example", r.URL.Query().Get("baseToken"))
+			require.Equal(t, "BUSD", r.URL.Query().Get("baseToken"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -249,7 +266,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.FetchTokenLimit(context.Background()).BaseToken("baseToken_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.FetchTokenLimit(context.Background()).BaseToken("BUSD").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -302,10 +319,14 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService RedeemABinanceGiftCard Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":{"referenceNo":"0033002328060227","identityNo":"10317392647411060736","token":"BNB","amount":"0.00000001"},"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":{"referenceNo":"0033002328060227","identityNo":"10317392647411060736","token":"BNB","amount":"0.00000001"},"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/redeemCode", r.URL.Path)
-			require.Equal(t, "code_example", r.URL.Query().Get("code"))
+			require.Equal(t, "6H9EKF5ECCWFBHGE", r.URL.Query().Get("code"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -322,7 +343,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.RedeemABinanceGiftCard(context.Background()).Code("code_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.RedeemABinanceGiftCard(context.Background()).Code("6H9EKF5ECCWFBHGE").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -375,10 +396,14 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService VerifyBinanceGiftCardByGiftCardNumber Success", func(t *testing.T) {
 
-		mockedJSON := `{"code":"000000","message":"success","data":{"valid":true,"token":"BNB","amount":"0.00000001"},"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"code":"000000","message":"success","data":{"valid":true,"token":"BNB","amount":"0.00000001"},"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/verify", r.URL.Path)
-			require.Equal(t, "referenceNo_example", r.URL.Query().Get("referenceNo"))
+			require.Equal(t, "0033002328060227", r.URL.Query().Get("referenceNo"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -395,7 +420,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.VerifyBinanceGiftCardByGiftCardNumber(context.Background()).ReferenceNo("referenceNo_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.VerifyBinanceGiftCardByGiftCardNumber(context.Background()).ReferenceNo("0033002328060227").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

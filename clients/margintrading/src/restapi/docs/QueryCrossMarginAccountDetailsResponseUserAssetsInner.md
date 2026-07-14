@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Borrowed** | Pointer to **string** |  | [optional] 
-**Free** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **string** |  | [optional] 
-**NetAsset** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Borrowed** | Pointer to **string** | borrowed. | [optional] 
+**Free** | Pointer to **string** | free. | [optional] 
+**Interest** | Pointer to **string** | interest. | [optional] 
+**Locked** | Pointer to **string** | locked. | [optional] 
+**NetAsset** | Pointer to **string** | net Asset. | [optional] 
 
 ## Methods
 

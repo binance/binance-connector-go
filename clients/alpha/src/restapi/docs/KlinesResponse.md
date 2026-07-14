@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**MessageDetail** | Pointer to **string** |  | [optional] 
-**Success** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]KlinesResponseDataItem**](KlinesResponseDataItem.md) |  | [optional] 
+**Code** | Pointer to **string** | API response code. \&quot;000000\&quot; indicates success. | [optional] 
+**Message** | Pointer to **string** | Response message. | [optional] 
+**MessageDetail** | Pointer to **string** | Detailed response message. | [optional] 
+**Success** | Pointer to **bool** | Whether request is successful. | [optional] 
+**Data** | Pointer to [**[][]KlinesResponseDataInnerInner**]([]KlinesResponseDataInnerInner.md) | Array of kline rows. Each row contains: open time, open, high, low, close, volume, close time, quote volume, trade count, taker buy base volume, taker buy quote volume, and a static 0. | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasSuccess returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *KlinesResponse) GetData() []KlinesResponseDataItem`
+`func (o *KlinesResponse) GetData() [][]KlinesResponseDataInnerInner`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *KlinesResponse) GetDataOk() (*[]KlinesResponseDataItem, bool)`
+`func (o *KlinesResponse) GetDataOk() (*[][]KlinesResponseDataInnerInner, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *KlinesResponse) SetData(v []KlinesResponseDataItem)`
+`func (o *KlinesResponse) SetData(v [][]KlinesResponseDataInnerInner)`
 
 SetData sets Data field to given value.
 

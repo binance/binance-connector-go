@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &QueryMaxTransferOutAmountResponse{}
 
 // QueryMaxTransferOutAmountResponse struct for QueryMaxTransferOutAmountResponse
 type QueryMaxTransferOutAmountResponse struct {
+	// amount.
 	Amount               *string `json:"amount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

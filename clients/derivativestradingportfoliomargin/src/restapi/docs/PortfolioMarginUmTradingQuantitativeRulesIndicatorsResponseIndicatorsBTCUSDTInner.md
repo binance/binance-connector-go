@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**IsLocked** | Pointer to **bool** |  | [optional] 
-**PlannedRecoverTime** | Pointer to **int64** |  | [optional] 
-**Indicator** | Pointer to **string** |  | [optional] 
-**Value** | Pointer to **float32** |  | [optional] 
-**TriggerValue** | Pointer to **float32** |  | [optional] 
+**IsLocked** | Pointer to **bool** | Is Locked. | [optional] 
+**PlannedRecoverTime** | Pointer to **int64** | Planned Recover Time. | [optional] 
+**Indicator** | Pointer to **string** | Indicator. | [optional] 
+**Value** | Pointer to **float32** | Value. | [optional] 
+**TriggerValue** | Pointer to **float32** | Trigger Value. | [optional] 
 
 ## Methods
 

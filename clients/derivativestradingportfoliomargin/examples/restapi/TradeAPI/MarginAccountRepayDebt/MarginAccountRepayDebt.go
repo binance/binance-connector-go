@@ -22,7 +22,7 @@ func MarginAccountRepayDebt() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountRepayDebt(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountRepayDebt(context.Background()).Asset("USDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

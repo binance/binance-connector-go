@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Bracket** | Pointer to **int64** |  | [optional] 
-**InitialLeverage** | Pointer to **int64** |  | [optional] 
-**NotionalCap** | Pointer to **int64** |  | [optional] 
-**NotionalFloor** | Pointer to **int64** |  | [optional] 
-**MaintMarginRatio** | Pointer to **float32** |  | [optional] 
-**Cum** | Pointer to **float32** |  | [optional] 
+**Bracket** | Pointer to **int64** | Notional bracket | [optional] 
+**InitialLeverage** | Pointer to **int64** | Max initial leverage for this bracket | [optional] 
+**NotionalCap** | Pointer to **int64** | Cap notional of this bracket | [optional] 
+**NotionalFloor** | Pointer to **int64** | Notional threshold of this bracket | [optional] 
+**MaintMarginRatio** | Pointer to **float32** | Maintenance ratio for this bracket | [optional] 
+**Cum** | Pointer to **float32** | Auxiliary number for quick calculation | [optional] 
 
 ## Methods
 

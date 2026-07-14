@@ -1,5 +1,5 @@
 /*
-Binance Convert REST API TEST
+Convert REST API TEST
 
 Testing MarketDataAPIService
 
@@ -25,7 +25,11 @@ func Test_binanceconvertrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService ListAllConvertPairs Success", func(t *testing.T) {
 
-		mockedJSON := `[{"fromAsset":"BTC","toAsset":"USDT","fromAssetMinAmount":"0.0004","fromAssetMaxAmount":"50","toAssetMinAmount":"20","toAssetMaxAmount":"2500000"}]`
+		var mockedJSON string
+		mockedJSON = `[{"fromAsset":"BTC","toAsset":"USDT","fromAssetMinAmount":"0.0004","fromAssetMaxAmount":"50","toAssetMinAmount":"20","toAssetMaxAmount":"2500000"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/exchangeInfo", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binanceconvertrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryOrderQuantityPrecisionPerAsset Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BTC","fraction":8},{"asset":"SHIB","fraction":2}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BTC","fraction":8}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/assetInfo", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetCurrentPositionModeResponse{}
 
 // GetCurrentPositionModeResponse struct for GetCurrentPositionModeResponse
 type GetCurrentPositionModeResponse struct {
+	// \"true\": Hedge Mode; \"false\": One-way Mode
 	DualSidePosition     *bool `json:"dualSidePosition,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

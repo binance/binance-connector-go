@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**[]TickerBookResponse2ResultInner**](TickerBookResponse2ResultInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *TickerBookResponse) GetRateLimits() []RateLimits`
+`func (o *TickerBookResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *TickerBookResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *TickerBookResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *TickerBookResponse) SetRateLimits(v []RateLimits)`
+`func (o *TickerBookResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

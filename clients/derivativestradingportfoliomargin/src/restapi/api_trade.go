@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package binancederivativestradingportfoliomarginrestapi
@@ -25,6 +25,7 @@ type ApiCancelAllCmOpenConditionalOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelAllCmOpenConditionalOrdersRequest) Symbol(symbol string) ApiCancelAllCmOpenConditionalOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -40,13 +41,13 @@ func (r ApiCancelAllCmOpenConditionalOrdersRequest) Execute() (*common.RestApiRe
 }
 
 /*
-CancelAllCmOpenConditionalOrders Cancel All CM Open Conditional Orders(TRADE)
+CancelAllCmOpenConditionalOrders Cancel All CM Open Conditional Orders (TRADE)
 Delete /papi/v1/cm/conditional/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-CM-Open-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-cm-open-conditional-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiCancelAllCmOpenConditionalOrdersRequest
 */
@@ -76,7 +77,15 @@ func (a *TradeAPIService) CancelAllCmOpenConditionalOrdersExecute(r ApiCancelAll
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllCmOpenConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllCmOpenConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,6 +100,7 @@ type ApiCancelAllCmOpenOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelAllCmOpenOrdersRequest) Symbol(symbol string) ApiCancelAllCmOpenOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -106,13 +116,13 @@ func (r ApiCancelAllCmOpenOrdersRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-CancelAllCmOpenOrders Cancel All CM Open Orders(TRADE)
+CancelAllCmOpenOrders Cancel All CM Open Orders (TRADE)
 Delete /papi/v1/cm/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-CM-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-cm-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiCancelAllCmOpenOrdersRequest
 */
@@ -142,7 +152,15 @@ func (a *TradeAPIService) CancelAllCmOpenOrdersExecute(r ApiCancelAllCmOpenOrder
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllCmOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllCmOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -157,6 +175,7 @@ type ApiCancelAllUmAlgoOpenOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelAllUmAlgoOpenOrdersRequest) Symbol(symbol string) ApiCancelAllUmAlgoOpenOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -175,10 +194,10 @@ func (r ApiCancelAllUmAlgoOpenOrdersRequest) Execute() (*common.RestApiResponse[
 CancelAllUmAlgoOpenOrders Cancel All UM Algo Open Orders (TRADE)
 Delete /papi/v1/um/algo/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Algo-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-um-algo-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiCancelAllUmAlgoOpenOrdersRequest
 */
@@ -208,7 +227,15 @@ func (a *TradeAPIService) CancelAllUmAlgoOpenOrdersExecute(r ApiCancelAllUmAlgoO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllUmAlgoOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllUmAlgoOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -223,6 +250,7 @@ type ApiCancelAllUmOpenConditionalOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelAllUmOpenConditionalOrdersRequest) Symbol(symbol string) ApiCancelAllUmOpenConditionalOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -238,17 +266,15 @@ func (r ApiCancelAllUmOpenConditionalOrdersRequest) Execute() (*common.RestApiRe
 }
 
 /*
-	CancelAllUmOpenConditionalOrders Cancel All UM Open Conditional Orders
-	Delete /papi/v1/um/conditional/allOpenOrders
+CancelAllUmOpenConditionalOrders Cancel All UM Open Conditional Orders (TRADE)
+Delete /papi/v1/um/conditional/allOpenOrders
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-um-open-conditional-orders
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param recvWindow -
-	@return ApiCancelAllUmOpenConditionalOrdersRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol
+@param recvWindow -
+@return ApiCancelAllUmOpenConditionalOrdersRequest
 */
 func (a *TradeAPIService) CancelAllUmOpenConditionalOrders(ctx context.Context) ApiCancelAllUmOpenConditionalOrdersRequest {
 	return ApiCancelAllUmOpenConditionalOrdersRequest{
@@ -260,8 +286,6 @@ func (a *TradeAPIService) CancelAllUmOpenConditionalOrders(ctx context.Context) 
 // Execute executes the request
 //
 //	@return CancelAllUmOpenConditionalOrdersResponse
-//
-// Deprecated
 func (a *TradeAPIService) CancelAllUmOpenConditionalOrdersExecute(r ApiCancelAllUmOpenConditionalOrdersRequest) (*common.RestApiResponse[models.CancelAllUmOpenConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodDelete
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/allOpenOrders"
@@ -278,7 +302,15 @@ func (a *TradeAPIService) CancelAllUmOpenConditionalOrdersExecute(r ApiCancelAll
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllUmOpenConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllUmOpenConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -293,6 +325,7 @@ type ApiCancelAllUmOpenOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelAllUmOpenOrdersRequest) Symbol(symbol string) ApiCancelAllUmOpenOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -308,13 +341,13 @@ func (r ApiCancelAllUmOpenOrdersRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-CancelAllUmOpenOrders Cancel All UM Open Orders(TRADE)
+CancelAllUmOpenOrders Cancel All UM Open Orders (TRADE)
 Delete /papi/v1/um/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-All-UM-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-um-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiCancelAllUmOpenOrdersRequest
 */
@@ -344,7 +377,15 @@ func (a *TradeAPIService) CancelAllUmOpenOrdersExecute(r ApiCancelAllUmOpenOrder
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllUmOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllUmOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -361,6 +402,7 @@ type ApiCancelCmConditionalOrderRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiCancelCmConditionalOrderRequest) Symbol(symbol string) ApiCancelCmConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -386,13 +428,13 @@ func (r ApiCancelCmConditionalOrderRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-CancelCmConditionalOrder Cancel CM Conditional Order(TRADE)
+CancelCmConditionalOrder Cancel CM Conditional Order (TRADE)
 Delete /papi/v1/cm/conditional/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-CM-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-cm-conditional-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param strategyId -
 @param newClientStrategyId -
 @param recvWindow -
@@ -430,7 +472,15 @@ func (a *TradeAPIService) CancelCmConditionalOrderExecute(r ApiCancelCmCondition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelCmConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelCmConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -447,6 +497,7 @@ type ApiCancelCmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiCancelCmOrderRequest) Symbol(symbol string) ApiCancelCmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -472,13 +523,13 @@ func (r ApiCancelCmOrderRequest) Execute() (*common.RestApiResponse[models.Cance
 }
 
 /*
-CancelCmOrder Cancel CM Order(TRADE)
+CancelCmOrder Cancel CM Order (TRADE)
 Delete /papi/v1/cm/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-CM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-cm-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
 @param recvWindow -
@@ -516,7 +567,15 @@ func (a *TradeAPIService) CancelCmOrderExecute(r ApiCancelCmOrderRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelCmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelCmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -531,6 +590,7 @@ type ApiCancelMarginAccountAllOpenOrdersOnASymbolRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiCancelMarginAccountAllOpenOrdersOnASymbolRequest) Symbol(symbol string) ApiCancelMarginAccountAllOpenOrdersOnASymbolRequest {
 	r.symbol = &symbol
 	return r
@@ -546,13 +606,13 @@ func (r ApiCancelMarginAccountAllOpenOrdersOnASymbolRequest) Execute() (*common.
 }
 
 /*
-CancelMarginAccountAllOpenOrdersOnASymbol Cancel Margin Account All Open Orders on a Symbol(TRADE)
+CancelMarginAccountAllOpenOrdersOnASymbol Cancel Margin Account All Open Orders on a Symbol (TRADE)
 Delete /papi/v1/margin/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-Margin-Account-All-Open-Orders-on-a-Symbol
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-margin-account-all-open-orders-on-asymbol
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param recvWindow -
 @return ApiCancelMarginAccountAllOpenOrdersOnASymbolRequest
 */
@@ -582,7 +642,15 @@ func (a *TradeAPIService) CancelMarginAccountAllOpenOrdersOnASymbolExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMarginAccountAllOpenOrdersOnASymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelMarginAccountAllOpenOrdersOnASymbolResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -600,6 +668,7 @@ type ApiCancelMarginAccountOcoOrdersRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiCancelMarginAccountOcoOrdersRequest) Symbol(symbol string) ApiCancelMarginAccountOcoOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -617,12 +686,13 @@ func (r ApiCancelMarginAccountOcoOrdersRequest) ListClientOrderId(listClientOrde
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// Used to uniquely identify this cancel request.
 func (r ApiCancelMarginAccountOcoOrdersRequest) NewClientOrderId(newClientOrderId string) ApiCancelMarginAccountOcoOrdersRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiCancelMarginAccountOcoOrdersRequest) RecvWindow(recvWindow int64) ApiCancelMarginAccountOcoOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -633,17 +703,17 @@ func (r ApiCancelMarginAccountOcoOrdersRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-CancelMarginAccountOcoOrders Cancel Margin Account OCO Orders(TRADE)
+CancelMarginAccountOcoOrders Cancel Margin Account OCO Orders (TRADE)
 Delete /papi/v1/margin/orderList
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-Margin-Account-OCO-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-margin-account-oco-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderListId -  Either `orderListId` or `listClientOrderId` must be provided
 @param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param recvWindow -
+@param newClientOrderId -  Used to uniquely identify this cancel request.
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiCancelMarginAccountOcoOrdersRequest
 */
 func (a *TradeAPIService) CancelMarginAccountOcoOrders(ctx context.Context) ApiCancelMarginAccountOcoOrdersRequest {
@@ -681,7 +751,15 @@ func (a *TradeAPIService) CancelMarginAccountOcoOrdersExecute(r ApiCancelMarginA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMarginAccountOcoOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelMarginAccountOcoOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -699,6 +777,7 @@ type ApiCancelMarginAccountOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiCancelMarginAccountOrderRequest) Symbol(symbol string) ApiCancelMarginAccountOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -714,12 +793,13 @@ func (r ApiCancelMarginAccountOrderRequest) OrigClientOrderId(origClientOrderId 
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// Used to uniquely identify this cancel request.
 func (r ApiCancelMarginAccountOrderRequest) NewClientOrderId(newClientOrderId string) ApiCancelMarginAccountOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
+// The value cannot be greater than &#x60;60000&#x60;
 func (r ApiCancelMarginAccountOrderRequest) RecvWindow(recvWindow int64) ApiCancelMarginAccountOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -730,17 +810,17 @@ func (r ApiCancelMarginAccountOrderRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-CancelMarginAccountOrder Cancel Margin Account Order(TRADE)
+CancelMarginAccountOrder Cancel Margin Account Order (TRADE)
 Delete /papi/v1/margin/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-Margin-Account-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-margin-account-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param recvWindow -
+@param newClientOrderId -  Used to uniquely identify this cancel request.
+@param recvWindow -  The value cannot be greater than `60000`
 @return ApiCancelMarginAccountOrderRequest
 */
 func (a *TradeAPIService) CancelMarginAccountOrder(ctx context.Context) ApiCancelMarginAccountOrderRequest {
@@ -778,7 +858,15 @@ func (a *TradeAPIService) CancelMarginAccountOrderExecute(r ApiCancelMarginAccou
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMarginAccountOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelMarginAccountOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -794,11 +882,13 @@ type ApiCancelUmAlgoOrderRequest struct {
 	recvWindow   *int64
 }
 
+// Algo order ID
 func (r ApiCancelUmAlgoOrderRequest) AlgoId(algoId int64) ApiCancelUmAlgoOrderRequest {
 	r.algoId = &algoId
 	return r
 }
 
+// Client algo order ID
 func (r ApiCancelUmAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiCancelUmAlgoOrderRequest {
 	r.clientAlgoId = &clientAlgoId
 	return r
@@ -817,11 +907,11 @@ func (r ApiCancelUmAlgoOrderRequest) Execute() (*common.RestApiResponse[models.C
 CancelUmAlgoOrder Cancel UM Algo Order (TRADE)
 Delete /papi/v1/um/algo/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Algo-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-um-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param algoId -
-@param clientAlgoId -
+@param algoId -  Algo order ID
+@param clientAlgoId -  Client algo order ID
 @param recvWindow -
 @return ApiCancelUmAlgoOrderRequest
 */
@@ -852,7 +942,15 @@ func (a *TradeAPIService) CancelUmAlgoOrderExecute(r ApiCancelUmAlgoOrderRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelUmAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelUmAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -869,6 +967,7 @@ type ApiCancelUmConditionalOrderRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiCancelUmConditionalOrderRequest) Symbol(symbol string) ApiCancelUmConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -894,19 +993,17 @@ func (r ApiCancelUmConditionalOrderRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-	CancelUmConditionalOrder Cancel UM Conditional Order
-	Delete /papi/v1/um/conditional/order
+CancelUmConditionalOrder Cancel UM Conditional Order (TRADE)
+Delete /papi/v1/um/conditional/order
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-um-conditional-order
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param strategyId -
-	@param newClientStrategyId -
-	@param recvWindow -
-	@return ApiCancelUmConditionalOrderRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol
+@param strategyId -
+@param newClientStrategyId -
+@param recvWindow -
+@return ApiCancelUmConditionalOrderRequest
 */
 func (a *TradeAPIService) CancelUmConditionalOrder(ctx context.Context) ApiCancelUmConditionalOrderRequest {
 	return ApiCancelUmConditionalOrderRequest{
@@ -918,8 +1015,6 @@ func (a *TradeAPIService) CancelUmConditionalOrder(ctx context.Context) ApiCance
 // Execute executes the request
 //
 //	@return CancelUmConditionalOrderResponse
-//
-// Deprecated
 func (a *TradeAPIService) CancelUmConditionalOrderExecute(r ApiCancelUmConditionalOrderRequest) (*common.RestApiResponse[models.CancelUmConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodDelete
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/order"
@@ -942,7 +1037,15 @@ func (a *TradeAPIService) CancelUmConditionalOrderExecute(r ApiCancelUmCondition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelUmConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelUmConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -959,6 +1062,7 @@ type ApiCancelUmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiCancelUmOrderRequest) Symbol(symbol string) ApiCancelUmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -984,13 +1088,13 @@ func (r ApiCancelUmOrderRequest) Execute() (*common.RestApiResponse[models.Cance
 }
 
 /*
-CancelUmOrder Cancel UM Order(TRADE)
+CancelUmOrder Cancel UM Order (TRADE)
 Delete /papi/v1/um/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Cancel-UM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-um-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
 @param recvWindow -
@@ -1028,7 +1132,15 @@ func (a *TradeAPIService) CancelUmOrderExecute(r ApiCancelUmOrderRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelUmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelUmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1070,13 +1182,13 @@ func (r ApiCmAccountTradeListRequest) EndTime(endTime int64) ApiCmAccountTradeLi
 	return r
 }
 
-// Trade id to fetch from. Default gets most recent trades.
+// Trade ID to fetch from.
 func (r ApiCmAccountTradeListRequest) FromId(fromId int64) ApiCmAccountTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiCmAccountTradeListRequest) Limit(limit int64) ApiCmAccountTradeListRequest {
 	r.limit = &limit
 	return r
@@ -1092,18 +1204,18 @@ func (r ApiCmAccountTradeListRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-CmAccountTradeList CM Account Trade List(USER_DATA)
+CmAccountTradeList CM Account Trade List (USER_DATA)
 Get /papi/v1/cm/userTrades
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Account-Trade-List
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cm-account-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param pair -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param fromId -  Trade id to fetch from. Default gets most recent trades.
-@param limit -  Default 100; max 1000
+@param fromId -  Trade ID to fetch from.
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiCmAccountTradeListRequest
 */
@@ -1146,7 +1258,15 @@ func (a *TradeAPIService) CmAccountTradeListExecute(r ApiCmAccountTradeListReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CmAccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CmAccountTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1176,10 +1296,10 @@ func (r ApiCmPositionAdlQuantileEstimationRequest) Execute() (*common.RestApiRes
 }
 
 /*
-CmPositionAdlQuantileEstimation CM Position ADL Quantile Estimation(USER_DATA)
+CmPositionAdlQuantileEstimation CM Position ADL Quantile Estimation (USER_DATA)
 Get /papi/v1/cm/adlQuantile
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/CM-Position-ADL-Quantile-Estimation
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cm-position-adl-quantile-estimation
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1210,7 +1330,15 @@ func (a *TradeAPIService) CmPositionAdlQuantileEstimationExecute(r ApiCmPosition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CmPositionAdlQuantileEstimationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CmPositionAdlQuantileEstimationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1234,10 +1362,10 @@ func (r ApiFuturesTradfiPerpsContractRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-FuturesTradfiPerpsContract Futures TradFi Perps Contract(USER_DATA)
+FuturesTradfiPerpsContract Futures TradFi Perps Contract (USER_DATA)
 Post /papi/v1/um/stock/contract
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Futures-TradFi-Perps-Contract
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#futures-tradfi-perps-contract
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -1264,7 +1392,15 @@ func (a *TradeAPIService) FuturesTradfiPerpsContractExecute(r ApiFuturesTradfiPe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FuturesTradfiPerpsContractResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FuturesTradfiPerpsContractResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1291,7 +1427,7 @@ func (r ApiGetUmFuturesBnbBurnStatusRequest) Execute() (*common.RestApiResponse[
 GetUmFuturesBnbBurnStatus Get UM Futures BNB Burn Status (USER_DATA)
 Get /papi/v1/um/feeBurn
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Get-UM-Futures-BNB-Burn-Status
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#get-um-futures-bnb-burn-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -1318,7 +1454,15 @@ func (a *TradeAPIService) GetUmFuturesBnbBurnStatusExecute(r ApiGetUmFuturesBnbB
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetUmFuturesBnbBurnStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetUmFuturesBnbBurnStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1354,10 +1498,10 @@ func (r ApiMarginAccountBorrowRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-MarginAccountBorrow Margin Account Borrow(MARGIN)
+MarginAccountBorrow Margin Account Borrow (MARGIN)
 Post /papi/v1/marginLoan
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Margin-Account-Borrow
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#margin-account-borrow
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
@@ -1385,6 +1529,7 @@ func (a *TradeAPIService) MarginAccountBorrowExecute(r ApiMarginAccountBorrowReq
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1395,7 +1540,15 @@ func (a *TradeAPIService) MarginAccountBorrowExecute(r ApiMarginAccountBorrowReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountBorrowResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountBorrowResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1417,9 +1570,9 @@ type ApiMarginAccountNewOcoRequest struct {
 	stopClientOrderId    *string
 	stopLimitPrice       *float32
 	stopIcebergQty       *float32
-	stopLimitTimeInForce *models.MarginAccountNewOcoStopLimitTimeInForceParameter
+	stopLimitTimeInForce *models.NewMarginOrderTimeInForceParameter
 	newOrderRespType     *models.NewCmOrderNewOrderRespTypeParameter
-	sideEffectType       *models.NewMarginOrderSideEffectTypeParameter
+	sideEffectType       *models.MarginAccountNewOcoSideEffectTypeParameter
 	recvWindow           *int64
 }
 
@@ -1428,12 +1581,12 @@ func (r ApiMarginAccountNewOcoRequest) Symbol(symbol string) ApiMarginAccountNew
 	return r
 }
 
+// See enum definitions: order side
 func (r ApiMarginAccountNewOcoRequest) Side(side models.NewCmConditionalOrderSideParameter) ApiMarginAccountNewOcoRequest {
 	r.side = &side
 	return r
 }
 
-// Order quantity
 func (r ApiMarginAccountNewOcoRequest) Quantity(quantity float32) ApiMarginAccountNewOcoRequest {
 	r.quantity = &quantity
 	return r
@@ -1449,7 +1602,7 @@ func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float32) ApiMarginAcc
 	return r
 }
 
-// Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided
+// A unique Id for the entire orderList
 func (r ApiMarginAccountNewOcoRequest) ListClientOrderId(listClientOrderId string) ApiMarginAccountNewOcoRequest {
 	r.listClientOrderId = &listClientOrderId
 	return r
@@ -1484,19 +1637,19 @@ func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float32) Ap
 }
 
 // Valid values are &#x60;GTC/FOK/IOC&#x60;
-func (r ApiMarginAccountNewOcoRequest) StopLimitTimeInForce(stopLimitTimeInForce models.MarginAccountNewOcoStopLimitTimeInForceParameter) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopLimitTimeInForce(stopLimitTimeInForce models.NewMarginOrderTimeInForceParameter) ApiMarginAccountNewOcoRequest {
 	r.stopLimitTimeInForce = &stopLimitTimeInForce
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
+// Set the response JSON.
 func (r ApiMarginAccountNewOcoRequest) NewOrderRespType(newOrderRespType models.NewCmOrderNewOrderRespTypeParameter) ApiMarginAccountNewOcoRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
 // NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT.
-func (r ApiMarginAccountNewOcoRequest) SideEffectType(sideEffectType models.NewMarginOrderSideEffectTypeParameter) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) SideEffectType(sideEffectType models.MarginAccountNewOcoSideEffectTypeParameter) ApiMarginAccountNewOcoRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
@@ -1511,25 +1664,25 @@ func (r ApiMarginAccountNewOcoRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-MarginAccountNewOco Margin Account New OCO(TRADE)
+MarginAccountNewOco Margin Account New OCO (TRADE)
 Post /papi/v1/margin/order/oco
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Margin-Account-New-OCO
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#margin-account-new-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param side -
-@param quantity -  Order quantity
+@param side -  See enum definitions: order side
+@param quantity -
 @param price -
 @param stopPrice -
-@param listClientOrderId -  Either `orderListId` or `listClientOrderId` must be provided
+@param listClientOrderId -  A unique Id for the entire orderList
 @param limitClientOrderId -  A unique Id for the limit order
 @param limitIcebergQty -
 @param stopClientOrderId -  A unique Id for the stop loss/stop loss limit leg
 @param stopLimitPrice -  If provided, stopLimitTimeInForce is required.
 @param stopIcebergQty -
 @param stopLimitTimeInForce -  Valid values are `GTC/FOK/IOC`
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
+@param newOrderRespType -  Set the response JSON.
 @param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT.
 @param recvWindow -
 @return ApiMarginAccountNewOcoRequest
@@ -1554,15 +1707,19 @@ func (a *TradeAPIService) MarginAccountNewOcoExecute(r ApiMarginAccountNewOcoReq
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.price == nil {
 		return nil, common.ReportError("price is required and must be specified")
 	}
+
 	if r.stopPrice == nil {
 		return nil, common.ReportError("stopPrice is required and must be specified")
 	}
@@ -1603,7 +1760,15 @@ func (a *TradeAPIService) MarginAccountNewOcoExecute(r ApiMarginAccountNewOcoReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountNewOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountNewOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1629,6 +1794,7 @@ func (r ApiMarginAccountRepayRequest) Amount(amount float32) ApiMarginAccountRep
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiMarginAccountRepayRequest) RecvWindow(recvWindow int64) ApiMarginAccountRepayRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1639,15 +1805,15 @@ func (r ApiMarginAccountRepayRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-MarginAccountRepay Margin Account Repay(MARGIN)
+MarginAccountRepay Margin Account Repay (MARGIN)
 Post /papi/v1/repayLoan
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Margin-Account-Repay
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#margin-account-repay
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
 @param amount -
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiMarginAccountRepayRequest
 */
 func (a *TradeAPIService) MarginAccountRepay(ctx context.Context) ApiMarginAccountRepayRequest {
@@ -1670,6 +1836,7 @@ func (a *TradeAPIService) MarginAccountRepayExecute(r ApiMarginAccountRepayReque
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1680,7 +1847,15 @@ func (a *TradeAPIService) MarginAccountRepayExecute(r ApiMarginAccountRepayReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountRepayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1713,6 +1888,7 @@ func (r ApiMarginAccountRepayDebtRequest) SpecifyRepayAssets(specifyRepayAssets 
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiMarginAccountRepayDebtRequest) RecvWindow(recvWindow int64) ApiMarginAccountRepayDebtRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1723,16 +1899,16 @@ func (r ApiMarginAccountRepayDebtRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-MarginAccountRepayDebt Margin Account Repay Debt(TRADE)
+MarginAccountRepayDebt Margin Account Repay Debt (TRADE)
 Post /papi/v1/margin/repay-debt
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Margin-Account-Repay-Debt
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#margin-account-repay-debt
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
 @param amount -
 @param specifyRepayAssets -  Specific asset list to repay debt; Can be added in batch, separated by commas
-@param recvWindow -
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiMarginAccountRepayDebtRequest
 */
 func (a *TradeAPIService) MarginAccountRepayDebt(ctx context.Context) ApiMarginAccountRepayDebtRequest {
@@ -1767,7 +1943,15 @@ func (a *TradeAPIService) MarginAccountRepayDebtExecute(r ApiMarginAccountRepayD
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountRepayDebtResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountRepayDebtResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1787,6 +1971,7 @@ type ApiMarginAccountTradeListRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiMarginAccountTradeListRequest) Symbol(symbol string) ApiMarginAccountTradeListRequest {
 	r.symbol = &symbol
 	return r
@@ -1809,18 +1994,19 @@ func (r ApiMarginAccountTradeListRequest) EndTime(endTime int64) ApiMarginAccoun
 	return r
 }
 
-// Trade id to fetch from. Default gets most recent trades.
+// Trade ID to fetch from.
 func (r ApiMarginAccountTradeListRequest) FromId(fromId int64) ApiMarginAccountTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiMarginAccountTradeListRequest) Limit(limit int64) ApiMarginAccountTradeListRequest {
 	r.limit = &limit
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiMarginAccountTradeListRequest) RecvWindow(recvWindow int64) ApiMarginAccountTradeListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1834,16 +2020,16 @@ func (r ApiMarginAccountTradeListRequest) Execute() (*common.RestApiResponse[mod
 MarginAccountTradeList Margin Account Trade List (USER_DATA)
 Get /papi/v1/margin/myTrades
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Margin-Account-Trade-List
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#margin-account-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param fromId -  Trade id to fetch from. Default gets most recent trades.
-@param limit -  Default 100; max 1000
-@param recvWindow -
+@param fromId -  Trade ID to fetch from.
+@param limit -  Number of results returned.
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiMarginAccountTradeListRequest
 */
 func (a *TradeAPIService) MarginAccountTradeList(ctx context.Context) ApiMarginAccountTradeListRequest {
@@ -1887,7 +2073,15 @@ func (a *TradeAPIService) MarginAccountTradeListExecute(r ApiMarginAccountTradeL
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.MarginAccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.MarginAccountTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1908,6 +2102,7 @@ type ApiModifyCmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiModifyCmOrderRequest) Symbol(symbol string) ApiModifyCmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -1924,16 +2119,19 @@ func (r ApiModifyCmOrderRequest) Quantity(quantity float32) ApiModifyCmOrderRequ
 	return r
 }
 
+// Order price
 func (r ApiModifyCmOrderRequest) Price(price float32) ApiModifyCmOrderRequest {
 	r.price = &price
 	return r
 }
 
+// Order ID
 func (r ApiModifyCmOrderRequest) OrderId(orderId int64) ApiModifyCmOrderRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Client order ID
 func (r ApiModifyCmOrderRequest) OrigClientOrderId(origClientOrderId string) ApiModifyCmOrderRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -1955,18 +2153,18 @@ func (r ApiModifyCmOrderRequest) Execute() (*common.RestApiResponse[models.Modif
 }
 
 /*
-ModifyCmOrder Modify CM Order(TRADE)
+ModifyCmOrder Modify CM Order (TRADE)
 Put /papi/v1/cm/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Modify-CM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#modify-cm-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param side -
 @param quantity -  Order quantity
-@param price -
-@param orderId -
-@param origClientOrderId -
+@param price -  Order price
+@param orderId -  Order ID
+@param origClientOrderId -  Client order ID
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param recvWindow -
 @return ApiModifyCmOrderRequest
@@ -1991,12 +2189,15 @@ func (a *TradeAPIService) ModifyCmOrderExecute(r ApiModifyCmOrderRequest) (*comm
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.price == nil {
 		return nil, common.ReportError("price is required and must be specified")
 	}
@@ -2018,7 +2219,15 @@ func (a *TradeAPIService) ModifyCmOrderExecute(r ApiModifyCmOrderRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyCmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ModifyCmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2039,6 +2248,7 @@ type ApiModifyUmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiModifyUmOrderRequest) Symbol(symbol string) ApiModifyUmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -2055,16 +2265,19 @@ func (r ApiModifyUmOrderRequest) Quantity(quantity float32) ApiModifyUmOrderRequ
 	return r
 }
 
+// Order price
 func (r ApiModifyUmOrderRequest) Price(price float32) ApiModifyUmOrderRequest {
 	r.price = &price
 	return r
 }
 
+// Order ID
 func (r ApiModifyUmOrderRequest) OrderId(orderId int64) ApiModifyUmOrderRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Client order ID
 func (r ApiModifyUmOrderRequest) OrigClientOrderId(origClientOrderId string) ApiModifyUmOrderRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -2086,18 +2299,18 @@ func (r ApiModifyUmOrderRequest) Execute() (*common.RestApiResponse[models.Modif
 }
 
 /*
-ModifyUmOrder Modify UM Order(TRADE)
+ModifyUmOrder Modify UM Order (TRADE)
 Put /papi/v1/um/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Modify-UM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#modify-um-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param side -
 @param quantity -  Order quantity
-@param price -
-@param orderId -
-@param origClientOrderId -
+@param price -  Order price
+@param orderId -  Order ID
+@param origClientOrderId -  Client order ID
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param recvWindow -
 @return ApiModifyUmOrderRequest
@@ -2122,12 +2335,15 @@ func (a *TradeAPIService) ModifyUmOrderExecute(r ApiModifyUmOrderRequest) (*comm
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.price == nil {
 		return nil, common.ReportError("price is required and must be specified")
 	}
@@ -2149,7 +2365,15 @@ func (a *TradeAPIService) ModifyUmOrderExecute(r ApiModifyUmOrderRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ModifyUmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ModifyUmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2169,7 +2393,7 @@ type ApiNewCmConditionalOrderRequest struct {
 	reduceOnly          *string
 	price               *float32
 	workingType         *models.NewCmConditionalOrderWorkingTypeParameter
-	priceProtect        *string
+	priceProtect        *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	newClientStrategyId *string
 	stopPrice           *float32
 	activationPrice     *float32
@@ -2177,17 +2401,18 @@ type ApiNewCmConditionalOrderRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiNewCmConditionalOrderRequest) Symbol(symbol string) ApiNewCmConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Side
 func (r ApiNewCmConditionalOrderRequest) Side(side models.NewCmConditionalOrderSideParameter) ApiNewCmConditionalOrderRequest {
 	r.side = &side
 	return r
 }
 
-// \&quot;STOP\&quot;, \&quot;STOP_MARKET\&quot;, \&quot;TAKE_PROFIT\&quot;, \&quot;TAKE_PROFIT_MARKET\&quot;, and \&quot;TRAILING_STOP_MARKET\&quot;
 func (r ApiNewCmConditionalOrderRequest) StrategyType(strategyType models.NewCmConditionalOrderStrategyTypeParameter) ApiNewCmConditionalOrderRequest {
 	r.strategyType = &strategyType
 	return r
@@ -2209,7 +2434,7 @@ func (r ApiNewCmConditionalOrderRequest) Quantity(quantity float32) ApiNewCmCond
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode .
+// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode
 func (r ApiNewCmConditionalOrderRequest) ReduceOnly(reduceOnly string) ApiNewCmConditionalOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
@@ -2226,12 +2451,13 @@ func (r ApiNewCmConditionalOrderRequest) WorkingType(workingType models.NewCmCon
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
-func (r ApiNewCmConditionalOrderRequest) PriceProtect(priceProtect string) ApiNewCmConditionalOrderRequest {
+// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP&#x60;/&#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT&#x60;/&#x60;TAKE_PROFIT_MARKET&#x60; orders
+func (r ApiNewCmConditionalOrderRequest) PriceProtect(priceProtect models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewCmConditionalOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
+// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60;
 func (r ApiNewCmConditionalOrderRequest) NewClientStrategyId(newClientStrategyId string) ApiNewCmConditionalOrderRequest {
 	r.newClientStrategyId = &newClientStrategyId
 	return r
@@ -2243,13 +2469,13 @@ func (r ApiNewCmConditionalOrderRequest) StopPrice(stopPrice float32) ApiNewCmCo
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the mark price
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
 func (r ApiNewCmConditionalOrderRequest) ActivationPrice(activationPrice float32) ApiNewCmConditionalOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1%
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
 func (r ApiNewCmConditionalOrderRequest) CallbackRate(callbackRate float32) ApiNewCmConditionalOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
@@ -2265,26 +2491,26 @@ func (r ApiNewCmConditionalOrderRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-NewCmConditionalOrder New CM Conditional Order(TRADE)
+NewCmConditionalOrder New CM Conditional Order (TRADE)
 Post /papi/v1/cm/conditional/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-CM-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-cm-conditional-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param side -
-@param strategyType -  \"STOP\", \"STOP_MARKET\", \"TAKE_PROFIT\", \"TAKE_PROFIT_MARKET\", and \"TRAILING_STOP_MARKET\"
+@param symbol -  Symbol
+@param side -  Side
+@param strategyType -
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param timeInForce -
 @param quantity -
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
+@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode
 @param price -
 @param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
-@param newClientStrategyId -
+@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP`/`STOP_MARKET` or `TAKE_PROFIT`/`TAKE_PROFIT_MARKET` orders
+@param newClientStrategyId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
 @param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the mark price
-@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
+@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders.
+@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders.
 @param recvWindow -
 @return ApiNewCmConditionalOrderRequest
 */
@@ -2308,9 +2534,11 @@ func (a *TradeAPIService) NewCmConditionalOrderExecute(r ApiNewCmConditionalOrde
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.strategyType == nil {
 		return nil, common.ReportError("strategyType is required and must be specified")
 	}
@@ -2355,7 +2583,15 @@ func (a *TradeAPIService) NewCmConditionalOrderExecute(r ApiNewCmConditionalOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewCmConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewCmConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2372,7 +2608,7 @@ type ApiNewCmOrderRequest struct {
 	positionSide     *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce      *models.NewCmConditionalOrderTimeInForceParameter
 	quantity         *float32
-	reduceOnly       *string
+	reduceOnly       *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	price            *float32
 	priceMatch       *models.ModifyCmOrderPriceMatchParameter
 	newClientOrderId *string
@@ -2380,17 +2616,18 @@ type ApiNewCmOrderRequest struct {
 	recvWindow       *int64
 }
 
+// Symbol
 func (r ApiNewCmOrderRequest) Symbol(symbol string) ApiNewCmOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Side
 func (r ApiNewCmOrderRequest) Side(side models.NewCmConditionalOrderSideParameter) ApiNewCmOrderRequest {
 	r.side = &side
 	return r
 }
 
-// &#x60;LIMIT&#x60;, &#x60;MARKET&#x60;
 func (r ApiNewCmOrderRequest) Type(type_ models.NewCmOrderTypeParameter) ApiNewCmOrderRequest {
 	r.type_ = &type_
 	return r
@@ -2407,17 +2644,19 @@ func (r ApiNewCmOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrd
 	return r
 }
 
+// Place amount
 func (r ApiNewCmOrderRequest) Quantity(quantity float32) ApiNewCmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode .
-func (r ApiNewCmOrderRequest) ReduceOnly(reduceOnly string) ApiNewCmOrderRequest {
+// \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode.
+func (r ApiNewCmOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewCmOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
 
+// Order price
 func (r ApiNewCmOrderRequest) Price(price float32) ApiNewCmOrderRequest {
 	r.price = &price
 	return r
@@ -2429,7 +2668,7 @@ func (r ApiNewCmOrderRequest) PriceMatch(priceMatch models.ModifyCmOrderPriceMat
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
 func (r ApiNewCmOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewCmOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
@@ -2451,22 +2690,22 @@ func (r ApiNewCmOrderRequest) Execute() (*common.RestApiResponse[models.NewCmOrd
 }
 
 /*
-NewCmOrder New CM Order(TRADE)
+NewCmOrder New CM Order (TRADE)
 Post /papi/v1/cm/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-CM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-cm-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param side -
-@param type_ -  `LIMIT`, `MARKET`
+@param symbol -  Symbol
+@param side -  Side
+@param type_ -
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param timeInForce -
-@param quantity -
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
-@param price -
+@param quantity -  Place amount
+@param reduceOnly -  \"true\" or \"false\". Cannot be sent in Hedge Mode.
+@param price -  Order price
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
+@param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
 @param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
 @param recvWindow -
 @return ApiNewCmOrderRequest
@@ -2491,9 +2730,11 @@ func (a *TradeAPIService) NewCmOrderExecute(r ApiNewCmOrderRequest) (*common.Res
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -2529,7 +2770,15 @@ func (a *TradeAPIService) NewCmOrderExecute(r ApiNewCmOrderRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewCmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewCmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2542,16 +2791,16 @@ type ApiNewMarginOrderRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.NewCmConditionalOrderSideParameter
-	type_                   *models.NewCmOrderTypeParameter
+	type_                   *models.NewMarginOrderTypeParameter
 	quantity                *float32
 	quoteOrderQty           *float32
 	price                   *float32
 	stopPrice               *float32
 	newClientOrderId        *string
-	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
+	newOrderRespType        *models.NewMarginOrderNewOrderRespTypeParameter
 	icebergQty              *float32
 	sideEffectType          *models.NewMarginOrderSideEffectTypeParameter
-	timeInForce             *models.NewCmConditionalOrderTimeInForceParameter
+	timeInForce             *models.NewMarginOrderTimeInForceParameter
 	selfTradePreventionMode *models.NewMarginOrderSelfTradePreventionModeParameter
 	autoRepayAtCancel       *bool
 	recvWindow              *int64
@@ -2567,8 +2816,7 @@ func (r ApiNewMarginOrderRequest) Side(side models.NewCmConditionalOrderSidePara
 	return r
 }
 
-// &#x60;LIMIT&#x60;, &#x60;MARKET&#x60;
-func (r ApiNewMarginOrderRequest) Type(type_ models.NewCmOrderTypeParameter) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) Type(type_ models.NewMarginOrderTypeParameter) ApiNewMarginOrderRequest {
 	r.type_ = &type_
 	return r
 }
@@ -2588,20 +2836,20 @@ func (r ApiNewMarginOrderRequest) Price(price float32) ApiNewMarginOrderRequest 
 	return r
 }
 
-// Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
+// Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
 func (r ApiNewMarginOrderRequest) StopPrice(stopPrice float32) ApiNewMarginOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// A unique id among open orders. Automatically generated if not sent.
 func (r ApiNewMarginOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewMarginOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
-func (r ApiNewMarginOrderRequest) NewOrderRespType(newOrderRespType models.NewCmOrderNewOrderRespTypeParameter) ApiNewMarginOrderRequest {
+// Set the response JSON. ACK, RESULT, or FULL.
+func (r ApiNewMarginOrderRequest) NewOrderRespType(newOrderRespType models.NewMarginOrderNewOrderRespTypeParameter) ApiNewMarginOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
@@ -2612,13 +2860,12 @@ func (r ApiNewMarginOrderRequest) IcebergQty(icebergQty float32) ApiNewMarginOrd
 	return r
 }
 
-// NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT.
 func (r ApiNewMarginOrderRequest) SideEffectType(sideEffectType models.NewMarginOrderSideEffectTypeParameter) ApiNewMarginOrderRequest {
 	r.sideEffectType = &sideEffectType
 	return r
 }
 
-func (r ApiNewMarginOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrderTimeInForceParameter) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) TimeInForce(timeInForce models.NewMarginOrderTimeInForceParameter) ApiNewMarginOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
@@ -2629,12 +2876,13 @@ func (r ApiNewMarginOrderRequest) SelfTradePreventionMode(selfTradePreventionMod
 	return r
 }
 
-// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
+// Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
 func (r ApiNewMarginOrderRequest) AutoRepayAtCancel(autoRepayAtCancel bool) ApiNewMarginOrderRequest {
 	r.autoRepayAtCancel = &autoRepayAtCancel
 	return r
 }
 
+// The value cannot be greater than &#x60;60000&#x60;
 func (r ApiNewMarginOrderRequest) RecvWindow(recvWindow int64) ApiNewMarginOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -2645,27 +2893,27 @@ func (r ApiNewMarginOrderRequest) Execute() (*common.RestApiResponse[models.NewM
 }
 
 /*
-NewMarginOrder New Margin Order(TRADE)
+NewMarginOrder New Margin Order (TRADE)
 Post /papi/v1/margin/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-Margin-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-margin-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param side -
-@param type_ -  `LIMIT`, `MARKET`
+@param type_ -
 @param quantity -
 @param quoteOrderQty -
 @param price -
-@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
+@param stopPrice -  Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders.
+@param newClientOrderId -  A unique id among open orders. Automatically generated if not sent.
+@param newOrderRespType -  Set the response JSON. ACK, RESULT, or FULL.
 @param icebergQty -  Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order
-@param sideEffectType -  NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT.
+@param sideEffectType -
 @param timeInForce -
 @param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
-@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true
-@param recvWindow -
+@param autoRepayAtCancel -  Only when MARGIN_BUY or AUTO_BORROW_REPAY order takes effect, true means that the debt generated by the order needs to be repaid after the order is cancelled.
+@param recvWindow -  The value cannot be greater than `60000`
 @return ApiNewMarginOrderRequest
 */
 func (a *TradeAPIService) NewMarginOrder(ctx context.Context) ApiNewMarginOrderRequest {
@@ -2688,9 +2936,11 @@ func (a *TradeAPIService) NewMarginOrderExecute(r ApiNewMarginOrderRequest) (*co
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -2735,7 +2985,15 @@ func (a *TradeAPIService) NewMarginOrderExecute(r ApiNewMarginOrderRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewMarginOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewMarginOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -2746,30 +3004,30 @@ func (a *TradeAPIService) NewMarginOrderExecute(r ApiNewMarginOrderRequest) (*co
 type ApiNewUmAlgoOrderRequest struct {
 	ctx                     context.Context
 	ApiService              *TradeAPIService
-	algoType                *string
+	algoType                *models.NewUmAlgoOrderAlgoTypeParameter
 	symbol                  *string
-	side                    *models.NewCmConditionalOrderSideParameter
-	type_                   *models.NewCmOrderTypeParameter
+	side                    *models.NewUmAlgoOrderSideParameter
+	type_                   *models.NewUmAlgoOrderTypeParameter
 	quantity                *float32
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
-	timeInForce             *models.NewCmConditionalOrderTimeInForceParameter
+	timeInForce             *models.NewUmAlgoOrderTimeInForceParameter
 	price                   *float32
 	triggerPrice            *float32
-	workingType             *models.NewCmConditionalOrderWorkingTypeParameter
-	priceMatch              *models.ModifyCmOrderPriceMatchParameter
-	priceProtect            *string
-	reduceOnly              *string
+	workingType             *models.NewUmAlgoOrderWorkingTypeParameter
+	priceMatch              *models.NewUmAlgoOrderPriceMatchParameter
+	priceProtect            *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
+	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	activatePrice           *float32
 	callbackRate            *float32
 	clientAlgoId            *string
 	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
-	selfTradePreventionMode *models.NewMarginOrderSelfTradePreventionModeParameter
+	selfTradePreventionMode *models.NewUmAlgoOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
 	recvWindow              *int64
 }
 
 // Only support &#x60;CONDITIONAL&#x60;
-func (r ApiNewUmAlgoOrderRequest) AlgoType(algoType string) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) AlgoType(algoType models.NewUmAlgoOrderAlgoTypeParameter) ApiNewUmAlgoOrderRequest {
 	r.algoType = &algoType
 	return r
 }
@@ -2779,13 +3037,13 @@ func (r ApiNewUmAlgoOrderRequest) Symbol(symbol string) ApiNewUmAlgoOrderRequest
 	return r
 }
 
-func (r ApiNewUmAlgoOrderRequest) Side(side models.NewCmConditionalOrderSideParameter) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) Side(side models.NewUmAlgoOrderSideParameter) ApiNewUmAlgoOrderRequest {
 	r.side = &side
 	return r
 }
 
-// &#x60;LIMIT&#x60;, &#x60;MARKET&#x60;
-func (r ApiNewUmAlgoOrderRequest) Type(type_ models.NewCmOrderTypeParameter) ApiNewUmAlgoOrderRequest {
+// Conditional order type
+func (r ApiNewUmAlgoOrderRequest) Type(type_ models.NewUmAlgoOrderTypeParameter) ApiNewUmAlgoOrderRequest {
 	r.type_ = &type_
 	return r
 }
@@ -2796,81 +3054,82 @@ func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRe
 	return r
 }
 
-// Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode.
+// Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode
 func (r ApiNewUmAlgoOrderRequest) PositionSide(positionSide models.NewCmConditionalOrderPositionSideParameter) ApiNewUmAlgoOrderRequest {
 	r.positionSide = &positionSide
 	return r
 }
 
-func (r ApiNewUmAlgoOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrderTimeInForceParameter) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) TimeInForce(timeInForce models.NewUmAlgoOrderTimeInForceParameter) ApiNewUmAlgoOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
 
+// Order price
 func (r ApiNewUmAlgoOrderRequest) Price(price float32) ApiNewUmAlgoOrderRequest {
 	r.price = &price
 	return r
 }
 
+// Trigger price
 func (r ApiNewUmAlgoOrderRequest) TriggerPrice(triggerPrice float32) ApiNewUmAlgoOrderRequest {
 	r.triggerPrice = &triggerPrice
 	return r
 }
 
-// stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot;
-func (r ApiNewUmAlgoOrderRequest) WorkingType(workingType models.NewCmConditionalOrderWorkingTypeParameter) ApiNewUmAlgoOrderRequest {
+// Trigger price type. Default &#x60;CONTRACT_PRICE&#x60;
+func (r ApiNewUmAlgoOrderRequest) WorkingType(workingType models.NewUmAlgoOrderWorkingTypeParameter) ApiNewUmAlgoOrderRequest {
 	r.workingType = &workingType
 	return r
 }
 
-// only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60;
-func (r ApiNewUmAlgoOrderRequest) PriceMatch(priceMatch models.ModifyCmOrderPriceMatchParameter) ApiNewUmAlgoOrderRequest {
+// Can&#39;t be passed together with &#x60;price&#x60;
+func (r ApiNewUmAlgoOrderRequest) PriceMatch(priceMatch models.NewUmAlgoOrderPriceMatchParameter) ApiNewUmAlgoOrderRequest {
 	r.priceMatch = &priceMatch
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
-func (r ApiNewUmAlgoOrderRequest) PriceProtect(priceProtect string) ApiNewUmAlgoOrderRequest {
+// Price protection. Default &#x60;false&#x60;
+func (r ApiNewUmAlgoOrderRequest) PriceProtect(priceProtect models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode .
-func (r ApiNewUmAlgoOrderRequest) ReduceOnly(reduceOnly string) ApiNewUmAlgoOrderRequest {
+// Cannot be sent in Hedge Mode
+func (r ApiNewUmAlgoOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmAlgoOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;)
+// Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price
 func (r ApiNewUmAlgoOrderRequest) ActivatePrice(activatePrice float32) ApiNewUmAlgoOrderRequest {
 	r.activatePrice = &activatePrice
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1%
+// Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%)
 func (r ApiNewUmAlgoOrderRequest) CallbackRate(callbackRate float32) ApiNewUmAlgoOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
 
+// Unique id among open orders. Auto-generated if not sent
 func (r ApiNewUmAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiNewUmAlgoOrderRequest {
 	r.clientAlgoId = &clientAlgoId
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
 func (r ApiNewUmAlgoOrderRequest) NewOrderRespType(newOrderRespType models.NewCmOrderNewOrderRespTypeParameter) ApiNewUmAlgoOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers
-func (r ApiNewUmAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewMarginOrderSelfTradePreventionModeParameter) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewUmAlgoOrderSelfTradePreventionModeParameter) ApiNewUmAlgoOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
 
-// order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
+// Order cancel time for &#x60;GTD&#x60; timeInForce, mandatory when timeInForce is &#x60;GTD&#x60;
 func (r ApiNewUmAlgoOrderRequest) GoodTillDate(goodTillDate int64) ApiNewUmAlgoOrderRequest {
 	r.goodTillDate = &goodTillDate
 	return r
@@ -2889,28 +3148,28 @@ func (r ApiNewUmAlgoOrderRequest) Execute() (*common.RestApiResponse[models.NewU
 NewUmAlgoOrder New UM Algo Order (TRADE)
 Post /papi/v1/um/algo/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Algo-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-um-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoType -  Only support `CONDITIONAL`
 @param symbol -
 @param side -
-@param type_ -  `LIMIT`, `MARKET`
+@param type_ -  Conditional order type
 @param quantity -  Order quantity
-@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
+@param positionSide -  Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode
 @param timeInForce -
-@param price -
-@param triggerPrice -
-@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
-@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
-@param activatePrice -  Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
-@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
-@param clientAlgoId -
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
-@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
-@param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
+@param price -  Order price
+@param triggerPrice -  Trigger price
+@param workingType -  Trigger price type. Default `CONTRACT_PRICE`
+@param priceMatch -  Can't be passed together with `price`
+@param priceProtect -  Price protection. Default `false`
+@param reduceOnly -  Cannot be sent in Hedge Mode
+@param activatePrice -  Used with `TRAILING_STOP_MARKET`, default as latest price
+@param callbackRate -  Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%)
+@param clientAlgoId -  Unique id among open orders. Auto-generated if not sent
+@param newOrderRespType -
+@param selfTradePreventionMode -
+@param goodTillDate -  Order cancel time for `GTD` timeInForce, mandatory when timeInForce is `GTD`
 @param recvWindow -
 @return ApiNewUmAlgoOrderRequest
 */
@@ -2934,15 +3193,19 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	if r.algoType == nil {
 		return nil, common.ReportError("algoType is required and must be specified")
 	}
+
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
@@ -2998,7 +3261,15 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewUmAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewUmAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3013,12 +3284,12 @@ type ApiNewUmConditionalOrderRequest struct {
 	side                    *models.NewCmConditionalOrderSideParameter
 	strategyType            *models.NewCmConditionalOrderStrategyTypeParameter
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
-	timeInForce             *models.NewCmConditionalOrderTimeInForceParameter
+	timeInForce             *models.NewUmConditionalOrderTimeInForceParameter
 	quantity                *float32
-	reduceOnly              *string
+	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	price                   *float32
 	workingType             *models.NewCmConditionalOrderWorkingTypeParameter
-	priceProtect            *string
+	priceProtect            *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	newClientStrategyId     *string
 	stopPrice               *float32
 	activationPrice         *float32
@@ -3029,6 +3300,7 @@ type ApiNewUmConditionalOrderRequest struct {
 	recvWindow              *int64
 }
 
+// Symbol
 func (r ApiNewUmConditionalOrderRequest) Symbol(symbol string) ApiNewUmConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -3039,7 +3311,6 @@ func (r ApiNewUmConditionalOrderRequest) Side(side models.NewCmConditionalOrderS
 	return r
 }
 
-// \&quot;STOP\&quot;, \&quot;STOP_MARKET\&quot;, \&quot;TAKE_PROFIT\&quot;, \&quot;TAKE_PROFIT_MARKET\&quot;, and \&quot;TRAILING_STOP_MARKET\&quot;
 func (r ApiNewUmConditionalOrderRequest) StrategyType(strategyType models.NewCmConditionalOrderStrategyTypeParameter) ApiNewUmConditionalOrderRequest {
 	r.strategyType = &strategyType
 	return r
@@ -3051,7 +3322,7 @@ func (r ApiNewUmConditionalOrderRequest) PositionSide(positionSide models.NewCmC
 	return r
 }
 
-func (r ApiNewUmConditionalOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrderTimeInForceParameter) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) TimeInForce(timeInForce models.NewUmConditionalOrderTimeInForceParameter) ApiNewUmConditionalOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
@@ -3061,8 +3332,8 @@ func (r ApiNewUmConditionalOrderRequest) Quantity(quantity float32) ApiNewUmCond
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode .
-func (r ApiNewUmConditionalOrderRequest) ReduceOnly(reduceOnly string) ApiNewUmConditionalOrderRequest {
+// \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode ; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
+func (r ApiNewUmConditionalOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmConditionalOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
@@ -3078,12 +3349,13 @@ func (r ApiNewUmConditionalOrderRequest) WorkingType(workingType models.NewCmCon
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
-func (r ApiNewUmConditionalOrderRequest) PriceProtect(priceProtect string) ApiNewUmConditionalOrderRequest {
+// \&quot;true\&quot; or \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders
+func (r ApiNewUmConditionalOrderRequest) PriceProtect(priceProtect models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmConditionalOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
+// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
 func (r ApiNewUmConditionalOrderRequest) NewClientStrategyId(newClientStrategyId string) ApiNewUmConditionalOrderRequest {
 	r.newClientStrategyId = &newClientStrategyId
 	return r
@@ -3095,13 +3367,13 @@ func (r ApiNewUmConditionalOrderRequest) StopPrice(stopPrice float32) ApiNewUmCo
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the mark price
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
 func (r ApiNewUmConditionalOrderRequest) ActivationPrice(activationPrice float32) ApiNewUmConditionalOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 5 where 1 for 1%
+// Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
 func (r ApiNewUmConditionalOrderRequest) CallbackRate(callbackRate float32) ApiNewUmConditionalOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
@@ -3135,33 +3407,31 @@ func (r ApiNewUmConditionalOrderRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-	NewUmConditionalOrder New UM Conditional Order
-	Post /papi/v1/um/conditional/order
+NewUmConditionalOrder New UM Conditional Order (TRADE)
+Post /papi/v1/um/conditional/order
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-um-conditional-order
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param side -
-	@param strategyType -  \"STOP\", \"STOP_MARKET\", \"TAKE_PROFIT\", \"TAKE_PROFIT_MARKET\", and \"TRAILING_STOP_MARKET\"
-	@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
-	@param timeInForce -
-	@param quantity -
-	@param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
-	@param price -
-	@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-	@param priceProtect -  \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
-	@param newClientStrategyId -
-	@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-	@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders, default as the mark price
-	@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 5 where 1 for 1%
-	@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-	@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
-	@param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
-	@param recvWindow -
-	@return ApiNewUmConditionalOrderRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol
+@param side -
+@param strategyType -
+@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
+@param timeInForce -
+@param quantity -
+@param reduceOnly -  \"true\" or \"false\". Cannot be sent in Hedge Mode ; cannot be sent with `closePosition`=`true`
+@param price -
+@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
+@param priceProtect -  \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
+@param newClientStrategyId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
+@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
+@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders.
+@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders.
+@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
+@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
+@param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
+@param recvWindow -
+@return ApiNewUmConditionalOrderRequest
 */
 func (a *TradeAPIService) NewUmConditionalOrder(ctx context.Context) ApiNewUmConditionalOrderRequest {
 	return ApiNewUmConditionalOrderRequest{
@@ -3173,8 +3443,6 @@ func (a *TradeAPIService) NewUmConditionalOrder(ctx context.Context) ApiNewUmCon
 // Execute executes the request
 //
 //	@return NewUmConditionalOrderResponse
-//
-// Deprecated
 func (a *TradeAPIService) NewUmConditionalOrderExecute(r ApiNewUmConditionalOrderRequest) (*common.RestApiResponse[models.NewUmConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodPost
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/order"
@@ -3185,9 +3453,11 @@ func (a *TradeAPIService) NewUmConditionalOrderExecute(r ApiNewUmConditionalOrde
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.strategyType == nil {
 		return nil, common.ReportError("strategyType is required and must be specified")
 	}
@@ -3241,7 +3511,15 @@ func (a *TradeAPIService) NewUmConditionalOrderExecute(r ApiNewUmConditionalOrde
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewUmConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewUmConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3256,9 +3534,9 @@ type ApiNewUmOrderRequest struct {
 	side                    *models.NewCmConditionalOrderSideParameter
 	type_                   *models.NewCmOrderTypeParameter
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
-	timeInForce             *models.NewCmConditionalOrderTimeInForceParameter
+	timeInForce             *models.NewUmConditionalOrderTimeInForceParameter
 	quantity                *float32
-	reduceOnly              *string
+	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	price                   *float32
 	newClientOrderId        *string
 	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
@@ -3268,6 +3546,7 @@ type ApiNewUmOrderRequest struct {
 	recvWindow              *int64
 }
 
+// Symbol
 func (r ApiNewUmOrderRequest) Symbol(symbol string) ApiNewUmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -3278,7 +3557,6 @@ func (r ApiNewUmOrderRequest) Side(side models.NewCmConditionalOrderSideParamete
 	return r
 }
 
-// &#x60;LIMIT&#x60;, &#x60;MARKET&#x60;
 func (r ApiNewUmOrderRequest) Type(type_ models.NewCmOrderTypeParameter) ApiNewUmOrderRequest {
 	r.type_ = &type_
 	return r
@@ -3290,34 +3568,37 @@ func (r ApiNewUmOrderRequest) PositionSide(positionSide models.NewCmConditionalO
 	return r
 }
 
-func (r ApiNewUmOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrderTimeInForceParameter) ApiNewUmOrderRequest {
+// Valid values
+func (r ApiNewUmOrderRequest) TimeInForce(timeInForce models.NewUmConditionalOrderTimeInForceParameter) ApiNewUmOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
 
+// Place amount
 func (r ApiNewUmOrderRequest) Quantity(quantity float32) ApiNewUmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode .
-func (r ApiNewUmOrderRequest) ReduceOnly(reduceOnly string) ApiNewUmOrderRequest {
+func (r ApiNewUmOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
 
+// Order price
 func (r ApiNewUmOrderRequest) Price(price float32) ApiNewUmOrderRequest {
 	r.price = &price
 	return r
 }
 
-// Used to uniquely identify this cancel. Automatically generated by default
+// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60;
 func (r ApiNewUmOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewUmOrderRequest {
 	r.newClientOrderId = &newClientOrderId
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot;
+// &#x60;ACK&#x60;, &#x60;RESULT&#x60;, default &#x60;ACK&#x60;
 func (r ApiNewUmOrderRequest) NewOrderRespType(newOrderRespType models.NewCmOrderNewOrderRespTypeParameter) ApiNewUmOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
@@ -3354,19 +3635,19 @@ func (r ApiNewUmOrderRequest) Execute() (*common.RestApiResponse[models.NewUmOrd
 NewUmOrder New UM Order (TRADE)
 Post /papi/v1/um/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/New-UM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-um-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param side -
-@param type_ -  `LIMIT`, `MARKET`
+@param type_ -
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
-@param timeInForce -
-@param quantity -
+@param timeInForce -  Valid values
+@param quantity -  Place amount
 @param reduceOnly -  \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode .
-@param price -
-@param newClientOrderId -  Used to uniquely identify this cancel. Automatically generated by default
-@param newOrderRespType -  \"ACK\", \"RESULT\", default \"ACK\"
+@param price -  Order price
+@param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
+@param newOrderRespType -  `ACK`, `RESULT`, default `ACK`
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
 @param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
@@ -3393,9 +3674,11 @@ func (a *TradeAPIService) NewUmOrderExecute(r ApiNewUmOrderRequest) (*common.Res
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -3437,7 +3720,15 @@ func (a *TradeAPIService) NewUmOrderExecute(r ApiNewUmOrderRequest) (*common.Res
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewUmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewUmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3478,7 +3769,7 @@ func (r ApiQueryAllCmConditionalOrdersRequest) EndTime(endTime int64) ApiQueryAl
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryAllCmConditionalOrdersRequest) Limit(limit int64) ApiQueryAllCmConditionalOrdersRequest {
 	r.limit = &limit
 	return r
@@ -3494,17 +3785,17 @@ func (r ApiQueryAllCmConditionalOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryAllCmConditionalOrders Query All CM Conditional Orders(USER_DATA)
+QueryAllCmConditionalOrders Query All CM Conditional Orders (USER_DATA)
 Get /papi/v1/cm/conditional/allOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-CM-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-cm-conditional-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param strategyId -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiQueryAllCmConditionalOrdersRequest
 */
@@ -3544,7 +3835,15 @@ func (a *TradeAPIService) QueryAllCmConditionalOrdersExecute(r ApiQueryAllCmCond
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCmConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCmConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3564,6 +3863,7 @@ type ApiQueryAllCmOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiQueryAllCmOrdersRequest) Symbol(symbol string) ApiQueryAllCmOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -3591,7 +3891,7 @@ func (r ApiQueryAllCmOrdersRequest) EndTime(endTime int64) ApiQueryAllCmOrdersRe
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryAllCmOrdersRequest) Limit(limit int64) ApiQueryAllCmOrdersRequest {
 	r.limit = &limit
 	return r
@@ -3610,15 +3910,15 @@ func (r ApiQueryAllCmOrdersRequest) Execute() (*common.RestApiResponse[models.Qu
 QueryAllCmOrders Query All CM Orders (USER_DATA)
 Get /papi/v1/cm/allOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-CM-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-cm-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param pair -
 @param orderId -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiQueryAllCmOrdersRequest
 */
@@ -3639,11 +3939,9 @@ func (a *TradeAPIService) QueryAllCmOrdersExecute(r ApiQueryAllCmOrdersRequest) 
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.symbol == nil {
-		return nil, common.ReportError("symbol is required and must be specified")
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
-
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	if r.pair != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 	}
@@ -3663,7 +3961,15 @@ func (a *TradeAPIService) QueryAllCmOrdersExecute(r ApiQueryAllCmOrdersRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCmOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCmOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3696,7 +4002,7 @@ func (r ApiQueryAllCurrentCmOpenConditionalOrdersRequest) Execute() (*common.Res
 QueryAllCurrentCmOpenConditionalOrders Query All Current CM Open Conditional Orders (USER_DATA)
 Get /papi/v1/cm/conditional/openOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-CM-Open-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-cm-open-conditional-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -3727,7 +4033,15 @@ func (a *TradeAPIService) QueryAllCurrentCmOpenConditionalOrdersExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCurrentCmOpenConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCurrentCmOpenConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3763,10 +4077,10 @@ func (r ApiQueryAllCurrentCmOpenOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryAllCurrentCmOpenOrders Query All Current CM Open Orders(USER_DATA)
+QueryAllCurrentCmOpenOrders Query All Current CM Open Orders (USER_DATA)
 Get /papi/v1/cm/openOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-CM-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-cm-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -3801,7 +4115,15 @@ func (a *TradeAPIService) QueryAllCurrentCmOpenOrdersExecute(r ApiQueryAllCurren
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCurrentCmOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCurrentCmOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3846,7 +4168,7 @@ func (r ApiQueryAllCurrentUmOpenAlgoOrdersRequest) Execute() (*common.RestApiRes
 QueryAllCurrentUmOpenAlgoOrders Query All Current UM Open Algo Orders (USER_DATA)
 Get /papi/v1/um/algo/openAlgoOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Algo-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-um-open-algo-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoType -
@@ -3885,7 +4207,15 @@ func (a *TradeAPIService) QueryAllCurrentUmOpenAlgoOrdersExecute(r ApiQueryAllCu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCurrentUmOpenAlgoOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCurrentUmOpenAlgoOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3915,17 +4245,15 @@ func (r ApiQueryAllCurrentUmOpenConditionalOrdersRequest) Execute() (*common.Res
 }
 
 /*
-	QueryAllCurrentUmOpenConditionalOrders Query All Current UM Open Conditional Orders
-	Get /papi/v1/um/conditional/openOrders
+QueryAllCurrentUmOpenConditionalOrders Query All Current UM Open Conditional Orders (USER_DATA)
+Get /papi/v1/um/conditional/openOrders
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-um-open-conditional-orders
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param recvWindow -
-	@return ApiQueryAllCurrentUmOpenConditionalOrdersRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@param recvWindow -
+@return ApiQueryAllCurrentUmOpenConditionalOrdersRequest
 */
 func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrders(ctx context.Context) ApiQueryAllCurrentUmOpenConditionalOrdersRequest {
 	return ApiQueryAllCurrentUmOpenConditionalOrdersRequest{
@@ -3937,8 +4265,6 @@ func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrders(ctx context.Con
 // Execute executes the request
 //
 //	@return QueryAllCurrentUmOpenConditionalOrdersResponse
-//
-// Deprecated
 func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrdersExecute(r ApiQueryAllCurrentUmOpenConditionalOrdersRequest) (*common.RestApiResponse[models.QueryAllCurrentUmOpenConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/openOrders"
@@ -3953,7 +4279,15 @@ func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrdersExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCurrentUmOpenConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCurrentUmOpenConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -3983,10 +4317,10 @@ func (r ApiQueryAllCurrentUmOpenOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryAllCurrentUmOpenOrders Query All Current UM Open Orders(USER_DATA)
+QueryAllCurrentUmOpenOrders Query All Current UM Open Orders (USER_DATA)
 Get /papi/v1/um/openOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Current-UM-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-um-open-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -4017,7 +4351,15 @@ func (a *TradeAPIService) QueryAllCurrentUmOpenOrdersExecute(r ApiQueryAllCurren
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllCurrentUmOpenOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllCurrentUmOpenOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4036,6 +4378,7 @@ type ApiQueryAllMarginAccountOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiQueryAllMarginAccountOrdersRequest) Symbol(symbol string) ApiQueryAllMarginAccountOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -4058,12 +4401,13 @@ func (r ApiQueryAllMarginAccountOrdersRequest) EndTime(endTime int64) ApiQueryAl
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryAllMarginAccountOrdersRequest) Limit(limit int64) ApiQueryAllMarginAccountOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryAllMarginAccountOrdersRequest) RecvWindow(recvWindow int64) ApiQueryAllMarginAccountOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -4077,15 +4421,15 @@ func (r ApiQueryAllMarginAccountOrdersRequest) Execute() (*common.RestApiRespons
 QueryAllMarginAccountOrders Query All Margin Account Orders (USER_DATA)
 Get /papi/v1/margin/allOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-Margin-Account-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-margin-account-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
-@param recvWindow -
+@param limit -  Number of results returned.
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryAllMarginAccountOrdersRequest
 */
 func (a *TradeAPIService) QueryAllMarginAccountOrders(ctx context.Context) ApiQueryAllMarginAccountOrdersRequest {
@@ -4126,7 +4470,15 @@ func (a *TradeAPIService) QueryAllMarginAccountOrdersExecute(r ApiQueryAllMargin
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllMarginAccountOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllMarginAccountOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4167,7 +4519,7 @@ func (r ApiQueryAllUmConditionalOrdersRequest) EndTime(endTime int64) ApiQueryAl
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryAllUmConditionalOrdersRequest) Limit(limit int64) ApiQueryAllUmConditionalOrdersRequest {
 	r.limit = &limit
 	return r
@@ -4183,21 +4535,19 @@ func (r ApiQueryAllUmConditionalOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-	QueryAllUmConditionalOrders Query All UM Conditional Orders
-	Get /papi/v1/um/conditional/allOrders
+QueryAllUmConditionalOrders Query All UM Conditional Orders (USER_DATA)
+Get /papi/v1/um/conditional/allOrders
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-UM-Conditional-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-um-conditional-orders
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param strategyId -
-	@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
-	@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-	@param limit -  Default 100; max 1000
-	@param recvWindow -
-	@return ApiQueryAllUmConditionalOrdersRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@param strategyId -
+@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
+@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
+@param limit -  Number of results returned.
+@param recvWindow -
+@return ApiQueryAllUmConditionalOrdersRequest
 */
 func (a *TradeAPIService) QueryAllUmConditionalOrders(ctx context.Context) ApiQueryAllUmConditionalOrdersRequest {
 	return ApiQueryAllUmConditionalOrdersRequest{
@@ -4209,8 +4559,6 @@ func (a *TradeAPIService) QueryAllUmConditionalOrders(ctx context.Context) ApiQu
 // Execute executes the request
 //
 //	@return QueryAllUmConditionalOrdersResponse
-//
-// Deprecated
 func (a *TradeAPIService) QueryAllUmConditionalOrdersExecute(r ApiQueryAllUmConditionalOrdersRequest) (*common.RestApiResponse[models.QueryAllUmConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/allOrders"
@@ -4237,7 +4585,15 @@ func (a *TradeAPIService) QueryAllUmConditionalOrdersExecute(r ApiQueryAllUmCond
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllUmConditionalOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllUmConditionalOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4256,6 +4612,7 @@ type ApiQueryAllUmOrdersRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiQueryAllUmOrdersRequest) Symbol(symbol string) ApiQueryAllUmOrdersRequest {
 	r.symbol = &symbol
 	return r
@@ -4278,7 +4635,7 @@ func (r ApiQueryAllUmOrdersRequest) EndTime(endTime int64) ApiQueryAllUmOrdersRe
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryAllUmOrdersRequest) Limit(limit int64) ApiQueryAllUmOrdersRequest {
 	r.limit = &limit
 	return r
@@ -4294,17 +4651,17 @@ func (r ApiQueryAllUmOrdersRequest) Execute() (*common.RestApiResponse[models.Qu
 }
 
 /*
-QueryAllUmOrders Query All UM Orders(USER_DATA)
+QueryAllUmOrders Query All UM Orders (USER_DATA)
 Get /papi/v1/um/allOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-All-UM-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-um-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiQueryAllUmOrdersRequest
 */
@@ -4346,7 +4703,15 @@ func (a *TradeAPIService) QueryAllUmOrdersExecute(r ApiQueryAllUmOrdersRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryAllUmOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryAllUmOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4363,6 +4728,7 @@ type ApiQueryCmConditionalOrderHistoryRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiQueryCmConditionalOrderHistoryRequest) Symbol(symbol string) ApiQueryCmConditionalOrderHistoryRequest {
 	r.symbol = &symbol
 	return r
@@ -4388,13 +4754,13 @@ func (r ApiQueryCmConditionalOrderHistoryRequest) Execute() (*common.RestApiResp
 }
 
 /*
-QueryCmConditionalOrderHistory Query CM Conditional Order History(USER_DATA)
+QueryCmConditionalOrderHistory Query CM Conditional Order History (USER_DATA)
 Get /papi/v1/cm/conditional/orderHistory
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-CM-Conditional-Order-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-cm-conditional-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param strategyId -
 @param newClientStrategyId -
 @param recvWindow -
@@ -4432,7 +4798,15 @@ func (a *TradeAPIService) QueryCmConditionalOrderHistoryExecute(r ApiQueryCmCond
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCmConditionalOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCmConditionalOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4452,16 +4826,19 @@ type ApiQueryCmModifyOrderHistoryRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryCmModifyOrderHistoryRequest) Symbol(symbol string) ApiQueryCmModifyOrderHistoryRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Order ID
 func (r ApiQueryCmModifyOrderHistoryRequest) OrderId(orderId int64) ApiQueryCmModifyOrderHistoryRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Client order ID
 func (r ApiQueryCmModifyOrderHistoryRequest) OrigClientOrderId(origClientOrderId string) ApiQueryCmModifyOrderHistoryRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -4479,7 +4856,7 @@ func (r ApiQueryCmModifyOrderHistoryRequest) EndTime(endTime int64) ApiQueryCmMo
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryCmModifyOrderHistoryRequest) Limit(limit int64) ApiQueryCmModifyOrderHistoryRequest {
 	r.limit = &limit
 	return r
@@ -4495,18 +4872,18 @@ func (r ApiQueryCmModifyOrderHistoryRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-QueryCmModifyOrderHistory Query CM Modify Order History(TRADE)
+QueryCmModifyOrderHistory Query CM Modify Order History (TRADE)
 Get /papi/v1/cm/orderAmendment
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-CM-Modify-Order-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-cm-modify-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param orderId -
-@param origClientOrderId -
+@param symbol -  Symbol
+@param orderId -  Order ID
+@param origClientOrderId -  Client order ID
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiQueryCmModifyOrderHistoryRequest
 */
@@ -4551,7 +4928,15 @@ func (a *TradeAPIService) QueryCmModifyOrderHistoryExecute(r ApiQueryCmModifyOrd
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCmModifyOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCmModifyOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4568,6 +4953,7 @@ type ApiQueryCmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryCmOrderRequest) Symbol(symbol string) ApiQueryCmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -4593,13 +4979,13 @@ func (r ApiQueryCmOrderRequest) Execute() (*common.RestApiResponse[models.QueryC
 }
 
 /*
-QueryCmOrder Query CM Order(USER_DATA)
+QueryCmOrder Query CM Order (USER_DATA)
 Get /papi/v1/cm/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-CM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-cm-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
 @param recvWindow -
@@ -4637,7 +5023,15 @@ func (a *TradeAPIService) QueryCmOrderExecute(r ApiQueryCmOrderRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4654,6 +5048,7 @@ type ApiQueryCurrentCmOpenConditionalOrderRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiQueryCurrentCmOpenConditionalOrderRequest) Symbol(symbol string) ApiQueryCurrentCmOpenConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -4679,13 +5074,13 @@ func (r ApiQueryCurrentCmOpenConditionalOrderRequest) Execute() (*common.RestApi
 }
 
 /*
-QueryCurrentCmOpenConditionalOrder Query Current CM Open Conditional Order(USER_DATA)
+QueryCurrentCmOpenConditionalOrder Query Current CM Open Conditional Order (USER_DATA)
 Get /papi/v1/cm/conditional/openOrder
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-CM-Open-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-cm-open-conditional-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param strategyId -
 @param newClientStrategyId -
 @param recvWindow -
@@ -4723,7 +5118,15 @@ func (a *TradeAPIService) QueryCurrentCmOpenConditionalOrderExecute(r ApiQueryCu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentCmOpenConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentCmOpenConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4740,16 +5143,19 @@ type ApiQueryCurrentCmOpenOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Trading pair.
 func (r ApiQueryCurrentCmOpenOrderRequest) Symbol(symbol string) ApiQueryCurrentCmOpenOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Order ID.
 func (r ApiQueryCurrentCmOpenOrderRequest) OrderId(orderId int64) ApiQueryCurrentCmOpenOrderRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// User-defined order ID.
 func (r ApiQueryCurrentCmOpenOrderRequest) OrigClientOrderId(origClientOrderId string) ApiQueryCurrentCmOpenOrderRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -4768,12 +5174,12 @@ func (r ApiQueryCurrentCmOpenOrderRequest) Execute() (*common.RestApiResponse[mo
 QueryCurrentCmOpenOrder Query Current CM Open Order (USER_DATA)
 Get /papi/v1/cm/openOrder
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-CM-Open-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-cm-open-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param orderId -
-@param origClientOrderId -
+@param symbol -  Trading pair.
+@param orderId -  Order ID.
+@param origClientOrderId -  User-defined order ID.
 @param recvWindow -
 @return ApiQueryCurrentCmOpenOrderRequest
 */
@@ -4809,7 +5215,15 @@ func (a *TradeAPIService) QueryCurrentCmOpenOrderExecute(r ApiQueryCurrentCmOpen
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentCmOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentCmOpenOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4824,11 +5238,13 @@ type ApiQueryCurrentMarginOpenOrderRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiQueryCurrentMarginOpenOrderRequest) Symbol(symbol string) ApiQueryCurrentMarginOpenOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryCurrentMarginOpenOrderRequest) RecvWindow(recvWindow int64) ApiQueryCurrentMarginOpenOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -4842,11 +5258,11 @@ func (r ApiQueryCurrentMarginOpenOrderRequest) Execute() (*common.RestApiRespons
 QueryCurrentMarginOpenOrder Query Current Margin Open Order (USER_DATA)
 Get /papi/v1/margin/openOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-Margin-Open-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-margin-open-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param recvWindow -
+@param symbol -  Symbol
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryCurrentMarginOpenOrderRequest
 */
 func (a *TradeAPIService) QueryCurrentMarginOpenOrder(ctx context.Context) ApiQueryCurrentMarginOpenOrderRequest {
@@ -4875,7 +5291,15 @@ func (a *TradeAPIService) QueryCurrentMarginOpenOrderExecute(r ApiQueryCurrentMa
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentMarginOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentMarginOpenOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4891,11 +5315,13 @@ type ApiQueryCurrentUmOpenAlgoOrderRequest struct {
 	recvWindow   *int64
 }
 
+// Algo order ID
 func (r ApiQueryCurrentUmOpenAlgoOrderRequest) AlgoId(algoId int64) ApiQueryCurrentUmOpenAlgoOrderRequest {
 	r.algoId = &algoId
 	return r
 }
 
+// Client algo order ID
 func (r ApiQueryCurrentUmOpenAlgoOrderRequest) ClientAlgoId(clientAlgoId string) ApiQueryCurrentUmOpenAlgoOrderRequest {
 	r.clientAlgoId = &clientAlgoId
 	return r
@@ -4914,11 +5340,11 @@ func (r ApiQueryCurrentUmOpenAlgoOrderRequest) Execute() (*common.RestApiRespons
 QueryCurrentUmOpenAlgoOrder Query Current UM Open Algo Order (USER_DATA)
 Get /papi/v1/um/algo/algoOrder
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Algo-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-um-open-algo-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param algoId -
-@param clientAlgoId -
+@param algoId -  Algo order ID
+@param clientAlgoId -  Client algo order ID
 @param recvWindow -
 @return ApiQueryCurrentUmOpenAlgoOrderRequest
 */
@@ -4949,7 +5375,15 @@ func (a *TradeAPIService) QueryCurrentUmOpenAlgoOrderExecute(r ApiQueryCurrentUm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentUmOpenAlgoOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentUmOpenAlgoOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -4966,6 +5400,7 @@ type ApiQueryCurrentUmOpenConditionalOrderRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiQueryCurrentUmOpenConditionalOrderRequest) Symbol(symbol string) ApiQueryCurrentUmOpenConditionalOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -4991,19 +5426,17 @@ func (r ApiQueryCurrentUmOpenConditionalOrderRequest) Execute() (*common.RestApi
 }
 
 /*
-	QueryCurrentUmOpenConditionalOrder Query Current UM Open Conditional Order
-	Get /papi/v1/um/conditional/openOrder
+QueryCurrentUmOpenConditionalOrder Query Current UM Open Conditional Order (USER_DATA)
+Get /papi/v1/um/conditional/openOrder
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Conditional-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-um-open-conditional-order
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param strategyId -
-	@param newClientStrategyId -
-	@param recvWindow -
-	@return ApiQueryCurrentUmOpenConditionalOrderRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol
+@param strategyId -
+@param newClientStrategyId -
+@param recvWindow -
+@return ApiQueryCurrentUmOpenConditionalOrderRequest
 */
 func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrder(ctx context.Context) ApiQueryCurrentUmOpenConditionalOrderRequest {
 	return ApiQueryCurrentUmOpenConditionalOrderRequest{
@@ -5015,8 +5448,6 @@ func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrder(ctx context.Context
 // Execute executes the request
 //
 //	@return QueryCurrentUmOpenConditionalOrderResponse
-//
-// Deprecated
 func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrderExecute(r ApiQueryCurrentUmOpenConditionalOrderRequest) (*common.RestApiResponse[models.QueryCurrentUmOpenConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/openOrder"
@@ -5039,7 +5470,15 @@ func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrderExecute(r ApiQueryCu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentUmOpenConditionalOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentUmOpenConditionalOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5056,6 +5495,7 @@ type ApiQueryCurrentUmOpenOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryCurrentUmOpenOrderRequest) Symbol(symbol string) ApiQueryCurrentUmOpenOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -5081,13 +5521,13 @@ func (r ApiQueryCurrentUmOpenOrderRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-QueryCurrentUmOpenOrder Query Current UM Open Order(USER_DATA)
+QueryCurrentUmOpenOrder Query Current UM Open Order (USER_DATA)
 Get /papi/v1/um/openOrder
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Current-UM-Open-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-um-open-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
 @param recvWindow -
@@ -5125,7 +5565,15 @@ func (a *TradeAPIService) QueryCurrentUmOpenOrderExecute(r ApiQueryCurrentUmOpen
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentUmOpenOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentUmOpenOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5142,6 +5590,7 @@ type ApiQueryMarginAccountOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryMarginAccountOrderRequest) Symbol(symbol string) ApiQueryMarginAccountOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -5157,6 +5606,7 @@ func (r ApiQueryMarginAccountOrderRequest) OrigClientOrderId(origClientOrderId s
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryMarginAccountOrderRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -5170,13 +5620,13 @@ func (r ApiQueryMarginAccountOrderRequest) Execute() (*common.RestApiResponse[mo
 QueryMarginAccountOrder Query Margin Account Order (USER_DATA)
 Get /papi/v1/margin/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Margin-Account-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-margin-account-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
-@param recvWindow -
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryMarginAccountOrderRequest
 */
 func (a *TradeAPIService) QueryMarginAccountOrder(ctx context.Context) ApiQueryMarginAccountOrderRequest {
@@ -5211,7 +5661,15 @@ func (a *TradeAPIService) QueryMarginAccountOrderExecute(r ApiQueryMarginAccount
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5229,7 +5687,7 @@ type ApiQueryMarginAccountsAllOcoRequest struct {
 	recvWindow *int64
 }
 
-// Trade id to fetch from. Default gets most recent trades.
+// Trade ID to fetch from.
 func (r ApiQueryMarginAccountsAllOcoRequest) FromId(fromId int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.fromId = &fromId
 	return r
@@ -5247,12 +5705,13 @@ func (r ApiQueryMarginAccountsAllOcoRequest) EndTime(endTime int64) ApiQueryMarg
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryMarginAccountsAllOcoRequest) Limit(limit int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.limit = &limit
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryMarginAccountsAllOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsAllOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -5266,14 +5725,14 @@ func (r ApiQueryMarginAccountsAllOcoRequest) Execute() (*common.RestApiResponse[
 QueryMarginAccountsAllOco Query Margin Account's all OCO (USER_DATA)
 Get /papi/v1/margin/allOrderList
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Margin-Account-all-OCO
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-margin-accounts-all-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param fromId -  Trade id to fetch from. Default gets most recent trades.
+@param fromId -  Trade ID to fetch from.
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
-@param recvWindow -
+@param limit -  Number of results returned.
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryMarginAccountsAllOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsAllOco(ctx context.Context) ApiQueryMarginAccountsAllOcoRequest {
@@ -5309,7 +5768,15 @@ func (a *TradeAPIService) QueryMarginAccountsAllOcoExecute(r ApiQueryMarginAccou
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsAllOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5331,11 +5798,13 @@ func (r ApiQueryMarginAccountsOcoRequest) OrderListId(orderListId int64) ApiQuer
 	return r
 }
 
+// &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided.
 func (r ApiQueryMarginAccountsOcoRequest) OrigClientOrderId(origClientOrderId string) ApiQueryMarginAccountsOcoRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryMarginAccountsOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -5349,12 +5818,12 @@ func (r ApiQueryMarginAccountsOcoRequest) Execute() (*common.RestApiResponse[mod
 QueryMarginAccountsOco Query Margin Account's OCO (USER_DATA)
 Get /papi/v1/margin/orderList
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Margin-Account-OCO
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-margin-accounts-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orderListId -  Either `orderListId` or `listClientOrderId` must be provided
-@param origClientOrderId -
-@param recvWindow -
+@param origClientOrderId -  `orderListId` or `listClientOrderId` must be provided.
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryMarginAccountsOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOco(ctx context.Context) ApiQueryMarginAccountsOcoRequest {
@@ -5384,7 +5853,15 @@ func (a *TradeAPIService) QueryMarginAccountsOcoExecute(r ApiQueryMarginAccounts
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5398,6 +5875,7 @@ type ApiQueryMarginAccountsOpenOcoRequest struct {
 	recvWindow *int64
 }
 
+// Value cannot be greater than 60000
 func (r ApiQueryMarginAccountsOpenOcoRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOpenOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -5411,10 +5889,10 @@ func (r ApiQueryMarginAccountsOpenOcoRequest) Execute() (*common.RestApiResponse
 QueryMarginAccountsOpenOco Query Margin Account's Open OCO (USER_DATA)
 Get /papi/v1/margin/openOrderList
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Margin-Account-Open-OCO
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-margin-accounts-open-oco
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Value cannot be greater than 60000
 @return ApiQueryMarginAccountsOpenOcoRequest
 */
 func (a *TradeAPIService) QueryMarginAccountsOpenOco(ctx context.Context) ApiQueryMarginAccountsOpenOcoRequest {
@@ -5438,7 +5916,15 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOcoExecute(r ApiQueryMarginAcco
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOcoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5462,24 +5948,23 @@ func (r ApiQueryUmAlgoOrderHistoryRequest) Symbol(symbol string) ApiQueryUmAlgoO
 	return r
 }
 
+// Only return orders &gt;&#x3D; this algoId
 func (r ApiQueryUmAlgoOrderHistoryRequest) AlgoId(algoId int64) ApiQueryUmAlgoOrderHistoryRequest {
 	r.algoId = &algoId
 	return r
 }
 
-// Timestamp in ms to get funding from INCLUSIVE.
 func (r ApiQueryUmAlgoOrderHistoryRequest) StartTime(startTime int64) ApiQueryUmAlgoOrderHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get funding until INCLUSIVE.
 func (r ApiQueryUmAlgoOrderHistoryRequest) EndTime(endTime int64) ApiQueryUmAlgoOrderHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default 100; max 1000
+// Default 500; max 1000
 func (r ApiQueryUmAlgoOrderHistoryRequest) Limit(limit int64) ApiQueryUmAlgoOrderHistoryRequest {
 	r.limit = &limit
 	return r
@@ -5498,14 +5983,14 @@ func (r ApiQueryUmAlgoOrderHistoryRequest) Execute() (*common.RestApiResponse[mo
 QueryUmAlgoOrderHistory Query UM Algo Order History (USER_DATA)
 Get /papi/v1/um/algo/allAlgoOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Algo-Order-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-algo-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param algoId -
-@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
-@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param algoId -  Only return orders >= this algoId
+@param startTime -
+@param endTime -
+@param limit -  Default 500; max 1000
 @param recvWindow -
 @return ApiQueryUmAlgoOrderHistoryRequest
 */
@@ -5547,7 +6032,15 @@ func (a *TradeAPIService) QueryUmAlgoOrderHistoryExecute(r ApiQueryUmAlgoOrderHi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUmAlgoOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUmAlgoOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5564,6 +6057,7 @@ type ApiQueryUmConditionalOrderHistoryRequest struct {
 	recvWindow          *int64
 }
 
+// Symbol
 func (r ApiQueryUmConditionalOrderHistoryRequest) Symbol(symbol string) ApiQueryUmConditionalOrderHistoryRequest {
 	r.symbol = &symbol
 	return r
@@ -5589,19 +6083,17 @@ func (r ApiQueryUmConditionalOrderHistoryRequest) Execute() (*common.RestApiResp
 }
 
 /*
-	QueryUmConditionalOrderHistory Query UM Conditional Order History
-	Get /papi/v1/um/conditional/orderHistory
+QueryUmConditionalOrderHistory Query UM Conditional Order History (USER_DATA)
+Get /papi/v1/um/conditional/orderHistory
 
-	https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Conditional-Order-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-conditional-order-history
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param symbol -
-	@param strategyId -
-	@param newClientStrategyId -
-	@param recvWindow -
-	@return ApiQueryUmConditionalOrderHistoryRequest
-
-Deprecated
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Symbol
+@param strategyId -
+@param newClientStrategyId -
+@param recvWindow -
+@return ApiQueryUmConditionalOrderHistoryRequest
 */
 func (a *TradeAPIService) QueryUmConditionalOrderHistory(ctx context.Context) ApiQueryUmConditionalOrderHistoryRequest {
 	return ApiQueryUmConditionalOrderHistoryRequest{
@@ -5613,8 +6105,6 @@ func (a *TradeAPIService) QueryUmConditionalOrderHistory(ctx context.Context) Ap
 // Execute executes the request
 //
 //	@return QueryUmConditionalOrderHistoryResponse
-//
-// Deprecated
 func (a *TradeAPIService) QueryUmConditionalOrderHistoryExecute(r ApiQueryUmConditionalOrderHistoryRequest) (*common.RestApiResponse[models.QueryUmConditionalOrderHistoryResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/orderHistory"
@@ -5637,7 +6127,15 @@ func (a *TradeAPIService) QueryUmConditionalOrderHistoryExecute(r ApiQueryUmCond
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUmConditionalOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUmConditionalOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5657,16 +6155,19 @@ type ApiQueryUmModifyOrderHistoryRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryUmModifyOrderHistoryRequest) Symbol(symbol string) ApiQueryUmModifyOrderHistoryRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Order ID
 func (r ApiQueryUmModifyOrderHistoryRequest) OrderId(orderId int64) ApiQueryUmModifyOrderHistoryRequest {
 	r.orderId = &orderId
 	return r
 }
 
+// Client order ID
 func (r ApiQueryUmModifyOrderHistoryRequest) OrigClientOrderId(origClientOrderId string) ApiQueryUmModifyOrderHistoryRequest {
 	r.origClientOrderId = &origClientOrderId
 	return r
@@ -5684,7 +6185,7 @@ func (r ApiQueryUmModifyOrderHistoryRequest) EndTime(endTime int64) ApiQueryUmMo
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryUmModifyOrderHistoryRequest) Limit(limit int64) ApiQueryUmModifyOrderHistoryRequest {
 	r.limit = &limit
 	return r
@@ -5700,18 +6201,18 @@ func (r ApiQueryUmModifyOrderHistoryRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-QueryUmModifyOrderHistory Query UM Modify Order History(TRADE)
+QueryUmModifyOrderHistory Query UM Modify Order History (TRADE)
 Get /papi/v1/um/orderAmendment
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Modify-Order-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-modify-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param orderId -
-@param origClientOrderId -
+@param symbol -  Symbol
+@param orderId -  Order ID
+@param origClientOrderId -  Client order ID
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiQueryUmModifyOrderHistoryRequest
 */
@@ -5756,7 +6257,15 @@ func (a *TradeAPIService) QueryUmModifyOrderHistoryExecute(r ApiQueryUmModifyOrd
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUmModifyOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUmModifyOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5773,6 +6282,7 @@ type ApiQueryUmOrderRequest struct {
 	recvWindow        *int64
 }
 
+// Symbol
 func (r ApiQueryUmOrderRequest) Symbol(symbol string) ApiQueryUmOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -5801,10 +6311,10 @@ func (r ApiQueryUmOrderRequest) Execute() (*common.RestApiResponse[models.QueryU
 QueryUmOrder Query UM Order (USER_DATA)
 Get /papi/v1/um/order
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-UM-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param orderId -
 @param origClientOrderId -
 @param recvWindow -
@@ -5842,7 +6352,15 @@ func (a *TradeAPIService) QueryUmOrderExecute(r ApiQueryUmOrderRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUmOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUmOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5884,12 +6402,13 @@ func (r ApiQueryUsersCmForceOrdersRequest) EndTime(endTime int64) ApiQueryUsersC
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryUsersCmForceOrdersRequest) Limit(limit int64) ApiQueryUsersCmForceOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiQueryUsersCmForceOrdersRequest) RecvWindow(recvWindow int64) ApiQueryUsersCmForceOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -5900,18 +6419,18 @@ func (r ApiQueryUsersCmForceOrdersRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-QueryUsersCmForceOrders Query User's CM Force Orders(USER_DATA)
+QueryUsersCmForceOrders Query User's CM Force Orders (USER_DATA)
 Get /papi/v1/cm/forceOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-CM-Force-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-cm-force-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param autoCloseType -  `LIQUIDATION` for liquidation orders, `ADL` for ADL orders.
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
-@param recvWindow -
+@param limit -  Number of results returned.
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiQueryUsersCmForceOrdersRequest
 */
 func (a *TradeAPIService) QueryUsersCmForceOrders(ctx context.Context) ApiQueryUsersCmForceOrdersRequest {
@@ -5950,7 +6469,15 @@ func (a *TradeAPIService) QueryUsersCmForceOrdersExecute(r ApiQueryUsersCmForceO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUsersCmForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUsersCmForceOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -5980,18 +6507,19 @@ func (r ApiQueryUsersMarginForceOrdersRequest) EndTime(endTime int64) ApiQueryUs
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
+// Current page number.
 func (r ApiQueryUsersMarginForceOrdersRequest) Current(current int64) ApiQueryUsersMarginForceOrdersRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10 Max:100
+// Number of results returned.
 func (r ApiQueryUsersMarginForceOrdersRequest) Size(size int64) ApiQueryUsersMarginForceOrdersRequest {
 	r.size = &size
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiQueryUsersMarginForceOrdersRequest) RecvWindow(recvWindow int64) ApiQueryUsersMarginForceOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -6002,17 +6530,17 @@ func (r ApiQueryUsersMarginForceOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryUsersMarginForceOrders Query User's Margin Force Orders(USER_DATA)
+QueryUsersMarginForceOrders Query User's Margin Force Orders (USER_DATA)
 Get /papi/v1/margin/forceOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-Margin-Force-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-margin-force-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
-@param recvWindow -
+@param current -  Current page number.
+@param size -  Number of results returned.
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiQueryUsersMarginForceOrdersRequest
 */
 func (a *TradeAPIService) QueryUsersMarginForceOrders(ctx context.Context) ApiQueryUsersMarginForceOrdersRequest {
@@ -6048,7 +6576,15 @@ func (a *TradeAPIService) QueryUsersMarginForceOrdersExecute(r ApiQueryUsersMarg
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUsersMarginForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUsersMarginForceOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -6090,12 +6626,13 @@ func (r ApiQueryUsersUmForceOrdersRequest) EndTime(endTime int64) ApiQueryUsersU
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiQueryUsersUmForceOrdersRequest) Limit(limit int64) ApiQueryUsersUmForceOrdersRequest {
 	r.limit = &limit
 	return r
 }
 
+// The value cannot be greater than 60000
 func (r ApiQueryUsersUmForceOrdersRequest) RecvWindow(recvWindow int64) ApiQueryUsersUmForceOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -6109,15 +6646,15 @@ func (r ApiQueryUsersUmForceOrdersRequest) Execute() (*common.RestApiResponse[mo
 QueryUsersUmForceOrders Query User's UM Force Orders (USER_DATA)
 Get /papi/v1/um/forceOrders
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Query-Users-UM-Force-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-users-um-force-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param autoCloseType -  `LIQUIDATION` for liquidation orders, `ADL` for ADL orders.
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Default 100; max 1000
-@param recvWindow -
+@param limit -  Number of results returned.
+@param recvWindow -  The value cannot be greater than 60000
 @return ApiQueryUsersUmForceOrdersRequest
 */
 func (a *TradeAPIService) QueryUsersUmForceOrders(ctx context.Context) ApiQueryUsersUmForceOrdersRequest {
@@ -6156,7 +6693,15 @@ func (a *TradeAPIService) QueryUsersUmForceOrdersExecute(r ApiQueryUsersUmForceO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUsersUmForceOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUsersUmForceOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -6167,12 +6712,12 @@ func (a *TradeAPIService) QueryUsersUmForceOrdersExecute(r ApiQueryUsersUmForceO
 type ApiToggleBnbBurnOnUmFuturesTradeRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
-	feeBurn    *string
+	feeBurn    *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	recvWindow *int64
 }
 
 // \&quot;true\&quot;: Fee Discount On; \&quot;false\&quot;: Fee Discount Off
-func (r ApiToggleBnbBurnOnUmFuturesTradeRequest) FeeBurn(feeBurn string) ApiToggleBnbBurnOnUmFuturesTradeRequest {
+func (r ApiToggleBnbBurnOnUmFuturesTradeRequest) FeeBurn(feeBurn models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiToggleBnbBurnOnUmFuturesTradeRequest {
 	r.feeBurn = &feeBurn
 	return r
 }
@@ -6190,7 +6735,7 @@ func (r ApiToggleBnbBurnOnUmFuturesTradeRequest) Execute() (*common.RestApiRespo
 ToggleBnbBurnOnUmFuturesTrade Toggle BNB Burn On UM Futures Trade (TRADE)
 Post /papi/v1/um/feeBurn
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/Toggle-BNB-Burn-On-UM-Futures-Trade
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#toggle-bnb-burn-on-um-futures-trade
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param feeBurn -  \"true\": Fee Discount On; \"false\": Fee Discount Off
@@ -6223,7 +6768,15 @@ func (a *TradeAPIService) ToggleBnbBurnOnUmFuturesTradeExecute(r ApiToggleBnbBur
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ToggleBnbBurnOnUmFuturesTradeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ToggleBnbBurnOnUmFuturesTradeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -6242,6 +6795,7 @@ type ApiUmAccountTradeListRequest struct {
 	recvWindow *int64
 }
 
+// Symbol
 func (r ApiUmAccountTradeListRequest) Symbol(symbol string) ApiUmAccountTradeListRequest {
 	r.symbol = &symbol
 	return r
@@ -6259,13 +6813,13 @@ func (r ApiUmAccountTradeListRequest) EndTime(endTime int64) ApiUmAccountTradeLi
 	return r
 }
 
-// Trade id to fetch from. Default gets most recent trades.
+// Trade ID to fetch from.
 func (r ApiUmAccountTradeListRequest) FromId(fromId int64) ApiUmAccountTradeListRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default 100; max 1000
+// Number of results returned.
 func (r ApiUmAccountTradeListRequest) Limit(limit int64) ApiUmAccountTradeListRequest {
 	r.limit = &limit
 	return r
@@ -6281,17 +6835,17 @@ func (r ApiUmAccountTradeListRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-UmAccountTradeList UM Account Trade List(USER_DATA)
+UmAccountTradeList UM Account Trade List (USER_DATA)
 Get /papi/v1/um/userTrades
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/UM-Account-Trade-List
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#um-account-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
+@param symbol -  Symbol
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param fromId -  Trade id to fetch from. Default gets most recent trades.
-@param limit -  Default 100; max 1000
+@param fromId -  Trade ID to fetch from.
+@param limit -  Number of results returned.
 @param recvWindow -
 @return ApiUmAccountTradeListRequest
 */
@@ -6333,7 +6887,15 @@ func (a *TradeAPIService) UmAccountTradeListExecute(r ApiUmAccountTradeListReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UmAccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UmAccountTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -6363,10 +6925,10 @@ func (r ApiUmPositionAdlQuantileEstimationRequest) Execute() (*common.RestApiRes
 }
 
 /*
-UmPositionAdlQuantileEstimation UM Position ADL Quantile Estimation(USER_DATA)
+UmPositionAdlQuantileEstimation UM Position ADL Quantile Estimation (USER_DATA)
 Get /papi/v1/um/adlQuantile
 
-https://developers.binance.com/docs/derivatives/portfolio-margin/trade/UM-Position-ADL-Quantile-Estimation
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#um-position-adl-quantile-estimation
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -6397,7 +6959,15 @@ func (a *TradeAPIService) UmPositionAdlQuantileEstimationExecute(r ApiUmPosition
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UmPositionAdlQuantileEstimationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UmPositionAdlQuantileEstimationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

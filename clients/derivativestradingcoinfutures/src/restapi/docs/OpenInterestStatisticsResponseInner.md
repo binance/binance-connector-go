@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Pair** | Pointer to **string** |  | [optional] 
-**ContractType** | Pointer to **string** |  | [optional] 
-**SumOpenInterest** | Pointer to **string** |  | [optional] 
-**SumOpenInterestValue** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**ContractType** | Pointer to **string** | Contract type. | [optional] 
+**SumOpenInterest** | Pointer to **string** | unit: cont | [optional] 
+**SumOpenInterestValue** | Pointer to **string** | unit: base asset | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 

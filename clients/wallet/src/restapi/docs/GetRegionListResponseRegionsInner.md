@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**RegionName** | Pointer to **string** |  | [optional] 
-**BlockType** | Pointer to **string** |  | [optional] 
-**DepositAllowed** | Pointer to **bool** |  | [optional] 
-**WithdrawalAllowed** | Pointer to **bool** |  | [optional] 
+**RegionName** | Pointer to **string** | Region/city display name (use this value in questionnaire answers). | [optional] 
+**BlockType** | Pointer to **string** | &#x60;supported&#x60;, &#x60;limited&#x60;, or &#x60;blocked&#x60;. | [optional] 
+**DepositAllowed** | Pointer to **bool** | Whether deposit is allowed for this region. | [optional] 
+**WithdrawalAllowed** | Pointer to **bool** | Whether withdrawal is allowed for this region. | [optional] 
 
 ## Methods
 

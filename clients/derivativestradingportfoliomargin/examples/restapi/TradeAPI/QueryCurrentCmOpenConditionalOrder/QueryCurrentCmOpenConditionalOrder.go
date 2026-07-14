@@ -22,7 +22,7 @@ func QueryCurrentCmOpenConditionalOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.QueryCurrentCmOpenConditionalOrder(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QueryCurrentCmOpenConditionalOrder(context.Background()).Symbol("BTCUSD_200925").Execute()
 	if err != nil {
 		log.Println(err)
 		return

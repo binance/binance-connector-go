@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event Name | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
 **K** | Pointer to [**MarkPriceKlineCandlestickStreamsResponseK**](MarkPriceKlineCandlestickStreamsResponseK.md) |  | [optional] 
 
 ## Methods

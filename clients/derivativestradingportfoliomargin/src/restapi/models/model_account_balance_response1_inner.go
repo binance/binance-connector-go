@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,18 +17,31 @@ var _ common.MappedNullable = &AccountBalanceResponse1Inner{}
 
 // AccountBalanceResponse1Inner struct for AccountBalanceResponse1Inner
 type AccountBalanceResponse1Inner struct {
-	Asset                *string `json:"asset,omitempty"`
-	TotalWalletBalance   *string `json:"totalWalletBalance,omitempty"`
-	CrossMarginAsset     *string `json:"crossMarginAsset,omitempty"`
-	CrossMarginBorrowed  *string `json:"crossMarginBorrowed,omitempty"`
-	CrossMarginFree      *string `json:"crossMarginFree,omitempty"`
-	CrossMarginInterest  *string `json:"crossMarginInterest,omitempty"`
-	CrossMarginLocked    *string `json:"crossMarginLocked,omitempty"`
-	UmWalletBalance      *string `json:"umWalletBalance,omitempty"`
-	UmUnrealizedPNL      *string `json:"umUnrealizedPNL,omitempty"`
-	CmWalletBalance      *string `json:"cmWalletBalance,omitempty"`
-	CmUnrealizedPNL      *string `json:"cmUnrealizedPNL,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// Total Wallet Balance.
+	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
+	// Cross Margin Asset.
+	CrossMarginAsset *string `json:"crossMarginAsset,omitempty"`
+	// Cross Margin Borrowed.
+	CrossMarginBorrowed *string `json:"crossMarginBorrowed,omitempty"`
+	// Cross Margin Free.
+	CrossMarginFree *string `json:"crossMarginFree,omitempty"`
+	// Cross Margin Interest.
+	CrossMarginInterest *string `json:"crossMarginInterest,omitempty"`
+	// Cross Margin Locked.
+	CrossMarginLocked *string `json:"crossMarginLocked,omitempty"`
+	// Um Wallet Balance.
+	UmWalletBalance *string `json:"umWalletBalance,omitempty"`
+	// Um Unrealized PNL.
+	UmUnrealizedPNL *string `json:"umUnrealizedPNL,omitempty"`
+	// Cm Wallet Balance.
+	CmWalletBalance *string `json:"cmWalletBalance,omitempty"`
+	// Cm Unrealized PNL.
+	CmUnrealizedPNL *string `json:"cmUnrealizedPNL,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// negative balance amount
 	NegativeBalance      *string `json:"negativeBalance,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

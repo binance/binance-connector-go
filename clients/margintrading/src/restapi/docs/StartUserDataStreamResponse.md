@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ListenKey** | Pointer to **string** |  | [optional] 
+**ListenKey** | Pointer to **string** | listen Key. | [optional] 
 
 ## Methods
 

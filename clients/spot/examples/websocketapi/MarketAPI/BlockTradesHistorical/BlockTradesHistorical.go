@@ -27,7 +27,7 @@ func BlockTradesHistorical() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol("BNBUSDT").FromId(1).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.MarketAPI.BlockTradesHistorical().Symbol("BNBBTC").FromId(582).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing BlockTradesHistorical request: %v\n", err)
 		return

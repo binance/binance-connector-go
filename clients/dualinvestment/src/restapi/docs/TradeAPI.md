@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**ChangeAutoCompoundStatus**](TradeAPI.md#ChangeAutoCompoundStatus) | **Post** /sapi/v1/dci/product/auto_compound/edit-status | Change Auto-Compound status(USER_DATA)
-[**CheckDualInvestmentAccounts**](TradeAPI.md#CheckDualInvestmentAccounts) | **Get** /sapi/v1/dci/product/accounts | Check Dual Investment accounts(USER_DATA)
-[**GetDualInvestmentPositions**](TradeAPI.md#GetDualInvestmentPositions) | **Get** /sapi/v1/dci/product/positions | Get Dual Investment positions(USER_DATA)
-[**SubscribeDualInvestmentProducts**](TradeAPI.md#SubscribeDualInvestmentProducts) | **Post** /sapi/v1/dci/product/subscribe | Subscribe Dual Investment products(USER_DATA)
+[**ChangeAutoCompoundStatus**](TradeAPI.md#ChangeAutoCompoundStatus) | **Post** /sapi/v1/dci/product/auto_compound/edit-status | Change Auto-Compound status (USER_DATA)
+[**CheckDualInvestmentAccounts**](TradeAPI.md#CheckDualInvestmentAccounts) | **Get** /sapi/v1/dci/product/accounts | Check Dual Investment accounts (USER_DATA)
+[**GetDualInvestmentPositions**](TradeAPI.md#GetDualInvestmentPositions) | **Get** /sapi/v1/dci/product/positions | Get Dual Investment positions (USER_DATA)
+[**SubscribeDualInvestmentProducts**](TradeAPI.md#SubscribeDualInvestmentProducts) | **Post** /sapi/v1/dci/product/subscribe | Subscribe Dual Investment products (USER_DATA)
 
 
 ## ChangeAutoCompoundStatus
 
 > ChangeAutoCompoundStatusResponse ChangeAutoCompoundStatus(ctx).PositionId(positionId).AutoCompoundPlan(autoCompoundPlan).RecvWindow(recvWindow).Execute()
 
-Change Auto-Compound status(USER_DATA)
+Change Auto-Compound status (USER_DATA)
 
 
 ### Example
@@ -33,9 +33,9 @@ import (
 )
 
 func main() {
-	positionId := "1" // string | Get positionId from `/sapi/v1/dci/product/positions`
-	autoCompoundPlan := "autoCompoundPlan_example" // string |  (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	positionId := "741590" // string | Get positionId from `/sapi/v1/dci/product/positions`
+	autoCompoundPlan := models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone // ChangeAutoCompoundStatusAutoCompoundPlanParameter | `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -64,8 +64,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **positionId** | **string** | Get positionId from &#x60;/sapi/v1/dci/product/positions&#x60; | 
- **autoCompoundPlan** | **string** |  | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **autoCompoundPlan** | [**ChangeAutoCompoundStatusAutoCompoundPlanParameter**](ChangeAutoCompoundStatusAutoCompoundPlanParameter.md) | &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -86,7 +86,7 @@ No authorization required
 
 > CheckDualInvestmentAccountsResponse CheckDualInvestmentAccounts(ctx).RecvWindow(recvWindow).Execute()
 
-Check Dual Investment accounts(USER_DATA)
+Check Dual Investment accounts (USER_DATA)
 
 
 ### Example
@@ -105,7 +105,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -133,7 +133,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -154,7 +154,7 @@ No authorization required
 
 > GetDualInvestmentPositionsResponse GetDualInvestmentPositions(ctx).Status(status).PageSize(pageSize).PageIndex(pageIndex).RecvWindow(recvWindow).Execute()
 
-Get Dual Investment positions(USER_DATA)
+Get Dual Investment positions (USER_DATA)
 
 
 ### Example
@@ -173,10 +173,10 @@ import (
 )
 
 func main() {
-	status := "status_example" // string | `PENDING`:Products are purchasing, will give results later;`PURCHASE_SUCCESS`:purchase successfully;`SETTLED`: Products are finish settling;`PURCHASE_FAIL`:fail to purchase;`REFUNDING`:refund ongoing;`REFUND_SUCCESS`:refund to spot account successfully; `SETTLING`:Products are settling. If don't fill this field, will response all the position status. (optional)
-	pageSize := int64(10) // int64 | Default: 10, Maximum: 100 (optional)
-	pageIndex := int64(1) // int64 | Default: 1 (optional)
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	status := models.GetDualInvestmentPositionsStatusParameterPending // GetDualInvestmentPositionsStatusParameter | `PENDING`: Products are purchasing, will give results later; `PURCHASE_SUCCESS`: purchase successfully; `SETTLED`: Products are finish settling; `PURCHASE_FAIL`: fail to purchase; `REFUNDING`: refund ongoing; `REFUND_SUCCESS`: refund to spot account successfully; `SETTLING`: Products are settling. If don't fill this field, will response all the position status. (optional)
+	pageSize := int64(10) // int64 | Number of records per page (optional)
+	pageIndex := int64(1) // int64 | Page index (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -204,10 +204,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **string** | &#x60;PENDING&#x60;:Products are purchasing, will give results later;&#x60;PURCHASE_SUCCESS&#x60;:purchase successfully;&#x60;SETTLED&#x60;: Products are finish settling;&#x60;PURCHASE_FAIL&#x60;:fail to purchase;&#x60;REFUNDING&#x60;:refund ongoing;&#x60;REFUND_SUCCESS&#x60;:refund to spot account successfully; &#x60;SETTLING&#x60;:Products are settling. If don&#39;t fill this field, will response all the position status. | 
- **pageSize** | **int64** | Default: 10, Maximum: 100 | 
- **pageIndex** | **int64** | Default: 1 | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **status** | [**GetDualInvestmentPositionsStatusParameter**](GetDualInvestmentPositionsStatusParameter.md) | &#x60;PENDING&#x60;: Products are purchasing, will give results later; &#x60;PURCHASE_SUCCESS&#x60;: purchase successfully; &#x60;SETTLED&#x60;: Products are finish settling; &#x60;PURCHASE_FAIL&#x60;: fail to purchase; &#x60;REFUNDING&#x60;: refund ongoing; &#x60;REFUND_SUCCESS&#x60;: refund to spot account successfully; &#x60;SETTLING&#x60;: Products are settling. If don&#39;t fill this field, will response all the position status. | 
+ **pageSize** | **int64** | Number of records per page | 
+ **pageIndex** | **int64** | Page index | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -228,7 +228,7 @@ No authorization required
 
 > SubscribeDualInvestmentProductsResponse SubscribeDualInvestmentProducts(ctx).Id(id).OrderId(orderId).DepositAmount(depositAmount).AutoCompoundPlan(autoCompoundPlan).RecvWindow(recvWindow).Execute()
 
-Subscribe Dual Investment products(USER_DATA)
+Subscribe Dual Investment products (USER_DATA)
 
 
 ### Example
@@ -247,11 +247,11 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | get id from `/sapi/v1/dci/product/list`
-	orderId := "1" // string | get orderId from `/sapi/v1/dci/product/list`
-	depositAmount := float32(1.0) // float32 | the amount for subscribing
-	autoCompoundPlan := "NONE" // string | `NONE`: switch off the plan, `STANDARD`:standard plan,`ADVANCED`:advanced plan
-	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
+	id := "741590" // string | get id from `/sapi/v1/dci/product/list`
+	orderId := "8257205859" // string | get orderId from `/sapi/v1/dci/product/list`
+	depositAmount := float32(1) // float32 | the amount for subscribing
+	autoCompoundPlan := models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone // ChangeAutoCompoundStatusAutoCompoundPlanParameter | `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -282,8 +282,8 @@ Name          | Type          | Description   | Notes
  **id** | **string** | get id from &#x60;/sapi/v1/dci/product/list&#x60; | 
  **orderId** | **string** | get orderId from &#x60;/sapi/v1/dci/product/list&#x60; | 
  **depositAmount** | **float32** | the amount for subscribing | 
- **autoCompoundPlan** | **string** | &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;:standard plan,&#x60;ADVANCED&#x60;:advanced plan | 
- **recvWindow** | **int64** | The value cannot be greater than 60000 | 
+ **autoCompoundPlan** | [**ChangeAutoCompoundStatusAutoCompoundPlanParameter**](ChangeAutoCompoundStatusAutoCompoundPlanParameter.md) | &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 

@@ -4,18 +4,18 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CancelAlgoOrderSpotAlgo**](SpotAlgoAPI.md#CancelAlgoOrderSpotAlgo) | **Delete** /sapi/v1/algo/spot/order | Cancel Algo Order(TRADE)
-[**QueryCurrentAlgoOpenOrdersSpotAlgo**](SpotAlgoAPI.md#QueryCurrentAlgoOpenOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/openOrders | Query Current Algo Open Orders(USER_DATA)
-[**QueryHistoricalAlgoOrdersSpotAlgo**](SpotAlgoAPI.md#QueryHistoricalAlgoOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/historicalOrders | Query Historical Algo Orders(USER_DATA)
-[**QuerySubOrdersSpotAlgo**](SpotAlgoAPI.md#QuerySubOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/subOrders | Query Sub Orders(USER_DATA)
-[**TimeWeightedAveragePriceSpotAlgo**](SpotAlgoAPI.md#TimeWeightedAveragePriceSpotAlgo) | **Post** /sapi/v1/algo/spot/newOrderTwap | Time-Weighted Average Price(Twap) New Order(TRADE)
+[**CancelAlgoOrderSpotAlgo**](SpotAlgoAPI.md#CancelAlgoOrderSpotAlgo) | **Delete** /sapi/v1/algo/spot/order | Cancel Spot Algo Order (TRADE)
+[**QueryCurrentAlgoOpenOrdersSpotAlgo**](SpotAlgoAPI.md#QueryCurrentAlgoOpenOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/openOrders | Query Current Spot Algo Open Orders (USER_DATA)
+[**QueryHistoricalAlgoOrdersSpotAlgo**](SpotAlgoAPI.md#QueryHistoricalAlgoOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/historicalOrders | Query Historical Spot Algo Orders (USER_DATA)
+[**QuerySubOrdersSpotAlgo**](SpotAlgoAPI.md#QuerySubOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/subOrders | Query Spot Sub Orders (USER_DATA)
+[**TimeWeightedAveragePriceSpotAlgo**](SpotAlgoAPI.md#TimeWeightedAveragePriceSpotAlgo) | **Post** /sapi/v1/algo/spot/newOrderTwap | Time-Weighted Spot Average Price(Twap) New Order (TRADE)
 
 
 ## CancelAlgoOrderSpotAlgo
 
 > CancelAlgoOrderSpotAlgoResponse CancelAlgoOrderSpotAlgo(ctx).AlgoId(algoId).RecvWindow(recvWindow).Execute()
 
-Cancel Algo Order(TRADE)
+Cancel Spot Algo Order (TRADE)
 
 
 ### Example
@@ -34,8 +34,8 @@ import (
 )
 
 func main() {
-	algoId := int64(1) // int64 | eg. 14511
-	recvWindow := int64(5000) // int64 |  (optional)
+	algoId := int64(14511) // int64 | 
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -63,8 +63,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **algoId** | **int64** | eg. 14511 | 
- **recvWindow** | **int64** |  | 
+ **algoId** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ No authorization required
 
 > QueryCurrentAlgoOpenOrdersSpotAlgoResponse QueryCurrentAlgoOpenOrdersSpotAlgo(ctx).RecvWindow(recvWindow).Execute()
 
-Query Current Algo Open Orders(USER_DATA)
+Query Current Spot Algo Open Orders (USER_DATA)
 
 
 ### Example
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -132,7 +132,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -153,7 +153,7 @@ No authorization required
 
 > QueryHistoricalAlgoOrdersSpotAlgoResponse QueryHistoricalAlgoOrdersSpotAlgo(ctx).Symbol(symbol).Side(side).StartTime(startTime).EndTime(endTime).Page(page).PageSize(pageSize).RecvWindow(recvWindow).Execute()
 
-Query Historical Algo Orders(USER_DATA)
+Query Historical Spot Algo Orders (USER_DATA)
 
 
 ### Example
@@ -172,13 +172,13 @@ import (
 )
 
 func main() {
-	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT (optional)
-	side := "BUY" // string | BUY or SELL (optional)
+	symbol := "BTCUSDT" // string | Trading symbol (optional)
+	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter |  (optional)
 	startTime := int64(1623319461670) // int64 | in milliseconds  eg.1641522717552 (optional)
 	endTime := int64(1641782889000) // int64 | in milliseconds  eg.1641522526562 (optional)
-	page := int64(1) // int64 | Default is 1 (optional)
-	pageSize := int64(100) // int64 | MIN 1, MAX 100; Default 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	page := int64(1) // int64 | Page number (optional)
+	pageSize := int64(10) // int64 | Records per page (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -206,13 +206,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Trading symbol eg. BTCUSDT | 
- **side** | **string** | BUY or SELL | 
+ **symbol** | **string** | Trading symbol | 
+ **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) |  | 
  **startTime** | **int64** | in milliseconds  eg.1641522717552 | 
  **endTime** | **int64** | in milliseconds  eg.1641522526562 | 
- **page** | **int64** | Default is 1 | 
- **pageSize** | **int64** | MIN 1, MAX 100; Default 100 | 
- **recvWindow** | **int64** |  | 
+ **page** | **int64** | Page number | 
+ **pageSize** | **int64** | Records per page | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -233,7 +233,7 @@ No authorization required
 
 > QuerySubOrdersSpotAlgoResponse QuerySubOrdersSpotAlgo(ctx).AlgoId(algoId).Page(page).PageSize(pageSize).RecvWindow(recvWindow).Execute()
 
-Query Sub Orders(USER_DATA)
+Query Spot Sub Orders (USER_DATA)
 
 
 ### Example
@@ -253,9 +253,9 @@ import (
 
 func main() {
 	algoId := int64(1) // int64 | eg. 14511
-	page := int64(1) // int64 | Default is 1 (optional)
-	pageSize := int64(100) // int64 | MIN 1, MAX 100; Default 100 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	page := int64(1) // int64 | Page number (optional)
+	pageSize := int64(10) // int64 | Records per page (optional)
+	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -284,9 +284,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **algoId** | **int64** | eg. 14511 | 
- **page** | **int64** | Default is 1 | 
- **pageSize** | **int64** | MIN 1, MAX 100; Default 100 | 
- **recvWindow** | **int64** |  | 
+ **page** | **int64** | Page number | 
+ **pageSize** | **int64** | Records per page | 
+ **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
 
@@ -307,7 +307,7 @@ No authorization required
 
 > TimeWeightedAveragePriceSpotAlgoResponse TimeWeightedAveragePriceSpotAlgo(ctx).Symbol(symbol).Side(side).Quantity(quantity).Duration(duration).ClientAlgoId(clientAlgoId).LimitPrice(limitPrice).Execute()
 
-Time-Weighted Average Price(Twap) New Order(TRADE)
+Time-Weighted Spot Average Price(Twap) New Order (TRADE)
 
 
 ### Example
@@ -327,11 +327,11 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
-	side := "BUY" // string | Trading side ( BUY or SELL )
-	quantity := float32(1.0) // float32 | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
-	duration := int64(5000) // int64 | Duration for TWAP orders in seconds. [300, 86400]
+	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
+	quantity := float32(1) // float32 | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
+	duration := int64(5000) // int64 | Duration for TWAP orders in seconds
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
-	limitPrice := float32(1.0) // float32 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
+	limitPrice := float32(1) // float32 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -360,9 +360,9 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
- **side** | **string** | Trading side ( BUY or SELL ) | 
+ **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
  **quantity** | **float32** | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order. | 
- **duration** | **int64** | Duration for TWAP orders in seconds. [300, 86400] | 
+ **duration** | **int64** | Duration for TWAP orders in seconds | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 
  **limitPrice** | **float32** | Limit price of the order; If it is not sent, will place order by market price by default | 
 

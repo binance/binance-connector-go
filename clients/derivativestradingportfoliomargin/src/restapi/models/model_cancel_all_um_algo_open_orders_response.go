@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &CancelAllUmAlgoOpenOrdersResponse{}
 
 // CancelAllUmAlgoOpenOrdersResponse struct for CancelAllUmAlgoOpenOrdersResponse
 type CancelAllUmAlgoOpenOrdersResponse struct {
-	Code                 *int64  `json:"code,omitempty"`
+	Code                 *int32  `json:"code,omitempty"`
 	Msg                  *string `json:"msg,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -42,9 +42,9 @@ func NewCancelAllUmAlgoOpenOrdersResponseWithDefaults() *CancelAllUmAlgoOpenOrde
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *CancelAllUmAlgoOpenOrdersResponse) GetCode() int64 {
+func (o *CancelAllUmAlgoOpenOrdersResponse) GetCode() int32 {
 	if o == nil || common.IsNil(o.Code) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Code
@@ -52,7 +52,7 @@ func (o *CancelAllUmAlgoOpenOrdersResponse) GetCode() int64 {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CancelAllUmAlgoOpenOrdersResponse) GetCodeOk() (*int64, bool) {
+func (o *CancelAllUmAlgoOpenOrdersResponse) GetCodeOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Code) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *CancelAllUmAlgoOpenOrdersResponse) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *CancelAllUmAlgoOpenOrdersResponse) SetCode(v int64) {
+// SetCode gets a reference to the given int32 and assigns it to the Code field.
+func (o *CancelAllUmAlgoOpenOrdersResponse) SetCode(v int32) {
 	o.Code = &v
 }
 

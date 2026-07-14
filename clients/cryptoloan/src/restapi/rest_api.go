@@ -1,7 +1,7 @@
 /*
-Binance Crypto Loan REST API
+Crypto Loan REST API
 
-OpenAPI Specification for the Binance Crypto Loan REST API
+Access Binance Crypto Loans to query assets, subscribe to loans, and manage loan positions.
 */
 
 package binancecryptoloanrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Crypto Loan REST API v1.5.0
+// RestAPIClient manages communication with the Crypto Loan REST API API v1.6.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -27,7 +27,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Crypto Loan REST API REST API client
+// NewRestAPIClient creates a new Binance Crypto Loan REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -37,7 +37,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-cryptoloan/1.5.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-cryptoloan/1.6.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to **int64** |  | [optional] 
-**TotalRecords** | Pointer to **int64** |  | [optional] 
-**TotalPageNum** | Pointer to **int64** |  | [optional] 
-**Data** | Pointer to [**[]GetSpotRebateHistoryRecordsResponseDataDataInner**](GetSpotRebateHistoryRecordsResponseDataDataInner.md) |  | [optional] 
+**Page** | Pointer to **int64** | Current page number. | [optional] 
+**TotalRecords** | Pointer to **int64** | Total number of records. | [optional] 
+**TotalPageNum** | Pointer to **int64** | Total number of pages. | [optional] 
+**Data** | Pointer to [**[]GetSpotRebateHistoryRecordsResponseDataDataInner**](GetSpotRebateHistoryRecordsResponseDataDataInner.md) | Rebate records. | [optional] 
 
 ## Methods
 

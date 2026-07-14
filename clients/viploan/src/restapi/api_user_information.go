@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package binanceviploanrestapi
@@ -49,7 +49,7 @@ func (r ApiCheckVIPLoanCollateralAccountRequest) Execute() (*common.RestApiRespo
 CheckVIPLoanCollateralAccount Check VIP Loan Collateral Account (USER_DATA)
 Get /sapi/v1/loan/vip/collateral/account
 
-https://developers.binance.com/docs/vip_loan/user-information/Check-Locked-Value-of-VIP-Collateral-Account
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#check-viploan-collateral-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orderId -
@@ -84,7 +84,15 @@ func (a *UserInformationAPIService) CheckVIPLoanCollateralAccountExecute(r ApiCh
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CheckVIPLoanCollateralAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CheckVIPLoanCollateralAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -114,23 +122,25 @@ func (r ApiGetVIPLoanAccruedInterestRequest) LoanCoin(loanCoin string) ApiGetVIP
 	return r
 }
 
+// If both startTime and endTime are omitted, the most recent 90 days are returned.
 func (r ApiGetVIPLoanAccruedInterestRequest) StartTime(startTime int64) ApiGetVIPLoanAccruedInterestRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Maximum interval between startTime and endTime is 90 days.
 func (r ApiGetVIPLoanAccruedInterestRequest) EndTime(endTime int64) ApiGetVIPLoanAccruedInterestRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Page number, default 1, minimum 1
+// Current page number, starting from 1.
 func (r ApiGetVIPLoanAccruedInterestRequest) Current(current int64) ApiGetVIPLoanAccruedInterestRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
+// Number of records per page.
 func (r ApiGetVIPLoanAccruedInterestRequest) Limit(limit int64) ApiGetVIPLoanAccruedInterestRequest {
 	r.limit = &limit
 	return r
@@ -149,15 +159,15 @@ func (r ApiGetVIPLoanAccruedInterestRequest) Execute() (*common.RestApiResponse[
 GetVIPLoanAccruedInterest Get VIP Loan Accrued Interest (USER_DATA)
 Get /sapi/v1/loan/vip/accruedInterest
 
-https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Accrued-Interest
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-accrued-interest
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orderId -
 @param loanCoin -
-@param startTime -
-@param endTime -
-@param current -  Page number, default 1, minimum 1
-@param limit -  Default: 10; max: 100
+@param startTime -  If both startTime and endTime are omitted, the most recent 90 days are returned.
+@param endTime -  Maximum interval between startTime and endTime is 90 days.
+@param current -  Current page number, starting from 1.
+@param limit -  Number of records per page.
 @param recvWindow -
 @return ApiGetVIPLoanAccruedInterestRequest
 */
@@ -200,7 +210,15 @@ func (a *UserInformationAPIService) GetVIPLoanAccruedInterestExecute(r ApiGetVIP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetVIPLoanAccruedInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetVIPLoanAccruedInterestResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -240,13 +258,11 @@ func (r ApiGetVIPLoanOngoingOrdersRequest) CollateralCoin(collateralCoin string)
 	return r
 }
 
-// Page number, default 1, minimum 1
 func (r ApiGetVIPLoanOngoingOrdersRequest) Current(current int64) ApiGetVIPLoanOngoingOrdersRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
 func (r ApiGetVIPLoanOngoingOrdersRequest) Limit(limit int64) ApiGetVIPLoanOngoingOrdersRequest {
 	r.limit = &limit
 	return r
@@ -262,18 +278,18 @@ func (r ApiGetVIPLoanOngoingOrdersRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-GetVIPLoanOngoingOrders Get VIP Loan Ongoing Orders(USER_DATA)
+GetVIPLoanOngoingOrders Get VIP Loan Ongoing Orders (USER_DATA)
 Get /sapi/v1/loan/vip/ongoing/orders
 
-https://developers.binance.com/docs/vip_loan/user-information/Get-VIP-Loan-Ongoing-Orders
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-ongoing-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orderId -
 @param collateralAccountId -
 @param loanCoin -
 @param collateralCoin -
-@param current -  Page number, default 1, minimum 1
-@param limit -  Default: 10; max: 100
+@param current -
+@param limit -
 @param recvWindow -
 @return ApiGetVIPLoanOngoingOrdersRequest
 */
@@ -316,7 +332,141 @@ func (a *UserInformationAPIService) GetVIPLoanOngoingOrdersExecute(r ApiGetVIPLo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetVIPLoanOngoingOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetVIPLoanOngoingOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetVIPLoanRepaymentHistoryRequest struct {
+	ctx        context.Context
+	ApiService *UserInformationAPIService
+	orderId    *int64
+	loanCoin   *string
+	startTime  *int64
+	endTime    *int64
+	current    *int64
+	limit      *int64
+	recvWindow *int64
+}
+
+func (r ApiGetVIPLoanRepaymentHistoryRequest) OrderId(orderId int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.orderId = &orderId
+	return r
+}
+
+func (r ApiGetVIPLoanRepaymentHistoryRequest) LoanCoin(loanCoin string) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.loanCoin = &loanCoin
+	return r
+}
+
+// If both startTime and endTime are omitted, the most recent 90 days are returned.
+func (r ApiGetVIPLoanRepaymentHistoryRequest) StartTime(startTime int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.startTime = &startTime
+	return r
+}
+
+// Maximum interval between startTime and endTime is 180 days.
+func (r ApiGetVIPLoanRepaymentHistoryRequest) EndTime(endTime int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.endTime = &endTime
+	return r
+}
+
+// Current page number, starting from 1.
+func (r ApiGetVIPLoanRepaymentHistoryRequest) Current(current int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.current = &current
+	return r
+}
+
+// Number of records per page.
+func (r ApiGetVIPLoanRepaymentHistoryRequest) Limit(limit int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiGetVIPLoanRepaymentHistoryRequest) RecvWindow(recvWindow int64) ApiGetVIPLoanRepaymentHistoryRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetVIPLoanRepaymentHistoryRequest) Execute() (*common.RestApiResponse[models.GetVIPLoanRepaymentHistoryResponse], error) {
+	return r.ApiService.GetVIPLoanRepaymentHistoryExecute(r)
+}
+
+/*
+GetVIPLoanRepaymentHistory Get VIP Loan Repayment History (USER_DATA)
+Get /sapi/v1/loan/vip/repay/history
+
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#get-viploan-repayment-history
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param orderId -
+@param loanCoin -
+@param startTime -  If both startTime and endTime are omitted, the most recent 90 days are returned.
+@param endTime -  Maximum interval between startTime and endTime is 180 days.
+@param current -  Current page number, starting from 1.
+@param limit -  Number of records per page.
+@param recvWindow -
+@return ApiGetVIPLoanRepaymentHistoryRequest
+*/
+func (a *UserInformationAPIService) GetVIPLoanRepaymentHistory(ctx context.Context) ApiGetVIPLoanRepaymentHistoryRequest {
+	return ApiGetVIPLoanRepaymentHistoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetVIPLoanRepaymentHistoryResponse
+func (a *UserInformationAPIService) GetVIPLoanRepaymentHistoryExecute(r ApiGetVIPLoanRepaymentHistoryRequest) (*common.RestApiResponse[models.GetVIPLoanRepaymentHistoryResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/loan/vip/repay/history"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.orderId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "orderId", r.orderId, "form", "")
+	}
+	if r.loanCoin != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "loanCoin", r.loanCoin, "form", "")
+	}
+	if r.startTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
+	}
+	if r.endTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
+	}
+	if r.current != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
+	}
+	if r.limit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetVIPLoanRepaymentHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -332,13 +482,12 @@ type ApiQueryApplicationStatusRequest struct {
 	recvWindow *int64
 }
 
-// Page number, default 1, minimum 1
+// Current page number, starting from 1.
 func (r ApiQueryApplicationStatusRequest) Current(current int64) ApiQueryApplicationStatusRequest {
 	r.current = &current
 	return r
 }
 
-// Default: 10; max: 100
 func (r ApiQueryApplicationStatusRequest) Limit(limit int64) ApiQueryApplicationStatusRequest {
 	r.limit = &limit
 	return r
@@ -354,14 +503,14 @@ func (r ApiQueryApplicationStatusRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-QueryApplicationStatus Query Application Status(USER_DATA)
+QueryApplicationStatus Query Application Status (USER_DATA)
 Get /sapi/v1/loan/vip/request/data
 
-https://developers.binance.com/docs/vip_loan/user-information/Query-Application-Status
+https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/api/rest-api/user-information#query-application-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param current -  Page number, default 1, minimum 1
-@param limit -  Default: 10; max: 100
+@param current -  Current page number, starting from 1.
+@param limit -
 @param recvWindow -
 @return ApiQueryApplicationStatusRequest
 */
@@ -392,7 +541,15 @@ func (a *UserInformationAPIService) QueryApplicationStatusExecute(r ApiQueryAppl
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryApplicationStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryApplicationStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

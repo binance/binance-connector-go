@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Portfolio Margin Pro WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &Risklevelchange{}
 
 // Risklevelchange struct for Risklevelchange
 type Risklevelchange struct {
-	E                    *int64  `json:"E,omitempty"`
-	Smallu               *string `json:"u,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smalleq              *string `json:"eq,omitempty"`
-	Smallae              *string `json:"ae,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// uniMMR level
+	Smallu *string `json:"u,omitempty"`
+	// Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
+	Smalls *string `json:"s,omitempty"`
+	// Account equity in USD value
+	Smalleq *string `json:"eq,omitempty"`
+	// Actual equity without collateral rate in USD value
+	Smallae *string `json:"ae,omitempty"`
+	// Total maintenance margin in USD value
 	Smallm               *string `json:"m,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

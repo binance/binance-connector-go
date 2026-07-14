@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketapi
@@ -21,7 +21,7 @@ type ApiCloseUserDataStreamRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiCloseUserDataStreamRequest) Id(id string) ApiCloseUserDataStreamRequest {
 	r.id = &id
 	return r
@@ -49,9 +49,9 @@ func (r ApiCloseUserDataStreamRequest) ExecuteAsync() (chan *common.ResponseOrRa
 CloseUserDataStream Close User Data Stream (USER_STREAM)
 /userDataStream.stop
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Close-User-Data-Stream-Wsp
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/user-data-streams#close-user-data-stream
 
-@param id Unique WebSocket request ID.
+@param id Id.
 @return ApiCloseUserDataStreamRequest
 */
 func (a *UserDataStreamsAPIService) CloseUserDataStream() ApiCloseUserDataStreamRequest {
@@ -89,7 +89,7 @@ type ApiKeepaliveUserDataStreamRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiKeepaliveUserDataStreamRequest) Id(id string) ApiKeepaliveUserDataStreamRequest {
 	r.id = &id
 	return r
@@ -117,9 +117,9 @@ func (r ApiKeepaliveUserDataStreamRequest) ExecuteAsync() (chan *common.Response
 KeepaliveUserDataStream Keepalive User Data Stream (USER_STREAM)
 /userDataStream.ping
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Keepalive-User-Data-Stream-Wsp
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/user-data-streams#keepalive-user-data-stream
 
-@param id Unique WebSocket request ID.
+@param id Id.
 @return ApiKeepaliveUserDataStreamRequest
 */
 func (a *UserDataStreamsAPIService) KeepaliveUserDataStream() ApiKeepaliveUserDataStreamRequest {
@@ -157,7 +157,7 @@ type ApiStartUserDataStreamRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiStartUserDataStreamRequest) Id(id string) ApiStartUserDataStreamRequest {
 	r.id = &id
 	return r
@@ -185,9 +185,9 @@ func (r ApiStartUserDataStreamRequest) ExecuteAsync() (chan *common.ResponseOrRa
 StartUserDataStream Start User Data Stream (USER_STREAM)
 /userDataStream.start
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/user-data-streams/Start-User-Data-Stream-Wsp
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/user-data-streams#start-user-data-stream
 
-@param id Unique WebSocket request ID.
+@param id Id.
 @return ApiStartUserDataStreamRequest
 */
 func (a *UserDataStreamsAPIService) StartUserDataStream() ApiStartUserDataStreamRequest {

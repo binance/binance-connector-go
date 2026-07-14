@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Indicators** | Pointer to [**FuturesTradingQuantitativeRulesIndicatorsResponseIndicators**](FuturesTradingQuantitativeRulesIndicatorsResponseIndicators.md) |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**UpdateTime** | Pointer to **int64** | Update Time. | [optional] 
 
 ## Methods
 

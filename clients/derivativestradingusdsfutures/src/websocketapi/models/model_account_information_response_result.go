@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,27 +17,44 @@ var _ common.MappedNullable = &AccountInformationResponseResult{}
 
 // AccountInformationResponseResult struct for AccountInformationResponseResult
 type AccountInformationResponseResult struct {
-	FeeTier                     *int64                                           `json:"feeTier,omitempty"`
-	CanTrade                    *bool                                            `json:"canTrade,omitempty"`
-	CanDeposit                  *bool                                            `json:"canDeposit,omitempty"`
-	CanWithdraw                 *bool                                            `json:"canWithdraw,omitempty"`
-	UpdateTime                  *int64                                           `json:"updateTime,omitempty"`
-	MultiAssetsMargin           *bool                                            `json:"multiAssetsMargin,omitempty"`
-	TradeGroupId                *int64                                           `json:"tradeGroupId,omitempty"`
-	TotalInitialMargin          *string                                          `json:"totalInitialMargin,omitempty"`
-	TotalMaintMargin            *string                                          `json:"totalMaintMargin,omitempty"`
-	TotalWalletBalance          *string                                          `json:"totalWalletBalance,omitempty"`
-	TotalUnrealizedProfit       *string                                          `json:"totalUnrealizedProfit,omitempty"`
-	TotalMarginBalance          *string                                          `json:"totalMarginBalance,omitempty"`
-	TotalPositionInitialMargin  *string                                          `json:"totalPositionInitialMargin,omitempty"`
-	TotalOpenOrderInitialMargin *string                                          `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalCrossWalletBalance     *string                                          `json:"totalCrossWalletBalance,omitempty"`
-	TotalCrossUnPnl             *string                                          `json:"totalCrossUnPnl,omitempty"`
-	AvailableBalance            *string                                          `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount           *string                                          `json:"maxWithdrawAmount,omitempty"`
-	Assets                      []AccountInformationResponseResultAssetsInner    `json:"assets,omitempty"`
-	Positions                   []AccountInformationResponseResultPositionsInner `json:"positions,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	// account commission tier
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// if can trade
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// if can transfer in asset
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// if can transfer out asset
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// reserved property, please ignore
+	UpdateTime        *int64 `json:"updateTime,omitempty"`
+	MultiAssetsMargin *bool  `json:"multiAssetsMargin,omitempty"`
+	TradeGroupId      *int64 `json:"tradeGroupId,omitempty"`
+	// total initial margin required with current mark price (useless with isolated positions), only for USDT asset
+	TotalInitialMargin *string `json:"totalInitialMargin,omitempty"`
+	// the sum of USD value of all cross positions maintenance margin
+	TotalMaintMargin *string `json:"totalMaintMargin,omitempty"`
+	// total wallet balance, only for USDT asset
+	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
+	// total unrealized profit, only for USDT asset
+	TotalUnrealizedProfit *string `json:"totalUnrealizedProfit,omitempty"`
+	// total margin balance, only for USDT asset
+	TotalMarginBalance *string `json:"totalMarginBalance,omitempty"`
+	// initial margin required for positions with current mark price, only for USDT asset
+	TotalPositionInitialMargin *string `json:"totalPositionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price, only for USDT asset
+	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
+	// crossed wallet balance, only for USDT asset
+	TotalCrossWalletBalance *string `json:"totalCrossWalletBalance,omitempty"`
+	// unrealized profit of crossed positions, only for USDT asset
+	TotalCrossUnPnl *string `json:"totalCrossUnPnl,omitempty"`
+	// available balance, only for USDT asset
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// maximum amount for transfer out, only for USDT asset
+	MaxWithdrawAmount *string                                       `json:"maxWithdrawAmount,omitempty"`
+	Assets            []AccountInformationResponseResultAssetsInner `json:"assets,omitempty"`
+	// positions of all symbols in the market are returned
+	Positions            []AccountInformationResponseResultPositionsInner `json:"positions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationResponseResult AccountInformationResponseResult

@@ -4,21 +4,21 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PositionAmt** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**Isolated** | Pointer to **bool** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**EntryPrice** | Pointer to **string** |  | [optional] 
-**BreakEvenPrice** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**NotionalValue** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**PositionAmt** | Pointer to **string** | position amount | [optional] 
+**InitialMargin** | Pointer to **string** | total intial margin required with the latest mark price | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit or loss | [optional] 
+**PositionInitialMargin** | Pointer to **string** | positions margin required with the latest mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | open orders intial margin required with the latest mark price | [optional] 
+**Leverage** | Pointer to **string** | Leverage value. | [optional] 
+**Isolated** | Pointer to **bool** | Whether isolated margin mode is enabled. | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
+**EntryPrice** | Pointer to **string** | Position entry price. | [optional] 
+**BreakEvenPrice** | Pointer to **string** | break-even price | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
+**NotionalValue** | Pointer to **string** | Notional value. | [optional] 
 
 ## Methods
 

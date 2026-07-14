@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**SorOrderTestResponseResult**](SorOrderTestResponseResult.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *SorOrderTestResponse) GetRateLimits() []RateLimits`
+`func (o *SorOrderTestResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *SorOrderTestResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *SorOrderTestResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *SorOrderTestResponse) SetRateLimits(v []RateLimits)`
+`func (o *SorOrderTestResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

@@ -1,5 +1,5 @@
 /*
-Binance Staking REST API TEST
+Staking REST API TEST
 
 Testing SolStakingAPIService
 
@@ -10,6 +10,7 @@ package binancestakingrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,7 +26,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService ClaimBoostRewards Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true}`
+		var mockedJSON string
+		mockedJSON = `{"success":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/claim", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +85,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetBnsolRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"annualPercentageRate":"0.00006408","exchangeRate":"1.001212343432","boostRewards":[{"boostAPR":"0.12000000","rewardsAsset":"SOL"},{"boostAPR":"0.00200000","rewardsAsset":"BNB"}],"time":1577233578000}],"total":"1"}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"annualPercentageRate":"0.00006408","exchangeRate":"1.001212343432","boostRewards":[{"boostAPR":"0.12000000","rewardsAsset":"SOL"}],"time":1577233578000}],"total":"1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/rateHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +144,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetBnsolRewardsHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"estRewardsInSOL":"1.23230920","rows":[{"time":1575018510000,"amountInSOL":"0.23223","holding":"2.3223","holdingInSOL":"2.4231","annualPercentageRate":"0.5"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"estRewardsInSOL":"1.23230920","rows":[{"time":1575018510000,"amountInSOL":"0.23223","holding":"2.3223","holdingInSOL":"2.4231","annualPercentageRate":"0.5"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/bnsolRewardsHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,10 +203,14 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetBoostRewardsHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1729520680,"token":"SOL","amount":"1.20291028","bnsolHolding":"2.0928798","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1729520680,"token":"SOL","amount":"1.20291028","bnsolHolding":"2.0928798","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/boostRewardsHistory", r.URL.Path)
-			require.Equal(t, "CLAIM", r.URL.Query().Get("type"))
+			require.Equal(t, string(models.GetBoostRewardsHistoryTypeParameterClaim), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -210,7 +227,7 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.SolStakingAPI.GetBoostRewardsHistory(context.Background()).Type("CLAIM").Execute()
+		resp, err := apiClient.RestApi.SolStakingAPI.GetBoostRewardsHistory(context.Background()).Type(models.GetBoostRewardsHistoryTypeParameterClaim).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -263,7 +280,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetSolRedemptionHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"arrivalTime":1575018510000,"asset":"BNSOL","amount":"21312.23223","distributeAsset":"SOL","distributeAmount":"21338.0699","exchangeRate":"1.00121234","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"arrivalTime":1575018510000,"asset":"BNSOL","amount":"21312.23223","distributeAsset":"SOL","distributeAmount":"21338.0699","exchangeRate":"1.00121234","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/redemptionHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -318,7 +339,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetSolStakingHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"time":1575018510000,"asset":"SOL","amount":"21312.23223","distributeAsset":"BNSOL","distributeAmount":"21286.42584","exchangeRate":"1.00121234","status":"SUCCESS"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"time":1575018510000,"asset":"SOL","amount":"21312.23223","distributeAsset":"BNSOL","distributeAmount":"21286.42584","exchangeRate":"1.00121234","status":"SUCCESS"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/stakingHistory", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -373,7 +398,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetSolStakingQuotaDetails Success", func(t *testing.T) {
 
-		mockedJSON := `{"leftStakingPersonalQuota":"1000","leftRedemptionPersonalQuota":"1000","minStakeAmount":"0.01000000","minRedeemAmount":"0.00000001","redeemPeriod":4,"stakeable":true,"redeemable":true,"soldOut":false,"commissionFee":"0.25000000","nextEpochTime":725993969475,"calculating":false}`
+		var mockedJSON string
+		mockedJSON = `{"leftStakingPersonalQuota":"1000","leftRedemptionPersonalQuota":"1000","minStakeAmount":"0.01000000","minRedeemAmount":"0.00000001","redeemPeriod":4,"stakeable":true,"redeemable":true,"soldOut":false,"commissionFee":"0.25000000","nextEpochTime":725993969475,"calculating":false}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/quota", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -428,7 +457,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService GetUnclaimedRewards Success", func(t *testing.T) {
 
-		mockedJSON := `[{"amount":"1.00000011","rewardsAsset":"SOL"},{"amount":"2.00202321","rewardsAsset":"BNB"}]`
+		var mockedJSON string
+		mockedJSON = `[{"amount":"1.00000011","rewardsAsset":"SOL"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/history/unclaimedRewards", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -483,10 +516,14 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService RedeemSol Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"solAmount":"0.23092091","exchangeRate":"1.00121234","arrivalTime":1575018510000,"redeemId":1234567}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"solAmount":"0.23092091","redeemId":1234567,"exchangeRate":"1.00121234","arrivalTime":1575018510000}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/redeem", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -556,7 +593,11 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService SolStakingAccount Success", func(t *testing.T) {
 
-		mockedJSON := `{"bnsolAmount":"1.10928781","holdingInSOL":"1.22330928","thirtyDaysProfitInSOL":"0.22330928"}`
+		var mockedJSON string
+		mockedJSON = `{"bnsolAmount":"1.10928781","holdingInSOL":"1.22330928","thirtyDaysProfitInSOL":"0.22330928"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/account", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -611,10 +652,14 @@ func Test_binancestakingrestapi_SolStakingAPIService(t *testing.T) {
 
 	t.Run("Test SolStakingAPIService SubscribeSolStaking Success", func(t *testing.T) {
 
-		mockedJSON := `{"success":true,"bnsolAmount":"0.23092091","exchangeRate":"1.001212342342","purchaseId":1234567}`
+		var mockedJSON string
+		mockedJSON = `{"success":true,"bnsolAmount":"0.23092091","purchaseId":1234567,"exchangeRate":"1.001212342342"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sol-staking/sol/stake", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))

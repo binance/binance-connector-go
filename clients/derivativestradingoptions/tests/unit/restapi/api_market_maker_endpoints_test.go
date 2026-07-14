@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading Options REST API TEST
+Options REST API TEST
 
 Testing MarketMakerEndpointsAPIService
 
@@ -10,6 +10,7 @@ package binancederivativestradingoptionsrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,10 +26,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService AutoCancelAllOpenOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlyings":["BTCUSDT","ETHUSDT"]}`
+		var mockedJSON string
+		mockedJSON = `{"underlyings":["BTCUSDT"]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/countdownCancelAllHeartBeat", r.URL.Path)
-			require.Equal(t, "underlyings_example", r.URL.Query().Get("underlyings"))
+			require.Equal(t, "BTCUSDT,ETHUSDT", r.URL.Query().Get("underlyings"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -45,7 +50,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.AutoCancelAllOpenOrders(context.Background()).Underlyings("underlyings_example").Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.AutoCancelAllOpenOrders(context.Background()).Underlyings("BTCUSDT,ETHUSDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -98,7 +103,11 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService GetAutoCancelAllOpenOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlying":"ETHUSDT","countdownTime":100000}`
+		var mockedJSON string
+		mockedJSON = `{"underlying":"ETHUSDT","countdownTime":100000}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/countdownCancelAll", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -153,9 +162,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService GetMarketMakerProtectionConfig Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		var mockedJSON string
+		mockedJSON = `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/mmp", r.URL.Path)
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("underlying"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -172,7 +186,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.GetMarketMakerProtectionConfig(context.Background()).Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.GetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -183,6 +197,23 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 		require.Equal(t, reflect.TypeOf(models.GetMarketMakerProtectionConfigResponse{}), reflect.TypeOf(resp.Data))
 		require.Equal(t, 200, resp.Status)
 		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketMakerEndpointsAPIService GetMarketMakerProtectionConfig Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingOptionsClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.GetMarketMakerProtectionConfig(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
 	})
 
 	t.Run("Test MarketMakerEndpointsAPIService GetMarketMakerProtectionConfig Server Error", func(t *testing.T) {
@@ -208,9 +239,14 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService ResetMarketMakerProtectionConfig Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		var mockedJSON string
+		mockedJSON = `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/mmpReset", r.URL.Path)
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("underlying"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -227,7 +263,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.ResetMarketMakerProtectionConfig(context.Background()).Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.ResetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -238,6 +274,23 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 		require.Equal(t, reflect.TypeOf(models.ResetMarketMakerProtectionConfigResponse{}), reflect.TypeOf(resp.Data))
 		require.Equal(t, 200, resp.Status)
 		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketMakerEndpointsAPIService ResetMarketMakerProtectionConfig Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingOptionsClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.ResetMarketMakerProtectionConfig(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
 	})
 
 	t.Run("Test MarketMakerEndpointsAPIService ResetMarketMakerProtectionConfig Server Error", func(t *testing.T) {
@@ -263,11 +316,15 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService SetAutoCancelAllOpenOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlying":"ETHUSDT","countdownTime":30000}`
+		var mockedJSON string
+		mockedJSON = `{"underlying":"ETHUSDT","countdownTime":100000}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/countdownCancelAll", r.URL.Path)
-			require.Equal(t, "underlying_example", r.URL.Query().Get("underlying"))
-			require.Equal(t, "789", r.URL.Query().Get("countdownTime"))
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("underlying"))
+			require.Equal(t, "5000", r.URL.Query().Get("countdownTime"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -284,7 +341,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetAutoCancelAllOpenOrders(context.Background()).Underlying("underlying_example").CountdownTime(int64(789)).Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetAutoCancelAllOpenOrders(context.Background()).Underlying("BTCUSDT").CountdownTime(int64(5000)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -337,9 +394,18 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 
 	t.Run("Test MarketMakerEndpointsAPIService SetMarketMakerProtectionConfig Success", func(t *testing.T) {
 
-		mockedJSON := `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		var mockedJSON string
+		mockedJSON = `{"underlyingId":2,"underlying":"BTCUSDT","windowTimeInMilliseconds":3000,"frozenTimeInMilliseconds":300000,"qtyLimit":"2","deltaLimit":"2.3","lastTriggerTime":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/eapi/v1/mmpSet", r.URL.Path)
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("underlying"))
+			require.Equal(t, "1000", r.URL.Query().Get("windowTimeInMilliseconds"))
+			require.Equal(t, "1000", r.URL.Query().Get("frozenTimeInMilliseconds"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("qtyLimit"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("deltaLimit"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -356,7 +422,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").WindowTimeInMilliseconds(int64(1000)).FrozenTimeInMilliseconds(int64(1000)).QtyLimit(float32(1.0)).DeltaLimit(float32(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -367,6 +433,23 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 		require.Equal(t, reflect.TypeOf(models.SetMarketMakerProtectionConfigResponse{}), reflect.TypeOf(resp.Data))
 		require.Equal(t, 200, resp.Status)
 		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test MarketMakerEndpointsAPIService SetMarketMakerProtectionConfig Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingOptionsClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
 	})
 
 	t.Run("Test MarketMakerEndpointsAPIService SetMarketMakerProtectionConfig Server Error", func(t *testing.T) {

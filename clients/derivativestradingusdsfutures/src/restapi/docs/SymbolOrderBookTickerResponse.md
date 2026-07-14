@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**BidPrice** | Pointer to **string** |  | [optional] 
-**BidQty** | Pointer to **string** |  | [optional] 
-**AskPrice** | Pointer to **string** |  | [optional] 
-**AskQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**BidPrice** | Pointer to **string** | Bid Price. | [optional] 
+**BidQty** | Pointer to **string** | Bid Qty. | [optional] 
+**AskPrice** | Pointer to **string** | Ask Price. | [optional] 
+**AskQty** | Pointer to **string** | Ask Qty. | [optional] 
+**Time** | Pointer to **int64** | Transaction time | [optional] 
 
 ## Methods
 

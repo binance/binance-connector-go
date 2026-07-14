@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package binanceminingrestapi
@@ -14,19 +14,19 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Mining REST API v1.6.0
+// RestAPIClient manages communication with the Mining REST API API v1.6.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
 	// API Services
-	MiningAPI *MiningAPIService
+	DefaultAPI *DefaultAPIService
 }
 
 type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Mining REST API REST API client
+// NewRestAPIClient creates a new Binance Mining REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -41,7 +41,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	c := &RestAPIClient{cfg: cfg}
 
 	// API Services
-	c.MiningAPI = &MiningAPIService{client: c}
+	c.DefaultAPI = &DefaultAPIService{client: c}
 
 	return c
 }

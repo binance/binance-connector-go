@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	underlyings := "underlyings_example" // string | Option Underlying Symbols, e.g BTCUSDT,ETHUSDT
+	underlyings := "BTCUSDT,ETHUSDT" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -64,7 +64,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlyings** | **string** | Option Underlying Symbols, e.g BTCUSDT,ETHUSDT | 
+ **underlyings** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	underlying := "BTCUSDT" // string | Underlying asset. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -134,8 +134,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | underlying, e.g BTCUSDT | 
- **recvWindow** | **int64** |  | 
+ **underlying** | **string** | Underlying asset. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -175,8 +175,8 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	underlying := "BTCUSDT" // string | Underlying asset.
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -204,8 +204,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | underlying, e.g BTCUSDT | 
- **recvWindow** | **int64** |  | 
+ **underlying** | **string** | Underlying asset. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
+	underlying := "BTCUSDT" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -274,7 +274,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | underlying, e.g BTCUSDT | 
+ **underlying** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -315,8 +315,8 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | Option underlying, e.g BTCUSDT
-	countdownTime := int64(789) // int64 | Countdown time in milliseconds (ex. 1,000 for 1 second). 0 to disable the timer. Negative values (ex. -10000) are not accepted. Minimum acceptable value is 5,000
+	underlying := "BTCUSDT" // string | 
+	countdownTime := int64(5000) // int64 | Countdown time in milliseconds (ex. 1,000 for 1 second). 0 to disable the timer. Negative values (ex. -10000) are not accepted. Minimum acceptable value is 5,000
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -345,7 +345,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | Option underlying, e.g BTCUSDT | 
+ **underlying** | **string** |  | 
  **countdownTime** | **int64** | Countdown time in milliseconds (ex. 1,000 for 1 second). 0 to disable the timer. Negative values (ex. -10000) are not accepted. Minimum acceptable value is 5,000 | 
  **recvWindow** | **int64** |  | 
 
@@ -387,11 +387,11 @@ import (
 )
 
 func main() {
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
-	windowTimeInMilliseconds := int64(789) // int64 | MMP Interval in milliseconds; Range (0,5000] (optional)
-	frozenTimeInMilliseconds := int64(789) // int64 | MMP frozen time in milliseconds, if set to 0 manual reset is required (optional)
-	qtyLimit := float32(1.0) // float32 | quantity limit (optional)
-	deltaLimit := float32(1.0) // float32 | net delta limit (optional)
+	underlying := "BTCUSDT" // string | 
+	windowTimeInMilliseconds := int64(1000) // int64 | MMP Interval in milliseconds
+	frozenTimeInMilliseconds := int64(1000) // int64 | MMP frozen time in milliseconds, if set to 0 manual reset is required
+	qtyLimit := float32(1.0) // float32 | quantity limit
+	deltaLimit := float32(1.0) // float32 | net delta limit
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -420,8 +420,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **underlying** | **string** | underlying, e.g BTCUSDT | 
- **windowTimeInMilliseconds** | **int64** | MMP Interval in milliseconds; Range (0,5000] | 
+ **underlying** | **string** |  | 
+ **windowTimeInMilliseconds** | **int64** | MMP Interval in milliseconds | 
  **frozenTimeInMilliseconds** | **int64** | MMP frozen time in milliseconds, if set to 0 manual reset is required | 
  **qtyLimit** | **float32** | quantity limit | 
  **deltaLimit** | **float32** | net delta limit | 

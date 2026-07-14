@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Assets** | Pointer to [**[]QueryIsolatedMarginAccountInfoResponseAssetsInner**](QueryIsolatedMarginAccountInfoResponseAssetsInner.md) |  | [optional] 
-**TotalAssetOfBtc** | Pointer to **string** |  | [optional] 
-**TotalLiabilityOfBtc** | Pointer to **string** |  | [optional] 
-**TotalNetAssetOfBtc** | Pointer to **string** |  | [optional] 
+**Assets** | Pointer to [**[]QueryIsolatedMarginAccountInfoResponseAssetsInner**](QueryIsolatedMarginAccountInfoResponseAssetsInner.md) | assets list. | [optional] 
+**TotalAssetOfBtc** | Pointer to **string** | total Asset Of Btc. | [optional] 
+**TotalLiabilityOfBtc** | Pointer to **string** | total Liability Of Btc. | [optional] 
+**TotalNetAssetOfBtc** | Pointer to **string** | total Net Asset Of Btc. | [optional] 
 
 ## Methods
 

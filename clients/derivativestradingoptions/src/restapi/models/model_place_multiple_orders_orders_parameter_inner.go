@@ -1,13 +1,14 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
@@ -17,17 +18,21 @@ var _ common.MappedNullable = &PlaceMultipleOrdersOrdersParameterInner{}
 
 // PlaceMultipleOrdersOrdersParameterInner struct for PlaceMultipleOrdersOrdersParameterInner
 type PlaceMultipleOrdersOrdersParameterInner struct {
-	Symbol                  *string                                                         `json:"symbol,omitempty"`
-	Side                    *PlaceMultipleOrdersOrdersParameterInnerSide                    `json:"side,omitempty"`
-	Type                    *PlaceMultipleOrdersOrdersParameterInnerType                    `json:"type,omitempty"`
-	Quantity                *string                                                         `json:"quantity,omitempty"`
-	Price                   *string                                                         `json:"price,omitempty"`
-	TimeInForce             *PlaceMultipleOrdersOrdersParameterInnerTimeInForce             `json:"timeInForce,omitempty"`
-	ReduceOnly              *string                                                         `json:"reduceOnly,omitempty"`
-	PostOnly                *string                                                         `json:"postOnly,omitempty"`
-	NewOrderRespType        *PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType        `json:"newOrderRespType,omitempty"`
-	ClientOrderId           *string                                                         `json:"clientOrderId,omitempty"`
-	IsMmp                   *string                                                         `json:"isMmp,omitempty"`
+	Symbol string                                      `json:"symbol"`
+	Side   PlaceMultipleOrdersOrdersParameterInnerSide `json:"side"`
+	Type   PlaceMultipleOrdersOrdersParameterInnerType `json:"type"`
+	// Order Quantity
+	Quantity float32 `json:"quantity"`
+	// Order Price
+	Price            *float32                                                 `json:"price,omitempty"`
+	TimeInForce      *PlaceMultipleOrdersOrdersParameterInnerTimeInForce      `json:"timeInForce,omitempty"`
+	ReduceOnly       *bool                                                    `json:"reduceOnly,omitempty"`
+	PostOnly         *bool                                                    `json:"postOnly,omitempty"`
+	NewOrderRespType *PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType `json:"newOrderRespType,omitempty"`
+	// User-defined order ID cannot be repeated in pending orders
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// is market maker protection order
+	IsMmp                   *bool                                                           `json:"isMmp,omitempty"`
 	SelfTradePreventionMode *PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -38,8 +43,22 @@ type _PlaceMultipleOrdersOrdersParameterInner PlaceMultipleOrdersOrdersParameter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceMultipleOrdersOrdersParameterInner() *PlaceMultipleOrdersOrdersParameterInner {
+func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float32) *PlaceMultipleOrdersOrdersParameterInner {
 	this := PlaceMultipleOrdersOrdersParameterInner{}
+	this.Symbol = symbol
+	this.Side = side
+	this.Type = type_
+	this.Quantity = quantity
+	var timeInForce = PlaceMultipleOrdersOrdersParameterInnerTimeInForceGtc
+	this.TimeInForce = &timeInForce
+	var reduceOnly = false
+	this.ReduceOnly = &reduceOnly
+	var postOnly = false
+	this.PostOnly = &postOnly
+	var newOrderRespType = PlaceMultipleOrdersOrdersParameterInnerNewOrderRespTypeAck
+	this.NewOrderRespType = &newOrderRespType
+	var selfTradePreventionMode = PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker
+	this.SelfTradePreventionMode = &selfTradePreventionMode
 	return &this
 }
 
@@ -48,141 +67,119 @@ func NewPlaceMultipleOrdersOrdersParameterInner() *PlaceMultipleOrdersOrdersPara
 // but it doesn't guarantee that properties required by API are set
 func NewPlaceMultipleOrdersOrdersParameterInnerWithDefaults() *PlaceMultipleOrdersOrdersParameterInner {
 	this := PlaceMultipleOrdersOrdersParameterInner{}
+	var timeInForce = PlaceMultipleOrdersOrdersParameterInnerTimeInForceGtc
+	this.TimeInForce = &timeInForce
+	var reduceOnly = false
+	this.ReduceOnly = &reduceOnly
+	var postOnly = false
+	this.PostOnly = &postOnly
+	var newOrderRespType = PlaceMultipleOrdersOrdersParameterInnerNewOrderRespTypeAck
+	this.NewOrderRespType = &newOrderRespType
+	var selfTradePreventionMode = PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionModeExpireTaker
+	this.SelfTradePreventionMode = &selfTradePreventionMode
 	return &this
 }
 
-// GetSymbol returns the Symbol field value if set, zero value otherwise.
+// GetSymbol returns the Symbol field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetSymbol() string {
-	if o == nil || common.IsNil(o.Symbol) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Symbol
+
+	return o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// GetSymbolOk returns a tuple with the Symbol field value
 // and a boolean to check if the value has been set.
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetSymbolOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Symbol) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Symbol, true
+	return &o.Symbol, true
 }
 
-// HasSymbol returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) HasSymbol() bool {
-	if o != nil && !common.IsNil(o.Symbol) {
-		return true
-	}
-
-	return false
-}
-
-// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+// SetSymbol sets field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) SetSymbol(v string) {
-	o.Symbol = &v
+	o.Symbol = v
 }
 
-// GetSide returns the Side field value if set, zero value otherwise.
+// GetSide returns the Side field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetSide() PlaceMultipleOrdersOrdersParameterInnerSide {
-	if o == nil || common.IsNil(o.Side) {
+	if o == nil {
 		var ret PlaceMultipleOrdersOrdersParameterInnerSide
 		return ret
 	}
-	return *o.Side
+
+	return o.Side
 }
 
-// GetSideOk returns a tuple with the Side field value if set, nil otherwise
+// GetSideOk returns a tuple with the Side field value
 // and a boolean to check if the value has been set.
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetSideOk() (*PlaceMultipleOrdersOrdersParameterInnerSide, bool) {
-	if o == nil || common.IsNil(o.Side) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Side, true
+	return &o.Side, true
 }
 
-// HasSide returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) HasSide() bool {
-	if o != nil && !common.IsNil(o.Side) {
-		return true
-	}
-
-	return false
-}
-
-// SetSide gets a reference to the given PlaceMultipleOrdersOrdersParameterInnerSide and assigns it to the Side field.
+// SetSide sets field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) SetSide(v PlaceMultipleOrdersOrdersParameterInnerSide) {
-	o.Side = &v
+	o.Side = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetType() PlaceMultipleOrdersOrdersParameterInnerType {
-	if o == nil || common.IsNil(o.Type) {
+	if o == nil {
 		var ret PlaceMultipleOrdersOrdersParameterInnerType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *PlaceMultipleOrdersOrdersParameterInner) GetTypeOk() (*PlaceMultipleOrdersOrdersParameterInnerType, bool) {
-	if o == nil || common.IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) HasType() bool {
-	if o != nil && !common.IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given PlaceMultipleOrdersOrdersParameterInnerType and assigns it to the Type field.
+// SetType sets field value
 func (o *PlaceMultipleOrdersOrdersParameterInner) SetType(v PlaceMultipleOrdersOrdersParameterInnerType) {
-	o.Type = &v
+	o.Type = v
 }
 
-// GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() string {
-	if o == nil || common.IsNil(o.Quantity) {
-		var ret string
+// GetQuantity returns the Quantity field value
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float32 {
+	if o == nil {
+		var ret float32
 		return ret
 	}
-	return *o.Quantity
+
+	return o.Quantity
 }
 
-// GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
+// GetQuantityOk returns a tuple with the Quantity field value
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Quantity) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Quantity, true
+	return &o.Quantity, true
 }
 
-// HasQuantity returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) HasQuantity() bool {
-	if o != nil && !common.IsNil(o.Quantity) {
-		return true
-	}
-
-	return false
-}
-
-// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v string) {
-	o.Quantity = &v
+// SetQuantity sets field value
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float32) {
+	o.Quantity = v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() string {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float32 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Price
@@ -190,7 +187,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*string, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -206,8 +203,8 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v string) {
+// SetPrice gets a reference to the given float32 and assigns it to the Price field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float32) {
 	o.Price = &v
 }
 
@@ -244,9 +241,9 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) SetTimeInForce(v PlaceMultiple
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnly() string {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnly() bool {
 	if o == nil || common.IsNil(o.ReduceOnly) {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.ReduceOnly
@@ -254,7 +251,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnly() string {
 
 // GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnlyOk() (*string, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetReduceOnlyOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.ReduceOnly) {
 		return nil, false
 	}
@@ -270,15 +267,15 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) HasReduceOnly() bool {
 	return false
 }
 
-// SetReduceOnly gets a reference to the given string and assigns it to the ReduceOnly field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetReduceOnly(v string) {
+// SetReduceOnly gets a reference to the given bool and assigns it to the ReduceOnly field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetReduceOnly(v bool) {
 	o.ReduceOnly = &v
 }
 
 // GetPostOnly returns the PostOnly field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnly() string {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnly() bool {
 	if o == nil || common.IsNil(o.PostOnly) {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.PostOnly
@@ -286,7 +283,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnly() string {
 
 // GetPostOnlyOk returns a tuple with the PostOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnlyOk() (*string, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPostOnlyOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.PostOnly) {
 		return nil, false
 	}
@@ -302,8 +299,8 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) HasPostOnly() bool {
 	return false
 }
 
-// SetPostOnly gets a reference to the given string and assigns it to the PostOnly field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetPostOnly(v string) {
+// SetPostOnly gets a reference to the given bool and assigns it to the PostOnly field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetPostOnly(v bool) {
 	o.PostOnly = &v
 }
 
@@ -372,9 +369,9 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) SetClientOrderId(v string) {
 }
 
 // GetIsMmp returns the IsMmp field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmp() string {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmp() bool {
 	if o == nil || common.IsNil(o.IsMmp) {
-		var ret string
+		var ret bool
 		return ret
 	}
 	return *o.IsMmp
@@ -382,7 +379,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmp() string {
 
 // GetIsMmpOk returns a tuple with the IsMmp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmpOk() (*string, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetIsMmpOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.IsMmp) {
 		return nil, false
 	}
@@ -398,8 +395,8 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) HasIsMmp() bool {
 	return false
 }
 
-// SetIsMmp gets a reference to the given string and assigns it to the IsMmp field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetIsMmp(v string) {
+// SetIsMmp gets a reference to the given bool and assigns it to the IsMmp field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetIsMmp(v bool) {
 	o.IsMmp = &v
 }
 
@@ -445,18 +442,10 @@ func (o PlaceMultipleOrdersOrdersParameterInner) MarshalJSON() ([]byte, error) {
 
 func (o PlaceMultipleOrdersOrdersParameterInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Symbol) {
-		toSerialize["symbol"] = o.Symbol
-	}
-	if !common.IsNil(o.Side) {
-		toSerialize["side"] = o.Side
-	}
-	if !common.IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !common.IsNil(o.Quantity) {
-		toSerialize["quantity"] = o.Quantity
-	}
+	toSerialize["symbol"] = o.Symbol
+	toSerialize["side"] = o.Side
+	toSerialize["type"] = o.Type
+	toSerialize["quantity"] = o.Quantity
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
@@ -490,6 +479,30 @@ func (o PlaceMultipleOrdersOrdersParameterInner) ToMap() (map[string]interface{}
 }
 
 func (o *PlaceMultipleOrdersOrdersParameterInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"symbol",
+		"side",
+		"type",
+		"quantity",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varPlaceMultipleOrdersOrdersParameterInner := _PlaceMultipleOrdersOrdersParameterInner{}
 
 	err = json.Unmarshal(data, &varPlaceMultipleOrdersOrdersParameterInner)

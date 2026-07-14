@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**NextHourlyInterestRate** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**NextHourlyInterestRate** | Pointer to **string** | next Hourly Interest Rate. | [optional] 
 
 ## Methods
 

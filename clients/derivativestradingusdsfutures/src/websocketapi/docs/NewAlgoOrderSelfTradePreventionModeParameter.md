@@ -2,6 +2,7 @@
 
 ## Enum
 
+* `NewAlgoOrderSelfTradePreventionModeParameterNone` (value: `"NONE"`)
 * `NewAlgoOrderSelfTradePreventionModeParameterExpireTaker` (value: `"EXPIRE_TAKER"`)
 * `NewAlgoOrderSelfTradePreventionModeParameterExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `NewAlgoOrderSelfTradePreventionModeParameterExpireMaker` (value: `"EXPIRE_MAKER"`)

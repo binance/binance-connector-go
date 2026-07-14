@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,24 +17,48 @@ var _ common.MappedNullable = &ExchangeInformationResponseOptionSymbolsInner{}
 
 // ExchangeInformationResponseOptionSymbolsInner struct for ExchangeInformationResponseOptionSymbolsInner
 type ExchangeInformationResponseOptionSymbolsInner struct {
-	ExpiryDate           *int64                                                      `json:"expiryDate,omitempty"`
-	Filters              []ExchangeInformationResponseOptionSymbolsInnerFiltersInner `json:"filters,omitempty"`
-	Symbol               *string                                                     `json:"symbol,omitempty"`
-	Side                 *string                                                     `json:"side,omitempty"`
-	StrikePrice          *string                                                     `json:"strikePrice,omitempty"`
-	Underlying           *string                                                     `json:"underlying,omitempty"`
-	Unit                 *int64                                                      `json:"unit,omitempty"`
-	LiquidationFeeRate   *string                                                     `json:"liquidationFeeRate,omitempty"`
-	MinQty               *string                                                     `json:"minQty,omitempty"`
-	MaxQty               *string                                                     `json:"maxQty,omitempty"`
-	InitialMargin        *string                                                     `json:"initialMargin,omitempty"`
-	MaintenanceMargin    *string                                                     `json:"maintenanceMargin,omitempty"`
-	MinInitialMargin     *string                                                     `json:"minInitialMargin,omitempty"`
-	MinMaintenanceMargin *string                                                     `json:"minMaintenanceMargin,omitempty"`
-	PriceScale           *int64                                                      `json:"priceScale,omitempty"`
-	QuantityScale        *int64                                                      `json:"quantityScale,omitempty"`
-	QuoteAsset           *string                                                     `json:"quoteAsset,omitempty"`
-	Status               *string                                                     `json:"status,omitempty"`
+	// expiry time
+	ExpiryDate *int64 `json:"expiryDate,omitempty"`
+	// filters
+	Filters []ExchangeInformationResponseOptionSymbolsInnerFiltersInner `json:"filters,omitempty"`
+	// Trading pair name
+	Symbol *string `json:"symbol,omitempty"`
+	// Direction: CALL long, PUT short
+	Side *string `json:"side,omitempty"`
+	// Strike price
+	StrikePrice *string `json:"strikePrice,omitempty"`
+	// Name of the underlying asset of the option contract
+	Underlying *string `json:"underlying,omitempty"`
+	// Contract unit, the quantity of the underlying asset represented by a single contract.
+	Unit *int64 `json:"unit,omitempty"`
+	// liquidation fee rate
+	LiquidationFeeRate *string `json:"liquidationFeeRate,omitempty"`
+	// Minimum order quantity
+	MinQty *string `json:"minQty,omitempty"`
+	// Maximum order quantity
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Initial Magin Ratio
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// Maintenance Margin Ratio
+	MaintenanceMargin *string `json:"maintenanceMargin,omitempty"`
+	// Min Initial Margin Ratio
+	MinInitialMargin *string `json:"minInitialMargin,omitempty"`
+	// Min Maintenance Margin Ratio
+	MinMaintenanceMargin *string `json:"minMaintenanceMargin,omitempty"`
+	// price precision
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity precision
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// Quotation asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// Contract type
+	ContractType *string `json:"contractType,omitempty"`
+	// Underlying type
+	UnderlyingType *string `json:"underlyingType,omitempty"`
+	// Whether naked selling is allowed for this symbol
+	NakedSell *bool `json:"nakedSell,omitempty"`
+	// Trading Status
+	Status               *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -601,6 +625,102 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) SetQuoteAsset(v string) 
 	o.QuoteAsset = &v
 }
 
+// GetContractType returns the ContractType field value if set, zero value otherwise.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetContractType() string {
+	if o == nil || common.IsNil(o.ContractType) {
+		var ret string
+		return ret
+	}
+	return *o.ContractType
+}
+
+// GetContractTypeOk returns a tuple with the ContractType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetContractTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ContractType) {
+		return nil, false
+	}
+	return o.ContractType, true
+}
+
+// HasContractType returns a boolean if a field has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) HasContractType() bool {
+	if o != nil && !common.IsNil(o.ContractType) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractType gets a reference to the given string and assigns it to the ContractType field.
+func (o *ExchangeInformationResponseOptionSymbolsInner) SetContractType(v string) {
+	o.ContractType = &v
+}
+
+// GetUnderlyingType returns the UnderlyingType field value if set, zero value otherwise.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetUnderlyingType() string {
+	if o == nil || common.IsNil(o.UnderlyingType) {
+		var ret string
+		return ret
+	}
+	return *o.UnderlyingType
+}
+
+// GetUnderlyingTypeOk returns a tuple with the UnderlyingType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetUnderlyingTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.UnderlyingType) {
+		return nil, false
+	}
+	return o.UnderlyingType, true
+}
+
+// HasUnderlyingType returns a boolean if a field has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) HasUnderlyingType() bool {
+	if o != nil && !common.IsNil(o.UnderlyingType) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnderlyingType gets a reference to the given string and assigns it to the UnderlyingType field.
+func (o *ExchangeInformationResponseOptionSymbolsInner) SetUnderlyingType(v string) {
+	o.UnderlyingType = &v
+}
+
+// GetNakedSell returns the NakedSell field value if set, zero value otherwise.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetNakedSell() bool {
+	if o == nil || common.IsNil(o.NakedSell) {
+		var ret bool
+		return ret
+	}
+	return *o.NakedSell
+}
+
+// GetNakedSellOk returns a tuple with the NakedSell field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) GetNakedSellOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.NakedSell) {
+		return nil, false
+	}
+	return o.NakedSell, true
+}
+
+// HasNakedSell returns a boolean if a field has been set.
+func (o *ExchangeInformationResponseOptionSymbolsInner) HasNakedSell() bool {
+	if o != nil && !common.IsNil(o.NakedSell) {
+		return true
+	}
+
+	return false
+}
+
+// SetNakedSell gets a reference to the given bool and assigns it to the NakedSell field.
+func (o *ExchangeInformationResponseOptionSymbolsInner) SetNakedSell(v bool) {
+	o.NakedSell = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ExchangeInformationResponseOptionSymbolsInner) GetStatus() string {
 	if o == nil || common.IsNil(o.Status) {
@@ -694,6 +814,15 @@ func (o ExchangeInformationResponseOptionSymbolsInner) ToMap() (map[string]inter
 	if !common.IsNil(o.QuoteAsset) {
 		toSerialize["quoteAsset"] = o.QuoteAsset
 	}
+	if !common.IsNil(o.ContractType) {
+		toSerialize["contractType"] = o.ContractType
+	}
+	if !common.IsNil(o.UnderlyingType) {
+		toSerialize["underlyingType"] = o.UnderlyingType
+	}
+	if !common.IsNil(o.NakedSell) {
+		toSerialize["nakedSell"] = o.NakedSell
+	}
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
@@ -736,6 +865,9 @@ func (o *ExchangeInformationResponseOptionSymbolsInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "quoteAsset")
+		delete(additionalProperties, "contractType")
+		delete(additionalProperties, "underlyingType")
+		delete(additionalProperties, "nakedSell")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/subaccount"
+	"github.com/binance/binance-connector-go/clients/subaccount/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func UniversalTransfer() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.UniversalTransfer(context.Background()).FromAccountType("fromAccountType_example").ToAccountType("toAccountType_example").Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.UniversalTransfer(context.Background()).FromAccountType(models.UniversalTransferFromAccountTypeParameterSpot).ToAccountType(models.UniversalTransferFromAccountTypeParameterSpot).Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

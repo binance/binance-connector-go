@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**A** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
+**A** | Pointer to **int64** | Aggregate trade ID. | [optional] 
+**P** | Pointer to **string** | Trade price. | [optional] 
+**Q** | Pointer to **string** | Trade quantity. | [optional] 
+**F** | Pointer to **int64** | First trade ID in the aggregation. | [optional] 
+**L** | Pointer to **int64** | Last trade ID in the aggregation. | [optional] 
+**T** | Pointer to **int64** | Trade timestamp in milliseconds. | [optional] 
+**M** | Pointer to **bool** | Whether buyer is the market maker (deprecated). | [optional] 
 
 ## Methods
 

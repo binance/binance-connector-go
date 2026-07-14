@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Rows** | Pointer to [**[]QueryBorrowRepayRecordsInMarginAccountResponseRowsInner**](QueryBorrowRepayRecordsInMarginAccountResponseRowsInner.md) |  | [optional] 
-**Total** | Pointer to **int64** |  | [optional] 
+**Rows** | Pointer to [**[]QueryBorrowRepayRecordsInMarginAccountResponseRowsInner**](QueryBorrowRepayRecordsInMarginAccountResponseRowsInner.md) | rows list. | [optional] 
+**Total** | Pointer to **int64** | total. | [optional] 
 
 ## Methods
 

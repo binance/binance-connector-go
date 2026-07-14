@@ -4,33 +4,34 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**CumQty** | Pointer to **string** |  | [optional] 
-**CumBase** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**OrigType** | Pointer to **string** |  | [optional] 
-**ActivatePrice** | Pointer to **string** |  | [optional] 
-**PriceRate** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**WorkingType** | Pointer to **string** |  | [optional] 
-**PriceProtect** | Pointer to **bool** |  | [optional] 
-**PriceMatch** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**Code** | Pointer to **int64** |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
+**ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
+**CumQty** | Pointer to **string** | Cumulative filled quantity. | [optional] 
+**CumBase** | Pointer to **string** | Cumulative base asset amount. Will be removed after CM migration. | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
+**OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
+**OrigQty** | Pointer to **string** | Original order quantity | [optional] 
+**Price** | Pointer to **string** | Latest token price. | [optional] 
+**ReduceOnly** | Pointer to **bool** | Whether the order is reduce-only. | [optional] 
+**Side** | Pointer to **string** | Trading side | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
+**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
+**ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**TimeInForce** | Pointer to **string** | Time in force | [optional] 
+**Type** | Pointer to **string** | Order type. | [optional] 
+**OrigType** | Pointer to **string** | Original order type. | [optional] 
+**ActivatePrice** | Pointer to **string** | activation price, only return with TRAILING_STOP_MARKET order | [optional] 
+**PriceRate** | Pointer to **string** | callback rate, only return with TRAILING_STOP_MARKET order | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
+**WorkingType** | Pointer to **string** | Stop trigger price type. | [optional] 
+**PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
+**PriceMatch** | Pointer to **string** | price match mode | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading preventation mode | [optional] 
+**Code** | Pointer to **int64** | API response code. \&quot;000000\&quot; indicates success. | [optional] 
+**Msg** | Pointer to **string** | Message details. | [optional] 
 
 ## Methods
 
@@ -375,6 +376,31 @@ SetStopPrice sets StopPrice field to given value.
 `func (o *PlaceMultipleOrdersResponseInner) HasStopPrice() bool`
 
 HasStopPrice returns a boolean if a field has been set.
+
+### GetClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) GetClosePosition() bool`
+
+GetClosePosition returns the ClosePosition field if non-nil, zero value otherwise.
+
+### GetClosePositionOk
+
+`func (o *PlaceMultipleOrdersResponseInner) GetClosePositionOk() (*bool, bool)`
+
+GetClosePositionOk returns a tuple with the ClosePosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) SetClosePosition(v bool)`
+
+SetClosePosition sets ClosePosition field to given value.
+
+### HasClosePosition
+
+`func (o *PlaceMultipleOrdersResponseInner) HasClosePosition() bool`
+
+HasClosePosition returns a boolean if a field has been set.
 
 ### GetSymbol
 

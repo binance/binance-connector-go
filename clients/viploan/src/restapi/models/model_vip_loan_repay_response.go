@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,12 +17,13 @@ var _ common.MappedNullable = &VipLoanRepayResponse{}
 
 // VipLoanRepayResponse struct for VipLoanRepayResponse
 type VipLoanRepayResponse struct {
-	LoanCoin             *string `json:"loanCoin,omitempty"`
-	RepayAmount          *string `json:"repayAmount,omitempty"`
-	RemainingPrincipal   *string `json:"remainingPrincipal,omitempty"`
-	RemainingInterest    *string `json:"remainingInterest,omitempty"`
-	CollateralCoin       *string `json:"collateralCoin,omitempty"`
-	CurrentLTV           *string `json:"currentLTV,omitempty"`
+	LoanCoin           *string `json:"loanCoin,omitempty"`
+	RepayAmount        *string `json:"repayAmount,omitempty"`
+	RemainingPrincipal *string `json:"remainingPrincipal,omitempty"`
+	RemainingInterest  *string `json:"remainingInterest,omitempty"`
+	CollateralCoin     *string `json:"collateralCoin,omitempty"`
+	CurrentLTV         *string `json:"currentLTV,omitempty"`
+	// Repayment status (`Repaid`, `Repaying`, `Failed`).
 	RepayStatus          *string `json:"repayStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -22,13 +22,13 @@ type ApiSessionLogonRequest struct {
 	recvWindow *float32
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiSessionLogonRequest) Id(id string) ApiSessionLogonRequest {
 	r.id = &id
 	return r
 }
 
-// The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+// The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiSessionLogonRequest) RecvWindow(recvWindow float32) ApiSessionLogonRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -53,12 +53,12 @@ func (r ApiSessionLogonRequest) ExecuteAsync() (chan *common.ResponseOrRaw[model
 }
 
 /*
-SessionLogon WebSocket Log in with API key
+SessionLogon Log in with API key (USER_DATA)
 /session.logon
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#log-in-with-api-key-signed
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-logon
 
-@param id Unique WebSocket request ID.	@param recvWindow The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param recvWindow The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiSessionLogonRequest
 */
 func (a *AuthAPIService) SessionLogon() ApiSessionLogonRequest {
@@ -99,7 +99,7 @@ type ApiSessionLogoutRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiSessionLogoutRequest) Id(id string) ApiSessionLogoutRequest {
 	r.id = &id
 	return r
@@ -124,12 +124,12 @@ func (r ApiSessionLogoutRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mode
 }
 
 /*
-SessionLogout WebSocket Log out of the session
+SessionLogout Log out of the session
 /session.logout
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#log-out-of-the-session
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-logout
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiSessionLogoutRequest
 */
 func (a *AuthAPIService) SessionLogout() ApiSessionLogoutRequest {
@@ -167,7 +167,7 @@ type ApiSessionStatusRequest struct {
 	id         *string
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiSessionStatusRequest) Id(id string) ApiSessionStatusRequest {
 	r.id = &id
 	return r
@@ -192,12 +192,12 @@ func (r ApiSessionStatusRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mode
 }
 
 /*
-SessionStatus WebSocket Query session status
+SessionStatus Query session status
 /session.status
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/authentication-requests#query-session-status
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/auth#session-status
 
-@param id Unique WebSocket request ID.
+@param id Client-generated request identifier.
 @return ApiSessionStatusRequest
 */
 func (a *AuthAPIService) SessionStatus() ApiSessionStatusRequest {

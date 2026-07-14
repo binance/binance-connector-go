@@ -8,7 +8,7 @@ Method        | HTTP request  | Description
 [**AvgPrice**](MarketAPI.md#AvgPrice) | **Get** /api/v3/avgPrice | Current average price
 [**Depth**](MarketAPI.md#Depth) | **Get** /api/v3/depth | Order book
 [**GetTrades**](MarketAPI.md#GetTrades) | **Get** /api/v3/trades | Recent trades list
-[**HistoricalBlockTrades**](MarketAPI.md#HistoricalBlockTrades) | **Get** /api/v3/historicalBlockTrades | Historical Block Trades
+[**HistoricalBlockTrades**](MarketAPI.md#HistoricalBlockTrades) | **Get** /api/v3/historicalBlockTrades | Historical Block Trades (MARKET_DATA)
 [**HistoricalTrades**](MarketAPI.md#HistoricalTrades) | **Get** /api/v3/historicalTrades | Old trade lookup
 [**Klines**](MarketAPI.md#Klines) | **Get** /api/v3/klines | Kline/Candlestick data
 [**ReferencePrice**](MarketAPI.md#ReferencePrice) | **Get** /api/v3/referencePrice | Query Reference Price
@@ -48,7 +48,7 @@ func main() {
 	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -80,7 +80,7 @@ Name          | Type          | Description   | Notes
  **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
  **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
  **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -189,8 +189,8 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	limit := int32(1) // int32 | If limit > 5000, only 5000 entries will be returned. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -219,8 +219,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **limit** | **int32** | If limit &gt; 5000, only 5000 entries will be returned. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. | 
 
 ### Return type
 
@@ -261,7 +261,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -290,7 +290,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -311,7 +311,7 @@ No authorization required
 
 > HistoricalBlockTradesResponse HistoricalBlockTrades(ctx).Symbol(symbol).FromId(fromId).Limit(limit).Execute()
 
-Historical Block Trades
+Historical Block Trades (MARKET_DATA)
 
 
 ### Example
@@ -330,8 +330,8 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	fromId := int64(1) // int64 | Block trade ID to fetch from
+	symbol := "BNBBTC" // string | 
+	fromId := int64(582) // int64 | Block trade ID to fetch from
 	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -403,8 +403,8 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
+	limit := int32(1) // int32 |  (optional)
+	fromId := int64(1) // int64 | TradeId to fetch from. Default gets most recent trades. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -433,8 +433,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
+ **limit** | **int32** |  | 
+ **fromId** | **int64** | TradeId to fetch from. Default gets most recent trades. | 
 
 ### Return type
 
@@ -476,10 +476,10 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -509,10 +509,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **interval** | [**KlinesIntervalParameter**](KlinesIntervalParameter.md) |  | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
  **timeZone** | **string** | Default: 0 (UTC) | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 
@@ -621,7 +621,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Supported values: `TRADING`, `HALT`, `BREAK` (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -650,7 +650,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
 
 ### Return type
 
@@ -690,11 +690,11 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	windowSize := models.TickerWindowSizeParameterWindowSize1m // TickerWindowSizeParameter |  (optional)
+	symbol := "BNBUSDT" // string | Either `symbol` or `symbols` must be provided (optional)
+	symbols := []string{"BTCUSDT"} // []string | Either `symbol` or `symbols` must be provided  Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100. (optional)
+	windowSize := models.TickerWindowSizeParameterWindowSize1m // TickerWindowSizeParameter | Units cannot be combined (e.g. `1d2h` is not allowed). (optional)
 	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbolStatus := models.TickerSymbolStatusParameterTrading // TickerSymbolStatusParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -722,11 +722,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
- **windowSize** | [**TickerWindowSizeParameter**](TickerWindowSizeParameter.md) |  | 
+ **symbol** | **string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided | 
+ **symbols** | **[]string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided  Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100. | 
+ **windowSize** | [**TickerWindowSizeParameter**](TickerWindowSizeParameter.md) | Units cannot be combined (e.g. &#x60;1d2h&#x60; is not allowed). | 
  **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbolStatus** | [**TickerSymbolStatusParameter**](TickerSymbolStatusParameter.md) |  | 
 
 ### Return type
 
@@ -766,10 +766,10 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
+	symbol := "BNBUSDT" // string | Either `symbol` or `symbols` must be provided (optional)
+	symbols := []string{"BTCUSDT"} // []string | Either `symbol` or `symbols` must be provided  Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100. (optional)
 	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbolStatus := models.TickerSymbolStatusParameterTrading // TickerSymbolStatusParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -797,10 +797,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
+ **symbol** | **string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided | 
+ **symbols** | **[]string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided  Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100. | 
  **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbolStatus** | [**TickerSymbolStatusParameter**](TickerSymbolStatusParameter.md) |  | 
 
 ### Return type
 
@@ -840,9 +840,9 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbol := "BNBUSDT" // string | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, `bookTickers` for all symbols will be returned in an array. (optional)
+	symbols := []string{"BTCUSDT"} // []string | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, `bookTickers` for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -870,9 +870,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbol** | **string** | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, &#x60;bookTickers&#x60; for all symbols will be returned in an array. | 
+ **symbols** | **[]string** | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, &#x60;bookTickers&#x60; for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. | 
 
 ### Return type
 
@@ -912,9 +912,9 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbol := "BNBUSDT" // string | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. (optional)
+	symbols := []string{"BTCUSDT"} // []string | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -942,9 +942,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbol** | **string** | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. | 
+ **symbols** | **[]string** | Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. | 
 
 ### Return type
 
@@ -984,11 +984,11 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	symbols := []string{"Inner_example"} // []string | List of symbols to query (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
+	symbol := "BNBUSDT" // string | Either `symbol` or `symbols` must be provided. (optional)
+	symbols := []string{"BTCUSDT"} // []string | Either `symbol` or `symbols` must be provided. Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of `symbols` allowed in a request is 100. (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
 	type_ := models.TickerTypeParameterFull // TickerTypeParameter |  (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter |  (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple symbols, non-matching ones are simply excluded from the response. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1016,11 +1016,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **symbols** | **[]string** | List of symbols to query | 
+ **symbol** | **string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided. | 
+ **symbols** | **[]string** | Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided. Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of &#x60;symbols&#x60; allowed in a request is 100. | 
  **timeZone** | **string** | Default: 0 (UTC) | 
  **type_** | [**TickerTypeParameter**](TickerTypeParameter.md) |  | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) |  | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple symbols, non-matching ones are simply excluded from the response. | 
 
 ### Return type
 
@@ -1062,10 +1062,10 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	timeZone := "timeZone_example" // string | Default: 0 (UTC) (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	timeZone := "0" // string | Default: 0 (UTC) (optional)
+	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1095,10 +1095,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **interval** | [**KlinesIntervalParameter**](KlinesIntervalParameter.md) |  | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
  **timeZone** | **string** | Default: 0 (UTC) | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **limit** | **int32** |  | 
 
 ### Return type
 

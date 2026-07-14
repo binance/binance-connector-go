@@ -22,7 +22,7 @@ func DeleteIpListForASubAccountApiKey() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ApiManagementAPI.DeleteIpListForASubAccountApiKey(context.Background()).Email("sub-account-email@email.com").SubAccountApiKey("subAccountApiKey_example").IpAddress("ipAddress_example").Execute()
+	resp, err := apiClient.RestApi.ApiManagementAPI.DeleteIpListForASubAccountApiKey(context.Background()).Email("123@test.com").SubAccountApiKey("k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf").IpAddress("69.210.67.14").Execute()
 	if err != nil {
 		log.Println(err)
 		return

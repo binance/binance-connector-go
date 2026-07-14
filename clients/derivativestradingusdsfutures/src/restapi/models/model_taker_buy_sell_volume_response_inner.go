@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,10 +17,11 @@ var _ common.MappedNullable = &TakerBuySellVolumeResponseInner{}
 
 // TakerBuySellVolumeResponseInner struct for TakerBuySellVolumeResponseInner
 type TakerBuySellVolumeResponseInner struct {
-	BuySellRatio         *string `json:"buySellRatio,omitempty"`
-	BuyVol               *string `json:"buyVol,omitempty"`
-	SellVol              *string `json:"sellVol,omitempty"`
-	Timestamp            *string `json:"timestamp,omitempty"`
+	BuySellRatio *string `json:"buySellRatio,omitempty"`
+	BuyVol       *string `json:"buyVol,omitempty"`
+	SellVol      *string `json:"sellVol,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +141,9 @@ func (o *TakerBuySellVolumeResponseInner) SetSellVol(v string) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *TakerBuySellVolumeResponseInner) GetTimestamp() string {
+func (o *TakerBuySellVolumeResponseInner) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Timestamp
@@ -150,7 +151,7 @@ func (o *TakerBuySellVolumeResponseInner) GetTimestamp() string {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TakerBuySellVolumeResponseInner) GetTimestampOk() (*string, bool) {
+func (o *TakerBuySellVolumeResponseInner) GetTimestampOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -166,8 +167,8 @@ func (o *TakerBuySellVolumeResponseInner) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *TakerBuySellVolumeResponseInner) SetTimestamp(v string) {
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
+func (o *TakerBuySellVolumeResponseInner) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 

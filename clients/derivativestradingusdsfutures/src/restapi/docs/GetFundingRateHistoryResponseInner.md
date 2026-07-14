@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**FundingRate** | Pointer to **string** |  | [optional] 
-**FundingTime** | Pointer to **int64** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**FundingRate** | Pointer to **string** | Funding Rate. | [optional] 
+**FundingTime** | Pointer to **int64** | Funding Time. | [optional] 
+**MarkPrice** | Pointer to **string** | mark price associated with a particular funding fee charge | [optional] 
 
 ## Methods
 

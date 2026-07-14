@@ -7,25 +7,25 @@ Method        | HTTP request  | Description
 [**AccountTradeList**](TradeAPI.md#AccountTradeList) | **Get** /dapi/v1/userTrades | Account Trade List (USER_DATA)
 [**AllOrders**](TradeAPI.md#AllOrders) | **Get** /dapi/v1/allOrders | All Orders (USER_DATA)
 [**AutoCancelAllOpenOrders**](TradeAPI.md#AutoCancelAllOpenOrders) | **Post** /dapi/v1/countdownCancelAll | Auto-Cancel All Open Orders (TRADE)
-[**CancelAllOpenOrders**](TradeAPI.md#CancelAllOpenOrders) | **Delete** /dapi/v1/allOpenOrders | Cancel All Open Orders(TRADE)
-[**CancelMultipleOrders**](TradeAPI.md#CancelMultipleOrders) | **Delete** /dapi/v1/batchOrders | Cancel Multiple Orders(TRADE)
+[**CancelAllOpenOrders**](TradeAPI.md#CancelAllOpenOrders) | **Delete** /dapi/v1/allOpenOrders | Cancel All Open Orders (TRADE)
+[**CancelMultipleOrders**](TradeAPI.md#CancelMultipleOrders) | **Delete** /dapi/v1/batchOrders | Cancel Multiple Orders (TRADE)
 [**CancelOrder**](TradeAPI.md#CancelOrder) | **Delete** /dapi/v1/order | Cancel Order (TRADE)
 [**ChangeInitialLeverage**](TradeAPI.md#ChangeInitialLeverage) | **Post** /dapi/v1/leverage | Change Initial Leverage (TRADE)
 [**ChangeMarginType**](TradeAPI.md#ChangeMarginType) | **Post** /dapi/v1/marginType | Change Margin Type (TRADE)
-[**ChangePositionMode**](TradeAPI.md#ChangePositionMode) | **Post** /dapi/v1/positionSide/dual | Change Position Mode(TRADE)
+[**ChangePositionMode**](TradeAPI.md#ChangePositionMode) | **Post** /dapi/v1/positionSide/dual | Change Position Mode (TRADE)
 [**CurrentAllOpenOrders**](TradeAPI.md#CurrentAllOpenOrders) | **Get** /dapi/v1/openOrders | Current All Open Orders (USER_DATA)
 [**GetOrderModifyHistory**](TradeAPI.md#GetOrderModifyHistory) | **Get** /dapi/v1/orderAmendment | Get Order Modify History (USER_DATA)
-[**GetPositionMarginChangeHistory**](TradeAPI.md#GetPositionMarginChangeHistory) | **Get** /dapi/v1/positionMargin/history | Get Position Margin Change History(TRADE)
-[**ModifyIsolatedPositionMargin**](TradeAPI.md#ModifyIsolatedPositionMargin) | **Post** /dapi/v1/positionMargin | Modify Isolated Position Margin(TRADE)
-[**ModifyMultipleOrders**](TradeAPI.md#ModifyMultipleOrders) | **Put** /dapi/v1/batchOrders | Modify Multiple Orders(TRADE)
+[**GetPositionMarginChangeHistory**](TradeAPI.md#GetPositionMarginChangeHistory) | **Get** /dapi/v1/positionMargin/history | Get Position Margin Change History (TRADE)
+[**ModifyIsolatedPositionMargin**](TradeAPI.md#ModifyIsolatedPositionMargin) | **Post** /dapi/v1/positionMargin | Modify Isolated Position Margin (TRADE)
+[**ModifyMultipleOrders**](TradeAPI.md#ModifyMultipleOrders) | **Put** /dapi/v1/batchOrders | Modify Multiple Orders (TRADE)
 [**ModifyOrder**](TradeAPI.md#ModifyOrder) | **Put** /dapi/v1/order | Modify Order (TRADE)
 [**NewOrder**](TradeAPI.md#NewOrder) | **Post** /dapi/v1/order | New Order (TRADE)
-[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /dapi/v1/batchOrders | Place Multiple Orders(TRADE)
-[**PositionAdlQuantileEstimation**](TradeAPI.md#PositionAdlQuantileEstimation) | **Get** /dapi/v1/adlQuantile | Position ADL Quantile Estimation(USER_DATA)
-[**PositionInformation**](TradeAPI.md#PositionInformation) | **Get** /dapi/v1/positionRisk | Position Information(USER_DATA)
-[**QueryCurrentOpenOrder**](TradeAPI.md#QueryCurrentOpenOrder) | **Get** /dapi/v1/openOrder | Query Current Open Order(USER_DATA)
+[**PlaceMultipleOrders**](TradeAPI.md#PlaceMultipleOrders) | **Post** /dapi/v1/batchOrders | Place Multiple Orders (TRADE)
+[**PositionAdlQuantileEstimation**](TradeAPI.md#PositionAdlQuantileEstimation) | **Get** /dapi/v1/adlQuantile | Position ADL Quantile Estimation (USER_DATA)
+[**PositionInformation**](TradeAPI.md#PositionInformation) | **Get** /dapi/v1/positionRisk | Position Information (USER_DATA)
+[**QueryCurrentOpenOrder**](TradeAPI.md#QueryCurrentOpenOrder) | **Get** /dapi/v1/openOrder | Query Current Open Order (USER_DATA)
 [**QueryOrder**](TradeAPI.md#QueryOrder) | **Get** /dapi/v1/order | Query Order (USER_DATA)
-[**UsersForceOrders**](TradeAPI.md#UsersForceOrders) | **Get** /dapi/v1/forceOrders | User&#39;s Force Orders(USER_DATA)
+[**UsersForceOrders**](TradeAPI.md#UsersForceOrders) | **Get** /dapi/v1/forceOrders | User&#39;s Force Orders (USER_DATA)
 
 
 ## AccountTradeList
@@ -51,13 +51,13 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	pair := "pair_example" // string |  (optional)
-	orderId := "1" // string |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSD_200626" // string | Symbol (optional)
+	pair := "BTCUSD" // string | pair (optional)
+	orderId := "1" // string | Order ID (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	fromId := int64(6) // int64 | Trade id to fetch from. Default gets most recent trades. (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -86,13 +86,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **pair** | **string** |  | 
- **orderId** | **string** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **symbol** | **string** | Symbol | 
+ **pair** | **string** | pair | 
+ **orderId** | **string** | Order ID | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **fromId** | **int64** | Trade id to fetch from. Default gets most recent trades. | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -133,12 +133,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	pair := "pair_example" // string |  (optional)
-	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSD_200925" // string | Symbol (optional)
+	pair := "BTCUSD" // string | Pair (optional)
+	orderId := int64(1917641) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -167,12 +167,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **pair** | **string** |  | 
+ **symbol** | **string** | Symbol | 
+ **pair** | **string** | Pair | 
  **orderId** | **int64** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -213,8 +213,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	countdownTime := int64(789) // int64 | countdown time, 1000 for 1 second. 0 to cancel the timer
+	symbol := "BTCUSD_200925" // string | 
+	countdownTime := int64(1000) // int64 | countdown time, 1000 for 1 second. 0 to cancel the timer
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -266,7 +266,7 @@ No authorization required
 
 > CancelAllOpenOrdersResponse CancelAllOpenOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Cancel All Open Orders(TRADE)
+Cancel All Open Orders (TRADE)
 
 
 ### Example
@@ -285,7 +285,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BTCUSD_200925" // string | Symbol
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -314,7 +314,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -336,7 +336,7 @@ No authorization required
 
 > CancelMultipleOrdersResponse CancelMultipleOrders(ctx).Symbol(symbol).OrderIdList(orderIdList).OrigClientOrderIdList(origClientOrderIdList).RecvWindow(recvWindow).Execute()
 
-Cancel Multiple Orders(TRADE)
+Cancel Multiple Orders (TRADE)
 
 
 ### Example
@@ -355,9 +355,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderIdList := []int64{int64(1234567)} // []int64 | max length 10 <br /> e.g. [1234567,2345678] (optional)
-	origClientOrderIdList := []string{"my_id_1"} // []string | max length 10<br /> e.g. [\"my_id_1\",\"my_id_2\"], encode the double quotes. No space after comma. (optional)
+	symbol := "BTCUSD_200925" // string | Symbol
+	orderIdList := []int64{int64(1234567)} // []int64 | Order IDs to cancel. (optional)
+	origClientOrderIdList := []string{"my_id_1"} // []string | Original client order IDs to cancel. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -386,9 +386,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **orderIdList** | **[]int64** | max length 10 &lt;br /&gt; e.g. [1234567,2345678] | 
- **origClientOrderIdList** | **[]string** | max length 10&lt;br /&gt; e.g. [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;], encode the double quotes. No space after comma. | 
+ **symbol** | **string** | Symbol | 
+ **orderIdList** | **[]int64** | Order IDs to cancel. | 
+ **origClientOrderIdList** | **[]string** | Original client order IDs to cancel. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -429,9 +429,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSD_200925" // string | Symbol
+	orderId := int64(283194212) // int64 | Order ID (optional)
+	origClientOrderId := "myOrder1" // string | Client order ID (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -460,9 +460,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
+ **symbol** | **string** | Symbol | 
+ **orderId** | **int64** | Order ID | 
+ **origClientOrderId** | **string** | Client order ID | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -503,8 +503,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	leverage := int64(789) // int64 | target initial leverage: int from 1 to 125
+	symbol := "BTCUSD_200925" // string | Symbol
+	leverage := int64(1) // int64 | target initial leverage: int from 1 to 125
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -533,7 +533,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
+ **symbol** | **string** | Symbol | 
  **leverage** | **int64** | target initial leverage: int from 1 to 125 | 
  **recvWindow** | **int64** |  | 
 
@@ -575,8 +575,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	marginType := models.ChangeMarginTypeMarginTypeParameterIsolated // ChangeMarginTypeMarginTypeParameter | ISOLATED, CROSSED
+	symbol := "BTCUSD_200925" // string | Symbol
+	marginType := models.ChangeMarginTypeMarginTypeParameterIsolated // ChangeMarginTypeMarginTypeParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -605,8 +605,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **marginType** | [**ChangeMarginTypeMarginTypeParameter**](ChangeMarginTypeMarginTypeParameter.md) | ISOLATED, CROSSED | 
+ **symbol** | **string** | Symbol | 
+ **marginType** | [**ChangeMarginTypeMarginTypeParameter**](ChangeMarginTypeMarginTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -628,7 +628,7 @@ No authorization required
 
 > ChangePositionModeResponse ChangePositionMode(ctx).DualSidePosition(dualSidePosition).RecvWindow(recvWindow).Execute()
 
-Change Position Mode(TRADE)
+Change Position Mode (TRADE)
 
 
 ### Example
@@ -647,7 +647,7 @@ import (
 )
 
 func main() {
-	dualSidePosition := "dualSidePosition_example" // string | \"true\": Hedge Mode; \"false\": One-way Mode
+	dualSidePosition := "true" // string | \"true\": Hedge Mode; \"false\": One-way Mode
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -717,8 +717,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	pair := "pair_example" // string |  (optional)
+	symbol := "BTCUSD_200925" // string | Symbol. **After CM migration, an invalid `symbol` returns `-1121` (previously a silent `200`).** (optional)
+	pair := "BTCUSD" // string | Pair (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -747,8 +747,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **pair** | **string** |  | 
+ **symbol** | **string** | Symbol. **After CM migration, an invalid &#x60;symbol&#x60; returns &#x60;-1121&#x60; (previously a silent &#x60;200&#x60;).** | 
+ **pair** | **string** | Pair | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -789,12 +789,12 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSD_PERP" // string | Symbol
+	orderId := int64(20072994037) // int64 | Order ID (optional)
+	origClientOrderId := "LJ9R4QZDihCaS8UAOOLpgW" // string | Client order ID (optional)
+	startTime := int64(1623319461670) // int64 | Timestamp in ms to get modification history from INCLUSIVE (optional)
+	endTime := int64(1641782889000) // int64 | Timestamp in ms to get modification history until INCLUSIVE (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -823,12 +823,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **symbol** | **string** | Symbol | 
+ **orderId** | **int64** | Order ID | 
+ **origClientOrderId** | **string** | Client order ID | 
+ **startTime** | **int64** | Timestamp in ms to get modification history from INCLUSIVE | 
+ **endTime** | **int64** | Timestamp in ms to get modification history until INCLUSIVE | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -850,7 +850,7 @@ No authorization required
 
 > GetPositionMarginChangeHistoryResponse GetPositionMarginChangeHistory(ctx).Symbol(symbol).Type(type_).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Get Position Margin Change History(TRADE)
+Get Position Margin Change History (TRADE)
 
 
 ### Example
@@ -869,11 +869,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	type_ := int64(789) // int64 | 1: Add position margin,2: Reduce position margin (optional)
-	startTime := int64(1623319461670) // int64 |  (optional)
-	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	symbol := "BTCUSD" // string | 
+	type_ := int64(1) // int64 | 1: Add position margin,2: Reduce position margin (optional)
+	startTime := int64(1623319461670) // int64 | Start time (optional)
+	endTime := int64(1641782889000) // int64 | End time (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -904,9 +904,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **type_** | **int64** | 1: Add position margin,2: Reduce position margin | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **startTime** | **int64** | Start time | 
+ **endTime** | **int64** | End time | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -928,7 +928,7 @@ No authorization required
 
 > ModifyIsolatedPositionMarginResponse ModifyIsolatedPositionMargin(ctx).Symbol(symbol).Amount(amount).Type(type_).PositionSide(positionSide).RecvWindow(recvWindow).Execute()
 
-Modify Isolated Position Margin(TRADE)
+Modify Isolated Position Margin (TRADE)
 
 
 ### Example
@@ -947,10 +947,10 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	amount := float32(1.0) // float32 | 
-	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
-	positionSide := models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth // PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
+	symbol := "BTCUSDT" // string | Symbol
+	amount := float32(1.0) // float32 | Margin asset
+	type_ := int64(1) // int64 | 1: Add position margin,2: Reduce position margin
+	positionSide := models.NewOrderPositionSideParameterBoth // NewOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -979,10 +979,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **amount** | **float32** |  | 
- **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
- **positionSide** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
+ **symbol** | **string** | Symbol | 
+ **amount** | **float32** | Margin asset | 
+ **type_** | **int64** | 1: Add position margin,2: Reduce position margin | 
+ **positionSide** | [**NewOrderPositionSideParameter**](NewOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1004,7 +1004,7 @@ No authorization required
 
 > ModifyMultipleOrdersResponse ModifyMultipleOrders(ctx).BatchOrders(batchOrders).RecvWindow(recvWindow).Execute()
 
-Modify Multiple Orders(TRADE)
+Modify Multiple Orders (TRADE)
 
 
 ### Example
@@ -1023,7 +1023,7 @@ import (
 )
 
 func main() {
-	batchOrders := []models.ModifyMultipleOrdersBatchOrdersParameterInner{*models.NewModifyMultipleOrdersBatchOrdersParameterInner()} // []ModifyMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
+	batchOrders := []models.ModifyMultipleOrdersBatchOrdersParameterInner{*models.NewModifyMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.modifyMultipleOrders_batchOrders_parameter_inner_side("BUY"), int64(1770736694138))} // []ModifyMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1093,13 +1093,13 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	side := models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy // ModifyMultipleOrdersBatchOrdersParameterInnerSide | `SELL`, `BUY`
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
-	quantity := float32(1.0) // float32 | quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
-	price := float32(1.0) // float32 |  (optional)
-	priceMatch := models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchNone // PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
+	symbol := "BTCUSD_PERP" // string | Symbol
+	side := models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy // PlaceMultipleOrdersBatchOrdersParameterInnerSide | 
+	orderId := int64(1) // int64 | Order ID (optional)
+	origClientOrderId := "1" // string | Client order ID (optional)
+	quantity := float32(1.0) // float32 | Order quantity, cannot be sent with `closePosition=true`. **After CM migration, this parameter becomes mandatory** (must be sent together with `price`). (optional)
+	price := float32(1.0) // float32 | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with `quantity`). (optional)
+	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1128,13 +1128,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **side** | [**ModifyMultipleOrdersBatchOrdersParameterInnerSide**](ModifyMultipleOrdersBatchOrdersParameterInnerSide.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
- **quantity** | **float32** | quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **price** | **float32** |  | 
- **priceMatch** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch**](PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **symbol** | **string** | Symbol | 
+ **side** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSide**](PlaceMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
+ **orderId** | **int64** | Order ID | 
+ **origClientOrderId** | **string** | Client order ID | 
+ **quantity** | **float32** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;price&#x60;). | 
+ **price** | **float32** | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;quantity&#x60;). | 
+ **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1154,7 +1154,7 @@ No authorization required
 
 ## NewOrder
 
-> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
+> NewOrderResponse NewOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).TimeInForce(timeInForce).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 
 New Order (TRADE)
 
@@ -1175,24 +1175,24 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	side := models.ModifyMultipleOrdersBatchOrdersParameterInnerSideBuy // ModifyMultipleOrdersBatchOrdersParameterInnerSide | `SELL`, `BUY`
-	type_ := models.PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit // PlaceMultipleOrdersBatchOrdersParameterInnerType | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
-	positionSide := models.PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth // PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
-	timeInForce := models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc // PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce |  (optional)
+	symbol := "BTCUSD_200925" // string | Symbol
+	side := models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy // PlaceMultipleOrdersBatchOrdersParameterInnerSide | 
+	type_ := models.NewOrderTypeParameterLimit // NewOrderTypeParameter | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
+	positionSide := models.NewOrderPositionSideParameterBoth // NewOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
+	reduceOnly := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | \"true\" or \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`(Close-All) (optional)
 	quantity := float32(1.0) // float32 | quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
-	reduceOnly := "false" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`(Close-All) (optional)
-	price := float32(1.0) // float32 |  (optional)
+	price := float32(1.0) // float32 | Order price (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
 	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	closePosition := "closePosition_example" // string | `true`, `false`；Close-All,used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
+	closePosition := "true" // string | `true`, `false`；Close-All,used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
 	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
-	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
-	workingType := models.PlaceMultipleOrdersBatchOrdersParameterInnerWorkingTypeMarkPrice // PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
-	priceProtect := "false" // string | \"true\" or \"false\", default \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	newOrderRespType := models.PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespTypeAck // PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType | \"ACK\", \"RESULT\", default \"ACK\" (optional)
-	priceMatch := models.PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchNone // PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
-	selfTradePreventionMode := models.PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone // PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER` (optional)
+	callbackRate := float32(5000.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
+	timeInForce := models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc // PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce |  (optional)
+	workingType := models.NewOrderWorkingTypeParameterMarkPrice // NewOrderWorkingTypeParameter | 'stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". (optional)
+	priceProtect := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
+	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
+	selfTradePreventionMode := models.NewOrderSelfTradePreventionModeParameterNone // NewOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1202,7 +1202,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingCoinFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).ReduceOnly(reduceOnly).Quantity(quantity).Price(price).NewClientOrderId(newClientOrderId).StopPrice(stopPrice).ClosePosition(closePosition).ActivationPrice(activationPrice).CallbackRate(callbackRate).TimeInForce(timeInForce).WorkingType(workingType).PriceProtect(priceProtect).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.NewOrder``: %v\n", err)
 		return
@@ -1221,24 +1221,24 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **side** | [**ModifyMultipleOrdersBatchOrdersParameterInnerSide**](ModifyMultipleOrdersBatchOrdersParameterInnerSide.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **type_** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
- **positionSide** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
- **timeInForce** | [**PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce.md) |  | 
+ **symbol** | **string** | Symbol | 
+ **side** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSide**](PlaceMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
+ **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
+ **positionSide** | [**NewOrderPositionSideParameter**](NewOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
+ **reduceOnly** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
  **quantity** | **float32** | quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
- **price** | **float32** |  | 
+ **price** | **float32** | Order price | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
  **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
  **closePosition** | **string** | &#x60;true&#x60;, &#x60;false&#x60;；Close-All,used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
  **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
  **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
- **workingType** | [**PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType**](PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
- **priceProtect** | **string** | \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **newOrderRespType** | [**PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
- **priceMatch** | [**PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch**](PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
- **selfTradePreventionMode** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode**](PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60; | 
+ **timeInForce** | [**PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce.md) |  | 
+ **workingType** | [**NewOrderWorkingTypeParameter**](NewOrderWorkingTypeParameter.md) | &#39;stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. | 
+ **priceProtect** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 
+ **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **selfTradePreventionMode** | [**NewOrderSelfTradePreventionModeParameter**](NewOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1260,7 +1260,7 @@ No authorization required
 
 > PlaceMultipleOrdersResponse PlaceMultipleOrders(ctx).BatchOrders(batchOrders).RecvWindow(recvWindow).Execute()
 
-Place Multiple Orders(TRADE)
+Place Multiple Orders (TRADE)
 
 
 ### Example
@@ -1279,7 +1279,7 @@ import (
 )
 
 func main() {
-	batchOrders := []models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner()} // []PlaceMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
+	batchOrders := []models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.placeMultipleOrders_batchOrders_parameter_inner_side("BUY"), models.placeMultipleOrders_batchOrders_parameter_inner_type("LIMIT"), float32(1))} // []PlaceMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1330,7 +1330,7 @@ No authorization required
 
 > PositionAdlQuantileEstimationResponse PositionAdlQuantileEstimation(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Position ADL Quantile Estimation(USER_DATA)
+Position ADL Quantile Estimation (USER_DATA)
 
 
 ### Example
@@ -1349,7 +1349,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "BTCUSD_200925" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1400,7 +1400,7 @@ No authorization required
 
 > PositionInformationResponse PositionInformation(ctx).MarginAsset(marginAsset).Pair(pair).RecvWindow(recvWindow).Execute()
 
-Position Information(USER_DATA)
+Position Information (USER_DATA)
 
 
 ### Example
@@ -1419,8 +1419,8 @@ import (
 )
 
 func main() {
-	marginAsset := "marginAsset_example" // string |  (optional)
-	pair := "pair_example" // string |  (optional)
+	marginAsset := "USDT" // string |  (optional)
+	pair := "BTCUSDT" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1472,7 +1472,7 @@ No authorization required
 
 > QueryCurrentOpenOrderResponse QueryCurrentOpenOrder(ctx).Symbol(symbol).OrderId(orderId).OrigClientOrderId(origClientOrderId).RecvWindow(recvWindow).Execute()
 
-Query Current Open Order(USER_DATA)
+Query Current Open Order (USER_DATA)
 
 
 ### Example
@@ -1491,9 +1491,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSD_200925" // string | Symbol
+	orderId := int64(1) // int64 | Order ID (optional)
+	origClientOrderId := "1" // string | Client order ID (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1522,9 +1522,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
+ **symbol** | **string** | Symbol | 
+ **orderId** | **int64** | Order ID | 
+ **origClientOrderId** | **string** | Client order ID | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1565,9 +1565,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "1" // string |  (optional)
+	symbol := "BTCUSD_200925" // string | Symbol
+	orderId := int64(1) // int64 | Order ID (optional)
+	origClientOrderId := "1" // string | Client order ID (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1596,9 +1596,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **origClientOrderId** | **string** |  | 
+ **symbol** | **string** | Symbol | 
+ **orderId** | **int64** | Order ID | 
+ **origClientOrderId** | **string** | Client order ID | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1620,7 +1620,7 @@ No authorization required
 
 > UsersForceOrdersResponse UsersForceOrders(ctx).Symbol(symbol).AutoCloseType(autoCloseType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-User's Force Orders(USER_DATA)
+User's Force Orders (USER_DATA)
 
 
 ### Example
@@ -1639,11 +1639,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
-	autoCloseType := models.UsersForceOrdersAutoCloseTypeParameterLiquidation // UsersForceOrdersAutoCloseTypeParameter | \"LIQUIDATION\" for liquidation orders, \"ADL\" for ADL orders. (optional)
+	symbol := "BTCUSD_200925" // string |  (optional)
+	autoCloseType := models.UsersForceOrdersAutoCloseTypeParameterLiquidation // UsersForceOrdersAutoCloseTypeParameter |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(100) // int64 | Default 100; max 1000 (optional)
+	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1673,10 +1673,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **autoCloseType** | [**UsersForceOrdersAutoCloseTypeParameter**](UsersForceOrdersAutoCloseTypeParameter.md) | \&quot;LIQUIDATION\&quot; for liquidation orders, \&quot;ADL\&quot; for ADL orders. | 
+ **autoCloseType** | [**UsersForceOrdersAutoCloseTypeParameter**](UsersForceOrdersAutoCloseTypeParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | Default 100; max 1000 | 
+ **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

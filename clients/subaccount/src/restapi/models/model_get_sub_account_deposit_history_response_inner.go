@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package models
@@ -17,10 +17,11 @@ var _ common.MappedNullable = &GetSubAccountDepositHistoryResponseInner{}
 
 // GetSubAccountDepositHistoryResponseInner struct for GetSubAccountDepositHistoryResponseInner
 type GetSubAccountDepositHistoryResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	Network              *string `json:"network,omitempty"`
+	Id      *string `json:"id,omitempty"`
+	Amount  *string `json:"amount,omitempty"`
+	Coin    *string `json:"coin,omitempty"`
+	Network *string `json:"network,omitempty"`
+	// Deposit status: 0=pending, 6=credited but cannot withdraw, 7=wrong deposit, 8=waiting user confirmation, 1=success.
 	Status               *int64  `json:"status,omitempty"`
 	Address              *string `json:"address,omitempty"`
 	AddressTag           *string `json:"addressTag,omitempty"`

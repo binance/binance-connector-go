@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**OrderId** | Pointer to **int64** | order Id. | [optional] 
+**ClientOrderId** | Pointer to **string** | client Order Id. | [optional] 
 
 ## Methods
 

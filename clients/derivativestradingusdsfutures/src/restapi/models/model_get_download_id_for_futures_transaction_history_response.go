@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,11 @@ var _ common.MappedNullable = &GetDownloadIdForFuturesTransactionHistoryResponse
 
 // GetDownloadIdForFuturesTransactionHistoryResponse struct for GetDownloadIdForFuturesTransactionHistoryResponse
 type GetDownloadIdForFuturesTransactionHistoryResponse struct {
-	AvgCostTimestampOfLast30d *int64  `json:"avgCostTimestampOfLast30d,omitempty"`
-	DownloadId                *string `json:"downloadId,omitempty"`
-	AdditionalProperties      map[string]interface{}
+	// Average time taken for data download in the past 30 days
+	AvgCostTimestampOfLast30d *int64 `json:"avgCostTimestampOfLast30d,omitempty"`
+	// Download Id.
+	DownloadId           *string `json:"downloadId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetDownloadIdForFuturesTransactionHistoryResponse GetDownloadIdForFuturesTransactionHistoryResponse

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,14 +17,21 @@ var _ common.MappedNullable = &GetMarketMakerProtectionConfigResponse{}
 
 // GetMarketMakerProtectionConfigResponse struct for GetMarketMakerProtectionConfigResponse
 type GetMarketMakerProtectionConfigResponse struct {
-	UnderlyingId             *int64  `json:"underlyingId,omitempty"`
-	Underlying               *string `json:"underlying,omitempty"`
-	WindowTimeInMilliseconds *int64  `json:"windowTimeInMilliseconds,omitempty"`
-	FrozenTimeInMilliseconds *int64  `json:"frozenTimeInMilliseconds,omitempty"`
-	QtyLimit                 *string `json:"qtyLimit,omitempty"`
-	DeltaLimit               *string `json:"deltaLimit,omitempty"`
-	LastTriggerTime          *int64  `json:"lastTriggerTime,omitempty"`
-	AdditionalProperties     map[string]interface{}
+	// underlying Id
+	UnderlyingId *int64 `json:"underlyingId,omitempty"`
+	// underlying
+	Underlying *string `json:"underlying,omitempty"`
+	// window Time In Milliseconds
+	WindowTimeInMilliseconds *int64 `json:"windowTimeInMilliseconds,omitempty"`
+	// frozen Time In Milliseconds
+	FrozenTimeInMilliseconds *int64 `json:"frozenTimeInMilliseconds,omitempty"`
+	// qty Limit
+	QtyLimit *string `json:"qtyLimit,omitempty"`
+	// delta Limit
+	DeltaLimit *string `json:"deltaLimit,omitempty"`
+	// last Trigger Time
+	LastTriggerTime      *int64 `json:"lastTriggerTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetMarketMakerProtectionConfigResponse GetMarketMakerProtectionConfigResponse

@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **Amount** | Pointer to **string** |  | [optional] 
 **Coin** | Pointer to **string** |  | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Status** | Pointer to **int64** | Deposit status: 0&#x3D;pending, 6&#x3D;credited but cannot withdraw, 7&#x3D;wrong deposit, 8&#x3D;waiting user confirmation, 1&#x3D;success. | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
 **AddressTag** | Pointer to **string** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 

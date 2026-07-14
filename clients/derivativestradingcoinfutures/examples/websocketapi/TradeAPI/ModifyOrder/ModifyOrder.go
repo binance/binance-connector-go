@@ -29,7 +29,7 @@ func ModifyOrder() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("symbol_example").Side(models.ModifyOrderSideParameterBuy).Quantity(1.0).Price(1.0).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(1.0).Price(1.0).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing ModifyOrder request: %v\n", err)
 		return

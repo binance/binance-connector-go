@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LONG** | Pointer to **int64** |  | [optional] 
-**SHORT** | Pointer to **int64** |  | [optional] 
-**HEDGE** | Pointer to **int64** |  | [optional] 
-**BOTH** | Pointer to **int64** |  | [optional] 
+**LONG** | Pointer to **int64** | adl quantile for \&quot;LONG\&quot; position in hedge mode | [optional] 
+**SHORT** | Pointer to **int64** | adl qauntile for \&quot;SHORT\&quot; position in hedge mode | [optional] 
+**HEDGE** | Pointer to **int64** | Hedge mode ADL quantile. | [optional] 
+**BOTH** | Pointer to **int64** | One-way mode ADL quantile. | [optional] 
 
 ## Methods
 

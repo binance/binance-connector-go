@@ -4,10 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**ExchangeInfoResponseResult**](ExchangeInfoResponseResult.md) |  | [optional] 
+**Timezone** | Pointer to **string** |  | [optional] 
+**ServerTime** | Pointer to **int64** |  | [optional] 
 **RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**ExchangeFilters** | Pointer to [**[]ExchangeFilters**](ExchangeFilters.md) |  | [optional] 
+**Symbols** | Pointer to [**[]ExchangeInfoResponseSymbolsInner**](ExchangeInfoResponseSymbolsInner.md) |  | [optional] 
+**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -28,80 +30,55 @@ NewExchangeInfoResponseWithDefaults instantiates a new ExchangeInfoResponse obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetTimezone
 
-`func (o *ExchangeInfoResponse) GetId() string`
+`func (o *ExchangeInfoResponse) GetTimezone() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetTimezoneOk
 
-`func (o *ExchangeInfoResponse) GetIdOk() (*string, bool)`
+`func (o *ExchangeInfoResponse) GetTimezoneOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetTimezone
 
-`func (o *ExchangeInfoResponse) SetId(v string)`
+`func (o *ExchangeInfoResponse) SetTimezone(v string)`
 
-SetId sets Id field to given value.
+SetTimezone sets Timezone field to given value.
 
-### HasId
+### HasTimezone
 
-`func (o *ExchangeInfoResponse) HasId() bool`
+`func (o *ExchangeInfoResponse) HasTimezone() bool`
 
-HasId returns a boolean if a field has been set.
+HasTimezone returns a boolean if a field has been set.
 
-### GetStatus
+### GetServerTime
 
-`func (o *ExchangeInfoResponse) GetStatus() int64`
+`func (o *ExchangeInfoResponse) GetServerTime() int64`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetServerTime returns the ServerTime field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetServerTimeOk
 
-`func (o *ExchangeInfoResponse) GetStatusOk() (*int64, bool)`
+`func (o *ExchangeInfoResponse) GetServerTimeOk() (*int64, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetServerTimeOk returns a tuple with the ServerTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetServerTime
 
-`func (o *ExchangeInfoResponse) SetStatus(v int64)`
+`func (o *ExchangeInfoResponse) SetServerTime(v int64)`
 
-SetStatus sets Status field to given value.
+SetServerTime sets ServerTime field to given value.
 
-### HasStatus
+### HasServerTime
 
-`func (o *ExchangeInfoResponse) HasStatus() bool`
+`func (o *ExchangeInfoResponse) HasServerTime() bool`
 
-HasStatus returns a boolean if a field has been set.
-
-### GetResult
-
-`func (o *ExchangeInfoResponse) GetResult() ExchangeInfoResponseResult`
-
-GetResult returns the Result field if non-nil, zero value otherwise.
-
-### GetResultOk
-
-`func (o *ExchangeInfoResponse) GetResultOk() (*ExchangeInfoResponseResult, bool)`
-
-GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetResult
-
-`func (o *ExchangeInfoResponse) SetResult(v ExchangeInfoResponseResult)`
-
-SetResult sets Result field to given value.
-
-### HasResult
-
-`func (o *ExchangeInfoResponse) HasResult() bool`
-
-HasResult returns a boolean if a field has been set.
+HasServerTime returns a boolean if a field has been set.
 
 ### GetRateLimits
 
@@ -127,6 +104,81 @@ SetRateLimits sets RateLimits field to given value.
 `func (o *ExchangeInfoResponse) HasRateLimits() bool`
 
 HasRateLimits returns a boolean if a field has been set.
+
+### GetExchangeFilters
+
+`func (o *ExchangeInfoResponse) GetExchangeFilters() []ExchangeFilters`
+
+GetExchangeFilters returns the ExchangeFilters field if non-nil, zero value otherwise.
+
+### GetExchangeFiltersOk
+
+`func (o *ExchangeInfoResponse) GetExchangeFiltersOk() (*[]ExchangeFilters, bool)`
+
+GetExchangeFiltersOk returns a tuple with the ExchangeFilters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExchangeFilters
+
+`func (o *ExchangeInfoResponse) SetExchangeFilters(v []ExchangeFilters)`
+
+SetExchangeFilters sets ExchangeFilters field to given value.
+
+### HasExchangeFilters
+
+`func (o *ExchangeInfoResponse) HasExchangeFilters() bool`
+
+HasExchangeFilters returns a boolean if a field has been set.
+
+### GetSymbols
+
+`func (o *ExchangeInfoResponse) GetSymbols() []ExchangeInfoResponseSymbolsInner`
+
+GetSymbols returns the Symbols field if non-nil, zero value otherwise.
+
+### GetSymbolsOk
+
+`func (o *ExchangeInfoResponse) GetSymbolsOk() (*[]ExchangeInfoResponseSymbolsInner, bool)`
+
+GetSymbolsOk returns a tuple with the Symbols field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSymbols
+
+`func (o *ExchangeInfoResponse) SetSymbols(v []ExchangeInfoResponseSymbolsInner)`
+
+SetSymbols sets Symbols field to given value.
+
+### HasSymbols
+
+`func (o *ExchangeInfoResponse) HasSymbols() bool`
+
+HasSymbols returns a boolean if a field has been set.
+
+### GetSors
+
+`func (o *ExchangeInfoResponse) GetSors() []ExchangeInfoResponseSorsInner`
+
+GetSors returns the Sors field if non-nil, zero value otherwise.
+
+### GetSorsOk
+
+`func (o *ExchangeInfoResponse) GetSorsOk() (*[]ExchangeInfoResponseSorsInner, bool)`
+
+GetSorsOk returns a tuple with the Sors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSors
+
+`func (o *ExchangeInfoResponse) SetSors(v []ExchangeInfoResponseSorsInner)`
+
+SetSors sets Sors field to given value.
+
+### HasSors
+
+`func (o *ExchangeInfoResponse) HasSors() bool`
+
+HasSors returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

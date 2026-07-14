@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/clients/margintrading/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func MarginAccountNewOto() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOto(context.Background()).Symbol("symbol_example").WorkingType("workingType_example").WorkingSide("workingSide_example").WorkingPrice(1.0).WorkingQuantity(1.0).WorkingIcebergQty(1.0).PendingType("Order Types").PendingSide("pendingSide_example").PendingQuantity(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOto(context.Background()).Symbol("BTCUSDT").WorkingType(models.MarginAccountNewOtoWorkingTypeParameterLimit).WorkingSide(models.MarginAccountNewOtoWorkingSideParameterBuy).WorkingPrice(1.0).WorkingQuantity(1.0).WorkingIcebergQty(1.0).PendingType(models.MarginAccountNewOrderTypeParameterLimit).PendingSide(models.MarginAccountNewOrderSideParameterBuy).PendingQuantity(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

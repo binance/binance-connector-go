@@ -4,9 +4,9 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetPortfolioMarginAssetLeverage**](MarketDataAPI.md#GetPortfolioMarginAssetLeverage) | **Get** /sapi/v1/portfolio/margin-asset-leverage | Get Portfolio Margin Asset Leverage(USER_DATA)
-[**PortfolioMarginCollateralRate**](MarketDataAPI.md#PortfolioMarginCollateralRate) | **Get** /sapi/v1/portfolio/collateralRate | Portfolio Margin Collateral Rate(MARKET_DATA)
-[**PortfolioMarginProTieredCollateralRate**](MarketDataAPI.md#PortfolioMarginProTieredCollateralRate) | **Get** /sapi/v2/portfolio/collateralRate | Portfolio Margin Pro Tiered Collateral Rate(USER_DATA)
+[**GetPortfolioMarginAssetLeverage**](MarketDataAPI.md#GetPortfolioMarginAssetLeverage) | **Get** /sapi/v1/portfolio/margin-asset-leverage | Get Portfolio Margin Asset Leverage (USER_DATA)
+[**PortfolioMarginCollateralRate**](MarketDataAPI.md#PortfolioMarginCollateralRate) | **Get** /sapi/v1/portfolio/collateralRate | Portfolio Margin Collateral Rate (MARKET_DATA)
+[**PortfolioMarginProTieredCollateralRate**](MarketDataAPI.md#PortfolioMarginProTieredCollateralRate) | **Get** /sapi/v2/portfolio/collateralRate | Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
 [**QueryPortfolioMarginAssetIndexPrice**](MarketDataAPI.md#QueryPortfolioMarginAssetIndexPrice) | **Get** /sapi/v1/portfolio/asset-index-price | Query Portfolio Margin Asset Index Price (MARKET_DATA)
 
 
@@ -14,7 +14,7 @@ Method        | HTTP request  | Description
 
 > GetPortfolioMarginAssetLeverageResponse GetPortfolioMarginAssetLeverage(ctx).Execute()
 
-Get Portfolio Margin Asset Leverage(USER_DATA)
+Get Portfolio Margin Asset Leverage (USER_DATA)
 
 
 ### Example
@@ -79,7 +79,7 @@ No authorization required
 
 > PortfolioMarginCollateralRateResponse PortfolioMarginCollateralRate(ctx).Execute()
 
-Portfolio Margin Collateral Rate(MARKET_DATA)
+Portfolio Margin Collateral Rate (MARKET_DATA)
 
 
 ### Example
@@ -144,7 +144,7 @@ No authorization required
 
 > PortfolioMarginProTieredCollateralRateResponse PortfolioMarginProTieredCollateralRate(ctx).RecvWindow(recvWindow).Execute()
 
-Portfolio Margin Pro Tiered Collateral Rate(USER_DATA)
+Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
 
 
 ### Example
@@ -231,7 +231,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
+	asset := "BTC" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),

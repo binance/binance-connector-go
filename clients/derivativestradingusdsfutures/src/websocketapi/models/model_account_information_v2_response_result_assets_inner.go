@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,21 +17,35 @@ var _ common.MappedNullable = &AccountInformationV2ResponseResultAssetsInner{}
 
 // AccountInformationV2ResponseResultAssetsInner struct for AccountInformationV2ResponseResultAssetsInner
 type AccountInformationV2ResponseResultAssetsInner struct {
-	Asset                  *string `json:"asset,omitempty"`
-	WalletBalance          *string `json:"walletBalance,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	MarginBalance          *string `json:"marginBalance,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// wallet balance
+	WalletBalance *string `json:"walletBalance,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// margin balance
+	MarginBalance *string `json:"marginBalance,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// total initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// initial margin required for positions with current mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	CrossWalletBalance     *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl             *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance       *string `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount      *string `json:"maxWithdrawAmount,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	MarginAvailable        *bool   `json:"marginAvailable,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// crossed wallet balance
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// unrealized profit of crossed positions
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// available balance, only for USDT asset
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// maximum amount for transfer out, only for USDT asset
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// whether the asset can be used as margin in Multi-Assets mode
+	MarginAvailable *bool `json:"marginAvailable,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV2ResponseResultAssetsInner AccountInformationV2ResponseResultAssetsInner
@@ -437,38 +451,6 @@ func (o *AccountInformationV2ResponseResultAssetsInner) SetMaxWithdrawAmount(v s
 	o.MaxWithdrawAmount = &v
 }
 
-// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
-func (o *AccountInformationV2ResponseResultAssetsInner) GetUpdateTime() int64 {
-	if o == nil || common.IsNil(o.UpdateTime) {
-		var ret int64
-		return ret
-	}
-	return *o.UpdateTime
-}
-
-// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountInformationV2ResponseResultAssetsInner) GetUpdateTimeOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.UpdateTime) {
-		return nil, false
-	}
-	return o.UpdateTime, true
-}
-
-// HasUpdateTime returns a boolean if a field has been set.
-func (o *AccountInformationV2ResponseResultAssetsInner) HasUpdateTime() bool {
-	if o != nil && !common.IsNil(o.UpdateTime) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
-func (o *AccountInformationV2ResponseResultAssetsInner) SetUpdateTime(v int64) {
-	o.UpdateTime = &v
-}
-
 // GetMarginAvailable returns the MarginAvailable field value if set, zero value otherwise.
 func (o *AccountInformationV2ResponseResultAssetsInner) GetMarginAvailable() bool {
 	if o == nil || common.IsNil(o.MarginAvailable) {
@@ -499,6 +481,38 @@ func (o *AccountInformationV2ResponseResultAssetsInner) HasMarginAvailable() boo
 // SetMarginAvailable gets a reference to the given bool and assigns it to the MarginAvailable field.
 func (o *AccountInformationV2ResponseResultAssetsInner) SetMarginAvailable(v bool) {
 	o.MarginAvailable = &v
+}
+
+// GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
+func (o *AccountInformationV2ResponseResultAssetsInner) GetUpdateTime() int64 {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		var ret int64
+		return ret
+	}
+	return *o.UpdateTime
+}
+
+// GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountInformationV2ResponseResultAssetsInner) GetUpdateTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.UpdateTime) {
+		return nil, false
+	}
+	return o.UpdateTime, true
+}
+
+// HasUpdateTime returns a boolean if a field has been set.
+func (o *AccountInformationV2ResponseResultAssetsInner) HasUpdateTime() bool {
+	if o != nil && !common.IsNil(o.UpdateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateTime gets a reference to the given int64 and assigns it to the UpdateTime field.
+func (o *AccountInformationV2ResponseResultAssetsInner) SetUpdateTime(v int64) {
+	o.UpdateTime = &v
 }
 
 func (o AccountInformationV2ResponseResultAssetsInner) MarshalJSON() ([]byte, error) {
@@ -547,11 +561,11 @@ func (o AccountInformationV2ResponseResultAssetsInner) ToMap() (map[string]inter
 	if !common.IsNil(o.MaxWithdrawAmount) {
 		toSerialize["maxWithdrawAmount"] = o.MaxWithdrawAmount
 	}
-	if !common.IsNil(o.UpdateTime) {
-		toSerialize["updateTime"] = o.UpdateTime
-	}
 	if !common.IsNil(o.MarginAvailable) {
 		toSerialize["marginAvailable"] = o.MarginAvailable
+	}
+	if !common.IsNil(o.UpdateTime) {
+		toSerialize["updateTime"] = o.UpdateTime
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -587,8 +601,8 @@ func (o *AccountInformationV2ResponseResultAssetsInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "crossUnPnl")
 		delete(additionalProperties, "availableBalance")
 		delete(additionalProperties, "maxWithdrawAmount")
-		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "marginAvailable")
+		delete(additionalProperties, "updateTime")
 		o.AdditionalProperties = additionalProperties
 	}
 

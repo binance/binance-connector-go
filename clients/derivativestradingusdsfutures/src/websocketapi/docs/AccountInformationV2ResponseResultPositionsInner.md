@@ -5,15 +5,15 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**PositionSide** | Pointer to **string** | position side | [optional] 
 **PositionAmt** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit | [optional] 
 **IsolatedMargin** | Pointer to **string** |  | [optional] 
 **Notional** | Pointer to **string** |  | [optional] 
 **IsolatedWallet** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**InitialMargin** | Pointer to **string** | total initial margin required with current mark price | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin required | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

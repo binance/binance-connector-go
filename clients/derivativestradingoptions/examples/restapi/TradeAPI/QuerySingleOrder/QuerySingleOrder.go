@@ -22,7 +22,7 @@ func QuerySingleOrder() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.QuerySingleOrder(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.QuerySingleOrder(context.Background()).Symbol("BTC-200730-9000-C").Execute()
 	if err != nil {
 		log.Println(err)
 		return

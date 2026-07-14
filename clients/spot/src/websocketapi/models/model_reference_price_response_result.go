@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &ReferencePriceResponseResult{}
 
 // ReferencePriceResponseResult struct for ReferencePriceResponseResult
 type ReferencePriceResponseResult struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	ReferencePrice       *string `json:"referencePrice,omitempty"`
+	Symbol         *string `json:"symbol,omitempty"`
+	ReferencePrice *string `json:"referencePrice,omitempty"`
+	// Timestamp when the reference price was valid
 	Timestamp            *int64  `json:"timestamp,omitempty"`
 	Code                 *int64  `json:"code,omitempty"`
 	Msg                  *string `json:"msg,omitempty"`

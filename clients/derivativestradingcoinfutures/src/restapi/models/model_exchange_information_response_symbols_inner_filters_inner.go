@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,16 +17,27 @@ var _ common.MappedNullable = &ExchangeInformationResponseSymbolsInnerFiltersInn
 
 // ExchangeInformationResponseSymbolsInnerFiltersInner struct for ExchangeInformationResponseSymbolsInnerFiltersInner
 type ExchangeInformationResponseSymbolsInnerFiltersInner struct {
-	FilterType           *string `json:"filterType,omitempty"`
-	MaxPrice             *string `json:"maxPrice,omitempty"`
-	MinPrice             *string `json:"minPrice,omitempty"`
-	TickSize             *string `json:"tickSize,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
-	MinQty               *string `json:"minQty,omitempty"`
-	StepSize             *string `json:"stepSize,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
-	MultiplierUp         *string `json:"multiplierUp,omitempty"`
-	MultiplierDown       *string `json:"multiplierDown,omitempty"`
+	// Filter type.
+	FilterType *string `json:"filterType,omitempty"`
+	// Maximum price.
+	MaxPrice *string `json:"maxPrice,omitempty"`
+	// Minimum price.
+	MinPrice *string `json:"minPrice,omitempty"`
+	// Tick size.
+	TickSize *string `json:"tickSize,omitempty"`
+	// maximum quantity of base asset
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Minimum quantity.
+	MinQty *string `json:"minQty,omitempty"`
+	// Step size.
+	StepSize *string `json:"stepSize,omitempty"`
+	// Maximum allowed orders for this rule.
+	Limit *int64 `json:"limit,omitempty"`
+	// Upper multiplier bound.
+	MultiplierUp *string `json:"multiplierUp,omitempty"`
+	// Lower multiplier bound.
+	MultiplierDown *string `json:"multiplierDown,omitempty"`
+	// Multiplier decimal precision.
 	MultiplierDecimal    *string `json:"multiplierDecimal,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

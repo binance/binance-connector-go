@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetListScheduleResponseInner{}
 
 // GetListScheduleResponseInner struct for GetListScheduleResponseInner
 type GetListScheduleResponseInner struct {
-	ListTime              *int64   `json:"listTime,omitempty"`
-	CrossMarginAssets     []string `json:"crossMarginAssets,omitempty"`
+	// list Time.
+	ListTime *int64 `json:"listTime,omitempty"`
+	// cross Margin Assets list.
+	CrossMarginAssets []string `json:"crossMarginAssets,omitempty"`
+	// isolated Margin Symbols list.
 	IsolatedMarginSymbols []string `json:"isolatedMarginSymbols,omitempty"`
 	AdditionalProperties  map[string]interface{}
 }

@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**DeltaType** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Type** | Pointer to **int64** | Type. | [optional] 
+**DeltaType** | Pointer to **string** | Delta Type. | [optional] 
+**Amount** | Pointer to **string** | Amount. | [optional] 
+**Asset** | Pointer to **string** | Asset. | [optional] 
+**Time** | Pointer to **int64** | Time. | [optional] 
+**PositionSide** | Pointer to **string** | Position Side. | [optional] 
 
 ## Methods
 

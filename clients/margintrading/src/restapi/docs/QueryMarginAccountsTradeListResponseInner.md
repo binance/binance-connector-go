@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**IsBestMatch** | Pointer to **bool** |  | [optional] 
-**IsBuyer** | Pointer to **bool** |  | [optional] 
-**IsMaker** | Pointer to **bool** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**IsIsolated** | Pointer to **bool** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Commission** | Pointer to **string** | commission. | [optional] 
+**CommissionAsset** | Pointer to **string** | commission Asset. | [optional] 
+**Id** | Pointer to **int64** | id. | [optional] 
+**IsBestMatch** | Pointer to **bool** | is Best Match. | [optional] 
+**IsBuyer** | Pointer to **bool** | is Buyer. | [optional] 
+**IsMaker** | Pointer to **bool** | is Maker. | [optional] 
+**OrderId** | Pointer to **int64** | order Id. | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**Qty** | Pointer to **string** | qty. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**IsIsolated** | Pointer to **bool** | is Isolated. | [optional] 
+**Time** | Pointer to **int64** | time. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Algo REST API
+Algo Trading REST API
 
-OpenAPI Specification for the Binance Algo REST API
+Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
 */
 
 package models
@@ -17,19 +17,33 @@ var _ common.MappedNullable = &QuerySubOrdersFutureAlgoResponseSubOrdersInner{}
 
 // QuerySubOrdersFutureAlgoResponseSubOrdersInner struct for QuerySubOrdersFutureAlgoResponseSubOrdersInner
 type QuerySubOrdersFutureAlgoResponseSubOrdersInner struct {
-	AlgoId               *int64  `json:"algoId,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	OrderStatus          *string `json:"orderStatus,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	ExecutedAmt          *string `json:"executedAmt,omitempty"`
-	FeeAmt               *string `json:"feeAmt,omitempty"`
-	FeeAsset             *string `json:"feeAsset,omitempty"`
-	BookTime             *int64  `json:"bookTime,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	SubId                *int64  `json:"subId,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
+	// Algo order ID
+	AlgoId *int64 `json:"algoId,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Sub-order status
+	OrderStatus *string `json:"orderStatus,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Executed amount
+	ExecutedAmt *string `json:"executedAmt,omitempty"`
+	// Fee amount
+	FeeAmt *string `json:"feeAmt,omitempty"`
+	// Fee asset
+	FeeAsset *string `json:"feeAsset,omitempty"`
+	// Order creation time
+	BookTime *int64 `json:"bookTime,omitempty"`
+	// Average execution price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Sub-order execution sequence ID
+	SubId *int64 `json:"subId,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Original order quantity
 	OrigQty              *string `json:"origQty,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

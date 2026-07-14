@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &ExchangeInformationResponse{}
 
 // ExchangeInformationResponse struct for ExchangeInformationResponse
 type ExchangeInformationResponse struct {
-	Timezone             *string                                           `json:"timezone,omitempty"`
-	ServerTime           *int64                                            `json:"serverTime,omitempty"`
-	OptionContracts      []ExchangeInformationResponseOptionContractsInner `json:"optionContracts,omitempty"`
-	OptionAssets         []ExchangeInformationResponseOptionAssetsInner    `json:"optionAssets,omitempty"`
-	OptionSymbols        []ExchangeInformationResponseOptionSymbolsInner   `json:"optionSymbols,omitempty"`
-	RateLimits           []ExchangeInformationResponseRateLimitsInner      `json:"rateLimits,omitempty"`
+	// Time zone used by the server
+	Timezone *string `json:"timezone,omitempty"`
+	// Current system time
+	ServerTime *int64 `json:"serverTime,omitempty"`
+	// Option contract underlying asset info
+	OptionContracts []ExchangeInformationResponseOptionContractsInner `json:"optionContracts,omitempty"`
+	// Option asset info
+	OptionAssets []ExchangeInformationResponseOptionAssetsInner `json:"optionAssets,omitempty"`
+	// Option trading pair info
+	OptionSymbols []ExchangeInformationResponseOptionSymbolsInner `json:"optionSymbols,omitempty"`
+	// rate Limits
+	RateLimits           []ExchangeInformationResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &MarginCallPInner{}
 
 // MarginCallPInner struct for MarginCallPInner
 type MarginCallPInner struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallpa              *string `json:"pa,omitempty"`
-	Smallmt              *string `json:"mt,omitempty"`
-	Smalliw              *string `json:"iw,omitempty"`
-	Smallmp              *string `json:"mp,omitempty"`
-	Smallup              *string `json:"up,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Position Side
+	Smallps *string `json:"ps,omitempty"`
+	// Position Amount
+	Smallpa *string `json:"pa,omitempty"`
+	// Margin Type
+	Smallmt *string `json:"mt,omitempty"`
+	// Isolated Wallet (if isolated position)
+	Smalliw *string `json:"iw,omitempty"`
+	// Mark Price
+	Smallmp *string `json:"mp,omitempty"`
+	// Unrealized PnL
+	Smallup *string `json:"up,omitempty"`
+	// Maintenance Margin Required
 	Smallmm              *string `json:"mm,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

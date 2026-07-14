@@ -4,21 +4,21 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossMarginAsset** | Pointer to **string** |  | [optional] 
-**CrossMarginBorrowed** | Pointer to **string** |  | [optional] 
-**CrossMarginFree** | Pointer to **string** |  | [optional] 
-**CrossMarginInterest** | Pointer to **string** |  | [optional] 
-**CrossMarginLocked** | Pointer to **string** |  | [optional] 
-**UmWalletBalance** | Pointer to **string** |  | [optional] 
-**UmUnrealizedPNL** | Pointer to **string** |  | [optional] 
-**CmWalletBalance** | Pointer to **string** |  | [optional] 
-**CmUnrealizedPNL** | Pointer to **string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**NegativeBalance** | Pointer to **string** |  | [optional] 
-**OptionWalletBalance** | Pointer to **string** |  | [optional] 
-**OptionEquity** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**TotalWalletBalance** | Pointer to **string** | total Wallet Balance. | [optional] 
+**CrossMarginAsset** | Pointer to **string** | cross Margin Asset. | [optional] 
+**CrossMarginBorrowed** | Pointer to **string** | cross Margin Borrowed. | [optional] 
+**CrossMarginFree** | Pointer to **string** | cross Margin Free. | [optional] 
+**CrossMarginInterest** | Pointer to **string** | cross Margin Interest. | [optional] 
+**CrossMarginLocked** | Pointer to **string** | cross Margin Locked. | [optional] 
+**UmWalletBalance** | Pointer to **string** | um Wallet Balance. | [optional] 
+**UmUnrealizedPNL** | Pointer to **string** | um Unrealized PNL. | [optional] 
+**CmWalletBalance** | Pointer to **string** | cm Wallet Balance. | [optional] 
+**CmUnrealizedPNL** | Pointer to **string** | cm Unrealized PNL. | [optional] 
+**UpdateTime** | Pointer to **int64** | update Time. | [optional] 
+**NegativeBalance** | Pointer to **string** | negative Balance. | [optional] 
+**OptionWalletBalance** | Pointer to **string** | option Wallet Balance. | [optional] 
+**OptionEquity** | Pointer to **string** | option Equity. | [optional] 
 
 ## Methods
 

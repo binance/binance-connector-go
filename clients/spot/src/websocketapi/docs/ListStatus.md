@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**O** | Pointer to [**[]ListStatusOInner**](ListStatusOInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**G** | Pointer to **int64** | OrderListId | [optional] 
+**C** | Pointer to **string** | Contingency Type | [optional] 
+**L** | Pointer to **string** | List Status Type | [optional] 
+**L** | Pointer to **string** | List Order Status | [optional] 
+**R** | Pointer to **string** | List Reject Reason | [optional] 
+**C** | Pointer to **string** | List Client Order ID | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**O** | Pointer to [**[]ListStatusOInner**](ListStatusOInner.md) | An array of objects | [optional] 
 
 ## Methods
 

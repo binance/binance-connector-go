@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseAsset** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**WeightInQuantity** | Pointer to **string** |  | [optional] 
-**WeightInPercentage** | Pointer to **string** |  | [optional] 
+**BaseAsset** | Pointer to **string** | Base Asset. | [optional] 
+**QuoteAsset** | Pointer to **string** | Quote Asset. | [optional] 
+**WeightInQuantity** | Pointer to **string** | Weight In Quantity. | [optional] 
+**WeightInPercentage** | Pointer to **string** | Weight In Percentage. | [optional] 
 
 ## Methods
 

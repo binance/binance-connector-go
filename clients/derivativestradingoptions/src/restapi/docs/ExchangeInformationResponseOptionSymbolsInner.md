@@ -4,24 +4,27 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpiryDate** | Pointer to **int64** |  | [optional] 
-**Filters** | Pointer to [**[]ExchangeInformationResponseOptionSymbolsInnerFiltersInner**](ExchangeInformationResponseOptionSymbolsInnerFiltersInner.md) |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**StrikePrice** | Pointer to **string** |  | [optional] 
-**Underlying** | Pointer to **string** |  | [optional] 
-**Unit** | Pointer to **int64** |  | [optional] 
-**LiquidationFeeRate** | Pointer to **string** |  | [optional] 
-**MinQty** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**MaintenanceMargin** | Pointer to **string** |  | [optional] 
-**MinInitialMargin** | Pointer to **string** |  | [optional] 
-**MinMaintenanceMargin** | Pointer to **string** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**ExpiryDate** | Pointer to **int64** | expiry time | [optional] 
+**Filters** | Pointer to [**[]ExchangeInformationResponseOptionSymbolsInnerFiltersInner**](ExchangeInformationResponseOptionSymbolsInnerFiltersInner.md) | filters | [optional] 
+**Symbol** | Pointer to **string** | Trading pair name | [optional] 
+**Side** | Pointer to **string** | Direction: CALL long, PUT short | [optional] 
+**StrikePrice** | Pointer to **string** | Strike price | [optional] 
+**Underlying** | Pointer to **string** | Name of the underlying asset of the option contract | [optional] 
+**Unit** | Pointer to **int64** | Contract unit, the quantity of the underlying asset represented by a single contract. | [optional] 
+**LiquidationFeeRate** | Pointer to **string** | liquidation fee rate | [optional] 
+**MinQty** | Pointer to **string** | Minimum order quantity | [optional] 
+**MaxQty** | Pointer to **string** | Maximum order quantity | [optional] 
+**InitialMargin** | Pointer to **string** | Initial Magin Ratio | [optional] 
+**MaintenanceMargin** | Pointer to **string** | Maintenance Margin Ratio | [optional] 
+**MinInitialMargin** | Pointer to **string** | Min Initial Margin Ratio | [optional] 
+**MinMaintenanceMargin** | Pointer to **string** | Min Maintenance Margin Ratio | [optional] 
+**PriceScale** | Pointer to **int64** | price precision | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity precision | [optional] 
+**QuoteAsset** | Pointer to **string** | Quotation asset | [optional] 
+**ContractType** | Pointer to **string** | Contract type | [optional] 
+**UnderlyingType** | Pointer to **string** | Underlying type | [optional] 
+**NakedSell** | Pointer to **bool** | Whether naked selling is allowed for this symbol | [optional] 
+**Status** | Pointer to **string** | Trading Status | [optional] 
 
 ## Methods
 
@@ -466,6 +469,81 @@ SetQuoteAsset sets QuoteAsset field to given value.
 `func (o *ExchangeInformationResponseOptionSymbolsInner) HasQuoteAsset() bool`
 
 HasQuoteAsset returns a boolean if a field has been set.
+
+### GetContractType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetContractType() string`
+
+GetContractType returns the ContractType field if non-nil, zero value otherwise.
+
+### GetContractTypeOk
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetContractTypeOk() (*string, bool)`
+
+GetContractTypeOk returns a tuple with the ContractType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) SetContractType(v string)`
+
+SetContractType sets ContractType field to given value.
+
+### HasContractType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) HasContractType() bool`
+
+HasContractType returns a boolean if a field has been set.
+
+### GetUnderlyingType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetUnderlyingType() string`
+
+GetUnderlyingType returns the UnderlyingType field if non-nil, zero value otherwise.
+
+### GetUnderlyingTypeOk
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetUnderlyingTypeOk() (*string, bool)`
+
+GetUnderlyingTypeOk returns a tuple with the UnderlyingType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnderlyingType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) SetUnderlyingType(v string)`
+
+SetUnderlyingType sets UnderlyingType field to given value.
+
+### HasUnderlyingType
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) HasUnderlyingType() bool`
+
+HasUnderlyingType returns a boolean if a field has been set.
+
+### GetNakedSell
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetNakedSell() bool`
+
+GetNakedSell returns the NakedSell field if non-nil, zero value otherwise.
+
+### GetNakedSellOk
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) GetNakedSellOk() (*bool, bool)`
+
+GetNakedSellOk returns a tuple with the NakedSell field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNakedSell
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) SetNakedSell(v bool)`
+
+SetNakedSell sets NakedSell field to given value.
+
+### HasNakedSell
+
+`func (o *ExchangeInformationResponseOptionSymbolsInner) HasNakedSell() bool`
+
+HasNakedSell returns a boolean if a field has been set.
 
 ### GetStatus
 

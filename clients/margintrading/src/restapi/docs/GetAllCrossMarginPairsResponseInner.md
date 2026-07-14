@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Base** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**IsBuyAllowed** | Pointer to **bool** |  | [optional] 
-**IsMarginTrade** | Pointer to **bool** |  | [optional] 
-**IsSellAllowed** | Pointer to **bool** |  | [optional] 
-**Quote** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**DelistTime** | Pointer to **int64** |  | [optional] 
+**Base** | Pointer to **string** | base. | [optional] 
+**Id** | Pointer to **int64** | id. | [optional] 
+**IsBuyAllowed** | Pointer to **bool** | is Buy Allowed. | [optional] 
+**IsMarginTrade** | Pointer to **bool** | is Margin Trade. | [optional] 
+**IsSellAllowed** | Pointer to **bool** | is Sell Allowed. | [optional] 
+**Quote** | Pointer to **string** | quote. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**DelistTime** | Pointer to **int64** | delist Time. | [optional] 
 
 ## Methods
 

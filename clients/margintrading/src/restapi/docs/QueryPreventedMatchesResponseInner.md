@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**PreventedMatchId** | Pointer to **int64** |  | [optional] 
-**TakerOrderId** | Pointer to **int64** |  | [optional] 
-**MakerSymbol** | Pointer to **string** |  | [optional] 
-**MakerOrderId** | Pointer to **int64** |  | [optional] 
-**TradeGroupId** | Pointer to **int64** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**MakerPreventedQuantity** | Pointer to **string** |  | [optional] 
-**TransactTime** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**PreventedMatchId** | Pointer to **int64** | prevented Match Id. | [optional] 
+**TakerOrderId** | Pointer to **int64** | taker Order Id. | [optional] 
+**MakerSymbol** | Pointer to **string** | maker Symbol. | [optional] 
+**MakerOrderId** | Pointer to **int64** | maker Order Id. | [optional] 
+**TradeGroupId** | Pointer to **int64** | trade Group Id. | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self Trade Prevention Mode. | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**MakerPreventedQuantity** | Pointer to **string** | maker Prevented Quantity. | [optional] 
+**TransactTime** | Pointer to **int64** | transact Time. | [optional] 
 
 ## Methods
 

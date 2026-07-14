@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,11 +15,15 @@ import (
 // checks if the PositionAdlQuantileEstimationResponseInnerAdlQuantile type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &PositionAdlQuantileEstimationResponseInnerAdlQuantile{}
 
-// PositionAdlQuantileEstimationResponseInnerAdlQuantile struct for PositionAdlQuantileEstimationResponseInnerAdlQuantile
+// PositionAdlQuantileEstimationResponseInnerAdlQuantile ADL quantile information.
 type PositionAdlQuantileEstimationResponseInnerAdlQuantile struct {
-	LONG                 *int64 `json:"LONG,omitempty"`
-	SHORT                *int64 `json:"SHORT,omitempty"`
-	HEDGE                *int64 `json:"HEDGE,omitempty"`
+	// adl quantile for \"LONG\" position in hedge mode
+	LONG *int64 `json:"LONG,omitempty"`
+	// adl qauntile for \"SHORT\" position in hedge mode
+	SHORT *int64 `json:"SHORT,omitempty"`
+	// Hedge mode ADL quantile.
+	HEDGE *int64 `json:"HEDGE,omitempty"`
+	// One-way mode ADL quantile.
 	BOTH                 *int64 `json:"BOTH,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

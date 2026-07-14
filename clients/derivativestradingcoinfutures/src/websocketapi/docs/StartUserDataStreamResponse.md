@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Id** | Pointer to **string** | positionId | [optional] 
+**Status** | Pointer to **int64** | Enum：completed，processing | [optional] 
 **Result** | Pointer to [**StartUserDataStreamResponseResult**](StartUserDataStreamResponseResult.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]StartUserDataStreamResponseRateLimitsInner**](StartUserDataStreamResponseRateLimitsInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *StartUserDataStreamResponse) GetRateLimits() []StartUserDataStreamResponseRateLimitsInner`
+`func (o *StartUserDataStreamResponse) GetRateLimits() []CloseUserDataStreamResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *StartUserDataStreamResponse) GetRateLimitsOk() (*[]StartUserDataStreamResponseRateLimitsInner, bool)`
+`func (o *StartUserDataStreamResponse) GetRateLimitsOk() (*[]CloseUserDataStreamResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *StartUserDataStreamResponse) SetRateLimits(v []StartUserDataStreamResponseRateLimitsInner)`
+`func (o *StartUserDataStreamResponse) SetRateLimits(v []CloseUserDataStreamResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

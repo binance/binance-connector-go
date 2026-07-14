@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CreateInboundTransfer**](TransferAPI.md#CreateInboundTransfer) | **Post** /sapi/v1/w3w/wallet/prediction/transfer/inbound | Create Inbound Transfer
-[**CreateOutboundTransfer**](TransferAPI.md#CreateOutboundTransfer) | **Post** /sapi/v1/w3w/wallet/prediction/transfer/outbound | Create Outbound Transfer
-[**QueryTransferList**](TransferAPI.md#QueryTransferList) | **Get** /sapi/v1/w3w/wallet/prediction/transfer/list | Query Transfer List
-[**QueryTransferStatus**](TransferAPI.md#QueryTransferStatus) | **Get** /sapi/v1/w3w/wallet/prediction/transfer/status | Query Transfer Status
+[**CreateInboundTransfer**](TransferAPI.md#CreateInboundTransfer) | **Post** /sapi/v1/w3w/wallet/prediction/transfer/inbound | Create Inbound Transfer (TRADE)
+[**CreateOutboundTransfer**](TransferAPI.md#CreateOutboundTransfer) | **Post** /sapi/v1/w3w/wallet/prediction/transfer/outbound | Create Outbound Transfer (TRADE)
+[**QueryTransferList**](TransferAPI.md#QueryTransferList) | **Get** /sapi/v1/w3w/wallet/prediction/transfer/list | Query Transfer List (USER_DATA)
+[**QueryTransferStatus**](TransferAPI.md#QueryTransferStatus) | **Get** /sapi/v1/w3w/wallet/prediction/transfer/status | Query Transfer Status (USER_DATA)
 
 
 ## CreateInboundTransfer
 
 > CreateInboundTransferResponse CreateInboundTransfer(ctx).WalletId(walletId).WalletAddress(walletAddress).FromTokenAmount(fromTokenAmount).AccountType(accountType).FromToken(fromToken).ToToken(toToken).ChainId(chainId).Execute()
 
-Create Inbound Transfer
+Create Inbound Transfer (TRADE)
 
 
 ### Example
@@ -94,7 +94,7 @@ No authorization required
 
 > CreateOutboundTransferResponse CreateOutboundTransfer(ctx).WalletId(walletId).WalletAddress(walletAddress).FromTokenAmount(fromTokenAmount).AccountType(accountType).SourceBiz(sourceBiz).FromToken(fromToken).ToToken(toToken).ChainId(chainId).Execute()
 
-Create Outbound Transfer
+Create Outbound Transfer (TRADE)
 
 
 ### Example
@@ -176,7 +176,7 @@ No authorization required
 
 > QueryTransferListResponse QueryTransferList(ctx).WalletAddress(walletAddress).StartDate(startDate).EndDate(endDate).TokenSymbol(tokenSymbol).Direction(direction).Offset(offset).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Transfer List
+Query Transfer List (USER_DATA)
 
 
 ### Example
@@ -258,7 +258,7 @@ No authorization required
 
 > QueryTransferStatusResponse QueryTransferStatus(ctx).TransferId(transferId).RecvWindow(recvWindow).Execute()
 
-Query Transfer Status
+Query Transfer Status (USER_DATA)
 
 
 ### Example

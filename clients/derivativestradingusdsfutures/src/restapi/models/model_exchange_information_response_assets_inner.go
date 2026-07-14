@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,10 +15,12 @@ import (
 // checks if the ExchangeInformationResponseAssetsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &ExchangeInformationResponseAssetsInner{}
 
-// ExchangeInformationResponseAssetsInner struct for ExchangeInformationResponseAssetsInner
+// ExchangeInformationResponseAssetsInner assets information
 type ExchangeInformationResponseAssetsInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	MarginAvailable      *bool   `json:"marginAvailable,omitempty"`
+	Asset *string `json:"asset,omitempty"`
+	// whether the asset can be used as margin in Multi-Assets mode
+	MarginAvailable *bool `json:"marginAvailable,omitempty"`
+	// auto-exchange threshold in Multi-Assets margin mode
 	AutoAssetExchange    *string `json:"autoAssetExchange,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &CmPositionAdlQuantileEstimationResponseInner{}
 
 // CmPositionAdlQuantileEstimationResponseInner struct for CmPositionAdlQuantileEstimationResponseInner
 type CmPositionAdlQuantileEstimationResponseInner struct {
+	// Trade symbol, if existing.
 	Symbol               *string                                                  `json:"symbol,omitempty"`
 	AdlQuantile          *CmPositionAdlQuantileEstimationResponseInnerAdlQuantile `json:"adlQuantile,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**MarginType** | Pointer to **string** |  | [optional] 
-**IsAutoAddMargin** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **int64** |  | [optional] 
-**MaxNotionalValue** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**MarginType** | Pointer to **string** | Margin Type. | [optional] 
+**IsAutoAddMargin** | Pointer to **string** | Is Auto Add Margin. | [optional] 
+**Leverage** | Pointer to **int64** | current initial leverage | [optional] 
+**MaxNotionalValue** | Pointer to **string** | Max Notional Value. | [optional] 
 
 ## Methods
 

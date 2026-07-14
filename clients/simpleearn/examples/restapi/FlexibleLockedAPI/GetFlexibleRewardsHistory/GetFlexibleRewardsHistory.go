@@ -22,7 +22,7 @@ func GetFlexibleRewardsHistory() {
 	apiClient := client.NewBinanceSimpleEarnClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleRewardsHistory(context.Background()).Type("s").Execute()
+	resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleRewardsHistory(context.Background()).Execute()
 	if err != nil {
 		log.Println(err)
 		return

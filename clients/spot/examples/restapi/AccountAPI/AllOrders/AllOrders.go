@@ -22,7 +22,7 @@ func AllOrders() {
 	apiClient := client.NewBinanceSpotClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.AllOrders(context.Background()).Symbol("BNBUSDT").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.AllOrders(context.Background()).Symbol("LTCBTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

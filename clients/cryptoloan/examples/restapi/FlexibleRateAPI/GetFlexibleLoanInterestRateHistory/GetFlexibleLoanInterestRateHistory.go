@@ -22,7 +22,7 @@ func GetFlexibleLoanInterestRateHistory() {
 	apiClient := client.NewBinanceCryptoLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleRateAPI.GetFlexibleLoanInterestRateHistory(context.Background()).Coin("coin_example").RecvWindow(5000).Execute()
+	resp, err := apiClient.RestApi.FlexibleRateAPI.GetFlexibleLoanInterestRateHistory(context.Background()).Coin("USDT").RecvWindow(5000).Execute()
 	if err != nil {
 		log.Println(err)
 		return

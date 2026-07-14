@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -15,24 +15,40 @@ import (
 // checks if the TickerResponseData type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &TickerResponseData{}
 
-// TickerResponseData struct for TickerResponseData
+// TickerResponseData 24-hour rolling window ticker statistics.
 type TickerResponseData struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PriceChange          *string `json:"priceChange,omitempty"`
-	PriceChangePercent   *string `json:"priceChangePercent,omitempty"`
-	WeightedAvgPrice     *string `json:"weightedAvgPrice,omitempty"`
-	LastPrice            *string `json:"lastPrice,omitempty"`
-	LastQty              *string `json:"lastQty,omitempty"`
-	OpenPrice            *string `json:"openPrice,omitempty"`
-	HighPrice            *string `json:"highPrice,omitempty"`
-	LowPrice             *string `json:"lowPrice,omitempty"`
-	Volume               *string `json:"volume,omitempty"`
-	QuoteVolume          *string `json:"quoteVolume,omitempty"`
-	OpenTime             *int64  `json:"openTime,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
-	FirstId              *int64  `json:"firstId,omitempty"`
-	LastId               *int64  `json:"lastId,omitempty"`
-	Count                *int64  `json:"count,omitempty"`
+	// Trading pair symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Absolute price change in the 24h window.
+	PriceChange *string `json:"priceChange,omitempty"`
+	// Percentage price change in the 24h window.
+	PriceChangePercent *string `json:"priceChangePercent,omitempty"`
+	// Weighted average price in the 24h window.
+	WeightedAvgPrice *string `json:"weightedAvgPrice,omitempty"`
+	// Latest traded price.
+	LastPrice *string `json:"lastPrice,omitempty"`
+	// Quantity of the latest trade.
+	LastQty *string `json:"lastQty,omitempty"`
+	// Opening price of the 24h window.
+	OpenPrice *string `json:"openPrice,omitempty"`
+	// Highest price in the 24h window.
+	HighPrice *string `json:"highPrice,omitempty"`
+	// Lowest price in the 24h window.
+	LowPrice *string `json:"lowPrice,omitempty"`
+	// Base asset volume in the 24h window.
+	Volume *string `json:"volume,omitempty"`
+	// Quote asset volume in the 24h window.
+	QuoteVolume *string `json:"quoteVolume,omitempty"`
+	// Start time of the 24h window (milliseconds).
+	OpenTime *int64 `json:"openTime,omitempty"`
+	// End time of the 24h window (milliseconds).
+	CloseTime *int64 `json:"closeTime,omitempty"`
+	// First trade ID in the 24h window.
+	FirstId *int64 `json:"firstId,omitempty"`
+	// Last trade ID in the 24h window.
+	LastId *int64 `json:"lastId,omitempty"`
+	// Total number of trades in the 24h window.
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

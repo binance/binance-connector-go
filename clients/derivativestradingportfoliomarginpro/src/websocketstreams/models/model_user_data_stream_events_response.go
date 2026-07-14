@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Portfolio Margin Pro WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro WebSocket Market Streams
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -15,7 +15,15 @@ import (
 
 // UserDataStreamEventsResponse - struct for UserDataStreamEventsResponse
 type UserDataStreamEventsResponse struct {
-	Risklevelchange *Risklevelchange
+	PmProAccountUpdate *PmProAccountUpdate
+	Risklevelchange    *Risklevelchange
+}
+
+// PmProAccountUpdateAsUserDataStreamEventsResponse is a convenience function that returns PmProAccountUpdate wrapped in UserDataStreamEventsResponse
+func PmProAccountUpdateAsUserDataStreamEventsResponse(v *PmProAccountUpdate) UserDataStreamEventsResponse {
+	return UserDataStreamEventsResponse{
+		PmProAccountUpdate: v,
+	}
 }
 
 // RisklevelchangeAsUserDataStreamEventsResponse is a convenience function that returns Risklevelchange wrapped in UserDataStreamEventsResponse
@@ -49,20 +57,20 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to remarshal JSON: %v", err)
 	}
 
-	// check if the discriminator value is 'riskLevelChange'
-	if jsonDict["e"] == "riskLevelChange" {
-		// try to unmarshal JSON data into Risklevelchange
-		err = json.Unmarshal(cleanedData, &dst.Risklevelchange)
+	// check if the discriminator value is 'PM_PRO_ACCOUNT_UPDATE'
+	if jsonDict["e"] == "PM_PRO_ACCOUNT_UPDATE" {
+		// try to unmarshal JSON data into PmProAccountUpdate
+		err = json.Unmarshal(cleanedData, &dst.PmProAccountUpdate)
 		if err == nil {
-			return nil // data stored in dst.Risklevelchange, return on the first match
+			return nil // data stored in dst.PmProAccountUpdate, return on the first match
 		} else {
-			dst.Risklevelchange = nil
-			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as Risklevelchange: %s", err.Error())
+			dst.PmProAccountUpdate = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as PmProAccountUpdate: %s", err.Error())
 		}
 	}
 
-	// check if the discriminator value is 'risklevelchange'
-	if jsonDict["e"] == "risklevelchange" {
+	// check if the discriminator value is 'riskLevelChange'
+	if jsonDict["e"] == "riskLevelChange" {
 		// try to unmarshal JSON data into Risklevelchange
 		err = json.Unmarshal(cleanedData, &dst.Risklevelchange)
 		if err == nil {
@@ -78,6 +86,10 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
+	if src.PmProAccountUpdate != nil {
+		return json.Marshal(&src.PmProAccountUpdate)
+	}
+
 	if src.Risklevelchange != nil {
 		return json.Marshal(&src.Risklevelchange)
 	}
@@ -90,6 +102,10 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
+	if obj.PmProAccountUpdate != nil {
+		return obj.PmProAccountUpdate
+	}
+
 	if obj.Risklevelchange != nil {
 		return obj.Risklevelchange
 	}

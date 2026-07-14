@@ -4,27 +4,27 @@ All URIs are relative to *http://localhost*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**AccountCommission**](AccountAPI.md#AccountCommission) | /account.commission | WebSocket Account Commission Rates
-[**AccountRateLimitsOrders**](AccountAPI.md#AccountRateLimitsOrders) | /account.rateLimits.orders | WebSocket Unfilled Order Count
-[**AccountStatus**](AccountAPI.md#AccountStatus) | /account.status | WebSocket Account information
-[**AllOrderLists**](AccountAPI.md#AllOrderLists) | /allOrderLists | WebSocket Account order list history
-[**AllOrders**](AccountAPI.md#AllOrders) | /allOrders | WebSocket Account order history
-[**MyAllocations**](AccountAPI.md#MyAllocations) | /myAllocations | WebSocket Account allocations
-[**MyFilters**](AccountAPI.md#MyFilters) | /myFilters | WebSocket Query Relevant Filters
-[**MyPreventedMatches**](AccountAPI.md#MyPreventedMatches) | /myPreventedMatches | WebSocket Account prevented matches
-[**MyTrades**](AccountAPI.md#MyTrades) | /myTrades | WebSocket Account trade history
-[**OpenOrderListsStatus**](AccountAPI.md#OpenOrderListsStatus) | /openOrderLists.status | WebSocket Current open Order lists
-[**OpenOrdersStatus**](AccountAPI.md#OpenOrdersStatus) | /openOrders.status | WebSocket Current open orders
-[**OrderAmendments**](AccountAPI.md#OrderAmendments) | /order.amendments | WebSocket Query Order Amendments
-[**OrderListStatus**](AccountAPI.md#OrderListStatus) | /orderList.status | WebSocket Query Order list
-[**OrderStatus**](AccountAPI.md#OrderStatus) | /order.status | WebSocket Query order
+[**AccountCommission**](AccountAPI.md#AccountCommission) | /account.commission | Account Commission Rates (USER_DATA)
+[**AccountRateLimitsOrders**](AccountAPI.md#AccountRateLimitsOrders) | /account.rateLimits.orders | Unfilled Order Count (USER_DATA)
+[**AccountStatus**](AccountAPI.md#AccountStatus) | /account.status | Account information (USER_DATA)
+[**AllOrderLists**](AccountAPI.md#AllOrderLists) | /allOrderLists | Account order list history (USER_DATA)
+[**AllOrders**](AccountAPI.md#AllOrders) | /allOrders | Account order history (USER_DATA)
+[**MyAllocations**](AccountAPI.md#MyAllocations) | /myAllocations | Account allocations (USER_DATA)
+[**MyFilters**](AccountAPI.md#MyFilters) | /myFilters | Query Relevant Filters (USER_DATA)
+[**MyPreventedMatches**](AccountAPI.md#MyPreventedMatches) | /myPreventedMatches | Account prevented matches (USER_DATA)
+[**MyTrades**](AccountAPI.md#MyTrades) | /myTrades | Account trade history (USER_DATA)
+[**OpenOrderListsStatus**](AccountAPI.md#OpenOrderListsStatus) | /openOrderLists.status | Current open Order lists (USER_DATA)
+[**OpenOrdersStatus**](AccountAPI.md#OpenOrdersStatus) | /openOrders.status | Current open orders (USER_DATA)
+[**OrderAmendments**](AccountAPI.md#OrderAmendments) | /order.amendments | Query Order Amendments (USER_DATA)
+[**OrderListStatus**](AccountAPI.md#OrderListStatus) | /orderList.status | Query Order list (USER_DATA)
+[**OrderStatus**](AccountAPI.md#OrderStatus) | /order.status | Query order (USER_DATA)
 
 
 ## AccountCommission
 
 > AccountCommissionResponse AccountCommission().Symbol(symbol).Id(id).Execute()
 
-WebSocket Account Commission Rates
+Account Commission Rates (USER_DATA)
 
 
 ### Example
@@ -42,7 +42,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -81,7 +81,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **string** | Client-generated request identifier. | 
 
 ### Return type
 
@@ -98,7 +98,7 @@ No authorization required
 
 > AccountRateLimitsOrdersResponse AccountRateLimitsOrders().Id(id).RecvWindow(recvWindow).Execute()
 
-WebSocket Unfilled Order Count
+Unfilled Order Count (USER_DATA)
 
 
 ### Example
@@ -115,8 +115,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -154,8 +154,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -172,7 +172,7 @@ No authorization required
 
 > AccountStatusResponse AccountStatus().Id(id).OmitZeroBalances(omitZeroBalances).RecvWindow(recvWindow).Execute()
 
-WebSocket Account information
+Account information (USER_DATA)
 
 
 ### Example
@@ -189,9 +189,9 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. <br>Default value: false (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. Default value: `false`. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -229,9 +229,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **omitZeroBalances** | **bool** | When set to &#x60;true&#x60;, emits only the non-zero balances of an account. &lt;br&gt;Default value: false | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **omitZeroBalances** | **bool** | When set to &#x60;true&#x60;, emits only the non-zero balances of an account. Default value: &#x60;false&#x60;. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -248,7 +248,7 @@ No authorization required
 
 > AllOrderListsResponse AllOrderLists().Id(id).FromId(fromId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-WebSocket Account order list history
+Account order list history (USER_DATA)
 
 
 ### Example
@@ -265,12 +265,12 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromId := int32(1) // int32 | Trade ID to begin at (optional)
-	startTime := int64(1735693200000) // int64 |  (optional)
-	endTime := int64(1735693200000) // int64 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	fromId := int32(1) // int32 | Order list ID to begin at (optional)
+	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -308,12 +308,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **fromId** | **int32** | Trade ID to begin at | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **fromId** | **int32** | Order list ID to begin at | 
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **limit** | **int32** | Default: 500; Maximum: 1000 | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -330,7 +330,7 @@ No authorization required
 
 > AllOrdersResponse AllOrders().Symbol(symbol).Id(id).OrderId(orderId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-WebSocket Account order history
+Account order history (USER_DATA)
 
 
 ### Example
@@ -348,12 +348,12 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
-	startTime := int64(1735693200000) // int64 |  (optional)
-	endTime := int64(1735693200000) // int64 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	orderId := int64(1) // int64 | Order ID to begin at (optional)
+	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -392,12 +392,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **orderId** | **int64** | Order ID to begin at | 
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **limit** | **int32** | Default: 500; Maximum: 1000 | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -414,7 +414,7 @@ No authorization required
 
 > MyAllocationsResponse MyAllocations().Symbol(symbol).Id(id).StartTime(startTime).EndTime(endTime).FromAllocationId(fromAllocationId).Limit(limit).OrderId(orderId).RecvWindow(recvWindow).Execute()
 
-WebSocket Account allocations
+Account allocations (USER_DATA)
 
 
 ### Example
@@ -432,13 +432,13 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	startTime := int64(1735693200000) // int64 |  (optional)
-	endTime := int64(1735693200000) // int64 |  (optional)
-	fromAllocationId := int32(1) // int32 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	fromAllocationId := int32(1) // int32 | Allocation ID to begin at (optional)
+	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
+	orderId := int64(1) // int64 | Order ID (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -477,13 +477,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **fromAllocationId** | **int32** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **fromAllocationId** | **int32** | Allocation ID to begin at | 
+ **limit** | **int32** | Default: 500; Maximum: 1000 | 
+ **orderId** | **int64** | Order ID | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -500,7 +500,7 @@ No authorization required
 
 > MyFiltersResponse MyFilters().Symbol(symbol).Id(id).RecvWindow(recvWindow).Execute()
 
-WebSocket Query Relevant Filters
+Query Relevant Filters (USER_DATA)
 
 
 ### Example
@@ -518,8 +518,8 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -558,8 +558,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -576,7 +576,7 @@ No authorization required
 
 > MyPreventedMatchesResponse MyPreventedMatches().Symbol(symbol).Id(id).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-WebSocket Account prevented matches
+Account prevented matches (USER_DATA)
 
 
 ### Example
@@ -594,12 +594,12 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	preventedMatchId := int64(1) // int64 |  (optional)
-	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
-	fromPreventedMatchId := int64(1) // int64 |  (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	preventedMatchId := int64(1) // int64 | Prevented match ID (optional)
+	orderId := int64(1) // int64 | Order ID (optional)
+	fromPreventedMatchId := int64(1) // int64 | Prevented match ID to begin at (optional)
+	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -638,12 +638,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **preventedMatchId** | **int64** |  | 
- **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **fromPreventedMatchId** | **int64** |  | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **preventedMatchId** | **int64** | Prevented match ID | 
+ **orderId** | **int64** | Order ID | 
+ **fromPreventedMatchId** | **int64** | Prevented match ID to begin at | 
+ **limit** | **int32** | Default: 500; Maximum: 1000 | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -660,7 +660,7 @@ No authorization required
 
 > MyTradesResponse MyTrades().Symbol(symbol).Id(id).OrderId(orderId).StartTime(startTime).EndTime(endTime).FromId(fromId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-WebSocket Account trade history
+Account trade history (USER_DATA)
 
 
 ### Example
@@ -678,13 +678,13 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
-	startTime := int64(1735693200000) // int64 |  (optional)
-	endTime := int64(1735693200000) // int64 |  (optional)
-	fromId := int32(1) // int32 | Trade ID to begin at (optional)
-	limit := int32(100) // int32 | Default: 100; Maximum: 5000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	orderId := int64(1) // int64 | This can only be used in combination with `symbol`. (optional)
+	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
+	fromId := int32(1) // int32 | First trade ID to query (optional)
+	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -723,13 +723,13 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
- **fromId** | **int32** | Trade ID to begin at | 
- **limit** | **int32** | Default: 100; Maximum: 5000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **orderId** | **int64** | This can only be used in combination with &#x60;symbol&#x60;. | 
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **fromId** | **int32** | First trade ID to query | 
+ **limit** | **int32** | Default: 500; Maximum: 1000 | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -746,7 +746,7 @@ No authorization required
 
 > OpenOrderListsStatusResponse OpenOrderListsStatus().Id(id).RecvWindow(recvWindow).Execute()
 
-WebSocket Current open Order lists
+Current open Order lists (USER_DATA)
 
 
 ### Example
@@ -763,8 +763,8 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -802,8 +802,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -820,7 +820,7 @@ No authorization required
 
 > OpenOrdersStatusResponse OpenOrdersStatus().Id(id).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-WebSocket Current open orders
+Current open orders (USER_DATA)
 
 
 ### Example
@@ -837,9 +837,9 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	symbol := "BNBUSDT" // string | If omitted, open orders for all symbols are returned (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -877,9 +877,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **symbol** | **string** | Describe a single symbol | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **symbol** | **string** | If omitted, open orders for all symbols are returned | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -896,7 +896,7 @@ No authorization required
 
 > OrderAmendmentsResponse OrderAmendments().Symbol(symbol).OrderId(orderId).Id(id).FromExecutionId(fromExecutionId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-WebSocket Query Order Amendments
+Query Order Amendments (USER_DATA)
 
 
 ### Example
@@ -914,11 +914,11 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	orderId := int64(1) // int64 | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	fromExecutionId := int64(1) // int64 |  (optional)
-	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	orderId := int64(1) // int64 | Order ID
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	fromExecutionId := int64(1) // int64 | Execution ID to begin at (optional)
+	limit := int64(1) // int64 | Default: 500; Maximum: 1000 (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -957,11 +957,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **fromExecutionId** | **int64** |  | 
+ **orderId** | **int64** | Order ID | 
+ **id** | **string** | Client-generated request identifier. | 
+ **fromExecutionId** | **int64** | Execution ID to begin at | 
  **limit** | **int64** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -978,7 +978,7 @@ No authorization required
 
 > OrderListStatusResponse OrderListStatus().Id(id).OrigClientOrderId(origClientOrderId).OrderListId(orderListId).RecvWindow(recvWindow).Execute()
 
-WebSocket Query Order list
+Query Order list (USER_DATA)
 
 
 ### Example
@@ -995,10 +995,10 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	origClientOrderId := "origClientOrderId_example" // string | `orderId`or`origClientOrderId`mustbesent (optional)
-	orderListId := int32(1) // int32 | Cancel order list by orderListId (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	origClientOrderId := "08985fedd9ea2cf6b28996" // string | Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided. (optional)
+	orderListId := int32(1) // int32 | Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1036,10 +1036,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
- **origClientOrderId** | **string** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **orderListId** | **int32** | Cancel order list by orderListId | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **origClientOrderId** | **string** | Query order list by &#x60;listClientOrderId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
+ **orderListId** | **int32** | Query order list by &#x60;orderListId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -1056,7 +1056,7 @@ No authorization required
 
 > OrderStatusResponse OrderStatus().Symbol(symbol).Id(id).OrderId(orderId).OrigClientOrderId(origClientOrderId).RecvWindow(recvWindow).Execute()
 
-WebSocket Query order
+Query order (USER_DATA)
 
 
 ### Example
@@ -1074,10 +1074,10 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-	orderId := int64(1) // int64 | `orderId`or`origClientOrderId`mustbesent (optional)
-	origClientOrderId := "origClientOrderId_example" // string | `orderId`or`origClientOrderId`mustbesent (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	orderId := int64(1) // int64 | Lookup order by `orderId` (optional)
+	origClientOrderId := "myOrder1" // string | Lookup order by `clientOrderId` (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1116,10 +1116,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **id** | **string** | Unique WebSocket request ID. | 
- **orderId** | **int64** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **origClientOrderId** | **string** | &#x60;orderId&#x60;or&#x60;origClientOrderId&#x60;mustbesent | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **id** | **string** | Client-generated request identifier. | 
+ **orderId** | **int64** | Lookup order by &#x60;orderId&#x60; | 
+ **origClientOrderId** | **string** | Lookup order by &#x60;clientOrderId&#x60; | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 

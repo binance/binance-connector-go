@@ -31,12 +31,12 @@ import (
 )
 
 func main() {
-	currency := "currency_example" // string | Asset type, only support USDT  as of now
-	recordId := int64(1) // int64 | Return the recordId and subsequent data, the latest data is returned by default, e.g 100000 (optional)
+	currency := models.AccountFundingFlowCurrencyParameterUsdt // AccountFundingFlowCurrencyParameter | Asset type, only support USDT  as of now
+	recordId := int64(100000) // int64 | Return the recordId and subsequent data, the latest data is returned by default (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
-	limit := int64(100) // int64 | Number of result sets returned Default:100 Max:1000 (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	limit := int64(20) // int64 | Number of result sets returned (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -64,12 +64,12 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string** | Asset type, only support USDT  as of now | 
- **recordId** | **int64** | Return the recordId and subsequent data, the latest data is returned by default, e.g 100000 | 
+ **currency** | [**AccountFundingFlowCurrencyParameter**](AccountFundingFlowCurrencyParameter.md) | Asset type, only support USDT  as of now | 
+ **recordId** | **int64** | Return the recordId and subsequent data, the latest data is returned by default | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
- **limit** | **int64** | Number of result sets returned Default:100 Max:1000 | 
- **recvWindow** | **int64** |  | 
+ **limit** | **int64** | Number of result sets returned | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -137,7 +137,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** |  | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 

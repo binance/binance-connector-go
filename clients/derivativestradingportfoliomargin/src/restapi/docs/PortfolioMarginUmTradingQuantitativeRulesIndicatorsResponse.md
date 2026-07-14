@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Indicators** | Pointer to [**PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicators**](PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicators.md) |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
 
 ## Methods
 

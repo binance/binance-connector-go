@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**VipLevel** | Pointer to **int64** |  | [optional] 
-**Coin** | Pointer to **string** |  | [optional] 
-**TransferIn** | Pointer to **bool** |  | [optional] 
-**Borrowable** | Pointer to **bool** |  | [optional] 
-**DailyInterest** | Pointer to **string** |  | [optional] 
-**YearlyInterest** | Pointer to **string** |  | [optional] 
-**BorrowLimit** | Pointer to **string** |  | [optional] 
-**MarginablePairs** | Pointer to **[]string** |  | [optional] 
+**VipLevel** | Pointer to **int64** | vip Level. | [optional] 
+**Coin** | Pointer to **string** | coin. | [optional] 
+**TransferIn** | Pointer to **bool** | transfer In. | [optional] 
+**Borrowable** | Pointer to **bool** | borrowable. | [optional] 
+**DailyInterest** | Pointer to **string** | daily Interest. | [optional] 
+**YearlyInterest** | Pointer to **string** | yearly Interest. | [optional] 
+**BorrowLimit** | Pointer to **string** | borrow Limit. | [optional] 
+**MarginablePairs** | Pointer to **[]string** | marginable Pairs list. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &MyFiltersResponse{}
 
 // MyFiltersResponse struct for MyFiltersResponse
 type MyFiltersResponse struct {
-	ExchangeFilters      []ExchangeFilters `json:"exchangeFilters,omitempty"`
-	SymbolFilters        []SymbolFilters   `json:"symbolFilters,omitempty"`
-	AssetFilters         []AssetFilters    `json:"assetFilters,omitempty"`
-	RateLimits           []RateLimits      `json:"rateLimits,omitempty"`
+	ExchangeFilters      []MyFiltersResponseExchangeFiltersInner `json:"exchangeFilters,omitempty"`
+	SymbolFilters        []MyFiltersResponseSymbolFiltersInner   `json:"symbolFilters,omitempty"`
+	AssetFilters         []MyFiltersResponseAssetFiltersInner    `json:"assetFilters,omitempty"`
+	RateLimits           []MyFiltersResponseRateLimitsInner      `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +44,9 @@ func NewMyFiltersResponseWithDefaults() *MyFiltersResponse {
 }
 
 // GetExchangeFilters returns the ExchangeFilters field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetExchangeFilters() []ExchangeFilters {
+func (o *MyFiltersResponse) GetExchangeFilters() []MyFiltersResponseExchangeFiltersInner {
 	if o == nil || common.IsNil(o.ExchangeFilters) {
-		var ret []ExchangeFilters
+		var ret []MyFiltersResponseExchangeFiltersInner
 		return ret
 	}
 	return o.ExchangeFilters
@@ -54,7 +54,7 @@ func (o *MyFiltersResponse) GetExchangeFilters() []ExchangeFilters {
 
 // GetExchangeFiltersOk returns a tuple with the ExchangeFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetExchangeFiltersOk() ([]ExchangeFilters, bool) {
+func (o *MyFiltersResponse) GetExchangeFiltersOk() ([]MyFiltersResponseExchangeFiltersInner, bool) {
 	if o == nil || common.IsNil(o.ExchangeFilters) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *MyFiltersResponse) HasExchangeFilters() bool {
 	return false
 }
 
-// SetExchangeFilters gets a reference to the given []ExchangeFilters and assigns it to the ExchangeFilters field.
-func (o *MyFiltersResponse) SetExchangeFilters(v []ExchangeFilters) {
+// SetExchangeFilters gets a reference to the given []MyFiltersResponseExchangeFiltersInner and assigns it to the ExchangeFilters field.
+func (o *MyFiltersResponse) SetExchangeFilters(v []MyFiltersResponseExchangeFiltersInner) {
 	o.ExchangeFilters = v
 }
 
 // GetSymbolFilters returns the SymbolFilters field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetSymbolFilters() []SymbolFilters {
+func (o *MyFiltersResponse) GetSymbolFilters() []MyFiltersResponseSymbolFiltersInner {
 	if o == nil || common.IsNil(o.SymbolFilters) {
-		var ret []SymbolFilters
+		var ret []MyFiltersResponseSymbolFiltersInner
 		return ret
 	}
 	return o.SymbolFilters
@@ -86,7 +86,7 @@ func (o *MyFiltersResponse) GetSymbolFilters() []SymbolFilters {
 
 // GetSymbolFiltersOk returns a tuple with the SymbolFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetSymbolFiltersOk() ([]SymbolFilters, bool) {
+func (o *MyFiltersResponse) GetSymbolFiltersOk() ([]MyFiltersResponseSymbolFiltersInner, bool) {
 	if o == nil || common.IsNil(o.SymbolFilters) {
 		return nil, false
 	}
@@ -102,15 +102,15 @@ func (o *MyFiltersResponse) HasSymbolFilters() bool {
 	return false
 }
 
-// SetSymbolFilters gets a reference to the given []SymbolFilters and assigns it to the SymbolFilters field.
-func (o *MyFiltersResponse) SetSymbolFilters(v []SymbolFilters) {
+// SetSymbolFilters gets a reference to the given []MyFiltersResponseSymbolFiltersInner and assigns it to the SymbolFilters field.
+func (o *MyFiltersResponse) SetSymbolFilters(v []MyFiltersResponseSymbolFiltersInner) {
 	o.SymbolFilters = v
 }
 
 // GetAssetFilters returns the AssetFilters field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetAssetFilters() []AssetFilters {
+func (o *MyFiltersResponse) GetAssetFilters() []MyFiltersResponseAssetFiltersInner {
 	if o == nil || common.IsNil(o.AssetFilters) {
-		var ret []AssetFilters
+		var ret []MyFiltersResponseAssetFiltersInner
 		return ret
 	}
 	return o.AssetFilters
@@ -118,7 +118,7 @@ func (o *MyFiltersResponse) GetAssetFilters() []AssetFilters {
 
 // GetAssetFiltersOk returns a tuple with the AssetFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetAssetFiltersOk() ([]AssetFilters, bool) {
+func (o *MyFiltersResponse) GetAssetFiltersOk() ([]MyFiltersResponseAssetFiltersInner, bool) {
 	if o == nil || common.IsNil(o.AssetFilters) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *MyFiltersResponse) HasAssetFilters() bool {
 	return false
 }
 
-// SetAssetFilters gets a reference to the given []AssetFilters and assigns it to the AssetFilters field.
-func (o *MyFiltersResponse) SetAssetFilters(v []AssetFilters) {
+// SetAssetFilters gets a reference to the given []MyFiltersResponseAssetFiltersInner and assigns it to the AssetFilters field.
+func (o *MyFiltersResponse) SetAssetFilters(v []MyFiltersResponseAssetFiltersInner) {
 	o.AssetFilters = v
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetRateLimits() []RateLimits {
+func (o *MyFiltersResponse) GetRateLimits() []MyFiltersResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []RateLimits
+		var ret []MyFiltersResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *MyFiltersResponse) GetRateLimits() []RateLimits {
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetRateLimitsOk() ([]RateLimits, bool) {
+func (o *MyFiltersResponse) GetRateLimitsOk() ([]MyFiltersResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *MyFiltersResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []RateLimits and assigns it to the RateLimits field.
-func (o *MyFiltersResponse) SetRateLimits(v []RateLimits) {
+// SetRateLimits gets a reference to the given []MyFiltersResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *MyFiltersResponse) SetRateLimits(v []MyFiltersResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

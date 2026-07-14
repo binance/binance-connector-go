@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,20 +17,33 @@ var _ common.MappedNullable = &AccountInformationResponseAssetsInner{}
 
 // AccountInformationResponseAssetsInner struct for AccountInformationResponseAssetsInner
 type AccountInformationResponseAssetsInner struct {
-	Asset                  *string `json:"asset,omitempty"`
-	WalletBalance          *string `json:"walletBalance,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	MarginBalance          *string `json:"marginBalance,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// total wallet balance
+	WalletBalance *string `json:"walletBalance,omitempty"`
+	// unrealized profit or loss
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// margin balance
+	MarginBalance *string `json:"marginBalance,omitempty"`
+	// maintenance margin
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// total intial margin required with the latest mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// positions margin required with the latest mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// open orders intial margin required with the latest mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	MaxWithdrawAmount      *string `json:"maxWithdrawAmount,omitempty"`
-	CrossWalletBalance     *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl             *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance       *string `json:"availableBalance,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// maximum amount for transfer out
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// wallet balance for crossed margin
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// total unrealized profit or loss of crossed positions
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// available margin balance
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationResponseAssetsInner AccountInformationResponseAssetsInner

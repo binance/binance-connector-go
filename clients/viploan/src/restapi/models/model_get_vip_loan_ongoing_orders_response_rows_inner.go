@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,9 +17,10 @@ var _ common.MappedNullable = &GetVIPLoanOngoingOrdersResponseRowsInner{}
 
 // GetVIPLoanOngoingOrdersResponseRowsInner struct for GetVIPLoanOngoingOrdersResponseRowsInner
 type GetVIPLoanOngoingOrdersResponseRowsInner struct {
-	OrderId                          *int64  `json:"orderId,omitempty"`
-	LoanCoin                         *string `json:"loanCoin,omitempty"`
-	TotalDebt                        *string `json:"totalDebt,omitempty"`
+	OrderId   *int64  `json:"orderId,omitempty"`
+	LoanCoin  *string `json:"loanCoin,omitempty"`
+	TotalDebt *string `json:"totalDebt,omitempty"`
+	// For flexible loans, this is the flexible rate.
 	LoanRate                         *string `json:"loanRate,omitempty"`
 	ResidualInterest                 *string `json:"residualInterest,omitempty"`
 	CollateralAccountId              *string `json:"collateralAccountId,omitempty"`
@@ -27,10 +28,12 @@ type GetVIPLoanOngoingOrdersResponseRowsInner struct {
 	TotalCollateralValueAfterHaircut *string `json:"totalCollateralValueAfterHaircut,omitempty"`
 	LockedCollateralValue            *string `json:"lockedCollateralValue,omitempty"`
 	CurrentLTV                       *string `json:"currentLTV,omitempty"`
-	ExpirationTime                   *int64  `json:"expirationTime,omitempty"`
-	LoanDate                         *string `json:"loanDate,omitempty"`
-	LoanTerm                         *string `json:"loanTerm,omitempty"`
-	AdditionalProperties             map[string]interface{}
+	// For flexible loans, this value is `0`.
+	ExpirationTime *int64  `json:"expirationTime,omitempty"`
+	LoanDate       *string `json:"loanDate,omitempty"`
+	// For flexible loans, this value is `open term`.
+	LoanTerm             *string `json:"loanTerm,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetVIPLoanOngoingOrdersResponseRowsInner GetVIPLoanOngoingOrdersResponseRowsInner

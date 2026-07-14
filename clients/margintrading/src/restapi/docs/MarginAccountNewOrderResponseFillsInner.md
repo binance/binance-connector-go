@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**TradeId** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**Qty** | Pointer to **string** | qty. | [optional] 
+**Commission** | Pointer to **string** | commission. | [optional] 
+**CommissionAsset** | Pointer to **string** | commission Asset. | [optional] 
+**TradeId** | Pointer to **int64** | trade Id. | [optional] 
 
 ## Methods
 

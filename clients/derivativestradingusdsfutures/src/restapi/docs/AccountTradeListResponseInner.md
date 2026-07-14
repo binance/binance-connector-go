@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Buyer** | Pointer to **bool** |  | [optional] 
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**Maker** | Pointer to **bool** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**QuoteQty** | Pointer to **string** |  | [optional] 
-**RealizedPnl** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Buyer** | Pointer to **bool** | Buyer. | [optional] 
+**Commission** | Pointer to **string** | Commission. | [optional] 
+**CommissionAsset** | Pointer to **string** | Commission Asset. | [optional] 
+**Id** | Pointer to **int64** | Id. | [optional] 
+**Maker** | Pointer to **bool** | Maker. | [optional] 
+**OrderId** | Pointer to **int64** | Order Id. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Qty** | Pointer to **string** | Qty. | [optional] 
+**QuoteQty** | Pointer to **string** | Quote Qty. | [optional] 
+**RealizedPnl** | Pointer to **string** | Realized Pnl. | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
+**PositionSide** | Pointer to **string** | Position Side. | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Time** | Pointer to **int64** | Time. | [optional] 
 
 ## Methods
 

@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**BorrowEnabled** | Pointer to **bool** |  | [optional] 
-**Borrowed** | Pointer to **string** |  | [optional] 
-**Free** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **string** |  | [optional] 
-**NetAsset** | Pointer to **string** |  | [optional] 
-**NetAssetOfBtc** | Pointer to **string** |  | [optional] 
-**RepayEnabled** | Pointer to **bool** |  | [optional] 
-**TotalAsset** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**BorrowEnabled** | Pointer to **bool** | borrow Enabled. | [optional] 
+**Borrowed** | Pointer to **string** | borrowed. | [optional] 
+**Free** | Pointer to **string** | free. | [optional] 
+**Interest** | Pointer to **string** | interest. | [optional] 
+**Locked** | Pointer to **string** | locked. | [optional] 
+**NetAsset** | Pointer to **string** | net Asset. | [optional] 
+**NetAssetOfBtc** | Pointer to **string** | net Asset Of Btc. | [optional] 
+**RepayEnabled** | Pointer to **bool** | repay Enabled. | [optional] 
+**TotalAsset** | Pointer to **string** | total Asset. | [optional] 
 
 ## Methods
 

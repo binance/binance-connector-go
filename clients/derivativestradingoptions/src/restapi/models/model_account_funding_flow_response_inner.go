@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &AccountFundingFlowResponseInner{}
 
 // AccountFundingFlowResponseInner struct for AccountFundingFlowResponseInner
 type AccountFundingFlowResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	CreateDate           *int64  `json:"createDate,omitempty"`
+	// id
+	Id *int64 `json:"id,omitempty"`
+	// Asset type
+	Asset *string `json:"asset,omitempty"`
+	// Amount (positive numbers represent inflow, negative numbers represent outflow)
+	Amount *string `json:"amount,omitempty"`
+	// type (fees)
+	Type *string `json:"type,omitempty"`
+	// Time
+	CreateDate           *int64 `json:"createDate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &QueryCurrentMarginOrderCountUsageResponseInner{}
 
 // QueryCurrentMarginOrderCountUsageResponseInner struct for QueryCurrentMarginOrderCountUsageResponseInner
 type QueryCurrentMarginOrderCountUsageResponseInner struct {
-	RateLimitType        *string `json:"rateLimitType,omitempty"`
-	Interval             *string `json:"interval,omitempty"`
-	IntervalNum          *int64  `json:"intervalNum,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
-	Count                *int64  `json:"count,omitempty"`
+	// rate Limit Type.
+	RateLimitType *string `json:"rateLimitType,omitempty"`
+	// interval.
+	Interval *string `json:"interval,omitempty"`
+	// interval Num.
+	IntervalNum *int64 `json:"intervalNum,omitempty"`
+	// limit.
+	Limit *int64 `json:"limit,omitempty"`
+	// count.
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

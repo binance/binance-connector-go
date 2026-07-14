@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -27,7 +27,7 @@ func (r ApiAvgPriceRequest) Symbol(symbol string) ApiAvgPriceRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiAvgPriceRequest) Id(id string) ApiAvgPriceRequest {
 	r.id = &id
 	return r
@@ -52,12 +52,12 @@ func (r ApiAvgPriceRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Av
 }
 
 /*
-AvgPrice WebSocket Current average price
+AvgPrice Current average price
 /avgPrice
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#current-average-price
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#avg-price
 
-@param symbol	@param id Unique WebSocket request ID.
+@param symbol	@param id Client-generated request identifier.
 @return ApiAvgPriceRequest
 */
 func (a *MarketAPIService) AvgPrice() ApiAvgPriceRequest {
@@ -114,7 +114,7 @@ func (r ApiBlockTradesHistoricalRequest) FromId(fromId int64) ApiBlockTradesHist
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiBlockTradesHistoricalRequest) Id(id string) ApiBlockTradesHistoricalRequest {
 	r.id = &id
 	return r
@@ -145,12 +145,12 @@ func (r ApiBlockTradesHistoricalRequest) ExecuteAsync() (chan *common.ResponseOr
 }
 
 /*
-BlockTradesHistorical WebSocket Historical Block Trades
+BlockTradesHistorical Historical Block Trades
 /blockTrades.historical
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#historical-block-trades
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#block-trades-historical
 
-@param symbol	@param fromId Block trade ID to fetch from	@param id Unique WebSocket request ID.	@param limit Default: 500; Maximum: 1000
+@param symbol	@param fromId Block trade ID to fetch from	@param id Client-generated request identifier.	@param limit Default: 500; Maximum: 1000
 @return ApiBlockTradesHistoricalRequest
 */
 func (a *MarketAPIService) BlockTradesHistorical() ApiBlockTradesHistoricalRequest {
@@ -209,18 +209,18 @@ func (r ApiDepthRequest) Symbol(symbol string) ApiDepthRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiDepthRequest) Id(id string) ApiDepthRequest {
 	r.id = &id
 	return r
 }
 
-// Default: 100; Maximum: 5000
 func (r ApiDepthRequest) Limit(limit int32) ApiDepthRequest {
 	r.limit = &limit
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;.
 func (r ApiDepthRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiDepthRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -245,12 +245,12 @@ func (r ApiDepthRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Depth
 }
 
 /*
-Depth WebSocket Order book
+Depth Order book
 /depth
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#order-book
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#depth
 
-@param symbol	@param id Unique WebSocket request ID.	@param limit Default: 100; Maximum: 5000	@param symbolStatus
+@param symbol	@param id Client-generated request identifier.	@param limit	@param symbolStatus Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`.
 @return ApiDepthRequest
 */
 func (a *MarketAPIService) Depth() ApiDepthRequest {
@@ -315,7 +315,7 @@ func (r ApiKlinesRequest) Interval(interval models.KlinesIntervalParameter) ApiK
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiKlinesRequest) Id(id string) ApiKlinesRequest {
 	r.id = &id
 	return r
@@ -337,7 +337,6 @@ func (r ApiKlinesRequest) TimeZone(timeZone string) ApiKlinesRequest {
 	return r
 }
 
-// Default: 100; Maximum: 5000
 func (r ApiKlinesRequest) Limit(limit int32) ApiKlinesRequest {
 	r.limit = &limit
 	return r
@@ -362,12 +361,12 @@ func (r ApiKlinesRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Klin
 }
 
 /*
-Klines WebSocket Klines
+Klines Klines
 /klines
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#klines
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#klines
 
-@param symbol	@param interval	@param id Unique WebSocket request ID.	@param startTime	@param endTime	@param timeZone Default: 0 (UTC)	@param limit Default: 100; Maximum: 5000
+@param symbol	@param interval	@param id Client-generated request identifier.	@param startTime	@param endTime	@param timeZone Default: 0 (UTC)	@param limit
 @return ApiKlinesRequest
 */
 func (a *MarketAPIService) Klines() ApiKlinesRequest {
@@ -433,7 +432,7 @@ func (r ApiReferencePriceRequest) Symbol(symbol string) ApiReferencePriceRequest
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiReferencePriceRequest) Id(id string) ApiReferencePriceRequest {
 	r.id = &id
 	return r
@@ -458,12 +457,12 @@ func (r ApiReferencePriceRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mod
 }
 
 /*
-ReferencePrice WebSocket Query Reference Price
+ReferencePrice Query Reference Price
 /referencePrice
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price
 
-@param symbol	@param id Unique WebSocket request ID.
+@param symbol	@param id Client-generated request identifier.
 @return ApiReferencePriceRequest
 */
 func (a *MarketAPIService) ReferencePrice() ApiReferencePriceRequest {
@@ -505,7 +504,7 @@ type ApiReferencePriceCalculationRequest struct {
 	ApiService   *MarketAPIService
 	symbol       *string
 	id           *string
-	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+	symbolStatus *models.ReferencePriceCalculationSymbolStatusParameter
 }
 
 func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferencePriceCalculationRequest {
@@ -513,13 +512,13 @@ func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferenceP
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiReferencePriceCalculationRequest) Id(id string) ApiReferencePriceCalculationRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiReferencePriceCalculationRequest {
+func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ReferencePriceCalculationSymbolStatusParameter) ApiReferencePriceCalculationRequest {
 	r.symbolStatus = &symbolStatus
 	return r
 }
@@ -543,12 +542,12 @@ func (r ApiReferencePriceCalculationRequest) ExecuteAsync() (chan *common.Respon
 }
 
 /*
-ReferencePriceCalculation WebSocket Query Reference Price Calculation
+ReferencePriceCalculation Query Reference Price Calculation
 /referencePrice.calculation
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#query-reference-price-calculation
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#reference-price-calculation
 
-@param symbol	@param id Unique WebSocket request ID.	@param symbolStatus
+@param symbol	@param id Client-generated request identifier.	@param symbolStatus
 @return ApiReferencePriceCalculationRequest
 */
 func (a *MarketAPIService) ReferencePriceCalculation() ApiReferencePriceCalculationRequest {
@@ -599,34 +598,37 @@ type ApiTickerRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTickerRequest) Id(id string) ApiTickerRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
+// Query ticker of a single symbol
 func (r ApiTickerRequest) Symbol(symbol string) ApiTickerRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Query ticker for multiple symbols
 func (r ApiTickerRequest) Symbols(symbols []string) ApiTickerRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Ticker type. Supported values: FULL (default) or MINI
 func (r ApiTickerRequest) Type(type_ models.TickerTypeParameter) ApiTickerRequest {
 	r.type_ = &type_
 	return r
 }
 
+// Defaults to 1d if no parameter provided.
 func (r ApiTickerRequest) WindowSize(windowSize models.TickerWindowSizeParameter) ApiTickerRequest {
 	r.windowSize = &windowSize
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiTickerRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -651,12 +653,12 @@ func (r ApiTickerRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Tick
 }
 
 /*
-Ticker WebSocket Rolling window price change statistics
+Ticker Rolling window price change statistics
 /ticker
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#rolling-window-price-change-statistics
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param type_	@param windowSize	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol Query ticker of a single symbol	@param symbols Query ticker for multiple symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param windowSize Defaults to 1d if no parameter provided.	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
 @return ApiTickerRequest
 */
 func (a *MarketAPIService) Ticker() ApiTickerRequest {
@@ -713,29 +715,29 @@ type ApiTicker24hrRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTicker24hrRequest) Id(id string) ApiTicker24hrRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
 func (r ApiTicker24hrRequest) Symbol(symbol string) ApiTicker24hrRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
 func (r ApiTicker24hrRequest) Symbols(symbols []string) ApiTicker24hrRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Ticker type. Supported values: FULL (default) or MINI
 func (r ApiTicker24hrRequest) Type(type_ models.TickerTypeParameter) ApiTicker24hrRequest {
 	r.type_ = &type_
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiTicker24hrRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTicker24hrRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -760,12 +762,12 @@ func (r ApiTicker24hrRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.
 }
 
 /*
-Ticker24hr WebSocket 24hr ticker price change statistics
+Ticker24hr 24hr ticker price change statistics
 /ticker.24hr
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#24hr-ticker-price-change-statistics
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker24hr
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param type_	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol	@param symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
 @return ApiTicker24hrRequest
 */
 func (a *MarketAPIService) Ticker24hr() ApiTicker24hrRequest {
@@ -818,24 +820,25 @@ type ApiTickerBookRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTickerBookRequest) Id(id string) ApiTickerBookRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
+// Query ticker for a single symbol
 func (r ApiTickerBookRequest) Symbol(symbol string) ApiTickerBookRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Query ticker for multiple symbols
 func (r ApiTickerBookRequest) Symbols(symbols []string) ApiTickerBookRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiTickerBookRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerBookRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -860,12 +863,12 @@ func (r ApiTickerBookRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.
 }
 
 /*
-TickerBook WebSocket Symbol order book ticker
+TickerBook Symbol order book ticker
 /ticker.book
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#symbol-order-book-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-book
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol Query ticker for a single symbol	@param symbols Query ticker for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
 @return ApiTickerBookRequest
 */
 func (a *MarketAPIService) TickerBook() ApiTickerBookRequest {
@@ -915,24 +918,25 @@ type ApiTickerPriceRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTickerPriceRequest) Id(id string) ApiTickerPriceRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
+// Query price for a single symbol
 func (r ApiTickerPriceRequest) Symbol(symbol string) ApiTickerPriceRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Query price for multiple symbols
 func (r ApiTickerPriceRequest) Symbols(symbols []string) ApiTickerPriceRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiTickerPriceRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerPriceRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -957,12 +961,12 @@ func (r ApiTickerPriceRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models
 }
 
 /*
-TickerPrice WebSocket Symbol price ticker
+TickerPrice Symbol price ticker
 /ticker.price
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#symbol-price-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-price
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol Query price for a single symbol	@param symbols Query price for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
 @return ApiTickerPriceRequest
 */
 func (a *MarketAPIService) TickerPrice() ApiTickerPriceRequest {
@@ -1014,19 +1018,17 @@ type ApiTickerTradingDayRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTickerTradingDayRequest) Id(id string) ApiTickerTradingDayRequest {
 	r.id = &id
 	return r
 }
 
-// Describe a single symbol
 func (r ApiTickerTradingDayRequest) Symbol(symbol string) ApiTickerTradingDayRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
 func (r ApiTickerTradingDayRequest) Symbols(symbols []string) ApiTickerTradingDayRequest {
 	r.symbols = &symbols
 	return r
@@ -1038,11 +1040,13 @@ func (r ApiTickerTradingDayRequest) TimeZone(timeZone string) ApiTickerTradingDa
 	return r
 }
 
+// Ticker type. Supported values: FULL (default) or MINI
 func (r ApiTickerTradingDayRequest) Type(type_ models.TickerTypeParameter) ApiTickerTradingDayRequest {
 	r.type_ = &type_
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiTickerTradingDayRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerTradingDayRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -1067,12 +1071,12 @@ func (r ApiTickerTradingDayRequest) ExecuteAsync() (chan *common.ResponseOrRaw[m
 }
 
 /*
-TickerTradingDay WebSocket Trading Day Ticker
+TickerTradingDay Trading Day Ticker
 /ticker.tradingDay
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#trading-day-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-trading-day
 
-@param id Unique WebSocket request ID.	@param symbol Describe a single symbol	@param symbols List of symbols to query	@param timeZone Default: 0 (UTC)	@param type_	@param symbolStatus
+@param id Client-generated request identifier.	@param symbol	@param symbols	@param timeZone Default: 0 (UTC)	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
 @return ApiTickerTradingDayRequest
 */
 func (a *MarketAPIService) TickerTradingDay() ApiTickerTradingDayRequest {
@@ -1127,7 +1131,7 @@ type ApiTradesAggregateRequest struct {
 	fromId     *int64
 	startTime  *int64
 	endTime    *int64
-	limit      *int64
+	limit      *int32
 }
 
 func (r ApiTradesAggregateRequest) Symbol(symbol string) ApiTradesAggregateRequest {
@@ -1135,7 +1139,7 @@ func (r ApiTradesAggregateRequest) Symbol(symbol string) ApiTradesAggregateReque
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTradesAggregateRequest) Id(id string) ApiTradesAggregateRequest {
 	r.id = &id
 	return r
@@ -1147,18 +1151,19 @@ func (r ApiTradesAggregateRequest) FromId(fromId int64) ApiTradesAggregateReques
 	return r
 }
 
+// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiTradesAggregateRequest) StartTime(startTime int64) ApiTradesAggregateRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiTradesAggregateRequest) EndTime(endTime int64) ApiTradesAggregateRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 500; Maximum: 1000
-func (r ApiTradesAggregateRequest) Limit(limit int64) ApiTradesAggregateRequest {
+func (r ApiTradesAggregateRequest) Limit(limit int32) ApiTradesAggregateRequest {
 	r.limit = &limit
 	return r
 }
@@ -1182,12 +1187,12 @@ func (r ApiTradesAggregateRequest) ExecuteAsync() (chan *common.ResponseOrRaw[mo
 }
 
 /*
-TradesAggregate WebSocket Aggregate trades
+TradesAggregate Aggregate trades
 /trades.aggregate
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#aggregate-trades
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-aggregate
 
-@param symbol	@param id Unique WebSocket request ID.	@param fromId Aggregate trade ID to begin at	@param startTime	@param endTime	@param limit Default: 500; Maximum: 1000
+@param symbol	@param id Client-generated request identifier.	@param fromId Aggregate trade ID to begin at	@param startTime Timestamp in ms to get aggregate trades from INCLUSIVE.	@param endTime Timestamp in ms to get aggregate trades until INCLUSIVE.	@param limit
 @return ApiTradesAggregateRequest
 */
 func (a *MarketAPIService) TradesAggregate() ApiTradesAggregateRequest {
@@ -1241,7 +1246,7 @@ type ApiTradesHistoricalRequest struct {
 	ApiService *MarketAPIService
 	symbol     *string
 	id         *string
-	fromId     *int32
+	fromId     *int64
 	limit      *int32
 }
 
@@ -1250,19 +1255,18 @@ func (r ApiTradesHistoricalRequest) Symbol(symbol string) ApiTradesHistoricalReq
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTradesHistoricalRequest) Id(id string) ApiTradesHistoricalRequest {
 	r.id = &id
 	return r
 }
 
 // Trade ID to begin at
-func (r ApiTradesHistoricalRequest) FromId(fromId int32) ApiTradesHistoricalRequest {
+func (r ApiTradesHistoricalRequest) FromId(fromId int64) ApiTradesHistoricalRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// Default: 100; Maximum: 5000
 func (r ApiTradesHistoricalRequest) Limit(limit int32) ApiTradesHistoricalRequest {
 	r.limit = &limit
 	return r
@@ -1287,12 +1291,12 @@ func (r ApiTradesHistoricalRequest) ExecuteAsync() (chan *common.ResponseOrRaw[m
 }
 
 /*
-TradesHistorical WebSocket Historical trades
+TradesHistorical Historical trades
 /trades.historical
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#historical-trades
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-historical
 
-@param symbol	@param id Unique WebSocket request ID.	@param fromId Trade ID to begin at	@param limit Default: 100; Maximum: 5000
+@param symbol	@param id Client-generated request identifier.	@param fromId Trade ID to begin at	@param limit
 @return ApiTradesHistoricalRequest
 */
 func (a *MarketAPIService) TradesHistorical() ApiTradesHistoricalRequest {
@@ -1348,13 +1352,12 @@ func (r ApiTradesRecentRequest) Symbol(symbol string) ApiTradesRecentRequest {
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiTradesRecentRequest) Id(id string) ApiTradesRecentRequest {
 	r.id = &id
 	return r
 }
 
-// Default: 100; Maximum: 5000
 func (r ApiTradesRecentRequest) Limit(limit int32) ApiTradesRecentRequest {
 	r.limit = &limit
 	return r
@@ -1379,12 +1382,12 @@ func (r ApiTradesRecentRequest) ExecuteAsync() (chan *common.ResponseOrRaw[model
 }
 
 /*
-TradesRecent WebSocket Recent trades
+TradesRecent Recent trades
 /trades.recent
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#recent-trades
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#trades-recent
 
-@param symbol	@param id Unique WebSocket request ID.	@param limit Default: 100; Maximum: 5000
+@param symbol	@param id Client-generated request identifier.	@param limit
 @return ApiTradesRecentRequest
 */
 func (a *MarketAPIService) TradesRecent() ApiTradesRecentRequest {
@@ -1446,7 +1449,7 @@ func (r ApiUiKlinesRequest) Interval(interval models.KlinesIntervalParameter) Ap
 	return r
 }
 
-// Unique WebSocket request ID.
+// Client-generated request identifier.
 func (r ApiUiKlinesRequest) Id(id string) ApiUiKlinesRequest {
 	r.id = &id
 	return r
@@ -1468,7 +1471,6 @@ func (r ApiUiKlinesRequest) TimeZone(timeZone string) ApiUiKlinesRequest {
 	return r
 }
 
-// Default: 100; Maximum: 5000
 func (r ApiUiKlinesRequest) Limit(limit int32) ApiUiKlinesRequest {
 	r.limit = &limit
 	return r
@@ -1493,12 +1495,12 @@ func (r ApiUiKlinesRequest) ExecuteAsync() (chan *common.ResponseOrRaw[models.Ui
 }
 
 /*
-UiKlines WebSocket UI Klines
+UiKlines UI Klines
 /uiKlines
 
-https://developers.binance.com/docs/binance-spot-api-docs/websocket-api/market-data-requests#ui-klines
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ui-klines
 
-@param symbol	@param interval	@param id Unique WebSocket request ID.	@param startTime	@param endTime	@param timeZone Default: 0 (UTC)	@param limit Default: 100; Maximum: 5000
+@param symbol	@param interval	@param id Client-generated request identifier.	@param startTime	@param endTime	@param timeZone Default: 0 (UTC)	@param limit
 @return ApiUiKlinesRequest
 */
 func (a *MarketAPIService) UiKlines() ApiUiKlinesRequest {

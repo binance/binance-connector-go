@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**U** | Pointer to **int64** | Order book update Id | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**B** | Pointer to **string** | Best bid price | [optional] 
+**B** | Pointer to **string** | Best bid qty | [optional] 
+**A** | Pointer to **string** | Best ask price | [optional] 
+**A** | Pointer to **string** | Best ask qty | [optional] 
+**T** | Pointer to **int64** | Transaction time | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -287,20 +287,20 @@ HasPs returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *AllBookTickersStreamResponse) GetSt() int64`
+`func (o *AllBookTickersStreamResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *AllBookTickersStreamResponse) GetStOk() (*int64, bool)`
+`func (o *AllBookTickersStreamResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *AllBookTickersStreamResponse) SetSt(v int64)`
+`func (o *AllBookTickersStreamResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

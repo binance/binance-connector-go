@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Assets** | Pointer to [**[]GetUmAccountDetailV2ResponseAssetsInner**](GetUmAccountDetailV2ResponseAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]GetUmAccountDetailResponsePositionsInner**](GetUmAccountDetailResponsePositionsInner.md) |  | [optional] 
+**Assets** | Pointer to [**[]GetUmAccountDetailResponseAssetsInner**](GetUmAccountDetailResponseAssetsInner.md) | Assets. | [optional] 
+**Positions** | Pointer to [**[]GetUmAccountDetailResponsePositionsInner**](GetUmAccountDetailResponsePositionsInner.md) | positions of all symbols in the market are returned | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAssets
 
-`func (o *GetUmAccountDetailResponse) GetAssets() []GetUmAccountDetailV2ResponseAssetsInner`
+`func (o *GetUmAccountDetailResponse) GetAssets() []GetUmAccountDetailResponseAssetsInner`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *GetUmAccountDetailResponse) GetAssetsOk() (*[]GetUmAccountDetailV2ResponseAssetsInner, bool)`
+`func (o *GetUmAccountDetailResponse) GetAssetsOk() (*[]GetUmAccountDetailResponseAssetsInner, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *GetUmAccountDetailResponse) SetAssets(v []GetUmAccountDetailV2ResponseAssetsInner)`
+`func (o *GetUmAccountDetailResponse) SetAssets(v []GetUmAccountDetailResponseAssetsInner)`
 
 SetAssets sets Assets field to given value.
 

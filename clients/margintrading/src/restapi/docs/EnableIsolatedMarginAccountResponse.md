@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
+**Success** | Pointer to **bool** | success. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
 
 ## Methods
 

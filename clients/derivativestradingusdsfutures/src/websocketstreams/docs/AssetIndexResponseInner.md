@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event type. | [optional] 
+**E** | Pointer to **int64** | Event time. | [optional] 
+**S** | Pointer to **string** | Asset index symbol. | [optional] 
+**I** | Pointer to **string** | Index price. | [optional] 
+**B** | Pointer to **string** | Bid buffer. | [optional] 
+**A** | Pointer to **string** | Ask buffer. | [optional] 
+**B** | Pointer to **string** | Bid rate. | [optional] 
+**A** | Pointer to **string** | Ask rate. | [optional] 
+**Q** | Pointer to **string** | Auto exchange bid buffer. | [optional] 
+**G** | Pointer to **string** | Auto exchange ask buffer. | [optional] 
+**Q** | Pointer to **string** | Auto exchange bid rate. | [optional] 
+**G** | Pointer to **string** | Auto exchange ask rate. | [optional] 
 
 ## Methods
 

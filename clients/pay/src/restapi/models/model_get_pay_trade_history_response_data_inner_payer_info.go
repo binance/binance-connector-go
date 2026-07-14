@@ -1,7 +1,7 @@
 /*
 Binance Pay REST API
 
-OpenAPI Specification for the Binance Pay REST API
+Query Binance Pay transaction history.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetPayTradeHistoryResponseDataInnerPayerInfo{}
 
 // GetPayTradeHistoryResponseDataInnerPayerInfo struct for GetPayTradeHistoryResponseDataInnerPayerInfo
 type GetPayTradeHistoryResponseDataInnerPayerInfo struct {
-	Name                 *string `json:"name,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	// Nickname or merchant name.
+	Name *string `json:"name,omitempty"`
+	// Account type: USER for personal, MERCHANT for merchant.
+	Type *string `json:"type,omitempty"`
+	// Binance UID.
 	BinanceId            *string `json:"binanceId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

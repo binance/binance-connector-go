@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,19 +17,31 @@ var _ common.MappedNullable = &GetCmAccountDetailResponsePositionsInner{}
 
 // GetCmAccountDetailResponsePositionsInner struct for GetCmAccountDetailResponsePositionsInner
 type GetCmAccountDetailResponsePositionsInner struct {
-	Symbol                 *string `json:"symbol,omitempty"`
-	PositionAmt            *string `json:"positionAmt,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// total intial margin required with the latest mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maintenance margin
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// positions margin required with the latest mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// open orders intial margin required with the latest mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	Leverage               *string `json:"leverage,omitempty"`
-	PositionSide           *string `json:"positionSide,omitempty"`
-	EntryPrice             *string `json:"entryPrice,omitempty"`
-	MaxQty                 *string `json:"maxQty,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// current initial leverage
+	Leverage *string `json:"leverage,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// average entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// maximum quantity of base asset
+	MaxQty *string `json:"maxQty,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCmAccountDetailResponsePositionsInner GetCmAccountDetailResponsePositionsInner

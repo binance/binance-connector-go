@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotrestapi
@@ -51,7 +51,6 @@ func (r ApiAggTradesRequest) EndTime(endTime int64) ApiAggTradesRequest {
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiAggTradesRequest) Limit(limit int32) ApiAggTradesRequest {
 	r.limit = &limit
 	return r
@@ -65,14 +64,14 @@ func (r ApiAggTradesRequest) Execute() (*common.RestApiResponse[models.AggTrades
 AggTrades Compressed/Aggregate trades list
 Get /api/v3/aggTrades
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#compressedaggregate-trades-list
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#agg-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param fromId -  ID to get aggregate trades from INCLUSIVE.
 @param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
 @param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
-@param limit -  Default: 500; Maximum: 1000.
+@param limit -
 @return ApiAggTradesRequest
 */
 func (a *MarketAPIService) AggTrades(ctx context.Context) ApiAggTradesRequest {
@@ -110,7 +109,15 @@ func (a *MarketAPIService) AggTradesExecute(r ApiAggTradesRequest) (*common.Rest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.AggTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.AggTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -137,7 +144,7 @@ func (r ApiAvgPriceRequest) Execute() (*common.RestApiResponse[models.AvgPriceRe
 AvgPrice Current average price
 Get /api/v3/avgPrice
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#current-average-price
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#avg-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -166,7 +173,15 @@ func (a *MarketAPIService) AvgPriceExecute(r ApiAvgPriceRequest) (*common.RestAp
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.AvgPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.AvgPriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -187,12 +202,13 @@ func (r ApiDepthRequest) Symbol(symbol string) ApiDepthRequest {
 	return r
 }
 
-// Default: 500; Maximum: 1000.
+// If limit &gt; 5000, only 5000 entries will be returned.
 func (r ApiDepthRequest) Limit(limit int32) ApiDepthRequest {
 	r.limit = &limit
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;.
 func (r ApiDepthRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiDepthRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -206,12 +222,12 @@ func (r ApiDepthRequest) Execute() (*common.RestApiResponse[models.DepthResponse
 Depth Order book
 Get /api/v3/depth
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#order-book
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#depth
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default: 500; Maximum: 1000.
-@param symbolStatus -
+@param limit -  If limit > 5000, only 5000 entries will be returned.
+@param symbolStatus -  Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`.
 @return ApiDepthRequest
 */
 func (a *MarketAPIService) Depth(ctx context.Context) ApiDepthRequest {
@@ -243,7 +259,15 @@ func (a *MarketAPIService) DepthExecute(r ApiDepthRequest) (*common.RestApiRespo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepthResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.DepthResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -263,7 +287,6 @@ func (r ApiGetTradesRequest) Symbol(symbol string) ApiGetTradesRequest {
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiGetTradesRequest) Limit(limit int32) ApiGetTradesRequest {
 	r.limit = &limit
 	return r
@@ -277,11 +300,11 @@ func (r ApiGetTradesRequest) Execute() (*common.RestApiResponse[models.GetTrades
 GetTrades Recent trades list
 Get /api/v3/trades
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#recent-trades-list
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#get-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default: 500; Maximum: 1000.
+@param limit -
 @return ApiGetTradesRequest
 */
 func (a *MarketAPIService) GetTrades(ctx context.Context) ApiGetTradesRequest {
@@ -310,7 +333,15 @@ func (a *MarketAPIService) GetTradesExecute(r ApiGetTradesRequest) (*common.Rest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -348,10 +379,10 @@ func (r ApiHistoricalBlockTradesRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-HistoricalBlockTrades Historical Block Trades
+HistoricalBlockTrades Historical Block Trades (MARKET_DATA)
 Get /api/v3/historicalBlockTrades
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#historical-block-trades
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#historical-block-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -379,6 +410,7 @@ func (a *MarketAPIService) HistoricalBlockTradesExecute(r ApiHistoricalBlockTrad
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.fromId == nil {
 		return nil, common.ReportError("fromId is required and must be specified")
 	}
@@ -389,7 +421,15 @@ func (a *MarketAPIService) HistoricalBlockTradesExecute(r ApiHistoricalBlockTrad
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.HistoricalBlockTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.HistoricalBlockTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -410,13 +450,12 @@ func (r ApiHistoricalTradesRequest) Symbol(symbol string) ApiHistoricalTradesReq
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiHistoricalTradesRequest) Limit(limit int32) ApiHistoricalTradesRequest {
 	r.limit = &limit
 	return r
 }
 
-// ID to get aggregate trades from INCLUSIVE.
+// TradeId to fetch from. Default gets most recent trades.
 func (r ApiHistoricalTradesRequest) FromId(fromId int64) ApiHistoricalTradesRequest {
 	r.fromId = &fromId
 	return r
@@ -430,12 +469,12 @@ func (r ApiHistoricalTradesRequest) Execute() (*common.RestApiResponse[models.Hi
 HistoricalTrades Old trade lookup
 Get /api/v3/historicalTrades
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#old-trade-lookup
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#historical-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  Default: 500; Maximum: 1000.
-@param fromId -  ID to get aggregate trades from INCLUSIVE.
+@param limit -
+@param fromId -  TradeId to fetch from. Default gets most recent trades.
 @return ApiHistoricalTradesRequest
 */
 func (a *MarketAPIService) HistoricalTrades(ctx context.Context) ApiHistoricalTradesRequest {
@@ -467,7 +506,15 @@ func (a *MarketAPIService) HistoricalTradesExecute(r ApiHistoricalTradesRequest)
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromId", r.fromId, "form", "")
 	}
 
-	resp, err := SendRequest[models.HistoricalTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.HistoricalTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -496,13 +543,11 @@ func (r ApiKlinesRequest) Interval(interval models.KlinesIntervalParameter) ApiK
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiKlinesRequest) StartTime(startTime int64) ApiKlinesRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiKlinesRequest) EndTime(endTime int64) ApiKlinesRequest {
 	r.endTime = &endTime
 	return r
@@ -514,7 +559,6 @@ func (r ApiKlinesRequest) TimeZone(timeZone string) ApiKlinesRequest {
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiKlinesRequest) Limit(limit int32) ApiKlinesRequest {
 	r.limit = &limit
 	return r
@@ -528,15 +572,15 @@ func (r ApiKlinesRequest) Execute() (*common.RestApiResponse[models.KlinesRespon
 Klines Kline/Candlestick data
 Get /api/v3/klines
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#klinecandlestick-data
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#klines
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param interval -
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
+@param startTime -
+@param endTime -
 @param timeZone -  Default: 0 (UTC)
-@param limit -  Default: 500; Maximum: 1000.
+@param limit -
 @return ApiKlinesRequest
 */
 func (a *MarketAPIService) Klines(ctx context.Context) ApiKlinesRequest {
@@ -559,6 +603,7 @@ func (a *MarketAPIService) KlinesExecute(r ApiKlinesRequest) (*common.RestApiRes
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -578,7 +623,15 @@ func (a *MarketAPIService) KlinesExecute(r ApiKlinesRequest) (*common.RestApiRes
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.KlinesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.KlinesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -605,7 +658,7 @@ func (r ApiReferencePriceRequest) Execute() (*common.RestApiResponse[models.Refe
 ReferencePrice Query Reference Price
 Get /api/v3/referencePrice
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#reference-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -634,7 +687,15 @@ func (a *MarketAPIService) ReferencePriceExecute(r ApiReferencePriceRequest) (*c
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.ReferencePriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ReferencePriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -654,6 +715,7 @@ func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferenceP
 	return r
 }
 
+// Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
 func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiReferencePriceCalculationRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -667,11 +729,11 @@ func (r ApiReferencePriceCalculationRequest) Execute() (*common.RestApiResponse[
 ReferencePriceCalculation Query Reference Price Calculation
 Get /api/v3/referencePrice/calculation
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#query-reference-price-calculation
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#reference-price-calculation
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param symbolStatus -
+@param symbolStatus -  Supported values: `TRADING`, `HALT`, `BREAK`
 @return ApiReferencePriceCalculationRequest
 */
 func (a *MarketAPIService) ReferencePriceCalculation(ctx context.Context) ApiReferencePriceCalculationRequest {
@@ -700,7 +762,15 @@ func (a *MarketAPIService) ReferencePriceCalculationExecute(r ApiReferencePriceC
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.ReferencePriceCalculationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.ReferencePriceCalculationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -715,21 +785,22 @@ type ApiTickerRequest struct {
 	symbols      *[]string
 	windowSize   *models.TickerWindowSizeParameter
 	type_        *models.TickerTypeParameter
-	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+	symbolStatus *models.TickerSymbolStatusParameter
 }
 
-// Symbol to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided
 func (r ApiTickerRequest) Symbol(symbol string) ApiTickerRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided  Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100.
 func (r ApiTickerRequest) Symbols(symbols []string) ApiTickerRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Units cannot be combined (e.g. &#x60;1d2h&#x60; is not allowed).
 func (r ApiTickerRequest) WindowSize(windowSize models.TickerWindowSizeParameter) ApiTickerRequest {
 	r.windowSize = &windowSize
 	return r
@@ -740,7 +811,7 @@ func (r ApiTickerRequest) Type(type_ models.TickerTypeParameter) ApiTickerReques
 	return r
 }
 
-func (r ApiTickerRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerRequest {
+func (r ApiTickerRequest) SymbolStatus(symbolStatus models.TickerSymbolStatusParameter) ApiTickerRequest {
 	r.symbolStatus = &symbolStatus
 	return r
 }
@@ -753,12 +824,12 @@ func (r ApiTickerRequest) Execute() (*common.RestApiResponse[models.TickerRespon
 Ticker Rolling window price change statistics
 Get /api/v3/ticker
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#rolling-window-price-change-statistics
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ticker
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param symbols -  List of symbols to query
-@param windowSize -
+@param symbol -  Either `symbol` or `symbols` must be provided
+@param symbols -  Either `symbol` or `symbols` must be provided  Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100.
+@param windowSize -  Units cannot be combined (e.g. `1d2h` is not allowed).
 @param type_ -
 @param symbolStatus -
 @return ApiTickerRequest
@@ -797,7 +868,15 @@ func (a *MarketAPIService) TickerExecute(r ApiTickerRequest) (*common.RestApiRes
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.TickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TickerResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -811,16 +890,16 @@ type ApiTicker24hrRequest struct {
 	symbol       *string
 	symbols      *[]string
 	type_        *models.TickerTypeParameter
-	symbolStatus *models.ExchangeInfoSymbolStatusParameter
+	symbolStatus *models.TickerSymbolStatusParameter
 }
 
-// Symbol to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided
 func (r ApiTicker24hrRequest) Symbol(symbol string) ApiTicker24hrRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided  Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100.
 func (r ApiTicker24hrRequest) Symbols(symbols []string) ApiTicker24hrRequest {
 	r.symbols = &symbols
 	return r
@@ -831,7 +910,7 @@ func (r ApiTicker24hrRequest) Type(type_ models.TickerTypeParameter) ApiTicker24
 	return r
 }
 
-func (r ApiTicker24hrRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTicker24hrRequest {
+func (r ApiTicker24hrRequest) SymbolStatus(symbolStatus models.TickerSymbolStatusParameter) ApiTicker24hrRequest {
 	r.symbolStatus = &symbolStatus
 	return r
 }
@@ -844,11 +923,11 @@ func (r ApiTicker24hrRequest) Execute() (*common.RestApiResponse[models.Ticker24
 Ticker24hr 24hr ticker price change statistics
 Get /api/v3/ticker/24hr
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#24hr-ticker-price-change-statistics
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ticker24hr
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param symbols -  List of symbols to query
+@param symbol -  Either `symbol` or `symbols` must be provided
+@param symbols -  Either `symbol` or `symbols` must be provided  Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D  The maximum number of symbols allowed in a request is 100.
 @param type_ -
 @param symbolStatus -
 @return ApiTicker24hrRequest
@@ -884,7 +963,15 @@ func (a *MarketAPIService) Ticker24hrExecute(r ApiTicker24hrRequest) (*common.Re
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.Ticker24hrResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.Ticker24hrResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -900,18 +987,19 @@ type ApiTickerBookTickerRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Symbol to query
+// Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, &#x60;bookTickers&#x60; for all symbols will be returned in an array.
 func (r ApiTickerBookTickerRequest) Symbol(symbol string) ApiTickerBookTickerRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, &#x60;bookTickers&#x60; for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D
 func (r ApiTickerBookTickerRequest) Symbols(symbols []string) ApiTickerBookTickerRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response.
 func (r ApiTickerBookTickerRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerBookTickerRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -925,12 +1013,12 @@ func (r ApiTickerBookTickerRequest) Execute() (*common.RestApiResponse[models.Ti
 TickerBookTicker Symbol order book ticker
 Get /api/v3/ticker/bookTicker
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-order-book-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ticker-book-ticker
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param symbols -  List of symbols to query
-@param symbolStatus -
+@param symbol -  Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, `bookTickers` for all symbols will be returned in an array.
+@param symbols -  Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, `bookTickers` for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D
+@param symbolStatus -  Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response.
 @return ApiTickerBookTickerRequest
 */
 func (a *MarketAPIService) TickerBookTicker(ctx context.Context) ApiTickerBookTickerRequest {
@@ -961,7 +1049,15 @@ func (a *MarketAPIService) TickerBookTickerExecute(r ApiTickerBookTickerRequest)
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.TickerBookTickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TickerBookTickerResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -977,18 +1073,19 @@ type ApiTickerPriceRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Symbol to query
+// Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array.
 func (r ApiTickerPriceRequest) Symbol(symbol string) ApiTickerPriceRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D
 func (r ApiTickerPriceRequest) Symbols(symbols []string) ApiTickerPriceRequest {
 	r.symbols = &symbols
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response.
 func (r ApiTickerPriceRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerPriceRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -1002,12 +1099,12 @@ func (r ApiTickerPriceRequest) Execute() (*common.RestApiResponse[models.TickerP
 TickerPrice Symbol price ticker
 Get /api/v3/ticker/price
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#symbol-price-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ticker-price
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param symbols -  List of symbols to query
-@param symbolStatus -
+@param symbol -  Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array.
+@param symbols -  Parameter symbol and symbols cannot be used in combination. If neither parameter is sent, prices for all symbols will be returned in an array. Examples of accepted format for the symbols parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D
+@param symbolStatus -  Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response.
 @return ApiTickerPriceRequest
 */
 func (a *MarketAPIService) TickerPrice(ctx context.Context) ApiTickerPriceRequest {
@@ -1038,7 +1135,15 @@ func (a *MarketAPIService) TickerPriceExecute(r ApiTickerPriceRequest) (*common.
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.TickerPriceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TickerPriceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1056,13 +1161,13 @@ type ApiTickerTradingDayRequest struct {
 	symbolStatus *models.ExchangeInfoSymbolStatusParameter
 }
 
-// Symbol to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided.
 func (r ApiTickerTradingDayRequest) Symbol(symbol string) ApiTickerTradingDayRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// List of symbols to query
+// Either &#x60;symbol&#x60; or &#x60;symbols&#x60; must be provided. Examples of accepted format for the &#x60;symbols&#x60; parameter: [\&quot;BTCUSDT\&quot;,\&quot;BNBUSDT\&quot;] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of &#x60;symbols&#x60; allowed in a request is 100.
 func (r ApiTickerTradingDayRequest) Symbols(symbols []string) ApiTickerTradingDayRequest {
 	r.symbols = &symbols
 	return r
@@ -1079,6 +1184,7 @@ func (r ApiTickerTradingDayRequest) Type(type_ models.TickerTypeParameter) ApiTi
 	return r
 }
 
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple symbols, non-matching ones are simply excluded from the response.
 func (r ApiTickerTradingDayRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerTradingDayRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -1092,14 +1198,14 @@ func (r ApiTickerTradingDayRequest) Execute() (*common.RestApiResponse[models.Ti
 TickerTradingDay Trading Day Ticker
 Get /api/v3/ticker/tradingDay
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#trading-day-ticker
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ticker-trading-day
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol to query
-@param symbols -  List of symbols to query
+@param symbol -  Either `symbol` or `symbols` must be provided.
+@param symbols -  Either `symbol` or `symbols` must be provided. Examples of accepted format for the `symbols` parameter: [\"BTCUSDT\",\"BNBUSDT\"] or %5B%22BTCUSDT%22,%22BNBUSDT%22%5D. The maximum number of `symbols` allowed in a request is 100.
 @param timeZone -  Default: 0 (UTC)
 @param type_ -
-@param symbolStatus -
+@param symbolStatus -  Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple symbols, non-matching ones are simply excluded from the response.
 @return ApiTickerTradingDayRequest
 */
 func (a *MarketAPIService) TickerTradingDay(ctx context.Context) ApiTickerTradingDayRequest {
@@ -1136,7 +1242,15 @@ func (a *MarketAPIService) TickerTradingDayExecute(r ApiTickerTradingDayRequest)
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbolStatus", r.symbolStatus, "form", "")
 	}
 
-	resp, err := SendRequest[models.TickerTradingDayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TickerTradingDayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1165,13 +1279,11 @@ func (r ApiUiKlinesRequest) Interval(interval models.KlinesIntervalParameter) Ap
 	return r
 }
 
-// Timestamp in ms to get aggregate trades from INCLUSIVE.
 func (r ApiUiKlinesRequest) StartTime(startTime int64) ApiUiKlinesRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// Timestamp in ms to get aggregate trades until INCLUSIVE.
 func (r ApiUiKlinesRequest) EndTime(endTime int64) ApiUiKlinesRequest {
 	r.endTime = &endTime
 	return r
@@ -1183,7 +1295,6 @@ func (r ApiUiKlinesRequest) TimeZone(timeZone string) ApiUiKlinesRequest {
 	return r
 }
 
-// Default: 500; Maximum: 1000.
 func (r ApiUiKlinesRequest) Limit(limit int32) ApiUiKlinesRequest {
 	r.limit = &limit
 	return r
@@ -1197,15 +1308,15 @@ func (r ApiUiKlinesRequest) Execute() (*common.RestApiResponse[models.UiKlinesRe
 UiKlines UIKlines
 Get /api/v3/uiKlines
 
-https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints#uiklines
+https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/rest-api/market#ui-klines
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param interval -
-@param startTime -  Timestamp in ms to get aggregate trades from INCLUSIVE.
-@param endTime -  Timestamp in ms to get aggregate trades until INCLUSIVE.
+@param startTime -
+@param endTime -
 @param timeZone -  Default: 0 (UTC)
-@param limit -  Default: 500; Maximum: 1000.
+@param limit -
 @return ApiUiKlinesRequest
 */
 func (a *MarketAPIService) UiKlines(ctx context.Context) ApiUiKlinesRequest {
@@ -1228,6 +1339,7 @@ func (a *MarketAPIService) UiKlinesExecute(r ApiUiKlinesRequest) (*common.RestAp
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -1247,7 +1359,15 @@ func (a *MarketAPIService) UiKlinesExecute(r ApiUiKlinesRequest) (*common.RestAp
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.UiKlinesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.UiKlinesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

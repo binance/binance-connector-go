@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int64** |  | [optional] 
 **Msg** | Pointer to **string** |  | [optional] 
-**Data** | Pointer to **int64** |  | [optional] 
+**Data** | Pointer to **int64** | Configuration ID | [optional] 
 
 ## Methods
 

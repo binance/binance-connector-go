@@ -7,16 +7,16 @@ Name         | Type          | Description.  | Notes
 **OrderId** | Pointer to **int64** |  | [optional] 
 **LoanCoin** | Pointer to **string** |  | [optional] 
 **TotalDebt** | Pointer to **string** |  | [optional] 
-**LoanRate** | Pointer to **string** |  | [optional] 
+**LoanRate** | Pointer to **string** | For flexible loans, this is the flexible rate. | [optional] 
 **ResidualInterest** | Pointer to **string** |  | [optional] 
 **CollateralAccountId** | Pointer to **string** |  | [optional] 
 **CollateralCoin** | Pointer to **string** |  | [optional] 
 **TotalCollateralValueAfterHaircut** | Pointer to **string** |  | [optional] 
 **LockedCollateralValue** | Pointer to **string** |  | [optional] 
 **CurrentLTV** | Pointer to **string** |  | [optional] 
-**ExpirationTime** | Pointer to **int64** |  | [optional] 
+**ExpirationTime** | Pointer to **int64** | For flexible loans, this value is &#x60;0&#x60;. | [optional] 
 **LoanDate** | Pointer to **string** |  | [optional] 
-**LoanTerm** | Pointer to **string** |  | [optional] 
+**LoanTerm** | Pointer to **string** | For flexible loans, this value is &#x60;open term&#x60;. | [optional] 
 
 ## Methods
 

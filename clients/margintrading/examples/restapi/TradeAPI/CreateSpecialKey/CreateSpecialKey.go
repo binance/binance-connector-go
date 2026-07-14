@@ -22,7 +22,7 @@ func CreateSpecialKey() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CreateSpecialKey(context.Background()).ApiName("apiName_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CreateSpecialKey(context.Background()).ApiName("apiName").Execute()
 	if err != nil {
 		log.Println(err)
 		return

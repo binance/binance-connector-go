@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Exchange** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Weight** | Pointer to **string** |  | [optional] 
+**Exchange** | Pointer to **string** | Exchange identifier. | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Price** | Pointer to **string** | Price | [optional] 
+**Weight** | Pointer to **string** | Weight | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,20 +15,32 @@ import (
 // checks if the AllMarketLiquidationOrderStreamsResponseO type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AllMarketLiquidationOrderStreamsResponseO{}
 
-// AllMarketLiquidationOrderStreamsResponseO struct for AllMarketLiquidationOrderStreamsResponseO
+// AllMarketLiquidationOrderStreamsResponseO Order Type
 type AllMarketLiquidationOrderStreamsResponseO struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallf               *string `json:"f,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallap              *string `json:"ap,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallz               *string `json:"z,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Pair
+	Smallps *string `json:"ps,omitempty"`
+	// Side
+	S *string `json:"S,omitempty"`
+	// Order Type
+	Smallo *string `json:"o,omitempty"`
+	// Time in Force
+	Smallf *string `json:"f,omitempty"`
+	// Original Quantity
+	Smallq *string `json:"q,omitempty"`
+	// Price
+	Smallp *string `json:"p,omitempty"`
+	// Average Price
+	Smallap *string `json:"ap,omitempty"`
+	// Order Status
+	X *string `json:"X,omitempty"`
+	// Order Last Filled Quantity
+	Smalll *string `json:"l,omitempty"`
+	// Order Filled Accumulated Quantity
+	Smallz *string `json:"z,omitempty"`
+	// Order Trade Time
+	T                    *int64 `json:"T,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

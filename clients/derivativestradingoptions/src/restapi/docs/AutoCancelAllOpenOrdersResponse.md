@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Underlyings** | Pointer to **[]string** |  | [optional] 
+**Underlyings** | Pointer to **[]string** | underlyings | [optional] 
 
 ## Methods
 

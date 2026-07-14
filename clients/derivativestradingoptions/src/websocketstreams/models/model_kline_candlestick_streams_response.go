@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &KlineCandlestickStreamsResponse{}
 
 // KlineCandlestickStreamsResponse struct for KlineCandlestickStreamsResponse
 type KlineCandlestickStreamsResponse struct {
-	Smalle               *string                           `json:"e,omitempty"`
-	E                    *int64                            `json:"E,omitempty"`
+	// event type
+	Smalle *string `json:"e,omitempty"`
+	// event time
+	E *int64 `json:"E,omitempty"`
+	// Option trading symbol
 	Smalls               *string                           `json:"s,omitempty"`
 	Smallk               *KlineCandlestickStreamsResponseK `json:"k,omitempty"`
 	AdditionalProperties map[string]interface{}

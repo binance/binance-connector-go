@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**PoolUsername** | Pointer to **string** |  | [optional] 
-**ToPoolUsername** | Pointer to **string** |  | [optional] 
-**AlgoName** | Pointer to **string** |  | [optional] 
-**HashRate** | Pointer to **int64** |  | [optional] 
-**Day** | Pointer to **int64** |  | [optional] 
-**Amount** | Pointer to **float32** |  | [optional] 
-**CoinName** | Pointer to **string** |  | [optional] 
+**PoolUsername** | Pointer to **string** | Transfer-out sub-account | [optional] 
+**ToPoolUsername** | Pointer to **string** | Transfer-in sub-account | [optional] 
+**AlgoName** | Pointer to **string** | Transfer algorithm name | [optional] 
+**HashRate** | Pointer to **int64** | Transferred hashrate | [optional] 
+**Day** | Pointer to **int64** | Transfer date | [optional] 
+**Amount** | Pointer to **float32** | Transferred income | [optional] 
+**CoinName** | Pointer to **string** | Income coin | [optional] 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DeltaEnabled** | Pointer to **bool** |  | [optional] 
+**DeltaEnabled** | Pointer to **bool** | delta Enabled. | [optional] 
 
 ## Methods
 

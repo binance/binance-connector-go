@@ -1,78 +1,78 @@
-# Openorderloss
+# OpenOrderLoss
 
 ## Properties
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**O** | Pointer to [**[]OpenorderlossOInner**](OpenorderlossOInner.md) |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**O** | Pointer to [**[]OpenOrderLossOInner**](OpenOrderLossOInner.md) | Update Data | [optional] 
 
 ## Methods
 
-### NewOpenorderloss
+### NewOpenOrderLoss
 
-`func NewOpenorderloss() *Openorderloss`
+`func NewOpenOrderLoss() *OpenOrderLoss`
 
-NewOpenorderloss instantiates a new Openorderloss object
+NewOpenOrderLoss instantiates a new OpenOrderLoss object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOpenorderlossWithDefaults
+### NewOpenOrderLossWithDefaults
 
-`func NewOpenorderlossWithDefaults() *Openorderloss`
+`func NewOpenOrderLossWithDefaults() *OpenOrderLoss`
 
-NewOpenorderlossWithDefaults instantiates a new Openorderloss object
+NewOpenOrderLossWithDefaults instantiates a new OpenOrderLoss object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetE
 
-`func (o *Openorderloss) GetE() int64`
+`func (o *OpenOrderLoss) GetE() int64`
 
 GetE returns the E field if non-nil, zero value otherwise.
 
 ### GetEOk
 
-`func (o *Openorderloss) GetEOk() (*int64, bool)`
+`func (o *OpenOrderLoss) GetEOk() (*int64, bool)`
 
 GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetE
 
-`func (o *Openorderloss) SetE(v int64)`
+`func (o *OpenOrderLoss) SetE(v int64)`
 
 SetE sets E field to given value.
 
 ### HasE
 
-`func (o *Openorderloss) HasE() bool`
+`func (o *OpenOrderLoss) HasE() bool`
 
 HasE returns a boolean if a field has been set.
 
 ### GetO
 
-`func (o *Openorderloss) GetO() []OpenorderlossOInner`
+`func (o *OpenOrderLoss) GetO() []OpenOrderLossOInner`
 
 GetO returns the O field if non-nil, zero value otherwise.
 
 ### GetOOk
 
-`func (o *Openorderloss) GetOOk() (*[]OpenorderlossOInner, bool)`
+`func (o *OpenOrderLoss) GetOOk() (*[]OpenOrderLossOInner, bool)`
 
 GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetO
 
-`func (o *Openorderloss) SetO(v []OpenorderlossOInner)`
+`func (o *OpenOrderLoss) SetO(v []OpenOrderLossOInner)`
 
 SetO sets O field to given value.
 
 ### HasO
 
-`func (o *Openorderloss) HasO() bool`
+`func (o *OpenOrderLoss) HasO() bool`
 
 HasO returns a boolean if a field has been set.
 

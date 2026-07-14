@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package models

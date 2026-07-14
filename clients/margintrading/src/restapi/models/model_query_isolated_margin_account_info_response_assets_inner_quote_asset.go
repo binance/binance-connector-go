@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -15,17 +15,27 @@ import (
 // checks if the QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset{}
 
-// QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset struct for QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset
+// QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset quote Asset object.
 type QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset struct {
-	Asset                *string `json:"asset,omitempty"`
-	BorrowEnabled        *bool   `json:"borrowEnabled,omitempty"`
-	Borrowed             *string `json:"borrowed,omitempty"`
-	Free                 *string `json:"free,omitempty"`
-	Interest             *string `json:"interest,omitempty"`
-	Locked               *string `json:"locked,omitempty"`
-	NetAsset             *string `json:"netAsset,omitempty"`
-	NetAssetOfBtc        *string `json:"netAssetOfBtc,omitempty"`
-	RepayEnabled         *bool   `json:"repayEnabled,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// borrow Enabled.
+	BorrowEnabled *bool `json:"borrowEnabled,omitempty"`
+	// borrowed.
+	Borrowed *string `json:"borrowed,omitempty"`
+	// free.
+	Free *string `json:"free,omitempty"`
+	// interest.
+	Interest *string `json:"interest,omitempty"`
+	// locked.
+	Locked *string `json:"locked,omitempty"`
+	// net Asset.
+	NetAsset *string `json:"netAsset,omitempty"`
+	// net Asset Of Btc.
+	NetAssetOfBtc *string `json:"netAssetOfBtc,omitempty"`
+	// repay Enabled.
+	RepayEnabled *bool `json:"repayEnabled,omitempty"`
+	// total Asset.
 	TotalAsset           *string `json:"totalAsset,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

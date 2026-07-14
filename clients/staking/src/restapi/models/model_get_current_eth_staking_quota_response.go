@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetCurrentEthStakingQuotaResponse{}
 
 // GetCurrentEthStakingQuotaResponse struct for GetCurrentEthStakingQuotaResponse
 type GetCurrentEthStakingQuotaResponse struct {
-	LeftStakingPersonalQuota    *string `json:"leftStakingPersonalQuota,omitempty"`
+	// Show min (Daily available limit, total personal staking quota)
+	LeftStakingPersonalQuota *string `json:"leftStakingPersonalQuota,omitempty"`
+	// Show min (Daily personal redeem quota, total redemption limit)
 	LeftRedemptionPersonalQuota *string `json:"leftRedemptionPersonalQuota,omitempty"`
 	MinStakeAmount              *string `json:"minStakeAmount,omitempty"`
 	MinRedeemAmount             *string `json:"minRedeemAmount,omitempty"`

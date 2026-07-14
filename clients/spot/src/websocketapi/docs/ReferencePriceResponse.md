@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**ReferencePriceResponseResult**](ReferencePriceResponseResult.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetResult sets Result field to given value.
 `func (o *ReferencePriceResponse) HasResult() bool`
 
 HasResult returns a boolean if a field has been set.
+
+### GetRateLimits
+
+`func (o *ReferencePriceResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
+
+GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
+
+### GetRateLimitsOk
+
+`func (o *ReferencePriceResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
+
+GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRateLimits
+
+`func (o *ReferencePriceResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
+
+SetRateLimits sets RateLimits field to given value.
+
+### HasRateLimits
+
+`func (o *ReferencePriceResponse) HasRateLimits() bool`
+
+HasRateLimits returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

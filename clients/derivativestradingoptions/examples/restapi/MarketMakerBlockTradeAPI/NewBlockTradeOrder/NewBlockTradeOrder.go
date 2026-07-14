@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
+	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func NewBlockTradeOrder() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.NewBlockTradeOrder(context.Background()).Liquidity("liquidity_example").Legs([]map[string]interface{}{}).Execute()
+	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.NewBlockTradeOrder(context.Background()).Liquidity(models.NewBlockTradeOrderLiquidityParameterMaker).Legs([]models.NewBlockTradeOrderLegsParameterInner{}).Execute()
 	if err != nil {
 		log.Println(err)
 		return

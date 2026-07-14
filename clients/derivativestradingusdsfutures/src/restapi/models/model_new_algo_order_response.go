@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -36,13 +36,15 @@ type NewAlgoOrderResponse struct {
 	ClosePosition           *bool   `json:"closePosition,omitempty"`
 	PriceProtect            *bool   `json:"priceProtect,omitempty"`
 	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	CallbackRate            *string `json:"callbackRate,omitempty"`
-	CreateTime              *int64  `json:"createTime,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	TriggerTime             *int64  `json:"triggerTime,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// TRAILING_STOP_MARKET order
+	CallbackRate         *string `json:"callbackRate,omitempty"`
+	CreateTime           *int64  `json:"createTime,omitempty"`
+	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	TriggerTime          *int64  `json:"triggerTime,omitempty"`
+	GoodTillDate         *int64  `json:"goodTillDate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NewAlgoOrderResponse NewAlgoOrderResponse

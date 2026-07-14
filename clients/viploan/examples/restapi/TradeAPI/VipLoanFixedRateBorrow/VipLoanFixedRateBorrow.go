@@ -22,7 +22,7 @@ func VipLoanFixedRateBorrow() {
 	apiClient := client.NewBinanceVipLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.VipLoanFixedRateBorrow(context.Background()).SupplyRequest("supplyRequest_example").BorrowCoin("borrowCoin_example").LoanTerm(789).BorrowUid(789).CollateralCoin("collateralCoin_example").CollateralAccountId("1").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.VipLoanFixedRateBorrow(context.Background()).SupplyRequest("1212:0.12:100;3434:0.13:50").BorrowCoin("BUSD").LoanTerm(30).BorrowUid(12345678).CollateralCoin("BNB,ETH,BTC").CollateralAccountId("12345,67890,13579").Execute()
 	if err != nil {
 		log.Println(err)
 		return

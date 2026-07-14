@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**IsIsolated** | Pointer to **bool** |  | [optional] 
-**OrderId** | Pointer to **string** |  | [optional] 
-**OrigClientOrderId** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**CummulativeQuoteQty** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**OrderId** | Pointer to **string** | order Id. | [optional] 
+**OrigClientOrderId** | Pointer to **string** | orig Client Order Id. | [optional] 
+**ClientOrderId** | Pointer to **string** | client Order Id. | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**OrigQty** | Pointer to **string** | orig Qty. | [optional] 
+**ExecutedQty** | Pointer to **string** | executed Qty. | [optional] 
+**CummulativeQuoteQty** | Pointer to **string** | cummulative Quote Qty. | [optional] 
+**Status** | Pointer to **string** | status. | [optional] 
+**TimeInForce** | Pointer to **string** | time In Force. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**Side** | Pointer to **string** | side. | [optional] 
+**IsIsolated** | Pointer to **bool** | if isolated margin | [optional] 
 
 ## Methods
 
@@ -61,31 +61,6 @@ SetSymbol sets Symbol field to given value.
 `func (o *MarginAccountCancelOrderResponse) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
-
-### GetIsIsolated
-
-`func (o *MarginAccountCancelOrderResponse) GetIsIsolated() bool`
-
-GetIsIsolated returns the IsIsolated field if non-nil, zero value otherwise.
-
-### GetIsIsolatedOk
-
-`func (o *MarginAccountCancelOrderResponse) GetIsIsolatedOk() (*bool, bool)`
-
-GetIsIsolatedOk returns a tuple with the IsIsolated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsIsolated
-
-`func (o *MarginAccountCancelOrderResponse) SetIsIsolated(v bool)`
-
-SetIsIsolated sets IsIsolated field to given value.
-
-### HasIsIsolated
-
-`func (o *MarginAccountCancelOrderResponse) HasIsIsolated() bool`
-
-HasIsIsolated returns a boolean if a field has been set.
 
 ### GetOrderId
 
@@ -361,6 +336,31 @@ SetSide sets Side field to given value.
 `func (o *MarginAccountCancelOrderResponse) HasSide() bool`
 
 HasSide returns a boolean if a field has been set.
+
+### GetIsIsolated
+
+`func (o *MarginAccountCancelOrderResponse) GetIsIsolated() bool`
+
+GetIsIsolated returns the IsIsolated field if non-nil, zero value otherwise.
+
+### GetIsIsolatedOk
+
+`func (o *MarginAccountCancelOrderResponse) GetIsIsolatedOk() (*bool, bool)`
+
+GetIsIsolatedOk returns a tuple with the IsIsolated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsIsolated
+
+`func (o *MarginAccountCancelOrderResponse) SetIsIsolated(v bool)`
+
+SetIsIsolated sets IsIsolated field to given value.
+
+### HasIsIsolated
+
+`func (o *MarginAccountCancelOrderResponse) HasIsIsolated() bool`
+
+HasIsIsolated returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

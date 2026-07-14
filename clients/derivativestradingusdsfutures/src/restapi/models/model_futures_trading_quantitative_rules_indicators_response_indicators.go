@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,7 +15,7 @@ import (
 // checks if the FuturesTradingQuantitativeRulesIndicatorsResponseIndicators type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &FuturesTradingQuantitativeRulesIndicatorsResponseIndicators{}
 
-// FuturesTradingQuantitativeRulesIndicatorsResponseIndicators struct for FuturesTradingQuantitativeRulesIndicatorsResponseIndicators
+// FuturesTradingQuantitativeRulesIndicatorsResponseIndicators indicator: quantitative rules indicators, value: user's indicators value, triggerValue: trigger indicator value threshold of quantitative rules.
 type FuturesTradingQuantitativeRulesIndicatorsResponseIndicators struct {
 	BTCUSDT              []FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner `json:"BTCUSDT,omitempty"`
 	ETHUSDT              []FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner `json:"ETHUSDT,omitempty"`

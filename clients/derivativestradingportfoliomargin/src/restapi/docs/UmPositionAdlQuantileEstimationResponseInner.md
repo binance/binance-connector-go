@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **AdlQuantile** | Pointer to [**UmPositionAdlQuantileEstimationResponseInnerAdlQuantile**](UmPositionAdlQuantileEstimationResponseInnerAdlQuantile.md) |  | [optional] 
 
 ## Methods

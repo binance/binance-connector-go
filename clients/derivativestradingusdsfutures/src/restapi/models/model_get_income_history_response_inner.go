@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetIncomeHistoryResponseInner{}
 
 // GetIncomeHistoryResponseInner struct for GetIncomeHistoryResponseInner
 type GetIncomeHistoryResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	IncomeType           *string `json:"incomeType,omitempty"`
-	Income               *string `json:"income,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Info                 *string `json:"info,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	TranId               *int64  `json:"tranId,omitempty"`
+	// trade symbol, if existing
+	Symbol *string `json:"symbol,omitempty"`
+	// income type
+	IncomeType *string `json:"incomeType,omitempty"`
+	// income amount
+	Income *string `json:"income,omitempty"`
+	// income asset
+	Asset *string `json:"asset,omitempty"`
+	// extra information
+	Info *string `json:"info,omitempty"`
+	// Time.
+	Time *int64 `json:"time,omitempty"`
+	// transaction id
+	TranId *int64 `json:"tranId,omitempty"`
+	// trade id, if existing
 	TradeId              *string `json:"tradeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

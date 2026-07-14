@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &FuturesTradingQuantitativeRulesIndicatorsResponse
 
 // FuturesTradingQuantitativeRulesIndicatorsResponse struct for FuturesTradingQuantitativeRulesIndicatorsResponse
 type FuturesTradingQuantitativeRulesIndicatorsResponse struct {
-	Indicators           *FuturesTradingQuantitativeRulesIndicatorsResponseIndicators `json:"indicators,omitempty"`
-	UpdateTime           *int64                                                       `json:"updateTime,omitempty"`
+	Indicators *FuturesTradingQuantitativeRulesIndicatorsResponseIndicators `json:"indicators,omitempty"`
+	// Update Time.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TxId** | Pointer to **int64** |  | [optional] 
-**InterestAccuredTime** | Pointer to **int64** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**RawAsset** | Pointer to **string** |  | [optional] 
-**Principal** | Pointer to **string** |  | [optional] 
-**Interest** | Pointer to **string** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**IsolatedSymbol** | Pointer to **string** |  | [optional] 
+**TxId** | Pointer to **int64** | tx Id. | [optional] 
+**InterestAccuredTime** | Pointer to **int64** | interest Accured Time. | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**RawAsset** | Pointer to **string** | will not be returned for isolated margin | [optional] 
+**Principal** | Pointer to **string** | principal. | [optional] 
+**Interest** | Pointer to **string** | interest. | [optional] 
+**InterestRate** | Pointer to **string** | interest Rate. | [optional] 
+**Type** | Pointer to **string** | type. | [optional] 
+**IsolatedSymbol** | Pointer to **string** | isolated symbol, will not be returned for crossed margin | [optional] 
 
 ## Methods
 

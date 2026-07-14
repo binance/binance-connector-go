@@ -8,7 +8,6 @@
 * `OrderCancelReplaceSelfTradePreventionModeParameterExpireBoth` (value: `"EXPIRE_BOTH"`)
 * `OrderCancelReplaceSelfTradePreventionModeParameterDecrement` (value: `"DECREMENT"`)
 * `OrderCancelReplaceSelfTradePreventionModeParameterTransfer` (value: `"TRANSFER"`)
-* `OrderCancelReplaceSelfTradePreventionModeParameterNonRepresentable` (value: `"NON_REPRESENTABLE"`)
 
 
 [[Back to README]](../README.md)

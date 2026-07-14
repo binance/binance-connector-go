@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**L** | Pointer to **string** | Margin level | [optional] 
+**S** | Pointer to **string** | Margin call status | [optional] 
 
 ## Methods
 

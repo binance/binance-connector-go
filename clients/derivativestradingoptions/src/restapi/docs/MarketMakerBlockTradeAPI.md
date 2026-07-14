@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	blockOrderMatchingKey := "blockOrderMatchingKey_example" // string | 
+	blockOrderMatchingKey := "7d046e6e-a429-4335-ab9d-6a681febcde5" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -108,8 +108,8 @@ import (
 func main() {
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	underlying := "BTCUSDT" // string | Underlying asset. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -139,8 +139,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
- **underlying** | **string** | underlying, e.g BTCUSDT | 
- **recvWindow** | **int64** |  | 
+ **underlying** | **string** | Underlying asset. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -180,8 +180,8 @@ import (
 )
 
 func main() {
-	blockOrderMatchingKey := "blockOrderMatchingKey_example" // string | 
-	recvWindow := int64(5000) // int64 |  (optional)
+	blockOrderMatchingKey := "7d046e6e-a429-4335-ab9d-6a681febcde5" // string | Block trade matching key.
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -203,8 +203,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **blockOrderMatchingKey** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **blockOrderMatchingKey** | **string** | Block trade matching key. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	blockOrderMatchingKey := "blockOrderMatchingKey_example" // string | 
+	blockOrderMatchingKey := "3668822b8-1baa-6a2f-adb8-d3de6289b361" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -314,8 +314,8 @@ import (
 )
 
 func main() {
-	liquidity := "liquidity_example" // string | Taker or Maker
-	legs := []map[string]interface{}{map[string]interface{}([{"symbol":"BTC-210115-35000-C","price":"100","quantity":"0.0002","side":"BUY","type":"LIMIT"}])} // []map[string]interface{} | Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders=[{\"symbol\":\"BTC-210115-35000-C\", \"price\":\"100\",\"quantity\":\"0.0002\",\"side\":\"BUY\",\"type\":\"LIMIT\"}]
+	liquidity := models.NewBlockTradeOrderLiquidityParameterMaker // NewBlockTradeOrderLiquidityParameter | 
+	legs := []models.NewBlockTradeOrderLegsParameterInner{*models.NewNewBlockTradeOrderLegsParameterInner("BTC-210115-35000-C", models.newBlockTradeOrder_legs_parameter_inner_side("BUY"), models.newBlockTradeOrder_legs_parameter_inner_type("LIMIT"), "0.0002")} // []NewBlockTradeOrderLegsParameterInner | Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders=[{\"symbol\":\"BTC-210115-35000-C\", \"price\":\"100\",\"quantity\":\"0.0002\",\"side\":\"BUY\",\"type\":\"LIMIT\"}]
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -344,8 +344,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **liquidity** | **string** | Taker or Maker | 
- **legs** | **[]map[string]interface{}** | Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders&#x3D;[{\&quot;symbol\&quot;:\&quot;BTC-210115-35000-C\&quot;, \&quot;price\&quot;:\&quot;100\&quot;,\&quot;quantity\&quot;:\&quot;0.0002\&quot;,\&quot;side\&quot;:\&quot;BUY\&quot;,\&quot;type\&quot;:\&quot;LIMIT\&quot;}] | 
+ **liquidity** | [**NewBlockTradeOrderLiquidityParameter**](NewBlockTradeOrderLiquidityParameter.md) |  | 
+ **legs** | [**[]NewBlockTradeOrderLegsParameterInner**](NewBlockTradeOrderLegsParameterInner.md) | Max 1 (only single leg supported), list of legs parameters in JSON; example: eapi/v1/block/order/create?orders&#x3D;[{\&quot;symbol\&quot;:\&quot;BTC-210115-35000-C\&quot;, \&quot;price\&quot;:\&quot;100\&quot;,\&quot;quantity\&quot;:\&quot;0.0002\&quot;,\&quot;side\&quot;:\&quot;BUY\&quot;,\&quot;type\&quot;:\&quot;LIMIT\&quot;}] | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -386,8 +386,8 @@ import (
 )
 
 func main() {
-	blockOrderMatchingKey := "blockOrderMatchingKey_example" // string | 
-	recvWindow := int64(5000) // int64 |  (optional)
+	blockOrderMatchingKey := "12b96c28-ba05-8906-c89t-703215cfb2e6" // string | Block trade matching key.
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -415,8 +415,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **blockOrderMatchingKey** | **string** |  | 
- **recvWindow** | **int64** |  | 
+ **blockOrderMatchingKey** | **string** | Block trade matching key. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 
@@ -456,11 +456,11 @@ import (
 )
 
 func main() {
-	blockOrderMatchingKey := "blockOrderMatchingKey_example" // string | If specified, returns the specific block trade associated with the blockOrderMatchingKey (optional)
+	blockOrderMatchingKey := "7d046e6e-a429-4335-ab9d-6a681febcde5" // string | If specified, returns the specific block trade associated with the blockOrderMatchingKey (optional)
 	endTime := int64(1641782889000) // int64 | End Time, e.g 1593512200000 (optional)
 	startTime := int64(1623319461670) // int64 | Start Time, e.g 1593511200000 (optional)
-	underlying := "underlying_example" // string | underlying, e.g BTCUSDT (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
+	underlying := "BTCUSDT" // string | Underlying asset. (optional)
+	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -491,8 +491,8 @@ Name          | Type          | Description   | Notes
  **blockOrderMatchingKey** | **string** | If specified, returns the specific block trade associated with the blockOrderMatchingKey | 
  **endTime** | **int64** | End Time, e.g 1593512200000 | 
  **startTime** | **int64** | Start Time, e.g 1593511200000 | 
- **underlying** | **string** | underlying, e.g BTCUSDT | 
- **recvWindow** | **int64** |  | 
+ **underlying** | **string** | Underlying asset. | 
+ **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type
 

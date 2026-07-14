@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &OrderBookResponse{}
 
 // OrderBookResponse struct for OrderBookResponse
 type OrderBookResponse struct {
-	LastUpdateId         *int64                      `json:"lastUpdateId,omitempty"`
-	Symbol               *string                     `json:"symbol,omitempty"`
-	Pair                 *string                     `json:"pair,omitempty"`
-	E                    *int64                      `json:"E,omitempty"`
-	T                    *int64                      `json:"T,omitempty"`
-	Bids                 []OrderBookResponseBidsItem `json:"bids,omitempty"`
-	Asks                 []OrderBookResponseAsksItem `json:"asks,omitempty"`
+	// Last update ID.
+	LastUpdateId *int64 `json:"lastUpdateId,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Message output time
+	E *int64 `json:"E,omitempty"`
+	// Transaction time
+	T *int64 `json:"T,omitempty"`
+	// Bid orders. Each entry is [price, quantity].
+	Bids [][]string `json:"bids,omitempty"`
+	// Ask orders. Each entry is [price, quantity].
+	Asks                 [][]string `json:"asks,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -207,9 +214,9 @@ func (o *OrderBookResponse) SetT(v int64) {
 }
 
 // GetBids returns the Bids field value if set, zero value otherwise.
-func (o *OrderBookResponse) GetBids() []OrderBookResponseBidsItem {
+func (o *OrderBookResponse) GetBids() [][]string {
 	if o == nil || common.IsNil(o.Bids) {
-		var ret []OrderBookResponseBidsItem
+		var ret [][]string
 		return ret
 	}
 	return o.Bids
@@ -217,7 +224,7 @@ func (o *OrderBookResponse) GetBids() []OrderBookResponseBidsItem {
 
 // GetBidsOk returns a tuple with the Bids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderBookResponse) GetBidsOk() ([]OrderBookResponseBidsItem, bool) {
+func (o *OrderBookResponse) GetBidsOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Bids) {
 		return nil, false
 	}
@@ -233,15 +240,15 @@ func (o *OrderBookResponse) HasBids() bool {
 	return false
 }
 
-// SetBids gets a reference to the given []OrderBookResponseBidsItem and assigns it to the Bids field.
-func (o *OrderBookResponse) SetBids(v []OrderBookResponseBidsItem) {
+// SetBids gets a reference to the given [][]string and assigns it to the Bids field.
+func (o *OrderBookResponse) SetBids(v [][]string) {
 	o.Bids = v
 }
 
 // GetAsks returns the Asks field value if set, zero value otherwise.
-func (o *OrderBookResponse) GetAsks() []OrderBookResponseAsksItem {
+func (o *OrderBookResponse) GetAsks() [][]string {
 	if o == nil || common.IsNil(o.Asks) {
-		var ret []OrderBookResponseAsksItem
+		var ret [][]string
 		return ret
 	}
 	return o.Asks
@@ -249,7 +256,7 @@ func (o *OrderBookResponse) GetAsks() []OrderBookResponseAsksItem {
 
 // GetAsksOk returns a tuple with the Asks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderBookResponse) GetAsksOk() ([]OrderBookResponseAsksItem, bool) {
+func (o *OrderBookResponse) GetAsksOk() ([][]string, bool) {
 	if o == nil || common.IsNil(o.Asks) {
 		return nil, false
 	}
@@ -265,8 +272,8 @@ func (o *OrderBookResponse) HasAsks() bool {
 	return false
 }
 
-// SetAsks gets a reference to the given []OrderBookResponseAsksItem and assigns it to the Asks field.
-func (o *OrderBookResponse) SetAsks(v []OrderBookResponseAsksItem) {
+// SetAsks gets a reference to the given [][]string and assigns it to the Asks field.
+func (o *OrderBookResponse) SetAsks(v [][]string) {
 	o.Asks = v
 }
 

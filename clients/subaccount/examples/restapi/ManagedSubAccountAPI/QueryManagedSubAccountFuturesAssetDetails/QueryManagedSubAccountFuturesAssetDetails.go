@@ -22,7 +22,7 @@ func QueryManagedSubAccountFuturesAssetDetails() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountFuturesAssetDetails(context.Background()).Email("sub-account-email@email.com").Execute()
+	resp, err := apiClient.RestApi.ManagedSubAccountAPI.QueryManagedSubAccountFuturesAssetDetails(context.Background()).Email("abc@test.com").Execute()
 	if err != nil {
 		log.Println(err)
 		return

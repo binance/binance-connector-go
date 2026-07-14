@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,9 +17,11 @@ var _ common.MappedNullable = &GetRegionListResponse{}
 
 // GetRegionListResponse struct for GetRegionListResponse
 type GetRegionListResponse struct {
-	CountryCode          *string                             `json:"countryCode,omitempty"`
-	Regions              []GetRegionListResponseRegionsInner `json:"regions,omitempty"`
-	LastUpdated          *int64                              `json:"lastUpdated,omitempty"`
+	// Echoed country code (lowercase).
+	CountryCode *string                             `json:"countryCode,omitempty"`
+	Regions     []GetRegionListResponseRegionsInner `json:"regions,omitempty"`
+	// Last data update timestamp (epoch milliseconds); 0 if empty.
+	LastUpdated          *int64 `json:"lastUpdated,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

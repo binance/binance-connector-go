@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &TokenListResponse{}
 
 // TokenListResponse struct for TokenListResponse
 type TokenListResponse struct {
-	Code                 *string                      `json:"code,omitempty"`
-	Message              *string                      `json:"message,omitempty"`
-	MessageDetail        *string                      `json:"messageDetail,omitempty"`
-	Success              *bool                        `json:"success,omitempty"`
+	// API response code. \"000000\" indicates success.
+	Code *string `json:"code,omitempty"`
+	// Response message.
+	Message *string `json:"message,omitempty"`
+	// Detailed response message.
+	MessageDetail *string `json:"messageDetail,omitempty"`
+	// Whether request is successful.
+	Success *bool `json:"success,omitempty"`
+	// List of ALPHA tokens and metadata.
 	Data                 []TokenListResponseDataInner `json:"data,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -28,7 +28,7 @@ func OpenInterest() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketAPI.OpenInterest().ExpirationDate("220930").Execute()
+	handler, err := wsClient.WebsocketStreams.MarketAPI.OpenInterest().Underlying("btcusdt").ExpirationDate("220930").Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}

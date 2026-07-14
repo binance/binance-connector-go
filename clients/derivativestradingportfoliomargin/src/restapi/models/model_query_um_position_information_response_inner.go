@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &QueryUmPositionInformationResponseInner{}
 
 // QueryUmPositionInformationResponseInner struct for QueryUmPositionInformationResponseInner
 type QueryUmPositionInformationResponseInner struct {
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	Leverage             *string `json:"leverage,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	MaxNotionalValue     *string `json:"maxNotionalValue,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	Notional             *string `json:"notional,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
-	LiquidationPrice     *string `json:"liquidationPrice,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// average entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// current initial leverage
+	Leverage *string `json:"leverage,omitempty"`
+	// Mark Price.
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// Max Notional Value.
+	MaxNotionalValue *string `json:"maxNotionalValue,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// Notional.
+	Notional *string `json:"notional,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Un Realized Profit.
+	UnRealizedProfit *string `json:"unRealizedProfit,omitempty"`
+	// Liquidation Price.
+	LiquidationPrice *string `json:"liquidationPrice,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

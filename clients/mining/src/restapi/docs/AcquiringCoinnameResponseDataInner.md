@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**CoinName** | Pointer to **string** |  | [optional] 
-**CoinId** | Pointer to **int64** |  | [optional] 
-**PoolIndex** | Pointer to **int64** |  | [optional] 
-**AlgoId** | Pointer to **int64** |  | [optional] 
-**AlgoName** | Pointer to **string** |  | [optional] 
+**CoinName** | Pointer to **string** | Currency name | [optional] 
+**CoinId** | Pointer to **int64** | ID | [optional] 
+**PoolIndex** | Pointer to **int64** | Sort | [optional] 
+**AlgoId** | Pointer to **int64** | Algorithm | [optional] 
+**AlgoName** | Pointer to **string** | Name of algorithm | [optional] 
 
 ## Methods
 

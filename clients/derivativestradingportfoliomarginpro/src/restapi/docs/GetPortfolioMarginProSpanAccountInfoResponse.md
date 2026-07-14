@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**UniMMR** | Pointer to **string** |  | [optional] 
-**AccountEquity** | Pointer to **string** |  | [optional] 
-**ActualEquity** | Pointer to **string** |  | [optional] 
-**AccountMaintMargin** | Pointer to **string** |  | [optional] 
+**UniMMR** | Pointer to **string** | uni MMR. | [optional] 
+**AccountEquity** | Pointer to **string** | Account equity, unit：USD | [optional] 
+**ActualEquity** | Pointer to **string** | Actual equity, unit：USD | [optional] 
+**AccountMaintMargin** | Pointer to **string** | Account maintenance margin, unit：USD | [optional] 
 **RiskUnitMMList** | Pointer to [**[]GetPortfolioMarginProSpanAccountInfoResponseRiskUnitMMListInner**](GetPortfolioMarginProSpanAccountInfoResponseRiskUnitMMListInner.md) |  | [optional] 
-**MarginMM** | Pointer to **string** |  | [optional] 
-**OtherMM** | Pointer to **string** |  | [optional] 
-**AccountStatus** | Pointer to **string** |  | [optional] 
-**AccountType** | Pointer to **string** |  | [optional] 
+**MarginMM** | Pointer to **string** | margin MM. | [optional] 
+**OtherMM** | Pointer to **string** | other MM. | [optional] 
+**AccountStatus** | Pointer to **string** | Classic Portfolio margin account status:\&quot;NORMAL\&quot;, \&quot;MARGIN_CALL\&quot;, \&quot;SUPPLY_MARGIN\&quot;, \&quot;REDUCE_ONLY\&quot;, \&quot;ACTIVE_LIQUIDATION\&quot;, \&quot;FORCE_LIQUIDATION\&quot;, \&quot;BANKRUPTED\&quot; | [optional] 
+**AccountType** | Pointer to **string** | PM_1 for classic PM, PM_2 for PM, PM_3 for PM Pro(SPAN) | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &ExchangeInformationResponseSymbolsInnerFiltersInn
 
 // ExchangeInformationResponseSymbolsInnerFiltersInner struct for ExchangeInformationResponseSymbolsInnerFiltersInner
 type ExchangeInformationResponseSymbolsInnerFiltersInner struct {
-	FilterType           *string `json:"filterType,omitempty"`
-	MaxPrice             *string `json:"maxPrice,omitempty"`
-	MinPrice             *string `json:"minPrice,omitempty"`
-	TickSize             *string `json:"tickSize,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
-	MinQty               *string `json:"minQty,omitempty"`
-	StepSize             *string `json:"stepSize,omitempty"`
-	Limit                *int64  `json:"limit,omitempty"`
-	Notional             *string `json:"notional,omitempty"`
-	MultiplierUp         *string `json:"multiplierUp,omitempty"`
+	// Filter Type.
+	FilterType *string `json:"filterType,omitempty"`
+	// Max Price.
+	MaxPrice *string `json:"maxPrice,omitempty"`
+	// Min Price.
+	MinPrice *string `json:"minPrice,omitempty"`
+	// Tick Size.
+	TickSize *string `json:"tickSize,omitempty"`
+	// Max Qty.
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Min Qty.
+	MinQty *string `json:"minQty,omitempty"`
+	// Step Size.
+	StepSize *string `json:"stepSize,omitempty"`
+	// Limit.
+	Limit    *int64  `json:"limit,omitempty"`
+	Notional *string `json:"notional,omitempty"`
+	// Multiplier Up.
+	MultiplierUp *string `json:"multiplierUp,omitempty"`
+	// Multiplier Down.
 	MultiplierDown       *string `json:"multiplierDown,omitempty"`
 	MultiplierDecimal    *string `json:"multiplierDecimal,omitempty"`
 	AdditionalProperties map[string]interface{}

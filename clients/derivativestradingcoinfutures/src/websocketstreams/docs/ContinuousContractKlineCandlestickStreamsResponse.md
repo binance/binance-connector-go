@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**Ct** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | eventType | [optional] 
+**E** | Pointer to **int64** | eventTime | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
+**Ct** | Pointer to **string** | Contract type | [optional] 
 **K** | Pointer to [**ContinuousContractKlineCandlestickStreamsResponseK**](ContinuousContractKlineCandlestickStreamsResponseK.md) |  | [optional] 
 
 ## Methods

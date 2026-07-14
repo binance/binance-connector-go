@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package binancespotwebsocketapi
@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketAPIClient manages communication with the Binance Binance Spot WebSocket API WebSocketAPI v1.8.0
+// WebsocketAPIClient manages communication with the Binance Spot WebSocket API WebSocketAPI v1.9.0
 type WebsocketAPIClient struct {
 	cfg       *common.ConfigurationWebsocketApi
 	userAgent string
@@ -28,7 +28,7 @@ type WebsocketAPIClient struct {
 	UserDataStreamAPI *UserDataStreamAPIService
 }
 
-// NewWebsocketAPIClient creates a new Binance Binance Spot WebSocket API WebSocket API client
+// NewWebsocketAPIClient creates a new Binance Spot WebSocket API WebSocket API client
 //
 // @param cfg *common.ConfigurationWebsocketApi - The configuration for the WebSocket API client
 // @return *WebsocketAPIClient - The newly created WebSocket API client
@@ -40,7 +40,7 @@ func NewWebsocketAPIClient(cfg *common.ConfigurationWebsocketApi) *WebsocketAPIC
 
 	c := &WebsocketAPIClient{
 		cfg:               cfg,
-		userAgent:         "binance-spot/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
+		userAgent:         "binance-spot/1.9.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
 		Ws:                wsClient,
 		AccountAPI:        &AccountAPIService{Ws: wsClient},
 		AuthAPI:           &AuthAPIService{Ws: wsClient},

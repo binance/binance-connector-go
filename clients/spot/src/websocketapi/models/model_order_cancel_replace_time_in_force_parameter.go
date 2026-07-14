@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -16,10 +16,9 @@ type OrderCancelReplaceTimeInForceParameter string
 
 // List of orderCancelReplace_timeInForce_parameter
 const (
-	OrderCancelReplaceTimeInForceParameterGtc              OrderCancelReplaceTimeInForceParameter = "GTC"
-	OrderCancelReplaceTimeInForceParameterIoc              OrderCancelReplaceTimeInForceParameter = "IOC"
-	OrderCancelReplaceTimeInForceParameterFok              OrderCancelReplaceTimeInForceParameter = "FOK"
-	OrderCancelReplaceTimeInForceParameterNonRepresentable OrderCancelReplaceTimeInForceParameter = "NON_REPRESENTABLE"
+	OrderCancelReplaceTimeInForceParameterGtc OrderCancelReplaceTimeInForceParameter = "GTC"
+	OrderCancelReplaceTimeInForceParameterIoc OrderCancelReplaceTimeInForceParameter = "IOC"
+	OrderCancelReplaceTimeInForceParameterFok OrderCancelReplaceTimeInForceParameter = "FOK"
 )
 
 // All allowed values of OrderCancelReplaceTimeInForceParameter enum
@@ -27,7 +26,6 @@ var AllowedOrderCancelReplaceTimeInForceParameterEnumValues = []OrderCancelRepla
 	"GTC",
 	"IOC",
 	"FOK",
-	"NON_REPRESENTABLE",
 }
 
 func (v *OrderCancelReplaceTimeInForceParameter) UnmarshalJSON(src []byte) error {

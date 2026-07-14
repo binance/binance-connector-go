@@ -6,16 +6,16 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**CrossMarginCollateralRatio**](MarketDataAPI.md#CrossMarginCollateralRatio) | **Get** /sapi/v1/margin/crossMarginCollateralRatio | Cross margin collateral ratio (MARKET_DATA)
 [**GetAllCrossMarginPairs**](MarketDataAPI.md#GetAllCrossMarginPairs) | **Get** /sapi/v1/margin/allPairs | Get All Cross Margin Pairs (MARKET_DATA)
-[**GetAllIsolatedMarginSymbol**](MarketDataAPI.md#GetAllIsolatedMarginSymbol) | **Get** /sapi/v1/margin/isolated/allPairs | Get All Isolated Margin Symbol(MARKET_DATA)
+[**GetAllIsolatedMarginSymbol**](MarketDataAPI.md#GetAllIsolatedMarginSymbol) | **Get** /sapi/v1/margin/isolated/allPairs | Get All Isolated Margin Symbol (MARKET_DATA)
 [**GetAllMarginAssets**](MarketDataAPI.md#GetAllMarginAssets) | **Get** /sapi/v1/margin/allAssets | Get All Margin Assets (MARKET_DATA)
 [**GetDelistSchedule**](MarketDataAPI.md#GetDelistSchedule) | **Get** /sapi/v1/margin/delist-schedule | Get Delist Schedule (MARKET_DATA)
-[**GetLimitPricePairs**](MarketDataAPI.md#GetLimitPricePairs) | **Get** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs(MARKET_DATA)
+[**GetLimitPricePairs**](MarketDataAPI.md#GetLimitPricePairs) | **Get** /sapi/v1/margin/limit-price-pairs | Get Limit Price Pairs (MARKET_DATA)
 [**GetListSchedule**](MarketDataAPI.md#GetListSchedule) | **Get** /sapi/v1/margin/list-schedule | Get list Schedule (MARKET_DATA)
 [**GetMarginAssetRiskBasedLiquidationRatio**](MarketDataAPI.md#GetMarginAssetRiskBasedLiquidationRatio) | **Get** /sapi/v1/margin/risk-based-liquidation-ratio | Get Margin Asset Risk-Based Liquidation Ratio (MARKET_DATA)
 [**GetMarginRestrictedAssets**](MarketDataAPI.md#GetMarginRestrictedAssets) | **Get** /sapi/v1/margin/restricted-asset | Get Margin Restricted Assets (MARKET_DATA)
 [**QueryIsolatedMarginTierData**](MarketDataAPI.md#QueryIsolatedMarginTierData) | **Get** /sapi/v1/margin/isolatedMarginTier | Query Isolated Margin Tier Data (USER_DATA)
-[**QueryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataAPI.md#QueryLiabilityCoinLeverageBracketInCrossMarginProMode) | **Get** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
-[**QueryMarginAvailableInventory**](MarketDataAPI.md#QueryMarginAvailableInventory) | **Get** /sapi/v1/margin/available-inventory | Query Margin Available Inventory(USER_DATA)
+[**QueryLiabilityCoinLeverageBracketInCrossMarginProMode**](MarketDataAPI.md#QueryLiabilityCoinLeverageBracketInCrossMarginProMode) | **Get** /sapi/v1/margin/leverageBracket | Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA)
+[**QueryMarginAvailableInventory**](MarketDataAPI.md#QueryMarginAvailableInventory) | **Get** /sapi/v1/margin/available-inventory | Query Margin Available Inventory (USER_DATA)
 [**QueryMarginPriceindex**](MarketDataAPI.md#QueryMarginPriceindex) | **Get** /sapi/v1/margin/priceIndex | Query Margin PriceIndex (MARKET_DATA)
 
 
@@ -107,7 +107,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | isolated margin pair (optional)
+	symbol := "BNBBTC" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -135,7 +135,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | isolated margin pair | 
+ **symbol** | **string** |  | 
 
 ### Return type
 
@@ -156,7 +156,7 @@ No authorization required
 
 > GetAllIsolatedMarginSymbolResponse GetAllIsolatedMarginSymbol(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Get All Isolated Margin Symbol(MARKET_DATA)
+Get All Isolated Margin Symbol (MARKET_DATA)
 
 
 ### Example
@@ -175,8 +175,8 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | isolated margin pair (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BNBBTC" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -204,8 +204,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | isolated margin pair | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
+	asset := "USDC" // string |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -313,7 +313,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -341,7 +341,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -362,7 +362,7 @@ No authorization required
 
 > GetLimitPricePairsResponse GetLimitPricePairs(ctx).Execute()
 
-Get Limit Price Pairs(MARKET_DATA)
+Get Limit Price Pairs (MARKET_DATA)
 
 
 ### Example
@@ -446,7 +446,7 @@ import (
 )
 
 func main() {
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -474,7 +474,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -644,9 +644,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
-	tier := int64(789) // int64 | All margin tier data will be returned if tier is omitted (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	symbol := "BTCUSDT" // string | 
+	tier := int64(1) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -675,8 +675,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **tier** | **int64** | All margin tier data will be returned if tier is omitted | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **tier** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -697,7 +697,7 @@ No authorization required
 
 > QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponse QueryLiabilityCoinLeverageBracketInCrossMarginProMode(ctx).Execute()
 
-Query Liability Coin Leverage Bracket in Cross Margin Pro Mode(MARKET_DATA)
+Query Liability Coin Leverage Bracket in Cross Margin Pro Mode (MARKET_DATA)
 
 
 ### Example
@@ -762,7 +762,7 @@ No authorization required
 
 > QueryMarginAvailableInventoryResponse QueryMarginAvailableInventory(ctx).Type(type_).Execute()
 
-Query Margin Available Inventory(USER_DATA)
+Query Margin Available Inventory (USER_DATA)
 
 
 ### Example
@@ -781,7 +781,7 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | `MARGIN`,`ISOLATED`
+	type_ := models.QueryMarginAvailableInventoryTypeParameterMargin // QueryMarginAvailableInventoryTypeParameter | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -809,7 +809,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** | &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60; | 
+ **type_** | [**QueryMarginAvailableInventoryTypeParameter**](QueryMarginAvailableInventoryTypeParameter.md) |  | 
 
 ### Return type
 
@@ -849,7 +849,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | 
+	symbol := "BNBBTC" // string | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),

@@ -22,7 +22,7 @@ func FundCollectionByAsset() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.FundCollectionByAsset(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.FundCollectionByAsset(context.Background()).Asset("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

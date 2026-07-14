@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -24,7 +24,7 @@ type OrderListPlaceResponseResult struct {
 	ListClientOrderId    *string                                         `json:"listClientOrderId,omitempty"`
 	TransactionTime      *int64                                          `json:"transactionTime,omitempty"`
 	Symbol               *string                                         `json:"symbol,omitempty"`
-	Orders               []OrderListCancelResponseResultOrdersInner      `json:"orders,omitempty"`
+	Orders               []AllOrderListsResponseResultInnerOrdersInner   `json:"orders,omitempty"`
 	OrderReports         []OrderListPlaceResponseResultOrderReportsInner `json:"orderReports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -273,9 +273,9 @@ func (o *OrderListPlaceResponseResult) SetSymbol(v string) {
 }
 
 // GetOrders returns the Orders field value if set, zero value otherwise.
-func (o *OrderListPlaceResponseResult) GetOrders() []OrderListCancelResponseResultOrdersInner {
+func (o *OrderListPlaceResponseResult) GetOrders() []AllOrderListsResponseResultInnerOrdersInner {
 	if o == nil || common.IsNil(o.Orders) {
-		var ret []OrderListCancelResponseResultOrdersInner
+		var ret []AllOrderListsResponseResultInnerOrdersInner
 		return ret
 	}
 	return o.Orders
@@ -283,7 +283,7 @@ func (o *OrderListPlaceResponseResult) GetOrders() []OrderListCancelResponseResu
 
 // GetOrdersOk returns a tuple with the Orders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderListPlaceResponseResult) GetOrdersOk() ([]OrderListCancelResponseResultOrdersInner, bool) {
+func (o *OrderListPlaceResponseResult) GetOrdersOk() ([]AllOrderListsResponseResultInnerOrdersInner, bool) {
 	if o == nil || common.IsNil(o.Orders) {
 		return nil, false
 	}
@@ -299,8 +299,8 @@ func (o *OrderListPlaceResponseResult) HasOrders() bool {
 	return false
 }
 
-// SetOrders gets a reference to the given []OrderListCancelResponseResultOrdersInner and assigns it to the Orders field.
-func (o *OrderListPlaceResponseResult) SetOrders(v []OrderListCancelResponseResultOrdersInner) {
+// SetOrders gets a reference to the given []AllOrderListsResponseResultInnerOrdersInner and assigns it to the Orders field.
+func (o *OrderListPlaceResponseResult) SetOrders(v []AllOrderListsResponseResultInnerOrdersInner) {
 	o.Orders = v
 }
 

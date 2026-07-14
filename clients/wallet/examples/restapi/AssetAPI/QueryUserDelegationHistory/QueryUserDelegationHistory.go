@@ -22,7 +22,7 @@ func QueryUserDelegationHistory() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetAPI.QueryUserDelegationHistory(context.Background()).Email("email_example").StartTime(1623319461670).EndTime(1641782889000).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.QueryUserDelegationHistory(context.Background()).Email("abc@test.com").StartTime(1623319461670).EndTime(1641782889000).Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -4,17 +4,17 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**GetPortfolio**](WalletAPI.md#GetPortfolio) | **Get** /sapi/v1/w3w/wallet/prediction/pnl/portfolio | Get Portfolio
-[**GetQuotaStatus**](WalletAPI.md#GetQuotaStatus) | **Get** /sapi/v1/w3w/wallet/prediction/quota/limit/status | Get Quota Status
-[**ListPredictionWallets**](WalletAPI.md#ListPredictionWallets) | **Get** /sapi/v1/w3w/wallet/prediction/wallet/list | List Prediction Wallets
-[**QueryPaymentOptionBalances**](WalletAPI.md#QueryPaymentOptionBalances) | **Get** /sapi/v1/w3w/wallet/prediction/balance/payment-options | Query Payment Option Balances
+[**GetPortfolio**](WalletAPI.md#GetPortfolio) | **Get** /sapi/v1/w3w/wallet/prediction/pnl/portfolio | Get Portfolio (USER_DATA)
+[**GetQuotaStatus**](WalletAPI.md#GetQuotaStatus) | **Get** /sapi/v1/w3w/wallet/prediction/quota/limit/status | Get Quota Status (USER_DATA)
+[**ListPredictionWallets**](WalletAPI.md#ListPredictionWallets) | **Get** /sapi/v1/w3w/wallet/prediction/wallet/list | List Prediction Wallets (USER_DATA)
+[**QueryPaymentOptionBalances**](WalletAPI.md#QueryPaymentOptionBalances) | **Get** /sapi/v1/w3w/wallet/prediction/balance/payment-options | Query Payment Option Balances (USER_DATA)
 
 
 ## GetPortfolio
 
 > GetPortfolioResponse GetPortfolio(ctx).WalletAddress(walletAddress).TokenId(tokenId).MarketId(marketId).MarketTopicId(marketTopicId).ActiveOnly(activeOnly).RecvWindow(recvWindow).Execute()
 
-Get Portfolio
+Get Portfolio (USER_DATA)
 
 
 ### Example
@@ -92,7 +92,7 @@ No authorization required
 
 > GetQuotaStatusResponse GetQuotaStatus(ctx).RecvWindow(recvWindow).Execute()
 
-Get Quota Status
+Get Quota Status (USER_DATA)
 
 
 ### Example
@@ -160,7 +160,7 @@ No authorization required
 
 > ListPredictionWalletsResponse ListPredictionWallets(ctx).RecvWindow(recvWindow).Execute()
 
-List Prediction Wallets
+List Prediction Wallets (USER_DATA)
 
 
 ### Example
@@ -228,7 +228,7 @@ No authorization required
 
 > QueryPaymentOptionBalancesResponse QueryPaymentOptionBalances(ctx).RecvWindow(recvWindow).Execute()
 
-Query Payment Option Balances
+Query Payment Option Balances (USER_DATA)
 
 
 ### Example

@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalMaintMargin** | Pointer to **string** |  | [optional] 
-**TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
-**TotalMarginBalance** | Pointer to **string** |  | [optional] 
-**TotalPositionInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalOpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalCrossWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalCrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]AccountInformationV2ResponseResultAssetsInner**](AccountInformationV2ResponseResultAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]AccountInformationV2ResponseResultPositionsInner**](AccountInformationV2ResponseResultPositionsInner.md) |  | [optional] 
+**TotalInitialMargin** | Pointer to **string** | total initial margin required with current mark price (useless with isolated positions), only for USDT asset | [optional] 
+**TotalMaintMargin** | Pointer to **string** | the sum of USD value of all cross positions maintenance margin | [optional] 
+**TotalWalletBalance** | Pointer to **string** | total wallet balance, only for USDT asset | [optional] 
+**TotalUnrealizedProfit** | Pointer to **string** | total unrealized profit, only for USDT asset | [optional] 
+**TotalMarginBalance** | Pointer to **string** | total margin balance, only for USDT asset | [optional] 
+**TotalPositionInitialMargin** | Pointer to **string** | initial margin required for positions with current mark price, only for USDT asset | [optional] 
+**TotalOpenOrderInitialMargin** | Pointer to **string** | initial margin required for open orders with current mark price, only for USDT asset | [optional] 
+**TotalCrossWalletBalance** | Pointer to **string** | crossed wallet balance, only for USDT asset | [optional] 
+**TotalCrossUnPnl** | Pointer to **string** | unrealized profit of crossed positions, only for USDT asset | [optional] 
+**AvailableBalance** | Pointer to **string** | available balance, only for USDT asset | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | maximum amount for transfer out, only for USDT asset | [optional] 
+**Assets** | Pointer to [**[]AccountInformationV2ResponseResultAssetsInner**](AccountInformationV2ResponseResultAssetsInner.md) | For assets that are quote assets, USDT/USDC/BTC | [optional] 
+**Positions** | Pointer to [**[]AccountInformationV2ResponseResultPositionsInner**](AccountInformationV2ResponseResultPositionsInner.md) | positions of all symbols user had position/ open orders are returned | [optional] 
 
 ## Methods
 

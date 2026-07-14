@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,15 +17,24 @@ var _ common.MappedNullable = &MiniTickerResponse{}
 
 // MiniTickerResponse struct for MiniTickerResponse
 type MiniTickerResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	S                    *string `json:"s,omitempty"`
-	C                    *string `json:"c,omitempty"`
-	O                    *string `json:"o,omitempty"`
-	H                    *string `json:"h,omitempty"`
-	L                    *string `json:"l,omitempty"`
-	V                    *string `json:"v,omitempty"`
-	Q                    *string `json:"q,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Close price
+	Smallc *string `json:"c,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// Total traded base asset volume
+	Smallv *string `json:"v,omitempty"`
+	// Total traded quote asset volume
+	Smallq               *string `json:"q,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,26 +122,26 @@ func (o *MiniTickerResponse) SetE(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *MiniTickerResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *MiniTickerResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *MiniTickerResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -140,31 +149,31 @@ func (o *MiniTickerResponse) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *MiniTickerResponse) SetS(v string) {
-	o.S = &v
+func (o *MiniTickerResponse) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetC returns the C field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetC() string {
-	if o == nil || common.IsNil(o.C) {
+func (o *MiniTickerResponse) GetSmallc() string {
+	if o == nil || common.IsNil(o.Smallc) {
 		var ret string
 		return ret
 	}
-	return *o.C
+	return *o.Smallc
 }
 
 // GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetCOk() (*string, bool) {
-	if o == nil || common.IsNil(o.C) {
+func (o *MiniTickerResponse) GetSmallcOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallc) {
 		return nil, false
 	}
-	return o.C, true
+	return o.Smallc, true
 }
 
 // HasC returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasC() bool {
-	if o != nil && !common.IsNil(o.C) {
+func (o *MiniTickerResponse) HasSmallc() bool {
+	if o != nil && !common.IsNil(o.Smallc) {
 		return true
 	}
 
@@ -172,31 +181,31 @@ func (o *MiniTickerResponse) HasC() bool {
 }
 
 // SetC gets a reference to the given string and assigns it to the C field.
-func (o *MiniTickerResponse) SetC(v string) {
-	o.C = &v
+func (o *MiniTickerResponse) SetSmallc(v string) {
+	o.Smallc = &v
 }
 
 // GetO returns the O field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetO() string {
-	if o == nil || common.IsNil(o.O) {
+func (o *MiniTickerResponse) GetSmallo() string {
+	if o == nil || common.IsNil(o.Smallo) {
 		var ret string
 		return ret
 	}
-	return *o.O
+	return *o.Smallo
 }
 
 // GetOOk returns a tuple with the O field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetOOk() (*string, bool) {
-	if o == nil || common.IsNil(o.O) {
+func (o *MiniTickerResponse) GetSmalloOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallo) {
 		return nil, false
 	}
-	return o.O, true
+	return o.Smallo, true
 }
 
 // HasO returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasO() bool {
-	if o != nil && !common.IsNil(o.O) {
+func (o *MiniTickerResponse) HasSmallo() bool {
+	if o != nil && !common.IsNil(o.Smallo) {
 		return true
 	}
 
@@ -204,31 +213,31 @@ func (o *MiniTickerResponse) HasO() bool {
 }
 
 // SetO gets a reference to the given string and assigns it to the O field.
-func (o *MiniTickerResponse) SetO(v string) {
-	o.O = &v
+func (o *MiniTickerResponse) SetSmallo(v string) {
+	o.Smallo = &v
 }
 
 // GetH returns the H field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetH() string {
-	if o == nil || common.IsNil(o.H) {
+func (o *MiniTickerResponse) GetSmallh() string {
+	if o == nil || common.IsNil(o.Smallh) {
 		var ret string
 		return ret
 	}
-	return *o.H
+	return *o.Smallh
 }
 
 // GetHOk returns a tuple with the H field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetHOk() (*string, bool) {
-	if o == nil || common.IsNil(o.H) {
+func (o *MiniTickerResponse) GetSmallhOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallh) {
 		return nil, false
 	}
-	return o.H, true
+	return o.Smallh, true
 }
 
 // HasH returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasH() bool {
-	if o != nil && !common.IsNil(o.H) {
+func (o *MiniTickerResponse) HasSmallh() bool {
+	if o != nil && !common.IsNil(o.Smallh) {
 		return true
 	}
 
@@ -236,31 +245,31 @@ func (o *MiniTickerResponse) HasH() bool {
 }
 
 // SetH gets a reference to the given string and assigns it to the H field.
-func (o *MiniTickerResponse) SetH(v string) {
-	o.H = &v
+func (o *MiniTickerResponse) SetSmallh(v string) {
+	o.Smallh = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetL() string {
-	if o == nil || common.IsNil(o.L) {
+func (o *MiniTickerResponse) GetSmalll() string {
+	if o == nil || common.IsNil(o.Smalll) {
 		var ret string
 		return ret
 	}
-	return *o.L
+	return *o.Smalll
 }
 
 // GetLOk returns a tuple with the L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetLOk() (*string, bool) {
-	if o == nil || common.IsNil(o.L) {
+func (o *MiniTickerResponse) GetSmalllOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalll) {
 		return nil, false
 	}
-	return o.L, true
+	return o.Smalll, true
 }
 
 // HasL returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasL() bool {
-	if o != nil && !common.IsNil(o.L) {
+func (o *MiniTickerResponse) HasSmalll() bool {
+	if o != nil && !common.IsNil(o.Smalll) {
 		return true
 	}
 
@@ -268,31 +277,31 @@ func (o *MiniTickerResponse) HasL() bool {
 }
 
 // SetL gets a reference to the given string and assigns it to the L field.
-func (o *MiniTickerResponse) SetL(v string) {
-	o.L = &v
+func (o *MiniTickerResponse) SetSmalll(v string) {
+	o.Smalll = &v
 }
 
 // GetV returns the V field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetV() string {
-	if o == nil || common.IsNil(o.V) {
+func (o *MiniTickerResponse) GetSmallv() string {
+	if o == nil || common.IsNil(o.Smallv) {
 		var ret string
 		return ret
 	}
-	return *o.V
+	return *o.Smallv
 }
 
 // GetVOk returns a tuple with the V field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetVOk() (*string, bool) {
-	if o == nil || common.IsNil(o.V) {
+func (o *MiniTickerResponse) GetSmallvOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallv) {
 		return nil, false
 	}
-	return o.V, true
+	return o.Smallv, true
 }
 
 // HasV returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasV() bool {
-	if o != nil && !common.IsNil(o.V) {
+func (o *MiniTickerResponse) HasSmallv() bool {
+	if o != nil && !common.IsNil(o.Smallv) {
 		return true
 	}
 
@@ -300,31 +309,31 @@ func (o *MiniTickerResponse) HasV() bool {
 }
 
 // SetV gets a reference to the given string and assigns it to the V field.
-func (o *MiniTickerResponse) SetV(v string) {
-	o.V = &v
+func (o *MiniTickerResponse) SetSmallv(v string) {
+	o.Smallv = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *MiniTickerResponse) GetQ() string {
-	if o == nil || common.IsNil(o.Q) {
+func (o *MiniTickerResponse) GetSmallq() string {
+	if o == nil || common.IsNil(o.Smallq) {
 		var ret string
 		return ret
 	}
-	return *o.Q
+	return *o.Smallq
 }
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiniTickerResponse) GetQOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Q) {
+func (o *MiniTickerResponse) GetSmallqOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallq) {
 		return nil, false
 	}
-	return o.Q, true
+	return o.Smallq, true
 }
 
 // HasQ returns a boolean if a field has been set.
-func (o *MiniTickerResponse) HasQ() bool {
-	if o != nil && !common.IsNil(o.Q) {
+func (o *MiniTickerResponse) HasSmallq() bool {
+	if o != nil && !common.IsNil(o.Smallq) {
 		return true
 	}
 
@@ -332,8 +341,8 @@ func (o *MiniTickerResponse) HasQ() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
-func (o *MiniTickerResponse) SetQ(v string) {
-	o.Q = &v
+func (o *MiniTickerResponse) SetSmallq(v string) {
+	o.Smallq = &v
 }
 
 func (o MiniTickerResponse) MarshalJSON() ([]byte, error) {
@@ -352,26 +361,26 @@ func (o MiniTickerResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
-	if !common.IsNil(o.C) {
-		toSerialize["c"] = o.C
+	if !common.IsNil(o.Smallc) {
+		toSerialize["c"] = o.Smallc
 	}
-	if !common.IsNil(o.O) {
-		toSerialize["o"] = o.O
+	if !common.IsNil(o.Smallo) {
+		toSerialize["o"] = o.Smallo
 	}
-	if !common.IsNil(o.H) {
-		toSerialize["h"] = o.H
+	if !common.IsNil(o.Smallh) {
+		toSerialize["h"] = o.Smallh
 	}
-	if !common.IsNil(o.L) {
-		toSerialize["l"] = o.L
+	if !common.IsNil(o.Smalll) {
+		toSerialize["l"] = o.Smalll
 	}
-	if !common.IsNil(o.V) {
-		toSerialize["v"] = o.V
+	if !common.IsNil(o.Smallv) {
+		toSerialize["v"] = o.Smallv
 	}
-	if !common.IsNil(o.Q) {
-		toSerialize["q"] = o.Q
+	if !common.IsNil(o.Smallq) {
+		toSerialize["q"] = o.Smallq
 	}
 
 	for key, value := range o.AdditionalProperties {

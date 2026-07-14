@@ -1,7 +1,7 @@
 /*
-Binance Gift Card REST API
+Gift Card REST API
 
-OpenAPI Specification for the Binance Gift Card REST API
+Create, redeem, and check the value of Binance crypto gift cards.
 */
 
 package binancegiftcardrestapi
@@ -55,10 +55,10 @@ func (r ApiCreateADualTokenGiftCardRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-CreateADualTokenGiftCard Create a dual-token gift card(fixed value, discount feature)(TRADE)
+CreateADualTokenGiftCard Create a dual-token gift card (fixed value, discount feature) (TRADE)
 Post /sapi/v1/giftcard/buyCode
 
-https://developers.binance.com/docs/gift_card/market-data/Create-a-dual-token-gift-card
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#create-adual-token-gift-card
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param baseToken -  The token you want to pay, example: BUSD
@@ -87,9 +87,11 @@ func (a *MarketDataAPIService) CreateADualTokenGiftCardExecute(r ApiCreateADualT
 	if r.baseToken == nil {
 		return nil, common.ReportError("baseToken is required and must be specified")
 	}
+
 	if r.faceToken == nil {
 		return nil, common.ReportError("faceToken is required and must be specified")
 	}
+
 	if r.baseTokenAmount == nil {
 		return nil, common.ReportError("baseTokenAmount is required and must be specified")
 	}
@@ -101,7 +103,15 @@ func (a *MarketDataAPIService) CreateADualTokenGiftCardExecute(r ApiCreateADualT
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateADualTokenGiftCardResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateADualTokenGiftCardResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -142,7 +152,7 @@ func (r ApiCreateASingleTokenGiftCardRequest) Execute() (*common.RestApiResponse
 CreateASingleTokenGiftCard Create a single-token gift card (USER_DATA)
 Post /sapi/v1/giftcard/createCode
 
-https://developers.binance.com/docs/gift_card/market-data/Create-a-single-token-gift-card
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#create-asingle-token-gift-card
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param token -  The token type contained in the Binance Gift Card
@@ -170,6 +180,7 @@ func (a *MarketDataAPIService) CreateASingleTokenGiftCardExecute(r ApiCreateASin
 	if r.token == nil {
 		return nil, common.ReportError("token is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -180,7 +191,15 @@ func (a *MarketDataAPIService) CreateASingleTokenGiftCardExecute(r ApiCreateASin
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateASingleTokenGiftCardResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateASingleTokenGiftCardResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -204,10 +223,10 @@ func (r ApiFetchRsaPublicKeyRequest) Execute() (*common.RestApiResponse[models.F
 }
 
 /*
-FetchRsaPublicKey Fetch RSA Public Key(USER_DATA)
+FetchRsaPublicKey Fetch RSA Public Key (USER_DATA)
 Get /sapi/v1/giftcard/cryptography/rsa-public-key
 
-https://developers.binance.com/docs/gift_card/market-data/Fetch-RSA-Public-Key
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#fetch-rsa-public-key
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -234,7 +253,15 @@ func (a *MarketDataAPIService) FetchRsaPublicKeyExecute(r ApiFetchRsaPublicKeyRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FetchRsaPublicKeyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchRsaPublicKeyResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -265,10 +292,10 @@ func (r ApiFetchTokenLimitRequest) Execute() (*common.RestApiResponse[models.Fet
 }
 
 /*
-FetchTokenLimit Fetch Token Limit(USER_DATA)
+FetchTokenLimit Fetch Token Limit (USER_DATA)
 Get /sapi/v1/giftcard/buyCode/token-limit
 
-https://developers.binance.com/docs/gift_card/market-data/Fetch-Token-Limit
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#fetch-token-limit
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param baseToken -  The token you want to pay, example: BUSD
@@ -301,7 +328,15 @@ func (a *MarketDataAPIService) FetchTokenLimitExecute(r ApiFetchTokenLimitReques
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FetchTokenLimitResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchTokenLimitResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -339,10 +374,10 @@ func (r ApiRedeemABinanceGiftCardRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-RedeemABinanceGiftCard Redeem a Binance Gift Card(USER_DATA)
+RedeemABinanceGiftCard Redeem a Binance Gift Card (USER_DATA)
 Post /sapi/v1/giftcard/redeemCode
 
-https://developers.binance.com/docs/gift_card/market-data/Redeem-a-Binance-Gift-Card
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#redeem-abinance-gift-card
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param code -  Redemption code of Binance Gift Card to be redeemed, supports both Plaintext & Encrypted code.
@@ -379,7 +414,15 @@ func (a *MarketDataAPIService) RedeemABinanceGiftCardExecute(r ApiRedeemABinance
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RedeemABinanceGiftCardResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RedeemABinanceGiftCardResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -410,10 +453,10 @@ func (r ApiVerifyBinanceGiftCardByGiftCardNumberRequest) Execute() (*common.Rest
 }
 
 /*
-VerifyBinanceGiftCardByGiftCardNumber Verify Binance Gift Card by Gift Card Number(USER_DATA)
+VerifyBinanceGiftCardByGiftCardNumber Verify Binance Gift Card by Gift Card Number (USER_DATA)
 Get /sapi/v1/giftcard/verify
 
-https://developers.binance.com/docs/gift_card/market-data/Verify-Binance-Gift-Card-by-Gift-Card-Number
+https://developers.binance.com/en/docs/catalog/investment-and-services-gift-card/api/rest-api/market-data#verify-binance-gift-card-by-gift-card-number
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param referenceNo -  Enter the Gift Card Number
@@ -446,7 +489,15 @@ func (a *MarketDataAPIService) VerifyBinanceGiftCardByGiftCardNumberExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.VerifyBinanceGiftCardByGiftCardNumberResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.VerifyBinanceGiftCardByGiftCardNumberResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &VipLoanBorrowResponse{}
 
 // VipLoanBorrowResponse struct for VipLoanBorrowResponse
 type VipLoanBorrowResponse struct {
+	// Loan receiving account.
 	LoanAccountId        *string `json:"loanAccountId,omitempty"`
 	RequestId            *string `json:"requestId,omitempty"`
 	LoanCoin             *string `json:"loanCoin,omitempty"`

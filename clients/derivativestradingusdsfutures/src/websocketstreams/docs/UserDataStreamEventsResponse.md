@@ -4,27 +4,27 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 **Ai** | Pointer to [**AccountConfigUpdateAi**](AccountConfigUpdateAi.md) |  | [optional] 
-**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
 **A** | Pointer to [**AccountUpdateA**](AccountUpdateA.md) |  | [optional] 
+**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
 **Or** | Pointer to [**ConditionalOrderTriggerRejectOr**](ConditionalOrderTriggerRejectOr.md) |  | [optional] 
 **Gu** | Pointer to [**GridUpdateGu**](GridUpdateGu.md) |  | [optional] 
-**Cw** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Su** | Pointer to [**StrategyUpdateSu**](StrategyUpdateSu.md) |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
 **ListenKey** | Pointer to **string** |  | [optional] 
+**Cw** | Pointer to **string** | Cross Wallet Balance. Only pushed with crossed position margin call | [optional] 
+**P** | Pointer to **string** | Original Price | [optional] 
+**Su** | Pointer to [**StrategyUpdateSu**](StrategyUpdateSu.md) |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Q** | Pointer to **string** | Original Quantity | [optional] 
+**M** | Pointer to **bool** | Is this trade the maker side? | [optional] 
+**C** | Pointer to **string** | Client Order Id | [optional] 
+**S** | Pointer to **string** | Side | [optional] 
+**L** | Pointer to **string** | Last Filled Price | [optional] 
+**L** | Pointer to **string** | Order Last Filled Quantity | [optional] 
+**T** | Pointer to **int64** | Trade Id | [optional] 
+**I** | Pointer to **int64** | Order Id | [optional] 
 
 ## Methods
 
@@ -145,31 +145,6 @@ SetAi sets Ai field to given value.
 
 HasAi returns a boolean if a field has been set.
 
-### GetO
-
-`func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
-
-GetO returns the O field if non-nil, zero value otherwise.
-
-### GetOOk
-
-`func (o *UserDataStreamEventsResponse) GetOOk() (*OrderTradeUpdateO, bool)`
-
-GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetO
-
-`func (o *UserDataStreamEventsResponse) SetO(v OrderTradeUpdateO)`
-
-SetO sets O field to given value.
-
-### HasO
-
-`func (o *UserDataStreamEventsResponse) HasO() bool`
-
-HasO returns a boolean if a field has been set.
-
 ### GetA
 
 `func (o *UserDataStreamEventsResponse) GetA() AccountUpdateA`
@@ -194,6 +169,31 @@ SetA sets A field to given value.
 `func (o *UserDataStreamEventsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetO
+
+`func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
+
+GetO returns the O field if non-nil, zero value otherwise.
+
+### GetOOk
+
+`func (o *UserDataStreamEventsResponse) GetOOk() (*OrderTradeUpdateO, bool)`
+
+GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetO
+
+`func (o *UserDataStreamEventsResponse) SetO(v OrderTradeUpdateO)`
+
+SetO sets O field to given value.
+
+### HasO
+
+`func (o *UserDataStreamEventsResponse) HasO() bool`
+
+HasO returns a boolean if a field has been set.
 
 ### GetOr
 
@@ -244,6 +244,31 @@ SetGu sets Gu field to given value.
 `func (o *UserDataStreamEventsResponse) HasGu() bool`
 
 HasGu returns a boolean if a field has been set.
+
+### GetListenKey
+
+`func (o *UserDataStreamEventsResponse) GetListenKey() string`
+
+GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
+
+### GetListenKeyOk
+
+`func (o *UserDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
+
+GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetListenKey
+
+`func (o *UserDataStreamEventsResponse) SetListenKey(v string)`
+
+SetListenKey sets ListenKey field to given value.
+
+### HasListenKey
+
+`func (o *UserDataStreamEventsResponse) HasListenKey() bool`
+
+HasListenKey returns a boolean if a field has been set.
 
 ### GetCw
 
@@ -544,31 +569,6 @@ SetI sets I field to given value.
 `func (o *UserDataStreamEventsResponse) HasI() bool`
 
 HasI returns a boolean if a field has been set.
-
-### GetListenKey
-
-`func (o *UserDataStreamEventsResponse) GetListenKey() string`
-
-GetListenKey returns the ListenKey field if non-nil, zero value otherwise.
-
-### GetListenKeyOk
-
-`func (o *UserDataStreamEventsResponse) GetListenKeyOk() (*string, bool)`
-
-GetListenKeyOk returns a tuple with the ListenKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetListenKey
-
-`func (o *UserDataStreamEventsResponse) SetListenKey(v string)`
-
-SetListenKey sets ListenKey field to given value.
-
-### HasListenKey
-
-`func (o *UserDataStreamEventsResponse) HasListenKey() bool`
-
-HasListenKey returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

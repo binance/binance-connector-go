@@ -4,30 +4,31 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**OrigQty** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**CumBase** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**ClosePosition** | Pointer to **bool** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
-**WorkingType** | Pointer to **string** |  | [optional] 
-**PriceProtect** | Pointer to **bool** |  | [optional] 
-**OrigType** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**PriceMatch** | Pointer to **string** |  | [optional] 
+**OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
+**Symbol** | Pointer to **string** | Trading symbol | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
+**Price** | Pointer to **string** | Latest token price. | [optional] 
+**AvgPrice** | Pointer to **string** | Average execution price | [optional] 
+**OrigQty** | Pointer to **string** | Original order quantity | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
+**CumQty** | Pointer to **string** | Cumulative filled quantity. | [optional] 
+**CumBase** | Pointer to **string** | Cumulative base asset amount. | [optional] 
+**TimeInForce** | Pointer to **string** | Time in force | [optional] 
+**Type** | Pointer to **string** | Order type. | [optional] 
+**ReduceOnly** | Pointer to **bool** | Whether the order is reduce-only. | [optional] 
+**ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
+**Side** | Pointer to **string** | Trading side | [optional] 
+**PositionSide** | Pointer to **string** | Position side | [optional] 
+**StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
+**WorkingType** | Pointer to **string** | Stop trigger price type. | [optional] 
+**PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
+**OrigType** | Pointer to **string** | Original order type. | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading preventation mode | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**UpdateTime** | Pointer to **int64** | update time | [optional] 
+**PriceMatch** | Pointer to **string** | price match mode | [optional] 
 
 ## Methods
 
@@ -272,6 +273,31 @@ SetExecutedQty sets ExecutedQty field to given value.
 `func (o *QueryOrderResponseResult) HasExecutedQty() bool`
 
 HasExecutedQty returns a boolean if a field has been set.
+
+### GetCumQty
+
+`func (o *QueryOrderResponseResult) GetCumQty() string`
+
+GetCumQty returns the CumQty field if non-nil, zero value otherwise.
+
+### GetCumQtyOk
+
+`func (o *QueryOrderResponseResult) GetCumQtyOk() (*string, bool)`
+
+GetCumQtyOk returns a tuple with the CumQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCumQty
+
+`func (o *QueryOrderResponseResult) SetCumQty(v string)`
+
+SetCumQty sets CumQty field to given value.
+
+### HasCumQty
+
+`func (o *QueryOrderResponseResult) HasCumQty() bool`
+
+HasCumQty returns a boolean if a field has been set.
 
 ### GetCumBase
 

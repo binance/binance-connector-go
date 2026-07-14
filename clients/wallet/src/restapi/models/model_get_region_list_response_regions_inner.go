@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &GetRegionListResponseRegionsInner{}
 
 // GetRegionListResponseRegionsInner struct for GetRegionListResponseRegionsInner
 type GetRegionListResponseRegionsInner struct {
-	RegionName           *string `json:"regionName,omitempty"`
-	BlockType            *string `json:"blockType,omitempty"`
-	DepositAllowed       *bool   `json:"depositAllowed,omitempty"`
-	WithdrawalAllowed    *bool   `json:"withdrawalAllowed,omitempty"`
+	// Region/city display name (use this value in questionnaire answers).
+	RegionName *string `json:"regionName,omitempty"`
+	// `supported`, `limited`, or `blocked`.
+	BlockType *string `json:"blockType,omitempty"`
+	// Whether deposit is allowed for this region.
+	DepositAllowed *bool `json:"depositAllowed,omitempty"`
+	// Whether withdrawal is allowed for this region.
+	WithdrawalAllowed    *bool `json:"withdrawalAllowed,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

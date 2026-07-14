@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **int64** |  | [optional] 
-**CoinName** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**ProfitAmount** | Pointer to **float32** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | Mining date | [optional] 
+**CoinName** | Pointer to **string** | Coin name | [optional] 
+**Type** | Pointer to **int64** | 1: Merged Mining, 2: Activity Bonus, 3: Rebate, 4: Smart Pool, 6: Income Transfer, 7: Pool Savings | [optional] 
+**ProfitAmount** | Pointer to **float32** | Amount | [optional] 
+**Status** | Pointer to **int64** | Status: 0 Unpaid, 1 Paying, 2 Paid | [optional] 
 
 ## Methods
 

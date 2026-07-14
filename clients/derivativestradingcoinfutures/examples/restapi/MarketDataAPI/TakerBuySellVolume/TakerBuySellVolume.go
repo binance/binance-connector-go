@@ -22,7 +22,7 @@ func TakerBuySellVolume() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.TakerBuySellVolume(context.Background()).Pair("pair_example").ContractType(models.BasisContractTypeParameterPerpetual).Period(models.BasisPeriodParameterPeriod5m).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.TakerBuySellVolume(context.Background()).Pair("BTCUSD").ContractType(models.OpenInterestStatisticsContractTypeParameterAll).Period(models.BasisPeriodParameterPeriod5m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

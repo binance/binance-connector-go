@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,15 +17,25 @@ var _ common.MappedNullable = &GetCrossMarginTransferHistoryResponseRowsInner{}
 
 // GetCrossMarginTransferHistoryResponseRowsInner struct for GetCrossMarginTransferHistoryResponseRowsInner
 type GetCrossMarginTransferHistoryResponseRowsInner struct {
-	Amount               *string `json:"amount,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
-	TxId                 *int64  `json:"txId,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	TransFrom            *string `json:"transFrom,omitempty"`
-	TransTo              *string `json:"transTo,omitempty"`
-	FromSymbol           *string `json:"fromSymbol,omitempty"`
+	// amount.
+	Amount *string `json:"amount,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// status.
+	Status *string `json:"status,omitempty"`
+	// timestamp.
+	Timestamp *int64 `json:"timestamp,omitempty"`
+	// tx Id.
+	TxId *int64 `json:"txId,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN
+	TransFrom *string `json:"transFrom,omitempty"`
+	// SPOT,FUTURES,FIAT,DELIVERY,MINING,ISOLATED_MARGIN,FUNDING,MOTHER_SPOT,OPTION,SUB_SPOT,SUB_MARGIN,CROSS_MARGIN
+	TransTo *string `json:"transTo,omitempty"`
+	// from Symbol.
+	FromSymbol *string `json:"fromSymbol,omitempty"`
+	// to Symbol.
 	ToSymbol             *string `json:"toSymbol,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

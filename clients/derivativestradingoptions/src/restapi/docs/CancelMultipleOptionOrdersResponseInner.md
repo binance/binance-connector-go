@@ -4,26 +4,27 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**CreateTime** | Pointer to **int64** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
+**OrderId** | Pointer to **int64** | System order number | [optional] 
+**Symbol** | Pointer to **string** | Option trading pair | [optional] 
+**Price** | Pointer to **string** | Order Price | [optional] 
+**Quantity** | Pointer to **string** | Order Quantity | [optional] 
+**ExecutedQty** | Pointer to **string** | Number of completed quantity | [optional] 
+**Fee** | Pointer to **string** | fee | [optional] 
+**Side** | Pointer to **string** | Buy/sell direction | [optional] 
+**Type** | Pointer to **string** | Order type | [optional] 
+**TimeInForce** | Pointer to **string** | Time in force method | [optional] 
+**ReduceOnly** | Pointer to **bool** | Order is reduce only Y/N | [optional] 
+**CreateTime** | Pointer to **int64** | Order Time | [optional] 
+**UpdateTime** | Pointer to **int64** | Update time | [optional] 
+**Status** | Pointer to **string** | Order status | [optional] 
+**AvgPrice** | Pointer to **string** | Average price of completed trade | [optional] 
+**ClientOrderId** | Pointer to **string** | Client order ID | [optional] 
+**PriceScale** | Pointer to **int64** | price Scale | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity Scale | [optional] 
+**OptionSide** | Pointer to **string** | option Side | [optional] 
+**QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
+**Mmp** | Pointer to **bool** | mmp | [optional] 
 **Source** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**OptionSide** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**Mmp** | Pointer to **bool** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -169,6 +170,31 @@ SetExecutedQty sets ExecutedQty field to given value.
 `func (o *CancelMultipleOptionOrdersResponseInner) HasExecutedQty() bool`
 
 HasExecutedQty returns a boolean if a field has been set.
+
+### GetFee
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetFee() string`
+
+GetFee returns the Fee field if non-nil, zero value otherwise.
+
+### GetFeeOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetFeeOk() (*string, bool)`
+
+GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFee
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetFee(v string)`
+
+SetFee sets Fee field to given value.
+
+### HasFee
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasFee() bool`
+
+HasFee returns a boolean if a field has been set.
 
 ### GetSide
 
@@ -370,31 +396,6 @@ SetAvgPrice sets AvgPrice field to given value.
 
 HasAvgPrice returns a boolean if a field has been set.
 
-### GetSource
-
-`func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string`
-
-GetSource returns the Source field if non-nil, zero value otherwise.
-
-### GetSourceOk
-
-`func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool)`
-
-GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSource
-
-`func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string)`
-
-SetSource sets Source field to given value.
-
-### HasSource
-
-`func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
-
 ### GetClientOrderId
 
 `func (o *CancelMultipleOptionOrdersResponseInner) GetClientOrderId() string`
@@ -544,6 +545,31 @@ SetMmp sets Mmp field to given value.
 `func (o *CancelMultipleOptionOrdersResponseInner) HasMmp() bool`
 
 HasMmp returns a boolean if a field has been set.
+
+### GetSource
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
 
 ### GetSelfTradePreventionMode
 

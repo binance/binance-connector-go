@@ -21,7 +21,7 @@ func OpenInterest() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterest(context.Background()).UnderlyingAsset("underlyingAsset_example").Expiration("expiration_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterest(context.Background()).UnderlyingAsset("ETH/BTC").Expiration("221225").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
+	asset := "BTC" // string | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(

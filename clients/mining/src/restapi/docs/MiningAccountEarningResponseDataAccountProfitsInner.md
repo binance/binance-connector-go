@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **int64** |  | [optional] 
-**CoinName** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
-**Puid** | Pointer to **int64** |  | [optional] 
-**SubName** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **float32** |  | [optional] 
+**Time** | Pointer to **int64** | Time | [optional] 
+**CoinName** | Pointer to **string** | Coin | [optional] 
+**Type** | Pointer to **int64** | 0: Referral, 1: Refund, 2: Rebate | [optional] 
+**Puid** | Pointer to **int64** | Mining sub-account ID | [optional] 
+**SubName** | Pointer to **string** | Mining account | [optional] 
+**Amount** | Pointer to **float32** | Amount | [optional] 
 
 ## Methods
 

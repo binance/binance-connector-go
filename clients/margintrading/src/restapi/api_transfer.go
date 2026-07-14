@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package binancemargintradingrestapi
@@ -22,7 +22,7 @@ type ApiGetCrossMarginTransferHistoryRequest struct {
 	ctx            context.Context
 	ApiService     *TransferAPIService
 	asset          *string
-	type_          *string
+	type_          *models.GetCrossMarginTransferHistoryTypeParameter
 	startTime      *int64
 	endTime        *int64
 	current        *int64
@@ -36,13 +36,11 @@ func (r ApiGetCrossMarginTransferHistoryRequest) Asset(asset string) ApiGetCross
 	return r
 }
 
-// Transfer Type: ROLL_IN, ROLL_OUT
-func (r ApiGetCrossMarginTransferHistoryRequest) Type(type_ string) ApiGetCrossMarginTransferHistoryRequest {
+func (r ApiGetCrossMarginTransferHistoryRequest) Type(type_ models.GetCrossMarginTransferHistoryTypeParameter) ApiGetCrossMarginTransferHistoryRequest {
 	r.type_ = &type_
 	return r
 }
 
-// Only supports querying data from the past 90 days.
 func (r ApiGetCrossMarginTransferHistoryRequest) StartTime(startTime int64) ApiGetCrossMarginTransferHistoryRequest {
 	r.startTime = &startTime
 	return r
@@ -53,25 +51,21 @@ func (r ApiGetCrossMarginTransferHistoryRequest) EndTime(endTime int64) ApiGetCr
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
 func (r ApiGetCrossMarginTransferHistoryRequest) Current(current int64) ApiGetCrossMarginTransferHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// Default:10 Max:100
 func (r ApiGetCrossMarginTransferHistoryRequest) Size(size int64) ApiGetCrossMarginTransferHistoryRequest {
 	r.size = &size
 	return r
 }
 
-// isolated symbol
 func (r ApiGetCrossMarginTransferHistoryRequest) IsolatedSymbol(isolatedSymbol string) ApiGetCrossMarginTransferHistoryRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
 }
 
-// No more than 60000
 func (r ApiGetCrossMarginTransferHistoryRequest) RecvWindow(recvWindow int64) ApiGetCrossMarginTransferHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -85,17 +79,17 @@ func (r ApiGetCrossMarginTransferHistoryRequest) Execute() (*common.RestApiRespo
 GetCrossMarginTransferHistory Get Cross Margin Transfer History (USER_DATA)
 Get /sapi/v1/margin/transfer
 
-https://developers.binance.com/docs/margin_trading/transfer/Get-Cross-Margin-Transfer-History
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#get-cross-margin-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param type_ -  Transfer Type: ROLL_IN, ROLL_OUT
-@param startTime -  Only supports querying data from the past 90 days.
+@param type_ -
+@param startTime -
 @param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
-@param isolatedSymbol -  isolated symbol
-@param recvWindow -  No more than 60000
+@param current -
+@param size -
+@param isolatedSymbol -
+@param recvWindow -
 @return ApiGetCrossMarginTransferHistoryRequest
 */
 func (a *TransferAPIService) GetCrossMarginTransferHistory(ctx context.Context) ApiGetCrossMarginTransferHistoryRequest {
@@ -140,7 +134,15 @@ func (a *TransferAPIService) GetCrossMarginTransferHistoryExecute(r ApiGetCrossM
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCrossMarginTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCrossMarginTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -161,13 +163,11 @@ func (r ApiQueryMaxTransferOutAmountRequest) Asset(asset string) ApiQueryMaxTran
 	return r
 }
 
-// isolated symbol
 func (r ApiQueryMaxTransferOutAmountRequest) IsolatedSymbol(isolatedSymbol string) ApiQueryMaxTransferOutAmountRequest {
 	r.isolatedSymbol = &isolatedSymbol
 	return r
 }
 
-// No more than 60000
 func (r ApiQueryMaxTransferOutAmountRequest) RecvWindow(recvWindow int64) ApiQueryMaxTransferOutAmountRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -181,12 +181,12 @@ func (r ApiQueryMaxTransferOutAmountRequest) Execute() (*common.RestApiResponse[
 QueryMaxTransferOutAmount Query Max Transfer-Out Amount (USER_DATA)
 Get /sapi/v1/margin/maxTransferable
 
-https://developers.binance.com/docs/margin_trading/transfer/Query-Max-Transfer-Out-Amount
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/transfer#query-max-transfer-out-amount
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param isolatedSymbol -  isolated symbol
-@param recvWindow -  No more than 60000
+@param isolatedSymbol -
+@param recvWindow -
 @return ApiQueryMaxTransferOutAmountRequest
 */
 func (a *TransferAPIService) QueryMaxTransferOutAmount(ctx context.Context) ApiQueryMaxTransferOutAmountRequest {
@@ -218,7 +218,15 @@ func (a *TransferAPIService) QueryMaxTransferOutAmountExecute(r ApiQueryMaxTrans
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryMaxTransferOutAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryMaxTransferOutAmountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

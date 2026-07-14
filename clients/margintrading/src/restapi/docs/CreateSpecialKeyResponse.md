@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | Pointer to **string** |  | [optional] 
-**SecretKey** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**ApiKey** | Pointer to **string** | api Key. | [optional] 
+**SecretKey** | Pointer to **string** | secretKey will be null when creating an RSA key | [optional] 
+**Type** | Pointer to **string** | HMAC_SHA256 or RSA | [optional] 
 
 ## Methods
 

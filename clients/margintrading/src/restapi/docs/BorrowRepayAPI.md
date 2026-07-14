@@ -6,8 +6,8 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**GetFutureHourlyInterestRate**](BorrowRepayAPI.md#GetFutureHourlyInterestRate) | **Get** /sapi/v1/margin/next-hourly-interest-rate | Get future hourly interest rate (USER_DATA)
 [**GetInterestHistory**](BorrowRepayAPI.md#GetInterestHistory) | **Get** /sapi/v1/margin/interestHistory | Get Interest History (USER_DATA)
-[**MarginAccountBorrowRepay**](BorrowRepayAPI.md#MarginAccountBorrowRepay) | **Post** /sapi/v1/margin/borrow-repay | Margin account borrow/repay(MARGIN)
-[**QueryBorrowRepayRecordsInMarginAccount**](BorrowRepayAPI.md#QueryBorrowRepayRecordsInMarginAccount) | **Get** /sapi/v1/margin/borrow-repay | Query borrow/repay records in Margin account(USER_DATA)
+[**MarginAccountBorrowRepay**](BorrowRepayAPI.md#MarginAccountBorrowRepay) | **Post** /sapi/v1/margin/borrow-repay | Margin account borrow/repay (USER_DATA)
+[**QueryBorrowRepayRecordsInMarginAccount**](BorrowRepayAPI.md#QueryBorrowRepayRecordsInMarginAccount) | **Get** /sapi/v1/margin/borrow-repay | Query borrow/repay records in Margin account (USER_DATA)
 [**QueryMarginInterestRateHistory**](BorrowRepayAPI.md#QueryMarginInterestRateHistory) | **Get** /sapi/v1/margin/interestRateHistory | Query Margin Interest Rate History (USER_DATA)
 [**QueryMaxBorrow**](BorrowRepayAPI.md#QueryMaxBorrow) | **Get** /sapi/v1/margin/maxBorrowable | Query Max Borrow (USER_DATA)
 
@@ -35,8 +35,8 @@ import (
 )
 
 func main() {
-	assets := "assets_example" // string | List of assets, separated by commas, up to 20
-	isIsolated := false // bool | for isolated margin or not, \"TRUE\", \"FALSE\"
+	assets := "BTC,ETH" // string | 
+	isIsolated := models.GetFutureHourlyInterestRateIsIsolatedParameterTrue // GetFutureHourlyInterestRateIsIsolatedParameter | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -64,8 +64,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **assets** | **string** | List of assets, separated by commas, up to 20 | 
- **isIsolated** | **bool** | for isolated margin or not, \&quot;TRUE\&quot;, \&quot;FALSE\&quot; | 
+ **assets** | **string** |  | 
+ **isIsolated** | [**GetFutureHourlyInterestRateIsIsolatedParameter**](GetFutureHourlyInterestRateIsIsolatedParameter.md) |  | 
 
 ### Return type
 
@@ -105,13 +105,13 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string |  (optional)
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
+	asset := "USDT" // string |  (optional)
+	isolatedSymbol := "BNBUSDT" // string |  (optional)
 	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -140,12 +140,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **isolatedSymbol** | **string** | isolated symbol | 
+ **isolatedSymbol** | **string** |  | 
  **startTime** | **int64** | Only supports querying data from the past 90 days. | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10 Max:100 | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -164,9 +164,9 @@ No authorization required
 
 ## MarginAccountBorrowRepay
 
-> MarginAccountBorrowRepayResponse MarginAccountBorrowRepay(ctx).Asset(asset).IsIsolated(isIsolated).Symbol(symbol).Amount(amount).Type(type_).RecvWindow(recvWindow).Execute()
+> MarginAccountBorrowRepayResponse MarginAccountBorrowRepay(ctx).Asset(asset).IsIsolated(isIsolated).Amount(amount).Type(type_).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Margin account borrow/repay(MARGIN)
+Margin account borrow/repay (USER_DATA)
 
 
 ### Example
@@ -185,12 +185,12 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	isIsolated := "FALSE" // string | `TRUE` for Isolated Margin, `FALSE` for Cross Margin, Default `FALSE`
-	symbol := "symbol_example" // string | 
-	amount := "amount_example" // string | 
-	type_ := "type__example" // string | `MARGIN`,`ISOLATED`
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	asset := "USDT" // string | 
+	isIsolated := models.MarginAccountBorrowRepayIsIsolatedParameterTrue // MarginAccountBorrowRepayIsIsolatedParameter | `TRUE` for Isolated Margin, `FALSE` for Cross Margin
+	amount := "1.0" // string | 
+	type_ := models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow // QueryBorrowRepayRecordsInMarginAccountTypeParameter | 
+	symbol := "BTCUSDT" // string | Only for Isolated margin (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -199,7 +199,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.BorrowRepayAPI.MarginAccountBorrowRepay(context.Background()).Asset(asset).IsIsolated(isIsolated).Symbol(symbol).Amount(amount).Type(type_).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.BorrowRepayAPI.MarginAccountBorrowRepay(context.Background()).Asset(asset).IsIsolated(isIsolated).Amount(amount).Type(type_).Symbol(symbol).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `BorrowRepayAPI.MarginAccountBorrowRepay``: %v\n", err)
 		return
@@ -219,11 +219,11 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **isIsolated** | **string** | &#x60;TRUE&#x60; for Isolated Margin, &#x60;FALSE&#x60; for Cross Margin, Default &#x60;FALSE&#x60; | 
- **symbol** | **string** |  | 
+ **isIsolated** | [**MarginAccountBorrowRepayIsIsolatedParameter**](MarginAccountBorrowRepayIsIsolatedParameter.md) | &#x60;TRUE&#x60; for Isolated Margin, &#x60;FALSE&#x60; for Cross Margin | 
  **amount** | **string** |  | 
- **type_** | **string** | &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60; | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **type_** | [**QueryBorrowRepayRecordsInMarginAccountTypeParameter**](QueryBorrowRepayRecordsInMarginAccountTypeParameter.md) |  | 
+ **symbol** | **string** | Only for Isolated margin | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -244,7 +244,7 @@ No authorization required
 
 > QueryBorrowRepayRecordsInMarginAccountResponse QueryBorrowRepayRecordsInMarginAccount(ctx).Type(type_).Asset(asset).IsolatedSymbol(isolatedSymbol).TxId(txId).StartTime(startTime).EndTime(endTime).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Query borrow/repay records in Margin account(USER_DATA)
+Query borrow/repay records in Margin account (USER_DATA)
 
 
 ### Example
@@ -263,15 +263,15 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | `MARGIN`,`ISOLATED`
-	asset := "asset_example" // string |  (optional)
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	txId := int64(1) // int64 | `tranId` in `POST /sapi/v1/margin/loan` (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	type_ := models.QueryBorrowRepayRecordsInMarginAccountTypeParameterBorrow // QueryBorrowRepayRecordsInMarginAccountTypeParameter | 
+	asset := "BNB" // string |  (optional)
+	isolatedSymbol := "BNBUSDT" // string |  (optional)
+	txId := int64(1) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | Currently querying page. Start from 1. Default:1 (optional)
-	size := int64(10) // int64 | Default:10 Max:100 (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -299,15 +299,15 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** | &#x60;MARGIN&#x60;,&#x60;ISOLATED&#x60; | 
+ **type_** | [**QueryBorrowRepayRecordsInMarginAccountTypeParameter**](QueryBorrowRepayRecordsInMarginAccountTypeParameter.md) |  | 
  **asset** | **string** |  | 
- **isolatedSymbol** | **string** | isolated symbol | 
- **txId** | **int64** | &#x60;tranId&#x60; in &#x60;POST /sapi/v1/margin/loan&#x60; | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **isolatedSymbol** | **string** |  | 
+ **txId** | **int64** |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | Currently querying page. Start from 1. Default:1 | 
- **size** | **int64** | Default:10 Max:100 | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -347,11 +347,11 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	vipLevel := int64(1) // int64 | User's current specific margin data will be returned if vipLevel is omitted (optional)
-	startTime := int64(1623319461670) // int64 | Only supports querying data from the past 90 days. (optional)
+	asset := "BTC" // string | 
+	vipLevel := int64(1) // int64 |  (optional)
+	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -380,10 +380,10 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **vipLevel** | **int64** | User&#39;s current specific margin data will be returned if vipLevel is omitted | 
- **startTime** | **int64** | Only supports querying data from the past 90 days. | 
+ **vipLevel** | **int64** |  | 
+ **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 
@@ -423,9 +423,9 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	isolatedSymbol := "isolatedSymbol_example" // string | isolated symbol (optional)
-	recvWindow := int64(5000) // int64 | No more than 60000 (optional)
+	asset := "BTC" // string | 
+	isolatedSymbol := "BTCUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -454,8 +454,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **isolatedSymbol** | **string** | isolated symbol | 
- **recvWindow** | **int64** | No more than 60000 | 
+ **isolatedSymbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
 
 ### Return type
 

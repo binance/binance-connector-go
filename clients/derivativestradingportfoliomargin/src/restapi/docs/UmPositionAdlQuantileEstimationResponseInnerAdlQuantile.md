@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LONG** | Pointer to **int64** |  | [optional] 
-**SHORT** | Pointer to **int64** |  | [optional] 
-**BOTH** | Pointer to **int64** |  | [optional] 
+**LONG** | Pointer to **int64** | adl quantile for \&quot;LONG\&quot; position in hedge mode | [optional] 
+**SHORT** | Pointer to **int64** | adl quantile for \&quot;SHORT\&quot; position in hedge mode | [optional] 
+**BOTH** | Pointer to **int64** | adl quantile for position in one-way mode | [optional] 
 
 ## Methods
 

@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**LongShortRatio** | Pointer to **string** |  | [optional] 
-**LongAccount** | Pointer to **string** |  | [optional] 
-**ShortAccount** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **string** |  | [optional] 
+**LongShortRatio** | Pointer to **string** | long/short position ratio of top traders | [optional] 
+**LongAccount** | Pointer to **string** | long positions ratio of top traders | [optional] 
+**ShortAccount** | Pointer to **string** | short positions ratio of top traders | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasShortAccount returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *TopTraderLongShortRatioPositionsResponseInner) GetTimestamp() string`
+`func (o *TopTraderLongShortRatioPositionsResponseInner) GetTimestamp() int64`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *TopTraderLongShortRatioPositionsResponseInner) GetTimestampOk() (*string, bool)`
+`func (o *TopTraderLongShortRatioPositionsResponseInner) GetTimestampOk() (*int64, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *TopTraderLongShortRatioPositionsResponseInner) SetTimestamp(v string)`
+`func (o *TopTraderLongShortRatioPositionsResponseInner) SetTimestamp(v int64)`
 
 SetTimestamp sets Timestamp field to given value.
 

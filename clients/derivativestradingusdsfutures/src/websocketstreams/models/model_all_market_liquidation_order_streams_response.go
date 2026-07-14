@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,15 @@ var _ common.MappedNullable = &AllMarketLiquidationOrderStreamsResponse{}
 
 // AllMarketLiquidationOrderStreamsResponse struct for AllMarketLiquidationOrderStreamsResponse
 type AllMarketLiquidationOrderStreamsResponse struct {
-	Smalle               *string                                    `json:"e,omitempty"`
-	E                    *int64                                     `json:"E,omitempty"`
-	Smallo               *AllMarketLiquidationOrderStreamsResponseO `json:"o,omitempty"`
-	Smallps              *string                                    `json:"ps,omitempty"`
-	Smallst              *int64                                     `json:"st,omitempty"`
+	// Event Type
+	Smalle *string `json:"e,omitempty"`
+	// Event Time
+	E      *int64                                     `json:"E,omitempty"`
+	Smallo *AllMarketLiquidationOrderStreamsResponseO `json:"o,omitempty"`
+	// (After CM migration) Pair symbol
+	Smallps *string `json:"ps,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -173,9 +177,9 @@ func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallps(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallst() int64 {
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -183,7 +187,7 @@ func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *AllMarketLiquidationOrderStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -199,8 +203,8 @@ func (o *AllMarketLiquidationOrderStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *AllMarketLiquidationOrderStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

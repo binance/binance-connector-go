@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**CountryCode** | Pointer to **string** |  | [optional] 
-**CountryName** | Pointer to **string** |  | [optional] 
-**BlockType** | Pointer to **string** |  | [optional] 
-**DepositAllowed** | Pointer to **bool** |  | [optional] 
-**WithdrawalAllowed** | Pointer to **bool** |  | [optional] 
-**HasRegionRestrictions** | Pointer to **bool** |  | [optional] 
+**CountryCode** | Pointer to **string** | ISO 2-digit country code, lowercase. | [optional] 
+**CountryName** | Pointer to **string** | Country display name. | [optional] 
+**BlockType** | Pointer to **string** | &#x60;supported&#x60;, &#x60;limited&#x60;, or &#x60;blocked&#x60;. | [optional] 
+**DepositAllowed** | Pointer to **bool** | Whether deposit is allowed for this country. | [optional] 
+**WithdrawalAllowed** | Pointer to **bool** | Whether withdrawal is allowed for this country. | [optional] 
+**HasRegionRestrictions** | Pointer to **bool** | Whether this country has region-level restrictions. | [optional] 
 
 ## Methods
 

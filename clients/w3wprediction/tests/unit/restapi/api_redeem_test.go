@@ -25,7 +25,11 @@ func Test_binancew3wpredictionrestapi_RedeemAPIService(t *testing.T) {
 
 	t.Run("Test RedeemAPIService BatchRedeem Success", func(t *testing.T) {
 
-		mockedJSON := `{"batchId":"batch_20260525_redeem_001","results":[{"requestId":"req_001","txHash":"0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd","status":"PENDING","error":"error"}]}`
+		var mockedJSON string
+		mockedJSON = `{"batchId":"batch_20260525_redeem_001","results":[{"requestId":"req_001","txHash":"0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd","status":"PENDING","error":"error"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/batch-redeem", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))
@@ -99,7 +103,11 @@ func Test_binancew3wpredictionrestapi_RedeemAPIService(t *testing.T) {
 
 	t.Run("Test RedeemAPIService GetRedeemStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"txHash":"0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd","status":"CONFIRMED"}`
+		var mockedJSON string
+		mockedJSON = `{"txHash":"0xabc123def456789abcdef123456789abcdef123456789abcdef123456789abcd","status":"CONFIRMED"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/redeem/status", r.URL.Path)
 			require.Equal(t, "0x12e32db8817e292508c34111cbc4b23340df542c", r.URL.Query().Get("walletAddress"))

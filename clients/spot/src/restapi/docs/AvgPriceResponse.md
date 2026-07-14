@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Mins** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**CloseTime** | Pointer to **int64** |  | [optional] 
+**Mins** | Pointer to **int64** | Average price interval (in minutes) | [optional] 
+**Price** | Pointer to **string** | Average price | [optional] 
+**CloseTime** | Pointer to **int64** | Last trade time | [optional] 
 
 ## Methods
 

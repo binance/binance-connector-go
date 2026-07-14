@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package models
@@ -17,31 +17,43 @@ var _ common.MappedNullable = &TokenListResponseDataInner{}
 
 // TokenListResponseDataInner struct for TokenListResponseDataInner
 type TokenListResponseDataInner struct {
-	TokenId              *string `json:"tokenId,omitempty"`
-	ChainId              *string `json:"chainId,omitempty"`
-	ChainIconUrl         *string `json:"chainIconUrl,omitempty"`
-	ChainName            *string `json:"chainName,omitempty"`
-	ContractAddress      *string `json:"contractAddress,omitempty"`
-	Name                 *string `json:"name,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	IconUrl              *string `json:"iconUrl,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	PercentChange24h     *string `json:"percentChange24h,omitempty"`
-	Volume24h            *string `json:"volume24h,omitempty"`
-	MarketCap            *string `json:"marketCap,omitempty"`
-	Fdv                  *string `json:"fdv,omitempty"`
-	Liquidity            *string `json:"liquidity,omitempty"`
-	TotalSupply          *string `json:"totalSupply,omitempty"`
-	CirculatingSupply    *string `json:"circulatingSupply,omitempty"`
-	Holders              *string `json:"holders,omitempty"`
-	Decimals             *int64  `json:"decimals,omitempty"`
-	ListingCex           *bool   `json:"listingCex,omitempty"`
-	HotTag               *bool   `json:"hotTag,omitempty"`
-	CexCoinName          *string `json:"cexCoinName,omitempty"`
-	CanTransfer          *bool   `json:"canTransfer,omitempty"`
-	Denomination         *int64  `json:"denomination,omitempty"`
-	Offline              *bool   `json:"offline,omitempty"`
-	TradeDecimal         *int64  `json:"tradeDecimal,omitempty"`
+	// Unique token identifier.
+	TokenId *string `json:"tokenId,omitempty"`
+	// Chain ID.
+	ChainId *string `json:"chainId,omitempty"`
+	// Chain icon URL.
+	ChainIconUrl *string `json:"chainIconUrl,omitempty"`
+	// Chain name.
+	ChainName *string `json:"chainName,omitempty"`
+	// Token contract address.
+	ContractAddress *string `json:"contractAddress,omitempty"`
+	// Token name.
+	Name *string `json:"name,omitempty"`
+	// Token symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Token icon URL.
+	IconUrl *string `json:"iconUrl,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// 24-hour price change percentage.
+	PercentChange24h *string `json:"percentChange24h,omitempty"`
+	// 24-hour trading volume.
+	Volume24h         *string `json:"volume24h,omitempty"`
+	MarketCap         *string `json:"marketCap,omitempty"`
+	Fdv               *string `json:"fdv,omitempty"`
+	Liquidity         *string `json:"liquidity,omitempty"`
+	TotalSupply       *string `json:"totalSupply,omitempty"`
+	CirculatingSupply *string `json:"circulatingSupply,omitempty"`
+	Holders           *string `json:"holders,omitempty"`
+	Decimals          *int64  `json:"decimals,omitempty"`
+	ListingCex        *bool   `json:"listingCex,omitempty"`
+	HotTag            *bool   `json:"hotTag,omitempty"`
+	CexCoinName       *string `json:"cexCoinName,omitempty"`
+	CanTransfer       *bool   `json:"canTransfer,omitempty"`
+	Denomination      *int64  `json:"denomination,omitempty"`
+	Offline           *bool   `json:"offline,omitempty"`
+	TradeDecimal      *int64  `json:"tradeDecimal,omitempty"`
+	// ALPHA token ID, e.g. ALPHA_175.
 	AlphaId              *string `json:"alphaId,omitempty"`
 	Offsell              *bool   `json:"offsell,omitempty"`
 	PriceHigh24h         *string `json:"priceHigh24h,omitempty"`

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,10 +17,15 @@ var _ common.MappedNullable = &BalancePositionUpdate{}
 
 // BalancePositionUpdate struct for BalancePositionUpdate
 type BalancePositionUpdate struct {
-	E                    *int64                        `json:"E,omitempty"`
-	T                    *int64                        `json:"T,omitempty"`
-	Smallm               *string                       `json:"m,omitempty"`
-	B                    []BalancePositionUpdateBInner `json:"B,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Transaction Time
+	T *int64 `json:"T,omitempty"`
+	// Event reason type
+	Smallm *string `json:"m,omitempty"`
+	// Balances
+	B []BalancePositionUpdateBInner `json:"B,omitempty"`
+	// Positions
 	P                    []BalancePositionUpdatePInner `json:"P,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

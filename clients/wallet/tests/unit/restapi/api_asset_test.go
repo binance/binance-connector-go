@@ -1,5 +1,5 @@
 /*
-Binance Wallet REST API TEST
+Wallet REST API TEST
 
 Testing AssetAPIService
 
@@ -10,6 +10,7 @@ package binancewalletrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,7 +26,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService AssetDetail Success", func(t *testing.T) {
 
-		mockedJSON := `{"CTR":{"minWithdrawAmount":"70.00000000","depositStatus":false,"withdrawFee":35,"withdrawStatus":true,"depositTip":"Delisted, Deposit Suspended"},"SKY":{"minWithdrawAmount":"0.02000000","depositStatus":true,"withdrawFee":0.01,"withdrawStatus":true}}`
+		var mockedJSON string
+		mockedJSON = `{"CTR":{"minWithdrawAmount":"70.00000000","depositStatus":false,"withdrawFee":35,"withdrawStatus":true,"depositTip":"Delisted, Deposit Suspended"},"SKY":{"minWithdrawAmount":"0.02000000","depositStatus":true,"withdrawFee":0.01,"withdrawStatus":true}}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/assetDetail", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +85,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService AssetDividendRecord Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"id":1637366104,"amount":"10.00000000","asset":"BHFT","divTime":1563189166000,"enInfo":"BHFT distribution","tranId":2968885920,"direction":1},{"id":1631750237,"amount":"10.00000000","asset":"BHFT","divTime":1563189165000,"enInfo":"BHFT distribution","tranId":2968885920,"direction":1}],"total":2}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"id":1637366104,"amount":"10.00000000","asset":"BHFT","divTime":1563189166000,"enInfo":"BHFT distribution","tranId":2968885920,"direction":1}],"total":2}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/assetDividend", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,10 +144,14 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService DustConvert Success", func(t *testing.T) {
 
-		mockedJSON := `{"totalTransfered":"3.5971223","totalServiceCharge":"0.0794964","transferResult":[{"tranId":2987331510,"fromAsset":"USDT","amount":"1","transferedAmount":"3.5971223","serviceChargeAmount":"0.0794964","operateTime":1765212029749}]}`
+		var mockedJSON string
+		mockedJSON = `{"totalTransfered":"3.5971223","totalServiceCharge":"0.0794964","transferResult":[{"tranId":2987331510,"fromAsset":"USDT","amount":"1","transferedAmount":"3.5971223","serviceChargeAmount":"0.0794964","operateTime":1765212029749}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/dust-convert/convert", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -155,7 +168,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.AssetAPI.DustConvert(context.Background()).Asset("USDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -208,10 +221,14 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService DustConvertibleAssets Success", func(t *testing.T) {
 
-		mockedJSON := `{"dribbletPercentage":"0.02","totalTransferQuotaAssetAmount":"0.7899968","totalTransferTargetAssetAmount":"0.7899968","dribbletBase":"10","details":[{"asset":"AR","assetFullName":"AR","amountFree":"0.00856","exchange":"0.00073616","toQuotaAssetAmount":"0.036808","toTargetAssetAmount":"0.036808","toTargetAssetOffExchange":"0.03607184"},{"asset":"BNB","assetFullName":"BNB","amountFree":"0.00082768","exchange":"0.01506378","toQuotaAssetAmount":"0.7531888","toTargetAssetAmount":"0.7531888","toTargetAssetOffExchange":"0.73812502"}]}`
+		var mockedJSON string
+		mockedJSON = `{"dribbletPercentage":"0.02","totalTransferQuotaAssetAmount":"0.7899968","totalTransferTargetAssetAmount":"0.7899968","dribbletBase":"10","details":[{"asset":"AR","assetFullName":"AR","amountFree":"0.00856","exchange":"0.00073616","toQuotaAssetAmount":"0.036808","toTargetAssetAmount":"0.036808","toTargetAssetOffExchange":"0.03607184"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/dust-convert/query-convertible-assets", r.URL.Path)
-			require.Equal(t, "targetAsset_example", r.URL.Query().Get("targetAsset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("targetAsset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -228,7 +245,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset("targetAsset_example").Execute()
+		resp, err := apiClient.RestApi.AssetAPI.DustConvertibleAssets(context.Background()).TargetAsset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -281,10 +298,14 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService DustTransfer Success", func(t *testing.T) {
 
-		mockedJSON := `{"totalServiceCharge":"0.02102542","totalTransfered":"1.05127099","transferResult":[{"amount":"0.03000000","fromAsset":"ETH","operateTime":1563368549307,"serviceChargeAmount":"0.00500000","tranId":2970932918,"transferedAmount":"0.25000000"},{"amount":"0.09000000","fromAsset":"LTC","operateTime":1563368549404,"serviceChargeAmount":"0.01548000","tranId":2970932918,"transferedAmount":"0.77400000"},{"amount":"248.61878453","fromAsset":"TRX","operateTime":1563368549489,"serviceChargeAmount":"0.00054542","tranId":2970932918,"transferedAmount":"0.02727099"}]}`
+		var mockedJSON string
+		mockedJSON = `{"totalServiceCharge":"0.02102542","totalTransfered":"1.05127099","transferResult":[{"amount":"0.03000000","fromAsset":"ETH","operateTime":1563368549307,"serviceChargeAmount":"0.00500000","tranId":2970932918,"transferedAmount":"0.25000000"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/dust", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -301,7 +322,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.DustTransfer(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.AssetAPI.DustTransfer(context.Background()).Asset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -354,7 +375,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService Dustlog Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":8,"userAssetDribblets":[{"operateTime":1615985535000,"totalTransferedAmount":"0.00132256","totalServiceChargeAmount":"0.00002699","transId":45178372831,"userAssetDribbletDetails":[{"transId":4359321,"serviceChargeAmount":"0.000009","amount":"0.0009","operateTime":1615985535000,"transferedAmount":"0.000441","fromAsset":"USDT"},{"transId":4359321,"serviceChargeAmount":"0.00001799","amount":"0.0009","operateTime":1615985535000,"transferedAmount":"0.00088156","fromAsset":"ETH"}]},{"operateTime":1616203180000,"totalTransferedAmount":"0.00058795","totalServiceChargeAmount":"0.000012","transId":4357015,"userAssetDribbletDetails":[{"transId":4357015,"serviceChargeAmount":"0.00001","amount":"0.001","operateTime":1616203180000,"transferedAmount":"0.00049","fromAsset":"USDT"},{"transId":4357015,"serviceChargeAmount":"0.000002","amount":"0.0001","operateTime":1616203180000,"transferedAmount":"0.00009795","fromAsset":"ETH"}]}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":8,"userAssetDribblets":[{"operateTime":1615985535000,"totalTransferedAmount":"0.00132256","totalServiceChargeAmount":"0.00002699","transId":45178372831,"userAssetDribbletDetails":[{"transId":4359321,"serviceChargeAmount":"0.000009","amount":"0.0009","operateTime":1615985535000,"transferedAmount":"0.000441","fromAsset":"USDT","targetAsset":"BNB"}]}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/dribblet", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -409,7 +434,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService FundingWallet Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"USDT","free":"1","locked":"0","freeze":"0","withdrawing":"0","btcValuation":"0.00000091"}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"USDT","free":"1","locked":"0","freeze":"0","withdrawing":"0","btcValuation":"0.00000091"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/get-funding-asset", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -464,7 +493,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService GetAssetsThatCanBeConvertedIntoBnb Success", func(t *testing.T) {
 
-		mockedJSON := `{"details":[{"asset":"ADA","assetFullName":"ADA","amountFree":"6.21","toBTC":"0.00016848","toBNB":"0.01777302","toBNBOffExchange":"0.01741756","exchange":"0.00035546"}],"totalTransferBtc":"0.00016848","totalTransferBNB":"0.01777302","dribbletPercentage":"0.02"}`
+		var mockedJSON string
+		mockedJSON = `{"details":[{"asset":"ADA","assetFullName":"ADA","amountFree":"6.21","toBTC":"0.00016848","toBNB":"0.01777302","toBNBOffExchange":"0.01741756","exchange":"0.00035546"}],"totalTransferBtc":"0.00016848","totalTransferBNB":"0.01777302","dribbletPercentage":"0.02"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/dust-btc", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -519,7 +552,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService GetCloudMiningPaymentAndRefundHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":5,"rows":[{"createTime":1667880112000,"tranId":121230610120,"type":248,"asset":"USDT","amount":"25.0068","status":"S"},{"createTime":1666776366000,"tranId":119991507468,"type":249,"asset":"USDT","amount":"0.027","status":"S"},{"createTime":1666764505000,"tranId":119977966327,"type":248,"asset":"USDT","amount":"0.027","status":"S"},{"createTime":1666758189000,"tranId":119973601721,"type":248,"asset":"USDT","amount":"0.018","status":"S"},{"createTime":1666757278000,"tranId":119973028551,"type":248,"asset":"USDT","amount":"0.018","status":"S"}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":5,"rows":[{"createTime":1667880112000,"tranId":121230610120,"type":248,"asset":"USDT","amount":"25.0068","status":"S"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -593,7 +630,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService GetOpenSymbolList Success", func(t *testing.T) {
 
-		mockedJSON := `[{"openTime":1686161202000,"symbols":["BNBBTC","BNBETH"]},{"openTime":1686222232000,"symbols":["BTCUSDT"]}]`
+		var mockedJSON string
+		mockedJSON = `[{"openTime":1686161202000,"symbols":["BNBBTC"]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/spot/open-symbol-list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -648,10 +689,14 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService QueryUserDelegationHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":3316,"rows":[{"clientTranId":"293915932290879488","transferType":"Undelegate","asset":"ETH","amount":"1","time":1695205406000},{"clientTranId":"293915892281413632","transferType":"Delegate","asset":"ETH","amount":"1","time":1695205396000}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":3316,"rows":[{"clientTranId":"293915932290879488","transferType":"Undelegate","asset":"ETH","amount":"1","time":1695205406000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/custody/transfer-history", r.URL.Path)
-			require.Equal(t, "email_example", r.URL.Query().Get("email"))
+			require.Equal(t, "abc@test.com", r.URL.Query().Get("email"))
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
 			require.Equal(t, "1641782889000", r.URL.Query().Get("endTime"))
 			w.Header().Set("Content-Type", "application/json")
@@ -670,7 +715,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.QueryUserDelegationHistory(context.Background()).Email("email_example").StartTime(int64(1623319461670)).EndTime(int64(1641782889000)).Execute()
+		resp, err := apiClient.RestApi.AssetAPI.QueryUserDelegationHistory(context.Background()).Email("abc@test.com").StartTime(int64(1623319461670)).EndTime(int64(1641782889000)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -723,7 +768,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService QueryUserUniversalTransferHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":2,"rows":[{"asset":"USDT","amount":"1","type":"MAIN_UMFUTURE","status":"CONFIRMED","tranId":11415955596,"timestamp":1544433328000},{"asset":"USDT","amount":"2","type":"MAIN_UMFUTURE","status":"CONFIRMED","tranId":11366865406,"timestamp":1544433328000}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":2,"rows":[{"asset":"USDT","amount":"1","type":"MAIN_UMFUTURE","status":"CONFIRMED","tranId":11415955596,"timestamp":1544433328000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/transfer", r.URL.Path)
 			require.Equal(t, "type__example", r.URL.Query().Get("type"))
@@ -796,7 +845,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService QueryUserWalletBalance Success", func(t *testing.T) {
 
-		mockedJSON := `[{"activate":true,"balance":"0","walletName":"Spot"},{"activate":true,"balance":"0","walletName":"Funding"},{"activate":true,"balance":"0","walletName":"Cross Margin"},{"activate":true,"balance":"0","walletName":"Isolated Margin"},{"activate":true,"balance":"0.71842752","walletName":"USDⓈ-M Futures"},{"activate":true,"balance":"0","walletName":"COIN-M Futures"},{"activate":true,"balance":"0","walletName":"Earn"},{"activate":false,"balance":"0","walletName":"Options"},{"activate":true,"balance":"0","walletName":"Trading Bots"},{"activate":true,"balance":"0","walletName":"Copy Trading"}]`
+		var mockedJSON string
+		mockedJSON = `[{"activate":true,"balance":"0","walletName":"Spot"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/wallet/balance", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -851,7 +904,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService ToggleBnbBurnOnSpotTradeAndMarginInterest Success", func(t *testing.T) {
 
-		mockedJSON := `{"spotBNBBurn":true,"interestBNBBurn":false}`
+		var mockedJSON string
+		mockedJSON = `{"spotBNBBurn":true,"interestBNBBurn":false}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/bnbBurn", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -906,7 +963,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService TradeFee Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"ADABNB","makerCommission":"0.001","takerCommission":"0.001"},{"symbol":"BNBBTC","makerCommission":"0.001","takerCommission":"0.001"}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"ADABNB","makerCommission":"0.001","takerCommission":"0.001"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/tradeFee", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -961,7 +1022,11 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService UserAsset Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"AVAX","free":"1","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"},{"asset":"BCH","free":"0.9","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"},{"asset":"BNB","free":"887.47061626","locked":"0","freeze":"10.52","withdrawing":"0.1","ipoable":"0","btcValuation":"0"},{"asset":"BUSD","free":"9999.7","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"},{"asset":"SHIB","free":"532.32","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"},{"asset":"USDT","free":"50300000001.44911105","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"},{"asset":"WRZ","free":"1","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"AVAX","free":"1","locked":"0","freeze":"0","withdrawing":"0","ipoable":"0","btcValuation":"0"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v3/asset/getUserAsset", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -1016,12 +1081,16 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 
 	t.Run("Test AssetAPIService UserUniversalTransfer Success", func(t *testing.T) {
 
-		mockedJSON := `{"tranId":13526853623}`
+		var mockedJSON string
+		mockedJSON = `{"tranId":13526853623}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/asset/transfer", r.URL.Path)
-			require.Equal(t, "type__example", r.URL.Query().Get("type"))
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
-			require.Equal(t, "1", r.URL.Query().Get("amount"))
+			require.Equal(t, string(models.UserUniversalTransferTypeParameterMainUmfuture), r.URL.Query().Get("type"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1038,7 +1107,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type("type__example").Asset("asset_example").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type(models.UserUniversalTransferTypeParameterMainUmfuture).Asset("BTC").Amount(float32(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

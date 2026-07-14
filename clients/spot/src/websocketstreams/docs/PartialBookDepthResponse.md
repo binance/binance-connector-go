@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**LastUpdateId** | Pointer to **int64** |  | [optional] 
-**Bids** | Pointer to **[][]string** |  | [optional] 
-**Asks** | Pointer to **[][]string** |  | [optional] 
+**LastUpdateId** | Pointer to **int64** | Last update ID | [optional] 
+**Bids** | Pointer to **[][]string** | Bids to be updated | [optional] 
+**Asks** | Pointer to **[][]string** | Asks to be updated | [optional] 
 
 ## Methods
 

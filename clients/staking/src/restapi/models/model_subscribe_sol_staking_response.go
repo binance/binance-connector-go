@@ -1,7 +1,7 @@
 /*
-Binance Staking REST API
+Staking REST API
 
-OpenAPI Specification for the Binance Staking REST API
+Subscribe to staking products, track positions, and query rewards via the Binance Staking API.
 */
 
 package models
@@ -19,8 +19,8 @@ var _ common.MappedNullable = &SubscribeSolStakingResponse{}
 type SubscribeSolStakingResponse struct {
 	Success              *bool   `json:"success,omitempty"`
 	BnsolAmount          *string `json:"bnsolAmount,omitempty"`
-	ExchangeRate         *string `json:"exchangeRate,omitempty"`
 	PurchaseId           *int64  `json:"purchaseId,omitempty"`
+	ExchangeRate         *string `json:"exchangeRate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,38 +107,6 @@ func (o *SubscribeSolStakingResponse) SetBnsolAmount(v string) {
 	o.BnsolAmount = &v
 }
 
-// GetExchangeRate returns the ExchangeRate field value if set, zero value otherwise.
-func (o *SubscribeSolStakingResponse) GetExchangeRate() string {
-	if o == nil || common.IsNil(o.ExchangeRate) {
-		var ret string
-		return ret
-	}
-	return *o.ExchangeRate
-}
-
-// GetExchangeRateOk returns a tuple with the ExchangeRate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SubscribeSolStakingResponse) GetExchangeRateOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ExchangeRate) {
-		return nil, false
-	}
-	return o.ExchangeRate, true
-}
-
-// HasExchangeRate returns a boolean if a field has been set.
-func (o *SubscribeSolStakingResponse) HasExchangeRate() bool {
-	if o != nil && !common.IsNil(o.ExchangeRate) {
-		return true
-	}
-
-	return false
-}
-
-// SetExchangeRate gets a reference to the given string and assigns it to the ExchangeRate field.
-func (o *SubscribeSolStakingResponse) SetExchangeRate(v string) {
-	o.ExchangeRate = &v
-}
-
 // GetPurchaseId returns the PurchaseId field value if set, zero value otherwise.
 func (o *SubscribeSolStakingResponse) GetPurchaseId() int64 {
 	if o == nil || common.IsNil(o.PurchaseId) {
@@ -171,6 +139,38 @@ func (o *SubscribeSolStakingResponse) SetPurchaseId(v int64) {
 	o.PurchaseId = &v
 }
 
+// GetExchangeRate returns the ExchangeRate field value if set, zero value otherwise.
+func (o *SubscribeSolStakingResponse) GetExchangeRate() string {
+	if o == nil || common.IsNil(o.ExchangeRate) {
+		var ret string
+		return ret
+	}
+	return *o.ExchangeRate
+}
+
+// GetExchangeRateOk returns a tuple with the ExchangeRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscribeSolStakingResponse) GetExchangeRateOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ExchangeRate) {
+		return nil, false
+	}
+	return o.ExchangeRate, true
+}
+
+// HasExchangeRate returns a boolean if a field has been set.
+func (o *SubscribeSolStakingResponse) HasExchangeRate() bool {
+	if o != nil && !common.IsNil(o.ExchangeRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeRate gets a reference to the given string and assigns it to the ExchangeRate field.
+func (o *SubscribeSolStakingResponse) SetExchangeRate(v string) {
+	o.ExchangeRate = &v
+}
+
 func (o SubscribeSolStakingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -187,11 +187,11 @@ func (o SubscribeSolStakingResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.BnsolAmount) {
 		toSerialize["bnsolAmount"] = o.BnsolAmount
 	}
-	if !common.IsNil(o.ExchangeRate) {
-		toSerialize["exchangeRate"] = o.ExchangeRate
-	}
 	if !common.IsNil(o.PurchaseId) {
 		toSerialize["purchaseId"] = o.PurchaseId
+	}
+	if !common.IsNil(o.ExchangeRate) {
+		toSerialize["exchangeRate"] = o.ExchangeRate
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -217,8 +217,8 @@ func (o *SubscribeSolStakingResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "success")
 		delete(additionalProperties, "bnsolAmount")
-		delete(additionalProperties, "exchangeRate")
 		delete(additionalProperties, "purchaseId")
+		delete(additionalProperties, "exchangeRate")
 		o.AdditionalProperties = additionalProperties
 	}
 

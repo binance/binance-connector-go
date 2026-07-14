@@ -23,7 +23,7 @@ func ModifyCmOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ModifyCmOrder(context.Background()).Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyCmOrder(context.Background()).Symbol("BTCUSD_PERP").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

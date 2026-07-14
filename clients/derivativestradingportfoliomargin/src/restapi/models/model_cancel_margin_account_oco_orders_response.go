@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,14 +17,23 @@ var _ common.MappedNullable = &CancelMarginAccountOcoOrdersResponse{}
 
 // CancelMarginAccountOcoOrdersResponse struct for CancelMarginAccountOcoOrdersResponse
 type CancelMarginAccountOcoOrdersResponse struct {
-	OrderListId          *int64                                                  `json:"orderListId,omitempty"`
-	ContingencyType      *string                                                 `json:"contingencyType,omitempty"`
-	ListStatusType       *string                                                 `json:"listStatusType,omitempty"`
-	ListOrderStatus      *string                                                 `json:"listOrderStatus,omitempty"`
-	ListClientOrderId    *string                                                 `json:"listClientOrderId,omitempty"`
-	TransactionTime      *int64                                                  `json:"transactionTime,omitempty"`
-	Symbol               *string                                                 `json:"symbol,omitempty"`
-	Orders               []CancelMarginAccountOcoOrdersResponseOrdersInner       `json:"orders,omitempty"`
+	// Order List ID.
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// Contingency Type.
+	ContingencyType *string `json:"contingencyType,omitempty"`
+	// List Status Type.
+	ListStatusType *string `json:"listStatusType,omitempty"`
+	// List Order Status.
+	ListOrderStatus *string `json:"listOrderStatus,omitempty"`
+	// List Client Order ID.
+	ListClientOrderId *string `json:"listClientOrderId,omitempty"`
+	// Transaction Time.
+	TransactionTime *int64 `json:"transactionTime,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Orders.
+	Orders []CancelMarginAccountOcoOrdersResponseOrdersInner `json:"orders,omitempty"`
+	// Order Reports.
 	OrderReports         []CancelMarginAccountOcoOrdersResponseOrderReportsInner `json:"orderReports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

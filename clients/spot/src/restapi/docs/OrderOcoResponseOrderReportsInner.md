@@ -18,9 +18,9 @@ Name         | Type          | Description.  | Notes
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** |  | [optional] 
 **WorkingTime** | Pointer to **int64** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**StopPrice** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -391,31 +391,6 @@ SetSide sets Side field to given value.
 
 HasSide returns a boolean if a field has been set.
 
-### GetStopPrice
-
-`func (o *OrderOcoResponseOrderReportsInner) GetStopPrice() string`
-
-GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
-
-### GetStopPriceOk
-
-`func (o *OrderOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool)`
-
-GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStopPrice
-
-`func (o *OrderOcoResponseOrderReportsInner) SetStopPrice(v string)`
-
-SetStopPrice sets StopPrice field to given value.
-
-### HasStopPrice
-
-`func (o *OrderOcoResponseOrderReportsInner) HasStopPrice() bool`
-
-HasStopPrice returns a boolean if a field has been set.
-
 ### GetWorkingTime
 
 `func (o *OrderOcoResponseOrderReportsInner) GetWorkingTime() int64`
@@ -465,6 +440,31 @@ SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
 `func (o *OrderOcoResponseOrderReportsInner) HasSelfTradePreventionMode() bool`
 
 HasSelfTradePreventionMode returns a boolean if a field has been set.
+
+### GetStopPrice
+
+`func (o *OrderOcoResponseOrderReportsInner) GetStopPrice() string`
+
+GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
+
+### GetStopPriceOk
+
+`func (o *OrderOcoResponseOrderReportsInner) GetStopPriceOk() (*string, bool)`
+
+GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopPrice
+
+`func (o *OrderOcoResponseOrderReportsInner) SetStopPrice(v string)`
+
+SetStopPrice sets StopPrice field to given value.
+
+### HasStopPrice
+
+`func (o *OrderOcoResponseOrderReportsInner) HasStopPrice() bool`
+
+HasStopPrice returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

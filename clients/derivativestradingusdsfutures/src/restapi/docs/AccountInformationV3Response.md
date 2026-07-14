@@ -4,19 +4,19 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalMaintMargin** | Pointer to **string** |  | [optional] 
-**TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
-**TotalMarginBalance** | Pointer to **string** |  | [optional] 
-**TotalPositionInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalOpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalCrossWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalCrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]AccountInformationV3ResponseAssetsInner**](AccountInformationV3ResponseAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]AccountInformationV3ResponsePositionsInner**](AccountInformationV3ResponsePositionsInner.md) |  | [optional] 
+**TotalInitialMargin** | Pointer to **string** | Total initial margin requirement. | [optional] 
+**TotalMaintMargin** | Pointer to **string** | Total maintenance margin requirement. | [optional] 
+**TotalWalletBalance** | Pointer to **string** | Total wallet balance. | [optional] 
+**TotalUnrealizedProfit** | Pointer to **string** | Total unrealized profit. | [optional] 
+**TotalMarginBalance** | Pointer to **string** | Total margin balance. | [optional] 
+**TotalPositionInitialMargin** | Pointer to **string** | Initial margin required for positions. | [optional] 
+**TotalOpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. | [optional] 
+**TotalCrossWalletBalance** | Pointer to **string** | Cross wallet balance. | [optional] 
+**TotalCrossUnPnl** | Pointer to **string** | Unrealized PnL for cross positions. | [optional] 
+**AvailableBalance** | Pointer to **string** | Available balance. | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. | [optional] 
+**Assets** | Pointer to [**[]AccountInformationV3ResponseAssetsInner**](AccountInformationV3ResponseAssetsInner.md) | Asset-level account details. | [optional] 
+**Positions** | Pointer to [**[]AccountInformationV3ResponsePositionsInner**](AccountInformationV3ResponsePositionsInner.md) | Position details for symbols. | [optional] 
 
 ## Methods
 

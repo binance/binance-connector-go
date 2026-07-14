@@ -1,7 +1,7 @@
 /*
-Binance Dual Investment REST API
+Dual Investment REST API
 
-OpenAPI Specification for the Binance Dual Investment REST API
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
 */
 
 package models
@@ -17,19 +17,23 @@ var _ common.MappedNullable = &GetDualInvestmentPositionsResponseListInner{}
 
 // GetDualInvestmentPositionsResponseListInner struct for GetDualInvestmentPositionsResponseListInner
 type GetDualInvestmentPositionsResponseListInner struct {
-	Id                   *string `json:"id,omitempty"`
-	InvestCoin           *string `json:"investCoin,omitempty"`
-	ExercisedCoin        *string `json:"exercisedCoin,omitempty"`
-	SubscriptionAmount   *string `json:"subscriptionAmount,omitempty"`
-	StrikePrice          *string `json:"strikePrice,omitempty"`
-	Duration             *int64  `json:"duration,omitempty"`
-	SettleDate           *int64  `json:"settleDate,omitempty"`
-	PurchaseStatus       *string `json:"purchaseStatus,omitempty"`
-	Apr                  *string `json:"apr,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	PurchaseEndTime      *int64  `json:"purchaseEndTime,omitempty"`
-	OptionType           *string `json:"optionType,omitempty"`
+	// positionId
+	Id                 *string `json:"id,omitempty"`
+	InvestCoin         *string `json:"investCoin,omitempty"`
+	ExercisedCoin      *string `json:"exercisedCoin,omitempty"`
+	SubscriptionAmount *string `json:"subscriptionAmount,omitempty"`
+	StrikePrice        *string `json:"strikePrice,omitempty"`
+	Duration           *int64  `json:"duration,omitempty"`
+	SettleDate         *int64  `json:"settleDate,omitempty"`
+	// Purchase status. Possible values include PENDING, PURCHASE_SUCCESS, SETTLED, PURCHASE_FAIL, REFUNDING, REFUND_SUCCESS, and SETTLING.
+	PurchaseStatus  *string `json:"purchaseStatus,omitempty"`
+	Apr             *string `json:"apr,omitempty"`
+	OrderId         *int64  `json:"orderId,omitempty"`
+	PurchaseEndTime *int64  `json:"purchaseEndTime,omitempty"`
+	OptionType      *string `json:"optionType,omitempty"`
+	// NULL, STANDARD, ADVANCED
 	AutoCompoundPlan     *string `json:"autoCompoundPlan,omitempty"`
+	SubscriptionTime     *int64  `json:"subscriptionTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -468,6 +472,38 @@ func (o *GetDualInvestmentPositionsResponseListInner) SetAutoCompoundPlan(v stri
 	o.AutoCompoundPlan = &v
 }
 
+// GetSubscriptionTime returns the SubscriptionTime field value if set, zero value otherwise.
+func (o *GetDualInvestmentPositionsResponseListInner) GetSubscriptionTime() int64 {
+	if o == nil || common.IsNil(o.SubscriptionTime) {
+		var ret int64
+		return ret
+	}
+	return *o.SubscriptionTime
+}
+
+// GetSubscriptionTimeOk returns a tuple with the SubscriptionTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetDualInvestmentPositionsResponseListInner) GetSubscriptionTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.SubscriptionTime) {
+		return nil, false
+	}
+	return o.SubscriptionTime, true
+}
+
+// HasSubscriptionTime returns a boolean if a field has been set.
+func (o *GetDualInvestmentPositionsResponseListInner) HasSubscriptionTime() bool {
+	if o != nil && !common.IsNil(o.SubscriptionTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionTime gets a reference to the given int64 and assigns it to the SubscriptionTime field.
+func (o *GetDualInvestmentPositionsResponseListInner) SetSubscriptionTime(v int64) {
+	o.SubscriptionTime = &v
+}
+
 func (o GetDualInvestmentPositionsResponseListInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -517,6 +553,9 @@ func (o GetDualInvestmentPositionsResponseListInner) ToMap() (map[string]interfa
 	if !common.IsNil(o.AutoCompoundPlan) {
 		toSerialize["autoCompoundPlan"] = o.AutoCompoundPlan
 	}
+	if !common.IsNil(o.SubscriptionTime) {
+		toSerialize["subscriptionTime"] = o.SubscriptionTime
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -552,6 +591,7 @@ func (o *GetDualInvestmentPositionsResponseListInner) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "purchaseEndTime")
 		delete(additionalProperties, "optionType")
 		delete(additionalProperties, "autoCompoundPlan")
+		delete(additionalProperties, "subscriptionTime")
 		o.AdditionalProperties = additionalProperties
 	}
 

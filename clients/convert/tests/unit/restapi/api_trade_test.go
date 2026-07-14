@@ -1,5 +1,5 @@
 /*
-Binance Convert REST API TEST
+Convert REST API TEST
 
 Testing TradeAPIService
 
@@ -10,6 +10,7 @@ package binanceconvertrestapi
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -25,7 +26,11 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService AcceptQuote Success", func(t *testing.T) {
 
-		mockedJSON := `{"orderId":"933256278426274426","createTime":1623381330472,"orderStatus":"PROCESS"}`
+		var mockedJSON string
+		mockedJSON = `{"orderId":"933256278426274426","createTime":1623381330472,"orderStatus":"PROCESS"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/acceptQuote", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("quoteId"))
@@ -98,10 +103,14 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService CancelLimitOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"orderId":1603680255057330400,"status":"CANCELED"}`
+		var mockedJSON string
+		mockedJSON = `{"orderId":1603680255057330400,"status":"CANCELED"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/limit/cancelOrder", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("orderId"))
+			require.Equal(t, "1603680255057330400", r.URL.Query().Get("orderId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -118,7 +127,7 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.CancelLimitOrder(context.Background()).OrderId(int64(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.CancelLimitOrder(context.Background()).OrderId(int64(1603680255057330400)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -171,7 +180,11 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService GetConvertTradeHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"list":[{"quoteId":"f3b91c525b2644c7bc1e1cd31b6e1aa6","orderId":940708407462087200,"orderStatus":"SUCCESS","fromAsset":"USDT","fromAmount":"20","toAsset":"BNB","toAmount":"0.06154036","ratio":"0.00307702","inverseRatio":"324.99","createTime":1624248872184}],"startTime":1623824139000,"endTime":1626416139000,"limit":100,"moreData":false}`
+		var mockedJSON string
+		mockedJSON = `{"list":[{"quoteId":"f3b91c525b2644c7bc1e1cd31b6e1aa6","orderId":940708407462087200,"orderStatus":"SUCCESS","fromAsset":"USDT","fromAmount":"20","toAsset":"BNB","toAmount":"0.06154036","ratio":"0.00307702","inverseRatio":"324.99","createTime":1624248872184}],"startTime":1623824139000,"endTime":1626416139000,"limit":100,"moreData":false}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/tradeFlow", r.URL.Path)
 			require.Equal(t, "1623319461670", r.URL.Query().Get("startTime"))
@@ -245,7 +258,11 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService OrderStatus Success", func(t *testing.T) {
 
-		mockedJSON := `{"orderId":933256278426274400,"orderStatus":"SUCCESS","fromAsset":"BTC","fromAmount":"0.00054414","toAsset":"USDT","toAmount":"20","ratio":"36755","inverseRatio":"0.00002721","createTime":1623381330472}`
+		var mockedJSON string
+		mockedJSON = `{"orderId":933256278426274400,"orderStatus":"SUCCESS","fromAsset":"BTC","fromAmount":"0.00054414","toAsset":"USDT","toAmount":"20","ratio":"36755","inverseRatio":"0.00002721","createTime":1623381330472}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/orderStatus", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -300,14 +317,18 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService PlaceLimitOrder Success", func(t *testing.T) {
 
-		mockedJSON := `{"orderId":1603680255057330400,"status":"PROCESS"}`
+		var mockedJSON string
+		mockedJSON = `{"orderId":1603680255057330400,"status":"PROCESS"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/limit/placeOrder", r.URL.Path)
-			require.Equal(t, "baseAsset_example", r.URL.Query().Get("baseAsset"))
-			require.Equal(t, "quoteAsset_example", r.URL.Query().Get("quoteAsset"))
-			require.Equal(t, "1", r.URL.Query().Get("limitPrice"))
-			require.Equal(t, "BUY", r.URL.Query().Get("side"))
-			require.Equal(t, "expiredType_example", r.URL.Query().Get("expiredType"))
+			require.Equal(t, "BTC", r.URL.Query().Get("baseAsset"))
+			require.Equal(t, "USDT", r.URL.Query().Get("quoteAsset"))
+			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("limitPrice"))
+			require.Equal(t, string(models.PlaceLimitOrderSideParameterBuy), r.URL.Query().Get("side"))
+			require.Equal(t, string(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D), r.URL.Query().Get("expiredType"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -324,7 +345,7 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("baseAsset_example").QuoteAsset("quoteAsset_example").LimitPrice(float32(1.0)).Side("BUY").ExpiredType("expiredType_example").Execute()
+		resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("BTC").QuoteAsset("USDT").LimitPrice(float32(1)).Side(models.PlaceLimitOrderSideParameterBuy).ExpiredType(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -377,7 +398,11 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService QueryLimitOpenOrders Success", func(t *testing.T) {
 
-		mockedJSON := `{"list":[{"quoteId":"18sdf87kh9df","orderId":1150901289839,"orderStatus":"SUCCESS","fromAsset":"BNB","fromAmount":"10","toAsset":"USDT","toAmount":"2317.89","ratio":"231.789","inverseRatio":"0.00431427","createTime":1614089498000,"expiredTimestamp":1614099498000}]}`
+		var mockedJSON string
+		mockedJSON = `{"list":[{"quoteId":"18sdf87kh9df","orderId":1150901289839,"orderStatus":"SUCCESS","fromAsset":"BNB","fromAmount":"10","toAsset":"USDT","toAmount":"2317.89","ratio":"231.789","inverseRatio":"0.00431427","createTime":1614089498000,"expiredTimestamp":1614099498000}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/limit/queryOpenOrders", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -432,11 +457,15 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 
 	t.Run("Test TradeAPIService SendQuoteRequest Success", func(t *testing.T) {
 
-		mockedJSON := `{"quoteId":"12415572564","ratio":"38163.7","inverseRatio":"0.0000262","validTimestamp":1623319461670,"toAmount":"3816.37","fromAmount":"0.1"}`
+		var mockedJSON string
+		mockedJSON = `{"quoteId":"12415572564","ratio":"38163.7","inverseRatio":"0.0000262","validTimestamp":1623319461670,"toAmount":"3816.37","fromAmount":"0.1"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/convert/getQuote", r.URL.Path)
-			require.Equal(t, "fromAsset_example", r.URL.Query().Get("fromAsset"))
-			require.Equal(t, "toAsset_example", r.URL.Query().Get("toAsset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("fromAsset"))
+			require.Equal(t, "USDT", r.URL.Query().Get("toAsset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -453,7 +482,7 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.SendQuoteRequest(context.Background()).FromAsset("fromAsset_example").ToAsset("toAsset_example").Execute()
+		resp, err := apiClient.RestApi.TradeAPI.SendQuoteRequest(context.Background()).FromAsset("BTC").ToAsset("USDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

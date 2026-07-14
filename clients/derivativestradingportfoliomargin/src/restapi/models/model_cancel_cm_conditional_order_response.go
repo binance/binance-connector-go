@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,24 +17,42 @@ var _ common.MappedNullable = &CancelCmConditionalOrderResponse{}
 
 // CancelCmConditionalOrderResponse struct for CancelCmConditionalOrderResponse
 type CancelCmConditionalOrderResponse struct {
-	NewClientStrategyId  *string `json:"newClientStrategyId,omitempty"`
-	StrategyId           *int64  `json:"strategyId,omitempty"`
-	StrategyStatus       *string `json:"strategyStatus,omitempty"`
-	StrategyType         *string `json:"strategyType,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	StopPrice            *string `json:"stopPrice,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	ActivatePrice        *string `json:"activatePrice,omitempty"`
-	PriceRate            *string `json:"priceRate,omitempty"`
-	BookTime             *int64  `json:"bookTime,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
-	WorkingType          *string `json:"workingType,omitempty"`
-	PriceProtect         *bool   `json:"priceProtect,omitempty"`
+	// New Client Strategy ID.
+	NewClientStrategyId *string `json:"newClientStrategyId,omitempty"`
+	// Strategy ID.
+	StrategyId *int64 `json:"strategyId,omitempty"`
+	// Strategy Status.
+	StrategyStatus *string `json:"strategyStatus,omitempty"`
+	// Strategy Type.
+	StrategyType *string `json:"strategyType,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// order place time
+	BookTime *int64 `json:"bookTime,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Working Type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// Price Protect.
+	PriceProtect         *bool `json:"priceProtect,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

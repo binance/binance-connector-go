@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package binancesubaccountrestapi
@@ -55,7 +55,7 @@ func (r ApiDepositAssetsIntoTheManagedSubAccountRequest) Execute() (*common.Rest
 DepositAssetsIntoTheManagedSubAccount Deposit Assets Into The Managed Sub-account (For Investor Master Account) (USER_DATA)
 Post /sapi/v1/managed-subaccount/deposit
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Deposit-Assets-Into-The-Managed-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#deposit-assets-into-the-managed-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param toEmail -
@@ -84,9 +84,11 @@ func (a *ManagedSubAccountAPIService) DepositAssetsIntoTheManagedSubAccountExecu
 	if r.toEmail == nil {
 		return nil, common.ReportError("toEmail is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -98,7 +100,15 @@ func (a *ManagedSubAccountAPIService) DepositAssetsIntoTheManagedSubAccountExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositAssetsIntoTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DepositAssetsIntoTheManagedSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -116,7 +126,6 @@ type ApiGetManagedSubAccountDepositAddressRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetManagedSubAccountDepositAddressRequest) Email(email string) ApiGetManagedSubAccountDepositAddressRequest {
 	r.email = &email
 	return r
@@ -151,10 +160,10 @@ func (r ApiGetManagedSubAccountDepositAddressRequest) Execute() (*common.RestApi
 GetManagedSubAccountDepositAddress Get Managed Sub-account Deposit Address (For Investor Master Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/deposit/address
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Get-Managed-Sub-account-Deposit-Address
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#get-managed-sub-account-deposit-address
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param coin -
 @param network -  networks can be found in `GET /sapi/v1/capital/deposit/address`
 @param amount -
@@ -181,6 +190,7 @@ func (a *ManagedSubAccountAPIService) GetManagedSubAccountDepositAddressExecute(
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
@@ -197,7 +207,15 @@ func (a *ManagedSubAccountAPIService) GetManagedSubAccountDepositAddressExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetManagedSubAccountDepositAddressResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetManagedSubAccountDepositAddressResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -212,7 +230,6 @@ type ApiQueryManagedSubAccountAssetDetailsRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountAssetDetailsRequest) Email(email string) ApiQueryManagedSubAccountAssetDetailsRequest {
 	r.email = &email
 	return r
@@ -231,10 +248,10 @@ func (r ApiQueryManagedSubAccountAssetDetailsRequest) Execute() (*common.RestApi
 QueryManagedSubAccountAssetDetails Query Managed Sub-account Asset Details (For Investor Master Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/asset
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Asset-Details
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-asset-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiQueryManagedSubAccountAssetDetailsRequest
 */
@@ -264,7 +281,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountAssetDetailsExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountAssetDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -279,13 +304,12 @@ type ApiQueryManagedSubAccountFuturesAssetDetailsRequest struct {
 	accountType *string
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountFuturesAssetDetailsRequest) Email(email string) ApiQueryManagedSubAccountFuturesAssetDetailsRequest {
 	r.email = &email
 	return r
 }
 
-// No input or input \&quot;MARGIN\&quot; to get Cross Margin account details. Input \&quot;ISOLATED_MARGIN\&quot; to get Isolated Margin account details.
+// No input or input \&quot;USDT_FUTURE\&quot; to get UM Futures account details. Input \&quot;COIN_FUTURE\&quot; to get CM Futures account details.
 func (r ApiQueryManagedSubAccountFuturesAssetDetailsRequest) AccountType(accountType string) ApiQueryManagedSubAccountFuturesAssetDetailsRequest {
 	r.accountType = &accountType
 	return r
@@ -299,11 +323,11 @@ func (r ApiQueryManagedSubAccountFuturesAssetDetailsRequest) Execute() (*common.
 QueryManagedSubAccountFuturesAssetDetails Query Managed Sub-account Futures Asset Details (For Investor Master Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/fetch-future-asset
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Futures-Asset-Details
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-futures-asset-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
-@param accountType -  No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details.
+@param email -
+@param accountType -  No input or input \"USDT_FUTURE\" to get UM Futures account details. Input \"COIN_FUTURE\" to get CM Futures account details.
 @return ApiQueryManagedSubAccountFuturesAssetDetailsRequest
 */
 func (a *ManagedSubAccountAPIService) QueryManagedSubAccountFuturesAssetDetails(ctx context.Context) ApiQueryManagedSubAccountFuturesAssetDetailsRequest {
@@ -332,7 +356,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountFuturesAssetDetailsE
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountFuturesAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountFuturesAssetDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -349,19 +381,16 @@ type ApiQueryManagedSubAccountListRequest struct {
 	recvWindow *int64
 }
 
-// Managed sub-account email
 func (r ApiQueryManagedSubAccountListRequest) Email(email string) ApiQueryManagedSubAccountListRequest {
 	r.email = &email
 	return r
 }
 
-// Default value: 1
 func (r ApiQueryManagedSubAccountListRequest) Page(page int64) ApiQueryManagedSubAccountListRequest {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQueryManagedSubAccountListRequest) Limit(limit int64) ApiQueryManagedSubAccountListRequest {
 	r.limit = &limit
 	return r
@@ -380,12 +409,12 @@ func (r ApiQueryManagedSubAccountListRequest) Execute() (*common.RestApiResponse
 QueryManagedSubAccountList Query Managed Sub-account List (For Investor) (USER_DATA)
 Get /sapi/v1/managed-subaccount/info
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-List
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  Managed sub-account email
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param email -
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiQueryManagedSubAccountListRequest
 */
@@ -419,7 +448,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountListExecute(r ApiQue
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -434,7 +471,6 @@ type ApiQueryManagedSubAccountMarginAssetDetailsRequest struct {
 	accountType *string
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountMarginAssetDetailsRequest) Email(email string) ApiQueryManagedSubAccountMarginAssetDetailsRequest {
 	r.email = &email
 	return r
@@ -454,10 +490,10 @@ func (r ApiQueryManagedSubAccountMarginAssetDetailsRequest) Execute() (*common.R
 QueryManagedSubAccountMarginAssetDetails Query Managed Sub-account Margin Asset Details (For Investor Master Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/marginAsset
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Margin-Asset-Details
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-margin-asset-details
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param accountType -  No input or input \"MARGIN\" to get Cross Margin account details. Input \"ISOLATED_MARGIN\" to get Isolated Margin account details.
 @return ApiQueryManagedSubAccountMarginAssetDetailsRequest
 */
@@ -487,7 +523,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountMarginAssetDetailsEx
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountMarginAssetDetailsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountMarginAssetDetailsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -499,36 +543,35 @@ type ApiQueryManagedSubAccountSnapshotRequest struct {
 	ctx        context.Context
 	ApiService *ManagedSubAccountAPIService
 	email      *string
-	type_      *string
+	type_      *models.QueryManagedSubAccountSnapshotTypeParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountSnapshotRequest) Email(email string) ApiQueryManagedSubAccountSnapshotRequest {
 	r.email = &email
 	return r
 }
 
-// \&quot;SPOT\&quot;, \&quot;MARGIN\&quot;（cross）, \&quot;FUTURES\&quot;（UM）
-func (r ApiQueryManagedSubAccountSnapshotRequest) Type(type_ string) ApiQueryManagedSubAccountSnapshotRequest {
+func (r ApiQueryManagedSubAccountSnapshotRequest) Type(type_ models.QueryManagedSubAccountSnapshotTypeParameter) ApiQueryManagedSubAccountSnapshotRequest {
 	r.type_ = &type_
 	return r
 }
 
+// Query time range must be within 30 days and only supports data within the last month.
 func (r ApiQueryManagedSubAccountSnapshotRequest) StartTime(startTime int64) ApiQueryManagedSubAccountSnapshotRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// If both startTime and endTime are omitted, records from the last 7 days are returned by default.
 func (r ApiQueryManagedSubAccountSnapshotRequest) EndTime(endTime int64) ApiQueryManagedSubAccountSnapshotRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQueryManagedSubAccountSnapshotRequest) Limit(limit int64) ApiQueryManagedSubAccountSnapshotRequest {
 	r.limit = &limit
 	return r
@@ -547,14 +590,14 @@ func (r ApiQueryManagedSubAccountSnapshotRequest) Execute() (*common.RestApiResp
 QueryManagedSubAccountSnapshot Query Managed Sub-account Snapshot (For Investor Master Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/accountSnapshot
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-account-Snapshot
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-snapshot
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
-@param type_ -  \"SPOT\", \"MARGIN\"（cross）, \"FUTURES\"（UM）
-@param startTime -
-@param endTime -
-@param limit -  Default value: 1, Max value: 200
+@param email -
+@param type_ -
+@param startTime -  Query time range must be within 30 days and only supports data within the last month.
+@param endTime -  If both startTime and endTime are omitted, records from the last 7 days are returned by default.
+@param limit -
 @param recvWindow -
 @return ApiQueryManagedSubAccountSnapshotRequest
 */
@@ -578,6 +621,7 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountSnapshotExecute(r Ap
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
@@ -597,7 +641,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountSnapshotExecute(r Ap
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountSnapshotResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountSnapshotResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -614,10 +666,9 @@ type ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest struct {
 	page                        *int64
 	limit                       *int64
 	transfers                   *string
-	transferFunctionAccountType *string
+	transferFunctionAccountType *models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Email(email string) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
 	r.email = &email
 	return r
@@ -641,20 +692,18 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Page(p
 	return r
 }
 
-// Limit (Max: 500)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Limit(limit int64) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
 	r.limit = &limit
 	return r
 }
 
-// Transfer Direction (from/to)
+// Transfer Direction (FROM/TO)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Transfers(transfers string) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
 	r.transfers = &transfers
 	return r
 }
 
-// Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
-func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) TransferFunctionAccountType(transferFunctionAccountType string) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
+func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) TransferFunctionAccountType(transferFunctionAccountType models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
 	r.transferFunctionAccountType = &transferFunctionAccountType
 	return r
 }
@@ -664,19 +713,19 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest) Execut
 }
 
 /*
-QueryManagedSubAccountTransferLogMasterAccountInvestor Query Managed Sub Account Transfer Log (For Investor Master Account) (USER_DATA)
+QueryManagedSubAccountTransferLogMasterAccountInvestor Query Managed Sub Account Transfer Log For Investor Master Account (USER_DATA)
 Get /sapi/v1/managed-subaccount/queryTransLogForInvestor
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Investor
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-investor
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param startTime -  Start Time
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
 @param page -  Page
-@param limit -  Limit (Max: 500)
-@param transfers -  Transfer Direction (from/to)
-@param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
+@param limit -
+@param transfers -  Transfer Direction (FROM/TO)
+@param transferFunctionAccountType -
 @return ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest
 */
 func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAccountInvestor(ctx context.Context) ApiQueryManagedSubAccountTransferLogMasterAccountInvestorRequest {
@@ -699,17 +748,24 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
+
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
+
 	if r.limit == nil {
 		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit > 500 {
+		return nil, common.ReportError("limit must be less than 500")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
@@ -724,7 +780,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "transferFunctionAccountType", r.transferFunctionAccountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountInvestorResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -741,10 +805,9 @@ type ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest struct {
 	page                        *int64
 	limit                       *int64
 	transfers                   *string
-	transferFunctionAccountType *string
+	transferFunctionAccountType *models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter
 }
 
-// [Sub-account email](#email-address)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Email(email string) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.email = &email
 	return r
@@ -762,26 +825,23 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) EndTime
 	return r
 }
 
-// Page
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Page(page int64) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.page = &page
 	return r
 }
 
-// Limit (Max: 500)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Limit(limit int64) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.limit = &limit
 	return r
 }
 
-// Transfer Direction (from/to)
+// Transfer Direction (FROM/TO)
 func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Transfers(transfers string) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.transfers = &transfers
 	return r
 }
 
-// Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
-func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) TransferFunctionAccountType(transferFunctionAccountType string) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
+func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) TransferFunctionAccountType(transferFunctionAccountType models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
 	r.transferFunctionAccountType = &transferFunctionAccountType
 	return r
 }
@@ -791,19 +851,19 @@ func (r ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest) Execute
 }
 
 /*
-QueryManagedSubAccountTransferLogMasterAccountTrading Query Managed Sub Account Transfer Log (For Trading Team Master Account) (USER_DATA)
+QueryManagedSubAccountTransferLogMasterAccountTrading Query Managed Sub Account Transfer Log For Trading Team Master Account (USER_DATA)
 Get /sapi/v1/managed-subaccount/queryTransLogForTradeParent
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Master
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-master-account-trading
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param startTime -  Start Time
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
-@param page -  Page
-@param limit -  Limit (Max: 500)
-@param transfers -  Transfer Direction (from/to)
-@param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
+@param page -
+@param limit -
+@param transfers -  Transfer Direction (FROM/TO)
+@param transferFunctionAccountType -
 @return ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest
 */
 func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAccountTrading(ctx context.Context) ApiQueryManagedSubAccountTransferLogMasterAccountTradingRequest {
@@ -826,17 +886,24 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
+
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
+
 	if r.limit == nil {
 		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit > 500 {
+		return nil, common.ReportError("limit must be less than 500")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
@@ -851,7 +918,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogMasterAcc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "transferFunctionAccountType", r.transferFunctionAccountType, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogMasterAccountTradingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -867,7 +942,7 @@ type ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest struct {
 	page                        *int64
 	limit                       *int64
 	transfers                   *string
-	transferFunctionAccountType *string
+	transferFunctionAccountType *models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter
 	recvWindow                  *int64
 }
 
@@ -883,13 +958,11 @@ func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) EndTime(en
 	return r
 }
 
-// Page
 func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Page(page int64) ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest {
 	r.page = &page
 	return r
 }
 
-// Limit (Max: 500)
 func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Limit(limit int64) ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest {
 	r.limit = &limit
 	return r
@@ -901,8 +974,7 @@ func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Transfers(
 	return r
 }
 
-// Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
-func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) TransferFunctionAccountType(transferFunctionAccountType string) ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest {
+func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) TransferFunctionAccountType(transferFunctionAccountType models.QueryManagedSubAccountTransferLogMasterAccountInvestorTransferFunctionAccountTypeParameter) ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest {
 	r.transferFunctionAccountType = &transferFunctionAccountType
 	return r
 }
@@ -920,15 +992,15 @@ func (r ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest) Execute() 
 QueryManagedSubAccountTransferLogSubAccountTrading Query Managed Sub Account Transfer Log (For Trading Team Sub Account) (USER_DATA)
 Get /sapi/v1/managed-subaccount/query-trans-log
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Query-Managed-Sub-Account-Transfer-Log-Trading-Team-Sub
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#query-managed-sub-account-transfer-log-sub-account-trading
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param startTime -  Start Time
 @param endTime -  End Time (The start time and end time interval cannot exceed half a year)
-@param page -  Page
-@param limit -  Limit (Max: 500)
+@param page -
+@param limit -
 @param transfers -  Transfer Direction (from/to)
-@param transferFunctionAccountType -  Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE)
+@param transferFunctionAccountType -
 @param recvWindow -
 @return ApiQueryManagedSubAccountTransferLogSubAccountTradingRequest
 */
@@ -952,14 +1024,20 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogSubAccoun
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
+
 	if r.page == nil {
 		return nil, common.ReportError("page is required and must be specified")
 	}
+
 	if r.limit == nil {
 		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit > 500 {
+		return nil, common.ReportError("limit must be less than 500")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
@@ -976,7 +1054,15 @@ func (a *ManagedSubAccountAPIService) QueryManagedSubAccountTransferLogSubAccoun
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogSubAccountTradingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryManagedSubAccountTransferLogSubAccountTradingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1009,7 +1095,7 @@ func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) Amount(amount float32
 	return r
 }
 
-// Withdrawals is automatically occur on the transfer date(UTC0). If a date is not selected, the withdrawal occurs right now
+// Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately.
 func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) TransferDate(transferDate int64) ApiWithdrawlAssetsFromTheManagedSubAccountRequest {
 	r.transferDate = &transferDate
 	return r
@@ -1028,13 +1114,13 @@ func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) Execute() (*common.Re
 WithdrawlAssetsFromTheManagedSubAccount Withdrawl Assets From The Managed Sub-account (For Investor Master Account) (USER_DATA)
 Post /sapi/v1/managed-subaccount/withdraw
 
-https://developers.binance.com/docs/sub_account/managed-sub-account/Withdrawl-Assets-From-The-Managed-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/managed-sub-account#withdrawl-assets-from-the-managed-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromEmail -
 @param asset -
 @param amount -
-@param transferDate -  Withdrawals is automatically occur on the transfer date(UTC0). If a date is not selected, the withdrawal occurs right now
+@param transferDate -  Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately.
 @param recvWindow -
 @return ApiWithdrawlAssetsFromTheManagedSubAccountRequest
 */
@@ -1058,9 +1144,11 @@ func (a *ManagedSubAccountAPIService) WithdrawlAssetsFromTheManagedSubAccountExe
 	if r.fromEmail == nil {
 		return nil, common.ReportError("fromEmail is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1075,7 +1163,15 @@ func (a *ManagedSubAccountAPIService) WithdrawlAssetsFromTheManagedSubAccountExe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawlAssetsFromTheManagedSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawlAssetsFromTheManagedSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

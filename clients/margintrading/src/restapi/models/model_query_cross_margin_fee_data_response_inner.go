@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &QueryCrossMarginFeeDataResponseInner{}
 
 // QueryCrossMarginFeeDataResponseInner struct for QueryCrossMarginFeeDataResponseInner
 type QueryCrossMarginFeeDataResponseInner struct {
-	VipLevel             *int64   `json:"vipLevel,omitempty"`
-	Coin                 *string  `json:"coin,omitempty"`
-	TransferIn           *bool    `json:"transferIn,omitempty"`
-	Borrowable           *bool    `json:"borrowable,omitempty"`
-	DailyInterest        *string  `json:"dailyInterest,omitempty"`
-	YearlyInterest       *string  `json:"yearlyInterest,omitempty"`
-	BorrowLimit          *string  `json:"borrowLimit,omitempty"`
+	// vip Level.
+	VipLevel *int64 `json:"vipLevel,omitempty"`
+	// coin.
+	Coin *string `json:"coin,omitempty"`
+	// transfer In.
+	TransferIn *bool `json:"transferIn,omitempty"`
+	// borrowable.
+	Borrowable *bool `json:"borrowable,omitempty"`
+	// daily Interest.
+	DailyInterest *string `json:"dailyInterest,omitempty"`
+	// yearly Interest.
+	YearlyInterest *string `json:"yearlyInterest,omitempty"`
+	// borrow Limit.
+	BorrowLimit *string `json:"borrowLimit,omitempty"`
+	// marginable Pairs list.
 	MarginablePairs      []string `json:"marginablePairs,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

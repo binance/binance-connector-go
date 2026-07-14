@@ -22,7 +22,7 @@ func SendQuoteRequest() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.ConvertAPI.SendQuoteRequest(context.Background()).FromAsset("fromAsset_example").ToAsset("toAsset_example").Execute()
+	resp, err := apiClient.RestApi.ConvertAPI.SendQuoteRequest(context.Background()).FromAsset("BTC").ToAsset("USDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

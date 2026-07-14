@@ -1,5 +1,5 @@
 /*
-Binance Margin Trading REST API TEST
+Margin REST API TEST
 
 Testing TransferAPIService
 
@@ -25,7 +25,11 @@ func Test_binancemargintradingrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService GetCrossMarginTransferHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"amount":"0.10000000","asset":"BNB","status":"CONFIRMED","timestamp":1566898617,"txId":5240372201,"type":"ROLL_IN","transFrom":"SPOT","transTo":"ISOLATED_MARGIN"},{"amount":"5.00000000","asset":"USDT","status":"CONFIRMED","timestamp":1566888436,"txId":5239810406,"type":"ROLL_OUT","transFrom":"ISOLATED_MARGIN","transTo":"ISOLATED_MARGIN","fromSymbol":"BNBUSDT","toSymbol":"BTCUSDT"},{"amount":"1.00000000","asset":"EOS","status":"CONFIRMED","timestamp":1566888403,"txId":5239808703,"type":"ROLL_IN"}],"total":3}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"amount":"0.10000000","asset":"BNB","status":"CONFIRMED","timestamp":1566898617,"txId":5240372201,"type":"ROLL_IN","transFrom":"SPOT","transTo":"ISOLATED_MARGIN","fromSymbol":"BNBUSDT","toSymbol":"BTCUSDT"}],"total":3}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/transfer", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,10 +84,14 @@ func Test_binancemargintradingrestapi_TransferAPIService(t *testing.T) {
 
 	t.Run("Test TransferAPIService QueryMaxTransferOutAmount Success", func(t *testing.T) {
 
-		mockedJSON := `{"amount":"3.59498107"}`
+		var mockedJSON string
+		mockedJSON = `{"amount":"3.59498107"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/maxTransferable", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -100,7 +108,7 @@ func Test_binancemargintradingrestapi_TransferAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TransferAPI.QueryMaxTransferOutAmount(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.TransferAPI.QueryMaxTransferOutAmount(context.Background()).Asset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

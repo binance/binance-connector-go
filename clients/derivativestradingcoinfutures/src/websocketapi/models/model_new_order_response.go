@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket API
+Futures (COIN-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &NewOrderResponse{}
 
 // NewOrderResponse struct for NewOrderResponse
 type NewOrderResponse struct {
-	Id                   *string                              `json:"id,omitempty"`
-	Status               *int64                               `json:"status,omitempty"`
-	Result               *NewOrderResponseResult              `json:"result,omitempty"`
+	// positionId
+	Id *string `json:"id,omitempty"`
+	// Enum：completed，processing
+	Status *int64                  `json:"status,omitempty"`
+	Result *NewOrderResponseResult `json:"result,omitempty"`
+	// Rate limit definitions.
 	RateLimits           []CancelOrderResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

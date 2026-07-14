@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,26 +17,47 @@ var _ common.MappedNullable = &CancelMultipleOptionOrdersResponseInner{}
 
 // CancelMultipleOptionOrdersResponseInner struct for CancelMultipleOptionOrdersResponseInner
 type CancelMultipleOptionOrdersResponseInner struct {
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	Quantity                *string `json:"quantity,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	CreateTime              *int64  `json:"createTime,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	Source                  *string `json:"source,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	PriceScale              *int64  `json:"priceScale,omitempty"`
-	QuantityScale           *int64  `json:"quantityScale,omitempty"`
-	OptionSide              *string `json:"optionSide,omitempty"`
-	QuoteAsset              *string `json:"quoteAsset,omitempty"`
+	// System order number
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Option trading pair
+	Symbol *string `json:"symbol,omitempty"`
+	// Order Price
+	Price *string `json:"price,omitempty"`
+	// Order Quantity
+	Quantity *string `json:"quantity,omitempty"`
+	// Number of completed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// fee
+	Fee *string `json:"fee,omitempty"`
+	// Buy/sell direction
+	Side *string `json:"side,omitempty"`
+	// Order type
+	Type *string `json:"type,omitempty"`
+	// Time in force method
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order is reduce only Y/N
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Order Time
+	CreateTime *int64 `json:"createTime,omitempty"`
+	// Update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Order status
+	Status *string `json:"status,omitempty"`
+	// Average price of completed trade
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client order ID
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option Side
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote Asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// mmp
 	Mmp                     *bool   `json:"mmp,omitempty"`
+	Source                  *string `json:"source,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -218,6 +239,38 @@ func (o *CancelMultipleOptionOrdersResponseInner) HasExecutedQty() bool {
 // SetExecutedQty gets a reference to the given string and assigns it to the ExecutedQty field.
 func (o *CancelMultipleOptionOrdersResponseInner) SetExecutedQty(v string) {
 	o.ExecutedQty = &v
+}
+
+// GetFee returns the Fee field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetFee() string {
+	if o == nil || common.IsNil(o.Fee) {
+		var ret string
+		return ret
+	}
+	return *o.Fee
+}
+
+// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetFeeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Fee) {
+		return nil, false
+	}
+	return o.Fee, true
+}
+
+// HasFee returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasFee() bool {
+	if o != nil && !common.IsNil(o.Fee) {
+		return true
+	}
+
+	return false
+}
+
+// SetFee gets a reference to the given string and assigns it to the Fee field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetFee(v string) {
+	o.Fee = &v
 }
 
 // GetSide returns the Side field value if set, zero value otherwise.
@@ -476,38 +529,6 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetAvgPrice(v string) {
 	o.AvgPrice = &v
 }
 
-// GetSource returns the Source field value if set, zero value otherwise.
-func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string {
-	if o == nil || common.IsNil(o.Source) {
-		var ret string
-		return ret
-	}
-	return *o.Source
-}
-
-// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Source) {
-		return nil, false
-	}
-	return o.Source, true
-}
-
-// HasSource returns a boolean if a field has been set.
-func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool {
-	if o != nil && !common.IsNil(o.Source) {
-		return true
-	}
-
-	return false
-}
-
-// SetSource gets a reference to the given string and assigns it to the Source field.
-func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string) {
-	o.Source = &v
-}
-
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
 func (o *CancelMultipleOptionOrdersResponseInner) GetClientOrderId() string {
 	if o == nil || common.IsNil(o.ClientOrderId) {
@@ -700,6 +721,38 @@ func (o *CancelMultipleOptionOrdersResponseInner) SetMmp(v bool) {
 	o.Mmp = &v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *CancelMultipleOptionOrdersResponseInner) GetSource() string {
+	if o == nil || common.IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) GetSourceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *CancelMultipleOptionOrdersResponseInner) HasSource() bool {
+	if o != nil && !common.IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *CancelMultipleOptionOrdersResponseInner) SetSource(v string) {
+	o.Source = &v
+}
+
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
 func (o *CancelMultipleOptionOrdersResponseInner) GetSelfTradePreventionMode() string {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
@@ -757,6 +810,9 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
+	if !common.IsNil(o.Fee) {
+		toSerialize["fee"] = o.Fee
+	}
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
@@ -781,9 +837,6 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	if !common.IsNil(o.AvgPrice) {
 		toSerialize["avgPrice"] = o.AvgPrice
 	}
-	if !common.IsNil(o.Source) {
-		toSerialize["source"] = o.Source
-	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
@@ -801,6 +854,9 @@ func (o CancelMultipleOptionOrdersResponseInner) ToMap() (map[string]interface{}
 	}
 	if !common.IsNil(o.Mmp) {
 		toSerialize["mmp"] = o.Mmp
+	}
+	if !common.IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
@@ -832,6 +888,7 @@ func (o *CancelMultipleOptionOrdersResponseInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "executedQty")
+		delete(additionalProperties, "fee")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "timeInForce")
@@ -840,13 +897,13 @@ func (o *CancelMultipleOptionOrdersResponseInner) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "updateTime")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "avgPrice")
-		delete(additionalProperties, "source")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "priceScale")
 		delete(additionalProperties, "quantityScale")
 		delete(additionalProperties, "optionSide")
 		delete(additionalProperties, "quoteAsset")
 		delete(additionalProperties, "mmp")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "selfTradePreventionMode")
 		o.AdditionalProperties = additionalProperties
 	}

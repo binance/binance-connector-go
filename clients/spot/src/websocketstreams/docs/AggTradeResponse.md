@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**A** | Pointer to **int64** | Aggregate trade ID | [optional] 
+**P** | Pointer to **string** | Price | [optional] 
+**Q** | Pointer to **string** | Quantity | [optional] 
+**F** | Pointer to **int64** | First trade ID | [optional] 
+**L** | Pointer to **int64** | Last trade ID | [optional] 
+**T** | Pointer to **int64** | Trade time | [optional] 
+**M** | Pointer to **bool** | Is the buyer the market maker? | [optional] 
+**M** | Pointer to **bool** | Ignore | [optional] 
 
 ## Methods
 

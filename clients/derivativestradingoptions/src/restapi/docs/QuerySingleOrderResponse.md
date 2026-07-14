@@ -4,26 +4,27 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**ReduceOnly** | Pointer to **bool** |  | [optional] 
-**CreateTime** | Pointer to **int64** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
-**PriceScale** | Pointer to **int64** |  | [optional] 
-**QuantityScale** | Pointer to **int64** |  | [optional] 
-**OptionSide** | Pointer to **string** |  | [optional] 
-**QuoteAsset** | Pointer to **string** |  | [optional] 
-**Mmp** | Pointer to **bool** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**OrderId** | Pointer to **int64** | System order id | [optional] 
+**Symbol** | Pointer to **string** | Option trading pair | [optional] 
+**Price** | Pointer to **string** | Order Price | [optional] 
+**Quantity** | Pointer to **string** | Order Quantity | [optional] 
+**ExecutedQty** | Pointer to **string** | Number of executed quantity | [optional] 
+**Side** | Pointer to **string** | Buy/sell direction | [optional] 
+**Type** | Pointer to **string** | Order type | [optional] 
+**TimeInForce** | Pointer to **string** | Time in force method | [optional] 
+**ReduceOnly** | Pointer to **bool** | Order is reduce only Y/N | [optional] 
+**PostOnly** | Pointer to **bool** | post Only | [optional] 
+**CreateTime** | Pointer to **int64** | Order Time | [optional] 
+**UpdateTime** | Pointer to **int64** | Update time | [optional] 
+**Status** | Pointer to **string** | Order status | [optional] 
+**AvgPrice** | Pointer to **string** | Average price of completed trade | [optional] 
+**ClientOrderId** | Pointer to **string** | Client order ID | [optional] 
+**PriceScale** | Pointer to **int64** | price Scale | [optional] 
+**QuantityScale** | Pointer to **int64** | quantity Scale | [optional] 
+**OptionSide** | Pointer to **string** | option Side | [optional] 
+**QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
+**Mmp** | Pointer to **bool** | mmp | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | Self trade prevention mode. | [optional] 
 
 ## Methods
 
@@ -268,6 +269,31 @@ SetReduceOnly sets ReduceOnly field to given value.
 `func (o *QuerySingleOrderResponse) HasReduceOnly() bool`
 
 HasReduceOnly returns a boolean if a field has been set.
+
+### GetPostOnly
+
+`func (o *QuerySingleOrderResponse) GetPostOnly() bool`
+
+GetPostOnly returns the PostOnly field if non-nil, zero value otherwise.
+
+### GetPostOnlyOk
+
+`func (o *QuerySingleOrderResponse) GetPostOnlyOk() (*bool, bool)`
+
+GetPostOnlyOk returns a tuple with the PostOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPostOnly
+
+`func (o *QuerySingleOrderResponse) SetPostOnly(v bool)`
+
+SetPostOnly sets PostOnly field to given value.
+
+### HasPostOnly
+
+`func (o *QuerySingleOrderResponse) HasPostOnly() bool`
+
+HasPostOnly returns a boolean if a field has been set.
 
 ### GetCreateTime
 

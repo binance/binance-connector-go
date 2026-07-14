@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterType** | Pointer to **string** |  | [optional] 
-**MinPrice** | Pointer to **string** |  | [optional] 
-**MaxPrice** | Pointer to **string** |  | [optional] 
-**TickSize** | Pointer to **string** |  | [optional] 
-**MinQty** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**StepSize** | Pointer to **string** |  | [optional] 
+**FilterType** | Pointer to **string** | filter Type | [optional] 
+**MinPrice** | Pointer to **string** | min Price | [optional] 
+**MaxPrice** | Pointer to **string** | max Price | [optional] 
+**TickSize** | Pointer to **string** | tick Size | [optional] 
+**MinQty** | Pointer to **string** | Minimum order quantity | [optional] 
+**MaxQty** | Pointer to **string** | Maximum order quantity | [optional] 
+**StepSize** | Pointer to **string** | step Size | [optional] 
 
 ## Methods
 

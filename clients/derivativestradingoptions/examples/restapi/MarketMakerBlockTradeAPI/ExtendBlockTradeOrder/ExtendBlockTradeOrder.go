@@ -22,7 +22,7 @@ func ExtendBlockTradeOrder() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.ExtendBlockTradeOrder(context.Background()).BlockOrderMatchingKey("blockOrderMatchingKey_example").Execute()
+	resp, err := apiClient.RestApi.MarketMakerBlockTradeAPI.ExtendBlockTradeOrder(context.Background()).BlockOrderMatchingKey("3668822b8-1baa-6a2f-adb8-d3de6289b361").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** |  | [optional] 
-**Code** | Pointer to **int64** |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
+**Amount** | Pointer to **float32** | Amount. | [optional] 
+**Code** | Pointer to **int64** | API response code. \&quot;000000\&quot; indicates success. | [optional] 
+**Msg** | Pointer to **string** | Message details. | [optional] 
+**Type** | Pointer to **int64** | Order type. | [optional] 
 
 ## Methods
 

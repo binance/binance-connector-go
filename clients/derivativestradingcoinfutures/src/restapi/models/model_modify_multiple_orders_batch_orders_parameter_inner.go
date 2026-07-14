@@ -1,13 +1,14 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
@@ -17,13 +18,20 @@ var _ common.MappedNullable = &ModifyMultipleOrdersBatchOrdersParameterInner{}
 
 // ModifyMultipleOrdersBatchOrdersParameterInner struct for ModifyMultipleOrdersBatchOrdersParameterInner
 type ModifyMultipleOrdersBatchOrdersParameterInner struct {
-	OrderId              *string                                            `json:"orderId,omitempty"`
-	OrigClientOrderId    *string                                            `json:"origClientOrderId,omitempty"`
-	Symbol               *string                                            `json:"symbol,omitempty"`
-	Side                 *ModifyMultipleOrdersBatchOrdersParameterInnerSide `json:"side,omitempty"`
-	Quantity             *string                                            `json:"quantity,omitempty"`
-	Price                *string                                            `json:"price,omitempty"`
-	RecvWindow           *string                                            `json:"recvWindow,omitempty"`
+	// Sub-order ID, required when clientOrderId is not sent.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Client order ID, required when orderId is not sent. Only support letters, numbers and underscores, and must be unique within 24 hours.
+	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
+	// Trading symbol
+	Symbol string                                            `json:"symbol"`
+	Side   ModifyMultipleOrdersBatchOrdersParameterInnerSide `json:"side"`
+	// Order quantity, cannot be sent with closePosition=true. **After CM migration, this parameter becomes mandatory** (each batch element must send both `price` and `quantity`).
+	Quantity *float32 `json:"quantity,omitempty"`
+	// Latest token price. **After CM migration, this parameter becomes mandatory** (each batch element must send both `price` and `quantity`).
+	Price      *float32 `json:"price,omitempty"`
+	RecvWindow *int64   `json:"recvWindow,omitempty"`
+	// Unix timestamp in milliseconds used to sign the request. The value must reflect the current client time and is validated by the server for signed endpoints.
+	Timestamp            int64 `json:"timestamp"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,8 +41,11 @@ type _ModifyMultipleOrdersBatchOrdersParameterInner ModifyMultipleOrdersBatchOrd
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModifyMultipleOrdersBatchOrdersParameterInner() *ModifyMultipleOrdersBatchOrdersParameterInner {
+func NewModifyMultipleOrdersBatchOrdersParameterInner(symbol string, side ModifyMultipleOrdersBatchOrdersParameterInnerSide, timestamp int64) *ModifyMultipleOrdersBatchOrdersParameterInner {
 	this := ModifyMultipleOrdersBatchOrdersParameterInner{}
+	this.Symbol = symbol
+	this.Side = side
+	this.Timestamp = timestamp
 	return &this
 }
 
@@ -47,9 +58,9 @@ func NewModifyMultipleOrdersBatchOrdersParameterInnerWithDefaults() *ModifyMulti
 }
 
 // GetOrderId returns the OrderId field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() int64 {
 	if o == nil || common.IsNil(o.OrderId) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.OrderId
@@ -57,7 +68,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderId() string {
 
 // GetOrderIdOk returns a tuple with the OrderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderIdOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetOrderIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.OrderId) {
 		return nil, false
 	}
@@ -73,8 +84,8 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasOrderId() bool {
 	return false
 }
 
-// SetOrderId gets a reference to the given string and assigns it to the OrderId field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetOrderId(v string) {
+// SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetOrderId(v int64) {
 	o.OrderId = &v
 }
 
@@ -110,74 +121,58 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetOrigClientOrderId(v s
 	o.OrigClientOrderId = &v
 }
 
-// GetSymbol returns the Symbol field value if set, zero value otherwise.
+// GetSymbol returns the Symbol field value
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetSymbol() string {
-	if o == nil || common.IsNil(o.Symbol) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Symbol
+
+	return o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// GetSymbolOk returns a tuple with the Symbol field value
 // and a boolean to check if the value has been set.
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetSymbolOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Symbol) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Symbol, true
+	return &o.Symbol, true
 }
 
-// HasSymbol returns a boolean if a field has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasSymbol() bool {
-	if o != nil && !common.IsNil(o.Symbol) {
-		return true
-	}
-
-	return false
-}
-
-// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+// SetSymbol sets field value
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetSymbol(v string) {
-	o.Symbol = &v
+	o.Symbol = v
 }
 
-// GetSide returns the Side field value if set, zero value otherwise.
+// GetSide returns the Side field value
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetSide() ModifyMultipleOrdersBatchOrdersParameterInnerSide {
-	if o == nil || common.IsNil(o.Side) {
+	if o == nil {
 		var ret ModifyMultipleOrdersBatchOrdersParameterInnerSide
 		return ret
 	}
-	return *o.Side
+
+	return o.Side
 }
 
-// GetSideOk returns a tuple with the Side field value if set, nil otherwise
+// GetSideOk returns a tuple with the Side field value
 // and a boolean to check if the value has been set.
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*ModifyMultipleOrdersBatchOrdersParameterInnerSide, bool) {
-	if o == nil || common.IsNil(o.Side) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Side, true
+	return &o.Side, true
 }
 
-// HasSide returns a boolean if a field has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasSide() bool {
-	if o != nil && !common.IsNil(o.Side) {
-		return true
-	}
-
-	return false
-}
-
-// SetSide gets a reference to the given ModifyMultipleOrdersBatchOrdersParameterInnerSide and assigns it to the Side field.
+// SetSide sets field value
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetSide(v ModifyMultipleOrdersBatchOrdersParameterInnerSide) {
-	o.Side = &v
+	o.Side = v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Quantity
@@ -185,7 +180,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -201,15 +196,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v string) {
+// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
 	o.Quantity = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Price
@@ -217,7 +212,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -233,15 +228,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v string) {
+// SetPrice gets a reference to the given float32 and assigns it to the Price field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
 	o.Price = &v
 }
 
 // GetRecvWindow returns the RecvWindow field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() string {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() int64 {
 	if o == nil || common.IsNil(o.RecvWindow) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.RecvWindow
@@ -249,7 +244,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() string {
 
 // GetRecvWindowOk returns a tuple with the RecvWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindowOk() (*string, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindowOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.RecvWindow) {
 		return nil, false
 	}
@@ -265,9 +260,33 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasRecvWindow() bool {
 	return false
 }
 
-// SetRecvWindow gets a reference to the given string and assigns it to the RecvWindow field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetRecvWindow(v string) {
+// SetRecvWindow gets a reference to the given int64 and assigns it to the RecvWindow field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetRecvWindow(v int64) {
 	o.RecvWindow = &v
+}
+
+// GetTimestamp returns the Timestamp field value
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetTimestamp() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value
+// and a boolean to check if the value has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetTimestampOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timestamp, true
+}
+
+// SetTimestamp sets field value
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetTimestamp(v int64) {
+	o.Timestamp = v
 }
 
 func (o ModifyMultipleOrdersBatchOrdersParameterInner) MarshalJSON() ([]byte, error) {
@@ -286,12 +305,8 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.OrigClientOrderId) {
 		toSerialize["origClientOrderId"] = o.OrigClientOrderId
 	}
-	if !common.IsNil(o.Symbol) {
-		toSerialize["symbol"] = o.Symbol
-	}
-	if !common.IsNil(o.Side) {
-		toSerialize["side"] = o.Side
-	}
+	toSerialize["symbol"] = o.Symbol
+	toSerialize["side"] = o.Side
 	if !common.IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
@@ -301,6 +316,7 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.RecvWindow) {
 		toSerialize["recvWindow"] = o.RecvWindow
 	}
+	toSerialize["timestamp"] = o.Timestamp
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -310,6 +326,29 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 }
 
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"symbol",
+		"side",
+		"timestamp",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varModifyMultipleOrdersBatchOrdersParameterInner := _ModifyMultipleOrdersBatchOrdersParameterInner{}
 
 	err = json.Unmarshal(data, &varModifyMultipleOrdersBatchOrdersParameterInner)
@@ -330,6 +369,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "recvWindow")
+		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,7 +22,7 @@ func FlexibleLoanRepay() {
 	apiClient := client.NewBinanceCryptoLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("loanCoin_example").CollateralCoin("collateralCoin_example").RepayAmount(1.0).Execute()
+	resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").RepayAmount(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

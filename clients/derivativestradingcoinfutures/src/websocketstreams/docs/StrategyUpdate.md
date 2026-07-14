@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
 **Su** | Pointer to [**StrategyUpdateSu**](StrategyUpdateSu.md) |  | [optional] 
 
 ## Methods

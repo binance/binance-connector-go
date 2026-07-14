@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,13 @@ var _ common.MappedNullable = &GetFundingRateHistoryResponseInner{}
 
 // GetFundingRateHistoryResponseInner struct for GetFundingRateHistoryResponseInner
 type GetFundingRateHistoryResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	FundingRate          *string `json:"fundingRate,omitempty"`
-	FundingTime          *int64  `json:"fundingTime,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Funding Rate.
+	FundingRate *string `json:"fundingRate,omitempty"`
+	// Funding Time.
+	FundingTime *int64 `json:"fundingTime,omitempty"`
+	// mark price associated with a particular funding fee charge
 	MarkPrice            *string `json:"markPrice,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

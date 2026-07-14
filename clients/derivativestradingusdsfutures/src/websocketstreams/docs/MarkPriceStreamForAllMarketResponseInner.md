@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Ap** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**P** | Pointer to **string** | Mark price | [optional] 
+**I** | Pointer to **string** | Index price | [optional] 
+**P** | Pointer to **string** | Estimated Settle Price, only useful in the last hour before the settlement starts | [optional] 
+**R** | Pointer to **string** | Funding rate | [optional] 
+**Ap** | Pointer to **string** | Mark price moving average | [optional] 
+**T** | Pointer to **int64** | Next funding time | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -134,31 +134,6 @@ SetP sets P field to given value.
 
 HasP returns a boolean if a field has been set.
 
-### GetAp
-
-`func (o *MarkPriceStreamForAllMarketResponseInner) GetAp() string`
-
-GetAp returns the Ap field if non-nil, zero value otherwise.
-
-### GetApOk
-
-`func (o *MarkPriceStreamForAllMarketResponseInner) GetApOk() (*string, bool)`
-
-GetApOk returns a tuple with the Ap field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAp
-
-`func (o *MarkPriceStreamForAllMarketResponseInner) SetAp(v string)`
-
-SetAp sets Ap field to given value.
-
-### HasAp
-
-`func (o *MarkPriceStreamForAllMarketResponseInner) HasAp() bool`
-
-HasAp returns a boolean if a field has been set.
-
 ### GetI
 
 `func (o *MarkPriceStreamForAllMarketResponseInner) GetI() string`
@@ -234,6 +209,31 @@ SetR sets R field to given value.
 
 HasR returns a boolean if a field has been set.
 
+### GetAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetAp() string`
+
+GetAp returns the Ap field if non-nil, zero value otherwise.
+
+### GetApOk
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetApOk() (*string, bool)`
+
+GetApOk returns a tuple with the Ap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) SetAp(v string)`
+
+SetAp sets Ap field to given value.
+
+### HasAp
+
+`func (o *MarkPriceStreamForAllMarketResponseInner) HasAp() bool`
+
+HasAp returns a boolean if a field has been set.
+
 ### GetT
 
 `func (o *MarkPriceStreamForAllMarketResponseInner) GetT() int64`
@@ -261,20 +261,20 @@ HasT returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *MarkPriceStreamForAllMarketResponseInner) GetSt() int64`
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *MarkPriceStreamForAllMarketResponseInner) GetStOk() (*int64, bool)`
+`func (o *MarkPriceStreamForAllMarketResponseInner) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *MarkPriceStreamForAllMarketResponseInner) SetSt(v int64)`
+`func (o *MarkPriceStreamForAllMarketResponseInner) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **LastUpdateId** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**Bids** | Pointer to [**[]RpiOrderBookResponseBidsItem**](RpiOrderBookResponseBidsItem.md) |  | [optional] 
-**Asks** | Pointer to [**[]RpiOrderBookResponseAsksItem**](RpiOrderBookResponseAsksItem.md) |  | [optional] 
+**E** | Pointer to **int64** | Message output time | [optional] 
+**T** | Pointer to **int64** | Transaction time | [optional] 
+**Bids** | Pointer to **[][]string** | Bid orders. Each entry is [price, quantity]. | [optional] 
+**Asks** | Pointer to **[][]string** | Ask orders. Each entry is [price, quantity]. | [optional] 
 
 ## Methods
 
@@ -106,20 +106,20 @@ HasT returns a boolean if a field has been set.
 
 ### GetBids
 
-`func (o *RpiOrderBookResponse) GetBids() []RpiOrderBookResponseBidsItem`
+`func (o *RpiOrderBookResponse) GetBids() [][]string`
 
 GetBids returns the Bids field if non-nil, zero value otherwise.
 
 ### GetBidsOk
 
-`func (o *RpiOrderBookResponse) GetBidsOk() (*[]RpiOrderBookResponseBidsItem, bool)`
+`func (o *RpiOrderBookResponse) GetBidsOk() (*[][]string, bool)`
 
 GetBidsOk returns a tuple with the Bids field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBids
 
-`func (o *RpiOrderBookResponse) SetBids(v []RpiOrderBookResponseBidsItem)`
+`func (o *RpiOrderBookResponse) SetBids(v [][]string)`
 
 SetBids sets Bids field to given value.
 
@@ -131,20 +131,20 @@ HasBids returns a boolean if a field has been set.
 
 ### GetAsks
 
-`func (o *RpiOrderBookResponse) GetAsks() []RpiOrderBookResponseAsksItem`
+`func (o *RpiOrderBookResponse) GetAsks() [][]string`
 
 GetAsks returns the Asks field if non-nil, zero value otherwise.
 
 ### GetAsksOk
 
-`func (o *RpiOrderBookResponse) GetAsksOk() (*[]RpiOrderBookResponseAsksItem, bool)`
+`func (o *RpiOrderBookResponse) GetAsksOk() (*[][]string, bool)`
 
 GetAsksOk returns a tuple with the Asks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAsks
 
-`func (o *RpiOrderBookResponse) SetAsks(v []RpiOrderBookResponseAsksItem)`
+`func (o *RpiOrderBookResponse) SetAsks(v [][]string)`
 
 SetAsks sets Asks field to given value.
 

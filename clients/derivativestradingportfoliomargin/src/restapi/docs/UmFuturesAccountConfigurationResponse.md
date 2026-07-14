@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FeeTier** | Pointer to **int64** |  | [optional] 
-**CanTrade** | Pointer to **bool** |  | [optional] 
-**CanDeposit** | Pointer to **bool** |  | [optional] 
-**CanWithdraw** | Pointer to **bool** |  | [optional] 
-**DualSidePosition** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**MultiAssetsMargin** | Pointer to **bool** |  | [optional] 
-**TradeGroupId** | Pointer to **int64** |  | [optional] 
+**FeeTier** | Pointer to **int64** | account commission tier | [optional] 
+**CanTrade** | Pointer to **bool** | if can trade | [optional] 
+**CanDeposit** | Pointer to **bool** | if can transfer in asset | [optional] 
+**CanWithdraw** | Pointer to **bool** | if can transfer out asset | [optional] 
+**DualSidePosition** | Pointer to **bool** | \&quot;true\&quot;: Hedge Mode; \&quot;false\&quot;: One-way Mode | [optional] 
+**UpdateTime** | Pointer to **int64** | reserved property, please ignore | [optional] 
+**MultiAssetsMargin** | Pointer to **bool** | Multi Assets Margin. | [optional] 
+**TradeGroupId** | Pointer to **int64** | Trade Group ID. | [optional] 
 
 ## Methods
 

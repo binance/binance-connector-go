@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **RemainingCollateral** | Pointer to **string** |  | [optional] 
 **FullRepayment** | Pointer to **bool** |  | [optional] 
 **CurrentLTV** | Pointer to **string** |  | [optional] 
-**RepayStatus** | Pointer to **string** |  | [optional] 
+**RepayStatus** | Pointer to **string** | REPAID, REPAYING, FAILED | [optional] 
 
 ## Methods
 

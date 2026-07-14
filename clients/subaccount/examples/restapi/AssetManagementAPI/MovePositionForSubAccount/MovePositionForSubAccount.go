@@ -23,7 +23,7 @@ func MovePositionForSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.MovePositionForSubAccount(context.Background()).FromUserEmail("fromUserEmail_example").ToUserEmail("toUserEmail_example").ProductType("productType_example").OrderArgs([]models.MovePositionForSubAccountOrderArgsParameterInner{}).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.MovePositionForSubAccount(context.Background()).FromUserEmail("testFrom@google.com").ToUserEmail("testTo@google.com").ProductType(models.MovePositionForSubAccountProductTypeParameterUm).OrderArgs([]models.MovePositionForSubAccountOrderArgsParameterInner{}).Execute()
 	if err != nil {
 		log.Println(err)
 		return

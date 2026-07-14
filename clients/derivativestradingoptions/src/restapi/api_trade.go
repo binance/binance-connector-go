@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package binancederivativestradingoptionsrestapi
@@ -29,7 +29,7 @@ type ApiAccountTradeListRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiAccountTradeListRequest) Symbol(symbol string) ApiAccountTradeListRequest {
 	r.symbol = &symbol
 	return r
@@ -53,12 +53,13 @@ func (r ApiAccountTradeListRequest) EndTime(endTime int64) ApiAccountTradeListRe
 	return r
 }
 
-// Number of result sets returned Default:100 Max:1000
+// Number of result sets returned.
 func (r ApiAccountTradeListRequest) Limit(limit int64) ApiAccountTradeListRequest {
 	r.limit = &limit
 	return r
 }
 
+// Recv Window.
 func (r ApiAccountTradeListRequest) RecvWindow(recvWindow int64) ApiAccountTradeListRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -72,15 +73,15 @@ func (r ApiAccountTradeListRequest) Execute() (*common.RestApiResponse[models.Ac
 AccountTradeList Account Trade List (USER_DATA)
 Get /eapi/v1/userTrades
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Account-Trade-List
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#account-trade-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
+@param symbol -  Option trading pair.
 @param fromId -  Trade id to fetch from. Default gets most recent trades, e.g 4611875134427365376
 @param startTime -  Start Time, e.g 1593511200000
 @param endTime -  End Time, e.g 1593512200000
-@param limit -  Number of result sets returned Default:100 Max:1000
-@param recvWindow -
+@param limit -  Number of result sets returned.
+@param recvWindow -  Recv Window.
 @return ApiAccountTradeListRequest
 */
 func (a *TradeAPIService) AccountTradeList(ctx context.Context) ApiAccountTradeListRequest {
@@ -100,9 +101,11 @@ func (a *TradeAPIService) AccountTradeListExecute(r ApiAccountTradeListRequest) 
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.symbol != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	if r.fromId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromId", r.fromId, "form", "")
 	}
@@ -119,7 +122,15 @@ func (a *TradeAPIService) AccountTradeListExecute(r ApiAccountTradeListRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AccountTradeListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AccountTradeListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -134,12 +145,13 @@ type ApiCancelAllOptionOrdersByUnderlyingRequest struct {
 	recvWindow *int64
 }
 
-// Option underlying, e.g BTCUSDT
+// Underlying asset.
 func (r ApiCancelAllOptionOrdersByUnderlyingRequest) Underlying(underlying string) ApiCancelAllOptionOrdersByUnderlyingRequest {
 	r.underlying = &underlying
 	return r
 }
 
+// Recv Window.
 func (r ApiCancelAllOptionOrdersByUnderlyingRequest) RecvWindow(recvWindow int64) ApiCancelAllOptionOrdersByUnderlyingRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -153,11 +165,11 @@ func (r ApiCancelAllOptionOrdersByUnderlyingRequest) Execute() (*common.RestApiR
 CancelAllOptionOrdersByUnderlying Cancel All Option Orders By Underlying (TRADE)
 Delete /eapi/v1/allOpenOrdersByUnderlying
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-All-Option-Orders-By-Underlying
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#cancel-all-option-orders-by-underlying
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param underlying -  Option underlying, e.g BTCUSDT
-@param recvWindow -
+@param underlying -  Underlying asset.
+@param recvWindow -  Recv Window.
 @return ApiCancelAllOptionOrdersByUnderlyingRequest
 */
 func (a *TradeAPIService) CancelAllOptionOrdersByUnderlying(ctx context.Context) ApiCancelAllOptionOrdersByUnderlyingRequest {
@@ -186,7 +198,15 @@ func (a *TradeAPIService) CancelAllOptionOrdersByUnderlyingExecute(r ApiCancelAl
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllOptionOrdersByUnderlyingResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllOptionOrdersByUnderlyingResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -201,12 +221,13 @@ type ApiCancelAllOptionOrdersOnSpecificSymbolRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiCancelAllOptionOrdersOnSpecificSymbolRequest) Symbol(symbol string) ApiCancelAllOptionOrdersOnSpecificSymbolRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Recv Window.
 func (r ApiCancelAllOptionOrdersOnSpecificSymbolRequest) RecvWindow(recvWindow int64) ApiCancelAllOptionOrdersOnSpecificSymbolRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -220,11 +241,11 @@ func (r ApiCancelAllOptionOrdersOnSpecificSymbolRequest) Execute() (*common.Rest
 CancelAllOptionOrdersOnSpecificSymbol Cancel all Option orders on specific symbol (TRADE)
 Delete /eapi/v1/allOpenOrders
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-all-Option-orders-on-specific-symbol
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#cancel-all-option-orders-on-specific-symbol
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param recvWindow -
+@param symbol -  Option trading pair.
+@param recvWindow -  Recv Window.
 @return ApiCancelAllOptionOrdersOnSpecificSymbolRequest
 */
 func (a *TradeAPIService) CancelAllOptionOrdersOnSpecificSymbol(ctx context.Context) ApiCancelAllOptionOrdersOnSpecificSymbolRequest {
@@ -253,7 +274,15 @@ func (a *TradeAPIService) CancelAllOptionOrdersOnSpecificSymbolExecute(r ApiCanc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAllOptionOrdersOnSpecificSymbolResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAllOptionOrdersOnSpecificSymbolResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -270,24 +299,25 @@ type ApiCancelMultipleOptionOrdersRequest struct {
 	recvWindow     *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiCancelMultipleOptionOrdersRequest) Symbol(symbol string) ApiCancelMultipleOptionOrdersRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Order ID, e.g [4611875134427365377,4611875134427365378]
+// Order ID list.
 func (r ApiCancelMultipleOptionOrdersRequest) OrderIds(orderIds []int64) ApiCancelMultipleOptionOrdersRequest {
 	r.orderIds = &orderIds
 	return r
 }
 
-// User-defined order ID, e.g [\&quot;my_id_1\&quot;,\&quot;my_id_2\&quot;]
+// Client order ID list.
 func (r ApiCancelMultipleOptionOrdersRequest) ClientOrderIds(clientOrderIds []string) ApiCancelMultipleOptionOrdersRequest {
 	r.clientOrderIds = &clientOrderIds
 	return r
 }
 
+// Recv Window.
 func (r ApiCancelMultipleOptionOrdersRequest) RecvWindow(recvWindow int64) ApiCancelMultipleOptionOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -301,13 +331,13 @@ func (r ApiCancelMultipleOptionOrdersRequest) Execute() (*common.RestApiResponse
 CancelMultipleOptionOrders Cancel Multiple Option Orders (TRADE)
 Delete /eapi/v1/batchOrders
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Multiple-Option-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#cancel-multiple-option-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param orderIds -  Order ID, e.g [4611875134427365377,4611875134427365378]
-@param clientOrderIds -  User-defined order ID, e.g [\"my_id_1\",\"my_id_2\"]
-@param recvWindow -
+@param symbol -  Option trading pair.
+@param orderIds -  Order ID list.
+@param clientOrderIds -  Client order ID list.
+@param recvWindow -  Recv Window.
 @return ApiCancelMultipleOptionOrdersRequest
 */
 func (a *TradeAPIService) CancelMultipleOptionOrders(ctx context.Context) ApiCancelMultipleOptionOrdersRequest {
@@ -344,7 +374,15 @@ func (a *TradeAPIService) CancelMultipleOptionOrdersExecute(r ApiCancelMultipleO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelMultipleOptionOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelMultipleOptionOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -361,24 +399,25 @@ type ApiCancelOptionOrderRequest struct {
 	recvWindow    *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiCancelOptionOrderRequest) Symbol(symbol string) ApiCancelOptionOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Order ID, e.g 4611875134427365377
+// Order ID.
 func (r ApiCancelOptionOrderRequest) OrderId(orderId int64) ApiCancelOptionOrderRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// User-defined order ID, e.g 10000
+// clientOrderId
 func (r ApiCancelOptionOrderRequest) ClientOrderId(clientOrderId string) ApiCancelOptionOrderRequest {
 	r.clientOrderId = &clientOrderId
 	return r
 }
 
+// Recv Window.
 func (r ApiCancelOptionOrderRequest) RecvWindow(recvWindow int64) ApiCancelOptionOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -392,13 +431,13 @@ func (r ApiCancelOptionOrderRequest) Execute() (*common.RestApiResponse[models.C
 CancelOptionOrder Cancel Option Order (TRADE)
 Delete /eapi/v1/order
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Cancel-Option-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#cancel-option-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param orderId -  Order ID, e.g 4611875134427365377
-@param clientOrderId -  User-defined order ID, e.g 10000
-@param recvWindow -
+@param symbol -  Option trading pair.
+@param orderId -  Order ID.
+@param clientOrderId -  clientOrderId
+@param recvWindow -  Recv Window.
 @return ApiCancelOptionOrderRequest
 */
 func (a *TradeAPIService) CancelOptionOrder(ctx context.Context) ApiCancelOptionOrderRequest {
@@ -433,7 +472,15 @@ func (a *TradeAPIService) CancelOptionOrderExecute(r ApiCancelOptionOrderRequest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelOptionOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelOptionOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -449,29 +496,26 @@ type ApiNewOrderRequest struct {
 	type_                   *models.PlaceMultipleOrdersOrdersParameterInnerType
 	quantity                *float32
 	price                   *float32
-	timeInForce             *models.PlaceMultipleOrdersOrdersParameterInnerTimeInForce
+	timeInForce             *models.NewOrderTimeInForceParameter
 	reduceOnly              *bool
 	postOnly                *bool
-	newOrderRespType        *models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType
+	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
 	clientOrderId           *string
 	isMmp                   *bool
-	selfTradePreventionMode *models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode
+	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
 	recvWindow              *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
 func (r ApiNewOrderRequest) Symbol(symbol string) ApiNewOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Buy/sell direction: SELL, BUY
 func (r ApiNewOrderRequest) Side(side models.PlaceMultipleOrdersOrdersParameterInnerSide) ApiNewOrderRequest {
 	r.side = &side
 	return r
 }
 
-// Order Type: LIMIT(only support limit)
 func (r ApiNewOrderRequest) Type(type_ models.PlaceMultipleOrdersOrdersParameterInnerType) ApiNewOrderRequest {
 	r.type_ = &type_
 	return r
@@ -489,44 +533,40 @@ func (r ApiNewOrderRequest) Price(price float32) ApiNewOrderRequest {
 	return r
 }
 
-// Time in force method（Default GTC）
-func (r ApiNewOrderRequest) TimeInForce(timeInForce models.PlaceMultipleOrdersOrdersParameterInnerTimeInForce) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) TimeInForce(timeInForce models.NewOrderTimeInForceParameter) ApiNewOrderRequest {
 	r.timeInForce = &timeInForce
 	return r
 }
 
-// Reduce Only（Default false）
 func (r ApiNewOrderRequest) ReduceOnly(reduceOnly bool) ApiNewOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
 }
 
-// Post Only（Default false）
 func (r ApiNewOrderRequest) PostOnly(postOnly bool) ApiNewOrderRequest {
 	r.postOnly = &postOnly
 	return r
 }
 
-// \&quot;ACK\&quot;, \&quot;RESULT\&quot;, Default \&quot;ACK\&quot;
-func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.PlaceMultipleOrdersOrdersParameterInnerNewOrderRespType) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) NewOrderRespType(newOrderRespType models.NewOrderNewOrderRespTypeParameter) ApiNewOrderRequest {
 	r.newOrderRespType = &newOrderRespType
 	return r
 }
 
-// User-defined order ID, e.g 10000
+// User-defined order ID cannot be repeated in pending orders
 func (r ApiNewOrderRequest) ClientOrderId(clientOrderId string) ApiNewOrderRequest {
 	r.clientOrderId = &clientOrderId
 	return r
 }
 
-// is market maker protection order, true/false
+// is market maker protection order
 func (r ApiNewOrderRequest) IsMmp(isMmp bool) ApiNewOrderRequest {
 	r.isMmp = &isMmp
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire maker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; Default &#x60;EXPIRE_MAKER&#x60;
-func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.PlaceMultipleOrdersOrdersParameterInnerSelfTradePreventionMode) ApiNewOrderRequest {
+// Self-trade prevention mode
+func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
@@ -544,21 +584,21 @@ func (r ApiNewOrderRequest) Execute() (*common.RestApiResponse[models.NewOrderRe
 NewOrder New Order (TRADE)
 Post /eapi/v1/order
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/New-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#new-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param side -  Buy/sell direction: SELL, BUY
-@param type_ -  Order Type: LIMIT(only support limit)
+@param symbol -
+@param side -
+@param type_ -
 @param quantity -  Order Quantity
 @param price -  Order Price
-@param timeInForce -  Time in force method（Default GTC）
-@param reduceOnly -  Reduce Only（Default false）
-@param postOnly -  Post Only（Default false）
-@param newOrderRespType -  \"ACK\", \"RESULT\", Default \"ACK\"
-@param clientOrderId -  User-defined order ID, e.g 10000
-@param isMmp -  is market maker protection order, true/false
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire maker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; Default `EXPIRE_MAKER`
+@param timeInForce -
+@param reduceOnly -
+@param postOnly -
+@param newOrderRespType -
+@param clientOrderId -  User-defined order ID cannot be repeated in pending orders
+@param isMmp -  is market maker protection order
+@param selfTradePreventionMode -  Self-trade prevention mode
 @param recvWindow -
 @return ApiNewOrderRequest
 */
@@ -582,12 +622,15 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
@@ -624,7 +667,15 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.NewOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.NewOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -639,12 +690,13 @@ type ApiOptionPositionInformationRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiOptionPositionInformationRequest) Symbol(symbol string) ApiOptionPositionInformationRequest {
 	r.symbol = &symbol
 	return r
 }
 
+// Recv Window.
 func (r ApiOptionPositionInformationRequest) RecvWindow(recvWindow int64) ApiOptionPositionInformationRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -658,11 +710,11 @@ func (r ApiOptionPositionInformationRequest) Execute() (*common.RestApiResponse[
 OptionPositionInformation Option Position Information (USER_DATA)
 Get /eapi/v1/position
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Option-Position-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#option-position-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param recvWindow -
+@param symbol -  Option trading pair.
+@param recvWindow -  Recv Window.
 @return ApiOptionPositionInformationRequest
 */
 func (a *TradeAPIService) OptionPositionInformation(ctx context.Context) ApiOptionPositionInformationRequest {
@@ -689,7 +741,15 @@ func (a *TradeAPIService) OptionPositionInformationExecute(r ApiOptionPositionIn
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.OptionPositionInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OptionPositionInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -720,10 +780,10 @@ func (r ApiPlaceMultipleOrdersRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-PlaceMultipleOrders Place Multiple Orders(TRADE)
+PlaceMultipleOrders Place Multiple Orders (TRADE)
 Post /eapi/v1/batchOrders
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Place-Multiple-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#place-multiple-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param orders -  order list. Max 10 orders
@@ -759,7 +819,15 @@ func (a *TradeAPIService) PlaceMultipleOrdersExecute(r ApiPlaceMultipleOrdersReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PlaceMultipleOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -777,13 +845,13 @@ type ApiQueryCurrentOpenOptionOrdersRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiQueryCurrentOpenOptionOrdersRequest) Symbol(symbol string) ApiQueryCurrentOpenOptionOrdersRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Order ID, e.g 4611875134427365377
+// Order ID.
 func (r ApiQueryCurrentOpenOptionOrdersRequest) OrderId(orderId int64) ApiQueryCurrentOpenOptionOrdersRequest {
 	r.orderId = &orderId
 	return r
@@ -801,6 +869,7 @@ func (r ApiQueryCurrentOpenOptionOrdersRequest) EndTime(endTime int64) ApiQueryC
 	return r
 }
 
+// Recv Window.
 func (r ApiQueryCurrentOpenOptionOrdersRequest) RecvWindow(recvWindow int64) ApiQueryCurrentOpenOptionOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -814,14 +883,14 @@ func (r ApiQueryCurrentOpenOptionOrdersRequest) Execute() (*common.RestApiRespon
 QueryCurrentOpenOptionOrders Query Current Open Option Orders (USER_DATA)
 Get /eapi/v1/openOrders
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Current-Open-Option-Orders
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#query-current-open-option-orders
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param orderId -  Order ID, e.g 4611875134427365377
+@param symbol -  Option trading pair.
+@param orderId -  Order ID.
 @param startTime -  Start Time, e.g 1593511200000
 @param endTime -  End Time, e.g 1593512200000
-@param recvWindow -
+@param recvWindow -  Recv Window.
 @return ApiQueryCurrentOpenOptionOrdersRequest
 */
 func (a *TradeAPIService) QueryCurrentOpenOptionOrders(ctx context.Context) ApiQueryCurrentOpenOptionOrdersRequest {
@@ -857,7 +926,15 @@ func (a *TradeAPIService) QueryCurrentOpenOptionOrdersExecute(r ApiQueryCurrentO
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentOpenOptionOrdersResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentOpenOptionOrdersResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -876,13 +953,13 @@ type ApiQueryOptionOrderHistoryRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiQueryOptionOrderHistoryRequest) Symbol(symbol string) ApiQueryOptionOrderHistoryRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Order ID, e.g 4611875134427365377
+// Order ID.
 func (r ApiQueryOptionOrderHistoryRequest) OrderId(orderId int64) ApiQueryOptionOrderHistoryRequest {
 	r.orderId = &orderId
 	return r
@@ -900,12 +977,13 @@ func (r ApiQueryOptionOrderHistoryRequest) EndTime(endTime int64) ApiQueryOption
 	return r
 }
 
-// Number of result sets returned Default:100 Max:1000
+// Number of result sets returned
 func (r ApiQueryOptionOrderHistoryRequest) Limit(limit int64) ApiQueryOptionOrderHistoryRequest {
 	r.limit = &limit
 	return r
 }
 
+// Recv Window.
 func (r ApiQueryOptionOrderHistoryRequest) RecvWindow(recvWindow int64) ApiQueryOptionOrderHistoryRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -919,15 +997,15 @@ func (r ApiQueryOptionOrderHistoryRequest) Execute() (*common.RestApiResponse[mo
 QueryOptionOrderHistory Query Option Order History (TRADE)
 Get /eapi/v1/historyOrders
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Option-Order-History
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#query-option-order-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param orderId -  Order ID, e.g 4611875134427365377
+@param symbol -  Option trading pair.
+@param orderId -  Order ID.
 @param startTime -  Start Time, e.g 1593511200000
 @param endTime -  End Time, e.g 1593512200000
-@param limit -  Number of result sets returned Default:100 Max:1000
-@param recvWindow -
+@param limit -  Number of result sets returned
+@param recvWindow -  Recv Window.
 @return ApiQueryOptionOrderHistoryRequest
 */
 func (a *TradeAPIService) QueryOptionOrderHistory(ctx context.Context) ApiQueryOptionOrderHistoryRequest {
@@ -968,7 +1046,15 @@ func (a *TradeAPIService) QueryOptionOrderHistoryExecute(r ApiQueryOptionOrderHi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryOptionOrderHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryOptionOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -985,24 +1071,25 @@ type ApiQuerySingleOrderRequest struct {
 	recvWindow    *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiQuerySingleOrderRequest) Symbol(symbol string) ApiQuerySingleOrderRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// Order ID, e.g 4611875134427365377
+// Order ID.
 func (r ApiQuerySingleOrderRequest) OrderId(orderId int64) ApiQuerySingleOrderRequest {
 	r.orderId = &orderId
 	return r
 }
 
-// User-defined order ID, e.g 10000
+// User-defined order ID; cannot be duplicated among open orders.
 func (r ApiQuerySingleOrderRequest) ClientOrderId(clientOrderId string) ApiQuerySingleOrderRequest {
 	r.clientOrderId = &clientOrderId
 	return r
 }
 
+// Recv Window.
 func (r ApiQuerySingleOrderRequest) RecvWindow(recvWindow int64) ApiQuerySingleOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1016,13 +1103,13 @@ func (r ApiQuerySingleOrderRequest) Execute() (*common.RestApiResponse[models.Qu
 QuerySingleOrder Query Single Order (TRADE)
 Get /eapi/v1/order
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/Query-Single-Order
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#query-single-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
-@param orderId -  Order ID, e.g 4611875134427365377
-@param clientOrderId -  User-defined order ID, e.g 10000
-@param recvWindow -
+@param symbol -  Option trading pair.
+@param orderId -  Order ID.
+@param clientOrderId -  User-defined order ID; cannot be duplicated among open orders.
+@param recvWindow -  Recv Window.
 @return ApiQuerySingleOrderRequest
 */
 func (a *TradeAPIService) QuerySingleOrder(ctx context.Context) ApiQuerySingleOrderRequest {
@@ -1057,7 +1144,77 @@ func (a *TradeAPIService) QuerySingleOrderExecute(r ApiQuerySingleOrderRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySingleOrderResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySingleOrderResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiTradfiOptionsContractRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	recvWindow *int64
+}
+
+func (r ApiTradfiOptionsContractRequest) RecvWindow(recvWindow int64) ApiTradfiOptionsContractRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiTradfiOptionsContractRequest) Execute() (*common.RestApiResponse[models.TradfiOptionsContractResponse], error) {
+	return r.ApiService.TradfiOptionsContractExecute(r)
+}
+
+/*
+TradfiOptionsContract TradFi Options Contract (USER_DATA)
+Post /eapi/v1/stock/contract
+
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#tradfi-options-contract
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -
+@return ApiTradfiOptionsContractRequest
+*/
+func (a *TradeAPIService) TradfiOptionsContract(ctx context.Context) ApiTradfiOptionsContractRequest {
+	return ApiTradfiOptionsContractRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return TradfiOptionsContractResponse
+func (a *TradeAPIService) TradfiOptionsContractExecute(r ApiTradfiOptionsContractRequest) (*common.RestApiResponse[models.TradfiOptionsContractResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/eapi/v1/stock/contract"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.TradfiOptionsContractResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1071,6 +1228,7 @@ type ApiUserCommissionRequest struct {
 	recvWindow *int64
 }
 
+// Recv Window.
 func (r ApiUserCommissionRequest) RecvWindow(recvWindow int64) ApiUserCommissionRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1084,10 +1242,10 @@ func (r ApiUserCommissionRequest) Execute() (*common.RestApiResponse[models.User
 UserCommission User Commission (USER_DATA)
 Get /eapi/v1/commission
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/User-Commission
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#user-commission
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Recv Window.
 @return ApiUserCommissionRequest
 */
 func (a *TradeAPIService) UserCommission(ctx context.Context) ApiUserCommissionRequest {
@@ -1111,7 +1269,15 @@ func (a *TradeAPIService) UserCommissionExecute(r ApiUserCommissionRequest) (*co
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserCommissionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UserCommissionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1129,7 +1295,7 @@ type ApiUserExerciseRecordRequest struct {
 	recvWindow *int64
 }
 
-// Option trading pair, e.g BTC-200730-9000-C
+// Option trading pair.
 func (r ApiUserExerciseRecordRequest) Symbol(symbol string) ApiUserExerciseRecordRequest {
 	r.symbol = &symbol
 	return r
@@ -1147,12 +1313,13 @@ func (r ApiUserExerciseRecordRequest) EndTime(endTime int64) ApiUserExerciseReco
 	return r
 }
 
-// Number of result sets returned Default:100 Max:1000
+// Number of result sets returned.
 func (r ApiUserExerciseRecordRequest) Limit(limit int64) ApiUserExerciseRecordRequest {
 	r.limit = &limit
 	return r
 }
 
+// Recv Window.
 func (r ApiUserExerciseRecordRequest) RecvWindow(recvWindow int64) ApiUserExerciseRecordRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1166,14 +1333,14 @@ func (r ApiUserExerciseRecordRequest) Execute() (*common.RestApiResponse[models.
 UserExerciseRecord User Exercise Record (USER_DATA)
 Get /eapi/v1/exerciseRecord
 
-https://developers.binance.com/docs/derivatives/options-trading/trade/User-Exercise-Record
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/rest-api/trade#user-exercise-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Option trading pair, e.g BTC-200730-9000-C
+@param symbol -  Option trading pair.
 @param startTime -  Start Time, e.g 1593511200000
 @param endTime -  End Time, e.g 1593512200000
-@param limit -  Number of result sets returned Default:100 Max:1000
-@param recvWindow -
+@param limit -  Number of result sets returned.
+@param recvWindow -  Recv Window.
 @return ApiUserExerciseRecordRequest
 */
 func (a *TradeAPIService) UserExerciseRecord(ctx context.Context) ApiUserExerciseRecordRequest {
@@ -1209,7 +1376,15 @@ func (a *TradeAPIService) UserExerciseRecordExecute(r ApiUserExerciseRecordReque
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserExerciseRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UserExerciseRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

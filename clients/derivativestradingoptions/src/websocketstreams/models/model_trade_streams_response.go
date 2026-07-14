@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options WebSocket Market Streams
+Options WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Options WebSocket Market Streams
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &TradeStreamsResponse{}
 
 // TradeStreamsResponse struct for TradeStreamsResponse
 type TradeStreamsResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallt               *int64  `json:"t,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	X                    *string `json:"X,omitempty"`
-	S                    *string `json:"S,omitempty"`
-	Smallm               *bool   `json:"m,omitempty"`
+	// event type
+	Smalle *string `json:"e,omitempty"`
+	// event time
+	E *int64 `json:"E,omitempty"`
+	// trade completed time
+	T *int64 `json:"T,omitempty"`
+	// Option trading symbol
+	Smalls *string `json:"s,omitempty"`
+	// trade ID
+	Smallt *int64 `json:"t,omitempty"`
+	// price
+	Smallp *string `json:"p,omitempty"`
+	// quantity, always positive
+	Smallq *string `json:"q,omitempty"`
+	// trade type enum, \"MARKET\" for Orderbook trading, \"BLOCK\" for Block trade
+	X *string `json:"X,omitempty"`
+	// direction
+	S *string `json:"S,omitempty"`
+	// Is the buyer the market maker?
+	Smallm               *bool `json:"m,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

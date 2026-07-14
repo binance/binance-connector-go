@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,14 +17,23 @@ var _ common.MappedNullable = &GetInterestHistoryResponseRowsInner{}
 
 // GetInterestHistoryResponseRowsInner struct for GetInterestHistoryResponseRowsInner
 type GetInterestHistoryResponseRowsInner struct {
-	TxId                 *int64  `json:"txId,omitempty"`
-	InterestAccuredTime  *int64  `json:"interestAccuredTime,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	RawAsset             *string `json:"rawAsset,omitempty"`
-	Principal            *string `json:"principal,omitempty"`
-	Interest             *string `json:"interest,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	// tx Id.
+	TxId *int64 `json:"txId,omitempty"`
+	// interest Accured Time.
+	InterestAccuredTime *int64 `json:"interestAccuredTime,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// will not be returned for isolated margin
+	RawAsset *string `json:"rawAsset,omitempty"`
+	// principal.
+	Principal *string `json:"principal,omitempty"`
+	// interest.
+	Interest *string `json:"interest,omitempty"`
+	// interest Rate.
+	InterestRate *string `json:"interestRate,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// isolated symbol, will not be returned for crossed margin
 	IsolatedSymbol       *string `json:"isolatedSymbol,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

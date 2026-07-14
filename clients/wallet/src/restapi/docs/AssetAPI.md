@@ -9,13 +9,13 @@ Method        | HTTP request  | Description
 [**DustConvert**](AssetAPI.md#DustConvert) | **Post** /sapi/v1/asset/dust-convert/convert | Dust Convert (USER_DATA)
 [**DustConvertibleAssets**](AssetAPI.md#DustConvertibleAssets) | **Post** /sapi/v1/asset/dust-convert/query-convertible-assets | Dust Convertible Assets (USER_DATA)
 [**DustTransfer**](AssetAPI.md#DustTransfer) | **Post** /sapi/v1/asset/dust | Dust Transfer (USER_DATA)
-[**Dustlog**](AssetAPI.md#Dustlog) | **Get** /sapi/v1/asset/dribblet | DustLog(USER_DATA)
+[**Dustlog**](AssetAPI.md#Dustlog) | **Get** /sapi/v1/asset/dribblet | DustLog (USER_DATA)
 [**FundingWallet**](AssetAPI.md#FundingWallet) | **Post** /sapi/v1/asset/get-funding-asset | Funding Wallet (USER_DATA)
 [**GetAssetsThatCanBeConvertedIntoBnb**](AssetAPI.md#GetAssetsThatCanBeConvertedIntoBnb) | **Post** /sapi/v1/asset/dust-btc | Get Assets That Can Be Converted Into BNB (USER_DATA)
 [**GetCloudMiningPaymentAndRefundHistory**](AssetAPI.md#GetCloudMiningPaymentAndRefundHistory) | **Get** /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage | Get Cloud-Mining payment and refund history (USER_DATA)
 [**GetOpenSymbolList**](AssetAPI.md#GetOpenSymbolList) | **Get** /sapi/v1/spot/open-symbol-list | Get Open Symbol List (MARKET_DATA)
-[**QueryUserDelegationHistory**](AssetAPI.md#QueryUserDelegationHistory) | **Get** /sapi/v1/asset/custody/transfer-history | Query User Delegation History(For Master Account)(USER_DATA)
-[**QueryUserUniversalTransferHistory**](AssetAPI.md#QueryUserUniversalTransferHistory) | **Get** /sapi/v1/asset/transfer | Query User Universal Transfer History(USER_DATA)
+[**QueryUserDelegationHistory**](AssetAPI.md#QueryUserDelegationHistory) | **Get** /sapi/v1/asset/custody/transfer-history | Query User Delegation History(For Master Account) (USER_DATA)
+[**QueryUserUniversalTransferHistory**](AssetAPI.md#QueryUserUniversalTransferHistory) | **Get** /sapi/v1/asset/transfer | Query User Universal Transfer History (USER_DATA)
 [**QueryUserWalletBalance**](AssetAPI.md#QueryUserWalletBalance) | **Get** /sapi/v1/asset/wallet/balance | Query User Wallet Balance (USER_DATA)
 [**ToggleBnbBurnOnSpotTradeAndMarginInterest**](AssetAPI.md#ToggleBnbBurnOnSpotTradeAndMarginInterest) | **Post** /sapi/v1/bnbBurn | Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)
 [**TradeFee**](AssetAPI.md#TradeFee) | **Get** /sapi/v1/asset/tradeFee | Trade Fee (USER_DATA)
@@ -46,7 +46,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
+	asset := "BTC" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -75,7 +75,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | If asset is blank, then query all positive assets user have. | 
+ **asset** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -116,10 +116,10 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
+	asset := "BTC" // string |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(7) // int64 | min 7, max 30, default 7 (optional)
+	limit := int64(20) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -148,10 +148,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | If asset is blank, then query all positive assets user have. | 
+ **asset** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | min 7, max 30, default 7 | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -192,10 +192,10 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
+	asset := "USDT" // string | 
+	accountType := "SPOT" // string | `SPOT` or `MARGIN`, default `SPOT` (optional)
 	clientId := "1" // string | A unique id for the request (optional)
-	targetAsset := "targetAsset_example" // string |  (optional)
+	targetAsset := "BTC" // string |  (optional)
 	thirdPartyClientId := "1" // string |  (optional)
 	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
 
@@ -226,7 +226,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
+ **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60; | 
  **clientId** | **string** | A unique id for the request | 
  **targetAsset** | **string** |  | 
  **thirdPartyClientId** | **string** |  | 
@@ -270,8 +270,8 @@ import (
 )
 
 func main() {
-	targetAsset := "targetAsset_example" // string | 
-	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
+	targetAsset := "BTC" // string | 
+	accountType := "SPOT" // string | `SPOT` or `MARGIN`, default `SPOT` (optional)
 	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -301,7 +301,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **targetAsset** | **string** |  | 
- **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
+ **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60; | 
  **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
 
 ### Return type
@@ -342,8 +342,8 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | 
-	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
+	asset := "BTC" // string | The asset being converted. For example: asset=BTC,USDT
+	accountType := models.DustlogAccountTypeParameterSpot // DustlogAccountTypeParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -372,8 +372,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** |  | 
- **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
+ **asset** | **string** | The asset being converted. For example: asset&#x3D;BTC,USDT | 
+ **accountType** | [**DustlogAccountTypeParameter**](DustlogAccountTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -395,7 +395,7 @@ No authorization required
 
 > DustlogResponse Dustlog(ctx).AccountType(accountType).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
-DustLog(USER_DATA)
+DustLog (USER_DATA)
 
 
 ### Example
@@ -414,7 +414,7 @@ import (
 )
 
 func main() {
-	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
+	accountType := models.DustlogAccountTypeParameterSpot // DustlogAccountTypeParameter |  (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -445,7 +445,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
+ **accountType** | [**DustlogAccountTypeParameter**](DustlogAccountTypeParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **recvWindow** | **int64** |  | 
@@ -488,8 +488,8 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
-	needBtcValuation := "needBtcValuation_example" // string | true or false (optional)
+	asset := "BTC" // string |  (optional)
+	needBtcValuation := true // bool |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -518,8 +518,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **asset** | **string** | If asset is blank, then query all positive assets user have. | 
- **needBtcValuation** | **string** | true or false | 
+ **asset** | **string** |  | 
+ **needBtcValuation** | **bool** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -560,7 +560,7 @@ import (
 )
 
 func main() {
-	accountType := "SPOT" // string | `SPOT` or `MARGIN`,default `SPOT` (optional)
+	accountType := models.DustlogAccountTypeParameterSpot // DustlogAccountTypeParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -589,7 +589,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60; | 
+ **accountType** | [**DustlogAccountTypeParameter**](DustlogAccountTypeParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -630,13 +630,13 @@ import (
 )
 
 func main() {
-	startTime := int64(1623319461670) // int64 | 
-	endTime := int64(1641782889000) // int64 | 
+	startTime := int64(1623319461670) // int64 | inclusive, unit: ms
+	endTime := int64(1641782889000) // int64 | exclusive, unit: ms
 	tranId := int64(1) // int64 | The transaction id (optional)
 	clientTranId := "1" // string | The unique flag (optional)
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
-	current := int64(1) // int64 | current page, default 1, the min value is 1 (optional)
-	size := int64(10) // int64 | page size, default 10, the max value is 100 (optional)
+	asset := "BTC" // string | If it is blank, we will query all assets (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -664,13 +664,13 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **startTime** | **int64** |  | 
- **endTime** | **int64** |  | 
+ **startTime** | **int64** | inclusive, unit: ms | 
+ **endTime** | **int64** | exclusive, unit: ms | 
  **tranId** | **int64** | The transaction id | 
  **clientTranId** | **string** | The unique flag | 
- **asset** | **string** | If asset is blank, then query all positive assets user have. | 
- **current** | **int64** | current page, default 1, the min value is 1 | 
- **size** | **int64** | page size, default 10, the max value is 100 | 
+ **asset** | **string** | If it is blank, we will query all assets | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
 
 ### Return type
 
@@ -756,7 +756,7 @@ No authorization required
 
 > QueryUserDelegationHistoryResponse QueryUserDelegationHistory(ctx).Email(email).StartTime(startTime).EndTime(endTime).Type(type_).Asset(asset).Current(current).Size(size).RecvWindow(recvWindow).Execute()
 
-Query User Delegation History(For Master Account)(USER_DATA)
+Query User Delegation History(For Master Account) (USER_DATA)
 
 
 ### Example
@@ -775,13 +775,13 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | 
+	email := "abc@test.com" // string | 
 	startTime := int64(1623319461670) // int64 | 
 	endTime := int64(1641782889000) // int64 | 
-	type_ := "type__example" // string | Delegate/Undelegate (optional)
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
-	current := int64(1) // int64 | current page, default 1, the min value is 1 (optional)
-	size := int64(10) // int64 | page size, default 10, the max value is 100 (optional)
+	type_ := models.QueryUserDelegationHistoryTypeParameterDelegate // QueryUserDelegationHistoryTypeParameter |  (optional)
+	asset := "BTC" // string |  (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -813,10 +813,10 @@ Name          | Type          | Description   | Notes
  **email** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **type_** | **string** | Delegate/Undelegate | 
- **asset** | **string** | If asset is blank, then query all positive assets user have. | 
- **current** | **int64** | current page, default 1, the min value is 1 | 
- **size** | **int64** | page size, default 10, the max value is 100 | 
+ **type_** | [**QueryUserDelegationHistoryTypeParameter**](QueryUserDelegationHistoryTypeParameter.md) |  | 
+ **asset** | **string** |  | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -838,7 +838,7 @@ No authorization required
 
 > QueryUserUniversalTransferHistoryResponse QueryUserUniversalTransferHistory(ctx).Type(type_).StartTime(startTime).EndTime(endTime).Current(current).Size(size).FromSymbol(fromSymbol).ToSymbol(toSymbol).RecvWindow(recvWindow).Execute()
 
-Query User Universal Transfer History(USER_DATA)
+Query User Universal Transfer History (USER_DATA)
 
 
 ### Example
@@ -860,10 +860,10 @@ func main() {
 	type_ := "type__example" // string | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	current := int64(1) // int64 | current page, default 1, the min value is 1 (optional)
-	size := int64(10) // int64 | page size, default 10, the max value is 100 (optional)
-	fromSymbol := "fromSymbol_example" // string |  (optional)
-	toSymbol := "toSymbol_example" // string |  (optional)
+	current := int64(1) // int64 |  (optional)
+	size := int64(10) // int64 |  (optional)
+	fromSymbol := models.QueryUserUniversalTransferHistoryFromSymbolParameterIsolatedmarginMargin // QueryUserUniversalTransferHistoryFromSymbolParameter |  (optional)
+	toSymbol := models.QueryUserUniversalTransferHistoryToSymbolParameterMarginIsolatedmargin // QueryUserUniversalTransferHistoryToSymbolParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -895,10 +895,10 @@ Name          | Type          | Description   | Notes
  **type_** | **string** |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **current** | **int64** | current page, default 1, the min value is 1 | 
- **size** | **int64** | page size, default 10, the max value is 100 | 
- **fromSymbol** | **string** |  | 
- **toSymbol** | **string** |  | 
+ **current** | **int64** |  | 
+ **size** | **int64** |  | 
+ **fromSymbol** | [**QueryUserUniversalTransferHistoryFromSymbolParameter**](QueryUserUniversalTransferHistoryFromSymbolParameter.md) |  | 
+ **toSymbol** | [**QueryUserUniversalTransferHistoryToSymbolParameter**](QueryUserUniversalTransferHistoryToSymbolParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -939,7 +939,7 @@ import (
 )
 
 func main() {
-	quoteAsset := "BTC" // string | `USDT`, `ETH`, `USDC`, `BNB`, etc. default `BTC` (optional)
+	quoteAsset := "BTC" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -968,7 +968,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **quoteAsset** | **string** | &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc. default &#x60;BTC&#x60; | 
+ **quoteAsset** | **string** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1009,8 +1009,8 @@ import (
 )
 
 func main() {
-	spotBNBBurn := "spotBNBBurn_example" // string | \"true\" or \"false\"; Determines whether to use BNB to pay for trading fees on SPOT (optional)
-	interestBNBBurn := "interestBNBBurn_example" // string | \"true\" or \"false\"; Determines whether to use BNB to pay for margin loan's interest (optional)
+	spotBNBBurn := "true" // string | Determines whether to use BNB to pay for trading fees on SPOT (optional)
+	interestBNBBurn := "true" // string | Determines whether to use BNB to pay for margin loan's interest (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1039,8 +1039,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **spotBNBBurn** | **string** | \&quot;true\&quot; or \&quot;false\&quot;; Determines whether to use BNB to pay for trading fees on SPOT | 
- **interestBNBBurn** | **string** | \&quot;true\&quot; or \&quot;false\&quot;; Determines whether to use BNB to pay for margin loan&#39;s interest | 
+ **spotBNBBurn** | **string** | Determines whether to use BNB to pay for trading fees on SPOT | 
+ **interestBNBBurn** | **string** | Determines whether to use BNB to pay for margin loan&#39;s interest | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1081,7 +1081,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string |  (optional)
+	symbol := "ADABNB" // string |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1151,7 +1151,7 @@ import (
 )
 
 func main() {
-	asset := "asset_example" // string | If asset is blank, then query all positive assets user have. (optional)
+	asset := "BTC" // string | If asset is blank, then query all positive assets user have. (optional)
 	needBtcValuation := true // bool | Whether need btc valuation or not. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1223,11 +1223,11 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | 
-	asset := "asset_example" // string | 
+	type_ := models.UserUniversalTransferTypeParameterMainUmfuture // UserUniversalTransferTypeParameter | 
+	asset := "BTC" // string | 
 	amount := float32(1.0) // float32 | 
-	fromSymbol := "fromSymbol_example" // string |  (optional)
-	toSymbol := "toSymbol_example" // string |  (optional)
+	fromSymbol := models.QueryUserUniversalTransferHistoryFromSymbolParameterIsolatedmarginMargin // QueryUserUniversalTransferHistoryFromSymbolParameter |  (optional)
+	toSymbol := models.QueryUserUniversalTransferHistoryToSymbolParameterMarginIsolatedmargin // QueryUserUniversalTransferHistoryToSymbolParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1256,11 +1256,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** |  | 
+ **type_** | [**UserUniversalTransferTypeParameter**](UserUniversalTransferTypeParameter.md) |  | 
  **asset** | **string** |  | 
  **amount** | **float32** |  | 
- **fromSymbol** | **string** |  | 
- **toSymbol** | **string** |  | 
+ **fromSymbol** | [**QueryUserUniversalTransferHistoryFromSymbolParameter**](QueryUserUniversalTransferHistoryFromSymbolParameter.md) |  | 
+ **toSymbol** | [**QueryUserUniversalTransferHistoryToSymbolParameter**](QueryUserUniversalTransferHistoryToSymbolParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

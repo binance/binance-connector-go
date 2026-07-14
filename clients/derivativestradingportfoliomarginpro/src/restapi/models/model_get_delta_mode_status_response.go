@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,6 +17,7 @@ var _ common.MappedNullable = &GetDeltaModeStatusResponse{}
 
 // GetDeltaModeStatusResponse struct for GetDeltaModeStatusResponse
 type GetDeltaModeStatusResponse struct {
+	// delta Enabled.
 	DeltaEnabled         *bool `json:"deltaEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

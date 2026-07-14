@@ -1,7 +1,7 @@
 /*
-Binance Alpha REST API
+Alpha Trading REST API
 
-OpenAPI Specification for the Binance Alpha REST API
+APIs for Binance Alpha Trading.
 */
 
 package binancealpharestapi
@@ -28,31 +28,31 @@ type ApiAggregatedTradesRequest struct {
 	limit      *int64
 }
 
-// e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List
+// Trading pair symbol, e.g. ALPHA_118USDC (use token ID from Token List).
 func (r ApiAggregatedTradesRequest) Symbol(symbol string) ApiAggregatedTradesRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// starting trade ID to fetch from
+// Starting aggregate trade ID to fetch from.
 func (r ApiAggregatedTradesRequest) FromId(fromId int64) ApiAggregatedTradesRequest {
 	r.fromId = &fromId
 	return r
 }
 
-// start timestamp (milliseconds)
+// Start timestamp in milliseconds.
 func (r ApiAggregatedTradesRequest) StartTime(startTime int64) ApiAggregatedTradesRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// end timestamp (milliseconds)
+// End timestamp in milliseconds.
 func (r ApiAggregatedTradesRequest) EndTime(endTime int64) ApiAggregatedTradesRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// number of results to return (default 500, max 1000)
+// Number of results to return.
 func (r ApiAggregatedTradesRequest) Limit(limit int64) ApiAggregatedTradesRequest {
 	r.limit = &limit
 	return r
@@ -66,14 +66,14 @@ func (r ApiAggregatedTradesRequest) Execute() (*common.RestApiResponse[models.Ag
 AggregatedTrades Aggregated Trades
 Get /bapi/defi/v1/public/alpha-trade/agg-trades
 
-https://developers.binance.com/docs/alpha/market-data/rest-api/Aggregated-Trades
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#aggregated-trades
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  e.g., \"ALPHA_175USDT\" – use token ID from Token List
-@param fromId -  starting trade ID to fetch from
-@param startTime -  start timestamp (milliseconds)
-@param endTime -  end timestamp (milliseconds)
-@param limit -  number of results to return (default 500, max 1000)
+@param symbol -  Trading pair symbol, e.g. ALPHA_118USDC (use token ID from Token List).
+@param fromId -  Starting aggregate trade ID to fetch from.
+@param startTime -  Start timestamp in milliseconds.
+@param endTime -  End timestamp in milliseconds.
+@param limit -  Number of results to return.
 @return ApiAggregatedTradesRequest
 */
 func (a *MarketDataAPIService) AggregatedTrades(ctx context.Context) ApiAggregatedTradesRequest {
@@ -111,7 +111,91 @@ func (a *MarketDataAPIService) AggregatedTradesExecute(r ApiAggregatedTradesRequ
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 
-	resp, err := SendRequest[models.AggregatedTradesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.AggregatedTradesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiFullDepthRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+	symbol     *string
+	limit      *models.FullDepthLimitParameter
+}
+
+// Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
+func (r ApiFullDepthRequest) Symbol(symbol string) ApiFullDepthRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Number of price levels to return. Valid values: 5, 10, 20, 50, 100, 500, 1000.
+func (r ApiFullDepthRequest) Limit(limit models.FullDepthLimitParameter) ApiFullDepthRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiFullDepthRequest) Execute() (*common.RestApiResponse[models.FullDepthResponse], error) {
+	return r.ApiService.FullDepthExecute(r)
+}
+
+/*
+FullDepth Full Depth
+Get /bapi/defi/v1/public/alpha-trade/fullDepth
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#full-depth
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
+@param limit -  Number of price levels to return. Valid values: 5, 10, 20, 50, 100, 500, 1000.
+@return ApiFullDepthRequest
+*/
+func (a *MarketDataAPIService) FullDepth(ctx context.Context) ApiFullDepthRequest {
+	return ApiFullDepthRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return FullDepthResponse
+func (a *MarketDataAPIService) FullDepthExecute(r ApiFullDepthRequest) (*common.RestApiResponse[models.FullDepthResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/bapi/defi/v1/public/alpha-trade/fullDepth"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	if r.limit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+
+	resp, err := SendRequest[models.FullDepthResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -132,7 +216,7 @@ func (r ApiGetExchangeInfoRequest) Execute() (*common.RestApiResponse[models.Get
 GetExchangeInfo Get Exchange Info
 Get /bapi/defi/v1/public/alpha-trade/get-exchange-info
 
-https://developers.binance.com/docs/alpha/market-data/rest-api/Get-Exchange-Info
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#get-exchange-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiGetExchangeInfoRequest
@@ -154,7 +238,15 @@ func (a *MarketDataAPIService) GetExchangeInfoExecute(r ApiGetExchangeInfoReques
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetExchangeInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetExchangeInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -166,37 +258,37 @@ type ApiKlinesRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	symbol     *string
-	interval   *string
+	interval   *models.KlinesIntervalParameter
 	limit      *int64
 	startTime  *int64
 	endTime    *int64
 }
 
-// e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List
+// Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
 func (r ApiKlinesRequest) Symbol(symbol string) ApiKlinesRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// e.g., \&quot;1h\&quot; – supported intervals: 1s, 15s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-func (r ApiKlinesRequest) Interval(interval string) ApiKlinesRequest {
+// Kline interval.
+func (r ApiKlinesRequest) Interval(interval models.KlinesIntervalParameter) ApiKlinesRequest {
 	r.interval = &interval
 	return r
 }
 
-// number of results to return (default 500, max 1000)
+// Number of klines to return.
 func (r ApiKlinesRequest) Limit(limit int64) ApiKlinesRequest {
 	r.limit = &limit
 	return r
 }
 
-// start timestamp (milliseconds)
+// Start timestamp in milliseconds.
 func (r ApiKlinesRequest) StartTime(startTime int64) ApiKlinesRequest {
 	r.startTime = &startTime
 	return r
 }
 
-// end timestamp (milliseconds)
+// End timestamp in milliseconds.
 func (r ApiKlinesRequest) EndTime(endTime int64) ApiKlinesRequest {
 	r.endTime = &endTime
 	return r
@@ -207,17 +299,17 @@ func (r ApiKlinesRequest) Execute() (*common.RestApiResponse[models.KlinesRespon
 }
 
 /*
-Klines Klines (Candlestick Data)
+Klines Klines
 Get /bapi/defi/v1/public/alpha-trade/klines
 
-https://developers.binance.com/docs/alpha/market-data/rest-api/Klines
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#klines
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  e.g., \"ALPHA_175USDT\" – use token ID from Token List
-@param interval -  e.g., \"1h\" – supported intervals: 1s, 15s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-@param limit -  number of results to return (default 500, max 1000)
-@param startTime -  start timestamp (milliseconds)
-@param endTime -  end timestamp (milliseconds)
+@param symbol -  Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
+@param interval -  Kline interval.
+@param limit -  Number of klines to return.
+@param startTime -  Start timestamp in milliseconds.
+@param endTime -  End timestamp in milliseconds.
 @return ApiKlinesRequest
 */
 func (a *MarketDataAPIService) Klines(ctx context.Context) ApiKlinesRequest {
@@ -240,6 +332,7 @@ func (a *MarketDataAPIService) KlinesExecute(r ApiKlinesRequest) (*common.RestAp
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.interval == nil {
 		return nil, common.ReportError("interval is required and must be specified")
 	}
@@ -256,7 +349,15 @@ func (a *MarketDataAPIService) KlinesExecute(r ApiKlinesRequest) (*common.RestAp
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
 
-	resp, err := SendRequest[models.KlinesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.KlinesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -270,7 +371,7 @@ type ApiTickerRequest struct {
 	symbol     *string
 }
 
-// e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List
+// Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
 func (r ApiTickerRequest) Symbol(symbol string) ApiTickerRequest {
 	r.symbol = &symbol
 	return r
@@ -281,13 +382,13 @@ func (r ApiTickerRequest) Execute() (*common.RestApiResponse[models.TickerRespon
 }
 
 /*
-Ticker Ticker (24hr Price Statistics)
+Ticker Ticker
 Get /bapi/defi/v1/public/alpha-trade/ticker
 
-https://developers.binance.com/docs/alpha/market-data/rest-api/24hr-ticker-price-change
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#ticker
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  e.g., \"ALPHA_175USDT\" – use token ID from Token List
+@param symbol -  Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
 @return ApiTickerRequest
 */
 func (a *MarketDataAPIService) Ticker(ctx context.Context) ApiTickerRequest {
@@ -313,7 +414,15 @@ func (a *MarketDataAPIService) TickerExecute(r ApiTickerRequest) (*common.RestAp
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 
-	resp, err := SendRequest[models.TickerResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TickerResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -334,7 +443,7 @@ func (r ApiTokenListRequest) Execute() (*common.RestApiResponse[models.TokenList
 TokenList Token List
 Get /bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list
 
-https://developers.binance.com/docs/alpha/market-data/rest-api/Token-List
+https://developers.binance.com/en/docs/catalog/advanced-trading-alpha-trading/api/rest-api/market-data#token-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiTokenListRequest
@@ -356,7 +465,15 @@ func (a *MarketDataAPIService) TokenListExecute(r ApiTokenListRequest) (*common.
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.TokenListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.TokenListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

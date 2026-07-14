@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,11 @@ var _ common.MappedNullable = &OrderBookResponseResult{}
 
 // OrderBookResponseResult struct for OrderBookResponseResult
 type OrderBookResponseResult struct {
-	LastUpdateId         *int64                            `json:"lastUpdateId,omitempty"`
-	E                    *int64                            `json:"E,omitempty"`
-	T                    *int64                            `json:"T,omitempty"`
-	Bids                 []OrderBookResponseResultBidsItem `json:"bids,omitempty"`
-	Asks                 []OrderBookResponseResultAsksItem `json:"asks,omitempty"`
+	LastUpdateId *int64 `json:"lastUpdateId,omitempty"`
+	// Message output time
+	E *int64 `json:"E,omitempty"`
+	// Transaction time
+	T                    *int64 `json:"T,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,70 +140,6 @@ func (o *OrderBookResponseResult) SetT(v int64) {
 	o.T = &v
 }
 
-// GetBids returns the Bids field value if set, zero value otherwise.
-func (o *OrderBookResponseResult) GetBids() []OrderBookResponseResultBidsItem {
-	if o == nil || common.IsNil(o.Bids) {
-		var ret []OrderBookResponseResultBidsItem
-		return ret
-	}
-	return o.Bids
-}
-
-// GetBidsOk returns a tuple with the Bids field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderBookResponseResult) GetBidsOk() ([]OrderBookResponseResultBidsItem, bool) {
-	if o == nil || common.IsNil(o.Bids) {
-		return nil, false
-	}
-	return o.Bids, true
-}
-
-// HasBids returns a boolean if a field has been set.
-func (o *OrderBookResponseResult) HasBids() bool {
-	if o != nil && !common.IsNil(o.Bids) {
-		return true
-	}
-
-	return false
-}
-
-// SetBids gets a reference to the given []OrderBookResponseResultBidsItem and assigns it to the Bids field.
-func (o *OrderBookResponseResult) SetBids(v []OrderBookResponseResultBidsItem) {
-	o.Bids = v
-}
-
-// GetAsks returns the Asks field value if set, zero value otherwise.
-func (o *OrderBookResponseResult) GetAsks() []OrderBookResponseResultAsksItem {
-	if o == nil || common.IsNil(o.Asks) {
-		var ret []OrderBookResponseResultAsksItem
-		return ret
-	}
-	return o.Asks
-}
-
-// GetAsksOk returns a tuple with the Asks field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrderBookResponseResult) GetAsksOk() ([]OrderBookResponseResultAsksItem, bool) {
-	if o == nil || common.IsNil(o.Asks) {
-		return nil, false
-	}
-	return o.Asks, true
-}
-
-// HasAsks returns a boolean if a field has been set.
-func (o *OrderBookResponseResult) HasAsks() bool {
-	if o != nil && !common.IsNil(o.Asks) {
-		return true
-	}
-
-	return false
-}
-
-// SetAsks gets a reference to the given []OrderBookResponseResultAsksItem and assigns it to the Asks field.
-func (o *OrderBookResponseResult) SetAsks(v []OrderBookResponseResultAsksItem) {
-	o.Asks = v
-}
-
 func (o OrderBookResponseResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -222,12 +158,6 @@ func (o OrderBookResponseResult) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T
-	}
-	if !common.IsNil(o.Bids) {
-		toSerialize["bids"] = o.Bids
-	}
-	if !common.IsNil(o.Asks) {
-		toSerialize["asks"] = o.Asks
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -254,8 +184,6 @@ func (o *OrderBookResponseResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "lastUpdateId")
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "T")
-		delete(additionalProperties, "bids")
-		delete(additionalProperties, "asks")
 		o.AdditionalProperties = additionalProperties
 	}
 

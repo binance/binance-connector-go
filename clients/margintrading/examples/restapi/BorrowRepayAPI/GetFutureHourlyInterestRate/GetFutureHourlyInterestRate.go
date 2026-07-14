@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/clients/margintrading/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func GetFutureHourlyInterestRate() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.BorrowRepayAPI.GetFutureHourlyInterestRate(context.Background()).Assets("assets_example").IsIsolated(false).Execute()
+	resp, err := apiClient.RestApi.BorrowRepayAPI.GetFutureHourlyInterestRate(context.Background()).Assets("BTC,ETH").IsIsolated(models.GetFutureHourlyInterestRateIsIsolatedParameterTrue).Execute()
 	if err != nil {
 		log.Println(err)
 		return

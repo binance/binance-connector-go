@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**IndexPrice** | Pointer to **string** |  | [optional] 
-**EstimatedSettlePrice** | Pointer to **string** |  | [optional] 
-**LastFundingRate** | Pointer to **string** |  | [optional] 
-**InterestRate** | Pointer to **string** |  | [optional] 
-**NextFundingTime** | Pointer to **int64** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**MarkPrice** | Pointer to **string** | mark price | [optional] 
+**IndexPrice** | Pointer to **string** | index price | [optional] 
+**EstimatedSettlePrice** | Pointer to **string** | Estimated Settle Price, only useful in the last hour before the settlement starts. | [optional] 
+**LastFundingRate** | Pointer to **string** | This is the Latest funding rate | [optional] 
+**InterestRate** | Pointer to **string** | Interest Rate. | [optional] 
+**NextFundingTime** | Pointer to **int64** | Next Funding Time. | [optional] 
+**Time** | Pointer to **int64** | Time. | [optional] 
 
 ## Methods
 

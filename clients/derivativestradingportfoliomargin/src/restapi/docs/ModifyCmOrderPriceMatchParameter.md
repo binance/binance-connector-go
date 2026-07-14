@@ -2,7 +2,6 @@
 
 ## Enum
 
-* `ModifyCmOrderPriceMatchParameterNone` (value: `"NONE"`)
 * `ModifyCmOrderPriceMatchParameterOpponent` (value: `"OPPONENT"`)
 * `ModifyCmOrderPriceMatchParameterOpponent5` (value: `"OPPONENT_5"`)
 * `ModifyCmOrderPriceMatchParameterOpponent10` (value: `"OPPONENT_10"`)

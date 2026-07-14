@@ -6,6 +6,7 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/derivativestradingoptions"
+	"github.com/binance/binance-connector-go/clients/derivativestradingoptions/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -22,7 +23,7 @@ func AccountFundingFlow() {
 	apiClient := client.NewBinanceDerivativesTradingOptionsClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.AccountFundingFlow(context.Background()).Currency("currency_example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.AccountFundingFlow(context.Background()).Currency(models.AccountFundingFlowCurrencyParameterUsdt).Execute()
 	if err != nil {
 		log.Println(err)
 		return

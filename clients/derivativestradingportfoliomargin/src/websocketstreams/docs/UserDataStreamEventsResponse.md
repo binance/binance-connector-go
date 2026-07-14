@@ -4,59 +4,59 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**T** | Pointer to **int64** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Fs** | Pointer to **string** |  | [optional] 
-**Ao** | Pointer to [**AlgoUpdateAo**](AlgoUpdateAo.md) |  | [optional] 
-**So** | Pointer to [**ConditionalOrderTradeUpdateSo**](ConditionalOrderTradeUpdateSo.md) |  | [optional] 
+**Fs** | Pointer to **string** | Event business unit. &#39;UM&#39; for USDS-M futures and &#39;CM&#39; for COIN-M futures | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**G** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**Z** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**N** | Pointer to **string** |  | [optional] 
-**N** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**W** | Pointer to **bool** |  | [optional] 
-**M** | Pointer to **string** |  | [optional] 
-**O** | Pointer to [**[]OpenorderlossOInner**](OpenorderlossOInner.md) |  | [optional] 
-**Z** | Pointer to **string** |  | [optional] 
-**Y** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **int64** |  | [optional] 
-**J** | Pointer to **int64** |  | [optional] 
-**J** | Pointer to **int64** |  | [optional] 
-**W** | Pointer to **int64** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**A** | Pointer to **string** |  | [optional] 
-**Cs** | Pointer to **string** |  | [optional] 
-**Pl** | Pointer to **string** |  | [optional] 
-**PL** | Pointer to **string** |  | [optional] 
-**PY** | Pointer to **string** |  | [optional] 
-**ER** | Pointer to **string** |  | [optional] 
-**Eq** | Pointer to **string** |  | [optional] 
-**Ae** | Pointer to **string** |  | [optional] 
+**I** | Pointer to **string** | Account Alias, ignore for UM | [optional] 
+**A** | Pointer to **string** | Asset | [optional] 
+**Ao** | Pointer to [**AlgoOrderUpdateAo**](AlgoOrderUpdateAo.md) |  | [optional] 
+**D** | Pointer to **int64** | Trailing Delta; This is only visible if the order was a trailing stop order. | [optional] 
+**U** | Pointer to **int64** | Time updateID | [optional] 
+**So** | Pointer to [**ConditionalOrderTradeUpdateSo**](ConditionalOrderTradeUpdateSo.md) |  | [optional] 
+**S** | Pointer to **string** | Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION | [optional] 
+**C** | Pointer to **string** | Client order ID | [optional] 
+**S** | Pointer to **string** | Side | [optional] 
+**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
+**F** | Pointer to **string** | Time in force | [optional] 
+**Q** | Pointer to **string** | Order quantity | [optional] 
+**P** | Pointer to **string** | Principal | [optional] 
+**P** | Pointer to **string** | Stop price | [optional] 
+**F** | Pointer to **string** | Iceberg quantity; Will not be visible if not iceberg order | [optional] 
+**G** | Pointer to **int64** | OrderListId | [optional] 
+**C** | Pointer to **string** | Original client order ID; Only visible on cancellation of order, the ID of the order being canceled. | [optional] 
+**X** | Pointer to **string** | Current execution type | [optional] 
+**X** | Pointer to **string** | Current order status | [optional] 
+**R** | Pointer to **string** | Order reject reason; Only visible if there is a rejection, will be an error code. | [optional] 
+**L** | Pointer to **string** | Total Liability | [optional] 
+**Z** | Pointer to **string** | Cumulative filled quantity | [optional] 
+**L** | Pointer to **string** | Last executed price | [optional] 
+**N** | Pointer to **string** | Commission amount | [optional] 
+**N** | Pointer to **string** | Commission asset; Only visible when there is a commission amount. | [optional] 
+**T** | Pointer to **string** | Type | [optional] 
+**V** | Pointer to **int64** | Prevented Match Id; This is only visible if the order expire due to STP trigger. | [optional] 
+**I** | Pointer to **int64** | updateId | [optional] 
+**W** | Pointer to **bool** | Is the order on the book? | [optional] 
+**M** | Pointer to **string** | Total maintenance margin in USD value | [optional] 
+**O** | Pointer to [**[]OpenOrderLossOInner**](OpenOrderLossOInner.md) | Update Data | [optional] 
+**Z** | Pointer to **string** | Cumulative quote asset transacted quantity | [optional] 
+**Y** | Pointer to **string** | Last quote asset transacted quantity (i.e. lastPrice * lastQty) | [optional] 
+**Q** | Pointer to **string** | Quote Order Quantity; This is only visible if indicated in the order | [optional] 
+**D** | Pointer to **int64** | Trailing Time; This is only visible if the trailing stop order has been activated. | [optional] 
+**J** | Pointer to **int64** | Strategy ID; This is only visible if the strategyId parameter was provided upon order placement | [optional] 
+**J** | Pointer to **int64** | Strategy Type; This is only visible if the strategyType parameter was provided upon order placement | [optional] 
+**W** | Pointer to **int64** | Working Time; This is only visible if the order has been placed on the book. | [optional] 
+**V** | Pointer to **string** | selfTradePreventionMode | [optional] 
+**U** | Pointer to **string** | uniMMR level | [optional] 
+**A** | Pointer to **string** | Prevented Quantity; This is only visible if the order expired due to STP trigger. | [optional] 
+**B** | Pointer to [**[]OutboundAccountPositionBInner**](OutboundAccountPositionBInner.md) | Balances Array | [optional] 
+**Cs** | Pointer to **string** | Counter Symbol; This is only visible if the order expired due to STP trigger. | [optional] 
+**Pl** | Pointer to **string** | Prevented Execution Quantity; This is only visible if the order expired due to STP trigger. | [optional] 
+**PL** | Pointer to **string** | Prevented Execution Price; This is only visible if the order expired due to STP trigger. | [optional] 
+**PY** | Pointer to **string** | Prevented Execution Quote Qty; This is only visible if the order expired due to STP trigger. | [optional] 
+**ER** | Pointer to **string** | Expiry Reason; This is only visible if the order has expired. | [optional] 
+**Eq** | Pointer to **string** | Account equity in USD value | [optional] 
+**Ae** | Pointer to **string** | Actual equity without collateral rate in USD value | [optional] 
 
 ## Methods
 
@@ -76,56 +76,6 @@ will change when the set of required properties is changed
 NewUserDataStreamEventsResponseWithDefaults instantiates a new UserDataStreamEventsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetT
-
-`func (o *UserDataStreamEventsResponse) GetT() int64`
-
-GetT returns the T field if non-nil, zero value otherwise.
-
-### GetTOk
-
-`func (o *UserDataStreamEventsResponse) GetTOk() (*int64, bool)`
-
-GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetT
-
-`func (o *UserDataStreamEventsResponse) SetT(v int64)`
-
-SetT sets T field to given value.
-
-### HasT
-
-`func (o *UserDataStreamEventsResponse) HasT() bool`
-
-HasT returns a boolean if a field has been set.
-
-### GetE
-
-`func (o *UserDataStreamEventsResponse) GetE() int64`
-
-GetE returns the E field if non-nil, zero value otherwise.
-
-### GetEOk
-
-`func (o *UserDataStreamEventsResponse) GetEOk() (*int64, bool)`
-
-GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetE
-
-`func (o *UserDataStreamEventsResponse) SetE(v int64)`
-
-SetE sets E field to given value.
-
-### HasE
-
-`func (o *UserDataStreamEventsResponse) HasE() bool`
-
-HasE returns a boolean if a field has been set.
 
 ### GetFs
 
@@ -152,55 +102,55 @@ SetFs sets Fs field to given value.
 
 HasFs returns a boolean if a field has been set.
 
-### GetAo
+### GetE
 
-`func (o *UserDataStreamEventsResponse) GetAo() AlgoUpdateAo`
+`func (o *UserDataStreamEventsResponse) GetE() int64`
 
-GetAo returns the Ao field if non-nil, zero value otherwise.
+GetE returns the E field if non-nil, zero value otherwise.
 
-### GetAoOk
+### GetEOk
 
-`func (o *UserDataStreamEventsResponse) GetAoOk() (*AlgoUpdateAo, bool)`
+`func (o *UserDataStreamEventsResponse) GetEOk() (*int64, bool)`
 
-GetAoOk returns a tuple with the Ao field if it's non-nil, zero value otherwise
+GetEOk returns a tuple with the E field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAo
+### SetE
 
-`func (o *UserDataStreamEventsResponse) SetAo(v AlgoUpdateAo)`
+`func (o *UserDataStreamEventsResponse) SetE(v int64)`
 
-SetAo sets Ao field to given value.
+SetE sets E field to given value.
 
-### HasAo
+### HasE
 
-`func (o *UserDataStreamEventsResponse) HasAo() bool`
+`func (o *UserDataStreamEventsResponse) HasE() bool`
 
-HasAo returns a boolean if a field has been set.
+HasE returns a boolean if a field has been set.
 
-### GetSo
+### GetT
 
-`func (o *UserDataStreamEventsResponse) GetSo() ConditionalOrderTradeUpdateSo`
+`func (o *UserDataStreamEventsResponse) GetT() int64`
 
-GetSo returns the So field if non-nil, zero value otherwise.
+GetT returns the T field if non-nil, zero value otherwise.
 
-### GetSoOk
+### GetTOk
 
-`func (o *UserDataStreamEventsResponse) GetSoOk() (*ConditionalOrderTradeUpdateSo, bool)`
+`func (o *UserDataStreamEventsResponse) GetTOk() (*int64, bool)`
 
-GetSoOk returns a tuple with the So field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSo
+### SetT
 
-`func (o *UserDataStreamEventsResponse) SetSo(v ConditionalOrderTradeUpdateSo)`
+`func (o *UserDataStreamEventsResponse) SetT(v int64)`
 
-SetSo sets So field to given value.
+SetT sets T field to given value.
 
-### HasSo
+### HasT
 
-`func (o *UserDataStreamEventsResponse) HasSo() bool`
+`func (o *UserDataStreamEventsResponse) HasT() bool`
 
-HasSo returns a boolean if a field has been set.
+HasT returns a boolean if a field has been set.
 
 ### GetAc
 
@@ -229,20 +179,20 @@ HasAc returns a boolean if a field has been set.
 
 ### GetI
 
-`func (o *UserDataStreamEventsResponse) GetI() int64`
+`func (o *UserDataStreamEventsResponse) GetI() string`
 
 GetI returns the I field if non-nil, zero value otherwise.
 
 ### GetIOk
 
-`func (o *UserDataStreamEventsResponse) GetIOk() (*int64, bool)`
+`func (o *UserDataStreamEventsResponse) GetIOk() (*string, bool)`
 
 GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetI
 
-`func (o *UserDataStreamEventsResponse) SetI(v int64)`
+`func (o *UserDataStreamEventsResponse) SetI(v string)`
 
 SetI sets I field to given value.
 
@@ -277,130 +227,55 @@ SetA sets A field to given value.
 
 HasA returns a boolean if a field has been set.
 
-### GetO
+### GetAo
 
-`func (o *UserDataStreamEventsResponse) GetO() string`
+`func (o *UserDataStreamEventsResponse) GetAo() AlgoOrderUpdateAo`
 
-GetO returns the O field if non-nil, zero value otherwise.
+GetAo returns the Ao field if non-nil, zero value otherwise.
 
-### GetOOk
+### GetAoOk
 
-`func (o *UserDataStreamEventsResponse) GetOOk() (*string, bool)`
+`func (o *UserDataStreamEventsResponse) GetAoOk() (*AlgoOrderUpdateAo, bool)`
 
-GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+GetAoOk returns a tuple with the Ao field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetO
+### SetAo
 
-`func (o *UserDataStreamEventsResponse) SetO(v string)`
+`func (o *UserDataStreamEventsResponse) SetAo(v AlgoOrderUpdateAo)`
 
-SetO sets O field to given value.
+SetAo sets Ao field to given value.
 
-### HasO
+### HasAo
 
-`func (o *UserDataStreamEventsResponse) HasO() bool`
+`func (o *UserDataStreamEventsResponse) HasAo() bool`
 
-HasO returns a boolean if a field has been set.
+HasAo returns a boolean if a field has been set.
 
-### GetT
+### GetD
 
-`func (o *UserDataStreamEventsResponse) GetT() int64`
+`func (o *UserDataStreamEventsResponse) GetD() int64`
 
-GetT returns the T field if non-nil, zero value otherwise.
+GetD returns the D field if non-nil, zero value otherwise.
 
-### GetTOk
+### GetDOk
 
-`func (o *UserDataStreamEventsResponse) GetTOk() (*int64, bool)`
+`func (o *UserDataStreamEventsResponse) GetDOk() (*int64, bool)`
 
-GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+GetDOk returns a tuple with the D field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetT
+### SetD
 
-`func (o *UserDataStreamEventsResponse) SetT(v int64)`
+`func (o *UserDataStreamEventsResponse) SetD(v int64)`
 
-SetT sets T field to given value.
+SetD sets D field to given value.
 
-### HasT
+### HasD
 
-`func (o *UserDataStreamEventsResponse) HasT() bool`
+`func (o *UserDataStreamEventsResponse) HasD() bool`
 
-HasT returns a boolean if a field has been set.
-
-### GetP
-
-`func (o *UserDataStreamEventsResponse) GetP() string`
-
-GetP returns the P field if non-nil, zero value otherwise.
-
-### GetPOk
-
-`func (o *UserDataStreamEventsResponse) GetPOk() (*string, bool)`
-
-GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetP
-
-`func (o *UserDataStreamEventsResponse) SetP(v string)`
-
-SetP sets P field to given value.
-
-### HasP
-
-`func (o *UserDataStreamEventsResponse) HasP() bool`
-
-HasP returns a boolean if a field has been set.
-
-### GetL
-
-`func (o *UserDataStreamEventsResponse) GetL() string`
-
-GetL returns the L field if non-nil, zero value otherwise.
-
-### GetLOk
-
-`func (o *UserDataStreamEventsResponse) GetLOk() (*string, bool)`
-
-GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetL
-
-`func (o *UserDataStreamEventsResponse) SetL(v string)`
-
-SetL sets L field to given value.
-
-### HasL
-
-`func (o *UserDataStreamEventsResponse) HasL() bool`
-
-HasL returns a boolean if a field has been set.
-
-### GetU
-
-`func (o *UserDataStreamEventsResponse) GetU() string`
-
-GetU returns the U field if non-nil, zero value otherwise.
-
-### GetUOk
-
-`func (o *UserDataStreamEventsResponse) GetUOk() (*string, bool)`
-
-GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetU
-
-`func (o *UserDataStreamEventsResponse) SetU(v string)`
-
-SetU sets U field to given value.
-
-### HasU
-
-`func (o *UserDataStreamEventsResponse) HasU() bool`
-
-HasU returns a boolean if a field has been set.
+HasD returns a boolean if a field has been set.
 
 ### GetU
 
@@ -427,55 +302,30 @@ SetU sets U field to given value.
 
 HasU returns a boolean if a field has been set.
 
-### GetB
+### GetSo
 
-`func (o *UserDataStreamEventsResponse) GetB() string`
+`func (o *UserDataStreamEventsResponse) GetSo() ConditionalOrderTradeUpdateSo`
 
-GetB returns the B field if non-nil, zero value otherwise.
+GetSo returns the So field if non-nil, zero value otherwise.
 
-### GetBOk
+### GetSoOk
 
-`func (o *UserDataStreamEventsResponse) GetBOk() (*string, bool)`
+`func (o *UserDataStreamEventsResponse) GetSoOk() (*ConditionalOrderTradeUpdateSo, bool)`
 
-GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+GetSoOk returns a tuple with the So field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetB
+### SetSo
 
-`func (o *UserDataStreamEventsResponse) SetB(v string)`
+`func (o *UserDataStreamEventsResponse) SetSo(v ConditionalOrderTradeUpdateSo)`
 
-SetB sets B field to given value.
+SetSo sets So field to given value.
 
-### HasB
+### HasSo
 
-`func (o *UserDataStreamEventsResponse) HasB() bool`
+`func (o *UserDataStreamEventsResponse) HasSo() bool`
 
-HasB returns a boolean if a field has been set.
-
-### GetD
-
-`func (o *UserDataStreamEventsResponse) GetD() int64`
-
-GetD returns the D field if non-nil, zero value otherwise.
-
-### GetDOk
-
-`func (o *UserDataStreamEventsResponse) GetDOk() (*int64, bool)`
-
-GetDOk returns a tuple with the D field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetD
-
-`func (o *UserDataStreamEventsResponse) SetD(v int64)`
-
-SetD sets D field to given value.
-
-### HasD
-
-`func (o *UserDataStreamEventsResponse) HasD() bool`
-
-HasD returns a boolean if a field has been set.
+HasSo returns a boolean if a field has been set.
 
 ### GetS
 
@@ -552,6 +402,31 @@ SetS sets S field to given value.
 
 HasS returns a boolean if a field has been set.
 
+### GetO
+
+`func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
+
+GetO returns the O field if non-nil, zero value otherwise.
+
+### GetOOk
+
+`func (o *UserDataStreamEventsResponse) GetOOk() (*OrderTradeUpdateO, bool)`
+
+GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetO
+
+`func (o *UserDataStreamEventsResponse) SetO(v OrderTradeUpdateO)`
+
+SetO sets O field to given value.
+
+### HasO
+
+`func (o *UserDataStreamEventsResponse) HasO() bool`
+
+HasO returns a boolean if a field has been set.
+
 ### GetF
 
 `func (o *UserDataStreamEventsResponse) GetF() string`
@@ -601,6 +476,31 @@ SetQ sets Q field to given value.
 `func (o *UserDataStreamEventsResponse) HasQ() bool`
 
 HasQ returns a boolean if a field has been set.
+
+### GetP
+
+`func (o *UserDataStreamEventsResponse) GetP() string`
+
+GetP returns the P field if non-nil, zero value otherwise.
+
+### GetPOk
+
+`func (o *UserDataStreamEventsResponse) GetPOk() (*string, bool)`
+
+GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetP
+
+`func (o *UserDataStreamEventsResponse) SetP(v string)`
+
+SetP sets P field to given value.
+
+### HasP
+
+`func (o *UserDataStreamEventsResponse) HasP() bool`
+
+HasP returns a boolean if a field has been set.
 
 ### GetP
 
@@ -777,6 +677,31 @@ SetR sets R field to given value.
 
 HasR returns a boolean if a field has been set.
 
+### GetL
+
+`func (o *UserDataStreamEventsResponse) GetL() string`
+
+GetL returns the L field if non-nil, zero value otherwise.
+
+### GetLOk
+
+`func (o *UserDataStreamEventsResponse) GetLOk() (*string, bool)`
+
+GetLOk returns a tuple with the L field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetL
+
+`func (o *UserDataStreamEventsResponse) SetL(v string)`
+
+SetL sets L field to given value.
+
+### HasL
+
+`func (o *UserDataStreamEventsResponse) HasL() bool`
+
+HasL returns a boolean if a field has been set.
+
 ### GetZ
 
 `func (o *UserDataStreamEventsResponse) GetZ() string`
@@ -876,6 +801,31 @@ SetN sets N field to given value.
 `func (o *UserDataStreamEventsResponse) HasN() bool`
 
 HasN returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *UserDataStreamEventsResponse) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UserDataStreamEventsResponse) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UserDataStreamEventsResponse) SetT(v string)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *UserDataStreamEventsResponse) HasT() bool`
+
+HasT returns a boolean if a field has been set.
 
 ### GetV
 
@@ -979,20 +929,20 @@ HasM returns a boolean if a field has been set.
 
 ### GetO
 
-`func (o *UserDataStreamEventsResponse) GetO() []OpenorderlossOInner`
+`func (o *UserDataStreamEventsResponse) GetO() []OpenOrderLossOInner`
 
 GetO returns the O field if non-nil, zero value otherwise.
 
 ### GetOOk
 
-`func (o *UserDataStreamEventsResponse) GetOOk() (*[]OpenorderlossOInner, bool)`
+`func (o *UserDataStreamEventsResponse) GetOOk() (*[]OpenOrderLossOInner, bool)`
 
 GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetO
 
-`func (o *UserDataStreamEventsResponse) SetO(v []OpenorderlossOInner)`
+`func (o *UserDataStreamEventsResponse) SetO(v []OpenOrderLossOInner)`
 
 SetO sets O field to given value.
 
@@ -1202,6 +1152,31 @@ SetV sets V field to given value.
 
 HasV returns a boolean if a field has been set.
 
+### GetU
+
+`func (o *UserDataStreamEventsResponse) GetU() string`
+
+GetU returns the U field if non-nil, zero value otherwise.
+
+### GetUOk
+
+`func (o *UserDataStreamEventsResponse) GetUOk() (*string, bool)`
+
+GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetU
+
+`func (o *UserDataStreamEventsResponse) SetU(v string)`
+
+SetU sets U field to given value.
+
+### HasU
+
+`func (o *UserDataStreamEventsResponse) HasU() bool`
+
+HasU returns a boolean if a field has been set.
+
 ### GetA
 
 `func (o *UserDataStreamEventsResponse) GetA() string`
@@ -1226,6 +1201,31 @@ SetA sets A field to given value.
 `func (o *UserDataStreamEventsResponse) HasA() bool`
 
 HasA returns a boolean if a field has been set.
+
+### GetB
+
+`func (o *UserDataStreamEventsResponse) GetB() []OutboundAccountPositionBInner`
+
+GetB returns the B field if non-nil, zero value otherwise.
+
+### GetBOk
+
+`func (o *UserDataStreamEventsResponse) GetBOk() (*[]OutboundAccountPositionBInner, bool)`
+
+GetBOk returns a tuple with the B field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetB
+
+`func (o *UserDataStreamEventsResponse) SetB(v []OutboundAccountPositionBInner)`
+
+SetB sets B field to given value.
+
+### HasB
+
+`func (o *UserDataStreamEventsResponse) HasB() bool`
+
+HasB returns a boolean if a field has been set.
 
 ### GetCs
 

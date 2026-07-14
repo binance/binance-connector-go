@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,20 +17,21 @@ var _ common.MappedNullable = &PlaceMultipleOrdersBatchOrdersParameterInner{}
 
 // PlaceMultipleOrdersBatchOrdersParameterInner struct for PlaceMultipleOrdersBatchOrdersParameterInner
 type PlaceMultipleOrdersBatchOrdersParameterInner struct {
-	Symbol                  *string                                       `json:"symbol,omitempty"`
-	Side                    *NewAlgoOrderSideParameter                    `json:"side,omitempty"`
-	PositionSide            *NewAlgoOrderPositionSideParameter            `json:"positionSide,omitempty"`
-	Type                    *string                                       `json:"type,omitempty"`
-	TimeInForce             *NewAlgoOrderTimeInForceParameter             `json:"timeInForce,omitempty"`
-	Quantity                *string                                       `json:"quantity,omitempty"`
-	ReduceOnly              *string                                       `json:"reduceOnly,omitempty"`
-	Price                   *string                                       `json:"price,omitempty"`
-	NewClientOrderId        *string                                       `json:"newClientOrderId,omitempty"`
-	NewOrderRespType        *NewAlgoOrderNewOrderRespTypeParameter        `json:"newOrderRespType,omitempty"`
-	PriceMatch              *NewAlgoOrderPriceMatchParameter              `json:"priceMatch,omitempty"`
-	SelfTradePreventionMode *NewAlgoOrderSelfTradePreventionModeParameter `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *string                                       `json:"goodTillDate,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	Symbol                  *string                                                              `json:"symbol,omitempty"`
+	Side                    *NewAlgoOrderSideParameter                                           `json:"side,omitempty"`
+	PositionSide            *PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide            `json:"positionSide,omitempty"`
+	Type                    *PlaceMultipleOrdersBatchOrdersParameterInnerType                    `json:"type,omitempty"`
+	TimeInForce             *NewAlgoOrderTimeInForceParameter                                    `json:"timeInForce,omitempty"`
+	Quantity                *float32                                                             `json:"quantity,omitempty"`
+	ReduceOnly              *PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly              `json:"reduceOnly,omitempty"`
+	Price                   *float32                                                             `json:"price,omitempty"`
+	NewClientOrderId        *string                                                              `json:"newClientOrderId,omitempty"`
+	NewOrderRespType        *PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType        `json:"newOrderRespType,omitempty"`
+	PriceMatch              *PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch              `json:"priceMatch,omitempty"`
+	SelfTradePreventionMode *PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode `json:"selfTradePreventionMode,omitempty"`
+	// Auto-cancel time for `GTD` orders.
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PlaceMultipleOrdersBatchOrdersParameterInner PlaceMultipleOrdersBatchOrdersParameterInner
@@ -41,6 +42,22 @@ type _PlaceMultipleOrdersBatchOrdersParameterInner PlaceMultipleOrdersBatchOrder
 // will change when the set of required properties is changed
 func NewPlaceMultipleOrdersBatchOrdersParameterInner() *PlaceMultipleOrdersBatchOrdersParameterInner {
 	this := PlaceMultipleOrdersBatchOrdersParameterInner{}
+	var side = NewAlgoOrderSideParameterBuy
+	this.Side = &side
+	var positionSide = PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth
+	this.PositionSide = &positionSide
+	var type_ = PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit
+	this.Type = &type_
+	var timeInForce = NewAlgoOrderTimeInForceParameterGtc
+	this.TimeInForce = &timeInForce
+	var reduceOnly = PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnlyTrue
+	this.ReduceOnly = &reduceOnly
+	var newOrderRespType = PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespTypeAck
+	this.NewOrderRespType = &newOrderRespType
+	var priceMatch = PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent
+	this.PriceMatch = &priceMatch
+	var selfTradePreventionMode = PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone
+	this.SelfTradePreventionMode = &selfTradePreventionMode
 	return &this
 }
 
@@ -49,6 +66,22 @@ func NewPlaceMultipleOrdersBatchOrdersParameterInner() *PlaceMultipleOrdersBatch
 // but it doesn't guarantee that properties required by API are set
 func NewPlaceMultipleOrdersBatchOrdersParameterInnerWithDefaults() *PlaceMultipleOrdersBatchOrdersParameterInner {
 	this := PlaceMultipleOrdersBatchOrdersParameterInner{}
+	var side = NewAlgoOrderSideParameterBuy
+	this.Side = &side
+	var positionSide = PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth
+	this.PositionSide = &positionSide
+	var type_ = PlaceMultipleOrdersBatchOrdersParameterInnerTypeLimit
+	this.Type = &type_
+	var timeInForce = NewAlgoOrderTimeInForceParameterGtc
+	this.TimeInForce = &timeInForce
+	var reduceOnly = PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnlyTrue
+	this.ReduceOnly = &reduceOnly
+	var newOrderRespType = PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespTypeAck
+	this.NewOrderRespType = &newOrderRespType
+	var priceMatch = PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent
+	this.PriceMatch = &priceMatch
+	var selfTradePreventionMode = PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone
+	this.SelfTradePreventionMode = &selfTradePreventionMode
 	return &this
 }
 
@@ -117,9 +150,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSide(v NewAlgoOrderSid
 }
 
 // GetPositionSide returns the PositionSide field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSide() NewAlgoOrderPositionSideParameter {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSide() PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide {
 	if o == nil || common.IsNil(o.PositionSide) {
-		var ret NewAlgoOrderPositionSideParameter
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide
 		return ret
 	}
 	return *o.PositionSide
@@ -127,7 +160,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSide() NewAlgo
 
 // GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSideOk() (*NewAlgoOrderPositionSideParameter, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPositionSideOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide, bool) {
 	if o == nil || common.IsNil(o.PositionSide) {
 		return nil, false
 	}
@@ -143,15 +176,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasPositionSide() bool {
 	return false
 }
 
-// SetPositionSide gets a reference to the given NewAlgoOrderPositionSideParameter and assigns it to the PositionSide field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPositionSide(v NewAlgoOrderPositionSideParameter) {
+// SetPositionSide gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide and assigns it to the PositionSide field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPositionSide(v PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide) {
 	o.PositionSide = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetType() string {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetType() PlaceMultipleOrdersBatchOrdersParameterInnerType {
 	if o == nil || common.IsNil(o.Type) {
-		var ret string
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerType
 		return ret
 	}
 	return *o.Type
@@ -159,7 +192,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTypeOk() (*string, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerType, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
@@ -175,8 +208,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetType(v string) {
+// SetType gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerType and assigns it to the Type field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetType(v PlaceMultipleOrdersBatchOrdersParameterInnerType) {
 	o.Type = &v
 }
 
@@ -213,9 +246,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v NewAlgoO
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Quantity
@@ -223,7 +256,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() string {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*string, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -239,15 +272,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v string) {
+// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
 	o.Quantity = &v
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnly() string {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnly() PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly {
 	if o == nil || common.IsNil(o.ReduceOnly) {
-		var ret string
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly
 		return ret
 	}
 	return *o.ReduceOnly
@@ -255,7 +288,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnly() string {
 
 // GetReduceOnlyOk returns a tuple with the ReduceOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnlyOk() (*string, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetReduceOnlyOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly, bool) {
 	if o == nil || common.IsNil(o.ReduceOnly) {
 		return nil, false
 	}
@@ -271,15 +304,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasReduceOnly() bool {
 	return false
 }
 
-// SetReduceOnly gets a reference to the given string and assigns it to the ReduceOnly field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v string) {
+// SetReduceOnly gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly and assigns it to the ReduceOnly field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly) {
 	o.ReduceOnly = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Price
@@ -287,7 +320,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*string, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -303,8 +336,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v string) {
+// SetPrice gets a reference to the given float32 and assigns it to the Price field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
 	o.Price = &v
 }
 
@@ -341,9 +374,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewClientOrderId(v str
 }
 
 // GetNewOrderRespType returns the NewOrderRespType field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() NewAlgoOrderNewOrderRespTypeParameter {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType {
 	if o == nil || common.IsNil(o.NewOrderRespType) {
-		var ret NewAlgoOrderNewOrderRespTypeParameter
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType
 		return ret
 	}
 	return *o.NewOrderRespType
@@ -351,7 +384,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespType() New
 
 // GetNewOrderRespTypeOk returns a tuple with the NewOrderRespType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*NewAlgoOrderNewOrderRespTypeParameter, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetNewOrderRespTypeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType, bool) {
 	if o == nil || common.IsNil(o.NewOrderRespType) {
 		return nil, false
 	}
@@ -367,15 +400,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasNewOrderRespType() boo
 	return false
 }
 
-// SetNewOrderRespType gets a reference to the given NewAlgoOrderNewOrderRespTypeParameter and assigns it to the NewOrderRespType field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v NewAlgoOrderNewOrderRespTypeParameter) {
+// SetNewOrderRespType gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType and assigns it to the NewOrderRespType field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewOrderRespType(v PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType) {
 	o.NewOrderRespType = &v
 }
 
 // GetPriceMatch returns the PriceMatch field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() NewAlgoOrderPriceMatchParameter {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch {
 	if o == nil || common.IsNil(o.PriceMatch) {
-		var ret NewAlgoOrderPriceMatchParameter
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch
 		return ret
 	}
 	return *o.PriceMatch
@@ -383,7 +416,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatch() NewAlgoOr
 
 // GetPriceMatchOk returns a tuple with the PriceMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*NewAlgoOrderPriceMatchParameter, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceMatchOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch, bool) {
 	if o == nil || common.IsNil(o.PriceMatch) {
 		return nil, false
 	}
@@ -399,15 +432,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasPriceMatch() bool {
 	return false
 }
 
-// SetPriceMatch gets a reference to the given NewAlgoOrderPriceMatchParameter and assigns it to the PriceMatch field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v NewAlgoOrderPriceMatchParameter) {
+// SetPriceMatch gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch and assigns it to the PriceMatch field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch) {
 	o.PriceMatch = &v
 }
 
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionMode() NewAlgoOrderSelfTradePreventionModeParameter {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionMode() PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
-		var ret NewAlgoOrderSelfTradePreventionModeParameter
+		var ret PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode
 		return ret
 	}
 	return *o.SelfTradePreventionMode
@@ -415,7 +448,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionMod
 
 // GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionModeOk() (*NewAlgoOrderSelfTradePreventionModeParameter, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSelfTradePreventionModeOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode, bool) {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
 		return nil, false
 	}
@@ -431,15 +464,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasSelfTradePreventionMod
 	return false
 }
 
-// SetSelfTradePreventionMode gets a reference to the given NewAlgoOrderSelfTradePreventionModeParameter and assigns it to the SelfTradePreventionMode field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSelfTradePreventionMode(v NewAlgoOrderSelfTradePreventionModeParameter) {
+// SetSelfTradePreventionMode gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode and assigns it to the SelfTradePreventionMode field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSelfTradePreventionMode(v PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode) {
 	o.SelfTradePreventionMode = &v
 }
 
 // GetGoodTillDate returns the GoodTillDate field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDate() string {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDate() int64 {
 	if o == nil || common.IsNil(o.GoodTillDate) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.GoodTillDate
@@ -447,7 +480,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDate() string 
 
 // GetGoodTillDateOk returns a tuple with the GoodTillDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDateOk() (*string, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetGoodTillDateOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.GoodTillDate) {
 		return nil, false
 	}
@@ -463,8 +496,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasGoodTillDate() bool {
 	return false
 }
 
-// SetGoodTillDate gets a reference to the given string and assigns it to the GoodTillDate field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetGoodTillDate(v string) {
+// SetGoodTillDate gets a reference to the given int64 and assigns it to the GoodTillDate field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetGoodTillDate(v int64) {
 	o.GoodTillDate = &v
 }
 

@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**B** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**W** | Pointer to **string** |  | [optional] 
-**W** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **string** |  | [optional] 
+**B** | Pointer to **string** | Base asset | [optional] 
+**Q** | Pointer to **string** | Quote asset | [optional] 
+**W** | Pointer to **string** | Weight in quantity | [optional] 
+**W** | Pointer to **string** | Weight in percentage | [optional] 
+**I** | Pointer to **string** | Index price | [optional] 
 
 ## Methods
 

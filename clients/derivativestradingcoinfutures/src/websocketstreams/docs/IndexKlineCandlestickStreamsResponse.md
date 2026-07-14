@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | eventType | [optional] 
+**E** | Pointer to **int64** | eventTime | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
 **K** | Pointer to [**IndexKlineCandlestickStreamsResponseK**](IndexKlineCandlestickStreamsResponseK.md) |  | [optional] 
 
 ## Methods

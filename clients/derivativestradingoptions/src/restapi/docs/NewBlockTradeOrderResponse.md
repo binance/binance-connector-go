@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**BlockTradeSettlementKey** | Pointer to **string** |  | [optional] 
-**ExpireTime** | Pointer to **int64** |  | [optional] 
-**Liquidity** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Legs** | Pointer to [**[]ExtendBlockTradeOrderResponseLegsInner**](ExtendBlockTradeOrderResponseLegsInner.md) |  | [optional] 
+**BlockTradeSettlementKey** | Pointer to **string** | block Trade Settlement Key | [optional] 
+**ExpireTime** | Pointer to **int64** | expire Time | [optional] 
+**Liquidity** | Pointer to **string** | liquidity | [optional] 
+**Status** | Pointer to **string** | status | [optional] 
+**Legs** | Pointer to [**[]ExtendBlockTradeOrderResponseLegsInner**](ExtendBlockTradeOrderResponseLegsInner.md) | legs | [optional] 
 
 ## Methods
 

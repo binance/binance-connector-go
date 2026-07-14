@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Ct** | Pointer to **string** |  | [optional] 
-**Dt** | Pointer to **int64** |  | [optional] 
-**Ot** | Pointer to **int64** |  | [optional] 
-**Cs** | Pointer to **string** |  | [optional] 
-**Bks** | Pointer to [**[]ContractInfoStreamResponseBksInner**](ContractInfoStreamResponseBksInner.md) |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type. | [optional] 
+**E** | Pointer to **int64** | Event time. | [optional] 
+**S** | Pointer to **string** | Symbol. | [optional] 
+**Ct** | Pointer to **string** | Contract type. | [optional] 
+**Dt** | Pointer to **int64** | Delivery date time. | [optional] 
+**Ot** | Pointer to **int64** | Onboard date time. | [optional] 
+**Cs** | Pointer to **string** | Contract status. | [optional] 
+**Bks** | Pointer to [**[]ContractInfoStreamResponseBksInner**](ContractInfoStreamResponseBksInner.md) | Notional bracket updates. | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -235,20 +235,20 @@ HasBks returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *ContractInfoStreamResponse) GetSt() int64`
+`func (o *ContractInfoStreamResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *ContractInfoStreamResponse) GetStOk() (*int64, bool)`
+`func (o *ContractInfoStreamResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *ContractInfoStreamResponse) SetSt(v int64)`
+`func (o *ContractInfoStreamResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

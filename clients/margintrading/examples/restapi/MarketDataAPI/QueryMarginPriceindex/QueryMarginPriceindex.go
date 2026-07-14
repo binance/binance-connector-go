@@ -21,7 +21,7 @@ func QueryMarginPriceindex() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginPriceindex(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginPriceindex(context.Background()).Symbol("BNBBTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,28 +17,49 @@ var _ common.MappedNullable = &AccountInformationV2Response{}
 
 // AccountInformationV2Response struct for AccountInformationV2Response
 type AccountInformationV2Response struct {
-	FeeTier                     *int64                                       `json:"feeTier,omitempty"`
-	FeeBurn                     *bool                                        `json:"feeBurn,omitempty"`
-	CanDeposit                  *bool                                        `json:"canDeposit,omitempty"`
-	CanWithdraw                 *bool                                        `json:"canWithdraw,omitempty"`
-	UpdateTime                  *int64                                       `json:"updateTime,omitempty"`
-	MultiAssetsMargin           *bool                                        `json:"multiAssetsMargin,omitempty"`
-	TradeGroupId                *int64                                       `json:"tradeGroupId,omitempty"`
-	TotalInitialMargin          *string                                      `json:"totalInitialMargin,omitempty"`
-	TotalMaintMargin            *string                                      `json:"totalMaintMargin,omitempty"`
-	TotalWalletBalance          *string                                      `json:"totalWalletBalance,omitempty"`
-	TotalUnrealizedProfit       *string                                      `json:"totalUnrealizedProfit,omitempty"`
-	TotalMarginBalance          *string                                      `json:"totalMarginBalance,omitempty"`
-	TotalPositionInitialMargin  *string                                      `json:"totalPositionInitialMargin,omitempty"`
-	TotalOpenOrderInitialMargin *string                                      `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalCrossWalletBalance     *string                                      `json:"totalCrossWalletBalance,omitempty"`
-	TotalCrossUnPnl             *string                                      `json:"totalCrossUnPnl,omitempty"`
-	AvailableBalance            *string                                      `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount           *string                                      `json:"maxWithdrawAmount,omitempty"`
-	Assets                      []AccountInformationV2ResponseAssetsInner    `json:"assets,omitempty"`
-	Positions                   []AccountInformationV2ResponsePositionsInner `json:"positions,omitempty"`
-	CanTrade                    *bool                                        `json:"canTrade,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	// Account commission tier.
+	FeeTier *int64 `json:"feeTier,omitempty"`
+	// Whether fee discount is enabled.
+	FeeBurn *bool `json:"feeBurn,omitempty"`
+	// Whether trading is enabled.
+	CanTrade *bool `json:"canTrade,omitempty"`
+	// Whether transfer-in is enabled.
+	CanDeposit *bool `json:"canDeposit,omitempty"`
+	// Whether transfer-out is enabled.
+	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	// Reserved field, ignore.
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Whether multi-assets mode is enabled.
+	MultiAssetsMargin *bool `json:"multiAssetsMargin,omitempty"`
+	// Trade group identifier.
+	TradeGroupId *int64 `json:"tradeGroupId,omitempty"`
+	// Total initial margin requirement.
+	TotalInitialMargin *string `json:"totalInitialMargin,omitempty"`
+	// Total maintenance margin requirement.
+	TotalMaintMargin *string `json:"totalMaintMargin,omitempty"`
+	// Total wallet balance.
+	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
+	// Total unrealized profit.
+	TotalUnrealizedProfit *string `json:"totalUnrealizedProfit,omitempty"`
+	// Total margin balance.
+	TotalMarginBalance *string `json:"totalMarginBalance,omitempty"`
+	// Initial margin required for positions.
+	TotalPositionInitialMargin *string `json:"totalPositionInitialMargin,omitempty"`
+	// Initial margin required for open orders.
+	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
+	// Cross wallet balance.
+	TotalCrossWalletBalance *string `json:"totalCrossWalletBalance,omitempty"`
+	// Unrealized PnL for cross positions.
+	TotalCrossUnPnl *string `json:"totalCrossUnPnl,omitempty"`
+	// Available balance.
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// Maximum transferable/withdrawable amount.
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// Asset-level account details.
+	Assets []AccountInformationV2ResponseAssetsInner `json:"assets,omitempty"`
+	// Position details for symbols. One-way mode returns BOTH; hedge mode returns LONG/SHORT.
+	Positions            []AccountInformationV2ResponsePositionsInner `json:"positions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV2Response AccountInformationV2Response
@@ -122,6 +143,38 @@ func (o *AccountInformationV2Response) HasFeeBurn() bool {
 // SetFeeBurn gets a reference to the given bool and assigns it to the FeeBurn field.
 func (o *AccountInformationV2Response) SetFeeBurn(v bool) {
 	o.FeeBurn = &v
+}
+
+// GetCanTrade returns the CanTrade field value if set, zero value otherwise.
+func (o *AccountInformationV2Response) GetCanTrade() bool {
+	if o == nil || common.IsNil(o.CanTrade) {
+		var ret bool
+		return ret
+	}
+	return *o.CanTrade
+}
+
+// GetCanTradeOk returns a tuple with the CanTrade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountInformationV2Response) GetCanTradeOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanTrade) {
+		return nil, false
+	}
+	return o.CanTrade, true
+}
+
+// HasCanTrade returns a boolean if a field has been set.
+func (o *AccountInformationV2Response) HasCanTrade() bool {
+	if o != nil && !common.IsNil(o.CanTrade) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanTrade gets a reference to the given bool and assigns it to the CanTrade field.
+func (o *AccountInformationV2Response) SetCanTrade(v bool) {
+	o.CanTrade = &v
 }
 
 // GetCanDeposit returns the CanDeposit field value if set, zero value otherwise.
@@ -700,38 +753,6 @@ func (o *AccountInformationV2Response) SetPositions(v []AccountInformationV2Resp
 	o.Positions = v
 }
 
-// GetCanTrade returns the CanTrade field value if set, zero value otherwise.
-func (o *AccountInformationV2Response) GetCanTrade() bool {
-	if o == nil || common.IsNil(o.CanTrade) {
-		var ret bool
-		return ret
-	}
-	return *o.CanTrade
-}
-
-// GetCanTradeOk returns a tuple with the CanTrade field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountInformationV2Response) GetCanTradeOk() (*bool, bool) {
-	if o == nil || common.IsNil(o.CanTrade) {
-		return nil, false
-	}
-	return o.CanTrade, true
-}
-
-// HasCanTrade returns a boolean if a field has been set.
-func (o *AccountInformationV2Response) HasCanTrade() bool {
-	if o != nil && !common.IsNil(o.CanTrade) {
-		return true
-	}
-
-	return false
-}
-
-// SetCanTrade gets a reference to the given bool and assigns it to the CanTrade field.
-func (o *AccountInformationV2Response) SetCanTrade(v bool) {
-	o.CanTrade = &v
-}
-
 func (o AccountInformationV2Response) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -747,6 +768,9 @@ func (o AccountInformationV2Response) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.FeeBurn) {
 		toSerialize["feeBurn"] = o.FeeBurn
+	}
+	if !common.IsNil(o.CanTrade) {
+		toSerialize["canTrade"] = o.CanTrade
 	}
 	if !common.IsNil(o.CanDeposit) {
 		toSerialize["canDeposit"] = o.CanDeposit
@@ -802,9 +826,6 @@ func (o AccountInformationV2Response) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Positions) {
 		toSerialize["positions"] = o.Positions
 	}
-	if !common.IsNil(o.CanTrade) {
-		toSerialize["canTrade"] = o.CanTrade
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -829,6 +850,7 @@ func (o *AccountInformationV2Response) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "feeTier")
 		delete(additionalProperties, "feeBurn")
+		delete(additionalProperties, "canTrade")
 		delete(additionalProperties, "canDeposit")
 		delete(additionalProperties, "canWithdraw")
 		delete(additionalProperties, "updateTime")
@@ -847,7 +869,6 @@ func (o *AccountInformationV2Response) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "maxWithdrawAmount")
 		delete(additionalProperties, "assets")
 		delete(additionalProperties, "positions")
-		delete(additionalProperties, "canTrade")
 		o.AdditionalProperties = additionalProperties
 	}
 

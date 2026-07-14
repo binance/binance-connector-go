@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket Streams
+Spot WebSocket Market Streams
 
-OpenAPI Specifications for the Binance Spot WebSocket Streams  API documents:   - [Github web-socket-streams documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md)   - [General API information for web-socket-streams on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &DiffBookDepthResponse{}
 
 // DiffBookDepthResponse struct for DiffBookDepthResponse
 type DiffBookDepthResponse struct {
-	Smalle               *string    `json:"e,omitempty"`
-	E                    *int64     `json:"E,omitempty"`
-	S                    *string    `json:"s,omitempty"`
-	U                    *int64     `json:"U,omitempty"`
-	Smallu               *int64     `json:"u,omitempty"`
-	B                    [][]string `json:"b,omitempty"`
-	A                    [][]string `json:"a,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// First update ID in event
+	U *int64 `json:"U,omitempty"`
+	// Final update ID in event
+	Smallu *int64 `json:"u,omitempty"`
+	// Bids to be updated
+	Smallb [][]string `json:"b,omitempty"`
+	// Asks to be updated
+	Smalla               [][]string `json:"a,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -111,26 +118,26 @@ func (o *DiffBookDepthResponse) SetE(v int64) {
 }
 
 // GetS returns the S field value if set, zero value otherwise.
-func (o *DiffBookDepthResponse) GetS() string {
-	if o == nil || common.IsNil(o.S) {
+func (o *DiffBookDepthResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
 		var ret string
 		return ret
 	}
-	return *o.S
+	return *o.Smalls
 }
 
 // GetSOk returns a tuple with the S field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiffBookDepthResponse) GetSOk() (*string, bool) {
-	if o == nil || common.IsNil(o.S) {
+func (o *DiffBookDepthResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
 		return nil, false
 	}
-	return o.S, true
+	return o.Smalls, true
 }
 
 // HasS returns a boolean if a field has been set.
-func (o *DiffBookDepthResponse) HasS() bool {
-	if o != nil && !common.IsNil(o.S) {
+func (o *DiffBookDepthResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
 		return true
 	}
 
@@ -138,8 +145,8 @@ func (o *DiffBookDepthResponse) HasS() bool {
 }
 
 // SetS gets a reference to the given string and assigns it to the S field.
-func (o *DiffBookDepthResponse) SetS(v string) {
-	o.S = &v
+func (o *DiffBookDepthResponse) SetSmalls(v string) {
+	o.Smalls = &v
 }
 
 // GetU returns the U field value if set, zero value otherwise.
@@ -207,26 +214,26 @@ func (o *DiffBookDepthResponse) SetSmallu(v int64) {
 }
 
 // GetB returns the B field value if set, zero value otherwise.
-func (o *DiffBookDepthResponse) GetB() [][]string {
-	if o == nil || common.IsNil(o.B) {
+func (o *DiffBookDepthResponse) GetSmallb() [][]string {
+	if o == nil || common.IsNil(o.Smallb) {
 		var ret [][]string
 		return ret
 	}
-	return o.B
+	return o.Smallb
 }
 
 // GetBOk returns a tuple with the B field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiffBookDepthResponse) GetBOk() ([][]string, bool) {
-	if o == nil || common.IsNil(o.B) {
+func (o *DiffBookDepthResponse) GetSmallbOk() ([][]string, bool) {
+	if o == nil || common.IsNil(o.Smallb) {
 		return nil, false
 	}
-	return o.B, true
+	return o.Smallb, true
 }
 
 // HasB returns a boolean if a field has been set.
-func (o *DiffBookDepthResponse) HasB() bool {
-	if o != nil && !common.IsNil(o.B) {
+func (o *DiffBookDepthResponse) HasSmallb() bool {
+	if o != nil && !common.IsNil(o.Smallb) {
 		return true
 	}
 
@@ -234,31 +241,31 @@ func (o *DiffBookDepthResponse) HasB() bool {
 }
 
 // SetB gets a reference to the given [][]string and assigns it to the B field.
-func (o *DiffBookDepthResponse) SetB(v [][]string) {
-	o.B = v
+func (o *DiffBookDepthResponse) SetSmallb(v [][]string) {
+	o.Smallb = v
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *DiffBookDepthResponse) GetA() [][]string {
-	if o == nil || common.IsNil(o.A) {
+func (o *DiffBookDepthResponse) GetSmalla() [][]string {
+	if o == nil || common.IsNil(o.Smalla) {
 		var ret [][]string
 		return ret
 	}
-	return o.A
+	return o.Smalla
 }
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiffBookDepthResponse) GetAOk() ([][]string, bool) {
-	if o == nil || common.IsNil(o.A) {
+func (o *DiffBookDepthResponse) GetSmallaOk() ([][]string, bool) {
+	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
-	return o.A, true
+	return o.Smalla, true
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *DiffBookDepthResponse) HasA() bool {
-	if o != nil && !common.IsNil(o.A) {
+func (o *DiffBookDepthResponse) HasSmalla() bool {
+	if o != nil && !common.IsNil(o.Smalla) {
 		return true
 	}
 
@@ -266,8 +273,8 @@ func (o *DiffBookDepthResponse) HasA() bool {
 }
 
 // SetA gets a reference to the given [][]string and assigns it to the A field.
-func (o *DiffBookDepthResponse) SetA(v [][]string) {
-	o.A = v
+func (o *DiffBookDepthResponse) SetSmalla(v [][]string) {
+	o.Smalla = v
 }
 
 func (o DiffBookDepthResponse) MarshalJSON() ([]byte, error) {
@@ -286,8 +293,8 @@ func (o DiffBookDepthResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.S) {
-		toSerialize["s"] = o.S
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
 	}
 	if !common.IsNil(o.U) {
 		toSerialize["U"] = o.U
@@ -295,11 +302,11 @@ func (o DiffBookDepthResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallu) {
 		toSerialize["u"] = o.Smallu
 	}
-	if !common.IsNil(o.B) {
-		toSerialize["b"] = o.B
+	if !common.IsNil(o.Smallb) {
+		toSerialize["b"] = o.Smallb
 	}
-	if !common.IsNil(o.A) {
-		toSerialize["a"] = o.A
+	if !common.IsNil(o.Smalla) {
+		toSerialize["a"] = o.Smalla
 	}
 
 	for key, value := range o.AdditionalProperties {

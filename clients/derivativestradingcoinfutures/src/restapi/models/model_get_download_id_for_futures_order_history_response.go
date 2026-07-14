@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,9 +17,11 @@ var _ common.MappedNullable = &GetDownloadIdForFuturesOrderHistoryResponse{}
 
 // GetDownloadIdForFuturesOrderHistoryResponse struct for GetDownloadIdForFuturesOrderHistoryResponse
 type GetDownloadIdForFuturesOrderHistoryResponse struct {
-	AvgCostTimestampOfLast30d *int64  `json:"avgCostTimestampOfLast30d,omitempty"`
-	DownloadId                *string `json:"downloadId,omitempty"`
-	AdditionalProperties      map[string]interface{}
+	// Average time taken for data download in the past 30 days
+	AvgCostTimestampOfLast30d *int64 `json:"avgCostTimestampOfLast30d,omitempty"`
+	// Download task ID.
+	DownloadId           *string `json:"downloadId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetDownloadIdForFuturesOrderHistoryResponse GetDownloadIdForFuturesOrderHistoryResponse

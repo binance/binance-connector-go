@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &RequestForMinerListResponseDataWorkerDatasInner{}
 
 // RequestForMinerListResponseDataWorkerDatasInner struct for RequestForMinerListResponseDataWorkerDatasInner
 type RequestForMinerListResponseDataWorkerDatasInner struct {
-	WorkerId             *string  `json:"workerId,omitempty"`
-	WorkerName           *string  `json:"workerName,omitempty"`
-	Status               *int64   `json:"status,omitempty"`
-	HashRate             *int64   `json:"hashRate,omitempty"`
-	DayHashRate          *float32 `json:"dayHashRate,omitempty"`
-	RejectRate           *int64   `json:"rejectRate,omitempty"`
-	LastShareTime        *int64   `json:"lastShareTime,omitempty"`
+	// Miner ID
+	WorkerId *string `json:"workerId,omitempty"`
+	// Miner name
+	WorkerName *string `json:"workerName,omitempty"`
+	// Status: 1 Valid, 2 Invalid, 3 No longer valid
+	Status *int64 `json:"status,omitempty"`
+	// Real-time rate
+	HashRate *int64 `json:"hashRate,omitempty"`
+	// 24H hashrate
+	DayHashRate *float32 `json:"dayHashRate,omitempty"`
+	// Real-time rejection rate
+	RejectRate *int64 `json:"rejectRate,omitempty"`
+	// Last share time
+	LastShareTime        *int64 `json:"lastShareTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

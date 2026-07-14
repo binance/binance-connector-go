@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &RecentBlockTradesListResponseInner{}
 
 // RecentBlockTradesListResponseInner struct for RecentBlockTradesListResponseInner
 type RecentBlockTradesListResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	TradeId              *int64  `json:"tradeId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	QuoteQty             *string `json:"quoteQty,omitempty"`
-	Side                 *int64  `json:"side,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// id
+	Id *int64 `json:"id,omitempty"`
+	// trade Id
+	TradeId *int64 `json:"tradeId,omitempty"`
+	// symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// price
+	Price *string `json:"price,omitempty"`
+	// qty
+	Qty *string `json:"qty,omitempty"`
+	// quote Qty
+	QuoteQty *string `json:"quoteQty,omitempty"`
+	// side
+	Side *int64 `json:"side,omitempty"`
+	// time
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

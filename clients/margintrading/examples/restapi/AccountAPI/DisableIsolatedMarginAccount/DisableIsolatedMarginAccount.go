@@ -22,7 +22,7 @@ func DisableIsolatedMarginAccount() {
 	apiClient := client.NewBinanceMarginTradingClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.DisableIsolatedMarginAccount(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.DisableIsolatedMarginAccount(context.Background()).Symbol("BTCUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

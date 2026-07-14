@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Futures (COIN-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures WebSocket Market Streams
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,26 +17,46 @@ var _ common.MappedNullable = &IndividualSymbolTickerStreamsResponse{}
 
 // IndividualSymbolTickerStreamsResponse struct for IndividualSymbolTickerStreamsResponse
 type IndividualSymbolTickerStreamsResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallp               *string `json:"p,omitempty"`
-	P                    *string `json:"P,omitempty"`
-	Smallw               *string `json:"w,omitempty"`
-	Smallc               *string `json:"c,omitempty"`
-	Q                    *string `json:"Q,omitempty"`
-	Smallo               *string `json:"o,omitempty"`
-	Smallh               *string `json:"h,omitempty"`
-	Smalll               *string `json:"l,omitempty"`
-	Smallv               *string `json:"v,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	O                    *int64  `json:"O,omitempty"`
-	C                    *int64  `json:"C,omitempty"`
-	F                    *int64  `json:"F,omitempty"`
-	L                    *int64  `json:"L,omitempty"`
-	Smalln               *int64  `json:"n,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// Event type
+	Smalle *string `json:"e,omitempty"`
+	// Event time
+	E *int64 `json:"E,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Price change
+	Smallp *string `json:"p,omitempty"`
+	// Price change percent
+	P *string `json:"P,omitempty"`
+	// Weighted average price
+	Smallw *string `json:"w,omitempty"`
+	// Last price
+	Smallc *string `json:"c,omitempty"`
+	// Last quantity
+	Q *string `json:"Q,omitempty"`
+	// Open price
+	Smallo *string `json:"o,omitempty"`
+	// High price
+	Smallh *string `json:"h,omitempty"`
+	// Low price
+	Smalll *string `json:"l,omitempty"`
+	// Total traded volume
+	Smallv *string `json:"v,omitempty"`
+	// Total traded base asset volume
+	Smallq *string `json:"q,omitempty"`
+	// Statistics open time
+	O *int64 `json:"O,omitempty"`
+	// Statistics close time
+	C *int64 `json:"C,omitempty"`
+	// First trade ID
+	F *int64 `json:"F,omitempty"`
+	// Last trade Id
+	L *int64 `json:"L,omitempty"`
+	// Total number of trades
+	Smalln *int64 `json:"n,omitempty"`
+	// Pair
+	Smallps *string `json:"ps,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -668,9 +688,9 @@ func (o *IndividualSymbolTickerStreamsResponse) SetSmallps(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *IndividualSymbolTickerStreamsResponse) GetSmallst() int64 {
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -678,7 +698,7 @@ func (o *IndividualSymbolTickerStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndividualSymbolTickerStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *IndividualSymbolTickerStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -694,8 +714,8 @@ func (o *IndividualSymbolTickerStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *IndividualSymbolTickerStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *IndividualSymbolTickerStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 

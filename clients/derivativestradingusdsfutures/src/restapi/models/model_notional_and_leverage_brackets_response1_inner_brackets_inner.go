@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &NotionalAndLeverageBracketsResponse1InnerBrackets
 
 // NotionalAndLeverageBracketsResponse1InnerBracketsInner struct for NotionalAndLeverageBracketsResponse1InnerBracketsInner
 type NotionalAndLeverageBracketsResponse1InnerBracketsInner struct {
-	Bracket              *int64   `json:"bracket,omitempty"`
-	InitialLeverage      *int64   `json:"initialLeverage,omitempty"`
-	NotionalCap          *int64   `json:"notionalCap,omitempty"`
-	NotionalFloor        *int64   `json:"notionalFloor,omitempty"`
-	MaintMarginRatio     *float32 `json:"maintMarginRatio,omitempty"`
+	// Notional bracket
+	Bracket *int64 `json:"bracket,omitempty"`
+	// Max initial leverage for this bracket
+	InitialLeverage *int64 `json:"initialLeverage,omitempty"`
+	// Cap notional of this bracket
+	NotionalCap *int64 `json:"notionalCap,omitempty"`
+	// Notional threshold of this bracket
+	NotionalFloor *int64 `json:"notionalFloor,omitempty"`
+	// Maintenance ratio for this bracket
+	MaintMarginRatio *float32 `json:"maintMarginRatio,omitempty"`
+	// Auxiliary number for quick calculation
 	Cum                  *float32 `json:"cum,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

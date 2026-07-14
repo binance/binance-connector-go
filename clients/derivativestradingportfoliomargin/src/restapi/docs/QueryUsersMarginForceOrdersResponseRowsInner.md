@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**UpdatedTime** | Pointer to **int64** |  | [optional] 
+**AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
+**ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
+**OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Qty** | Pointer to **string** | Qty. | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
+**UpdatedTime** | Pointer to **int64** | Updated Time. | [optional] 
 
 ## Methods
 

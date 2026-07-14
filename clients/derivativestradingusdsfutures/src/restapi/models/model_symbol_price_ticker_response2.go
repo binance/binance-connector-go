@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &SymbolPriceTickerResponse2{}
 
 // SymbolPriceTickerResponse2 struct for SymbolPriceTickerResponse2
 type SymbolPriceTickerResponse2 struct {
-	Items []SymbolPriceTickerV2Response2Inner
+	Items []SymbolPriceTickerResponse2Inner
 }
 
 // NewSymbolPriceTickerResponse2 instantiates a new SymbolPriceTickerResponse2 object

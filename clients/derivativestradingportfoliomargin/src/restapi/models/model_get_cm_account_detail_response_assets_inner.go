@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,15 +17,23 @@ var _ common.MappedNullable = &GetCmAccountDetailResponseAssetsInner{}
 
 // GetCmAccountDetailResponseAssetsInner struct for GetCmAccountDetailResponseAssetsInner
 type GetCmAccountDetailResponseAssetsInner struct {
-	Asset                  *string `json:"asset,omitempty"`
-	CrossWalletBalance     *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl             *string `json:"crossUnPnl,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// total wallet balance
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// unrealized profit or loss
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// maintenance margin
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// total intial margin required with the latest mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// positions margin required with the latest mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// open orders intial margin required with the latest mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCmAccountDetailResponseAssetsInner GetCmAccountDetailResponseAssetsInner

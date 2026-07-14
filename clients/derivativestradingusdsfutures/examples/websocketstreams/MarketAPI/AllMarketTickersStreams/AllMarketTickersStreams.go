@@ -16,7 +16,7 @@ func main() {
 
 func AllMarketTickersStreams() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath("wss://fstream.binance.com"),
+		common.WithWsStreamsBasePath(common.DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl),
 	)
 
 	wsClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(

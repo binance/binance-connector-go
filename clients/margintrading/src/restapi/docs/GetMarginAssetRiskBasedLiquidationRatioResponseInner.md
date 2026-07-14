@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**RiskBasedLiquidationRatio** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**RiskBasedLiquidationRatio** | Pointer to **string** | risk Based Liquidation Ratio. | [optional] 
 
 ## Methods
 

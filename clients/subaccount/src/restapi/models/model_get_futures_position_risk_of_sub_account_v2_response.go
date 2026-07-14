@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &GetFuturesPositionRiskOfSubAccountV2Response{}
 
 // GetFuturesPositionRiskOfSubAccountV2Response struct for GetFuturesPositionRiskOfSubAccountV2Response
 type GetFuturesPositionRiskOfSubAccountV2Response struct {
-	FuturePositionRiskVos   []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner   `json:"futurePositionRiskVos,omitempty"`
+	FuturePositionRiskVos   []GetFuturesPositionRiskOfSubAccountResponseInner                          `json:"futurePositionRiskVos,omitempty"`
 	DeliveryPositionRiskVos []GetFuturesPositionRiskOfSubAccountV2ResponseDeliveryPositionRiskVosInner `json:"deliveryPositionRiskVos,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
@@ -42,9 +42,9 @@ func NewGetFuturesPositionRiskOfSubAccountV2ResponseWithDefaults() *GetFuturesPo
 }
 
 // GetFuturePositionRiskVos returns the FuturePositionRiskVos field value if set, zero value otherwise.
-func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVos() []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner {
+func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVos() []GetFuturesPositionRiskOfSubAccountResponseInner {
 	if o == nil || common.IsNil(o.FuturePositionRiskVos) {
-		var ret []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner
+		var ret []GetFuturesPositionRiskOfSubAccountResponseInner
 		return ret
 	}
 	return o.FuturePositionRiskVos
@@ -52,7 +52,7 @@ func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVos(
 
 // GetFuturePositionRiskVosOk returns a tuple with the FuturePositionRiskVos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVosOk() ([]GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner, bool) {
+func (o *GetFuturesPositionRiskOfSubAccountV2Response) GetFuturePositionRiskVosOk() ([]GetFuturesPositionRiskOfSubAccountResponseInner, bool) {
 	if o == nil || common.IsNil(o.FuturePositionRiskVos) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *GetFuturesPositionRiskOfSubAccountV2Response) HasFuturePositionRiskVos(
 	return false
 }
 
-// SetFuturePositionRiskVos gets a reference to the given []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner and assigns it to the FuturePositionRiskVos field.
-func (o *GetFuturesPositionRiskOfSubAccountV2Response) SetFuturePositionRiskVos(v []GetFuturesPositionRiskOfSubAccountV2ResponseFuturePositionRiskVosInner) {
+// SetFuturePositionRiskVos gets a reference to the given []GetFuturesPositionRiskOfSubAccountResponseInner and assigns it to the FuturePositionRiskVos field.
+func (o *GetFuturesPositionRiskOfSubAccountV2Response) SetFuturePositionRiskVos(v []GetFuturesPositionRiskOfSubAccountResponseInner) {
 	o.FuturePositionRiskVos = v
 }
 

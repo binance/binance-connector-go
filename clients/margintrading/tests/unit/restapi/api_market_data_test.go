@@ -1,5 +1,5 @@
 /*
-Binance Margin Trading REST API TEST
+Margin REST API TEST
 
 Testing MarketDataAPIService
 
@@ -25,7 +25,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService CrossMarginCollateralRatio Success", func(t *testing.T) {
 
-		mockedJSON := `[{"collaterals":[{"minUsdValue":"0","maxUsdValue":"13000000","discountRate":"1"},{"minUsdValue":"13000000","maxUsdValue":"20000000","discountRate":"0.975"},{"minUsdValue":"20000000","discountRate":"0"}],"assetNames":["BNX"]},{"collaterals":[{"minUsdValue":"0","discountRate":"1"}],"assetNames":["BTC","BUSD","ETH","USDT"]}]`
+		var mockedJSON string
+		mockedJSON = `[{"collaterals":[{"minUsdValue":"0","maxUsdValue":"13000000","discountRate":"1"}],"assetNames":["BNX"]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/crossMarginCollateralRatio", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -80,7 +84,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetAllCrossMarginPairs Success", func(t *testing.T) {
 
-		mockedJSON := `[{"base":"BNB","id":351637150141315840,"isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"BNBBTC"},{"base":"TRX","id":351637923235429100,"isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"TRXBTC","delistTime":1704973040},{"base":"XRP","id":351638112213990140,"isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"XRPBTC"},{"base":"ETH","id":351638524530850560,"isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"ETHBTC"}]`
+		var mockedJSON string
+		mockedJSON = `[{"base":"BNB","id":351637150141315840,"isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"BNBBTC","delistTime":1704973040}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/allPairs", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -135,7 +143,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetAllIsolatedMarginSymbol Success", func(t *testing.T) {
 
-		mockedJSON := `[{"base":"BNB","isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"BNBBTC"},{"base":"TRX","isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"TRXBTC"}]`
+		var mockedJSON string
+		mockedJSON = `[{"base":"BNB","isBuyAllowed":true,"isMarginTrade":true,"isSellAllowed":true,"quote":"BTC","symbol":"BNBBTC"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/isolated/allPairs", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -190,7 +202,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetAllMarginAssets Success", func(t *testing.T) {
 
-		mockedJSON := `[{"assetFullName":"USD coin","assetName":"USDC","isBorrowable":true,"isMortgageable":true,"userMinBorrow":"0.00000000","userMinRepay":"0.00000000","delistTime":1704973040}]`
+		var mockedJSON string
+		mockedJSON = `[{"assetFullName":"USD coin","assetName":"USDC","isBorrowable":true,"isMortgageable":true,"userMinBorrow":"0.00000000","userMinRepay":"0.00000000","delistTime":1704973040}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/allAssets", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -245,7 +261,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetDelistSchedule Success", func(t *testing.T) {
 
-		mockedJSON := `[{"delistTime":1686161202000,"crossMarginAssets":["BTC","USDT"],"isolatedMarginSymbols":["ADAUSDT","BNBUSDT"]},{"delistTime":1686222232000,"crossMarginAssets":["ADA"],"isolatedMarginSymbols":[]}]`
+		var mockedJSON string
+		mockedJSON = `[{"delistTime":1686161202000,"crossMarginAssets":["BTC"],"isolatedMarginSymbols":["ADAUSDT"]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/delist-schedule", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -300,7 +320,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetLimitPricePairs Success", func(t *testing.T) {
 
-		mockedJSON := `{"crossMarginSymbols":["BLURUSDC","SANDBTC","QKCBTC","SEIFDUSD","NEOUSDC","ARBFDUSD","ORDIUSDC"]}`
+		var mockedJSON string
+		mockedJSON = `{"crossMarginSymbols":["BLURUSDC"]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/limit-price-pairs", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -355,7 +379,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetListSchedule Success", func(t *testing.T) {
 
-		mockedJSON := `[{"listTime":1686161202000,"crossMarginAssets":["BTC","USDT"],"isolatedMarginSymbols":["ADAUSDT","BNBUSDT"]},{"listTime":1686222232000,"crossMarginAssets":["ADA"],"isolatedMarginSymbols":[]}]`
+		var mockedJSON string
+		mockedJSON = `[{"listTime":1686161202000,"crossMarginAssets":["BTC"],"isolatedMarginSymbols":["ADAUSDT"]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/list-schedule", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -410,7 +438,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetMarginAssetRiskBasedLiquidationRatio Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"USDC","riskBasedLiquidationRatio":"0.01"},{"asset":"BUSD","riskBasedLiquidationRatio":"0.01"}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"USDC","riskBasedLiquidationRatio":"0.01"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/risk-based-liquidation-ratio", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -465,7 +497,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetMarginRestrictedAssets Success", func(t *testing.T) {
 
-		mockedJSON := `{"openLongRestrictedAsset":["ADA","CHZ","ETH","LTC","XRP","币安人生"],"maxCollateralExceededAsset":["ACH","BNB","BTC","USDT"]}`
+		var mockedJSON string
+		mockedJSON = `{"openLongRestrictedAsset":["ADA"],"maxCollateralExceededAsset":["ACH"]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/restricted-asset", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -520,10 +556,14 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryIsolatedMarginTierData Success", func(t *testing.T) {
 
-		mockedJSON := `[{"symbol":"BTCUSDT","tier":1,"effectiveMultiple":"10","initialRiskRatio":"1.111","liquidationRiskRatio":"1.05","baseAssetMaxBorrowable":"9","quoteAssetMaxBorrowable":"70000"}]`
+		var mockedJSON string
+		mockedJSON = `[{"symbol":"BTCUSDT","tier":1,"effectiveMultiple":"10","initialRiskRatio":"1.111","liquidationRiskRatio":"1.05","baseAssetMaxBorrowable":"9","quoteAssetMaxBorrowable":"70000"}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/isolatedMarginTier", r.URL.Path)
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -540,7 +580,7 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.QueryIsolatedMarginTierData(context.Background()).Symbol("symbol_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryIsolatedMarginTierData(context.Background()).Symbol("BTCUSDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -593,7 +633,11 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryLiabilityCoinLeverageBracketInCrossMarginProMode Success", func(t *testing.T) {
 
-		mockedJSON := `[{"assetNames":["SHIB","FDUSD","BTC","ETH","USDC"],"rank":1,"brackets":[{"leverage":10,"maxDebt":1000000,"maintenanceMarginRate":0.02,"initialMarginRate":0.1112,"fastNum":0},{"leverage":3,"maxDebt":4000000,"maintenanceMarginRate":0.07,"initialMarginRate":0.5,"fastNum":60000}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"assetNames":["SHIB"],"rank":1,"brackets":[{"leverage":10,"maxDebt":1000000,"maintenanceMarginRate":0.02,"initialMarginRate":0.1112,"fastNum":60000}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/leverageBracket", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -648,10 +692,14 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryMarginAvailableInventory Success", func(t *testing.T) {
 
-		mockedJSON := `{"assets":{"MATIC":"100000000","STPT":"100000000","TVK":"100000000","SHIB":"97409653"},"updateTime":1699272487}`
+		var mockedJSON string
+		mockedJSON = `{"assets":{"MATIC":"200","STPT":"30000","TVK":"10000","SHIB":"4000000"},"updateTime":1699272487}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/available-inventory", r.URL.Path)
-			require.Equal(t, "type__example", r.URL.Query().Get("type"))
+			require.Equal(t, string(models.QueryMarginAvailableInventoryTypeParameterMargin), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -668,7 +716,7 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginAvailableInventory(context.Background()).Type("type__example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginAvailableInventory(context.Background()).Type(models.QueryMarginAvailableInventoryTypeParameterMargin).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -721,10 +769,14 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryMarginPriceindex Success", func(t *testing.T) {
 
-		mockedJSON := `{"calcTime":1562046418000,"price":"0.00333930","symbol":"BNBBTC"}`
+		var mockedJSON string
+		mockedJSON = `{"calcTime":1562046418000,"price":"0.00333930","symbol":"BNBBTC"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/priceIndex", r.URL.Path)
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, "BNBBTC", r.URL.Query().Get("symbol"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -741,7 +793,7 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginPriceindex(context.Background()).Symbol("symbol_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryMarginPriceindex(context.Background()).Symbol("BNBBTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

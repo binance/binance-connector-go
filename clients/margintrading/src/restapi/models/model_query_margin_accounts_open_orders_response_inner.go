@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,25 +17,43 @@ var _ common.MappedNullable = &QueryMarginAccountsOpenOrdersResponseInner{}
 
 // QueryMarginAccountsOpenOrdersResponseInner struct for QueryMarginAccountsOpenOrdersResponseInner
 type QueryMarginAccountsOpenOrdersResponseInner struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CummulativeQuoteQty     *string `json:"cummulativeQuoteQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	IcebergQty              *string `json:"icebergQty,omitempty"`
-	IsWorking               *bool   `json:"isWorking,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	IsIsolated              *bool   `json:"isIsolated,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
+	// client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// iceberg Qty.
+	IcebergQty *string `json:"icebergQty,omitempty"`
+	// is Working.
+	IsWorking *bool `json:"isWorking,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// side.
+	Side *string `json:"side,omitempty"`
+	// status.
+	Status *string `json:"status,omitempty"`
+	// stop Price.
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// is Isolated.
+	IsIsolated *bool `json:"isIsolated,omitempty"`
+	// time.
+	Time *int64 `json:"time,omitempty"`
+	// time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// type.
+	Type *string `json:"type,omitempty"`
+	// self Trade Prevention Mode.
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// update Time.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryMarginAccountsOpenOrdersResponseInner QueryMarginAccountsOpenOrdersResponseInner

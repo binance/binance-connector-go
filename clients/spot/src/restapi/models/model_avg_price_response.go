@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &AvgPriceResponse{}
 
 // AvgPriceResponse struct for AvgPriceResponse
 type AvgPriceResponse struct {
-	Mins                 *int64  `json:"mins,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
+	// Average price interval (in minutes)
+	Mins *int64 `json:"mins,omitempty"`
+	// Average price
+	Price *string `json:"price,omitempty"`
+	// Last trade time
+	CloseTime            *int64 `json:"closeTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

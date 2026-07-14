@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to **bool** |  | [optional] 
-**BorrowEnabled** | Pointer to **bool** |  | [optional] 
-**MarginLevel** | Pointer to **string** |  | [optional] 
-**CollateralMarginLevel** | Pointer to **string** |  | [optional] 
-**TotalAssetOfBtc** | Pointer to **string** |  | [optional] 
-**TotalLiabilityOfBtc** | Pointer to **string** |  | [optional] 
-**TotalNetAssetOfBtc** | Pointer to **string** |  | [optional] 
-**TotalCollateralValueInUSDT** | Pointer to **string** |  | [optional] 
-**TotalOpenOrderLossInUSDT** | Pointer to **string** |  | [optional] 
-**TradeEnabled** | Pointer to **bool** |  | [optional] 
-**TransferInEnabled** | Pointer to **bool** |  | [optional] 
-**TransferOutEnabled** | Pointer to **bool** |  | [optional] 
-**AccountType** | Pointer to **string** |  | [optional] 
-**UserAssets** | Pointer to [**[]QueryCrossMarginAccountDetailsResponseUserAssetsInner**](QueryCrossMarginAccountDetailsResponseUserAssetsInner.md) |  | [optional] 
+**Created** | Pointer to **bool** | True means margin account created , false means margin account not created. | [optional] 
+**BorrowEnabled** | Pointer to **bool** | borrow Enabled. | [optional] 
+**MarginLevel** | Pointer to **string** | margin Level. | [optional] 
+**CollateralMarginLevel** | Pointer to **string** | collateral Margin Level. | [optional] 
+**TotalAssetOfBtc** | Pointer to **string** | total Asset Of Btc. | [optional] 
+**TotalLiabilityOfBtc** | Pointer to **string** | total Liability Of Btc. | [optional] 
+**TotalNetAssetOfBtc** | Pointer to **string** | total Net Asset Of Btc. | [optional] 
+**TotalCollateralValueInUSDT** | Pointer to **string** | Total Collateral Value In USDT. | [optional] 
+**TotalOpenOrderLossInUSDT** | Pointer to **string** | total Open Order Loss In USDT. | [optional] 
+**TradeEnabled** | Pointer to **bool** | trade Enabled. | [optional] 
+**TransferInEnabled** | Pointer to **bool** | transfer In Enabled. | [optional] 
+**TransferOutEnabled** | Pointer to **bool** | transfer Out Enabled. | [optional] 
+**AccountType** | Pointer to **string** | // MARGIN_1 for Cross Margin Classic, MARGIN_2 for Cross Margin Pro | [optional] 
+**UserAssets** | Pointer to [**[]QueryCrossMarginAccountDetailsResponseUserAssetsInner**](QueryCrossMarginAccountDetailsResponseUserAssetsInner.md) | user Assets list. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,20 +17,33 @@ var _ common.MappedNullable = &AccountInformationV2ResponseResult{}
 
 // AccountInformationV2ResponseResult struct for AccountInformationV2ResponseResult
 type AccountInformationV2ResponseResult struct {
-	TotalInitialMargin          *string                                            `json:"totalInitialMargin,omitempty"`
-	TotalMaintMargin            *string                                            `json:"totalMaintMargin,omitempty"`
-	TotalWalletBalance          *string                                            `json:"totalWalletBalance,omitempty"`
-	TotalUnrealizedProfit       *string                                            `json:"totalUnrealizedProfit,omitempty"`
-	TotalMarginBalance          *string                                            `json:"totalMarginBalance,omitempty"`
-	TotalPositionInitialMargin  *string                                            `json:"totalPositionInitialMargin,omitempty"`
-	TotalOpenOrderInitialMargin *string                                            `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalCrossWalletBalance     *string                                            `json:"totalCrossWalletBalance,omitempty"`
-	TotalCrossUnPnl             *string                                            `json:"totalCrossUnPnl,omitempty"`
-	AvailableBalance            *string                                            `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount           *string                                            `json:"maxWithdrawAmount,omitempty"`
-	Assets                      []AccountInformationV2ResponseResultAssetsInner    `json:"assets,omitempty"`
-	Positions                   []AccountInformationV2ResponseResultPositionsInner `json:"positions,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	// total initial margin required with current mark price (useless with isolated positions), only for USDT asset
+	TotalInitialMargin *string `json:"totalInitialMargin,omitempty"`
+	// the sum of USD value of all cross positions maintenance margin
+	TotalMaintMargin *string `json:"totalMaintMargin,omitempty"`
+	// total wallet balance, only for USDT asset
+	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
+	// total unrealized profit, only for USDT asset
+	TotalUnrealizedProfit *string `json:"totalUnrealizedProfit,omitempty"`
+	// total margin balance, only for USDT asset
+	TotalMarginBalance *string `json:"totalMarginBalance,omitempty"`
+	// initial margin required for positions with current mark price, only for USDT asset
+	TotalPositionInitialMargin *string `json:"totalPositionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price, only for USDT asset
+	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
+	// crossed wallet balance, only for USDT asset
+	TotalCrossWalletBalance *string `json:"totalCrossWalletBalance,omitempty"`
+	// unrealized profit of crossed positions, only for USDT asset
+	TotalCrossUnPnl *string `json:"totalCrossUnPnl,omitempty"`
+	// available balance, only for USDT asset
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// maximum amount for transfer out, only for USDT asset
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// For assets that are quote assets, USDT/USDC/BTC
+	Assets []AccountInformationV2ResponseResultAssetsInner `json:"assets,omitempty"`
+	// positions of all symbols user had position/ open orders are returned
+	Positions            []AccountInformationV2ResponseResultPositionsInner `json:"positions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV2ResponseResult AccountInformationV2ResponseResult

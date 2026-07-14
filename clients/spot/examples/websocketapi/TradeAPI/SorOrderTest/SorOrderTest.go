@@ -29,7 +29,7 @@ func SorOrderTest() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.OrderCancelReplaceTypeParameterMarket).Quantity(1.0).ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(1).ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing SorOrderTest request: %v\n", err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &QueryMarginAvailableInventoryResponse{}
 
 // QueryMarginAvailableInventoryResponse struct for QueryMarginAvailableInventoryResponse
 type QueryMarginAvailableInventoryResponse struct {
-	Assets               *QueryMarginAvailableInventoryResponseAssets `json:"assets,omitempty"`
-	UpdateTime           *int64                                       `json:"updateTime,omitempty"`
+	// Available inventory per asset. Keys are asset symbols, values are available amounts.
+	Assets *map[string]string `json:"assets,omitempty"`
+	// update Time.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,9 +44,9 @@ func NewQueryMarginAvailableInventoryResponseWithDefaults() *QueryMarginAvailabl
 }
 
 // GetAssets returns the Assets field value if set, zero value otherwise.
-func (o *QueryMarginAvailableInventoryResponse) GetAssets() QueryMarginAvailableInventoryResponseAssets {
+func (o *QueryMarginAvailableInventoryResponse) GetAssets() map[string]string {
 	if o == nil || common.IsNil(o.Assets) {
-		var ret QueryMarginAvailableInventoryResponseAssets
+		var ret map[string]string
 		return ret
 	}
 	return *o.Assets
@@ -52,7 +54,7 @@ func (o *QueryMarginAvailableInventoryResponse) GetAssets() QueryMarginAvailable
 
 // GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryMarginAvailableInventoryResponse) GetAssetsOk() (*QueryMarginAvailableInventoryResponseAssets, bool) {
+func (o *QueryMarginAvailableInventoryResponse) GetAssetsOk() (*map[string]string, bool) {
 	if o == nil || common.IsNil(o.Assets) {
 		return nil, false
 	}
@@ -68,8 +70,8 @@ func (o *QueryMarginAvailableInventoryResponse) HasAssets() bool {
 	return false
 }
 
-// SetAssets gets a reference to the given QueryMarginAvailableInventoryResponseAssets and assigns it to the Assets field.
-func (o *QueryMarginAvailableInventoryResponse) SetAssets(v QueryMarginAvailableInventoryResponseAssets) {
+// SetAssets gets a reference to the given map[string]string and assigns it to the Assets field.
+func (o *QueryMarginAvailableInventoryResponse) SetAssets(v map[string]string) {
 	o.Assets = &v
 }
 

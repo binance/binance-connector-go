@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,12 +17,18 @@ var _ common.MappedNullable = &RecentTradesListResponseInner{}
 
 // RecentTradesListResponseInner struct for RecentTradesListResponseInner
 type RecentTradesListResponseInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	BaseQty              *string `json:"baseQty,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	IsBuyerMaker         *bool   `json:"isBuyerMaker,omitempty"`
+	// positionId
+	Id *int64 `json:"id,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Quantity.
+	Qty *string `json:"qty,omitempty"`
+	// Base asset quantity.
+	BaseQty *string `json:"baseQty,omitempty"`
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// Whether buyer is market maker.
+	IsBuyerMaker         *bool `json:"isBuyerMaker,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package binancewalletrestapi
@@ -25,7 +25,6 @@ type ApiAssetDetailRequest struct {
 	recvWindow *int64
 }
 
-// If asset is blank, then query all positive assets user have.
 func (r ApiAssetDetailRequest) Asset(asset string) ApiAssetDetailRequest {
 	r.asset = &asset
 	return r
@@ -44,10 +43,10 @@ func (r ApiAssetDetailRequest) Execute() (*common.RestApiResponse[models.AssetDe
 AssetDetail Asset Detail (USER_DATA)
 Get /sapi/v1/asset/assetDetail
 
-https://developers.binance.com/docs/wallet/asset/Asset-Detail
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-detail
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  If asset is blank, then query all positive assets user have.
+@param asset -
 @param recvWindow -
 @return ApiAssetDetailRequest
 */
@@ -75,7 +74,15 @@ func (a *AssetAPIService) AssetDetailExecute(r ApiAssetDetailRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AssetDetailResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AssetDetailResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -93,7 +100,6 @@ type ApiAssetDividendRecordRequest struct {
 	recvWindow *int64
 }
 
-// If asset is blank, then query all positive assets user have.
 func (r ApiAssetDividendRecordRequest) Asset(asset string) ApiAssetDividendRecordRequest {
 	r.asset = &asset
 	return r
@@ -109,7 +115,6 @@ func (r ApiAssetDividendRecordRequest) EndTime(endTime int64) ApiAssetDividendRe
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiAssetDividendRecordRequest) Limit(limit int64) ApiAssetDividendRecordRequest {
 	r.limit = &limit
 	return r
@@ -128,13 +133,13 @@ func (r ApiAssetDividendRecordRequest) Execute() (*common.RestApiResponse[models
 AssetDividendRecord Asset Dividend Record (USER_DATA)
 Get /sapi/v1/asset/assetDividend
 
-https://developers.binance.com/docs/wallet/asset/assets-divided-record
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#asset-dividend-record
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  If asset is blank, then query all positive assets user have.
+@param asset -
 @param startTime -
 @param endTime -
-@param limit -  min 7, max 30, default 7
+@param limit -
 @param recvWindow -
 @return ApiAssetDividendRecordRequest
 */
@@ -171,7 +176,15 @@ func (a *AssetAPIService) AssetDividendRecordExecute(r ApiAssetDividendRecordReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AssetDividendRecordResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AssetDividendRecordResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -195,7 +208,7 @@ func (r ApiDustConvertRequest) Asset(asset string) ApiDustConvertRequest {
 	return r
 }
 
-// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
+// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60;
 func (r ApiDustConvertRequest) AccountType(accountType string) ApiDustConvertRequest {
 	r.accountType = &accountType
 	return r
@@ -230,11 +243,11 @@ func (r ApiDustConvertRequest) Execute() (*common.RestApiResponse[models.DustCon
 DustConvert Dust Convert (USER_DATA)
 Post /sapi/v1/asset/dust-convert/convert
 
-https://developers.binance.com/docs/wallet/asset/Dust-Convert
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convert
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
+@param accountType -  `SPOT` or `MARGIN`, default `SPOT`
 @param clientId -  A unique id for the request
 @param targetAsset -
 @param thirdPartyClientId -
@@ -279,7 +292,15 @@ func (a *AssetAPIService) DustConvertExecute(r ApiDustConvertRequest) (*common.R
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "dustQuotaAssetToTargetAssetPrice", r.dustQuotaAssetToTargetAssetPrice, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustConvertResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DustConvertResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -300,7 +321,7 @@ func (r ApiDustConvertibleAssetsRequest) TargetAsset(targetAsset string) ApiDust
 	return r
 }
 
-// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
+// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60;
 func (r ApiDustConvertibleAssetsRequest) AccountType(accountType string) ApiDustConvertibleAssetsRequest {
 	r.accountType = &accountType
 	return r
@@ -319,11 +340,11 @@ func (r ApiDustConvertibleAssetsRequest) Execute() (*common.RestApiResponse[mode
 DustConvertibleAssets Dust Convertible Assets (USER_DATA)
 Post /sapi/v1/asset/dust-convert/query-convertible-assets
 
-https://developers.binance.com/docs/wallet/asset/Dust-Convertible-Assets
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-convertible-assets
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param targetAsset -
-@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
+@param accountType -  `SPOT` or `MARGIN`, default `SPOT`
 @param dustQuotaAssetToTargetAssetPrice -
 @return ApiDustConvertibleAssetsRequest
 */
@@ -356,7 +377,15 @@ func (a *AssetAPIService) DustConvertibleAssetsExecute(r ApiDustConvertibleAsset
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "dustQuotaAssetToTargetAssetPrice", r.dustQuotaAssetToTargetAssetPrice, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustConvertibleAssetsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DustConvertibleAssetsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -368,17 +397,17 @@ type ApiDustTransferRequest struct {
 	ctx         context.Context
 	ApiService  *AssetAPIService
 	asset       *string
-	accountType *string
+	accountType *models.DustlogAccountTypeParameter
 	recvWindow  *int64
 }
 
+// The asset being converted. For example: asset&#x3D;BTC,USDT
 func (r ApiDustTransferRequest) Asset(asset string) ApiDustTransferRequest {
 	r.asset = &asset
 	return r
 }
 
-// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
-func (r ApiDustTransferRequest) AccountType(accountType string) ApiDustTransferRequest {
+func (r ApiDustTransferRequest) AccountType(accountType models.DustlogAccountTypeParameter) ApiDustTransferRequest {
 	r.accountType = &accountType
 	return r
 }
@@ -396,11 +425,11 @@ func (r ApiDustTransferRequest) Execute() (*common.RestApiResponse[models.DustTr
 DustTransfer Dust Transfer (USER_DATA)
 Post /sapi/v1/asset/dust
 
-https://developers.binance.com/docs/wallet/asset/Dust-Transfer
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dust-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -
-@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
+@param asset -  The asset being converted. For example: asset=BTC,USDT
+@param accountType -
 @param recvWindow -
 @return ApiDustTransferRequest
 */
@@ -433,7 +462,15 @@ func (a *AssetAPIService) DustTransferExecute(r ApiDustTransferRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DustTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -444,14 +481,13 @@ func (a *AssetAPIService) DustTransferExecute(r ApiDustTransferRequest) (*common
 type ApiDustlogRequest struct {
 	ctx         context.Context
 	ApiService  *AssetAPIService
-	accountType *string
+	accountType *models.DustlogAccountTypeParameter
 	startTime   *int64
 	endTime     *int64
 	recvWindow  *int64
 }
 
-// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
-func (r ApiDustlogRequest) AccountType(accountType string) ApiDustlogRequest {
+func (r ApiDustlogRequest) AccountType(accountType models.DustlogAccountTypeParameter) ApiDustlogRequest {
 	r.accountType = &accountType
 	return r
 }
@@ -476,13 +512,13 @@ func (r ApiDustlogRequest) Execute() (*common.RestApiResponse[models.DustlogResp
 }
 
 /*
-Dustlog DustLog(USER_DATA)
+Dustlog DustLog (USER_DATA)
 Get /sapi/v1/asset/dribblet
 
-https://developers.binance.com/docs/wallet/asset/dust-log
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#dustlog
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
+@param accountType -
 @param startTime -
 @param endTime -
 @param recvWindow -
@@ -518,7 +554,15 @@ func (a *AssetAPIService) DustlogExecute(r ApiDustlogRequest) (*common.RestApiRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DustlogResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DustlogResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -530,18 +574,16 @@ type ApiFundingWalletRequest struct {
 	ctx              context.Context
 	ApiService       *AssetAPIService
 	asset            *string
-	needBtcValuation *string
+	needBtcValuation *bool
 	recvWindow       *int64
 }
 
-// If asset is blank, then query all positive assets user have.
 func (r ApiFundingWalletRequest) Asset(asset string) ApiFundingWalletRequest {
 	r.asset = &asset
 	return r
 }
 
-// true or false
-func (r ApiFundingWalletRequest) NeedBtcValuation(needBtcValuation string) ApiFundingWalletRequest {
+func (r ApiFundingWalletRequest) NeedBtcValuation(needBtcValuation bool) ApiFundingWalletRequest {
 	r.needBtcValuation = &needBtcValuation
 	return r
 }
@@ -559,11 +601,11 @@ func (r ApiFundingWalletRequest) Execute() (*common.RestApiResponse[models.Fundi
 FundingWallet Funding Wallet (USER_DATA)
 Post /sapi/v1/asset/get-funding-asset
 
-https://developers.binance.com/docs/wallet/asset/Funding-Wallet
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#funding-wallet
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  If asset is blank, then query all positive assets user have.
-@param needBtcValuation -  true or false
+@param asset -
+@param needBtcValuation -
 @param recvWindow -
 @return ApiFundingWalletRequest
 */
@@ -594,7 +636,15 @@ func (a *AssetAPIService) FundingWalletExecute(r ApiFundingWalletRequest) (*comm
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundingWalletResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FundingWalletResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -605,12 +655,11 @@ func (a *AssetAPIService) FundingWalletExecute(r ApiFundingWalletRequest) (*comm
 type ApiGetAssetsThatCanBeConvertedIntoBnbRequest struct {
 	ctx         context.Context
 	ApiService  *AssetAPIService
-	accountType *string
+	accountType *models.DustlogAccountTypeParameter
 	recvWindow  *int64
 }
 
-// &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;,default &#x60;SPOT&#x60;
-func (r ApiGetAssetsThatCanBeConvertedIntoBnbRequest) AccountType(accountType string) ApiGetAssetsThatCanBeConvertedIntoBnbRequest {
+func (r ApiGetAssetsThatCanBeConvertedIntoBnbRequest) AccountType(accountType models.DustlogAccountTypeParameter) ApiGetAssetsThatCanBeConvertedIntoBnbRequest {
 	r.accountType = &accountType
 	return r
 }
@@ -628,10 +677,10 @@ func (r ApiGetAssetsThatCanBeConvertedIntoBnbRequest) Execute() (*common.RestApi
 GetAssetsThatCanBeConvertedIntoBnb Get Assets That Can Be Converted Into BNB (USER_DATA)
 Post /sapi/v1/asset/dust-btc
 
-https://developers.binance.com/docs/wallet/asset/assets-can-convert-bnb
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-assets-that-can-be-converted-into-bnb
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param accountType -  `SPOT` or `MARGIN`,default `SPOT`
+@param accountType -
 @param recvWindow -
 @return ApiGetAssetsThatCanBeConvertedIntoBnbRequest
 */
@@ -659,7 +708,15 @@ func (a *AssetAPIService) GetAssetsThatCanBeConvertedIntoBnbExecute(r ApiGetAsse
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAssetsThatCanBeConvertedIntoBnbResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetAssetsThatCanBeConvertedIntoBnbResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -679,11 +736,13 @@ type ApiGetCloudMiningPaymentAndRefundHistoryRequest struct {
 	size         *int64
 }
 
+// inclusive, unit: ms
 func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) StartTime(startTime int64) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// exclusive, unit: ms
 func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) EndTime(endTime int64) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
 	r.endTime = &endTime
 	return r
@@ -701,19 +760,17 @@ func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) ClientTranId(clientTran
 	return r
 }
 
-// If asset is blank, then query all positive assets user have.
+// If it is blank, we will query all assets
 func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) Asset(asset string) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
 	r.asset = &asset
 	return r
 }
 
-// current page, default 1, the min value is 1
 func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) Current(current int64) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// page size, default 10, the max value is 100
 func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) Size(size int64) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
 	r.size = &size
 	return r
@@ -727,16 +784,16 @@ func (r ApiGetCloudMiningPaymentAndRefundHistoryRequest) Execute() (*common.Rest
 GetCloudMiningPaymentAndRefundHistory Get Cloud-Mining payment and refund history (USER_DATA)
 Get /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage
 
-https://developers.binance.com/docs/wallet/asset/cloud-mining-payment-and-refund-history
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-cloud-mining-payment-and-refund-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param startTime -
-@param endTime -
+@param startTime -  inclusive, unit: ms
+@param endTime -  exclusive, unit: ms
 @param tranId -  The transaction id
 @param clientTranId -  The unique flag
-@param asset -  If asset is blank, then query all positive assets user have.
-@param current -  current page, default 1, the min value is 1
-@param size -  page size, default 10, the max value is 100
+@param asset -  If it is blank, we will query all assets
+@param current -
+@param size -
 @return ApiGetCloudMiningPaymentAndRefundHistoryRequest
 */
 func (a *AssetAPIService) GetCloudMiningPaymentAndRefundHistory(ctx context.Context) ApiGetCloudMiningPaymentAndRefundHistoryRequest {
@@ -759,6 +816,7 @@ func (a *AssetAPIService) GetCloudMiningPaymentAndRefundHistoryExecute(r ApiGetC
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
@@ -781,7 +839,15 @@ func (a *AssetAPIService) GetCloudMiningPaymentAndRefundHistoryExecute(r ApiGetC
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetCloudMiningPaymentAndRefundHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetCloudMiningPaymentAndRefundHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -802,7 +868,7 @@ func (r ApiGetOpenSymbolListRequest) Execute() (*common.RestApiResponse[models.G
 GetOpenSymbolList Get Open Symbol List (MARKET_DATA)
 Get /sapi/v1/spot/open-symbol-list
 
-https://developers.binance.com/docs/wallet/asset/open-symbol-list
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-open-symbol-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiGetOpenSymbolListRequest
@@ -824,7 +890,15 @@ func (a *AssetAPIService) GetOpenSymbolListExecute(r ApiGetOpenSymbolListRequest
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.GetOpenSymbolListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, false)
+	resp, err := SendRequest[models.GetOpenSymbolListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -838,7 +912,7 @@ type ApiQueryUserDelegationHistoryRequest struct {
 	email      *string
 	startTime  *int64
 	endTime    *int64
-	type_      *string
+	type_      *models.QueryUserDelegationHistoryTypeParameter
 	asset      *string
 	current    *int64
 	size       *int64
@@ -860,25 +934,21 @@ func (r ApiQueryUserDelegationHistoryRequest) EndTime(endTime int64) ApiQueryUse
 	return r
 }
 
-// Delegate/Undelegate
-func (r ApiQueryUserDelegationHistoryRequest) Type(type_ string) ApiQueryUserDelegationHistoryRequest {
+func (r ApiQueryUserDelegationHistoryRequest) Type(type_ models.QueryUserDelegationHistoryTypeParameter) ApiQueryUserDelegationHistoryRequest {
 	r.type_ = &type_
 	return r
 }
 
-// If asset is blank, then query all positive assets user have.
 func (r ApiQueryUserDelegationHistoryRequest) Asset(asset string) ApiQueryUserDelegationHistoryRequest {
 	r.asset = &asset
 	return r
 }
 
-// current page, default 1, the min value is 1
 func (r ApiQueryUserDelegationHistoryRequest) Current(current int64) ApiQueryUserDelegationHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// page size, default 10, the max value is 100
 func (r ApiQueryUserDelegationHistoryRequest) Size(size int64) ApiQueryUserDelegationHistoryRequest {
 	r.size = &size
 	return r
@@ -894,19 +964,19 @@ func (r ApiQueryUserDelegationHistoryRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-QueryUserDelegationHistory Query User Delegation History(For Master Account)(USER_DATA)
+QueryUserDelegationHistory Query User Delegation History(For Master Account) (USER_DATA)
 Get /sapi/v1/asset/custody/transfer-history
 
-https://developers.binance.com/docs/wallet/asset/query-user-delegation
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-delegation-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -
 @param startTime -
 @param endTime -
-@param type_ -  Delegate/Undelegate
-@param asset -  If asset is blank, then query all positive assets user have.
-@param current -  current page, default 1, the min value is 1
-@param size -  page size, default 10, the max value is 100
+@param type_ -
+@param asset -
+@param current -
+@param size -
 @param recvWindow -
 @return ApiQueryUserDelegationHistoryRequest
 */
@@ -930,9 +1000,11 @@ func (a *AssetAPIService) QueryUserDelegationHistoryExecute(r ApiQueryUserDelega
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.startTime == nil {
 		return nil, common.ReportError("startTime is required and must be specified")
 	}
+
 	if r.endTime == nil {
 		return nil, common.ReportError("endTime is required and must be specified")
 	}
@@ -956,7 +1028,15 @@ func (a *AssetAPIService) QueryUserDelegationHistoryExecute(r ApiQueryUserDelega
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserDelegationHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUserDelegationHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -972,8 +1052,8 @@ type ApiQueryUserUniversalTransferHistoryRequest struct {
 	endTime    *int64
 	current    *int64
 	size       *int64
-	fromSymbol *string
-	toSymbol   *string
+	fromSymbol *models.QueryUserUniversalTransferHistoryFromSymbolParameter
+	toSymbol   *models.QueryUserUniversalTransferHistoryToSymbolParameter
 	recvWindow *int64
 }
 
@@ -992,24 +1072,22 @@ func (r ApiQueryUserUniversalTransferHistoryRequest) EndTime(endTime int64) ApiQ
 	return r
 }
 
-// current page, default 1, the min value is 1
 func (r ApiQueryUserUniversalTransferHistoryRequest) Current(current int64) ApiQueryUserUniversalTransferHistoryRequest {
 	r.current = &current
 	return r
 }
 
-// page size, default 10, the max value is 100
 func (r ApiQueryUserUniversalTransferHistoryRequest) Size(size int64) ApiQueryUserUniversalTransferHistoryRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiQueryUserUniversalTransferHistoryRequest) FromSymbol(fromSymbol string) ApiQueryUserUniversalTransferHistoryRequest {
+func (r ApiQueryUserUniversalTransferHistoryRequest) FromSymbol(fromSymbol models.QueryUserUniversalTransferHistoryFromSymbolParameter) ApiQueryUserUniversalTransferHistoryRequest {
 	r.fromSymbol = &fromSymbol
 	return r
 }
 
-func (r ApiQueryUserUniversalTransferHistoryRequest) ToSymbol(toSymbol string) ApiQueryUserUniversalTransferHistoryRequest {
+func (r ApiQueryUserUniversalTransferHistoryRequest) ToSymbol(toSymbol models.QueryUserUniversalTransferHistoryToSymbolParameter) ApiQueryUserUniversalTransferHistoryRequest {
 	r.toSymbol = &toSymbol
 	return r
 }
@@ -1024,17 +1102,17 @@ func (r ApiQueryUserUniversalTransferHistoryRequest) Execute() (*common.RestApiR
 }
 
 /*
-QueryUserUniversalTransferHistory Query User Universal Transfer History(USER_DATA)
+QueryUserUniversalTransferHistory Query User Universal Transfer History (USER_DATA)
 Get /sapi/v1/asset/transfer
 
-https://developers.binance.com/docs/wallet/asset/query-user-universal-transfer
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-universal-transfer-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param type_ -
 @param startTime -
 @param endTime -
-@param current -  current page, default 1, the min value is 1
-@param size -  page size, default 10, the max value is 100
+@param current -
+@param size -
 @param fromSymbol -
 @param toSymbol -
 @param recvWindow -
@@ -1084,7 +1162,15 @@ func (a *AssetAPIService) QueryUserUniversalTransferHistoryExecute(r ApiQueryUse
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserUniversalTransferHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUserUniversalTransferHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1099,7 +1185,6 @@ type ApiQueryUserWalletBalanceRequest struct {
 	recvWindow *int64
 }
 
-// &#x60;USDT&#x60;, &#x60;ETH&#x60;, &#x60;USDC&#x60;, &#x60;BNB&#x60;, etc. default &#x60;BTC&#x60;
 func (r ApiQueryUserWalletBalanceRequest) QuoteAsset(quoteAsset string) ApiQueryUserWalletBalanceRequest {
 	r.quoteAsset = &quoteAsset
 	return r
@@ -1118,10 +1203,10 @@ func (r ApiQueryUserWalletBalanceRequest) Execute() (*common.RestApiResponse[mod
 QueryUserWalletBalance Query User Wallet Balance (USER_DATA)
 Get /sapi/v1/asset/wallet/balance
 
-https://developers.binance.com/docs/wallet/asset/Query-User-Wallet-Balance
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#query-user-wallet-balance
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param quoteAsset -  `USDT`, `ETH`, `USDC`, `BNB`, etc. default `BTC`
+@param quoteAsset -
 @param recvWindow -
 @return ApiQueryUserWalletBalanceRequest
 */
@@ -1149,7 +1234,15 @@ func (a *AssetAPIService) QueryUserWalletBalanceExecute(r ApiQueryUserWalletBala
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryUserWalletBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryUserWalletBalanceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1165,13 +1258,13 @@ type ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest struct {
 	recvWindow      *int64
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;; Determines whether to use BNB to pay for trading fees on SPOT
+// Determines whether to use BNB to pay for trading fees on SPOT
 func (r ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest) SpotBNBBurn(spotBNBBurn string) ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
 	r.spotBNBBurn = &spotBNBBurn
 	return r
 }
 
-// \&quot;true\&quot; or \&quot;false\&quot;; Determines whether to use BNB to pay for margin loan&#39;s interest
+// Determines whether to use BNB to pay for margin loan&#39;s interest
 func (r ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest) InterestBNBBurn(interestBNBBurn string) ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest {
 	r.interestBNBBurn = &interestBNBBurn
 	return r
@@ -1190,11 +1283,11 @@ func (r ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest) Execute() (*common.
 ToggleBnbBurnOnSpotTradeAndMarginInterest Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)
 Post /sapi/v1/bnbBurn
 
-https://developers.binance.com/docs/wallet/asset/Toggle-BNB-Burn-On-Spot-Trade-And-Margin-Interest
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#toggle-bnb-burn-on-spot-trade-and-margin-interest
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param spotBNBBurn -  \"true\" or \"false\"; Determines whether to use BNB to pay for trading fees on SPOT
-@param interestBNBBurn -  \"true\" or \"false\"; Determines whether to use BNB to pay for margin loan's interest
+@param spotBNBBurn -  Determines whether to use BNB to pay for trading fees on SPOT
+@param interestBNBBurn -  Determines whether to use BNB to pay for margin loan's interest
 @param recvWindow -
 @return ApiToggleBnbBurnOnSpotTradeAndMarginInterestRequest
 */
@@ -1225,7 +1318,15 @@ func (a *AssetAPIService) ToggleBnbBurnOnSpotTradeAndMarginInterestExecute(r Api
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ToggleBnbBurnOnSpotTradeAndMarginInterestResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1258,7 +1359,7 @@ func (r ApiTradeFeeRequest) Execute() (*common.RestApiResponse[models.TradeFeeRe
 TradeFee Trade Fee (USER_DATA)
 Get /sapi/v1/asset/tradeFee
 
-https://developers.binance.com/docs/wallet/asset/Trade-Fee
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#trade-fee
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
@@ -1289,7 +1390,15 @@ func (a *AssetAPIService) TradeFeeExecute(r ApiTradeFeeRequest) (*common.RestApi
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TradeFeeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TradeFeeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1330,7 +1439,7 @@ func (r ApiUserAssetRequest) Execute() (*common.RestApiResponse[models.UserAsset
 UserAsset User Asset (USER_DATA)
 Post /sapi/v3/asset/getUserAsset
 
-https://developers.binance.com/docs/wallet/asset/user-assets
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-asset
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -  If asset is blank, then query all positive assets user have.
@@ -1365,7 +1474,15 @@ func (a *AssetAPIService) UserAssetExecute(r ApiUserAssetRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UserAssetResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1376,15 +1493,15 @@ func (a *AssetAPIService) UserAssetExecute(r ApiUserAssetRequest) (*common.RestA
 type ApiUserUniversalTransferRequest struct {
 	ctx        context.Context
 	ApiService *AssetAPIService
-	type_      *string
+	type_      *models.UserUniversalTransferTypeParameter
 	asset      *string
 	amount     *float32
-	fromSymbol *string
-	toSymbol   *string
+	fromSymbol *models.QueryUserUniversalTransferHistoryFromSymbolParameter
+	toSymbol   *models.QueryUserUniversalTransferHistoryToSymbolParameter
 	recvWindow *int64
 }
 
-func (r ApiUserUniversalTransferRequest) Type(type_ string) ApiUserUniversalTransferRequest {
+func (r ApiUserUniversalTransferRequest) Type(type_ models.UserUniversalTransferTypeParameter) ApiUserUniversalTransferRequest {
 	r.type_ = &type_
 	return r
 }
@@ -1399,12 +1516,12 @@ func (r ApiUserUniversalTransferRequest) Amount(amount float32) ApiUserUniversal
 	return r
 }
 
-func (r ApiUserUniversalTransferRequest) FromSymbol(fromSymbol string) ApiUserUniversalTransferRequest {
+func (r ApiUserUniversalTransferRequest) FromSymbol(fromSymbol models.QueryUserUniversalTransferHistoryFromSymbolParameter) ApiUserUniversalTransferRequest {
 	r.fromSymbol = &fromSymbol
 	return r
 }
 
-func (r ApiUserUniversalTransferRequest) ToSymbol(toSymbol string) ApiUserUniversalTransferRequest {
+func (r ApiUserUniversalTransferRequest) ToSymbol(toSymbol models.QueryUserUniversalTransferHistoryToSymbolParameter) ApiUserUniversalTransferRequest {
 	r.toSymbol = &toSymbol
 	return r
 }
@@ -1422,7 +1539,7 @@ func (r ApiUserUniversalTransferRequest) Execute() (*common.RestApiResponse[mode
 UserUniversalTransfer User Universal Transfer (USER_DATA)
 Post /sapi/v1/asset/transfer
 
-https://developers.binance.com/docs/wallet/asset/User-Universal-Transfer
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#user-universal-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param type_ -
@@ -1453,9 +1570,11 @@ func (a *AssetAPIService) UserUniversalTransferExecute(r ApiUserUniversalTransfe
 	if r.type_ == nil {
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
+
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1473,7 +1592,15 @@ func (a *AssetAPIService) UserUniversalTransferExecute(r ApiUserUniversalTransfe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.UserUniversalTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.UserUniversalTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

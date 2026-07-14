@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AutoRepay** | Pointer to **bool** |  | [optional] 
+**AutoRepay** | Pointer to **bool** | \&quot;true\&quot; for turn on the auto-repay futures; \&quot;false\&quot; for turn off the auto-repay futures | [optional] 
 
 ## Methods
 

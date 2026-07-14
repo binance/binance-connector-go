@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,16 +17,27 @@ var _ common.MappedNullable = &QueryCmPositionInformationResponseInner{}
 
 // QueryCmPositionInformationResponseInner struct for QueryCmPositionInformationResponseInner
 type QueryCmPositionInformationResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
-	LiquidationPrice     *string `json:"liquidationPrice,omitempty"`
-	Leverage             *string `json:"leverage,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
-	MaxQty               *string `json:"maxQty,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// average entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// Mark Price.
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// Un Realized Profit.
+	UnRealizedProfit *string `json:"unRealizedProfit,omitempty"`
+	// Liquidation Price.
+	LiquidationPrice *string `json:"liquidationPrice,omitempty"`
+	// current initial leverage
+	Leverage *string `json:"leverage,omitempty"`
+	// BOTH means that it is the position of One-way Mode
+	PositionSide *string `json:"positionSide,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// maximum quantity of base asset
+	MaxQty *string `json:"maxQty,omitempty"`
+	// Notional Value.
 	NotionalValue        *string `json:"notionalValue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

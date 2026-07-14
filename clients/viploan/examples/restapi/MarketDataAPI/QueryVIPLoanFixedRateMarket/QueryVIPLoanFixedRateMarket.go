@@ -22,7 +22,7 @@ func QueryVIPLoanFixedRateMarket() {
 	apiClient := client.NewBinanceVipLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).LoanCoin("loanCoin_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).LoanCoin("USDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -27,16 +27,8 @@ type QueryAllCurrentUmOpenAlgoOrdersResponseInner struct {
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Quantity                *string `json:"quantity,omitempty"`
 	AlgoStatus              *string `json:"algoStatus,omitempty"`
-	ActualOrderId           *string `json:"actualOrderId,omitempty"`
-	ActualPrice             *string `json:"actualPrice,omitempty"`
 	TriggerPrice            *string `json:"triggerPrice,omitempty"`
 	Price                   *string `json:"price,omitempty"`
-	IcebergQuantity         *string `json:"icebergQuantity,omitempty"`
-	TpTriggerPrice          *string `json:"tpTriggerPrice,omitempty"`
-	TpPrice                 *string `json:"tpPrice,omitempty"`
-	SlTriggerPrice          *string `json:"slTriggerPrice,omitempty"`
-	SlPrice                 *string `json:"slPrice,omitempty"`
-	TpOrderType             *string `json:"tpOrderType,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	WorkingType             *string `json:"workingType,omitempty"`
 	PriceMatch              *string `json:"priceMatch,omitempty"`
@@ -389,70 +381,6 @@ func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetAlgoStatus(v string) {
 	o.AlgoStatus = &v
 }
 
-// GetActualOrderId returns the ActualOrderId field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetActualOrderId() string {
-	if o == nil || common.IsNil(o.ActualOrderId) {
-		var ret string
-		return ret
-	}
-	return *o.ActualOrderId
-}
-
-// GetActualOrderIdOk returns a tuple with the ActualOrderId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetActualOrderIdOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ActualOrderId) {
-		return nil, false
-	}
-	return o.ActualOrderId, true
-}
-
-// HasActualOrderId returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasActualOrderId() bool {
-	if o != nil && !common.IsNil(o.ActualOrderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetActualOrderId gets a reference to the given string and assigns it to the ActualOrderId field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetActualOrderId(v string) {
-	o.ActualOrderId = &v
-}
-
-// GetActualPrice returns the ActualPrice field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetActualPrice() string {
-	if o == nil || common.IsNil(o.ActualPrice) {
-		var ret string
-		return ret
-	}
-	return *o.ActualPrice
-}
-
-// GetActualPriceOk returns a tuple with the ActualPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetActualPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ActualPrice) {
-		return nil, false
-	}
-	return o.ActualPrice, true
-}
-
-// HasActualPrice returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasActualPrice() bool {
-	if o != nil && !common.IsNil(o.ActualPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetActualPrice gets a reference to the given string and assigns it to the ActualPrice field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetActualPrice(v string) {
-	o.ActualPrice = &v
-}
-
 // GetTriggerPrice returns the TriggerPrice field value if set, zero value otherwise.
 func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTriggerPrice() string {
 	if o == nil || common.IsNil(o.TriggerPrice) {
@@ -515,198 +443,6 @@ func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasPrice() bool {
 // SetPrice gets a reference to the given string and assigns it to the Price field.
 func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetPrice(v string) {
 	o.Price = &v
-}
-
-// GetIcebergQuantity returns the IcebergQuantity field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetIcebergQuantity() string {
-	if o == nil || common.IsNil(o.IcebergQuantity) {
-		var ret string
-		return ret
-	}
-	return *o.IcebergQuantity
-}
-
-// GetIcebergQuantityOk returns a tuple with the IcebergQuantity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetIcebergQuantityOk() (*string, bool) {
-	if o == nil || common.IsNil(o.IcebergQuantity) {
-		return nil, false
-	}
-	return o.IcebergQuantity, true
-}
-
-// HasIcebergQuantity returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasIcebergQuantity() bool {
-	if o != nil && !common.IsNil(o.IcebergQuantity) {
-		return true
-	}
-
-	return false
-}
-
-// SetIcebergQuantity gets a reference to the given string and assigns it to the IcebergQuantity field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetIcebergQuantity(v string) {
-	o.IcebergQuantity = &v
-}
-
-// GetTpTriggerPrice returns the TpTriggerPrice field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpTriggerPrice() string {
-	if o == nil || common.IsNil(o.TpTriggerPrice) {
-		var ret string
-		return ret
-	}
-	return *o.TpTriggerPrice
-}
-
-// GetTpTriggerPriceOk returns a tuple with the TpTriggerPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpTriggerPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TpTriggerPrice) {
-		return nil, false
-	}
-	return o.TpTriggerPrice, true
-}
-
-// HasTpTriggerPrice returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasTpTriggerPrice() bool {
-	if o != nil && !common.IsNil(o.TpTriggerPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetTpTriggerPrice gets a reference to the given string and assigns it to the TpTriggerPrice field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetTpTriggerPrice(v string) {
-	o.TpTriggerPrice = &v
-}
-
-// GetTpPrice returns the TpPrice field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpPrice() string {
-	if o == nil || common.IsNil(o.TpPrice) {
-		var ret string
-		return ret
-	}
-	return *o.TpPrice
-}
-
-// GetTpPriceOk returns a tuple with the TpPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TpPrice) {
-		return nil, false
-	}
-	return o.TpPrice, true
-}
-
-// HasTpPrice returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasTpPrice() bool {
-	if o != nil && !common.IsNil(o.TpPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetTpPrice gets a reference to the given string and assigns it to the TpPrice field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetTpPrice(v string) {
-	o.TpPrice = &v
-}
-
-// GetSlTriggerPrice returns the SlTriggerPrice field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetSlTriggerPrice() string {
-	if o == nil || common.IsNil(o.SlTriggerPrice) {
-		var ret string
-		return ret
-	}
-	return *o.SlTriggerPrice
-}
-
-// GetSlTriggerPriceOk returns a tuple with the SlTriggerPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetSlTriggerPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.SlTriggerPrice) {
-		return nil, false
-	}
-	return o.SlTriggerPrice, true
-}
-
-// HasSlTriggerPrice returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasSlTriggerPrice() bool {
-	if o != nil && !common.IsNil(o.SlTriggerPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetSlTriggerPrice gets a reference to the given string and assigns it to the SlTriggerPrice field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetSlTriggerPrice(v string) {
-	o.SlTriggerPrice = &v
-}
-
-// GetSlPrice returns the SlPrice field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetSlPrice() string {
-	if o == nil || common.IsNil(o.SlPrice) {
-		var ret string
-		return ret
-	}
-	return *o.SlPrice
-}
-
-// GetSlPriceOk returns a tuple with the SlPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetSlPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.SlPrice) {
-		return nil, false
-	}
-	return o.SlPrice, true
-}
-
-// HasSlPrice returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasSlPrice() bool {
-	if o != nil && !common.IsNil(o.SlPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetSlPrice gets a reference to the given string and assigns it to the SlPrice field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetSlPrice(v string) {
-	o.SlPrice = &v
-}
-
-// GetTpOrderType returns the TpOrderType field value if set, zero value otherwise.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpOrderType() string {
-	if o == nil || common.IsNil(o.TpOrderType) {
-		var ret string
-		return ret
-	}
-	return *o.TpOrderType
-}
-
-// GetTpOrderTypeOk returns a tuple with the TpOrderType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) GetTpOrderTypeOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TpOrderType) {
-		return nil, false
-	}
-	return o.TpOrderType, true
-}
-
-// HasTpOrderType returns a boolean if a field has been set.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) HasTpOrderType() bool {
-	if o != nil && !common.IsNil(o.TpOrderType) {
-		return true
-	}
-
-	return false
-}
-
-// SetTpOrderType gets a reference to the given string and assigns it to the TpOrderType field.
-func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) SetTpOrderType(v string) {
-	o.TpOrderType = &v
 }
 
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
@@ -1069,35 +805,11 @@ func (o QueryAllCurrentUmOpenAlgoOrdersResponseInner) ToMap() (map[string]interf
 	if !common.IsNil(o.AlgoStatus) {
 		toSerialize["algoStatus"] = o.AlgoStatus
 	}
-	if !common.IsNil(o.ActualOrderId) {
-		toSerialize["actualOrderId"] = o.ActualOrderId
-	}
-	if !common.IsNil(o.ActualPrice) {
-		toSerialize["actualPrice"] = o.ActualPrice
-	}
 	if !common.IsNil(o.TriggerPrice) {
 		toSerialize["triggerPrice"] = o.TriggerPrice
 	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
-	}
-	if !common.IsNil(o.IcebergQuantity) {
-		toSerialize["icebergQuantity"] = o.IcebergQuantity
-	}
-	if !common.IsNil(o.TpTriggerPrice) {
-		toSerialize["tpTriggerPrice"] = o.TpTriggerPrice
-	}
-	if !common.IsNil(o.TpPrice) {
-		toSerialize["tpPrice"] = o.TpPrice
-	}
-	if !common.IsNil(o.SlTriggerPrice) {
-		toSerialize["slTriggerPrice"] = o.SlTriggerPrice
-	}
-	if !common.IsNil(o.SlPrice) {
-		toSerialize["slPrice"] = o.SlPrice
-	}
-	if !common.IsNil(o.TpOrderType) {
-		toSerialize["tpOrderType"] = o.TpOrderType
 	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
@@ -1161,16 +873,8 @@ func (o *QueryAllCurrentUmOpenAlgoOrdersResponseInner) UnmarshalJSON(data []byte
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "algoStatus")
-		delete(additionalProperties, "actualOrderId")
-		delete(additionalProperties, "actualPrice")
 		delete(additionalProperties, "triggerPrice")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "icebergQuantity")
-		delete(additionalProperties, "tpTriggerPrice")
-		delete(additionalProperties, "tpPrice")
-		delete(additionalProperties, "slTriggerPrice")
-		delete(additionalProperties, "slPrice")
-		delete(additionalProperties, "tpOrderType")
 		delete(additionalProperties, "selfTradePreventionMode")
 		delete(additionalProperties, "workingType")
 		delete(additionalProperties, "priceMatch")

@@ -6,9 +6,9 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **CalculationType** | Pointer to **string** |  | [optional] 
-**BucketCount** | Pointer to **int64** |  | [optional] 
-**BucketWidthMs** | Pointer to **int64** |  | [optional] 
-**ExternalCalculationId** | Pointer to **int64** |  | [optional] 
+**BucketCount** | Pointer to **int64** | If the reference price is being calculated by the matching engine as an arithmetic mean | [optional] 
+**BucketWidthMs** | Pointer to **int64** | If the reference price is being calculated by the matching engine as an arithmetic mean | [optional] 
+**ExternalCalculationId** | Pointer to **int64** | If the reference price is being calculated outside the matching engine | [optional] 
 
 ## Methods
 

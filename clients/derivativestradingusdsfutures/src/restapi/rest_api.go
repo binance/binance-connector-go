@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfuturesrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Derivatives Trading USDS Futures REST API API v1.11.0
+// RestAPIClient manages communication with the Futures (USDⓈ-M) REST API API v1.11.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -31,7 +31,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Derivatives Trading USDS Futures REST API REST API client
+// NewRestAPIClient creates a new Binance Futures (USDⓈ-M) REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client

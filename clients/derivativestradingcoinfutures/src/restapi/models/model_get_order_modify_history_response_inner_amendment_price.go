@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -15,9 +15,11 @@ import (
 // checks if the GetOrderModifyHistoryResponseInnerAmendmentPrice type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &GetOrderModifyHistoryResponseInnerAmendmentPrice{}
 
-// GetOrderModifyHistoryResponseInnerAmendmentPrice struct for GetOrderModifyHistoryResponseInnerAmendmentPrice
+// GetOrderModifyHistoryResponseInnerAmendmentPrice Latest token price.
 type GetOrderModifyHistoryResponseInnerAmendmentPrice struct {
-	Before               *string `json:"before,omitempty"`
+	// Before value.
+	Before *string `json:"before,omitempty"`
+	// After value.
 	After                *string `json:"after,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

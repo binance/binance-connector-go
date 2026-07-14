@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OpenInterest** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**OpenInterest** | Pointer to **string** | Open Interest. | [optional] 
+**Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Time** | Pointer to **int64** | Transaction time | [optional] 
 
 ## Methods
 

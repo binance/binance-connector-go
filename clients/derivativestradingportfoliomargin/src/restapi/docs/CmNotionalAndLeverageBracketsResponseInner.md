@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Brackets** | Pointer to [**[]CmNotionalAndLeverageBracketsResponseInnerBracketsInner**](CmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**Brackets** | Pointer to [**[]CmNotionalAndLeverageBracketsResponseInnerBracketsInner**](CmNotionalAndLeverageBracketsResponseInnerBracketsInner.md) | Brackets. | [optional] 
 
 ## Methods
 

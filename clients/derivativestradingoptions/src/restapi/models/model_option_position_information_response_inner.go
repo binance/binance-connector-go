@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Options REST API
+Options REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Options REST API
+Access market data, manage accounts, and trade Binance Options.
 */
 
 package models
@@ -17,21 +17,37 @@ var _ common.MappedNullable = &OptionPositionInformationResponseInner{}
 
 // OptionPositionInformationResponseInner struct for OptionPositionInformationResponseInner
 type OptionPositionInformationResponseInner struct {
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
-	MarkValue            *string `json:"markValue,omitempty"`
-	UnrealizedPNL        *string `json:"unrealizedPNL,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	StrikePrice          *string `json:"strikePrice,omitempty"`
-	ExpiryDate           *int64  `json:"expiryDate,omitempty"`
-	PriceScale           *int64  `json:"priceScale,omitempty"`
-	QuantityScale        *int64  `json:"quantityScale,omitempty"`
-	OptionSide           *string `json:"optionSide,omitempty"`
-	QuoteAsset           *string `json:"quoteAsset,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	BidQuantity          *string `json:"bidQuantity,omitempty"`
+	// Average entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// Option trading pair
+	Symbol *string `json:"symbol,omitempty"`
+	// Position direction
+	Side *string `json:"side,omitempty"`
+	// Number of positions (positive numbers represent long positions, negative number represent short positions)
+	Quantity *string `json:"quantity,omitempty"`
+	// Current market value
+	MarkValue *string `json:"markValue,omitempty"`
+	// Unrealized profit/loss
+	UnrealizedPNL *string `json:"unrealizedPNL,omitempty"`
+	// Mark price
+	MarkPrice *string `json:"markPrice,omitempty"`
+	// Strike price
+	StrikePrice *string `json:"strikePrice,omitempty"`
+	// Exercise time
+	ExpiryDate *int64 `json:"expiryDate,omitempty"`
+	// price Scale
+	PriceScale *int64 `json:"priceScale,omitempty"`
+	// quantity Scale
+	QuantityScale *int64 `json:"quantityScale,omitempty"`
+	// option type
+	OptionSide *string `json:"optionSide,omitempty"`
+	// quote asset
+	QuoteAsset *string `json:"quoteAsset,omitempty"`
+	// last update time
+	Time *int64 `json:"time,omitempty"`
+	// buy order qty
+	BidQuantity *string `json:"bidQuantity,omitempty"`
+	// sell order qty
 	AskQuantity          *string `json:"askQuantity,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

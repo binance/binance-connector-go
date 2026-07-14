@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,14 @@ var _ common.MappedNullable = &BalanceUpdate{}
 
 // BalanceUpdate struct for BalanceUpdate
 type BalanceUpdate struct {
-	E                    *int64  `json:"E,omitempty"`
-	A                    *string `json:"a,omitempty"`
-	D                    *string `json:"d,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
+	// Event Time
+	E *int64 `json:"E,omitempty"`
+	// Asset
+	Smalla *string `json:"a,omitempty"`
+	// Balance Delta
+	Smalld *string `json:"d,omitempty"`
+	// Clear Time
+	T                    *int64 `json:"T,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,26 +80,26 @@ func (o *BalanceUpdate) SetE(v int64) {
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *BalanceUpdate) GetA() string {
-	if o == nil || common.IsNil(o.A) {
+func (o *BalanceUpdate) GetSmalla() string {
+	if o == nil || common.IsNil(o.Smalla) {
 		var ret string
 		return ret
 	}
-	return *o.A
+	return *o.Smalla
 }
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceUpdate) GetAOk() (*string, bool) {
-	if o == nil || common.IsNil(o.A) {
+func (o *BalanceUpdate) GetSmallaOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
-	return o.A, true
+	return o.Smalla, true
 }
 
 // HasA returns a boolean if a field has been set.
-func (o *BalanceUpdate) HasA() bool {
-	if o != nil && !common.IsNil(o.A) {
+func (o *BalanceUpdate) HasSmalla() bool {
+	if o != nil && !common.IsNil(o.Smalla) {
 		return true
 	}
 
@@ -103,31 +107,31 @@ func (o *BalanceUpdate) HasA() bool {
 }
 
 // SetA gets a reference to the given string and assigns it to the A field.
-func (o *BalanceUpdate) SetA(v string) {
-	o.A = &v
+func (o *BalanceUpdate) SetSmalla(v string) {
+	o.Smalla = &v
 }
 
 // GetD returns the D field value if set, zero value otherwise.
-func (o *BalanceUpdate) GetD() string {
-	if o == nil || common.IsNil(o.D) {
+func (o *BalanceUpdate) GetSmalld() string {
+	if o == nil || common.IsNil(o.Smalld) {
 		var ret string
 		return ret
 	}
-	return *o.D
+	return *o.Smalld
 }
 
 // GetDOk returns a tuple with the D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BalanceUpdate) GetDOk() (*string, bool) {
-	if o == nil || common.IsNil(o.D) {
+func (o *BalanceUpdate) GetSmalldOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalld) {
 		return nil, false
 	}
-	return o.D, true
+	return o.Smalld, true
 }
 
 // HasD returns a boolean if a field has been set.
-func (o *BalanceUpdate) HasD() bool {
-	if o != nil && !common.IsNil(o.D) {
+func (o *BalanceUpdate) HasSmalld() bool {
+	if o != nil && !common.IsNil(o.Smalld) {
 		return true
 	}
 
@@ -135,8 +139,8 @@ func (o *BalanceUpdate) HasD() bool {
 }
 
 // SetD gets a reference to the given string and assigns it to the D field.
-func (o *BalanceUpdate) SetD(v string) {
-	o.D = &v
+func (o *BalanceUpdate) SetSmalld(v string) {
+	o.Smalld = &v
 }
 
 // GetT returns the T field value if set, zero value otherwise.
@@ -184,11 +188,11 @@ func (o BalanceUpdate) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.A) {
-		toSerialize["a"] = o.A
+	if !common.IsNil(o.Smalla) {
+		toSerialize["a"] = o.Smalla
 	}
-	if !common.IsNil(o.D) {
-		toSerialize["d"] = o.D
+	if !common.IsNil(o.Smalld) {
+		toSerialize["d"] = o.Smalld
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T

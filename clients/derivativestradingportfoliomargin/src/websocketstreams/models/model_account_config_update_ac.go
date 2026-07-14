@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Portfolio Margin WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin WebSocket Market Streams
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,8 +17,10 @@ var _ common.MappedNullable = &AccountConfigUpdateAc{}
 
 // AccountConfigUpdateAc struct for AccountConfigUpdateAc
 type AccountConfigUpdateAc struct {
-	Smalls               *string `json:"s,omitempty"`
-	Smalll               *int64  `json:"l,omitempty"`
+	// Symbol
+	Smalls *string `json:"s,omitempty"`
+	// Leverage
+	Smalll               *int64 `json:"l,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

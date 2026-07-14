@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **StandardCommissionForOrder** | Pointer to [**OrderTestResponseStandardCommissionForOrder**](OrderTestResponseStandardCommissionForOrder.md) |  | [optional] 
 **SpecialCommissionForOrder** | Pointer to [**OrderTestResponseSpecialCommissionForOrder**](OrderTestResponseSpecialCommissionForOrder.md) |  | [optional] 
-**TaxCommissionForOrder** | Pointer to [**OrderTestResponseStandardCommissionForOrder**](OrderTestResponseStandardCommissionForOrder.md) |  | [optional] 
+**TaxCommissionForOrder** | Pointer to [**OrderTestResponseTaxCommissionForOrder**](OrderTestResponseTaxCommissionForOrder.md) |  | [optional] 
 **Discount** | Pointer to [**OrderTestResponseDiscount**](OrderTestResponseDiscount.md) |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasSpecialCommissionForOrder returns a boolean if a field has been set.
 
 ### GetTaxCommissionForOrder
 
-`func (o *OrderTestResponse) GetTaxCommissionForOrder() OrderTestResponseStandardCommissionForOrder`
+`func (o *OrderTestResponse) GetTaxCommissionForOrder() OrderTestResponseTaxCommissionForOrder`
 
 GetTaxCommissionForOrder returns the TaxCommissionForOrder field if non-nil, zero value otherwise.
 
 ### GetTaxCommissionForOrderOk
 
-`func (o *OrderTestResponse) GetTaxCommissionForOrderOk() (*OrderTestResponseStandardCommissionForOrder, bool)`
+`func (o *OrderTestResponse) GetTaxCommissionForOrderOk() (*OrderTestResponseTaxCommissionForOrder, bool)`
 
 GetTaxCommissionForOrderOk returns a tuple with the TaxCommissionForOrder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxCommissionForOrder
 
-`func (o *OrderTestResponse) SetTaxCommissionForOrder(v OrderTestResponseStandardCommissionForOrder)`
+`func (o *OrderTestResponse) SetTaxCommissionForOrder(v OrderTestResponseTaxCommissionForOrder)`
 
 SetTaxCommissionForOrder sets TaxCommissionForOrder field to given value.
 

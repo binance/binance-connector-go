@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**BidPrice** | Pointer to **string** |  | [optional] 
-**BidQty** | Pointer to **string** |  | [optional] 
-**AskPrice** | Pointer to **string** |  | [optional] 
-**AskQty** | Pointer to **string** |  | [optional] 
+**BidPrice** | Pointer to **string** | best bid price. | [optional] 
+**BidQty** | Pointer to **string** | bid/ask qty. | [optional] 
+**AskPrice** | Pointer to **string** | best ask price. | [optional] 
+**AskQty** | Pointer to **string** | bid/ask qty. | [optional] 
 
 ## Methods
 

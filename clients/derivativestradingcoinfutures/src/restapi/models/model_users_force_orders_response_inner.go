@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,28 +17,50 @@ var _ common.MappedNullable = &UsersForceOrdersResponseInner{}
 
 // UsersForceOrdersResponseInner struct for UsersForceOrdersResponseInner
 type UsersForceOrdersResponseInner struct {
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	CumBase              *string `json:"cumBase,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
-	ClosePosition        *bool   `json:"closePosition,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	StopPrice            *string `json:"stopPrice,omitempty"`
-	WorkingType          *string `json:"workingType,omitempty"`
-	PriceProtect         *bool   `json:"priceProtect,omitempty"`
-	OrigType             *string `json:"origType,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// Sub-order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Trading symbol
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Client order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Latest token price.
+	Price *string `json:"price,omitempty"`
+	// Average execution price
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Original order quantity
+	OrigQty *string `json:"origQty,omitempty"`
+	// Executed quantity
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Cumulative base asset amount.
+	CumBase *string `json:"cumBase,omitempty"`
+	// Time in force
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Order type.
+	Type *string `json:"type,omitempty"`
+	// Whether the order is reduce-only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Trading side
+	Side *string `json:"side,omitempty"`
+	// Position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Stop trigger price type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// Original order type.
+	OrigType *string `json:"origType,omitempty"`
+	// Time
+	Time *int64 `json:"time,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

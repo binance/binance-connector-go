@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**[]UiKlinesItem**](UiKlinesItem.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
+**Result** | Pointer to [**[][]KlinesResponseResultInnerInner**]([]KlinesResponseResultInnerInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *UiKlinesResponse) GetResult() []UiKlinesItem`
+`func (o *UiKlinesResponse) GetResult() [][]KlinesResponseResultInnerInner`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *UiKlinesResponse) GetResultOk() (*[]UiKlinesItem, bool)`
+`func (o *UiKlinesResponse) GetResultOk() (*[][]KlinesResponseResultInnerInner, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *UiKlinesResponse) SetResult(v []UiKlinesItem)`
+`func (o *UiKlinesResponse) SetResult(v [][]KlinesResponseResultInnerInner)`
 
 SetResult sets Result field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *UiKlinesResponse) GetRateLimits() []RateLimits`
+`func (o *UiKlinesResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *UiKlinesResponse) GetRateLimitsOk() (*[]RateLimits, bool)`
+`func (o *UiKlinesResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *UiKlinesResponse) SetRateLimits(v []RateLimits)`
+`func (o *UiKlinesResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

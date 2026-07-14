@@ -1,5 +1,5 @@
 /*
-Binance Derivatives Trading USDS Futures REST API TEST
+Futures (USDⓈ-M) REST API TEST
 
 Testing PortfolioMarginEndpointsAPIService
 
@@ -25,10 +25,14 @@ func Test_binancederivativestradingusdsfuturesrestapi_PortfolioMarginEndpointsAP
 
 	t.Run("Test PortfolioMarginEndpointsAPIService ClassicPortfolioMarginAccountInformation Success", func(t *testing.T) {
 
-		mockedJSON := `{"maxWithdrawAmountUSD":"1627523.32459208","asset":"BTC","maxWithdrawAmount":"27.43689636"}`
+		var mockedJSON string
+		mockedJSON = `{"maxWithdrawAmountUSD":"1627523.32459208","asset":"BTC","maxWithdrawAmount":"27.43689636"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/pmAccountInfo", r.URL.Path)
-			require.Equal(t, "asset_example", r.URL.Query().Get("asset"))
+			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -45,7 +49,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_PortfolioMarginEndpointsAP
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.PortfolioMarginEndpointsAPI.ClassicPortfolioMarginAccountInformation(context.Background()).Asset("asset_example").Execute()
+		resp, err := apiClient.RestApi.PortfolioMarginEndpointsAPI.ClassicPortfolioMarginAccountInformation(context.Background()).Asset("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

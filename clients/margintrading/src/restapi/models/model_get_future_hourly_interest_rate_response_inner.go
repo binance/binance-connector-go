@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &GetFutureHourlyInterestRateResponseInner{}
 
 // GetFutureHourlyInterestRateResponseInner struct for GetFutureHourlyInterestRateResponseInner
 type GetFutureHourlyInterestRateResponseInner struct {
-	Asset                  *string `json:"asset,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// next Hourly Interest Rate.
 	NextHourlyInterestRate *string `json:"nextHourlyInterestRate,omitempty"`
 	AdditionalProperties   map[string]interface{}
 }

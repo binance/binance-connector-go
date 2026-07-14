@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,22 +17,37 @@ var _ common.MappedNullable = &Ticker24hrPriceChangeStatisticsResponse1{}
 
 // Ticker24hrPriceChangeStatisticsResponse1 struct for Ticker24hrPriceChangeStatisticsResponse1
 type Ticker24hrPriceChangeStatisticsResponse1 struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PriceChange          *string `json:"priceChange,omitempty"`
-	PriceChangePercent   *string `json:"priceChangePercent,omitempty"`
-	WeightedAvgPrice     *string `json:"weightedAvgPrice,omitempty"`
-	LastPrice            *string `json:"lastPrice,omitempty"`
-	LastQty              *string `json:"lastQty,omitempty"`
-	OpenPrice            *string `json:"openPrice,omitempty"`
-	HighPrice            *string `json:"highPrice,omitempty"`
-	LowPrice             *string `json:"lowPrice,omitempty"`
-	Volume               *string `json:"volume,omitempty"`
-	QuoteVolume          *string `json:"quoteVolume,omitempty"`
-	OpenTime             *int64  `json:"openTime,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
-	FirstId              *int64  `json:"firstId,omitempty"`
-	LastId               *int64  `json:"lastId,omitempty"`
-	Count                *int64  `json:"count,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// Price Change.
+	PriceChange *string `json:"priceChange,omitempty"`
+	// Price Change Percent.
+	PriceChangePercent *string `json:"priceChangePercent,omitempty"`
+	// Weighted Avg Price.
+	WeightedAvgPrice *string `json:"weightedAvgPrice,omitempty"`
+	// Last Price.
+	LastPrice *string `json:"lastPrice,omitempty"`
+	// Last Qty.
+	LastQty *string `json:"lastQty,omitempty"`
+	// Open Price.
+	OpenPrice *string `json:"openPrice,omitempty"`
+	// High Price.
+	HighPrice *string `json:"highPrice,omitempty"`
+	// Low Price.
+	LowPrice *string `json:"lowPrice,omitempty"`
+	// Volume.
+	Volume *string `json:"volume,omitempty"`
+	// Quote Volume.
+	QuoteVolume *string `json:"quoteVolume,omitempty"`
+	// Open Time.
+	OpenTime *int64 `json:"openTime,omitempty"`
+	// Close Time.
+	CloseTime *int64 `json:"closeTime,omitempty"`
+	// First tradeId
+	FirstId *int64 `json:"firstId,omitempty"`
+	// Last tradeId
+	LastId *int64 `json:"lastId,omitempty"`
+	// Trade count
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

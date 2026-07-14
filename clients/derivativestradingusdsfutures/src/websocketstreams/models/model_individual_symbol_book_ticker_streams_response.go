@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,17 +17,28 @@ var _ common.MappedNullable = &IndividualSymbolBookTickerStreamsResponse{}
 
 // IndividualSymbolBookTickerStreamsResponse struct for IndividualSymbolBookTickerStreamsResponse
 type IndividualSymbolBookTickerStreamsResponse struct {
-	Smalle               *string `json:"e,omitempty"`
-	Smallu               *int64  `json:"u,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smallps              *string `json:"ps,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	T                    *int64  `json:"T,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	B                    *string `json:"B,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
-	A                    *string `json:"A,omitempty"`
-	Smallst              *int64  `json:"st,omitempty"`
+	// event type
+	Smalle *string `json:"e,omitempty"`
+	// order book updateId
+	Smallu *int64 `json:"u,omitempty"`
+	// event time
+	E *int64 `json:"E,omitempty"`
+	// transaction time
+	T *int64 `json:"T,omitempty"`
+	// symbol
+	Smalls *string `json:"s,omitempty"`
+	// pair (After CM migration)
+	Smallps *string `json:"ps,omitempty"`
+	// best bid price
+	Smallb *string `json:"b,omitempty"`
+	// best bid qty
+	B *string `json:"B,omitempty"`
+	// best ask price
+	Smalla *string `json:"a,omitempty"`
+	// best ask qty
+	A *string `json:"A,omitempty"`
+	// (After CM migration) Symbol type: 1 = UM, 2 = CM
+	Smallst              *int32 `json:"st,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -114,70 +125,6 @@ func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallu(v int64) {
 	o.Smallu = &v
 }
 
-// GetS returns the S field value if set, zero value otherwise.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmalls() string {
-	if o == nil || common.IsNil(o.Smalls) {
-		var ret string
-		return ret
-	}
-	return *o.Smalls
-}
-
-// GetSOk returns a tuple with the S field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smalls) {
-		return nil, false
-	}
-	return o.Smalls, true
-}
-
-// HasS returns a boolean if a field has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) HasSmalls() bool {
-	if o != nil && !common.IsNil(o.Smalls) {
-		return true
-	}
-
-	return false
-}
-
-// SetS gets a reference to the given string and assigns it to the S field.
-func (o *IndividualSymbolBookTickerStreamsResponse) SetSmalls(v string) {
-	o.Smalls = &v
-}
-
-// GetPs returns the Ps field value if set, zero value otherwise.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallps() string {
-	if o == nil || common.IsNil(o.Smallps) {
-		var ret string
-		return ret
-	}
-	return *o.Smallps
-}
-
-// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Smallps) {
-		return nil, false
-	}
-	return o.Smallps, true
-}
-
-// HasPs returns a boolean if a field has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) HasSmallps() bool {
-	if o != nil && !common.IsNil(o.Smallps) {
-		return true
-	}
-
-	return false
-}
-
-// SetPs gets a reference to the given string and assigns it to the Ps field.
-func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallps(v string) {
-	o.Smallps = &v
-}
-
 // GetE returns the E field value if set, zero value otherwise.
 func (o *IndividualSymbolBookTickerStreamsResponse) GetE() int64 {
 	if o == nil || common.IsNil(o.E) {
@@ -240,6 +187,70 @@ func (o *IndividualSymbolBookTickerStreamsResponse) HasT() bool {
 // SetT gets a reference to the given int64 and assigns it to the T field.
 func (o *IndividualSymbolBookTickerStreamsResponse) SetT(v int64) {
 	o.T = &v
+}
+
+// GetS returns the S field value if set, zero value otherwise.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmalls() string {
+	if o == nil || common.IsNil(o.Smalls) {
+		var ret string
+		return ret
+	}
+	return *o.Smalls
+}
+
+// GetSOk returns a tuple with the S field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smalls) {
+		return nil, false
+	}
+	return o.Smalls, true
+}
+
+// HasS returns a boolean if a field has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) HasSmalls() bool {
+	if o != nil && !common.IsNil(o.Smalls) {
+		return true
+	}
+
+	return false
+}
+
+// SetS gets a reference to the given string and assigns it to the S field.
+func (o *IndividualSymbolBookTickerStreamsResponse) SetSmalls(v string) {
+	o.Smalls = &v
+}
+
+// GetPs returns the Ps field value if set, zero value otherwise.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallps() string {
+	if o == nil || common.IsNil(o.Smallps) {
+		var ret string
+		return ret
+	}
+	return *o.Smallps
+}
+
+// GetPsOk returns a tuple with the Ps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallpsOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallps) {
+		return nil, false
+	}
+	return o.Smallps, true
+}
+
+// HasPs returns a boolean if a field has been set.
+func (o *IndividualSymbolBookTickerStreamsResponse) HasSmallps() bool {
+	if o != nil && !common.IsNil(o.Smallps) {
+		return true
+	}
+
+	return false
+}
+
+// SetPs gets a reference to the given string and assigns it to the Ps field.
+func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallps(v string) {
+	o.Smallps = &v
 }
 
 // GetB returns the B field value if set, zero value otherwise.
@@ -371,9 +382,9 @@ func (o *IndividualSymbolBookTickerStreamsResponse) SetA(v string) {
 }
 
 // GetSt returns the St field value if set, zero value otherwise.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallst() int64 {
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallst() int32 {
 	if o == nil || common.IsNil(o.Smallst) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Smallst
@@ -381,7 +392,7 @@ func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallst() int64 {
 
 // GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallstOk() (*int64, bool) {
+func (o *IndividualSymbolBookTickerStreamsResponse) GetSmallstOk() (*int32, bool) {
 	if o == nil || common.IsNil(o.Smallst) {
 		return nil, false
 	}
@@ -397,8 +408,8 @@ func (o *IndividualSymbolBookTickerStreamsResponse) HasSmallst() bool {
 	return false
 }
 
-// SetSt gets a reference to the given int64 and assigns it to the St field.
-func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallst(v int64) {
+// SetSt gets a reference to the given int32 and assigns it to the St field.
+func (o *IndividualSymbolBookTickerStreamsResponse) SetSmallst(v int32) {
 	o.Smallst = &v
 }
 
@@ -418,17 +429,17 @@ func (o IndividualSymbolBookTickerStreamsResponse) ToMap() (map[string]interface
 	if !common.IsNil(o.Smallu) {
 		toSerialize["u"] = o.Smallu
 	}
-	if !common.IsNil(o.Smalls) {
-		toSerialize["s"] = o.Smalls
-	}
-	if !common.IsNil(o.Smallps) {
-		toSerialize["ps"] = o.Smallps
-	}
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
 	if !common.IsNil(o.T) {
 		toSerialize["T"] = o.T
+	}
+	if !common.IsNil(o.Smalls) {
+		toSerialize["s"] = o.Smalls
+	}
+	if !common.IsNil(o.Smallps) {
+		toSerialize["ps"] = o.Smallps
 	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb
@@ -469,10 +480,10 @@ func (o *IndividualSymbolBookTickerStreamsResponse) UnmarshalJSON(data []byte) (
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "e")
 		delete(additionalProperties, "u")
-		delete(additionalProperties, "s")
-		delete(additionalProperties, "ps")
 		delete(additionalProperties, "E")
 		delete(additionalProperties, "T")
+		delete(additionalProperties, "s")
+		delete(additionalProperties, "ps")
 		delete(additionalProperties, "b")
 		delete(additionalProperties, "B")
 		delete(additionalProperties, "a")

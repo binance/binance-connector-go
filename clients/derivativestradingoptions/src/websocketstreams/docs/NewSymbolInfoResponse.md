@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**Qa** | Pointer to **string** |  | [optional] 
-**D** | Pointer to **string** |  | [optional] 
-**Sp** | Pointer to **string** |  | [optional] 
-**Dt** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**Ot** | Pointer to **int64** |  | [optional] 
-**Cs** | Pointer to **string** |  | [optional] 
+**E** | Pointer to **string** | Event Type | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Ps** | Pointer to **string** | Underlying index of the contract | [optional] 
+**Qa** | Pointer to **string** | Quotation asset | [optional] 
+**D** | Pointer to **string** | Option type | [optional] 
+**Sp** | Pointer to **string** | Strike price | [optional] 
+**Dt** | Pointer to **int64** | Delivery date time | [optional] 
+**U** | Pointer to **int64** | unit, the quantity of the underlying asset represented by a single contract. | [optional] 
+**Ot** | Pointer to **int64** | onboard date time | [optional] 
+**Cs** | Pointer to **string** | Contract status | [optional] 
 
 ## Methods
 

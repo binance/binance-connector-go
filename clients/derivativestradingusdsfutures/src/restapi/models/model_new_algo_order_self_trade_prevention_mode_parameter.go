@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -16,6 +16,7 @@ type NewAlgoOrderSelfTradePreventionModeParameter string
 
 // List of newAlgoOrder_selfTradePreventionMode_parameter
 const (
+	NewAlgoOrderSelfTradePreventionModeParameterNone        NewAlgoOrderSelfTradePreventionModeParameter = "NONE"
 	NewAlgoOrderSelfTradePreventionModeParameterExpireTaker NewAlgoOrderSelfTradePreventionModeParameter = "EXPIRE_TAKER"
 	NewAlgoOrderSelfTradePreventionModeParameterExpireBoth  NewAlgoOrderSelfTradePreventionModeParameter = "EXPIRE_BOTH"
 	NewAlgoOrderSelfTradePreventionModeParameterExpireMaker NewAlgoOrderSelfTradePreventionModeParameter = "EXPIRE_MAKER"
@@ -23,6 +24,7 @@ const (
 
 // All allowed values of NewAlgoOrderSelfTradePreventionModeParameter enum
 var AllowedNewAlgoOrderSelfTradePreventionModeParameterEnumValues = []NewAlgoOrderSelfTradePreventionModeParameter{
+	"NONE",
 	"EXPIRE_TAKER",
 	"EXPIRE_BOTH",
 	"EXPIRE_MAKER",

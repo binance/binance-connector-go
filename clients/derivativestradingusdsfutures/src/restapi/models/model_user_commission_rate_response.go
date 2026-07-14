@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &UserCommissionRateResponse{}
 
 // UserCommissionRateResponse struct for UserCommissionRateResponse
 type UserCommissionRateResponse struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	MakerCommissionRate  *string `json:"makerCommissionRate,omitempty"`
-	TakerCommissionRate  *string `json:"takerCommissionRate,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// 0.02%
+	MakerCommissionRate *string `json:"makerCommissionRate,omitempty"`
+	// 0.04%
+	TakerCommissionRate *string `json:"takerCommissionRate,omitempty"`
+	// 0.005%
 	RpiCommissionRate    *string `json:"rpiCommissionRate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

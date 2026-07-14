@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**EnabledAccount** | Pointer to **int64** |  | [optional] 
-**MaxAccount** | Pointer to **int64** |  | [optional] 
+**EnabledAccount** | Pointer to **int64** | enabled Account. | [optional] 
+**MaxAccount** | Pointer to **int64** | max Account. | [optional] 
 
 ## Methods
 

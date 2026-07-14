@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package binancederivativestradingportfoliomarginprorestapi
@@ -22,7 +22,7 @@ type ApiBnbTransferRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
 	amount       *float32
-	transferSide *string
+	transferSide *models.BnbTransferTransferSideParameter
 	recvWindow   *int64
 }
 
@@ -31,8 +31,7 @@ func (r ApiBnbTransferRequest) Amount(amount float32) ApiBnbTransferRequest {
 	return r
 }
 
-// \&quot;TO_UM\&quot;,\&quot;FROM_UM\&quot;
-func (r ApiBnbTransferRequest) TransferSide(transferSide string) ApiBnbTransferRequest {
+func (r ApiBnbTransferRequest) TransferSide(transferSide models.BnbTransferTransferSideParameter) ApiBnbTransferRequest {
 	r.transferSide = &transferSide
 	return r
 }
@@ -47,14 +46,14 @@ func (r ApiBnbTransferRequest) Execute() (*common.RestApiResponse[models.BnbTran
 }
 
 /*
-BnbTransfer BNB transfer(USER_DATA)
+BnbTransfer BNB transfer (USER_DATA)
 Post /sapi/v1/portfolio/bnb-transfer
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/BNB-transfer
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#bnb-transfer
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param amount -
-@param transferSide -  \"TO_UM\",\"FROM_UM\"
+@param transferSide -
 @param recvWindow -
 @return ApiBnbTransferRequest
 */
@@ -78,6 +77,7 @@ func (a *AccountAPIService) BnbTransferExecute(r ApiBnbTransferRequest) (*common
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
+
 	if r.transferSide == nil {
 		return nil, common.ReportError("transferSide is required and must be specified")
 	}
@@ -88,7 +88,15 @@ func (a *AccountAPIService) BnbTransferExecute(r ApiBnbTransferRequest) (*common
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.BnbTransferResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.BnbTransferResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -99,12 +107,12 @@ func (a *AccountAPIService) BnbTransferExecute(r ApiBnbTransferRequest) (*common
 type ApiChangeAutoRepayFuturesStatusRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	autoRepay  *string
+	autoRepay  *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	recvWindow *int64
 }
 
-// Default: &#x60;true&#x60;; &#x60;false&#x60; for turn off the auto-repay futures negative balance function
-func (r ApiChangeAutoRepayFuturesStatusRequest) AutoRepay(autoRepay string) ApiChangeAutoRepayFuturesStatusRequest {
+// &#x60;false&#x60; for turn off the auto-repay futures negative balance function
+func (r ApiChangeAutoRepayFuturesStatusRequest) AutoRepay(autoRepay models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiChangeAutoRepayFuturesStatusRequest {
 	r.autoRepay = &autoRepay
 	return r
 }
@@ -119,13 +127,13 @@ func (r ApiChangeAutoRepayFuturesStatusRequest) Execute() (*common.RestApiRespon
 }
 
 /*
-ChangeAutoRepayFuturesStatus Change Auto-repay-futures Status(TRADE)
+ChangeAutoRepayFuturesStatus Change Auto-repay-futures Status (TRADE)
 Post /sapi/v1/portfolio/repay-futures-switch
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Change-Auto-repay-futures-Status
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#change-auto-repay-futures-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param autoRepay -  Default: `true`; `false` for turn off the auto-repay futures negative balance function
+@param autoRepay -  `false` for turn off the auto-repay futures negative balance function
 @param recvWindow -
 @return ApiChangeAutoRepayFuturesStatusRequest
 */
@@ -155,7 +163,78 @@ func (a *AccountAPIService) ChangeAutoRepayFuturesStatusExecute(r ApiChangeAutoR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ChangeAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ChangeAutoRepayFuturesStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiDeleteMarginCallLevelRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	recvWindow *int64
+}
+
+// Request validity window in milliseconds
+func (r ApiDeleteMarginCallLevelRequest) RecvWindow(recvWindow int64) ApiDeleteMarginCallLevelRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiDeleteMarginCallLevelRequest) Execute() (*common.RestApiResponse[models.DeleteMarginCallLevelResponse], error) {
+	return r.ApiService.DeleteMarginCallLevelExecute(r)
+}
+
+/*
+DeleteMarginCallLevel Delete Margin Call Level (USER_DATA)
+Delete /sapi/v1/portfolio/margin-call-level
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#delete-margin-call-level
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -  Request validity window in milliseconds
+@return ApiDeleteMarginCallLevelRequest
+*/
+func (a *AccountAPIService) DeleteMarginCallLevel(ctx context.Context) ApiDeleteMarginCallLevelRequest {
+	return ApiDeleteMarginCallLevelRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DeleteMarginCallLevelResponse
+func (a *AccountAPIService) DeleteMarginCallLevelExecute(r ApiDeleteMarginCallLevelRequest) (*common.RestApiResponse[models.DeleteMarginCallLevelResponse], error) {
+	localVarHTTPMethod := http.MethodDelete
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/portfolio/margin-call-level"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.DeleteMarginCallLevelResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -179,10 +258,10 @@ func (r ApiFundAutoCollectionRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-FundAutoCollection Fund Auto-collection(USER_DATA)
+FundAutoCollection Fund Auto-collection (USER_DATA)
 Post /sapi/v1/portfolio/auto-collection
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Auto-collection
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#fund-auto-collection
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -209,7 +288,15 @@ func (a *AccountAPIService) FundAutoCollectionExecute(r ApiFundAutoCollectionReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundAutoCollectionResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FundAutoCollectionResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -224,7 +311,6 @@ type ApiFundCollectionByAssetRequest struct {
 	recvWindow *int64
 }
 
-// &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60;
 func (r ApiFundCollectionByAssetRequest) Asset(asset string) ApiFundCollectionByAssetRequest {
 	r.asset = &asset
 	return r
@@ -240,13 +326,13 @@ func (r ApiFundCollectionByAssetRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-FundCollectionByAsset Fund Collection by Asset(USER_DATA)
+FundCollectionByAsset Fund Collection by Asset (USER_DATA)
 Post /sapi/v1/portfolio/asset-collection
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Fund-Collection-by-Asset
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#fund-collection-by-asset
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  `LDUSDT` and `RWUSD`
+@param asset -
 @param recvWindow -
 @return ApiFundCollectionByAssetRequest
 */
@@ -276,7 +362,15 @@ func (a *AccountAPIService) FundCollectionByAssetExecute(r ApiFundCollectionByAs
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.FundCollectionByAssetResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FundCollectionByAssetResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -300,10 +394,10 @@ func (r ApiGetAutoRepayFuturesStatusRequest) Execute() (*common.RestApiResponse[
 }
 
 /*
-GetAutoRepayFuturesStatus Get Auto-repay-futures Status(USER_DATA)
+GetAutoRepayFuturesStatus Get Auto-repay-futures Status (USER_DATA)
 Get /sapi/v1/portfolio/repay-futures-switch
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Auto-repay-futures-Status
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-auto-repay-futures-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -330,7 +424,15 @@ func (a *AccountAPIService) GetAutoRepayFuturesStatusExecute(r ApiGetAutoRepayFu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetAutoRepayFuturesStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetAutoRepayFuturesStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -354,10 +456,10 @@ func (r ApiGetDeltaModeStatusRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-GetDeltaModeStatus Get Delta Mode Status(USER_DATA)
+GetDeltaModeStatus Get Delta Mode Status (USER_DATA)
 Get /sapi/v1/portfolio/delta-mode
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Delta-Mode-Status
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-delta-mode-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -384,7 +486,78 @@ func (a *AccountAPIService) GetDeltaModeStatusExecute(r ApiGetDeltaModeStatusReq
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetDeltaModeStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetDeltaModeStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetMarginCallLevelRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	recvWindow *int64
+}
+
+// Request validity window in milliseconds
+func (r ApiGetMarginCallLevelRequest) RecvWindow(recvWindow int64) ApiGetMarginCallLevelRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetMarginCallLevelRequest) Execute() (*common.RestApiResponse[models.GetMarginCallLevelResponse], error) {
+	return r.ApiService.GetMarginCallLevelExecute(r)
+}
+
+/*
+GetMarginCallLevel Get Margin Call Level (USER_DATA)
+Get /sapi/v1/portfolio/margin-call-level
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-margin-call-level
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param recvWindow -  Request validity window in milliseconds
+@return ApiGetMarginCallLevelRequest
+*/
+func (a *AccountAPIService) GetMarginCallLevel(ctx context.Context) ApiGetMarginCallLevelRequest {
+	return ApiGetMarginCallLevelRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetMarginCallLevelResponse
+func (a *AccountAPIService) GetMarginCallLevelExecute(r ApiGetMarginCallLevelRequest) (*common.RestApiResponse[models.GetMarginCallLevelResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/portfolio/margin-call-level"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetMarginCallLevelResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -414,10 +587,10 @@ func (r ApiGetPortfolioMarginProAccountBalanceRequest) Execute() (*common.RestAp
 }
 
 /*
-GetPortfolioMarginProAccountBalance Get Portfolio Margin Pro Account Balance(USER_DATA)
+GetPortfolioMarginProAccountBalance Get Portfolio Margin Pro Account Balance (USER_DATA)
 Get /sapi/v1/portfolio/balance
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Balance-Info
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-account-balance
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
@@ -448,7 +621,15 @@ func (a *AccountAPIService) GetPortfolioMarginProAccountBalanceExecute(r ApiGetP
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProAccountBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPortfolioMarginProAccountBalanceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -472,10 +653,10 @@ func (r ApiGetPortfolioMarginProAccountInfoRequest) Execute() (*common.RestApiRe
 }
 
 /*
-GetPortfolioMarginProAccountInfo Get Portfolio Margin Pro Account Info(USER_DATA)
+GetPortfolioMarginProAccountInfo Get Portfolio Margin Pro Account Info (USER_DATA)
 Get /sapi/v1/portfolio/account
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-account-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -502,7 +683,15 @@ func (a *AccountAPIService) GetPortfolioMarginProAccountInfoExecute(r ApiGetPort
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPortfolioMarginProAccountInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -526,10 +715,10 @@ func (r ApiGetPortfolioMarginProSpanAccountInfoRequest) Execute() (*common.RestA
 }
 
 /*
-GetPortfolioMarginProSpanAccountInfo Get Portfolio Margin Pro SPAN Account Info(USER_DATA)
+GetPortfolioMarginProSpanAccountInfo Get Portfolio Margin Pro SPAN Account Info (USER_DATA)
 Get /sapi/v2/portfolio/account
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Classic-Portfolio-Margin-Account-Info-V2
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-portfolio-margin-pro-span-account-info
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -556,7 +745,15 @@ func (a *AccountAPIService) GetPortfolioMarginProSpanAccountInfoExecute(r ApiGet
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioMarginProSpanAccountInfoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPortfolioMarginProSpanAccountInfoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -568,18 +765,17 @@ type ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
 	asset        *string
-	transferType *string
+	transferType *models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter
 	recvWindow   *int64
 }
 
-// &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60;
+// &#x60;LDUSDT&#x60; only
 func (r ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest) Asset(asset string) ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest {
 	r.asset = &asset
 	return r
 }
 
-// &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60;
-func (r ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest) TransferType(transferType string) ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest {
+func (r ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest) TransferType(transferType models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter) ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest {
 	r.transferType = &transferType
 	return r
 }
@@ -597,11 +793,11 @@ func (r ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest) Execute() (
 GetTransferableEarnAssetBalanceForPortfolioMargin Get Transferable Earn Asset Balance for Portfolio Margin (USER_DATA)
 Get /sapi/v1/portfolio/earn-asset-balance
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Get-Transferable-Earn-Asset-Balance-for-Portfolio-Margin
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#get-transferable-earn-asset-balance-for-portfolio-margin
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  `LDUSDT` and `RWUSD`
-@param transferType -  `EARN_TO_FUTURE` /`FUTURE_TO_EARN`
+@param asset -  `LDUSDT` only
+@param transferType -
 @param recvWindow -
 @return ApiGetTransferableEarnAssetBalanceForPortfolioMarginRequest
 */
@@ -625,6 +821,7 @@ func (a *AccountAPIService) GetTransferableEarnAssetBalanceForPortfolioMarginExe
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.transferType == nil {
 		return nil, common.ReportError("transferType is required and must be specified")
 	}
@@ -635,7 +832,15 @@ func (a *AccountAPIService) GetTransferableEarnAssetBalanceForPortfolioMarginExe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetTransferableEarnAssetBalanceForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetTransferableEarnAssetBalanceForPortfolioMarginResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -646,12 +851,11 @@ func (a *AccountAPIService) GetTransferableEarnAssetBalanceForPortfolioMarginExe
 type ApiPortfolioMarginProBankruptcyLoanRepayRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	from       *string
+	from       *models.PortfolioMarginProBankruptcyLoanRepayFromParameter
 	recvWindow *int64
 }
 
-// SPOT or MARGIN，default SPOT
-func (r ApiPortfolioMarginProBankruptcyLoanRepayRequest) From(from string) ApiPortfolioMarginProBankruptcyLoanRepayRequest {
+func (r ApiPortfolioMarginProBankruptcyLoanRepayRequest) From(from models.PortfolioMarginProBankruptcyLoanRepayFromParameter) ApiPortfolioMarginProBankruptcyLoanRepayRequest {
 	r.from = &from
 	return r
 }
@@ -666,13 +870,13 @@ func (r ApiPortfolioMarginProBankruptcyLoanRepayRequest) Execute() (*common.Rest
 }
 
 /*
-PortfolioMarginProBankruptcyLoanRepay Portfolio Margin Pro Bankruptcy Loan Repay
+PortfolioMarginProBankruptcyLoanRepay Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
 Post /sapi/v1/portfolio/repay
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Classic-Portfolio-Margin-Bankruptcy-Loan-Repay
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#portfolio-margin-pro-bankruptcy-loan-repay
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param from -  SPOT or MARGIN，default SPOT
+@param from -
 @param recvWindow -
 @return ApiPortfolioMarginProBankruptcyLoanRepayRequest
 */
@@ -700,7 +904,15 @@ func (a *AccountAPIService) PortfolioMarginProBankruptcyLoanRepayExecute(r ApiPo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.PortfolioMarginProBankruptcyLoanRepayResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.PortfolioMarginProBankruptcyLoanRepayResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -724,10 +936,10 @@ func (r ApiQueryPortfolioMarginProBankruptcyLoanAmountRequest) Execute() (*commo
 }
 
 /*
-QueryPortfolioMarginProBankruptcyLoanAmount Query Portfolio Margin Pro Bankruptcy Loan Amount(USER_DATA)
+QueryPortfolioMarginProBankruptcyLoanAmount Query Portfolio Margin Pro Bankruptcy Loan Amount (USER_DATA)
 Get /sapi/v1/portfolio/pmLoan
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Bankruptcy-Loan-Amount
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-bankruptcy-loan-amount
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -754,7 +966,15 @@ func (a *AccountAPIService) QueryPortfolioMarginProBankruptcyLoanAmountExecute(r
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanAmountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanAmountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -767,30 +987,32 @@ type ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest struct {
 	ApiService *AccountAPIService
 	startTime  *int64
 	endTime    *int64
-	current    *int64
 	size       *int64
+	current    *int64
 	recvWindow *int64
 }
 
+// Start time
 func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) StartTime(startTime int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) EndTime(endTime int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Currently querying page. Start from 1. Default:1
-func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) Current(current int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
-	r.current = &current
+// Number of results returned.
+func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) Size(size int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
+	r.size = &size
 	return r
 }
 
-// Default:10 Max:100
-func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) Size(size int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
-	r.size = &size
+// Currently querying page. Start from 1.
+func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) Current(current int64) ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest {
+	r.current = &current
 	return r
 }
 
@@ -804,16 +1026,16 @@ func (r ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest) Execute() (
 }
 
 /*
-QueryPortfolioMarginProBankruptcyLoanRepayHistory Query Portfolio Margin Pro Bankruptcy Loan Repay History(USER_DATA)
+QueryPortfolioMarginProBankruptcyLoanRepayHistory Query Portfolio Margin Pro Bankruptcy Loan Repay History (USER_DATA)
 Get /sapi/v1/portfolio/pmloan-history
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Portfolio-Margin-Pro-Bankruptcy-Loan-Repay-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-bankruptcy-loan-repay-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param startTime -
-@param endTime -
-@param current -  Currently querying page. Start from 1. Default:1
-@param size -  Default:10 Max:100
+@param startTime -  Start time
+@param endTime -  End time
+@param size -  Number of results returned.
+@param current -  Currently querying page. Start from 1.
 @param recvWindow -
 @return ApiQueryPortfolioMarginProBankruptcyLoanRepayHistoryRequest
 */
@@ -840,17 +1062,25 @@ func (a *AccountAPIService) QueryPortfolioMarginProBankruptcyLoanRepayHistoryExe
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
 	}
-	if r.current != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
-	}
 	if r.size != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
+	}
+	if r.current != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPortfolioMarginProBankruptcyLoanRepayHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -873,17 +1103,19 @@ func (r ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest) Asset(a
 	return r
 }
 
+// Start time
 func (r ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest) StartTime(startTime int64) ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// End time
 func (r ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest) EndTime(endTime int64) ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default:10 Max:100
+// Number of results returned.
 func (r ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest) Size(size int64) ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest {
 	r.size = &size
 	return r
@@ -899,16 +1131,16 @@ func (r ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest) Execute
 }
 
 /*
-QueryPortfolioMarginProNegativeBalanceInterestHistory Query Portfolio Margin Pro Negative Balance Interest History(USER_DATA)
+QueryPortfolioMarginProNegativeBalanceInterestHistory Query Portfolio Margin Pro Negative Balance Interest History (USER_DATA)
 Get /sapi/v1/portfolio/interest-history
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Query-Classic-Portfolio-Margin-Negative-Balance-Interest-History
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#query-portfolio-margin-pro-negative-balance-interest-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
-@param startTime -
-@param endTime -
-@param size -  Default:10 Max:100
+@param startTime -  Start time
+@param endTime -  End time
+@param size -  Number of results returned.
 @param recvWindow -
 @return ApiQueryPortfolioMarginProNegativeBalanceInterestHistoryRequest
 */
@@ -945,7 +1177,15 @@ func (a *AccountAPIService) QueryPortfolioMarginProNegativeBalanceInterestHistor
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPortfolioMarginProNegativeBalanceInterestHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -956,12 +1196,11 @@ func (a *AccountAPIService) QueryPortfolioMarginProNegativeBalanceInterestHistor
 type ApiRepayFuturesNegativeBalanceRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	from       *string
+	from       *models.PortfolioMarginProBankruptcyLoanRepayFromParameter
 	recvWindow *int64
 }
 
-// SPOT or MARGIN，default SPOT
-func (r ApiRepayFuturesNegativeBalanceRequest) From(from string) ApiRepayFuturesNegativeBalanceRequest {
+func (r ApiRepayFuturesNegativeBalanceRequest) From(from models.PortfolioMarginProBankruptcyLoanRepayFromParameter) ApiRepayFuturesNegativeBalanceRequest {
 	r.from = &from
 	return r
 }
@@ -976,13 +1215,13 @@ func (r ApiRepayFuturesNegativeBalanceRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-RepayFuturesNegativeBalance Repay futures Negative Balance(USER_DATA)
+RepayFuturesNegativeBalance Repay futures Negative Balance (USER_DATA)
 Post /sapi/v1/portfolio/repay-futures-negative-balance
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Repay-futures-Negative-Balance
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#repay-futures-negative-balance
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param from -  SPOT or MARGIN，default SPOT
+@param from -
 @param recvWindow -
 @return ApiRepayFuturesNegativeBalanceRequest
 */
@@ -1010,7 +1249,91 @@ func (a *AccountAPIService) RepayFuturesNegativeBalanceExecute(r ApiRepayFutures
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.RepayFuturesNegativeBalanceResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.RepayFuturesNegativeBalanceResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiSetMarginCallLevelRequest struct {
+	ctx             context.Context
+	ApiService      *AccountAPIService
+	marginCallLevel *float32
+	recvWindow      *int64
+}
+
+// The value must be within the range [1.1, 2.0].
+func (r ApiSetMarginCallLevelRequest) MarginCallLevel(marginCallLevel float32) ApiSetMarginCallLevelRequest {
+	r.marginCallLevel = &marginCallLevel
+	return r
+}
+
+// Request validity window in milliseconds
+func (r ApiSetMarginCallLevelRequest) RecvWindow(recvWindow int64) ApiSetMarginCallLevelRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiSetMarginCallLevelRequest) Execute() (*common.RestApiResponse[models.SetMarginCallLevelResponse], error) {
+	return r.ApiService.SetMarginCallLevelExecute(r)
+}
+
+/*
+SetMarginCallLevel Set Margin Call Level (USER_DATA)
+Post /sapi/v1/portfolio/margin-call-level
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#set-margin-call-level
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param marginCallLevel -  The value must be within the range [1.1, 2.0].
+@param recvWindow -  Request validity window in milliseconds
+@return ApiSetMarginCallLevelRequest
+*/
+func (a *AccountAPIService) SetMarginCallLevel(ctx context.Context) ApiSetMarginCallLevelRequest {
+	return ApiSetMarginCallLevelRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return SetMarginCallLevelResponse
+func (a *AccountAPIService) SetMarginCallLevelExecute(r ApiSetMarginCallLevelRequest) (*common.RestApiResponse[models.SetMarginCallLevelResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/portfolio/margin-call-level"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.marginCallLevel == nil {
+		return nil, common.ReportError("marginCallLevel is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "marginCallLevel", r.marginCallLevel, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.SetMarginCallLevelResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1021,12 +1344,12 @@ func (a *AccountAPIService) RepayFuturesNegativeBalanceExecute(r ApiRepayFutures
 type ApiSwitchDeltaModeRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
-	deltaEnabled *string
+	deltaEnabled *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	recvWindow   *int64
 }
 
 // &#x60;true&#x60; to enable Delta mode; &#x60;false&#x60; to disable Delta mode
-func (r ApiSwitchDeltaModeRequest) DeltaEnabled(deltaEnabled string) ApiSwitchDeltaModeRequest {
+func (r ApiSwitchDeltaModeRequest) DeltaEnabled(deltaEnabled models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiSwitchDeltaModeRequest {
 	r.deltaEnabled = &deltaEnabled
 	return r
 }
@@ -1041,10 +1364,10 @@ func (r ApiSwitchDeltaModeRequest) Execute() (*common.RestApiResponse[models.Swi
 }
 
 /*
-SwitchDeltaMode Switch Delta Mode(TRADE)
+SwitchDeltaMode Switch Delta Mode (TRADE)
 Post /sapi/v1/portfolio/delta-mode
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Switch-Delta-Mode
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#switch-delta-mode
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param deltaEnabled -  `true` to enable Delta mode; `false` to disable Delta mode
@@ -1077,7 +1400,15 @@ func (a *AccountAPIService) SwitchDeltaModeExecute(r ApiSwitchDeltaModeRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.SwitchDeltaModeResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.SwitchDeltaModeResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -1088,20 +1419,18 @@ func (a *AccountAPIService) SwitchDeltaModeExecute(r ApiSwitchDeltaModeRequest) 
 type ApiTransferLdusdtRwusdForPortfolioMarginRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
-	asset        *string
-	transferType *string
+	asset        *models.TransferLdusdtRwusdForPortfolioMarginAssetParameter
+	transferType *models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter
 	amount       *float32
 	recvWindow   *int64
 }
 
-// &#x60;LDUSDT&#x60; and &#x60;RWUSD&#x60;
-func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) Asset(asset string) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
+func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) Asset(asset models.TransferLdusdtRwusdForPortfolioMarginAssetParameter) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
 	r.asset = &asset
 	return r
 }
 
-// &#x60;EARN_TO_FUTURE&#x60; /&#x60;FUTURE_TO_EARN&#x60;
-func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) TransferType(transferType string) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
+func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) TransferType(transferType models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
 	r.transferType = &transferType
 	return r
 }
@@ -1121,14 +1450,14 @@ func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) Execute() (*common.Rest
 }
 
 /*
-TransferLdusdtRwusdForPortfolioMargin Transfer LDUSDT/RWUSD for Portfolio Margin(TRADE)
+TransferLdusdtRwusdForPortfolioMargin Transfer LDUSDT/RWUSD for Portfolio Margin (TRADE)
 Post /sapi/v1/portfolio/earn-asset-transfer
 
-https://developers.binance.com/docs/derivatives/portfolio-margin-pro/account/Transfer-LDUSDT-Portfolio-Margin
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#transfer-ldusdt-rwusd-for-portfolio-margin
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param asset -  `LDUSDT` and `RWUSD`
-@param transferType -  `EARN_TO_FUTURE` /`FUTURE_TO_EARN`
+@param asset -
+@param transferType -
 @param amount -
 @param recvWindow -
 @return ApiTransferLdusdtRwusdForPortfolioMarginRequest
@@ -1153,9 +1482,11 @@ func (a *AccountAPIService) TransferLdusdtRwusdForPortfolioMarginExecute(r ApiTr
 	if r.asset == nil {
 		return nil, common.ReportError("asset is required and must be specified")
 	}
+
 	if r.transferType == nil {
 		return nil, common.ReportError("transferType is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -1167,7 +1498,15 @@ func (a *AccountAPIService) TransferLdusdtRwusdForPortfolioMarginExecute(r ApiTr
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.TransferLdusdtRwusdForPortfolioMarginResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TransferLdusdtRwusdForPortfolioMarginResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Currency** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**WalletAssetCost** | Pointer to [**GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost**](GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost.md) |  | [optional] 
+**Currency** | Pointer to **string** | Asset. | [optional] 
+**Amount** | Pointer to **string** | Asset amount. | [optional] 
+**WalletAssetCost** | Pointer to **map[string]string** | Asset cost details per wallet type. Keys are wallet type IDs (e.g. \&quot;1\&quot;, \&quot;2\&quot;), values are cost amounts. | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasAmount returns a boolean if a field has been set.
 
 ### GetWalletAssetCost
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCost() map[string]string`
 
 GetWalletAssetCost returns the WalletAssetCost field if non-nil, zero value otherwise.
 
 ### GetWalletAssetCostOk
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost, bool)`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) GetWalletAssetCostOk() (*map[string]string, bool)`
 
 GetWalletAssetCostOk returns a tuple with the WalletAssetCost field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWalletAssetCost
 
-`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v GetPayTradeHistoryResponseDataInnerFundsDetailInnerWalletAssetCost)`
+`func (o *GetPayTradeHistoryResponseDataInnerFundsDetailInner) SetWalletAssetCost(v map[string]string)`
 
 SetWalletAssetCost sets WalletAssetCost field to given value.
 

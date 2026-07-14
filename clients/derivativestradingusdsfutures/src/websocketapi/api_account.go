@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketapi
@@ -22,12 +22,13 @@ type ApiAccountInformationRequest struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiAccountInformationRequest) Id(id string) ApiAccountInformationRequest {
 	r.id = &id
 	return r
 }
 
+// Recv Window.
 func (r ApiAccountInformationRequest) RecvWindow(recvWindow int64) ApiAccountInformationRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -52,12 +53,12 @@ func (r ApiAccountInformationRequest) ExecuteAsync() (chan *common.ResponseOrRaw
 }
 
 /*
-AccountInformation Account Information(USER_DATA)
+AccountInformation Account Information (USER_DATA)
 /account.status
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#account-information
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id Id.	@param recvWindow Recv Window.
 @return ApiAccountInformationRequest
 */
 func (a *AccountAPIService) AccountInformation() ApiAccountInformationRequest {
@@ -99,12 +100,13 @@ type ApiAccountInformationV2Request struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiAccountInformationV2Request) Id(id string) ApiAccountInformationV2Request {
 	r.id = &id
 	return r
 }
 
+// Recv Window.
 func (r ApiAccountInformationV2Request) RecvWindow(recvWindow int64) ApiAccountInformationV2Request {
 	r.recvWindow = &recvWindow
 	return r
@@ -129,12 +131,12 @@ func (r ApiAccountInformationV2Request) ExecuteAsync() (chan *common.ResponseOrR
 }
 
 /*
-AccountInformationV2 Account Information V2(USER_DATA)
+AccountInformationV2 Account Information V2 (USER_DATA)
 /v2/account.status
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Account-Information-V2
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#account-information-v2
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id Id.	@param recvWindow Recv Window.
 @return ApiAccountInformationV2Request
 */
 func (a *AccountAPIService) AccountInformationV2() ApiAccountInformationV2Request {
@@ -176,12 +178,13 @@ type ApiFuturesAccountBalanceRequest struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiFuturesAccountBalanceRequest) Id(id string) ApiFuturesAccountBalanceRequest {
 	r.id = &id
 	return r
 }
 
+// Recv Window.
 func (r ApiFuturesAccountBalanceRequest) RecvWindow(recvWindow int64) ApiFuturesAccountBalanceRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -206,12 +209,12 @@ func (r ApiFuturesAccountBalanceRequest) ExecuteAsync() (chan *common.ResponseOr
 }
 
 /*
-FuturesAccountBalance Futures Account Balance(USER_DATA)
+FuturesAccountBalance Futures Account Balance (USER_DATA)
 /account.balance
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#futures-account-balance
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id Id.	@param recvWindow Recv Window.
 @return ApiFuturesAccountBalanceRequest
 */
 func (a *AccountAPIService) FuturesAccountBalance() ApiFuturesAccountBalanceRequest {
@@ -253,12 +256,13 @@ type ApiFuturesAccountBalanceV2Request struct {
 	recvWindow *int64
 }
 
-// Unique WebSocket request ID.
+// Id.
 func (r ApiFuturesAccountBalanceV2Request) Id(id string) ApiFuturesAccountBalanceV2Request {
 	r.id = &id
 	return r
 }
 
+// Recv Window.
 func (r ApiFuturesAccountBalanceV2Request) RecvWindow(recvWindow int64) ApiFuturesAccountBalanceV2Request {
 	r.recvWindow = &recvWindow
 	return r
@@ -283,12 +287,12 @@ func (r ApiFuturesAccountBalanceV2Request) ExecuteAsync() (chan *common.Response
 }
 
 /*
-FuturesAccountBalanceV2 Futures Account Balance V2(USER_DATA)
+FuturesAccountBalanceV2 Futures Account Balance V2 (USER_DATA)
 /v2/account.balance
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/account/websocket-api/Futures-Account-Balance-V2
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/account#futures-account-balance-v2
 
-@param id Unique WebSocket request ID.	@param recvWindow
+@param id Id.	@param recvWindow Recv Window.
 @return ApiFuturesAccountBalanceV2Request
 */
 func (a *AccountAPIService) FuturesAccountBalanceV2() ApiFuturesAccountBalanceV2Request {

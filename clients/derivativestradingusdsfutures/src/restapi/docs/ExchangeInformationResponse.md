@@ -5,11 +5,11 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ExchangeFilters** | Pointer to **[]string** |  | [optional] 
-**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) |  | [optional] 
-**ServerTime** | Pointer to **int64** |  | [optional] 
-**Assets** | Pointer to [**[]ExchangeInformationResponseAssetsInner**](ExchangeInformationResponseAssetsInner.md) |  | [optional] 
-**Symbols** | Pointer to [**[]ExchangeInformationResponseSymbolsInner**](ExchangeInformationResponseSymbolsInner.md) |  | [optional] 
-**Timezone** | Pointer to **string** |  | [optional] 
+**RateLimits** | Pointer to [**[]ExchangeInformationResponseRateLimitsInner**](ExchangeInformationResponseRateLimitsInner.md) | Rate Limits. | [optional] 
+**ServerTime** | Pointer to **int64** | Ignore please. If you want to check current server time, please check via \&quot;GET /fapi/v1/time\&quot; | [optional] 
+**Assets** | Pointer to [**[]ExchangeInformationResponseAssetsInner**](ExchangeInformationResponseAssetsInner.md) | assets information | [optional] 
+**Symbols** | Pointer to [**[]ExchangeInformationResponseSymbolsInner**](ExchangeInformationResponseSymbolsInner.md) | Symbols. | [optional] 
+**Timezone** | Pointer to **string** | Timezone. | [optional] 
 
 ## Methods
 

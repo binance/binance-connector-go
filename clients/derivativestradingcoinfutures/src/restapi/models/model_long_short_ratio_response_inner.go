@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,16 @@ var _ common.MappedNullable = &LongShortRatioResponseInner{}
 
 // LongShortRatioResponseInner struct for LongShortRatioResponseInner
 type LongShortRatioResponseInner struct {
-	Pair                 *string `json:"pair,omitempty"`
-	LongShortRatio       *string `json:"longShortRatio,omitempty"`
-	LongAccount          *string `json:"longAccount,omitempty"`
-	ShortAccount         *string `json:"shortAccount,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
+	// Pair
+	Pair *string `json:"pair,omitempty"`
+	// Long/short ratio.
+	LongShortRatio *string `json:"longShortRatio,omitempty"`
+	// 64.42%
+	LongAccount *string `json:"longAccount,omitempty"`
+	// 35.58%
+	ShortAccount *string `json:"shortAccount,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

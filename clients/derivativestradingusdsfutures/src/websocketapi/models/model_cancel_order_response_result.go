@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket API
+Futures (USDⓈ-M) WebSocket API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,8 +17,9 @@ var _ common.MappedNullable = &CancelOrderResponseResult{}
 
 // CancelOrderResponseResult struct for CancelOrderResponseResult
 type CancelOrderResponseResult struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQty                  *string `json:"cumQty,omitempty"`
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	CumQty        *string `json:"cumQty,omitempty"`
+	// Cum Quote. Will be removed after CM migration.
 	CumQuote                *string `json:"cumQuote,omitempty"`
 	ExecutedQty             *string `json:"executedQty,omitempty"`
 	OrderId                 *int64  `json:"orderId,omitempty"`

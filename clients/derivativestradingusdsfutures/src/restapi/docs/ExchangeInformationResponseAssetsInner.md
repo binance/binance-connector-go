@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** |  | [optional] 
-**MarginAvailable** | Pointer to **bool** |  | [optional] 
-**AutoAssetExchange** | Pointer to **string** |  | [optional] 
+**MarginAvailable** | Pointer to **bool** | whether the asset can be used as margin in Multi-Assets mode | [optional] 
+**AutoAssetExchange** | Pointer to **string** | auto-exchange threshold in Multi-Assets margin mode | [optional] 
 
 ## Methods
 

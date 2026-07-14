@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**SumOpenInterest** | Pointer to **string** |  | [optional] 
-**SumOpenInterestUsd** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol | [optional] 
+**SumOpenInterest** | Pointer to **string** | sum Open Interest | [optional] 
+**SumOpenInterestUsd** | Pointer to **string** | sum Open Interest Usd | [optional] 
+**Timestamp** | Pointer to **string** | timestamp | [optional] 
 
 ## Methods
 

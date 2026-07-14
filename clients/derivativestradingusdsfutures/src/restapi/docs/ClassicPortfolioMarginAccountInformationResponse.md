@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**MaxWithdrawAmountUSD** | Pointer to **string** |  | [optional] 
+**MaxWithdrawAmountUSD** | Pointer to **string** | Classic Portfolio margin maximum virtual amount for transfer out in USD | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | maximum amount for transfer out | [optional] 
 
 ## Methods
 

@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**TargetAsset** | Pointer to **string** |  | [optional] 
-**TargetAmount** | Pointer to **string** |  | [optional] 
-**BizType** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset. | [optional] 
+**Amount** | Pointer to **string** | amount. | [optional] 
+**TargetAsset** | Pointer to **string** | target Asset. | [optional] 
+**TargetAmount** | Pointer to **string** | target Amount. | [optional] 
+**BizType** | Pointer to **string** | biz Type. | [optional] 
+**Timestamp** | Pointer to **int64** | timestamp. | [optional] 
 
 ## Methods
 

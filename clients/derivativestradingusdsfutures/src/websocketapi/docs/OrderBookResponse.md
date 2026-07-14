@@ -7,6 +7,8 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**OrderBookResponseResult**](OrderBookResponseResult.md) |  | [optional] 
+**Bids** | Pointer to **[][]string** | Bid orders. Each entry is [price, quantity]. | [optional] 
+**Asks** | Pointer to **[][]string** | Ask orders. Each entry is [price, quantity]. | [optional] 
 **RateLimits** | Pointer to [**[]OrderBookResponseRateLimitsInner**](OrderBookResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
@@ -102,6 +104,56 @@ SetResult sets Result field to given value.
 `func (o *OrderBookResponse) HasResult() bool`
 
 HasResult returns a boolean if a field has been set.
+
+### GetBids
+
+`func (o *OrderBookResponse) GetBids() [][]string`
+
+GetBids returns the Bids field if non-nil, zero value otherwise.
+
+### GetBidsOk
+
+`func (o *OrderBookResponse) GetBidsOk() (*[][]string, bool)`
+
+GetBidsOk returns a tuple with the Bids field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBids
+
+`func (o *OrderBookResponse) SetBids(v [][]string)`
+
+SetBids sets Bids field to given value.
+
+### HasBids
+
+`func (o *OrderBookResponse) HasBids() bool`
+
+HasBids returns a boolean if a field has been set.
+
+### GetAsks
+
+`func (o *OrderBookResponse) GetAsks() [][]string`
+
+GetAsks returns the Asks field if non-nil, zero value otherwise.
+
+### GetAsksOk
+
+`func (o *OrderBookResponse) GetAsksOk() (*[][]string, bool)`
+
+GetAsksOk returns a tuple with the Asks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsks
+
+`func (o *OrderBookResponse) SetAsks(v [][]string)`
+
+SetAsks sets Asks field to given value.
+
+### HasAsks
+
+`func (o *OrderBookResponse) HasAsks() bool`
+
+HasAsks returns a boolean if a field has been set.
 
 ### GetRateLimits
 

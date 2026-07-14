@@ -1,7 +1,7 @@
 /*
-Binance VIP Loan REST API
+VIP Loan REST API
 
-OpenAPI Specification for the Binance VIP Loan REST API
+Access over-collateralized loan services, manage positions, and monitor collateral via the VIP Loan API.
 */
 
 package models
@@ -17,15 +17,25 @@ var _ common.MappedNullable = &VipLoanFixedRateBorrowResponse{}
 
 // VipLoanFixedRateBorrowResponse struct for VipLoanFixedRateBorrowResponse
 type VipLoanFixedRateBorrowResponse struct {
-	BorrowCoin           *string `json:"borrowCoin,omitempty"`
-	BorrowAmount         *string `json:"borrowAmount,omitempty"`
+	// Echo of input parameter
+	BorrowCoin *string `json:"borrowCoin,omitempty"`
+	// Actual total borrow amount (aggregated when multiple supplyRequest)
+	BorrowAmount *string `json:"borrowAmount,omitempty"`
+	// Actual received amount
 	ActualReceivedAmount *string `json:"actualReceivedAmount,omitempty"`
-	CollateralCoin       *string `json:"collateralCoin,omitempty"`
-	CollateralAccountId  *string `json:"collateralAccountId,omitempty"`
-	BorrowInterestRate   *string `json:"borrowInterestRate,omitempty"`
-	Duration             *string `json:"duration,omitempty"`
-	AutoRepay            *bool   `json:"autoRepay,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
+	// Echo of input parameter, comma-separated
+	CollateralCoin *string `json:"collateralCoin,omitempty"`
+	// Echo of input parameter, comma-separated
+	CollateralAccountId *string `json:"collateralAccountId,omitempty"`
+	// Actual borrow interest rate (weighted average when multiple)
+	BorrowInterestRate *string `json:"borrowInterestRate,omitempty"`
+	// `{loanTerm}Days`, e.g. \"30Days\"
+	Duration *string `json:"duration,omitempty"`
+	// Echo of input parameter
+	AutoRepay *bool `json:"autoRepay,omitempty"`
+	// Order ID
+	OrderId *int64 `json:"orderId,omitempty"`
+	// `Succeeds` / `Failed` / `Processing`
 	Status               *string `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

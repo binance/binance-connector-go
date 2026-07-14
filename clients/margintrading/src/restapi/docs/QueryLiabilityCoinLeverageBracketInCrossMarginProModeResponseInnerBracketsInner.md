@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Leverage** | Pointer to **int64** |  | [optional] 
-**MaxDebt** | Pointer to **float32** |  | [optional] 
-**MaintenanceMarginRate** | Pointer to **float32** |  | [optional] 
-**InitialMarginRate** | Pointer to **float32** |  | [optional] 
-**FastNum** | Pointer to **float32** |  | [optional] 
+**Leverage** | Pointer to **int64** | leverage. | [optional] 
+**MaxDebt** | Pointer to **float32** | max Debt. | [optional] 
+**MaintenanceMarginRate** | Pointer to **float32** | maintenance Margin Rate. | [optional] 
+**InitialMarginRate** | Pointer to **float32** | initial Margin Rate. | [optional] 
+**FastNum** | Pointer to **float32** | fast Num. | [optional] 
 
 ## Methods
 

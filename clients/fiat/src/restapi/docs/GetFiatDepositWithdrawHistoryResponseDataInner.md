@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **Amount** | Pointer to **string** |  | [optional] 
 **TotalFee** | Pointer to **string** |  | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | Processing, Failed, Successful, Finished, Refunding, Refunded, Refund Failed, Order Partial Credit Stopped | [optional] 
 **CreateTime** | Pointer to **int64** |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 

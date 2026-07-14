@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,7 +17,9 @@ var _ common.MappedNullable = &QueryPortfolioMarginProBankruptcyLoanAmountRespon
 
 // QueryPortfolioMarginProBankruptcyLoanAmountResponse struct for QueryPortfolioMarginProBankruptcyLoanAmountResponse
 type QueryPortfolioMarginProBankruptcyLoanAmountResponse struct {
-	Asset                *string `json:"asset,omitempty"`
+	// asset.
+	Asset *string `json:"asset,omitempty"`
+	// portfolio margin bankruptcy loan amount in BUSD
 	Amount               *string `json:"amount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

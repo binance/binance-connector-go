@@ -1,5 +1,18 @@
 ### Changelog
 
+## 1.6.0 - 2026-07-14
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.4.0`.
+- Modified response for `statisticList()` (`GET /sapi/v1/mining/statistics/user/status`):
+  - `data`.`profitToday`: property `BSV` deleted
+  - `data`.`profitToday`: property `BTC` deleted
+  - `data`.`profitToday`: property `BCH` deleted
+  - `data`.`profitYesterday`: property `BSV` deleted
+  - `data`.`profitYesterday`: property `BTC` deleted
+  - `data`.`profitYesterday`: property `BCH` deleted
+
 ## 1.5.0 - 2026-03-26
 
 ### Changed (1)

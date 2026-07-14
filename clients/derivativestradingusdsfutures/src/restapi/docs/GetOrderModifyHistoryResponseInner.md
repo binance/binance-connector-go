@@ -4,12 +4,12 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AmendmentId** | Pointer to **int64** |  | [optional] 
+**AmendmentId** | Pointer to **int64** | Order modification ID | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **Pair** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Time** | Pointer to **int64** | Order modification time | [optional] 
 **Amendment** | Pointer to [**GetOrderModifyHistoryResponseInnerAmendment**](GetOrderModifyHistoryResponseInnerAmendment.md) |  | [optional] 
 
 ## Methods

@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,22 +17,37 @@ var _ common.MappedNullable = &NewMarginOrderResponse{}
 
 // NewMarginOrderResponse struct for NewMarginOrderResponse
 type NewMarginOrderResponse struct {
-	Symbol                *string                            `json:"symbol,omitempty"`
-	OrderId               *int64                             `json:"orderId,omitempty"`
-	ClientOrderId         *string                            `json:"clientOrderId,omitempty"`
-	TransactTime          *int64                             `json:"transactTime,omitempty"`
-	Price                 *string                            `json:"price,omitempty"`
-	OrigQty               *string                            `json:"origQty,omitempty"`
-	ExecutedQty           *string                            `json:"executedQty,omitempty"`
-	CummulativeQuoteQty   *string                            `json:"cummulativeQuoteQty,omitempty"`
-	Status                *string                            `json:"status,omitempty"`
-	TimeInForce           *string                            `json:"timeInForce,omitempty"`
-	Type                  *string                            `json:"type,omitempty"`
-	Side                  *string                            `json:"side,omitempty"`
-	MarginBuyBorrowAmount *string                            `json:"marginBuyBorrowAmount,omitempty"`
-	MarginBuyBorrowAsset  *string                            `json:"marginBuyBorrowAsset,omitempty"`
-	Fills                 []NewMarginOrderResponseFillsInner `json:"fills,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Transact Time.
+	TransactTime *int64 `json:"transactTime,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Normal order type after trigger if appliable
+	Type *string `json:"type,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// will not return if no margin trade happens
+	MarginBuyBorrowAmount *string `json:"marginBuyBorrowAmount,omitempty"`
+	// will not return if no margin trade happens
+	MarginBuyBorrowAsset *string `json:"marginBuyBorrowAsset,omitempty"`
+	// Fills.
+	Fills                []NewMarginOrderResponseFillsInner `json:"fills,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NewMarginOrderResponse NewMarginOrderResponse

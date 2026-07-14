@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**WalletBalance** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**MarginBalance** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**MarginAvailable** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | Asset name. | [optional] 
+**WalletBalance** | Pointer to **string** | Wallet balance. | [optional] 
+**UnrealizedProfit** | Pointer to **string** | Unrealized profit. | [optional] 
+**MarginBalance** | Pointer to **string** | Margin balance. | [optional] 
+**MaintMargin** | Pointer to **string** | Maintenance margin requirement. | [optional] 
+**InitialMargin** | Pointer to **string** | Total initial margin requirement. | [optional] 
+**PositionInitialMargin** | Pointer to **string** | Initial margin required for positions. | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. | [optional] 
+**CrossWalletBalance** | Pointer to **string** | Cross wallet balance. | [optional] 
+**CrossUnPnl** | Pointer to **string** | Unrealized PnL for cross positions. | [optional] 
+**AvailableBalance** | Pointer to **string** | Available balance. | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. | [optional] 
+**MarginAvailable** | Pointer to **bool** | Whether the asset can be used as margin in multi-assets mode. | [optional] 
+**UpdateTime** | Pointer to **int64** | Last update time in milliseconds. | [optional] 
 
 ## Methods
 

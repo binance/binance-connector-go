@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -15,22 +15,35 @@ import (
 // checks if the AccountInformationV3ResponseAssetsInner type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &AccountInformationV3ResponseAssetsInner{}
 
-// AccountInformationV3ResponseAssetsInner struct for AccountInformationV3ResponseAssetsInner
+// AccountInformationV3ResponseAssetsInner For assets that are quote assets, USDT/USDC/BTC
 type AccountInformationV3ResponseAssetsInner struct {
-	Asset                  *string `json:"asset,omitempty"`
-	WalletBalance          *string `json:"walletBalance,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	MarginBalance          *string `json:"marginBalance,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// Asset name.
+	Asset *string `json:"asset,omitempty"`
+	// Wallet balance.
+	WalletBalance *string `json:"walletBalance,omitempty"`
+	// Unrealized profit.
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// Margin balance.
+	MarginBalance *string `json:"marginBalance,omitempty"`
+	// Maintenance margin requirement.
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// Total initial margin requirement.
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// Initial margin required for positions.
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// Initial margin required for open orders.
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	CrossWalletBalance     *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl             *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance       *string `json:"availableBalance,omitempty"`
-	MaxWithdrawAmount      *string `json:"maxWithdrawAmount,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// Cross wallet balance.
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// Unrealized PnL for cross positions.
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// Available balance.
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// Maximum transferable/withdrawable amount.
+	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	// Last update time in milliseconds.
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccountInformationV3ResponseAssetsInner AccountInformationV3ResponseAssetsInner

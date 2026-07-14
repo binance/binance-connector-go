@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -11,23 +11,21 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode the model 'PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode'
+// PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
 type PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode string
 
 // List of placeMultipleOrders_batchOrders_parameter_inner_selfTradePreventionMode
 const (
-	PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeNone        PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode = "NONE"
 	PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireTaker PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_TAKER"
-	PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireBoth  PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_BOTH"
 	PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireMaker PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_MAKER"
+	PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeExpireBoth  PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode = "EXPIRE_BOTH"
 )
 
 // All allowed values of PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode enum
 var AllowedPlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionModeEnumValues = []PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode{
-	"NONE",
 	"EXPIRE_TAKER",
-	"EXPIRE_BOTH",
 	"EXPIRE_MAKER",
+	"EXPIRE_BOTH",
 }
 
 func (v *PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode) UnmarshalJSON(src []byte) error {

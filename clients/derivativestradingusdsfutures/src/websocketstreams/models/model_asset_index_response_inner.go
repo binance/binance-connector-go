@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,17 +17,29 @@ var _ common.MappedNullable = &AssetIndexResponseInner{}
 
 // AssetIndexResponseInner struct for AssetIndexResponseInner
 type AssetIndexResponseInner struct {
-	Smalle               *string `json:"e,omitempty"`
-	E                    *int64  `json:"E,omitempty"`
-	Smalls               *string `json:"s,omitempty"`
-	Smalli               *string `json:"i,omitempty"`
-	Smallb               *string `json:"b,omitempty"`
-	Smalla               *string `json:"a,omitempty"`
-	B                    *string `json:"B,omitempty"`
-	A                    *string `json:"A,omitempty"`
-	Smallq               *string `json:"q,omitempty"`
-	Smallg               *string `json:"g,omitempty"`
-	Q                    *string `json:"Q,omitempty"`
+	// Event type.
+	Smalle *string `json:"e,omitempty"`
+	// Event time.
+	E *int64 `json:"E,omitempty"`
+	// Asset index symbol.
+	Smalls *string `json:"s,omitempty"`
+	// Index price.
+	Smalli *string `json:"i,omitempty"`
+	// Bid buffer.
+	Smallb *string `json:"b,omitempty"`
+	// Ask buffer.
+	Smalla *string `json:"a,omitempty"`
+	// Bid rate.
+	B *string `json:"B,omitempty"`
+	// Ask rate.
+	A *string `json:"A,omitempty"`
+	// Auto exchange bid buffer.
+	Smallq *string `json:"q,omitempty"`
+	// Auto exchange ask buffer.
+	Smallg *string `json:"g,omitempty"`
+	// Auto exchange bid rate.
+	Q *string `json:"Q,omitempty"`
+	// Auto exchange ask rate.
 	G                    *string `json:"G,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,9 +17,12 @@ var _ common.MappedNullable = &AvgPriceResponseResult{}
 
 // AvgPriceResponseResult struct for AvgPriceResponseResult
 type AvgPriceResponseResult struct {
-	Mins                 *int64  `json:"mins,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
+	// Average price interval (in minutes)
+	Mins *int64 `json:"mins,omitempty"`
+	// Average price
+	Price *string `json:"price,omitempty"`
+	// Last trade time
+	CloseTime            *int64 `json:"closeTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

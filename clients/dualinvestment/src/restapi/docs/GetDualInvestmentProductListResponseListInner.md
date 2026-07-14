@@ -12,15 +12,15 @@ Name         | Type          | Description.  | Notes
 **SettleDate** | Pointer to **int64** |  | [optional] 
 **PurchaseDecimal** | Pointer to **int64** |  | [optional] 
 **PurchaseEndTime** | Pointer to **int64** |  | [optional] 
-**CanPurchase** | Pointer to **bool** |  | [optional] 
+**CanPurchase** | Pointer to **bool** | Whether the product can be subscribed to currently | [optional] 
 **Apr** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **MinAmount** | Pointer to **string** |  | [optional] 
 **MaxAmount** | Pointer to **string** |  | [optional] 
 **CreateTimestamp** | Pointer to **int64** |  | [optional] 
 **OptionType** | Pointer to **string** |  | [optional] 
-**IsAutoCompoundEnable** | Pointer to **bool** |  | [optional] 
-**AutoCompoundPlanList** | Pointer to **[]string** |  | [optional] 
+**IsAutoCompoundEnable** | Pointer to **bool** | Whether auto-compound is enabled for this product | [optional] 
+**AutoCompoundPlanList** | Pointer to **[]string** | Available auto-compound plans for this product | [optional] 
 
 ## Methods
 

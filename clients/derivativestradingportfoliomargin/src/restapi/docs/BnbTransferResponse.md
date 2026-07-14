@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TranId** | Pointer to **int64** |  | [optional] 
+**TranId** | Pointer to **int64** | Transaction ID. | [optional] 
 
 ## Methods
 

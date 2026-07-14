@@ -22,7 +22,7 @@ func VipLoanRenew() {
 	apiClient := client.NewBinanceVipLoanClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.VipLoanRenew(context.Background()).OrderId(1).LoanTerm(789).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.VipLoanRenew(context.Background()).OrderId(1).LoanTerm(30).Execute()
 	if err != nil {
 		log.Println(err)
 		return

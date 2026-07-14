@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,11 +17,17 @@ var _ common.MappedNullable = &NotionalBracketForPairResponseInnerBracketsInner{
 
 // NotionalBracketForPairResponseInnerBracketsInner struct for NotionalBracketForPairResponseInnerBracketsInner
 type NotionalBracketForPairResponseInnerBracketsInner struct {
-	Bracket              *int64   `json:"bracket,omitempty"`
-	InitialLeverage      *int64   `json:"initialLeverage,omitempty"`
-	QtyCap               *int64   `json:"qtyCap,omitempty"`
-	QtylFloor            *int64   `json:"qtylFloor,omitempty"`
-	MaintMarginRatio     *float32 `json:"maintMarginRatio,omitempty"`
+	// bracket level
+	Bracket *int64 `json:"bracket,omitempty"`
+	// the maximum leverage
+	InitialLeverage *int64 `json:"initialLeverage,omitempty"`
+	// upper edge of base asset quantity
+	QtyCap *int64 `json:"qtyCap,omitempty"`
+	// lower edge of base asset quantity
+	QtylFloor *int64 `json:"qtylFloor,omitempty"`
+	// Maintenance margin ratio.
+	MaintMarginRatio *float32 `json:"maintMarginRatio,omitempty"`
+	// Cumulative value.
 	Cum                  *float32 `json:"cum,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

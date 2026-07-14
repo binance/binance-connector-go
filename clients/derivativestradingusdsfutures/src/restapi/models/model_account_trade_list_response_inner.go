@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,20 +17,34 @@ var _ common.MappedNullable = &AccountTradeListResponseInner{}
 
 // AccountTradeListResponseInner struct for AccountTradeListResponseInner
 type AccountTradeListResponseInner struct {
-	Buyer                *bool   `json:"buyer,omitempty"`
-	Commission           *string `json:"commission,omitempty"`
-	CommissionAsset      *string `json:"commissionAsset,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	Maker                *bool   `json:"maker,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	QuoteQty             *string `json:"quoteQty,omitempty"`
-	RealizedPnl          *string `json:"realizedPnl,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	PositionSide         *string `json:"positionSide,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
+	// Buyer.
+	Buyer *bool `json:"buyer,omitempty"`
+	// Commission.
+	Commission *string `json:"commission,omitempty"`
+	// Commission Asset.
+	CommissionAsset *string `json:"commissionAsset,omitempty"`
+	// Id.
+	Id *int64 `json:"id,omitempty"`
+	// Maker.
+	Maker *bool `json:"maker,omitempty"`
+	// Order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Qty.
+	Qty *string `json:"qty,omitempty"`
+	// Quote Qty.
+	QuoteQty *string `json:"quoteQty,omitempty"`
+	// Realized Pnl.
+	RealizedPnl *string `json:"realizedPnl,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Position Side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// Time.
+	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

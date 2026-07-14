@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**BorrowCoin** | Pointer to **string** |  | [optional] 
-**BorrowAmount** | Pointer to **string** |  | [optional] 
-**ActualReceivedAmount** | Pointer to **string** |  | [optional] 
-**CollateralCoin** | Pointer to **string** |  | [optional] 
-**CollateralAccountId** | Pointer to **string** |  | [optional] 
-**BorrowInterestRate** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **string** |  | [optional] 
-**AutoRepay** | Pointer to **bool** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**BorrowCoin** | Pointer to **string** | Echo of input parameter | [optional] 
+**BorrowAmount** | Pointer to **string** | Actual total borrow amount (aggregated when multiple supplyRequest) | [optional] 
+**ActualReceivedAmount** | Pointer to **string** | Actual received amount | [optional] 
+**CollateralCoin** | Pointer to **string** | Echo of input parameter, comma-separated | [optional] 
+**CollateralAccountId** | Pointer to **string** | Echo of input parameter, comma-separated | [optional] 
+**BorrowInterestRate** | Pointer to **string** | Actual borrow interest rate (weighted average when multiple) | [optional] 
+**Duration** | Pointer to **string** | &#x60;{loanTerm}Days&#x60;, e.g. \&quot;30Days\&quot; | [optional] 
+**AutoRepay** | Pointer to **bool** | Echo of input parameter | [optional] 
+**OrderId** | Pointer to **int64** | Order ID | [optional] 
+**Status** | Pointer to **string** | &#x60;Succeeds&#x60; / &#x60;Failed&#x60; / &#x60;Processing&#x60; | [optional] 
 
 ## Methods
 

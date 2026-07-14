@@ -1,14 +1,12 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketstreams
 
 import (
-	"strconv"
-
 	"github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures/src/websocketstreams/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
@@ -35,7 +33,7 @@ func (r ApiAllBookTickersStreamRequest) Execute() (*common.StreamHandler[models.
 AllBookTickersStream All Book Tickers Stream
 /!bookTicker
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Book-Tickers-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#all-book-tickers-stream
 
 @param id Unique WebSocket request ID.
 @return ApiAllBookTickersStreamRequest
@@ -82,10 +80,10 @@ type ApiDiffBookDepthStreamsRequest struct {
 	ApiService  *PublicAPIService
 	symbol      *string
 	id          *string
-	updateSpeed *string
+	updateSpeed *models.DiffBookDepthStreamsUpdateSpeedParameter
 }
 
-// The symbol parameter
+// Trading pair symbol.
 func (r ApiDiffBookDepthStreamsRequest) Symbol(symbol string) ApiDiffBookDepthStreamsRequest {
 	r.symbol = &symbol
 	return r
@@ -98,7 +96,7 @@ func (r ApiDiffBookDepthStreamsRequest) Id(id string) ApiDiffBookDepthStreamsReq
 }
 
 // WebSocket stream update speed
-func (r ApiDiffBookDepthStreamsRequest) UpdateSpeed(updateSpeed string) ApiDiffBookDepthStreamsRequest {
+func (r ApiDiffBookDepthStreamsRequest) UpdateSpeed(updateSpeed models.DiffBookDepthStreamsUpdateSpeedParameter) ApiDiffBookDepthStreamsRequest {
 	r.updateSpeed = &updateSpeed
 	return r
 }
@@ -111,9 +109,9 @@ func (r ApiDiffBookDepthStreamsRequest) Execute() (*common.StreamHandler[models.
 DiffBookDepthStreams Diff. Book Depth Streams
 /<symbol>@depth@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#diff-book-depth-streams
 
-@param symbol The symbol parameter	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
+@param symbol Trading pair symbol.	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
 @return ApiDiffBookDepthStreamsRequest
 */
 func (a *PublicAPIService) DiffBookDepthStreams() ApiDiffBookDepthStreamsRequest {
@@ -149,7 +147,7 @@ func (a *PublicAPIService) DiffBookDepthStreamsExecute(r ApiDiffBookDepthStreams
 				if r.updateSpeed == nil {
 					return ""
 				}
-				return *r.updateSpeed
+				return string(*r.updateSpeed)
 			}(),
 		},
 	)
@@ -195,7 +193,7 @@ func (r ApiIndividualSymbolBookTickerStreamsRequest) Execute() (*common.StreamHa
 IndividualSymbolBookTickerStreams Individual Symbol Book Ticker Streams
 /<symbol>@bookTicker
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Book-Ticker-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#individual-symbol-book-ticker-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiIndividualSymbolBookTickerStreamsRequest
@@ -250,9 +248,9 @@ func (a *PublicAPIService) IndividualSymbolBookTickerStreamsExecute(r ApiIndivid
 type ApiPartialBookDepthStreamsRequest struct {
 	ApiService  *PublicAPIService
 	symbol      *string
-	levels      *int64
+	levels      *models.PartialBookDepthStreamsLevelsParameter
 	id          *string
-	updateSpeed *string
+	updateSpeed *models.DiffBookDepthStreamsUpdateSpeedParameter
 }
 
 // The symbol parameter
@@ -262,7 +260,7 @@ func (r ApiPartialBookDepthStreamsRequest) Symbol(symbol string) ApiPartialBookD
 }
 
 // The levels parameter
-func (r ApiPartialBookDepthStreamsRequest) Levels(levels int64) ApiPartialBookDepthStreamsRequest {
+func (r ApiPartialBookDepthStreamsRequest) Levels(levels models.PartialBookDepthStreamsLevelsParameter) ApiPartialBookDepthStreamsRequest {
 	r.levels = &levels
 	return r
 }
@@ -274,7 +272,7 @@ func (r ApiPartialBookDepthStreamsRequest) Id(id string) ApiPartialBookDepthStre
 }
 
 // WebSocket stream update speed
-func (r ApiPartialBookDepthStreamsRequest) UpdateSpeed(updateSpeed string) ApiPartialBookDepthStreamsRequest {
+func (r ApiPartialBookDepthStreamsRequest) UpdateSpeed(updateSpeed models.DiffBookDepthStreamsUpdateSpeedParameter) ApiPartialBookDepthStreamsRequest {
 	r.updateSpeed = &updateSpeed
 	return r
 }
@@ -287,7 +285,7 @@ func (r ApiPartialBookDepthStreamsRequest) Execute() (*common.StreamHandler[mode
 PartialBookDepthStreams Partial Book Depth Streams
 /<symbol>@depth<levels>@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Partial-Book-Depth-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#partial-book-depth-streams
 
 @param symbol The symbol parameter	@param levels The levels parameter	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
 @return ApiPartialBookDepthStreamsRequest
@@ -322,7 +320,7 @@ func (a *PublicAPIService) PartialBookDepthStreamsExecute(r ApiPartialBookDepthS
 				if r.levels == nil {
 					return ""
 				}
-				return strconv.FormatInt(*r.levels, 10)
+				return string(*r.levels)
 			}(),
 			"id": func() string {
 				if r.id == nil {
@@ -334,7 +332,7 @@ func (a *PublicAPIService) PartialBookDepthStreamsExecute(r ApiPartialBookDepthS
 				if r.updateSpeed == nil {
 					return ""
 				}
-				return *r.updateSpeed
+				return string(*r.updateSpeed)
 			}(),
 		},
 	)
@@ -380,7 +378,7 @@ func (r ApiRpiDiffBookDepthStreamsRequest) Execute() (*common.StreamHandler[mode
 RpiDiffBookDepthStreams RPI Diff. Book Depth Streams
 /<symbol>@rpiDepth@500ms
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Diff-Book-Depth-Streams-RPI
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/public#rpi-diff-book-depth-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiRpiDiffBookDepthStreamsRequest

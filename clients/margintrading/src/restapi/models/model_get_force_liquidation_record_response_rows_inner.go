@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,16 +17,26 @@ var _ common.MappedNullable = &GetForceLiquidationRecordResponseRowsInner{}
 
 // GetForceLiquidationRecordResponseRowsInner struct for GetForceLiquidationRecordResponseRowsInner
 type GetForceLiquidationRecordResponseRowsInner struct {
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	TimeInForce          *string `json:"timeInForce,omitempty"`
-	IsIsolated           *bool   `json:"isIsolated,omitempty"`
-	UpdatedTime          *int64  `json:"updatedTime,omitempty"`
+	// avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// price.
+	Price *string `json:"price,omitempty"`
+	// qty.
+	Qty *string `json:"qty,omitempty"`
+	// side.
+	Side *string `json:"side,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// is Isolated.
+	IsIsolated *bool `json:"isIsolated,omitempty"`
+	// updated Time.
+	UpdatedTime          *int64 `json:"updatedTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

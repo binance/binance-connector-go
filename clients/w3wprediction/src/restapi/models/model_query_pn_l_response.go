@@ -19,7 +19,7 @@ var _ common.MappedNullable = &QueryPnLResponse{}
 type QueryPnLResponse struct {
 	ChainId              *string                              `json:"chainId,omitempty"`
 	WalletAddress        *string                              `json:"walletAddress,omitempty"`
-	Pnl                  *string                              `json:"pnl,omitempty"`
+	Pnl                  map[string]interface{}               `json:"pnl,omitempty"`
 	PnlList              []GetPortfolioResponsePositionsInner `json:"pnlList,omitempty"`
 	TotalCount           *int32                               `json:"totalCount,omitempty"`
 	TotalRealizedPnl     *string                              `json:"totalRealizedPnl,omitempty"`
@@ -112,20 +112,20 @@ func (o *QueryPnLResponse) SetWalletAddress(v string) {
 }
 
 // GetPnl returns the Pnl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *QueryPnLResponse) GetPnl() string {
+func (o *QueryPnLResponse) GetPnl() map[string]interface{} {
 	if o == nil || common.IsNil(o.Pnl) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Pnl
+	return o.Pnl
 }
 
 // GetPnlOk returns a tuple with the Pnl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *QueryPnLResponse) GetPnlOk() (*string, bool) {
+func (o *QueryPnLResponse) GetPnlOk() (map[string]interface{}, bool) {
 	if o == nil || common.IsNil(o.Pnl) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.Pnl, true
 }
@@ -139,9 +139,9 @@ func (o *QueryPnLResponse) HasPnl() bool {
 	return false
 }
 
-// SetPnl gets a reference to the given NullableString and assigns it to the Pnl field.
-func (o *QueryPnLResponse) SetPnl(v string) {
-	o.Pnl = &v
+// SetPnl gets a reference to the given map[string]interface{} and assigns it to the Pnl field.
+func (o *QueryPnLResponse) SetPnl(v map[string]interface{}) {
+	o.Pnl = v
 }
 
 // GetPnlList returns the PnlList field value if set, zero value otherwise.
@@ -320,7 +320,7 @@ func (o QueryPnLResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.WalletAddress) {
 		toSerialize["walletAddress"] = o.WalletAddress
 	}
-	if !common.IsNil(o.Pnl) {
+	if o.Pnl != nil {
 		toSerialize["pnl"] = o.Pnl
 	}
 	if !common.IsNil(o.PnlList) {

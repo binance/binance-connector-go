@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,21 +17,29 @@ var _ common.MappedNullable = &TickerResponse1{}
 
 // TickerResponse1 struct for TickerResponse1
 type TickerResponse1 struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	PriceChange          *string `json:"priceChange,omitempty"`
-	PriceChangePercent   *string `json:"priceChangePercent,omitempty"`
-	WeightedAvgPrice     *string `json:"weightedAvgPrice,omitempty"`
-	OpenPrice            *string `json:"openPrice,omitempty"`
-	HighPrice            *string `json:"highPrice,omitempty"`
-	LowPrice             *string `json:"lowPrice,omitempty"`
-	LastPrice            *string `json:"lastPrice,omitempty"`
-	Volume               *string `json:"volume,omitempty"`
-	QuoteVolume          *string `json:"quoteVolume,omitempty"`
-	OpenTime             *int64  `json:"openTime,omitempty"`
-	CloseTime            *int64  `json:"closeTime,omitempty"`
-	FirstId              *int64  `json:"firstId,omitempty"`
-	LastId               *int64  `json:"lastId,omitempty"`
-	Count                *int64  `json:"count,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// Absolute price change
+	PriceChange *string `json:"priceChange,omitempty"`
+	// Relative price change in percent
+	PriceChangePercent *string `json:"priceChangePercent,omitempty"`
+	// QuoteVolume / Volume
+	WeightedAvgPrice *string `json:"weightedAvgPrice,omitempty"`
+	OpenPrice        *string `json:"openPrice,omitempty"`
+	HighPrice        *string `json:"highPrice,omitempty"`
+	LowPrice         *string `json:"lowPrice,omitempty"`
+	LastPrice        *string `json:"lastPrice,omitempty"`
+	Volume           *string `json:"volume,omitempty"`
+	// Sum of (price * volume) for all trades
+	QuoteVolume *string `json:"quoteVolume,omitempty"`
+	// Open time for ticker window
+	OpenTime *int64 `json:"openTime,omitempty"`
+	// Close time for ticker window
+	CloseTime *int64 `json:"closeTime,omitempty"`
+	// Trade IDs
+	FirstId *int64 `json:"firstId,omitempty"`
+	LastId  *int64 `json:"lastId,omitempty"`
+	// Number of trades in the interval
+	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

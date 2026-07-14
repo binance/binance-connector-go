@@ -1,7 +1,7 @@
 /*
-Binance Spot WebSocket API
+Spot WebSocket API
 
-OpenAPI Specifications for the Binance Spot WebSocket API  API documents:   - [Github web-socket-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-api.md)   - [General API information for web-socket-api on website](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,10 +17,10 @@ var _ common.MappedNullable = &MyFiltersResponse{}
 
 // MyFiltersResponse struct for MyFiltersResponse
 type MyFiltersResponse struct {
-	Id                   *string                  `json:"id,omitempty"`
-	Status               *int64                   `json:"status,omitempty"`
-	Result               *MyFiltersResponseResult `json:"result,omitempty"`
-	RateLimits           []RateLimits             `json:"rateLimits,omitempty"`
+	ExchangeFilters      []ExchangeFilters `json:"exchangeFilters,omitempty"`
+	SymbolFilters        []SymbolFilters   `json:"symbolFilters,omitempty"`
+	AssetFilters         []MaxAssetFilter  `json:"assetFilters,omitempty"`
+	RateLimits           []RateLimits      `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,100 +43,100 @@ func NewMyFiltersResponseWithDefaults() *MyFiltersResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetId() string {
-	if o == nil || common.IsNil(o.Id) {
-		var ret string
+// GetExchangeFilters returns the ExchangeFilters field value if set, zero value otherwise.
+func (o *MyFiltersResponse) GetExchangeFilters() []ExchangeFilters {
+	if o == nil || common.IsNil(o.ExchangeFilters) {
+		var ret []ExchangeFilters
 		return ret
 	}
-	return *o.Id
+	return o.ExchangeFilters
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetExchangeFiltersOk returns a tuple with the ExchangeFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetIdOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Id) {
+func (o *MyFiltersResponse) GetExchangeFiltersOk() ([]ExchangeFilters, bool) {
+	if o == nil || common.IsNil(o.ExchangeFilters) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.ExchangeFilters, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *MyFiltersResponse) HasId() bool {
-	if o != nil && !common.IsNil(o.Id) {
+// HasExchangeFilters returns a boolean if a field has been set.
+func (o *MyFiltersResponse) HasExchangeFilters() bool {
+	if o != nil && !common.IsNil(o.ExchangeFilters) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *MyFiltersResponse) SetId(v string) {
-	o.Id = &v
+// SetExchangeFilters gets a reference to the given []ExchangeFilters and assigns it to the ExchangeFilters field.
+func (o *MyFiltersResponse) SetExchangeFilters(v []ExchangeFilters) {
+	o.ExchangeFilters = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetStatus() int64 {
-	if o == nil || common.IsNil(o.Status) {
-		var ret int64
+// GetSymbolFilters returns the SymbolFilters field value if set, zero value otherwise.
+func (o *MyFiltersResponse) GetSymbolFilters() []SymbolFilters {
+	if o == nil || common.IsNil(o.SymbolFilters) {
+		var ret []SymbolFilters
 		return ret
 	}
-	return *o.Status
+	return o.SymbolFilters
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetSymbolFiltersOk returns a tuple with the SymbolFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetStatusOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Status) {
+func (o *MyFiltersResponse) GetSymbolFiltersOk() ([]SymbolFilters, bool) {
+	if o == nil || common.IsNil(o.SymbolFilters) {
 		return nil, false
 	}
-	return o.Status, true
+	return o.SymbolFilters, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *MyFiltersResponse) HasStatus() bool {
-	if o != nil && !common.IsNil(o.Status) {
+// HasSymbolFilters returns a boolean if a field has been set.
+func (o *MyFiltersResponse) HasSymbolFilters() bool {
+	if o != nil && !common.IsNil(o.SymbolFilters) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given int64 and assigns it to the Status field.
-func (o *MyFiltersResponse) SetStatus(v int64) {
-	o.Status = &v
+// SetSymbolFilters gets a reference to the given []SymbolFilters and assigns it to the SymbolFilters field.
+func (o *MyFiltersResponse) SetSymbolFilters(v []SymbolFilters) {
+	o.SymbolFilters = v
 }
 
-// GetResult returns the Result field value if set, zero value otherwise.
-func (o *MyFiltersResponse) GetResult() MyFiltersResponseResult {
-	if o == nil || common.IsNil(o.Result) {
-		var ret MyFiltersResponseResult
+// GetAssetFilters returns the AssetFilters field value if set, zero value otherwise.
+func (o *MyFiltersResponse) GetAssetFilters() []MaxAssetFilter {
+	if o == nil || common.IsNil(o.AssetFilters) {
+		var ret []MaxAssetFilter
 		return ret
 	}
-	return *o.Result
+	return o.AssetFilters
 }
 
-// GetResultOk returns a tuple with the Result field value if set, nil otherwise
+// GetAssetFiltersOk returns a tuple with the AssetFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyFiltersResponse) GetResultOk() (*MyFiltersResponseResult, bool) {
-	if o == nil || common.IsNil(o.Result) {
+func (o *MyFiltersResponse) GetAssetFiltersOk() ([]MaxAssetFilter, bool) {
+	if o == nil || common.IsNil(o.AssetFilters) {
 		return nil, false
 	}
-	return o.Result, true
+	return o.AssetFilters, true
 }
 
-// HasResult returns a boolean if a field has been set.
-func (o *MyFiltersResponse) HasResult() bool {
-	if o != nil && !common.IsNil(o.Result) {
+// HasAssetFilters returns a boolean if a field has been set.
+func (o *MyFiltersResponse) HasAssetFilters() bool {
+	if o != nil && !common.IsNil(o.AssetFilters) {
 		return true
 	}
 
 	return false
 }
 
-// SetResult gets a reference to the given MyFiltersResponseResult and assigns it to the Result field.
-func (o *MyFiltersResponse) SetResult(v MyFiltersResponseResult) {
-	o.Result = &v
+// SetAssetFilters gets a reference to the given []MaxAssetFilter and assigns it to the AssetFilters field.
+func (o *MyFiltersResponse) SetAssetFilters(v []MaxAssetFilter) {
+	o.AssetFilters = v
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
@@ -181,14 +181,14 @@ func (o MyFiltersResponse) MarshalJSON() ([]byte, error) {
 
 func (o MyFiltersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !common.IsNil(o.ExchangeFilters) {
+		toSerialize["exchangeFilters"] = o.ExchangeFilters
 	}
-	if !common.IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if !common.IsNil(o.SymbolFilters) {
+		toSerialize["symbolFilters"] = o.SymbolFilters
 	}
-	if !common.IsNil(o.Result) {
-		toSerialize["result"] = o.Result
+	if !common.IsNil(o.AssetFilters) {
+		toSerialize["assetFilters"] = o.AssetFilters
 	}
 	if !common.IsNil(o.RateLimits) {
 		toSerialize["rateLimits"] = o.RateLimits
@@ -215,9 +215,9 @@ func (o *MyFiltersResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "result")
+		delete(additionalProperties, "exchangeFilters")
+		delete(additionalProperties, "symbolFilters")
+		delete(additionalProperties, "assetFilters")
 		delete(additionalProperties, "rateLimits")
 		o.AdditionalProperties = additionalProperties
 	}

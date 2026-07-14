@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Futures (USDⓈ-M) WebSocket Market Streams
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures WebSocket Market Streams
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package binancederivativestradingusdsfutureswebsocketstreams
@@ -40,7 +40,7 @@ func (r ApiAggregateTradeStreamsRequest) Execute() (*common.StreamHandler[models
 AggregateTradeStreams Aggregate Trade Streams
 /<symbol>@aggTrade
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Aggregate-Trade-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#aggregate-trade-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiAggregateTradeStreamsRequest
@@ -111,7 +111,7 @@ func (r ApiAllMarketLiquidationOrderStreamsRequest) Execute() (*common.StreamHan
 AllMarketLiquidationOrderStreams All Market Liquidation Order Streams
 /!forceOrder@arr
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Liquidation-Order-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-liquidation-order-streams
 
 @param id Unique WebSocket request ID.
 @return ApiAllMarketLiquidationOrderStreamsRequest
@@ -173,7 +173,7 @@ func (r ApiAllMarketMiniTickersStreamRequest) Execute() (*common.StreamHandler[m
 AllMarketMiniTickersStream All Market Mini Tickers Stream
 /!miniTicker@arr
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Mini-Tickers-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-mini-tickers-stream
 
 @param id Unique WebSocket request ID.
 @return ApiAllMarketMiniTickersStreamRequest
@@ -235,7 +235,7 @@ func (r ApiAllMarketTickersStreamsRequest) Execute() (*common.StreamHandler[mode
 AllMarketTickersStreams All Market Tickers Streams
 /!ticker@arr
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/All-Market-Tickers-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#all-market-tickers-streams
 
 @param id Unique WebSocket request ID.
 @return ApiAllMarketTickersStreamsRequest
@@ -294,10 +294,10 @@ func (r ApiAssetIndexRequest) Execute() (*common.StreamHandler[models.AssetIndex
 }
 
 /*
-AssetIndex Asset Index
+AssetIndex Multi-Assets Mode Asset Index
 /!assetIndex@arr
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Asset-Index
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#asset-index
 
 @param id Unique WebSocket request ID.
 @return ApiAssetIndexRequest
@@ -366,7 +366,7 @@ func (r ApiCompositeIndexSymbolInformationStreamsRequest) Execute() (*common.Str
 CompositeIndexSymbolInformationStreams Composite Index Symbol Information Streams
 /<symbol>@compositeIndex
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Composite-Index-Symbol-Information-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#composite-index-symbol-information-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiCompositeIndexSymbolInformationStreamsRequest
@@ -421,25 +421,22 @@ func (a *MarketAPIService) CompositeIndexSymbolInformationStreamsExecute(r ApiCo
 type ApiContinuousContractKlineCandlestickStreamsRequest struct {
 	ApiService   *MarketAPIService
 	pair         *string
-	contractType *string
-	interval     *string
+	contractType *models.ContinuousContractKlineCandlestickStreamsContractTypeParameter
+	interval     *models.ContinuousContractKlineCandlestickStreamsIntervalParameter
 	id           *string
 }
 
-// The pair parameter
 func (r ApiContinuousContractKlineCandlestickStreamsRequest) Pair(pair string) ApiContinuousContractKlineCandlestickStreamsRequest {
 	r.pair = &pair
 	return r
 }
 
-// The contractType parameter
-func (r ApiContinuousContractKlineCandlestickStreamsRequest) ContractType(contractType string) ApiContinuousContractKlineCandlestickStreamsRequest {
+func (r ApiContinuousContractKlineCandlestickStreamsRequest) ContractType(contractType models.ContinuousContractKlineCandlestickStreamsContractTypeParameter) ApiContinuousContractKlineCandlestickStreamsRequest {
 	r.contractType = &contractType
 	return r
 }
 
-// The interval parameter
-func (r ApiContinuousContractKlineCandlestickStreamsRequest) Interval(interval string) ApiContinuousContractKlineCandlestickStreamsRequest {
+func (r ApiContinuousContractKlineCandlestickStreamsRequest) Interval(interval models.ContinuousContractKlineCandlestickStreamsIntervalParameter) ApiContinuousContractKlineCandlestickStreamsRequest {
 	r.interval = &interval
 	return r
 }
@@ -458,9 +455,9 @@ func (r ApiContinuousContractKlineCandlestickStreamsRequest) Execute() (*common.
 ContinuousContractKlineCandlestickStreams Continuous Contract Kline/Candlestick Streams
 /<pair>_<contractType>@continuousKline_<interval>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Continuous-Contract-Kline-Candlestick-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#continuous-contract-kline-candlestick-streams
 
-@param pair The pair parameter	@param contractType The contractType parameter	@param interval The interval parameter	@param id Unique WebSocket request ID.
+@param pair	@param contractType	@param interval	@param id Unique WebSocket request ID.
 @return ApiContinuousContractKlineCandlestickStreamsRequest
 */
 func (a *MarketAPIService) ContinuousContractKlineCandlestickStreams() ApiContinuousContractKlineCandlestickStreamsRequest {
@@ -496,13 +493,13 @@ func (a *MarketAPIService) ContinuousContractKlineCandlestickStreamsExecute(r Ap
 				if r.contractType == nil {
 					return ""
 				}
-				return *r.contractType
+				return string(*r.contractType)
 			}(),
 			"interval": func() string {
 				if r.interval == nil {
 					return ""
 				}
-				return *r.interval
+				return string(*r.interval)
 			}(),
 			"id": func() string {
 				if r.id == nil {
@@ -547,7 +544,7 @@ func (r ApiContractInfoStreamRequest) Execute() (*common.StreamHandler[models.Co
 ContractInfoStream Contract Info Stream
 /!contractInfo
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Contract-Info-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#contract-info-stream
 
 @param id Unique WebSocket request ID.
 @return ApiContractInfoStreamRequest
@@ -616,7 +613,7 @@ func (r ApiIndividualSymbolMiniTickerStreamRequest) Execute() (*common.StreamHan
 IndividualSymbolMiniTickerStream Individual Symbol Mini Ticker Stream
 /<symbol>@miniTicker
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Mini-Ticker-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#individual-symbol-mini-ticker-stream
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiIndividualSymbolMiniTickerStreamRequest
@@ -694,7 +691,7 @@ func (r ApiIndividualSymbolTickerStreamsRequest) Execute() (*common.StreamHandle
 IndividualSymbolTickerStreams Individual Symbol Ticker Streams
 /<symbol>@ticker
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Individual-Symbol-Ticker-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#individual-symbol-ticker-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiIndividualSymbolTickerStreamsRequest
@@ -749,7 +746,7 @@ func (a *MarketAPIService) IndividualSymbolTickerStreamsExecute(r ApiIndividualS
 type ApiKlineCandlestickStreamsRequest struct {
 	ApiService *MarketAPIService
 	symbol     *string
-	interval   *string
+	interval   *models.KlineCandlestickStreamsIntervalParameter
 	id         *string
 }
 
@@ -760,7 +757,7 @@ func (r ApiKlineCandlestickStreamsRequest) Symbol(symbol string) ApiKlineCandles
 }
 
 // The interval parameter
-func (r ApiKlineCandlestickStreamsRequest) Interval(interval string) ApiKlineCandlestickStreamsRequest {
+func (r ApiKlineCandlestickStreamsRequest) Interval(interval models.KlineCandlestickStreamsIntervalParameter) ApiKlineCandlestickStreamsRequest {
 	r.interval = &interval
 	return r
 }
@@ -779,7 +776,7 @@ func (r ApiKlineCandlestickStreamsRequest) Execute() (*common.StreamHandler[mode
 KlineCandlestickStreams Kline/Candlestick Streams
 /<symbol>@kline_<interval>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Kline-Candlestick-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#kline-candlestick-streams
 
 @param symbol The symbol parameter	@param interval The interval parameter	@param id Unique WebSocket request ID.
 @return ApiKlineCandlestickStreamsRequest
@@ -814,7 +811,7 @@ func (a *MarketAPIService) KlineCandlestickStreamsExecute(r ApiKlineCandlestickS
 				if r.interval == nil {
 					return ""
 				}
-				return *r.interval
+				return string(*r.interval)
 			}(),
 			"id": func() string {
 				if r.id == nil {
@@ -866,7 +863,7 @@ func (r ApiLiquidationOrderStreamsRequest) Execute() (*common.StreamHandler[mode
 LiquidationOrderStreams Liquidation Order Streams
 /<symbol>@forceOrder
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Liquidation-Order-Streams
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#liquidation-order-streams
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.
 @return ApiLiquidationOrderStreamsRequest
@@ -922,7 +919,7 @@ type ApiMarkPriceStreamRequest struct {
 	ApiService  *MarketAPIService
 	symbol      *string
 	id          *string
-	updateSpeed *string
+	updateSpeed *models.MarkPriceStreamUpdateSpeedParameter
 }
 
 // The symbol parameter
@@ -938,7 +935,7 @@ func (r ApiMarkPriceStreamRequest) Id(id string) ApiMarkPriceStreamRequest {
 }
 
 // WebSocket stream update speed
-func (r ApiMarkPriceStreamRequest) UpdateSpeed(updateSpeed string) ApiMarkPriceStreamRequest {
+func (r ApiMarkPriceStreamRequest) UpdateSpeed(updateSpeed models.MarkPriceStreamUpdateSpeedParameter) ApiMarkPriceStreamRequest {
 	r.updateSpeed = &updateSpeed
 	return r
 }
@@ -951,7 +948,7 @@ func (r ApiMarkPriceStreamRequest) Execute() (*common.StreamHandler[models.MarkP
 MarkPriceStream Mark Price Stream
 /<symbol>@markPrice@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#mark-price-stream
 
 @param symbol The symbol parameter	@param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
 @return ApiMarkPriceStreamRequest
@@ -989,7 +986,7 @@ func (a *MarketAPIService) MarkPriceStreamExecute(r ApiMarkPriceStreamRequest) (
 				if r.updateSpeed == nil {
 					return ""
 				}
-				return *r.updateSpeed
+				return string(*r.updateSpeed)
 			}(),
 		},
 	)
@@ -1012,7 +1009,7 @@ func (a *MarketAPIService) MarkPriceStreamExecute(r ApiMarkPriceStreamRequest) (
 type ApiMarkPriceStreamForAllMarketRequest struct {
 	ApiService  *MarketAPIService
 	id          *string
-	updateSpeed *string
+	updateSpeed *models.MarkPriceStreamUpdateSpeedParameter
 }
 
 // Unique WebSocket request ID.
@@ -1022,7 +1019,7 @@ func (r ApiMarkPriceStreamForAllMarketRequest) Id(id string) ApiMarkPriceStreamF
 }
 
 // WebSocket stream update speed
-func (r ApiMarkPriceStreamForAllMarketRequest) UpdateSpeed(updateSpeed string) ApiMarkPriceStreamForAllMarketRequest {
+func (r ApiMarkPriceStreamForAllMarketRequest) UpdateSpeed(updateSpeed models.MarkPriceStreamUpdateSpeedParameter) ApiMarkPriceStreamForAllMarketRequest {
 	r.updateSpeed = &updateSpeed
 	return r
 }
@@ -1035,7 +1032,7 @@ func (r ApiMarkPriceStreamForAllMarketRequest) Execute() (*common.StreamHandler[
 MarkPriceStreamForAllMarket Mark Price Stream for All market
 /!markPrice@arr@<updateSpeed>
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Mark-Price-Stream-for-All-market
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#mark-price-stream-for-all-market
 
 @param id Unique WebSocket request ID.	@param updateSpeed WebSocket stream update speed
 @return ApiMarkPriceStreamForAllMarketRequest
@@ -1064,7 +1061,7 @@ func (a *MarketAPIService) MarkPriceStreamForAllMarketExecute(r ApiMarkPriceStre
 				if r.updateSpeed == nil {
 					return ""
 				}
-				return *r.updateSpeed
+				return string(*r.updateSpeed)
 			}(),
 		},
 	)
@@ -1103,7 +1100,7 @@ func (r ApiTradingSessionStreamRequest) Execute() (*common.StreamHandler[models.
 TradingSessionStream Trading Session Stream
 /tradingSession
 
-https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Trading-Session-Stream
+https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-streams/market#trading-session-stream
 
 @param id Unique WebSocket request ID.
 @return ApiTradingSessionStreamRequest

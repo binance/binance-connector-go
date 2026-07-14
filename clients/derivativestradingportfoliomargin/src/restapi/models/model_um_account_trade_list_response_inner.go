@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,19 +17,33 @@ var _ common.MappedNullable = &UmAccountTradeListResponseInner{}
 
 // UmAccountTradeListResponseInner struct for UmAccountTradeListResponseInner
 type UmAccountTradeListResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	Id                   *int64  `json:"id,omitempty"`
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Side                 *string `json:"side,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	RealizedPnl          *string `json:"realizedPnl,omitempty"`
-	QuoteQty             *string `json:"quoteQty,omitempty"`
-	Commission           *string `json:"commission,omitempty"`
-	CommissionAsset      *string `json:"commissionAsset,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	Buyer                *bool   `json:"buyer,omitempty"`
-	Maker                *bool   `json:"maker,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// ID.
+	Id *int64 `json:"id,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Qty.
+	Qty *string `json:"qty,omitempty"`
+	// Realized Pnl.
+	RealizedPnl *string `json:"realizedPnl,omitempty"`
+	// Quote Qty.
+	QuoteQty *string `json:"quoteQty,omitempty"`
+	// Commission.
+	Commission *string `json:"commission,omitempty"`
+	// Commission Asset.
+	CommissionAsset *string `json:"commissionAsset,omitempty"`
+	// Event time.
+	Time *int64 `json:"time,omitempty"`
+	// Buyer.
+	Buyer *bool `json:"buyer,omitempty"`
+	// Maker.
+	Maker *bool `json:"maker,omitempty"`
+	// BOTH means that it is the position of One-way Mode
 	PositionSide         *string `json:"positionSide,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

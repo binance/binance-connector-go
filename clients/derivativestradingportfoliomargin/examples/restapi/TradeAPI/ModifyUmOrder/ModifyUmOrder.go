@@ -23,7 +23,7 @@ func ModifyUmOrder() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.ModifyUmOrder(context.Background()).Symbol("symbol_example").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyUmOrder(context.Background()).Symbol("BTCUSDT").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(1.0).Price(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

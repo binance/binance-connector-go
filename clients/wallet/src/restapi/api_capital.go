@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package binancewalletrestapi
@@ -37,7 +37,7 @@ func (r ApiAllCoinsInformationRequest) Execute() (*common.RestApiResponse[models
 AllCoinsInformation All Coins' Information (USER_DATA)
 Get /sapi/v1/capital/config/getall
 
-https://developers.binance.com/docs/wallet/capital/all-coins-info
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#all-coins-information
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -
@@ -64,7 +64,15 @@ func (a *CapitalAPIService) AllCoinsInformationExecute(r ApiAllCoinsInformationR
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.AllCoinsInformationResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.AllCoinsInformationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -81,6 +89,7 @@ type ApiDepositAddressRequest struct {
 	recvWindow *int64
 }
 
+// &#x60;coin&#x60; refers to the parent network address format that the address is using
 func (r ApiDepositAddressRequest) Coin(coin string) ApiDepositAddressRequest {
 	r.coin = &coin
 	return r
@@ -109,10 +118,10 @@ func (r ApiDepositAddressRequest) Execute() (*common.RestApiResponse[models.Depo
 DepositAddress Deposit Address(supporting network) (USER_DATA)
 Get /sapi/v1/capital/deposit/address
 
-https://developers.binance.com/docs/wallet/capital/deposite-address
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-address
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param coin -
+@param coin -  `coin` refers to the parent network address format that the address is using
 @param network -
 @param amount -
 @param recvWindow -
@@ -150,7 +159,15 @@ func (a *CapitalAPIService) DepositAddressExecute(r ApiDepositAddressRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositAddressResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DepositAddressResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -163,7 +180,7 @@ type ApiDepositHistoryRequest struct {
 	ApiService    *CapitalAPIService
 	includeSource *bool
 	coin          *string
-	status        *int64
+	status        *models.DepositHistoryStatusParameter
 	startTime     *int64
 	endTime       *int64
 	offset        *int64
@@ -172,7 +189,7 @@ type ApiDepositHistoryRequest struct {
 	txId          *string
 }
 
-// Default: &#x60;false&#x60;, return &#x60;sourceAddress&#x60;field when set to &#x60;true&#x60;
+// return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60;
 func (r ApiDepositHistoryRequest) IncludeSource(includeSource bool) ApiDepositHistoryRequest {
 	r.includeSource = &includeSource
 	return r
@@ -183,29 +200,29 @@ func (r ApiDepositHistoryRequest) Coin(coin string) ApiDepositHistoryRequest {
 	return r
 }
 
-// 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
-func (r ApiDepositHistoryRequest) Status(status int64) ApiDepositHistoryRequest {
+// 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+func (r ApiDepositHistoryRequest) Status(status models.DepositHistoryStatusParameter) ApiDepositHistoryRequest {
 	r.status = &status
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiDepositHistoryRequest) StartTime(startTime int64) ApiDepositHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiDepositHistoryRequest) EndTime(endTime int64) ApiDepositHistoryRequest {
 	r.endTime = &endTime
 	return r
 }
 
-// Default: 0
 func (r ApiDepositHistoryRequest) Offset(offset int64) ApiDepositHistoryRequest {
 	r.offset = &offset
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiDepositHistoryRequest) Limit(limit int64) ApiDepositHistoryRequest {
 	r.limit = &limit
 	return r
@@ -229,16 +246,16 @@ func (r ApiDepositHistoryRequest) Execute() (*common.RestApiResponse[models.Depo
 DepositHistory Deposit History (supporting network) (USER_DATA)
 Get /sapi/v1/capital/deposit/hisrec
 
-https://developers.binance.com/docs/wallet/capital/deposite-history
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#deposit-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param includeSource -  Default: `false`, return `sourceAddress`field when set to `true`
+@param includeSource -  return `sourceAddress` field when set to `true`
 @param coin -
-@param status -  0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
-@param startTime -
-@param endTime -
-@param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
+@param status -  0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
+@param offset -
+@param limit -
 @param recvWindow -
 @param txId -
 @return ApiDepositHistoryRequest
@@ -288,7 +305,15 @@ func (a *CapitalAPIService) DepositHistoryExecute(r ApiDepositHistoryRequest) (*
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "txId", r.txId, "form", "")
 	}
 
-	resp, err := SendRequest[models.DepositHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.DepositHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -303,11 +328,13 @@ type ApiFetchDepositAddressListWithNetworkRequest struct {
 	network    *string
 }
 
+// Coin name
 func (r ApiFetchDepositAddressListWithNetworkRequest) Coin(coin string) ApiFetchDepositAddressListWithNetworkRequest {
 	r.coin = &coin
 	return r
 }
 
+// If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of &#x60;Get /sapi/v1/capital/config/getall&#x60;
 func (r ApiFetchDepositAddressListWithNetworkRequest) Network(network string) ApiFetchDepositAddressListWithNetworkRequest {
 	r.network = &network
 	return r
@@ -318,14 +345,14 @@ func (r ApiFetchDepositAddressListWithNetworkRequest) Execute() (*common.RestApi
 }
 
 /*
-FetchDepositAddressListWithNetwork Fetch deposit address list with network(USER_DATA)
+FetchDepositAddressListWithNetwork Fetch deposit address list with network (USER_DATA)
 Get /sapi/v1/capital/deposit/address/list
 
-https://developers.binance.com/docs/wallet/capital/Fetch-deposit-address-list-with-network
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-deposit-address-list-with-network
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param coin -
-@param network -
+@param coin -  Coin name
+@param network -  If network is not send, return with default network of the coin. You can get network and isDefault in networkList in the response of `Get /sapi/v1/capital/config/getall`
 @return ApiFetchDepositAddressListWithNetworkRequest
 */
 func (a *CapitalAPIService) FetchDepositAddressListWithNetwork(ctx context.Context) ApiFetchDepositAddressListWithNetworkRequest {
@@ -354,7 +381,15 @@ func (a *CapitalAPIService) FetchDepositAddressListWithNetworkExecute(r ApiFetch
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "network", r.network, "form", "")
 	}
 
-	resp, err := SendRequest[models.FetchDepositAddressListWithNetworkResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchDepositAddressListWithNetworkResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -375,7 +410,7 @@ func (r ApiFetchWithdrawAddressListRequest) Execute() (*common.RestApiResponse[m
 FetchWithdrawAddressList Fetch withdraw address list (USER_DATA)
 Get /sapi/v1/capital/withdraw/address/list
 
-https://developers.binance.com/docs/wallet/capital/fetch-withdraw-address
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-address-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiFetchWithdrawAddressListRequest
@@ -397,7 +432,15 @@ func (a *CapitalAPIService) FetchWithdrawAddressListExecute(r ApiFetchWithdrawAd
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.FetchWithdrawAddressListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchWithdrawAddressListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -418,7 +461,7 @@ func (r ApiFetchWithdrawQuotaRequest) Execute() (*common.RestApiResponse[models.
 FetchWithdrawQuota Fetch withdraw quota (USER_DATA)
 Get /sapi/v1/capital/withdraw/quota
 
-https://developers.binance.com/docs/wallet/capital/Fetch-withdraw-quota
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#fetch-withdraw-quota
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return ApiFetchWithdrawQuotaRequest
@@ -440,7 +483,15 @@ func (a *CapitalAPIService) FetchWithdrawQuotaExecute(r ApiFetchWithdrawQuotaReq
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	resp, err := SendRequest[models.FetchWithdrawQuotaResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.FetchWithdrawQuotaResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -453,7 +504,7 @@ type ApiOneClickArrivalDepositApplyRequest struct {
 	ApiService   *CapitalAPIService
 	depositId    *int64
 	txId         *string
-	subAccountId *int64
+	subAccountId *string
 	subUserId    *int64
 }
 
@@ -463,13 +514,14 @@ func (r ApiOneClickArrivalDepositApplyRequest) DepositId(depositId int64) ApiOne
 	return r
 }
 
+// Deposit txId, used when depositId is not specified
 func (r ApiOneClickArrivalDepositApplyRequest) TxId(txId string) ApiOneClickArrivalDepositApplyRequest {
 	r.txId = &txId
 	return r
 }
 
 // Sub-accountId of Cloud user
-func (r ApiOneClickArrivalDepositApplyRequest) SubAccountId(subAccountId int64) ApiOneClickArrivalDepositApplyRequest {
+func (r ApiOneClickArrivalDepositApplyRequest) SubAccountId(subAccountId string) ApiOneClickArrivalDepositApplyRequest {
 	r.subAccountId = &subAccountId
 	return r
 }
@@ -488,11 +540,11 @@ func (r ApiOneClickArrivalDepositApplyRequest) Execute() (*common.RestApiRespons
 OneClickArrivalDepositApply One click arrival deposit apply (for expired address deposit) (USER_DATA)
 Post /sapi/v1/capital/deposit/credit-apply
 
-https://developers.binance.com/docs/wallet/capital/one-click-arrival-deposite-apply
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#one-click-arrival-deposit-apply
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param depositId -  Deposit record Id, priority use
-@param txId -
+@param txId -  Deposit txId, used when depositId is not specified
 @param subAccountId -  Sub-accountId of Cloud user
 @param subUserId -  Sub-userId of parent user
 @return ApiOneClickArrivalDepositApplyRequest
@@ -527,7 +579,15 @@ func (a *CapitalAPIService) OneClickArrivalDepositApplyExecute(r ApiOneClickArri
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "subUserId", r.subUserId, "form", "")
 	}
 
-	resp, err := SendRequest[models.OneClickArrivalDepositApplyResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.OneClickArrivalDepositApplyResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -555,22 +615,25 @@ func (r ApiWithdrawRequest) Coin(coin string) ApiWithdrawRequest {
 	return r
 }
 
+// Withdrawal address
 func (r ApiWithdrawRequest) Address(address string) ApiWithdrawRequest {
 	r.address = &address
 	return r
 }
 
+// Amount
 func (r ApiWithdrawRequest) Amount(amount float32) ApiWithdrawRequest {
 	r.amount = &amount
 	return r
 }
 
-// client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query.
+// client side id for withdrawal, if provide here, can be used in GET &#x60;/sapi/v1/capital/withdraw/history&#x60; for query.
 func (r ApiWithdrawRequest) WithdrawOrderId(withdrawOrderId string) ApiWithdrawRequest {
 	r.withdrawOrderId = &withdrawOrderId
 	return r
 }
 
+// Withdrawal network
 func (r ApiWithdrawRequest) Network(network string) ApiWithdrawRequest {
 	r.network = &network
 	return r
@@ -588,7 +651,6 @@ func (r ApiWithdrawRequest) TransactionFeeFlag(transactionFeeFlag bool) ApiWithd
 	return r
 }
 
-// Description of the address. Address book cap is 200, space in name should be encoded into &#x60;%20&#x60;
 func (r ApiWithdrawRequest) Name(name string) ApiWithdrawRequest {
 	r.name = &name
 	return r
@@ -610,20 +672,20 @@ func (r ApiWithdrawRequest) Execute() (*common.RestApiResponse[models.WithdrawRe
 }
 
 /*
-Withdraw Withdraw(USER_DATA)
+Withdraw Withdraw (USER_DATA)
 Post /sapi/v1/capital/withdraw/apply
 
-https://developers.binance.com/docs/wallet/capital/Withdraw
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
-@param address -
-@param amount -
-@param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
-@param network -
+@param address -  Withdrawal address
+@param amount -  Amount
+@param withdrawOrderId -  client side id for withdrawal, if provide here, can be used in GET `/sapi/v1/capital/withdraw/history` for query.
+@param network -  Withdrawal network
 @param addressTag -  Secondary address identifier for coins like XRP,XMR etc.
 @param transactionFeeFlag -  When making internal transfer, `true` for returning the fee to the destination account; `false` for returning the fee back to the departure account. Default `false`.
-@param name -  Description of the address. Address book cap is 200, space in name should be encoded into `%20`
+@param name -
 @param walletType -  The wallet type for withdraw，0-spot wallet ，1-funding wallet. Default walletType is the current \"selected wallet\" under wallet->Fiat and Spot/Funding->Deposit
 @param recvWindow -
 @return ApiWithdrawRequest
@@ -648,9 +710,11 @@ func (a *CapitalAPIService) WithdrawExecute(r ApiWithdrawRequest) (*common.RestA
 	if r.coin == nil {
 		return nil, common.ReportError("coin is required and must be specified")
 	}
+
 	if r.address == nil {
 		return nil, common.ReportError("address is required and must be specified")
 	}
+
 	if r.amount == nil {
 		return nil, common.ReportError("amount is required and must be specified")
 	}
@@ -680,7 +744,15 @@ func (a *CapitalAPIService) WithdrawExecute(r ApiWithdrawRequest) (*common.RestA
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -725,7 +797,6 @@ func (r ApiWithdrawHistoryRequest) Offset(offset int64) ApiWithdrawHistoryReques
 	return r
 }
 
-// min 7, max 30, default 7
 func (r ApiWithdrawHistoryRequest) Limit(limit int64) ApiWithdrawHistoryRequest {
 	r.limit = &limit
 	return r
@@ -737,11 +808,13 @@ func (r ApiWithdrawHistoryRequest) IdList(idList string) ApiWithdrawHistoryReque
 	return r
 }
 
+// Default: 90 days from current timestamp
 func (r ApiWithdrawHistoryRequest) StartTime(startTime int64) ApiWithdrawHistoryRequest {
 	r.startTime = &startTime
 	return r
 }
 
+// Default: present timestamp
 func (r ApiWithdrawHistoryRequest) EndTime(endTime int64) ApiWithdrawHistoryRequest {
 	r.endTime = &endTime
 	return r
@@ -760,17 +833,17 @@ func (r ApiWithdrawHistoryRequest) Execute() (*common.RestApiResponse[models.Wit
 WithdrawHistory Withdraw History (supporting network) (USER_DATA)
 Get /sapi/v1/capital/withdraw/history
 
-https://developers.binance.com/docs/wallet/capital/Withdraw-History
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/capital#withdraw-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
 @param status -  0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
 @param offset -  Default: 0
-@param limit -  min 7, max 30, default 7
+@param limit -
 @param idList -  id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,`
-@param startTime -
-@param endTime -
+@param startTime -  Default: 90 days from current timestamp
+@param endTime -  Default: present timestamp
 @param recvWindow -
 @return ApiWithdrawHistoryRequest
 */
@@ -819,7 +892,15 @@ func (a *CapitalAPIService) WithdrawHistoryExecute(r ApiWithdrawHistoryRequest) 
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.WithdrawHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.WithdrawHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

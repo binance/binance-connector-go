@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FilterType** | Pointer to **string** |  | [optional] 
-**MaxPrice** | Pointer to **string** |  | [optional] 
-**MinPrice** | Pointer to **string** |  | [optional] 
-**TickSize** | Pointer to **string** |  | [optional] 
-**MaxQty** | Pointer to **string** |  | [optional] 
-**MinQty** | Pointer to **string** |  | [optional] 
-**StepSize** | Pointer to **string** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**MultiplierUp** | Pointer to **string** |  | [optional] 
-**MultiplierDown** | Pointer to **string** |  | [optional] 
-**MultiplierDecimal** | Pointer to **string** |  | [optional] 
+**FilterType** | Pointer to **string** | Filter type. | [optional] 
+**MaxPrice** | Pointer to **string** | Maximum price. | [optional] 
+**MinPrice** | Pointer to **string** | Minimum price. | [optional] 
+**TickSize** | Pointer to **string** | Tick size. | [optional] 
+**MaxQty** | Pointer to **string** | maximum quantity of base asset | [optional] 
+**MinQty** | Pointer to **string** | Minimum quantity. | [optional] 
+**StepSize** | Pointer to **string** | Step size. | [optional] 
+**Limit** | Pointer to **int64** | Maximum allowed orders for this rule. | [optional] 
+**MultiplierUp** | Pointer to **string** | Upper multiplier bound. | [optional] 
+**MultiplierDown** | Pointer to **string** | Lower multiplier bound. | [optional] 
+**MultiplierDecimal** | Pointer to **string** | Multiplier decimal precision. | [optional] 
 
 ## Methods
 

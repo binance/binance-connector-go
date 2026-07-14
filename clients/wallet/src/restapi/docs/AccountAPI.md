@@ -240,10 +240,10 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | 
+	type_ := models.DailyAccountSnapshotTypeParameterSpot // DailyAccountSnapshotTypeParameter | 
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
-	limit := int64(7) // int64 | min 7, max 30, default 7 (optional)
+	limit := int64(7) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -272,10 +272,10 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** |  | 
+ **type_** | [**DailyAccountSnapshotTypeParameter**](DailyAccountSnapshotTypeParameter.md) |  | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
- **limit** | **int64** | min 7, max 30, default 7 | 
+ **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

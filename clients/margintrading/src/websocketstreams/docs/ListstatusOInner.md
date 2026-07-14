@@ -1,104 +1,104 @@
-# ListstatusOInner
+# ListStatusOInner
 
 ## Properties
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**I** | Pointer to **int64** | orderId | [optional] 
+**C** | Pointer to **string** | ClientOrderId | [optional] 
 
 ## Methods
 
-### NewListstatusOInner
+### NewListStatusOInner
 
-`func NewListstatusOInner() *ListstatusOInner`
+`func NewListStatusOInner() *ListStatusOInner`
 
-NewListstatusOInner instantiates a new ListstatusOInner object
+NewListStatusOInner instantiates a new ListStatusOInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewListstatusOInnerWithDefaults
+### NewListStatusOInnerWithDefaults
 
-`func NewListstatusOInnerWithDefaults() *ListstatusOInner`
+`func NewListStatusOInnerWithDefaults() *ListStatusOInner`
 
-NewListstatusOInnerWithDefaults instantiates a new ListstatusOInner object
+NewListStatusOInnerWithDefaults instantiates a new ListStatusOInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetS
 
-`func (o *ListstatusOInner) GetS() string`
+`func (o *ListStatusOInner) GetS() string`
 
 GetS returns the S field if non-nil, zero value otherwise.
 
 ### GetSOk
 
-`func (o *ListstatusOInner) GetSOk() (*string, bool)`
+`func (o *ListStatusOInner) GetSOk() (*string, bool)`
 
 GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetS
 
-`func (o *ListstatusOInner) SetS(v string)`
+`func (o *ListStatusOInner) SetS(v string)`
 
 SetS sets S field to given value.
 
 ### HasS
 
-`func (o *ListstatusOInner) HasS() bool`
+`func (o *ListStatusOInner) HasS() bool`
 
 HasS returns a boolean if a field has been set.
 
 ### GetI
 
-`func (o *ListstatusOInner) GetI() int64`
+`func (o *ListStatusOInner) GetI() int64`
 
 GetI returns the I field if non-nil, zero value otherwise.
 
 ### GetIOk
 
-`func (o *ListstatusOInner) GetIOk() (*int64, bool)`
+`func (o *ListStatusOInner) GetIOk() (*int64, bool)`
 
 GetIOk returns a tuple with the I field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetI
 
-`func (o *ListstatusOInner) SetI(v int64)`
+`func (o *ListStatusOInner) SetI(v int64)`
 
 SetI sets I field to given value.
 
 ### HasI
 
-`func (o *ListstatusOInner) HasI() bool`
+`func (o *ListStatusOInner) HasI() bool`
 
 HasI returns a boolean if a field has been set.
 
 ### GetC
 
-`func (o *ListstatusOInner) GetC() string`
+`func (o *ListStatusOInner) GetC() string`
 
 GetC returns the C field if non-nil, zero value otherwise.
 
 ### GetCOk
 
-`func (o *ListstatusOInner) GetCOk() (*string, bool)`
+`func (o *ListStatusOInner) GetCOk() (*string, bool)`
 
 GetCOk returns a tuple with the C field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetC
 
-`func (o *ListstatusOInner) SetC(v string)`
+`func (o *ListStatusOInner) SetC(v string)`
 
 SetC sets C field to given value.
 
 ### HasC
 
-`func (o *ListstatusOInner) HasC() bool`
+`func (o *ListStatusOInner) HasC() bool`
 
 HasC returns a boolean if a field has been set.
 

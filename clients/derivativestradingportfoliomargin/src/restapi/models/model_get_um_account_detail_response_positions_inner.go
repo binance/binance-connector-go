@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,21 +17,35 @@ var _ common.MappedNullable = &GetUmAccountDetailResponsePositionsInner{}
 
 // GetUmAccountDetailResponsePositionsInner struct for GetUmAccountDetailResponsePositionsInner
 type GetUmAccountDetailResponsePositionsInner struct {
-	Symbol                 *string `json:"symbol,omitempty"`
-	InitialMargin          *string `json:"initialMargin,omitempty"`
-	MaintMargin            *string `json:"maintMargin,omitempty"`
-	UnrealizedProfit       *string `json:"unrealizedProfit,omitempty"`
-	PositionInitialMargin  *string `json:"positionInitialMargin,omitempty"`
+	// symbol name
+	Symbol *string `json:"symbol,omitempty"`
+	// total initial margin required with current mark price
+	InitialMargin *string `json:"initialMargin,omitempty"`
+	// maintenance margin required
+	MaintMargin *string `json:"maintMargin,omitempty"`
+	// unrealized profit
+	UnrealizedProfit *string `json:"unrealizedProfit,omitempty"`
+	// initial margin required for positions with current mark price
+	PositionInitialMargin *string `json:"positionInitialMargin,omitempty"`
+	// initial margin required for open orders with current mark price
 	OpenOrderInitialMargin *string `json:"openOrderInitialMargin,omitempty"`
-	Leverage               *string `json:"leverage,omitempty"`
-	EntryPrice             *string `json:"entryPrice,omitempty"`
-	MaxNotional            *string `json:"maxNotional,omitempty"`
-	BidNotional            *string `json:"bidNotional,omitempty"`
-	AskNotional            *string `json:"askNotional,omitempty"`
-	PositionSide           *string `json:"positionSide,omitempty"`
-	PositionAmt            *string `json:"positionAmt,omitempty"`
-	UpdateTime             *int64  `json:"updateTime,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// current initial leverage
+	Leverage *string `json:"leverage,omitempty"`
+	// average entry price
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// maximum available notional with current leverage
+	MaxNotional *string `json:"maxNotional,omitempty"`
+	// bids notional, ignore
+	BidNotional *string `json:"bidNotional,omitempty"`
+	// ask notional, ignore
+	AskNotional *string `json:"askNotional,omitempty"`
+	// position side
+	PositionSide *string `json:"positionSide,omitempty"`
+	// position amount
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	// last update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetUmAccountDetailResponsePositionsInner GetUmAccountDetailResponsePositionsInner

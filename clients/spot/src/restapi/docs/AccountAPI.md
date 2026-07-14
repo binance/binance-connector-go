@@ -4,27 +4,27 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**AccountCommission**](AccountAPI.md#AccountCommission) | **Get** /api/v3/account/commission | Query Commission Rates
-[**AllOrderList**](AccountAPI.md#AllOrderList) | **Get** /api/v3/allOrderList | Query all Order lists
-[**AllOrders**](AccountAPI.md#AllOrders) | **Get** /api/v3/allOrders | All orders
-[**GetAccount**](AccountAPI.md#GetAccount) | **Get** /api/v3/account | Account information
-[**GetOpenOrders**](AccountAPI.md#GetOpenOrders) | **Get** /api/v3/openOrders | Current open orders
-[**GetOrder**](AccountAPI.md#GetOrder) | **Get** /api/v3/order | Query order
-[**GetOrderList**](AccountAPI.md#GetOrderList) | **Get** /api/v3/orderList | Query Order list
-[**MyAllocations**](AccountAPI.md#MyAllocations) | **Get** /api/v3/myAllocations | Query Allocations
-[**MyFilters**](AccountAPI.md#MyFilters) | **Get** /api/v3/myFilters | Query relevant filters
-[**MyPreventedMatches**](AccountAPI.md#MyPreventedMatches) | **Get** /api/v3/myPreventedMatches | Query Prevented Matches
-[**MyTrades**](AccountAPI.md#MyTrades) | **Get** /api/v3/myTrades | Account trade list
-[**OpenOrderList**](AccountAPI.md#OpenOrderList) | **Get** /api/v3/openOrderList | Query Open Order lists
-[**OrderAmendments**](AccountAPI.md#OrderAmendments) | **Get** /api/v3/order/amendments | Query Order Amendments
-[**RateLimitOrder**](AccountAPI.md#RateLimitOrder) | **Get** /api/v3/rateLimit/order | Query Unfilled Order Count
+[**AccountCommission**](AccountAPI.md#AccountCommission) | **Get** /api/v3/account/commission | Query Commission Rates (USER_DATA)
+[**AllOrderList**](AccountAPI.md#AllOrderList) | **Get** /api/v3/allOrderList | Query all Order lists (USER_DATA)
+[**AllOrders**](AccountAPI.md#AllOrders) | **Get** /api/v3/allOrders | All orders (USER_DATA)
+[**GetAccount**](AccountAPI.md#GetAccount) | **Get** /api/v3/account | Account information (USER_DATA)
+[**GetOpenOrders**](AccountAPI.md#GetOpenOrders) | **Get** /api/v3/openOrders | Current open orders (USER_DATA)
+[**GetOrder**](AccountAPI.md#GetOrder) | **Get** /api/v3/order | Query order (USER_DATA)
+[**GetOrderList**](AccountAPI.md#GetOrderList) | **Get** /api/v3/orderList | Query Order list (USER_DATA)
+[**MyAllocations**](AccountAPI.md#MyAllocations) | **Get** /api/v3/myAllocations | Query Allocations (USER_DATA)
+[**MyFilters**](AccountAPI.md#MyFilters) | **Get** /api/v3/myFilters | Query relevant filters (USER_DATA)
+[**MyPreventedMatches**](AccountAPI.md#MyPreventedMatches) | **Get** /api/v3/myPreventedMatches | Query Prevented Matches (USER_DATA)
+[**MyTrades**](AccountAPI.md#MyTrades) | **Get** /api/v3/myTrades | Account trade list (USER_DATA)
+[**OpenOrderList**](AccountAPI.md#OpenOrderList) | **Get** /api/v3/openOrderList | Query Open Order lists (USER_DATA)
+[**OrderAmendments**](AccountAPI.md#OrderAmendments) | **Get** /api/v3/order/amendments | Query Order Amendments (USER_DATA)
+[**RateLimitOrder**](AccountAPI.md#RateLimitOrder) | **Get** /api/v3/rateLimit/order | Query Unfilled Order Count (USER_DATA)
 
 
 ## AccountCommission
 
 > AccountCommissionResponse AccountCommission(ctx).Symbol(symbol).Execute()
 
-Query Commission Rates
+Query Commission Rates (USER_DATA)
 
 
 ### Example
@@ -43,7 +43,7 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
+	symbol := "BTCUSDT" // string | 
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -92,7 +92,7 @@ No authorization required
 
 > AllOrderListResponse AllOrderList(ctx).FromId(fromId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query all Order lists
+Query all Order lists (USER_DATA)
 
 
 ### Example
@@ -111,11 +111,11 @@ import (
 )
 
 func main() {
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	fromId := int64(1) // int64 | If supplied, neither startTime or endTime can be provided (optional)
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	limit := int32(1) // int32 |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -143,11 +143,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **fromId** | **int64** | If supplied, neither startTime or endTime can be provided | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
+ **limit** | **int32** |  | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -168,7 +168,7 @@ No authorization required
 
 > AllOrdersResponse AllOrders(ctx).Symbol(symbol).OrderId(orderId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-All orders
+All orders (USER_DATA)
 
 
 ### Example
@@ -187,12 +187,12 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
+	symbol := "LTCBTC" // string | 
 	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	limit := int32(1) // int32 |  (optional)
+	recvWindow := float32(5000) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -222,9 +222,9 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
+ **limit** | **int32** |  | 
  **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -246,7 +246,7 @@ No authorization required
 
 > GetAccountResponse GetAccount(ctx).OmitZeroBalances(omitZeroBalances).RecvWindow(recvWindow).Execute()
 
-Account information
+Account information (USER_DATA)
 
 
 ### Example
@@ -265,8 +265,8 @@ import (
 )
 
 func main() {
-	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. <br>Default value: `false` (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -294,8 +294,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **omitZeroBalances** | **bool** | When set to &#x60;true&#x60;, emits only the non-zero balances of an account. &lt;br&gt;Default value: &#x60;false&#x60; | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **omitZeroBalances** | **bool** | When set to &#x60;true&#x60;, emits only the non-zero balances of an account. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -316,7 +316,7 @@ No authorization required
 
 > GetOpenOrdersResponse GetOpenOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Current open orders
+Current open orders (USER_DATA)
 
 
 ### Example
@@ -335,8 +335,8 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | Symbol to query (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	symbol := "LTCBTC" // string |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -364,8 +364,8 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol to query | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **symbol** | **string** |  | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -386,7 +386,7 @@ No authorization required
 
 > GetOrderResponse GetOrder(ctx).Symbol(symbol).OrderId(orderId).OrigClientOrderId(origClientOrderId).RecvWindow(recvWindow).Execute()
 
-Query order
+Query order (USER_DATA)
 
 
 ### Example
@@ -405,10 +405,10 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
+	symbol := "LTCBTC" // string | 
 	orderId := int64(1) // int64 |  (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	origClientOrderId := "myOrder1" // string |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -439,7 +439,7 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -460,7 +460,7 @@ No authorization required
 
 > GetOrderListResponse GetOrderList(ctx).OrderListId(orderListId).OrigClientOrderId(origClientOrderId).RecvWindow(recvWindow).Execute()
 
-Query Order list
+Query Order list (USER_DATA)
 
 
 ### Example
@@ -479,9 +479,9 @@ import (
 )
 
 func main() {
-	orderListId := int64(1) // int64 | Either `orderListId` or `listClientOrderId` must be provided (optional)
-	origClientOrderId := "origClientOrderId_example" // string |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	orderListId := int64(27) // int64 | Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided. (optional)
+	origClientOrderId := "1" // string | Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -509,9 +509,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **orderListId** | **int64** | Either &#x60;orderListId&#x60; or &#x60;listClientOrderId&#x60; must be provided | 
- **origClientOrderId** | **string** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **orderListId** | **int64** | Query order list by &#x60;orderListId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
+ **origClientOrderId** | **string** | Query order list by &#x60;listClientOrderId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -532,7 +532,7 @@ No authorization required
 
 > MyAllocationsResponse MyAllocations(ctx).Symbol(symbol).StartTime(startTime).EndTime(endTime).FromAllocationId(fromAllocationId).Limit(limit).OrderId(orderId).RecvWindow(recvWindow).Execute()
 
-Query Allocations
+Query Allocations (USER_DATA)
 
 
 ### Example
@@ -551,13 +551,13 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	fromAllocationId := int32(1) // int32 |  (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
+	symbol := "BTCUSDT" // string | 
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	fromAllocationId := int32(0) // int32 |  (optional)
+	limit := int32(1) // int32 |  (optional)
 	orderId := int64(1) // int64 |  (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -586,12 +586,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
  **fromAllocationId** | **int32** |  | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
+ **limit** | **int32** |  | 
  **orderId** | **int64** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -612,7 +612,7 @@ No authorization required
 
 > MyFiltersResponse MyFilters(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Query relevant filters
+Query relevant filters (USER_DATA)
 
 
 ### Example
@@ -632,7 +632,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -661,7 +661,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -682,7 +682,7 @@ No authorization required
 
 > MyPreventedMatchesResponse MyPreventedMatches(ctx).Symbol(symbol).PreventedMatchId(preventedMatchId).OrderId(orderId).FromPreventedMatchId(fromPreventedMatchId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Prevented Matches
+Query Prevented Matches (USER_DATA)
 
 
 ### Example
@@ -701,12 +701,12 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
+	symbol := "BTCUSDT" // string | 
 	preventedMatchId := int64(1) // int64 |  (optional)
 	orderId := int64(1) // int64 |  (optional)
 	fromPreventedMatchId := int64(1) // int64 |  (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	limit := int32(1) // int32 |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -738,8 +738,8 @@ Name          | Type          | Description   | Notes
  **preventedMatchId** | **int64** |  | 
  **orderId** | **int64** |  | 
  **fromPreventedMatchId** | **int64** |  | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **limit** | **int32** |  | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -760,7 +760,7 @@ No authorization required
 
 > MyTradesResponse MyTrades(ctx).Symbol(symbol).OrderId(orderId).StartTime(startTime).EndTime(endTime).FromId(fromId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Account trade list
+Account trade list (USER_DATA)
 
 
 ### Example
@@ -779,13 +779,13 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	orderId := int64(1) // int64 |  (optional)
-	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
-	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
-	fromId := int64(1) // int64 | ID to get aggregate trades from INCLUSIVE. (optional)
-	limit := int32(500) // int32 | Default: 500; Maximum: 1000. (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	symbol := "BNBBTC" // string | 
+	orderId := int64(100234) // int64 | This can only be used in combination with `symbol`. (optional)
+	startTime := int64(1735693200000) // int64 |  (optional)
+	endTime := int64(1735693200000) // int64 |  (optional)
+	fromId := int64(1) // int64 | TradeId to fetch from. Default gets most recent trades. (optional)
+	limit := int32(1) // int32 |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -814,12 +814,12 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **orderId** | **int64** |  | 
- **startTime** | **int64** | Timestamp in ms to get aggregate trades from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get aggregate trades until INCLUSIVE. | 
- **fromId** | **int64** | ID to get aggregate trades from INCLUSIVE. | 
- **limit** | **int32** | Default: 500; Maximum: 1000. | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **orderId** | **int64** | This can only be used in combination with &#x60;symbol&#x60;. | 
+ **startTime** | **int64** |  | 
+ **endTime** | **int64** |  | 
+ **fromId** | **int64** | TradeId to fetch from. Default gets most recent trades. | 
+ **limit** | **int32** |  | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -840,7 +840,7 @@ No authorization required
 
 > OpenOrderListResponse OpenOrderList(ctx).RecvWindow(recvWindow).Execute()
 
-Query Open Order lists
+Query Open Order lists (USER_DATA)
 
 
 ### Example
@@ -859,7 +859,7 @@ import (
 )
 
 func main() {
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -887,7 +887,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -908,7 +908,7 @@ No authorization required
 
 > OrderAmendmentsResponse OrderAmendments(ctx).Symbol(symbol).OrderId(orderId).FromExecutionId(fromExecutionId).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query Order Amendments
+Query Order Amendments (USER_DATA)
 
 
 ### Example
@@ -927,11 +927,11 @@ import (
 )
 
 func main() {
-	symbol := "BNBUSDT" // string | 
-	orderId := int64(1) // int64 | 
-	fromExecutionId := int64(1) // int64 |  (optional)
-	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	symbol := "BTCUSDT" // string | 
+	orderId := int64(9) // int64 | 
+	fromExecutionId := int64(22) // int64 |  (optional)
+	limit := int64(1) // int64 |  (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -962,8 +962,8 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **orderId** | **int64** |  | 
  **fromExecutionId** | **int64** |  | 
- **limit** | **int64** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **limit** | **int64** |  | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -984,7 +984,7 @@ No authorization required
 
 > RateLimitOrderResponse RateLimitOrder(ctx).RecvWindow(recvWindow).Execute()
 
-Query Unfilled Order Count
+Query Unfilled Order Count (USER_DATA)
 
 
 ### Example
@@ -1003,7 +1003,7 @@ import (
 )
 
 func main() {
-	recvWindow := float32(5000.0) // float32 | The value cannot be greater than `60000`. <br> Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -1031,7 +1031,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **recvWindow** | **float32** | The value cannot be greater than &#x60;60000&#x60;. &lt;br&gt; Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 

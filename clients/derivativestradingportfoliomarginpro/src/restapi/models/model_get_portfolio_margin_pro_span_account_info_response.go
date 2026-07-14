@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin Pro REST API
+Portfolio Margin Pro REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin Pro REST API
+Access advanced account management and high-frequency trading with Binance Portfolio Margin Pro.
 */
 
 package models
@@ -17,15 +17,23 @@ var _ common.MappedNullable = &GetPortfolioMarginProSpanAccountInfoResponse{}
 
 // GetPortfolioMarginProSpanAccountInfoResponse struct for GetPortfolioMarginProSpanAccountInfoResponse
 type GetPortfolioMarginProSpanAccountInfoResponse struct {
-	UniMMR               *string                                                           `json:"uniMMR,omitempty"`
-	AccountEquity        *string                                                           `json:"accountEquity,omitempty"`
-	ActualEquity         *string                                                           `json:"actualEquity,omitempty"`
-	AccountMaintMargin   *string                                                           `json:"accountMaintMargin,omitempty"`
-	RiskUnitMMList       []GetPortfolioMarginProSpanAccountInfoResponseRiskUnitMMListInner `json:"riskUnitMMList,omitempty"`
-	MarginMM             *string                                                           `json:"marginMM,omitempty"`
-	OtherMM              *string                                                           `json:"otherMM,omitempty"`
-	AccountStatus        *string                                                           `json:"accountStatus,omitempty"`
-	AccountType          *string                                                           `json:"accountType,omitempty"`
+	// uni MMR.
+	UniMMR *string `json:"uniMMR,omitempty"`
+	// Account equity, unit：USD
+	AccountEquity *string `json:"accountEquity,omitempty"`
+	// Actual equity, unit：USD
+	ActualEquity *string `json:"actualEquity,omitempty"`
+	// Account maintenance margin, unit：USD
+	AccountMaintMargin *string                                                           `json:"accountMaintMargin,omitempty"`
+	RiskUnitMMList     []GetPortfolioMarginProSpanAccountInfoResponseRiskUnitMMListInner `json:"riskUnitMMList,omitempty"`
+	// margin MM.
+	MarginMM *string `json:"marginMM,omitempty"`
+	// other MM.
+	OtherMM *string `json:"otherMM,omitempty"`
+	// Classic Portfolio margin account status:\"NORMAL\", \"MARGIN_CALL\", \"SUPPLY_MARGIN\", \"REDUCE_ONLY\", \"ACTIVE_LIQUIDATION\", \"FORCE_LIQUIDATION\", \"BANKRUPTED\"
+	AccountStatus *string `json:"accountStatus,omitempty"`
+	// PM_1 for classic PM, PM_2 for PM, PM_3 for PM Pro(SPAN)
+	AccountType          *string `json:"accountType,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

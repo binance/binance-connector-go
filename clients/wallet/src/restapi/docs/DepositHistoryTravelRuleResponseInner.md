@@ -11,14 +11,14 @@ Name         | Type          | Description.  | Notes
 **Network** | Pointer to **string** |  | [optional] 
 **DepositStatus** | Pointer to **int64** |  | [optional] 
 **TravelRuleStatus** | Pointer to **int64** |  | [optional] 
+**TravelRuleStatusV2** | Pointer to **string** | Overall travel rule verification status (GTR + sanctions screening combined). \&quot;PASSED\&quot;: verification complete, deposit released. \&quot;PENDING\&quot;: verification in progress, deposit frozen. \&quot;REJECTED\&quot;: verification failed. | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
 **AddressTag** | Pointer to **string** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **InsertTime** | Pointer to **int64** |  | [optional] 
+**CompleteTime** | Pointer to **int64** | Timestamp when the deposit was fully completed/credited (epoch ms). | [optional] 
 **TransferType** | Pointer to **int64** |  | [optional] 
 **ConfirmTimes** | Pointer to **string** |  | [optional] 
-**UnlockConfirm** | Pointer to **int64** |  | [optional] 
-**WalletType** | Pointer to **int64** |  | [optional] 
 **RequireQuestionnaire** | Pointer to **bool** |  | [optional] 
 **Questionnaire** | Pointer to **string** |  | [optional] 
 
@@ -216,6 +216,31 @@ SetTravelRuleStatus sets TravelRuleStatus field to given value.
 
 HasTravelRuleStatus returns a boolean if a field has been set.
 
+### GetTravelRuleStatusV2
+
+`func (o *DepositHistoryTravelRuleResponseInner) GetTravelRuleStatusV2() string`
+
+GetTravelRuleStatusV2 returns the TravelRuleStatusV2 field if non-nil, zero value otherwise.
+
+### GetTravelRuleStatusV2Ok
+
+`func (o *DepositHistoryTravelRuleResponseInner) GetTravelRuleStatusV2Ok() (*string, bool)`
+
+GetTravelRuleStatusV2Ok returns a tuple with the TravelRuleStatusV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTravelRuleStatusV2
+
+`func (o *DepositHistoryTravelRuleResponseInner) SetTravelRuleStatusV2(v string)`
+
+SetTravelRuleStatusV2 sets TravelRuleStatusV2 field to given value.
+
+### HasTravelRuleStatusV2
+
+`func (o *DepositHistoryTravelRuleResponseInner) HasTravelRuleStatusV2() bool`
+
+HasTravelRuleStatusV2 returns a boolean if a field has been set.
+
 ### GetAddress
 
 `func (o *DepositHistoryTravelRuleResponseInner) GetAddress() string`
@@ -316,6 +341,31 @@ SetInsertTime sets InsertTime field to given value.
 
 HasInsertTime returns a boolean if a field has been set.
 
+### GetCompleteTime
+
+`func (o *DepositHistoryTravelRuleResponseInner) GetCompleteTime() int64`
+
+GetCompleteTime returns the CompleteTime field if non-nil, zero value otherwise.
+
+### GetCompleteTimeOk
+
+`func (o *DepositHistoryTravelRuleResponseInner) GetCompleteTimeOk() (*int64, bool)`
+
+GetCompleteTimeOk returns a tuple with the CompleteTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompleteTime
+
+`func (o *DepositHistoryTravelRuleResponseInner) SetCompleteTime(v int64)`
+
+SetCompleteTime sets CompleteTime field to given value.
+
+### HasCompleteTime
+
+`func (o *DepositHistoryTravelRuleResponseInner) HasCompleteTime() bool`
+
+HasCompleteTime returns a boolean if a field has been set.
+
 ### GetTransferType
 
 `func (o *DepositHistoryTravelRuleResponseInner) GetTransferType() int64`
@@ -365,56 +415,6 @@ SetConfirmTimes sets ConfirmTimes field to given value.
 `func (o *DepositHistoryTravelRuleResponseInner) HasConfirmTimes() bool`
 
 HasConfirmTimes returns a boolean if a field has been set.
-
-### GetUnlockConfirm
-
-`func (o *DepositHistoryTravelRuleResponseInner) GetUnlockConfirm() int64`
-
-GetUnlockConfirm returns the UnlockConfirm field if non-nil, zero value otherwise.
-
-### GetUnlockConfirmOk
-
-`func (o *DepositHistoryTravelRuleResponseInner) GetUnlockConfirmOk() (*int64, bool)`
-
-GetUnlockConfirmOk returns a tuple with the UnlockConfirm field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUnlockConfirm
-
-`func (o *DepositHistoryTravelRuleResponseInner) SetUnlockConfirm(v int64)`
-
-SetUnlockConfirm sets UnlockConfirm field to given value.
-
-### HasUnlockConfirm
-
-`func (o *DepositHistoryTravelRuleResponseInner) HasUnlockConfirm() bool`
-
-HasUnlockConfirm returns a boolean if a field has been set.
-
-### GetWalletType
-
-`func (o *DepositHistoryTravelRuleResponseInner) GetWalletType() int64`
-
-GetWalletType returns the WalletType field if non-nil, zero value otherwise.
-
-### GetWalletTypeOk
-
-`func (o *DepositHistoryTravelRuleResponseInner) GetWalletTypeOk() (*int64, bool)`
-
-GetWalletTypeOk returns a tuple with the WalletType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWalletType
-
-`func (o *DepositHistoryTravelRuleResponseInner) SetWalletType(v int64)`
-
-SetWalletType sets WalletType field to given value.
-
-### HasWalletType
-
-`func (o *DepositHistoryTravelRuleResponseInner) HasWalletType() bool`
-
-HasWalletType returns a boolean if a field has been set.
 
 ### GetRequireQuestionnaire
 

@@ -22,7 +22,7 @@ func RedeemABinanceGiftCard() {
 	apiClient := client.NewBinanceGiftCardClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.RedeemABinanceGiftCard(context.Background()).Code("code_example").Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.RedeemABinanceGiftCard(context.Background()).Code("6H9EKF5ECCWFBHGE").Execute()
 	if err != nil {
 		log.Println(err)
 		return

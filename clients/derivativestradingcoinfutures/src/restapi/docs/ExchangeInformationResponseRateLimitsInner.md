@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Interval** | Pointer to **string** |  | [optional] 
-**IntervalNum** | Pointer to **int64** |  | [optional] 
-**Limit** | Pointer to **int64** |  | [optional] 
-**RateLimitType** | Pointer to **string** |  | [optional] 
+**Interval** | Pointer to **string** | Rate limit interval. | [optional] 
+**IntervalNum** | Pointer to **int64** | Rate limit interval multiplier. | [optional] 
+**Limit** | Pointer to **int64** | Maximum allowed orders for this rule. | [optional] 
+**RateLimitType** | Pointer to **string** | Rate limit type. | [optional] 
 
 ## Methods
 

@@ -1,7 +1,7 @@
 /*
-Binance Algo REST API
+Algo Trading REST API
 
-OpenAPI Specification for the Binance Algo REST API
+Programmatic access to Binance’s execution algorithms for creating and managing Spot and Futures algo orders.
 */
 
 package binancealgorestapi
@@ -25,12 +25,12 @@ type ApiCancelAlgoOrderSpotAlgoRequest struct {
 	recvWindow *int64
 }
 
-// eg. 14511
 func (r ApiCancelAlgoOrderSpotAlgoRequest) AlgoId(algoId int64) ApiCancelAlgoOrderSpotAlgoRequest {
 	r.algoId = &algoId
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiCancelAlgoOrderSpotAlgoRequest) RecvWindow(recvWindow int64) ApiCancelAlgoOrderSpotAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -41,14 +41,14 @@ func (r ApiCancelAlgoOrderSpotAlgoRequest) Execute() (*common.RestApiResponse[mo
 }
 
 /*
-CancelAlgoOrderSpotAlgo Cancel Algo Order(TRADE)
+CancelAlgoOrderSpotAlgo Cancel Spot Algo Order (TRADE)
 Delete /sapi/v1/algo/spot/order
 
-https://developers.binance.com/docs/algo/spot-algo/Cancel-Algo-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#cancel-algo-order-spot-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param algoId -  eg. 14511
-@param recvWindow -
+@param algoId -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiCancelAlgoOrderSpotAlgoRequest
 */
 func (a *SpotAlgoAPIService) CancelAlgoOrderSpotAlgo(ctx context.Context) ApiCancelAlgoOrderSpotAlgoRequest {
@@ -77,7 +77,15 @@ func (a *SpotAlgoAPIService) CancelAlgoOrderSpotAlgoExecute(r ApiCancelAlgoOrder
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CancelAlgoOrderSpotAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CancelAlgoOrderSpotAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -91,6 +99,7 @@ type ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest struct {
 	recvWindow *int64
 }
 
+// Request validity window in milliseconds
 func (r ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest) RecvWindow(recvWindow int64) ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -101,13 +110,13 @@ func (r ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest) Execute() (*common.RestApi
 }
 
 /*
-QueryCurrentAlgoOpenOrdersSpotAlgo Query Current Algo Open Orders(USER_DATA)
+QueryCurrentAlgoOpenOrdersSpotAlgo Query Current Spot Algo Open Orders (USER_DATA)
 Get /sapi/v1/algo/spot/openOrders
 
-https://developers.binance.com/docs/algo/spot-algo/Query-Current-Algo-Open-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-current-algo-open-orders-spot-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param recvWindow -
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest
 */
 func (a *SpotAlgoAPIService) QueryCurrentAlgoOpenOrdersSpotAlgo(ctx context.Context) ApiQueryCurrentAlgoOpenOrdersSpotAlgoRequest {
@@ -131,7 +140,15 @@ func (a *SpotAlgoAPIService) QueryCurrentAlgoOpenOrdersSpotAlgoExecute(r ApiQuer
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryCurrentAlgoOpenOrdersSpotAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryCurrentAlgoOpenOrdersSpotAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -143,7 +160,7 @@ type ApiQueryHistoricalAlgoOrdersSpotAlgoRequest struct {
 	ctx        context.Context
 	ApiService *SpotAlgoAPIService
 	symbol     *string
-	side       *string
+	side       *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
 	startTime  *int64
 	endTime    *int64
 	page       *int64
@@ -151,14 +168,13 @@ type ApiQueryHistoricalAlgoOrdersSpotAlgoRequest struct {
 	recvWindow *int64
 }
 
-// Trading symbol eg. BTCUSDT
+// Trading symbol
 func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) Symbol(symbol string) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
 	r.symbol = &symbol
 	return r
 }
 
-// BUY or SELL
-func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) Side(side string) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
+func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
 	r.side = &side
 	return r
 }
@@ -175,18 +191,19 @@ func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) EndTime(endTime int64) ApiQ
 	return r
 }
 
-// Default is 1
+// Page number
 func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) Page(page int64) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
 	r.page = &page
 	return r
 }
 
-// MIN 1, MAX 100; Default 100
+// Records per page
 func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) PageSize(pageSize int64) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) RecvWindow(recvWindow int64) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -197,19 +214,19 @@ func (r ApiQueryHistoricalAlgoOrdersSpotAlgoRequest) Execute() (*common.RestApiR
 }
 
 /*
-QueryHistoricalAlgoOrdersSpotAlgo Query Historical Algo Orders(USER_DATA)
+QueryHistoricalAlgoOrdersSpotAlgo Query Historical Spot Algo Orders (USER_DATA)
 Get /sapi/v1/algo/spot/historicalOrders
 
-https://developers.binance.com/docs/algo/spot-algo/Query-Historical-Algo-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-historical-algo-orders-spot-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Trading symbol eg. BTCUSDT
-@param side -  BUY or SELL
+@param symbol -  Trading symbol
+@param side -
 @param startTime -  in milliseconds  eg.1641522717552
 @param endTime -  in milliseconds  eg.1641522526562
-@param page -  Default is 1
-@param pageSize -  MIN 1, MAX 100; Default 100
-@param recvWindow -
+@param page -  Page number
+@param pageSize -  Records per page
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQueryHistoricalAlgoOrdersSpotAlgoRequest
 */
 func (a *SpotAlgoAPIService) QueryHistoricalAlgoOrdersSpotAlgo(ctx context.Context) ApiQueryHistoricalAlgoOrdersSpotAlgoRequest {
@@ -251,7 +268,15 @@ func (a *SpotAlgoAPIService) QueryHistoricalAlgoOrdersSpotAlgoExecute(r ApiQuery
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryHistoricalAlgoOrdersSpotAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryHistoricalAlgoOrdersSpotAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -274,18 +299,19 @@ func (r ApiQuerySubOrdersSpotAlgoRequest) AlgoId(algoId int64) ApiQuerySubOrders
 	return r
 }
 
-// Default is 1
+// Page number
 func (r ApiQuerySubOrdersSpotAlgoRequest) Page(page int64) ApiQuerySubOrdersSpotAlgoRequest {
 	r.page = &page
 	return r
 }
 
-// MIN 1, MAX 100; Default 100
+// Records per page
 func (r ApiQuerySubOrdersSpotAlgoRequest) PageSize(pageSize int64) ApiQuerySubOrdersSpotAlgoRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
+// Request validity window in milliseconds
 func (r ApiQuerySubOrdersSpotAlgoRequest) RecvWindow(recvWindow int64) ApiQuerySubOrdersSpotAlgoRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -296,16 +322,16 @@ func (r ApiQuerySubOrdersSpotAlgoRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-QuerySubOrdersSpotAlgo Query Sub Orders(USER_DATA)
+QuerySubOrdersSpotAlgo Query Spot Sub Orders (USER_DATA)
 Get /sapi/v1/algo/spot/subOrders
 
-https://developers.binance.com/docs/algo/spot-algo/Query-Sub-Orders
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#query-sub-orders-spot-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -  eg. 14511
-@param page -  Default is 1
-@param pageSize -  MIN 1, MAX 100; Default 100
-@param recvWindow -
+@param page -  Page number
+@param pageSize -  Records per page
+@param recvWindow -  Request validity window in milliseconds
 @return ApiQuerySubOrdersSpotAlgoRequest
 */
 func (a *SpotAlgoAPIService) QuerySubOrdersSpotAlgo(ctx context.Context) ApiQuerySubOrdersSpotAlgoRequest {
@@ -340,7 +366,15 @@ func (a *SpotAlgoAPIService) QuerySubOrdersSpotAlgoExecute(r ApiQuerySubOrdersSp
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubOrdersSpotAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubOrdersSpotAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -352,7 +386,7 @@ type ApiTimeWeightedAveragePriceSpotAlgoRequest struct {
 	ctx          context.Context
 	ApiService   *SpotAlgoAPIService
 	symbol       *string
-	side         *string
+	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
 	quantity     *float32
 	duration     *int64
 	clientAlgoId *string
@@ -366,7 +400,7 @@ func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Symbol(symbol string) ApiTim
 }
 
 // Trading side ( BUY or SELL )
-func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Side(side string) ApiTimeWeightedAveragePriceSpotAlgoRequest {
+func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiTimeWeightedAveragePriceSpotAlgoRequest {
 	r.side = &side
 	return r
 }
@@ -377,7 +411,7 @@ func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Quantity(quantity float32) A
 	return r
 }
 
-// Duration for TWAP orders in seconds. [300, 86400]
+// Duration for TWAP orders in seconds
 func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Duration(duration int64) ApiTimeWeightedAveragePriceSpotAlgoRequest {
 	r.duration = &duration
 	return r
@@ -400,16 +434,16 @@ func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Execute() (*common.RestApiRe
 }
 
 /*
-TimeWeightedAveragePriceSpotAlgo Time-Weighted Average Price(Twap) New Order(TRADE)
+TimeWeightedAveragePriceSpotAlgo Time-Weighted Spot Average Price(Twap) New Order (TRADE)
 Post /sapi/v1/algo/spot/newOrderTwap
 
-https://developers.binance.com/docs/algo/spot-algo/Time-Weighted-Average-Price-New-Order
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#time-weighted-average-price-spot-algo
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  Trading side ( BUY or SELL )
 @param quantity -  Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
-@param duration -  Duration for TWAP orders in seconds. [300, 86400]
+@param duration -  Duration for TWAP orders in seconds
 @param clientAlgoId -  A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value
 @param limitPrice -  Limit price of the order; If it is not sent, will place order by market price by default
 @return ApiTimeWeightedAveragePriceSpotAlgoRequest
@@ -434,14 +468,23 @@ func (a *SpotAlgoAPIService) TimeWeightedAveragePriceSpotAlgoExecute(r ApiTimeWe
 	if r.symbol == nil {
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
+
 	if r.side == nil {
 		return nil, common.ReportError("side is required and must be specified")
 	}
+
 	if r.quantity == nil {
 		return nil, common.ReportError("quantity is required and must be specified")
 	}
+
 	if r.duration == nil {
 		return nil, common.ReportError("duration is required and must be specified")
+	}
+	if *r.duration < 300 {
+		return nil, common.ReportError("duration must be greater than 300")
+	}
+	if *r.duration > 86400 {
+		return nil, common.ReportError("duration must be less than 86400")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
@@ -455,7 +498,15 @@ func (a *SpotAlgoAPIService) TimeWeightedAveragePriceSpotAlgoExecute(r ApiTimeWe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limitPrice", r.limitPrice, "form", "")
 	}
 
-	resp, err := SendRequest[models.TimeWeightedAveragePriceSpotAlgoResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.TimeWeightedAveragePriceSpotAlgoResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

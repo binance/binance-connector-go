@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderListId** | Pointer to **int64** |  | [optional] 
-**ContingencyType** | Pointer to **string** |  | [optional] 
-**ListStatusType** | Pointer to **string** |  | [optional] 
-**ListOrderStatus** | Pointer to **string** |  | [optional] 
-**ListClientOrderId** | Pointer to **string** |  | [optional] 
-**TransactionTime** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**MarginBuyBorrowAmount** | Pointer to **string** |  | [optional] 
-**MarginBuyBorrowAsset** | Pointer to **string** |  | [optional] 
-**IsIsolated** | Pointer to **bool** |  | [optional] 
-**Orders** | Pointer to [**[]MarginAccountNewOcoResponseOrdersInner**](MarginAccountNewOcoResponseOrdersInner.md) |  | [optional] 
+**OrderListId** | Pointer to **int64** | order List Id. | [optional] 
+**ContingencyType** | Pointer to **string** | contingency Type. | [optional] 
+**ListStatusType** | Pointer to **string** | list Status Type. | [optional] 
+**ListOrderStatus** | Pointer to **string** | list Order Status. | [optional] 
+**ListClientOrderId** | Pointer to **string** | list Client Order Id. | [optional] 
+**TransactionTime** | Pointer to **int64** | transaction Time. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**MarginBuyBorrowAmount** | Pointer to **string** | will not return if no margin trade happens | [optional] 
+**MarginBuyBorrowAsset** | Pointer to **string** | will not return if no margin trade happens | [optional] 
+**IsIsolated** | Pointer to **bool** | if isolated margin | [optional] 
+**Orders** | Pointer to [**[]MarginAccountNewOcoResponseOrdersInner**](MarginAccountNewOcoResponseOrdersInner.md) | orders list. | [optional] 
 **OrderReports** | Pointer to [**[]MarginAccountNewOcoResponseOrderReportsInner**](MarginAccountNewOcoResponseOrderReportsInner.md) |  | [optional] 
 
 ## Methods

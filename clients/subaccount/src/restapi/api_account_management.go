@@ -1,7 +1,7 @@
 /*
-Binance Sub Account REST API
+Sub Account REST API
 
-OpenAPI Specification for the Binance Sub Account REST API
+Create and manage sub-accounts, control permissions, and transfer assets via the Sub Account API.
 */
 
 package binancesubaccountrestapi
@@ -44,7 +44,7 @@ func (r ApiCreateAVirtualSubAccountRequest) Execute() (*common.RestApiResponse[m
 CreateAVirtualSubAccount Create a Virtual Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/virtualSubAccount
 
-https://developers.binance.com/docs/sub_account/account-management/Create-a-Virtual-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#create-avirtual-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param subAccountString -  Please input a string. We will create a virtual email using that string for you to register
@@ -77,7 +77,15 @@ func (a *AccountManagementAPIService) CreateAVirtualSubAccountExecute(r ApiCreat
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.CreateAVirtualSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.CreateAVirtualSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -92,7 +100,6 @@ type ApiEnableFuturesForSubAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiEnableFuturesForSubAccountRequest) Email(email string) ApiEnableFuturesForSubAccountRequest {
 	r.email = &email
 	return r
@@ -111,10 +118,10 @@ func (r ApiEnableFuturesForSubAccountRequest) Execute() (*common.RestApiResponse
 EnableFuturesForSubAccount Enable Futures for Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/futures/enable
 
-https://developers.binance.com/docs/sub_account/account-management/Enable-Futures-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-futures-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiEnableFuturesForSubAccountRequest
 */
@@ -144,7 +151,15 @@ func (a *AccountManagementAPIService) EnableFuturesForSubAccountExecute(r ApiEna
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.EnableFuturesForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.EnableFuturesForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -159,7 +174,6 @@ type ApiEnableOptionsForSubAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiEnableOptionsForSubAccountRequest) Email(email string) ApiEnableOptionsForSubAccountRequest {
 	r.email = &email
 	return r
@@ -178,10 +192,10 @@ func (r ApiEnableOptionsForSubAccountRequest) Execute() (*common.RestApiResponse
 EnableOptionsForSubAccount Enable Options for Sub-account (For Master Account) (USER_DATA)
 Post /sapi/v1/sub-account/eoptions/enable
 
-https://developers.binance.com/docs/sub_account/account-management/Enable-Options-for-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#enable-options-for-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiEnableOptionsForSubAccountRequest
 */
@@ -211,7 +225,15 @@ func (a *AccountManagementAPIService) EnableOptionsForSubAccountExecute(r ApiEna
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.EnableOptionsForSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.EnableOptionsForSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -226,7 +248,6 @@ type ApiGetFuturesPositionRiskOfSubAccountRequest struct {
 	recvWindow *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetFuturesPositionRiskOfSubAccountRequest) Email(email string) ApiGetFuturesPositionRiskOfSubAccountRequest {
 	r.email = &email
 	return r
@@ -245,10 +266,10 @@ func (r ApiGetFuturesPositionRiskOfSubAccountRequest) Execute() (*common.RestApi
 GetFuturesPositionRiskOfSubAccount Get Futures Position-Risk of Sub-account (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/futures/positionRisk
 
-https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param recvWindow -
 @return ApiGetFuturesPositionRiskOfSubAccountRequest
 */
@@ -278,7 +299,15 @@ func (a *AccountManagementAPIService) GetFuturesPositionRiskOfSubAccountExecute(
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesPositionRiskOfSubAccountResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesPositionRiskOfSubAccountResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -294,7 +323,6 @@ type ApiGetFuturesPositionRiskOfSubAccountV2Request struct {
 	recvWindow  *int64
 }
 
-// [Sub-account email](#email-address)
 func (r ApiGetFuturesPositionRiskOfSubAccountV2Request) Email(email string) ApiGetFuturesPositionRiskOfSubAccountV2Request {
 	r.email = &email
 	return r
@@ -319,10 +347,10 @@ func (r ApiGetFuturesPositionRiskOfSubAccountV2Request) Execute() (*common.RestA
 GetFuturesPositionRiskOfSubAccountV2 Get Futures Position-Risk of Sub-account V2 (For Master Account) (USER_DATA)
 Get /sapi/v2/sub-account/futures/positionRisk
 
-https://developers.binance.com/docs/sub_account/account-management/Get-Futures-Position-Risk-of-Sub-account-V2
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-futures-position-risk-of-sub-account-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  [Sub-account email](#email-address)
+@param email -
 @param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
 @param recvWindow -
 @return ApiGetFuturesPositionRiskOfSubAccountV2Request
@@ -347,6 +375,7 @@ func (a *AccountManagementAPIService) GetFuturesPositionRiskOfSubAccountV2Execut
 	if r.email == nil {
 		return nil, common.ReportError("email is required and must be specified")
 	}
+
 	if r.futuresType == nil {
 		return nil, common.ReportError("futuresType is required and must be specified")
 	}
@@ -357,7 +386,15 @@ func (a *AccountManagementAPIService) GetFuturesPositionRiskOfSubAccountV2Execut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetFuturesPositionRiskOfSubAccountV2Response](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetFuturesPositionRiskOfSubAccountV2Response](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -372,7 +409,6 @@ type ApiGetSubAccountsStatusOnMarginOrFuturesRequest struct {
 	recvWindow *int64
 }
 
-// Managed sub-account email
 func (r ApiGetSubAccountsStatusOnMarginOrFuturesRequest) Email(email string) ApiGetSubAccountsStatusOnMarginOrFuturesRequest {
 	r.email = &email
 	return r
@@ -391,10 +427,10 @@ func (r ApiGetSubAccountsStatusOnMarginOrFuturesRequest) Execute() (*common.Rest
 GetSubAccountsStatusOnMarginOrFutures Get Sub-account's Status on Margin Or Futures (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/status
 
-https://developers.binance.com/docs/sub_account/account-management/Get-Sub-accounts-Status-on-Margin-Or-Futures
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#get-sub-accounts-status-on-margin-or-futures
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  Managed sub-account email
+@param email -
 @param recvWindow -
 @return ApiGetSubAccountsStatusOnMarginOrFuturesRequest
 */
@@ -422,7 +458,15 @@ func (a *AccountManagementAPIService) GetSubAccountsStatusOnMarginOrFuturesExecu
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetSubAccountsStatusOnMarginOrFuturesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetSubAccountsStatusOnMarginOrFuturesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -440,25 +484,21 @@ type ApiQuerySubAccountListRequest struct {
 	recvWindow *int64
 }
 
-// Managed sub-account email
 func (r ApiQuerySubAccountListRequest) Email(email string) ApiQuerySubAccountListRequest {
 	r.email = &email
 	return r
 }
 
-// true or false
 func (r ApiQuerySubAccountListRequest) IsFreeze(isFreeze string) ApiQuerySubAccountListRequest {
 	r.isFreeze = &isFreeze
 	return r
 }
 
-// Default value: 1
 func (r ApiQuerySubAccountListRequest) Page(page int64) ApiQuerySubAccountListRequest {
 	r.page = &page
 	return r
 }
 
-// Default value: 1, Max value: 200
 func (r ApiQuerySubAccountListRequest) Limit(limit int64) ApiQuerySubAccountListRequest {
 	r.limit = &limit
 	return r
@@ -477,13 +517,13 @@ func (r ApiQuerySubAccountListRequest) Execute() (*common.RestApiResponse[models
 QuerySubAccountList Query Sub-account List (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/list
 
-https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-List
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-list
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param email -  Managed sub-account email
-@param isFreeze -  true or false
-@param page -  Default value: 1
-@param limit -  Default value: 1, Max value: 200
+@param email -
+@param isFreeze -
+@param page -
+@param limit -
 @param recvWindow -
 @return ApiQuerySubAccountListRequest
 */
@@ -520,7 +560,15 @@ func (a *AccountManagementAPIService) QuerySubAccountListExecute(r ApiQuerySubAc
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountListResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountListResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -554,7 +602,7 @@ func (r ApiQuerySubAccountTransactionStatisticsRequest) Execute() (*common.RestA
 QuerySubAccountTransactionStatistics Query Sub-account Transaction Statistics (For Master Account) (USER_DATA)
 Get /sapi/v1/sub-account/transaction-statistics
 
-https://developers.binance.com/docs/sub_account/account-management/Query-Sub-account-Transaction-Statistics
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/account-management#query-sub-account-transaction-statistics
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -  Managed sub-account email
@@ -585,7 +633,15 @@ func (a *AccountManagementAPIService) QuerySubAccountTransactionStatisticsExecut
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySubAccountTransactionStatisticsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySubAccountTransactionStatisticsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

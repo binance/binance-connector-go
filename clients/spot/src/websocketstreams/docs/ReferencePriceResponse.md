@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**R** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**R** | Pointer to **string** | Reference price (null if no reference price) | [optional] 
+**T** | Pointer to **int64** | Engine timestamp when reference price was valid | [optional] 
 
 ## Methods
 

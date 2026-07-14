@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,12 +17,19 @@ var _ common.MappedNullable = &QueryIsolatedMarginTierDataResponseInner{}
 
 // QueryIsolatedMarginTierDataResponseInner struct for QueryIsolatedMarginTierDataResponseInner
 type QueryIsolatedMarginTierDataResponseInner struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	Tier                    *int64  `json:"tier,omitempty"`
-	EffectiveMultiple       *string `json:"effectiveMultiple,omitempty"`
-	InitialRiskRatio        *string `json:"initialRiskRatio,omitempty"`
-	LiquidationRiskRatio    *string `json:"liquidationRiskRatio,omitempty"`
-	BaseAssetMaxBorrowable  *string `json:"baseAssetMaxBorrowable,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// tier.
+	Tier *int64 `json:"tier,omitempty"`
+	// effective Multiple.
+	EffectiveMultiple *string `json:"effectiveMultiple,omitempty"`
+	// initial Risk Ratio.
+	InitialRiskRatio *string `json:"initialRiskRatio,omitempty"`
+	// liquidation Risk Ratio.
+	LiquidationRiskRatio *string `json:"liquidationRiskRatio,omitempty"`
+	// base Asset Max Borrowable.
+	BaseAssetMaxBorrowable *string `json:"baseAssetMaxBorrowable,omitempty"`
+	// quote Asset Max Borrowable.
 	QuoteAssetMaxBorrowable *string `json:"quoteAssetMaxBorrowable,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }

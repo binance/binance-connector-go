@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ParentOrderId** | Pointer to **string** |  | [optional] 
-**CrossType** | Pointer to **string** |  | [optional] 
-**Legs** | Pointer to [**[]AccountBlockTradeListResponseInnerLegsInner**](AccountBlockTradeListResponseInnerLegsInner.md) |  | [optional] 
-**BlockTradeSettlementKey** | Pointer to **string** |  | [optional] 
+**ParentOrderId** | Pointer to **string** | parent Order Id | [optional] 
+**CrossType** | Pointer to **string** | cross Type | [optional] 
+**Legs** | Pointer to [**[]AccountBlockTradeListResponseInnerLegsInner**](AccountBlockTradeListResponseInnerLegsInner.md) | legs | [optional] 
+**BlockTradeSettlementKey** | Pointer to **string** | block Trade Settlement Key | [optional] 
 
 ## Methods
 

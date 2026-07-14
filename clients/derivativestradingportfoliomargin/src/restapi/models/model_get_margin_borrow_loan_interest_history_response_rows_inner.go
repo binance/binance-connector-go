@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetMarginBorrowLoanInterestHistoryResponseRowsInn
 
 // GetMarginBorrowLoanInterestHistoryResponseRowsInner struct for GetMarginBorrowLoanInterestHistoryResponseRowsInner
 type GetMarginBorrowLoanInterestHistoryResponseRowsInner struct {
-	TxId                 *int64  `json:"txId,omitempty"`
-	InterestAccuredTime  *int64  `json:"interestAccuredTime,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	RawAsset             *string `json:"rawAsset,omitempty"`
-	Principal            *string `json:"principal,omitempty"`
-	Interest             *string `json:"interest,omitempty"`
-	InterestRate         *string `json:"interestRate,omitempty"`
+	// Tx ID.
+	TxId *int64 `json:"txId,omitempty"`
+	// Interest Accured Time.
+	InterestAccuredTime *int64 `json:"interestAccuredTime,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// Raw Asset.
+	RawAsset *string `json:"rawAsset,omitempty"`
+	// Principal repaid
+	Principal *string `json:"principal,omitempty"`
+	// Interest repaid
+	Interest *string `json:"interest,omitempty"`
+	// daily interest rate
+	InterestRate *string `json:"interestRate,omitempty"`
+	// Normal order type after trigger if appliable
 	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

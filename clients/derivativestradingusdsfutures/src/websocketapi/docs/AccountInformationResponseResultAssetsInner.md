@@ -4,20 +4,20 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Asset** | Pointer to **string** |  | [optional] 
-**WalletBalance** | Pointer to **string** |  | [optional] 
-**UnrealizedProfit** | Pointer to **string** |  | [optional] 
-**MarginBalance** | Pointer to **string** |  | [optional] 
-**MaintMargin** | Pointer to **string** |  | [optional] 
-**InitialMargin** | Pointer to **string** |  | [optional] 
-**PositionInitialMargin** | Pointer to **string** |  | [optional] 
-**OpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**CrossWalletBalance** | Pointer to **string** |  | [optional] 
-**CrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**MarginAvailable** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**WalletBalance** | Pointer to **string** | wallet balance | [optional] 
+**UnrealizedProfit** | Pointer to **string** | unrealized profit | [optional] 
+**MarginBalance** | Pointer to **string** | margin balance | [optional] 
+**MaintMargin** | Pointer to **string** | maintenance margin required | [optional] 
+**InitialMargin** | Pointer to **string** | total initial margin required with current mark price | [optional] 
+**PositionInitialMargin** | Pointer to **string** | initial margin required for positions with current mark price | [optional] 
+**OpenOrderInitialMargin** | Pointer to **string** | initial margin required for open orders with current mark price | [optional] 
+**CrossWalletBalance** | Pointer to **string** | crossed wallet balance | [optional] 
+**CrossUnPnl** | Pointer to **string** | unrealized profit of crossed positions | [optional] 
+**AvailableBalance** | Pointer to **string** | available balance, only for USDT asset | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | maximum amount for transfer out, only for USDT asset | [optional] 
+**MarginAvailable** | Pointer to **bool** | whether the asset can be used as margin in Multi-Assets mode | [optional] 
+**UpdateTime** | Pointer to **int64** | reserved property, please ignore | [optional] 
 
 ## Methods
 

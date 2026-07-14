@@ -22,7 +22,7 @@ func CancelAllUmAlgoOpenOrders() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelAllUmAlgoOpenOrders(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelAllUmAlgoOpenOrders(context.Background()).Symbol("BNBUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return

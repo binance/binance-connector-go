@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**IsBestMatch** | Pointer to **bool** |  | [optional] 
-**IsBuyer** | Pointer to **bool** |  | [optional] 
-**IsMaker** | Pointer to **bool** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
+**Commission** | Pointer to **string** | Commission. | [optional] 
+**CommissionAsset** | Pointer to **string** | Commission Asset. | [optional] 
+**Id** | Pointer to **int64** | ID. | [optional] 
+**IsBestMatch** | Pointer to **bool** | Is Best Match. | [optional] 
+**IsBuyer** | Pointer to **bool** | Is Buyer. | [optional] 
+**IsMaker** | Pointer to **bool** | Is Maker. | [optional] 
+**OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Qty** | Pointer to **string** | Qty. | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**Time** | Pointer to **int64** | Event time. | [optional] 
 
 ## Methods
 

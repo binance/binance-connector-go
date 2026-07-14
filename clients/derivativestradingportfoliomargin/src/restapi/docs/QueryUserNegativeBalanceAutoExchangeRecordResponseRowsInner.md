@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTime** | Pointer to **int64** |  | [optional] 
-**EndTime** | Pointer to **int64** |  | [optional] 
-**Details** | Pointer to [**[]QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner.md) |  | [optional] 
+**StartTime** | Pointer to **int64** | Start Time. | [optional] 
+**EndTime** | Pointer to **int64** | End Time. | [optional] 
+**Details** | Pointer to [**[]QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner**](QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner.md) | Details. | [optional] 
 
 ## Methods
 

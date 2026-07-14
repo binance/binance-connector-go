@@ -28,7 +28,7 @@ func DiffBookDepthStreams() {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
 
-	handler, err := wsClient.WebsocketStreams.PublicAPI.DiffBookDepthStreams().Symbol("btcusdt").Execute()
+	handler, err := wsClient.WebsocketStreams.PublicAPI.DiffBookDepthStreams().Symbol("btcusdt").UpdateSpeed(models.DiffBookDepthStreamsUpdateSpeedParameterUpdateSpeed100ms).Execute()
 	if err != nil {
 		log.Fatalf("Error subscribing to stream: %v", err)
 	}

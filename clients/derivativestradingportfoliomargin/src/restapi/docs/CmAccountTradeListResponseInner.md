@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Pair** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**RealizedPnl** | Pointer to **string** |  | [optional] 
-**MarginAsset** | Pointer to **string** |  | [optional] 
-**BaseQty** | Pointer to **string** |  | [optional] 
-**Commission** | Pointer to **string** |  | [optional] 
-**CommissionAsset** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
-**Buyer** | Pointer to **bool** |  | [optional] 
-**Maker** | Pointer to **bool** |  | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**Id** | Pointer to **int64** | ID. | [optional] 
+**OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
+**Pair** | Pointer to **string** | Pair. | [optional] 
+**Side** | Pointer to **string** | Side. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Qty** | Pointer to **string** | Qty. | [optional] 
+**RealizedPnl** | Pointer to **string** | Realized Pnl. | [optional] 
+**MarginAsset** | Pointer to **string** | Margin Asset. | [optional] 
+**BaseQty** | Pointer to **string** | Base Qty. | [optional] 
+**Commission** | Pointer to **string** | Commission. | [optional] 
+**CommissionAsset** | Pointer to **string** | Commission Asset. | [optional] 
+**Time** | Pointer to **int64** | Event time. | [optional] 
+**PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 
+**Buyer** | Pointer to **bool** | Buyer. | [optional] 
+**Maker** | Pointer to **bool** | Maker. | [optional] 
 
 ## Methods
 

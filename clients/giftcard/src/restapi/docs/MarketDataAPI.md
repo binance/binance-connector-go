@@ -4,19 +4,19 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**CreateADualTokenGiftCard**](MarketDataAPI.md#CreateADualTokenGiftCard) | **Post** /sapi/v1/giftcard/buyCode | Create a dual-token gift card(fixed value, discount feature)(TRADE)
+[**CreateADualTokenGiftCard**](MarketDataAPI.md#CreateADualTokenGiftCard) | **Post** /sapi/v1/giftcard/buyCode | Create a dual-token gift card (fixed value, discount feature) (TRADE)
 [**CreateASingleTokenGiftCard**](MarketDataAPI.md#CreateASingleTokenGiftCard) | **Post** /sapi/v1/giftcard/createCode | Create a single-token gift card (USER_DATA)
-[**FetchRsaPublicKey**](MarketDataAPI.md#FetchRsaPublicKey) | **Get** /sapi/v1/giftcard/cryptography/rsa-public-key | Fetch RSA Public Key(USER_DATA)
-[**FetchTokenLimit**](MarketDataAPI.md#FetchTokenLimit) | **Get** /sapi/v1/giftcard/buyCode/token-limit | Fetch Token Limit(USER_DATA)
-[**RedeemABinanceGiftCard**](MarketDataAPI.md#RedeemABinanceGiftCard) | **Post** /sapi/v1/giftcard/redeemCode | Redeem a Binance Gift Card(USER_DATA)
-[**VerifyBinanceGiftCardByGiftCardNumber**](MarketDataAPI.md#VerifyBinanceGiftCardByGiftCardNumber) | **Get** /sapi/v1/giftcard/verify | Verify Binance Gift Card by Gift Card Number(USER_DATA)
+[**FetchRsaPublicKey**](MarketDataAPI.md#FetchRsaPublicKey) | **Get** /sapi/v1/giftcard/cryptography/rsa-public-key | Fetch RSA Public Key (USER_DATA)
+[**FetchTokenLimit**](MarketDataAPI.md#FetchTokenLimit) | **Get** /sapi/v1/giftcard/buyCode/token-limit | Fetch Token Limit (USER_DATA)
+[**RedeemABinanceGiftCard**](MarketDataAPI.md#RedeemABinanceGiftCard) | **Post** /sapi/v1/giftcard/redeemCode | Redeem a Binance Gift Card (USER_DATA)
+[**VerifyBinanceGiftCardByGiftCardNumber**](MarketDataAPI.md#VerifyBinanceGiftCardByGiftCardNumber) | **Get** /sapi/v1/giftcard/verify | Verify Binance Gift Card by Gift Card Number (USER_DATA)
 
 
 ## CreateADualTokenGiftCard
 
 > CreateADualTokenGiftCardResponse CreateADualTokenGiftCard(ctx).BaseToken(baseToken).FaceToken(faceToken).BaseTokenAmount(baseTokenAmount).RecvWindow(recvWindow).Execute()
 
-Create a dual-token gift card(fixed value, discount feature)(TRADE)
+Create a dual-token gift card (fixed value, discount feature) (TRADE)
 
 
 ### Example
@@ -35,9 +35,9 @@ import (
 )
 
 func main() {
-	baseToken := "baseToken_example" // string | The token you want to pay, example: BUSD
-	faceToken := "faceToken_example" // string | The token you want to buy, example: BNB. If faceToken = baseToken, it's the same as createCode endpoint.
-	baseTokenAmount := float32(1.0) // float32 | The base token asset quantity, example : 1.002
+	baseToken := "BUSD" // string | The token you want to pay, example: BUSD
+	faceToken := "BNB" // string | The token you want to buy, example: BNB. If faceToken = baseToken, it's the same as createCode endpoint.
+	baseTokenAmount := float32(1) // float32 | The base token asset quantity, example : 1.002
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -109,8 +109,8 @@ import (
 )
 
 func main() {
-	token := "token_example" // string | The token type contained in the Binance Gift Card
-	amount := float32(1.0) // float32 | The amount of the token contained in the Binance Gift Card
+	token := "BNB" // string | The token type contained in the Binance Gift Card
+	amount := float32(1) // float32 | The amount of the token contained in the Binance Gift Card
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -162,7 +162,7 @@ No authorization required
 
 > FetchRsaPublicKeyResponse FetchRsaPublicKey(ctx).RecvWindow(recvWindow).Execute()
 
-Fetch RSA Public Key(USER_DATA)
+Fetch RSA Public Key (USER_DATA)
 
 
 ### Example
@@ -230,7 +230,7 @@ No authorization required
 
 > FetchTokenLimitResponse FetchTokenLimit(ctx).BaseToken(baseToken).RecvWindow(recvWindow).Execute()
 
-Fetch Token Limit(USER_DATA)
+Fetch Token Limit (USER_DATA)
 
 
 ### Example
@@ -249,7 +249,7 @@ import (
 )
 
 func main() {
-	baseToken := "baseToken_example" // string | The token you want to pay, example: BUSD
+	baseToken := "BUSD" // string | The token you want to pay, example: BUSD
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -300,7 +300,7 @@ No authorization required
 
 > RedeemABinanceGiftCardResponse RedeemABinanceGiftCard(ctx).Code(code).ExternalUid(externalUid).RecvWindow(recvWindow).Execute()
 
-Redeem a Binance Gift Card(USER_DATA)
+Redeem a Binance Gift Card (USER_DATA)
 
 
 ### Example
@@ -319,8 +319,8 @@ import (
 )
 
 func main() {
-	code := "code_example" // string | Redemption code of Binance Gift Card to be redeemed, supports both Plaintext & Encrypted code.
-	externalUid := "externalUid_example" // string | Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users, such as redemption frequency and amount. It also helps risk and limit control of a single account, such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Binance Gift Cards on your platform. To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). (optional)
+	code := "6H9EKF5ECCWFBHGE" // string | Redemption code of Binance Gift Card to be redeemed, supports both Plaintext & Encrypted code.
+	externalUid := "user-123" // string | Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users, such as redemption frequency and amount. It also helps risk and limit control of a single account, such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Binance Gift Cards on your platform. To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -372,7 +372,7 @@ No authorization required
 
 > VerifyBinanceGiftCardByGiftCardNumberResponse VerifyBinanceGiftCardByGiftCardNumber(ctx).ReferenceNo(referenceNo).RecvWindow(recvWindow).Execute()
 
-Verify Binance Gift Card by Gift Card Number(USER_DATA)
+Verify Binance Gift Card by Gift Card Number (USER_DATA)
 
 
 ### Example
@@ -391,7 +391,7 @@ import (
 )
 
 func main() {
-	referenceNo := "referenceNo_example" // string | Enter the Gift Card Number
+	referenceNo := "0033002328060227" // string | Enter the Gift Card Number
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(

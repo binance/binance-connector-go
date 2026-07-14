@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,33 +17,59 @@ var _ common.MappedNullable = &QueryCurrentOpenOrderResponse{}
 
 // QueryCurrentOpenOrderResponse struct for QueryCurrentOpenOrderResponse
 type QueryCurrentOpenOrderResponse struct {
-	AvgPrice                *string `json:"avgPrice,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CumQuote                *string `json:"cumQuote,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	OrigType                *string `json:"origType,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	ClosePosition           *bool   `json:"closePosition,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	ActivatePrice           *string `json:"activatePrice,omitempty"`
-	PriceRate               *string `json:"priceRate,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	WorkingType             *string `json:"workingType,omitempty"`
-	PriceProtect            *bool   `json:"priceProtect,omitempty"`
-	PriceMatch              *string `json:"priceMatch,omitempty"`
+	// Avg Price.
+	AvgPrice *string `json:"avgPrice,omitempty"`
+	// Client Order Id.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cum Quote.
+	CumQuote *string `json:"cumQuote,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Order Id.
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Orig Type.
+	OrigType *string `json:"origType,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Reduce Only.
+	ReduceOnly *bool `json:"reduceOnly,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Status.
+	Status *string `json:"status,omitempty"`
+	// Position Side.
+	PositionSide *string `json:"positionSide,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// if Close-All
+	ClosePosition *bool `json:"closePosition,omitempty"`
+	// Symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// order time
+	Time *int64 `json:"time,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Type.
+	Type *string `json:"type,omitempty"`
+	// activation price, only return with TRAILING_STOP_MARKET order
+	ActivatePrice *string `json:"activatePrice,omitempty"`
+	// callback rate, only return with TRAILING_STOP_MARKET order
+	PriceRate *string `json:"priceRate,omitempty"`
+	// Update Time.
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Working Type.
+	WorkingType *string `json:"workingType,omitempty"`
+	// if conditional order trigger is protected
+	PriceProtect *bool `json:"priceProtect,omitempty"`
+	// price match mode
+	PriceMatch *string `json:"priceMatch,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	GoodTillDate            *int64  `json:"goodTillDate,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// order pre-set auot cancel time for TIF GTD order
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryCurrentOpenOrderResponse QueryCurrentOpenOrderResponse
@@ -385,38 +411,6 @@ func (o *QueryCurrentOpenOrderResponse) SetSide(v string) {
 	o.Side = &v
 }
 
-// GetPositionSide returns the PositionSide field value if set, zero value otherwise.
-func (o *QueryCurrentOpenOrderResponse) GetPositionSide() string {
-	if o == nil || common.IsNil(o.PositionSide) {
-		var ret string
-		return ret
-	}
-	return *o.PositionSide
-}
-
-// GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryCurrentOpenOrderResponse) GetPositionSideOk() (*string, bool) {
-	if o == nil || common.IsNil(o.PositionSide) {
-		return nil, false
-	}
-	return o.PositionSide, true
-}
-
-// HasPositionSide returns a boolean if a field has been set.
-func (o *QueryCurrentOpenOrderResponse) HasPositionSide() bool {
-	if o != nil && !common.IsNil(o.PositionSide) {
-		return true
-	}
-
-	return false
-}
-
-// SetPositionSide gets a reference to the given string and assigns it to the PositionSide field.
-func (o *QueryCurrentOpenOrderResponse) SetPositionSide(v string) {
-	o.PositionSide = &v
-}
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *QueryCurrentOpenOrderResponse) GetStatus() string {
 	if o == nil || common.IsNil(o.Status) {
@@ -447,6 +441,38 @@ func (o *QueryCurrentOpenOrderResponse) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *QueryCurrentOpenOrderResponse) SetStatus(v string) {
 	o.Status = &v
+}
+
+// GetPositionSide returns the PositionSide field value if set, zero value otherwise.
+func (o *QueryCurrentOpenOrderResponse) GetPositionSide() string {
+	if o == nil || common.IsNil(o.PositionSide) {
+		var ret string
+		return ret
+	}
+	return *o.PositionSide
+}
+
+// GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryCurrentOpenOrderResponse) GetPositionSideOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PositionSide) {
+		return nil, false
+	}
+	return o.PositionSide, true
+}
+
+// HasPositionSide returns a boolean if a field has been set.
+func (o *QueryCurrentOpenOrderResponse) HasPositionSide() bool {
+	if o != nil && !common.IsNil(o.PositionSide) {
+		return true
+	}
+
+	return false
+}
+
+// SetPositionSide gets a reference to the given string and assigns it to the PositionSide field.
+func (o *QueryCurrentOpenOrderResponse) SetPositionSide(v string) {
+	o.PositionSide = &v
 }
 
 // GetStopPrice returns the StopPrice field value if set, zero value otherwise.
@@ -937,11 +963,11 @@ func (o QueryCurrentOpenOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
-	if !common.IsNil(o.PositionSide) {
-		toSerialize["positionSide"] = o.PositionSide
-	}
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
+	}
+	if !common.IsNil(o.PositionSide) {
+		toSerialize["positionSide"] = o.PositionSide
 	}
 	if !common.IsNil(o.StopPrice) {
 		toSerialize["stopPrice"] = o.StopPrice
@@ -1017,8 +1043,8 @@ func (o *QueryCurrentOpenOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "side")
-		delete(additionalProperties, "positionSide")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "positionSide")
 		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")

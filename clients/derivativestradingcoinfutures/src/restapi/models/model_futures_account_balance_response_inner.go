@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -17,14 +17,22 @@ var _ common.MappedNullable = &FuturesAccountBalanceResponseInner{}
 
 // FuturesAccountBalanceResponseInner struct for FuturesAccountBalanceResponseInner
 type FuturesAccountBalanceResponseInner struct {
-	AccountAlias         *string `json:"accountAlias,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Balance              *string `json:"balance,omitempty"`
-	WithdrawAvailable    *string `json:"withdrawAvailable,omitempty"`
-	CrossWalletBalance   *string `json:"crossWalletBalance,omitempty"`
-	CrossUnPnl           *string `json:"crossUnPnl,omitempty"`
-	AvailableBalance     *string `json:"availableBalance,omitempty"`
-	UpdateTime           *int64  `json:"updateTime,omitempty"`
+	// unique account code
+	AccountAlias *string `json:"accountAlias,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
+	// Account balance.
+	Balance *string `json:"balance,omitempty"`
+	// Available amount for withdrawal.
+	WithdrawAvailable *string `json:"withdrawAvailable,omitempty"`
+	// wallet balance for crossed margin
+	CrossWalletBalance *string `json:"crossWalletBalance,omitempty"`
+	// total unrealized profit or loss of crossed positions
+	CrossUnPnl *string `json:"crossUnPnl,omitempty"`
+	// available margin balance
+	AvailableBalance *string `json:"availableBalance,omitempty"`
+	// update time
+	UpdateTime           *int64 `json:"updateTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

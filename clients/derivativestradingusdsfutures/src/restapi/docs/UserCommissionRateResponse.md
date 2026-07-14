@@ -5,9 +5,9 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**MakerCommissionRate** | Pointer to **string** |  | [optional] 
-**TakerCommissionRate** | Pointer to **string** |  | [optional] 
-**RpiCommissionRate** | Pointer to **string** |  | [optional] 
+**MakerCommissionRate** | Pointer to **string** | 0.02% | [optional] 
+**TakerCommissionRate** | Pointer to **string** | 0.04% | [optional] 
+**RpiCommissionRate** | Pointer to **string** | 0.005% | [optional] 
 
 ## Methods
 

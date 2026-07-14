@@ -22,7 +22,7 @@ func ToggleBnbBurnOnFuturesTrade() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountAPI.ToggleBnbBurnOnFuturesTrade(context.Background()).FeeBurn("feeBurn_example").Execute()
+	resp, err := apiClient.RestApi.AccountAPI.ToggleBnbBurnOnFuturesTrade(context.Background()).FeeBurn("true").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
-**SpecifyRepayAssets** | Pointer to **[]string** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**Success** | Pointer to **bool** |  | [optional] 
+**Amount** | Pointer to **string** | Amount repaid | [optional] 
+**Asset** | Pointer to **string** | asset name | [optional] 
+**SpecifyRepayAssets** | Pointer to **[]string** | Specify Repay Assets. | [optional] 
+**UpdateTime** | Pointer to **int64** | last update time | [optional] 
+**Success** | Pointer to **bool** | Success. | [optional] 
 
 ## Methods
 

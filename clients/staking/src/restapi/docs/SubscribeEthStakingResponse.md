@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | Pointer to **bool** |  | [optional] 
 **WbethAmount** | Pointer to **string** |  | [optional] 
-**ConversionRatio** | Pointer to **string** |  | [optional] 
 **PurchaseId** | Pointer to **int64** |  | [optional] 
+**ConversionRatio** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -78,31 +78,6 @@ SetWbethAmount sets WbethAmount field to given value.
 
 HasWbethAmount returns a boolean if a field has been set.
 
-### GetConversionRatio
-
-`func (o *SubscribeEthStakingResponse) GetConversionRatio() string`
-
-GetConversionRatio returns the ConversionRatio field if non-nil, zero value otherwise.
-
-### GetConversionRatioOk
-
-`func (o *SubscribeEthStakingResponse) GetConversionRatioOk() (*string, bool)`
-
-GetConversionRatioOk returns a tuple with the ConversionRatio field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConversionRatio
-
-`func (o *SubscribeEthStakingResponse) SetConversionRatio(v string)`
-
-SetConversionRatio sets ConversionRatio field to given value.
-
-### HasConversionRatio
-
-`func (o *SubscribeEthStakingResponse) HasConversionRatio() bool`
-
-HasConversionRatio returns a boolean if a field has been set.
-
 ### GetPurchaseId
 
 `func (o *SubscribeEthStakingResponse) GetPurchaseId() int64`
@@ -127,6 +102,31 @@ SetPurchaseId sets PurchaseId field to given value.
 `func (o *SubscribeEthStakingResponse) HasPurchaseId() bool`
 
 HasPurchaseId returns a boolean if a field has been set.
+
+### GetConversionRatio
+
+`func (o *SubscribeEthStakingResponse) GetConversionRatio() string`
+
+GetConversionRatio returns the ConversionRatio field if non-nil, zero value otherwise.
+
+### GetConversionRatioOk
+
+`func (o *SubscribeEthStakingResponse) GetConversionRatioOk() (*string, bool)`
+
+GetConversionRatioOk returns a tuple with the ConversionRatio field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRatio
+
+`func (o *SubscribeEthStakingResponse) SetConversionRatio(v string)`
+
+SetConversionRatio sets ConversionRatio field to given value.
+
+### HasConversionRatio
+
+`func (o *SubscribeEthStakingResponse) HasConversionRatio() bool`
+
+HasConversionRatio returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

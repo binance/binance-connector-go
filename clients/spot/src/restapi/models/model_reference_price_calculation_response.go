@@ -1,7 +1,7 @@
 /*
-Binance Spot REST API
+Spot REST API
 
-OpenAPI Specifications for the Binance Spot REST API  API documents:   - [Github rest-api documentation file](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md)   - [General API information for rest-api on website](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information)
+Access market data, manage accounts, and trade on Binance Spot.
 */
 
 package models
@@ -17,11 +17,15 @@ var _ common.MappedNullable = &ReferencePriceCalculationResponse{}
 
 // ReferencePriceCalculationResponse struct for ReferencePriceCalculationResponse
 type ReferencePriceCalculationResponse struct {
-	Symbol                *string `json:"symbol,omitempty"`
-	CalculationType       *string `json:"calculationType,omitempty"`
-	BucketCount           *int64  `json:"bucketCount,omitempty"`
-	BucketWidthMs         *int64  `json:"bucketWidthMs,omitempty"`
-	ExternalCalculationId *int64  `json:"externalCalculationId,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// Either `ARITHMETIC_MEAN` or `EXTERNAL`.
+	CalculationType *string `json:"calculationType,omitempty"`
+	// Present when calculationType is ARITHMETIC_MEAN.
+	BucketCount *int64 `json:"bucketCount,omitempty"`
+	// Present when calculationType is ARITHMETIC_MEAN.
+	BucketWidthMs *int64 `json:"bucketWidthMs,omitempty"`
+	// Present when calculationType is EXTERNAL.
+	ExternalCalculationId *int64 `json:"externalCalculationId,omitempty"`
 	AdditionalProperties  map[string]interface{}
 }
 

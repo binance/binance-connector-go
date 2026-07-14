@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**S** | Pointer to **string** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**F** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**Ap** | Pointer to **string** |  | [optional] 
-**X** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**Z** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
+**S** | Pointer to **string** | Side | [optional] 
+**O** | Pointer to **string** | Order Type | [optional] 
+**F** | Pointer to **string** | Time in Force | [optional] 
+**Q** | Pointer to **string** | Original Quantity | [optional] 
+**P** | Pointer to **string** | Price | [optional] 
+**Ap** | Pointer to **string** | Average Price | [optional] 
+**X** | Pointer to **string** | Order Status | [optional] 
+**L** | Pointer to **string** | Order Last Filled Quantity | [optional] 
+**Z** | Pointer to **string** | Order Filled Accumulated Quantity | [optional] 
+**T** | Pointer to **int64** | Order Trade Time | [optional] 
 
 ## Methods
 

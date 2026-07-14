@@ -4,27 +4,27 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**FeeTier** | Pointer to **int64** |  | [optional] 
-**FeeBurn** | Pointer to **bool** |  | [optional] 
-**CanDeposit** | Pointer to **bool** |  | [optional] 
-**CanWithdraw** | Pointer to **bool** |  | [optional] 
-**UpdateTime** | Pointer to **int64** |  | [optional] 
-**MultiAssetsMargin** | Pointer to **bool** |  | [optional] 
-**TradeGroupId** | Pointer to **int64** |  | [optional] 
-**TotalInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalMaintMargin** | Pointer to **string** |  | [optional] 
-**TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
-**TotalMarginBalance** | Pointer to **string** |  | [optional] 
-**TotalPositionInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalOpenOrderInitialMargin** | Pointer to **string** |  | [optional] 
-**TotalCrossWalletBalance** | Pointer to **string** |  | [optional] 
-**TotalCrossUnPnl** | Pointer to **string** |  | [optional] 
-**AvailableBalance** | Pointer to **string** |  | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]AccountInformationV2ResponseAssetsInner**](AccountInformationV2ResponseAssetsInner.md) |  | [optional] 
-**Positions** | Pointer to [**[]AccountInformationV2ResponsePositionsInner**](AccountInformationV2ResponsePositionsInner.md) |  | [optional] 
-**CanTrade** | Pointer to **bool** |  | [optional] 
+**FeeTier** | Pointer to **int64** | Account commission tier. | [optional] 
+**FeeBurn** | Pointer to **bool** | Whether fee discount is enabled. | [optional] 
+**CanTrade** | Pointer to **bool** | Whether trading is enabled. | [optional] 
+**CanDeposit** | Pointer to **bool** | Whether transfer-in is enabled. | [optional] 
+**CanWithdraw** | Pointer to **bool** | Whether transfer-out is enabled. | [optional] 
+**UpdateTime** | Pointer to **int64** | Reserved field, ignore. | [optional] 
+**MultiAssetsMargin** | Pointer to **bool** | Whether multi-assets mode is enabled. | [optional] 
+**TradeGroupId** | Pointer to **int64** | Trade group identifier. | [optional] 
+**TotalInitialMargin** | Pointer to **string** | Total initial margin requirement. | [optional] 
+**TotalMaintMargin** | Pointer to **string** | Total maintenance margin requirement. | [optional] 
+**TotalWalletBalance** | Pointer to **string** | Total wallet balance. | [optional] 
+**TotalUnrealizedProfit** | Pointer to **string** | Total unrealized profit. | [optional] 
+**TotalMarginBalance** | Pointer to **string** | Total margin balance. | [optional] 
+**TotalPositionInitialMargin** | Pointer to **string** | Initial margin required for positions. | [optional] 
+**TotalOpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. | [optional] 
+**TotalCrossWalletBalance** | Pointer to **string** | Cross wallet balance. | [optional] 
+**TotalCrossUnPnl** | Pointer to **string** | Unrealized PnL for cross positions. | [optional] 
+**AvailableBalance** | Pointer to **string** | Available balance. | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. | [optional] 
+**Assets** | Pointer to [**[]AccountInformationV2ResponseAssetsInner**](AccountInformationV2ResponseAssetsInner.md) | Asset-level account details. | [optional] 
+**Positions** | Pointer to [**[]AccountInformationV2ResponsePositionsInner**](AccountInformationV2ResponsePositionsInner.md) | Position details for symbols. One-way mode returns BOTH; hedge mode returns LONG/SHORT. | [optional] 
 
 ## Methods
 
@@ -94,6 +94,31 @@ SetFeeBurn sets FeeBurn field to given value.
 `func (o *AccountInformationV2Response) HasFeeBurn() bool`
 
 HasFeeBurn returns a boolean if a field has been set.
+
+### GetCanTrade
+
+`func (o *AccountInformationV2Response) GetCanTrade() bool`
+
+GetCanTrade returns the CanTrade field if non-nil, zero value otherwise.
+
+### GetCanTradeOk
+
+`func (o *AccountInformationV2Response) GetCanTradeOk() (*bool, bool)`
+
+GetCanTradeOk returns a tuple with the CanTrade field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanTrade
+
+`func (o *AccountInformationV2Response) SetCanTrade(v bool)`
+
+SetCanTrade sets CanTrade field to given value.
+
+### HasCanTrade
+
+`func (o *AccountInformationV2Response) HasCanTrade() bool`
+
+HasCanTrade returns a boolean if a field has been set.
 
 ### GetCanDeposit
 
@@ -544,31 +569,6 @@ SetPositions sets Positions field to given value.
 `func (o *AccountInformationV2Response) HasPositions() bool`
 
 HasPositions returns a boolean if a field has been set.
-
-### GetCanTrade
-
-`func (o *AccountInformationV2Response) GetCanTrade() bool`
-
-GetCanTrade returns the CanTrade field if non-nil, zero value otherwise.
-
-### GetCanTradeOk
-
-`func (o *AccountInformationV2Response) GetCanTradeOk() (*bool, bool)`
-
-GetCanTradeOk returns a tuple with the CanTrade field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCanTrade
-
-`func (o *AccountInformationV2Response) SetCanTrade(v bool)`
-
-SetCanTrade sets CanTrade field to given value.
-
-### HasCanTrade
-
-`func (o *AccountInformationV2Response) HasCanTrade() bool`
-
-HasCanTrade returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

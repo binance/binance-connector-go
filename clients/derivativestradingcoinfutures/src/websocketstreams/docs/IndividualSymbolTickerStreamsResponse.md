@@ -4,26 +4,26 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**W** | Pointer to **string** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **string** |  | [optional] 
-**H** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**V** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**O** | Pointer to **int64** |  | [optional] 
-**C** | Pointer to **int64** |  | [optional] 
-**F** | Pointer to **int64** |  | [optional] 
-**L** | Pointer to **int64** |  | [optional] 
-**N** | Pointer to **int64** |  | [optional] 
-**Ps** | Pointer to **string** |  | [optional] 
-**St** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**P** | Pointer to **string** | Price change | [optional] 
+**P** | Pointer to **string** | Price change percent | [optional] 
+**W** | Pointer to **string** | Weighted average price | [optional] 
+**C** | Pointer to **string** | Last price | [optional] 
+**Q** | Pointer to **string** | Last quantity | [optional] 
+**O** | Pointer to **string** | Open price | [optional] 
+**H** | Pointer to **string** | High price | [optional] 
+**L** | Pointer to **string** | Low price | [optional] 
+**V** | Pointer to **string** | Total traded volume | [optional] 
+**Q** | Pointer to **string** | Total traded base asset volume | [optional] 
+**O** | Pointer to **int64** | Statistics open time | [optional] 
+**C** | Pointer to **int64** | Statistics close time | [optional] 
+**F** | Pointer to **int64** | First trade ID | [optional] 
+**L** | Pointer to **int64** | Last trade Id | [optional] 
+**N** | Pointer to **int64** | Total number of trades | [optional] 
+**Ps** | Pointer to **string** | Pair | [optional] 
+**St** | Pointer to **int32** | (After CM migration) Symbol type: 1 &#x3D; UM, 2 &#x3D; CM | [optional] 
 
 ## Methods
 
@@ -521,20 +521,20 @@ HasPs returns a boolean if a field has been set.
 
 ### GetSt
 
-`func (o *IndividualSymbolTickerStreamsResponse) GetSt() int64`
+`func (o *IndividualSymbolTickerStreamsResponse) GetSt() int32`
 
 GetSt returns the St field if non-nil, zero value otherwise.
 
 ### GetStOk
 
-`func (o *IndividualSymbolTickerStreamsResponse) GetStOk() (*int64, bool)`
+`func (o *IndividualSymbolTickerStreamsResponse) GetStOk() (*int32, bool)`
 
 GetStOk returns a tuple with the St field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSt
 
-`func (o *IndividualSymbolTickerStreamsResponse) SetSt(v int64)`
+`func (o *IndividualSymbolTickerStreamsResponse) SetSt(v int32)`
 
 SetSt sets St field to given value.
 

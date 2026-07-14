@@ -22,7 +22,7 @@ func TransferToMaster() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetManagementAPI.TransferToMaster(context.Background()).Asset("asset_example").Amount(1.0).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.TransferToMaster(context.Background()).Asset("BTC").Amount(1.0).Execute()
 	if err != nil {
 		log.Println(err)
 		return

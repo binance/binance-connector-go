@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,18 +17,28 @@ var _ common.MappedNullable = &QueryIsolatedMarginAccountInfoResponseAssetsInner
 
 // QueryIsolatedMarginAccountInfoResponseAssetsInner struct for QueryIsolatedMarginAccountInfoResponseAssetsInner
 type QueryIsolatedMarginAccountInfoResponseAssetsInner struct {
-	BaseAsset            *QueryIsolatedMarginAccountInfoResponseAssetsInnerBaseAsset  `json:"baseAsset,omitempty"`
-	QuoteAsset           *QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset `json:"quoteAsset,omitempty"`
-	Symbol               *string                                                      `json:"symbol,omitempty"`
-	IsolatedCreated      *bool                                                        `json:"isolatedCreated,omitempty"`
-	Enabled              *bool                                                        `json:"enabled,omitempty"`
-	MarginLevel          *string                                                      `json:"marginLevel,omitempty"`
-	MarginLevelStatus    *string                                                      `json:"marginLevelStatus,omitempty"`
-	MarginRatio          *string                                                      `json:"marginRatio,omitempty"`
-	IndexPrice           *string                                                      `json:"indexPrice,omitempty"`
-	LiquidatePrice       *string                                                      `json:"liquidatePrice,omitempty"`
-	LiquidateRate        *string                                                      `json:"liquidateRate,omitempty"`
-	TradeEnabled         *bool                                                        `json:"tradeEnabled,omitempty"`
+	BaseAsset  *QueryIsolatedMarginAccountInfoResponseAssetsInnerBaseAsset  `json:"baseAsset,omitempty"`
+	QuoteAsset *QueryIsolatedMarginAccountInfoResponseAssetsInnerQuoteAsset `json:"quoteAsset,omitempty"`
+	// symbol.
+	Symbol *string `json:"symbol,omitempty"`
+	// isolated Created.
+	IsolatedCreated *bool `json:"isolatedCreated,omitempty"`
+	// true-enabled, false-disabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// margin Level.
+	MarginLevel *string `json:"marginLevel,omitempty"`
+	// \"EXCESSIVE\", \"NORMAL\", \"MARGIN_CALL\", \"PRE_LIQUIDATION\", \"FORCE_LIQUIDATION\"
+	MarginLevelStatus *string `json:"marginLevelStatus,omitempty"`
+	// margin Ratio.
+	MarginRatio *string `json:"marginRatio,omitempty"`
+	// index Price.
+	IndexPrice *string `json:"indexPrice,omitempty"`
+	// liquidate Price.
+	LiquidatePrice *string `json:"liquidatePrice,omitempty"`
+	// liquidate Rate.
+	LiquidateRate *string `json:"liquidateRate,omitempty"`
+	// trade Enabled.
+	TradeEnabled         *bool `json:"tradeEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

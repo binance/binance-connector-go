@@ -4,16 +4,16 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgPrice** | Pointer to **string** |  | [optional] 
-**ExecutedQty** | Pointer to **string** |  | [optional] 
-**OrderId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**Side** | Pointer to **string** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**TimeInForce** | Pointer to **string** |  | [optional] 
-**IsIsolated** | Pointer to **bool** |  | [optional] 
-**UpdatedTime** | Pointer to **int64** |  | [optional] 
+**AvgPrice** | Pointer to **string** | avg Price. | [optional] 
+**ExecutedQty** | Pointer to **string** | executed Qty. | [optional] 
+**OrderId** | Pointer to **int64** | order Id. | [optional] 
+**Price** | Pointer to **string** | price. | [optional] 
+**Qty** | Pointer to **string** | qty. | [optional] 
+**Side** | Pointer to **string** | side. | [optional] 
+**Symbol** | Pointer to **string** | symbol. | [optional] 
+**TimeInForce** | Pointer to **string** | time In Force. | [optional] 
+**IsIsolated** | Pointer to **bool** | is Isolated. | [optional] 
+**UpdatedTime** | Pointer to **int64** | updated Time. | [optional] 
 
 ## Methods
 

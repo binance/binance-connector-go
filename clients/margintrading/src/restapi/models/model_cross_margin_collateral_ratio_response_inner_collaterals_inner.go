@@ -1,7 +1,7 @@
 /*
-Binance Margin Trading REST API
+Margin REST API
 
-OpenAPI Specification for the Binance Margin Trading REST API
+Access account information, borrow and repay assets, and trade with Binance Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &CrossMarginCollateralRatioResponseInnerCollateral
 
 // CrossMarginCollateralRatioResponseInnerCollateralsInner struct for CrossMarginCollateralRatioResponseInnerCollateralsInner
 type CrossMarginCollateralRatioResponseInnerCollateralsInner struct {
-	MinUsdValue          *string `json:"minUsdValue,omitempty"`
-	MaxUsdValue          *string `json:"maxUsdValue,omitempty"`
+	// min Usd Value.
+	MinUsdValue *string `json:"minUsdValue,omitempty"`
+	// max Usd Value.
+	MaxUsdValue *string `json:"maxUsdValue,omitempty"`
+	// discount Rate.
 	DiscountRate         *string `json:"discountRate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

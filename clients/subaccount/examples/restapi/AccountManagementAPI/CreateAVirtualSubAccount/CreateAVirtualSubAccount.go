@@ -22,7 +22,7 @@ func CreateAVirtualSubAccount() {
 	apiClient := client.NewBinanceSubAccountClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AccountManagementAPI.CreateAVirtualSubAccount(context.Background()).SubAccountString("subAccountString_example").Execute()
+	resp, err := apiClient.RestApi.AccountManagementAPI.CreateAVirtualSubAccount(context.Background()).SubAccountString("testSubAccount").Execute()
 	if err != nil {
 		log.Println(err)
 		return

@@ -1,7 +1,7 @@
 /*
-Binance Simple Earn REST API
+Simple Earn REST API
 
-OpenAPI Specification for the Binance Simple Earn REST API
+Earn rewards by subscribing to flexible or locked Simple Earn products.
 */
 
 package binancesimpleearnrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Binance Simple Earn REST API API v1.8.0
+// RestAPIClient manages communication with the Simple Earn REST API API v1.9.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -29,7 +29,7 @@ type Service struct {
 	client *RestAPIClient
 }
 
-// NewRestAPIClient creates a new Binance Binance Simple Earn REST API REST API client
+// NewRestAPIClient creates a new Binance Simple Earn REST API REST API client
 //
 // @param cfg *common.ConfigurationRestAPI - The configuration for the REST API client
 // @return *RestAPIClient - The newly created REST API client
@@ -39,7 +39,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-simpleearn/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-simpleearn/1.9.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 

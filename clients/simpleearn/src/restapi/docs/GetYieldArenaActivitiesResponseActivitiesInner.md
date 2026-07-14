@@ -4,15 +4,15 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ActivityId** | Pointer to **int64** |  | [optional] 
-**ActivityType** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**RewardPoolInUsd** | Pointer to **string** |  | [optional] 
-**RewardToken** | Pointer to **[]string** |  | [optional] 
-**RedirectUrl** | Pointer to **string** |  | [optional] 
-**StartTime** | Pointer to **int64** |  | [optional] 
-**EndTime** | Pointer to **int64** |  | [optional] 
+**ActivityId** | Pointer to **int64** | Activity ID. | [optional] 
+**ActivityType** | Pointer to **string** | Activity category: &#x60;AIRDROP&#x60;, &#x60;LEADERBOARD&#x60;, or &#x60;EVENT&#x60;. | [optional] 
+**Title** | Pointer to **string** | Activity title, localized via the &#x60;lang&#x60; header. | [optional] 
+**Description** | Pointer to **string** | Activity description, localized via the &#x60;lang&#x60; header. | [optional] 
+**RewardPoolInUsd** | Pointer to **string** | USD value of the reward pool. | [optional] 
+**RewardToken** | Pointer to **[]string** | Reward token symbols (e.g. &#x60;[\&quot;BNB\&quot;]&#x60;); may be empty. | [optional] 
+**RedirectUrl** | Pointer to **string** | Web URL to the activity landing page. | [optional] 
+**StartTime** | Pointer to **int64** | Activity start time in milliseconds; may be null for activities that are immediately effective. | [optional] 
+**EndTime** | Pointer to **int64** | Activity end time in milliseconds; may be null for activities with no fixed end. | [optional] 
 
 ## Methods
 

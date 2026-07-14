@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **int64** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**Q** | Pointer to **string** |  | [optional] 
-**P** | Pointer to **string** |  | [optional] 
-**M** | Pointer to **bool** |  | [optional] 
-**C** | Pointer to **string** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**L** | Pointer to **string** |  | [optional] 
-**T** | Pointer to **int64** |  | [optional] 
-**I** | Pointer to **int64** |  | [optional] 
+**E** | Pointer to **int64** | Event Time | [optional] 
+**T** | Pointer to **int64** | Transaction Time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**Q** | Pointer to **string** | Original Quantity | [optional] 
+**P** | Pointer to **string** | Original Price | [optional] 
+**M** | Pointer to **bool** | Is this trade the maker side? | [optional] 
+**C** | Pointer to **string** | Client Order Id | [optional] 
+**S** | Pointer to **string** | Side | [optional] 
+**L** | Pointer to **string** | Last Filled Price | [optional] 
+**L** | Pointer to **string** | Order Last Filled Quantity | [optional] 
+**T** | Pointer to **int64** | Trade Id | [optional] 
+**I** | Pointer to **int64** | Order Id | [optional] 
 
 ## Methods
 

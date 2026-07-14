@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Pair** | Pointer to **string** |  | [optional] 
-**Brackets** | Pointer to [**[]NotionalBracketForPairResponseInnerBracketsInner**](NotionalBracketForPairResponseInnerBracketsInner.md) |  | [optional] 
+**Pair** | Pointer to **string** | Pair | [optional] 
+**Brackets** | Pointer to [**[]NotionalBracketForPairResponseInnerBracketsInner**](NotionalBracketForPairResponseInnerBracketsInner.md) | Leverage bracket details. | [optional] 
 
 ## Methods
 

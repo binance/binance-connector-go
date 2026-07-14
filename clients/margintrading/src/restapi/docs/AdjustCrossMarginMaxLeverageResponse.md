@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
+**Success** | Pointer to **bool** | success. | [optional] 
 
 ## Methods
 

@@ -5,9 +5,10 @@ All URIs are relative to *https://www.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AggregatedTrades**](MarketDataAPI.md#AggregatedTrades) | **Get** /bapi/defi/v1/public/alpha-trade/agg-trades | Aggregated Trades
+[**FullDepth**](MarketDataAPI.md#FullDepth) | **Get** /bapi/defi/v1/public/alpha-trade/fullDepth | Full Depth
 [**GetExchangeInfo**](MarketDataAPI.md#GetExchangeInfo) | **Get** /bapi/defi/v1/public/alpha-trade/get-exchange-info | Get Exchange Info
-[**Klines**](MarketDataAPI.md#Klines) | **Get** /bapi/defi/v1/public/alpha-trade/klines | Klines (Candlestick Data)
-[**Ticker**](MarketDataAPI.md#Ticker) | **Get** /bapi/defi/v1/public/alpha-trade/ticker | Ticker (24hr Price Statistics)
+[**Klines**](MarketDataAPI.md#Klines) | **Get** /bapi/defi/v1/public/alpha-trade/klines | Klines
+[**Ticker**](MarketDataAPI.md#Ticker) | **Get** /bapi/defi/v1/public/alpha-trade/ticker | Ticker
 [**TokenList**](MarketDataAPI.md#TokenList) | **Get** /bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list | Token List
 
 
@@ -34,11 +35,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | e.g., \"ALPHA_175USDT\" – use token ID from Token List
-	fromId := int64(1) // int64 | starting trade ID to fetch from (optional)
-	startTime := int64(1623319461670) // int64 | start timestamp (milliseconds) (optional)
-	endTime := int64(1641782889000) // int64 | end timestamp (milliseconds) (optional)
-	limit := int64(500) // int64 | number of results to return (default 500, max 1000) (optional)
+	symbol := "ALPHA_118USDC" // string | Trading pair symbol, e.g. ALPHA_118USDC (use token ID from Token List).
+	fromId := int64(58470) // int64 | Starting aggregate trade ID to fetch from. (optional)
+	startTime := int64(1752568680000) // int64 | Start timestamp in milliseconds. (optional)
+	endTime := int64(1752572280000) // int64 | End timestamp in milliseconds. (optional)
+	limit := int64(500) // int64 | Number of results to return. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -66,15 +67,85 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List | 
- **fromId** | **int64** | starting trade ID to fetch from | 
- **startTime** | **int64** | start timestamp (milliseconds) | 
- **endTime** | **int64** | end timestamp (milliseconds) | 
- **limit** | **int64** | number of results to return (default 500, max 1000) | 
+ **symbol** | **string** | Trading pair symbol, e.g. ALPHA_118USDC (use token ID from Token List). | 
+ **fromId** | **int64** | Starting aggregate trade ID to fetch from. | 
+ **startTime** | **int64** | Start timestamp in milliseconds. | 
+ **endTime** | **int64** | End timestamp in milliseconds. | 
+ **limit** | **int64** | Number of results to return. | 
 
 ### Return type
 
 [**AggregatedTradesResponse**](AggregatedTradesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## FullDepth
+
+> FullDepthResponse FullDepth(ctx).Symbol(symbol).Limit(limit).Execute()
+
+Full Depth
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/alpha"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "ALPHA_175USDT" // string | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
+	limit := models.FullDepthLimitParameterLimit5 // FullDepthLimitParameter | Number of price levels to return. Valid values: 5, 10, 20, 50, 100, 500, 1000. (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceAlphaClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketDataAPI.FullDepth(context.Background()).Symbol(symbol).Limit(limit).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketDataAPI.FullDepth``: %v\n", err)
+		return
+	}
+
+	// response from `FullDepth`: FullDepthResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List). | 
+ **limit** | [**FullDepthLimitParameter**](FullDepthLimitParameter.md) | Number of price levels to return. Valid values: 5, 10, 20, 50, 100, 500, 1000. | 
+
+### Return type
+
+[**FullDepthResponse**](FullDepthResponse.md)
 
 ### Authorization
 
@@ -156,7 +227,7 @@ No authorization required
 
 > KlinesResponse Klines(ctx).Symbol(symbol).Interval(interval).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
-Klines (Candlestick Data)
+Klines
 
 
 ### Example
@@ -175,11 +246,11 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | e.g., \"ALPHA_175USDT\" – use token ID from Token List
-	interval := "interval_example" // string | e.g., \"1h\" – supported intervals: 1s, 15s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-	limit := int64(500) // int64 | number of results to return (default 500, max 1000) (optional)
-	startTime := int64(1623319461670) // int64 | start timestamp (milliseconds) (optional)
-	endTime := int64(1641782889000) // int64 | end timestamp (milliseconds) (optional)
+	symbol := "ALPHA_175USDT" // string | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
+	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | Kline interval.
+	limit := int64(500) // int64 | Number of klines to return. (optional)
+	startTime := int64(1752642000000) // int64 | Start timestamp in milliseconds. (optional)
+	endTime := int64(1752645599999) // int64 | End timestamp in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -207,11 +278,11 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List | 
- **interval** | **string** | e.g., \&quot;1h\&quot; – supported intervals: 1s, 15s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M | 
- **limit** | **int64** | number of results to return (default 500, max 1000) | 
- **startTime** | **int64** | start timestamp (milliseconds) | 
- **endTime** | **int64** | end timestamp (milliseconds) | 
+ **symbol** | **string** | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List). | 
+ **interval** | [**KlinesIntervalParameter**](KlinesIntervalParameter.md) | Kline interval. | 
+ **limit** | **int64** | Number of klines to return. | 
+ **startTime** | **int64** | Start timestamp in milliseconds. | 
+ **endTime** | **int64** | End timestamp in milliseconds. | 
 
 ### Return type
 
@@ -232,7 +303,7 @@ No authorization required
 
 > TickerResponse Ticker(ctx).Symbol(symbol).Execute()
 
-Ticker (24hr Price Statistics)
+Ticker
 
 
 ### Example
@@ -251,7 +322,7 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | e.g., \"ALPHA_175USDT\" – use token ID from Token List
+	symbol := "ALPHA_175USDT" // string | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List).
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -279,7 +350,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | e.g., \&quot;ALPHA_175USDT\&quot; – use token ID from Token List | 
+ **symbol** | **string** | Trading pair symbol, e.g. ALPHA_175USDT (use token ID from Token List). | 
 
 ### Return type
 

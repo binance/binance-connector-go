@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** |  | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
-**Assets** | Pointer to [**[]GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner**](GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner.md) |  | [optional] 
+**Assets** | Pointer to [**[]GetDetailOnSubAccountsFuturesAccountResponseAssetsInner**](GetDetailOnSubAccountsFuturesAccountResponseAssetsInner.md) |  | [optional] 
 **CanDeposit** | Pointer to **bool** |  | [optional] 
 **CanTrade** | Pointer to **bool** |  | [optional] 
 **CanWithdraw** | Pointer to **bool** |  | [optional] 
@@ -92,20 +92,20 @@ HasAsset returns a boolean if a field has been set.
 
 ### GetAssets
 
-`func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssets() []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner`
+`func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssets() []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssetsOk() (*[]GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner, bool)`
+`func (o *GetDetailOnSubAccountsFuturesAccountResponse) GetAssetsOk() (*[]GetDetailOnSubAccountsFuturesAccountResponseAssetsInner, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *GetDetailOnSubAccountsFuturesAccountResponse) SetAssets(v []GetDetailOnSubAccountsFuturesAccountV2ResponseFutureAccountRespAssetsInner)`
+`func (o *GetDetailOnSubAccountsFuturesAccountResponse) SetAssets(v []GetDetailOnSubAccountsFuturesAccountResponseAssetsInner)`
 
 SetAssets sets Assets field to given value.
 

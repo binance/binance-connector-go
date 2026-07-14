@@ -1,7 +1,7 @@
 /*
-Binance Mining REST API
+Mining REST API
 
-OpenAPI Specification for the Binance Mining REST API
+Query mining status, earnings, and account data via the Binance Pool API.
 */
 
 package models
@@ -17,13 +17,20 @@ var _ common.MappedNullable = &HashrateResaleDetailResponseDataProfitTransferDet
 
 // HashrateResaleDetailResponseDataProfitTransferDetailsInner struct for HashrateResaleDetailResponseDataProfitTransferDetailsInner
 type HashrateResaleDetailResponseDataProfitTransferDetailsInner struct {
-	PoolUsername         *string  `json:"poolUsername,omitempty"`
-	ToPoolUsername       *string  `json:"toPoolUsername,omitempty"`
-	AlgoName             *string  `json:"algoName,omitempty"`
-	HashRate             *int64   `json:"hashRate,omitempty"`
-	Day                  *int64   `json:"day,omitempty"`
-	Amount               *float32 `json:"amount,omitempty"`
-	CoinName             *string  `json:"coinName,omitempty"`
+	// Transfer-out sub-account
+	PoolUsername *string `json:"poolUsername,omitempty"`
+	// Transfer-in sub-account
+	ToPoolUsername *string `json:"toPoolUsername,omitempty"`
+	// Transfer algorithm name
+	AlgoName *string `json:"algoName,omitempty"`
+	// Transferred hashrate
+	HashRate *int64 `json:"hashRate,omitempty"`
+	// Transfer date
+	Day *int64 `json:"day,omitempty"`
+	// Transferred income
+	Amount *float32 `json:"amount,omitempty"`
+	// Income coin
+	CoinName             *string `json:"coinName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

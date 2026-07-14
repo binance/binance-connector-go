@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,13 +17,21 @@ var _ common.MappedNullable = &GetUmIncomeHistoryResponseInner{}
 
 // GetUmIncomeHistoryResponseInner struct for GetUmIncomeHistoryResponseInner
 type GetUmIncomeHistoryResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	IncomeType           *string `json:"incomeType,omitempty"`
-	Income               *string `json:"income,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Info                 *string `json:"info,omitempty"`
-	Time                 *int64  `json:"time,omitempty"`
-	TranId               *int64  `json:"tranId,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Income type.
+	IncomeType *string `json:"incomeType,omitempty"`
+	// Income amount.
+	Income *string `json:"income,omitempty"`
+	// Income asset.
+	Asset *string `json:"asset,omitempty"`
+	// Extra information.
+	Info *string `json:"info,omitempty"`
+	// Event time.
+	Time *int64 `json:"time,omitempty"`
+	// Transaction ID.
+	TranId *string `json:"tranId,omitempty"`
+	// Trade ID, if existing.
 	TradeId              *string `json:"tradeId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -240,9 +248,9 @@ func (o *GetUmIncomeHistoryResponseInner) SetTime(v int64) {
 }
 
 // GetTranId returns the TranId field value if set, zero value otherwise.
-func (o *GetUmIncomeHistoryResponseInner) GetTranId() int64 {
+func (o *GetUmIncomeHistoryResponseInner) GetTranId() string {
 	if o == nil || common.IsNil(o.TranId) {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.TranId
@@ -250,7 +258,7 @@ func (o *GetUmIncomeHistoryResponseInner) GetTranId() int64 {
 
 // GetTranIdOk returns a tuple with the TranId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*int64, bool) {
+func (o *GetUmIncomeHistoryResponseInner) GetTranIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.TranId) {
 		return nil, false
 	}
@@ -266,8 +274,8 @@ func (o *GetUmIncomeHistoryResponseInner) HasTranId() bool {
 	return false
 }
 
-// SetTranId gets a reference to the given int64 and assigns it to the TranId field.
-func (o *GetUmIncomeHistoryResponseInner) SetTranId(v int64) {
+// SetTranId gets a reference to the given string and assigns it to the TranId field.
+func (o *GetUmIncomeHistoryResponseInner) SetTranId(v string) {
 	o.TranId = &v
 }
 

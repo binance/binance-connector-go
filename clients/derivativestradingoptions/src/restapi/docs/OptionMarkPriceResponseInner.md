@@ -4,18 +4,18 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | Pointer to **string** |  | [optional] 
-**MarkPrice** | Pointer to **string** |  | [optional] 
-**BidIV** | Pointer to **string** |  | [optional] 
-**AskIV** | Pointer to **string** |  | [optional] 
-**MarkIV** | Pointer to **string** |  | [optional] 
-**Delta** | Pointer to **string** |  | [optional] 
-**Theta** | Pointer to **string** |  | [optional] 
-**Gamma** | Pointer to **string** |  | [optional] 
-**Vega** | Pointer to **string** |  | [optional] 
-**HighPriceLimit** | Pointer to **string** |  | [optional] 
-**LowPriceLimit** | Pointer to **string** |  | [optional] 
-**RiskFreeInterest** | Pointer to **string** |  | [optional] 
+**Symbol** | Pointer to **string** | symbol | [optional] 
+**MarkPrice** | Pointer to **string** | Mark price | [optional] 
+**BidIV** | Pointer to **string** | Implied volatility Buy | [optional] 
+**AskIV** | Pointer to **string** | Implied volatility Sell | [optional] 
+**MarkIV** | Pointer to **string** | Implied volatility mark | [optional] 
+**Delta** | Pointer to **string** | delta | [optional] 
+**Theta** | Pointer to **string** | theta | [optional] 
+**Gamma** | Pointer to **string** | gamma | [optional] 
+**Vega** | Pointer to **string** | vega | [optional] 
+**HighPriceLimit** | Pointer to **string** | Current highest buy price | [optional] 
+**LowPriceLimit** | Pointer to **string** | Current lowest sell price | [optional] 
+**RiskFreeInterest** | Pointer to **string** | risk free rate | [optional] 
 
 ## Methods
 

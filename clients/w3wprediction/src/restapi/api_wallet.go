@@ -70,10 +70,10 @@ func (r ApiGetPortfolioRequest) Execute() (*common.RestApiResponse[models.GetPor
 }
 
 /*
-GetPortfolio Get Portfolio
+GetPortfolio Get Portfolio (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/pnl/portfolio
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -122,7 +122,15 @@ func (a *WalletAPIService) GetPortfolioExecute(r ApiGetPortfolioRequest) (*commo
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPortfolioResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPortfolioResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -147,10 +155,10 @@ func (r ApiGetQuotaStatusRequest) Execute() (*common.RestApiResponse[models.GetQ
 }
 
 /*
-GetQuotaStatus Get Quota Status
+GetQuotaStatus Get Quota Status (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/quota/limit/status
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  Request validity window in milliseconds
@@ -177,7 +185,15 @@ func (a *WalletAPIService) GetQuotaStatusExecute(r ApiGetQuotaStatusRequest) (*c
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetQuotaStatusResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetQuotaStatusResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -202,10 +218,10 @@ func (r ApiListPredictionWalletsRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-ListPredictionWallets List Prediction Wallets
+ListPredictionWallets List Prediction Wallets (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/wallet/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  Request validity window in milliseconds
@@ -232,7 +248,15 @@ func (a *WalletAPIService) ListPredictionWalletsExecute(r ApiListPredictionWalle
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.ListPredictionWalletsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.ListPredictionWalletsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -257,10 +281,10 @@ func (r ApiQueryPaymentOptionBalancesRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-QueryPaymentOptionBalances Query Payment Option Balances
+QueryPaymentOptionBalances Query Payment Option Balances (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/balance/payment-options
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param recvWindow -  Request validity window in milliseconds
@@ -287,7 +311,15 @@ func (a *WalletAPIService) QueryPaymentOptionBalancesExecute(r ApiQueryPaymentOp
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPaymentOptionBalancesResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPaymentOptionBalancesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

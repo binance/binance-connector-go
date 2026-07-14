@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,14 +17,21 @@ var _ common.MappedNullable = &QueryUmModifyOrderHistoryResponseInner{}
 
 // QueryUmModifyOrderHistoryResponseInner struct for QueryUmModifyOrderHistoryResponseInner
 type QueryUmModifyOrderHistoryResponseInner struct {
-	AmendmentId          *int64                                           `json:"amendmentId,omitempty"`
-	Symbol               *string                                          `json:"symbol,omitempty"`
-	Pair                 *string                                          `json:"pair,omitempty"`
-	OrderId              *int64                                           `json:"orderId,omitempty"`
-	ClientOrderId        *string                                          `json:"clientOrderId,omitempty"`
-	Time                 *int64                                           `json:"time,omitempty"`
-	Amendment            *QueryCmModifyOrderHistoryResponseInnerAmendment `json:"amendment,omitempty"`
-	PriceMatch           *string                                          `json:"priceMatch,omitempty"`
+	// Order modification ID
+	AmendmentId *int64 `json:"amendmentId,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair *string `json:"pair,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Order modification time
+	Time      *int64                                           `json:"time,omitempty"`
+	Amendment *QueryCmModifyOrderHistoryResponseInnerAmendment `json:"amendment,omitempty"`
+	// Price Match.
+	PriceMatch           *string `json:"priceMatch,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

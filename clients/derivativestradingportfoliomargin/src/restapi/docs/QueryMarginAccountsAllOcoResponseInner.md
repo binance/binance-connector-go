@@ -4,14 +4,14 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**OrderListId** | Pointer to **int64** |  | [optional] 
-**ContingencyType** | Pointer to **string** |  | [optional] 
-**ListStatusType** | Pointer to **string** |  | [optional] 
-**ListOrderStatus** | Pointer to **string** |  | [optional] 
-**ListClientOrderId** | Pointer to **string** |  | [optional] 
-**TransactionTime** | Pointer to **int64** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
-**Orders** | Pointer to [**[]QueryMarginAccountsAllOcoResponseInnerOrdersInner**](QueryMarginAccountsAllOcoResponseInnerOrdersInner.md) |  | [optional] 
+**OrderListId** | Pointer to **int64** | Order List ID. | [optional] 
+**ContingencyType** | Pointer to **string** | Contingency Type. | [optional] 
+**ListStatusType** | Pointer to **string** | List Status Type. | [optional] 
+**ListOrderStatus** | Pointer to **string** | List Order Status. | [optional] 
+**ListClientOrderId** | Pointer to **string** | List Client Order ID. | [optional] 
+**TransactionTime** | Pointer to **int64** | Transaction Time. | [optional] 
+**Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
+**Orders** | Pointer to [**[]QueryMarginAccountsAllOcoResponseInnerOrdersInner**](QueryMarginAccountsAllOcoResponseInnerOrdersInner.md) | Orders. | [optional] 
 
 ## Methods
 

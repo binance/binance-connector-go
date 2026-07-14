@@ -1,7 +1,7 @@
 /*
-Binance Wallet REST API
+Wallet REST API
 
-OpenAPI Specification for the Binance Wallet REST API
+Query balances, manage assets, and perform wallet operations via the Binance Wallet API.
 */
 
 package models
@@ -17,7 +17,7 @@ var _ common.MappedNullable = &WithdrawHistoryV2Response{}
 
 // WithdrawHistoryV2Response struct for WithdrawHistoryV2Response
 type WithdrawHistoryV2Response struct {
-	Items []WithdrawHistoryV2ResponseInner
+	Items []WithdrawHistoryV1ResponseInner
 }
 
 // NewWithdrawHistoryV2Response instantiates a new WithdrawHistoryV2Response object

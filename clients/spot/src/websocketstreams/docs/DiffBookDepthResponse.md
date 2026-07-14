@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** |  | [optional] 
-**E** | Pointer to **int64** |  | [optional] 
-**S** | Pointer to **string** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**U** | Pointer to **int64** |  | [optional] 
-**B** | Pointer to **[][]string** |  | [optional] 
-**A** | Pointer to **[][]string** |  | [optional] 
+**E** | Pointer to **string** | Event type | [optional] 
+**E** | Pointer to **int64** | Event time | [optional] 
+**S** | Pointer to **string** | Symbol | [optional] 
+**U** | Pointer to **int64** | First update ID in event | [optional] 
+**U** | Pointer to **int64** | Final update ID in event | [optional] 
+**B** | Pointer to **[][]string** | Bids to be updated | [optional] 
+**A** | Pointer to **[][]string** | Asks to be updated | [optional] 
 
 ## Methods
 

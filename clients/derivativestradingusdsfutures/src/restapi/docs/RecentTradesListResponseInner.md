@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
-**Qty** | Pointer to **string** |  | [optional] 
-**QuoteQty** | Pointer to **string** |  | [optional] 
-**Time** | Pointer to **int64** |  | [optional] 
-**IsBuyerMaker** | Pointer to **bool** |  | [optional] 
-**IsRPITrade** | Pointer to **bool** |  | [optional] 
+**Id** | Pointer to **int64** | Id. | [optional] 
+**Price** | Pointer to **string** | Price. | [optional] 
+**Qty** | Pointer to **string** | Qty. | [optional] 
+**QuoteQty** | Pointer to **string** | Quote Qty. | [optional] 
+**Time** | Pointer to **int64** | Time. | [optional] 
+**IsBuyerMaker** | Pointer to **bool** | Is Buyer Maker. | [optional] 
+**IsRPITrade** | Pointer to **bool** | Is RPITrade. | [optional] 
 
 ## Methods
 

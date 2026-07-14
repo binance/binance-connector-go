@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,8 +17,11 @@ var _ common.MappedNullable = &UmNotionalAndLeverageBracketsResponseInner{}
 
 // UmNotionalAndLeverageBracketsResponseInner struct for UmNotionalAndLeverageBracketsResponseInner
 type UmNotionalAndLeverageBracketsResponseInner struct {
-	Symbol               *string                                                   `json:"symbol,omitempty"`
-	NotionalCoef         *string                                                   `json:"notionalCoef,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Notional Coef.
+	NotionalCoef *string `json:"notionalCoef,omitempty"`
+	// Brackets.
 	Brackets             []UmNotionalAndLeverageBracketsResponseInnerBracketsInner `json:"brackets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

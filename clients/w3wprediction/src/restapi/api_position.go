@@ -49,10 +49,10 @@ func (r ApiGetPositionByTokenRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-GetPositionByToken Get Position by Token
+GetPositionByToken Get Position by Token (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/position/token
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -80,6 +80,7 @@ func (a *PositionAPIService) GetPositionByTokenExecute(r ApiGetPositionByTokenRe
 	if r.walletAddress == nil {
 		return nil, common.ReportError("walletAddress is required and must be specified")
 	}
+
 	if r.tokenId == nil {
 		return nil, common.ReportError("tokenId is required and must be specified")
 	}
@@ -90,7 +91,15 @@ func (a *PositionAPIService) GetPositionByTokenExecute(r ApiGetPositionByTokenRe
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.GetPositionByTokenResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.GetPositionByTokenResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -150,10 +159,10 @@ func (r ApiQueryPnLRequest) Execute() (*common.RestApiResponse[models.QueryPnLRe
 }
 
 /*
-QueryPnL Query PnL
+QueryPnL Query PnL (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/pnl/query
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -202,7 +211,15 @@ func (a *PositionAPIService) QueryPnLExecute(r ApiQueryPnLRequest) (*common.Rest
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPnLResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPnLResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -255,10 +272,10 @@ func (r ApiQueryPositionsRequest) Execute() (*common.RestApiResponse[models.Quer
 }
 
 /*
-QueryPositions Query Positions
+QueryPositions Query Positions (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/position/list
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -303,7 +320,15 @@ func (a *PositionAPIService) QueryPositionsExecute(r ApiQueryPositionsRequest) (
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPositionsResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPositionsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -342,10 +367,10 @@ func (r ApiQueryPositionsByFilterRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-QueryPositionsByFilter Query Positions by Filter
+QueryPositionsByFilter Query Positions by Filter (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/position/filter
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -380,7 +405,15 @@ func (a *PositionAPIService) QueryPositionsByFilterExecute(r ApiQueryPositionsBy
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QueryPositionsByFilterResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QueryPositionsByFilterResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}
@@ -454,10 +487,10 @@ func (r ApiQuerySettledPositionHistoryRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QuerySettledPositionHistory Query Settled Position History
+QuerySettledPositionHistory Query Settled Position History (USER_DATA)
 Get /sapi/v1/w3w/wallet/prediction/position/settled-history
 
-https://developers.binance.com/en/dev-docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param walletAddress -  User's prediction wallet address
@@ -514,7 +547,15 @@ func (a *PositionAPIService) QuerySettledPositionHistoryExecute(r ApiQuerySettle
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
 
-	resp, err := SendRequest[models.QuerySettledPositionHistoryResponse](r.ctx, localVarPath, localVarHTTPMethod, localVarQueryParams, localVarBodyParameters, a.client.cfg, true)
+	resp, err := SendRequest[models.QuerySettledPositionHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
 	if err != nil || resp == nil {
 		return nil, err
 	}

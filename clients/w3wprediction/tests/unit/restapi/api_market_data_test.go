@@ -25,7 +25,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetMarketDetail Success", func(t *testing.T) {
 
-		mockedJSON := `{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price at resolution time.","imageUrl":"https://cdn.example.com/prediction/btc-1h.png","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","variantData":{"type":"CRYPTO_UP_DOWN","startPrice":"67890.12","endPrice":"endPrice","priceFeedId":"0xpricefeedid123","priceFeedProvider":"BINANCE","priceFeedSymbol":"BTCUSDT"},"participantCount":3420,"collateral":"USDT","feeRateBps":200,"slippageBps":1200,"isYieldBearing":false,"tradeVolume":"158234.56","liquidity":"45000.00","publishedAt":1748100000000,"startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","timeline":[{"marketTopicId":4229560,"startDate":1748127600000,"endDate":1748131200000}],"markets":[{"marketId":5567895,"externalId":"ext_001","title":"UP","question":"Will BTC go UP?","description":"Resolves YES if BTC price increases.","conditionId":"0xabc123","status":"REGISTERED","tradingStatus":"OPEN","tradeVolume":"90000.00","liquidity":"25000.00","decimalPrecision":2,"outcomes":[{"name":"YES","price":"0.52","chance":"0.52","index":0,"tokenId":"112233"}]}]}`
+		var mockedJSON string
+		mockedJSON = `{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price at resolution time.","imageUrl":"https://cdn.example.com/prediction/btc-1h.png","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","variantData":{"type":"CRYPTO_UP_DOWN","startPrice":"67890.12","endPrice":"endPrice","priceFeedId":"0xpricefeedid123","priceFeedProvider":"BINANCE","priceFeedSymbol":"BTCUSDT"},"participantCount":3420,"collateral":"USDT","feeRateBps":200,"slippageBps":1200,"isYieldBearing":false,"tradeVolume":"158234.56","liquidity":"45000.00","publishedAt":1748100000000,"startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","timeline":[{"marketTopicId":4229560,"startDate":1748127600000,"endDate":1748131200000}],"markets":[{"marketId":5567895,"externalId":"ext_001","title":"UP","question":"Will BTC go UP?","description":"Resolves YES if BTC price increases.","conditionId":"0xabc123","status":"REGISTERED","tradingStatus":"OPEN","tradeVolume":"90000.00","liquidity":"25000.00","decimalPrecision":2,"outcomes":[{"name":"YES","price":"0.52","chance":"0.52","index":0,"tokenId":"112233"}]}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/market/detail", r.URL.Path)
 			require.Equal(t, "4229564", r.URL.Query().Get("marketTopicId"))
@@ -98,7 +102,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService ListPredictionCategories Success", func(t *testing.T) {
 
-		mockedJSON := `{"categories":[{"id":"crypto","name":"Crypto","icon":"crypto_icon","order":1,"subcategories":[{"id":"up-down","name":"Up/Down","icon":"updown_icon","order":1}]}]}`
+		var mockedJSON string
+		mockedJSON = `{"categories":[{"id":"crypto","name":"Crypto","icon":"crypto_icon","order":1,"subcategories":[{"id":"up-down","name":"Up/Down","icon":"updown_icon","order":1}]}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/category/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -153,7 +161,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService ListPredictionMarkets Success", func(t *testing.T) {
 
-		mockedJSON := `{"marketTopics":[{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price at resolution time.","imageUrl":"https://cdn.example.com/prediction/btc-1h.png","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","participantCount":3420,"collateral":"USDT","feeRateBps":200,"slippageBps":1200,"isYieldBearing":false,"tradeVolume":"158234.56","liquidity":"45000.00","publishedAt":1748100000000,"startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","markets":[{}]}],"total":128,"offset":0,"limit":20,"hasMore":true}`
+		var mockedJSON string
+		mockedJSON = `{"marketTopics":[{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price at resolution time.","imageUrl":"https://cdn.example.com/prediction/btc-1h.png","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","participantCount":3420,"collateral":"USDT","feeRateBps":200,"slippageBps":1200,"isYieldBearing":false,"tradeVolume":"158234.56","liquidity":"45000.00","publishedAt":1748100000000,"startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","markets":[{}]}],"total":128,"offset":0,"limit":20,"hasMore":true}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/market/list", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -208,7 +220,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService MarketSearch Success", func(t *testing.T) {
 
-		mockedJSON := `[{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price.","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","participantCount":3420,"collateral":"USDT","tradeVolume":"158234.56","liquidity":"45000.00","startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","markets":[{}]}]`
+		var mockedJSON string
+		mockedJSON = `[{"marketTopicId":4229564,"vendor":"PREDICT_FUN","chainId":"56","slug":"btc-price-1h-up-or-down","title":"BTC Price 1h Up or Down?","question":"Will BTC price go UP in the next 1 hour?","description":"Resolves YES if BTC spot price is higher than the starting price.","topicType":"FLAT","chartType":"CRYPTO_UP_DOWN","symbol":"BTCUSDT","participantCount":3420,"collateral":"USDT","tradeVolume":"158234.56","liquidity":"45000.00","startDate":1748131200000,"endDate":1748134800000,"status":"REGISTERED","markets":[{}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/market/search", r.URL.Path)
 			require.Equal(t, "BTC price", r.URL.Query().Get("query"))
@@ -281,7 +297,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryLastTradePrice Success", func(t *testing.T) {
 
-		mockedJSON := `{"marketId":5567895,"lastTradePrice":"0.52"}`
+		var mockedJSON string
+		mockedJSON = `{"marketId":5567895,"lastTradePrice":"0.52"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/order-book/last-trade-price", r.URL.Path)
 			require.Equal(t, "5567895", r.URL.Query().Get("marketId"))
@@ -354,7 +374,11 @@ func Test_binancew3wpredictionrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryOrderBook Success", func(t *testing.T) {
 
-		mockedJSON := `{"outcome":"YES","tokenId":"112233","timestamp":1748131800000,"bids":[{"price":"0.51","size":"5000.00"}],"asks":[{"price":"0.52","size":"3000.00"}]}`
+		var mockedJSON string
+		mockedJSON = `{"outcome":"YES","tokenId":"112233","timestamp":1748131800000,"bids":[{"price":"0.51","size":"5000.00"}],"asks":[{"price":"0.52","size":"3000.00"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/order-book", r.URL.Path)
 			require.Equal(t, "predict_fun", r.URL.Query().Get("vendor"))

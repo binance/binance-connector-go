@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to **map[string]interface{}** |  | [optional] 
-**RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) |  | [optional] 
+**Id** | Pointer to **string** | positionId | [optional] 
+**Status** | Pointer to **int64** | Enum：completed，processing | [optional] 
+**Result** | Pointer to **map[string]interface{}** | Indicates that combined is set to true. | [optional] 
+**RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
 
 ## Methods
 

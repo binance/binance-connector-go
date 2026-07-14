@@ -1,5 +1,5 @@
 /*
-Binance VIP Loan REST API TEST
+VIP Loan REST API TEST
 
 Testing MarketDataAPIService
 
@@ -25,10 +25,14 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetBorrowInterestRate Success", func(t *testing.T) {
 
-		mockedJSON := `[{"asset":"BUSD","flexibleDailyInterestRate":"0.001503","flexibleYearlyInterestRate":"0.548595","time":1577233578000},{"asset":"BTC","flexibleDailyInterestRate":"0.001503","flexibleYearlyInterestRate":"0.548595","time":1577233562000}]`
+		var mockedJSON string
+		mockedJSON = `[{"asset":"BUSD","flexibleDailyInterestRate":"0.001503","flexibleYearlyInterestRate":"0.548595","time":1577233578000}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/request/interestRate", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "BTC", r.URL.Query().Get("loanCoin"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -45,7 +49,7 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.GetBorrowInterestRate(context.Background()).LoanCoin("loanCoin_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.GetBorrowInterestRate(context.Background()).LoanCoin("BTC").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -98,7 +102,11 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetCollateralAssetData Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"collateralCoin":"BUSD","_1stCollateralRatio":"100%","_1stCollateralRange":"1-10000000","_2ndCollateralRatio":"80%","_2ndCollateralRange":"10000000-100000000","_3rdCollateralRatio":"60%","_3rdCollateralRange":"100000000-1000000000","_4thCollateralRatio":"0%","_4thCollateralRange":">10000000000"}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"collateralCoin":"BUSD","_1stCollateralRatio":"100%","_1stCollateralRange":"1-10000000","_2ndCollateralRatio":"80%","_2ndCollateralRange":"10000000-100000000","_3rdCollateralRatio":"60%","_3rdCollateralRange":"100000000-1000000000","_4thCollateralRatio":"0%","_4thCollateralRange":">10000000000"}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/collateral/data", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -153,7 +161,11 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetLoanableAssetsData Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"loanCoin":"BUSD","_flexibleDailyInterestRate":"0.001503","_flexibleYearlyInterestRate":"0.548595","_30dDailyInterestRate":"0.000136","_30dYearlyInterestRate":"0.03450","_60dDailyInterestRate":"0.000145","_60dYearlyInterestRate":"0.04103","minLimit":"100","maxLimit":"1000000","vipLevel":1}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","_flexibleDailyInterestRate":"0.001503","_flexibleYearlyInterestRate":"0.548595","_30dDailyInterestRate":"0.000136","_30dYearlyInterestRate":"0.03450","_60dDailyInterestRate":"0.000145","_60dYearlyInterestRate":"0.04103","minLimit":"100","maxLimit":"1000000","vipLevel":1}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/loanable/data", r.URL.Path)
 			w.Header().Set("Content-Type", "application/json")
@@ -208,10 +220,14 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService GetVIPLoanInterestRateHistory Success", func(t *testing.T) {
 
-		mockedJSON := `{"rows":[{"coin":"USDT","annualizedInterestRate":"0.0647","time":1575018510000}],"total":1}`
+		var mockedJSON string
+		mockedJSON = `{"rows":[{"coin":"USDT","annualizedInterestRate":"0.0647","time":1575018510000}],"total":1}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/interestRateHistory", r.URL.Path)
-			require.Equal(t, "coin_example", r.URL.Query().Get("coin"))
+			require.Equal(t, "USDT", r.URL.Query().Get("coin"))
 			require.Equal(t, "5000", r.URL.Query().Get("recvWindow"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -229,7 +245,7 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.GetVIPLoanInterestRateHistory(context.Background()).Coin("coin_example").RecvWindow(int64(5000)).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.GetVIPLoanInterestRateHistory(context.Background()).Coin("USDT").RecvWindow(int64(5000)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -282,10 +298,14 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 
 	t.Run("Test MarketDataAPIService QueryVIPLoanFixedRateMarket Success", func(t *testing.T) {
 
-		mockedJSON := `{"total":25,"rows":[{"requestId":1234567890,"requestNo":100001,"coin":"USDT","interestRate":"0.05","duration":30,"minimumAmount":"100","availableAmount":"1000000","estimatedInterest":"4109.59"}]}`
+		var mockedJSON string
+		mockedJSON = `{"total":25,"rows":[{"requestId":1234567890,"requestNo":100001,"coin":"USDT","interestRate":"0.05","duration":30,"minimumAmount":"100","availableAmount":"1000000","estimatedInterest":"4109.59"}]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/fixed/market", r.URL.Path)
-			require.Equal(t, "loanCoin_example", r.URL.Query().Get("loanCoin"))
+			require.Equal(t, "USDT", r.URL.Query().Get("loanCoin"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -302,7 +322,7 @@ func Test_binanceviploanrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).LoanCoin("loanCoin_example").Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.QueryVIPLoanFixedRateMarket(context.Background()).LoanCoin("USDT").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

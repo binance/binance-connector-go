@@ -28,7 +28,7 @@ func QueryOrder() {
 		return
 	}
 
-	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("symbol_example").ExecuteAsync()
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.QueryOrder().Symbol("BTCUSDT").ExecuteAsync()
 	if err != nil {
 		log.Printf("Error executing QueryOrder request: %v\n", err)
 		return

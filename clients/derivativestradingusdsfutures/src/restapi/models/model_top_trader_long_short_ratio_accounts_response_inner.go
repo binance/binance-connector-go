@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading USDS Futures REST API
+Futures (USDⓈ-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading USDS Futures REST API
+Access market data, manage accounts, and trade USDⓈ-M perpetual futures.
 */
 
 package models
@@ -17,11 +17,15 @@ var _ common.MappedNullable = &TopTraderLongShortRatioAccountsResponseInner{}
 
 // TopTraderLongShortRatioAccountsResponseInner struct for TopTraderLongShortRatioAccountsResponseInner
 type TopTraderLongShortRatioAccountsResponseInner struct {
-	Symbol               *string `json:"symbol,omitempty"`
-	LongShortRatio       *string `json:"longShortRatio,omitempty"`
-	LongAccount          *string `json:"longAccount,omitempty"`
-	ShortAccount         *string `json:"shortAccount,omitempty"`
-	Timestamp            *string `json:"timestamp,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// long/short account num ratio of top traders
+	LongShortRatio *string `json:"longShortRatio,omitempty"`
+	// long account num ratio of top traders
+	LongAccount *string `json:"longAccount,omitempty"`
+	// long account num ratio of top traders
+	ShortAccount *string `json:"shortAccount,omitempty"`
+	// Timestamp in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -173,9 +177,9 @@ func (o *TopTraderLongShortRatioAccountsResponseInner) SetShortAccount(v string)
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *TopTraderLongShortRatioAccountsResponseInner) GetTimestamp() string {
+func (o *TopTraderLongShortRatioAccountsResponseInner) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Timestamp
@@ -183,7 +187,7 @@ func (o *TopTraderLongShortRatioAccountsResponseInner) GetTimestamp() string {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopTraderLongShortRatioAccountsResponseInner) GetTimestampOk() (*string, bool) {
+func (o *TopTraderLongShortRatioAccountsResponseInner) GetTimestampOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -199,8 +203,8 @@ func (o *TopTraderLongShortRatioAccountsResponseInner) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *TopTraderLongShortRatioAccountsResponseInner) SetTimestamp(v string) {
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
+func (o *TopTraderLongShortRatioAccountsResponseInner) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**DualSidePosition** | Pointer to **bool** |  | [optional] 
+**DualSidePosition** | Pointer to **bool** | \&quot;true\&quot;: Hedge Mode; \&quot;false\&quot;: One-way Mode | [optional] 
 
 ## Methods
 

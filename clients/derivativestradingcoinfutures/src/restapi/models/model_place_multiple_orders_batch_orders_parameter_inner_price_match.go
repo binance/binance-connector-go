@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading COIN Futures REST API
+Futures (COIN-M) REST API
 
-OpenAPI Specification for the Binance Derivatives Trading COIN Futures REST API
+Access market data, manage accounts, and trade COIN-M perpetual and delivery futures.
 */
 
 package models
@@ -11,12 +11,11 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch the model 'PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch'
+// PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can't be passed together with `price`
 type PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch string
 
 // List of placeMultipleOrders_batchOrders_parameter_inner_priceMatch
 const (
-	PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchNone       PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch = "NONE"
 	PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent   PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch = "OPPONENT"
 	PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent5  PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch = "OPPONENT_5"
 	PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchOpponent10 PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch = "OPPONENT_10"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch enum
 var AllowedPlaceMultipleOrdersBatchOrdersParameterInnerPriceMatchEnumValues = []PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch{
-	"NONE",
 	"OPPONENT",
 	"OPPONENT_5",
 	"OPPONENT_10",

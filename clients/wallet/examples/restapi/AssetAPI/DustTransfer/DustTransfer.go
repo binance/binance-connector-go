@@ -22,7 +22,7 @@ func DustTransfer() {
 	apiClient := client.NewBinanceWalletClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.AssetAPI.DustTransfer(context.Background()).Asset("asset_example").Execute()
+	resp, err := apiClient.RestApi.AssetAPI.DustTransfer(context.Background()).Asset("BTC").Execute()
 	if err != nil {
 		log.Println(err)
 		return

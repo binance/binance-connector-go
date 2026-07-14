@@ -1,7 +1,7 @@
 /*
-Binance Derivatives Trading Portfolio Margin REST API
+Portfolio Margin REST API
 
-OpenAPI Specification for the Binance Derivatives Trading Portfolio Margin REST API
+Access account information, manage margin positions, and trade with Binance Portfolio Margin.
 */
 
 package models
@@ -17,27 +17,47 @@ var _ common.MappedNullable = &QueryMarginAccountOrderResponse{}
 
 // QueryMarginAccountOrderResponse struct for QueryMarginAccountOrderResponse
 type QueryMarginAccountOrderResponse struct {
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	CummulativeQuoteQty     *string `json:"cummulativeQuoteQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	IcebergQty              *string `json:"icebergQty,omitempty"`
-	IsWorking               *bool   `json:"isWorking,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	StopPrice               *string `json:"stopPrice,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Time                    *int64  `json:"time,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	UpdateTime              *int64  `json:"updateTime,omitempty"`
-	AccountId               *int64  `json:"accountId,omitempty"`
+	// Client Order ID.
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// Cummulative Quote Qty.
+	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
+	// Executed Qty.
+	ExecutedQty *string `json:"executedQty,omitempty"`
+	// Iceberg Qty.
+	IcebergQty *string `json:"icebergQty,omitempty"`
+	// Is Working.
+	IsWorking *bool `json:"isWorking,omitempty"`
+	// Normal orderID after trigger if appliable, only have when the strategy is triggered
+	OrderId *int64 `json:"orderId,omitempty"`
+	// Orig Qty.
+	OrigQty *string `json:"origQty,omitempty"`
+	// Price.
+	Price *string `json:"price,omitempty"`
+	// Side.
+	Side *string `json:"side,omitempty"`
+	// Enum：completed，processing
+	Status *string `json:"status,omitempty"`
+	// please ignore when order type is TRAILING_STOP_MARKET
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Trade symbol, if existing.
+	Symbol *string `json:"symbol,omitempty"`
+	// Event time.
+	Time *int64 `json:"time,omitempty"`
+	// Time In Force.
+	TimeInForce *string `json:"timeInForce,omitempty"`
+	// Normal order type after trigger if appliable
+	Type *string `json:"type,omitempty"`
+	// last update time
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// Account ID.
+	AccountId *int64 `json:"accountId,omitempty"`
+	// self trading preventation mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	PreventedMatchId        *string `json:"preventedMatchId,omitempty"`
-	PreventedQuantity       *string `json:"preventedQuantity,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// Prevented Match ID.
+	PreventedMatchId *string `json:"preventedMatchId,omitempty"`
+	// Prevented Quantity.
+	PreventedQuantity    *string `json:"preventedQuantity,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QueryMarginAccountOrderResponse QueryMarginAccountOrderResponse

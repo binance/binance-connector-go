@@ -22,7 +22,7 @@ func CancelAllCmOpenOrders() {
 	apiClient := client.NewBinanceDerivativesTradingPortfolioMarginClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.CancelAllCmOpenOrders(context.Background()).Symbol("symbol_example").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.CancelAllCmOpenOrders(context.Background()).Symbol("BTCUSDT").Execute()
 	if err != nil {
 		log.Println(err)
 		return
