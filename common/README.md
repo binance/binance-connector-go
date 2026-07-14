@@ -2,7 +2,6 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/binance/binance-connector-go/ci.yaml)](https://github.com/binance/binance-connector-go/actions)
 [![Open Issues](https://img.shields.io/github/issues/binance/binance-connector-go/common)](https://github.com/binance/binance-connector-go/issues)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/binance/binance-connector-go/common)](https://github.com/binance/binance-connector-go/common)
 [![Known Vulnerabilities](https://img.shields.io/badge/security-scanned-brightgreen)](https://github.com/binance/binance-connector-go/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
