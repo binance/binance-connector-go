@@ -41,6 +41,7 @@ const AlgoRestApiProdUrl = "https://api.binance.com"
 
 // Alpha API URLs
 const AlphaRestApiProdUrl = "https://www.binance.com"
+const AlphaWebsocketStreamsProdUrl = "wss://nbstream.binance.com/w3w/wsa"
 
 // C2C API URLs
 const C2CRestApiProdUrl = "https://api.binance.com"
@@ -68,8 +69,8 @@ const DerivativesTradingUsdsFuturesRestApiTestnetUrl = "https://testnet.binancef
 const DerivativesTradingUsdsFuturesRestApiDemoUrl = "https://demo-fapi.binance.com"
 const DerivativesTradingUsdsFuturesWebsocketApiProdUrl = "wss://ws-fapi.binance.com/ws-fapi/v1"
 const DerivativesTradingUsdsFuturesWebsocketApiTestnetUrl = "wss://testnet.binancefuture.com/ws-fapi/v1"
-const DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl = "wss://fstream.binance.com/stream"
-const DerivativesTradingUsdsFuturesWebsocketStreamsTestnetUrl = "wss://fstream.binancefuture.com/stream"
+const DerivativesTradingUsdsFuturesWebsocketStreamsProdUrl = "wss://fstream.binance.com"
+const DerivativesTradingUsdsFuturesWebsocketStreamsTestnetUrl = "wss://fstream.binancefuture.com"
 
 // Derivatives Trading Options API URLs
 const DerivativesTradingOptionsRestApiProdUrl = "https://eapi.binance.com"
@@ -139,5 +140,5 @@ const VipLoanRestApiProdUrl = "https://api.binance.com"
 // Wallet API URLs
 const WalletRestApiProdUrl = "https://api.binance.com"
 
-// Web3 Wallet constants
+// Web3 Prediction constants
 const W3wPredictionRestApiProdUrl = "https://api.binance.com"
