@@ -6,10 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
 **CumQty** | Pointer to **string** | Cum Qty. | [optional] 
-**CumBase** | Pointer to **string** | Cum Base. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
 **OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
-**AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
@@ -91,31 +89,6 @@ SetCumQty sets CumQty field to given value.
 
 HasCumQty returns a boolean if a field has been set.
 
-### GetCumBase
-
-`func (o *NewCmOrderResponse) GetCumBase() string`
-
-GetCumBase returns the CumBase field if non-nil, zero value otherwise.
-
-### GetCumBaseOk
-
-`func (o *NewCmOrderResponse) GetCumBaseOk() (*string, bool)`
-
-GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumBase
-
-`func (o *NewCmOrderResponse) SetCumBase(v string)`
-
-SetCumBase sets CumBase field to given value.
-
-### HasCumBase
-
-`func (o *NewCmOrderResponse) HasCumBase() bool`
-
-HasCumBase returns a boolean if a field has been set.
-
 ### GetExecutedQty
 
 `func (o *NewCmOrderResponse) GetExecutedQty() string`
@@ -165,31 +138,6 @@ SetOrderId sets OrderId field to given value.
 `func (o *NewCmOrderResponse) HasOrderId() bool`
 
 HasOrderId returns a boolean if a field has been set.
-
-### GetAvgPrice
-
-`func (o *NewCmOrderResponse) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *NewCmOrderResponse) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *NewCmOrderResponse) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *NewCmOrderResponse) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
 
 ### GetOrigQty
 

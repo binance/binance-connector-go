@@ -1,5 +1,29 @@
 ### Changelog
 
+## 1.10.0 - 2026-07-15
+
+### Changed (5)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.6.0`.
+
+#### REST API
+
+- Modified response for `cancelCmOrder()` (`DELETE /papi/v1/cm/order`):
+  - property `avgPrice` deleted
+  - property `cumBase` deleted
+
+- Modified response for `newCmOrder()` (`POST /papi/v1/cm/order`):
+  - property `avgPrice` deleted
+  - property `cumBase` deleted
+
+- Modified response for `cancelUmOrder()` (`DELETE /papi/v1/um/order`):
+  - property `cumQuote` deleted
+  - property `avgPrice` deleted
+
+- Modified response for `newUmOrder()` (`POST /papi/v1/um/order`):
+  - property `cumQuote` deleted
+  - property `avgPrice` deleted
+
 ## 1.9.0 - 2026-07-14
 
 ### Changed (31)

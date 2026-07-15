@@ -6,12 +6,10 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientOrderId** | Pointer to **string** | Client Order Id. | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** | Cum Quote. Will be removed after CM migration. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
 **OrderId** | Pointer to **int64** | Order Id. | [optional] 
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 
-**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 
 **PositionSide** | Pointer to **string** | Position Side. | [optional] 
@@ -99,31 +97,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *CancelOrderResponse) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumQuote
-
-`func (o *CancelOrderResponse) GetCumQuote() string`
-
-GetCumQuote returns the CumQuote field if non-nil, zero value otherwise.
-
-### GetCumQuoteOk
-
-`func (o *CancelOrderResponse) GetCumQuoteOk() (*string, bool)`
-
-GetCumQuoteOk returns a tuple with the CumQuote field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumQuote
-
-`func (o *CancelOrderResponse) SetCumQuote(v string)`
-
-SetCumQuote sets CumQuote field to given value.
-
-### HasCumQuote
-
-`func (o *CancelOrderResponse) HasCumQuote() bool`
-
-HasCumQuote returns a boolean if a field has been set.
 
 ### GetExecutedQty
 
@@ -224,31 +197,6 @@ SetPrice sets Price field to given value.
 `func (o *CancelOrderResponse) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
-
-### GetAvgPrice
-
-`func (o *CancelOrderResponse) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *CancelOrderResponse) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *CancelOrderResponse) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *CancelOrderResponse) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
 
 ### GetReduceOnly
 

@@ -17,14 +17,10 @@ var _ common.MappedNullable = &CancelMultipleOrdersResponseInner{}
 
 // CancelMultipleOrdersResponseInner struct for CancelMultipleOrdersResponseInner
 type CancelMultipleOrdersResponseInner struct {
-	// Average execution price. Will be removed after CM migration.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Client order ID.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	// Cumulative filled quantity.
 	CumQty *string `json:"cumQty,omitempty"`
-	// Cumulative base asset amount. Will be removed after CM migration.
-	CumBase *string `json:"cumBase,omitempty"`
 	// Executed quantity
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Sub-order ID
@@ -95,38 +91,6 @@ func NewCancelMultipleOrdersResponseInnerWithDefaults() *CancelMultipleOrdersRes
 	return &this
 }
 
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *CancelMultipleOrdersResponseInner) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelMultipleOrdersResponseInner) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *CancelMultipleOrdersResponseInner) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *CancelMultipleOrdersResponseInner) SetAvgPrice(v string) {
-	o.AvgPrice = &v
-}
-
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
 func (o *CancelMultipleOrdersResponseInner) GetClientOrderId() string {
 	if o == nil || common.IsNil(o.ClientOrderId) {
@@ -189,38 +153,6 @@ func (o *CancelMultipleOrdersResponseInner) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *CancelMultipleOrdersResponseInner) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumBase returns the CumBase field value if set, zero value otherwise.
-func (o *CancelMultipleOrdersResponseInner) GetCumBase() string {
-	if o == nil || common.IsNil(o.CumBase) {
-		var ret string
-		return ret
-	}
-	return *o.CumBase
-}
-
-// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelMultipleOrdersResponseInner) GetCumBaseOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumBase) {
-		return nil, false
-	}
-	return o.CumBase, true
-}
-
-// HasCumBase returns a boolean if a field has been set.
-func (o *CancelMultipleOrdersResponseInner) HasCumBase() bool {
-	if o != nil && !common.IsNil(o.CumBase) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
-func (o *CancelMultipleOrdersResponseInner) SetCumBase(v string) {
-	o.CumBase = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -1001,17 +933,11 @@ func (o CancelMultipleOrdersResponseInner) MarshalJSON() ([]byte, error) {
 
 func (o CancelMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
-	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
-	}
-	if !common.IsNil(o.CumBase) {
-		toSerialize["cumBase"] = o.CumBase
 	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
@@ -1107,10 +1033,8 @@ func (o *CancelMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err erro
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")

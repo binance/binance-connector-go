@@ -17,14 +17,10 @@ var _ common.MappedNullable = &CancelUmOrderResponse{}
 
 // CancelUmOrderResponse struct for CancelUmOrderResponse
 type CancelUmOrderResponse struct {
-	// Avg Price.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Client Order ID.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	// Cum Qty.
 	CumQty *string `json:"cumQty,omitempty"`
-	// Cum Quote.
-	CumQuote *string `json:"cumQuote,omitempty"`
 	// Executed Qty.
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Normal orderID after trigger if appliable, only have when the strategy is triggered
@@ -75,38 +71,6 @@ func NewCancelUmOrderResponse() *CancelUmOrderResponse {
 func NewCancelUmOrderResponseWithDefaults() *CancelUmOrderResponse {
 	this := CancelUmOrderResponse{}
 	return &this
-}
-
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *CancelUmOrderResponse) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelUmOrderResponse) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *CancelUmOrderResponse) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *CancelUmOrderResponse) SetAvgPrice(v string) {
-	o.AvgPrice = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -171,38 +135,6 @@ func (o *CancelUmOrderResponse) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *CancelUmOrderResponse) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *CancelUmOrderResponse) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelUmOrderResponse) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *CancelUmOrderResponse) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *CancelUmOrderResponse) SetCumQuote(v string) {
-	o.CumQuote = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -695,17 +627,11 @@ func (o CancelUmOrderResponse) MarshalJSON() ([]byte, error) {
 
 func (o CancelUmOrderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
-	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
-	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
 	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
@@ -774,10 +700,8 @@ func (o *CancelUmOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")

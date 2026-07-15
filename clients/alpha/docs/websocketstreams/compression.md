@@ -19,7 +19,7 @@ func main() {
 
 func AggregateTradeStream() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath("wss://nbstream.binance.com/w3w/wsa/stream"),
+		common.WithWsStreamsBasePath(common.AlphaWebsocketStreamsProdUrl),
 		common.WithWsStreamsCompression(false),
 	)
 

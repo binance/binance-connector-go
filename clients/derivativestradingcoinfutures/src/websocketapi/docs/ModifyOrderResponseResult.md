@@ -10,11 +10,9 @@ Name         | Type          | Description.  | Notes
 **Status** | Pointer to **string** | Enum：completed，processing | [optional] 
 **ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
 **Price** | Pointer to **string** | Latest token price. | [optional] 
-**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **OrigQty** | Pointer to **string** | Original order quantity | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
 **CumQty** | Pointer to **string** | Cumulative filled quantity. | [optional] 
-**CumBase** | Pointer to **string** | Cumulative base asset amount. Will be removed after CM migration. | [optional] 
 **TimeInForce** | Pointer to **string** | Time in force | [optional] 
 **Type** | Pointer to **string** | Order type. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Whether the order is reduce-only. | [optional] 
@@ -196,31 +194,6 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
-### GetAvgPrice
-
-`func (o *ModifyOrderResponseResult) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *ModifyOrderResponseResult) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *ModifyOrderResponseResult) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *ModifyOrderResponseResult) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
-
 ### GetOrigQty
 
 `func (o *ModifyOrderResponseResult) GetOrigQty() string`
@@ -295,31 +268,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *ModifyOrderResponseResult) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumBase
-
-`func (o *ModifyOrderResponseResult) GetCumBase() string`
-
-GetCumBase returns the CumBase field if non-nil, zero value otherwise.
-
-### GetCumBaseOk
-
-`func (o *ModifyOrderResponseResult) GetCumBaseOk() (*string, bool)`
-
-GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumBase
-
-`func (o *ModifyOrderResponseResult) SetCumBase(v string)`
-
-SetCumBase sets CumBase field to given value.
-
-### HasCumBase
-
-`func (o *ModifyOrderResponseResult) HasCumBase() bool`
-
-HasCumBase returns a boolean if a field has been set.
 
 ### GetTimeInForce
 

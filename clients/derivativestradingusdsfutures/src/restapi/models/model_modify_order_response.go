@@ -23,12 +23,9 @@ type ModifyOrderResponse struct {
 	Status        *string `json:"status,omitempty"`
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	Price         *string `json:"price,omitempty"`
-	// Average execution price. Will be removed after CM migration.
-	AvgPrice      *string `json:"avgPrice,omitempty"`
 	OrigQty       *string `json:"origQty,omitempty"`
 	ExecutedQty   *string `json:"executedQty,omitempty"`
 	CumQty        *string `json:"cumQty,omitempty"`
-	CumBase       *string `json:"cumBase,omitempty"`
 	TimeInForce   *string `json:"timeInForce,omitempty"`
 	Type          *string `json:"type,omitempty"`
 	ReduceOnly    *bool   `json:"reduceOnly,omitempty"`
@@ -260,38 +257,6 @@ func (o *ModifyOrderResponse) SetPrice(v string) {
 	o.Price = &v
 }
 
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *ModifyOrderResponse) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyOrderResponse) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *ModifyOrderResponse) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *ModifyOrderResponse) SetAvgPrice(v string) {
-	o.AvgPrice = &v
-}
-
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
 func (o *ModifyOrderResponse) GetOrigQty() string {
 	if o == nil || common.IsNil(o.OrigQty) {
@@ -386,38 +351,6 @@ func (o *ModifyOrderResponse) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *ModifyOrderResponse) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumBase returns the CumBase field value if set, zero value otherwise.
-func (o *ModifyOrderResponse) GetCumBase() string {
-	if o == nil || common.IsNil(o.CumBase) {
-		var ret string
-		return ret
-	}
-	return *o.CumBase
-}
-
-// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyOrderResponse) GetCumBaseOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumBase) {
-		return nil, false
-	}
-	return o.CumBase, true
-}
-
-// HasCumBase returns a boolean if a field has been set.
-func (o *ModifyOrderResponse) HasCumBase() bool {
-	if o != nil && !common.IsNil(o.CumBase) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
-func (o *ModifyOrderResponse) SetCumBase(v string) {
-	o.CumBase = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -896,9 +829,6 @@ func (o ModifyOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
-	}
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
 	}
@@ -907,9 +837,6 @@ func (o ModifyOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
-	}
-	if !common.IsNil(o.CumBase) {
-		toSerialize["cumBase"] = o.CumBase
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
@@ -981,11 +908,9 @@ func (o *ModifyOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "reduceOnly")

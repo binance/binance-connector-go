@@ -17,10 +17,8 @@ var _ common.MappedNullable = &CancelOrderResponseResult{}
 
 // CancelOrderResponseResult struct for CancelOrderResponseResult
 type CancelOrderResponseResult struct {
-	ClientOrderId *string `json:"clientOrderId,omitempty"`
-	CumQty        *string `json:"cumQty,omitempty"`
-	// Cum Quote. Will be removed after CM migration.
-	CumQuote                *string `json:"cumQuote,omitempty"`
+	ClientOrderId           *string `json:"clientOrderId,omitempty"`
+	CumQty                  *string `json:"cumQty,omitempty"`
 	ExecutedQty             *string `json:"executedQty,omitempty"`
 	OrderId                 *int64  `json:"orderId,omitempty"`
 	OrigQty                 *string `json:"origQty,omitempty"`
@@ -127,38 +125,6 @@ func (o *CancelOrderResponseResult) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *CancelOrderResponseResult) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *CancelOrderResponseResult) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOrderResponseResult) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *CancelOrderResponseResult) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *CancelOrderResponseResult) SetCumQuote(v string) {
-	o.CumQuote = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -881,9 +847,6 @@ func (o CancelOrderResponseResult) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
 	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
-	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
@@ -974,7 +937,6 @@ func (o *CancelOrderResponseResult) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")

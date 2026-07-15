@@ -21,14 +21,10 @@ type PlaceMultipleOrdersResponseInner struct {
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	// Cumulative filled quantity.
 	CumQty *string `json:"cumQty,omitempty"`
-	// Cumulative base asset amount. Will be removed after CM migration.
-	CumBase *string `json:"cumBase,omitempty"`
 	// Executed quantity
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Sub-order ID
 	OrderId *int64 `json:"orderId,omitempty"`
-	// Average execution price. Will be removed after CM migration.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Original order quantity
 	OrigQty *string `json:"origQty,omitempty"`
 	// Latest token price.
@@ -159,38 +155,6 @@ func (o *PlaceMultipleOrdersResponseInner) SetCumQty(v string) {
 	o.CumQty = &v
 }
 
-// GetCumBase returns the CumBase field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersResponseInner) GetCumBase() string {
-	if o == nil || common.IsNil(o.CumBase) {
-		var ret string
-		return ret
-	}
-	return *o.CumBase
-}
-
-// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersResponseInner) GetCumBaseOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumBase) {
-		return nil, false
-	}
-	return o.CumBase, true
-}
-
-// HasCumBase returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersResponseInner) HasCumBase() bool {
-	if o != nil && !common.IsNil(o.CumBase) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
-func (o *PlaceMultipleOrdersResponseInner) SetCumBase(v string) {
-	o.CumBase = &v
-}
-
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
 func (o *PlaceMultipleOrdersResponseInner) GetExecutedQty() string {
 	if o == nil || common.IsNil(o.ExecutedQty) {
@@ -253,38 +217,6 @@ func (o *PlaceMultipleOrdersResponseInner) HasOrderId() bool {
 // SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
 func (o *PlaceMultipleOrdersResponseInner) SetOrderId(v int64) {
 	o.OrderId = &v
-}
-
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersResponseInner) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersResponseInner) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *PlaceMultipleOrdersResponseInner) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *PlaceMultipleOrdersResponseInner) SetAvgPrice(v string) {
-	o.AvgPrice = &v
 }
 
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
@@ -1007,17 +939,11 @@ func (o PlaceMultipleOrdersResponseInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
 	}
-	if !common.IsNil(o.CumBase) {
-		toSerialize["cumBase"] = o.CumBase
-	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
 	if !common.IsNil(o.OrderId) {
 		toSerialize["orderId"] = o.OrderId
-	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
 	}
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
@@ -1109,10 +1035,8 @@ func (o *PlaceMultipleOrdersResponseInner) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")

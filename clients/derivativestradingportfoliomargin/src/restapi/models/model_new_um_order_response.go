@@ -21,14 +21,10 @@ type NewUmOrderResponse struct {
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	// Cum Qty.
 	CumQty *string `json:"cumQty,omitempty"`
-	// Cum Quote.
-	CumQuote *string `json:"cumQuote,omitempty"`
 	// Executed Qty.
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Normal orderID after trigger if appliable, only have when the strategy is triggered
 	OrderId *int64 `json:"orderId,omitempty"`
-	// Avg Price.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Orig Qty.
 	OrigQty *string `json:"origQty,omitempty"`
 	// Price.
@@ -141,38 +137,6 @@ func (o *NewUmOrderResponse) SetCumQty(v string) {
 	o.CumQty = &v
 }
 
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *NewUmOrderResponse) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewUmOrderResponse) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *NewUmOrderResponse) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *NewUmOrderResponse) SetCumQuote(v string) {
-	o.CumQuote = &v
-}
-
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
 func (o *NewUmOrderResponse) GetExecutedQty() string {
 	if o == nil || common.IsNil(o.ExecutedQty) {
@@ -235,38 +199,6 @@ func (o *NewUmOrderResponse) HasOrderId() bool {
 // SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
 func (o *NewUmOrderResponse) SetOrderId(v int64) {
 	o.OrderId = &v
-}
-
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *NewUmOrderResponse) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NewUmOrderResponse) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *NewUmOrderResponse) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *NewUmOrderResponse) SetAvgPrice(v string) {
-	o.AvgPrice = &v
 }
 
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
@@ -701,17 +633,11 @@ func (o NewUmOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
 	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
-	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
 	if !common.IsNil(o.OrderId) {
 		toSerialize["orderId"] = o.OrderId
-	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
 	}
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
@@ -776,10 +702,8 @@ func (o *NewUmOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "reduceOnly")
