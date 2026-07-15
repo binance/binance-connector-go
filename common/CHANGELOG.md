@@ -1,5 +1,15 @@
 ### Changelog
 
+## 2.6.0 - 2026-07-15
+
+### Changed (1)
+
+- Updated `Alpha Websocket Streams` base url
+
+### Removed (1)
+
+- Removed `Nft` base url
+
 ## 2.5.0 - 2026-07-14
 
 ### Changed (1)

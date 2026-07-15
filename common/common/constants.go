@@ -41,7 +41,7 @@ const AlgoRestApiProdUrl = "https://api.binance.com"
 
 // Alpha API URLs
 const AlphaRestApiProdUrl = "https://www.binance.com"
-const AlphaWebsocketStreamsProdUrl = "wss://nbstream.binance.com/w3w/wsa"
+const AlphaWebsocketStreamsProdUrl = "wss://nbstream.binance.com/w3w/wsa/stream"
 
 // C2C API URLs
 const C2CRestApiProdUrl = "https://api.binance.com"
@@ -102,9 +102,6 @@ const MarginTradingRiskWebsocketStreamsProdUrl = "wss://margin-stream.binance.co
 
 // Mining API URLs
 const MiningRestApiProdUrl = "https://api.binance.com"
-
-// NFT API URLs
-const NFTRestApiProdUrl = "https://api.binance.com"
 
 // Pay API URLs
 const PayRestApiProdUrl = "https://api.binance.com"
