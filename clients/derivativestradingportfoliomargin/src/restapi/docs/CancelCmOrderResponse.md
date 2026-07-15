@@ -4,10 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
 **CumQty** | Pointer to **string** | Cum Qty. | [optional] 
-**CumBase** | Pointer to **string** | Cum Base. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
 **OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
@@ -40,31 +38,6 @@ will change when the set of required properties is changed
 NewCancelCmOrderResponseWithDefaults instantiates a new CancelCmOrderResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAvgPrice
-
-`func (o *CancelCmOrderResponse) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *CancelCmOrderResponse) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *CancelCmOrderResponse) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *CancelCmOrderResponse) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
 
 ### GetClientOrderId
 
@@ -115,31 +88,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *CancelCmOrderResponse) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumBase
-
-`func (o *CancelCmOrderResponse) GetCumBase() string`
-
-GetCumBase returns the CumBase field if non-nil, zero value otherwise.
-
-### GetCumBaseOk
-
-`func (o *CancelCmOrderResponse) GetCumBaseOk() (*string, bool)`
-
-GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumBase
-
-`func (o *CancelCmOrderResponse) SetCumBase(v string)`
-
-SetCumBase sets CumBase field to given value.
-
-### HasCumBase
-
-`func (o *CancelCmOrderResponse) HasCumBase() bool`
-
-HasCumBase returns a boolean if a field has been set.
 
 ### GetExecutedQty
 

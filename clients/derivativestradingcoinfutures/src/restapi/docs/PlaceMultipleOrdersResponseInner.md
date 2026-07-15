@@ -6,10 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
 **CumQty** | Pointer to **string** | Cumulative filled quantity. | [optional] 
-**CumBase** | Pointer to **string** | Cumulative base asset amount. Will be removed after CM migration. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
 **OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
-**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **OrigQty** | Pointer to **string** | Original order quantity | [optional] 
 **Price** | Pointer to **string** | Latest token price. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Whether the order is reduce-only. | [optional] 
@@ -102,31 +100,6 @@ SetCumQty sets CumQty field to given value.
 
 HasCumQty returns a boolean if a field has been set.
 
-### GetCumBase
-
-`func (o *PlaceMultipleOrdersResponseInner) GetCumBase() string`
-
-GetCumBase returns the CumBase field if non-nil, zero value otherwise.
-
-### GetCumBaseOk
-
-`func (o *PlaceMultipleOrdersResponseInner) GetCumBaseOk() (*string, bool)`
-
-GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumBase
-
-`func (o *PlaceMultipleOrdersResponseInner) SetCumBase(v string)`
-
-SetCumBase sets CumBase field to given value.
-
-### HasCumBase
-
-`func (o *PlaceMultipleOrdersResponseInner) HasCumBase() bool`
-
-HasCumBase returns a boolean if a field has been set.
-
 ### GetExecutedQty
 
 `func (o *PlaceMultipleOrdersResponseInner) GetExecutedQty() string`
@@ -176,31 +149,6 @@ SetOrderId sets OrderId field to given value.
 `func (o *PlaceMultipleOrdersResponseInner) HasOrderId() bool`
 
 HasOrderId returns a boolean if a field has been set.
-
-### GetAvgPrice
-
-`func (o *PlaceMultipleOrdersResponseInner) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *PlaceMultipleOrdersResponseInner) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *PlaceMultipleOrdersResponseInner) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *PlaceMultipleOrdersResponseInner) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
 
 ### GetOrigQty
 

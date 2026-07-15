@@ -6,7 +6,6 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** | Cum Quote. Will be removed after CM migration. | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
@@ -98,31 +97,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *CancelOrderResponseResult) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumQuote
-
-`func (o *CancelOrderResponseResult) GetCumQuote() string`
-
-GetCumQuote returns the CumQuote field if non-nil, zero value otherwise.
-
-### GetCumQuoteOk
-
-`func (o *CancelOrderResponseResult) GetCumQuoteOk() (*string, bool)`
-
-GetCumQuoteOk returns a tuple with the CumQuote field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumQuote
-
-`func (o *CancelOrderResponseResult) SetCumQuote(v string)`
-
-SetCumQuote sets CumQuote field to given value.
-
-### HasCumQuote
-
-`func (o *CancelOrderResponseResult) HasCumQuote() bool`
-
-HasCumQuote returns a boolean if a field has been set.
 
 ### GetExecutedQty
 

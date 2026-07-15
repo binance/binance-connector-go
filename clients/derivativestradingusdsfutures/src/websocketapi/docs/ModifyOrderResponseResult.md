@@ -9,11 +9,9 @@ Name         | Type          | Description.  | Notes
 **Status** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
 **CumQty** | Pointer to **string** |  | [optional] 
-**CumQuote** | Pointer to **string** | Cum Quote. Will be removed after CM migration. | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
@@ -173,31 +171,6 @@ SetPrice sets Price field to given value.
 
 HasPrice returns a boolean if a field has been set.
 
-### GetAvgPrice
-
-`func (o *ModifyOrderResponseResult) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *ModifyOrderResponseResult) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *ModifyOrderResponseResult) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *ModifyOrderResponseResult) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
-
 ### GetOrigQty
 
 `func (o *ModifyOrderResponseResult) GetOrigQty() string`
@@ -272,31 +245,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *ModifyOrderResponseResult) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumQuote
-
-`func (o *ModifyOrderResponseResult) GetCumQuote() string`
-
-GetCumQuote returns the CumQuote field if non-nil, zero value otherwise.
-
-### GetCumQuoteOk
-
-`func (o *ModifyOrderResponseResult) GetCumQuoteOk() (*string, bool)`
-
-GetCumQuoteOk returns a tuple with the CumQuote field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumQuote
-
-`func (o *ModifyOrderResponseResult) SetCumQuote(v string)`
-
-SetCumQuote sets CumQuote field to given value.
-
-### HasCumQuote
-
-`func (o *ModifyOrderResponseResult) HasCumQuote() bool`
-
-HasCumQuote returns a boolean if a field has been set.
 
 ### GetTimeInForce
 

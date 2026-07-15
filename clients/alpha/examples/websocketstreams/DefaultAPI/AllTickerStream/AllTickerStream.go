@@ -16,7 +16,7 @@ func main() {
 
 func AllTickerStream() {
 	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsStreamsBasePath("wss://nbstream.binance.com/w3w/wsa/stream"),
+		common.WithWsStreamsBasePath(common.AlphaWebsocketStreamsProdUrl),
 	)
 
 	wsClient := client.NewBinanceAlphaClient(

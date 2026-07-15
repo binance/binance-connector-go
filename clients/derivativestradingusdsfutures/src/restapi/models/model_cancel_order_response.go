@@ -20,8 +20,6 @@ type CancelOrderResponse struct {
 	// Client Order Id.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	CumQty        *string `json:"cumQty,omitempty"`
-	// Cum Quote. Will be removed after CM migration.
-	CumQuote *string `json:"cumQuote,omitempty"`
 	// Executed Qty.
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Order Id.
@@ -30,8 +28,6 @@ type CancelOrderResponse struct {
 	OrigQty *string `json:"origQty,omitempty"`
 	// Price.
 	Price *string `json:"price,omitempty"`
-	// Average execution price. Will be removed after CM migration.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Reduce Only.
 	ReduceOnly *bool `json:"reduceOnly,omitempty"`
 	// Side.
@@ -152,38 +148,6 @@ func (o *CancelOrderResponse) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *CancelOrderResponse) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *CancelOrderResponse) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOrderResponse) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *CancelOrderResponse) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *CancelOrderResponse) SetCumQuote(v string) {
-	o.CumQuote = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -312,38 +276,6 @@ func (o *CancelOrderResponse) HasPrice() bool {
 // SetPrice gets a reference to the given string and assigns it to the Price field.
 func (o *CancelOrderResponse) SetPrice(v string) {
 	o.Price = &v
-}
-
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *CancelOrderResponse) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CancelOrderResponse) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *CancelOrderResponse) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *CancelOrderResponse) SetAvgPrice(v string) {
-	o.AvgPrice = &v
 }
 
 // GetReduceOnly returns the ReduceOnly field value if set, zero value otherwise.
@@ -938,9 +870,6 @@ func (o CancelOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
 	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
-	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
@@ -952,9 +881,6 @@ func (o CancelOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
-	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
 	}
 	if !common.IsNil(o.ReduceOnly) {
 		toSerialize["reduceOnly"] = o.ReduceOnly
@@ -1034,12 +960,10 @@ func (o *CancelOrderResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "reduceOnly")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "positionSide")

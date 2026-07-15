@@ -1,5 +1,57 @@
 ### Changelog
 
+## 1.11.0 - 2026-07-15
+
+### Changed (10)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.6.0`.
+
+#### REST API
+
+- Modified response for `cancelMultipleOrders()` (`DELETE /dapi/v1/batchOrders`):
+  - items: property `avgPrice` deleted
+  - items: property `cumBase` deleted
+  - items: item property `avgPrice` deleted
+  - items: item property `cumBase` deleted
+
+- Modified response for `placeMultipleOrders()` (`POST /dapi/v1/batchOrders`):
+  - items: property `cumBase` deleted
+  - items: property `avgPrice` deleted
+  - items: item property `cumBase` deleted
+  - items: item property `avgPrice` deleted
+
+- Modified response for `modifyMultipleOrders()` (`PUT /dapi/v1/batchOrders`):
+  - items: property `avgPrice` deleted
+  - items: property `cumBase` deleted
+  - items: item property `avgPrice` deleted
+  - items: item property `cumBase` deleted
+
+- Modified response for `cancelOrder()` (`DELETE /dapi/v1/order`):
+  - property `avgPrice` deleted
+  - property `cumBase` deleted
+
+- Modified response for `newOrder()` (`POST /dapi/v1/order`):
+  - property `cumBase` deleted
+  - property `avgPrice` deleted
+
+- Modified response for `modifyOrder()` (`PUT /dapi/v1/order`):
+  - property `avgPrice` deleted
+  - property `cumBase` deleted
+
+#### WebSocket API
+
+- Modified response for `cancelOrder()` (`order.cancel` method):
+  - `result`: property `cumBase` deleted
+  - `result`: property `avgPrice` deleted
+
+- Modified response for `modifyOrder()` (`order.modify` method):
+  - `result`: property `avgPrice` deleted
+  - `result`: property `cumBase` deleted
+
+- Modified response for `newOrder()` (`order.place` method):
+  - `result`: property `avgPrice` deleted
+  - `result`: property `cumBase` deleted
+
 ## 1.10.0 - 2026-07-14
 
 ### Added (1)

@@ -17,18 +17,14 @@ var _ common.MappedNullable = &ModifyOrderResponseResult{}
 
 // ModifyOrderResponseResult struct for ModifyOrderResponseResult
 type ModifyOrderResponseResult struct {
-	OrderId       *int64  `json:"orderId,omitempty"`
-	Symbol        *string `json:"symbol,omitempty"`
-	Status        *string `json:"status,omitempty"`
-	ClientOrderId *string `json:"clientOrderId,omitempty"`
-	Price         *string `json:"price,omitempty"`
-	// Average execution price. Will be removed after CM migration.
-	AvgPrice    *string `json:"avgPrice,omitempty"`
-	OrigQty     *string `json:"origQty,omitempty"`
-	ExecutedQty *string `json:"executedQty,omitempty"`
-	CumQty      *string `json:"cumQty,omitempty"`
-	// Cum Quote. Will be removed after CM migration.
-	CumQuote                *string `json:"cumQuote,omitempty"`
+	OrderId                 *int64  `json:"orderId,omitempty"`
+	Symbol                  *string `json:"symbol,omitempty"`
+	Status                  *string `json:"status,omitempty"`
+	ClientOrderId           *string `json:"clientOrderId,omitempty"`
+	Price                   *string `json:"price,omitempty"`
+	OrigQty                 *string `json:"origQty,omitempty"`
+	ExecutedQty             *string `json:"executedQty,omitempty"`
+	CumQty                  *string `json:"cumQty,omitempty"`
 	TimeInForce             *string `json:"timeInForce,omitempty"`
 	Type                    *string `json:"type,omitempty"`
 	ReduceOnly              *bool   `json:"reduceOnly,omitempty"`
@@ -225,38 +221,6 @@ func (o *ModifyOrderResponseResult) SetPrice(v string) {
 	o.Price = &v
 }
 
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *ModifyOrderResponseResult) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyOrderResponseResult) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *ModifyOrderResponseResult) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *ModifyOrderResponseResult) SetAvgPrice(v string) {
-	o.AvgPrice = &v
-}
-
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
 func (o *ModifyOrderResponseResult) GetOrigQty() string {
 	if o == nil || common.IsNil(o.OrigQty) {
@@ -351,38 +315,6 @@ func (o *ModifyOrderResponseResult) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *ModifyOrderResponseResult) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *ModifyOrderResponseResult) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyOrderResponseResult) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *ModifyOrderResponseResult) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *ModifyOrderResponseResult) SetCumQuote(v string) {
-	o.CumQuote = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -858,9 +790,6 @@ func (o ModifyOrderResponseResult) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
-	}
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
 	}
@@ -869,9 +798,6 @@ func (o ModifyOrderResponseResult) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
-	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
@@ -942,11 +868,9 @@ func (o *ModifyOrderResponseResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "reduceOnly")

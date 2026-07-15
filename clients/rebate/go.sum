@@ -1,7 +1,7 @@
 github.com/andybalholm/brotli v1.2.2 h1:HzTuoo2ErYQqf5qvcJInB8uvqSVxRttzkFexPWtnceM=
 github.com/andybalholm/brotli v1.2.2/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUSvPlQ1pLaKY=
-github.com/binance/binance-connector-go/common/v2 v2.5.0 h1:m+7I3XjSTyjp+oV/88NMc+KGWCUWUDycqdOFjwLGgK8=
-github.com/binance/binance-connector-go/common/v2 v2.5.0/go.mod h1:1tdBpcb6c5uzyy2B86DKKwwbSbAXCPTMbA/Ptqb5rIY=
+github.com/binance/binance-connector-go/common/v2 v2.6.0 h1:dZpvC53FhlVupfDUMpDGhaIg1+nCbNDFmNrZEa7aIJQ=
+github.com/binance/binance-connector-go/common/v2 v2.6.0/go.mod h1:1tdBpcb6c5uzyy2B86DKKwwbSbAXCPTMbA/Ptqb5rIY=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=

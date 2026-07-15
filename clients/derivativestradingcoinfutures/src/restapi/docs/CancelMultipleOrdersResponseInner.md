@@ -4,10 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**AvgPrice** | Pointer to **string** | Average execution price. Will be removed after CM migration. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
 **CumQty** | Pointer to **string** | Cumulative filled quantity. | [optional] 
-**CumBase** | Pointer to **string** | Cumulative base asset amount. Will be removed after CM migration. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
 **OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
 **OrigQty** | Pointer to **string** | Original order quantity | [optional] 
@@ -51,31 +49,6 @@ will change when the set of required properties is changed
 NewCancelMultipleOrdersResponseInnerWithDefaults instantiates a new CancelMultipleOrdersResponseInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAvgPrice
-
-`func (o *CancelMultipleOrdersResponseInner) GetAvgPrice() string`
-
-GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
-
-### GetAvgPriceOk
-
-`func (o *CancelMultipleOrdersResponseInner) GetAvgPriceOk() (*string, bool)`
-
-GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvgPrice
-
-`func (o *CancelMultipleOrdersResponseInner) SetAvgPrice(v string)`
-
-SetAvgPrice sets AvgPrice field to given value.
-
-### HasAvgPrice
-
-`func (o *CancelMultipleOrdersResponseInner) HasAvgPrice() bool`
-
-HasAvgPrice returns a boolean if a field has been set.
 
 ### GetClientOrderId
 
@@ -126,31 +99,6 @@ SetCumQty sets CumQty field to given value.
 `func (o *CancelMultipleOrdersResponseInner) HasCumQty() bool`
 
 HasCumQty returns a boolean if a field has been set.
-
-### GetCumBase
-
-`func (o *CancelMultipleOrdersResponseInner) GetCumBase() string`
-
-GetCumBase returns the CumBase field if non-nil, zero value otherwise.
-
-### GetCumBaseOk
-
-`func (o *CancelMultipleOrdersResponseInner) GetCumBaseOk() (*string, bool)`
-
-GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumBase
-
-`func (o *CancelMultipleOrdersResponseInner) SetCumBase(v string)`
-
-SetCumBase sets CumBase field to given value.
-
-### HasCumBase
-
-`func (o *CancelMultipleOrdersResponseInner) HasCumBase() bool`
-
-HasCumBase returns a boolean if a field has been set.
 
 ### GetExecutedQty
 
