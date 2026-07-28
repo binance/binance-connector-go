@@ -8,6 +8,7 @@ Name         | Type          | Description.  | Notes
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **Status** | Pointer to **string** | Enum：completed，processing | [optional] 
 **ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
+**ModifyId** | Pointer to **int64** | user-defined modification identifier, only returned if provided in the request | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 
 **AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
@@ -143,6 +144,31 @@ SetClientOrderId sets ClientOrderId field to given value.
 `func (o *ModifyUmOrderResponse) HasClientOrderId() bool`
 
 HasClientOrderId returns a boolean if a field has been set.
+
+### GetModifyId
+
+`func (o *ModifyUmOrderResponse) GetModifyId() int64`
+
+GetModifyId returns the ModifyId field if non-nil, zero value otherwise.
+
+### GetModifyIdOk
+
+`func (o *ModifyUmOrderResponse) GetModifyIdOk() (*int64, bool)`
+
+GetModifyIdOk returns a tuple with the ModifyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifyId
+
+`func (o *ModifyUmOrderResponse) SetModifyId(v int64)`
+
+SetModifyId sets ModifyId field to given value.
+
+### HasModifyId
+
+`func (o *ModifyUmOrderResponse) HasModifyId() bool`
+
+HasModifyId returns a boolean if a field has been set.
 
 ### GetPrice
 

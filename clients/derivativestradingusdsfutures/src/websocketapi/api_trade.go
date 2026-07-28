@@ -234,6 +234,7 @@ type ApiModifyOrderRequest struct {
 	orderId           *int64
 	origClientOrderId *string
 	priceMatch        *models.ModifyOrderPriceMatchParameter
+	modifyId          *int64
 	recvWindow        *int64
 }
 
@@ -285,6 +286,12 @@ func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatc
 	return r
 }
 
+// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+func (r ApiModifyOrderRequest) ModifyId(modifyId int64) ApiModifyOrderRequest {
+	r.modifyId = &modifyId
+	return r
+}
+
 // Recv Window.
 func (r ApiModifyOrderRequest) RecvWindow(recvWindow int64) ApiModifyOrderRequest {
 	r.recvWindow = &recvWindow
@@ -315,7 +322,7 @@ ModifyOrder Modify Order (TRADE)
 
 https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/ws-api/trade#modify-order
 
-@param symbol Symbol.	@param side `SELL`, `BUY`	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price Price.	@param id Id.	@param orderId Order Id.	@param origClientOrderId Orig Client Order Id.	@param priceMatch only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can't be passed together with price	@param recvWindow Recv Window.
+@param symbol Symbol.	@param side `SELL`, `BUY`	@param quantity Order quantity, cannot be sent with `closePosition=true`	@param price Price.	@param id Id.	@param orderId Order Id.	@param origClientOrderId Orig Client Order Id.	@param priceMatch only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can't be passed together with price	@param modifyId User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.	@param recvWindow Recv Window.
 @return ApiModifyOrderRequest
 */
 func (a *TradeAPIService) ModifyOrder() ApiModifyOrderRequest {
@@ -361,6 +368,9 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (chan *com
 	}
 	if r.priceMatch != nil {
 		localVarQueryParams["priceMatch"] = *r.priceMatch
+	}
+	if r.modifyId != nil {
+		localVarQueryParams["modifyId"] = *r.modifyId
 	}
 	if r.recvWindow != nil {
 		localVarQueryParams["recvWindow"] = *r.recvWindow

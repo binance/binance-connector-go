@@ -27,6 +27,8 @@ type ModifyMultipleOrdersBatchOrdersParameterInner struct {
 	PriceMatch *ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch `json:"priceMatch,omitempty"`
 	// stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need
 	StopPrice *float32 `json:"stopPrice,omitempty"`
+	// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+	ModifyId *int64 `json:"modifyId,omitempty"`
 	// Validity window in milliseconds.
 	RecvWindow *int64 `json:"recvWindow,omitempty"`
 	// Unix timestamp in milliseconds.
@@ -317,6 +319,38 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float32) 
 	o.StopPrice = &v
 }
 
+// GetModifyId returns the ModifyId field value if set, zero value otherwise.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyId() int64 {
+	if o == nil || common.IsNil(o.ModifyId) {
+		var ret int64
+		return ret
+	}
+	return *o.ModifyId
+}
+
+// GetModifyIdOk returns a tuple with the ModifyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.ModifyId) {
+		return nil, false
+	}
+	return o.ModifyId, true
+}
+
+// HasModifyId returns a boolean if a field has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasModifyId() bool {
+	if o != nil && !common.IsNil(o.ModifyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetModifyId gets a reference to the given int64 and assigns it to the ModifyId field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetModifyId(v int64) {
+	o.ModifyId = &v
+}
+
 // GetRecvWindow returns the RecvWindow field value if set, zero value otherwise.
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() int64 {
 	if o == nil || common.IsNil(o.RecvWindow) {
@@ -415,6 +449,9 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.StopPrice) {
 		toSerialize["stopPrice"] = o.StopPrice
 	}
+	if !common.IsNil(o.ModifyId) {
+		toSerialize["modifyId"] = o.ModifyId
+	}
 	if !common.IsNil(o.RecvWindow) {
 		toSerialize["recvWindow"] = o.RecvWindow
 	}
@@ -451,6 +488,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "priceMatch")
 		delete(additionalProperties, "stopPrice")
+		delete(additionalProperties, "modifyId")
 		delete(additionalProperties, "recvWindow")
 		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties

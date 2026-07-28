@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to [**QueryCmModifyOrderHistoryResponseInnerAmendmentPrice**](QueryCmModifyOrderHistoryResponseInnerAmendmentPrice.md) |  | [optional] 
 **OrigQty** | Pointer to [**QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty**](QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty.md) |  | [optional] 
 **Count** | Pointer to **int64** | Order modification count, representing the number of times the order has been modified | [optional] 
+**ModifyId** | Pointer to **int64** | user-defined modification identifier, only returned if provided in the request | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetCount sets Count field to given value.
 `func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) HasCount() bool`
 
 HasCount returns a boolean if a field has been set.
+
+### GetModifyId
+
+`func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) GetModifyId() int64`
+
+GetModifyId returns the ModifyId field if non-nil, zero value otherwise.
+
+### GetModifyIdOk
+
+`func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) GetModifyIdOk() (*int64, bool)`
+
+GetModifyIdOk returns a tuple with the ModifyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifyId
+
+`func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) SetModifyId(v int64)`
+
+SetModifyId sets ModifyId field to given value.
+
+### HasModifyId
+
+`func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) HasModifyId() bool`
+
+HasModifyId returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

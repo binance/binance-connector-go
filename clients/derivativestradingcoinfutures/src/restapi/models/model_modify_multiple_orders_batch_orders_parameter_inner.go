@@ -28,8 +28,10 @@ type ModifyMultipleOrdersBatchOrdersParameterInner struct {
 	// Order quantity, cannot be sent with closePosition=true. **After CM migration, this parameter becomes mandatory** (each batch element must send both `price` and `quantity`).
 	Quantity *float32 `json:"quantity,omitempty"`
 	// Latest token price. **After CM migration, this parameter becomes mandatory** (each batch element must send both `price` and `quantity`).
-	Price      *float32 `json:"price,omitempty"`
-	RecvWindow *int64   `json:"recvWindow,omitempty"`
+	Price *float32 `json:"price,omitempty"`
+	// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+	ModifyId   *int64 `json:"modifyId,omitempty"`
+	RecvWindow *int64 `json:"recvWindow,omitempty"`
 	// Unix timestamp in milliseconds used to sign the request. The value must reflect the current client time and is validated by the server for signed endpoints.
 	Timestamp            int64 `json:"timestamp"`
 	AdditionalProperties map[string]interface{}
@@ -233,6 +235,38 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
 	o.Price = &v
 }
 
+// GetModifyId returns the ModifyId field value if set, zero value otherwise.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyId() int64 {
+	if o == nil || common.IsNil(o.ModifyId) {
+		var ret int64
+		return ret
+	}
+	return *o.ModifyId
+}
+
+// GetModifyIdOk returns a tuple with the ModifyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.ModifyId) {
+		return nil, false
+	}
+	return o.ModifyId, true
+}
+
+// HasModifyId returns a boolean if a field has been set.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasModifyId() bool {
+	if o != nil && !common.IsNil(o.ModifyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetModifyId gets a reference to the given int64 and assigns it to the ModifyId field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetModifyId(v int64) {
+	o.ModifyId = &v
+}
+
 // GetRecvWindow returns the RecvWindow field value if set, zero value otherwise.
 func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetRecvWindow() int64 {
 	if o == nil || common.IsNil(o.RecvWindow) {
@@ -313,6 +347,9 @@ func (o ModifyMultipleOrdersBatchOrdersParameterInner) ToMap() (map[string]inter
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
+	if !common.IsNil(o.ModifyId) {
+		toSerialize["modifyId"] = o.ModifyId
+	}
 	if !common.IsNil(o.RecvWindow) {
 		toSerialize["recvWindow"] = o.RecvWindow
 	}
@@ -368,6 +405,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) UnmarshalJSON(data []byt
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "quantity")
 		delete(additionalProperties, "price")
+		delete(additionalProperties, "modifyId")
 		delete(additionalProperties, "recvWindow")
 		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties

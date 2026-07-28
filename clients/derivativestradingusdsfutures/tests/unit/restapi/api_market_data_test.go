@@ -556,7 +556,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 	t.Run("Test MarketDataAPIService GetFundingRateHistory Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"symbol":"BTCUSDT","fundingRate":"-0.03750000","fundingTime":1570608000000,"markPrice":"34287.54619963"}]`
+		mockedJSON = `[{"symbol":"BTCUSDT","fundingRate":"-0.03750000","fundingTime":1570608000000,"markPrice":"34287.54619963","rateType":"Regular"}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

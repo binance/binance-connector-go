@@ -41,6 +41,8 @@ type OrderTradeUpdateO struct {
 	X *string `json:"X,omitempty"`
 	// Order Id
 	Smalli *int64 `json:"i,omitempty"`
+	// modifyId, only pushed for AMENDMENT (order modification) events when a modifyId was provided in the request
+	M *string `json:"M,omitempty"`
 	// Order Last Filled Quantity
 	Smalll *string `json:"l,omitempty"`
 	// Order Filled Accumulated Quantity
@@ -479,6 +481,38 @@ func (o *OrderTradeUpdateO) HasSmalli() bool {
 // SetI gets a reference to the given int64 and assigns it to the I field.
 func (o *OrderTradeUpdateO) SetSmalli(v int64) {
 	o.Smalli = &v
+}
+
+// GetM returns the M field value if set, zero value otherwise.
+func (o *OrderTradeUpdateO) GetM() string {
+	if o == nil || common.IsNil(o.M) {
+		var ret string
+		return ret
+	}
+	return *o.M
+}
+
+// GetMOk returns a tuple with the M field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrderTradeUpdateO) GetMOk() (*string, bool) {
+	if o == nil || common.IsNil(o.M) {
+		return nil, false
+	}
+	return o.M, true
+}
+
+// HasM returns a boolean if a field has been set.
+func (o *OrderTradeUpdateO) HasM() bool {
+	if o != nil && !common.IsNil(o.M) {
+		return true
+	}
+
+	return false
+}
+
+// SetM gets a reference to the given string and assigns it to the M field.
+func (o *OrderTradeUpdateO) SetM(v string) {
+	o.M = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
@@ -1071,6 +1105,9 @@ func (o OrderTradeUpdateO) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smalli) {
 		toSerialize["i"] = o.Smalli
 	}
+	if !common.IsNil(o.M) {
+		toSerialize["M"] = o.M
+	}
 	if !common.IsNil(o.Smalll) {
 		toSerialize["l"] = o.Smalll
 	}
@@ -1156,6 +1193,7 @@ func (o *OrderTradeUpdateO) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "x")
 		delete(additionalProperties, "X")
 		delete(additionalProperties, "i")
+		delete(additionalProperties, "M")
 		delete(additionalProperties, "l")
 		delete(additionalProperties, "z")
 		delete(additionalProperties, "L")

@@ -1424,6 +1424,7 @@ type ApiModifyOrderRequest struct {
 	quantity          *float32
 	price             *float32
 	priceMatch        *models.ModifyOrderPriceMatchParameter
+	modifyId          *int64
 	recvWindow        *int64
 }
 
@@ -1468,6 +1469,12 @@ func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatc
 	return r
 }
 
+// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+func (r ApiModifyOrderRequest) ModifyId(modifyId int64) ApiModifyOrderRequest {
+	r.modifyId = &modifyId
+	return r
+}
+
 func (r ApiModifyOrderRequest) RecvWindow(recvWindow int64) ApiModifyOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1491,6 +1498,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param quantity -  Order quantity, cannot be sent with `closePosition=true`. **After CM migration, this parameter becomes mandatory** (must be sent together with `price`).
 @param price -  Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with `quantity`).
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
+@param modifyId -  User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
 @param recvWindow -
 @return ApiModifyOrderRequest
 */
@@ -1535,6 +1543,9 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 	}
 	if r.priceMatch != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceMatch", r.priceMatch, "form", "")
+	}
+	if r.modifyId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "modifyId", r.modifyId, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

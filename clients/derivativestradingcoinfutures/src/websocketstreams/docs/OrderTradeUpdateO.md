@@ -16,6 +16,7 @@ Name         | Type          | Description.  | Notes
 **X** | Pointer to **string** | Execution Type | [optional] 
 **X** | Pointer to **string** | Order Status | [optional] 
 **I** | Pointer to **int64** | Order Id | [optional] 
+**M** | Pointer to **string** | modifyId, only pushed for AMENDMENT (order modification) events when a modifyId was provided in the request | [optional] 
 **L** | Pointer to **string** | Order Last Filled Quantity | [optional] 
 **Z** | Pointer to **string** | Order Filled Accumulated Quantity | [optional] 
 **L** | Pointer to **string** | Last Filled Price | [optional] 
@@ -358,6 +359,31 @@ SetI sets I field to given value.
 `func (o *OrderTradeUpdateO) HasI() bool`
 
 HasI returns a boolean if a field has been set.
+
+### GetM
+
+`func (o *OrderTradeUpdateO) GetM() string`
+
+GetM returns the M field if non-nil, zero value otherwise.
+
+### GetMOk
+
+`func (o *OrderTradeUpdateO) GetMOk() (*string, bool)`
+
+GetMOk returns a tuple with the M field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetM
+
+`func (o *OrderTradeUpdateO) SetM(v string)`
+
+SetM sets M field to given value.
+
+### HasM
+
+`func (o *OrderTradeUpdateO) HasM() bool`
+
+HasM returns a boolean if a field has been set.
 
 ### GetL
 
