@@ -9,6 +9,7 @@ Name         | Type          | Description.  | Notes
 **Pair** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
+**ModifyId** | Pointer to **int64** | user-defined modification identifier, only returned if provided in the request | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
@@ -171,6 +172,31 @@ SetClientOrderId sets ClientOrderId field to given value.
 `func (o *ModifyOrderResponse) HasClientOrderId() bool`
 
 HasClientOrderId returns a boolean if a field has been set.
+
+### GetModifyId
+
+`func (o *ModifyOrderResponse) GetModifyId() int64`
+
+GetModifyId returns the ModifyId field if non-nil, zero value otherwise.
+
+### GetModifyIdOk
+
+`func (o *ModifyOrderResponse) GetModifyIdOk() (*int64, bool)`
+
+GetModifyIdOk returns a tuple with the ModifyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifyId
+
+`func (o *ModifyOrderResponse) SetModifyId(v int64)`
+
+SetModifyId sets ModifyId field to given value.
+
+### HasModifyId
+
+`func (o *ModifyOrderResponse) HasModifyId() bool`
+
+HasModifyId returns a boolean if a field has been set.
 
 ### GetPrice
 

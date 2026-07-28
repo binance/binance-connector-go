@@ -365,7 +365,7 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_TradeAPIService(t *te
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328971409,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"xGHfltUMExx0TbQstQQfRX","price":"43769.10","origQty":"0.110","executedQty":"0.000","cumQty":"0.000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"SHORT","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"NONE","goodTillDate":0,"updateTime":1703426756190},"rateLimits":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":300,"count":1}]}`
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328971409,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"xGHfltUMExx0TbQstQQfRX","modifyId":1,"price":"43769.10","origQty":"0.110","executedQty":"0.000","cumQty":"0.000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"SHORT","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"NONE","goodTillDate":0,"updateTime":1703426756190},"rateLimits":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":300,"count":1}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -422,7 +422,7 @@ func Test_binancederivativestradingusdsfutureswebsocketapi_TradeAPIService(t *te
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328971409,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"xGHfltUMExx0TbQstQQfRX","price":"43769.10","origQty":"0.110","executedQty":"0.000","cumQty":"0.000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"SHORT","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"NONE","goodTillDate":0,"updateTime":1703426756190},"rateLimits":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":300,"count":1}]}`
+		mockedJSON := `{"id":"123","status":200,"result":{"orderId":328971409,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"xGHfltUMExx0TbQstQQfRX","modifyId":1,"price":"43769.10","origQty":"0.110","executedQty":"0.000","cumQty":"0.000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"SHORT","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"NONE","goodTillDate":0,"updateTime":1703426756190},"rateLimits":[{"rateLimitType":"ORDERS","interval":"SECOND","intervalNum":10,"limit":300,"count":1}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)

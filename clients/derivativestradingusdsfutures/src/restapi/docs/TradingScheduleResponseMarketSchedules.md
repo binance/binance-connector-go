@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesEQUITY**](TradingScheduleResponseMarketSchedulesEQUITY.md) |  | [optional] 
 **COMMODITY** | Pointer to [**TradingScheduleResponseMarketSchedulesCOMMODITY**](TradingScheduleResponseMarketSchedulesCOMMODITY.md) |  | [optional] 
 **KR_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesKREQUITY**](TradingScheduleResponseMarketSchedulesKREQUITY.md) |  | [optional] 
+**HK_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetKR_EQUITY sets KR_EQUITY field to given value.
 `func (o *TradingScheduleResponseMarketSchedules) HasKR_EQUITY() bool`
 
 HasKR_EQUITY returns a boolean if a field has been set.
+
+### GetHK_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) GetHK_EQUITY() TradingScheduleResponseMarketSchedulesHKEQUITY`
+
+GetHK_EQUITY returns the HK_EQUITY field if non-nil, zero value otherwise.
+
+### GetHK_EQUITYOk
+
+`func (o *TradingScheduleResponseMarketSchedules) GetHK_EQUITYOk() (*TradingScheduleResponseMarketSchedulesHKEQUITY, bool)`
+
+GetHK_EQUITYOk returns a tuple with the HK_EQUITY field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHK_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) SetHK_EQUITY(v TradingScheduleResponseMarketSchedulesHKEQUITY)`
+
+SetHK_EQUITY sets HK_EQUITY field to given value.
+
+### HasHK_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) HasHK_EQUITY() bool`
+
+HasHK_EQUITY returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -1,5 +1,29 @@
 ### Changelog
 
+## 1.11.0 - 2026-07-28
+
+### Changed (5)
+
+#### REST API
+
+- Added parameter `modifyId`
+  - affected methods:
+    - `modifyCmOrder()` (`PUT /papi/v1/cm/order`)
+    - `modifyUmOrder()` (`PUT /papi/v1/um/order`)
+- Modified response for `modifyCmOrder()` (`PUT /papi/v1/cm/order`):
+  - property `modifyId` added
+
+- Modified response for `queryCmModifyOrderHistory()` (`GET /papi/v1/cm/orderAmendment`):
+  - items.`amendment`: property `modifyId` added
+  - items.`amendment`: property `modifyId` added
+
+- Modified response for `modifyUmOrder()` (`PUT /papi/v1/um/order`):
+  - property `modifyId` added
+
+- Modified response for `queryUmModifyOrderHistory()` (`GET /papi/v1/um/orderAmendment`):
+  - items.`amendment`: property `modifyId` added
+  - items.`amendment`: property `modifyId` added
+
 ## 1.10.0 - 2026-07-15
 
 ### Changed (5)

@@ -1430,7 +1430,7 @@ No authorization required
 
 ## ModifyOrder
 
-> ModifyOrderResponse ModifyOrder(ctx).Symbol(symbol).Side(side).Quantity(quantity).Price(price).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).RecvWindow(recvWindow).Execute()
+> ModifyOrderResponse ModifyOrder(ctx).Symbol(symbol).Side(side).Quantity(quantity).Price(price).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).ModifyId(modifyId).RecvWindow(recvWindow).Execute()
 
 Modify Order (TRADE)
 
@@ -1458,6 +1458,7 @@ func main() {
 	orderId := int64(20072994037) // int64 |  (optional)
 	origClientOrderId := "LJ9R4QZDihCaS8UAOOLpgW" // string |  (optional)
 	priceMatch := models.NewAlgoOrderPriceMatchParameterOpponent // NewAlgoOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
+	modifyId := int64(1) // int64 | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1467,7 +1468,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol(symbol).Side(side).Quantity(quantity).Price(price).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol(symbol).Side(side).Quantity(quantity).Price(price).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).ModifyId(modifyId).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.ModifyOrder``: %v\n", err)
 		return
@@ -1493,6 +1494,7 @@ Name          | Type          | Description   | Notes
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
  **priceMatch** | [**NewAlgoOrderPriceMatchParameter**](NewAlgoOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
+ **modifyId** | **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketAPIClient manages communication with the Binance Futures (COIN-M) WebSocket API WebSocketAPI v1.11.0
+// WebsocketAPIClient manages communication with the Binance Futures (COIN-M) WebSocket API WebSocketAPI v1.12.0
 type WebsocketAPIClient struct {
 	cfg       *common.ConfigurationWebsocketApi
 	userAgent string
@@ -37,7 +37,7 @@ func NewWebsocketAPIClient(cfg *common.ConfigurationWebsocketApi) *WebsocketAPIC
 
 	c := &WebsocketAPIClient{
 		cfg:                cfg,
-		userAgent:          "binance-derivativestradingcoinfutures/1.11.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
+		userAgent:          "binance-derivativestradingcoinfutures/1.12.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")",
 		Ws:                 wsClient,
 		AccountAPI:         &AccountAPIService{Ws: wsClient},
 		TradeAPI:           &TradeAPIService{Ws: wsClient},

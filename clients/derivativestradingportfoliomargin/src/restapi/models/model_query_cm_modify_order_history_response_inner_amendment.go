@@ -20,7 +20,9 @@ type QueryCmModifyOrderHistoryResponseInnerAmendment struct {
 	Price   *QueryCmModifyOrderHistoryResponseInnerAmendmentPrice   `json:"price,omitempty"`
 	OrigQty *QueryCmModifyOrderHistoryResponseInnerAmendmentOrigQty `json:"origQty,omitempty"`
 	// Order modification count, representing the number of times the order has been modified
-	Count                *int64 `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
+	// user-defined modification identifier, only returned if provided in the request
+	ModifyId             *int64 `json:"modifyId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -139,6 +141,38 @@ func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) SetCount(v int64) {
 	o.Count = &v
 }
 
+// GetModifyId returns the ModifyId field value if set, zero value otherwise.
+func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) GetModifyId() int64 {
+	if o == nil || common.IsNil(o.ModifyId) {
+		var ret int64
+		return ret
+	}
+	return *o.ModifyId
+}
+
+// GetModifyIdOk returns a tuple with the ModifyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) GetModifyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.ModifyId) {
+		return nil, false
+	}
+	return o.ModifyId, true
+}
+
+// HasModifyId returns a boolean if a field has been set.
+func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) HasModifyId() bool {
+	if o != nil && !common.IsNil(o.ModifyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetModifyId gets a reference to the given int64 and assigns it to the ModifyId field.
+func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) SetModifyId(v int64) {
+	o.ModifyId = &v
+}
+
 func (o QueryCmModifyOrderHistoryResponseInnerAmendment) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -157,6 +191,9 @@ func (o QueryCmModifyOrderHistoryResponseInnerAmendment) ToMap() (map[string]int
 	}
 	if !common.IsNil(o.Count) {
 		toSerialize["count"] = o.Count
+	}
+	if !common.IsNil(o.ModifyId) {
+		toSerialize["modifyId"] = o.ModifyId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -183,6 +220,7 @@ func (o *QueryCmModifyOrderHistoryResponseInnerAmendment) UnmarshalJSON(data []b
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "count")
+		delete(additionalProperties, "modifyId")
 		o.AdditionalProperties = additionalProperties
 	}
 

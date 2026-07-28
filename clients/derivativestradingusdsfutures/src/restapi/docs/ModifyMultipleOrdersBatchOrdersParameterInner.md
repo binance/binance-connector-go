@@ -12,6 +12,7 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **float32** |  | [optional] 
 **PriceMatch** | Pointer to [**ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch**](ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) |  | [optional] 
 **StopPrice** | Pointer to **float32** | stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need | [optional] 
+**ModifyId** | Pointer to **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | [optional] 
 **RecvWindow** | Pointer to **int64** | Validity window in milliseconds. | [optional] 
 **Timestamp** | Pointer to **int64** | Unix timestamp in milliseconds. | [optional] 
 
@@ -233,6 +234,31 @@ SetStopPrice sets StopPrice field to given value.
 `func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool`
 
 HasStopPrice returns a boolean if a field has been set.
+
+### GetModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyId() int64`
+
+GetModifyId returns the ModifyId field if non-nil, zero value otherwise.
+
+### GetModifyIdOk
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyIdOk() (*int64, bool)`
+
+GetModifyIdOk returns a tuple with the ModifyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetModifyId(v int64)`
+
+SetModifyId sets ModifyId field to given value.
+
+### HasModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasModifyId() bool`
+
+HasModifyId returns a boolean if a field has been set.
 
 ### GetRecvWindow
 

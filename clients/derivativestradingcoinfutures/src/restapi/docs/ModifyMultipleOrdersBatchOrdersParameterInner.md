@@ -10,6 +10,7 @@ Name         | Type          | Description.  | Notes
 **Side** | [**ModifyMultipleOrdersBatchOrdersParameterInnerSide**](ModifyMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
 **Quantity** | Pointer to **float32** | Order quantity, cannot be sent with closePosition&#x3D;true. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
 **Price** | Pointer to **float32** | Latest token price. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
+**ModifyId** | Pointer to **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | [optional] 
 **RecvWindow** | Pointer to **int64** |  | [optional] 
 **Timestamp** | **int64** | Unix timestamp in milliseconds used to sign the request. The value must reflect the current client time and is validated by the server for signed endpoints. | 
 
@@ -171,6 +172,31 @@ SetPrice sets Price field to given value.
 `func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
+
+### GetModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyId() int64`
+
+GetModifyId returns the ModifyId field if non-nil, zero value otherwise.
+
+### GetModifyIdOk
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetModifyIdOk() (*int64, bool)`
+
+GetModifyIdOk returns a tuple with the ModifyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetModifyId(v int64)`
+
+SetModifyId sets ModifyId field to given value.
+
+### HasModifyId
+
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasModifyId() bool`
+
+HasModifyId returns a boolean if a field has been set.
 
 ### GetRecvWindow
 

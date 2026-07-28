@@ -27,6 +27,8 @@ type ModifyOrderResponse struct {
 	Status *string `json:"status,omitempty"`
 	// Client order ID.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	// user-defined modification identifier, only returned if provided in the request
+	ModifyId *int64 `json:"modifyId,omitempty"`
 	// Latest token price.
 	Price *string `json:"price,omitempty"`
 	// Original order quantity
@@ -241,6 +243,38 @@ func (o *ModifyOrderResponse) HasClientOrderId() bool {
 // SetClientOrderId gets a reference to the given string and assigns it to the ClientOrderId field.
 func (o *ModifyOrderResponse) SetClientOrderId(v string) {
 	o.ClientOrderId = &v
+}
+
+// GetModifyId returns the ModifyId field value if set, zero value otherwise.
+func (o *ModifyOrderResponse) GetModifyId() int64 {
+	if o == nil || common.IsNil(o.ModifyId) {
+		var ret int64
+		return ret
+	}
+	return *o.ModifyId
+}
+
+// GetModifyIdOk returns a tuple with the ModifyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModifyOrderResponse) GetModifyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.ModifyId) {
+		return nil, false
+	}
+	return o.ModifyId, true
+}
+
+// HasModifyId returns a boolean if a field has been set.
+func (o *ModifyOrderResponse) HasModifyId() bool {
+	if o != nil && !common.IsNil(o.ModifyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetModifyId gets a reference to the given int64 and assigns it to the ModifyId field.
+func (o *ModifyOrderResponse) SetModifyId(v int64) {
+	o.ModifyId = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -812,6 +846,9 @@ func (o ModifyOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
 	}
+	if !common.IsNil(o.ModifyId) {
+		toSerialize["modifyId"] = o.ModifyId
+	}
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
@@ -890,6 +927,7 @@ func (o *ModifyOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pair")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "clientOrderId")
+		delete(additionalProperties, "modifyId")
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")

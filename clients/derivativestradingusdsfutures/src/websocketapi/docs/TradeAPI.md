@@ -174,7 +174,7 @@ No authorization required
 
 ## ModifyOrder
 
-> ModifyOrderResponse ModifyOrder().Symbol(symbol).Side(side).Quantity(quantity).Price(price).Id(id).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).RecvWindow(recvWindow).Execute()
+> ModifyOrderResponse ModifyOrder().Symbol(symbol).Side(side).Quantity(quantity).Price(price).Id(id).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).ModifyId(modifyId).RecvWindow(recvWindow).Execute()
 
 Modify Order (TRADE)
 
@@ -201,6 +201,7 @@ func main() {
 	orderId := int64(1) // int64 | Order Id. (optional)
 	origClientOrderId := "1" // string | Orig Client Order Id. (optional)
 	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can't be passed together with price (optional)
+	modifyId := int64(1) // int64 | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. (optional)
 	recvWindow := int64(5000) // int64 | Recv Window. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -218,7 +219,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol(symbol).Side(side).Quantity(quantity).Price(price).Id(id).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol(symbol).Side(side).Quantity(quantity).Price(price).Id(id).OrderId(orderId).OrigClientOrderId(origClientOrderId).PriceMatch(priceMatch).ModifyId(modifyId).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.ModifyOrder``: %v\n", err)
 		return
@@ -247,6 +248,7 @@ Name          | Type          | Description   | Notes
  **orderId** | **int64** | Order Id. | 
  **origClientOrderId** | **string** | Orig Client Order Id. | 
  **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can&#39;t be passed together with price | 
+ **modifyId** | **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | 
  **recvWindow** | **int64** | Recv Window. | 
 
 ### Return type

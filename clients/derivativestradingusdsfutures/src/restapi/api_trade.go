@@ -1766,6 +1766,7 @@ type ApiModifyOrderRequest struct {
 	orderId           *int64
 	origClientOrderId *string
 	priceMatch        *models.NewAlgoOrderPriceMatchParameter
+	modifyId          *int64
 	recvWindow        *int64
 }
 
@@ -1806,6 +1807,12 @@ func (r ApiModifyOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMat
 	return r
 }
 
+// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+func (r ApiModifyOrderRequest) ModifyId(modifyId int64) ApiModifyOrderRequest {
+	r.modifyId = &modifyId
+	return r
+}
+
 func (r ApiModifyOrderRequest) RecvWindow(recvWindow int64) ApiModifyOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1829,6 +1836,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param orderId -
 @param origClientOrderId -
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
+@param modifyId -  User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
 @param recvWindow -
 @return ApiModifyOrderRequest
 */
@@ -1877,6 +1885,9 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "price", r.price, "form", "")
 	if r.priceMatch != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceMatch", r.priceMatch, "form", "")
+	}
+	if r.modifyId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "modifyId", r.modifyId, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
