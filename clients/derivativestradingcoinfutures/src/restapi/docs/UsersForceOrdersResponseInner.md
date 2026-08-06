@@ -14,6 +14,7 @@ Name         | Type          | Description.  | Notes
 **OrigQty** | Pointer to **string** | Original order quantity | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
 **CumBase** | Pointer to **string** | Cumulative base asset amount. | [optional] 
+**CumQuote** | Pointer to **string** | Cumulative quote asset amount. | [optional] 
 **TimeInForce** | Pointer to **string** | Time in force | [optional] 
 **Type** | Pointer to **string** | Order type. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Whether the order is reduce-only. | [optional] 
@@ -26,6 +27,7 @@ Name         | Type          | Description.  | Notes
 **OrigType** | Pointer to **string** | Original order type. | [optional] 
 **Time** | Pointer to **int64** | Time | [optional] 
 **UpdateTime** | Pointer to **int64** | update time | [optional] 
+**GoodTillDate** | Pointer to **int64** | order pre-set auto cancel time for TIF GTD order | [optional] 
 
 ## Methods
 
@@ -295,6 +297,31 @@ SetCumBase sets CumBase field to given value.
 `func (o *UsersForceOrdersResponseInner) HasCumBase() bool`
 
 HasCumBase returns a boolean if a field has been set.
+
+### GetCumQuote
+
+`func (o *UsersForceOrdersResponseInner) GetCumQuote() string`
+
+GetCumQuote returns the CumQuote field if non-nil, zero value otherwise.
+
+### GetCumQuoteOk
+
+`func (o *UsersForceOrdersResponseInner) GetCumQuoteOk() (*string, bool)`
+
+GetCumQuoteOk returns a tuple with the CumQuote field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCumQuote
+
+`func (o *UsersForceOrdersResponseInner) SetCumQuote(v string)`
+
+SetCumQuote sets CumQuote field to given value.
+
+### HasCumQuote
+
+`func (o *UsersForceOrdersResponseInner) HasCumQuote() bool`
+
+HasCumQuote returns a boolean if a field has been set.
 
 ### GetTimeInForce
 
@@ -595,6 +622,31 @@ SetUpdateTime sets UpdateTime field to given value.
 `func (o *UsersForceOrdersResponseInner) HasUpdateTime() bool`
 
 HasUpdateTime returns a boolean if a field has been set.
+
+### GetGoodTillDate
+
+`func (o *UsersForceOrdersResponseInner) GetGoodTillDate() int64`
+
+GetGoodTillDate returns the GoodTillDate field if non-nil, zero value otherwise.
+
+### GetGoodTillDateOk
+
+`func (o *UsersForceOrdersResponseInner) GetGoodTillDateOk() (*int64, bool)`
+
+GetGoodTillDateOk returns a tuple with the GoodTillDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoodTillDate
+
+`func (o *UsersForceOrdersResponseInner) SetGoodTillDate(v int64)`
+
+SetGoodTillDate sets GoodTillDate field to given value.
+
+### HasGoodTillDate
+
+`func (o *UsersForceOrdersResponseInner) HasGoodTillDate() bool`
+
+HasGoodTillDate returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

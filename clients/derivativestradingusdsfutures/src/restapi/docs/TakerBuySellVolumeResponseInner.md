@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **BuySellRatio** | Pointer to **string** |  | [optional] 
 **BuyVol** | Pointer to **string** |  | [optional] 
 **SellVol** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | Start time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

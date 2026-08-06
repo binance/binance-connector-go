@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **TakerSellVol** | Pointer to **string** | unit: cont | [optional] 
 **TakerBuyVolValue** | Pointer to **string** | unit: base asset | [optional] 
 **TakerSellVolValue** | Pointer to **string** | unit: base asset | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | Start time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

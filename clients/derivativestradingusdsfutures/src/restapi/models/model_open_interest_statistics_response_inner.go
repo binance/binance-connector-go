@@ -24,7 +24,7 @@ type OpenInterestStatisticsResponseInner struct {
 	SumOpenInterestValue *string `json:"sumOpenInterestValue,omitempty"`
 	// circulating supply provided by CMC
 	CMCCirculatingSupply *string `json:"CMCCirculatingSupply,omitempty"`
-	// Timestamp in milliseconds.
+	// End time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

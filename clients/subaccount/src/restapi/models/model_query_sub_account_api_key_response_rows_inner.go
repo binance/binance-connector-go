@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the QuerySubAccountApiKeyResponseListInner type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &QuerySubAccountApiKeyResponseListInner{}
+// checks if the QuerySubAccountApiKeyResponseRowsInner type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &QuerySubAccountApiKeyResponseRowsInner{}
 
-// QuerySubAccountApiKeyResponseListInner struct for QuerySubAccountApiKeyResponseListInner
-type QuerySubAccountApiKeyResponseListInner struct {
+// QuerySubAccountApiKeyResponseRowsInner struct for QuerySubAccountApiKeyResponseRowsInner
+type QuerySubAccountApiKeyResponseRowsInner struct {
 	Email                *string `json:"email,omitempty"`
 	ApiName              *string `json:"apiName,omitempty"`
 	Apikey               *string `json:"apikey,omitempty"`
@@ -29,27 +29,27 @@ type QuerySubAccountApiKeyResponseListInner struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _QuerySubAccountApiKeyResponseListInner QuerySubAccountApiKeyResponseListInner
+type _QuerySubAccountApiKeyResponseRowsInner QuerySubAccountApiKeyResponseRowsInner
 
-// NewQuerySubAccountApiKeyResponseListInner instantiates a new QuerySubAccountApiKeyResponseListInner object
+// NewQuerySubAccountApiKeyResponseRowsInner instantiates a new QuerySubAccountApiKeyResponseRowsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuerySubAccountApiKeyResponseListInner() *QuerySubAccountApiKeyResponseListInner {
-	this := QuerySubAccountApiKeyResponseListInner{}
+func NewQuerySubAccountApiKeyResponseRowsInner() *QuerySubAccountApiKeyResponseRowsInner {
+	this := QuerySubAccountApiKeyResponseRowsInner{}
 	return &this
 }
 
-// NewQuerySubAccountApiKeyResponseListInnerWithDefaults instantiates a new QuerySubAccountApiKeyResponseListInner object
+// NewQuerySubAccountApiKeyResponseRowsInnerWithDefaults instantiates a new QuerySubAccountApiKeyResponseRowsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewQuerySubAccountApiKeyResponseListInnerWithDefaults() *QuerySubAccountApiKeyResponseListInner {
-	this := QuerySubAccountApiKeyResponseListInner{}
+func NewQuerySubAccountApiKeyResponseRowsInnerWithDefaults() *QuerySubAccountApiKeyResponseRowsInner {
+	this := QuerySubAccountApiKeyResponseRowsInner{}
 	return &this
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetEmail() string {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetEmail() string {
 	if o == nil || common.IsNil(o.Email) {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetEmailOk() (*string, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetEmailOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Email) {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasEmail() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasEmail() bool {
 	if o != nil && !common.IsNil(o.Email) {
 		return true
 	}
@@ -76,12 +76,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetEmail(v string) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetApiName returns the ApiName field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetApiName() string {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetApiName() string {
 	if o == nil || common.IsNil(o.ApiName) {
 		var ret string
 		return ret
@@ -91,7 +91,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetApiName() string {
 
 // GetApiNameOk returns a tuple with the ApiName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetApiNameOk() (*string, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetApiNameOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ApiName) {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetApiNameOk() (*string, bool) 
 }
 
 // HasApiName returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasApiName() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasApiName() bool {
 	if o != nil && !common.IsNil(o.ApiName) {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasApiName() bool {
 }
 
 // SetApiName gets a reference to the given string and assigns it to the ApiName field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetApiName(v string) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetApiName(v string) {
 	o.ApiName = &v
 }
 
 // GetApikey returns the Apikey field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetApikey() string {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetApikey() string {
 	if o == nil || common.IsNil(o.Apikey) {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetApikey() string {
 
 // GetApikeyOk returns a tuple with the Apikey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetApikeyOk() (*string, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetApikeyOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Apikey) {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetApikeyOk() (*string, bool) {
 }
 
 // HasApikey returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasApikey() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasApikey() bool {
 	if o != nil && !common.IsNil(o.Apikey) {
 		return true
 	}
@@ -140,12 +140,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasApikey() bool {
 }
 
 // SetApikey gets a reference to the given string and assigns it to the Apikey field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetApikey(v string) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetApikey(v string) {
 	o.Apikey = &v
 }
 
 // GetCanTrade returns the CanTrade field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanTrade() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanTrade() bool {
 	if o == nil || common.IsNil(o.CanTrade) {
 		var ret bool
 		return ret
@@ -155,7 +155,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanTrade() bool {
 
 // GetCanTradeOk returns a tuple with the CanTrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanTradeOk() (*bool, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanTradeOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.CanTrade) {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanTradeOk() (*bool, bool) {
 }
 
 // HasCanTrade returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasCanTrade() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanTrade() bool {
 	if o != nil && !common.IsNil(o.CanTrade) {
 		return true
 	}
@@ -172,12 +172,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasCanTrade() bool {
 }
 
 // SetCanTrade gets a reference to the given bool and assigns it to the CanTrade field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetCanTrade(v bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanTrade(v bool) {
 	o.CanTrade = &v
 }
 
 // GetCanMarginLoanRepay returns the CanMarginLoanRepay field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepay() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanMarginLoanRepay() bool {
 	if o == nil || common.IsNil(o.CanMarginLoanRepay) {
 		var ret bool
 		return ret
@@ -187,7 +187,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepay() bool {
 
 // GetCanMarginLoanRepayOk returns a tuple with the CanMarginLoanRepay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepayOk() (*bool, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanMarginLoanRepayOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.CanMarginLoanRepay) {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepayOk() (*boo
 }
 
 // HasCanMarginLoanRepay returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasCanMarginLoanRepay() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanMarginLoanRepay() bool {
 	if o != nil && !common.IsNil(o.CanMarginLoanRepay) {
 		return true
 	}
@@ -204,12 +204,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasCanMarginLoanRepay() bool {
 }
 
 // SetCanMarginLoanRepay gets a reference to the given bool and assigns it to the CanMarginLoanRepay field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetCanMarginLoanRepay(v bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanMarginLoanRepay(v bool) {
 	o.CanMarginLoanRepay = &v
 }
 
 // GetCanFuturesTrade returns the CanFuturesTrade field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTrade() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFuturesTrade() bool {
 	if o == nil || common.IsNil(o.CanFuturesTrade) {
 		var ret bool
 		return ret
@@ -219,7 +219,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTrade() bool {
 
 // GetCanFuturesTradeOk returns a tuple with the CanFuturesTrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTradeOk() (*bool, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFuturesTradeOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.CanFuturesTrade) {
 		return nil, false
 	}
@@ -227,7 +227,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTradeOk() (*bool, 
 }
 
 // HasCanFuturesTrade returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasCanFuturesTrade() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFuturesTrade() bool {
 	if o != nil && !common.IsNil(o.CanFuturesTrade) {
 		return true
 	}
@@ -236,12 +236,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasCanFuturesTrade() bool {
 }
 
 // SetCanFuturesTrade gets a reference to the given bool and assigns it to the CanFuturesTrade field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetCanFuturesTrade(v bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFuturesTrade(v bool) {
 	o.CanFuturesTrade = &v
 }
 
 // GetCanUniversalTransfer returns the CanUniversalTransfer field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransfer() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanUniversalTransfer() bool {
 	if o == nil || common.IsNil(o.CanUniversalTransfer) {
 		var ret bool
 		return ret
@@ -251,7 +251,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransfer() bool 
 
 // GetCanUniversalTransferOk returns a tuple with the CanUniversalTransfer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransferOk() (*bool, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanUniversalTransferOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.CanUniversalTransfer) {
 		return nil, false
 	}
@@ -259,7 +259,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransferOk() (*b
 }
 
 // HasCanUniversalTransfer returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasCanUniversalTransfer() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanUniversalTransfer() bool {
 	if o != nil && !common.IsNil(o.CanUniversalTransfer) {
 		return true
 	}
@@ -268,12 +268,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasCanUniversalTransfer() bool 
 }
 
 // SetCanUniversalTransfer gets a reference to the given bool and assigns it to the CanUniversalTransfer field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetCanUniversalTransfer(v bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanUniversalTransfer(v bool) {
 	o.CanUniversalTransfer = &v
 }
 
 // GetCanVanillaOptions returns the CanVanillaOptions field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptions() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanVanillaOptions() bool {
 	if o == nil || common.IsNil(o.CanVanillaOptions) {
 		var ret bool
 		return ret
@@ -283,7 +283,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptions() bool {
 
 // GetCanVanillaOptionsOk returns a tuple with the CanVanillaOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptionsOk() (*bool, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanVanillaOptionsOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.CanVanillaOptions) {
 		return nil, false
 	}
@@ -291,7 +291,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptionsOk() (*bool
 }
 
 // HasCanVanillaOptions returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasCanVanillaOptions() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanVanillaOptions() bool {
 	if o != nil && !common.IsNil(o.CanVanillaOptions) {
 		return true
 	}
@@ -300,12 +300,12 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasCanVanillaOptions() bool {
 }
 
 // SetCanVanillaOptions gets a reference to the given bool and assigns it to the CanVanillaOptions field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetCanVanillaOptions(v bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanVanillaOptions(v bool) {
 	o.CanVanillaOptions = &v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponseListInner) GetTimestamp() int64 {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
 		var ret int64
 		return ret
@@ -315,7 +315,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetTimestamp() int64 {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) GetTimestampOk() (*int64, bool) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetTimestampOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -323,7 +323,7 @@ func (o *QuerySubAccountApiKeyResponseListInner) GetTimestampOk() (*int64, bool)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponseListInner) HasTimestamp() bool {
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasTimestamp() bool {
 	if o != nil && !common.IsNil(o.Timestamp) {
 		return true
 	}
@@ -332,11 +332,11 @@ func (o *QuerySubAccountApiKeyResponseListInner) HasTimestamp() bool {
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
-func (o *QuerySubAccountApiKeyResponseListInner) SetTimestamp(v int64) {
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
-func (o QuerySubAccountApiKeyResponseListInner) MarshalJSON() ([]byte, error) {
+func (o QuerySubAccountApiKeyResponseRowsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -344,7 +344,7 @@ func (o QuerySubAccountApiKeyResponseListInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o QuerySubAccountApiKeyResponseListInner) ToMap() (map[string]interface{}, error) {
+func (o QuerySubAccountApiKeyResponseRowsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Email) {
 		toSerialize["email"] = o.Email
@@ -381,16 +381,16 @@ func (o QuerySubAccountApiKeyResponseListInner) ToMap() (map[string]interface{},
 	return toSerialize, nil
 }
 
-func (o *QuerySubAccountApiKeyResponseListInner) UnmarshalJSON(data []byte) (err error) {
-	varQuerySubAccountApiKeyResponseListInner := _QuerySubAccountApiKeyResponseListInner{}
+func (o *QuerySubAccountApiKeyResponseRowsInner) UnmarshalJSON(data []byte) (err error) {
+	varQuerySubAccountApiKeyResponseRowsInner := _QuerySubAccountApiKeyResponseRowsInner{}
 
-	err = json.Unmarshal(data, &varQuerySubAccountApiKeyResponseListInner)
+	err = json.Unmarshal(data, &varQuerySubAccountApiKeyResponseRowsInner)
 
 	if err != nil {
 		return err
 	}
 
-	*o = QuerySubAccountApiKeyResponseListInner(varQuerySubAccountApiKeyResponseListInner)
+	*o = QuerySubAccountApiKeyResponseRowsInner(varQuerySubAccountApiKeyResponseRowsInner)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -410,38 +410,38 @@ func (o *QuerySubAccountApiKeyResponseListInner) UnmarshalJSON(data []byte) (err
 	return err
 }
 
-type NullableQuerySubAccountApiKeyResponseListInner struct {
-	value *QuerySubAccountApiKeyResponseListInner
+type NullableQuerySubAccountApiKeyResponseRowsInner struct {
+	value *QuerySubAccountApiKeyResponseRowsInner
 	isSet bool
 }
 
-func (v NullableQuerySubAccountApiKeyResponseListInner) Get() *QuerySubAccountApiKeyResponseListInner {
+func (v NullableQuerySubAccountApiKeyResponseRowsInner) Get() *QuerySubAccountApiKeyResponseRowsInner {
 	return v.value
 }
 
-func (v *NullableQuerySubAccountApiKeyResponseListInner) Set(val *QuerySubAccountApiKeyResponseListInner) {
+func (v *NullableQuerySubAccountApiKeyResponseRowsInner) Set(val *QuerySubAccountApiKeyResponseRowsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableQuerySubAccountApiKeyResponseListInner) IsSet() bool {
+func (v NullableQuerySubAccountApiKeyResponseRowsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableQuerySubAccountApiKeyResponseListInner) Unset() {
+func (v *NullableQuerySubAccountApiKeyResponseRowsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableQuerySubAccountApiKeyResponseListInner(val *QuerySubAccountApiKeyResponseListInner) *NullableQuerySubAccountApiKeyResponseListInner {
-	return &NullableQuerySubAccountApiKeyResponseListInner{value: val, isSet: true}
+func NewNullableQuerySubAccountApiKeyResponseRowsInner(val *QuerySubAccountApiKeyResponseRowsInner) *NullableQuerySubAccountApiKeyResponseRowsInner {
+	return &NullableQuerySubAccountApiKeyResponseRowsInner{value: val, isSet: true}
 }
 
-func (v NullableQuerySubAccountApiKeyResponseListInner) MarshalJSON() ([]byte, error) {
+func (v NullableQuerySubAccountApiKeyResponseRowsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableQuerySubAccountApiKeyResponseListInner) UnmarshalJSON(src []byte) error {
+func (v *NullableQuerySubAccountApiKeyResponseRowsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

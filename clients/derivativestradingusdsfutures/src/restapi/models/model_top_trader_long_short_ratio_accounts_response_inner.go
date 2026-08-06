@@ -24,7 +24,7 @@ type TopTraderLongShortRatioAccountsResponseInner struct {
 	LongAccount *string `json:"longAccount,omitempty"`
 	// long account num ratio of top traders
 	ShortAccount *string `json:"shortAccount,omitempty"`
-	// Timestamp in milliseconds.
+	// End time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

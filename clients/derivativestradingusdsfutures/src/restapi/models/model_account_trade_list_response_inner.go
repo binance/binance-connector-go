@@ -35,6 +35,10 @@ type AccountTradeListResponseInner struct {
 	Qty *string `json:"qty,omitempty"`
 	// Quote Qty.
 	QuoteQty *string `json:"quoteQty,omitempty"`
+	// Base Qty.
+	BaseQty *string `json:"baseQty,omitempty"`
+	// Margin Asset.
+	MarginAsset *string `json:"marginAsset,omitempty"`
 	// Realized Pnl.
 	RealizedPnl *string `json:"realizedPnl,omitempty"`
 	// Side.
@@ -43,6 +47,8 @@ type AccountTradeListResponseInner struct {
 	PositionSide *string `json:"positionSide,omitempty"`
 	// Symbol.
 	Symbol *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair *string `json:"pair,omitempty"`
 	// Time.
 	Time                 *int64 `json:"time,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -355,6 +361,70 @@ func (o *AccountTradeListResponseInner) SetQuoteQty(v string) {
 	o.QuoteQty = &v
 }
 
+// GetBaseQty returns the BaseQty field value if set, zero value otherwise.
+func (o *AccountTradeListResponseInner) GetBaseQty() string {
+	if o == nil || common.IsNil(o.BaseQty) {
+		var ret string
+		return ret
+	}
+	return *o.BaseQty
+}
+
+// GetBaseQtyOk returns a tuple with the BaseQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTradeListResponseInner) GetBaseQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.BaseQty) {
+		return nil, false
+	}
+	return o.BaseQty, true
+}
+
+// HasBaseQty returns a boolean if a field has been set.
+func (o *AccountTradeListResponseInner) HasBaseQty() bool {
+	if o != nil && !common.IsNil(o.BaseQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetBaseQty gets a reference to the given string and assigns it to the BaseQty field.
+func (o *AccountTradeListResponseInner) SetBaseQty(v string) {
+	o.BaseQty = &v
+}
+
+// GetMarginAsset returns the MarginAsset field value if set, zero value otherwise.
+func (o *AccountTradeListResponseInner) GetMarginAsset() string {
+	if o == nil || common.IsNil(o.MarginAsset) {
+		var ret string
+		return ret
+	}
+	return *o.MarginAsset
+}
+
+// GetMarginAssetOk returns a tuple with the MarginAsset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTradeListResponseInner) GetMarginAssetOk() (*string, bool) {
+	if o == nil || common.IsNil(o.MarginAsset) {
+		return nil, false
+	}
+	return o.MarginAsset, true
+}
+
+// HasMarginAsset returns a boolean if a field has been set.
+func (o *AccountTradeListResponseInner) HasMarginAsset() bool {
+	if o != nil && !common.IsNil(o.MarginAsset) {
+		return true
+	}
+
+	return false
+}
+
+// SetMarginAsset gets a reference to the given string and assigns it to the MarginAsset field.
+func (o *AccountTradeListResponseInner) SetMarginAsset(v string) {
+	o.MarginAsset = &v
+}
+
 // GetRealizedPnl returns the RealizedPnl field value if set, zero value otherwise.
 func (o *AccountTradeListResponseInner) GetRealizedPnl() string {
 	if o == nil || common.IsNil(o.RealizedPnl) {
@@ -483,6 +553,38 @@ func (o *AccountTradeListResponseInner) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
+// GetPair returns the Pair field value if set, zero value otherwise.
+func (o *AccountTradeListResponseInner) GetPair() string {
+	if o == nil || common.IsNil(o.Pair) {
+		var ret string
+		return ret
+	}
+	return *o.Pair
+}
+
+// GetPairOk returns a tuple with the Pair field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTradeListResponseInner) GetPairOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Pair) {
+		return nil, false
+	}
+	return o.Pair, true
+}
+
+// HasPair returns a boolean if a field has been set.
+func (o *AccountTradeListResponseInner) HasPair() bool {
+	if o != nil && !common.IsNil(o.Pair) {
+		return true
+	}
+
+	return false
+}
+
+// SetPair gets a reference to the given string and assigns it to the Pair field.
+func (o *AccountTradeListResponseInner) SetPair(v string) {
+	o.Pair = &v
+}
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *AccountTradeListResponseInner) GetTime() int64 {
 	if o == nil || common.IsNil(o.Time) {
@@ -552,6 +654,12 @@ func (o AccountTradeListResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.QuoteQty) {
 		toSerialize["quoteQty"] = o.QuoteQty
 	}
+	if !common.IsNil(o.BaseQty) {
+		toSerialize["baseQty"] = o.BaseQty
+	}
+	if !common.IsNil(o.MarginAsset) {
+		toSerialize["marginAsset"] = o.MarginAsset
+	}
 	if !common.IsNil(o.RealizedPnl) {
 		toSerialize["realizedPnl"] = o.RealizedPnl
 	}
@@ -563,6 +671,9 @@ func (o AccountTradeListResponseInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
+	}
+	if !common.IsNil(o.Pair) {
+		toSerialize["pair"] = o.Pair
 	}
 	if !common.IsNil(o.Time) {
 		toSerialize["time"] = o.Time
@@ -598,10 +709,13 @@ func (o *AccountTradeListResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "price")
 		delete(additionalProperties, "qty")
 		delete(additionalProperties, "quoteQty")
+		delete(additionalProperties, "baseQty")
+		delete(additionalProperties, "marginAsset")
 		delete(additionalProperties, "realizedPnl")
 		delete(additionalProperties, "side")
 		delete(additionalProperties, "positionSide")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "pair")
 		delete(additionalProperties, "time")
 		o.AdditionalProperties = additionalProperties
 	}

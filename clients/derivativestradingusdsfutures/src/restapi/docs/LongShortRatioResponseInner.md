@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **LongShortRatio** | Pointer to **string** | long account num ratio of all traders | [optional] 
 **LongAccount** | Pointer to **string** | short account num ratio of all traders | [optional] 
 **ShortAccount** | Pointer to **string** | Short Account. | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | End time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

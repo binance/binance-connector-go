@@ -11,7 +11,7 @@ Name         | Type          | Description.  | Notes
 **AnnualizedBasisRate** | Pointer to **string** | Annualized basis rate. | [optional] 
 **Basis** | Pointer to **string** | Basis value. | [optional] 
 **Pair** | Pointer to **string** | Pair | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | Start time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

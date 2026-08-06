@@ -6,6 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **OrderId** | Pointer to **int64** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
+**Pair** | Pointer to **string** | Pair. | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
@@ -13,6 +14,7 @@ Name         | Type          | Description.  | Notes
 **OrigQty** | Pointer to **string** |  | [optional] 
 **ExecutedQty** | Pointer to **string** |  | [optional] 
 **CumQuote** | Pointer to **string** |  | [optional] 
+**CumBase** | Pointer to **string** | Cum Base. | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **ReduceOnly** | Pointer to **bool** |  | [optional] 
@@ -93,6 +95,31 @@ SetSymbol sets Symbol field to given value.
 `func (o *UsersForceOrdersResponseInner) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
+
+### GetPair
+
+`func (o *UsersForceOrdersResponseInner) GetPair() string`
+
+GetPair returns the Pair field if non-nil, zero value otherwise.
+
+### GetPairOk
+
+`func (o *UsersForceOrdersResponseInner) GetPairOk() (*string, bool)`
+
+GetPairOk returns a tuple with the Pair field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPair
+
+`func (o *UsersForceOrdersResponseInner) SetPair(v string)`
+
+SetPair sets Pair field to given value.
+
+### HasPair
+
+`func (o *UsersForceOrdersResponseInner) HasPair() bool`
+
+HasPair returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -268,6 +295,31 @@ SetCumQuote sets CumQuote field to given value.
 `func (o *UsersForceOrdersResponseInner) HasCumQuote() bool`
 
 HasCumQuote returns a boolean if a field has been set.
+
+### GetCumBase
+
+`func (o *UsersForceOrdersResponseInner) GetCumBase() string`
+
+GetCumBase returns the CumBase field if non-nil, zero value otherwise.
+
+### GetCumBaseOk
+
+`func (o *UsersForceOrdersResponseInner) GetCumBaseOk() (*string, bool)`
+
+GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCumBase
+
+`func (o *UsersForceOrdersResponseInner) SetCumBase(v string)`
+
+SetCumBase sets CumBase field to given value.
+
+### HasCumBase
+
+`func (o *UsersForceOrdersResponseInner) HasCumBase() bool`
+
+HasCumBase returns a boolean if a field has been set.
 
 ### GetTimeInForce
 

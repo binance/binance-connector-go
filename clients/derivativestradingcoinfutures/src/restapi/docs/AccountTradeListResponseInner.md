@@ -14,6 +14,7 @@ Name         | Type          | Description.  | Notes
 **RealizedPnl** | Pointer to **string** | Realized PnL. | [optional] 
 **MarginAsset** | Pointer to **string** | Margin asset. | [optional] 
 **BaseQty** | Pointer to **string** | Base asset quantity. | [optional] 
+**QuoteQty** | Pointer to **string** | Quote asset quantity. | [optional] 
 **Commission** | Pointer to **string** | Transaction Fee (in Crypto) | [optional] 
 **CommissionAsset** | Pointer to **string** | Commission asset. | [optional] 
 **Time** | Pointer to **int64** | Time | [optional] 
@@ -289,6 +290,31 @@ SetBaseQty sets BaseQty field to given value.
 `func (o *AccountTradeListResponseInner) HasBaseQty() bool`
 
 HasBaseQty returns a boolean if a field has been set.
+
+### GetQuoteQty
+
+`func (o *AccountTradeListResponseInner) GetQuoteQty() string`
+
+GetQuoteQty returns the QuoteQty field if non-nil, zero value otherwise.
+
+### GetQuoteQtyOk
+
+`func (o *AccountTradeListResponseInner) GetQuoteQtyOk() (*string, bool)`
+
+GetQuoteQtyOk returns a tuple with the QuoteQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuoteQty
+
+`func (o *AccountTradeListResponseInner) SetQuoteQty(v string)`
+
+SetQuoteQty sets QuoteQty field to given value.
+
+### HasQuoteQty
+
+`func (o *AccountTradeListResponseInner) HasQuoteQty() bool`
+
+HasQuoteQty returns a boolean if a field has been set.
 
 ### GetCommission
 

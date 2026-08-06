@@ -29,7 +29,7 @@ type TakerBuySellVolumeResponseInner struct {
 	TakerBuyVolValue *string `json:"takerBuyVolValue,omitempty"`
 	// unit: base asset
 	TakerSellVolValue *string `json:"takerSellVolValue,omitempty"`
-	// Timestamp in milliseconds.
+	// Start time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -31,7 +31,7 @@ type BasisResponseInner struct {
 	Basis *string `json:"basis,omitempty"`
 	// Pair
 	Pair *string `json:"pair,omitempty"`
-	// Timestamp in milliseconds.
+	// Start time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

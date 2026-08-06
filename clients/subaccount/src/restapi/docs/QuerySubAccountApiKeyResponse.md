@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Total** | Pointer to **int64** |  | [optional] 
-**List** | Pointer to [**[]QuerySubAccountApiKeyResponseListInner**](QuerySubAccountApiKeyResponseListInner.md) |  | [optional] 
+**Rows** | Pointer to [**[]QuerySubAccountApiKeyResponseRowsInner**](QuerySubAccountApiKeyResponseRowsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetTotal sets Total field to given value.
 
 HasTotal returns a boolean if a field has been set.
 
-### GetList
+### GetRows
 
-`func (o *QuerySubAccountApiKeyResponse) GetList() []QuerySubAccountApiKeyResponseListInner`
+`func (o *QuerySubAccountApiKeyResponse) GetRows() []QuerySubAccountApiKeyResponseRowsInner`
 
-GetList returns the List field if non-nil, zero value otherwise.
+GetRows returns the Rows field if non-nil, zero value otherwise.
 
-### GetListOk
+### GetRowsOk
 
-`func (o *QuerySubAccountApiKeyResponse) GetListOk() (*[]QuerySubAccountApiKeyResponseListInner, bool)`
+`func (o *QuerySubAccountApiKeyResponse) GetRowsOk() (*[]QuerySubAccountApiKeyResponseRowsInner, bool)`
 
-GetListOk returns a tuple with the List field if it's non-nil, zero value otherwise
+GetRowsOk returns a tuple with the Rows field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetList
+### SetRows
 
-`func (o *QuerySubAccountApiKeyResponse) SetList(v []QuerySubAccountApiKeyResponseListInner)`
+`func (o *QuerySubAccountApiKeyResponse) SetRows(v []QuerySubAccountApiKeyResponseRowsInner)`
 
-SetList sets List field to given value.
+SetRows sets Rows field to given value.
 
-### HasList
+### HasRows
 
-`func (o *QuerySubAccountApiKeyResponse) HasList() bool`
+`func (o *QuerySubAccountApiKeyResponse) HasRows() bool`
 
-HasList returns a boolean if a field has been set.
+HasRows returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

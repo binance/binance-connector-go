@@ -1,4 +1,4 @@
-# QuerySubAccountApiKeyResponseListInner
+# QuerySubAccountApiKeyResponseRowsInner
 
 ## Properties
 
@@ -16,245 +16,245 @@ Name         | Type          | Description.  | Notes
 
 ## Methods
 
-### NewQuerySubAccountApiKeyResponseListInner
+### NewQuerySubAccountApiKeyResponseRowsInner
 
-`func NewQuerySubAccountApiKeyResponseListInner() *QuerySubAccountApiKeyResponseListInner`
+`func NewQuerySubAccountApiKeyResponseRowsInner() *QuerySubAccountApiKeyResponseRowsInner`
 
-NewQuerySubAccountApiKeyResponseListInner instantiates a new QuerySubAccountApiKeyResponseListInner object
+NewQuerySubAccountApiKeyResponseRowsInner instantiates a new QuerySubAccountApiKeyResponseRowsInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewQuerySubAccountApiKeyResponseListInnerWithDefaults
+### NewQuerySubAccountApiKeyResponseRowsInnerWithDefaults
 
-`func NewQuerySubAccountApiKeyResponseListInnerWithDefaults() *QuerySubAccountApiKeyResponseListInner`
+`func NewQuerySubAccountApiKeyResponseRowsInnerWithDefaults() *QuerySubAccountApiKeyResponseRowsInner`
 
-NewQuerySubAccountApiKeyResponseListInnerWithDefaults instantiates a new QuerySubAccountApiKeyResponseListInner object
+NewQuerySubAccountApiKeyResponseRowsInnerWithDefaults instantiates a new QuerySubAccountApiKeyResponseRowsInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetEmail
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetEmail() string`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetEmailOk() (*string, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetEmail(v string)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 ### HasEmail
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasEmail() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
 
 ### GetApiName
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetApiName() string`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetApiName() string`
 
 GetApiName returns the ApiName field if non-nil, zero value otherwise.
 
 ### GetApiNameOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetApiNameOk() (*string, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetApiNameOk() (*string, bool)`
 
 GetApiNameOk returns a tuple with the ApiName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApiName
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetApiName(v string)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetApiName(v string)`
 
 SetApiName sets ApiName field to given value.
 
 ### HasApiName
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasApiName() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasApiName() bool`
 
 HasApiName returns a boolean if a field has been set.
 
 ### GetApikey
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetApikey() string`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetApikey() string`
 
 GetApikey returns the Apikey field if non-nil, zero value otherwise.
 
 ### GetApikeyOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetApikeyOk() (*string, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetApikeyOk() (*string, bool)`
 
 GetApikeyOk returns a tuple with the Apikey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApikey
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetApikey(v string)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetApikey(v string)`
 
 SetApikey sets Apikey field to given value.
 
 ### HasApikey
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasApikey() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasApikey() bool`
 
 HasApikey returns a boolean if a field has been set.
 
 ### GetCanTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanTrade() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanTrade() bool`
 
 GetCanTrade returns the CanTrade field if non-nil, zero value otherwise.
 
 ### GetCanTradeOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanTradeOk() (*bool, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanTradeOk() (*bool, bool)`
 
 GetCanTradeOk returns a tuple with the CanTrade field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCanTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetCanTrade(v bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanTrade(v bool)`
 
 SetCanTrade sets CanTrade field to given value.
 
 ### HasCanTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasCanTrade() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanTrade() bool`
 
 HasCanTrade returns a boolean if a field has been set.
 
 ### GetCanMarginLoanRepay
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepay() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanMarginLoanRepay() bool`
 
 GetCanMarginLoanRepay returns the CanMarginLoanRepay field if non-nil, zero value otherwise.
 
 ### GetCanMarginLoanRepayOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanMarginLoanRepayOk() (*bool, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanMarginLoanRepayOk() (*bool, bool)`
 
 GetCanMarginLoanRepayOk returns a tuple with the CanMarginLoanRepay field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCanMarginLoanRepay
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetCanMarginLoanRepay(v bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanMarginLoanRepay(v bool)`
 
 SetCanMarginLoanRepay sets CanMarginLoanRepay field to given value.
 
 ### HasCanMarginLoanRepay
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasCanMarginLoanRepay() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanMarginLoanRepay() bool`
 
 HasCanMarginLoanRepay returns a boolean if a field has been set.
 
 ### GetCanFuturesTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTrade() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFuturesTrade() bool`
 
 GetCanFuturesTrade returns the CanFuturesTrade field if non-nil, zero value otherwise.
 
 ### GetCanFuturesTradeOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanFuturesTradeOk() (*bool, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFuturesTradeOk() (*bool, bool)`
 
 GetCanFuturesTradeOk returns a tuple with the CanFuturesTrade field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCanFuturesTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetCanFuturesTrade(v bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFuturesTrade(v bool)`
 
 SetCanFuturesTrade sets CanFuturesTrade field to given value.
 
 ### HasCanFuturesTrade
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasCanFuturesTrade() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFuturesTrade() bool`
 
 HasCanFuturesTrade returns a boolean if a field has been set.
 
 ### GetCanUniversalTransfer
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransfer() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanUniversalTransfer() bool`
 
 GetCanUniversalTransfer returns the CanUniversalTransfer field if non-nil, zero value otherwise.
 
 ### GetCanUniversalTransferOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanUniversalTransferOk() (*bool, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanUniversalTransferOk() (*bool, bool)`
 
 GetCanUniversalTransferOk returns a tuple with the CanUniversalTransfer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCanUniversalTransfer
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetCanUniversalTransfer(v bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanUniversalTransfer(v bool)`
 
 SetCanUniversalTransfer sets CanUniversalTransfer field to given value.
 
 ### HasCanUniversalTransfer
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasCanUniversalTransfer() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanUniversalTransfer() bool`
 
 HasCanUniversalTransfer returns a boolean if a field has been set.
 
 ### GetCanVanillaOptions
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptions() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanVanillaOptions() bool`
 
 GetCanVanillaOptions returns the CanVanillaOptions field if non-nil, zero value otherwise.
 
 ### GetCanVanillaOptionsOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetCanVanillaOptionsOk() (*bool, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanVanillaOptionsOk() (*bool, bool)`
 
 GetCanVanillaOptionsOk returns a tuple with the CanVanillaOptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCanVanillaOptions
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetCanVanillaOptions(v bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanVanillaOptions(v bool)`
 
 SetCanVanillaOptions sets CanVanillaOptions field to given value.
 
 ### HasCanVanillaOptions
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasCanVanillaOptions() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanVanillaOptions() bool`
 
 HasCanVanillaOptions returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetTimestamp() int64`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetTimestamp() int64`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *QuerySubAccountApiKeyResponseListInner) GetTimestampOk() (*int64, bool)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetTimestampOk() (*int64, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *QuerySubAccountApiKeyResponseListInner) SetTimestamp(v int64)`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetTimestamp(v int64)`
 
 SetTimestamp sets Timestamp field to given value.
 
 ### HasTimestamp
 
-`func (o *QuerySubAccountApiKeyResponseListInner) HasTimestamp() bool`
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasTimestamp() bool`
 
 HasTimestamp returns a boolean if a field has been set.
 

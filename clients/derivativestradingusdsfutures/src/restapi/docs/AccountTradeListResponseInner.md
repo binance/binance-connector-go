@@ -13,10 +13,13 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** | Price. | [optional] 
 **Qty** | Pointer to **string** | Qty. | [optional] 
 **QuoteQty** | Pointer to **string** | Quote Qty. | [optional] 
+**BaseQty** | Pointer to **string** | Base Qty. | [optional] 
+**MarginAsset** | Pointer to **string** | Margin Asset. | [optional] 
 **RealizedPnl** | Pointer to **string** | Realized Pnl. | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 
 **PositionSide** | Pointer to **string** | Position Side. | [optional] 
 **Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Pair** | Pointer to **string** | Pair. | [optional] 
 **Time** | Pointer to **int64** | Time. | [optional] 
 
 ## Methods
@@ -263,6 +266,56 @@ SetQuoteQty sets QuoteQty field to given value.
 
 HasQuoteQty returns a boolean if a field has been set.
 
+### GetBaseQty
+
+`func (o *AccountTradeListResponseInner) GetBaseQty() string`
+
+GetBaseQty returns the BaseQty field if non-nil, zero value otherwise.
+
+### GetBaseQtyOk
+
+`func (o *AccountTradeListResponseInner) GetBaseQtyOk() (*string, bool)`
+
+GetBaseQtyOk returns a tuple with the BaseQty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseQty
+
+`func (o *AccountTradeListResponseInner) SetBaseQty(v string)`
+
+SetBaseQty sets BaseQty field to given value.
+
+### HasBaseQty
+
+`func (o *AccountTradeListResponseInner) HasBaseQty() bool`
+
+HasBaseQty returns a boolean if a field has been set.
+
+### GetMarginAsset
+
+`func (o *AccountTradeListResponseInner) GetMarginAsset() string`
+
+GetMarginAsset returns the MarginAsset field if non-nil, zero value otherwise.
+
+### GetMarginAssetOk
+
+`func (o *AccountTradeListResponseInner) GetMarginAssetOk() (*string, bool)`
+
+GetMarginAssetOk returns a tuple with the MarginAsset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMarginAsset
+
+`func (o *AccountTradeListResponseInner) SetMarginAsset(v string)`
+
+SetMarginAsset sets MarginAsset field to given value.
+
+### HasMarginAsset
+
+`func (o *AccountTradeListResponseInner) HasMarginAsset() bool`
+
+HasMarginAsset returns a boolean if a field has been set.
+
 ### GetRealizedPnl
 
 `func (o *AccountTradeListResponseInner) GetRealizedPnl() string`
@@ -362,6 +415,31 @@ SetSymbol sets Symbol field to given value.
 `func (o *AccountTradeListResponseInner) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
+
+### GetPair
+
+`func (o *AccountTradeListResponseInner) GetPair() string`
+
+GetPair returns the Pair field if non-nil, zero value otherwise.
+
+### GetPairOk
+
+`func (o *AccountTradeListResponseInner) GetPairOk() (*string, bool)`
+
+GetPairOk returns a tuple with the Pair field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPair
+
+`func (o *AccountTradeListResponseInner) SetPair(v string)`
+
+SetPair sets Pair field to given value.
+
+### HasPair
+
+`func (o *AccountTradeListResponseInner) HasPair() bool`
+
+HasPair returns a boolean if a field has been set.
 
 ### GetTime
 

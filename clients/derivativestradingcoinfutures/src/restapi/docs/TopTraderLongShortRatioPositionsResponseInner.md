@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **LongShortRatio** | Pointer to **string** | Long/short ratio. | [optional] 
 **LongPosition** | Pointer to **string** | 64.42% | [optional] 
 **ShortPosition** | Pointer to **string** | 44.04% | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | End time of the period, in milliseconds. | [optional] 
 
 ## Methods
 
