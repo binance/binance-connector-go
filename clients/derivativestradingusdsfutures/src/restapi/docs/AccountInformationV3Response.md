@@ -4,17 +4,17 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalInitialMargin** | Pointer to **string** | Total initial margin requirement. | [optional] 
-**TotalMaintMargin** | Pointer to **string** | Total maintenance margin requirement. | [optional] 
-**TotalWalletBalance** | Pointer to **string** | Total wallet balance. | [optional] 
-**TotalUnrealizedProfit** | Pointer to **string** | Total unrealized profit. | [optional] 
-**TotalMarginBalance** | Pointer to **string** | Total margin balance. | [optional] 
-**TotalPositionInitialMargin** | Pointer to **string** | Initial margin required for positions. | [optional] 
-**TotalOpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. | [optional] 
-**TotalCrossWalletBalance** | Pointer to **string** | Cross wallet balance. | [optional] 
-**TotalCrossUnPnl** | Pointer to **string** | Unrealized PnL for cross positions. | [optional] 
-**AvailableBalance** | Pointer to **string** | Available balance. | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. | [optional] 
+**TotalInitialMargin** | Pointer to **string** | Total initial margin requirement. USDT only in single-asset mode; the sum of USD value of all cross positions/open order initial margin in multi-assets mode. | [optional] 
+**TotalMaintMargin** | Pointer to **string** | Total maintenance margin requirement. USDT only in single-asset mode; the sum of USD value of all cross positions maintenance margin in multi-assets mode. | [optional] 
+**TotalWalletBalance** | Pointer to **string** | Total wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**TotalUnrealizedProfit** | Pointer to **string** | Total unrealized profit. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**TotalMarginBalance** | Pointer to **string** | Total margin balance. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**TotalPositionInitialMargin** | Pointer to **string** | Initial margin required for positions. USDT only in single-asset mode; the sum of USD value of all cross positions initial margin in multi-assets mode. | [optional] 
+**TotalOpenOrderInitialMargin** | Pointer to **string** | Initial margin required for open orders. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**TotalCrossWalletBalance** | Pointer to **string** | Cross wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**TotalCrossUnPnl** | Pointer to **string** | Unrealized PnL for cross positions. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**AvailableBalance** | Pointer to **string** | Available balance. USDT only in single-asset mode; USD-denominated in multi-assets mode. | [optional] 
+**MaxWithdrawAmount** | Pointer to **string** | Maximum transferable/withdrawable amount. USDT only in single-asset mode; a maximum virtual USD amount in multi-assets mode. | [optional] 
 **Assets** | Pointer to [**[]AccountInformationV3ResponseAssetsInner**](AccountInformationV3ResponseAssetsInner.md) | Asset-level account details. | [optional] 
 **Positions** | Pointer to [**[]AccountInformationV3ResponsePositionsInner**](AccountInformationV3ResponsePositionsInner.md) | Position details for symbols. | [optional] 
 

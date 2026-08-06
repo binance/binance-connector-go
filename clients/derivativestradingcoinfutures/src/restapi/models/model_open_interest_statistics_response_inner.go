@@ -25,7 +25,7 @@ type OpenInterestStatisticsResponseInner struct {
 	SumOpenInterest *string `json:"sumOpenInterest,omitempty"`
 	// unit: base asset
 	SumOpenInterestValue *string `json:"sumOpenInterestValue,omitempty"`
-	// Timestamp in milliseconds.
+	// End time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -37,6 +37,8 @@ type UsersForceOrdersResponseInner struct {
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Cumulative base asset amount.
 	CumBase *string `json:"cumBase,omitempty"`
+	// Cumulative quote asset amount.
+	CumQuote *string `json:"cumQuote,omitempty"`
 	// Time in force
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// Order type.
@@ -60,7 +62,9 @@ type UsersForceOrdersResponseInner struct {
 	// Time
 	Time *int64 `json:"time,omitempty"`
 	// update time
-	UpdateTime           *int64 `json:"updateTime,omitempty"`
+	UpdateTime *int64 `json:"updateTime,omitempty"`
+	// order pre-set auto cancel time for TIF GTD order
+	GoodTillDate         *int64 `json:"goodTillDate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -401,6 +405,38 @@ func (o *UsersForceOrdersResponseInner) HasCumBase() bool {
 // SetCumBase gets a reference to the given string and assigns it to the CumBase field.
 func (o *UsersForceOrdersResponseInner) SetCumBase(v string) {
 	o.CumBase = &v
+}
+
+// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
+func (o *UsersForceOrdersResponseInner) GetCumQuote() string {
+	if o == nil || common.IsNil(o.CumQuote) {
+		var ret string
+		return ret
+	}
+	return *o.CumQuote
+}
+
+// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsersForceOrdersResponseInner) GetCumQuoteOk() (*string, bool) {
+	if o == nil || common.IsNil(o.CumQuote) {
+		return nil, false
+	}
+	return o.CumQuote, true
+}
+
+// HasCumQuote returns a boolean if a field has been set.
+func (o *UsersForceOrdersResponseInner) HasCumQuote() bool {
+	if o != nil && !common.IsNil(o.CumQuote) {
+		return true
+	}
+
+	return false
+}
+
+// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
+func (o *UsersForceOrdersResponseInner) SetCumQuote(v string) {
+	o.CumQuote = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -787,6 +823,38 @@ func (o *UsersForceOrdersResponseInner) SetUpdateTime(v int64) {
 	o.UpdateTime = &v
 }
 
+// GetGoodTillDate returns the GoodTillDate field value if set, zero value otherwise.
+func (o *UsersForceOrdersResponseInner) GetGoodTillDate() int64 {
+	if o == nil || common.IsNil(o.GoodTillDate) {
+		var ret int64
+		return ret
+	}
+	return *o.GoodTillDate
+}
+
+// GetGoodTillDateOk returns a tuple with the GoodTillDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsersForceOrdersResponseInner) GetGoodTillDateOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.GoodTillDate) {
+		return nil, false
+	}
+	return o.GoodTillDate, true
+}
+
+// HasGoodTillDate returns a boolean if a field has been set.
+func (o *UsersForceOrdersResponseInner) HasGoodTillDate() bool {
+	if o != nil && !common.IsNil(o.GoodTillDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetGoodTillDate gets a reference to the given int64 and assigns it to the GoodTillDate field.
+func (o *UsersForceOrdersResponseInner) SetGoodTillDate(v int64) {
+	o.GoodTillDate = &v
+}
+
 func (o UsersForceOrdersResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -827,6 +895,9 @@ func (o UsersForceOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.CumBase) {
 		toSerialize["cumBase"] = o.CumBase
 	}
+	if !common.IsNil(o.CumQuote) {
+		toSerialize["cumQuote"] = o.CumQuote
+	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
 	}
@@ -863,6 +934,9 @@ func (o UsersForceOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.UpdateTime) {
 		toSerialize["updateTime"] = o.UpdateTime
 	}
+	if !common.IsNil(o.GoodTillDate) {
+		toSerialize["goodTillDate"] = o.GoodTillDate
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -895,6 +969,7 @@ func (o *UsersForceOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "cumBase")
+		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "reduceOnly")
@@ -907,6 +982,7 @@ func (o *UsersForceOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "origType")
 		delete(additionalProperties, "time")
 		delete(additionalProperties, "updateTime")
+		delete(additionalProperties, "goodTillDate")
 		o.AdditionalProperties = additionalProperties
 	}
 

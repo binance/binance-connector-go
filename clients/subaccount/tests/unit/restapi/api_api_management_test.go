@@ -496,7 +496,7 @@ func Test_binancesubaccountrestapi_ApiManagementAPIService(t *testing.T) {
 	t.Run("Test ApiManagementAPIService QuerySubAccountApiKey Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"total":1,"list":[{"email":"123@test.com","apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"timestamp":1640000000000}]}`
+		mockedJSON = `{"total":1,"rows":[{"email":"123@test.com","apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"timestamp":1640000000000}]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

@@ -17,15 +17,19 @@ var _ common.MappedNullable = &UsersForceOrdersResponseInner{}
 
 // UsersForceOrdersResponseInner struct for UsersForceOrdersResponseInner
 type UsersForceOrdersResponseInner struct {
-	OrderId              *int64  `json:"orderId,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	ClientOrderId        *string `json:"clientOrderId,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	AvgPrice             *string `json:"avgPrice,omitempty"`
-	OrigQty              *string `json:"origQty,omitempty"`
-	ExecutedQty          *string `json:"executedQty,omitempty"`
-	CumQuote             *string `json:"cumQuote,omitempty"`
+	OrderId *int64  `json:"orderId,omitempty"`
+	Symbol  *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair          *string `json:"pair,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	ClientOrderId *string `json:"clientOrderId,omitempty"`
+	Price         *string `json:"price,omitempty"`
+	AvgPrice      *string `json:"avgPrice,omitempty"`
+	OrigQty       *string `json:"origQty,omitempty"`
+	ExecutedQty   *string `json:"executedQty,omitempty"`
+	CumQuote      *string `json:"cumQuote,omitempty"`
+	// Cum Base.
+	CumBase              *string `json:"cumBase,omitempty"`
 	TimeInForce          *string `json:"timeInForce,omitempty"`
 	Type                 *string `json:"type,omitempty"`
 	ReduceOnly           *bool   `json:"reduceOnly,omitempty"`
@@ -121,6 +125,38 @@ func (o *UsersForceOrdersResponseInner) HasSymbol() bool {
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
 func (o *UsersForceOrdersResponseInner) SetSymbol(v string) {
 	o.Symbol = &v
+}
+
+// GetPair returns the Pair field value if set, zero value otherwise.
+func (o *UsersForceOrdersResponseInner) GetPair() string {
+	if o == nil || common.IsNil(o.Pair) {
+		var ret string
+		return ret
+	}
+	return *o.Pair
+}
+
+// GetPairOk returns a tuple with the Pair field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsersForceOrdersResponseInner) GetPairOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Pair) {
+		return nil, false
+	}
+	return o.Pair, true
+}
+
+// HasPair returns a boolean if a field has been set.
+func (o *UsersForceOrdersResponseInner) HasPair() bool {
+	if o != nil && !common.IsNil(o.Pair) {
+		return true
+	}
+
+	return false
+}
+
+// SetPair gets a reference to the given string and assigns it to the Pair field.
+func (o *UsersForceOrdersResponseInner) SetPair(v string) {
+	o.Pair = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -345,6 +381,38 @@ func (o *UsersForceOrdersResponseInner) HasCumQuote() bool {
 // SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
 func (o *UsersForceOrdersResponseInner) SetCumQuote(v string) {
 	o.CumQuote = &v
+}
+
+// GetCumBase returns the CumBase field value if set, zero value otherwise.
+func (o *UsersForceOrdersResponseInner) GetCumBase() string {
+	if o == nil || common.IsNil(o.CumBase) {
+		var ret string
+		return ret
+	}
+	return *o.CumBase
+}
+
+// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsersForceOrdersResponseInner) GetCumBaseOk() (*string, bool) {
+	if o == nil || common.IsNil(o.CumBase) {
+		return nil, false
+	}
+	return o.CumBase, true
+}
+
+// HasCumBase returns a boolean if a field has been set.
+func (o *UsersForceOrdersResponseInner) HasCumBase() bool {
+	if o != nil && !common.IsNil(o.CumBase) {
+		return true
+	}
+
+	return false
+}
+
+// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
+func (o *UsersForceOrdersResponseInner) SetCumBase(v string) {
+	o.CumBase = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -715,6 +783,9 @@ func (o UsersForceOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
+	if !common.IsNil(o.Pair) {
+		toSerialize["pair"] = o.Pair
+	}
 	if !common.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
@@ -735,6 +806,9 @@ func (o UsersForceOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.CumQuote) {
 		toSerialize["cumQuote"] = o.CumQuote
+	}
+	if !common.IsNil(o.CumBase) {
+		toSerialize["cumBase"] = o.CumBase
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
@@ -793,6 +867,7 @@ func (o *UsersForceOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "pair")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "price")
@@ -800,6 +875,7 @@ func (o *UsersForceOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "cumQuote")
+		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "reduceOnly")

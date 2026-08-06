@@ -23,6 +23,8 @@ type AllOrdersResponseInner struct {
 	ClientOrderId *string `json:"clientOrderId,omitempty"`
 	// Cum Quote.
 	CumQuote *string `json:"cumQuote,omitempty"`
+	// Cum Base.
+	CumBase *string `json:"cumBase,omitempty"`
 	// Executed Qty.
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Order Id.
@@ -47,6 +49,8 @@ type AllOrdersResponseInner struct {
 	ClosePosition *bool `json:"closePosition,omitempty"`
 	// Symbol.
 	Symbol *string `json:"symbol,omitempty"`
+	// Pair.
+	Pair *string `json:"pair,omitempty"`
 	// order time
 	Time *int64 `json:"time,omitempty"`
 	// Time In Force.
@@ -185,6 +189,38 @@ func (o *AllOrdersResponseInner) HasCumQuote() bool {
 // SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
 func (o *AllOrdersResponseInner) SetCumQuote(v string) {
 	o.CumQuote = &v
+}
+
+// GetCumBase returns the CumBase field value if set, zero value otherwise.
+func (o *AllOrdersResponseInner) GetCumBase() string {
+	if o == nil || common.IsNil(o.CumBase) {
+		var ret string
+		return ret
+	}
+	return *o.CumBase
+}
+
+// GetCumBaseOk returns a tuple with the CumBase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllOrdersResponseInner) GetCumBaseOk() (*string, bool) {
+	if o == nil || common.IsNil(o.CumBase) {
+		return nil, false
+	}
+	return o.CumBase, true
+}
+
+// HasCumBase returns a boolean if a field has been set.
+func (o *AllOrdersResponseInner) HasCumBase() bool {
+	if o != nil && !common.IsNil(o.CumBase) {
+		return true
+	}
+
+	return false
+}
+
+// SetCumBase gets a reference to the given string and assigns it to the CumBase field.
+func (o *AllOrdersResponseInner) SetCumBase(v string) {
+	o.CumBase = &v
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
@@ -571,6 +607,38 @@ func (o *AllOrdersResponseInner) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
+// GetPair returns the Pair field value if set, zero value otherwise.
+func (o *AllOrdersResponseInner) GetPair() string {
+	if o == nil || common.IsNil(o.Pair) {
+		var ret string
+		return ret
+	}
+	return *o.Pair
+}
+
+// GetPairOk returns a tuple with the Pair field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AllOrdersResponseInner) GetPairOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Pair) {
+		return nil, false
+	}
+	return o.Pair, true
+}
+
+// HasPair returns a boolean if a field has been set.
+func (o *AllOrdersResponseInner) HasPair() bool {
+	if o != nil && !common.IsNil(o.Pair) {
+		return true
+	}
+
+	return false
+}
+
+// SetPair gets a reference to the given string and assigns it to the Pair field.
+func (o *AllOrdersResponseInner) SetPair(v string) {
+	o.Pair = &v
+}
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *AllOrdersResponseInner) GetTime() int64 {
 	if o == nil || common.IsNil(o.Time) {
@@ -942,6 +1010,9 @@ func (o AllOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.CumQuote) {
 		toSerialize["cumQuote"] = o.CumQuote
 	}
+	if !common.IsNil(o.CumBase) {
+		toSerialize["cumBase"] = o.CumBase
+	}
 	if !common.IsNil(o.ExecutedQty) {
 		toSerialize["executedQty"] = o.ExecutedQty
 	}
@@ -977,6 +1048,9 @@ func (o AllOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
+	}
+	if !common.IsNil(o.Pair) {
+		toSerialize["pair"] = o.Pair
 	}
 	if !common.IsNil(o.Time) {
 		toSerialize["time"] = o.Time
@@ -1036,6 +1110,7 @@ func (o *AllOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "cumQuote")
+		delete(additionalProperties, "cumBase")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "orderId")
 		delete(additionalProperties, "origQty")
@@ -1048,6 +1123,7 @@ func (o *AllOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "stopPrice")
 		delete(additionalProperties, "closePosition")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "pair")
 		delete(additionalProperties, "time")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")

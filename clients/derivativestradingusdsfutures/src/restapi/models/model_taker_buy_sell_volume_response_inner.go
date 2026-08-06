@@ -20,7 +20,7 @@ type TakerBuySellVolumeResponseInner struct {
 	BuySellRatio *string `json:"buySellRatio,omitempty"`
 	BuyVol       *string `json:"buyVol,omitempty"`
 	SellVol      *string `json:"sellVol,omitempty"`
-	// Timestamp in milliseconds.
+	// Start time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

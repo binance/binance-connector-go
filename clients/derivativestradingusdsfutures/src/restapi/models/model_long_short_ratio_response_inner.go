@@ -25,7 +25,7 @@ type LongShortRatioResponseInner struct {
 	LongAccount *string `json:"longAccount,omitempty"`
 	// Short Account.
 	ShortAccount *string `json:"shortAccount,omitempty"`
-	// Timestamp in milliseconds.
+	// End time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -1,5 +1,31 @@
 ### Changelog
 
+## 1.14.0 - 2026-08-06
+
+### Changed (3)
+
+#### REST API
+
+- Modified response for `allOrders()` (`GET /fapi/v1/allOrders`):
+  - items: property `cumBase` added
+  - items: property `pair` added
+  - items: item property `cumBase` added
+  - items: item property `pair` added
+
+- Modified response for `usersForceOrders()` (`GET /fapi/v1/forceOrders`):
+  - items: property `pair` added
+  - items: property `cumBase` added
+  - items: item property `pair` added
+  - items: item property `cumBase` added
+
+- Modified response for `accountTradeList()` (`GET /fapi/v1/userTrades`):
+  - items: property `marginAsset` added
+  - items: property `baseQty` added
+  - items: property `pair` added
+  - items: item property `marginAsset` added
+  - items: item property `baseQty` added
+  - items: item property `pair` added
+
 ## 1.13.0 - 2026-07-28
 
 ### Changed (9)

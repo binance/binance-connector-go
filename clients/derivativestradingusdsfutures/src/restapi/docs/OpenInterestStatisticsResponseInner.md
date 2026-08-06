@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **SumOpenInterest** | Pointer to **string** | total open interest | [optional] 
 **SumOpenInterestValue** | Pointer to **string** | total open interest value | [optional] 
 **CMCCirculatingSupply** | Pointer to **string** | circulating supply provided by CMC | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | End time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

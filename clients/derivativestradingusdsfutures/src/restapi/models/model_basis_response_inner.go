@@ -17,14 +17,15 @@ var _ common.MappedNullable = &BasisResponseInner{}
 
 // BasisResponseInner struct for BasisResponseInner
 type BasisResponseInner struct {
-	IndexPrice           *string `json:"indexPrice,omitempty"`
-	ContractType         *string `json:"contractType,omitempty"`
-	BasisRate            *string `json:"basisRate,omitempty"`
-	FuturesPrice         *string `json:"futuresPrice,omitempty"`
-	AnnualizedBasisRate  *string `json:"annualizedBasisRate,omitempty"`
-	Basis                *string `json:"basis,omitempty"`
-	Pair                 *string `json:"pair,omitempty"`
-	Timestamp            *int64  `json:"timestamp,omitempty"`
+	IndexPrice          *string `json:"indexPrice,omitempty"`
+	ContractType        *string `json:"contractType,omitempty"`
+	BasisRate           *string `json:"basisRate,omitempty"`
+	FuturesPrice        *string `json:"futuresPrice,omitempty"`
+	AnnualizedBasisRate *string `json:"annualizedBasisRate,omitempty"`
+	Basis               *string `json:"basis,omitempty"`
+	Pair                *string `json:"pair,omitempty"`
+	// Start time of the period, in milliseconds.
+	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

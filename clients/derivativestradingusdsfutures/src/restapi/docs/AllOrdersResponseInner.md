@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **AvgPrice** | Pointer to **string** | Avg Price. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client Order Id. | [optional] 
 **CumQuote** | Pointer to **string** | Cum Quote. | [optional] 
+**CumBase** | Pointer to **string** | Cum Base. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
 **OrderId** | Pointer to **int64** | Order Id. | [optional] 
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
@@ -19,6 +20,7 @@ Name         | Type          | Description.  | Notes
 **StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
 **ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
 **Symbol** | Pointer to **string** | Symbol. | [optional] 
+**Pair** | Pointer to **string** | Pair. | [optional] 
 **Time** | Pointer to **int64** | order time | [optional] 
 **TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
 **Type** | Pointer to **string** | Type. | [optional] 
@@ -124,6 +126,31 @@ SetCumQuote sets CumQuote field to given value.
 `func (o *AllOrdersResponseInner) HasCumQuote() bool`
 
 HasCumQuote returns a boolean if a field has been set.
+
+### GetCumBase
+
+`func (o *AllOrdersResponseInner) GetCumBase() string`
+
+GetCumBase returns the CumBase field if non-nil, zero value otherwise.
+
+### GetCumBaseOk
+
+`func (o *AllOrdersResponseInner) GetCumBaseOk() (*string, bool)`
+
+GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCumBase
+
+`func (o *AllOrdersResponseInner) SetCumBase(v string)`
+
+SetCumBase sets CumBase field to given value.
+
+### HasCumBase
+
+`func (o *AllOrdersResponseInner) HasCumBase() bool`
+
+HasCumBase returns a boolean if a field has been set.
 
 ### GetExecutedQty
 
@@ -424,6 +451,31 @@ SetSymbol sets Symbol field to given value.
 `func (o *AllOrdersResponseInner) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
+
+### GetPair
+
+`func (o *AllOrdersResponseInner) GetPair() string`
+
+GetPair returns the Pair field if non-nil, zero value otherwise.
+
+### GetPairOk
+
+`func (o *AllOrdersResponseInner) GetPairOk() (*string, bool)`
+
+GetPairOk returns a tuple with the Pair field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPair
+
+`func (o *AllOrdersResponseInner) SetPair(v string)`
+
+SetPair sets Pair field to given value.
+
+### HasPair
+
+`func (o *AllOrdersResponseInner) HasPair() bool`
+
+HasPair returns a boolean if a field has been set.
 
 ### GetTime
 

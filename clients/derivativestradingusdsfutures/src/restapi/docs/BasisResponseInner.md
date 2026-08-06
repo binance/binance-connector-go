@@ -11,7 +11,7 @@ Name         | Type          | Description.  | Notes
 **AnnualizedBasisRate** | Pointer to **string** |  | [optional] 
 **Basis** | Pointer to **string** |  | [optional] 
 **Pair** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int64** |  | [optional] 
+**Timestamp** | Pointer to **int64** | Start time of the period, in milliseconds. | [optional] 
 
 ## Methods
 

@@ -17,27 +17,27 @@ var _ common.MappedNullable = &AccountInformationV3Response{}
 
 // AccountInformationV3Response struct for AccountInformationV3Response
 type AccountInformationV3Response struct {
-	// Total initial margin requirement.
+	// Total initial margin requirement. USDT only in single-asset mode; the sum of USD value of all cross positions/open order initial margin in multi-assets mode.
 	TotalInitialMargin *string `json:"totalInitialMargin,omitempty"`
-	// Total maintenance margin requirement.
+	// Total maintenance margin requirement. USDT only in single-asset mode; the sum of USD value of all cross positions maintenance margin in multi-assets mode.
 	TotalMaintMargin *string `json:"totalMaintMargin,omitempty"`
-	// Total wallet balance.
+	// Total wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
-	// Total unrealized profit.
+	// Total unrealized profit. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalUnrealizedProfit *string `json:"totalUnrealizedProfit,omitempty"`
-	// Total margin balance.
+	// Total margin balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalMarginBalance *string `json:"totalMarginBalance,omitempty"`
-	// Initial margin required for positions.
+	// Initial margin required for positions. USDT only in single-asset mode; the sum of USD value of all cross positions initial margin in multi-assets mode.
 	TotalPositionInitialMargin *string `json:"totalPositionInitialMargin,omitempty"`
-	// Initial margin required for open orders.
+	// Initial margin required for open orders. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
-	// Cross wallet balance.
+	// Cross wallet balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalCrossWalletBalance *string `json:"totalCrossWalletBalance,omitempty"`
-	// Unrealized PnL for cross positions.
+	// Unrealized PnL for cross positions. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	TotalCrossUnPnl *string `json:"totalCrossUnPnl,omitempty"`
-	// Available balance.
+	// Available balance. USDT only in single-asset mode; USD-denominated in multi-assets mode.
 	AvailableBalance *string `json:"availableBalance,omitempty"`
-	// Maximum transferable/withdrawable amount.
+	// Maximum transferable/withdrawable amount. USDT only in single-asset mode; a maximum virtual USD amount in multi-assets mode.
 	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
 	// Asset-level account details.
 	Assets []AccountInformationV3ResponseAssetsInner `json:"assets,omitempty"`

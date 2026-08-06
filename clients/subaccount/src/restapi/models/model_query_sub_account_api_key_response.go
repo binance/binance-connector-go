@@ -18,7 +18,7 @@ var _ common.MappedNullable = &QuerySubAccountApiKeyResponse{}
 // QuerySubAccountApiKeyResponse struct for QuerySubAccountApiKeyResponse
 type QuerySubAccountApiKeyResponse struct {
 	Total                *int64                                   `json:"total,omitempty"`
-	List                 []QuerySubAccountApiKeyResponseListInner `json:"list,omitempty"`
+	Rows                 []QuerySubAccountApiKeyResponseRowsInner `json:"rows,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,36 +73,36 @@ func (o *QuerySubAccountApiKeyResponse) SetTotal(v int64) {
 	o.Total = &v
 }
 
-// GetList returns the List field value if set, zero value otherwise.
-func (o *QuerySubAccountApiKeyResponse) GetList() []QuerySubAccountApiKeyResponseListInner {
-	if o == nil || common.IsNil(o.List) {
-		var ret []QuerySubAccountApiKeyResponseListInner
+// GetRows returns the Rows field value if set, zero value otherwise.
+func (o *QuerySubAccountApiKeyResponse) GetRows() []QuerySubAccountApiKeyResponseRowsInner {
+	if o == nil || common.IsNil(o.Rows) {
+		var ret []QuerySubAccountApiKeyResponseRowsInner
 		return ret
 	}
-	return o.List
+	return o.Rows
 }
 
-// GetListOk returns a tuple with the List field value if set, nil otherwise
+// GetRowsOk returns a tuple with the Rows field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountApiKeyResponse) GetListOk() ([]QuerySubAccountApiKeyResponseListInner, bool) {
-	if o == nil || common.IsNil(o.List) {
+func (o *QuerySubAccountApiKeyResponse) GetRowsOk() ([]QuerySubAccountApiKeyResponseRowsInner, bool) {
+	if o == nil || common.IsNil(o.Rows) {
 		return nil, false
 	}
-	return o.List, true
+	return o.Rows, true
 }
 
-// HasList returns a boolean if a field has been set.
-func (o *QuerySubAccountApiKeyResponse) HasList() bool {
-	if o != nil && !common.IsNil(o.List) {
+// HasRows returns a boolean if a field has been set.
+func (o *QuerySubAccountApiKeyResponse) HasRows() bool {
+	if o != nil && !common.IsNil(o.Rows) {
 		return true
 	}
 
 	return false
 }
 
-// SetList gets a reference to the given []QuerySubAccountApiKeyResponseListInner and assigns it to the List field.
-func (o *QuerySubAccountApiKeyResponse) SetList(v []QuerySubAccountApiKeyResponseListInner) {
-	o.List = v
+// SetRows gets a reference to the given []QuerySubAccountApiKeyResponseRowsInner and assigns it to the Rows field.
+func (o *QuerySubAccountApiKeyResponse) SetRows(v []QuerySubAccountApiKeyResponseRowsInner) {
+	o.Rows = v
 }
 
 func (o QuerySubAccountApiKeyResponse) MarshalJSON() ([]byte, error) {
@@ -118,8 +118,8 @@ func (o QuerySubAccountApiKeyResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Total) {
 		toSerialize["total"] = o.Total
 	}
-	if !common.IsNil(o.List) {
-		toSerialize["list"] = o.List
+	if !common.IsNil(o.Rows) {
+		toSerialize["rows"] = o.Rows
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -144,7 +144,7 @@ func (o *QuerySubAccountApiKeyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "total")
-		delete(additionalProperties, "list")
+		delete(additionalProperties, "rows")
 		o.AdditionalProperties = additionalProperties
 	}
 

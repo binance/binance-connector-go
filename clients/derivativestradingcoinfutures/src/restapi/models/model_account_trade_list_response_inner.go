@@ -37,6 +37,8 @@ type AccountTradeListResponseInner struct {
 	MarginAsset *string `json:"marginAsset,omitempty"`
 	// Base asset quantity.
 	BaseQty *string `json:"baseQty,omitempty"`
+	// Quote asset quantity.
+	QuoteQty *string `json:"quoteQty,omitempty"`
 	// Transaction Fee (in Crypto)
 	Commission *string `json:"commission,omitempty"`
 	// Commission asset.
@@ -391,6 +393,38 @@ func (o *AccountTradeListResponseInner) SetBaseQty(v string) {
 	o.BaseQty = &v
 }
 
+// GetQuoteQty returns the QuoteQty field value if set, zero value otherwise.
+func (o *AccountTradeListResponseInner) GetQuoteQty() string {
+	if o == nil || common.IsNil(o.QuoteQty) {
+		var ret string
+		return ret
+	}
+	return *o.QuoteQty
+}
+
+// GetQuoteQtyOk returns a tuple with the QuoteQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTradeListResponseInner) GetQuoteQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.QuoteQty) {
+		return nil, false
+	}
+	return o.QuoteQty, true
+}
+
+// HasQuoteQty returns a boolean if a field has been set.
+func (o *AccountTradeListResponseInner) HasQuoteQty() bool {
+	if o != nil && !common.IsNil(o.QuoteQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuoteQty gets a reference to the given string and assigns it to the QuoteQty field.
+func (o *AccountTradeListResponseInner) SetQuoteQty(v string) {
+	o.QuoteQty = &v
+}
+
 // GetCommission returns the Commission field value if set, zero value otherwise.
 func (o *AccountTradeListResponseInner) GetCommission() string {
 	if o == nil || common.IsNil(o.Commission) {
@@ -623,6 +657,9 @@ func (o AccountTradeListResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.BaseQty) {
 		toSerialize["baseQty"] = o.BaseQty
 	}
+	if !common.IsNil(o.QuoteQty) {
+		toSerialize["quoteQty"] = o.QuoteQty
+	}
 	if !common.IsNil(o.Commission) {
 		toSerialize["commission"] = o.Commission
 	}
@@ -673,6 +710,7 @@ func (o *AccountTradeListResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "realizedPnl")
 		delete(additionalProperties, "marginAsset")
 		delete(additionalProperties, "baseQty")
+		delete(additionalProperties, "quoteQty")
 		delete(additionalProperties, "commission")
 		delete(additionalProperties, "commissionAsset")
 		delete(additionalProperties, "time")

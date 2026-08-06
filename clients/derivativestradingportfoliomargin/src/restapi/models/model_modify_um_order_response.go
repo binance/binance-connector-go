@@ -29,16 +29,12 @@ type ModifyUmOrderResponse struct {
 	ModifyId *int64 `json:"modifyId,omitempty"`
 	// Price.
 	Price *string `json:"price,omitempty"`
-	// Avg Price.
-	AvgPrice *string `json:"avgPrice,omitempty"`
 	// Orig Qty.
 	OrigQty *string `json:"origQty,omitempty"`
 	// Executed Qty.
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Cum Qty.
 	CumQty *string `json:"cumQty,omitempty"`
-	// Cum Quote.
-	CumQuote *string `json:"cumQuote,omitempty"`
 	// Time In Force.
 	TimeInForce *string `json:"timeInForce,omitempty"`
 	// Normal order type after trigger if appliable
@@ -273,38 +269,6 @@ func (o *ModifyUmOrderResponse) SetPrice(v string) {
 	o.Price = &v
 }
 
-// GetAvgPrice returns the AvgPrice field value if set, zero value otherwise.
-func (o *ModifyUmOrderResponse) GetAvgPrice() string {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		var ret string
-		return ret
-	}
-	return *o.AvgPrice
-}
-
-// GetAvgPriceOk returns a tuple with the AvgPrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyUmOrderResponse) GetAvgPriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.AvgPrice) {
-		return nil, false
-	}
-	return o.AvgPrice, true
-}
-
-// HasAvgPrice returns a boolean if a field has been set.
-func (o *ModifyUmOrderResponse) HasAvgPrice() bool {
-	if o != nil && !common.IsNil(o.AvgPrice) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvgPrice gets a reference to the given string and assigns it to the AvgPrice field.
-func (o *ModifyUmOrderResponse) SetAvgPrice(v string) {
-	o.AvgPrice = &v
-}
-
 // GetOrigQty returns the OrigQty field value if set, zero value otherwise.
 func (o *ModifyUmOrderResponse) GetOrigQty() string {
 	if o == nil || common.IsNil(o.OrigQty) {
@@ -399,38 +363,6 @@ func (o *ModifyUmOrderResponse) HasCumQty() bool {
 // SetCumQty gets a reference to the given string and assigns it to the CumQty field.
 func (o *ModifyUmOrderResponse) SetCumQty(v string) {
 	o.CumQty = &v
-}
-
-// GetCumQuote returns the CumQuote field value if set, zero value otherwise.
-func (o *ModifyUmOrderResponse) GetCumQuote() string {
-	if o == nil || common.IsNil(o.CumQuote) {
-		var ret string
-		return ret
-	}
-	return *o.CumQuote
-}
-
-// GetCumQuoteOk returns a tuple with the CumQuote field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModifyUmOrderResponse) GetCumQuoteOk() (*string, bool) {
-	if o == nil || common.IsNil(o.CumQuote) {
-		return nil, false
-	}
-	return o.CumQuote, true
-}
-
-// HasCumQuote returns a boolean if a field has been set.
-func (o *ModifyUmOrderResponse) HasCumQuote() bool {
-	if o != nil && !common.IsNil(o.CumQuote) {
-		return true
-	}
-
-	return false
-}
-
-// SetCumQuote gets a reference to the given string and assigns it to the CumQuote field.
-func (o *ModifyUmOrderResponse) SetCumQuote(v string) {
-	o.CumQuote = &v
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
@@ -781,9 +713,6 @@ func (o ModifyUmOrderResponse) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Price) {
 		toSerialize["price"] = o.Price
 	}
-	if !common.IsNil(o.AvgPrice) {
-		toSerialize["avgPrice"] = o.AvgPrice
-	}
 	if !common.IsNil(o.OrigQty) {
 		toSerialize["origQty"] = o.OrigQty
 	}
@@ -792,9 +721,6 @@ func (o ModifyUmOrderResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.CumQty) {
 		toSerialize["cumQty"] = o.CumQty
-	}
-	if !common.IsNil(o.CumQuote) {
-		toSerialize["cumQuote"] = o.CumQuote
 	}
 	if !common.IsNil(o.TimeInForce) {
 		toSerialize["timeInForce"] = o.TimeInForce
@@ -854,11 +780,9 @@ func (o *ModifyUmOrderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "modifyId")
 		delete(additionalProperties, "price")
-		delete(additionalProperties, "avgPrice")
 		delete(additionalProperties, "origQty")
 		delete(additionalProperties, "executedQty")
 		delete(additionalProperties, "cumQty")
-		delete(additionalProperties, "cumQuote")
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "reduceOnly")

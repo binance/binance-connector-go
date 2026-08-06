@@ -1,5 +1,13 @@
 ### Changelog
 
+## 1.11.0 - 2026-08-06
+
+### Changed (1)
+
+- Modified response for `querySubAccountApiKey()` (`GET /sapi/v1/sub-account/subAccountApi`):
+  - property `rows` added
+  - property `list` deleted
+
 ## 1.10.0 - 2026-07-15
 
 ### Changed (1)

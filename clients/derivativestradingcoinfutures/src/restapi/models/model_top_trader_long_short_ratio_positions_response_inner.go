@@ -25,7 +25,7 @@ type TopTraderLongShortRatioPositionsResponseInner struct {
 	LongPosition *string `json:"longPosition,omitempty"`
 	// 44.04%
 	ShortPosition *string `json:"shortPosition,omitempty"`
-	// Timestamp in milliseconds.
+	// End time of the period, in milliseconds.
 	Timestamp            *int64 `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

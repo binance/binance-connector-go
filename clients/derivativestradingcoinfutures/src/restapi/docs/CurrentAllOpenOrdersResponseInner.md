@@ -1,4 +1,4 @@
-# AllOrdersResponseInner
+# CurrentAllOpenOrdersResponseInner
 
 ## Properties
 
@@ -7,7 +7,6 @@ Name         | Type          | Description.  | Notes
 **AvgPrice** | Pointer to **string** | Average execution price | [optional] 
 **ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
 **CumBase** | Pointer to **string** | Cumulative base asset amount. | [optional] 
-**CumQuote** | Pointer to **string** | Cumulative quote asset amount. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed quantity | [optional] 
 **OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
 **OrigQty** | Pointer to **string** | Original order quantity | [optional] 
@@ -31,726 +30,675 @@ Name         | Type          | Description.  | Notes
 **PriceProtect** | Pointer to **bool** | if conditional order trigger is protected | [optional] 
 **PriceMatch** | Pointer to **string** | price match mode | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** | self trading preventation mode | [optional] 
-**GoodTillDate** | Pointer to **int64** | order pre-set auto cancel time for TIF GTD order | [optional] 
 
 ## Methods
 
-### NewAllOrdersResponseInner
+### NewCurrentAllOpenOrdersResponseInner
 
-`func NewAllOrdersResponseInner() *AllOrdersResponseInner`
+`func NewCurrentAllOpenOrdersResponseInner() *CurrentAllOpenOrdersResponseInner`
 
-NewAllOrdersResponseInner instantiates a new AllOrdersResponseInner object
+NewCurrentAllOpenOrdersResponseInner instantiates a new CurrentAllOpenOrdersResponseInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAllOrdersResponseInnerWithDefaults
+### NewCurrentAllOpenOrdersResponseInnerWithDefaults
 
-`func NewAllOrdersResponseInnerWithDefaults() *AllOrdersResponseInner`
+`func NewCurrentAllOpenOrdersResponseInnerWithDefaults() *CurrentAllOpenOrdersResponseInner`
 
-NewAllOrdersResponseInnerWithDefaults instantiates a new AllOrdersResponseInner object
+NewCurrentAllOpenOrdersResponseInnerWithDefaults instantiates a new CurrentAllOpenOrdersResponseInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAvgPrice
 
-`func (o *AllOrdersResponseInner) GetAvgPrice() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetAvgPrice() string`
 
 GetAvgPrice returns the AvgPrice field if non-nil, zero value otherwise.
 
 ### GetAvgPriceOk
 
-`func (o *AllOrdersResponseInner) GetAvgPriceOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetAvgPriceOk() (*string, bool)`
 
 GetAvgPriceOk returns a tuple with the AvgPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvgPrice
 
-`func (o *AllOrdersResponseInner) SetAvgPrice(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetAvgPrice(v string)`
 
 SetAvgPrice sets AvgPrice field to given value.
 
 ### HasAvgPrice
 
-`func (o *AllOrdersResponseInner) HasAvgPrice() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasAvgPrice() bool`
 
 HasAvgPrice returns a boolean if a field has been set.
 
 ### GetClientOrderId
 
-`func (o *AllOrdersResponseInner) GetClientOrderId() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderId() string`
 
 GetClientOrderId returns the ClientOrderId field if non-nil, zero value otherwise.
 
 ### GetClientOrderIdOk
 
-`func (o *AllOrdersResponseInner) GetClientOrderIdOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetClientOrderIdOk() (*string, bool)`
 
 GetClientOrderIdOk returns a tuple with the ClientOrderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClientOrderId
 
-`func (o *AllOrdersResponseInner) SetClientOrderId(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetClientOrderId(v string)`
 
 SetClientOrderId sets ClientOrderId field to given value.
 
 ### HasClientOrderId
 
-`func (o *AllOrdersResponseInner) HasClientOrderId() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasClientOrderId() bool`
 
 HasClientOrderId returns a boolean if a field has been set.
 
 ### GetCumBase
 
-`func (o *AllOrdersResponseInner) GetCumBase() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetCumBase() string`
 
 GetCumBase returns the CumBase field if non-nil, zero value otherwise.
 
 ### GetCumBaseOk
 
-`func (o *AllOrdersResponseInner) GetCumBaseOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetCumBaseOk() (*string, bool)`
 
 GetCumBaseOk returns a tuple with the CumBase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCumBase
 
-`func (o *AllOrdersResponseInner) SetCumBase(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetCumBase(v string)`
 
 SetCumBase sets CumBase field to given value.
 
 ### HasCumBase
 
-`func (o *AllOrdersResponseInner) HasCumBase() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasCumBase() bool`
 
 HasCumBase returns a boolean if a field has been set.
 
-### GetCumQuote
-
-`func (o *AllOrdersResponseInner) GetCumQuote() string`
-
-GetCumQuote returns the CumQuote field if non-nil, zero value otherwise.
-
-### GetCumQuoteOk
-
-`func (o *AllOrdersResponseInner) GetCumQuoteOk() (*string, bool)`
-
-GetCumQuoteOk returns a tuple with the CumQuote field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCumQuote
-
-`func (o *AllOrdersResponseInner) SetCumQuote(v string)`
-
-SetCumQuote sets CumQuote field to given value.
-
-### HasCumQuote
-
-`func (o *AllOrdersResponseInner) HasCumQuote() bool`
-
-HasCumQuote returns a boolean if a field has been set.
-
 ### GetExecutedQty
 
-`func (o *AllOrdersResponseInner) GetExecutedQty() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQty() string`
 
 GetExecutedQty returns the ExecutedQty field if non-nil, zero value otherwise.
 
 ### GetExecutedQtyOk
 
-`func (o *AllOrdersResponseInner) GetExecutedQtyOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetExecutedQtyOk() (*string, bool)`
 
 GetExecutedQtyOk returns a tuple with the ExecutedQty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutedQty
 
-`func (o *AllOrdersResponseInner) SetExecutedQty(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetExecutedQty(v string)`
 
 SetExecutedQty sets ExecutedQty field to given value.
 
 ### HasExecutedQty
 
-`func (o *AllOrdersResponseInner) HasExecutedQty() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasExecutedQty() bool`
 
 HasExecutedQty returns a boolean if a field has been set.
 
 ### GetOrderId
 
-`func (o *AllOrdersResponseInner) GetOrderId() int64`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrderId() int64`
 
 GetOrderId returns the OrderId field if non-nil, zero value otherwise.
 
 ### GetOrderIdOk
 
-`func (o *AllOrdersResponseInner) GetOrderIdOk() (*int64, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrderIdOk() (*int64, bool)`
 
 GetOrderIdOk returns a tuple with the OrderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrderId
 
-`func (o *AllOrdersResponseInner) SetOrderId(v int64)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetOrderId(v int64)`
 
 SetOrderId sets OrderId field to given value.
 
 ### HasOrderId
 
-`func (o *AllOrdersResponseInner) HasOrderId() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasOrderId() bool`
 
 HasOrderId returns a boolean if a field has been set.
 
 ### GetOrigQty
 
-`func (o *AllOrdersResponseInner) GetOrigQty() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrigQty() string`
 
 GetOrigQty returns the OrigQty field if non-nil, zero value otherwise.
 
 ### GetOrigQtyOk
 
-`func (o *AllOrdersResponseInner) GetOrigQtyOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrigQtyOk() (*string, bool)`
 
 GetOrigQtyOk returns a tuple with the OrigQty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrigQty
 
-`func (o *AllOrdersResponseInner) SetOrigQty(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetOrigQty(v string)`
 
 SetOrigQty sets OrigQty field to given value.
 
 ### HasOrigQty
 
-`func (o *AllOrdersResponseInner) HasOrigQty() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasOrigQty() bool`
 
 HasOrigQty returns a boolean if a field has been set.
 
 ### GetOrigType
 
-`func (o *AllOrdersResponseInner) GetOrigType() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrigType() string`
 
 GetOrigType returns the OrigType field if non-nil, zero value otherwise.
 
 ### GetOrigTypeOk
 
-`func (o *AllOrdersResponseInner) GetOrigTypeOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetOrigTypeOk() (*string, bool)`
 
 GetOrigTypeOk returns a tuple with the OrigType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrigType
 
-`func (o *AllOrdersResponseInner) SetOrigType(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetOrigType(v string)`
 
 SetOrigType sets OrigType field to given value.
 
 ### HasOrigType
 
-`func (o *AllOrdersResponseInner) HasOrigType() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasOrigType() bool`
 
 HasOrigType returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *AllOrdersResponseInner) GetPrice() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPrice() string`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *AllOrdersResponseInner) GetPriceOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceOk() (*string, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *AllOrdersResponseInner) SetPrice(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPrice(v string)`
 
 SetPrice sets Price field to given value.
 
 ### HasPrice
 
-`func (o *AllOrdersResponseInner) HasPrice() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
 
 ### GetReduceOnly
 
-`func (o *AllOrdersResponseInner) GetReduceOnly() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnly() bool`
 
 GetReduceOnly returns the ReduceOnly field if non-nil, zero value otherwise.
 
 ### GetReduceOnlyOk
 
-`func (o *AllOrdersResponseInner) GetReduceOnlyOk() (*bool, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetReduceOnlyOk() (*bool, bool)`
 
 GetReduceOnlyOk returns a tuple with the ReduceOnly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReduceOnly
 
-`func (o *AllOrdersResponseInner) SetReduceOnly(v bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetReduceOnly(v bool)`
 
 SetReduceOnly sets ReduceOnly field to given value.
 
 ### HasReduceOnly
 
-`func (o *AllOrdersResponseInner) HasReduceOnly() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasReduceOnly() bool`
 
 HasReduceOnly returns a boolean if a field has been set.
 
 ### GetSide
 
-`func (o *AllOrdersResponseInner) GetSide() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSide() string`
 
 GetSide returns the Side field if non-nil, zero value otherwise.
 
 ### GetSideOk
 
-`func (o *AllOrdersResponseInner) GetSideOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSideOk() (*string, bool)`
 
 GetSideOk returns a tuple with the Side field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSide
 
-`func (o *AllOrdersResponseInner) SetSide(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetSide(v string)`
 
 SetSide sets Side field to given value.
 
 ### HasSide
 
-`func (o *AllOrdersResponseInner) HasSide() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasSide() bool`
 
 HasSide returns a boolean if a field has been set.
 
 ### GetPositionSide
 
-`func (o *AllOrdersResponseInner) GetPositionSide() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPositionSide() string`
 
 GetPositionSide returns the PositionSide field if non-nil, zero value otherwise.
 
 ### GetPositionSideOk
 
-`func (o *AllOrdersResponseInner) GetPositionSideOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPositionSideOk() (*string, bool)`
 
 GetPositionSideOk returns a tuple with the PositionSide field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPositionSide
 
-`func (o *AllOrdersResponseInner) SetPositionSide(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPositionSide(v string)`
 
 SetPositionSide sets PositionSide field to given value.
 
 ### HasPositionSide
 
-`func (o *AllOrdersResponseInner) HasPositionSide() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPositionSide() bool`
 
 HasPositionSide returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *AllOrdersResponseInner) GetStatus() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *AllOrdersResponseInner) GetStatusOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *AllOrdersResponseInner) SetStatus(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *AllOrdersResponseInner) HasStatus() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetStopPrice
 
-`func (o *AllOrdersResponseInner) GetStopPrice() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetStopPrice() string`
 
 GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
 
 ### GetStopPriceOk
 
-`func (o *AllOrdersResponseInner) GetStopPriceOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetStopPriceOk() (*string, bool)`
 
 GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStopPrice
 
-`func (o *AllOrdersResponseInner) SetStopPrice(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetStopPrice(v string)`
 
 SetStopPrice sets StopPrice field to given value.
 
 ### HasStopPrice
 
-`func (o *AllOrdersResponseInner) HasStopPrice() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasStopPrice() bool`
 
 HasStopPrice returns a boolean if a field has been set.
 
 ### GetClosePosition
 
-`func (o *AllOrdersResponseInner) GetClosePosition() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) GetClosePosition() bool`
 
 GetClosePosition returns the ClosePosition field if non-nil, zero value otherwise.
 
 ### GetClosePositionOk
 
-`func (o *AllOrdersResponseInner) GetClosePositionOk() (*bool, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetClosePositionOk() (*bool, bool)`
 
 GetClosePositionOk returns a tuple with the ClosePosition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClosePosition
 
-`func (o *AllOrdersResponseInner) SetClosePosition(v bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetClosePosition(v bool)`
 
 SetClosePosition sets ClosePosition field to given value.
 
 ### HasClosePosition
 
-`func (o *AllOrdersResponseInner) HasClosePosition() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasClosePosition() bool`
 
 HasClosePosition returns a boolean if a field has been set.
 
 ### GetSymbol
 
-`func (o *AllOrdersResponseInner) GetSymbol() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSymbol() string`
 
 GetSymbol returns the Symbol field if non-nil, zero value otherwise.
 
 ### GetSymbolOk
 
-`func (o *AllOrdersResponseInner) GetSymbolOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSymbolOk() (*string, bool)`
 
 GetSymbolOk returns a tuple with the Symbol field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSymbol
 
-`func (o *AllOrdersResponseInner) SetSymbol(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetSymbol(v string)`
 
 SetSymbol sets Symbol field to given value.
 
 ### HasSymbol
 
-`func (o *AllOrdersResponseInner) HasSymbol() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
 
 ### GetPair
 
-`func (o *AllOrdersResponseInner) GetPair() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPair() string`
 
 GetPair returns the Pair field if non-nil, zero value otherwise.
 
 ### GetPairOk
 
-`func (o *AllOrdersResponseInner) GetPairOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPairOk() (*string, bool)`
 
 GetPairOk returns a tuple with the Pair field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPair
 
-`func (o *AllOrdersResponseInner) SetPair(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPair(v string)`
 
 SetPair sets Pair field to given value.
 
 ### HasPair
 
-`func (o *AllOrdersResponseInner) HasPair() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPair() bool`
 
 HasPair returns a boolean if a field has been set.
 
 ### GetTime
 
-`func (o *AllOrdersResponseInner) GetTime() int64`
+`func (o *CurrentAllOpenOrdersResponseInner) GetTime() int64`
 
 GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *AllOrdersResponseInner) GetTimeOk() (*int64, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetTimeOk() (*int64, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTime
 
-`func (o *AllOrdersResponseInner) SetTime(v int64)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetTime(v int64)`
 
 SetTime sets Time field to given value.
 
 ### HasTime
 
-`func (o *AllOrdersResponseInner) HasTime() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasTime() bool`
 
 HasTime returns a boolean if a field has been set.
 
 ### GetTimeInForce
 
-`func (o *AllOrdersResponseInner) GetTimeInForce() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForce() string`
 
 GetTimeInForce returns the TimeInForce field if non-nil, zero value otherwise.
 
 ### GetTimeInForceOk
 
-`func (o *AllOrdersResponseInner) GetTimeInForceOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetTimeInForceOk() (*string, bool)`
 
 GetTimeInForceOk returns a tuple with the TimeInForce field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeInForce
 
-`func (o *AllOrdersResponseInner) SetTimeInForce(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetTimeInForce(v string)`
 
 SetTimeInForce sets TimeInForce field to given value.
 
 ### HasTimeInForce
 
-`func (o *AllOrdersResponseInner) HasTimeInForce() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasTimeInForce() bool`
 
 HasTimeInForce returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *AllOrdersResponseInner) GetType() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *AllOrdersResponseInner) GetTypeOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *AllOrdersResponseInner) SetType(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *AllOrdersResponseInner) HasType() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
 ### GetActivatePrice
 
-`func (o *AllOrdersResponseInner) GetActivatePrice() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetActivatePrice() string`
 
 GetActivatePrice returns the ActivatePrice field if non-nil, zero value otherwise.
 
 ### GetActivatePriceOk
 
-`func (o *AllOrdersResponseInner) GetActivatePriceOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetActivatePriceOk() (*string, bool)`
 
 GetActivatePriceOk returns a tuple with the ActivatePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActivatePrice
 
-`func (o *AllOrdersResponseInner) SetActivatePrice(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetActivatePrice(v string)`
 
 SetActivatePrice sets ActivatePrice field to given value.
 
 ### HasActivatePrice
 
-`func (o *AllOrdersResponseInner) HasActivatePrice() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasActivatePrice() bool`
 
 HasActivatePrice returns a boolean if a field has been set.
 
 ### GetPriceRate
 
-`func (o *AllOrdersResponseInner) GetPriceRate() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceRate() string`
 
 GetPriceRate returns the PriceRate field if non-nil, zero value otherwise.
 
 ### GetPriceRateOk
 
-`func (o *AllOrdersResponseInner) GetPriceRateOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceRateOk() (*string, bool)`
 
 GetPriceRateOk returns a tuple with the PriceRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceRate
 
-`func (o *AllOrdersResponseInner) SetPriceRate(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPriceRate(v string)`
 
 SetPriceRate sets PriceRate field to given value.
 
 ### HasPriceRate
 
-`func (o *AllOrdersResponseInner) HasPriceRate() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPriceRate() bool`
 
 HasPriceRate returns a boolean if a field has been set.
 
 ### GetUpdateTime
 
-`func (o *AllOrdersResponseInner) GetUpdateTime() int64`
+`func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTime() int64`
 
 GetUpdateTime returns the UpdateTime field if non-nil, zero value otherwise.
 
 ### GetUpdateTimeOk
 
-`func (o *AllOrdersResponseInner) GetUpdateTimeOk() (*int64, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetUpdateTimeOk() (*int64, bool)`
 
 GetUpdateTimeOk returns a tuple with the UpdateTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdateTime
 
-`func (o *AllOrdersResponseInner) SetUpdateTime(v int64)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetUpdateTime(v int64)`
 
 SetUpdateTime sets UpdateTime field to given value.
 
 ### HasUpdateTime
 
-`func (o *AllOrdersResponseInner) HasUpdateTime() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasUpdateTime() bool`
 
 HasUpdateTime returns a boolean if a field has been set.
 
 ### GetWorkingType
 
-`func (o *AllOrdersResponseInner) GetWorkingType() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetWorkingType() string`
 
 GetWorkingType returns the WorkingType field if non-nil, zero value otherwise.
 
 ### GetWorkingTypeOk
 
-`func (o *AllOrdersResponseInner) GetWorkingTypeOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetWorkingTypeOk() (*string, bool)`
 
 GetWorkingTypeOk returns a tuple with the WorkingType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWorkingType
 
-`func (o *AllOrdersResponseInner) SetWorkingType(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetWorkingType(v string)`
 
 SetWorkingType sets WorkingType field to given value.
 
 ### HasWorkingType
 
-`func (o *AllOrdersResponseInner) HasWorkingType() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasWorkingType() bool`
 
 HasWorkingType returns a boolean if a field has been set.
 
 ### GetPriceProtect
 
-`func (o *AllOrdersResponseInner) GetPriceProtect() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtect() bool`
 
 GetPriceProtect returns the PriceProtect field if non-nil, zero value otherwise.
 
 ### GetPriceProtectOk
 
-`func (o *AllOrdersResponseInner) GetPriceProtectOk() (*bool, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceProtectOk() (*bool, bool)`
 
 GetPriceProtectOk returns a tuple with the PriceProtect field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceProtect
 
-`func (o *AllOrdersResponseInner) SetPriceProtect(v bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPriceProtect(v bool)`
 
 SetPriceProtect sets PriceProtect field to given value.
 
 ### HasPriceProtect
 
-`func (o *AllOrdersResponseInner) HasPriceProtect() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPriceProtect() bool`
 
 HasPriceProtect returns a boolean if a field has been set.
 
 ### GetPriceMatch
 
-`func (o *AllOrdersResponseInner) GetPriceMatch() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceMatch() string`
 
 GetPriceMatch returns the PriceMatch field if non-nil, zero value otherwise.
 
 ### GetPriceMatchOk
 
-`func (o *AllOrdersResponseInner) GetPriceMatchOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetPriceMatchOk() (*string, bool)`
 
 GetPriceMatchOk returns a tuple with the PriceMatch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceMatch
 
-`func (o *AllOrdersResponseInner) SetPriceMatch(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetPriceMatch(v string)`
 
 SetPriceMatch sets PriceMatch field to given value.
 
 ### HasPriceMatch
 
-`func (o *AllOrdersResponseInner) HasPriceMatch() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasPriceMatch() bool`
 
 HasPriceMatch returns a boolean if a field has been set.
 
 ### GetSelfTradePreventionMode
 
-`func (o *AllOrdersResponseInner) GetSelfTradePreventionMode() string`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSelfTradePreventionMode() string`
 
 GetSelfTradePreventionMode returns the SelfTradePreventionMode field if non-nil, zero value otherwise.
 
 ### GetSelfTradePreventionModeOk
 
-`func (o *AllOrdersResponseInner) GetSelfTradePreventionModeOk() (*string, bool)`
+`func (o *CurrentAllOpenOrdersResponseInner) GetSelfTradePreventionModeOk() (*string, bool)`
 
 GetSelfTradePreventionModeOk returns a tuple with the SelfTradePreventionMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSelfTradePreventionMode
 
-`func (o *AllOrdersResponseInner) SetSelfTradePreventionMode(v string)`
+`func (o *CurrentAllOpenOrdersResponseInner) SetSelfTradePreventionMode(v string)`
 
 SetSelfTradePreventionMode sets SelfTradePreventionMode field to given value.
 
 ### HasSelfTradePreventionMode
 
-`func (o *AllOrdersResponseInner) HasSelfTradePreventionMode() bool`
+`func (o *CurrentAllOpenOrdersResponseInner) HasSelfTradePreventionMode() bool`
 
 HasSelfTradePreventionMode returns a boolean if a field has been set.
-
-### GetGoodTillDate
-
-`func (o *AllOrdersResponseInner) GetGoodTillDate() int64`
-
-GetGoodTillDate returns the GoodTillDate field if non-nil, zero value otherwise.
-
-### GetGoodTillDateOk
-
-`func (o *AllOrdersResponseInner) GetGoodTillDateOk() (*int64, bool)`
-
-GetGoodTillDateOk returns a tuple with the GoodTillDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGoodTillDate
-
-`func (o *AllOrdersResponseInner) SetGoodTillDate(v int64)`
-
-SetGoodTillDate sets GoodTillDate field to given value.
-
-### HasGoodTillDate
-
-`func (o *AllOrdersResponseInner) HasGoodTillDate() bool`
-
-HasGoodTillDate returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

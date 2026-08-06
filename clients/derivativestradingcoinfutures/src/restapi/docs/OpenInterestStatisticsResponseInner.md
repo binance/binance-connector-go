@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **ContractType** | Pointer to **string** | Contract type. | [optional] 
 **SumOpenInterest** | Pointer to **string** | unit: cont | [optional] 
 **SumOpenInterestValue** | Pointer to **string** | unit: base asset | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp in milliseconds. | [optional] 
+**Timestamp** | Pointer to **int64** | End time of the period, in milliseconds. | [optional] 
 
 ## Methods
 
