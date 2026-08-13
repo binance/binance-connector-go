@@ -89,7 +89,7 @@ type WebSocketConnection struct {
 	StreamConnectionMap []string
 	Done                chan struct{}
 	ErrorChan           chan error
-	ReconnectChan       chan struct{}
+	ReconnectChan       chan bool
 	mu                  sync.Mutex
 }
 
