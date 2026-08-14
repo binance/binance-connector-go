@@ -463,6 +463,44 @@ func TestSendRequest_RetryLogic(t *testing.T) {
 	}
 }
 
+func TestSendRequest_DoesNotRetryUnsafeMethodsOrStatuses(t *testing.T) {
+	tests := []struct {
+		name       string
+		method     string
+		statusCode int
+	}{
+		{name: "post server error", method: http.MethodPost, statusCode: http.StatusInternalServerError},
+		{name: "put server error", method: http.MethodPut, statusCode: http.StatusServiceUnavailable},
+		{name: "non-retriable server status", method: http.MethodGet, statusCode: http.StatusNotImplemented},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			attempts := 0
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				attempts++
+				w.WriteHeader(tt.statusCode)
+			}))
+			defer server.Close()
+
+			cfg := &common.ConfigurationRestAPI{
+				Retries: 2,
+				Backoff: 1,
+			}
+
+			_, err := common.SendRequest[SampleResponse](
+				context.Background(), server.URL, tt.method, url.Values{}, nil, cfg, false,
+			)
+			if err == nil {
+				t.Fatal("Expected request to fail")
+			}
+			if attempts != 1 {
+				t.Fatalf("Expected one attempt, got %d", attempts)
+			}
+		})
+	}
+}
+
 func TestSendRequest_HTTPErrorStatus(t *testing.T) {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(404)
