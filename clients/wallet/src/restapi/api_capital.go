@@ -200,7 +200,7 @@ func (r ApiDepositHistoryRequest) Coin(coin string) ApiDepositHistoryRequest {
 	return r
 }
 
-// 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+// 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm
 func (r ApiDepositHistoryRequest) Status(status models.DepositHistoryStatusParameter) ApiDepositHistoryRequest {
 	r.status = &status
 	return r
@@ -251,7 +251,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param includeSource -  return `sourceAddress` field when set to `true`
 @param coin -
-@param status -  0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success
+@param status -  0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm
 @param startTime -  Default: 90 days from current timestamp
 @param endTime -  Default: present timestamp
 @param offset -

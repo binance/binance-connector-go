@@ -20,8 +20,10 @@ type AccountUpdateA struct {
 	// Event reason type
 	Smallm *string `json:"m,omitempty"`
 	// Balances
-	B                    []AccountUpdateABInner `json:"B,omitempty"`
-	P                    []AccountUpdateAPInner `json:"P,omitempty"`
+	B []AccountUpdateABInner `json:"B,omitempty"`
+	P []AccountUpdateAPInner `json:"P,omitempty"`
+	// Symbol associated with FUNDING_FEE event
+	S                    *string `json:"S,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,6 +142,38 @@ func (o *AccountUpdateA) SetP(v []AccountUpdateAPInner) {
 	o.P = v
 }
 
+// GetS returns the S field value if set, zero value otherwise.
+func (o *AccountUpdateA) GetS() string {
+	if o == nil || common.IsNil(o.S) {
+		var ret string
+		return ret
+	}
+	return *o.S
+}
+
+// GetSOk returns a tuple with the S field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountUpdateA) GetSOk() (*string, bool) {
+	if o == nil || common.IsNil(o.S) {
+		return nil, false
+	}
+	return o.S, true
+}
+
+// HasS returns a boolean if a field has been set.
+func (o *AccountUpdateA) HasS() bool {
+	if o != nil && !common.IsNil(o.S) {
+		return true
+	}
+
+	return false
+}
+
+// SetS gets a reference to the given string and assigns it to the S field.
+func (o *AccountUpdateA) SetS(v string) {
+	o.S = &v
+}
+
 func (o AccountUpdateA) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -158,6 +192,9 @@ func (o AccountUpdateA) ToMap() (map[string]interface{}, error) {
 	}
 	if !common.IsNil(o.P) {
 		toSerialize["P"] = o.P
+	}
+	if !common.IsNil(o.S) {
+		toSerialize["S"] = o.S
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -184,6 +221,7 @@ func (o *AccountUpdateA) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "m")
 		delete(additionalProperties, "B")
 		delete(additionalProperties, "P")
+		delete(additionalProperties, "S")
 		o.AdditionalProperties = additionalProperties
 	}
 

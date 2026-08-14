@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **Pair** | Pointer to **string** | Pair. | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 
 **AvgPrice** | Pointer to **string** | Avg Price. | [optional] 

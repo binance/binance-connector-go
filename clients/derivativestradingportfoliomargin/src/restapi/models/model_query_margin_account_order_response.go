@@ -35,7 +35,7 @@ type QueryMarginAccountOrderResponse struct {
 	Price *string `json:"price,omitempty"`
 	// Side.
 	Side *string `json:"side,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// please ignore when order type is TRAILING_STOP_MARKET
 	StopPrice *string `json:"stopPrice,omitempty"`

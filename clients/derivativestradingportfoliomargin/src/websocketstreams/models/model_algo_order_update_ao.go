@@ -66,7 +66,9 @@ type AlgoOrderUpdateAo struct {
 	// Good Till Date
 	Gtd *int64 `json:"gtd,omitempty"`
 	// Algo order failed reason
-	Smallrm              *string `json:"rm,omitempty"`
+	Smallrm *string `json:"rm,omitempty"`
+	// Is activated or not, only meaningful for trailing order
+	Smallia              *bool `json:"ia,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -889,6 +891,38 @@ func (o *AlgoOrderUpdateAo) SetSmallrm(v string) {
 	o.Smallrm = &v
 }
 
+// GetIa returns the Ia field value if set, zero value otherwise.
+func (o *AlgoOrderUpdateAo) GetSmallia() bool {
+	if o == nil || common.IsNil(o.Smallia) {
+		var ret bool
+		return ret
+	}
+	return *o.Smallia
+}
+
+// GetIaOk returns a tuple with the Ia field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlgoOrderUpdateAo) GetSmalliaOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Smallia) {
+		return nil, false
+	}
+	return o.Smallia, true
+}
+
+// HasIa returns a boolean if a field has been set.
+func (o *AlgoOrderUpdateAo) HasSmallia() bool {
+	if o != nil && !common.IsNil(o.Smallia) {
+		return true
+	}
+
+	return false
+}
+
+// SetIa gets a reference to the given bool and assigns it to the Ia field.
+func (o *AlgoOrderUpdateAo) SetSmallia(v bool) {
+	o.Smallia = &v
+}
+
 func (o AlgoOrderUpdateAo) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -974,6 +1008,9 @@ func (o AlgoOrderUpdateAo) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallrm) {
 		toSerialize["rm"] = o.Smallrm
 	}
+	if !common.IsNil(o.Smallia) {
+		toSerialize["ia"] = o.Smallia
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1021,6 +1058,7 @@ func (o *AlgoOrderUpdateAo) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tt")
 		delete(additionalProperties, "gtd")
 		delete(additionalProperties, "rm")
+		delete(additionalProperties, "ia")
 		o.AdditionalProperties = additionalProperties
 	}
 

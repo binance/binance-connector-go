@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **OrderId** | Pointer to **int64** | Sub-order ID | [optional] 
 **Symbol** | Pointer to **string** | Trading symbol | [optional] 
 **Pair** | Pointer to **string** | Pair | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client order ID. | [optional] 
 **Price** | Pointer to **string** | Latest token price. | [optional] 
 **AvgPrice** | Pointer to **string** | Average execution price | [optional] 

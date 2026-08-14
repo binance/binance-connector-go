@@ -29,6 +29,7 @@ Name         | Type          | Description.  | Notes
 **Tt** | Pointer to **int64** | Trigger Time | [optional] 
 **Gtd** | Pointer to **int64** | Good Till Date | [optional] 
 **Rm** | Pointer to **string** | Algo order failed reason | [optional] 
+**Ia** | Pointer to **bool** | Is activated or not, only meaningful for trailing order | [optional] 
 
 ## Methods
 
@@ -673,6 +674,31 @@ SetRm sets Rm field to given value.
 `func (o *AlgoOrderUpdateAo) HasRm() bool`
 
 HasRm returns a boolean if a field has been set.
+
+### GetIa
+
+`func (o *AlgoOrderUpdateAo) GetIa() bool`
+
+GetIa returns the Ia field if non-nil, zero value otherwise.
+
+### GetIaOk
+
+`func (o *AlgoOrderUpdateAo) GetIaOk() (*bool, bool)`
+
+GetIaOk returns a tuple with the Ia field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIa
+
+`func (o *AlgoOrderUpdateAo) SetIa(v bool)`
+
+SetIa sets Ia field to given value.
+
+### HasIa
+
+`func (o *AlgoOrderUpdateAo) HasIa() bool`
+
+HasIa returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

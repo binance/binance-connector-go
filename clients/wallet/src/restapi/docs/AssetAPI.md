@@ -14,6 +14,7 @@ Method        | HTTP request  | Description
 [**GetAssetsThatCanBeConvertedIntoBnb**](AssetAPI.md#GetAssetsThatCanBeConvertedIntoBnb) | **Post** /sapi/v1/asset/dust-btc | Get Assets That Can Be Converted Into BNB (USER_DATA)
 [**GetCloudMiningPaymentAndRefundHistory**](AssetAPI.md#GetCloudMiningPaymentAndRefundHistory) | **Get** /sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage | Get Cloud-Mining payment and refund history (USER_DATA)
 [**GetOpenSymbolList**](AssetAPI.md#GetOpenSymbolList) | **Get** /sapi/v1/spot/open-symbol-list | Get Open Symbol List (MARKET_DATA)
+[**GetSpotAssetTags**](AssetAPI.md#GetSpotAssetTags) | **Get** /sapi/v1/spot/asset/tags | Get Spot Asset Tags (MARKET_DATA)
 [**QueryUserDelegationHistory**](AssetAPI.md#QueryUserDelegationHistory) | **Get** /sapi/v1/asset/custody/transfer-history | Query User Delegation History(For Master Account) (USER_DATA)
 [**QueryUserUniversalTransferHistory**](AssetAPI.md#QueryUserUniversalTransferHistory) | **Get** /sapi/v1/asset/transfer | Query User Universal Transfer History (USER_DATA)
 [**QueryUserWalletBalance**](AssetAPI.md#QueryUserWalletBalance) | **Get** /sapi/v1/asset/wallet/balance | Query User Wallet Balance (USER_DATA)
@@ -740,6 +741,74 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GetOpenSymbolListResponse**](GetOpenSymbolListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetSpotAssetTags
+
+> GetSpotAssetTagsResponse GetSpotAssetTags(ctx).Tag(tag).Execute()
+
+Get Spot Asset Tags (MARKET_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/wallet"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	tag := "Layer1_Layer2,BSC" // string | Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted. (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AssetAPI.GetSpotAssetTags(context.Background()).Tag(tag).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AssetAPI.GetSpotAssetTags``: %v\n", err)
+		return
+	}
+
+	// response from `GetSpotAssetTags`: GetSpotAssetTagsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **string** | Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted. | 
+
+### Return type
+
+[**GetSpotAssetTagsResponse**](GetSpotAssetTagsResponse.md)
 
 ### Authorization
 

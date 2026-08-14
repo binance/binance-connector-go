@@ -21,7 +21,7 @@ type QueryUsersUmForceOrdersResponseInner struct {
 	OrderId *int64 `json:"orderId,omitempty"`
 	// Trade symbol, if existing.
 	Symbol *string `json:"symbol,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// Client Order ID.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`

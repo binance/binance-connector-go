@@ -14,7 +14,7 @@ Name         | Type          | Description.  | Notes
 **ClosePosition** | Pointer to **bool** | if Close-All | [optional] 
 **Side** | Pointer to **string** | Trading side | [optional] 
 **PositionSide** | Pointer to **string** | Position side | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
 **Symbol** | Pointer to **string** | Trading symbol | [optional] 
 **Pair** | Pointer to **string** | Pair | [optional] 

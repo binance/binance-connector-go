@@ -1,5 +1,22 @@
 ### Changelog
 
+## 1.13.0 - 2026-08-14
+
+### Changed (2)
+
+#### WebSocket Streams
+
+- Modified response field `a`:
+  - property `S` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `accountUpdate`
+- Modified response field `ao`:
+  - property `ia` added
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `algoOrderUpdate`
+
 ## 1.12.0 - 2026-08-06
 
 ### Changed (2)

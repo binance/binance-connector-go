@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **M** | Pointer to **string** | Event reason type | [optional] 
 **B** | Pointer to [**[]AccountUpdateABInner**](AccountUpdateABInner.md) | Balances | [optional] 
 **P** | Pointer to [**[]AccountUpdateAPInner**](AccountUpdateAPInner.md) |  | [optional] 
+**S** | Pointer to **string** | Symbol associated with FUNDING_FEE event | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetP sets P field to given value.
 `func (o *AccountUpdateA) HasP() bool`
 
 HasP returns a boolean if a field has been set.
+
+### GetS
+
+`func (o *AccountUpdateA) GetS() string`
+
+GetS returns the S field if non-nil, zero value otherwise.
+
+### GetSOk
+
+`func (o *AccountUpdateA) GetSOk() (*string, bool)`
+
+GetSOk returns a tuple with the S field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS
+
+`func (o *AccountUpdateA) SetS(v string)`
+
+SetS sets S field to given value.
+
+### HasS
+
+`func (o *AccountUpdateA) HasS() bool`
+
+HasS returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

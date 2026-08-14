@@ -906,6 +906,69 @@ func (a *AssetAPIService) GetOpenSymbolListExecute(r ApiGetOpenSymbolListRequest
 	return resp, nil
 }
 
+type ApiGetSpotAssetTagsRequest struct {
+	ctx        context.Context
+	ApiService *AssetAPIService
+	tag        *string
+}
+
+// Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted.
+func (r ApiGetSpotAssetTagsRequest) Tag(tag string) ApiGetSpotAssetTagsRequest {
+	r.tag = &tag
+	return r
+}
+
+func (r ApiGetSpotAssetTagsRequest) Execute() (*common.RestApiResponse[models.GetSpotAssetTagsResponse], error) {
+	return r.ApiService.GetSpotAssetTagsExecute(r)
+}
+
+/*
+GetSpotAssetTags Get Spot Asset Tags (MARKET_DATA)
+Get /sapi/v1/spot/asset/tags
+
+https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/asset#get-spot-asset-tags
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param tag -  Tag filter. Supports multiple comma-separated tags with OR semantics (an asset is returned if it matches any one tag); leading/trailing whitespace around each tag is ignored. Returns all eligible assets when omitted.
+@return ApiGetSpotAssetTagsRequest
+*/
+func (a *AssetAPIService) GetSpotAssetTags(ctx context.Context) ApiGetSpotAssetTagsRequest {
+	return ApiGetSpotAssetTagsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetSpotAssetTagsResponse
+func (a *AssetAPIService) GetSpotAssetTagsExecute(r ApiGetSpotAssetTagsRequest) (*common.RestApiResponse[models.GetSpotAssetTagsResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/spot/asset/tags"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.tag != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetSpotAssetTagsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiQueryUserDelegationHistoryRequest struct {
 	ctx        context.Context
 	ApiService *AssetAPIService

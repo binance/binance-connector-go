@@ -18,8 +18,7 @@ var _ common.MappedNullable = &CancelOrderResponse{}
 // CancelOrderResponse struct for CancelOrderResponse
 type CancelOrderResponse struct {
 	// positionId
-	Id *string `json:"id,omitempty"`
-	// Enum：completed，processing
+	Id     *string                    `json:"id,omitempty"`
 	Status *int64                     `json:"status,omitempty"`
 	Result *CancelOrderResponseResult `json:"result,omitempty"`
 	// Rate limit definitions.

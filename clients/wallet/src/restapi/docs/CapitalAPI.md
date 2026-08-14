@@ -182,7 +182,7 @@ import (
 func main() {
 	includeSource := false // bool | return `sourceAddress` field when set to `true` (optional)
 	coin := "BTC" // string |  (optional)
-	status := models.DepositHistoryStatusParameterStatus0 // DepositHistoryStatusParameter | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success (optional)
+	status := models.DepositHistoryStatusParameterStatus0 // DepositHistoryStatusParameter | 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm (optional)
 	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
 	endTime := int64(1641782889000) // int64 | Default: present timestamp (optional)
 	offset := int64(0) // int64 |  (optional)
@@ -218,7 +218,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **includeSource** | **bool** | return &#x60;sourceAddress&#x60; field when set to &#x60;true&#x60; | 
  **coin** | **string** |  | 
- **status** | [**DepositHistoryStatusParameter**](DepositHistoryStatusParameter.md) | 0: pending, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm, 1: success | 
+ **status** | [**DepositHistoryStatusParameter**](DepositHistoryStatusParameter.md) | 0: pending, 1: success, 2: rejected, 6: credited but cannot withdraw, 7: Wrong Deposit, 8: Waiting User confirm | 
  **startTime** | **int64** | Default: 90 days from current timestamp | 
  **endTime** | **int64** | Default: present timestamp | 
  **offset** | **int64** |  | 

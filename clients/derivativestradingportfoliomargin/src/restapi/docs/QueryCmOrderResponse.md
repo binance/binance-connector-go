@@ -14,7 +14,7 @@ Name         | Type          | Description.  | Notes
 **Price** | Pointer to **string** | Price. | [optional] 
 **ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **Pair** | Pointer to **string** | Pair. | [optional] 
 **PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 

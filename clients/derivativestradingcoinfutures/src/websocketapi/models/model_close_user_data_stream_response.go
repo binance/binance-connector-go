@@ -18,9 +18,8 @@ var _ common.MappedNullable = &CloseUserDataStreamResponse{}
 // CloseUserDataStreamResponse struct for CloseUserDataStreamResponse
 type CloseUserDataStreamResponse struct {
 	// positionId
-	Id *string `json:"id,omitempty"`
-	// Enum：completed，processing
-	Status *int64 `json:"status,omitempty"`
+	Id     *string `json:"id,omitempty"`
+	Status *int64  `json:"status,omitempty"`
 	// Indicates that combined is set to true.
 	Result []interface{} `json:"result,omitempty"`
 	// Rate limit definitions.

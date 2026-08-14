@@ -23,7 +23,7 @@ type QueryOrderResponseResult struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// Pair
 	Pair *string `json:"pair,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// Client order ID.
 	ClientOrderId *string `json:"clientOrderId,omitempty"`

@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | positionId | [optional] 
-**Status** | Pointer to **int64** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**[]FuturesAccountBalanceResponseResultInner**](FuturesAccountBalanceResponseResultInner.md) | Indicates that combined is set to true. | [optional] 
 **RateLimits** | Pointer to [**[]AccountInformationResponseRateLimitsInner**](AccountInformationResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
 
