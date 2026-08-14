@@ -13,7 +13,7 @@ Name         | Type          | Description.  | Notes
 **ReduceOnly** | Pointer to **bool** | Reduce Only. | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 
 **PositionSide** | Pointer to **string** | BOTH means that it is the position of One-way Mode | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **Pair** | Pointer to **string** | Pair. | [optional] 
 **TimeInForce** | Pointer to **string** | Time In Force. | [optional] 

@@ -37,7 +37,7 @@ type QueryCmOrderResponse struct {
 	ReduceOnly *bool `json:"reduceOnly,omitempty"`
 	// Side.
 	Side *string `json:"side,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// Trade symbol, if existing.
 	Symbol *string `json:"symbol,omitempty"`

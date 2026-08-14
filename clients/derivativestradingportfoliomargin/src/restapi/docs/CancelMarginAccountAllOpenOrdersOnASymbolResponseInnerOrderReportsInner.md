@@ -13,7 +13,7 @@ Name         | Type          | Description.  | Notes
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
 **ExecutedQty** | Pointer to **string** | Executed Qty. | [optional] 
 **CummulativeQuoteQty** | Pointer to **string** | Cummulative Quote Qty. | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **TimeInForce** | Pointer to **string** | Time In Force. | [optional] 
 **Type** | Pointer to **string** | Normal order type after trigger if appliable | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 

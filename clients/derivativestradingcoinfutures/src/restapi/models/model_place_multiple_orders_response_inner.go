@@ -35,7 +35,7 @@ type PlaceMultipleOrdersResponseInner struct {
 	Side *string `json:"side,omitempty"`
 	// Position side
 	PositionSide *string `json:"positionSide,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// please ignore when order type is TRAILING_STOP_MARKET
 	StopPrice *string `json:"stopPrice,omitempty"`

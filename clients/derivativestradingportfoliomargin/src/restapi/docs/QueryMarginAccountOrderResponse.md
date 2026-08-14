@@ -13,7 +13,7 @@ Name         | Type          | Description.  | Notes
 **OrigQty** | Pointer to **string** | Orig Qty. | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 
 **Side** | Pointer to **string** | Side. | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **StopPrice** | Pointer to **string** | please ignore when order type is TRAILING_STOP_MARKET | [optional] 
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
 **Time** | Pointer to **int64** | Event time. | [optional] 

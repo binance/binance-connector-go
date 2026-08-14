@@ -18,8 +18,7 @@ var _ common.MappedNullable = &AccountInformationResponse{}
 // AccountInformationResponse struct for AccountInformationResponse
 type AccountInformationResponse struct {
 	// positionId
-	Id *string `json:"id,omitempty"`
-	// Enum：completed，processing
+	Id     *string                           `json:"id,omitempty"`
 	Status *int64                            `json:"status,omitempty"`
 	Result *AccountInformationResponseResult `json:"result,omitempty"`
 	// Rate limit definitions.

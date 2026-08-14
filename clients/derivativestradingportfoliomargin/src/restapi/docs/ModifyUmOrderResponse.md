@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **OrderId** | Pointer to **int64** | Normal orderID after trigger if appliable, only have when the strategy is triggered | [optional] 
 **Symbol** | Pointer to **string** | Trade symbol, if existing. | [optional] 
-**Status** | Pointer to **string** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **string** | Status. | [optional] 
 **ClientOrderId** | Pointer to **string** | Client Order ID. | [optional] 
 **ModifyId** | Pointer to **int64** | user-defined modification identifier, only returned if provided in the request | [optional] 
 **Price** | Pointer to **string** | Price. | [optional] 

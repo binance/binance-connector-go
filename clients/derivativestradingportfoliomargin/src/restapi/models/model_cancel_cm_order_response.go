@@ -35,7 +35,7 @@ type CancelCmOrderResponse struct {
 	Side *string `json:"side,omitempty"`
 	// BOTH means that it is the position of One-way Mode
 	PositionSide *string `json:"positionSide,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// Trade symbol, if existing.
 	Symbol *string `json:"symbol,omitempty"`

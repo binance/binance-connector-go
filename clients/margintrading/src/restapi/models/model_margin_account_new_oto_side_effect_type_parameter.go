@@ -16,14 +16,16 @@ type MarginAccountNewOtoSideEffectTypeParameter string
 
 // List of marginAccountNewOto_sideEffectType_parameter
 const (
-	MarginAccountNewOtoSideEffectTypeParameterNoSideEffect MarginAccountNewOtoSideEffectTypeParameter = "NO_SIDE_EFFECT"
-	MarginAccountNewOtoSideEffectTypeParameterMarginBuy    MarginAccountNewOtoSideEffectTypeParameter = "MARGIN_BUY"
+	MarginAccountNewOtoSideEffectTypeParameterNoSideEffect    MarginAccountNewOtoSideEffectTypeParameter = "NO_SIDE_EFFECT"
+	MarginAccountNewOtoSideEffectTypeParameterMarginBuy       MarginAccountNewOtoSideEffectTypeParameter = "MARGIN_BUY"
+	MarginAccountNewOtoSideEffectTypeParameterAutoBorrowRepay MarginAccountNewOtoSideEffectTypeParameter = "AUTO_BORROW_REPAY"
 )
 
 // All allowed values of MarginAccountNewOtoSideEffectTypeParameter enum
 var AllowedMarginAccountNewOtoSideEffectTypeParameterEnumValues = []MarginAccountNewOtoSideEffectTypeParameter{
 	"NO_SIDE_EFFECT",
 	"MARGIN_BUY",
+	"AUTO_BORROW_REPAY",
 }
 
 func (v *MarginAccountNewOtoSideEffectTypeParameter) UnmarshalJSON(src []byte) error {

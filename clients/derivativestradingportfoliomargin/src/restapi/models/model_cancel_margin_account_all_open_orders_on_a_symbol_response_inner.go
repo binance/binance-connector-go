@@ -35,7 +35,7 @@ type CancelMarginAccountAllOpenOrdersOnASymbolResponseInner struct {
 	ExecutedQty *string `json:"executedQty,omitempty"`
 	// Cummulative Quote Qty.
 	CummulativeQuoteQty *string `json:"cummulativeQuoteQty,omitempty"`
-	// Enum：completed，processing
+	// Status.
 	Status *string `json:"status,omitempty"`
 	// Time In Force.
 	TimeInForce *string `json:"timeInForce,omitempty"`

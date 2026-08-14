@@ -18,8 +18,7 @@ var _ common.MappedNullable = &StartUserDataStreamResponse{}
 // StartUserDataStreamResponse struct for StartUserDataStreamResponse
 type StartUserDataStreamResponse struct {
 	// positionId
-	Id *string `json:"id,omitempty"`
-	// Enum：completed，processing
+	Id     *string                            `json:"id,omitempty"`
 	Status *int64                             `json:"status,omitempty"`
 	Result *StartUserDataStreamResponseResult `json:"result,omitempty"`
 	// Rate limit definitions.

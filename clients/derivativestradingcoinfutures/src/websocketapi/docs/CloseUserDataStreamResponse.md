@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | positionId | [optional] 
-**Status** | Pointer to **int64** | Enum：completed，processing | [optional] 
+**Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to **map[string]interface{}** | Indicates that combined is set to true. | [optional] 
 **RateLimits** | Pointer to [**[]CloseUserDataStreamResponseRateLimitsInner**](CloseUserDataStreamResponseRateLimitsInner.md) | Rate limit definitions. | [optional] 
 
