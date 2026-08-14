@@ -540,13 +540,13 @@ func SendRequest[T any](ctx context.Context, path string, method string, queryPa
 		}
 
 		if resp.StatusCode >= 500 && resp.StatusCode <= 504 {
-			if attempt < retries {
+			if ShouldRetryRequest(nil, method, retries-attempt, resp) {
 				if err := SleepContext(ctx, time.Duration(backoff*(attempt+1))*time.Millisecond); err != nil {
 					return &RestApiResponse[T]{}, err
 				}
 				continue
 			}
-			return &RestApiResponse[T]{}, fmt.Errorf("request failed after %d retries: received status %d", retries, resp.StatusCode)
+			return &RestApiResponse[T]{}, fmt.Errorf("request failed after %d retries: received status %d", attempt, resp.StatusCode)
 		}
 
 		if resp.StatusCode >= 300 {
