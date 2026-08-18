@@ -8,6 +8,7 @@ Name         | Type          | Description.  | Notes
 **COMMODITY** | Pointer to [**TradingScheduleResponseMarketSchedulesCOMMODITY**](TradingScheduleResponseMarketSchedulesCOMMODITY.md) |  | [optional] 
 **KR_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesKREQUITY**](TradingScheduleResponseMarketSchedulesKREQUITY.md) |  | [optional] 
 **HK_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  | [optional] 
+**CN_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetHK_EQUITY sets HK_EQUITY field to given value.
 `func (o *TradingScheduleResponseMarketSchedules) HasHK_EQUITY() bool`
 
 HasHK_EQUITY returns a boolean if a field has been set.
+
+### GetCN_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) GetCN_EQUITY() TradingScheduleResponseMarketSchedulesHKEQUITY`
+
+GetCN_EQUITY returns the CN_EQUITY field if non-nil, zero value otherwise.
+
+### GetCN_EQUITYOk
+
+`func (o *TradingScheduleResponseMarketSchedules) GetCN_EQUITYOk() (*TradingScheduleResponseMarketSchedulesHKEQUITY, bool)`
+
+GetCN_EQUITYOk returns a tuple with the CN_EQUITY field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCN_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) SetCN_EQUITY(v TradingScheduleResponseMarketSchedulesHKEQUITY)`
+
+SetCN_EQUITY sets CN_EQUITY field to given value.
+
+### HasCN_EQUITY
+
+`func (o *TradingScheduleResponseMarketSchedules) HasCN_EQUITY() bool`
+
+HasCN_EQUITY returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

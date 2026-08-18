@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.16.0 - 2026-08-18
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `tradingSchedule()` (`GET /fapi/v1/tradingSchedule`):
+  - `marketSchedules`: property `CN_EQUITY` added
+
+- Modified response field `marketSchedules`:
+  - property `CN_EQUITY` added
+  - affected events:
+    - `tradingScheduleResponse`
+
 ## 1.15.0 - 2026-08-14
 
 ### Changed (2)

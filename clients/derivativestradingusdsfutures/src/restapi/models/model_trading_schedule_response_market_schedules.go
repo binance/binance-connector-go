@@ -21,6 +21,7 @@ type TradingScheduleResponseMarketSchedules struct {
 	COMMODITY            *TradingScheduleResponseMarketSchedulesCOMMODITY `json:"COMMODITY,omitempty"`
 	KR_EQUITY            *TradingScheduleResponseMarketSchedulesKREQUITY  `json:"KR_EQUITY,omitempty"`
 	HK_EQUITY            *TradingScheduleResponseMarketSchedulesHKEQUITY  `json:"HK_EQUITY,omitempty"`
+	CN_EQUITY            *TradingScheduleResponseMarketSchedulesHKEQUITY  `json:"CN_EQUITY,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -171,6 +172,38 @@ func (o *TradingScheduleResponseMarketSchedules) SetHK_EQUITY(v TradingScheduleR
 	o.HK_EQUITY = &v
 }
 
+// GetCN_EQUITY returns the CN_EQUITY field value if set, zero value otherwise.
+func (o *TradingScheduleResponseMarketSchedules) GetCN_EQUITY() TradingScheduleResponseMarketSchedulesHKEQUITY {
+	if o == nil || common.IsNil(o.CN_EQUITY) {
+		var ret TradingScheduleResponseMarketSchedulesHKEQUITY
+		return ret
+	}
+	return *o.CN_EQUITY
+}
+
+// GetCN_EQUITYOk returns a tuple with the CN_EQUITY field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TradingScheduleResponseMarketSchedules) GetCN_EQUITYOk() (*TradingScheduleResponseMarketSchedulesHKEQUITY, bool) {
+	if o == nil || common.IsNil(o.CN_EQUITY) {
+		return nil, false
+	}
+	return o.CN_EQUITY, true
+}
+
+// HasCN_EQUITY returns a boolean if a field has been set.
+func (o *TradingScheduleResponseMarketSchedules) HasCN_EQUITY() bool {
+	if o != nil && !common.IsNil(o.CN_EQUITY) {
+		return true
+	}
+
+	return false
+}
+
+// SetCN_EQUITY gets a reference to the given TradingScheduleResponseMarketSchedulesHKEQUITY and assigns it to the CN_EQUITY field.
+func (o *TradingScheduleResponseMarketSchedules) SetCN_EQUITY(v TradingScheduleResponseMarketSchedulesHKEQUITY) {
+	o.CN_EQUITY = &v
+}
+
 func (o TradingScheduleResponseMarketSchedules) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -192,6 +225,9 @@ func (o TradingScheduleResponseMarketSchedules) ToMap() (map[string]interface{},
 	}
 	if !common.IsNil(o.HK_EQUITY) {
 		toSerialize["HK_EQUITY"] = o.HK_EQUITY
+	}
+	if !common.IsNil(o.CN_EQUITY) {
+		toSerialize["CN_EQUITY"] = o.CN_EQUITY
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -219,6 +255,7 @@ func (o *TradingScheduleResponseMarketSchedules) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "COMMODITY")
 		delete(additionalProperties, "KR_EQUITY")
 		delete(additionalProperties, "HK_EQUITY")
+		delete(additionalProperties, "CN_EQUITY")
 		o.AdditionalProperties = additionalProperties
 	}
 

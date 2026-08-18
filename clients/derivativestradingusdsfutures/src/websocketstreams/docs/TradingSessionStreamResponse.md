@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**E** | Pointer to **string** | Event type, can also be CommodityUpdate, KR_EquityUpdate or HK_EquityUpdate | [optional] 
+**E** | Pointer to **string** | Event type, can also be CommodityUpdate, KR_EquityUpdate, HK_EquityUpdate or CN_EquityUpdate | [optional] 
 **E** | Pointer to **int64** | Event time | [optional] 
 **T** | Pointer to **int64** | Session start time | [optional] 
 **T** | Pointer to **int64** | Session end time | [optional] 
