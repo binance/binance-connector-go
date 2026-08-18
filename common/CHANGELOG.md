@@ -1,5 +1,11 @@
 ### Changelog
 
+## 2.7.0 - 2026-08-18
+
+### Added (1)
+
+- Added `Stocks` base url
+
 ## 2.6.0 - 2026-07-15
 
 ### Changed (1)

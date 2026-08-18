@@ -128,6 +128,10 @@ const SpotWebsocketStreamsMarketUrl = "wss://data-stream.binance.vision/stream"
 // Stake API URLs
 const StakingRestApiProdUrl = "https://api.binance.com"
 
+// Stocks constants
+const StocksRestApiProdUrl = "https://api.binance.com"
+const StocksWebsocketStreamsProdUrl = "wss://nbstream.binance.com/equity/stream"
+
 // Sub-Account API URLs
 const SubAccountRestApiProdUrl = "https://api.binance.com"
 
