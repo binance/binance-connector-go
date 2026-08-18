@@ -22,7 +22,7 @@ func OpenInterestStatistics() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair("BTCUSD").ContractType(models.OpenInterestStatisticsContractTypeParameterAll).Period(models.BasisPeriodParameterPeriod5m).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair("BTCUSD").Period(models.BasisPeriodParameterPeriod5m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

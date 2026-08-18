@@ -1047,7 +1047,6 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/futures/data/openInterestHist", r.URL.Path)
 			require.Equal(t, "BTCUSD", r.URL.Query().Get("pair"))
-			require.Equal(t, string(models.OpenInterestStatisticsContractTypeParameterAll), r.URL.Query().Get("contractType"))
 			require.Equal(t, string(models.BasisPeriodParameterPeriod5m), r.URL.Query().Get("period"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -1065,7 +1064,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair("BTCUSD").ContractType(models.OpenInterestStatisticsContractTypeParameterAll).Period(models.BasisPeriodParameterPeriod5m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair("BTCUSD").Period(models.BasisPeriodParameterPeriod5m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1553,7 +1552,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/futures/data/takerBuySellVol", r.URL.Path)
 			require.Equal(t, "BTCUSD", r.URL.Query().Get("pair"))
-			require.Equal(t, string(models.OpenInterestStatisticsContractTypeParameterAll), r.URL.Query().Get("contractType"))
+			require.Equal(t, string(models.TakerBuySellVolumeContractTypeParameterAll), r.URL.Query().Get("contractType"))
 			require.Equal(t, string(models.BasisPeriodParameterPeriod5m), r.URL.Query().Get("period"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -1571,7 +1570,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.TakerBuySellVolume(context.Background()).Pair("BTCUSD").ContractType(models.OpenInterestStatisticsContractTypeParameterAll).Period(models.BasisPeriodParameterPeriod5m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.TakerBuySellVolume(context.Background()).Pair("BTCUSD").ContractType(models.TakerBuySellVolumeContractTypeParameterAll).Period(models.BasisPeriodParameterPeriod5m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1730,7 +1729,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/futures/data/topLongShortAccountRatio", r.URL.Path)
-			require.Equal(t, "symbol_example", r.URL.Query().Get("symbol"))
+			require.Equal(t, "BTCUSD", r.URL.Query().Get("pair"))
 			require.Equal(t, string(models.BasisPeriodParameterPeriod5m), r.URL.Query().Get("period"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -1748,7 +1747,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Symbol("symbol_example").Period(models.BasisPeriodParameterPeriod5m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Pair("BTCUSD").Period(models.BasisPeriodParameterPeriod5m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

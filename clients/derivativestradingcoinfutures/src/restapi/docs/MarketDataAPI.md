@@ -757,7 +757,7 @@ No authorization required
 
 ## LongShortRatio
 
-> LongShortRatioResponse LongShortRatio(ctx).Pair(pair).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+> LongShortRatioResponse LongShortRatio(ctx).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
 Long/Short Ratio
 
@@ -780,6 +780,7 @@ import (
 func main() {
 	pair := "pair_example" // string | BTCUSD
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | Contract type filter. If omitted, returns aggregated data across all contract types. (optional)
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
@@ -791,7 +792,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingCoinFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MarketDataAPI.LongShortRatio(context.Background()).Pair(pair).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.LongShortRatio(context.Background()).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketDataAPI.LongShortRatio``: %v\n", err)
 		return
@@ -812,6 +813,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** | BTCUSD | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) | Contract type filter. If omitted, returns aggregated data across all contract types. | 
  **limit** | **int64** | Maximum number of records to return. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
@@ -1049,7 +1051,7 @@ No authorization required
 
 ## OpenInterestStatistics
 
-> OpenInterestStatisticsResponse OpenInterestStatistics(ctx).Pair(pair).ContractType(contractType).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+> OpenInterestStatisticsResponse OpenInterestStatistics(ctx).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
 Open Interest Statistics
 
@@ -1071,8 +1073,8 @@ import (
 
 func main() {
 	pair := "BTCUSD" // string | 
-	contractType := models.OpenInterestStatisticsContractTypeParameterAll // OpenInterestStatisticsContractTypeParameter | 
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | Contract type filter. If omitted, returns aggregated data across all contract types. (optional)
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
@@ -1084,7 +1086,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingCoinFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair(pair).ContractType(contractType).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.OpenInterestStatistics(context.Background()).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketDataAPI.OpenInterestStatistics``: %v\n", err)
 		return
@@ -1104,8 +1106,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** |  | 
- **contractType** | [**OpenInterestStatisticsContractTypeParameter**](OpenInterestStatisticsContractTypeParameter.md) |  | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) | Contract type filter. If omitted, returns aggregated data across all contract types. | 
  **limit** | **int64** | Maximum number of records to return. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
@@ -1573,7 +1575,7 @@ import (
 
 func main() {
 	pair := "BTCUSD" // string | 
-	contractType := models.OpenInterestStatisticsContractTypeParameterAll // OpenInterestStatisticsContractTypeParameter | 
+	contractType := models.TakerBuySellVolumeContractTypeParameterAll // TakerBuySellVolumeContractTypeParameter | 
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
@@ -1606,7 +1608,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** |  | 
- **contractType** | [**OpenInterestStatisticsContractTypeParameter**](OpenInterestStatisticsContractTypeParameter.md) |  | 
+ **contractType** | [**TakerBuySellVolumeContractTypeParameter**](TakerBuySellVolumeContractTypeParameter.md) |  | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
  **limit** | **int64** | Maximum number of records to return. | 
  **startTime** | **int64** |  | 
@@ -1758,7 +1760,7 @@ No authorization required
 
 ## TopTraderLongShortRatioAccounts
 
-> TopTraderLongShortRatioAccountsResponse TopTraderLongShortRatioAccounts(ctx).Symbol(symbol).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+> TopTraderLongShortRatioAccountsResponse TopTraderLongShortRatioAccounts(ctx).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
 Top Trader Long/Short Account Ratio
 
@@ -1779,8 +1781,9 @@ import (
 )
 
 func main() {
-	symbol := "symbol_example" // string | Symbol
+	pair := "BTCUSD" // string | Pair
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | Contract type filter. If omitted, returns aggregated data across all contract types. (optional)
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
@@ -1792,7 +1795,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingCoinFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Symbol(symbol).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketDataAPI.TopTraderLongShortRatioAccounts``: %v\n", err)
 		return
@@ -1811,8 +1814,9 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
+ **pair** | **string** | Pair | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) | Contract type filter. If omitted, returns aggregated data across all contract types. | 
  **limit** | **int64** | Maximum number of records to return. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
@@ -1834,7 +1838,7 @@ No authorization required
 
 ## TopTraderLongShortRatioPositions
 
-> TopTraderLongShortRatioPositionsResponse TopTraderLongShortRatioPositions(ctx).Pair(pair).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+> TopTraderLongShortRatioPositionsResponse TopTraderLongShortRatioPositions(ctx).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 
 Top Trader Long/Short Position Ratio
 
@@ -1857,6 +1861,7 @@ import (
 func main() {
 	pair := "BTCUSD" // string | 
 	period := models.BasisPeriodParameterPeriod5m // BasisPeriodParameter | 
+	contractType := models.BasisContractTypeParameterPerpetual // BasisContractTypeParameter | Contract type filter. If omitted, returns aggregated data across all contract types. (optional)
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
@@ -1868,7 +1873,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingCoinFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioPositions(context.Background()).Pair(pair).Period(period).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioPositions(context.Background()).Pair(pair).Period(period).ContractType(contractType).Limit(limit).StartTime(startTime).EndTime(endTime).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketDataAPI.TopTraderLongShortRatioPositions``: %v\n", err)
 		return
@@ -1889,6 +1894,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** |  | 
  **period** | [**BasisPeriodParameter**](BasisPeriodParameter.md) |  | 
+ **contractType** | [**BasisContractTypeParameter**](BasisContractTypeParameter.md) | Contract type filter. If omitted, returns aggregated data across all contract types. | 
  **limit** | **int64** | Maximum number of records to return. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 

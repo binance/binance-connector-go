@@ -22,7 +22,7 @@ func TopTraderLongShortRatioAccounts() {
 	apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Symbol("symbol_example").Period(models.BasisPeriodParameterPeriod5m).Execute()
+	resp, err := apiClient.RestApi.MarketDataAPI.TopTraderLongShortRatioAccounts(context.Background()).Pair("BTCUSD").Period(models.BasisPeriodParameterPeriod5m).Execute()
 	if err != nil {
 		log.Println(err)
 		return

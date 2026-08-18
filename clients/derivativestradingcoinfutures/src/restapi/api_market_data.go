@@ -918,13 +918,14 @@ func (a *MarketDataAPIService) KlineCandlestickDataExecute(r ApiKlineCandlestick
 }
 
 type ApiLongShortRatioRequest struct {
-	ctx        context.Context
-	ApiService *MarketDataAPIService
-	pair       *string
-	period     *models.BasisPeriodParameter
-	limit      *int64
-	startTime  *int64
-	endTime    *int64
+	ctx          context.Context
+	ApiService   *MarketDataAPIService
+	pair         *string
+	period       *models.BasisPeriodParameter
+	contractType *models.BasisContractTypeParameter
+	limit        *int64
+	startTime    *int64
+	endTime      *int64
 }
 
 // BTCUSD
@@ -935,6 +936,12 @@ func (r ApiLongShortRatioRequest) Pair(pair string) ApiLongShortRatioRequest {
 
 func (r ApiLongShortRatioRequest) Period(period models.BasisPeriodParameter) ApiLongShortRatioRequest {
 	r.period = &period
+	return r
+}
+
+// Contract type filter. If omitted, returns aggregated data across all contract types.
+func (r ApiLongShortRatioRequest) ContractType(contractType models.BasisContractTypeParameter) ApiLongShortRatioRequest {
+	r.contractType = &contractType
 	return r
 }
 
@@ -967,6 +974,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -  BTCUSD
 @param period -
+@param contractType -  Contract type filter. If omitted, returns aggregated data across all contract types.
 @param limit -  Maximum number of records to return.
 @param startTime -
 @param endTime -
@@ -999,6 +1007,9 @@ func (a *MarketDataAPIService) LongShortRatioExecute(r ApiLongShortRatioRequest)
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "form", "")
+	if r.contractType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
+	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -1292,8 +1303,8 @@ type ApiOpenInterestStatisticsRequest struct {
 	ctx          context.Context
 	ApiService   *MarketDataAPIService
 	pair         *string
-	contractType *models.OpenInterestStatisticsContractTypeParameter
 	period       *models.BasisPeriodParameter
+	contractType *models.BasisContractTypeParameter
 	limit        *int64
 	startTime    *int64
 	endTime      *int64
@@ -1304,13 +1315,14 @@ func (r ApiOpenInterestStatisticsRequest) Pair(pair string) ApiOpenInterestStati
 	return r
 }
 
-func (r ApiOpenInterestStatisticsRequest) ContractType(contractType models.OpenInterestStatisticsContractTypeParameter) ApiOpenInterestStatisticsRequest {
-	r.contractType = &contractType
+func (r ApiOpenInterestStatisticsRequest) Period(period models.BasisPeriodParameter) ApiOpenInterestStatisticsRequest {
+	r.period = &period
 	return r
 }
 
-func (r ApiOpenInterestStatisticsRequest) Period(period models.BasisPeriodParameter) ApiOpenInterestStatisticsRequest {
-	r.period = &period
+// Contract type filter. If omitted, returns aggregated data across all contract types.
+func (r ApiOpenInterestStatisticsRequest) ContractType(contractType models.BasisContractTypeParameter) ApiOpenInterestStatisticsRequest {
+	r.contractType = &contractType
 	return r
 }
 
@@ -1342,8 +1354,8 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -
-@param contractType -
 @param period -
+@param contractType -  Contract type filter. If omitted, returns aggregated data across all contract types.
 @param limit -  Maximum number of records to return.
 @param startTime -
 @param endTime -
@@ -1370,16 +1382,14 @@ func (a *MarketDataAPIService) OpenInterestStatisticsExecute(r ApiOpenInterestSt
 		return nil, common.ReportError("pair is required and must be specified")
 	}
 
-	if r.contractType == nil {
-		return nil, common.ReportError("contractType is required and must be specified")
-	}
-
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
+	if r.contractType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
+	}
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "form", "")
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -1887,7 +1897,7 @@ type ApiTakerBuySellVolumeRequest struct {
 	ctx          context.Context
 	ApiService   *MarketDataAPIService
 	pair         *string
-	contractType *models.OpenInterestStatisticsContractTypeParameter
+	contractType *models.TakerBuySellVolumeContractTypeParameter
 	period       *models.BasisPeriodParameter
 	limit        *int64
 	startTime    *int64
@@ -1899,7 +1909,7 @@ func (r ApiTakerBuySellVolumeRequest) Pair(pair string) ApiTakerBuySellVolumeReq
 	return r
 }
 
-func (r ApiTakerBuySellVolumeRequest) ContractType(contractType models.OpenInterestStatisticsContractTypeParameter) ApiTakerBuySellVolumeRequest {
+func (r ApiTakerBuySellVolumeRequest) ContractType(contractType models.TakerBuySellVolumeContractTypeParameter) ApiTakerBuySellVolumeRequest {
 	r.contractType = &contractType
 	return r
 }
@@ -2126,23 +2136,30 @@ func (a *MarketDataAPIService) Ticker24hrPriceChangeStatisticsExecute(r ApiTicke
 }
 
 type ApiTopTraderLongShortRatioAccountsRequest struct {
-	ctx        context.Context
-	ApiService *MarketDataAPIService
-	symbol     *string
-	period     *models.BasisPeriodParameter
-	limit      *int64
-	startTime  *int64
-	endTime    *int64
+	ctx          context.Context
+	ApiService   *MarketDataAPIService
+	pair         *string
+	period       *models.BasisPeriodParameter
+	contractType *models.BasisContractTypeParameter
+	limit        *int64
+	startTime    *int64
+	endTime      *int64
 }
 
-// Symbol
-func (r ApiTopTraderLongShortRatioAccountsRequest) Symbol(symbol string) ApiTopTraderLongShortRatioAccountsRequest {
-	r.symbol = &symbol
+// Pair
+func (r ApiTopTraderLongShortRatioAccountsRequest) Pair(pair string) ApiTopTraderLongShortRatioAccountsRequest {
+	r.pair = &pair
 	return r
 }
 
 func (r ApiTopTraderLongShortRatioAccountsRequest) Period(period models.BasisPeriodParameter) ApiTopTraderLongShortRatioAccountsRequest {
 	r.period = &period
+	return r
+}
+
+// Contract type filter. If omitted, returns aggregated data across all contract types.
+func (r ApiTopTraderLongShortRatioAccountsRequest) ContractType(contractType models.BasisContractTypeParameter) ApiTopTraderLongShortRatioAccountsRequest {
+	r.contractType = &contractType
 	return r
 }
 
@@ -2173,8 +2190,9 @@ Get /futures/data/topLongShortAccountRatio
 https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-coin-m-futures/api/rest-api/market-data#top-trader-long-short-ratio-accounts
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
+@param pair -  Pair
 @param period -
+@param contractType -  Contract type filter. If omitted, returns aggregated data across all contract types.
 @param limit -  Maximum number of records to return.
 @param startTime -
 @param endTime -
@@ -2197,16 +2215,19 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioAccountsExecute(r ApiTopTr
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.symbol == nil {
-		return nil, common.ReportError("symbol is required and must be specified")
+	if r.pair == nil {
+		return nil, common.ReportError("pair is required and must be specified")
 	}
 
 	if r.period == nil {
 		return nil, common.ReportError("period is required and must be specified")
 	}
 
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "form", "")
+	if r.contractType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
+	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -2234,13 +2255,14 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioAccountsExecute(r ApiTopTr
 }
 
 type ApiTopTraderLongShortRatioPositionsRequest struct {
-	ctx        context.Context
-	ApiService *MarketDataAPIService
-	pair       *string
-	period     *models.BasisPeriodParameter
-	limit      *int64
-	startTime  *int64
-	endTime    *int64
+	ctx          context.Context
+	ApiService   *MarketDataAPIService
+	pair         *string
+	period       *models.BasisPeriodParameter
+	contractType *models.BasisContractTypeParameter
+	limit        *int64
+	startTime    *int64
+	endTime      *int64
 }
 
 func (r ApiTopTraderLongShortRatioPositionsRequest) Pair(pair string) ApiTopTraderLongShortRatioPositionsRequest {
@@ -2250,6 +2272,12 @@ func (r ApiTopTraderLongShortRatioPositionsRequest) Pair(pair string) ApiTopTrad
 
 func (r ApiTopTraderLongShortRatioPositionsRequest) Period(period models.BasisPeriodParameter) ApiTopTraderLongShortRatioPositionsRequest {
 	r.period = &period
+	return r
+}
+
+// Contract type filter. If omitted, returns aggregated data across all contract types.
+func (r ApiTopTraderLongShortRatioPositionsRequest) ContractType(contractType models.BasisContractTypeParameter) ApiTopTraderLongShortRatioPositionsRequest {
+	r.contractType = &contractType
 	return r
 }
 
@@ -2282,6 +2310,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param pair -
 @param period -
+@param contractType -  Contract type filter. If omitted, returns aggregated data across all contract types.
 @param limit -  Maximum number of records to return.
 @param startTime -
 @param endTime -
@@ -2314,6 +2343,9 @@ func (a *MarketDataAPIService) TopTraderLongShortRatioPositionsExecute(r ApiTopT
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pair", r.pair, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "form", "")
+	if r.contractType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "contractType", r.contractType, "form", "")
+	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
