@@ -23,6 +23,165 @@ import (
 
 func Test_binancew3wpredictionrestapi_TransferAPIService(t *testing.T) {
 
+	t.Run("Test TransferAPIService ApplyMmDeposit Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"transferId":"26080400000000454343","status":"PROCESSING"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/deposit/apply", r.URL.Path)
+			require.Equal(t, "USDT", r.URL.Query().Get("fromToken"))
+			require.Equal(t, "1000000000000000000", r.URL.Query().Get("fromTokenAmount"))
+			require.Equal(t, "USDT", r.URL.Query().Get("toToken"))
+			require.Equal(t, string(models.PlaceOrderAccountTypeParameterSpot), r.URL.Query().Get("accountType"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.ApplyMmDepositResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmDeposit(context.Background()).FromToken("USDT").FromTokenAmount("1000000000000000000").ToToken("USDT").AccountType(models.PlaceOrderAccountTypeParameterSpot).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.ApplyMmDepositResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.ApplyMmDepositResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TransferAPIService ApplyMmDeposit Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmDeposit(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TransferAPIService ApplyMmDeposit Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmDeposit(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TransferAPIService ApplyMmWithdraw Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"id":"123456789","walletId":"0ecd3be8e3674b54b1258e24f9c3706b","walletAddress":"0x2ac3a1fb164da5c4e76f67ae6dbe6be821c000c8","transferId":"26080400000000454344"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/w3w/wallet/prediction/withdraw/apply", r.URL.Path)
+			require.Equal(t, "USDT", r.URL.Query().Get("coin"))
+			require.Equal(t, "BEP20", r.URL.Query().Get("network"))
+			require.Equal(t, "100.00", r.URL.Query().Get("amount"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.ApplyMmWithdrawResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmWithdraw(context.Background()).Coin("USDT").Network("BEP20").Amount("100.00").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.ApplyMmWithdrawResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.ApplyMmWithdrawResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TransferAPIService ApplyMmWithdraw Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmWithdraw(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TransferAPIService ApplyMmWithdraw Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceW3wPredictionClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TransferAPI.ApplyMmWithdraw(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TransferAPIService CreateInboundTransfer Success", func(t *testing.T) {
 
 		var mockedJSON string

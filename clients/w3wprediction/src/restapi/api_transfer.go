@@ -18,6 +18,245 @@ import (
 // TransferAPIService TransferAPI Service
 type TransferAPIService Service
 
+type ApiApplyMmDepositRequest struct {
+	ctx             context.Context
+	ApiService      *TransferAPIService
+	fromToken       *string
+	fromTokenAmount *string
+	toToken         *string
+	accountType     *models.PlaceOrderAccountTypeParameter
+	chainId         *string
+}
+
+// Source token symbol (e.g. &#x60;USDT&#x60;)
+func (r ApiApplyMmDepositRequest) FromToken(fromToken string) ApiApplyMmDepositRequest {
+	r.fromToken = &fromToken
+	return r
+}
+
+// Source token amount in WEI (18 decimals). Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT
+func (r ApiApplyMmDepositRequest) FromTokenAmount(fromTokenAmount string) ApiApplyMmDepositRequest {
+	r.fromTokenAmount = &fromTokenAmount
+	return r
+}
+
+// Target token symbol (e.g. &#x60;USDT&#x60;)
+func (r ApiApplyMmDepositRequest) ToToken(toToken string) ApiApplyMmDepositRequest {
+	r.toToken = &toToken
+	return r
+}
+
+// Target CEX account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;
+func (r ApiApplyMmDepositRequest) AccountType(accountType models.PlaceOrderAccountTypeParameter) ApiApplyMmDepositRequest {
+	r.accountType = &accountType
+	return r
+}
+
+// Chain ID. Default &#x60;56&#x60; (BSC)
+func (r ApiApplyMmDepositRequest) ChainId(chainId string) ApiApplyMmDepositRequest {
+	r.chainId = &chainId
+	return r
+}
+
+func (r ApiApplyMmDepositRequest) Execute() (*common.RestApiResponse[models.ApplyMmDepositResponse], error) {
+	return r.ApiService.ApplyMmDepositExecute(r)
+}
+
+/*
+ApplyMmDeposit Apply MM Deposit (PREDICTION_TRADE)
+Post /sapi/v1/w3w/wallet/prediction/deposit/apply
+
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-deposit
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param fromToken -  Source token symbol (e.g. `USDT`)
+@param fromTokenAmount -  Source token amount in WEI (18 decimals). Example: `1000000000000000000` = 1 USDT
+@param toToken -  Target token symbol (e.g. `USDT`)
+@param accountType -  Target CEX account type. Enum: `SPOT`, `FUNDING`
+@param chainId -  Chain ID. Default `56` (BSC)
+@return ApiApplyMmDepositRequest
+*/
+func (a *TransferAPIService) ApplyMmDeposit(ctx context.Context) ApiApplyMmDepositRequest {
+	return ApiApplyMmDepositRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ApplyMmDepositResponse
+func (a *TransferAPIService) ApplyMmDepositExecute(r ApiApplyMmDepositRequest) (*common.RestApiResponse[models.ApplyMmDepositResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/w3w/wallet/prediction/deposit/apply"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.fromToken == nil {
+		return nil, common.ReportError("fromToken is required and must be specified")
+	}
+
+	if r.fromTokenAmount == nil {
+		return nil, common.ReportError("fromTokenAmount is required and must be specified")
+	}
+
+	if r.toToken == nil {
+		return nil, common.ReportError("toToken is required and must be specified")
+	}
+
+	if r.accountType == nil {
+		return nil, common.ReportError("accountType is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromToken", r.fromToken, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "fromTokenAmount", r.fromTokenAmount, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "toToken", r.toToken, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "accountType", r.accountType, "form", "")
+	if r.chainId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "chainId", r.chainId, "form", "")
+	}
+
+	resp, err := SendRequest[models.ApplyMmDepositResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiApplyMmWithdrawRequest struct {
+	ctx             context.Context
+	ApiService      *TransferAPIService
+	coin            *string
+	network         *string
+	amount          *string
+	withdrawOrderId *string
+	walletType      *models.ApplyMmWithdrawWalletTypeParameter
+	name            *string
+}
+
+// Coin to withdraw (e.g. &#x60;USDT&#x60;)
+func (r ApiApplyMmWithdrawRequest) Coin(coin string) ApiApplyMmWithdrawRequest {
+	r.coin = &coin
+	return r
+}
+
+// Network (e.g. &#x60;BEP20&#x60;)
+func (r ApiApplyMmWithdrawRequest) Network(network string) ApiApplyMmWithdrawRequest {
+	r.network = &network
+	return r
+}
+
+// Amount to withdraw (must be &gt; 0)
+func (r ApiApplyMmWithdrawRequest) Amount(amount string) ApiApplyMmWithdrawRequest {
+	r.amount = &amount
+	return r
+}
+
+// Client withdraw order id (idempotency key)
+func (r ApiApplyMmWithdrawRequest) WithdrawOrderId(withdrawOrderId string) ApiApplyMmWithdrawRequest {
+	r.withdrawOrderId = &withdrawOrderId
+	return r
+}
+
+// Source CEX account type. Enum: &#x60;0&#x60; (SPOT), &#x60;1&#x60; (FUNDING). Default &#x60;0&#x60;. Must be &#x60;0&#x60; or &#x60;1&#x60;; any other value is rejected
+func (r ApiApplyMmWithdrawRequest) WalletType(walletType models.ApplyMmWithdrawWalletTypeParameter) ApiApplyMmWithdrawRequest {
+	r.walletType = &walletType
+	return r
+}
+
+// Remark for the withdraw
+func (r ApiApplyMmWithdrawRequest) Name(name string) ApiApplyMmWithdrawRequest {
+	r.name = &name
+	return r
+}
+
+func (r ApiApplyMmWithdrawRequest) Execute() (*common.RestApiResponse[models.ApplyMmWithdrawResponse], error) {
+	return r.ApiService.ApplyMmWithdrawExecute(r)
+}
+
+/*
+ApplyMmWithdraw Apply MM Withdraw (PREDICTION_TRADE)
+Post /sapi/v1/w3w/wallet/prediction/withdraw/apply
+
+https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#apply-mm-withdraw
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param coin -  Coin to withdraw (e.g. `USDT`)
+@param network -  Network (e.g. `BEP20`)
+@param amount -  Amount to withdraw (must be > 0)
+@param withdrawOrderId -  Client withdraw order id (idempotency key)
+@param walletType -  Source CEX account type. Enum: `0` (SPOT), `1` (FUNDING). Default `0`. Must be `0` or `1`; any other value is rejected
+@param name -  Remark for the withdraw
+@return ApiApplyMmWithdrawRequest
+*/
+func (a *TransferAPIService) ApplyMmWithdraw(ctx context.Context) ApiApplyMmWithdrawRequest {
+	return ApiApplyMmWithdrawRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ApplyMmWithdrawResponse
+func (a *TransferAPIService) ApplyMmWithdrawExecute(r ApiApplyMmWithdrawRequest) (*common.RestApiResponse[models.ApplyMmWithdrawResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/w3w/wallet/prediction/withdraw/apply"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.coin == nil {
+		return nil, common.ReportError("coin is required and must be specified")
+	}
+
+	if r.network == nil {
+		return nil, common.ReportError("network is required and must be specified")
+	}
+
+	if r.amount == nil {
+		return nil, common.ReportError("amount is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "coin", r.coin, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "network", r.network, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "amount", r.amount, "form", "")
+	if r.withdrawOrderId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "withdrawOrderId", r.withdrawOrderId, "form", "")
+	}
+	if r.walletType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "walletType", r.walletType, "form", "")
+	}
+	if r.name != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+
+	resp, err := SendRequest[models.ApplyMmWithdrawResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiCreateInboundTransferRequest struct {
 	ctx             context.Context
 	ApiService      *TransferAPIService
@@ -77,7 +316,7 @@ func (r ApiCreateInboundTransferRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-CreateInboundTransfer Create Inbound Transfer (TRADE)
+CreateInboundTransfer Create Inbound Transfer (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/transfer/inbound
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-inbound-transfer
@@ -221,7 +460,7 @@ func (r ApiCreateOutboundTransferRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-CreateOutboundTransfer Create Outbound Transfer (TRADE)
+CreateOutboundTransfer Create Outbound Transfer (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/transfer/outbound
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#create-outbound-transfer
@@ -371,7 +610,7 @@ func (r ApiQueryTransferListRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryTransferList Query Transfer List (USER_DATA)
+QueryTransferList Query Transfer List (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/transfer/list
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-list
@@ -475,7 +714,7 @@ func (r ApiQueryTransferStatusRequest) Execute() (*common.RestApiResponse[models
 }
 
 /*
-QueryTransferStatus Query Transfer Status (USER_DATA)
+QueryTransferStatus Query Transfer Status (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/transfer/status
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/transfer#query-transfer-status

@@ -56,7 +56,7 @@ func (r ApiBatchRedeemRequest) Execute() (*common.RestApiResponse[models.BatchRe
 }
 
 /*
-BatchRedeem Batch Redeem (TRADE)
+BatchRedeem Batch Redeem (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/batch-redeem
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#batch-redeem
@@ -154,7 +154,7 @@ func (r ApiGetRedeemStatusRequest) Execute() (*common.RestApiResponse[models.Get
 }
 
 /*
-GetRedeemStatus Get Redeem Status (USER_DATA)
+GetRedeemStatus Get Redeem Status (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/redeem/status
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/redeem#get-redeem-status

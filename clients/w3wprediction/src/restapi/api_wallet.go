@@ -70,7 +70,7 @@ func (r ApiGetPortfolioRequest) Execute() (*common.RestApiResponse[models.GetPor
 }
 
 /*
-GetPortfolio Get Portfolio (USER_DATA)
+GetPortfolio Get Portfolio (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/pnl/portfolio
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-portfolio
@@ -155,7 +155,7 @@ func (r ApiGetQuotaStatusRequest) Execute() (*common.RestApiResponse[models.GetQ
 }
 
 /*
-GetQuotaStatus Get Quota Status (USER_DATA)
+GetQuotaStatus Get Quota Status (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/quota/limit/status
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#get-quota-status
@@ -218,7 +218,7 @@ func (r ApiListPredictionWalletsRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-ListPredictionWallets List Prediction Wallets (USER_DATA)
+ListPredictionWallets List Prediction Wallets (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/wallet/list
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#list-prediction-wallets
@@ -281,7 +281,7 @@ func (r ApiQueryPaymentOptionBalancesRequest) Execute() (*common.RestApiResponse
 }
 
 /*
-QueryPaymentOptionBalances Query Payment Option Balances (USER_DATA)
+QueryPaymentOptionBalances Query Payment Option Balances (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/balance/payment-options
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/wallet#query-payment-option-balances

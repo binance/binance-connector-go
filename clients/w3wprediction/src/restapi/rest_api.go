@@ -14,12 +14,13 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Prediction Trading REST API API v1.2.0
+// RestAPIClient manages communication with the Prediction Trading REST API API v1.3.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
 	// API Services
 	MarketDataAPI *MarketDataAPIService
+	OtcAPI        *OtcAPIService
 	PositionAPI   *PositionAPIService
 	RedeemAPI     *RedeemAPIService
 	TradeAPI      *TradeAPIService
@@ -41,12 +42,13 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-w3wprediction/1.2.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-w3wprediction/1.3.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
 	// API Services
 	c.MarketDataAPI = &MarketDataAPIService{client: c}
+	c.OtcAPI = &OtcAPIService{client: c}
 	c.PositionAPI = &PositionAPIService{client: c}
 	c.RedeemAPI = &RedeemAPIService{client: c}
 	c.TradeAPI = &TradeAPIService{client: c}

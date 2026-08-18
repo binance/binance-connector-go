@@ -49,7 +49,7 @@ func (r ApiBatchCancelOrdersRequest) Execute() (*common.RestApiResponse[models.B
 }
 
 /*
-BatchCancelOrders Batch Cancel Orders (TRADE)
+BatchCancelOrders Batch Cancel Orders (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/batch-cancel
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#batch-cancel-orders
@@ -195,7 +195,7 @@ func (r ApiGetQuoteRequest) Execute() (*common.RestApiResponse[models.GetQuoteRe
 }
 
 /*
-GetQuote Get Quote (TRADE)
+GetQuote Get Quote (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/get-quote
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#get-quote
@@ -379,7 +379,7 @@ func (r ApiPlaceOrderRequest) Execute() (*common.RestApiResponse[models.PlaceOrd
 }
 
 /*
-PlaceOrder Place Order (TRADE)
+PlaceOrder Place Order (PREDICTION_TRADE)
 Post /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order
@@ -540,7 +540,7 @@ func (r ApiQueryActiveOrdersRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryActiveOrders Query Active Orders (USER_DATA)
+QueryActiveOrders Query Active Orders (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/order/list
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-active-orders
@@ -685,7 +685,7 @@ func (r ApiQueryOrderHistoryRequest) Execute() (*common.RestApiResponse[models.Q
 }
 
 /*
-QueryOrderHistory Query Order History (USER_DATA)
+QueryOrderHistory Query Order History (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/order/history
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#query-order-history

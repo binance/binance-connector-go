@@ -49,7 +49,7 @@ func (r ApiGetPositionByTokenRequest) Execute() (*common.RestApiResponse[models.
 }
 
 /*
-GetPositionByToken Get Position by Token (USER_DATA)
+GetPositionByToken Get Position by Token (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/position/token
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#get-position-by-token
@@ -159,7 +159,7 @@ func (r ApiQueryPnLRequest) Execute() (*common.RestApiResponse[models.QueryPnLRe
 }
 
 /*
-QueryPnL Query PnL (USER_DATA)
+QueryPnL Query PnL (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/pnl/query
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-pn-l
@@ -272,7 +272,7 @@ func (r ApiQueryPositionsRequest) Execute() (*common.RestApiResponse[models.Quer
 }
 
 /*
-QueryPositions Query Positions (USER_DATA)
+QueryPositions Query Positions (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/position/list
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions
@@ -367,7 +367,7 @@ func (r ApiQueryPositionsByFilterRequest) Execute() (*common.RestApiResponse[mod
 }
 
 /*
-QueryPositionsByFilter Query Positions by Filter (USER_DATA)
+QueryPositionsByFilter Query Positions by Filter (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/position/filter
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-positions-by-filter
@@ -487,7 +487,7 @@ func (r ApiQuerySettledPositionHistoryRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QuerySettledPositionHistory Query Settled Position History (USER_DATA)
+QuerySettledPositionHistory Query Settled Position History (PREDICTION_TRADE)
 Get /sapi/v1/w3w/wallet/prediction/position/settled-history
 
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/position#query-settled-position-history
