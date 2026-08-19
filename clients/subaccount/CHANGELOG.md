@@ -1,9 +1,10 @@
 ### Changelog
 
-## 1.11.0 - 2026-08-06
+## 1.11.0 - 2026-08-19
 
-### Changed (1)
+### Changed (2)
 
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.7.0`.
 - Modified response for `querySubAccountApiKey()` (`GET /sapi/v1/sub-account/subAccountApi`):
   - property `rows` added
   - property `list` deleted
