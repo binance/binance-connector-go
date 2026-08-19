@@ -66,41 +66,7 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Compare versions
-        id: version
-        run: |
-          if [ "${{ matrix.client }}" == "common" ]; then
-            cd common
-            # Get the latest tag for this module
-            LATEST_TAG=$(git describe --tags --match "common/v*" --abbrev=0 2>/dev/null || echo "")
-            CURRENT_COMMIT=$(git rev-parse HEAD)
-            LAST_TAG_COMMIT=$(git rev-list -n 1 $LATEST_TAG 2>/dev/null || echo "")
-
-            if [ -z "$LATEST_TAG" ] || [ "$CURRENT_COMMIT" != "$LAST_TAG_COMMIT" ]; then
-              echo "release_needed=true" >> $GITHUB_OUTPUT
-              echo "New changes detected since last tag"
-            else
-              echo "release_needed=false" >> $GITHUB_OUTPUT
-              echo "No new changes since last tag"
-            fi
-          else
-            cd clients/${{ matrix.client }}
-            # Get the latest tag for this client
-            LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
-            CURRENT_COMMIT=$(git rev-parse HEAD)
-            LAST_TAG_COMMIT=$(git rev-list -n 1 $LATEST_TAG 2>/dev/null || echo "")
-
-            if [ -z "$LATEST_TAG" ] || [ "$CURRENT_COMMIT" != "$LAST_TAG_COMMIT" ]; then
-              echo "release_needed=true" >> $GITHUB_OUTPUT
-              echo "New changes detected since last tag"
-            else
-              echo "release_needed=false" >> $GITHUB_OUTPUT
-              echo "No new changes since last tag"
-            fi
-          fi
-
       - name: Set working directory path
-        if: steps.version.outputs.release_needed == 'true'
         id: path
         run: |
           if [ "${{ matrix.client }}" == "common" ]; then
@@ -110,6 +76,47 @@ jobs:
             echo "dir=clients/${{ matrix.client }}" >> $GITHUB_OUTPUT
             echo "package_path=./" >> $GITHUB_OUTPUT
           fi
+
+      - name: Compare versions
+        id: version
+        run: |
+          set -euo pipefail
+
+          DIR="${{ steps.path.outputs.dir }}"
+
+          VERSION=$(grep -m1 -E '^## [0-9]+\.[0-9]+\.[0-9]+' "$DIR/CHANGELOG.md" \
+            | sed -E 's/^## ([0-9]+\.[0-9]+\.[0-9]+).*/\1/' || true)
+
+          if [ -z "$VERSION" ]; then
+            echo "Could not determine version from $DIR/CHANGELOG.md"
+            exit 1
+          fi
+
+          TAG="$DIR/v$VERSION"
+          echo "version=v$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+          REMOTE_TAG=$(git ls-remote --tags origin "refs/tags/$TAG")
+
+          if [ -z "$REMOTE_TAG" ]; then
+            echo "release_needed=true" >> $GITHUB_OUTPUT
+            echo "Releasing ${{ matrix.client }} as $TAG"
+            exit 0
+          fi
+
+          git fetch --quiet --force origin "refs/tags/$TAG:refs/tags/$TAG" || true
+          TAG_COMMIT=$(git rev-list -n 1 "refs/tags/$TAG")
+
+          if [ "$TAG_COMMIT" = "$(git rev-parse HEAD)" ]; then
+            echo "release_needed=false" >> $GITHUB_OUTPUT
+            echo "$TAG already points at this commit. Nothing to release."
+            exit 0
+          fi
+
+          echo "$TAG already exists at $TAG_COMMIT, but $DIR/CHANGELOG.md declares"
+          echo "$VERSION at $(git rev-parse HEAD). Bump the CHANGELOG to a version"
+          echo "that has never been tagged."
+          exit 1
 
       - name: Set up Go environment
         if: steps.version.outputs.release_needed == 'true'
@@ -149,46 +156,6 @@ jobs:
             go test -v ./tests/...
           fi
 
-      - name: Determine next version
-        id: next_version
-        run: |
-          # Get the latest tag for this module
-          if [ "${{ matrix.client }}" == "common" ]; then
-            LATEST_TAG=$(git describe --tags --match "${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
-          else
-            LATEST_TAG=$(git describe --tags --match "clients/${{ matrix.client }}/v*" --abbrev=0 2>/dev/null || echo "")
-          fi
-
-          if [ -z "$LATEST_TAG" ]; then
-            # No tags exist yet, start with v1.0.0
-            NEW_VERSION="v1.0.0"
-          else
-            if [ "${{ matrix.client }}" == "common" ]; then
-              CURRENT_VERSION=${LATEST_TAG#${{ matrix.client }}/v}
-            else
-              CURRENT_VERSION=${LATEST_TAG#clients/${{ matrix.client }}/v}
-            fi
-
-            # Split into parts
-            IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
-            MAJOR=${VERSION_PARTS[0]}
-            MINOR=${VERSION_PARTS[1]}
-            PATCH=${VERSION_PARTS[2]}
-
-            # Increment patch version
-            NEW_MINOR=$((MINOR + 1))
-            NEW_VERSION="v${MAJOR}.${NEW_MINOR}.${PATCH}"
-          fi
-
-          # Set the full tag name
-          if [ "${{ matrix.client }}" == "common" ]; then
-            FULL_TAG="common/$NEW_VERSION"
-          else
-            FULL_TAG="clients/${{ matrix.client }}/$NEW_VERSION"
-          fi
-          echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
-
       - name: Publish to GitHub Packages
         if: steps.version.outputs.release_needed == 'true'
         working-directory: ${{ steps.path.outputs.dir }}
@@ -197,14 +164,18 @@ jobs:
           GOPROXY: proxy.golang.org,direct
           GOPRIVATE: github.com/${{ github.repository }}
         run: |
+          set -euo pipefail
+
           # Configure git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com".insteadOf "https://github.com"
 
-          # Create and push tag
-          git tag ${{ steps.next_version.outputs.tag }}
-          git push origin ${{ steps.next_version.outputs.tag }}
+          # Create and push tag. Pushing the tag *is* the publication step for a Go
+          # module: proxy.golang.org resolves versions from these refs.
+          git tag -a "${{ steps.version.outputs.tag }}" \
+            -m "Release ${{ matrix.client }} ${{ steps.version.outputs.version }}"
+          git push origin "${{ steps.version.outputs.tag }}"
 
           # Verify the module is published
           GOPRIVATE=github.com/${{ github.repository }} go list -m
