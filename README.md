@@ -37,6 +37,7 @@ Before using the SDK, ensure you have:
 - [binance-simple-earn](./clients/simple-earn/) - Simple Earn connector
 - [binance-spot](./clients/spot/) - Spot Trading connector
 - [binance-staking](./clients/staking/) - Staking connector
+- [binance-stocks](./clients/stocks/) - Stocks connector
 - [binance-sub-account](./clients/sub-account/) - Sub Account connector
 - [binance-vip-loan](./clients/vip-loan/) - VIP Loan connector
 - [binance-wallet](./clients/wallet/) - Wallet connector
