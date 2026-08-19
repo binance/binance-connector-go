@@ -329,7 +329,7 @@ func AllBookTickersStream() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
@@ -410,7 +410,7 @@ func UserData() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
@@ -461,7 +461,7 @@ func AllBookTickersStream() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
