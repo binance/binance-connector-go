@@ -41,7 +41,7 @@ go get github.com/binance/binance-connector-go/clients/spot
 
 ## Documentation
 
-For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/docs/binance-spot-api-docs/README).
+For detailed information, refer to the [Binance API Documentation](https://developers.binance.com/en/docs/products/spot/rest-api).
 
 ### REST APIs
 
@@ -348,7 +348,7 @@ func AggTrade() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}
@@ -449,7 +449,7 @@ func AggTrade() {
 		client.WithWebsocketStreams(configuration),
 	)
 
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Fatalf("Error connecting to WebSocket: %v", err)
 	}

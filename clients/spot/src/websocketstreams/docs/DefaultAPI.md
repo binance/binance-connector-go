@@ -52,7 +52,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -128,7 +128,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -203,7 +203,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -278,7 +278,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -354,7 +354,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -430,7 +430,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -507,7 +507,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -585,7 +585,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -663,7 +663,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -740,7 +740,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -818,7 +818,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -896,7 +896,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -973,7 +973,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -1050,7 +1050,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
@@ -1126,7 +1126,7 @@ func main() {
 	wsClient := models.NewBinanceSpotClient(models.WithWebsocketStreams(configuration))
 
 	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect()
+	err := wsClient.WebsocketStreams.Connect([]string{})
 	if err != nil {
 		log.Printf("Error connecting to WebSocket: %v\n", err)
 		return
