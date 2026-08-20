@@ -3,6 +3,7 @@ package binance_connector
 import (
 	"fmt"
 	"net/http"
+	"sync/atomic"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -51,6 +52,27 @@ func newWsConfig(endpoint string) *WsConfig {
 	}
 }
 
+// PATCHED (2026-08-20, market_data_service fork):
+//
+// The upstream v0.8.0 implementation had three defects that could crash or
+// leak the whole process:
+//
+//  1. The internal read goroutine performed `stopCh <- struct{}{}` on read
+//     error. If the caller had close()d stopCh (the natural way to stop),
+//     this panicked with "send on closed channel" inside a library-owned
+//     goroutine, which no application-side recover() can catch.
+//  2. The connection was never Close()d on stop, leaking the TCP connection
+//     and the read goroutine until the server dropped the connection.
+//  3. The `silent` flag was read/written from two goroutines without
+//     synchronization (data race).
+//
+// The patched contract (mirrors the battle-tested go-binance pattern):
+//   - To stop: the caller close()es stopCh. (A single send also still works
+//     for backward compatibility.)
+//   - The library then closes the connection itself, which unblocks
+//     ReadMessage; the read loop exits and doneCh is closed.
+//   - errHandler is not invoked for errors caused by a requested stop.
+//   - The read goroutine never sends on stopCh.
 var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (doneCh, stopCh chan struct{}, err error) {
 	Dialer := websocket.Dialer{
 		Proxy:             http.ProxyFromEnvironment,
@@ -67,38 +89,38 @@ var wsServe = func(cfg *WsConfig, handler WsHandler, errHandler ErrHandler) (don
 	doneCh = make(chan struct{})
 	stopCh = make(chan struct{})
 	go func() {
-		// This function will exit either on error from
-		// websocket.Conn.ReadMessage or when the stopC channel is
-		// closed by the client.
+		// This goroutine exits when ReadMessage returns an error, either
+		// because the connection failed or because the watcher goroutine
+		// below closed the connection in response to a stop request.
 		defer close(doneCh)
 		if WebsocketKeepalive {
 			keepAlive(c, WebsocketTimeout)
 		}
-		// Wait for the stopC channel to be closed.  We do that in a
-		// separate goroutine because ReadMessage is a blocking
-		// operation.
-		silent := false
+		// silent suppresses errHandler once the caller has requested a stop:
+		// the subsequent "use of closed network connection" read error is
+		// expected and must not be reported.
+		var silent atomic.Bool
+		// Watcher: waits for a stop request (close or send on stopCh) or for
+		// the read loop to finish (doneCh), then closes the connection. This
+		// is the only place the library closes the connection, and it
+		// guarantees no connection/goroutine leak on stop.
 		go func() {
-			for {
-				_, message, err := c.ReadMessage()
-				if err != nil {
-					if !silent {
-						errHandler(err)
-					}
-					stopCh <- struct{}{}
-					return
-				}
-				handler(message)
-			}
-		}()
-
-		for {
 			select {
 			case <-stopCh:
-				silent = true
-				return
+				silent.Store(true)
 			case <-doneCh:
 			}
+			c.Close()
+		}()
+		for {
+			_, message, err := c.ReadMessage()
+			if err != nil {
+				if !silent.Load() {
+					errHandler(err)
+				}
+				return
+			}
+			handler(message)
 		}
 	}()
 	return
@@ -123,6 +145,10 @@ func keepAlive(c *websocket.Conn, timeout time.Duration) {
 			}
 			<-ticker.C
 			if time.Since(lastResponse) > timeout {
+				// PATCHED: close the connection on pong timeout so the read
+				// loop unblocks and the error surfaces to errHandler instead
+				// of the connection silently going stale.
+				c.Close()
 				return
 			}
 		}
