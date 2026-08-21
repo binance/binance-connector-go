@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Alpha WebSocket Market Streams WebSocket Streams v1.7.0
+// WebsocketStreamsClient manages communication with the Binance Alpha WebSocket Market Streams WebSocket Streams v1.8.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -29,7 +29,7 @@ type WebsocketStreamsClient struct {
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
 func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *WebsocketStreamsClient {
 	c := &WebsocketStreamsClient{cfg: cfg}
-	c.userAgent = "binance-alpha/1.7.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-alpha/1.8.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {
@@ -61,7 +61,7 @@ func (c *WebsocketStreamsClient) Connect(streams []string) error {
 // @param id []string - The optional list of IDs for the subscriptions
 // @return error - An error if the subscription fails
 func (c *WebsocketStreamsClient) Subscribe(streams []string, id []any) error {
-	return c.Ws.Subscribe(streams, id, false)
+	return c.Ws.Subscribe(streams, id, true)
 }
 
 // On registers a callback for the specified stream

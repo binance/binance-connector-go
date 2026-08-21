@@ -17,7 +17,7 @@ type DefaultAPIService Service
 type ApiAggregateTradeStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -27,7 +27,7 @@ func (r ApiAggregateTradeStreamRequest) Symbol(symbol string) ApiAggregateTradeS
 }
 
 // Unique WebSocket request ID.
-func (r ApiAggregateTradeStreamRequest) Id(id string) ApiAggregateTradeStreamRequest {
+func (r ApiAggregateTradeStreamRequest) Id(id int32) ApiAggregateTradeStreamRequest {
 	r.id = &id
 	return r
 }
@@ -72,19 +72,19 @@ func (a *DefaultAPIService) AggregateTradeStreamExecute(r ApiAggregateTradeStrea
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AggregateTradeStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -94,11 +94,11 @@ func (a *DefaultAPIService) AggregateTradeStreamExecute(r ApiAggregateTradeStrea
 
 type ApiAllBookTickerStreamRequest struct {
 	ApiService *DefaultAPIService
-	id         *string
+	id         *int32
 }
 
 // Unique WebSocket request ID.
-func (r ApiAllBookTickerStreamRequest) Id(id string) ApiAllBookTickerStreamRequest {
+func (r ApiAllBookTickerStreamRequest) Id(id int32) ApiAllBookTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -134,19 +134,19 @@ func (a *DefaultAPIService) AllBookTickerStreamExecute(r ApiAllBookTickerStreamR
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllBookTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -156,11 +156,11 @@ func (a *DefaultAPIService) AllBookTickerStreamExecute(r ApiAllBookTickerStreamR
 
 type ApiAllMiniTickerStreamRequest struct {
 	ApiService *DefaultAPIService
-	id         *string
+	id         *int32
 }
 
 // Unique WebSocket request ID.
-func (r ApiAllMiniTickerStreamRequest) Id(id string) ApiAllMiniTickerStreamRequest {
+func (r ApiAllMiniTickerStreamRequest) Id(id int32) ApiAllMiniTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -196,19 +196,19 @@ func (a *DefaultAPIService) AllMiniTickerStreamExecute(r ApiAllMiniTickerStreamR
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllMiniTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -218,11 +218,11 @@ func (a *DefaultAPIService) AllMiniTickerStreamExecute(r ApiAllMiniTickerStreamR
 
 type ApiAllTickerStreamRequest struct {
 	ApiService *DefaultAPIService
-	id         *string
+	id         *int32
 }
 
 // Unique WebSocket request ID.
-func (r ApiAllTickerStreamRequest) Id(id string) ApiAllTickerStreamRequest {
+func (r ApiAllTickerStreamRequest) Id(id int32) ApiAllTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -258,19 +258,19 @@ func (a *DefaultAPIService) AllTickerStreamExecute(r ApiAllTickerStreamRequest) 
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -280,11 +280,11 @@ func (a *DefaultAPIService) AllTickerStreamExecute(r ApiAllTickerStreamRequest) 
 
 type ApiAllTokens24hTickerStreamRequest struct {
 	ApiService *DefaultAPIService
-	id         *string
+	id         *int32
 }
 
 // Unique WebSocket request ID.
-func (r ApiAllTokens24hTickerStreamRequest) Id(id string) ApiAllTokens24hTickerStreamRequest {
+func (r ApiAllTokens24hTickerStreamRequest) Id(id int32) ApiAllTokens24hTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -320,19 +320,19 @@ func (a *DefaultAPIService) AllTokens24hTickerStreamExecute(r ApiAllTokens24hTic
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.AllTokens24hTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -343,7 +343,7 @@ func (a *DefaultAPIService) AllTokens24hTickerStreamExecute(r ApiAllTokens24hTic
 type ApiBookTickerStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -353,7 +353,7 @@ func (r ApiBookTickerStreamRequest) Symbol(symbol string) ApiBookTickerStreamReq
 }
 
 // Unique WebSocket request ID.
-func (r ApiBookTickerStreamRequest) Id(id string) ApiBookTickerStreamRequest {
+func (r ApiBookTickerStreamRequest) Id(id int32) ApiBookTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -398,19 +398,19 @@ func (a *DefaultAPIService) BookTickerStreamExecute(r ApiBookTickerStreamRequest
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.BookTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -423,7 +423,7 @@ type ApiContractKlineStreamRequest struct {
 	contractAddress *string
 	chainId         *string
 	interval        *models.ContractKlineStreamIntervalParameter
-	id              *string
+	id              *int32
 }
 
 // Contract address.
@@ -445,7 +445,7 @@ func (r ApiContractKlineStreamRequest) Interval(interval models.ContractKlineStr
 }
 
 // Unique WebSocket request ID.
-func (r ApiContractKlineStreamRequest) Id(id string) ApiContractKlineStreamRequest {
+func (r ApiContractKlineStreamRequest) Id(id int32) ApiContractKlineStreamRequest {
 	r.id = &id
 	return r
 }
@@ -508,19 +508,19 @@ func (a *DefaultAPIService) ContractKlineStreamExecute(r ApiContractKlineStreamR
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.ContractKlineStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -532,7 +532,7 @@ type ApiFullDepthStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
 	interval   *models.PartialDepthStreamIntervalParameter
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -548,7 +548,7 @@ func (r ApiFullDepthStreamRequest) Interval(interval models.PartialDepthStreamIn
 }
 
 // Unique WebSocket request ID.
-func (r ApiFullDepthStreamRequest) Id(id string) ApiFullDepthStreamRequest {
+func (r ApiFullDepthStreamRequest) Id(id int32) ApiFullDepthStreamRequest {
 	r.id = &id
 	return r
 }
@@ -602,19 +602,19 @@ func (a *DefaultAPIService) FullDepthStreamExecute(r ApiFullDepthStreamRequest) 
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.FullDepthStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -626,7 +626,7 @@ type ApiKlineStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
 	interval   *models.KlineStreamIntervalParameter
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -642,7 +642,7 @@ func (r ApiKlineStreamRequest) Interval(interval models.KlineStreamIntervalParam
 }
 
 // Unique WebSocket request ID.
-func (r ApiKlineStreamRequest) Id(id string) ApiKlineStreamRequest {
+func (r ApiKlineStreamRequest) Id(id int32) ApiKlineStreamRequest {
 	r.id = &id
 	return r
 }
@@ -696,19 +696,19 @@ func (a *DefaultAPIService) KlineStreamExecute(r ApiKlineStreamRequest) (*common
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.KlineStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -719,7 +719,7 @@ func (a *DefaultAPIService) KlineStreamExecute(r ApiKlineStreamRequest) (*common
 type ApiMiniTickerStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -729,7 +729,7 @@ func (r ApiMiniTickerStreamRequest) Symbol(symbol string) ApiMiniTickerStreamReq
 }
 
 // Unique WebSocket request ID.
-func (r ApiMiniTickerStreamRequest) Id(id string) ApiMiniTickerStreamRequest {
+func (r ApiMiniTickerStreamRequest) Id(id int32) ApiMiniTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -774,19 +774,19 @@ func (a *DefaultAPIService) MiniTickerStreamExecute(r ApiMiniTickerStreamRequest
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.MiniTickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -799,7 +799,7 @@ type ApiPartialDepthStreamRequest struct {
 	symbol     *string
 	levels     *models.PartialDepthStreamLevelsParameter
 	interval   *models.PartialDepthStreamIntervalParameter
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -821,7 +821,7 @@ func (r ApiPartialDepthStreamRequest) Interval(interval models.PartialDepthStrea
 }
 
 // Unique WebSocket request ID.
-func (r ApiPartialDepthStreamRequest) Id(id string) ApiPartialDepthStreamRequest {
+func (r ApiPartialDepthStreamRequest) Id(id int32) ApiPartialDepthStreamRequest {
 	r.id = &id
 	return r
 }
@@ -884,19 +884,19 @@ func (a *DefaultAPIService) PartialDepthStreamExecute(r ApiPartialDepthStreamReq
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.PartialDepthStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -907,7 +907,7 @@ func (a *DefaultAPIService) PartialDepthStreamExecute(r ApiPartialDepthStreamReq
 type ApiTickerStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -917,7 +917,7 @@ func (r ApiTickerStreamRequest) Symbol(symbol string) ApiTickerStreamRequest {
 }
 
 // Unique WebSocket request ID.
-func (r ApiTickerStreamRequest) Id(id string) ApiTickerStreamRequest {
+func (r ApiTickerStreamRequest) Id(id int32) ApiTickerStreamRequest {
 	r.id = &id
 	return r
 }
@@ -962,19 +962,19 @@ func (a *DefaultAPIService) TickerStreamExecute(r ApiTickerStreamRequest) (*comm
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.TickerStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err
@@ -985,7 +985,7 @@ func (a *DefaultAPIService) TickerStreamExecute(r ApiTickerStreamRequest) (*comm
 type ApiTradeStreamRequest struct {
 	ApiService *DefaultAPIService
 	symbol     *string
-	id         *string
+	id         *int32
 }
 
 // Symbol to subscribe, in lowercase stream format.
@@ -995,7 +995,7 @@ func (r ApiTradeStreamRequest) Symbol(symbol string) ApiTradeStreamRequest {
 }
 
 // Unique WebSocket request ID.
-func (r ApiTradeStreamRequest) Id(id string) ApiTradeStreamRequest {
+func (r ApiTradeStreamRequest) Id(id int32) ApiTradeStreamRequest {
 	r.id = &id
 	return r
 }
@@ -1040,19 +1040,19 @@ func (a *DefaultAPIService) TradeStreamExecute(r ApiTradeStreamRequest) (*common
 				if r.id == nil {
 					return ""
 				}
-				return *r.id
+				return string(*r.id)
 			}(),
 		},
 	)
 	ws := a.client.Ws
 
-	id := []any{common.GenerateUUID()}
+	id := []any{common.GenerateIntUUID()}
 	if r.id != nil {
 		id = []any{*r.id}
 	}
 	resp, err := common.CreateStreamHandler[models.TradeStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
-	}, localStream, id, false)
+	}, localStream, id, true)
 
 	if err != nil {
 		return nil, err

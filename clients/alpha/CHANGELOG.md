@@ -1,5 +1,11 @@
 ### Changelog
 
+## 1.8.0 - 2026-08-21
+
+### Changed (1)
+
+- Updated websocket stream type from `string` to `int32`
+
 ## 1.7.0 - 2026-08-19
 
 ### Changed (1)

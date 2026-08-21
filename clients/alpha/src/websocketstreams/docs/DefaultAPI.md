@@ -42,7 +42,7 @@ import (
 
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -86,7 +86,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -117,7 +117,7 @@ import (
 )
 
 func main() {
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -160,7 +160,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -191,7 +191,7 @@ import (
 )
 
 func main() {
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -234,7 +234,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -265,7 +265,7 @@ import (
 )
 
 func main() {
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -308,7 +308,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -339,7 +339,7 @@ import (
 )
 
 func main() {
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -382,7 +382,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -414,7 +414,7 @@ import (
 
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -458,7 +458,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -492,7 +492,7 @@ func main() {
 	contractAddress := "G7vQWurMkMMm2dU3iZpXYFTHT9Biio4F4gZCrwFpKNwG" // string | Contract address.
 	chainId := "CT_501" // string | Chain ID.
 	interval := models.ContractKlineStreamIntervalParameterInterval1s // ContractKlineStreamIntervalParameter | Kline interval.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -538,7 +538,7 @@ Name          | Type          | Description   | Notes
  **contractAddress** | **string** | Contract address. | 
  **chainId** | **string** | Chain ID. | 
  **interval** | [**ContractKlineStreamIntervalParameter**](ContractKlineStreamIntervalParameter.md) | Kline interval. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -571,7 +571,7 @@ import (
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
 	interval := models.PartialDepthStreamIntervalParameterInterval0ms // PartialDepthStreamIntervalParameter | Update interval.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -616,7 +616,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
  **interval** | [**PartialDepthStreamIntervalParameter**](PartialDepthStreamIntervalParameter.md) | Update interval. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -649,7 +649,7 @@ import (
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
 	interval := models.KlineStreamIntervalParameterInterval1m // KlineStreamIntervalParameter | Kline interval.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -694,7 +694,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
  **interval** | [**KlineStreamIntervalParameter**](KlineStreamIntervalParameter.md) | Kline interval. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -726,7 +726,7 @@ import (
 
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -770,7 +770,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -804,7 +804,7 @@ func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
 	levels := models.PartialDepthStreamLevelsParameterLevels5 // PartialDepthStreamLevelsParameter | Depth levels.
 	interval := models.PartialDepthStreamIntervalParameterInterval0ms // PartialDepthStreamIntervalParameter | Update interval.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -850,7 +850,7 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
  **levels** | [**PartialDepthStreamLevelsParameter**](PartialDepthStreamLevelsParameter.md) | Depth levels. | 
  **interval** | [**PartialDepthStreamIntervalParameter**](PartialDepthStreamIntervalParameter.md) | Update interval. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -882,7 +882,7 @@ import (
 
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -926,7 +926,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -958,7 +958,7 @@ import (
 
 func main() {
 	symbol := "alpha_116usdt" // string | Symbol to subscribe, in lowercase stream format.
-	id := "1" // string | Unique WebSocket request ID. (optional)
+	id := int32(532601580) // int32 | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -1002,7 +1002,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol to subscribe, in lowercase stream format. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **id** | **int32** | Unique WebSocket request ID. | 
 
 ### Authorization
 
