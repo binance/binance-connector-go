@@ -809,7 +809,7 @@ func (r ApiSubmitDepositQuestionnaireRequest) Questionnaire(questionnaire string
 	return r
 }
 
-// JSON format beneficiary Pii.
+// JSON format beneficiary Pii, see StandardPii section below
 func (r ApiSubmitDepositQuestionnaireRequest) BeneficiaryPii(beneficiaryPii string) ApiSubmitDepositQuestionnaireRequest {
 	r.beneficiaryPii = &beneficiaryPii
 	return r
@@ -854,7 +854,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param subAccountId -  External user ID.
 @param depositId -  Wallet deposit ID.
 @param questionnaire -  JSON format questionnaire answers.
-@param beneficiaryPii -  JSON format beneficiary Pii.
+@param beneficiaryPii -  JSON format beneficiary Pii, see StandardPii section below
 @param network -
 @param coin -
 @param amount -

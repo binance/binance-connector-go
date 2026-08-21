@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.14.0 - 2026-08-21
+
+### Changed (5)
+
+- Added parameter `needBalanceDetail`
+  - affected methods:
+    - `queryUserWalletBalance()` (`GET /sapi/v1/asset/wallet/balance`)
+- Modified response for `queryUserWalletBalance()` (`GET /sapi/v1/asset/wallet/balance`):
+  - items: property `assetBalances` added
+  - items: item property `assetBalances` added
+
+- Modified response schema `queryUserWalletBalanceResponse`:
+  - items: property `assetBalances` added
+  - items: item property `assetBalances` added
+
 ## 1.13.0 - 2026-08-19
 
 ### Changed (1)

@@ -580,7 +580,7 @@ func main() {
 	subAccountId := "1" // string | External user ID.
 	depositId := int64(1) // int64 | Wallet deposit ID.
 	questionnaire := "questionnaire_example" // string | JSON format questionnaire answers.
-	beneficiaryPii := "beneficiaryPii_example" // string | JSON format beneficiary Pii.
+	beneficiaryPii := "beneficiaryPii_example" // string | JSON format beneficiary Pii, see StandardPii section below
 	network := "network_example" // string |  (optional)
 	coin := "BTC" // string |  (optional)
 	amount := float32(1.0) // float32 |  (optional)
@@ -616,7 +616,7 @@ Name          | Type          | Description   | Notes
  **subAccountId** | **string** | External user ID. | 
  **depositId** | **int64** | Wallet deposit ID. | 
  **questionnaire** | **string** | JSON format questionnaire answers. | 
- **beneficiaryPii** | **string** | JSON format beneficiary Pii. | 
+ **beneficiaryPii** | **string** | JSON format beneficiary Pii, see StandardPii section below | 
  **network** | **string** |  | 
  **coin** | **string** |  | 
  **amount** | **float32** |  | 

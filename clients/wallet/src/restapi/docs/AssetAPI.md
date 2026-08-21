@@ -987,7 +987,7 @@ No authorization required
 
 ## QueryUserWalletBalance
 
-> QueryUserWalletBalanceResponse QueryUserWalletBalance(ctx).QuoteAsset(quoteAsset).RecvWindow(recvWindow).Execute()
+> QueryUserWalletBalanceResponse QueryUserWalletBalance(ctx).QuoteAsset(quoteAsset).NeedBalanceDetail(needBalanceDetail).RecvWindow(recvWindow).Execute()
 
 Query User Wallet Balance (USER_DATA)
 
@@ -1009,6 +1009,7 @@ import (
 
 func main() {
 	quoteAsset := "BTC" // string |  (optional)
+	needBalanceDetail := false // bool | Whether to return the per-asset balance detail for each wallet. When `false` or omitted, the response is unchanged from current behavior. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1018,7 +1019,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceWalletClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetAPI.QueryUserWalletBalance(context.Background()).QuoteAsset(quoteAsset).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetAPI.QueryUserWalletBalance(context.Background()).QuoteAsset(quoteAsset).NeedBalanceDetail(needBalanceDetail).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetAPI.QueryUserWalletBalance``: %v\n", err)
 		return
@@ -1038,6 +1039,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **quoteAsset** | **string** |  | 
+ **needBalanceDetail** | **bool** | Whether to return the per-asset balance detail for each wallet. When &#x60;false&#x60; or omitted, the response is unchanged from current behavior. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

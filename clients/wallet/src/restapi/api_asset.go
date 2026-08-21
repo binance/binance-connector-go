@@ -1242,14 +1242,21 @@ func (a *AssetAPIService) QueryUserUniversalTransferHistoryExecute(r ApiQueryUse
 }
 
 type ApiQueryUserWalletBalanceRequest struct {
-	ctx        context.Context
-	ApiService *AssetAPIService
-	quoteAsset *string
-	recvWindow *int64
+	ctx               context.Context
+	ApiService        *AssetAPIService
+	quoteAsset        *string
+	needBalanceDetail *bool
+	recvWindow        *int64
 }
 
 func (r ApiQueryUserWalletBalanceRequest) QuoteAsset(quoteAsset string) ApiQueryUserWalletBalanceRequest {
 	r.quoteAsset = &quoteAsset
+	return r
+}
+
+// Whether to return the per-asset balance detail for each wallet. When &#x60;false&#x60; or omitted, the response is unchanged from current behavior.
+func (r ApiQueryUserWalletBalanceRequest) NeedBalanceDetail(needBalanceDetail bool) ApiQueryUserWalletBalanceRequest {
+	r.needBalanceDetail = &needBalanceDetail
 	return r
 }
 
@@ -1270,6 +1277,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param quoteAsset -
+@param needBalanceDetail -  Whether to return the per-asset balance detail for each wallet. When `false` or omitted, the response is unchanged from current behavior.
 @param recvWindow -
 @return ApiQueryUserWalletBalanceRequest
 */
@@ -1292,6 +1300,9 @@ func (a *AssetAPIService) QueryUserWalletBalanceExecute(r ApiQueryUserWalletBala
 
 	if r.quoteAsset != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteAsset", r.quoteAsset, "form", "")
+	}
+	if r.needBalanceDetail != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "needBalanceDetail", r.needBalanceDetail, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

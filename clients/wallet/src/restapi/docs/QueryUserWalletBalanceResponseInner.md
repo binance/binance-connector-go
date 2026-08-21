@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **Activate** | Pointer to **bool** |  | [optional] 
 **Balance** | Pointer to **string** |  | [optional] 
 **WalletName** | Pointer to **string** |  | [optional] 
+**AssetBalances** | Pointer to [**[]QueryUserWalletBalanceResponseInnerAssetBalancesInner**](QueryUserWalletBalanceResponseInnerAssetBalancesInner.md) | Per-asset balance detail for this wallet. Only present when &#x60;needBalanceDetail&#x3D;true&#x60; is passed; omitted entirely otherwise. | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetWalletName sets WalletName field to given value.
 `func (o *QueryUserWalletBalanceResponseInner) HasWalletName() bool`
 
 HasWalletName returns a boolean if a field has been set.
+
+### GetAssetBalances
+
+`func (o *QueryUserWalletBalanceResponseInner) GetAssetBalances() []QueryUserWalletBalanceResponseInnerAssetBalancesInner`
+
+GetAssetBalances returns the AssetBalances field if non-nil, zero value otherwise.
+
+### GetAssetBalancesOk
+
+`func (o *QueryUserWalletBalanceResponseInner) GetAssetBalancesOk() (*[]QueryUserWalletBalanceResponseInnerAssetBalancesInner, bool)`
+
+GetAssetBalancesOk returns a tuple with the AssetBalances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssetBalances
+
+`func (o *QueryUserWalletBalanceResponseInner) SetAssetBalances(v []QueryUserWalletBalanceResponseInnerAssetBalancesInner)`
+
+SetAssetBalances sets AssetBalances field to given value.
+
+### HasAssetBalances
+
+`func (o *QueryUserWalletBalanceResponseInner) HasAssetBalances() bool`
+
+HasAssetBalances returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -905,7 +905,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 	t.Run("Test AssetAPIService QueryUserWalletBalance Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"activate":true,"balance":"0","walletName":"Spot"}]`
+		mockedJSON = `[{"activate":true,"balance":"0","walletName":"Spot","assetBalances":[{"asset":"USDT","assetName":"TetherUS","free":"6.238383","locked":"0","freeze":"0","withdrawing":"0","btcValuation":"6.238383"}]}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

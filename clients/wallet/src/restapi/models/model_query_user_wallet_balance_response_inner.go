@@ -17,9 +17,11 @@ var _ common.MappedNullable = &QueryUserWalletBalanceResponseInner{}
 
 // QueryUserWalletBalanceResponseInner struct for QueryUserWalletBalanceResponseInner
 type QueryUserWalletBalanceResponseInner struct {
-	Activate             *bool   `json:"activate,omitempty"`
-	Balance              *string `json:"balance,omitempty"`
-	WalletName           *string `json:"walletName,omitempty"`
+	Activate   *bool   `json:"activate,omitempty"`
+	Balance    *string `json:"balance,omitempty"`
+	WalletName *string `json:"walletName,omitempty"`
+	// Per-asset balance detail for this wallet. Only present when `needBalanceDetail=true` is passed; omitted entirely otherwise.
+	AssetBalances        []QueryUserWalletBalanceResponseInnerAssetBalancesInner `json:"assetBalances,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -138,6 +140,38 @@ func (o *QueryUserWalletBalanceResponseInner) SetWalletName(v string) {
 	o.WalletName = &v
 }
 
+// GetAssetBalances returns the AssetBalances field value if set, zero value otherwise.
+func (o *QueryUserWalletBalanceResponseInner) GetAssetBalances() []QueryUserWalletBalanceResponseInnerAssetBalancesInner {
+	if o == nil || common.IsNil(o.AssetBalances) {
+		var ret []QueryUserWalletBalanceResponseInnerAssetBalancesInner
+		return ret
+	}
+	return o.AssetBalances
+}
+
+// GetAssetBalancesOk returns a tuple with the AssetBalances field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryUserWalletBalanceResponseInner) GetAssetBalancesOk() ([]QueryUserWalletBalanceResponseInnerAssetBalancesInner, bool) {
+	if o == nil || common.IsNil(o.AssetBalances) {
+		return nil, false
+	}
+	return o.AssetBalances, true
+}
+
+// HasAssetBalances returns a boolean if a field has been set.
+func (o *QueryUserWalletBalanceResponseInner) HasAssetBalances() bool {
+	if o != nil && !common.IsNil(o.AssetBalances) {
+		return true
+	}
+
+	return false
+}
+
+// SetAssetBalances gets a reference to the given []QueryUserWalletBalanceResponseInnerAssetBalancesInner and assigns it to the AssetBalances field.
+func (o *QueryUserWalletBalanceResponseInner) SetAssetBalances(v []QueryUserWalletBalanceResponseInnerAssetBalancesInner) {
+	o.AssetBalances = v
+}
+
 func (o QueryUserWalletBalanceResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +190,9 @@ func (o QueryUserWalletBalanceResponseInner) ToMap() (map[string]interface{}, er
 	}
 	if !common.IsNil(o.WalletName) {
 		toSerialize["walletName"] = o.WalletName
+	}
+	if !common.IsNil(o.AssetBalances) {
+		toSerialize["assetBalances"] = o.AssetBalances
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -182,6 +219,7 @@ func (o *QueryUserWalletBalanceResponseInner) UnmarshalJSON(data []byte) (err er
 		delete(additionalProperties, "activate")
 		delete(additionalProperties, "balance")
 		delete(additionalProperties, "walletName")
+		delete(additionalProperties, "assetBalances")
 		o.AdditionalProperties = additionalProperties
 	}
 
