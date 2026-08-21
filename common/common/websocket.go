@@ -172,7 +172,7 @@ func (c *WebSocketConnection) HandleServerShutdown(data map[string]interface{}) 
 	}
 
 	select {
-	case c.ReconnectChan <- struct{}{}:
+	case c.ReconnectChan <- true:
 	default:
 	}
 }
@@ -280,6 +280,14 @@ func (c *WebSocketConnection) HandleReadError(err error) {
 		}
 
 		c.notifyPendingMessagesWithError(err)
+
+		// Trigger a (forced) reconnection on unexpected connection loss so
+		// that the read loop is restarted and subscriptions are restored
+		// after a temporary network interruption. See issue #96.
+		select {
+		case c.ReconnectChan <- false:
+		default:
+		}
 	}
 }
 
@@ -384,7 +392,7 @@ func (w *WebSocketCommon) initializePool() {
 			StreamCallbackMap:   make(map[string][]func(map[string]interface{})),
 			StreamConnectionMap: []string{},
 			ErrorChan:           make(chan error, 1),
-			ReconnectChan:       make(chan struct{}, 1),
+			ReconnectChan:       make(chan bool, 1),
 			Done:                make(chan struct{}),
 		})
 	}
@@ -517,28 +525,28 @@ func (w *WebSocketCommon) CreateWebSocketDialer(config WebSocketConfig) websocke
 // @param userAgent The user agent string to use for the connection.
 func (w *WebSocketCommon) startReconnectHandler(conn *WebSocketConnection, config WebSocketConfig, userAgent string) {
 	go func() {
-		for range conn.ReconnectChan {
-			if conn.Connected == CLOSING || conn.Connected == CLOSED {
-				log.Printf("Skipping reconnect for %s because connection is closing", conn.Id)
-				continue
-			}
+	for graceful := range conn.ReconnectChan {
+		if conn.Connected == CLOSING || conn.Connected == CLOSED {
+			log.Printf("Skipping reconnect for %s because connection is closing", conn.Id)
+			continue
+		}
 
-			w.ReconnectMutex.Lock()
-			if w.ReconnectTasks == nil {
-				w.ReconnectTasks = make(map[string]chan struct{})
-			}
-			if _, exists := w.ReconnectTasks[conn.Id]; exists {
-				w.ReconnectMutex.Unlock()
-				continue
-			}
-
-			stop := make(chan struct{})
-			w.ReconnectTasks[conn.Id] = stop
+		w.ReconnectMutex.Lock()
+		if w.ReconnectTasks == nil {
+			w.ReconnectTasks = make(map[string]chan struct{})
+		}
+		if _, exists := w.ReconnectTasks[conn.Id]; exists {
 			w.ReconnectMutex.Unlock()
+			continue
+		}
 
-			log.Printf("Reconnecting websocket %s", conn.Id)
+		stop := make(chan struct{})
+		w.ReconnectTasks[conn.Id] = stop
+		w.ReconnectMutex.Unlock()
 
-			err := w.reconnect(conn, config, userAgent, true)
+		log.Printf("Reconnecting websocket %s (graceful=%v)", conn.Id, graceful)
+
+		err := w.reconnect(conn, config, userAgent, graceful)
 			if err != nil {
 				log.Printf("Reconnect failed: %v", err)
 			}

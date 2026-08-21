@@ -1014,7 +1014,7 @@ func TestProcessMessage_MissingErrorFields(t *testing.T) {
 func TestHandleServerShutdown_TriggersReconnect(t *testing.T) {
 	conn := &common.WebSocketConnection{
 		Id:            "test-connection",
-		ReconnectChan: make(chan struct{}, 1),
+		ReconnectChan: make(chan bool, 1),
 	}
 
 	ts := time.Now().Add(1 * time.Minute).UnixMilli()
@@ -1034,7 +1034,7 @@ func TestHandleServerShutdown_TriggersReconnect(t *testing.T) {
 func TestHandleServerShutdown_MissingTimestamp_NoReconnect(t *testing.T) {
 	conn := &common.WebSocketConnection{
 		Id:            "test-connection",
-		ReconnectChan: make(chan struct{}, 1),
+		ReconnectChan: make(chan bool, 1),
 	}
 
 	data := map[string]interface{}{
@@ -1052,7 +1052,7 @@ func TestHandleServerShutdown_MissingTimestamp_NoReconnect(t *testing.T) {
 func TestHandleServerShutdown_MissingTimestamp(t *testing.T) {
 	conn := &common.WebSocketConnection{
 		Id:            "test-connection",
-		ReconnectChan: make(chan struct{}, 1),
+		ReconnectChan: make(chan bool, 1),
 	}
 
 	data := map[string]interface{}{
@@ -1073,10 +1073,10 @@ func TestHandleServerShutdown_MissingTimestamp(t *testing.T) {
 func TestHandleServerShutdown_ChannelAlreadyFull(t *testing.T) {
 	conn := &common.WebSocketConnection{
 		Id:            "test-connection",
-		ReconnectChan: make(chan struct{}, 1),
+		ReconnectChan: make(chan bool, 1),
 	}
 
-	conn.ReconnectChan <- struct{}{}
+	conn.ReconnectChan <- true
 
 	ts := time.Now().Add(1 * time.Minute).UnixMilli()
 
@@ -1564,7 +1564,7 @@ func TestWebSocketCommon_ReconnectTriggeredByChannel(t *testing.T) {
 	mu.Lock()
 	initialConnections := connectionCount
 	mu.Unlock()
-	conn.ReconnectChan <- struct{}{}
+	conn.ReconnectChan <- true
 	time.Sleep(300 * time.Millisecond)
 	mu.Lock()
 	finalConnections := connectionCount
