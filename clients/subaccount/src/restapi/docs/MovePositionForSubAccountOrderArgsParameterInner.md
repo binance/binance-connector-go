@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **float32** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**PositionSide** | Pointer to **string** | Required when productType&#x3D;UM. Optional and ignored when productType&#x3D;OPTION (the response returns positionSide as null). | [optional] 
 
 ## Methods
 

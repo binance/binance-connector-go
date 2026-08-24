@@ -367,14 +367,15 @@ func (a *AssetManagementAPIService) GetDetailOnSubAccountsMarginAccountExecute(r
 }
 
 type ApiGetMovePositionHistoryForSubAccountRequest struct {
-	ctx        context.Context
-	ApiService *AssetManagementAPIService
-	symbol     *string
-	page       *int64
-	rows       *int64
-	startTime  *int64
-	endTime    *int64
-	recvWindow *int64
+	ctx         context.Context
+	ApiService  *AssetManagementAPIService
+	symbol      *string
+	page        *int64
+	rows        *int64
+	productType *models.GetMovePositionHistoryForSubAccountProductTypeParameter
+	startTime   *int64
+	endTime     *int64
+	recvWindow  *int64
 }
 
 func (r ApiGetMovePositionHistoryForSubAccountRequest) Symbol(symbol string) ApiGetMovePositionHistoryForSubAccountRequest {
@@ -387,8 +388,15 @@ func (r ApiGetMovePositionHistoryForSubAccountRequest) Page(page int64) ApiGetMo
 	return r
 }
 
+// Max 100.
 func (r ApiGetMovePositionHistoryForSubAccountRequest) Rows(rows int64) ApiGetMovePositionHistoryForSubAccountRequest {
 	r.rows = &rows
+	return r
+}
+
+// Default UM.
+func (r ApiGetMovePositionHistoryForSubAccountRequest) ProductType(productType models.GetMovePositionHistoryForSubAccountProductTypeParameter) ApiGetMovePositionHistoryForSubAccountRequest {
+	r.productType = &productType
 	return r
 }
 
@@ -420,7 +428,8 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
 @param page -
-@param rows -
+@param rows -  Max 100.
+@param productType -  Default UM.
 @param startTime -
 @param endTime -
 @param recvWindow -
@@ -454,8 +463,14 @@ func (a *AssetManagementAPIService) GetMovePositionHistoryForSubAccountExecute(r
 	if r.rows == nil {
 		return nil, common.ReportError("rows is required and must be specified")
 	}
+	if *r.rows > 100 {
+		return nil, common.ReportError("rows must be less than 100")
+	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	if r.productType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "productType", r.productType, "form", "")
+	}
 	if r.startTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
 	}
@@ -1111,7 +1126,7 @@ type ApiMovePositionForSubAccountRequest struct {
 	ApiService    *AssetManagementAPIService
 	fromUserEmail *string
 	toUserEmail   *string
-	productType   *models.MovePositionForSubAccountProductTypeParameter
+	productType   *models.GetMovePositionHistoryForSubAccountProductTypeParameter
 	orderArgs     *[]models.MovePositionForSubAccountOrderArgsParameterInner
 	recvWindow    *int64
 }
@@ -1126,7 +1141,8 @@ func (r ApiMovePositionForSubAccountRequest) ToUserEmail(toUserEmail string) Api
 	return r
 }
 
-func (r ApiMovePositionForSubAccountRequest) ProductType(productType models.MovePositionForSubAccountProductTypeParameter) ApiMovePositionForSubAccountRequest {
+// A single request cannot mix UM and OPTION positions.
+func (r ApiMovePositionForSubAccountRequest) ProductType(productType models.GetMovePositionHistoryForSubAccountProductTypeParameter) ApiMovePositionForSubAccountRequest {
 	r.productType = &productType
 	return r
 }
@@ -1155,7 +1171,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromUserEmail -
 @param toUserEmail -
-@param productType -
+@param productType -  A single request cannot mix UM and OPTION positions.
 @param orderArgs -  Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol=BTCUSDT,orderArgs[0].quantity=0.001,orderArgs[0].positionSide=BOTH. Example of the request parameter array: orderArgs[0].symbol=BTCUSDT orderArgs[0].quantity=0.001 orderArgs[0].positionSide=BOTH orderArgs[1].symbol=ETHUSDT orderArgs[1].quantity=0.01 orderArgs[1].positionSide=BOTH
 @param recvWindow -
 @return ApiMovePositionForSubAccountRequest

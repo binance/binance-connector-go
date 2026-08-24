@@ -11,7 +11,7 @@ Name         | Type          | Description.  | Notes
 **PriceType** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** |  | [optional] 
-**PositionSide** | Pointer to **string** |  | [optional] 
+**PositionSide** | Pointer to **NullableString** | null when productType&#x3D;OPTION. | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
 **Success** | Pointer to **bool** |  | [optional] 
 
@@ -234,6 +234,16 @@ SetPositionSide sets PositionSide field to given value.
 
 HasPositionSide returns a boolean if a field has been set.
 
+### SetPositionSideNil
+
+`func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) SetPositionSideNil(b bool)`
+
+ SetPositionSideNil sets the value for PositionSide to be an explicit nil
+
+### UnsetPositionSide
+`func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) UnsetPositionSide()`
+
+UnsetPositionSide ensures that no value is present for PositionSide, not even an explicit nil
 ### GetSide
 
 `func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) GetSide() string`

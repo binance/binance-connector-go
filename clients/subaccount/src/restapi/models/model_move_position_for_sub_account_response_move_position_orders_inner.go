@@ -17,13 +17,14 @@ var _ common.MappedNullable = &MovePositionForSubAccountResponseMovePositionOrde
 
 // MovePositionForSubAccountResponseMovePositionOrdersInner struct for MovePositionForSubAccountResponseMovePositionOrdersInner
 type MovePositionForSubAccountResponseMovePositionOrdersInner struct {
-	FromUserEmail        *string `json:"fromUserEmail,omitempty"`
-	ToUserEmail          *string `json:"toUserEmail,omitempty"`
-	ProductType          *string `json:"productType,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
-	PriceType            *string `json:"priceType,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Quantity             *string `json:"quantity,omitempty"`
+	FromUserEmail *string `json:"fromUserEmail,omitempty"`
+	ToUserEmail   *string `json:"toUserEmail,omitempty"`
+	ProductType   *string `json:"productType,omitempty"`
+	Symbol        *string `json:"symbol,omitempty"`
+	PriceType     *string `json:"priceType,omitempty"`
+	Price         *string `json:"price,omitempty"`
+	Quantity      *string `json:"quantity,omitempty"`
+	// null when productType=OPTION.
 	PositionSide         *string `json:"positionSide,omitempty"`
 	Side                 *string `json:"side,omitempty"`
 	Success              *bool   `json:"success,omitempty"`
@@ -273,7 +274,7 @@ func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) SetQuantity(v
 	o.Quantity = &v
 }
 
-// GetPositionSide returns the PositionSide field value if set, zero value otherwise.
+// GetPositionSide returns the PositionSide field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) GetPositionSide() string {
 	if o == nil || common.IsNil(o.PositionSide) {
 		var ret string
@@ -284,6 +285,7 @@ func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) GetPositionSi
 
 // GetPositionSideOk returns a tuple with the PositionSide field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) GetPositionSideOk() (*string, bool) {
 	if o == nil || common.IsNil(o.PositionSide) {
 		return nil, false
@@ -300,7 +302,7 @@ func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) HasPositionSi
 	return false
 }
 
-// SetPositionSide gets a reference to the given string and assigns it to the PositionSide field.
+// SetPositionSide gets a reference to the given NullableString and assigns it to the PositionSide field.
 func (o *MovePositionForSubAccountResponseMovePositionOrdersInner) SetPositionSide(v string) {
 	o.PositionSide = &v
 }

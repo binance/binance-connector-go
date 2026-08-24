@@ -17,9 +17,10 @@ var _ common.MappedNullable = &MovePositionForSubAccountOrderArgsParameterInner{
 
 // MovePositionForSubAccountOrderArgsParameterInner struct for MovePositionForSubAccountOrderArgsParameterInner
 type MovePositionForSubAccountOrderArgsParameterInner struct {
-	Symbol               *string  `json:"symbol,omitempty"`
-	Quantity             *float32 `json:"quantity,omitempty"`
-	PositionSide         *string  `json:"positionSide,omitempty"`
+	Symbol   *string  `json:"symbol,omitempty"`
+	Quantity *float32 `json:"quantity,omitempty"`
+	// Required when productType=UM. Optional and ignored when productType=OPTION (the response returns positionSide as null).
+	PositionSide         *string `json:"positionSide,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

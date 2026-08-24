@@ -319,7 +319,7 @@ No authorization required
 
 ## GetMovePositionHistoryForSubAccount
 
-> GetMovePositionHistoryForSubAccountResponse GetMovePositionHistoryForSubAccount(ctx).Symbol(symbol).Page(page).Rows(rows).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+> GetMovePositionHistoryForSubAccountResponse GetMovePositionHistoryForSubAccount(ctx).Symbol(symbol).Page(page).Rows(rows).ProductType(productType).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 
 Get Move Position History for Sub-account (For Master Account) (USER_DATA)
 
@@ -342,7 +342,8 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | 
 	page := int64(1) // int64 | 
-	rows := int64(1) // int64 | 
+	rows := int64(1) // int64 | Max 100.
+	productType := models.GetMovePositionHistoryForSubAccountProductTypeParameterUm // GetMovePositionHistoryForSubAccountProductTypeParameter | Default UM. (optional)
 	startTime := int64(1623319461670) // int64 |  (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -354,7 +355,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol(symbol).Page(page).Rows(rows).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AssetManagementAPI.GetMovePositionHistoryForSubAccount(context.Background()).Symbol(symbol).Page(page).Rows(rows).ProductType(productType).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AssetManagementAPI.GetMovePositionHistoryForSubAccount``: %v\n", err)
 		return
@@ -375,7 +376,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **page** | **int64** |  | 
- **rows** | **int64** |  | 
+ **rows** | **int64** | Max 100. | 
+ **productType** | [**GetMovePositionHistoryForSubAccountProductTypeParameter**](GetMovePositionHistoryForSubAccountProductTypeParameter.md) | Default UM. | 
  **startTime** | **int64** |  | 
  **endTime** | **int64** |  | 
  **recvWindow** | **int64** |  | 
@@ -872,7 +874,7 @@ import (
 func main() {
 	fromUserEmail := "testFrom@google.com" // string | 
 	toUserEmail := "testTo@google.com" // string | 
-	productType := models.MovePositionForSubAccountProductTypeParameterUm // MovePositionForSubAccountProductTypeParameter | 
+	productType := models.GetMovePositionHistoryForSubAccountProductTypeParameterUm // GetMovePositionHistoryForSubAccountProductTypeParameter | A single request cannot mix UM and OPTION positions.
 	orderArgs := []models.MovePositionForSubAccountOrderArgsParameterInner{*models.NewMovePositionForSubAccountOrderArgsParameterInner()} // []MovePositionForSubAccountOrderArgsParameterInner | Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol=BTCUSDT,orderArgs[0].quantity=0.001,orderArgs[0].positionSide=BOTH. Example of the request parameter array: orderArgs[0].symbol=BTCUSDT orderArgs[0].quantity=0.001 orderArgs[0].positionSide=BOTH orderArgs[1].symbol=ETHUSDT orderArgs[1].quantity=0.01 orderArgs[1].positionSide=BOTH
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -904,7 +906,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromUserEmail** | **string** |  | 
  **toUserEmail** | **string** |  | 
- **productType** | [**MovePositionForSubAccountProductTypeParameter**](MovePositionForSubAccountProductTypeParameter.md) |  | 
+ **productType** | [**GetMovePositionHistoryForSubAccountProductTypeParameter**](GetMovePositionHistoryForSubAccountProductTypeParameter.md) | A single request cannot mix UM and OPTION positions. | 
  **orderArgs** | [**[]MovePositionForSubAccountOrderArgsParameterInner**](MovePositionForSubAccountOrderArgsParameterInner.md) | Max 10 positions supported. When input request parameter,orderArgs.symbol should be STRING, orderArgs.quantity should be BIGDECIMAL, and orderArgs.positionSide should be STRING, positionSide support BOTH,LONG and SHORT. Each entry should be like orderArgs[0].symbol&#x3D;BTCUSDT,orderArgs[0].quantity&#x3D;0.001,orderArgs[0].positionSide&#x3D;BOTH. Example of the request parameter array: orderArgs[0].symbol&#x3D;BTCUSDT orderArgs[0].quantity&#x3D;0.001 orderArgs[0].positionSide&#x3D;BOTH orderArgs[1].symbol&#x3D;ETHUSDT orderArgs[1].quantity&#x3D;0.01 orderArgs[1].positionSide&#x3D;BOTH | 
  **recvWindow** | **int64** |  | 
 

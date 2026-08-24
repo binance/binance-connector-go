@@ -875,7 +875,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/move-position", r.URL.Path)
 			require.Equal(t, "testFrom@google.com", r.URL.Query().Get("fromUserEmail"))
 			require.Equal(t, "testTo@google.com", r.URL.Query().Get("toUserEmail"))
-			require.Equal(t, string(models.MovePositionForSubAccountProductTypeParameterUm), r.URL.Query().Get("productType"))
+			require.Equal(t, string(models.GetMovePositionHistoryForSubAccountProductTypeParameterUm), r.URL.Query().Get("productType"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -892,7 +892,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.MovePositionForSubAccount(context.Background()).FromUserEmail("testFrom@google.com").ToUserEmail("testTo@google.com").ProductType(models.MovePositionForSubAccountProductTypeParameterUm).OrderArgs([]models.MovePositionForSubAccountOrderArgsParameterInner{*models.NewMovePositionForSubAccountOrderArgsParameterInner()}).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.MovePositionForSubAccount(context.Background()).FromUserEmail("testFrom@google.com").ToUserEmail("testTo@google.com").ProductType(models.GetMovePositionHistoryForSubAccountProductTypeParameterUm).OrderArgs([]models.MovePositionForSubAccountOrderArgsParameterInner{*models.NewMovePositionForSubAccountOrderArgsParameterInner()}).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
