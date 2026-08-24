@@ -7,7 +7,7 @@ Method        | HTTP request  | Description
 [**CancelAllCmOpenConditionalOrders**](TradeAPI.md#CancelAllCmOpenConditionalOrders) | **Delete** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders (TRADE)
 [**CancelAllCmOpenOrders**](TradeAPI.md#CancelAllCmOpenOrders) | **Delete** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders (TRADE)
 [**CancelAllUmAlgoOpenOrders**](TradeAPI.md#CancelAllUmAlgoOpenOrders) | **Delete** /papi/v1/um/algo/allOpenOrders | Cancel All UM Algo Open Orders (TRADE)
-[**CancelAllUmOpenConditionalOrders**](TradeAPI.md#CancelAllUmOpenConditionalOrders) | **Delete** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders (TRADE)
+[**CancelAllUmOpenConditionalOrders**](TradeAPI.md#CancelAllUmOpenConditionalOrders) | **Delete** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders - Deprecated (TRADE)
 [**CancelAllUmOpenOrders**](TradeAPI.md#CancelAllUmOpenOrders) | **Delete** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders (TRADE)
 [**CancelCmConditionalOrder**](TradeAPI.md#CancelCmConditionalOrder) | **Delete** /papi/v1/cm/conditional/order | Cancel CM Conditional Order (TRADE)
 [**CancelCmOrder**](TradeAPI.md#CancelCmOrder) | **Delete** /papi/v1/cm/order | Cancel CM Order (TRADE)
@@ -15,7 +15,7 @@ Method        | HTTP request  | Description
 [**CancelMarginAccountOcoOrders**](TradeAPI.md#CancelMarginAccountOcoOrders) | **Delete** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders (TRADE)
 [**CancelMarginAccountOrder**](TradeAPI.md#CancelMarginAccountOrder) | **Delete** /papi/v1/margin/order | Cancel Margin Account Order (TRADE)
 [**CancelUmAlgoOrder**](TradeAPI.md#CancelUmAlgoOrder) | **Delete** /papi/v1/um/algo/order | Cancel UM Algo Order (TRADE)
-[**CancelUmConditionalOrder**](TradeAPI.md#CancelUmConditionalOrder) | **Delete** /papi/v1/um/conditional/order | Cancel UM Conditional Order (TRADE)
+[**CancelUmConditionalOrder**](TradeAPI.md#CancelUmConditionalOrder) | **Delete** /papi/v1/um/conditional/order | Cancel UM Conditional Order - Deprecated (TRADE)
 [**CancelUmOrder**](TradeAPI.md#CancelUmOrder) | **Delete** /papi/v1/um/order | Cancel UM Order (TRADE)
 [**CmAccountTradeList**](TradeAPI.md#CmAccountTradeList) | **Get** /papi/v1/cm/userTrades | CM Account Trade List (USER_DATA)
 [**CmPositionAdlQuantileEstimation**](TradeAPI.md#CmPositionAdlQuantileEstimation) | **Get** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation (USER_DATA)
@@ -32,17 +32,17 @@ Method        | HTTP request  | Description
 [**NewCmOrder**](TradeAPI.md#NewCmOrder) | **Post** /papi/v1/cm/order | New CM Order (TRADE)
 [**NewMarginOrder**](TradeAPI.md#NewMarginOrder) | **Post** /papi/v1/margin/order | New Margin Order (TRADE)
 [**NewUmAlgoOrder**](TradeAPI.md#NewUmAlgoOrder) | **Post** /papi/v1/um/algo/order | New UM Algo Order (TRADE)
-[**NewUmConditionalOrder**](TradeAPI.md#NewUmConditionalOrder) | **Post** /papi/v1/um/conditional/order | New UM Conditional Order (TRADE)
+[**NewUmConditionalOrder**](TradeAPI.md#NewUmConditionalOrder) | **Post** /papi/v1/um/conditional/order | New UM Conditional Order - Deprecated (TRADE)
 [**NewUmOrder**](TradeAPI.md#NewUmOrder) | **Post** /papi/v1/um/order | New UM Order (TRADE)
 [**QueryAllCmConditionalOrders**](TradeAPI.md#QueryAllCmConditionalOrders) | **Get** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders (USER_DATA)
 [**QueryAllCmOrders**](TradeAPI.md#QueryAllCmOrders) | **Get** /papi/v1/cm/allOrders | Query All CM Orders (USER_DATA)
 [**QueryAllCurrentCmOpenConditionalOrders**](TradeAPI.md#QueryAllCurrentCmOpenConditionalOrders) | **Get** /papi/v1/cm/conditional/openOrders | Query All Current CM Open Conditional Orders (USER_DATA)
 [**QueryAllCurrentCmOpenOrders**](TradeAPI.md#QueryAllCurrentCmOpenOrders) | **Get** /papi/v1/cm/openOrders | Query All Current CM Open Orders (USER_DATA)
 [**QueryAllCurrentUmOpenAlgoOrders**](TradeAPI.md#QueryAllCurrentUmOpenAlgoOrders) | **Get** /papi/v1/um/algo/openAlgoOrders | Query All Current UM Open Algo Orders (USER_DATA)
-[**QueryAllCurrentUmOpenConditionalOrders**](TradeAPI.md#QueryAllCurrentUmOpenConditionalOrders) | **Get** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders (USER_DATA)
+[**QueryAllCurrentUmOpenConditionalOrders**](TradeAPI.md#QueryAllCurrentUmOpenConditionalOrders) | **Get** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
 [**QueryAllCurrentUmOpenOrders**](TradeAPI.md#QueryAllCurrentUmOpenOrders) | **Get** /papi/v1/um/openOrders | Query All Current UM Open Orders (USER_DATA)
 [**QueryAllMarginAccountOrders**](TradeAPI.md#QueryAllMarginAccountOrders) | **Get** /papi/v1/margin/allOrders | Query All Margin Account Orders (USER_DATA)
-[**QueryAllUmConditionalOrders**](TradeAPI.md#QueryAllUmConditionalOrders) | **Get** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders (USER_DATA)
+[**QueryAllUmConditionalOrders**](TradeAPI.md#QueryAllUmConditionalOrders) | **Get** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders - Deprecated (USER_DATA)
 [**QueryAllUmOrders**](TradeAPI.md#QueryAllUmOrders) | **Get** /papi/v1/um/allOrders | Query All UM Orders (USER_DATA)
 [**QueryCmConditionalOrderHistory**](TradeAPI.md#QueryCmConditionalOrderHistory) | **Get** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History (USER_DATA)
 [**QueryCmModifyOrderHistory**](TradeAPI.md#QueryCmModifyOrderHistory) | **Get** /papi/v1/cm/orderAmendment | Query CM Modify Order History (TRADE)
@@ -51,14 +51,14 @@ Method        | HTTP request  | Description
 [**QueryCurrentCmOpenOrder**](TradeAPI.md#QueryCurrentCmOpenOrder) | **Get** /papi/v1/cm/openOrder | Query Current CM Open Order (USER_DATA)
 [**QueryCurrentMarginOpenOrder**](TradeAPI.md#QueryCurrentMarginOpenOrder) | **Get** /papi/v1/margin/openOrders | Query Current Margin Open Order (USER_DATA)
 [**QueryCurrentUmOpenAlgoOrder**](TradeAPI.md#QueryCurrentUmOpenAlgoOrder) | **Get** /papi/v1/um/algo/algoOrder | Query Current UM Open Algo Order (USER_DATA)
-[**QueryCurrentUmOpenConditionalOrder**](TradeAPI.md#QueryCurrentUmOpenConditionalOrder) | **Get** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order (USER_DATA)
+[**QueryCurrentUmOpenConditionalOrder**](TradeAPI.md#QueryCurrentUmOpenConditionalOrder) | **Get** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order - Deprecated (USER_DATA)
 [**QueryCurrentUmOpenOrder**](TradeAPI.md#QueryCurrentUmOpenOrder) | **Get** /papi/v1/um/openOrder | Query Current UM Open Order (USER_DATA)
 [**QueryMarginAccountOrder**](TradeAPI.md#QueryMarginAccountOrder) | **Get** /papi/v1/margin/order | Query Margin Account Order (USER_DATA)
 [**QueryMarginAccountsAllOco**](TradeAPI.md#QueryMarginAccountsAllOco) | **Get** /papi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA)
 [**QueryMarginAccountsOco**](TradeAPI.md#QueryMarginAccountsOco) | **Get** /papi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA)
 [**QueryMarginAccountsOpenOco**](TradeAPI.md#QueryMarginAccountsOpenOco) | **Get** /papi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA)
 [**QueryUmAlgoOrderHistory**](TradeAPI.md#QueryUmAlgoOrderHistory) | **Get** /papi/v1/um/algo/allAlgoOrders | Query UM Algo Order History (USER_DATA)
-[**QueryUmConditionalOrderHistory**](TradeAPI.md#QueryUmConditionalOrderHistory) | **Get** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History (USER_DATA)
+[**QueryUmConditionalOrderHistory**](TradeAPI.md#QueryUmConditionalOrderHistory) | **Get** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History - Deprecated (USER_DATA)
 [**QueryUmModifyOrderHistory**](TradeAPI.md#QueryUmModifyOrderHistory) | **Get** /papi/v1/um/orderAmendment | Query UM Modify Order History (TRADE)
 [**QueryUmOrder**](TradeAPI.md#QueryUmOrder) | **Get** /papi/v1/um/order | Query UM Order (USER_DATA)
 [**QueryUsersCmForceOrders**](TradeAPI.md#QueryUsersCmForceOrders) | **Get** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders (USER_DATA)
@@ -283,7 +283,7 @@ No authorization required
 
 > CancelAllUmOpenConditionalOrdersResponse CancelAllUmOpenConditionalOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Cancel All UM Open Conditional Orders (TRADE)
+Cancel All UM Open Conditional Orders - Deprecated (TRADE)
 
 
 ### Example
@@ -865,7 +865,7 @@ No authorization required
 
 > CancelUmConditionalOrderResponse CancelUmConditionalOrder(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
 
-Cancel UM Conditional Order (TRADE)
+Cancel UM Conditional Order - Deprecated (TRADE)
 
 
 ### Example
@@ -2249,7 +2249,7 @@ No authorization required
 
 > NewUmConditionalOrderResponse NewUmConditionalOrder(ctx).Symbol(symbol).Side(side).StrategyType(strategyType).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).WorkingType(workingType).PriceProtect(priceProtect).NewClientStrategyId(newClientStrategyId).StopPrice(stopPrice).ActivationPrice(activationPrice).CallbackRate(callbackRate).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 
-New UM Conditional Order (TRADE)
+New UM Conditional Order - Deprecated (TRADE)
 
 
 ### Example
@@ -2819,7 +2819,7 @@ No authorization required
 
 > QueryAllCurrentUmOpenConditionalOrdersResponse QueryAllCurrentUmOpenConditionalOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
 
-Query All Current UM Open Conditional Orders (USER_DATA)
+Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
 
 
 ### Example
@@ -3037,7 +3037,7 @@ No authorization required
 
 > QueryAllUmConditionalOrdersResponse QueryAllUmConditionalOrders(ctx).Symbol(symbol).StrategyId(strategyId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
-Query All UM Conditional Orders (USER_DATA)
+Query All UM Conditional Orders - Deprecated (USER_DATA)
 
 
 ### Example
@@ -3711,7 +3711,7 @@ No authorization required
 
 > QueryCurrentUmOpenConditionalOrderResponse QueryCurrentUmOpenConditionalOrder(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
 
-Query Current UM Open Conditional Order (USER_DATA)
+Query Current UM Open Conditional Order - Deprecated (USER_DATA)
 
 
 ### Example
@@ -4227,7 +4227,7 @@ No authorization required
 
 > QueryUmConditionalOrderHistoryResponse QueryUmConditionalOrderHistory(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
 
-Query UM Conditional Order History (USER_DATA)
+Query UM Conditional Order History - Deprecated (USER_DATA)
 
 
 ### Example

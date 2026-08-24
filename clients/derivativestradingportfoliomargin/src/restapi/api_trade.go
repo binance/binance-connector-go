@@ -266,15 +266,17 @@ func (r ApiCancelAllUmOpenConditionalOrdersRequest) Execute() (*common.RestApiRe
 }
 
 /*
-CancelAllUmOpenConditionalOrders Cancel All UM Open Conditional Orders (TRADE)
-Delete /papi/v1/um/conditional/allOpenOrders
+	CancelAllUmOpenConditionalOrders Cancel All UM Open Conditional Orders - Deprecated (TRADE)
+	Delete /papi/v1/um/conditional/allOpenOrders
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-um-open-conditional-orders
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-all-um-open-conditional-orders
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
-@param recvWindow -
-@return ApiCancelAllUmOpenConditionalOrdersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -  Symbol
+	@param recvWindow -
+	@return ApiCancelAllUmOpenConditionalOrdersRequest
+
+Deprecated
 */
 func (a *TradeAPIService) CancelAllUmOpenConditionalOrders(ctx context.Context) ApiCancelAllUmOpenConditionalOrdersRequest {
 	return ApiCancelAllUmOpenConditionalOrdersRequest{
@@ -286,6 +288,8 @@ func (a *TradeAPIService) CancelAllUmOpenConditionalOrders(ctx context.Context) 
 // Execute executes the request
 //
 //	@return CancelAllUmOpenConditionalOrdersResponse
+//
+// Deprecated
 func (a *TradeAPIService) CancelAllUmOpenConditionalOrdersExecute(r ApiCancelAllUmOpenConditionalOrdersRequest) (*common.RestApiResponse[models.CancelAllUmOpenConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodDelete
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/allOpenOrders"
@@ -993,17 +997,19 @@ func (r ApiCancelUmConditionalOrderRequest) Execute() (*common.RestApiResponse[m
 }
 
 /*
-CancelUmConditionalOrder Cancel UM Conditional Order (TRADE)
-Delete /papi/v1/um/conditional/order
+	CancelUmConditionalOrder Cancel UM Conditional Order - Deprecated (TRADE)
+	Delete /papi/v1/um/conditional/order
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-um-conditional-order
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#cancel-um-conditional-order
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
-@param strategyId -
-@param newClientStrategyId -
-@param recvWindow -
-@return ApiCancelUmConditionalOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -  Symbol
+	@param strategyId -
+	@param newClientStrategyId -
+	@param recvWindow -
+	@return ApiCancelUmConditionalOrderRequest
+
+Deprecated
 */
 func (a *TradeAPIService) CancelUmConditionalOrder(ctx context.Context) ApiCancelUmConditionalOrderRequest {
 	return ApiCancelUmConditionalOrderRequest{
@@ -1015,6 +1021,8 @@ func (a *TradeAPIService) CancelUmConditionalOrder(ctx context.Context) ApiCance
 // Execute executes the request
 //
 //	@return CancelUmConditionalOrderResponse
+//
+// Deprecated
 func (a *TradeAPIService) CancelUmConditionalOrderExecute(r ApiCancelUmConditionalOrderRequest) (*common.RestApiResponse[models.CancelUmConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodDelete
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/order"
@@ -3429,31 +3437,33 @@ func (r ApiNewUmConditionalOrderRequest) Execute() (*common.RestApiResponse[mode
 }
 
 /*
-NewUmConditionalOrder New UM Conditional Order (TRADE)
-Post /papi/v1/um/conditional/order
+	NewUmConditionalOrder New UM Conditional Order - Deprecated (TRADE)
+	Post /papi/v1/um/conditional/order
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-um-conditional-order
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#new-um-conditional-order
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
-@param side -
-@param strategyType -
-@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
-@param timeInForce -
-@param quantity -
-@param reduceOnly -  \"true\" or \"false\". Cannot be sent in Hedge Mode ; cannot be sent with `closePosition`=`true`
-@param price -
-@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
-@param priceProtect -  \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
-@param newClientStrategyId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
-@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders.
-@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders.
-@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
-@param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
-@param recvWindow -
-@return ApiNewUmConditionalOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -  Symbol
+	@param side -
+	@param strategyType -
+	@param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
+	@param timeInForce -
+	@param quantity -
+	@param reduceOnly -  \"true\" or \"false\". Cannot be sent in Hedge Mode ; cannot be sent with `closePosition`=`true`
+	@param price -
+	@param workingType -  stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\"
+	@param priceProtect -  \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders
+	@param newClientStrategyId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
+	@param stopPrice -  Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
+	@param activationPrice -  Used with `TRAILING_STOP_MARKET` orders.
+	@param callbackRate -  Used with `TRAILING_STOP_MARKET` orders.
+	@param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
+	@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
+	@param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
+	@param recvWindow -
+	@return ApiNewUmConditionalOrderRequest
+
+Deprecated
 */
 func (a *TradeAPIService) NewUmConditionalOrder(ctx context.Context) ApiNewUmConditionalOrderRequest {
 	return ApiNewUmConditionalOrderRequest{
@@ -3465,6 +3475,8 @@ func (a *TradeAPIService) NewUmConditionalOrder(ctx context.Context) ApiNewUmCon
 // Execute executes the request
 //
 //	@return NewUmConditionalOrderResponse
+//
+// Deprecated
 func (a *TradeAPIService) NewUmConditionalOrderExecute(r ApiNewUmConditionalOrderRequest) (*common.RestApiResponse[models.NewUmConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodPost
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/order"
@@ -4267,15 +4279,17 @@ func (r ApiQueryAllCurrentUmOpenConditionalOrdersRequest) Execute() (*common.Res
 }
 
 /*
-QueryAllCurrentUmOpenConditionalOrders Query All Current UM Open Conditional Orders (USER_DATA)
-Get /papi/v1/um/conditional/openOrders
+	QueryAllCurrentUmOpenConditionalOrders Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
+	Get /papi/v1/um/conditional/openOrders
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-um-open-conditional-orders
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-current-um-open-conditional-orders
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param recvWindow -
-@return ApiQueryAllCurrentUmOpenConditionalOrdersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -
+	@param recvWindow -
+	@return ApiQueryAllCurrentUmOpenConditionalOrdersRequest
+
+Deprecated
 */
 func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrders(ctx context.Context) ApiQueryAllCurrentUmOpenConditionalOrdersRequest {
 	return ApiQueryAllCurrentUmOpenConditionalOrdersRequest{
@@ -4287,6 +4301,8 @@ func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrders(ctx context.Con
 // Execute executes the request
 //
 //	@return QueryAllCurrentUmOpenConditionalOrdersResponse
+//
+// Deprecated
 func (a *TradeAPIService) QueryAllCurrentUmOpenConditionalOrdersExecute(r ApiQueryAllCurrentUmOpenConditionalOrdersRequest) (*common.RestApiResponse[models.QueryAllCurrentUmOpenConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/openOrders"
@@ -4557,19 +4573,21 @@ func (r ApiQueryAllUmConditionalOrdersRequest) Execute() (*common.RestApiRespons
 }
 
 /*
-QueryAllUmConditionalOrders Query All UM Conditional Orders (USER_DATA)
-Get /papi/v1/um/conditional/allOrders
+	QueryAllUmConditionalOrders Query All UM Conditional Orders - Deprecated (USER_DATA)
+	Get /papi/v1/um/conditional/allOrders
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-um-conditional-orders
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-all-um-conditional-orders
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -
-@param strategyId -
-@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
-@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param limit -  Number of results returned.
-@param recvWindow -
-@return ApiQueryAllUmConditionalOrdersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -
+	@param strategyId -
+	@param startTime -  Timestamp in ms to get funding from INCLUSIVE.
+	@param endTime -  Timestamp in ms to get funding until INCLUSIVE.
+	@param limit -  Number of results returned.
+	@param recvWindow -
+	@return ApiQueryAllUmConditionalOrdersRequest
+
+Deprecated
 */
 func (a *TradeAPIService) QueryAllUmConditionalOrders(ctx context.Context) ApiQueryAllUmConditionalOrdersRequest {
 	return ApiQueryAllUmConditionalOrdersRequest{
@@ -4581,6 +4599,8 @@ func (a *TradeAPIService) QueryAllUmConditionalOrders(ctx context.Context) ApiQu
 // Execute executes the request
 //
 //	@return QueryAllUmConditionalOrdersResponse
+//
+// Deprecated
 func (a *TradeAPIService) QueryAllUmConditionalOrdersExecute(r ApiQueryAllUmConditionalOrdersRequest) (*common.RestApiResponse[models.QueryAllUmConditionalOrdersResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/allOrders"
@@ -5448,17 +5468,19 @@ func (r ApiQueryCurrentUmOpenConditionalOrderRequest) Execute() (*common.RestApi
 }
 
 /*
-QueryCurrentUmOpenConditionalOrder Query Current UM Open Conditional Order (USER_DATA)
-Get /papi/v1/um/conditional/openOrder
+	QueryCurrentUmOpenConditionalOrder Query Current UM Open Conditional Order - Deprecated (USER_DATA)
+	Get /papi/v1/um/conditional/openOrder
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-um-open-conditional-order
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-current-um-open-conditional-order
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
-@param strategyId -
-@param newClientStrategyId -
-@param recvWindow -
-@return ApiQueryCurrentUmOpenConditionalOrderRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -  Symbol
+	@param strategyId -
+	@param newClientStrategyId -
+	@param recvWindow -
+	@return ApiQueryCurrentUmOpenConditionalOrderRequest
+
+Deprecated
 */
 func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrder(ctx context.Context) ApiQueryCurrentUmOpenConditionalOrderRequest {
 	return ApiQueryCurrentUmOpenConditionalOrderRequest{
@@ -5470,6 +5492,8 @@ func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrder(ctx context.Context
 // Execute executes the request
 //
 //	@return QueryCurrentUmOpenConditionalOrderResponse
+//
+// Deprecated
 func (a *TradeAPIService) QueryCurrentUmOpenConditionalOrderExecute(r ApiQueryCurrentUmOpenConditionalOrderRequest) (*common.RestApiResponse[models.QueryCurrentUmOpenConditionalOrderResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/openOrder"
@@ -6105,17 +6129,19 @@ func (r ApiQueryUmConditionalOrderHistoryRequest) Execute() (*common.RestApiResp
 }
 
 /*
-QueryUmConditionalOrderHistory Query UM Conditional Order History (USER_DATA)
-Get /papi/v1/um/conditional/orderHistory
+	QueryUmConditionalOrderHistory Query UM Conditional Order History - Deprecated (USER_DATA)
+	Get /papi/v1/um/conditional/orderHistory
 
-https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-conditional-order-history
+	https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/trade#query-um-conditional-order-history
 
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  Symbol
-@param strategyId -
-@param newClientStrategyId -
-@param recvWindow -
-@return ApiQueryUmConditionalOrderHistoryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param symbol -  Symbol
+	@param strategyId -
+	@param newClientStrategyId -
+	@param recvWindow -
+	@return ApiQueryUmConditionalOrderHistoryRequest
+
+Deprecated
 */
 func (a *TradeAPIService) QueryUmConditionalOrderHistory(ctx context.Context) ApiQueryUmConditionalOrderHistoryRequest {
 	return ApiQueryUmConditionalOrderHistoryRequest{
@@ -6127,6 +6153,8 @@ func (a *TradeAPIService) QueryUmConditionalOrderHistory(ctx context.Context) Ap
 // Execute executes the request
 //
 //	@return QueryUmConditionalOrderHistoryResponse
+//
+// Deprecated
 func (a *TradeAPIService) QueryUmConditionalOrderHistoryExecute(r ApiQueryUmConditionalOrderHistoryRequest) (*common.RestApiResponse[models.QueryUmConditionalOrderHistoryResponse], error) {
 	localVarHTTPMethod := http.MethodGet
 	localVarPath := a.client.cfg.BasePath + "/papi/v1/um/conditional/orderHistory"

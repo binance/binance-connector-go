@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.14.1 - 2026-08-24
+
+### Changed (7)
+
+#### REST API
+
+- Marked `cancelAllUmOpenConditionalOrders()` (`DELETE /papi/v1/um/conditional/allOpenOrders`) as deprecated.
+- Marked `cancelUmConditionalOrder()` (`DELETE /papi/v1/um/conditional/order`) as deprecated.
+- Marked `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`) as deprecated.
+- Marked `queryAllCurrentUmOpenConditionalOrders()` (`GET /papi/v1/um/conditional/openOrders`) as deprecated.
+- Marked `queryAllUmConditionalOrders()` (`GET /papi/v1/um/conditional/allOrders`) as deprecated.
+- Marked `queryCurrentUmOpenConditionalOrder()` (`GET /papi/v1/um/conditional/openOrder`) as deprecated.
+- Marked `queryUmConditionalOrderHistory()` (`GET /papi/v1/um/conditional/orderHistory`) as deprecated.
+
 ## 1.14.0 - 2026-08-19
 
 ### Changed (1)
