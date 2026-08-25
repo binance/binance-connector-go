@@ -2034,7 +2034,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService NewUmAlgoOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
+		mockedJSON = `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -2044,7 +2044,6 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewUmAlgoOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.NewUmAlgoOrderTypeParameterStop), r.URL.Query().Get("type"))
-			require.Equal(t, fmt.Sprintf("%v", float32(0.01)), r.URL.Query().Get("quantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -2061,7 +2060,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType(models.NewUmAlgoOrderAlgoTypeParameterConditional).Symbol("BNBUSDT").Side(models.NewUmAlgoOrderSideParameterBuy).Type(models.NewUmAlgoOrderTypeParameterStop).Quantity(float32(0.01)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType(models.NewUmAlgoOrderAlgoTypeParameterConditional).Symbol("BNBUSDT").Side(models.NewUmAlgoOrderSideParameterBuy).Type(models.NewUmAlgoOrderTypeParameterStop).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

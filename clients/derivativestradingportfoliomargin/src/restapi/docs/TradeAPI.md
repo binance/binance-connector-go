@@ -2141,7 +2141,7 @@ No authorization required
 
 ## NewUmAlgoOrder
 
-> NewUmAlgoOrderResponse NewUmAlgoOrder(ctx).AlgoType(algoType).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).PositionSide(positionSide).TimeInForce(timeInForce).Price(price).TriggerPrice(triggerPrice).WorkingType(workingType).PriceMatch(priceMatch).PriceProtect(priceProtect).ReduceOnly(reduceOnly).ActivatePrice(activatePrice).CallbackRate(callbackRate).ClientAlgoId(clientAlgoId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+> NewUmAlgoOrderResponse NewUmAlgoOrder(ctx).AlgoType(algoType).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).Price(price).TriggerPrice(triggerPrice).WorkingType(workingType).PriceMatch(priceMatch).ClosePosition(closePosition).PriceProtect(priceProtect).ReduceOnly(reduceOnly).ActivatePrice(activatePrice).CallbackRate(callbackRate).ClientAlgoId(clientAlgoId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 
 New UM Algo Order (TRADE)
 
@@ -2166,15 +2166,16 @@ func main() {
 	symbol := "BNBUSDT" // string | 
 	side := models.NewUmAlgoOrderSideParameterBuy // NewUmAlgoOrderSideParameter | 
 	type_ := models.NewUmAlgoOrderTypeParameterStop // NewUmAlgoOrderTypeParameter | Conditional order type
-	quantity := float32(0.01) // float32 | Order quantity
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode (optional)
 	timeInForce := models.NewUmAlgoOrderTimeInForceParameterIoc // NewUmAlgoOrderTimeInForceParameter |  (optional)
+	quantity := float32(0.01) // float32 | Order quantity. Cannot be sent with `closePosition`=`true`(Close-All) (optional)
 	price := float32(750.000) // float32 | Order price (optional)
 	triggerPrice := float32(750.000) // float32 | Trigger price (optional)
 	workingType := models.NewUmAlgoOrderWorkingTypeParameterMarkPrice // NewUmAlgoOrderWorkingTypeParameter | Trigger price type. Default `CONTRACT_PRICE` (optional)
 	priceMatch := models.NewUmAlgoOrderPriceMatchParameterOpponent // NewUmAlgoOrderPriceMatchParameter | Can't be passed together with `price` (optional)
+	closePosition := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Close-All, used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
 	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Price protection. Default `false` (optional)
-	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Cannot be sent in Hedge Mode (optional)
+	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (optional)
 	activatePrice := float32(700) // float32 | Used with `TRAILING_STOP_MARKET`, default as latest price (optional)
 	callbackRate := float32(1) // float32 | Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%) (optional)
 	clientAlgoId := "6B2I9XVcJpCjqPAJ4YoFX7" // string | Unique id among open orders. Auto-generated if not sent (optional)
@@ -2190,7 +2191,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType(algoType).Symbol(symbol).Side(side).Type(type_).Quantity(quantity).PositionSide(positionSide).TimeInForce(timeInForce).Price(price).TriggerPrice(triggerPrice).WorkingType(workingType).PriceMatch(priceMatch).PriceProtect(priceProtect).ReduceOnly(reduceOnly).ActivatePrice(activatePrice).CallbackRate(callbackRate).ClientAlgoId(clientAlgoId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.NewUmAlgoOrder(context.Background()).AlgoType(algoType).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).Price(price).TriggerPrice(triggerPrice).WorkingType(workingType).PriceMatch(priceMatch).ClosePosition(closePosition).PriceProtect(priceProtect).ReduceOnly(reduceOnly).ActivatePrice(activatePrice).CallbackRate(callbackRate).ClientAlgoId(clientAlgoId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.NewUmAlgoOrder``: %v\n", err)
 		return
@@ -2213,15 +2214,16 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **side** | [**NewUmAlgoOrderSideParameter**](NewUmAlgoOrderSideParameter.md) |  | 
  **type_** | [**NewUmAlgoOrderTypeParameter**](NewUmAlgoOrderTypeParameter.md) | Conditional order type | 
- **quantity** | **float32** | Order quantity | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode | 
  **timeInForce** | [**NewUmAlgoOrderTimeInForceParameter**](NewUmAlgoOrderTimeInForceParameter.md) |  | 
+ **quantity** | **float32** | Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
  **price** | **float32** | Order price | 
  **triggerPrice** | **float32** | Trigger price | 
  **workingType** | [**NewUmAlgoOrderWorkingTypeParameter**](NewUmAlgoOrderWorkingTypeParameter.md) | Trigger price type. Default &#x60;CONTRACT_PRICE&#x60; | 
  **priceMatch** | [**NewUmAlgoOrderPriceMatchParameter**](NewUmAlgoOrderPriceMatchParameter.md) | Can&#39;t be passed together with &#x60;price&#x60; | 
+ **closePosition** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Close-All, used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
  **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Price protection. Default &#x60;false&#x60; | 
- **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Cannot be sent in Hedge Mode | 
+ **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
  **activatePrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price | 
  **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%) | 
  **clientAlgoId** | **string** | Unique id among open orders. Auto-generated if not sent | 

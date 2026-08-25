@@ -3038,13 +3038,14 @@ type ApiNewUmAlgoOrderRequest struct {
 	symbol                  *string
 	side                    *models.NewUmAlgoOrderSideParameter
 	type_                   *models.NewUmAlgoOrderTypeParameter
-	quantity                *float32
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce             *models.NewUmAlgoOrderTimeInForceParameter
+	quantity                *float32
 	price                   *float32
 	triggerPrice            *float32
 	workingType             *models.NewUmAlgoOrderWorkingTypeParameter
 	priceMatch              *models.NewUmAlgoOrderPriceMatchParameter
+	closePosition           *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	priceProtect            *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	activatePrice           *float32
@@ -3078,12 +3079,6 @@ func (r ApiNewUmAlgoOrderRequest) Type(type_ models.NewUmAlgoOrderTypeParameter)
 	return r
 }
 
-// Order quantity
-func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRequest {
-	r.quantity = &quantity
-	return r
-}
-
 // Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode
 func (r ApiNewUmAlgoOrderRequest) PositionSide(positionSide models.NewCmConditionalOrderPositionSideParameter) ApiNewUmAlgoOrderRequest {
 	r.positionSide = &positionSide
@@ -3092,6 +3087,12 @@ func (r ApiNewUmAlgoOrderRequest) PositionSide(positionSide models.NewCmConditio
 
 func (r ApiNewUmAlgoOrderRequest) TimeInForce(timeInForce models.NewUmAlgoOrderTimeInForceParameter) ApiNewUmAlgoOrderRequest {
 	r.timeInForce = &timeInForce
+	return r
+}
+
+// Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
+func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRequest {
+	r.quantity = &quantity
 	return r
 }
 
@@ -3119,13 +3120,19 @@ func (r ApiNewUmAlgoOrderRequest) PriceMatch(priceMatch models.NewUmAlgoOrderPri
 	return r
 }
 
+// Close-All, used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;.
+func (r ApiNewUmAlgoOrderRequest) ClosePosition(closePosition models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmAlgoOrderRequest {
+	r.closePosition = &closePosition
+	return r
+}
+
 // Price protection. Default &#x60;false&#x60;
 func (r ApiNewUmAlgoOrderRequest) PriceProtect(priceProtect models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmAlgoOrderRequest {
 	r.priceProtect = &priceProtect
 	return r
 }
 
-// Cannot be sent in Hedge Mode
+// Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
 func (r ApiNewUmAlgoOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuturesStatusAutoRepayParameter) ApiNewUmAlgoOrderRequest {
 	r.reduceOnly = &reduceOnly
 	return r
@@ -3185,15 +3192,16 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 @param symbol -
 @param side -
 @param type_ -  Conditional order type
-@param quantity -  Order quantity
 @param positionSide -  Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode
 @param timeInForce -
+@param quantity -  Order quantity. Cannot be sent with `closePosition`=`true`(Close-All)
 @param price -  Order price
 @param triggerPrice -  Trigger price
 @param workingType -  Trigger price type. Default `CONTRACT_PRICE`
 @param priceMatch -  Can't be passed together with `price`
+@param closePosition -  Close-All, used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`.
 @param priceProtect -  Price protection. Default `false`
-@param reduceOnly -  Cannot be sent in Hedge Mode
+@param reduceOnly -  Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`
 @param activatePrice -  Used with `TRAILING_STOP_MARKET`, default as latest price
 @param callbackRate -  Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%)
 @param clientAlgoId -  Unique id among open orders. Auto-generated if not sent
@@ -3236,10 +3244,6 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 		return nil, common.ReportError("type_ is required and must be specified")
 	}
 
-	if r.quantity == nil {
-		return nil, common.ReportError("quantity is required and must be specified")
-	}
-
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoType", r.algoType, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "side", r.side, "form", "")
@@ -3250,7 +3254,9 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	if r.timeInForce != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "timeInForce", r.timeInForce, "form", "")
 	}
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
+	if r.quantity != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
+	}
 	if r.price != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "price", r.price, "form", "")
 	}
@@ -3262,6 +3268,9 @@ func (a *TradeAPIService) NewUmAlgoOrderExecute(r ApiNewUmAlgoOrderRequest) (*co
 	}
 	if r.priceMatch != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceMatch", r.priceMatch, "form", "")
+	}
+	if r.closePosition != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "closePosition", r.closePosition, "form", "")
 	}
 	if r.priceProtect != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "priceProtect", r.priceProtect, "form", "")
