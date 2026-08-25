@@ -13,7 +13,7 @@ Method        | HTTP request  | Description
 
 ## CancelAlgoOrderSpotAlgo
 
-> CancelAlgoOrderSpotAlgoResponse CancelAlgoOrderSpotAlgo(ctx).AlgoId(algoId).RecvWindow(recvWindow).Execute()
+> CancelAlgoOrderSpotAlgoResponse CancelAlgoOrderSpotAlgo(ctx).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 
 Cancel Spot Algo Order (TRADE)
 
@@ -34,7 +34,8 @@ import (
 )
 
 func main() {
-	algoId := int64(14511) // int64 | 
+	algoId := int64(14511) // int64 |  (optional)
+	clientAlgoId := "65ce1630101a480b85915d7e11fd5078" // string |  (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -44,7 +45,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceAlgoClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.SpotAlgoAPI.CancelAlgoOrderSpotAlgo(context.Background()).AlgoId(algoId).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.SpotAlgoAPI.CancelAlgoOrderSpotAlgo(context.Background()).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `SpotAlgoAPI.CancelAlgoOrderSpotAlgo``: %v\n", err)
 		return
@@ -64,6 +65,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **algoId** | **int64** |  | 
+ **clientAlgoId** | **string** |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type

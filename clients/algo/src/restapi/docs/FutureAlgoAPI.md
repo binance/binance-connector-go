@@ -14,7 +14,7 @@ Method        | HTTP request  | Description
 
 ## CancelAlgoOrderFutureAlgo
 
-> CancelAlgoOrderFutureAlgoResponse CancelAlgoOrderFutureAlgo(ctx).AlgoId(algoId).RecvWindow(recvWindow).Execute()
+> CancelAlgoOrderFutureAlgoResponse CancelAlgoOrderFutureAlgo(ctx).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 
 Cancel Futures Algo Order (TRADE)
 
@@ -35,7 +35,8 @@ import (
 )
 
 func main() {
-	algoId := int64(1) // int64 | eg. 14511
+	algoId := int64(1) // int64 | eg. 14511 (optional)
+	clientAlgoId := "65ce1630101a480b85915d7e11fd5078" // string | eg. \"65ce1630101a480b85915d7e11fd5078\" (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -45,7 +46,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceAlgoClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).AlgoId(algoId).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).AlgoId(algoId).ClientAlgoId(clientAlgoId).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `FutureAlgoAPI.CancelAlgoOrderFutureAlgo``: %v\n", err)
 		return
@@ -65,6 +66,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **algoId** | **int64** | eg. 14511 | 
+ **clientAlgoId** | **string** | eg. \&quot;65ce1630101a480b85915d7e11fd5078\&quot; | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type

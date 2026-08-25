@@ -19,14 +19,20 @@ import (
 type SpotAlgoAPIService Service
 
 type ApiCancelAlgoOrderSpotAlgoRequest struct {
-	ctx        context.Context
-	ApiService *SpotAlgoAPIService
-	algoId     *int64
-	recvWindow *int64
+	ctx          context.Context
+	ApiService   *SpotAlgoAPIService
+	algoId       *int64
+	clientAlgoId *string
+	recvWindow   *int64
 }
 
 func (r ApiCancelAlgoOrderSpotAlgoRequest) AlgoId(algoId int64) ApiCancelAlgoOrderSpotAlgoRequest {
 	r.algoId = &algoId
+	return r
+}
+
+func (r ApiCancelAlgoOrderSpotAlgoRequest) ClientAlgoId(clientAlgoId string) ApiCancelAlgoOrderSpotAlgoRequest {
+	r.clientAlgoId = &clientAlgoId
 	return r
 }
 
@@ -48,6 +54,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -
+@param clientAlgoId -
 @param recvWindow -  Request validity window in milliseconds
 @return ApiCancelAlgoOrderSpotAlgoRequest
 */
@@ -68,11 +75,12 @@ func (a *SpotAlgoAPIService) CancelAlgoOrderSpotAlgoExecute(r ApiCancelAlgoOrder
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.algoId == nil {
-		return nil, common.ReportError("algoId is required and must be specified")
+	if r.algoId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoId", r.algoId, "form", "")
 	}
-
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoId", r.algoId, "form", "")
+	if r.clientAlgoId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientAlgoId", r.clientAlgoId, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}

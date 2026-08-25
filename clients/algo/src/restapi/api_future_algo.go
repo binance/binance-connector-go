@@ -19,15 +19,22 @@ import (
 type FutureAlgoAPIService Service
 
 type ApiCancelAlgoOrderFutureAlgoRequest struct {
-	ctx        context.Context
-	ApiService *FutureAlgoAPIService
-	algoId     *int64
-	recvWindow *int64
+	ctx          context.Context
+	ApiService   *FutureAlgoAPIService
+	algoId       *int64
+	clientAlgoId *string
+	recvWindow   *int64
 }
 
 // eg. 14511
 func (r ApiCancelAlgoOrderFutureAlgoRequest) AlgoId(algoId int64) ApiCancelAlgoOrderFutureAlgoRequest {
 	r.algoId = &algoId
+	return r
+}
+
+// eg. \&quot;65ce1630101a480b85915d7e11fd5078\&quot;
+func (r ApiCancelAlgoOrderFutureAlgoRequest) ClientAlgoId(clientAlgoId string) ApiCancelAlgoOrderFutureAlgoRequest {
+	r.clientAlgoId = &clientAlgoId
 	return r
 }
 
@@ -49,6 +56,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param algoId -  eg. 14511
+@param clientAlgoId -  eg. \"65ce1630101a480b85915d7e11fd5078\"
 @param recvWindow -  Request validity window in milliseconds
 @return ApiCancelAlgoOrderFutureAlgoRequest
 */
@@ -69,11 +77,12 @@ func (a *FutureAlgoAPIService) CancelAlgoOrderFutureAlgoExecute(r ApiCancelAlgoO
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.algoId == nil {
-		return nil, common.ReportError("algoId is required and must be specified")
+	if r.algoId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoId", r.algoId, "form", "")
 	}
-
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "algoId", r.algoId, "form", "")
+	if r.clientAlgoId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientAlgoId", r.clientAlgoId, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}

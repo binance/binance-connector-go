@@ -22,7 +22,7 @@ func CancelAlgoOrderSpotAlgo() {
 	apiClient := client.NewBinanceAlgoClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.SpotAlgoAPI.CancelAlgoOrderSpotAlgo(context.Background()).AlgoId(14511).Execute()
+	resp, err := apiClient.RestApi.SpotAlgoAPI.CancelAlgoOrderSpotAlgo(context.Background()).Execute()
 	if err != nil {
 		log.Println(err)
 		return

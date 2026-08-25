@@ -22,7 +22,7 @@ func CancelAlgoOrderFutureAlgo() {
 	apiClient := client.NewBinanceAlgoClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).AlgoId(1).Execute()
+	resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).Execute()
 	if err != nil {
 		log.Println(err)
 		return

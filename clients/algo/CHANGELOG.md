@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.9.0 - 2026-08-25
+
+### Changed (2)
+
+- Added parameter `clientAlgoId`
+  - affected methods:
+    - `cancelAlgoOrderFutureAlgo()` (`DELETE /sapi/v1/algo/futures/order`)
+    - `cancelAlgoOrderSpotAlgo()` (`DELETE /sapi/v1/algo/spot/order`)
+- Modified parameter `algoId`:
+  - required: `true` → `false`
+  - affected methods:
+    - `cancelAlgoOrderFutureAlgo()` (`DELETE /sapi/v1/algo/futures/order`)
+    - `cancelAlgoOrderSpotAlgo()` (`DELETE /sapi/v1/algo/spot/order`)
+
 ## 1.8.0 - 2026-08-19
 
 ### Changed (1)

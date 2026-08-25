@@ -33,7 +33,6 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/algo/futures/order", r.URL.Path)
-			require.Equal(t, "1", r.URL.Query().Get("algoId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -50,7 +49,7 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).AlgoId(int64(1)).Execute()
+		resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -61,23 +60,6 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 		require.Equal(t, reflect.TypeOf(models.CancelAlgoOrderFutureAlgoResponse{}), reflect.TypeOf(resp.Data))
 		require.Equal(t, 200, resp.Status)
 		require.Equal(t, expected, resp.Data)
-	})
-
-	t.Run("Test FutureAlgoAPIService CancelAlgoOrderFutureAlgo Missing Required Params", func(t *testing.T) {
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
-		defer mockServer.Close()
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-
-		apiClient := client.NewBinanceAlgoClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.FutureAlgoAPI.CancelAlgoOrderFutureAlgo(context.Background()).Execute()
-
-		require.Error(t, err)
-		require.Nil(t, resp)
 	})
 
 	t.Run("Test FutureAlgoAPIService CancelAlgoOrderFutureAlgo Server Error", func(t *testing.T) {
