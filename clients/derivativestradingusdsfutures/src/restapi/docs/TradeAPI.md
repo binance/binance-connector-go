@@ -141,7 +141,7 @@ import (
 )
 
 func main() {
-	symbol := "BTCUSDT" // string | 
+	symbol := "BTCUSDT" // string |  (optional)
 	orderId := int64(1917641) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)

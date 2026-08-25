@@ -225,11 +225,9 @@ func (a *TradeAPIService) AllOrdersExecute(r ApiAllOrdersRequest) (*common.RestA
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.symbol == nil {
-		return nil, common.ReportError("symbol is required and must be specified")
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	}
-
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
 	if r.orderId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "orderId", r.orderId, "form", "")
 	}

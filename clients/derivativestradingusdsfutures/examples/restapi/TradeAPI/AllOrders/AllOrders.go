@@ -22,7 +22,7 @@ func AllOrders() {
 	apiClient := client.NewBinanceDerivativesTradingUsdsFuturesClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.AllOrders(context.Background()).Symbol("BTCUSDT").Execute()
+	resp, err := apiClient.RestApi.TradeAPI.AllOrders(context.Background()).Execute()
 	if err != nil {
 		log.Println(err)
 		return
