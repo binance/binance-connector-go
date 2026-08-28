@@ -357,6 +357,7 @@ More examples are available in the [`examples/websocketstreams/WebSocketStreamsA
 The WebSocket Streams API supports the following advanced configuration options:
 
 - `ReconnectDelay`: Delay (ms) between reconnections.
+- `MaxReconnectAttempts`: Number of reconnection attempts before giving up (1-10, default: 3).
 - `Compression`: Enable response compression.
 - `Mode`: Choose between `single` and `pool` connection modes.
   - `Single`: A single WebSocket connection.
@@ -367,6 +368,10 @@ The WebSocket Streams API supports the following advanced configuration options:
 ##### Reconnect Delay
 
 Specify the delay in milliseconds between WebSocket reconnection attempts for streams. See the [Reconnect Delay example](./docs/websocketstreams/reconnect-delay.md) for detailed usage.
+
+##### Max Reconnect Attempts
+
+Specify how many times a reconnection is attempted before giving up and reporting `ErrReconnectAttemptsExhausted`, from 1 to 10 and defaulting to 3. See the [Max Reconnect Attempts example](./docs/websocketstreams/max-reconnect-attempts.md) for detailed usage.
 
 ##### Compression
 
