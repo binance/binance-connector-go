@@ -54,6 +54,8 @@ type ConfigurationRestAPIOption func(*ConfigurationRestAPI)
 // @field BasePath The base URL for the WebSocket API.
 // @field Timeout The timeout duration for WebSocket connections.
 // @field ReconnectDelay The delay duration before attempting to reconnect.
+// @field MaxReconnectAttempts The number of reconnect attempts before giving up
+// and reporting ErrReconnectAttemptsExhausted; from 1 to 10, defaulting to 3.
 // @field Compression Indicates whether to use compression.
 // @field Proxy The proxy configuration.
 // @field Mode The WebSocket connection mode.
@@ -70,6 +72,7 @@ type ConfigurationWebsocketApi struct {
 	BasePath             string
 	Timeout              time.Duration
 	ReconnectDelay       time.Duration
+	MaxReconnectAttempts int
 	Compression          bool
 	Proxy                *ProxyConfig
 	Mode                 WebsocketMode
@@ -86,6 +89,8 @@ type ConfigurationWebsocketApiOption func(*ConfigurationWebsocketApi)
 //
 // @field BasePath The base URL for the WebSocket Streams.
 // @field ReconnectDelay The delay duration before attempting to reconnect.
+// @field MaxReconnectAttempts The number of reconnect attempts before giving up
+// and reporting ErrReconnectAttemptsExhausted; from 1 to 10, defaulting to 3.
 // @field Compression Indicates whether to use compression.
 // @field Proxy The proxy configuration.
 // @field Mode The WebSocket connection mode.
@@ -93,14 +98,15 @@ type ConfigurationWebsocketApiOption func(*ConfigurationWebsocketApi)
 // @field TimeUnit The time unit used for rate limiting.
 // @field Agent The HTTPS agent configuration.
 type ConfigurationWebsocketStreams struct {
-	BasePath       string
-	ReconnectDelay time.Duration
-	Compression    bool
-	Proxy          *ProxyConfig
-	Mode           WebsocketMode
-	PoolSize       int
-	TimeUnit       TimeUnit
-	Agent          HTTPSAgent
+	BasePath             string
+	ReconnectDelay       time.Duration
+	MaxReconnectAttempts int
+	Compression          bool
+	Proxy                *ProxyConfig
+	Mode                 WebsocketMode
+	PoolSize             int
+	TimeUnit             TimeUnit
+	Agent                HTTPSAgent
 }
 
 type ConfigurationWebsocketStreamsOption func(*ConfigurationWebsocketStreams)
@@ -219,19 +225,21 @@ func NewConfigurationWebsocketApi(opts ...ConfigurationWebsocketApiOption) *Conf
 	stream_url := "wss://ws-api.binance.com:443/ws-api/v3"
 	timeout := 5000 * time.Millisecond
 	reconnect_delay := 5000 * time.Millisecond
+	max_reconnect_attempts := defaultMaxReconnectAttempts
 	compression := true
 	mode := SINGLE
 	pool_size := 1
 	sessionReLogon := true
 
 	cfg := &ConfigurationWebsocketApi{
-		BasePath:       stream_url,
-		Timeout:        timeout,
-		ReconnectDelay: reconnect_delay,
-		Compression:    compression,
-		Mode:           mode,
-		PoolSize:       pool_size,
-		SessionReLogon: sessionReLogon,
+		BasePath:             stream_url,
+		Timeout:              timeout,
+		ReconnectDelay:       reconnect_delay,
+		MaxReconnectAttempts: max_reconnect_attempts,
+		Compression:          compression,
+		Mode:                 mode,
+		PoolSize:             pool_size,
+		SessionReLogon:       sessionReLogon,
 	}
 
 	for _, opt := range opts {
@@ -295,6 +303,14 @@ func WithWsReconnectDelay(v time.Duration) ConfigurationWebsocketApiOption {
 
 func (c *ConfigurationWebsocketApi) GetReconnectDelay() time.Duration {
 	return c.ReconnectDelay
+}
+
+func WithWsMaxReconnectAttempts(v int) ConfigurationWebsocketApiOption {
+	return func(c *ConfigurationWebsocketApi) { c.MaxReconnectAttempts = clampReconnectAttempts(v) }
+}
+
+func (c *ConfigurationWebsocketApi) GetMaxReconnectAttempts() int {
+	return c.MaxReconnectAttempts
 }
 
 func WithWsCompression(v bool) ConfigurationWebsocketApiOption {
@@ -366,16 +382,18 @@ func (c *ConfigurationWebsocketApi) GetTLSConfig() *tls.Config {
 func NewConfigurationWebsocketStreams(opts ...ConfigurationWebsocketStreamsOption) *ConfigurationWebsocketStreams {
 	stream_url := "wss://stream.binance.com:9443/stream"
 	reconnect_delay := 5000 * time.Millisecond
+	max_reconnect_attempts := defaultMaxReconnectAttempts
 	compression := true
 	mode := SINGLE
 	pool_size := 1
 
 	cfg := &ConfigurationWebsocketStreams{
-		BasePath:       stream_url,
-		ReconnectDelay: reconnect_delay,
-		Compression:    compression,
-		Mode:           mode,
-		PoolSize:       pool_size,
+		BasePath:             stream_url,
+		ReconnectDelay:       reconnect_delay,
+		MaxReconnectAttempts: max_reconnect_attempts,
+		Compression:          compression,
+		Mode:                 mode,
+		PoolSize:             pool_size,
 	}
 
 	for _, opt := range opts {
@@ -399,6 +417,14 @@ func WithWsStreamsReconnectDelay(v time.Duration) ConfigurationWebsocketStreamsO
 
 func (c *ConfigurationWebsocketStreams) GetReconnectDelay() time.Duration {
 	return c.ReconnectDelay
+}
+
+func WithWsStreamsMaxReconnectAttempts(v int) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.MaxReconnectAttempts = clampReconnectAttempts(v) }
+}
+
+func (c *ConfigurationWebsocketStreams) GetMaxReconnectAttempts() int {
+	return c.MaxReconnectAttempts
 }
 
 func WithWsStreamsCompression(v bool) ConfigurationWebsocketStreamsOption {

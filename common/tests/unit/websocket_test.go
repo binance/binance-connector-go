@@ -257,13 +257,14 @@ func triggerStreamCallback(conn *common.WebSocketConnection, stream string, data
 }
 
 type MockWebSocketConfig struct {
-	basePath       string
-	timeUnit       common.TimeUnit
-	httpsAgent     common.HTTPSAgent
-	reconnectDelay time.Duration
-	compression    bool
-	proxy          *common.ProxyConfig
-	tlsConfig      *tls.Config
+	basePath             string
+	timeUnit             common.TimeUnit
+	httpsAgent           common.HTTPSAgent
+	reconnectDelay       time.Duration
+	maxReconnectAttempts int
+	compression          bool
+	proxy                *common.ProxyConfig
+	tlsConfig            *tls.Config
 }
 
 type LoggingTransport struct {
@@ -287,6 +288,10 @@ func (m *MockWebSocketConfig) GetReconnectDelay() time.Duration {
 	return m.reconnectDelay
 }
 
+func (m *MockWebSocketConfig) GetMaxReconnectAttempts() int {
+	return m.maxReconnectAttempts
+}
+
 func (m *MockWebSocketConfig) GetCompression() bool {
 	return m.compression
 }
@@ -305,13 +310,14 @@ func (m *MockWebSocketConfig) GetTimeUnit() common.TimeUnit {
 
 func NewMockWebSocketConfig() *MockWebSocketConfig {
 	return &MockWebSocketConfig{
-		basePath:       "/ws",
-		httpsAgent:     &LoggingTransport{Base: http.DefaultTransport},
-		timeUnit:       "",
-		reconnectDelay: 5 * time.Second,
-		compression:    false,
-		proxy:          nil,
-		tlsConfig:      nil,
+		basePath:             "/ws",
+		httpsAgent:           &LoggingTransport{Base: http.DefaultTransport},
+		timeUnit:             "",
+		reconnectDelay:       5 * time.Second,
+		maxReconnectAttempts: 5,
+		compression:          false,
+		proxy:                nil,
+		tlsConfig:            nil,
 	}
 }
 
@@ -782,19 +788,55 @@ func TestProcessMessage_ResponseMessageHandled(t *testing.T) {
 	}
 }
 
+type callbackRecorder struct {
+	mu    sync.Mutex
+	data  map[string]interface{}
+	fired chan struct{}
+	once  sync.Once
+}
+
+func newCallbackRecorder() *callbackRecorder {
+	return &callbackRecorder{fired: make(chan struct{})}
+}
+
+func (r *callbackRecorder) callback(data map[string]interface{}) {
+	r.mu.Lock()
+	r.data = data
+	r.mu.Unlock()
+	r.once.Do(func() { close(r.fired) })
+}
+
+func (r *callbackRecorder) waitCalled(timeout time.Duration) bool {
+	select {
+	case <-r.fired:
+		return true
+	case <-time.After(timeout):
+		return false
+	}
+}
+
+func (r *callbackRecorder) value(key string) interface{} {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return r.data[key]
+}
+
 func TestProcessMessage_SubscriptionMessageHandled(t *testing.T) {
 	mockConn := NewMockWebSocketConn()
 	msg := map[string]interface{}{"subscriptionId": 1.0, "data": "Value"}
 	msgBytes, _ := json.Marshal(msg)
 	mockConn.AddReadMessage(websocket.TextMessage, msgBytes)
 
+	var mu sync.Mutex
 	callbackInvoked := false
 	var callbackData map[string]interface{}
 
 	mockStreamCallbackMap := map[string][]func(map[string]interface{}){"1": {
 		func(data map[string]interface{}) {
+			mu.Lock()
 			callbackInvoked = true
 			callbackData = data
+			mu.Unlock()
 			log.Println("Callback invoked with data:", data)
 		},
 	}}
@@ -815,6 +857,9 @@ func TestProcessMessage_SubscriptionMessageHandled(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected nil error, got %v", err)
 	}
+
+	mu.Lock()
+	defer mu.Unlock()
 
 	if !callbackInvoked {
 		t.Error("Expected callback to be invoked")
@@ -887,13 +932,16 @@ func TestProcessMessage_StreamMessageHandled(t *testing.T) {
 	msgBytes, _ := json.Marshal(msg)
 	mockConn.AddReadMessage(websocket.TextMessage, msgBytes)
 
+	var mu sync.Mutex
 	callbackInvoked := false
 	var callbackData map[string]interface{}
 
 	mockStreamCallbackMap := map[string][]func(map[string]interface{}){"stream1": {
 		func(data map[string]interface{}) {
+			mu.Lock()
 			callbackInvoked = true
 			callbackData = data
+			mu.Unlock()
 			log.Println("Callback invoked with data:", data)
 		},
 	}}
@@ -914,6 +962,9 @@ func TestProcessMessage_StreamMessageHandled(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected nil error, got %v", err)
 	}
+
+	mu.Lock()
+	defer mu.Unlock()
 
 	if !callbackInvoked {
 		t.Error("Expected callback to be invoked")
@@ -2598,51 +2649,83 @@ func TestSendMessage_ConcurrentRequests(t *testing.T) {
 	mockConn := NewMockWebSocketConn()
 	api := createTestWebsocketAPI(mockConn)
 
-	numRequests := 10
+	conn := api.WsCommon.Connections[0]
+
+	const numRequests = 10
 	var wg sync.WaitGroup
 	wg.Add(numRequests)
 
 	for i := 0; i < numRequests; i++ {
 		go func(index int) {
 			defer wg.Done()
-
-			responseMsg := map[string]interface{}{
-				"id":     "test-id-" + string(rune(index)),
-				"result": map[string]interface{}{"index": index},
-			}
-			responseMsgBytes, _ := json.Marshal(responseMsg)
+			reqID := "test-id-" + strconv.Itoa(index)
 
 			payload := map[string]any{
 				"method": "test.method",
 				"params": map[string]any{
+					"id":    reqID,
 					"index": index,
 				},
 			}
 
-			sendParams := common.SendParams{}
-
-			respChan, errChan, err := common.SendMessage[map[string]interface{}](api, payload, sendParams)
+			respChan, errChan, err := common.SendMessage[map[string]interface{}](api, payload, common.SendParams{})
 			if err != nil {
-				t.Errorf("SendMessage error: %v", err)
+				t.Errorf("request %d: SendMessage error: %v", index, err)
 				return
 			}
 
-			conn, _ := api.WsCommon.GetConnection()
-			conn.PendingMessages.Range(func(key, value interface{}) bool {
-				respChanTyped := value.(chan []byte)
-				respChanTyped <- responseMsgBytes
-				return false
-			})
+			pending, ok := conn.PendingMessages.Load(reqID)
+			if !ok {
+				t.Errorf("request %d: no pending message registered for id %q", index, reqID)
+				return
+			}
 
-			select {
-			case <-respChan:
-			case <-errChan:
-			case <-time.After(1 * time.Second):
+			responseMsgBytes, err := json.Marshal(map[string]interface{}{
+				"id":     reqID,
+				"result": map[string]interface{}{"index": index},
+			})
+			if err != nil {
+				t.Errorf("request %d: marshal response: %v", index, err)
+				return
+			}
+
+			pending.(chan []byte) <- responseMsgBytes
+			deadline := time.After(5 * time.Second)
+			var resp *common.ResponseOrRaw[map[string]interface{}]
+			for resp == nil {
+				select {
+				case resp = <-respChan:
+				case err := <-errChan:
+					if err != nil {
+						t.Errorf("request %d: unexpected error: %v", index, err)
+						return
+					}
+				case <-deadline:
+					t.Errorf("request %d: timed out waiting for response", index)
+					return
+				}
+			}
+
+			if resp.Typed == nil {
+				t.Errorf("request %d: expected a typed response, got raw %v", index, resp.Raw)
+				return
+			}
+			if got := (*resp.Typed)["id"]; got != reqID {
+				t.Errorf("request %d: response id mismatch: got %v, want %q", index, got, reqID)
 			}
 		}(i)
 	}
 
-	wg.Wait()
+	finished := make(chan struct{})
+	go func() {
+		wg.Wait()
+		close(finished)
+	}()
+	select {
+	case <-finished:
+	case <-time.After(30 * time.Second):
+		t.Fatal("concurrent requests did not all finish within 30s (deadlock?)")
+	}
 }
 
 // =============================================================================
@@ -3946,4 +4029,589 @@ func TestStreamHandler_ConcurrentCallbacks(t *testing.T) {
 	mu.Lock()
 	defer mu.Unlock()
 	assert.Equal(t, numCallbacks, callbackCount)
+}
+
+func TestHandleReadError_DoesNotBlockOnAbandonedPendingMessage(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		Connected:     common.OPEN,
+		ReconnectChan: make(chan struct{}, 1),
+		ErrorChan:     make(chan error, 1),
+		Done:          make(chan struct{}),
+	}
+
+	abandoned := make(chan []byte, 1)
+	abandoned <- []byte(`{"id":"stale"}`)
+	conn.PendingMessages.Store("stale", abandoned)
+
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		conn.HandleReadError(errors.New("connection reset by peer"))
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		t.Fatal("HandleReadError blocked on a pending message nobody reads")
+	}
+
+	if _, ok := conn.PendingMessages.Load("stale"); ok {
+		t.Error("expected the abandoned pending message to be dropped")
+	}
+}
+
+func TestProcessMessage_DoesNotBlockOnAbandonedPendingMessage(t *testing.T) {
+	mockConn := NewMockWebSocketConn()
+	response, err := json.Marshal(map[string]interface{}{"id": "stale", "result": "late"})
+	require.NoError(t, err)
+	mockConn.AddReadMessage(websocket.TextMessage, response)
+
+	conn := &common.WebSocketConnection{
+		Id:                "test-connection",
+		Connected:         common.OPEN,
+		StreamCallbackMap: make(map[string][]func(map[string]interface{})),
+		Websocket:         mockConn,
+		Done:              make(chan struct{}),
+		ErrorChan:         make(chan error, 1),
+	}
+
+	abandoned := make(chan []byte, 1)
+	abandoned <- []byte(`{"id":"stale"}`)
+	conn.PendingMessages.Store("stale", abandoned)
+
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		if err := conn.ProcessMessage(); err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		t.Fatal("ProcessMessage blocked on a pending message nobody reads")
+	}
+}
+
+// =============================================================================
+// Reconnection and shutdown tests
+// =============================================================================
+
+type scriptedWSServer struct {
+	*httptest.Server
+	upgrader websocket.Upgrader
+
+	mu       sync.Mutex
+	attempts []time.Time
+	urls     []string
+	held     []*websocket.Conn
+}
+
+func newScriptedWSServer(action func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request)) *scriptedWSServer {
+	s := &scriptedWSServer{
+		upgrader: websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }},
+	}
+	s.Server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		s.mu.Lock()
+		s.attempts = append(s.attempts, time.Now())
+		attempt := len(s.attempts)
+		s.urls = append(s.urls, r.URL.String())
+		s.mu.Unlock()
+
+		action(s, attempt, w, r)
+	}))
+	return s
+}
+
+func (s *scriptedWSServer) wsURL(t *testing.T) string {
+	t.Helper()
+	u, err := url.Parse(s.URL)
+	require.NoError(t, err)
+	u.Scheme = "ws"
+	return u.String()
+}
+
+func (s *scriptedWSServer) attemptCount() int {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return len(s.attempts)
+}
+
+func (s *scriptedWSServer) attemptTimes() []time.Time {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	out := make([]time.Time, len(s.attempts))
+	copy(out, s.attempts)
+	return out
+}
+
+func (s *scriptedWSServer) attemptURLs() []string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	out := make([]string, len(s.urls))
+	copy(out, s.urls)
+	return out
+}
+
+func (s *scriptedWSServer) hold(w http.ResponseWriter, r *http.Request, gone chan<- struct{}) *websocket.Conn {
+	conn, err := s.upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		return nil
+	}
+
+	s.mu.Lock()
+	s.held = append(s.held, conn)
+	s.mu.Unlock()
+
+	go func() {
+		for {
+			if _, _, err := conn.ReadMessage(); err != nil {
+				if gone != nil {
+					close(gone)
+				}
+				return
+			}
+		}
+	}()
+	return conn
+}
+
+func (s *scriptedWSServer) dropRaw(w http.ResponseWriter, r *http.Request) {
+	conn, err := s.upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		return
+	}
+	_ = conn.UnderlyingConn().Close()
+}
+
+func (s *scriptedWSServer) dropHeld() {
+	s.mu.Lock()
+	held := s.held
+	s.held = nil
+	s.mu.Unlock()
+
+	for _, conn := range held {
+		_ = conn.UnderlyingConn().Close()
+	}
+}
+
+func (s *scriptedWSServer) reject(w http.ResponseWriter) {
+	http.Error(w, "service unavailable", http.StatusServiceUnavailable)
+}
+
+func (s *scriptedWSServer) push(conn *websocket.Conn, message []byte, interval time.Duration) {
+	go func() {
+		for {
+			if err := conn.WriteMessage(websocket.TextMessage, message); err != nil {
+				return
+			}
+			time.Sleep(interval)
+		}
+	}()
+}
+
+func connectLiveClient(t *testing.T, s *scriptedWSServer, reconnectDelay time.Duration, streams []string) (*common.WebsocketStreams, *common.WebSocketConnection) {
+	t.Helper()
+
+	config := NewMockWebSocketConfig()
+	config.basePath = s.wsURL(t)
+	config.reconnectDelay = reconnectDelay
+
+	return connectLiveClientWithConfig(t, config, streams)
+}
+
+func connectLiveClientWithConfig(t *testing.T, config *MockWebSocketConfig, streams []string) (*common.WebsocketStreams, *common.WebSocketConnection) {
+	t.Helper()
+
+	wsc, err := common.NewWebSocketCommon(&common.ConfigurationWrapper{
+		APIConfig: &common.ConfigurationWebsocketApi{
+			PoolSize: 1,
+			Mode:     common.SINGLE,
+		},
+	})
+	require.NoError(t, err)
+	require.NoError(t, wsc.Connect(config, "test-agent", streams))
+
+	ws := &common.WebsocketStreams{
+		Cfg:                       &common.ConfigurationWebsocketStreams{BasePath: config.basePath},
+		GlobalStreamConnectionMap: make(map[string][]*common.WebSocketConnection),
+		WsCommon:                  wsc,
+	}
+	return ws, wsc.Connections[0]
+}
+
+func TestHandleReadError_TriggersReconnect(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		Connected:     common.OPEN,
+		ReconnectChan: make(chan struct{}, 1),
+		ErrorChan:     make(chan error, 1),
+		Done:          make(chan struct{}),
+	}
+
+	conn.HandleReadError(errors.New("connection reset by peer"))
+
+	select {
+	case <-conn.ReconnectChan:
+	case <-time.After(1 * time.Second):
+		t.Fatal("expected reconnect signal on unexpected read error")
+	}
+}
+
+func TestHandleReadError_AbnormalClosureTriggersReconnect(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		Connected:     common.OPEN,
+		ReconnectChan: make(chan struct{}, 1),
+		ErrorChan:     make(chan error, 1),
+		Done:          make(chan struct{}),
+	}
+
+	conn.HandleReadError(&websocket.CloseError{
+		Code: websocket.CloseAbnormalClosure,
+		Text: "unexpected EOF",
+	})
+
+	select {
+	case <-conn.ReconnectChan:
+	case <-time.After(1 * time.Second):
+		t.Fatal("expected reconnect signal on abnormal closure")
+	}
+}
+
+func TestHandleReadError_NoReconnectWhileClosing(t *testing.T) {
+	for _, status := range []common.WebsocketStatus{common.CLOSING, common.CLOSED} {
+		t.Run(string(status), func(t *testing.T) {
+			conn := &common.WebSocketConnection{
+				Id:            "test-connection",
+				Connected:     status,
+				ReconnectChan: make(chan struct{}, 1),
+				ErrorChan:     make(chan error, 1),
+				Done:          make(chan struct{}),
+			}
+
+			conn.HandleReadError(errors.New("connection reset by peer"))
+
+			select {
+			case <-conn.ReconnectChan:
+				t.Fatalf("did not expect a reconnect signal while %s", status)
+			case <-time.After(100 * time.Millisecond):
+			}
+		})
+	}
+}
+
+func TestHandleReadError_NilReconnectChanIsNoop(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:        "test-connection",
+		Connected: common.OPEN,
+		ErrorChan: make(chan error, 1),
+		Done:      make(chan struct{}),
+	}
+
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		conn.HandleReadError(errors.New("connection reset by peer"))
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		t.Fatal("HandleReadError blocked on a nil ReconnectChan")
+	}
+}
+
+func TestHandleReadError_ReconnectChanAlreadyFull(t *testing.T) {
+	conn := &common.WebSocketConnection{
+		Id:            "test-connection",
+		Connected:     common.OPEN,
+		ReconnectChan: make(chan struct{}, 1),
+		ErrorChan:     make(chan error, 1),
+		Done:          make(chan struct{}),
+	}
+	conn.ReconnectChan <- struct{}{}
+
+	done := make(chan struct{})
+	go func() {
+		defer close(done)
+		conn.HandleReadError(errors.New("connection reset by peer"))
+	}()
+
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		t.Fatal("HandleReadError blocked on a full ReconnectChan")
+	}
+}
+
+func TestReconnect_OnNetworkDrop(t *testing.T) {
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		if attempt == 1 {
+			s.dropRaw(w, r)
+			return
+		}
+		s.hold(w, r, nil)
+	})
+	defer server.Close()
+
+	ws, conn := connectLiveClient(t, server, 10*time.Millisecond, nil)
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.Eventually(t, func() bool {
+		return server.attemptCount() >= 2
+	}, 5*time.Second, 20*time.Millisecond, "expected the client to reconnect after a network drop")
+
+	require.Eventually(t, func() bool {
+		return conn.Status() == common.OPEN && conn.IsListening()
+	}, 5*time.Second, 20*time.Millisecond, "expected the connection to be open with a running read loop again")
+}
+
+func TestReconnect_RetriesUntilServerAcceptsAgain(t *testing.T) {
+	const backoff = 50 * time.Millisecond
+
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		switch {
+		case attempt == 1:
+			s.dropRaw(w, r)
+		case attempt <= 3:
+			s.reject(w)
+		default:
+			s.hold(w, r, nil)
+		}
+	})
+	defer server.Close()
+
+	ws, conn := connectLiveClient(t, server, backoff, nil)
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.Eventually(t, func() bool {
+		return server.attemptCount() >= 4
+	}, 10*time.Second, 20*time.Millisecond, "expected the client to keep retrying while the server refuses")
+
+	require.Eventually(t, func() bool {
+		return conn.Status() == common.OPEN && conn.IsListening()
+	}, 5*time.Second, 20*time.Millisecond, "expected the connection to recover once the server accepts again")
+
+	times := server.attemptTimes()
+	require.GreaterOrEqual(t, len(times), 4)
+	assert.GreaterOrEqual(t, times[2].Sub(times[1]), backoff,
+		"expected the retry after a failed attempt to be delayed by the reconnect delay")
+}
+
+func TestReconnect_KeepsDeliveringStreamMessages(t *testing.T) {
+	const stream = "btcusdt@trade"
+
+	streamMessage, err := json.Marshal(map[string]interface{}{
+		"stream": stream,
+		"data":   map[string]interface{}{"e": "trade", "p": "50000"},
+	})
+	require.NoError(t, err)
+
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		conn := s.hold(w, r, nil)
+		if conn == nil || attempt == 1 {
+			return
+		}
+		s.push(conn, streamMessage, 20*time.Millisecond)
+	})
+	defer server.Close()
+
+	ws, _ := connectLiveClient(t, server, 10*time.Millisecond, []string{stream})
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.NoError(t, ws.Subscribe([]string{stream}, []any{"id-1"}, false))
+
+	recorder := newCallbackRecorder()
+	require.NoError(t, ws.On(stream, recorder.callback))
+
+	server.dropHeld()
+
+	require.Eventually(t, func() bool {
+		return server.attemptCount() >= 2
+	}, 5*time.Second, 20*time.Millisecond, "expected the client to reconnect after the drop")
+
+	if !recorder.waitCalled(5 * time.Second) {
+		t.Fatal("no stream message delivered after the reconnection: the read loop was not restarted")
+	}
+	assert.NotNil(t, recorder.value("data"))
+
+	urls := server.attemptURLs()
+	require.GreaterOrEqual(t, len(urls), 2)
+	assert.Contains(t, urls[1], stream, "expected the reconnect URL to carry the subscribed streams")
+}
+
+func TestReconnect_GivesUpAfterMaxAttempts(t *testing.T) {
+	const maxAttempts = 2
+
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		if attempt == 1 {
+			s.hold(w, r, nil)
+			return
+		}
+		s.reject(w)
+	})
+	defer server.Close()
+
+	config := NewMockWebSocketConfig()
+	config.basePath = server.wsURL(t)
+	config.reconnectDelay = 10 * time.Millisecond
+	config.maxReconnectAttempts = maxAttempts
+
+	ws, conn := connectLiveClientWithConfig(t, config, nil)
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.Eventually(t, func() bool {
+		return conn.Status() == common.OPEN
+	}, 5*time.Second, 20*time.Millisecond, "expected the connection to be established first")
+
+	server.dropHeld()
+
+	var reported error
+	require.Eventually(t, func() bool {
+		select {
+		case err := <-conn.ErrorChan:
+			if errors.Is(err, common.ErrReconnectAttemptsExhausted) {
+				reported = err
+				return true
+			}
+		default:
+		}
+		return false
+	}, 10*time.Second, 10*time.Millisecond, "expected ErrReconnectAttemptsExhausted to be reported to the caller")
+
+	var wsErr *common.WebSocketError
+	require.ErrorAs(t, reported, &wsErr)
+	assert.Equal(t, "reconnect", wsErr.Op)
+	assert.Equal(t, conn.Id, wsErr.ConnID)
+
+	assert.Equal(t, common.CLOSED, conn.Status(), "expected the connection to be left closed")
+	assert.False(t, conn.IsHealthy(), "expected a connection that gave up not to be handed out as healthy")
+
+	settled := server.attemptCount()
+	assert.Equal(t, 1+maxAttempts, settled)
+	time.Sleep(200 * time.Millisecond)
+	assert.Equal(t, settled, server.attemptCount(),
+		"expected no further reconnect attempts once the client gave up")
+}
+
+func TestConfiguration_MaxReconnectAttempts(t *testing.T) {
+	assert.Equal(t, 3, common.NewConfigurationWebsocketApi().GetMaxReconnectAttempts())
+	assert.Equal(t, 3, common.NewConfigurationWebsocketStreams().GetMaxReconnectAttempts())
+
+	assert.Equal(t, 5,
+		common.NewConfigurationWebsocketApi(common.WithWsMaxReconnectAttempts(5)).GetMaxReconnectAttempts())
+	assert.Equal(t, 5,
+		common.NewConfigurationWebsocketStreams(common.WithWsStreamsMaxReconnectAttempts(5)).GetMaxReconnectAttempts())
+
+	for _, attempts := range []int{-1, 0} {
+		assert.Equal(t, 3,
+			common.NewConfigurationWebsocketApi(common.WithWsMaxReconnectAttempts(attempts)).GetMaxReconnectAttempts(),
+			"a value below one must fall back to the default: retrying without a limit is not offered")
+		assert.Equal(t, 3,
+			common.NewConfigurationWebsocketStreams(common.WithWsStreamsMaxReconnectAttempts(attempts)).GetMaxReconnectAttempts(),
+			"a value below one must fall back to the default: retrying without a limit is not offered")
+	}
+
+	assert.Equal(t, 10,
+		common.NewConfigurationWebsocketApi(common.WithWsMaxReconnectAttempts(50)).GetMaxReconnectAttempts(),
+		"a value above the maximum must be capped")
+	assert.Equal(t, 10,
+		common.NewConfigurationWebsocketStreams(common.WithWsStreamsMaxReconnectAttempts(50)).GetMaxReconnectAttempts(),
+		"a value above the maximum must be capped")
+}
+
+func TestReconnect_StopsAfterClose(t *testing.T) {
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		s.dropRaw(w, r)
+	})
+	defer server.Close()
+
+	ws, conn := connectLiveClient(t, server, 10*time.Millisecond, nil)
+
+	require.Eventually(t, func() bool {
+		return server.attemptCount() >= 2
+	}, 5*time.Second, 20*time.Millisecond, "expected the client to retry at least once")
+
+	require.NoError(t, ws.CloseWebSocketStreamConnection())
+	assert.Contains(t, []common.WebsocketStatus{common.CLOSING, common.CLOSED}, conn.Status())
+
+	settled := server.attemptCount()
+	time.Sleep(500 * time.Millisecond)
+	assert.LessOrEqual(t, server.attemptCount(), settled+1,
+		"expected no further reconnect attempts after the client was closed")
+}
+
+func TestClose_ActuallyClosesConnection(t *testing.T) {
+	clientGone := make(chan struct{})
+
+	server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+		if attempt == 1 {
+			s.hold(w, r, clientGone)
+			return
+		}
+		s.hold(w, r, nil)
+	})
+	defer server.Close()
+
+	ws, conn := connectLiveClient(t, server, 10*time.Millisecond, nil)
+
+	require.NoError(t, ws.CloseWebSocketStreamConnection())
+
+	select {
+	case <-clientGone:
+	case <-time.After(5 * time.Second):
+		t.Fatal("the server still sees the connection after the client was closed: connection leak")
+	}
+
+	require.Eventually(t, func() bool {
+		return !conn.IsListening()
+	}, 5*time.Second, 20*time.Millisecond, "expected the read loop to exit after the close")
+	assert.Equal(t, 1, server.attemptCount(), "a closed client must not reconnect")
+}
+
+func TestCloseDuringServerDrop_NoPanicNoReconnect(t *testing.T) {
+	const iterations = 30
+
+	for i := 0; i < iterations; i++ {
+		server := newScriptedWSServer(func(s *scriptedWSServer, attempt int, w http.ResponseWriter, r *http.Request) {
+			s.hold(w, r, nil)
+		})
+
+		ws, conn := connectLiveClient(t, server, 10*time.Millisecond, nil)
+
+		var wg sync.WaitGroup
+		wg.Add(2)
+		go func() {
+			defer wg.Done()
+			server.dropHeld()
+		}()
+		go func() {
+			defer wg.Done()
+			time.Sleep(time.Duration(i%5) * time.Millisecond)
+			if err := ws.CloseWebSocketStreamConnection(); err != nil {
+				t.Errorf("iteration %d: close failed: %v", i, err)
+			}
+		}()
+
+		finished := make(chan struct{})
+		go func() {
+			wg.Wait()
+			close(finished)
+		}()
+		select {
+		case <-finished:
+		case <-time.After(5 * time.Second):
+			t.Fatalf("iteration %d: close/drop did not finish", i)
+		}
+
+		require.Eventually(t, func() bool {
+			status := conn.Status()
+			return status == common.CLOSING || status == common.CLOSED
+		}, 5*time.Second, 10*time.Millisecond, "iteration %d: connection should end up closed", i)
+
+		server.Close()
+	}
 }

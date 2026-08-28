@@ -4,6 +4,7 @@ import (
 	"crypto"
 	"crypto/tls"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"golang.org/x/net/proxy"
@@ -71,6 +72,14 @@ type WebSocketConfig interface {
 	GetTimeUnit() TimeUnit
 }
 
+// reconnectLimiter is implemented by configurations that cap how often a
+// connection is re-established. It is probed instead of being part of
+// WebSocketConfig so that adding the setting does not break implementations of
+// that interface outside this module.
+type reconnectLimiter interface {
+	GetMaxReconnectAttempts() int
+}
+
 type WebSocketConn interface {
 	WriteMessage(messageType int, data []byte) error
 	ReadMessage() (messageType int, p []byte, err error)
@@ -91,6 +100,9 @@ type WebSocketConnection struct {
 	ErrorChan           chan error
 	ReconnectChan       chan struct{}
 	mu                  sync.Mutex
+	statusMu            sync.RWMutex
+	listening           atomic.Bool
+	closeOnce           sync.Once
 }
 
 type WebSocketCommon struct {
@@ -101,18 +113,21 @@ type WebSocketCommon struct {
 	PoolSize        int
 	ProxyDialer     proxy.Dialer
 	RoundRobinIndex int
+	mu              sync.Mutex
 }
 
 type WebsocketAPI struct {
 	Cfg                       *ConfigurationWebsocketApi
 	GlobalStreamConnectionMap map[string][]*WebSocketConnection
 	WsCommon                  *WebSocketCommon
+	streamMu                  sync.RWMutex
 }
 
 type WebsocketStreams struct {
 	Cfg                       *ConfigurationWebsocketStreams
 	GlobalStreamConnectionMap map[string][]*WebSocketConnection
 	WsCommon                  *WebSocketCommon
+	streamMu                  sync.RWMutex
 }
 
 type StreamHandlerWrapper struct {

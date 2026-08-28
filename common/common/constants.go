@@ -1,5 +1,7 @@
 package common
 
+import "time"
+
 type TimeUnit string
 type RateLimitType string
 type Interval string
@@ -34,6 +36,13 @@ const (
 const (
 	SINGLE WebsocketMode = "single"
 	POOL   WebsocketMode = "pool"
+)
+
+const (
+	defaultReconnectBackoff     = 500 * time.Millisecond
+	maxReconnectBackoff         = 30 * time.Second
+	defaultMaxReconnectAttempts = 3
+	maxAllowedReconnectAttempts = 10
 )
 
 // Algo API URLs

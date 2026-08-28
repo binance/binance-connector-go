@@ -1,5 +1,17 @@
 ### Changelog
 
+## 2.8.0 - 2026-08-28
+
+### Added (2)
+
+- Added bounded reconnection through `MaxReconnectAttempts` and the `WithWsMaxReconnectAttempts` and `WithWsStreamsMaxReconnectAttempts` options: a reconnect is retried that many times with a backoff before giving up and reporting `ErrReconnectAttemptsExhausted` on the error channel and to `OnError`, from 1 to 10 attempts and defaulting to 3.
+- Added `Unwrap` to `WebSocketError`, for `errors.Is` and `errors.As`.
+
+### Changed (2)
+
+- Fixed the websocket not being renewed after a network interruption, including the keep-alive refresh leaving the connection closed and stopping for good after a failed refresh.
+- Fixed the connection handling under concurrency: in-flight requests waiting for ever when the connection is closed, the panic on a closed channel when it is closed twice, the read loop being started more than once, the `concurrent map writes` crash on the stream connection map, the data race on the pool round-robin index, and the pool connect waiting on connections it never dialled.
+
 ## 2.7.0 - 2026-08-18
 
 ### Added (1)
