@@ -166,6 +166,7 @@ WebSocket Streams in Margin Trading is used for subscribing to risk and trade da
 The WebSocket Streams API supports the following advanced configuration options:
 
 - `ReconnectDelay`: Delay (ms) between reconnections.
+- `MaxReconnectAttempts`: Number of reconnection attempts before giving up (1-10, default: 3).
 - `Compression`: Enable response compression.
 - `Mode`: Choose between `single` and `pool` connection modes.
   - `Single`: A single WebSocket connection.
