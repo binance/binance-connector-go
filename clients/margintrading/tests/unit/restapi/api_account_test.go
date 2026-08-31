@@ -434,7 +434,7 @@ func Test_binancemargintradingrestapi_AccountAPIService(t *testing.T) {
 	t.Run("Test AccountAPIService QueryCrossMarginAccountDetails Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"created":true,"borrowEnabled":true,"marginLevel":"11.64405625","collateralMarginLevel":"3.2","totalAssetOfBtc":"6.82728457","totalLiabilityOfBtc":"0.58633215","totalNetAssetOfBtc":"6.24095242","TotalCollateralValueInUSDT":"5.82728457","totalOpenOrderLossInUSDT":"582.728457","tradeEnabled":true,"transferInEnabled":true,"transferOutEnabled":true,"accountType":"MARGIN_1","userAssets":[{"asset":"BTC","borrowed":"0.00000000","free":"0.00499500","interest":"0.00000000","locked":"0.00000000","netAsset":"0.00499500"}]}`
+		mockedJSON = `{"created":true,"borrowEnabled":true,"marginLevel":"11.64405625","collateralMarginLevel":"3.2","totalAssetOfBtc":"6.82728457","totalLiabilityOfBtc":"0.58633215","totalNetAssetOfBtc":"6.24095242","TotalCollateralValueInUSDT":"5.82728457","tradeEnabled":true,"transferInEnabled":true,"transferOutEnabled":true,"accountType":"MARGIN_1","userAssets":[{"asset":"BTC","borrowed":"0.00000000","free":"0.00499500","interest":"0.00000000","locked":"0.00000000","netAsset":"0.00499500"}]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

@@ -33,8 +33,6 @@ type QueryCrossMarginAccountDetailsResponse struct {
 	TotalNetAssetOfBtc *string `json:"totalNetAssetOfBtc,omitempty"`
 	// Total Collateral Value In USDT.
 	TotalCollateralValueInUSDT *string `json:"TotalCollateralValueInUSDT,omitempty"`
-	// total Open Order Loss In USDT.
-	TotalOpenOrderLossInUSDT *string `json:"totalOpenOrderLossInUSDT,omitempty"`
 	// trade Enabled.
 	TradeEnabled *bool `json:"tradeEnabled,omitempty"`
 	// transfer In Enabled.
@@ -323,38 +321,6 @@ func (o *QueryCrossMarginAccountDetailsResponse) SetTotalCollateralValueInUSDT(v
 	o.TotalCollateralValueInUSDT = &v
 }
 
-// GetTotalOpenOrderLossInUSDT returns the TotalOpenOrderLossInUSDT field value if set, zero value otherwise.
-func (o *QueryCrossMarginAccountDetailsResponse) GetTotalOpenOrderLossInUSDT() string {
-	if o == nil || common.IsNil(o.TotalOpenOrderLossInUSDT) {
-		var ret string
-		return ret
-	}
-	return *o.TotalOpenOrderLossInUSDT
-}
-
-// GetTotalOpenOrderLossInUSDTOk returns a tuple with the TotalOpenOrderLossInUSDT field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *QueryCrossMarginAccountDetailsResponse) GetTotalOpenOrderLossInUSDTOk() (*string, bool) {
-	if o == nil || common.IsNil(o.TotalOpenOrderLossInUSDT) {
-		return nil, false
-	}
-	return o.TotalOpenOrderLossInUSDT, true
-}
-
-// HasTotalOpenOrderLossInUSDT returns a boolean if a field has been set.
-func (o *QueryCrossMarginAccountDetailsResponse) HasTotalOpenOrderLossInUSDT() bool {
-	if o != nil && !common.IsNil(o.TotalOpenOrderLossInUSDT) {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalOpenOrderLossInUSDT gets a reference to the given string and assigns it to the TotalOpenOrderLossInUSDT field.
-func (o *QueryCrossMarginAccountDetailsResponse) SetTotalOpenOrderLossInUSDT(v string) {
-	o.TotalOpenOrderLossInUSDT = &v
-}
-
 // GetTradeEnabled returns the TradeEnabled field value if set, zero value otherwise.
 func (o *QueryCrossMarginAccountDetailsResponse) GetTradeEnabled() bool {
 	if o == nil || common.IsNil(o.TradeEnabled) {
@@ -549,9 +515,6 @@ func (o QueryCrossMarginAccountDetailsResponse) ToMap() (map[string]interface{},
 	if !common.IsNil(o.TotalCollateralValueInUSDT) {
 		toSerialize["TotalCollateralValueInUSDT"] = o.TotalCollateralValueInUSDT
 	}
-	if !common.IsNil(o.TotalOpenOrderLossInUSDT) {
-		toSerialize["totalOpenOrderLossInUSDT"] = o.TotalOpenOrderLossInUSDT
-	}
 	if !common.IsNil(o.TradeEnabled) {
 		toSerialize["tradeEnabled"] = o.TradeEnabled
 	}
@@ -597,7 +560,6 @@ func (o *QueryCrossMarginAccountDetailsResponse) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "totalLiabilityOfBtc")
 		delete(additionalProperties, "totalNetAssetOfBtc")
 		delete(additionalProperties, "TotalCollateralValueInUSDT")
-		delete(additionalProperties, "totalOpenOrderLossInUSDT")
 		delete(additionalProperties, "tradeEnabled")
 		delete(additionalProperties, "transferInEnabled")
 		delete(additionalProperties, "transferOutEnabled")

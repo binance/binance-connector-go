@@ -12,7 +12,6 @@ Name         | Type          | Description.  | Notes
 **TotalLiabilityOfBtc** | Pointer to **string** | total Liability Of Btc. | [optional] 
 **TotalNetAssetOfBtc** | Pointer to **string** | total Net Asset Of Btc. | [optional] 
 **TotalCollateralValueInUSDT** | Pointer to **string** | Total Collateral Value In USDT. | [optional] 
-**TotalOpenOrderLossInUSDT** | Pointer to **string** | total Open Order Loss In USDT. | [optional] 
 **TradeEnabled** | Pointer to **bool** | trade Enabled. | [optional] 
 **TransferInEnabled** | Pointer to **bool** | transfer In Enabled. | [optional] 
 **TransferOutEnabled** | Pointer to **bool** | transfer Out Enabled. | [optional] 
@@ -237,31 +236,6 @@ SetTotalCollateralValueInUSDT sets TotalCollateralValueInUSDT field to given val
 `func (o *QueryCrossMarginAccountDetailsResponse) HasTotalCollateralValueInUSDT() bool`
 
 HasTotalCollateralValueInUSDT returns a boolean if a field has been set.
-
-### GetTotalOpenOrderLossInUSDT
-
-`func (o *QueryCrossMarginAccountDetailsResponse) GetTotalOpenOrderLossInUSDT() string`
-
-GetTotalOpenOrderLossInUSDT returns the TotalOpenOrderLossInUSDT field if non-nil, zero value otherwise.
-
-### GetTotalOpenOrderLossInUSDTOk
-
-`func (o *QueryCrossMarginAccountDetailsResponse) GetTotalOpenOrderLossInUSDTOk() (*string, bool)`
-
-GetTotalOpenOrderLossInUSDTOk returns a tuple with the TotalOpenOrderLossInUSDT field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTotalOpenOrderLossInUSDT
-
-`func (o *QueryCrossMarginAccountDetailsResponse) SetTotalOpenOrderLossInUSDT(v string)`
-
-SetTotalOpenOrderLossInUSDT sets TotalOpenOrderLossInUSDT field to given value.
-
-### HasTotalOpenOrderLossInUSDT
-
-`func (o *QueryCrossMarginAccountDetailsResponse) HasTotalOpenOrderLossInUSDT() bool`
-
-HasTotalOpenOrderLossInUSDT returns a boolean if a field has been set.
 
 ### GetTradeEnabled
 

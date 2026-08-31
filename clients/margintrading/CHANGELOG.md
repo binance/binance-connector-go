@@ -1,5 +1,18 @@
 ### Changelog
 
+## 1.12.1 - 2026-08-31
+
+### Changed (2)
+
+#### REST API
+
+- Modified response for `queryCrossMarginAccountDetails()` (`GET /sapi/v1/margin/account`):
+  - property `totalOpenOrderLossInUSDT` deleted
+
+- Removed response field `totalOpenOrderLossInUSDT`
+  - affected events:
+    - `queryCrossMarginAccountDetailsResponse`
+
 ## 1.12.0 - 2026-08-28
 
 ### Changed (2)
