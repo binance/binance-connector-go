@@ -35,7 +35,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/giftcard/buyCode", r.URL.Path)
 			require.Equal(t, "BUSD", r.URL.Query().Get("baseToken"))
 			require.Equal(t, "BNB", r.URL.Query().Get("faceToken"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("baseTokenAmount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("baseTokenAmount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -52,7 +52,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("BUSD").FaceToken("BNB").BaseTokenAmount(float32(1)).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.CreateADualTokenGiftCard(context.Background()).BaseToken("BUSD").FaceToken("BNB").BaseTokenAmount(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -113,7 +113,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/giftcard/createCode", r.URL.Path)
 			require.Equal(t, "BNB", r.URL.Query().Get("token"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -130,7 +130,7 @@ func Test_binancegiftcardrestapi_MarketDataAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("BNB").Amount(float32(1)).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.CreateASingleTokenGiftCard(context.Background()).Token("BNB").Amount(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

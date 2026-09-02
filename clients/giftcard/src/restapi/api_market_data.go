@@ -23,7 +23,7 @@ type ApiCreateADualTokenGiftCardRequest struct {
 	ApiService      *MarketDataAPIService
 	baseToken       *string
 	faceToken       *string
-	baseTokenAmount *float32
+	baseTokenAmount *float64
 	recvWindow      *int64
 }
 
@@ -40,7 +40,7 @@ func (r ApiCreateADualTokenGiftCardRequest) FaceToken(faceToken string) ApiCreat
 }
 
 // The base token asset quantity, example : 1.002
-func (r ApiCreateADualTokenGiftCardRequest) BaseTokenAmount(baseTokenAmount float32) ApiCreateADualTokenGiftCardRequest {
+func (r ApiCreateADualTokenGiftCardRequest) BaseTokenAmount(baseTokenAmount float64) ApiCreateADualTokenGiftCardRequest {
 	r.baseTokenAmount = &baseTokenAmount
 	return r
 }
@@ -123,7 +123,7 @@ type ApiCreateASingleTokenGiftCardRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	token      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -134,7 +134,7 @@ func (r ApiCreateASingleTokenGiftCardRequest) Token(token string) ApiCreateASing
 }
 
 // The amount of the token contained in the Binance Gift Card
-func (r ApiCreateASingleTokenGiftCardRequest) Amount(amount float32) ApiCreateASingleTokenGiftCardRequest {
+func (r ApiCreateASingleTokenGiftCardRequest) Amount(amount float64) ApiCreateASingleTokenGiftCardRequest {
 	r.amount = &amount
 	return r
 }

@@ -37,7 +37,7 @@ import (
 func main() {
 	baseToken := "BUSD" // string | The token you want to pay, example: BUSD
 	faceToken := "BNB" // string | The token you want to buy, example: BNB. If faceToken = baseToken, it's the same as createCode endpoint.
-	baseTokenAmount := float32(1) // float32 | The base token asset quantity, example : 1.002
+	baseTokenAmount := float64(1) // float64 | The base token asset quantity, example : 1.002
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -68,7 +68,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **baseToken** | **string** | The token you want to pay, example: BUSD | 
  **faceToken** | **string** | The token you want to buy, example: BNB. If faceToken &#x3D; baseToken, it&#39;s the same as createCode endpoint. | 
- **baseTokenAmount** | **float32** | The base token asset quantity, example : 1.002 | 
+ **baseTokenAmount** | **float64** | The base token asset quantity, example : 1.002 | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -110,7 +110,7 @@ import (
 
 func main() {
 	token := "BNB" // string | The token type contained in the Binance Gift Card
-	amount := float32(1) // float32 | The amount of the token contained in the Binance Gift Card
+	amount := float64(1) // float64 | The amount of the token contained in the Binance Gift Card
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -140,7 +140,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string** | The token type contained in the Binance Gift Card | 
- **amount** | **float32** | The amount of the token contained in the Binance Gift Card | 
+ **amount** | **float64** | The amount of the token contained in the Binance Gift Card | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

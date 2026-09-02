@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `createASingleTokenGiftCard()` (`POST /sapi/v1/giftcard/createCode`)
+- Modified parameter `baseTokenAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `createADualTokenGiftCard()` (`POST /sapi/v1/giftcard/buyCode`)
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)
