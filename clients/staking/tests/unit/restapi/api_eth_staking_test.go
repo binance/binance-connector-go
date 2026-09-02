@@ -505,7 +505,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/eth/redeem", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -522,7 +522,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.EthStakingAPI.RedeemEth(context.Background()).Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.EthStakingAPI.RedeemEth(context.Background()).Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -582,7 +582,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v2/eth-staking/eth/stake", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -599,7 +599,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.EthStakingAPI.SubscribeEthStaking(context.Background()).Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.EthStakingAPI.SubscribeEthStaking(context.Background()).Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -659,7 +659,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/eth-staking/wbeth/wrap", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -676,7 +676,7 @@ func Test_binancestakingrestapi_EthStakingAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.EthStakingAPI.WrapBeth(context.Background()).Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.EthStakingAPI.WrapBeth(context.Background()).Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

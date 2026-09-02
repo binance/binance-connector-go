@@ -636,7 +636,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in BETH, limit 8 decimals
+	amount := float64(1.0) // float64 | Amount in BETH, limit 8 decimals
 	asset := models.RedeemEthAssetParameterWbeth // RedeemEthAssetParameter |  (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
@@ -666,7 +666,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in BETH, limit 8 decimals | 
+ **amount** | **float64** | Amount in BETH, limit 8 decimals | 
  **asset** | [**RedeemEthAssetParameter**](RedeemEthAssetParameter.md) |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
@@ -708,7 +708,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in ETH, limit 4 decimals
+	amount := float64(1.0) // float64 | Amount in ETH, limit 4 decimals
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -737,7 +737,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in ETH, limit 4 decimals | 
+ **amount** | **float64** | Amount in ETH, limit 4 decimals | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
@@ -778,7 +778,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in BETH, limit 4 decimals
+	amount := float64(1.0) // float64 | Amount in BETH, limit 4 decimals
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -807,7 +807,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in BETH, limit 4 decimals | 
+ **amount** | **float64** | Amount in BETH, limit 4 decimals | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type

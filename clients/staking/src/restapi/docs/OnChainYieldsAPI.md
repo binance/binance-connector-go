@@ -426,7 +426,7 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	autoSubscribe := true // bool |  (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
@@ -457,7 +457,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **autoSubscribe** | **bool** |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
@@ -866,7 +866,7 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	autoSubscribe := false // bool |  (optional)
 	sourceAccount := models.SubscribeOnChainYieldsLockedProductSourceAccountParameterSpot // SubscribeOnChainYieldsLockedProductSourceAccountParameter |  (optional)
 	redeemTo := models.SubscribeOnChainYieldsLockedProductRedeemToParameterSpot // SubscribeOnChainYieldsLockedProductRedeemToParameter | Takes effect when Auto Subscribe is false (optional)
@@ -901,7 +901,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **autoSubscribe** | **bool** |  | 
  **sourceAccount** | [**SubscribeOnChainYieldsLockedProductSourceAccountParameter**](SubscribeOnChainYieldsLockedProductSourceAccountParameter.md) |  | 
  **redeemTo** | [**SubscribeOnChainYieldsLockedProductRedeemToParameter**](SubscribeOnChainYieldsLockedProductRedeemToParameter.md) | Takes effect when Auto Subscribe is false | 

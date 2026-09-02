@@ -565,7 +565,7 @@ type ApiGetOnChainYieldsLockedSubscriptionPreviewRequest struct {
 	ctx           context.Context
 	ApiService    *OnChainYieldsAPIService
 	projectId     *string
-	amount        *float32
+	amount        *float64
 	autoSubscribe *bool
 	recvWindow    *int64
 }
@@ -575,7 +575,7 @@ func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) ProjectId(projectId
 	return r
 }
 
-func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) Amount(amount float32) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
+func (r ApiGetOnChainYieldsLockedSubscriptionPreviewRequest) Amount(amount float64) ApiGetOnChainYieldsLockedSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
 }
@@ -1119,7 +1119,7 @@ type ApiSubscribeOnChainYieldsLockedProductRequest struct {
 	ctx           context.Context
 	ApiService    *OnChainYieldsAPIService
 	projectId     *string
-	amount        *float32
+	amount        *float64
 	autoSubscribe *bool
 	sourceAccount *models.SubscribeOnChainYieldsLockedProductSourceAccountParameter
 	redeemTo      *models.SubscribeOnChainYieldsLockedProductRedeemToParameter
@@ -1133,7 +1133,7 @@ func (r ApiSubscribeOnChainYieldsLockedProductRequest) ProjectId(projectId strin
 	return r
 }
 
-func (r ApiSubscribeOnChainYieldsLockedProductRequest) Amount(amount float32) ApiSubscribeOnChainYieldsLockedProductRequest {
+func (r ApiSubscribeOnChainYieldsLockedProductRequest) Amount(amount float64) ApiSubscribeOnChainYieldsLockedProductRequest {
 	r.amount = &amount
 	return r
 }

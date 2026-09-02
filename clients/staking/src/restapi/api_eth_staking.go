@@ -791,13 +791,13 @@ func (a *EthStakingAPIService) GetWbethWrapHistoryExecute(r ApiGetWbethWrapHisto
 type ApiRedeemEthRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
-	amount     *float32
+	amount     *float64
 	asset      *models.RedeemEthAssetParameter
 	recvWindow *int64
 }
 
 // Amount in BETH, limit 8 decimals
-func (r ApiRedeemEthRequest) Amount(amount float32) ApiRedeemEthRequest {
+func (r ApiRedeemEthRequest) Amount(amount float64) ApiRedeemEthRequest {
 	r.amount = &amount
 	return r
 }
@@ -877,12 +877,12 @@ func (a *EthStakingAPIService) RedeemEthExecute(r ApiRedeemEthRequest) (*common.
 type ApiSubscribeEthStakingRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
 // Amount in ETH, limit 4 decimals
-func (r ApiSubscribeEthStakingRequest) Amount(amount float32) ApiSubscribeEthStakingRequest {
+func (r ApiSubscribeEthStakingRequest) Amount(amount float64) ApiSubscribeEthStakingRequest {
 	r.amount = &amount
 	return r
 }
@@ -953,12 +953,12 @@ func (a *EthStakingAPIService) SubscribeEthStakingExecute(r ApiSubscribeEthStaki
 type ApiWrapBethRequest struct {
 	ctx        context.Context
 	ApiService *EthStakingAPIService
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
 // Amount in BETH, limit 4 decimals
-func (r ApiWrapBethRequest) Amount(amount float32) ApiWrapBethRequest {
+func (r ApiWrapBethRequest) Amount(amount float64) ApiWrapBethRequest {
 	r.amount = &amount
 	return r
 }

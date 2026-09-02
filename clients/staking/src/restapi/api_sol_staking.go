@@ -762,12 +762,12 @@ func (a *SolStakingAPIService) GetUnclaimedRewardsExecute(r ApiGetUnclaimedRewar
 type ApiRedeemSolRequest struct {
 	ctx        context.Context
 	ApiService *SolStakingAPIService
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
 // Amount in BNSOL, limit 8 decimals
-func (r ApiRedeemSolRequest) Amount(amount float32) ApiRedeemSolRequest {
+func (r ApiRedeemSolRequest) Amount(amount float64) ApiRedeemSolRequest {
 	r.amount = &amount
 	return r
 }
@@ -901,12 +901,12 @@ func (a *SolStakingAPIService) SolStakingAccountExecute(r ApiSolStakingAccountRe
 type ApiSubscribeSolStakingRequest struct {
 	ctx        context.Context
 	ApiService *SolStakingAPIService
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
 // Amount in SOL.
-func (r ApiSubscribeSolStakingRequest) Amount(amount float32) ApiSubscribeSolStakingRequest {
+func (r ApiSubscribeSolStakingRequest) Amount(amount float64) ApiSubscribeSolStakingRequest {
 	r.amount = &amount
 	return r
 }

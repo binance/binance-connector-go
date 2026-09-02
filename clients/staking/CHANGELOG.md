@@ -1,5 +1,22 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `getOnChainYieldsLockedSubscriptionPreview()` (`GET /sapi/v1/onchain-yields/locked/subscriptionPreview`)
+    - `redeemEth()` (`POST /sapi/v1/eth-staking/eth/redeem`)
+    - `redeemSol()` (`POST /sapi/v1/sol-staking/sol/redeem`)
+    - `subscribeEthStaking()` (`POST /sapi/v2/eth-staking/eth/stake`)
+    - `subscribeOnChainYieldsLockedProduct()` (`POST /sapi/v1/onchain-yields/locked/subscribe`)
+    - `subscribeSolStaking()` (`POST /sapi/v1/sol-staking/sol/stake`)
+    - `wrapBeth()` (`POST /sapi/v1/eth-staking/wbeth/wrap`)
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)

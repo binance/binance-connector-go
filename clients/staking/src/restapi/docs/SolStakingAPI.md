@@ -630,7 +630,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in BNSOL, limit 8 decimals
+	amount := float64(1.0) // float64 | Amount in BNSOL, limit 8 decimals
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -659,7 +659,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in BNSOL, limit 8 decimals | 
+ **amount** | **float64** | Amount in BNSOL, limit 8 decimals | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
@@ -768,7 +768,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in SOL.
+	amount := float64(1.0) // float64 | Amount in SOL.
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -797,7 +797,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in SOL. | 
+ **amount** | **float64** | Amount in SOL. | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
