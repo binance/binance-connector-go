@@ -49,7 +49,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	transferSide := models.BnbTransferTransferSideParameterToUm // BnbTransferTransferSideParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -79,7 +79,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **transferSide** | [**BnbTransferTransferSideParameter**](BnbTransferTransferSideParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
@@ -1239,7 +1239,7 @@ import (
 )
 
 func main() {
-	marginCallLevel := float32(1.5) // float32 | The value must be within the range [1.1, 2.0].
+	marginCallLevel := float64(1.5) // float64 | The value must be within the range [1.1, 2.0].
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1268,7 +1268,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **marginCallLevel** | **float32** | The value must be within the range [1.1, 2.0]. | 
+ **marginCallLevel** | **float64** | The value must be within the range [1.1, 2.0]. | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
@@ -1381,7 +1381,7 @@ import (
 func main() {
 	asset := models.TransferLdusdtRwusdForPortfolioMarginAssetParameterLdusdt // TransferLdusdtRwusdForPortfolioMarginAssetParameter | 
 	transferType := models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture // GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter | 
-	amount := float32(1) // float32 | 
+	amount := float64(1) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1412,7 +1412,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**TransferLdusdtRwusdForPortfolioMarginAssetParameter**](TransferLdusdtRwusdForPortfolioMarginAssetParameter.md) |  | 
  **transferType** | [**GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter**](GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter.md) |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

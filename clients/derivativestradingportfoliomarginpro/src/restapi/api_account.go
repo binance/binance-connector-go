@@ -21,12 +21,12 @@ type AccountAPIService Service
 type ApiBnbTransferRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
-	amount       *float32
+	amount       *float64
 	transferSide *models.BnbTransferTransferSideParameter
 	recvWindow   *int64
 }
 
-func (r ApiBnbTransferRequest) Amount(amount float32) ApiBnbTransferRequest {
+func (r ApiBnbTransferRequest) Amount(amount float64) ApiBnbTransferRequest {
 	r.amount = &amount
 	return r
 }
@@ -1268,12 +1268,12 @@ func (a *AccountAPIService) RepayFuturesNegativeBalanceExecute(r ApiRepayFutures
 type ApiSetMarginCallLevelRequest struct {
 	ctx             context.Context
 	ApiService      *AccountAPIService
-	marginCallLevel *float32
+	marginCallLevel *float64
 	recvWindow      *int64
 }
 
 // The value must be within the range [1.1, 2.0].
-func (r ApiSetMarginCallLevelRequest) MarginCallLevel(marginCallLevel float32) ApiSetMarginCallLevelRequest {
+func (r ApiSetMarginCallLevelRequest) MarginCallLevel(marginCallLevel float64) ApiSetMarginCallLevelRequest {
 	r.marginCallLevel = &marginCallLevel
 	return r
 }
@@ -1421,7 +1421,7 @@ type ApiTransferLdusdtRwusdForPortfolioMarginRequest struct {
 	ApiService   *AccountAPIService
 	asset        *models.TransferLdusdtRwusdForPortfolioMarginAssetParameter
 	transferType *models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameter
-	amount       *float32
+	amount       *float64
 	recvWindow   *int64
 }
 
@@ -1435,7 +1435,7 @@ func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) TransferType(transferTy
 	return r
 }
 
-func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) Amount(amount float32) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
+func (r ApiTransferLdusdtRwusdForPortfolioMarginRequest) Amount(amount float64) ApiTransferLdusdtRwusdForPortfolioMarginRequest {
 	r.amount = &amount
 	return r
 }

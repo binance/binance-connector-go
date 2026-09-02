@@ -33,7 +33,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/portfolio/bnb-transfer", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, string(models.BnbTransferTransferSideParameterToUm), r.URL.Query().Get("transferSide"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -51,7 +51,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.BnbTransfer(context.Background()).Amount(float32(1.0)).TransferSide(models.BnbTransferTransferSideParameterToUm).Execute()
+		resp, err := apiClient.RestApi.AccountAPI.BnbTransfer(context.Background()).Amount(float64(1.0)).TransferSide(models.BnbTransferTransferSideParameterToUm).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1110,7 +1110,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/portfolio/margin-call-level", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.5)), r.URL.Query().Get("marginCallLevel"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.5)), r.URL.Query().Get("marginCallLevel"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1127,7 +1127,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.SetMarginCallLevel(context.Background()).MarginCallLevel(float32(1.5)).Execute()
+		resp, err := apiClient.RestApi.AccountAPI.SetMarginCallLevel(context.Background()).MarginCallLevel(float64(1.5)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1266,7 +1266,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 			require.Equal(t, "/sapi/v1/portfolio/earn-asset-transfer", r.URL.Path)
 			require.Equal(t, string(models.TransferLdusdtRwusdForPortfolioMarginAssetParameterLdusdt), r.URL.Query().Get("asset"))
 			require.Equal(t, string(models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture), r.URL.Query().Get("transferType"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1283,7 +1283,7 @@ func Test_binancederivativestradingportfoliomarginprorestapi_AccountAPIService(t
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.TransferLdusdtRwusdForPortfolioMargin(context.Background()).Asset(models.TransferLdusdtRwusdForPortfolioMarginAssetParameterLdusdt).TransferType(models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture).Amount(float32(1)).Execute()
+		resp, err := apiClient.RestApi.AccountAPI.TransferLdusdtRwusdForPortfolioMargin(context.Background()).Asset(models.TransferLdusdtRwusdForPortfolioMarginAssetParameterLdusdt).TransferType(models.GetTransferableEarnAssetBalanceForPortfolioMarginTransferTypeParameterEarnToFuture).Amount(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

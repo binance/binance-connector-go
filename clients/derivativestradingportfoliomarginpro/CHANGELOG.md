@@ -1,5 +1,21 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `bnbTransfer()` (`POST /sapi/v1/portfolio/bnb-transfer`)
+    - `transferLdusdtRwusdForPortfolioMargin()` (`POST /sapi/v1/portfolio/earn-asset-transfer`)
+- Modified parameter `marginCallLevel`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `setMarginCallLevel()` (`POST /sapi/v1/portfolio/margin-call-level`)
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)
