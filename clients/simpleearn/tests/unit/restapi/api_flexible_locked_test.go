@@ -347,7 +347,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/flexible/subscriptionPreview", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("productId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -364,7 +364,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleSubscriptionPreview(context.Background()).ProductId("1").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.FlexibleLockedAPI.GetFlexibleSubscriptionPreview(context.Background()).ProductId("1").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -738,7 +738,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/locked/subscriptionPreview", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("projectId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -755,7 +755,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleLockedAPI.GetLockedSubscriptionPreview(context.Background()).ProjectId("1").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.FlexibleLockedAPI.GetLockedSubscriptionPreview(context.Background()).ProjectId("1").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1517,7 +1517,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/flexible/subscribe", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("productId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1534,7 +1534,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleLockedAPI.SubscribeFlexibleProduct(context.Background()).ProductId("1").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.FlexibleLockedAPI.SubscribeFlexibleProduct(context.Background()).ProductId("1").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1595,7 +1595,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/simple-earn/locked/subscribe", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("projectId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1612,7 +1612,7 @@ func Test_binancesimpleearnrestapi_FlexibleLockedAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleLockedAPI.SubscribeLockedProduct(context.Background()).ProjectId("1").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.FlexibleLockedAPI.SubscribeLockedProduct(context.Background()).ProjectId("1").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

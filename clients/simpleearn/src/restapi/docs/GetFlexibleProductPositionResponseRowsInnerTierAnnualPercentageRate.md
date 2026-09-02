@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Var05BTC** | Pointer to **float32** |  | [optional] 
-**Var510BTC** | Pointer to **float32** |  | [optional] 
+**Var05BTC** | Pointer to **float64** |  | [optional] 
+**Var510BTC** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVar05BTC
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTC() float32`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTC() float64`
 
 GetVar05BTC returns the Var05BTC field if non-nil, zero value otherwise.
 
 ### GetVar05BTCOk
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTCOk() (*float32, bool)`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTCOk() (*float64, bool)`
 
 GetVar05BTCOk returns a tuple with the Var05BTC field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVar05BTC
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar05BTC(v float32)`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar05BTC(v float64)`
 
 SetVar05BTC sets Var05BTC field to given value.
 
@@ -53,20 +53,20 @@ HasVar05BTC returns a boolean if a field has been set.
 
 ### GetVar510BTC
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTC() float32`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTC() float64`
 
 GetVar510BTC returns the Var510BTC field if non-nil, zero value otherwise.
 
 ### GetVar510BTCOk
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTCOk() (*float32, bool)`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTCOk() (*float64, bool)`
 
 GetVar510BTCOk returns a tuple with the Var510BTC field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVar510BTC
 
-`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar510BTC(v float32)`
+`func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar510BTC(v float64)`
 
 SetVar510BTC sets Var510BTC field to given value.
 

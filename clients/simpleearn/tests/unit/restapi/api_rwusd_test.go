@@ -387,7 +387,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/redeem", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, string(models.RedeemBfusdTypeParameterFast), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -405,7 +405,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(float32(1.0)).Type(models.RedeemBfusdTypeParameterFast).Execute()
+		resp, err := apiClient.RestApi.RwusdAPI.RedeemRwusd(context.Background()).Amount(float64(1.0)).Type(models.RedeemBfusdTypeParameterFast).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -466,7 +466,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/rwusd/subscribe", r.URL.Path)
 			require.Equal(t, string(models.SubscribeRwusdAssetParameterUsdt), r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -483,7 +483,7 @@ func Test_binancesimpleearnrestapi_RwusdAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset(models.SubscribeRwusdAssetParameterUsdt).Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.RwusdAPI.SubscribeRwusd(context.Background()).Asset(models.SubscribeRwusdAssetParameterUsdt).Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

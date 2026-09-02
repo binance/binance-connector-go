@@ -571,13 +571,13 @@ func (a *BfusdAPIService) GetBfusdSubscriptionHistoryExecute(r ApiGetBfusdSubscr
 type ApiRedeemBfusdRequest struct {
 	ctx        context.Context
 	ApiService *BfusdAPIService
-	amount     *float32
+	amount     *float64
 	type_      *models.RedeemBfusdTypeParameter
 	recvWindow *int64
 }
 
 // Amount in BFUSD
-func (r ApiRedeemBfusdRequest) Amount(amount float32) ApiRedeemBfusdRequest {
+func (r ApiRedeemBfusdRequest) Amount(amount float64) ApiRedeemBfusdRequest {
 	r.amount = &amount
 	return r
 }
@@ -661,7 +661,7 @@ type ApiSubscribeBfusdRequest struct {
 	ctx        context.Context
 	ApiService *BfusdAPIService
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -671,7 +671,7 @@ func (r ApiSubscribeBfusdRequest) Asset(asset string) ApiSubscribeBfusdRequest {
 }
 
 // Amount
-func (r ApiSubscribeBfusdRequest) Amount(amount float32) ApiSubscribeBfusdRequest {
+func (r ApiSubscribeBfusdRequest) Amount(amount float64) ApiSubscribeBfusdRequest {
 	r.amount = &amount
 	return r
 }

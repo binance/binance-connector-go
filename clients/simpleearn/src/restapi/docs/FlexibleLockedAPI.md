@@ -442,7 +442,7 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -472,7 +472,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
 ### Return type
@@ -906,7 +906,7 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	autoSubscribe := true // bool | default true. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (ms) (optional)
 
@@ -937,7 +937,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **autoSubscribe** | **bool** | default true. | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 (ms) | 
 
@@ -1289,7 +1289,7 @@ import (
 func main() {
 	productId := "1" // string | 
 	redeemAll := false // bool |  (optional)
-	amount := float32(1.0) // float32 | if redeemAll is false, amount is mandatory (optional)
+	amount := float64(1.0) // float64 | if redeemAll is false, amount is mandatory (optional)
 	destAccount := models.RedeemFlexibleProductDestAccountParameterSpot // RedeemFlexibleProductDestAccountParameter |  (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
@@ -1321,7 +1321,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
  **redeemAll** | **bool** |  | 
- **amount** | **float32** | if redeemAll is false, amount is mandatory | 
+ **amount** | **float64** | if redeemAll is false, amount is mandatory | 
  **destAccount** | [**RedeemFlexibleProductDestAccountParameter**](RedeemFlexibleProductDestAccountParameter.md) |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
@@ -1718,7 +1718,7 @@ import (
 
 func main() {
 	productId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	autoSubscribe := true // bool |  (optional)
 	sourceAccount := models.SubscribeFlexibleProductSourceAccountParameterSpot // SubscribeFlexibleProductSourceAccountParameter |  (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
@@ -1750,7 +1750,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **productId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **autoSubscribe** | **bool** |  | 
  **sourceAccount** | [**SubscribeFlexibleProductSourceAccountParameter**](SubscribeFlexibleProductSourceAccountParameter.md) |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
@@ -1794,7 +1794,7 @@ import (
 
 func main() {
 	projectId := "1" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	autoSubscribe := false // bool |  (optional)
 	sourceAccount := models.SubscribeFlexibleProductSourceAccountParameterSpot // SubscribeFlexibleProductSourceAccountParameter |  (optional)
 	redeemTo := models.SetLockedProductRedeemOptionRedeemToParameterSpot // SetLockedProductRedeemOptionRedeemToParameter |  (optional)
@@ -1827,7 +1827,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **autoSubscribe** | **bool** |  | 
  **sourceAccount** | [**SubscribeFlexibleProductSourceAccountParameter**](SubscribeFlexibleProductSourceAccountParameter.md) |  | 
  **redeemTo** | [**SetLockedProductRedeemOptionRedeemToParameter**](SetLockedProductRedeemOptionRedeemToParameter.md) |  | 

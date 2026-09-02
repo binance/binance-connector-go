@@ -1,5 +1,30 @@
 ### Changelog
 
+## 1.13.0 - 2026-09-02
+
+### Changed (3)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `getFlexibleSubscriptionPreview()` (`GET /sapi/v1/simple-earn/flexible/subscriptionPreview`)
+    - `getLockedSubscriptionPreview()` (`GET /sapi/v1/simple-earn/locked/subscriptionPreview`)
+    - `redeemBfusd()` (`POST /sapi/v1/bfusd/redeem`)
+    - `redeemFlexibleProduct()` (`POST /sapi/v1/simple-earn/flexible/redeem`)
+    - `redeemRwusd()` (`POST /sapi/v1/rwusd/redeem`)
+    - `subscribeBfusd()` (`POST /sapi/v1/bfusd/subscribe`)
+    - `subscribeFlexibleProduct()` (`POST /sapi/v1/simple-earn/flexible/subscribe`)
+    - `subscribeLockedProduct()` (`POST /sapi/v1/simple-earn/locked/subscribe`)
+    - `subscribeRwusd()` (`POST /sapi/v1/rwusd/subscribe`)
+- Modified response for `getFlexibleProductPosition()` (`GET /sapi/v1/simple-earn/flexible/position`):
+  - `rows`.items.`tierAnnualPercentageRate`.`0-5BTC`: type `float32` → `float64`
+  - `rows`.items.`tierAnnualPercentageRate`.`5-10BTC`: type `float32` → `float64`
+- Modified response for `getSimpleEarnFlexibleProductList()` (`GET /sapi/v1/simple-earn/flexible/list`):
+  - `rows`.items.`tierAnnualPercentageRate`.`0-5BTC`: type `float32` → `float64`
+  - `rows`.items.`tierAnnualPercentageRate`.`5-10BTC`: type `float32` → `float64`
+
 ## 1.12.0 - 2026-08-28
 
 ### Changed (2)

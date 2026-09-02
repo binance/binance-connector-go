@@ -17,8 +17,8 @@ var _ common.MappedNullable = &GetFlexibleProductPositionResponseRowsInnerTierAn
 
 // GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate struct for GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate
 type GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate struct {
-	Var05BTC             *float32 `json:"0-5BTC,omitempty"`
-	Var510BTC            *float32 `json:"5-10BTC,omitempty"`
+	Var05BTC             *float64 `json:"0-5BTC,omitempty"`
+	Var510BTC            *float64 `json:"5-10BTC,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,9 +42,9 @@ func NewGetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRateWithD
 }
 
 // GetVar05BTC returns the Var05BTC field value if set, zero value otherwise.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTC() float32 {
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTC() float64 {
 	if o == nil || common.IsNil(o.Var05BTC) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Var05BTC
@@ -52,7 +52,7 @@ func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) Ge
 
 // GetVar05BTCOk returns a tuple with the Var05BTC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTCOk() (*float32, bool) {
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar05BTCOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Var05BTC) {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) Ha
 	return false
 }
 
-// SetVar05BTC gets a reference to the given float32 and assigns it to the Var05BTC field.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar05BTC(v float32) {
+// SetVar05BTC gets a reference to the given float64 and assigns it to the Var05BTC field.
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar05BTC(v float64) {
 	o.Var05BTC = &v
 }
 
 // GetVar510BTC returns the Var510BTC field value if set, zero value otherwise.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTC() float32 {
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTC() float64 {
 	if o == nil || common.IsNil(o.Var510BTC) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Var510BTC
@@ -84,7 +84,7 @@ func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) Ge
 
 // GetVar510BTCOk returns a tuple with the Var510BTC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTCOk() (*float32, bool) {
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) GetVar510BTCOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Var510BTC) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) Ha
 	return false
 }
 
-// SetVar510BTC gets a reference to the given float32 and assigns it to the Var510BTC field.
-func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar510BTC(v float32) {
+// SetVar510BTC gets a reference to the given float64 and assigns it to the Var510BTC field.
+func (o *GetFlexibleProductPositionResponseRowsInnerTierAnnualPercentageRate) SetVar510BTC(v float64) {
 	o.Var510BTC = &v
 }
 

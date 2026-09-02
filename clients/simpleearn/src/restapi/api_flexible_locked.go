@@ -588,7 +588,7 @@ type ApiGetFlexibleSubscriptionPreviewRequest struct {
 	ctx        context.Context
 	ApiService *FlexibleLockedAPIService
 	productId  *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -597,7 +597,7 @@ func (r ApiGetFlexibleSubscriptionPreviewRequest) ProductId(productId string) Ap
 	return r
 }
 
-func (r ApiGetFlexibleSubscriptionPreviewRequest) Amount(amount float32) ApiGetFlexibleSubscriptionPreviewRequest {
+func (r ApiGetFlexibleSubscriptionPreviewRequest) Amount(amount float64) ApiGetFlexibleSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
 }
@@ -1260,7 +1260,7 @@ type ApiGetLockedSubscriptionPreviewRequest struct {
 	ctx           context.Context
 	ApiService    *FlexibleLockedAPIService
 	projectId     *string
-	amount        *float32
+	amount        *float64
 	autoSubscribe *bool
 	recvWindow    *int64
 }
@@ -1270,7 +1270,7 @@ func (r ApiGetLockedSubscriptionPreviewRequest) ProjectId(projectId string) ApiG
 	return r
 }
 
-func (r ApiGetLockedSubscriptionPreviewRequest) Amount(amount float32) ApiGetLockedSubscriptionPreviewRequest {
+func (r ApiGetLockedSubscriptionPreviewRequest) Amount(amount float64) ApiGetLockedSubscriptionPreviewRequest {
 	r.amount = &amount
 	return r
 }
@@ -1801,7 +1801,7 @@ type ApiRedeemFlexibleProductRequest struct {
 	ApiService  *FlexibleLockedAPIService
 	productId   *string
 	redeemAll   *bool
-	amount      *float32
+	amount      *float64
 	destAccount *models.RedeemFlexibleProductDestAccountParameter
 	recvWindow  *int64
 }
@@ -1817,7 +1817,7 @@ func (r ApiRedeemFlexibleProductRequest) RedeemAll(redeemAll bool) ApiRedeemFlex
 }
 
 // if redeemAll is false, amount is mandatory
-func (r ApiRedeemFlexibleProductRequest) Amount(amount float32) ApiRedeemFlexibleProductRequest {
+func (r ApiRedeemFlexibleProductRequest) Amount(amount float64) ApiRedeemFlexibleProductRequest {
 	r.amount = &amount
 	return r
 }
@@ -2306,7 +2306,7 @@ type ApiSubscribeFlexibleProductRequest struct {
 	ctx           context.Context
 	ApiService    *FlexibleLockedAPIService
 	productId     *string
-	amount        *float32
+	amount        *float64
 	autoSubscribe *bool
 	sourceAccount *models.SubscribeFlexibleProductSourceAccountParameter
 	recvWindow    *int64
@@ -2317,7 +2317,7 @@ func (r ApiSubscribeFlexibleProductRequest) ProductId(productId string) ApiSubsc
 	return r
 }
 
-func (r ApiSubscribeFlexibleProductRequest) Amount(amount float32) ApiSubscribeFlexibleProductRequest {
+func (r ApiSubscribeFlexibleProductRequest) Amount(amount float64) ApiSubscribeFlexibleProductRequest {
 	r.amount = &amount
 	return r
 }
@@ -2413,7 +2413,7 @@ type ApiSubscribeLockedProductRequest struct {
 	ctx           context.Context
 	ApiService    *FlexibleLockedAPIService
 	projectId     *string
-	amount        *float32
+	amount        *float64
 	autoSubscribe *bool
 	sourceAccount *models.SubscribeFlexibleProductSourceAccountParameter
 	redeemTo      *models.SetLockedProductRedeemOptionRedeemToParameter
@@ -2425,7 +2425,7 @@ func (r ApiSubscribeLockedProductRequest) ProjectId(projectId string) ApiSubscri
 	return r
 }
 
-func (r ApiSubscribeLockedProductRequest) Amount(amount float32) ApiSubscribeLockedProductRequest {
+func (r ApiSubscribeLockedProductRequest) Amount(amount float64) ApiSubscribeLockedProductRequest {
 	r.amount = &amount
 	return r
 }

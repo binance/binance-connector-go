@@ -577,13 +577,13 @@ func (a *RwusdAPIService) GetRwusdSubscriptionHistoryExecute(r ApiGetRwusdSubscr
 type ApiRedeemRwusdRequest struct {
 	ctx        context.Context
 	ApiService *RwusdAPIService
-	amount     *float32
+	amount     *float64
 	type_      *models.RedeemBfusdTypeParameter
 	recvWindow *int64
 }
 
 // Amount in RWUSD
-func (r ApiRedeemRwusdRequest) Amount(amount float32) ApiRedeemRwusdRequest {
+func (r ApiRedeemRwusdRequest) Amount(amount float64) ApiRedeemRwusdRequest {
 	r.amount = &amount
 	return r
 }
@@ -666,7 +666,7 @@ type ApiSubscribeRwusdRequest struct {
 	ctx        context.Context
 	ApiService *RwusdAPIService
 	asset      *models.SubscribeRwusdAssetParameter
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -676,7 +676,7 @@ func (r ApiSubscribeRwusdRequest) Asset(asset models.SubscribeRwusdAssetParamete
 }
 
 // Amount
-func (r ApiSubscribeRwusdRequest) Amount(amount float32) ApiSubscribeRwusdRequest {
+func (r ApiSubscribeRwusdRequest) Amount(amount float64) ApiSubscribeRwusdRequest {
 	r.amount = &amount
 	return r
 }

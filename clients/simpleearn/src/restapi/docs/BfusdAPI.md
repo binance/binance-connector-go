@@ -479,7 +479,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | Amount in BFUSD
+	amount := float64(1.0) // float64 | Amount in BFUSD
 	type_ := models.RedeemBfusdTypeParameterFast // RedeemBfusdTypeParameter | defaults to STANDARD
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
@@ -509,7 +509,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** | Amount in BFUSD | 
+ **amount** | **float64** | Amount in BFUSD | 
  **type_** | [**RedeemBfusdTypeParameter**](RedeemBfusdTypeParameter.md) | defaults to STANDARD | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
@@ -552,7 +552,7 @@ import (
 
 func main() {
 	asset := "USDT" // string | 
-	amount := float32(1.0) // float32 | Amount
+	amount := float64(1.0) // float64 | Amount
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -582,7 +582,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **amount** | **float32** | Amount | 
+ **amount** | **float64** | Amount | 
  **recvWindow** | **int64** | Request validity window in milliseconds. | 
 
 ### Return type
