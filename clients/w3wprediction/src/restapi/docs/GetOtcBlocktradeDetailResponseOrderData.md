@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **Taker** | Pointer to **NullableString** |  | [optional] 
 **MakerAmount** | Pointer to **string** |  | [optional] 
 **TakerAmount** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **float32** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **OrderType** | Pointer to **string** |  | [optional] 
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Expiration** | Pointer to **int64** |  | [optional] 
@@ -254,20 +254,20 @@ HasTakerAmount returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *GetOtcBlocktradeDetailResponseOrderData) GetPrice() float32`
+`func (o *GetOtcBlocktradeDetailResponseOrderData) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *GetOtcBlocktradeDetailResponseOrderData) GetPriceOk() (*float32, bool)`
+`func (o *GetOtcBlocktradeDetailResponseOrderData) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *GetOtcBlocktradeDetailResponseOrderData) SetPrice(v float32)`
+`func (o *GetOtcBlocktradeDetailResponseOrderData) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

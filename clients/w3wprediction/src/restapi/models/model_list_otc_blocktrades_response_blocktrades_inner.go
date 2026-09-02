@@ -25,7 +25,7 @@ type ListOtcBlocktradesResponseBlocktradesInner struct {
 	Maker                *string  `json:"maker,omitempty"`
 	MakerAmount          *string  `json:"makerAmount,omitempty"`
 	TakerAmount          *string  `json:"takerAmount,omitempty"`
-	Price                *float32 `json:"price,omitempty"`
+	Price                *float64 `json:"price,omitempty"`
 	QuoteType            *string  `json:"quoteType,omitempty"`
 	CreatedAt            *string  `json:"createdAt,omitempty"`
 	SecretToken          *string  `json:"secretToken,omitempty"`
@@ -276,9 +276,9 @@ func (o *ListOtcBlocktradesResponseBlocktradesInner) SetTakerAmount(v string) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *ListOtcBlocktradesResponseBlocktradesInner) GetPrice() float32 {
+func (o *ListOtcBlocktradesResponseBlocktradesInner) GetPrice() float64 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -286,7 +286,7 @@ func (o *ListOtcBlocktradesResponseBlocktradesInner) GetPrice() float32 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOtcBlocktradesResponseBlocktradesInner) GetPriceOk() (*float32, bool) {
+func (o *ListOtcBlocktradesResponseBlocktradesInner) GetPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -302,8 +302,8 @@ func (o *ListOtcBlocktradesResponseBlocktradesInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given float32 and assigns it to the Price field.
-func (o *ListOtcBlocktradesResponseBlocktradesInner) SetPrice(v float32) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *ListOtcBlocktradesResponseBlocktradesInner) SetPrice(v float64) {
 	o.Price = &v
 }
 

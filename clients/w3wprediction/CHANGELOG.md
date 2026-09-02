@@ -1,5 +1,22 @@
 ### Changelog
 
+## 1.7.0 - 2026-09-02
+
+### Changed (4)
+
+#### REST API
+
+- Modified response for `getOtcBlocktradeDetail()` (`POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/detail`):
+  - `orderData`.`price`: type `float32` → `float64`
+- Modified response for `getQuote()` (`POST /sapi/v1/w3w/wallet/prediction/trade/get-quote`):
+  - `averagePrice`: type `float32` → `float64`
+  - `lastPrice`: type `float32` → `float64`
+  - `priceImpact`: type `float32` → `float64`
+- Modified response for `listOtcBlocktrades()` (`POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/list`):
+  - `blocktrades`.items.`price`: type `float32` → `float64`
+- Modified response for `previewOtcBlocktrade()` (`POST /sapi/v1/w3w/wallet/prediction/otc/blocktrade/preview`):
+  - `orderData`.`price`: type `float32` → `float64`
+
 ## 1.6.0 - 2026-08-28
 
 ### Changed (2)

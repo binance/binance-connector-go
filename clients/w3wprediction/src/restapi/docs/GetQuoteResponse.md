@@ -16,9 +16,9 @@ Name         | Type          | Description.  | Notes
 **IsMinAmountOut** | Pointer to **bool** |  | [optional] 
 **FeeAmount** | Pointer to **string** |  | [optional] 
 **FeeDiscountBps** | Pointer to **string** |  | [optional] 
-**AveragePrice** | Pointer to **float32** |  | [optional] 
-**LastPrice** | Pointer to **float32** |  | [optional] 
-**PriceImpact** | Pointer to **float32** |  | [optional] 
+**AveragePrice** | Pointer to **float64** |  | [optional] 
+**LastPrice** | Pointer to **float64** |  | [optional] 
+**PriceImpact** | Pointer to **float64** |  | [optional] 
 **Timestamp** | Pointer to **int64** |  | [optional] 
 **ChainId** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **int64** |  | [optional] 
@@ -351,20 +351,20 @@ HasFeeDiscountBps returns a boolean if a field has been set.
 
 ### GetAveragePrice
 
-`func (o *GetQuoteResponse) GetAveragePrice() float32`
+`func (o *GetQuoteResponse) GetAveragePrice() float64`
 
 GetAveragePrice returns the AveragePrice field if non-nil, zero value otherwise.
 
 ### GetAveragePriceOk
 
-`func (o *GetQuoteResponse) GetAveragePriceOk() (*float32, bool)`
+`func (o *GetQuoteResponse) GetAveragePriceOk() (*float64, bool)`
 
 GetAveragePriceOk returns a tuple with the AveragePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAveragePrice
 
-`func (o *GetQuoteResponse) SetAveragePrice(v float32)`
+`func (o *GetQuoteResponse) SetAveragePrice(v float64)`
 
 SetAveragePrice sets AveragePrice field to given value.
 
@@ -376,20 +376,20 @@ HasAveragePrice returns a boolean if a field has been set.
 
 ### GetLastPrice
 
-`func (o *GetQuoteResponse) GetLastPrice() float32`
+`func (o *GetQuoteResponse) GetLastPrice() float64`
 
 GetLastPrice returns the LastPrice field if non-nil, zero value otherwise.
 
 ### GetLastPriceOk
 
-`func (o *GetQuoteResponse) GetLastPriceOk() (*float32, bool)`
+`func (o *GetQuoteResponse) GetLastPriceOk() (*float64, bool)`
 
 GetLastPriceOk returns a tuple with the LastPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastPrice
 
-`func (o *GetQuoteResponse) SetLastPrice(v float32)`
+`func (o *GetQuoteResponse) SetLastPrice(v float64)`
 
 SetLastPrice sets LastPrice field to given value.
 
@@ -401,20 +401,20 @@ HasLastPrice returns a boolean if a field has been set.
 
 ### GetPriceImpact
 
-`func (o *GetQuoteResponse) GetPriceImpact() float32`
+`func (o *GetQuoteResponse) GetPriceImpact() float64`
 
 GetPriceImpact returns the PriceImpact field if non-nil, zero value otherwise.
 
 ### GetPriceImpactOk
 
-`func (o *GetQuoteResponse) GetPriceImpactOk() (*float32, bool)`
+`func (o *GetQuoteResponse) GetPriceImpactOk() (*float64, bool)`
 
 GetPriceImpactOk returns a tuple with the PriceImpact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceImpact
 
-`func (o *GetQuoteResponse) SetPriceImpact(v float32)`
+`func (o *GetQuoteResponse) SetPriceImpact(v float64)`
 
 SetPriceImpact sets PriceImpact field to given value.
 

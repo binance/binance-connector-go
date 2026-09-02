@@ -29,9 +29,9 @@ type GetQuoteResponse struct {
 	IsMinAmountOut       *bool    `json:"isMinAmountOut,omitempty"`
 	FeeAmount            *string  `json:"feeAmount,omitempty"`
 	FeeDiscountBps       *string  `json:"feeDiscountBps,omitempty"`
-	AveragePrice         *float32 `json:"averagePrice,omitempty"`
-	LastPrice            *float32 `json:"lastPrice,omitempty"`
-	PriceImpact          *float32 `json:"priceImpact,omitempty"`
+	AveragePrice         *float64 `json:"averagePrice,omitempty"`
+	LastPrice            *float64 `json:"lastPrice,omitempty"`
+	PriceImpact          *float64 `json:"priceImpact,omitempty"`
 	Timestamp            *int64   `json:"timestamp,omitempty"`
 	ChainId              *string  `json:"chainId,omitempty"`
 	UserId               *int64   `json:"userId,omitempty"`
@@ -449,9 +449,9 @@ func (o *GetQuoteResponse) SetFeeDiscountBps(v string) {
 }
 
 // GetAveragePrice returns the AveragePrice field value if set, zero value otherwise.
-func (o *GetQuoteResponse) GetAveragePrice() float32 {
+func (o *GetQuoteResponse) GetAveragePrice() float64 {
 	if o == nil || common.IsNil(o.AveragePrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.AveragePrice
@@ -459,7 +459,7 @@ func (o *GetQuoteResponse) GetAveragePrice() float32 {
 
 // GetAveragePriceOk returns a tuple with the AveragePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetQuoteResponse) GetAveragePriceOk() (*float32, bool) {
+func (o *GetQuoteResponse) GetAveragePriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.AveragePrice) {
 		return nil, false
 	}
@@ -475,15 +475,15 @@ func (o *GetQuoteResponse) HasAveragePrice() bool {
 	return false
 }
 
-// SetAveragePrice gets a reference to the given float32 and assigns it to the AveragePrice field.
-func (o *GetQuoteResponse) SetAveragePrice(v float32) {
+// SetAveragePrice gets a reference to the given float64 and assigns it to the AveragePrice field.
+func (o *GetQuoteResponse) SetAveragePrice(v float64) {
 	o.AveragePrice = &v
 }
 
 // GetLastPrice returns the LastPrice field value if set, zero value otherwise.
-func (o *GetQuoteResponse) GetLastPrice() float32 {
+func (o *GetQuoteResponse) GetLastPrice() float64 {
 	if o == nil || common.IsNil(o.LastPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.LastPrice
@@ -491,7 +491,7 @@ func (o *GetQuoteResponse) GetLastPrice() float32 {
 
 // GetLastPriceOk returns a tuple with the LastPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetQuoteResponse) GetLastPriceOk() (*float32, bool) {
+func (o *GetQuoteResponse) GetLastPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.LastPrice) {
 		return nil, false
 	}
@@ -507,15 +507,15 @@ func (o *GetQuoteResponse) HasLastPrice() bool {
 	return false
 }
 
-// SetLastPrice gets a reference to the given float32 and assigns it to the LastPrice field.
-func (o *GetQuoteResponse) SetLastPrice(v float32) {
+// SetLastPrice gets a reference to the given float64 and assigns it to the LastPrice field.
+func (o *GetQuoteResponse) SetLastPrice(v float64) {
 	o.LastPrice = &v
 }
 
 // GetPriceImpact returns the PriceImpact field value if set, zero value otherwise.
-func (o *GetQuoteResponse) GetPriceImpact() float32 {
+func (o *GetQuoteResponse) GetPriceImpact() float64 {
 	if o == nil || common.IsNil(o.PriceImpact) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.PriceImpact
@@ -523,7 +523,7 @@ func (o *GetQuoteResponse) GetPriceImpact() float32 {
 
 // GetPriceImpactOk returns a tuple with the PriceImpact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetQuoteResponse) GetPriceImpactOk() (*float32, bool) {
+func (o *GetQuoteResponse) GetPriceImpactOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.PriceImpact) {
 		return nil, false
 	}
@@ -539,8 +539,8 @@ func (o *GetQuoteResponse) HasPriceImpact() bool {
 	return false
 }
 
-// SetPriceImpact gets a reference to the given float32 and assigns it to the PriceImpact field.
-func (o *GetQuoteResponse) SetPriceImpact(v float32) {
+// SetPriceImpact gets a reference to the given float64 and assigns it to the PriceImpact field.
+func (o *GetQuoteResponse) SetPriceImpact(v float64) {
 	o.PriceImpact = &v
 }
 
