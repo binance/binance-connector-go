@@ -652,7 +652,7 @@ type ApiLiquidationLoanRepayRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -663,7 +663,7 @@ func (r ApiLiquidationLoanRepayRequest) Asset(asset string) ApiLiquidationLoanRe
 }
 
 // Repayment amount, must be greater than 0
-func (r ApiLiquidationLoanRepayRequest) Amount(amount float32) ApiLiquidationLoanRepayRequest {
+func (r ApiLiquidationLoanRepayRequest) Amount(amount float64) ApiLiquidationLoanRepayRequest {
 	r.amount = &amount
 	return r
 }
@@ -1053,16 +1053,16 @@ type ApiMarginAccountNewOcoRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.MarginAccountNewOrderSideParameter
-	quantity                *float32
-	price                   *float32
-	stopPrice               *float32
+	quantity                *float64
+	price                   *float64
+	stopPrice               *float64
 	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	listClientOrderId       *string
 	limitClientOrderId      *string
-	limitIcebergQty         *float32
+	limitIcebergQty         *float64
 	stopClientOrderId       *string
-	stopLimitPrice          *float32
-	stopIcebergQty          *float32
+	stopLimitPrice          *float64
+	stopIcebergQty          *float64
 	stopLimitTimeInForce    *models.MarginAccountNewOcoStopLimitTimeInForceParameter
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
 	sideEffectType          *models.MarginAccountNewOrderSideEffectTypeParameter
@@ -1081,17 +1081,17 @@ func (r ApiMarginAccountNewOcoRequest) Side(side models.MarginAccountNewOrderSid
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) Quantity(quantity float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) Quantity(quantity float64) ApiMarginAccountNewOcoRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) Price(price float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) Price(price float64) ApiMarginAccountNewOcoRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float64) ApiMarginAccountNewOcoRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -1113,7 +1113,7 @@ func (r ApiMarginAccountNewOcoRequest) LimitClientOrderId(limitClientOrderId str
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) LimitIcebergQty(limitIcebergQty float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) LimitIcebergQty(limitIcebergQty float64) ApiMarginAccountNewOcoRequest {
 	r.limitIcebergQty = &limitIcebergQty
 	return r
 }
@@ -1125,12 +1125,12 @@ func (r ApiMarginAccountNewOcoRequest) StopClientOrderId(stopClientOrderId strin
 }
 
 // If provided, &#x60;stopLimitTimeInForce&#x60; is required.
-func (r ApiMarginAccountNewOcoRequest) StopLimitPrice(stopLimitPrice float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopLimitPrice(stopLimitPrice float64) ApiMarginAccountNewOcoRequest {
 	r.stopLimitPrice = &stopLimitPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float64) ApiMarginAccountNewOcoRequest {
 	r.stopIcebergQty = &stopIcebergQty
 	return r
 }
@@ -1302,12 +1302,12 @@ type ApiMarginAccountNewOrderRequest struct {
 	side                    *models.MarginAccountNewOrderSideParameter
 	type_                   *models.MarginAccountNewOrderTypeParameter
 	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
-	quantity                *float32
-	quoteOrderQty           *float32
-	price                   *float32
-	stopPrice               *float32
+	quantity                *float64
+	quoteOrderQty           *float64
+	price                   *float64
+	stopPrice               *float64
 	newClientOrderId        *string
-	icebergQty              *float32
+	icebergQty              *float64
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
 	sideEffectType          *models.MarginAccountNewOrderSideEffectTypeParameter
 	timeInForce             *models.MarginAccountNewOrderTimeInForceParameter
@@ -1337,23 +1337,23 @@ func (r ApiMarginAccountNewOrderRequest) IsIsolated(isIsolated models.QueryMargi
 	return r
 }
 
-func (r ApiMarginAccountNewOrderRequest) Quantity(quantity float32) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) Quantity(quantity float64) ApiMarginAccountNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiMarginAccountNewOrderRequest) QuoteOrderQty(quoteOrderQty float32) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) QuoteOrderQty(quoteOrderQty float64) ApiMarginAccountNewOrderRequest {
 	r.quoteOrderQty = &quoteOrderQty
 	return r
 }
 
-func (r ApiMarginAccountNewOrderRequest) Price(price float32) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) Price(price float64) ApiMarginAccountNewOrderRequest {
 	r.price = &price
 	return r
 }
 
 // Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
-func (r ApiMarginAccountNewOrderRequest) StopPrice(stopPrice float32) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) StopPrice(stopPrice float64) ApiMarginAccountNewOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -1365,7 +1365,7 @@ func (r ApiMarginAccountNewOrderRequest) NewClientOrderId(newClientOrderId strin
 }
 
 // Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order.
-func (r ApiMarginAccountNewOrderRequest) IcebergQty(icebergQty float32) ApiMarginAccountNewOrderRequest {
+func (r ApiMarginAccountNewOrderRequest) IcebergQty(icebergQty float64) ApiMarginAccountNewOrderRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -1535,12 +1535,12 @@ type ApiMarginAccountNewOtoRequest struct {
 	symbol                  *string
 	workingType             *models.MarginAccountNewOtoWorkingTypeParameter
 	workingSide             *models.MarginAccountNewOtoWorkingSideParameter
-	workingPrice            *float32
-	workingQuantity         *float32
-	workingIcebergQty       *float32
+	workingPrice            *float64
+	workingQuantity         *float64
+	workingIcebergQty       *float64
 	pendingType             *models.MarginAccountNewOrderTypeParameter
 	pendingSide             *models.MarginAccountNewOrderSideParameter
-	pendingQuantity         *float32
+	pendingQuantity         *float64
 	isIsolated              *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	listClientOrderId       *string
 	newOrderRespType        *models.MarginAccountNewOrderNewOrderRespTypeParameter
@@ -1550,10 +1550,10 @@ type ApiMarginAccountNewOtoRequest struct {
 	workingClientOrderId    *string
 	workingTimeInForce      *models.MarginAccountNewOrderTimeInForceParameter
 	pendingClientOrderId    *string
-	pendingPrice            *float32
-	pendingStopPrice        *float32
-	pendingTrailingDelta    *float32
-	pendingIcebergQty       *float32
+	pendingPrice            *float64
+	pendingStopPrice        *float64
+	pendingTrailingDelta    *float64
+	pendingIcebergQty       *float64
 	pendingTimeInForce      *models.MarginAccountNewOrderTimeInForceParameter
 }
 
@@ -1572,19 +1572,19 @@ func (r ApiMarginAccountNewOtoRequest) WorkingSide(workingSide models.MarginAcco
 	return r
 }
 
-func (r ApiMarginAccountNewOtoRequest) WorkingPrice(workingPrice float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingPrice(workingPrice float64) ApiMarginAccountNewOtoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
 // Sets the quantity for the working order.
-func (r ApiMarginAccountNewOtoRequest) WorkingQuantity(workingQuantity float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingQuantity(workingQuantity float64) ApiMarginAccountNewOtoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiMarginAccountNewOtoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiMarginAccountNewOtoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -1600,7 +1600,7 @@ func (r ApiMarginAccountNewOtoRequest) PendingSide(pendingSide models.MarginAcco
 }
 
 // Sets the quantity for the pending order.
-func (r ApiMarginAccountNewOtoRequest) PendingQuantity(pendingQuantity float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingQuantity(pendingQuantity float64) ApiMarginAccountNewOtoRequest {
 	r.pendingQuantity = &pendingQuantity
 	return r
 }
@@ -1655,23 +1655,23 @@ func (r ApiMarginAccountNewOtoRequest) PendingClientOrderId(pendingClientOrderId
 	return r
 }
 
-func (r ApiMarginAccountNewOtoRequest) PendingPrice(pendingPrice float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingPrice(pendingPrice float64) ApiMarginAccountNewOtoRequest {
 	r.pendingPrice = &pendingPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtoRequest) PendingStopPrice(pendingStopPrice float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingStopPrice(pendingStopPrice float64) ApiMarginAccountNewOtoRequest {
 	r.pendingStopPrice = &pendingStopPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtoRequest) PendingTrailingDelta(pendingTrailingDelta float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingTrailingDelta(pendingTrailingDelta float64) ApiMarginAccountNewOtoRequest {
 	r.pendingTrailingDelta = &pendingTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiMarginAccountNewOtoRequest) PendingIcebergQty(pendingIcebergQty float32) ApiMarginAccountNewOtoRequest {
+func (r ApiMarginAccountNewOtoRequest) PendingIcebergQty(pendingIcebergQty float64) ApiMarginAccountNewOtoRequest {
 	r.pendingIcebergQty = &pendingIcebergQty
 	return r
 }
@@ -1844,10 +1844,10 @@ type ApiMarginAccountNewOtocoRequest struct {
 	symbol                    *string
 	workingType               *models.MarginAccountNewOtoWorkingTypeParameter
 	workingSide               *models.MarginAccountNewOtoWorkingSideParameter
-	workingPrice              *float32
-	workingQuantity           *float32
+	workingPrice              *float64
+	workingQuantity           *float64
 	pendingSide               *models.MarginAccountNewOrderSideParameter
-	pendingQuantity           *float32
+	pendingQuantity           *float64
 	pendingAboveType          *models.MarginAccountNewOtocoPendingAboveTypeParameter
 	isIsolated                *models.QueryMarginAccountsOpenOrdersIsIsolatedParameter
 	sideEffectType            *models.MarginAccountNewOtoSideEffectTypeParameter
@@ -1856,20 +1856,20 @@ type ApiMarginAccountNewOtocoRequest struct {
 	newOrderRespType          *models.MarginAccountNewOrderNewOrderRespTypeParameter
 	selfTradePreventionMode   *models.MarginAccountNewOrderSelfTradePreventionModeParameter
 	workingClientOrderId      *string
-	workingIcebergQty         *float32
+	workingIcebergQty         *float64
 	workingTimeInForce        *models.MarginAccountNewOtocoWorkingTimeInForceParameter
 	pendingAboveClientOrderId *string
-	pendingAbovePrice         *float32
-	pendingAboveStopPrice     *float32
-	pendingAboveTrailingDelta *float32
-	pendingAboveIcebergQty    *float32
+	pendingAbovePrice         *float64
+	pendingAboveStopPrice     *float64
+	pendingAboveTrailingDelta *float64
+	pendingAboveIcebergQty    *float64
 	pendingAboveTimeInForce   *models.MarginAccountNewOtocoWorkingTimeInForceParameter
 	pendingBelowType          *models.MarginAccountNewOtocoPendingAboveTypeParameter
 	pendingBelowClientOrderId *string
-	pendingBelowPrice         *float32
-	pendingBelowStopPrice     *float32
-	pendingBelowTrailingDelta *float32
-	pendingBelowIcebergQty    *float32
+	pendingBelowPrice         *float64
+	pendingBelowStopPrice     *float64
+	pendingBelowTrailingDelta *float64
+	pendingBelowIcebergQty    *float64
 	pendingBelowTimeInForce   *models.MarginAccountNewOtocoWorkingTimeInForceParameter
 }
 
@@ -1888,12 +1888,12 @@ func (r ApiMarginAccountNewOtocoRequest) WorkingSide(workingSide models.MarginAc
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) WorkingPrice(workingPrice float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingPrice(workingPrice float64) ApiMarginAccountNewOtocoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) WorkingQuantity(workingQuantity float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingQuantity(workingQuantity float64) ApiMarginAccountNewOtocoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
@@ -1903,7 +1903,7 @@ func (r ApiMarginAccountNewOtocoRequest) PendingSide(pendingSide models.MarginAc
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingQuantity(pendingQuantity float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingQuantity(pendingQuantity float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingQuantity = &pendingQuantity
 	return r
 }
@@ -1952,7 +1952,7 @@ func (r ApiMarginAccountNewOtocoRequest) WorkingClientOrderId(workingClientOrder
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiMarginAccountNewOtocoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiMarginAccountNewOtocoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -1968,23 +1968,23 @@ func (r ApiMarginAccountNewOtocoRequest) PendingAboveClientOrderId(pendingAboveC
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingAbovePrice(pendingAbovePrice float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAbovePrice(pendingAbovePrice float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingAbovePrice = &pendingAbovePrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingAboveStopPrice = &pendingAboveStopPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingAboveTrailingDelta = &pendingAboveTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiMarginAccountNewOtocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingAboveIcebergQty = &pendingAboveIcebergQty
 	return r
 }
@@ -2005,23 +2005,23 @@ func (r ApiMarginAccountNewOtocoRequest) PendingBelowClientOrderId(pendingBelowC
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowPrice(pendingBelowPrice float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowPrice(pendingBelowPrice float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowPrice = &pendingBelowPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowStopPrice = &pendingBelowStopPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowTrailingDelta = &pendingBelowTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiMarginAccountNewOtocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float32) ApiMarginAccountNewOtocoRequest {
+func (r ApiMarginAccountNewOtocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float64) ApiMarginAccountNewOtocoRequest {
 	r.pendingBelowIcebergQty = &pendingBelowIcebergQty
 	return r
 }

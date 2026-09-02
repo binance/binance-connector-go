@@ -20,13 +20,13 @@ type QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsI
 	// leverage.
 	Leverage *int64 `json:"leverage,omitempty"`
 	// max Debt.
-	MaxDebt *float32 `json:"maxDebt,omitempty"`
+	MaxDebt *float64 `json:"maxDebt,omitempty"`
 	// maintenance Margin Rate.
-	MaintenanceMarginRate *float32 `json:"maintenanceMarginRate,omitempty"`
+	MaintenanceMarginRate *float64 `json:"maintenanceMarginRate,omitempty"`
 	// initial Margin Rate.
-	InitialMarginRate *float32 `json:"initialMarginRate,omitempty"`
+	InitialMarginRate *float64 `json:"initialMarginRate,omitempty"`
 	// fast Num.
-	FastNum              *float32 `json:"fastNum,omitempty"`
+	FastNum              *float64 `json:"fastNum,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,9 +82,9 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 }
 
 // GetMaxDebt returns the MaxDebt field value if set, zero value otherwise.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebt() float32 {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebt() float64 {
 	if o == nil || common.IsNil(o.MaxDebt) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.MaxDebt
@@ -92,7 +92,7 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 
 // GetMaxDebtOk returns a tuple with the MaxDebt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebtOk() (*float32, bool) {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebtOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.MaxDebt) {
 		return nil, false
 	}
@@ -108,15 +108,15 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 	return false
 }
 
-// SetMaxDebt gets a reference to the given float32 and assigns it to the MaxDebt field.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaxDebt(v float32) {
+// SetMaxDebt gets a reference to the given float64 and assigns it to the MaxDebt field.
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaxDebt(v float64) {
 	o.MaxDebt = &v
 }
 
 // GetMaintenanceMarginRate returns the MaintenanceMarginRate field value if set, zero value otherwise.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRate() float32 {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRate() float64 {
 	if o == nil || common.IsNil(o.MaintenanceMarginRate) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.MaintenanceMarginRate
@@ -124,7 +124,7 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 
 // GetMaintenanceMarginRateOk returns a tuple with the MaintenanceMarginRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRateOk() (*float32, bool) {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRateOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.MaintenanceMarginRate) {
 		return nil, false
 	}
@@ -140,15 +140,15 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 	return false
 }
 
-// SetMaintenanceMarginRate gets a reference to the given float32 and assigns it to the MaintenanceMarginRate field.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaintenanceMarginRate(v float32) {
+// SetMaintenanceMarginRate gets a reference to the given float64 and assigns it to the MaintenanceMarginRate field.
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaintenanceMarginRate(v float64) {
 	o.MaintenanceMarginRate = &v
 }
 
 // GetInitialMarginRate returns the InitialMarginRate field value if set, zero value otherwise.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRate() float32 {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRate() float64 {
 	if o == nil || common.IsNil(o.InitialMarginRate) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.InitialMarginRate
@@ -156,7 +156,7 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 
 // GetInitialMarginRateOk returns a tuple with the InitialMarginRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRateOk() (*float32, bool) {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRateOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.InitialMarginRate) {
 		return nil, false
 	}
@@ -172,15 +172,15 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 	return false
 }
 
-// SetInitialMarginRate gets a reference to the given float32 and assigns it to the InitialMarginRate field.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetInitialMarginRate(v float32) {
+// SetInitialMarginRate gets a reference to the given float64 and assigns it to the InitialMarginRate field.
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetInitialMarginRate(v float64) {
 	o.InitialMarginRate = &v
 }
 
 // GetFastNum returns the FastNum field value if set, zero value otherwise.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNum() float32 {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNum() float64 {
 	if o == nil || common.IsNil(o.FastNum) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.FastNum
@@ -188,7 +188,7 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 
 // GetFastNumOk returns a tuple with the FastNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNumOk() (*float32, bool) {
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNumOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.FastNum) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBrack
 	return false
 }
 
-// SetFastNum gets a reference to the given float32 and assigns it to the FastNum field.
-func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetFastNum(v float32) {
+// SetFastNum gets a reference to the given float64 and assigns it to the FastNum field.
+func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetFastNum(v float64) {
 	o.FastNum = &v
 }
 

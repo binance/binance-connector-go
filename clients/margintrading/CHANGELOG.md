@@ -1,5 +1,128 @@
 ### Changelog
 
+## 1.13.0 - 2026-09-02
+
+### Changed (28)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `liquidationLoanRepay()` (`POST /sapi/v1/margin/liquidation-loan/repay`)
+- Modified parameter `icebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`)
+- Modified parameter `limitIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+- Modified parameter `pendingAboveIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingAbovePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingAboveStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingAboveTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingBelowIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingBelowPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingBelowStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingBelowTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+- Modified parameter `pendingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+- Modified parameter `pendingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `pendingStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+- Modified parameter `pendingTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+    - `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+    - `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`)
+- Modified parameter `quoteOrderQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`)
+- Modified parameter `stopIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+- Modified parameter `stopLimitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /sapi/v1/margin/order/oco`)
+    - `marginAccountNewOrder()` (`POST /sapi/v1/margin/order`)
+- Modified parameter `workingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `workingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified parameter `workingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOto()` (`POST /sapi/v1/margin/order/oto`)
+    - `marginAccountNewOtoco()` (`POST /sapi/v1/margin/order/otoco`)
+- Modified response for `getSmallLiabilityExchangeCoinList()` (`GET /sapi/v1/margin/exchange-small-liability`):
+  - items.`liabilityQty`: type `float32` → `float64`
+- Modified response for `marginManualLiquidation()` (`POST /sapi/v1/margin/manual-liquidation`):
+  - `liabilityQty`: type `float32` → `float64`
+- Modified response for `queryLiabilityCoinLeverageBracketInCrossMarginProMode()` (`GET /sapi/v1/margin/leverageBracket`):
+  - items.`brackets`.items.`fastNum`: type `float32` → `float64`
+  - items.`brackets`.items.`initialMarginRate`: type `float32` → `float64`
+  - items.`brackets`.items.`maintenanceMarginRate`: type `float32` → `float64`
+  - items.`brackets`.items.`maxDebt`: type `float32` → `float64`
+
 ## 1.12.1 - 2026-08-31
 
 ### Changed (2)

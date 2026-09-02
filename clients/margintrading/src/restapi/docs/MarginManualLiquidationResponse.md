@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **Interest** | Pointer to **string** | interest. | [optional] 
 **Principal** | Pointer to **string** | principal. | [optional] 
 **LiabilityAsset** | Pointer to **string** | liability Asset. | [optional] 
-**LiabilityQty** | Pointer to **float32** | liability Qty. | [optional] 
+**LiabilityQty** | Pointer to **float64** | liability Qty. | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasLiabilityAsset returns a boolean if a field has been set.
 
 ### GetLiabilityQty
 
-`func (o *MarginManualLiquidationResponse) GetLiabilityQty() float32`
+`func (o *MarginManualLiquidationResponse) GetLiabilityQty() float64`
 
 GetLiabilityQty returns the LiabilityQty field if non-nil, zero value otherwise.
 
 ### GetLiabilityQtyOk
 
-`func (o *MarginManualLiquidationResponse) GetLiabilityQtyOk() (*float32, bool)`
+`func (o *MarginManualLiquidationResponse) GetLiabilityQtyOk() (*float64, bool)`
 
 GetLiabilityQtyOk returns a tuple with the LiabilityQty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLiabilityQty
 
-`func (o *MarginManualLiquidationResponse) SetLiabilityQty(v float32)`
+`func (o *MarginManualLiquidationResponse) SetLiabilityQty(v float64)`
 
 SetLiabilityQty sets LiabilityQty field to given value.
 

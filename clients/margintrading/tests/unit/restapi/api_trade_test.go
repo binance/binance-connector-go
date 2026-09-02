@@ -462,7 +462,7 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/margin/liquidation-loan/repay", r.URL.Path)
 			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(300.00)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(300.00)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -479,7 +479,7 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.LiquidationLoanRepay(context.Background()).Asset("USDT").Amount(float32(300.00)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.LiquidationLoanRepay(context.Background()).Asset("USDT").Amount(float64(300.00)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -772,9 +772,9 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/margin/order/oco", r.URL.Path)
 			require.Equal(t, "LTCBTC", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.MarginAccountNewOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("quantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("price"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("stopPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("price"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("stopPrice"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -791,7 +791,7 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("LTCBTC").Side(models.MarginAccountNewOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).StopPrice(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("LTCBTC").Side(models.MarginAccountNewOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).StopPrice(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -933,12 +933,12 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.MarginAccountNewOtoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.MarginAccountNewOtoWorkingSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("workingQuantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("workingIcebergQty"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("workingIcebergQty"))
 			require.Equal(t, string(models.MarginAccountNewOrderTypeParameterLimit), r.URL.Query().Get("pendingType"))
 			require.Equal(t, string(models.MarginAccountNewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("pendingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("pendingQuantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -955,7 +955,7 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOto(context.Background()).Symbol("BTCUSDT").WorkingType(models.MarginAccountNewOtoWorkingTypeParameterLimit).WorkingSide(models.MarginAccountNewOtoWorkingSideParameterBuy).WorkingPrice(float32(1.0)).WorkingQuantity(float32(1.0)).WorkingIcebergQty(float32(1.0)).PendingType(models.MarginAccountNewOrderTypeParameterLimit).PendingSide(models.MarginAccountNewOrderSideParameterBuy).PendingQuantity(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOto(context.Background()).Symbol("BTCUSDT").WorkingType(models.MarginAccountNewOtoWorkingTypeParameterLimit).WorkingSide(models.MarginAccountNewOtoWorkingSideParameterBuy).WorkingPrice(float64(1.0)).WorkingQuantity(float64(1.0)).WorkingIcebergQty(float64(1.0)).PendingType(models.MarginAccountNewOrderTypeParameterLimit).PendingSide(models.MarginAccountNewOrderSideParameterBuy).PendingQuantity(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1018,10 +1018,10 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.MarginAccountNewOtoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.MarginAccountNewOtoWorkingSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("workingQuantity"))
 			require.Equal(t, string(models.MarginAccountNewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("pendingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("pendingQuantity"))
 			require.Equal(t, string(models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker), r.URL.Query().Get("pendingAboveType"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -1039,7 +1039,7 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOtoco(context.Background()).Symbol("BTCUSDT").WorkingType(models.MarginAccountNewOtoWorkingTypeParameterLimit).WorkingSide(models.MarginAccountNewOtoWorkingSideParameterBuy).WorkingPrice(float32(1.0)).WorkingQuantity(float32(1.0)).PendingSide(models.MarginAccountNewOrderSideParameterBuy).PendingQuantity(float32(1.0)).PendingAboveType(models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOtoco(context.Background()).Symbol("BTCUSDT").WorkingType(models.MarginAccountNewOtoWorkingTypeParameterLimit).WorkingSide(models.MarginAccountNewOtoWorkingSideParameterBuy).WorkingPrice(float64(1.0)).WorkingQuantity(float64(1.0)).PendingSide(models.MarginAccountNewOrderSideParameterBuy).PendingQuantity(float64(1.0)).PendingAboveType(models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Leverage** | Pointer to **int64** | leverage. | [optional] 
-**MaxDebt** | Pointer to **float32** | max Debt. | [optional] 
-**MaintenanceMarginRate** | Pointer to **float32** | maintenance Margin Rate. | [optional] 
-**InitialMarginRate** | Pointer to **float32** | initial Margin Rate. | [optional] 
-**FastNum** | Pointer to **float32** | fast Num. | [optional] 
+**MaxDebt** | Pointer to **float64** | max Debt. | [optional] 
+**MaintenanceMarginRate** | Pointer to **float64** | maintenance Margin Rate. | [optional] 
+**InitialMarginRate** | Pointer to **float64** | initial Margin Rate. | [optional] 
+**FastNum** | Pointer to **float64** | fast Num. | [optional] 
 
 ## Methods
 
@@ -56,20 +56,20 @@ HasLeverage returns a boolean if a field has been set.
 
 ### GetMaxDebt
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebt() float32`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebt() float64`
 
 GetMaxDebt returns the MaxDebt field if non-nil, zero value otherwise.
 
 ### GetMaxDebtOk
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebtOk() (*float32, bool)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaxDebtOk() (*float64, bool)`
 
 GetMaxDebtOk returns a tuple with the MaxDebt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaxDebt
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaxDebt(v float32)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaxDebt(v float64)`
 
 SetMaxDebt sets MaxDebt field to given value.
 
@@ -81,20 +81,20 @@ HasMaxDebt returns a boolean if a field has been set.
 
 ### GetMaintenanceMarginRate
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRate() float32`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRate() float64`
 
 GetMaintenanceMarginRate returns the MaintenanceMarginRate field if non-nil, zero value otherwise.
 
 ### GetMaintenanceMarginRateOk
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRateOk() (*float32, bool)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetMaintenanceMarginRateOk() (*float64, bool)`
 
 GetMaintenanceMarginRateOk returns a tuple with the MaintenanceMarginRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaintenanceMarginRate
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaintenanceMarginRate(v float32)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetMaintenanceMarginRate(v float64)`
 
 SetMaintenanceMarginRate sets MaintenanceMarginRate field to given value.
 
@@ -106,20 +106,20 @@ HasMaintenanceMarginRate returns a boolean if a field has been set.
 
 ### GetInitialMarginRate
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRate() float32`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRate() float64`
 
 GetInitialMarginRate returns the InitialMarginRate field if non-nil, zero value otherwise.
 
 ### GetInitialMarginRateOk
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRateOk() (*float32, bool)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetInitialMarginRateOk() (*float64, bool)`
 
 GetInitialMarginRateOk returns a tuple with the InitialMarginRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInitialMarginRate
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetInitialMarginRate(v float32)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetInitialMarginRate(v float64)`
 
 SetInitialMarginRate sets InitialMarginRate field to given value.
 
@@ -131,20 +131,20 @@ HasInitialMarginRate returns a boolean if a field has been set.
 
 ### GetFastNum
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNum() float32`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNum() float64`
 
 GetFastNum returns the FastNum field if non-nil, zero value otherwise.
 
 ### GetFastNumOk
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNumOk() (*float32, bool)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) GetFastNumOk() (*float64, bool)`
 
 GetFastNumOk returns a tuple with the FastNum field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFastNum
 
-`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetFastNum(v float32)`
+`func (o *QueryLiabilityCoinLeverageBracketInCrossMarginProModeResponseInnerBracketsInner) SetFastNum(v float64)`
 
 SetFastNum sets FastNum field to given value.
 

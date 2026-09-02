@@ -26,7 +26,7 @@ type GetSmallLiabilityExchangeCoinListResponseInner struct {
 	// liability Asset.
 	LiabilityAsset *string `json:"liabilityAsset,omitempty"`
 	// liability Qty.
-	LiabilityQty         *float32 `json:"liabilityQty,omitempty"`
+	LiabilityQty         *float64 `json:"liabilityQty,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -178,9 +178,9 @@ func (o *GetSmallLiabilityExchangeCoinListResponseInner) SetLiabilityAsset(v str
 }
 
 // GetLiabilityQty returns the LiabilityQty field value if set, zero value otherwise.
-func (o *GetSmallLiabilityExchangeCoinListResponseInner) GetLiabilityQty() float32 {
+func (o *GetSmallLiabilityExchangeCoinListResponseInner) GetLiabilityQty() float64 {
 	if o == nil || common.IsNil(o.LiabilityQty) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.LiabilityQty
@@ -188,7 +188,7 @@ func (o *GetSmallLiabilityExchangeCoinListResponseInner) GetLiabilityQty() float
 
 // GetLiabilityQtyOk returns a tuple with the LiabilityQty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSmallLiabilityExchangeCoinListResponseInner) GetLiabilityQtyOk() (*float32, bool) {
+func (o *GetSmallLiabilityExchangeCoinListResponseInner) GetLiabilityQtyOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.LiabilityQty) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *GetSmallLiabilityExchangeCoinListResponseInner) HasLiabilityQty() bool 
 	return false
 }
 
-// SetLiabilityQty gets a reference to the given float32 and assigns it to the LiabilityQty field.
-func (o *GetSmallLiabilityExchangeCoinListResponseInner) SetLiabilityQty(v float32) {
+// SetLiabilityQty gets a reference to the given float64 and assigns it to the LiabilityQty field.
+func (o *GetSmallLiabilityExchangeCoinListResponseInner) SetLiabilityQty(v float64) {
 	o.LiabilityQty = &v
 }
 

@@ -560,7 +560,7 @@ import (
 
 func main() {
 	asset := "USDT" // string | The asset to repay (e.g. USDT, USDC)
-	amount := float32(300.00) // float32 | Repayment amount, must be greater than 0
+	amount := float64(300.00) // float64 | Repayment amount, must be greater than 0
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -590,7 +590,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** | The asset to repay (e.g. USDT, USDC) | 
- **amount** | **float32** | Repayment amount, must be greater than 0 | 
+ **amount** | **float64** | Repayment amount, must be greater than 0 | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -861,16 +861,16 @@ import (
 func main() {
 	symbol := "LTCBTC" // string | 
 	side := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
-	quantity := float32(1.0) // float32 | 
-	price := float32(1.0) // float32 | 
-	stopPrice := float32(1.0) // float32 | 
+	quantity := float64(1.0) // float64 | 
+	price := float64(1.0) // float64 | 
+	stopPrice := float64(1.0) // float64 | 
 	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	listClientOrderId := "1" // string | A unique Id for the entire orderList (optional)
 	limitClientOrderId := "1" // string | A unique Id for the limit order (optional)
-	limitIcebergQty := float32(1.0) // float32 |  (optional)
+	limitIcebergQty := float64(1.0) // float64 |  (optional)
 	stopClientOrderId := "1" // string | A unique Id for the stop loss/stop loss limit leg (optional)
-	stopLimitPrice := float32(1.0) // float32 | If provided, `stopLimitTimeInForce` is required. (optional)
-	stopIcebergQty := float32(1.0) // float32 |  (optional)
+	stopLimitPrice := float64(1.0) // float64 | If provided, `stopLimitTimeInForce` is required. (optional)
+	stopIcebergQty := float64(1.0) // float64 |  (optional)
 	stopLimitTimeInForce := models.MarginAccountNewOcoStopLimitTimeInForceParameterGtc // MarginAccountNewOcoStopLimitTimeInForceParameter |  (optional)
 	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter |  (optional)
 	sideEffectType := models.MarginAccountNewOrderSideEffectTypeParameterNoSideEffect // MarginAccountNewOrderSideEffectTypeParameter |  (optional)
@@ -906,16 +906,16 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
- **quantity** | **float32** |  | 
- **price** | **float32** |  | 
- **stopPrice** | **float32** |  | 
+ **quantity** | **float64** |  | 
+ **price** | **float64** |  | 
+ **stopPrice** | **float64** |  | 
  **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **listClientOrderId** | **string** | A unique Id for the entire orderList | 
  **limitClientOrderId** | **string** | A unique Id for the limit order | 
- **limitIcebergQty** | **float32** |  | 
+ **limitIcebergQty** | **float64** |  | 
  **stopClientOrderId** | **string** | A unique Id for the stop loss/stop loss limit leg | 
- **stopLimitPrice** | **float32** | If provided, &#x60;stopLimitTimeInForce&#x60; is required. | 
- **stopIcebergQty** | **float32** |  | 
+ **stopLimitPrice** | **float64** | If provided, &#x60;stopLimitTimeInForce&#x60; is required. | 
+ **stopIcebergQty** | **float64** |  | 
  **stopLimitTimeInForce** | [**MarginAccountNewOcoStopLimitTimeInForceParameter**](MarginAccountNewOcoStopLimitTimeInForceParameter.md) |  | 
  **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) |  | 
  **sideEffectType** | [**MarginAccountNewOrderSideEffectTypeParameter**](MarginAccountNewOrderSideEffectTypeParameter.md) |  | 
@@ -965,12 +965,12 @@ func main() {
 	side := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
 	type_ := models.MarginAccountNewOrderTypeParameterLimit // MarginAccountNewOrderTypeParameter | 
 	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	quoteOrderQty := float32(1.0) // float32 |  (optional)
-	price := float32(1.0) // float32 |  (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
+	quantity := float64(1.0) // float64 |  (optional)
+	quoteOrderQty := float64(1.0) // float64 |  (optional)
+	price := float64(1.0) // float64 |  (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
+	icebergQty := float64(1.0) // float64 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order. (optional)
 	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
 	sideEffectType := models.MarginAccountNewOrderSideEffectTypeParameterNoSideEffect // MarginAccountNewOrderSideEffectTypeParameter |  (optional)
 	timeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
@@ -1009,12 +1009,12 @@ Name          | Type          | Description   | Notes
  **side** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
  **type_** | [**MarginAccountNewOrderTypeParameter**](MarginAccountNewOrderTypeParameter.md) |  | 
  **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
- **quantity** | **float32** |  | 
- **quoteOrderQty** | **float32** |  | 
- **price** | **float32** |  | 
- **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
+ **quantity** | **float64** |  | 
+ **quoteOrderQty** | **float64** |  | 
+ **price** | **float64** |  | 
+ **stopPrice** | **float64** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. | 
- **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
+ **icebergQty** | **float64** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order. | 
  **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
  **sideEffectType** | [**MarginAccountNewOrderSideEffectTypeParameter**](MarginAccountNewOrderSideEffectTypeParameter.md) |  | 
  **timeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
@@ -1064,12 +1064,12 @@ func main() {
 	symbol := "BTCUSDT" // string | 
 	workingType := models.MarginAccountNewOtoWorkingTypeParameterLimit // MarginAccountNewOtoWorkingTypeParameter | 
 	workingSide := models.MarginAccountNewOtoWorkingSideParameterBuy // MarginAccountNewOtoWorkingSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | Sets the quantity for the working order.
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`.
+	workingPrice := float64(1.0) // float64 | 
+	workingQuantity := float64(1.0) // float64 | Sets the quantity for the working order.
+	workingIcebergQty := float64(1.0) // float64 | This can only be used if `workingTimeInForce` is `GTC`.
 	pendingType := models.MarginAccountNewOrderTypeParameterLimit // MarginAccountNewOrderTypeParameter | 
 	pendingSide := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
-	pendingQuantity := float32(1.0) // float32 | Sets the quantity for the pending order.
+	pendingQuantity := float64(1.0) // float64 | Sets the quantity for the pending order.
 	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	listClientOrderId := "1" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br/>A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.<br/>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. (optional)
 	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter | MARKET and LIMIT order types default to FULL, all other orders default to ACK. (optional)
@@ -1079,10 +1079,10 @@ func main() {
 	workingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
 	workingTimeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
 	pendingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. (optional)
-	pendingPrice := float32(1.0) // float32 |  (optional)
-	pendingStopPrice := float32(1.0) // float32 |  (optional)
-	pendingTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingIcebergQty := float32(1.0) // float32 | This can only be used if `pendingTimeInForce` is `GTC`. (optional)
+	pendingPrice := float64(1.0) // float64 |  (optional)
+	pendingStopPrice := float64(1.0) // float64 |  (optional)
+	pendingTrailingDelta := float64(1.0) // float64 |  (optional)
+	pendingIcebergQty := float64(1.0) // float64 | This can only be used if `pendingTimeInForce` is `GTC`. (optional)
 	pendingTimeInForce := models.MarginAccountNewOrderTimeInForceParameterGtc // MarginAccountNewOrderTimeInForceParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1114,12 +1114,12 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **workingType** | [**MarginAccountNewOtoWorkingTypeParameter**](MarginAccountNewOtoWorkingTypeParameter.md) |  | 
  **workingSide** | [**MarginAccountNewOtoWorkingSideParameter**](MarginAccountNewOtoWorkingSideParameter.md) |  | 
- **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** | Sets the quantity for the working order. | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **workingPrice** | **float64** |  | 
+ **workingQuantity** | **float64** | Sets the quantity for the working order. | 
+ **workingIcebergQty** | **float64** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **pendingType** | [**MarginAccountNewOrderTypeParameter**](MarginAccountNewOrderTypeParameter.md) |  | 
  **pendingSide** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
- **pendingQuantity** | **float32** | Sets the quantity for the pending order. | 
+ **pendingQuantity** | **float64** | Sets the quantity for the pending order. | 
  **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent.&lt;br/&gt;A new order list with the same listClientOrderId is accepted only when the previous one is filled or completely expired.&lt;br/&gt;&#x60;listClientOrderId&#x60; is distinct from the &#x60;workingClientOrderId&#x60; and the &#x60;pendingClientOrderId&#x60;. | 
  **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) | MARKET and LIMIT order types default to FULL, all other orders default to ACK. | 
@@ -1129,10 +1129,10 @@ Name          | Type          | Description   | Notes
  **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
  **workingTimeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
  **pendingClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. | 
- **pendingPrice** | **float32** |  | 
- **pendingStopPrice** | **float32** |  | 
- **pendingTrailingDelta** | **float32** |  | 
- **pendingIcebergQty** | **float32** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **pendingPrice** | **float64** |  | 
+ **pendingStopPrice** | **float64** |  | 
+ **pendingTrailingDelta** | **float64** |  | 
+ **pendingIcebergQty** | **float64** | This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **pendingTimeInForce** | [**MarginAccountNewOrderTimeInForceParameter**](MarginAccountNewOrderTimeInForceParameter.md) |  | 
 
 ### Return type
@@ -1176,10 +1176,10 @@ func main() {
 	symbol := "BTCUSDT" // string | 
 	workingType := models.MarginAccountNewOtoWorkingTypeParameterLimit // MarginAccountNewOtoWorkingTypeParameter | 
 	workingSide := models.MarginAccountNewOtoWorkingSideParameterBuy // MarginAccountNewOtoWorkingSideParameter | 
-	workingPrice := float32(1.0) // float32 | 
-	workingQuantity := float32(1.0) // float32 | 
+	workingPrice := float64(1.0) // float64 | 
+	workingQuantity := float64(1.0) // float64 | 
 	pendingSide := models.MarginAccountNewOrderSideParameterBuy // MarginAccountNewOrderSideParameter | 
-	pendingQuantity := float32(1.0) // float32 | 
+	pendingQuantity := float64(1.0) // float64 | 
 	pendingAboveType := models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker // MarginAccountNewOtocoPendingAboveTypeParameter | 
 	isIsolated := models.QueryMarginAccountsOpenOrdersIsIsolatedParameterTrue // QueryMarginAccountsOpenOrdersIsIsolatedParameter |  (optional)
 	sideEffectType := models.MarginAccountNewOtoSideEffectTypeParameterNoSideEffect // MarginAccountNewOtoSideEffectTypeParameter |  (optional)
@@ -1188,20 +1188,20 @@ func main() {
 	newOrderRespType := models.MarginAccountNewOrderNewOrderRespTypeParameterAck // MarginAccountNewOrderNewOrderRespTypeParameter |  (optional)
 	selfTradePreventionMode := models.MarginAccountNewOrderSelfTradePreventionModeParameterExpireTaker // MarginAccountNewOrderSelfTradePreventionModeParameter |  (optional)
 	workingClientOrderId := "1" // string | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. (optional)
-	workingIcebergQty := float32(1.0) // float32 | This can only be used if `workingTimeInForce` is `GTC`. (optional)
+	workingIcebergQty := float64(1.0) // float64 | This can only be used if `workingTimeInForce` is `GTC`. (optional)
 	workingTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
 	pendingAboveClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. (optional)
-	pendingAbovePrice := float32(1.0) // float32 |  (optional)
-	pendingAboveStopPrice := float32(1.0) // float32 |  (optional)
-	pendingAboveTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingAboveIcebergQty := float32(1.0) // float32 | This can only be used if `pendingAboveTimeInForce` is `GTC`. (optional)
+	pendingAbovePrice := float64(1.0) // float64 |  (optional)
+	pendingAboveStopPrice := float64(1.0) // float64 |  (optional)
+	pendingAboveTrailingDelta := float64(1.0) // float64 |  (optional)
+	pendingAboveIcebergQty := float64(1.0) // float64 | This can only be used if `pendingAboveTimeInForce` is `GTC`. (optional)
 	pendingAboveTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
 	pendingBelowType := models.MarginAccountNewOtocoPendingAboveTypeParameterLimitMaker // MarginAccountNewOtocoPendingAboveTypeParameter |  (optional)
 	pendingBelowClientOrderId := "1" // string | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. (optional)
-	pendingBelowPrice := float32(1.0) // float32 |  (optional)
-	pendingBelowStopPrice := float32(1.0) // float32 |  (optional)
-	pendingBelowTrailingDelta := float32(1.0) // float32 |  (optional)
-	pendingBelowIcebergQty := float32(1.0) // float32 | This can only be used if `pendingBelowTimeInForce` is `GTC`. (optional)
+	pendingBelowPrice := float64(1.0) // float64 |  (optional)
+	pendingBelowStopPrice := float64(1.0) // float64 |  (optional)
+	pendingBelowTrailingDelta := float64(1.0) // float64 |  (optional)
+	pendingBelowIcebergQty := float64(1.0) // float64 | This can only be used if `pendingBelowTimeInForce` is `GTC`. (optional)
 	pendingBelowTimeInForce := models.MarginAccountNewOtocoWorkingTimeInForceParameterGtc // MarginAccountNewOtocoWorkingTimeInForceParameter |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1233,10 +1233,10 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **workingType** | [**MarginAccountNewOtoWorkingTypeParameter**](MarginAccountNewOtoWorkingTypeParameter.md) |  | 
  **workingSide** | [**MarginAccountNewOtoWorkingSideParameter**](MarginAccountNewOtoWorkingSideParameter.md) |  | 
- **workingPrice** | **float32** |  | 
- **workingQuantity** | **float32** |  | 
+ **workingPrice** | **float64** |  | 
+ **workingQuantity** | **float64** |  | 
  **pendingSide** | [**MarginAccountNewOrderSideParameter**](MarginAccountNewOrderSideParameter.md) |  | 
- **pendingQuantity** | **float32** |  | 
+ **pendingQuantity** | **float64** |  | 
  **pendingAboveType** | [**MarginAccountNewOtocoPendingAboveTypeParameter**](MarginAccountNewOtocoPendingAboveTypeParameter.md) |  | 
  **isIsolated** | [**QueryMarginAccountsOpenOrdersIsIsolatedParameter**](QueryMarginAccountsOpenOrdersIsIsolatedParameter.md) |  | 
  **sideEffectType** | [**MarginAccountNewOtoSideEffectTypeParameter**](MarginAccountNewOtoSideEffectTypeParameter.md) |  | 
@@ -1245,20 +1245,20 @@ Name          | Type          | Description   | Notes
  **newOrderRespType** | [**MarginAccountNewOrderNewOrderRespTypeParameter**](MarginAccountNewOrderNewOrderRespTypeParameter.md) |  | 
  **selfTradePreventionMode** | [**MarginAccountNewOrderSelfTradePreventionModeParameter**](MarginAccountNewOrderSelfTradePreventionModeParameter.md) |  | 
  **workingClientOrderId** | **string** | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. | 
- **workingIcebergQty** | **float32** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **workingIcebergQty** | **float64** | This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **workingTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
  **pendingAboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. | 
- **pendingAbovePrice** | **float32** |  | 
- **pendingAboveStopPrice** | **float32** |  | 
- **pendingAboveTrailingDelta** | **float32** |  | 
- **pendingAboveIcebergQty** | **float32** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **pendingAbovePrice** | **float64** |  | 
+ **pendingAboveStopPrice** | **float64** |  | 
+ **pendingAboveTrailingDelta** | **float64** |  | 
+ **pendingAboveIcebergQty** | **float64** | This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **pendingAboveTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
  **pendingBelowType** | [**MarginAccountNewOtocoPendingAboveTypeParameter**](MarginAccountNewOtocoPendingAboveTypeParameter.md) |  | 
  **pendingBelowClientOrderId** | **string** | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. | 
- **pendingBelowPrice** | **float32** |  | 
- **pendingBelowStopPrice** | **float32** |  | 
- **pendingBelowTrailingDelta** | **float32** |  | 
- **pendingBelowIcebergQty** | **float32** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **pendingBelowPrice** | **float64** |  | 
+ **pendingBelowStopPrice** | **float64** |  | 
+ **pendingBelowTrailingDelta** | **float64** |  | 
+ **pendingBelowIcebergQty** | **float64** | This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **pendingBelowTimeInForce** | [**MarginAccountNewOtocoWorkingTimeInForceParameter**](MarginAccountNewOtocoWorkingTimeInForceParameter.md) |  | 
 
 ### Return type
