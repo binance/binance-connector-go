@@ -24,7 +24,7 @@ type ExtraBonusListResponseDataOtherProfitsInner struct {
 	// 1: Merged Mining, 2: Activity Bonus, 3: Rebate, 4: Smart Pool, 6: Income Transfer, 7: Pool Savings
 	Type *int64 `json:"type,omitempty"`
 	// Amount
-	ProfitAmount *float32 `json:"profitAmount,omitempty"`
+	ProfitAmount *float64 `json:"profitAmount,omitempty"`
 	// Status: 0 Unpaid, 1 Paying, 2 Paid
 	Status               *int64 `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -146,9 +146,9 @@ func (o *ExtraBonusListResponseDataOtherProfitsInner) SetType(v int64) {
 }
 
 // GetProfitAmount returns the ProfitAmount field value if set, zero value otherwise.
-func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmount() float32 {
+func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmount() float64 {
 	if o == nil || common.IsNil(o.ProfitAmount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.ProfitAmount
@@ -156,7 +156,7 @@ func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmount() float32 
 
 // GetProfitAmountOk returns a tuple with the ProfitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmountOk() (*float32, bool) {
+func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.ProfitAmount) {
 		return nil, false
 	}
@@ -172,8 +172,8 @@ func (o *ExtraBonusListResponseDataOtherProfitsInner) HasProfitAmount() bool {
 	return false
 }
 
-// SetProfitAmount gets a reference to the given float32 and assigns it to the ProfitAmount field.
-func (o *ExtraBonusListResponseDataOtherProfitsInner) SetProfitAmount(v float32) {
+// SetProfitAmount gets a reference to the given float64 and assigns it to the ProfitAmount field.
+func (o *ExtraBonusListResponseDataOtherProfitsInner) SetProfitAmount(v float64) {
 	o.ProfitAmount = &v
 }
 

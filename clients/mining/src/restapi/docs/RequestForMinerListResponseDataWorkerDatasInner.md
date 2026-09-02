@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **WorkerName** | Pointer to **string** | Miner name | [optional] 
 **Status** | Pointer to **int64** | Status: 1 Valid, 2 Invalid, 3 No longer valid | [optional] 
 **HashRate** | Pointer to **int64** | Real-time rate | [optional] 
-**DayHashRate** | Pointer to **float32** | 24H hashrate | [optional] 
+**DayHashRate** | Pointer to **float64** | 24H hashrate | [optional] 
 **RejectRate** | Pointer to **int64** | Real-time rejection rate | [optional] 
 **LastShareTime** | Pointer to **int64** | Last share time | [optional] 
 
@@ -133,20 +133,20 @@ HasHashRate returns a boolean if a field has been set.
 
 ### GetDayHashRate
 
-`func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRate() float32`
+`func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRate() float64`
 
 GetDayHashRate returns the DayHashRate field if non-nil, zero value otherwise.
 
 ### GetDayHashRateOk
 
-`func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRateOk() (*float32, bool)`
+`func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRateOk() (*float64, bool)`
 
 GetDayHashRateOk returns a tuple with the DayHashRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDayHashRate
 
-`func (o *RequestForMinerListResponseDataWorkerDatasInner) SetDayHashRate(v float32)`
+`func (o *RequestForMinerListResponseDataWorkerDatasInner) SetDayHashRate(v float64)`
 
 SetDayHashRate sets DayHashRate field to given value.
 

@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **AlgoName** | Pointer to **string** | Transfer algorithm name | [optional] 
 **HashRate** | Pointer to **int64** | Transferred hashrate | [optional] 
 **Day** | Pointer to **int64** | Transfer date | [optional] 
-**Amount** | Pointer to **float32** | Transferred income | [optional] 
+**Amount** | Pointer to **float64** | Transferred income | [optional] 
 **CoinName** | Pointer to **string** | Income coin | [optional] 
 
 ## Methods
@@ -158,20 +158,20 @@ HasDay returns a boolean if a field has been set.
 
 ### GetAmount
 
-`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmount() float32`
+`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmountOk() (*float32, bool)`
+`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) SetAmount(v float32)`
+`func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

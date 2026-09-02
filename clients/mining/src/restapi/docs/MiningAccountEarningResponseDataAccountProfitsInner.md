@@ -9,7 +9,7 @@ Name         | Type          | Description.  | Notes
 **Type** | Pointer to **int64** | 0: Referral, 1: Refund, 2: Rebate | [optional] 
 **Puid** | Pointer to **int64** | Mining sub-account ID | [optional] 
 **SubName** | Pointer to **string** | Mining account | [optional] 
-**Amount** | Pointer to **float32** | Amount | [optional] 
+**Amount** | Pointer to **float64** | Amount | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasSubName returns a boolean if a field has been set.
 
 ### GetAmount
 
-`func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmount() float32`
+`func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmountOk() (*float32, bool)`
+`func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *MiningAccountEarningResponseDataAccountProfitsInner) SetAmount(v float32)`
+`func (o *MiningAccountEarningResponseDataAccountProfitsInner) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

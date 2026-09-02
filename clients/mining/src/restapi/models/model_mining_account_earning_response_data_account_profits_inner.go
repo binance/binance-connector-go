@@ -28,7 +28,7 @@ type MiningAccountEarningResponseDataAccountProfitsInner struct {
 	// Mining account
 	SubName *string `json:"subName,omitempty"`
 	// Amount
-	Amount               *float32 `json:"amount,omitempty"`
+	Amount               *float64 `json:"amount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -212,9 +212,9 @@ func (o *MiningAccountEarningResponseDataAccountProfitsInner) SetSubName(v strin
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmount() float32 {
+func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmount() float64 {
 	if o == nil || common.IsNil(o.Amount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Amount
@@ -222,7 +222,7 @@ func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmount() float3
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmountOk() (*float32, bool) {
+func (o *MiningAccountEarningResponseDataAccountProfitsInner) GetAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Amount) {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *MiningAccountEarningResponseDataAccountProfitsInner) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *MiningAccountEarningResponseDataAccountProfitsInner) SetAmount(v float32) {
+// SetAmount gets a reference to the given float64 and assigns it to the Amount field.
+func (o *MiningAccountEarningResponseDataAccountProfitsInner) SetAmount(v float64) {
 	o.Amount = &v
 }
 

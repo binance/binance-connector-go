@@ -7,9 +7,9 @@ Name         | Type          | Description.  | Notes
 **Time** | Pointer to **int64** | Mining date | [optional] 
 **Type** | Pointer to **int64** | 0: Mining Wallet, 5: Mining Address, 7: Pool Savings, 8: Transferred, 31: Income Transfer, 32: Hashrate Resale-Mining Wallet, 33: Hashrate Resale-Pool Savings | [optional] 
 **HashTransfer** | Pointer to **int64** | Transferred hashrate | [optional] 
-**TransferAmount** | Pointer to **float32** | Transferred income | [optional] 
+**TransferAmount** | Pointer to **float64** | Transferred income | [optional] 
 **DayHashRate** | Pointer to **int64** | Daily hashrate | [optional] 
-**ProfitAmount** | Pointer to **float32** | Earnings amount | [optional] 
+**ProfitAmount** | Pointer to **float64** | Earnings amount | [optional] 
 **CoinName** | Pointer to **string** | Coin type | [optional] 
 **Status** | Pointer to **int64** | Status: 0 Unpaid, 1 Paying, 2 Paid | [optional] 
 
@@ -109,20 +109,20 @@ HasHashTransfer returns a boolean if a field has been set.
 
 ### GetTransferAmount
 
-`func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmount() float32`
+`func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmount() float64`
 
 GetTransferAmount returns the TransferAmount field if non-nil, zero value otherwise.
 
 ### GetTransferAmountOk
 
-`func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmountOk() (*float32, bool)`
+`func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmountOk() (*float64, bool)`
 
 GetTransferAmountOk returns a tuple with the TransferAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransferAmount
 
-`func (o *EarningsListResponseDataAccountProfitsInner) SetTransferAmount(v float32)`
+`func (o *EarningsListResponseDataAccountProfitsInner) SetTransferAmount(v float64)`
 
 SetTransferAmount sets TransferAmount field to given value.
 
@@ -159,20 +159,20 @@ HasDayHashRate returns a boolean if a field has been set.
 
 ### GetProfitAmount
 
-`func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmount() float32`
+`func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmount() float64`
 
 GetProfitAmount returns the ProfitAmount field if non-nil, zero value otherwise.
 
 ### GetProfitAmountOk
 
-`func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmountOk() (*float32, bool)`
+`func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmountOk() (*float64, bool)`
 
 GetProfitAmountOk returns a tuple with the ProfitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfitAmount
 
-`func (o *EarningsListResponseDataAccountProfitsInner) SetProfitAmount(v float32)`
+`func (o *EarningsListResponseDataAccountProfitsInner) SetProfitAmount(v float64)`
 
 SetProfitAmount sets ProfitAmount field to given value.
 

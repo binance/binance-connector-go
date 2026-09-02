@@ -24,11 +24,11 @@ type EarningsListResponseDataAccountProfitsInner struct {
 	// Transferred hashrate
 	HashTransfer *int64 `json:"hashTransfer,omitempty"`
 	// Transferred income
-	TransferAmount *float32 `json:"transferAmount,omitempty"`
+	TransferAmount *float64 `json:"transferAmount,omitempty"`
 	// Daily hashrate
 	DayHashRate *int64 `json:"dayHashRate,omitempty"`
 	// Earnings amount
-	ProfitAmount *float32 `json:"profitAmount,omitempty"`
+	ProfitAmount *float64 `json:"profitAmount,omitempty"`
 	// Coin type
 	CoinName *string `json:"coinName,omitempty"`
 	// Status: 0 Unpaid, 1 Paying, 2 Paid
@@ -152,9 +152,9 @@ func (o *EarningsListResponseDataAccountProfitsInner) SetHashTransfer(v int64) {
 }
 
 // GetTransferAmount returns the TransferAmount field value if set, zero value otherwise.
-func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmount() float32 {
+func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmount() float64 {
 	if o == nil || common.IsNil(o.TransferAmount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.TransferAmount
@@ -162,7 +162,7 @@ func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmount() float3
 
 // GetTransferAmountOk returns a tuple with the TransferAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmountOk() (*float32, bool) {
+func (o *EarningsListResponseDataAccountProfitsInner) GetTransferAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.TransferAmount) {
 		return nil, false
 	}
@@ -178,8 +178,8 @@ func (o *EarningsListResponseDataAccountProfitsInner) HasTransferAmount() bool {
 	return false
 }
 
-// SetTransferAmount gets a reference to the given float32 and assigns it to the TransferAmount field.
-func (o *EarningsListResponseDataAccountProfitsInner) SetTransferAmount(v float32) {
+// SetTransferAmount gets a reference to the given float64 and assigns it to the TransferAmount field.
+func (o *EarningsListResponseDataAccountProfitsInner) SetTransferAmount(v float64) {
 	o.TransferAmount = &v
 }
 
@@ -216,9 +216,9 @@ func (o *EarningsListResponseDataAccountProfitsInner) SetDayHashRate(v int64) {
 }
 
 // GetProfitAmount returns the ProfitAmount field value if set, zero value otherwise.
-func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmount() float32 {
+func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmount() float64 {
 	if o == nil || common.IsNil(o.ProfitAmount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.ProfitAmount
@@ -226,7 +226,7 @@ func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmount() float32 
 
 // GetProfitAmountOk returns a tuple with the ProfitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmountOk() (*float32, bool) {
+func (o *EarningsListResponseDataAccountProfitsInner) GetProfitAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.ProfitAmount) {
 		return nil, false
 	}
@@ -242,8 +242,8 @@ func (o *EarningsListResponseDataAccountProfitsInner) HasProfitAmount() bool {
 	return false
 }
 
-// SetProfitAmount gets a reference to the given float32 and assigns it to the ProfitAmount field.
-func (o *EarningsListResponseDataAccountProfitsInner) SetProfitAmount(v float32) {
+// SetProfitAmount gets a reference to the given float64 and assigns it to the ProfitAmount field.
+func (o *EarningsListResponseDataAccountProfitsInner) SetProfitAmount(v float64) {
 	o.ProfitAmount = &v
 }
 

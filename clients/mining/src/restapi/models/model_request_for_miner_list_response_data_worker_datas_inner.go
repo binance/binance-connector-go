@@ -26,7 +26,7 @@ type RequestForMinerListResponseDataWorkerDatasInner struct {
 	// Real-time rate
 	HashRate *int64 `json:"hashRate,omitempty"`
 	// 24H hashrate
-	DayHashRate *float32 `json:"dayHashRate,omitempty"`
+	DayHashRate *float64 `json:"dayHashRate,omitempty"`
 	// Real-time rejection rate
 	RejectRate *int64 `json:"rejectRate,omitempty"`
 	// Last share time
@@ -182,9 +182,9 @@ func (o *RequestForMinerListResponseDataWorkerDatasInner) SetHashRate(v int64) {
 }
 
 // GetDayHashRate returns the DayHashRate field value if set, zero value otherwise.
-func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRate() float32 {
+func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRate() float64 {
 	if o == nil || common.IsNil(o.DayHashRate) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.DayHashRate
@@ -192,7 +192,7 @@ func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRate() float
 
 // GetDayHashRateOk returns a tuple with the DayHashRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRateOk() (*float32, bool) {
+func (o *RequestForMinerListResponseDataWorkerDatasInner) GetDayHashRateOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.DayHashRate) {
 		return nil, false
 	}
@@ -208,8 +208,8 @@ func (o *RequestForMinerListResponseDataWorkerDatasInner) HasDayHashRate() bool 
 	return false
 }
 
-// SetDayHashRate gets a reference to the given float32 and assigns it to the DayHashRate field.
-func (o *RequestForMinerListResponseDataWorkerDatasInner) SetDayHashRate(v float32) {
+// SetDayHashRate gets a reference to the given float64 and assigns it to the DayHashRate field.
+func (o *RequestForMinerListResponseDataWorkerDatasInner) SetDayHashRate(v float64) {
 	o.DayHashRate = &v
 }
 

@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Time** | Pointer to **int64** | Mining date | [optional] 
 **CoinName** | Pointer to **string** | Coin name | [optional] 
 **Type** | Pointer to **int64** | 1: Merged Mining, 2: Activity Bonus, 3: Rebate, 4: Smart Pool, 6: Income Transfer, 7: Pool Savings | [optional] 
-**ProfitAmount** | Pointer to **float32** | Amount | [optional] 
+**ProfitAmount** | Pointer to **float64** | Amount | [optional] 
 **Status** | Pointer to **int64** | Status: 0 Unpaid, 1 Paying, 2 Paid | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetProfitAmount
 
-`func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmount() float32`
+`func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmount() float64`
 
 GetProfitAmount returns the ProfitAmount field if non-nil, zero value otherwise.
 
 ### GetProfitAmountOk
 
-`func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmountOk() (*float32, bool)`
+`func (o *ExtraBonusListResponseDataOtherProfitsInner) GetProfitAmountOk() (*float64, bool)`
 
 GetProfitAmountOk returns a tuple with the ProfitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfitAmount
 
-`func (o *ExtraBonusListResponseDataOtherProfitsInner) SetProfitAmount(v float32)`
+`func (o *ExtraBonusListResponseDataOtherProfitsInner) SetProfitAmount(v float64)`
 
 SetProfitAmount sets ProfitAmount field to given value.
 

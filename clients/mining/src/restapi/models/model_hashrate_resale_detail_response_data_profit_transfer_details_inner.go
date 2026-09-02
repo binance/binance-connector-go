@@ -28,7 +28,7 @@ type HashrateResaleDetailResponseDataProfitTransferDetailsInner struct {
 	// Transfer date
 	Day *int64 `json:"day,omitempty"`
 	// Transferred income
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *float64 `json:"amount,omitempty"`
 	// Income coin
 	CoinName             *string `json:"coinName,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -214,9 +214,9 @@ func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) SetDay(v in
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmount() float32 {
+func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmount() float64 {
 	if o == nil || common.IsNil(o.Amount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Amount
@@ -224,7 +224,7 @@ func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmount()
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmountOk() (*float32, bool) {
+func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) GetAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Amount) {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) HasAmount()
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) SetAmount(v float32) {
+// SetAmount gets a reference to the given float64 and assigns it to the Amount field.
+func (o *HashrateResaleDetailResponseDataProfitTransferDetailsInner) SetAmount(v float64) {
 	o.Amount = &v
 }
 

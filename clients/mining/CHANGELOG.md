@@ -1,5 +1,23 @@
 ### Changelog
 
+## 1.11.0 - 2026-09-02
+
+### Changed (5)
+
+#### REST API
+
+- Modified response for `earningsList()` (`GET /sapi/v1/mining/payment/list`):
+  - `data`.`accountProfits`.items.`profitAmount`: type `float32` → `float64`
+  - `data`.`accountProfits`.items.`transferAmount`: type `float32` → `float64`
+- Modified response for `extraBonusList()` (`GET /sapi/v1/mining/payment/other`):
+  - `data`.`otherProfits`.items.`profitAmount`: type `float32` → `float64`
+- Modified response for `hashrateResaleDetail()` (`GET /sapi/v1/mining/hash-transfer/profit/details`):
+  - `data`.`profitTransferDetails`.items.`amount`: type `float32` → `float64`
+- Modified response for `miningAccountEarning()` (`GET /sapi/v1/mining/payment/uid`):
+  - `data`.`accountProfits`.items.`amount`: type `float32` → `float64`
+- Modified response for `requestForMinerList()` (`GET /sapi/v1/mining/worker/list`):
+  - `data`.`workerDatas`.items.`dayHashRate`: type `float32` → `float64`
+
 ## 1.10.0 - 2026-08-28
 
 ### Changed (2)
