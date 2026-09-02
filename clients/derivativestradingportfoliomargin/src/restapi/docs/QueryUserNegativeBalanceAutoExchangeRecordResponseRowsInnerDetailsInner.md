@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** | asset name | [optional] 
-**NegativeBalance** | Pointer to **float32** | negative balance amount | [optional] 
+**NegativeBalance** | Pointer to **float64** | negative balance amount | [optional] 
 **NegativeMaxThreshold** | Pointer to **int64** | the max negative balance threshold | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasAsset returns a boolean if a field has been set.
 
 ### GetNegativeBalance
 
-`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalance() float32`
+`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalance() float64`
 
 GetNegativeBalance returns the NegativeBalance field if non-nil, zero value otherwise.
 
 ### GetNegativeBalanceOk
 
-`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalanceOk() (*float32, bool)`
+`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalanceOk() (*float64, bool)`
 
 GetNegativeBalanceOk returns a tuple with the NegativeBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNegativeBalance
 
-`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) SetNegativeBalance(v float32)`
+`func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) SetNegativeBalance(v float64)`
 
 SetNegativeBalance sets NegativeBalance field to given value.
 

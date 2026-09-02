@@ -1482,7 +1482,7 @@ type ApiMarginAccountBorrowRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -1491,7 +1491,7 @@ func (r ApiMarginAccountBorrowRequest) Asset(asset string) ApiMarginAccountBorro
 	return r
 }
 
-func (r ApiMarginAccountBorrowRequest) Amount(amount float32) ApiMarginAccountBorrowRequest {
+func (r ApiMarginAccountBorrowRequest) Amount(amount float64) ApiMarginAccountBorrowRequest {
 	r.amount = &amount
 	return r
 }
@@ -1569,15 +1569,15 @@ type ApiMarginAccountNewOcoRequest struct {
 	ApiService           *TradeAPIService
 	symbol               *string
 	side                 *models.NewCmConditionalOrderSideParameter
-	quantity             *float32
-	price                *float32
-	stopPrice            *float32
+	quantity             *float64
+	price                *float64
+	stopPrice            *float64
 	listClientOrderId    *string
 	limitClientOrderId   *string
-	limitIcebergQty      *float32
+	limitIcebergQty      *float64
 	stopClientOrderId    *string
-	stopLimitPrice       *float32
-	stopIcebergQty       *float32
+	stopLimitPrice       *float64
+	stopIcebergQty       *float64
 	stopLimitTimeInForce *models.NewMarginOrderTimeInForceParameter
 	newOrderRespType     *models.NewCmOrderNewOrderRespTypeParameter
 	sideEffectType       *models.MarginAccountNewOcoSideEffectTypeParameter
@@ -1595,17 +1595,17 @@ func (r ApiMarginAccountNewOcoRequest) Side(side models.NewCmConditionalOrderSid
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) Quantity(quantity float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) Quantity(quantity float64) ApiMarginAccountNewOcoRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) Price(price float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) Price(price float64) ApiMarginAccountNewOcoRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopPrice(stopPrice float64) ApiMarginAccountNewOcoRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -1622,7 +1622,7 @@ func (r ApiMarginAccountNewOcoRequest) LimitClientOrderId(limitClientOrderId str
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) LimitIcebergQty(limitIcebergQty float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) LimitIcebergQty(limitIcebergQty float64) ApiMarginAccountNewOcoRequest {
 	r.limitIcebergQty = &limitIcebergQty
 	return r
 }
@@ -1634,12 +1634,12 @@ func (r ApiMarginAccountNewOcoRequest) StopClientOrderId(stopClientOrderId strin
 }
 
 // If provided, stopLimitTimeInForce is required.
-func (r ApiMarginAccountNewOcoRequest) StopLimitPrice(stopLimitPrice float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopLimitPrice(stopLimitPrice float64) ApiMarginAccountNewOcoRequest {
 	r.stopLimitPrice = &stopLimitPrice
 	return r
 }
 
-func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float32) ApiMarginAccountNewOcoRequest {
+func (r ApiMarginAccountNewOcoRequest) StopIcebergQty(stopIcebergQty float64) ApiMarginAccountNewOcoRequest {
 	r.stopIcebergQty = &stopIcebergQty
 	return r
 }
@@ -1788,7 +1788,7 @@ type ApiMarginAccountRepayRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -1797,7 +1797,7 @@ func (r ApiMarginAccountRepayRequest) Asset(asset string) ApiMarginAccountRepayR
 	return r
 }
 
-func (r ApiMarginAccountRepayRequest) Amount(amount float32) ApiMarginAccountRepayRequest {
+func (r ApiMarginAccountRepayRequest) Amount(amount float64) ApiMarginAccountRepayRequest {
 	r.amount = &amount
 	return r
 }
@@ -2102,8 +2102,8 @@ type ApiModifyCmOrderRequest struct {
 	ApiService        *TradeAPIService
 	symbol            *string
 	side              *models.NewCmConditionalOrderSideParameter
-	quantity          *float32
-	price             *float32
+	quantity          *float64
+	price             *float64
 	orderId           *int64
 	origClientOrderId *string
 	priceMatch        *models.ModifyCmOrderPriceMatchParameter
@@ -2123,13 +2123,13 @@ func (r ApiModifyCmOrderRequest) Side(side models.NewCmConditionalOrderSideParam
 }
 
 // Order quantity
-func (r ApiModifyCmOrderRequest) Quantity(quantity float32) ApiModifyCmOrderRequest {
+func (r ApiModifyCmOrderRequest) Quantity(quantity float64) ApiModifyCmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order price
-func (r ApiModifyCmOrderRequest) Price(price float32) ApiModifyCmOrderRequest {
+func (r ApiModifyCmOrderRequest) Price(price float64) ApiModifyCmOrderRequest {
 	r.price = &price
 	return r
 }
@@ -2259,8 +2259,8 @@ type ApiModifyUmOrderRequest struct {
 	ApiService        *TradeAPIService
 	symbol            *string
 	side              *models.NewCmConditionalOrderSideParameter
-	quantity          *float32
-	price             *float32
+	quantity          *float64
+	price             *float64
 	orderId           *int64
 	origClientOrderId *string
 	priceMatch        *models.ModifyCmOrderPriceMatchParameter
@@ -2280,13 +2280,13 @@ func (r ApiModifyUmOrderRequest) Side(side models.NewCmConditionalOrderSideParam
 }
 
 // Order quantity
-func (r ApiModifyUmOrderRequest) Quantity(quantity float32) ApiModifyUmOrderRequest {
+func (r ApiModifyUmOrderRequest) Quantity(quantity float64) ApiModifyUmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order price
-func (r ApiModifyUmOrderRequest) Price(price float32) ApiModifyUmOrderRequest {
+func (r ApiModifyUmOrderRequest) Price(price float64) ApiModifyUmOrderRequest {
 	r.price = &price
 	return r
 }
@@ -2419,15 +2419,15 @@ type ApiNewCmConditionalOrderRequest struct {
 	strategyType        *models.NewCmConditionalOrderStrategyTypeParameter
 	positionSide        *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce         *models.NewCmConditionalOrderTimeInForceParameter
-	quantity            *float32
+	quantity            *float64
 	reduceOnly          *string
-	price               *float32
+	price               *float64
 	workingType         *models.NewCmConditionalOrderWorkingTypeParameter
 	priceProtect        *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	newClientStrategyId *string
-	stopPrice           *float32
-	activationPrice     *float32
-	callbackRate        *float32
+	stopPrice           *float64
+	activationPrice     *float64
+	callbackRate        *float64
 	recvWindow          *int64
 }
 
@@ -2459,7 +2459,7 @@ func (r ApiNewCmConditionalOrderRequest) TimeInForce(timeInForce models.NewCmCon
 	return r
 }
 
-func (r ApiNewCmConditionalOrderRequest) Quantity(quantity float32) ApiNewCmConditionalOrderRequest {
+func (r ApiNewCmConditionalOrderRequest) Quantity(quantity float64) ApiNewCmConditionalOrderRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -2470,7 +2470,7 @@ func (r ApiNewCmConditionalOrderRequest) ReduceOnly(reduceOnly string) ApiNewCmC
 	return r
 }
 
-func (r ApiNewCmConditionalOrderRequest) Price(price float32) ApiNewCmConditionalOrderRequest {
+func (r ApiNewCmConditionalOrderRequest) Price(price float64) ApiNewCmConditionalOrderRequest {
 	r.price = &price
 	return r
 }
@@ -2494,19 +2494,19 @@ func (r ApiNewCmConditionalOrderRequest) NewClientStrategyId(newClientStrategyId
 }
 
 // Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewCmConditionalOrderRequest) StopPrice(stopPrice float32) ApiNewCmConditionalOrderRequest {
+func (r ApiNewCmConditionalOrderRequest) StopPrice(stopPrice float64) ApiNewCmConditionalOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
-func (r ApiNewCmConditionalOrderRequest) ActivationPrice(activationPrice float32) ApiNewCmConditionalOrderRequest {
+func (r ApiNewCmConditionalOrderRequest) ActivationPrice(activationPrice float64) ApiNewCmConditionalOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
-func (r ApiNewCmConditionalOrderRequest) CallbackRate(callbackRate float32) ApiNewCmConditionalOrderRequest {
+func (r ApiNewCmConditionalOrderRequest) CallbackRate(callbackRate float64) ApiNewCmConditionalOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
@@ -2637,9 +2637,9 @@ type ApiNewCmOrderRequest struct {
 	type_            *models.NewCmOrderTypeParameter
 	positionSide     *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce      *models.NewCmConditionalOrderTimeInForceParameter
-	quantity         *float32
+	quantity         *float64
 	reduceOnly       *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
-	price            *float32
+	price            *float64
 	priceMatch       *models.ModifyCmOrderPriceMatchParameter
 	newClientOrderId *string
 	newOrderRespType *models.NewCmOrderNewOrderRespTypeParameter
@@ -2675,7 +2675,7 @@ func (r ApiNewCmOrderRequest) TimeInForce(timeInForce models.NewCmConditionalOrd
 }
 
 // Place amount
-func (r ApiNewCmOrderRequest) Quantity(quantity float32) ApiNewCmOrderRequest {
+func (r ApiNewCmOrderRequest) Quantity(quantity float64) ApiNewCmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -2687,7 +2687,7 @@ func (r ApiNewCmOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuture
 }
 
 // Order price
-func (r ApiNewCmOrderRequest) Price(price float32) ApiNewCmOrderRequest {
+func (r ApiNewCmOrderRequest) Price(price float64) ApiNewCmOrderRequest {
 	r.price = &price
 	return r
 }
@@ -2822,13 +2822,13 @@ type ApiNewMarginOrderRequest struct {
 	symbol                  *string
 	side                    *models.NewCmConditionalOrderSideParameter
 	type_                   *models.NewMarginOrderTypeParameter
-	quantity                *float32
-	quoteOrderQty           *float32
-	price                   *float32
-	stopPrice               *float32
+	quantity                *float64
+	quoteOrderQty           *float64
+	price                   *float64
+	stopPrice               *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.NewMarginOrderNewOrderRespTypeParameter
-	icebergQty              *float32
+	icebergQty              *float64
 	sideEffectType          *models.NewMarginOrderSideEffectTypeParameter
 	timeInForce             *models.NewMarginOrderTimeInForceParameter
 	selfTradePreventionMode *models.NewMarginOrderSelfTradePreventionModeParameter
@@ -2851,23 +2851,23 @@ func (r ApiNewMarginOrderRequest) Type(type_ models.NewMarginOrderTypeParameter)
 	return r
 }
 
-func (r ApiNewMarginOrderRequest) Quantity(quantity float32) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) Quantity(quantity float64) ApiNewMarginOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiNewMarginOrderRequest) QuoteOrderQty(quoteOrderQty float32) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) QuoteOrderQty(quoteOrderQty float64) ApiNewMarginOrderRequest {
 	r.quoteOrderQty = &quoteOrderQty
 	return r
 }
 
-func (r ApiNewMarginOrderRequest) Price(price float32) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) Price(price float64) ApiNewMarginOrderRequest {
 	r.price = &price
 	return r
 }
 
 // Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
-func (r ApiNewMarginOrderRequest) StopPrice(stopPrice float32) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) StopPrice(stopPrice float64) ApiNewMarginOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -2885,7 +2885,7 @@ func (r ApiNewMarginOrderRequest) NewOrderRespType(newOrderRespType models.NewMa
 }
 
 // Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order
-func (r ApiNewMarginOrderRequest) IcebergQty(icebergQty float32) ApiNewMarginOrderRequest {
+func (r ApiNewMarginOrderRequest) IcebergQty(icebergQty float64) ApiNewMarginOrderRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -3040,16 +3040,16 @@ type ApiNewUmAlgoOrderRequest struct {
 	type_                   *models.NewUmAlgoOrderTypeParameter
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce             *models.NewUmAlgoOrderTimeInForceParameter
-	quantity                *float32
-	price                   *float32
-	triggerPrice            *float32
+	quantity                *float64
+	price                   *float64
+	triggerPrice            *float64
 	workingType             *models.NewUmAlgoOrderWorkingTypeParameter
 	priceMatch              *models.NewUmAlgoOrderPriceMatchParameter
 	closePosition           *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	priceProtect            *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
-	activatePrice           *float32
-	callbackRate            *float32
+	activatePrice           *float64
+	callbackRate            *float64
 	clientAlgoId            *string
 	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
 	selfTradePreventionMode *models.NewUmAlgoOrderSelfTradePreventionModeParameter
@@ -3091,19 +3091,19 @@ func (r ApiNewUmAlgoOrderRequest) TimeInForce(timeInForce models.NewUmAlgoOrderT
 }
 
 // Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
-func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float32) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) Quantity(quantity float64) ApiNewUmAlgoOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order price
-func (r ApiNewUmAlgoOrderRequest) Price(price float32) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) Price(price float64) ApiNewUmAlgoOrderRequest {
 	r.price = &price
 	return r
 }
 
 // Trigger price
-func (r ApiNewUmAlgoOrderRequest) TriggerPrice(triggerPrice float32) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) TriggerPrice(triggerPrice float64) ApiNewUmAlgoOrderRequest {
 	r.triggerPrice = &triggerPrice
 	return r
 }
@@ -3139,13 +3139,13 @@ func (r ApiNewUmAlgoOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFu
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price
-func (r ApiNewUmAlgoOrderRequest) ActivatePrice(activatePrice float32) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) ActivatePrice(activatePrice float64) ApiNewUmAlgoOrderRequest {
 	r.activatePrice = &activatePrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%)
-func (r ApiNewUmAlgoOrderRequest) CallbackRate(callbackRate float32) ApiNewUmAlgoOrderRequest {
+func (r ApiNewUmAlgoOrderRequest) CallbackRate(callbackRate float64) ApiNewUmAlgoOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
@@ -3324,15 +3324,15 @@ type ApiNewUmConditionalOrderRequest struct {
 	strategyType            *models.NewCmConditionalOrderStrategyTypeParameter
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce             *models.NewUmConditionalOrderTimeInForceParameter
-	quantity                *float32
+	quantity                *float64
 	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
-	price                   *float32
+	price                   *float64
 	workingType             *models.NewCmConditionalOrderWorkingTypeParameter
 	priceProtect            *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
 	newClientStrategyId     *string
-	stopPrice               *float32
-	activationPrice         *float32
-	callbackRate            *float32
+	stopPrice               *float64
+	activationPrice         *float64
+	callbackRate            *float64
 	priceMatch              *models.ModifyCmOrderPriceMatchParameter
 	selfTradePreventionMode *models.NewMarginOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
@@ -3366,7 +3366,7 @@ func (r ApiNewUmConditionalOrderRequest) TimeInForce(timeInForce models.NewUmCon
 	return r
 }
 
-func (r ApiNewUmConditionalOrderRequest) Quantity(quantity float32) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) Quantity(quantity float64) ApiNewUmConditionalOrderRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -3377,7 +3377,7 @@ func (r ApiNewUmConditionalOrderRequest) ReduceOnly(reduceOnly models.ChangeAuto
 	return r
 }
 
-func (r ApiNewUmConditionalOrderRequest) Price(price float32) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) Price(price float64) ApiNewUmConditionalOrderRequest {
 	r.price = &price
 	return r
 }
@@ -3401,19 +3401,19 @@ func (r ApiNewUmConditionalOrderRequest) NewClientStrategyId(newClientStrategyId
 }
 
 // Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewUmConditionalOrderRequest) StopPrice(stopPrice float32) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) StopPrice(stopPrice float64) ApiNewUmConditionalOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
-func (r ApiNewUmConditionalOrderRequest) ActivationPrice(activationPrice float32) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) ActivationPrice(activationPrice float64) ApiNewUmConditionalOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders.
-func (r ApiNewUmConditionalOrderRequest) CallbackRate(callbackRate float32) ApiNewUmConditionalOrderRequest {
+func (r ApiNewUmConditionalOrderRequest) CallbackRate(callbackRate float64) ApiNewUmConditionalOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
@@ -3578,9 +3578,9 @@ type ApiNewUmOrderRequest struct {
 	type_                   *models.NewCmOrderTypeParameter
 	positionSide            *models.NewCmConditionalOrderPositionSideParameter
 	timeInForce             *models.NewUmConditionalOrderTimeInForceParameter
-	quantity                *float32
+	quantity                *float64
 	reduceOnly              *models.ChangeAutoRepayFuturesStatusAutoRepayParameter
-	price                   *float32
+	price                   *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
 	priceMatch              *models.ModifyCmOrderPriceMatchParameter
@@ -3618,7 +3618,7 @@ func (r ApiNewUmOrderRequest) TimeInForce(timeInForce models.NewUmConditionalOrd
 }
 
 // Place amount
-func (r ApiNewUmOrderRequest) Quantity(quantity float32) ApiNewUmOrderRequest {
+func (r ApiNewUmOrderRequest) Quantity(quantity float64) ApiNewUmOrderRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -3630,7 +3630,7 @@ func (r ApiNewUmOrderRequest) ReduceOnly(reduceOnly models.ChangeAutoRepayFuture
 }
 
 // Order price
-func (r ApiNewUmOrderRequest) Price(price float32) ApiNewUmOrderRequest {
+func (r ApiNewUmOrderRequest) Price(price float64) ApiNewUmOrderRequest {
 	r.price = &price
 	return r
 }

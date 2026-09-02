@@ -1253,7 +1253,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/marginLoan", r.URL.Path)
 			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1270,7 +1270,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountBorrow(context.Background()).Asset("USDT").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountBorrow(context.Background()).Asset("USDT").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1332,9 +1332,9 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			require.Equal(t, "/papi/v1/margin/order/oco", r.URL.Path)
 			require.Equal(t, "LTCBTC", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewCmConditionalOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("quantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("price"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("stopPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("price"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("stopPrice"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1351,7 +1351,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("LTCBTC").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).StopPrice(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountNewOco(context.Background()).Symbol("LTCBTC").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).StopPrice(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1412,7 +1412,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/repayLoan", r.URL.Path)
 			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1429,7 +1429,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.MarginAccountRepay(context.Background()).Asset("USDT").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.MarginAccountRepay(context.Background()).Asset("USDT").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1645,8 +1645,8 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			require.Equal(t, "/papi/v1/cm/order", r.URL.Path)
 			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewCmConditionalOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("quantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("price"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("price"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1663,7 +1663,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.ModifyCmOrder(context.Background()).Symbol("BTCUSD_PERP").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.ModifyCmOrder(context.Background()).Symbol("BTCUSD_PERP").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1725,8 +1725,8 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			require.Equal(t, "/papi/v1/um/order", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewCmConditionalOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("quantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("price"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("price"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1743,7 +1743,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.ModifyUmOrder(context.Background()).Symbol("BTCUSDT").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.ModifyUmOrder(context.Background()).Symbol("BTCUSDT").Side(models.NewCmConditionalOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

@@ -151,7 +151,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_AccountAPIService(t *t
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/papi/v1/bnb-transfer", r.URL.Path)
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, string(models.BnbTransferTransferSideParameterToUm), r.URL.Query().Get("transferSide"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -169,7 +169,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_AccountAPIService(t *t
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AccountAPI.BnbTransfer(context.Background()).Amount(float32(1.0)).TransferSide(models.BnbTransferTransferSideParameterToUm).Execute()
+		resp, err := apiClient.RestApi.AccountAPI.BnbTransfer(context.Background()).Amount(float64(1.0)).TransferSide(models.BnbTransferTransferSideParameterToUm).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

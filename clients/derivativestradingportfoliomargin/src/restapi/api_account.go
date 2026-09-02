@@ -155,12 +155,12 @@ func (a *AccountAPIService) AccountInformationExecute(r ApiAccountInformationReq
 type ApiBnbTransferRequest struct {
 	ctx          context.Context
 	ApiService   *AccountAPIService
-	amount       *float32
+	amount       *float64
 	transferSide *models.BnbTransferTransferSideParameter
 	recvWindow   *int64
 }
 
-func (r ApiBnbTransferRequest) Amount(amount float32) ApiBnbTransferRequest {
+func (r ApiBnbTransferRequest) Amount(amount float64) ApiBnbTransferRequest {
 	r.amount = &amount
 	return r
 }

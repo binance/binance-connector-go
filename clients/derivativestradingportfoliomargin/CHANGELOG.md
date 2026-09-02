@@ -1,5 +1,98 @@
 ### Changelog
 
+## 1.17.0 - 2026-09-02
+
+### Changed (17)
+
+#### REST API
+
+- Modified parameter `activatePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+- Modified parameter `activationPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `bnbTransfer()` (`POST /papi/v1/bnb-transfer`)
+    - `marginAccountBorrow()` (`POST /papi/v1/marginLoan`)
+    - `marginAccountRepay()` (`POST /papi/v1/repayLoan`)
+- Modified parameter `callbackRate`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+- Modified parameter `icebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newMarginOrder()` (`POST /papi/v1/margin/order`)
+- Modified parameter `limitIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+    - `modifyCmOrder()` (`PUT /papi/v1/cm/order`)
+    - `modifyUmOrder()` (`PUT /papi/v1/um/order`)
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newCmOrder()` (`POST /papi/v1/cm/order`)
+    - `newMarginOrder()` (`POST /papi/v1/margin/order`)
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+    - `newUmOrder()` (`POST /papi/v1/um/order`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+    - `modifyCmOrder()` (`PUT /papi/v1/cm/order`)
+    - `modifyUmOrder()` (`PUT /papi/v1/um/order`)
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newCmOrder()` (`POST /papi/v1/cm/order`)
+    - `newMarginOrder()` (`POST /papi/v1/margin/order`)
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+    - `newUmOrder()` (`POST /papi/v1/um/order`)
+- Modified parameter `quoteOrderQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newMarginOrder()` (`POST /papi/v1/margin/order`)
+- Modified parameter `stopIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+- Modified parameter `stopLimitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `marginAccountNewOco()` (`POST /papi/v1/margin/order/oco`)
+    - `newCmConditionalOrder()` (`POST /papi/v1/cm/conditional/order`)
+    - `newMarginOrder()` (`POST /papi/v1/margin/order`)
+    - `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+- Modified parameter `triggerPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+- Modified response for `cmNotionalAndLeverageBrackets()` (`GET /papi/v1/cm/leverageBracket`):
+  - items.`brackets`.items.`cum`: type `float32` → `float64`
+  - items.`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+- Modified response for `portfolioMarginUmTradingQuantitativeRulesIndicators()` (`GET /papi/v1/um/apiTradingStatus`):
+  - `indicators`.`BTCUSDT`.items.`triggerValue`: type `float32` → `float64`
+  - `indicators`.`BTCUSDT`.items.`value`: type `float32` → `float64`
+- Modified response for `queryUserNegativeBalanceAutoExchangeRecord()` (`GET /papi/v1/portfolio/negative-balance-exchange-record`):
+  - `rows`.items.`details`.items.`negativeBalance`: type `float32` → `float64`
+- Modified response for `umNotionalAndLeverageBrackets()` (`GET /papi/v1/um/leverageBracket`):
+  - items.`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+
 ## 1.16.0 - 2026-08-28
 
 ### Changed (2)

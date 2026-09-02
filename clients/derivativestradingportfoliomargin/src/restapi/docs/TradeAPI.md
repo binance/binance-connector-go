@@ -1319,7 +1319,7 @@ import (
 
 func main() {
 	asset := "USDT" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1349,7 +1349,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1392,15 +1392,15 @@ import (
 func main() {
 	symbol := "LTCBTC" // string | 
 	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | See enum definitions: order side
-	quantity := float32(1.0) // float32 | 
-	price := float32(1.0) // float32 | 
-	stopPrice := float32(1.0) // float32 | 
+	quantity := float64(1.0) // float64 | 
+	price := float64(1.0) // float64 | 
+	stopPrice := float64(1.0) // float64 | 
 	listClientOrderId := "1" // string | A unique Id for the entire orderList (optional)
 	limitClientOrderId := "1" // string | A unique Id for the limit order (optional)
-	limitIcebergQty := float32(1.0) // float32 |  (optional)
+	limitIcebergQty := float64(1.0) // float64 |  (optional)
 	stopClientOrderId := "1" // string | A unique Id for the stop loss/stop loss limit leg (optional)
-	stopLimitPrice := float32(1.0) // float32 | If provided, stopLimitTimeInForce is required. (optional)
-	stopIcebergQty := float32(1.0) // float32 |  (optional)
+	stopLimitPrice := float64(1.0) // float64 | If provided, stopLimitTimeInForce is required. (optional)
+	stopIcebergQty := float64(1.0) // float64 |  (optional)
 	stopLimitTimeInForce := models.NewMarginOrderTimeInForceParameterGtc // NewMarginOrderTimeInForceParameter | Valid values are `GTC/FOK/IOC` (optional)
 	newOrderRespType := models.NewCmOrderNewOrderRespTypeParameterAck // NewCmOrderNewOrderRespTypeParameter | Set the response JSON. (optional)
 	sideEffectType := models.MarginAccountNewOcoSideEffectTypeParameterNoSideEffect // MarginAccountNewOcoSideEffectTypeParameter | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT. (optional)
@@ -1434,15 +1434,15 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) | See enum definitions: order side | 
- **quantity** | **float32** |  | 
- **price** | **float32** |  | 
- **stopPrice** | **float32** |  | 
+ **quantity** | **float64** |  | 
+ **price** | **float64** |  | 
+ **stopPrice** | **float64** |  | 
  **listClientOrderId** | **string** | A unique Id for the entire orderList | 
  **limitClientOrderId** | **string** | A unique Id for the limit order | 
- **limitIcebergQty** | **float32** |  | 
+ **limitIcebergQty** | **float64** |  | 
  **stopClientOrderId** | **string** | A unique Id for the stop loss/stop loss limit leg | 
- **stopLimitPrice** | **float32** | If provided, stopLimitTimeInForce is required. | 
- **stopIcebergQty** | **float32** |  | 
+ **stopLimitPrice** | **float64** | If provided, stopLimitTimeInForce is required. | 
+ **stopIcebergQty** | **float64** |  | 
  **stopLimitTimeInForce** | [**NewMarginOrderTimeInForceParameter**](NewMarginOrderTimeInForceParameter.md) | Valid values are &#x60;GTC/FOK/IOC&#x60; | 
  **newOrderRespType** | [**NewCmOrderNewOrderRespTypeParameter**](NewCmOrderNewOrderRespTypeParameter.md) | Set the response JSON. | 
  **sideEffectType** | [**MarginAccountNewOcoSideEffectTypeParameter**](MarginAccountNewOcoSideEffectTypeParameter.md) | NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY; default NO_SIDE_EFFECT. | 
@@ -1487,7 +1487,7 @@ import (
 
 func main() {
 	asset := "USDT" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 | The value cannot be greater than 60000 (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1517,7 +1517,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** | The value cannot be greater than 60000 | 
 
 ### Return type
@@ -1714,8 +1714,8 @@ import (
 func main() {
 	symbol := "BTCUSD_PERP" // string | Symbol
 	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | 
-	quantity := float32(1.0) // float32 | Order quantity
-	price := float32(1.0) // float32 | Order price
+	quantity := float64(1.0) // float64 | Order quantity
+	price := float64(1.0) // float64 | Order price
 	orderId := int64(1) // int64 | Order ID (optional)
 	origClientOrderId := "1" // string | Client order ID (optional)
 	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
@@ -1750,8 +1750,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol | 
  **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) |  | 
- **quantity** | **float32** | Order quantity | 
- **price** | **float32** | Order price | 
+ **quantity** | **float64** | Order quantity | 
+ **price** | **float64** | Order price | 
  **orderId** | **int64** | Order ID | 
  **origClientOrderId** | **string** | Client order ID | 
  **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
@@ -1798,8 +1798,8 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Symbol
 	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | 
-	quantity := float32(1.0) // float32 | Order quantity
-	price := float32(1.0) // float32 | Order price
+	quantity := float64(1.0) // float64 | Order quantity
+	price := float64(1.0) // float64 | Order price
 	orderId := int64(1) // int64 | Order ID (optional)
 	origClientOrderId := "1" // string | Client order ID (optional)
 	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
@@ -1834,8 +1834,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol | 
  **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) |  | 
- **quantity** | **float32** | Order quantity | 
- **price** | **float32** | Order price | 
+ **quantity** | **float64** | Order quantity | 
+ **price** | **float64** | Order price | 
  **orderId** | **int64** | Order ID | 
  **origClientOrderId** | **string** | Client order ID | 
  **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
@@ -1885,15 +1885,15 @@ func main() {
 	strategyType := models.NewCmConditionalOrderStrategyTypeParameterStop // NewCmConditionalOrderStrategyTypeParameter | 
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewCmConditionalOrderTimeInForceParameterGtc // NewCmConditionalOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
+	quantity := float64(1.0) // float64 |  (optional)
 	reduceOnly := "true" // string | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode (optional)
-	price := float32(1.0) // float32 |  (optional)
+	price := float64(1.0) // float64 |  (optional)
 	workingType := models.NewCmConditionalOrderWorkingTypeParameterMarkPrice // NewCmConditionalOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
 	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\", default \"false\". Used with `STOP`/`STOP_MARKET` or `TAKE_PROFIT`/`TAKE_PROFIT_MARKET` orders (optional)
 	newClientStrategyId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders. (optional)
-	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders. (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	activationPrice := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
+	callbackRate := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1927,15 +1927,15 @@ Name          | Type          | Description   | Notes
  **strategyType** | [**NewCmConditionalOrderStrategyTypeParameter**](NewCmConditionalOrderStrategyTypeParameter.md) |  | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewCmConditionalOrderTimeInForceParameter**](NewCmConditionalOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** |  | 
+ **quantity** | **float64** |  | 
  **reduceOnly** | **string** | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode | 
- **price** | **float32** |  | 
+ **price** | **float64** |  | 
  **workingType** | [**NewCmConditionalOrderWorkingTypeParameter**](NewCmConditionalOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
  **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;, default \&quot;false\&quot;. Used with &#x60;STOP&#x60;/&#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT&#x60;/&#x60;TAKE_PROFIT_MARKET&#x60; orders | 
  **newClientStrategyId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
- **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
+ **stopPrice** | **float64** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **activationPrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1981,9 +1981,9 @@ func main() {
 	type_ := models.NewCmOrderTypeParameterLimit // NewCmOrderTypeParameter | 
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewCmConditionalOrderTimeInForceParameterGtc // NewCmConditionalOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 | Place amount (optional)
+	quantity := float64(1.0) // float64 | Place amount (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". Cannot be sent in Hedge Mode. (optional)
-	price := float32(1.0) // float32 | Order price (optional)
+	price := float64(1.0) // float64 | Order price (optional)
 	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$` (optional)
 	newOrderRespType := models.NewCmOrderNewOrderRespTypeParameterAck // NewCmOrderNewOrderRespTypeParameter | \"ACK\", \"RESULT\", default \"ACK\" (optional)
@@ -2020,9 +2020,9 @@ Name          | Type          | Description   | Notes
  **type_** | [**NewCmOrderTypeParameter**](NewCmOrderTypeParameter.md) |  | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewCmConditionalOrderTimeInForceParameter**](NewCmConditionalOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** | Place amount | 
+ **quantity** | **float64** | Place amount | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode. | 
- **price** | **float32** | Order price | 
+ **price** | **float64** | Order price | 
  **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60; | 
  **newOrderRespType** | [**NewCmOrderNewOrderRespTypeParameter**](NewCmOrderNewOrderRespTypeParameter.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
@@ -2069,13 +2069,13 @@ func main() {
 	symbol := "BTCUSDT" // string | 
 	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | 
 	type_ := models.NewMarginOrderTypeParameterLimit // NewMarginOrderTypeParameter | 
-	quantity := float32(1.0) // float32 |  (optional)
-	quoteOrderQty := float32(1.0) // float32 |  (optional)
-	price := float32(1.0) // float32 |  (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
+	quantity := float64(1.0) // float64 |  (optional)
+	quoteOrderQty := float64(1.0) // float64 |  (optional)
+	price := float64(1.0) // float64 |  (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, and `TAKE_PROFIT_LIMIT` orders. (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. (optional)
 	newOrderRespType := models.NewMarginOrderNewOrderRespTypeParameterAck // NewMarginOrderNewOrderRespTypeParameter | Set the response JSON. ACK, RESULT, or FULL. (optional)
-	icebergQty := float32(1.0) // float32 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order (optional)
+	icebergQty := float64(1.0) // float64 | Used with `LIMIT`, `STOP_LOSS_LIMIT`, and `TAKE_PROFIT_LIMIT` to create an iceberg order (optional)
 	sideEffectType := models.NewMarginOrderSideEffectTypeParameterNoSideEffect // NewMarginOrderSideEffectTypeParameter |  (optional)
 	timeInForce := models.NewMarginOrderTimeInForceParameterGtc // NewMarginOrderTimeInForceParameter |  (optional)
 	selfTradePreventionMode := models.NewMarginOrderSelfTradePreventionModeParameterNone // NewMarginOrderSelfTradePreventionModeParameter | `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers (optional)
@@ -2111,13 +2111,13 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) |  | 
  **type_** | [**NewMarginOrderTypeParameter**](NewMarginOrderTypeParameter.md) |  | 
- **quantity** | **float32** |  | 
- **quoteOrderQty** | **float32** |  | 
- **price** | **float32** |  | 
- **stopPrice** | **float32** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
+ **quantity** | **float64** |  | 
+ **quoteOrderQty** | **float64** |  | 
+ **price** | **float64** |  | 
+ **stopPrice** | **float64** | Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders. | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. | 
  **newOrderRespType** | [**NewMarginOrderNewOrderRespTypeParameter**](NewMarginOrderNewOrderRespTypeParameter.md) | Set the response JSON. ACK, RESULT, or FULL. | 
- **icebergQty** | **float32** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order | 
+ **icebergQty** | **float64** | Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order | 
  **sideEffectType** | [**NewMarginOrderSideEffectTypeParameter**](NewMarginOrderSideEffectTypeParameter.md) |  | 
  **timeInForce** | [**NewMarginOrderTimeInForceParameter**](NewMarginOrderTimeInForceParameter.md) |  | 
  **selfTradePreventionMode** | [**NewMarginOrderSelfTradePreventionModeParameter**](NewMarginOrderSelfTradePreventionModeParameter.md) | &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers | 
@@ -2168,16 +2168,16 @@ func main() {
 	type_ := models.NewUmAlgoOrderTypeParameterStop // NewUmAlgoOrderTypeParameter | Conditional order type
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode (optional)
 	timeInForce := models.NewUmAlgoOrderTimeInForceParameterIoc // NewUmAlgoOrderTimeInForceParameter |  (optional)
-	quantity := float32(0.01) // float32 | Order quantity. Cannot be sent with `closePosition`=`true`(Close-All) (optional)
-	price := float32(750.000) // float32 | Order price (optional)
-	triggerPrice := float32(750.000) // float32 | Trigger price (optional)
+	quantity := float64(0.01) // float64 | Order quantity. Cannot be sent with `closePosition`=`true`(Close-All) (optional)
+	price := float64(750.000) // float64 | Order price (optional)
+	triggerPrice := float64(750.000) // float64 | Trigger price (optional)
 	workingType := models.NewUmAlgoOrderWorkingTypeParameterMarkPrice // NewUmAlgoOrderWorkingTypeParameter | Trigger price type. Default `CONTRACT_PRICE` (optional)
 	priceMatch := models.NewUmAlgoOrderPriceMatchParameterOpponent // NewUmAlgoOrderPriceMatchParameter | Can't be passed together with `price` (optional)
 	closePosition := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Close-All, used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
 	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Price protection. Default `false` (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (optional)
-	activatePrice := float32(700) // float32 | Used with `TRAILING_STOP_MARKET`, default as latest price (optional)
-	callbackRate := float32(1) // float32 | Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%) (optional)
+	activatePrice := float64(700) // float64 | Used with `TRAILING_STOP_MARKET`, default as latest price (optional)
+	callbackRate := float64(1) // float64 | Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%) (optional)
 	clientAlgoId := "6B2I9XVcJpCjqPAJ4YoFX7" // string | Unique id among open orders. Auto-generated if not sent (optional)
 	newOrderRespType := models.NewCmOrderNewOrderRespTypeParameterAck // NewCmOrderNewOrderRespTypeParameter |  (optional)
 	selfTradePreventionMode := models.NewUmAlgoOrderSelfTradePreventionModeParameterNone // NewUmAlgoOrderSelfTradePreventionModeParameter |  (optional)
@@ -2216,16 +2216,16 @@ Name          | Type          | Description   | Notes
  **type_** | [**NewUmAlgoOrderTypeParameter**](NewUmAlgoOrderTypeParameter.md) | Conditional order type | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode | 
  **timeInForce** | [**NewUmAlgoOrderTimeInForceParameter**](NewUmAlgoOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** | Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
- **price** | **float32** | Order price | 
- **triggerPrice** | **float32** | Trigger price | 
+ **quantity** | **float64** | Order quantity. Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
+ **price** | **float64** | Order price | 
+ **triggerPrice** | **float64** | Trigger price | 
  **workingType** | [**NewUmAlgoOrderWorkingTypeParameter**](NewUmAlgoOrderWorkingTypeParameter.md) | Trigger price type. Default &#x60;CONTRACT_PRICE&#x60; | 
  **priceMatch** | [**NewUmAlgoOrderPriceMatchParameter**](NewUmAlgoOrderPriceMatchParameter.md) | Can&#39;t be passed together with &#x60;price&#x60; | 
  **closePosition** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Close-All, used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
  **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Price protection. Default &#x60;false&#x60; | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **activatePrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%) | 
+ **activatePrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%) | 
  **clientAlgoId** | **string** | Unique id among open orders. Auto-generated if not sent | 
  **newOrderRespType** | [**NewCmOrderNewOrderRespTypeParameter**](NewCmOrderNewOrderRespTypeParameter.md) |  | 
  **selfTradePreventionMode** | [**NewUmAlgoOrderSelfTradePreventionModeParameter**](NewUmAlgoOrderSelfTradePreventionModeParameter.md) |  | 
@@ -2275,15 +2275,15 @@ func main() {
 	strategyType := models.NewCmConditionalOrderStrategyTypeParameterStop // NewCmConditionalOrderStrategyTypeParameter | 
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewUmConditionalOrderTimeInForceParameterGtc // NewUmConditionalOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 |  (optional)
+	quantity := float64(1.0) // float64 |  (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". Cannot be sent in Hedge Mode ; cannot be sent with `closePosition`=`true` (optional)
-	price := float32(1.0) // float32 |  (optional)
+	price := float64(1.0) // float64 |  (optional)
 	workingType := models.NewCmConditionalOrderWorkingTypeParameterMarkPrice // NewCmConditionalOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
 	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders (optional)
 	newClientStrategyId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$` (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders. (optional)
-	callbackRate := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders. (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	activationPrice := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
+	callbackRate := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
 	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
 	selfTradePreventionMode := models.NewMarginOrderSelfTradePreventionModeParameterNone // NewMarginOrderSelfTradePreventionModeParameter | `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers (optional)
 	goodTillDate := int64(1770736694138) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode. (optional)
@@ -2320,15 +2320,15 @@ Name          | Type          | Description   | Notes
  **strategyType** | [**NewCmConditionalOrderStrategyTypeParameter**](NewCmConditionalOrderStrategyTypeParameter.md) |  | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewUmConditionalOrderTimeInForceParameter**](NewUmConditionalOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** |  | 
+ **quantity** | **float64** |  | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode ; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **price** | **float32** |  | 
+ **price** | **float64** |  | 
  **workingType** | [**NewCmConditionalOrderWorkingTypeParameter**](NewCmConditionalOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
  **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders | 
  **newClientStrategyId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60; | 
- **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
+ **stopPrice** | **float64** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **activationPrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
  **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
  **selfTradePreventionMode** | [**NewMarginOrderSelfTradePreventionModeParameter**](NewMarginOrderSelfTradePreventionModeParameter.md) | &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers | 
  **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode. | 
@@ -2377,9 +2377,9 @@ func main() {
 	type_ := models.NewCmOrderTypeParameterLimit // NewCmOrderTypeParameter | 
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewUmConditionalOrderTimeInForceParameterGtc // NewUmConditionalOrderTimeInForceParameter | Valid values (optional)
-	quantity := float32(1.0) // float32 | Place amount (optional)
+	quantity := float64(1.0) // float64 | Place amount (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode . (optional)
-	price := float32(1.0) // float32 | Order price (optional)
+	price := float64(1.0) // float64 | Order price (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$` (optional)
 	newOrderRespType := models.NewCmOrderNewOrderRespTypeParameterAck // NewCmOrderNewOrderRespTypeParameter | `ACK`, `RESULT`, default `ACK` (optional)
 	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
@@ -2418,9 +2418,9 @@ Name          | Type          | Description   | Notes
  **type_** | [**NewCmOrderTypeParameter**](NewCmOrderTypeParameter.md) |  | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewUmConditionalOrderTimeInForceParameter**](NewUmConditionalOrderTimeInForceParameter.md) | Valid values | 
- **quantity** | **float32** | Place amount | 
+ **quantity** | **float64** | Place amount | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode . | 
- **price** | **float32** | Order price | 
+ **price** | **float64** | Order price | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60; | 
  **newOrderRespType** | [**NewCmOrderNewOrderRespTypeParameter**](NewCmOrderNewOrderRespTypeParameter.md) | &#x60;ACK&#x60;, &#x60;RESULT&#x60;, default &#x60;ACK&#x60; | 
  **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 

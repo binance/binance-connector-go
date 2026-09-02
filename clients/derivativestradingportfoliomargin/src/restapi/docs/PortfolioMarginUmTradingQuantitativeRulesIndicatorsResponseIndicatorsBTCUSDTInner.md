@@ -7,8 +7,8 @@ Name         | Type          | Description.  | Notes
 **IsLocked** | Pointer to **bool** | Is Locked. | [optional] 
 **PlannedRecoverTime** | Pointer to **int64** | Planned Recover Time. | [optional] 
 **Indicator** | Pointer to **string** | Indicator. | [optional] 
-**Value** | Pointer to **float32** | Value. | [optional] 
-**TriggerValue** | Pointer to **float32** | Trigger Value. | [optional] 
+**Value** | Pointer to **float64** | Value. | [optional] 
+**TriggerValue** | Pointer to **float64** | Trigger Value. | [optional] 
 
 ## Methods
 
@@ -106,20 +106,20 @@ HasIndicator returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValue() float32`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValue() float64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValueOk() (*float32, bool)`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValueOk() (*float64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetValue(v float32)`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetValue(v float64)`
 
 SetValue sets Value field to given value.
 
@@ -131,20 +131,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetTriggerValue
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValue() float32`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValue() float64`
 
 GetTriggerValue returns the TriggerValue field if non-nil, zero value otherwise.
 
 ### GetTriggerValueOk
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValueOk() (*float32, bool)`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValueOk() (*float64, bool)`
 
 GetTriggerValueOk returns a tuple with the TriggerValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTriggerValue
 
-`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetTriggerValue(v float32)`
+`func (o *PortfolioMarginUmTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetTriggerValue(v float64)`
 
 SetTriggerValue sets TriggerValue field to given value.
 

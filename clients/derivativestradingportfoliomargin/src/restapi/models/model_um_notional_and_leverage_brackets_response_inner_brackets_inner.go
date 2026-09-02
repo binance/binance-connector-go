@@ -26,7 +26,7 @@ type UmNotionalAndLeverageBracketsResponseInnerBracketsInner struct {
 	// Notional threshold of this bracket
 	NotionalFloor *int64 `json:"notionalFloor,omitempty"`
 	// Maintenance ratio for this bracket
-	MaintMarginRatio *float32 `json:"maintMarginRatio,omitempty"`
+	MaintMarginRatio *float64 `json:"maintMarginRatio,omitempty"`
 	// Auxiliary number for quick calculation
 	Cum                  *int64 `json:"cum,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -180,9 +180,9 @@ func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) SetNotionalFlo
 }
 
 // GetMaintMarginRatio returns the MaintMarginRatio field value if set, zero value otherwise.
-func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) GetMaintMarginRatio() float32 {
+func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) GetMaintMarginRatio() float64 {
 	if o == nil || common.IsNil(o.MaintMarginRatio) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.MaintMarginRatio
@@ -190,7 +190,7 @@ func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) GetMaintMargin
 
 // GetMaintMarginRatioOk returns a tuple with the MaintMarginRatio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float32, bool) {
+func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.MaintMarginRatio) {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) HasMaintMargin
 	return false
 }
 
-// SetMaintMarginRatio gets a reference to the given float32 and assigns it to the MaintMarginRatio field.
-func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) SetMaintMarginRatio(v float32) {
+// SetMaintMarginRatio gets a reference to the given float64 and assigns it to the MaintMarginRatio field.
+func (o *UmNotionalAndLeverageBracketsResponseInnerBracketsInner) SetMaintMarginRatio(v float64) {
 	o.MaintMarginRatio = &v
 }
 

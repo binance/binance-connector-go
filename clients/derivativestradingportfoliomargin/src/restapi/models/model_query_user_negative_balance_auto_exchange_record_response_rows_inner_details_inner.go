@@ -20,7 +20,7 @@ type QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner str
 	// asset name
 	Asset *string `json:"asset,omitempty"`
 	// negative balance amount
-	NegativeBalance *float32 `json:"negativeBalance,omitempty"`
+	NegativeBalance *float64 `json:"negativeBalance,omitempty"`
 	// the max negative balance threshold
 	NegativeMaxThreshold *int64 `json:"negativeMaxThreshold,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -78,9 +78,9 @@ func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner
 }
 
 // GetNegativeBalance returns the NegativeBalance field value if set, zero value otherwise.
-func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalance() float32 {
+func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalance() float64 {
 	if o == nil || common.IsNil(o.NegativeBalance) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.NegativeBalance
@@ -88,7 +88,7 @@ func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner
 
 // GetNegativeBalanceOk returns a tuple with the NegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalanceOk() (*float32, bool) {
+func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) GetNegativeBalanceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.NegativeBalance) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner
 	return false
 }
 
-// SetNegativeBalance gets a reference to the given float32 and assigns it to the NegativeBalance field.
-func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) SetNegativeBalance(v float32) {
+// SetNegativeBalance gets a reference to the given float64 and assigns it to the NegativeBalance field.
+func (o *QueryUserNegativeBalanceAutoExchangeRecordResponseRowsInnerDetailsInner) SetNegativeBalance(v float64) {
 	o.NegativeBalance = &v
 }
 

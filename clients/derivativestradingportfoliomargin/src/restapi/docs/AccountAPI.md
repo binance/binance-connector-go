@@ -209,7 +209,7 @@ import (
 )
 
 func main() {
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	transferSide := models.BnbTransferTransferSideParameterToUm // BnbTransferTransferSideParameter | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -239,7 +239,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **transferSide** | [**BnbTransferTransferSideParameter**](BnbTransferTransferSideParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
