@@ -195,8 +195,8 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Symbol.
 	side := models.ModifyOrderSideParameterBuy // ModifyOrderSideParameter | `SELL`, `BUY`
-	quantity := float32(1.0) // float32 | Order quantity, cannot be sent with `closePosition=true`
-	price := float32(1.0) // float32 | Price.
+	quantity := float64(1.0) // float64 | Order quantity, cannot be sent with `closePosition=true`
+	price := float64(1.0) // float64 | Price.
 	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
 	orderId := int64(1) // int64 | Order Id. (optional)
 	origClientOrderId := "1" // string | Orig Client Order Id. (optional)
@@ -242,8 +242,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol. | 
  **side** | [**ModifyOrderSideParameter**](ModifyOrderSideParameter.md) | &#x60;SELL&#x60;, &#x60;BUY&#x60; | 
- **quantity** | **float32** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60; | 
- **price** | **float32** | Price. | 
+ **quantity** | **float64** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60; | 
+ **price** | **float64** | Price. | 
  **id** | **string** | Id. | 
  **orderId** | **int64** | Order Id. | 
  **origClientOrderId** | **string** | Orig Client Order Id. | 
@@ -290,16 +290,16 @@ func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
 	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewAlgoOrderTimeInForceParameterIoc // NewAlgoOrderTimeInForceParameter | `IOC` or `GTC` or `FOK`, default `GTC` (optional)
-	quantity := float32(1.0) // float32 | Cannot be sent with `closePosition`=`true`(Close-All) (optional)
-	price := float32(1.0) // float32 | Price. (optional)
-	triggerPrice := float32(1.0) // float32 | Trigger Price. (optional)
+	quantity := float64(1.0) // float64 | Cannot be sent with `closePosition`=`true`(Close-All) (optional)
+	price := float64(1.0) // float64 | Price. (optional)
+	triggerPrice := float64(1.0) // float64 | Trigger Price. (optional)
 	workingType := models.NewAlgoOrderWorkingTypeParameterMarkPrice // NewAlgoOrderWorkingTypeParameter | triggerPrice triggered by: `MARK_PRICE`, `CONTRACT_PRICE`. Default `CONTRACT_PRICE` (optional)
 	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can't be passed together with price (optional)
 	closePosition := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Close-All，used with STOP_MARKET or TAKE_PROFIT_MARKET. (optional)
 	priceProtect := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Used with STOP_MARKET or TAKE_PROFIT_MARKET order. when price reaches the triggerPrice ，the difference rate between \"MARK_PRICE\" and \"CONTRACT_PRICE\" cannot be larger than the Price Protection Threshold of the symbol. (optional)
 	reduceOnly := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Cannot be sent in Hedge Mode; cannot be sent with closePosition=true (optional)
-	activatePrice := float32(1.0) // float32 | Used with TRAILING_STOP_MARKET orders, default as the latest price(supporting different workingType) (optional)
-	callbackRate := float32(1) // float32 | Used with TRAILING_STOP_MARKET orders (optional)
+	activatePrice := float64(1.0) // float64 | Used with TRAILING_STOP_MARKET orders, default as the latest price(supporting different workingType) (optional)
+	callbackRate := float64(1) // float64 | Used with TRAILING_STOP_MARKET orders (optional)
 	clientAlgoId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
 	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter | \"ACK\", \"RESULT\", default \"ACK\" (optional)
 	selfTradePreventionMode := models.NewAlgoOrderSelfTradePreventionModeParameterNone // NewAlgoOrderSelfTradePreventionModeParameter | `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE` (optional)
@@ -349,16 +349,16 @@ Name          | Type          | Description   | Notes
  **id** | **string** | Id. | 
  **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) | &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;FOK&#x60;, default &#x60;GTC&#x60; | 
- **quantity** | **float32** | Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
- **price** | **float32** | Price. | 
- **triggerPrice** | **float32** | Trigger Price. | 
+ **quantity** | **float64** | Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
+ **price** | **float64** | Price. | 
+ **triggerPrice** | **float64** | Trigger Price. | 
  **workingType** | [**NewAlgoOrderWorkingTypeParameter**](NewAlgoOrderWorkingTypeParameter.md) | triggerPrice triggered by: &#x60;MARK_PRICE&#x60;, &#x60;CONTRACT_PRICE&#x60;. Default &#x60;CONTRACT_PRICE&#x60; | 
  **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only avaliable for LIMIT/STOP/TAKE_PROFIT order; Can&#39;t be passed together with price | 
  **closePosition** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Close-All，used with STOP_MARKET or TAKE_PROFIT_MARKET. | 
  **priceProtect** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Used with STOP_MARKET or TAKE_PROFIT_MARKET order. when price reaches the triggerPrice ，the difference rate between \&quot;MARK_PRICE\&quot; and \&quot;CONTRACT_PRICE\&quot; cannot be larger than the Price Protection Threshold of the symbol. | 
  **reduceOnly** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with closePosition&#x3D;true | 
- **activatePrice** | **float32** | Used with TRAILING_STOP_MARKET orders, default as the latest price(supporting different workingType) | 
- **callbackRate** | **float32** | Used with TRAILING_STOP_MARKET orders | 
+ **activatePrice** | **float64** | Used with TRAILING_STOP_MARKET orders, default as the latest price(supporting different workingType) | 
+ **callbackRate** | **float64** | Used with TRAILING_STOP_MARKET orders | 
  **clientAlgoId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
  **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) | \&quot;ACK\&quot;, \&quot;RESULT\&quot;, default \&quot;ACK\&quot; | 
  **selfTradePreventionMode** | [**NewAlgoOrderSelfTradePreventionModeParameter**](NewAlgoOrderSelfTradePreventionModeParameter.md) | &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60; | 
@@ -404,8 +404,8 @@ func main() {
 	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter | Time In Force. (optional)
 	reduceOnly := models.NewAlgoOrderClosePositionParameterTrue // NewAlgoOrderClosePositionParameter | Cannot be sent in Hedge Mode (optional)
-	quantity := float32(1.0) // float32 |  (optional)
-	price := float32(1.0) // float32 | Price. (optional)
+	quantity := float64(1.0) // float64 |  (optional)
+	price := float64(1.0) // float64 | Price. (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
 	newOrderRespType := models.NewAlgoOrderNewOrderRespTypeParameterAck // NewAlgoOrderNewOrderRespTypeParameter |  (optional)
 	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only available for `LIMIT` order; Can't be passed together with `price` (optional)
@@ -456,8 +456,8 @@ Name          | Type          | Description   | Notes
  **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) | Time In Force. | 
  **reduceOnly** | [**NewAlgoOrderClosePositionParameter**](NewAlgoOrderClosePositionParameter.md) | Cannot be sent in Hedge Mode | 
- **quantity** | **float32** |  | 
- **price** | **float32** | Price. | 
+ **quantity** | **float64** |  | 
+ **price** | **float64** | Price. | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
  **newOrderRespType** | [**NewAlgoOrderNewOrderRespTypeParameter**](NewAlgoOrderNewOrderRespTypeParameter.md) |  | 
  **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only available for &#x60;LIMIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 

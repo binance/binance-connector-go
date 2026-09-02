@@ -8,10 +8,10 @@ Name         | Type          | Description.  | Notes
 **OrigClientOrderId** | Pointer to **string** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | [optional] 
-**Quantity** | Pointer to **float32** | Order quantity, cannot be sent with closePosition&#x3D;true | [optional] 
-**Price** | Pointer to **float32** |  | [optional] 
+**Quantity** | Pointer to **float64** | Order quantity, cannot be sent with closePosition&#x3D;true | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **PriceMatch** | Pointer to [**ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch**](ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) |  | [optional] 
-**StopPrice** | Pointer to **float32** | stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need | [optional] 
+**StopPrice** | Pointer to **float64** | stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need | [optional] 
 **ModifyId** | Pointer to **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | [optional] 
 **RecvWindow** | Pointer to **int64** | Validity window in milliseconds. | [optional] 
 **Timestamp** | Pointer to **int64** | Unix timestamp in milliseconds. | [optional] 
@@ -137,20 +137,20 @@ HasSide returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64)`
 
 SetQuantity sets Quantity field to given value.
 
@@ -162,20 +162,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 
@@ -212,20 +212,20 @@ HasPriceMatch returns a boolean if a field has been set.
 
 ### GetStopPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float64`
 
 GetStopPrice returns the StopPrice field if non-nil, zero value otherwise.
 
 ### GetStopPriceOk
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float32, bool)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float64, bool)`
 
 GetStopPriceOk returns a tuple with the StopPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStopPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float32)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float64)`
 
 SetStopPrice sets StopPrice field to given value.
 

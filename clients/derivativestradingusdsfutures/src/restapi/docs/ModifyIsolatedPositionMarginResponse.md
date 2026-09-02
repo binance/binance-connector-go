@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** |  | [optional] 
+**Amount** | Pointer to **float64** |  | [optional] 
 **Code** | Pointer to **int64** |  | [optional] 
 **Msg** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **int64** |  | [optional] 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *ModifyIsolatedPositionMarginResponse) GetAmount() float32`
+`func (o *ModifyIsolatedPositionMarginResponse) GetAmount() float64`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *ModifyIsolatedPositionMarginResponse) GetAmountOk() (*float32, bool)`
+`func (o *ModifyIsolatedPositionMarginResponse) GetAmountOk() (*float64, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *ModifyIsolatedPositionMarginResponse) SetAmount(v float32)`
+`func (o *ModifyIsolatedPositionMarginResponse) SetAmount(v float64)`
 
 SetAmount sets Amount field to given value.
 

@@ -22,9 +22,9 @@ type PlaceMultipleOrdersBatchOrdersParameterInner struct {
 	PositionSide            *PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide            `json:"positionSide,omitempty"`
 	Type                    *PlaceMultipleOrdersBatchOrdersParameterInnerType                    `json:"type,omitempty"`
 	TimeInForce             *NewAlgoOrderTimeInForceParameter                                    `json:"timeInForce,omitempty"`
-	Quantity                *float32                                                             `json:"quantity,omitempty"`
+	Quantity                *float64                                                             `json:"quantity,omitempty"`
 	ReduceOnly              *PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly              `json:"reduceOnly,omitempty"`
-	Price                   *float32                                                             `json:"price,omitempty"`
+	Price                   *float64                                                             `json:"price,omitempty"`
 	NewClientOrderId        *string                                                              `json:"newClientOrderId,omitempty"`
 	NewOrderRespType        *PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType        `json:"newOrderRespType,omitempty"`
 	PriceMatch              *PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch              `json:"priceMatch,omitempty"`
@@ -246,9 +246,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v NewAlgoO
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Quantity
@@ -256,7 +256,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given float64 and assigns it to the Quantity field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64) {
 	o.Quantity = &v
 }
 
@@ -310,9 +310,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v PlaceMult
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float64 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -320,7 +320,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given float32 and assigns it to the Price field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64) {
 	o.Price = &v
 }
 

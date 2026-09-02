@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **InitialLeverage** | Pointer to **int64** | Max initial leverage for this bracket | [optional] 
 **NotionalCap** | Pointer to **int64** | Cap notional of this bracket | [optional] 
 **NotionalFloor** | Pointer to **int64** | Notional threshold of this bracket | [optional] 
-**MaintMarginRatio** | Pointer to **float32** | Maintenance ratio for this bracket | [optional] 
+**MaintMarginRatio** | Pointer to **float64** | Maintenance ratio for this bracket | [optional] 
 **Cum** | Pointer to **int64** | Auxiliary number for quick calculation | [optional] 
 
 ## Methods
@@ -132,20 +132,20 @@ HasNotionalFloor returns a boolean if a field has been set.
 
 ### GetMaintMarginRatio
 
-`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) GetMaintMarginRatio() float32`
+`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) GetMaintMarginRatio() float64`
 
 GetMaintMarginRatio returns the MaintMarginRatio field if non-nil, zero value otherwise.
 
 ### GetMaintMarginRatioOk
 
-`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) GetMaintMarginRatioOk() (*float32, bool)`
+`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) GetMaintMarginRatioOk() (*float64, bool)`
 
 GetMaintMarginRatioOk returns a tuple with the MaintMarginRatio field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaintMarginRatio
 
-`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) SetMaintMarginRatio(v float32)`
+`func (o *NotionalAndLeverageBracketsResponse2BracketsInner) SetMaintMarginRatio(v float64)`
 
 SetMaintMarginRatio sets MaintMarginRatio field to given value.
 

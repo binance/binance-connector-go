@@ -24,9 +24,9 @@ type FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner str
 	// Too many violations under multiple symbols trigger account violation
 	Indicator *string `json:"indicator,omitempty"`
 	// Current value
-	Value *float32 `json:"value,omitempty"`
+	Value *float64 `json:"value,omitempty"`
 	// Trigger value
-	TriggerValue         *float32 `json:"triggerValue,omitempty"`
+	TriggerValue         *float64 `json:"triggerValue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -146,9 +146,9 @@ func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValue() float32 {
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValue() float64 {
 	if o == nil || common.IsNil(o.Value) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Value
@@ -156,7 +156,7 @@ func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValueOk() (*float32, bool) {
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetValueOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Value) {
 		return nil, false
 	}
@@ -172,15 +172,15 @@ func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner
 	return false
 }
 
-// SetValue gets a reference to the given float32 and assigns it to the Value field.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetValue(v float32) {
+// SetValue gets a reference to the given float64 and assigns it to the Value field.
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetValue(v float64) {
 	o.Value = &v
 }
 
 // GetTriggerValue returns the TriggerValue field value if set, zero value otherwise.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValue() float32 {
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValue() float64 {
 	if o == nil || common.IsNil(o.TriggerValue) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.TriggerValue
@@ -188,7 +188,7 @@ func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner
 
 // GetTriggerValueOk returns a tuple with the TriggerValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValueOk() (*float32, bool) {
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) GetTriggerValueOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.TriggerValue) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner
 	return false
 }
 
-// SetTriggerValue gets a reference to the given float32 and assigns it to the TriggerValue field.
-func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetTriggerValue(v float32) {
+// SetTriggerValue gets a reference to the given float64 and assigns it to the TriggerValue field.
+func (o *FuturesTradingQuantitativeRulesIndicatorsResponseIndicatorsBTCUSDTInner) SetTriggerValue(v float64) {
 	o.TriggerValue = &v
 }
 

@@ -33,9 +33,9 @@ type AccountTradeListResponseInner struct {
 	Price *string `json:"price,omitempty"`
 	// Qty.
 	Qty *string `json:"qty,omitempty"`
-	// Quote Qty.
+	// Quote asset quantity. Populated for USDⓈ-M symbols; returns \"0\" for COIN-M symbols.
 	QuoteQty *string `json:"quoteQty,omitempty"`
-	// Base Qty.
+	// Base asset quantity. Populated for COIN-M symbols; returns \"0\" for USDⓈ-M symbols.
 	BaseQty *string `json:"baseQty,omitempty"`
 	// Margin Asset.
 	MarginAsset *string `json:"marginAsset,omitempty"`

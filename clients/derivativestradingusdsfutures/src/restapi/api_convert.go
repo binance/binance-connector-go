@@ -245,8 +245,8 @@ type ApiSendQuoteRequestRequest struct {
 	ApiService *ConvertAPIService
 	fromAsset  *string
 	toAsset    *string
-	fromAmount *float32
-	toAmount   *float32
+	fromAmount *float64
+	toAmount   *float64
 	validTime  *string
 	recvWindow *int64
 }
@@ -262,13 +262,13 @@ func (r ApiSendQuoteRequestRequest) ToAsset(toAsset string) ApiSendQuoteRequestR
 }
 
 // When specified, it is the amount you will be debited after the conversion
-func (r ApiSendQuoteRequestRequest) FromAmount(fromAmount float32) ApiSendQuoteRequestRequest {
+func (r ApiSendQuoteRequestRequest) FromAmount(fromAmount float64) ApiSendQuoteRequestRequest {
 	r.fromAmount = &fromAmount
 	return r
 }
 
 // When specified, it is the amount you will be credited after the conversion
-func (r ApiSendQuoteRequestRequest) ToAmount(toAmount float32) ApiSendQuoteRequestRequest {
+func (r ApiSendQuoteRequestRequest) ToAmount(toAmount float64) ApiSendQuoteRequestRequest {
 	r.toAmount = &toAmount
 	return r
 }

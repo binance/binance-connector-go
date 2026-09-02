@@ -24,7 +24,7 @@ type ContractInfoStreamResponseBksInner struct {
 	// Cap notional of this bracket
 	Bnc *int64 `json:"bnc,omitempty"`
 	// Maintenance ratio for this bracket
-	Mmr *float32 `json:"mmr,omitempty"`
+	Mmr *float64 `json:"mmr,omitempty"`
 	// Auxiliary number for quick calculation
 	Smallcf *int64 `json:"cf,omitempty"`
 	// Min leverage for this bracket
@@ -150,9 +150,9 @@ func (o *ContractInfoStreamResponseBksInner) SetBnc(v int64) {
 }
 
 // GetMmr returns the Mmr field value if set, zero value otherwise.
-func (o *ContractInfoStreamResponseBksInner) GetMmr() float32 {
+func (o *ContractInfoStreamResponseBksInner) GetMmr() float64 {
 	if o == nil || common.IsNil(o.Mmr) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Mmr
@@ -160,7 +160,7 @@ func (o *ContractInfoStreamResponseBksInner) GetMmr() float32 {
 
 // GetMmrOk returns a tuple with the Mmr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContractInfoStreamResponseBksInner) GetMmrOk() (*float32, bool) {
+func (o *ContractInfoStreamResponseBksInner) GetMmrOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Mmr) {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *ContractInfoStreamResponseBksInner) HasMmr() bool {
 	return false
 }
 
-// SetMmr gets a reference to the given float32 and assigns it to the Mmr field.
-func (o *ContractInfoStreamResponseBksInner) SetMmr(v float32) {
+// SetMmr gets a reference to the given float64 and assigns it to the Mmr field.
+func (o *ContractInfoStreamResponseBksInner) SetMmr(v float64) {
 	o.Mmr = &v
 }
 

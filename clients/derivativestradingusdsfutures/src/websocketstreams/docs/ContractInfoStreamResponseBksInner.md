@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Bs** | Pointer to **int64** | Notional bracket | [optional] 
 **Bnf** | Pointer to **int64** | Floor notional of this bracket | [optional] 
 **Bnc** | Pointer to **int64** | Cap notional of this bracket | [optional] 
-**Mmr** | Pointer to **float32** | Maintenance ratio for this bracket | [optional] 
+**Mmr** | Pointer to **float64** | Maintenance ratio for this bracket | [optional] 
 **Cf** | Pointer to **int64** | Auxiliary number for quick calculation | [optional] 
 **Mi** | Pointer to **int64** | Min leverage for this bracket | [optional] 
 **Ma** | Pointer to **int64** | Max leverage for this bracket | [optional] 
@@ -108,20 +108,20 @@ HasBnc returns a boolean if a field has been set.
 
 ### GetMmr
 
-`func (o *ContractInfoStreamResponseBksInner) GetMmr() float32`
+`func (o *ContractInfoStreamResponseBksInner) GetMmr() float64`
 
 GetMmr returns the Mmr field if non-nil, zero value otherwise.
 
 ### GetMmrOk
 
-`func (o *ContractInfoStreamResponseBksInner) GetMmrOk() (*float32, bool)`
+`func (o *ContractInfoStreamResponseBksInner) GetMmrOk() (*float64, bool)`
 
 GetMmrOk returns a tuple with the Mmr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMmr
 
-`func (o *ContractInfoStreamResponseBksInner) SetMmr(v float32)`
+`func (o *ContractInfoStreamResponseBksInner) SetMmr(v float64)`
 
 SetMmr sets Mmr field to given value.
 

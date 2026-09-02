@@ -1,5 +1,120 @@
 ### Changelog
 
+## 1.20.0 - 2026-09-02
+
+### Changed (23)
+
+#### REST API
+
+- Modified parameter `activatePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- Modified parameter `activationPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyIsolatedPositionMargin()` (`POST /fapi/v1/positionMargin`)
+- Modified parameter `callbackRate`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified parameter `fromAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `sendQuoteRequest()` (`POST /fapi/v1/convert/getQuote`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`PUT /fapi/v1/order`)
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+    - `newOrder()` (`POST /fapi/v1/order`)
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`PUT /fapi/v1/order`)
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+    - `newOrder()` (`POST /fapi/v1/order`)
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `testOrder()` (`POST /fapi/v1/order/test`)
+- Modified parameter `toAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `sendQuoteRequest()` (`POST /fapi/v1/convert/getQuote`)
+- Modified parameter `triggerPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`POST /fapi/v1/algoOrder`)
+- Modified parameter `batchOrders`:
+  - items.`price`: type `float32` → `float64`
+  - items.`quantity`: type `float32` → `float64`
+  - items.`stopPrice`: type `float32` → `float64`
+  - affected methods:
+    - `modifyMultipleOrders()` (`PUT /fapi/v1/batchOrders`)
+- Modified parameter `batchOrders`:
+  - items.`price`: type `float32` → `float64`
+  - items.`quantity`: type `float32` → `float64`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /fapi/v1/batchOrders`)
+- Modified response for `futuresTradingQuantitativeRulesIndicators()` (`GET /fapi/v1/apiTradingStatus`):
+  - `indicators`.`BTCUSDT`.items.`triggerValue`: type `float32` → `float64`
+  - `indicators`.`BTCUSDT`.items.`value`: type `float32` → `float64`
+  - `indicators`.`ETHUSDT`.items.`triggerValue`: type `float32` → `float64`
+  - `indicators`.`ETHUSDT`.items.`value`: type `float32` → `float64`
+- Modified response for `modifyIsolatedPositionMargin()` (`POST /fapi/v1/positionMargin`):
+  - `amount`: type `float32` → `float64`
+- Modified response for `notionalAndLeverageBrackets()` (`GET /fapi/v1/leverageBracket`):
+  - oneOf(1).items.`brackets`.items.`cum`: type `float32` → `float64`
+  - oneOf(1).items.`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+  - oneOf(1).items.`notionalCoef`: type `float32` → `float64`
+  - oneOf(2).`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+  - oneOf(2).`notionalCoef`: type `float32` → `float64`
+- Modified response for `quarterlyContractSettlementPrice()` (`GET /futures/data/delivery-price`):
+  - items.`deliveryPrice`: type `float32` → `float64`
+- Modified response for `accountTradeList()` (`GET /fapi/v1/userTrades`):
+  - items.`baseQty`: description updated
+  - items.`quoteQty`: description updated
+
+#### WebSocket API
+
+- Modified parameter `activatePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Modified parameter `callbackRate`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+    - `newAlgoOrder()` (`algoOrder.place` method)
+    - `newOrder()` (`order.place` method)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+    - `newAlgoOrder()` (`algoOrder.place` method)
+    - `newOrder()` (`order.place` method)
+- Modified parameter `triggerPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+
+#### WebSocket Streams
+
+- Modified response for `contractInfoStream()` (`!contractInfo` stream):
+  - `bks`.items.`mmr`: type `float32` → `float64`
+
 ## 1.19.0 - 2026-08-28
 
 ### Changed (2)

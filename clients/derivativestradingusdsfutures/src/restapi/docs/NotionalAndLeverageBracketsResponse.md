@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**NotionalCoef** | Pointer to **float32** | user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted | [optional] 
+**NotionalCoef** | Pointer to **float64** | user symbol bracket multiplier, only appears when user&#39;s symbol bracket is adjusted | [optional] 
 **Brackets** | Pointer to [**[]NotionalAndLeverageBracketsResponse2BracketsInner**](NotionalAndLeverageBracketsResponse2BracketsInner.md) |  | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetNotionalCoef
 
-`func (o *NotionalAndLeverageBracketsResponse) GetNotionalCoef() float32`
+`func (o *NotionalAndLeverageBracketsResponse) GetNotionalCoef() float64`
 
 GetNotionalCoef returns the NotionalCoef field if non-nil, zero value otherwise.
 
 ### GetNotionalCoefOk
 
-`func (o *NotionalAndLeverageBracketsResponse) GetNotionalCoefOk() (*float32, bool)`
+`func (o *NotionalAndLeverageBracketsResponse) GetNotionalCoefOk() (*float64, bool)`
 
 GetNotionalCoefOk returns a tuple with the NotionalCoef field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNotionalCoef
 
-`func (o *NotionalAndLeverageBracketsResponse) SetNotionalCoef(v float32)`
+`func (o *NotionalAndLeverageBracketsResponse) SetNotionalCoef(v float64)`
 
 SetNotionalCoef sets NotionalCoef field to given value.
 

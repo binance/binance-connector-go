@@ -18,7 +18,7 @@ var _ common.MappedNullable = &QuarterlyContractSettlementPriceResponseInner{}
 // QuarterlyContractSettlementPriceResponseInner struct for QuarterlyContractSettlementPriceResponseInner
 type QuarterlyContractSettlementPriceResponseInner struct {
 	DeliveryTime         *int64   `json:"deliveryTime,omitempty"`
-	DeliveryPrice        *float32 `json:"deliveryPrice,omitempty"`
+	DeliveryPrice        *float64 `json:"deliveryPrice,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,9 +74,9 @@ func (o *QuarterlyContractSettlementPriceResponseInner) SetDeliveryTime(v int64)
 }
 
 // GetDeliveryPrice returns the DeliveryPrice field value if set, zero value otherwise.
-func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPrice() float32 {
+func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPrice() float64 {
 	if o == nil || common.IsNil(o.DeliveryPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.DeliveryPrice
@@ -84,7 +84,7 @@ func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPrice() float
 
 // GetDeliveryPriceOk returns a tuple with the DeliveryPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPriceOk() (*float32, bool) {
+func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.DeliveryPrice) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *QuarterlyContractSettlementPriceResponseInner) HasDeliveryPrice() bool 
 	return false
 }
 
-// SetDeliveryPrice gets a reference to the given float32 and assigns it to the DeliveryPrice field.
-func (o *QuarterlyContractSettlementPriceResponseInner) SetDeliveryPrice(v float32) {
+// SetDeliveryPrice gets a reference to the given float64 and assigns it to the DeliveryPrice field.
+func (o *QuarterlyContractSettlementPriceResponseInner) SetDeliveryPrice(v float64) {
 	o.DeliveryPrice = &v
 }
 

@@ -17,7 +17,7 @@ var _ common.MappedNullable = &ModifyIsolatedPositionMarginResponse{}
 
 // ModifyIsolatedPositionMarginResponse struct for ModifyIsolatedPositionMarginResponse
 type ModifyIsolatedPositionMarginResponse struct {
-	Amount               *float32 `json:"amount,omitempty"`
+	Amount               *float64 `json:"amount,omitempty"`
 	Code                 *int64   `json:"code,omitempty"`
 	Msg                  *string  `json:"msg,omitempty"`
 	Type                 *int64   `json:"type,omitempty"`
@@ -44,9 +44,9 @@ func NewModifyIsolatedPositionMarginResponseWithDefaults() *ModifyIsolatedPositi
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *ModifyIsolatedPositionMarginResponse) GetAmount() float32 {
+func (o *ModifyIsolatedPositionMarginResponse) GetAmount() float64 {
 	if o == nil || common.IsNil(o.Amount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Amount
@@ -54,7 +54,7 @@ func (o *ModifyIsolatedPositionMarginResponse) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyIsolatedPositionMarginResponse) GetAmountOk() (*float32, bool) {
+func (o *ModifyIsolatedPositionMarginResponse) GetAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Amount) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *ModifyIsolatedPositionMarginResponse) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *ModifyIsolatedPositionMarginResponse) SetAmount(v float32) {
+// SetAmount gets a reference to the given float64 and assigns it to the Amount field.
+func (o *ModifyIsolatedPositionMarginResponse) SetAmount(v float64) {
 	o.Amount = &v
 }
 

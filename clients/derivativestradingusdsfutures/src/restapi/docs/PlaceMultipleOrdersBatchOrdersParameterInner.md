@@ -9,9 +9,9 @@ Name         | Type          | Description.  | Notes
 **PositionSide** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) |  | [optional] 
 **Type** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | [optional] 
 **TimeInForce** | Pointer to [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | [optional] 
-**Quantity** | Pointer to **float32** |  | [optional] 
+**Quantity** | Pointer to **float64** |  | [optional] 
 **ReduceOnly** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly**](PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly.md) |  | [optional] [default to PLACEMULTIPLEORDERSBATCHORDERSPARAMETERINNERREDUCEONLY_FALSE]
-**Price** | Pointer to **float32** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **NewClientOrderId** | Pointer to **string** |  | [optional] 
 **NewOrderRespType** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType**](PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType.md) |  | [optional] [default to PLACEMULTIPLEORDERSBATCHORDERSPARAMETERINNERNEWORDERRESPTYPE_ACK]
 **PriceMatch** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch**](PlaceMultipleOrdersBatchOrdersParameterInnerPriceMatch.md) |  | [optional] 
@@ -164,20 +164,20 @@ HasTimeInForce returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64)`
 
 SetQuantity sets Quantity field to given value.
 
@@ -214,20 +214,20 @@ HasReduceOnly returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

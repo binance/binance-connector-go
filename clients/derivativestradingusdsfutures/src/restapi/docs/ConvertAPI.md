@@ -245,8 +245,8 @@ import (
 func main() {
 	fromAsset := "BTC" // string | 
 	toAsset := "USDT" // string | 
-	fromAmount := float32(1.0) // float32 | When specified, it is the amount you will be debited after the conversion (optional)
-	toAmount := float32(1.0) // float32 | When specified, it is the amount you will be credited after the conversion (optional)
+	fromAmount := float64(1.0) // float64 | When specified, it is the amount you will be debited after the conversion (optional)
+	toAmount := float64(1.0) // float64 | When specified, it is the amount you will be credited after the conversion (optional)
 	validTime := "10s" // string | 10s, default 10s (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -278,8 +278,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromAsset** | **string** |  | 
  **toAsset** | **string** |  | 
- **fromAmount** | **float32** | When specified, it is the amount you will be debited after the conversion | 
- **toAmount** | **float32** | When specified, it is the amount you will be credited after the conversion | 
+ **fromAmount** | **float64** | When specified, it is the amount you will be debited after the conversion | 
+ **toAmount** | **float64** | When specified, it is the amount you will be credited after the conversion | 
  **validTime** | **string** | 10s, default 10s | 
  **recvWindow** | **int64** |  | 
 

@@ -1569,7 +1569,7 @@ type ApiModifyIsolatedPositionMarginRequest struct {
 	ctx          context.Context
 	ApiService   *TradeAPIService
 	symbol       *string
-	amount       *float32
+	amount       *float64
 	type_        *int32
 	positionSide *string
 	recvWindow   *int64
@@ -1581,7 +1581,7 @@ func (r ApiModifyIsolatedPositionMarginRequest) Symbol(symbol string) ApiModifyI
 }
 
 // Margin asset
-func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float32) ApiModifyIsolatedPositionMarginRequest {
+func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float64) ApiModifyIsolatedPositionMarginRequest {
 	r.amount = &amount
 	return r
 }
@@ -1759,8 +1759,8 @@ type ApiModifyOrderRequest struct {
 	ApiService        *TradeAPIService
 	symbol            *string
 	side              *models.NewAlgoOrderSideParameter
-	quantity          *float32
-	price             *float32
+	quantity          *float64
+	price             *float64
 	orderId           *int64
 	origClientOrderId *string
 	priceMatch        *models.NewAlgoOrderPriceMatchParameter
@@ -1779,12 +1779,12 @@ func (r ApiModifyOrderRequest) Side(side models.NewAlgoOrderSideParameter) ApiMo
 }
 
 // Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;
-func (r ApiModifyOrderRequest) Quantity(quantity float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Quantity(quantity float64) ApiModifyOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiModifyOrderRequest) Price(price float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Price(price float64) ApiModifyOrderRequest {
 	r.price = &price
 	return r
 }
@@ -1916,16 +1916,16 @@ type ApiNewAlgoOrderRequest struct {
 	type_                   *models.NewAlgoOrderTypeParameter
 	positionSide            *string
 	timeInForce             *models.NewAlgoOrderTimeInForceParameter
-	quantity                *float32
-	price                   *float32
-	triggerPrice            *float32
+	quantity                *float64
+	price                   *float64
+	triggerPrice            *float64
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
 	closePosition           *models.NewAlgoOrderClosePositionParameter
 	priceProtect            *models.NewAlgoOrderClosePositionParameter
 	reduceOnly              *models.NewAlgoOrderClosePositionParameter
-	activatePrice           *float32
-	callbackRate            *float32
+	activatePrice           *float64
+	callbackRate            *float64
 	clientAlgoId            *string
 	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	selfTradePreventionMode *models.NewAlgoOrderSelfTradePreventionModeParameter
@@ -1965,18 +1965,18 @@ func (r ApiNewAlgoOrderRequest) TimeInForce(timeInForce models.NewAlgoOrderTimeI
 }
 
 // Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
-func (r ApiNewAlgoOrderRequest) Quantity(quantity float32) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) Quantity(quantity float64) ApiNewAlgoOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiNewAlgoOrderRequest) Price(price float32) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) Price(price float64) ApiNewAlgoOrderRequest {
 	r.price = &price
 	return r
 }
 
 // Trigger price
-func (r ApiNewAlgoOrderRequest) TriggerPrice(triggerPrice float32) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) TriggerPrice(triggerPrice float64) ApiNewAlgoOrderRequest {
 	r.triggerPrice = &triggerPrice
 	return r
 }
@@ -2011,13 +2011,13 @@ func (r ApiNewAlgoOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePo
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;)
-func (r ApiNewAlgoOrderRequest) ActivatePrice(activatePrice float32) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) ActivatePrice(activatePrice float64) ApiNewAlgoOrderRequest {
 	r.activatePrice = &activatePrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders
-func (r ApiNewAlgoOrderRequest) CallbackRate(callbackRate float32) ApiNewAlgoOrderRequest {
+func (r ApiNewAlgoOrderRequest) CallbackRate(callbackRate float64) ApiNewAlgoOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }
@@ -2198,8 +2198,8 @@ type ApiNewOrderRequest struct {
 	positionSide            *string
 	timeInForce             *models.NewAlgoOrderTimeInForceParameter
 	reduceOnly              *models.NewAlgoOrderClosePositionParameter
-	quantity                *float32
-	price                   *float32
+	quantity                *float64
+	price                   *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.NewAlgoOrderNewOrderRespTypeParameter
 	priceMatch              *models.NewAlgoOrderPriceMatchParameter
@@ -2241,12 +2241,12 @@ func (r ApiNewOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePositi
 	return r
 }
 
-func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Quantity(quantity float64) ApiNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiNewOrderRequest) Price(price float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Price(price float64) ApiNewOrderRequest {
 	r.price = &price
 	return r
 }
@@ -3083,13 +3083,13 @@ type ApiTestOrderRequest struct {
 	type_                   *models.PlaceMultipleOrdersBatchOrdersParameterInnerType
 	positionSide            *models.TestOrderPositionSideParameter
 	reduceOnly              *models.NewAlgoOrderClosePositionParameter
-	quantity                *float32
-	price                   *float32
+	quantity                *float64
+	price                   *float64
 	newClientOrderId        *string
-	stopPrice               *float32
+	stopPrice               *float64
 	closePosition           *models.NewAlgoOrderClosePositionParameter
-	activationPrice         *float32
-	callbackRate            *float32
+	activationPrice         *float64
+	callbackRate            *float64
 	timeInForce             *models.NewAlgoOrderTimeInForceParameter
 	workingType             *models.NewAlgoOrderWorkingTypeParameter
 	priceProtect            *models.NewAlgoOrderClosePositionParameter
@@ -3128,12 +3128,12 @@ func (r ApiTestOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePosit
 }
 
 // Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All)
-func (r ApiTestOrderRequest) Quantity(quantity float32) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) Quantity(quantity float64) ApiTestOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiTestOrderRequest) Price(price float32) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) Price(price float64) ApiTestOrderRequest {
 	r.price = &price
 	return r
 }
@@ -3145,7 +3145,7 @@ func (r ApiTestOrderRequest) NewClientOrderId(newClientOrderId string) ApiTestOr
 }
 
 // Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiTestOrderRequest) StopPrice(stopPrice float32) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) StopPrice(stopPrice float64) ApiTestOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -3157,13 +3157,13 @@ func (r ApiTestOrderRequest) ClosePosition(closePosition models.NewAlgoOrderClos
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;)
-func (r ApiTestOrderRequest) ActivationPrice(activationPrice float32) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) ActivationPrice(activationPrice float64) ApiTestOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders
-func (r ApiTestOrderRequest) CallbackRate(callbackRate float32) ApiTestOrderRequest {
+func (r ApiTestOrderRequest) CallbackRate(callbackRate float64) ApiTestOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }

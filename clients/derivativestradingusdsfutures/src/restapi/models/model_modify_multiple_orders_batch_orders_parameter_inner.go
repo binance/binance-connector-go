@@ -22,11 +22,11 @@ type ModifyMultipleOrdersBatchOrdersParameterInner struct {
 	Symbol            *string                    `json:"symbol,omitempty"`
 	Side              *NewAlgoOrderSideParameter `json:"side,omitempty"`
 	// Order quantity, cannot be sent with closePosition=true
-	Quantity   *float32                                                 `json:"quantity,omitempty"`
-	Price      *float32                                                 `json:"price,omitempty"`
+	Quantity   *float64                                                 `json:"quantity,omitempty"`
+	Price      *float64                                                 `json:"price,omitempty"`
 	PriceMatch *ModifyMultipleOrdersBatchOrdersParameterInnerPriceMatch `json:"priceMatch,omitempty"`
 	// stop price, only STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET need
-	StopPrice *float32 `json:"stopPrice,omitempty"`
+	StopPrice *float64 `json:"stopPrice,omitempty"`
 	// User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
 	ModifyId *int64 `json:"modifyId,omitempty"`
 	// Validity window in milliseconds.
@@ -192,9 +192,9 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetSide(v NewAlgoOrderSi
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Quantity
@@ -202,7 +202,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -218,15 +218,15 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given float64 and assigns it to the Quantity field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64) {
 	o.Quantity = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float64 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -234,7 +234,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -250,8 +250,8 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given float32 and assigns it to the Price field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
@@ -288,9 +288,9 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPriceMatch(v ModifyMu
 }
 
 // GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32 {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float64 {
 	if o == nil || common.IsNil(o.StopPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.StopPrice
@@ -298,7 +298,7 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32 {
 
 // GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float32, bool) {
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.StopPrice) {
 		return nil, false
 	}
@@ -314,8 +314,8 @@ func (o *ModifyMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool {
 	return false
 }
 
-// SetStopPrice gets a reference to the given float32 and assigns it to the StopPrice field.
-func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float32) {
+// SetStopPrice gets a reference to the given float64 and assigns it to the StopPrice field.
+func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float64) {
 	o.StopPrice = &v
 }
 

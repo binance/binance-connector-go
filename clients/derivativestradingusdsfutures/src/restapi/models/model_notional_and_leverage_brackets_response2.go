@@ -19,7 +19,7 @@ var _ common.MappedNullable = &NotionalAndLeverageBracketsResponse2{}
 type NotionalAndLeverageBracketsResponse2 struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// user symbol bracket multiplier, only appears when user's symbol bracket is adjusted
-	NotionalCoef         *float32                                            `json:"notionalCoef,omitempty"`
+	NotionalCoef         *float64                                            `json:"notionalCoef,omitempty"`
 	Brackets             []NotionalAndLeverageBracketsResponse2BracketsInner `json:"brackets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -76,9 +76,9 @@ func (o *NotionalAndLeverageBracketsResponse2) SetSymbol(v string) {
 }
 
 // GetNotionalCoef returns the NotionalCoef field value if set, zero value otherwise.
-func (o *NotionalAndLeverageBracketsResponse2) GetNotionalCoef() float32 {
+func (o *NotionalAndLeverageBracketsResponse2) GetNotionalCoef() float64 {
 	if o == nil || common.IsNil(o.NotionalCoef) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.NotionalCoef
@@ -86,7 +86,7 @@ func (o *NotionalAndLeverageBracketsResponse2) GetNotionalCoef() float32 {
 
 // GetNotionalCoefOk returns a tuple with the NotionalCoef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotionalAndLeverageBracketsResponse2) GetNotionalCoefOk() (*float32, bool) {
+func (o *NotionalAndLeverageBracketsResponse2) GetNotionalCoefOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.NotionalCoef) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *NotionalAndLeverageBracketsResponse2) HasNotionalCoef() bool {
 	return false
 }
 
-// SetNotionalCoef gets a reference to the given float32 and assigns it to the NotionalCoef field.
-func (o *NotionalAndLeverageBracketsResponse2) SetNotionalCoef(v float32) {
+// SetNotionalCoef gets a reference to the given float64 and assigns it to the NotionalCoef field.
+func (o *NotionalAndLeverageBracketsResponse2) SetNotionalCoef(v float64) {
 	o.NotionalCoef = &v
 }
 

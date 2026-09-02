@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **DeliveryTime** | Pointer to **int64** |  | [optional] 
-**DeliveryPrice** | Pointer to **float32** |  | [optional] 
+**DeliveryPrice** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasDeliveryTime returns a boolean if a field has been set.
 
 ### GetDeliveryPrice
 
-`func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPrice() float32`
+`func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPrice() float64`
 
 GetDeliveryPrice returns the DeliveryPrice field if non-nil, zero value otherwise.
 
 ### GetDeliveryPriceOk
 
-`func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPriceOk() (*float32, bool)`
+`func (o *QuarterlyContractSettlementPriceResponseInner) GetDeliveryPriceOk() (*float64, bool)`
 
 GetDeliveryPriceOk returns a tuple with the DeliveryPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeliveryPrice
 
-`func (o *QuarterlyContractSettlementPriceResponseInner) SetDeliveryPrice(v float32)`
+`func (o *QuarterlyContractSettlementPriceResponseInner) SetDeliveryPrice(v float64)`
 
 SetDeliveryPrice sets DeliveryPrice field to given value.
 
