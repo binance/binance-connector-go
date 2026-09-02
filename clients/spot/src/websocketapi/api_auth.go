@@ -19,7 +19,7 @@ type AuthAPIService struct {
 type ApiSessionLogonRequest struct {
 	ApiService *AuthAPIService
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -29,7 +29,7 @@ func (r ApiSessionLogonRequest) Id(id string) ApiSessionLogonRequest {
 }
 
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiSessionLogonRequest) RecvWindow(recvWindow float32) ApiSessionLogonRequest {
+func (r ApiSessionLogonRequest) RecvWindow(recvWindow float64) ApiSessionLogonRequest {
 	r.recvWindow = &recvWindow
 	return r
 }

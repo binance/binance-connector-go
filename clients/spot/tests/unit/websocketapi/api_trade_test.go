@@ -201,7 +201,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float64(1)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -256,7 +256,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderAmendKeepPriorityResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float64(1)).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderAmendKeepPriorityResponse]{Value: resp, Err: err}
 		}()
 
@@ -355,7 +355,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float32(1)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderAmendKeepPriority().Symbol("BNBUSDT").NewQty(float64(1)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -981,7 +981,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float32(1)).Quantity(float32(1)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float64(1)).Quantity(float64(1)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -1036,7 +1036,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float32(1)).Quantity(float32(1)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float64(1)).Quantity(float64(1)).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceResponse]{Value: resp, Err: err}
 		}()
 
@@ -1175,7 +1175,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float32(1)).Quantity(float32(1)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Price(float64(1)).Quantity(float64(1)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -1216,7 +1216,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float32(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float64(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -1271,7 +1271,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceOcoResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float32(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float64(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceOcoResponse]{Value: resp, Err: err}
 		}()
 
@@ -1430,7 +1430,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float32(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Quantity(float64(1)).AboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListPlaceOcoBelowTypeParameterStopLoss).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -1471,7 +1471,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -1526,7 +1526,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceOpoResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceOpoResponse]{Value: resp, Err: err}
 		}()
 
@@ -1725,7 +1725,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -1766,7 +1766,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -1821,7 +1821,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceOpocoResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceOpocoResponse]{Value: resp, Err: err}
 		}()
 
@@ -2020,7 +2020,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -2061,7 +2061,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -2070,7 +2070,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"status":200,"result":{"orderListId":626,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"KA4EBjGnzvSwSCQsDdTrlf","transactionTime":1712544395981,"orders":[{"symbol":"LTCBNB","orderId":13,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny"}],"orderReports":[{"symbol":"LTCBNB","orderId":13,"orderListId":626,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny","transactTime":1712544395981,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"SELL","workingTime":1712544395981,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+		mockedJSON := `{"status":200,"result":{"orderListId":626,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"KA4EBjGnzvSwSCQsDdTrlf","transactionTime":1712544395981,"symbol":"LTCBNB","orders":[{"symbol":"LTCBNB","orderId":13,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny"}],"orderReports":[{"symbol":"LTCBNB","orderId":13,"orderListId":626,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny","transactTime":1712544395981,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"SELL","workingTime":1712544395981,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -2116,7 +2116,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceOtoResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceOtoResponse]{Value: resp, Err: err}
 		}()
 
@@ -2127,7 +2127,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"status":200,"result":{"orderListId":626,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"KA4EBjGnzvSwSCQsDdTrlf","transactionTime":1712544395981,"orders":[{"symbol":"LTCBNB","orderId":13,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny"}],"orderReports":[{"symbol":"LTCBNB","orderId":13,"orderListId":626,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny","transactTime":1712544395981,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"SELL","workingTime":1712544395981,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+		mockedJSON := `{"status":200,"result":{"orderListId":626,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"KA4EBjGnzvSwSCQsDdTrlf","transactionTime":1712544395981,"symbol":"LTCBNB","orders":[{"symbol":"LTCBNB","orderId":13,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny"}],"orderReports":[{"symbol":"LTCBNB","orderId":13,"orderListId":626,"clientOrderId":"YiAUtM9yJjl1a2jXHSp9Ny","transactTime":1712544395981,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"SELL","workingTime":1712544395981,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","stopPrice":"0.00000000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -2335,7 +2335,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListPlaceOpoPendingTypeParameterLimit).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -2376,7 +2376,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -2385,7 +2385,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"status":200,"result":{"orderListId":629,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"GaeJHjZPasPItFj4x7Mqm6","transactionTime":1712544408537,"orders":[{"symbol":"LTCBNB","orderId":23,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H"}],"orderReports":[{"symbol":"LTCBNB","orderId":23,"orderListId":629,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H","transactTime":1712544408537,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1712544408537,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+		mockedJSON := `{"status":200,"result":{"orderListId":629,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"GaeJHjZPasPItFj4x7Mqm6","transactionTime":1712544408537,"symbol":"LTCBNB","orders":[{"symbol":"LTCBNB","orderId":23,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H"}],"orderReports":[{"symbol":"LTCBNB","orderId":23,"orderListId":629,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H","transactTime":1712544408537,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1712544408537,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -2431,7 +2431,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.OrderListPlaceOtocoResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).Execute()
 			resultChan <- common.ResultWebsocket[models.OrderListPlaceOtocoResponse]{Value: resp, Err: err}
 		}()
 
@@ -2442,7 +2442,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"status":200,"result":{"orderListId":629,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"GaeJHjZPasPItFj4x7Mqm6","transactionTime":1712544408537,"orders":[{"symbol":"LTCBNB","orderId":23,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H"}],"orderReports":[{"symbol":"LTCBNB","orderId":23,"orderListId":629,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H","transactTime":1712544408537,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1712544408537,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
+		mockedJSON := `{"status":200,"result":{"orderListId":629,"contingencyType":"OTO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"GaeJHjZPasPItFj4x7Mqm6","transactionTime":1712544408537,"symbol":"LTCBNB","orders":[{"symbol":"LTCBNB","orderId":23,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H"}],"orderReports":[{"symbol":"LTCBNB","orderId":23,"orderListId":629,"clientOrderId":"OVQOpKwfmPCfaBTD0n7e7H","transactTime":1712544408537,"status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"BUY","workingTime":1712544408537,"selfTradePreventionMode":"NONE","icebergQty":"0.00000000","preventedMatchId":0,"preventedQuantity":"1.200000","strategyId":1,"strategyType":1000000,"trailingDelta":10,"trailingTime":-1,"usedSor":true,"workingFloor":"SOR","pegPriceType":"PRIMARY_PEG","pegOffsetType":"PRICE_LEVEL","pegOffsetValue":5,"peggedPrice":"87523.83710000","expiryReason":"INSUFFICIENT_LIQUIDITY"}]},"rateLimits":[{"rateLimitType":"REQUEST_WEIGHT","interval":"MINUTE","intervalNum":1,"limit":6000,"count":321}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -2650,7 +2650,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float32(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol("BNBUSDT").WorkingType(models.OrderListPlaceOpoWorkingTypeParameterLimit).WorkingSide(models.OrderCancelReplaceSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.OrderCancelReplaceSideParameterBuy).PendingQuantity(float64(1)).PendingAboveType(models.OrderListPlaceOcoAboveTypeParameterStopLossLimit).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -3121,7 +3121,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -3176,7 +3176,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.SorOrderPlaceResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).Execute()
 			resultChan <- common.ResultWebsocket[models.SorOrderPlaceResponse]{Value: resp, Err: err}
 		}()
 
@@ -3315,7 +3315,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.SorOrderPlace().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {
@@ -3356,7 +3356,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -3411,7 +3411,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 
 		resultChan := make(chan common.ResultWebsocket[models.SorOrderTestResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).Execute()
 			resultChan <- common.ResultWebsocket[models.SorOrderTestResponse]{Value: resp, Err: err}
 		}()
 
@@ -3550,7 +3550,7 @@ func Test_binancespotwebsocketapi_TradeAPIService(t *testing.T) {
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float32(1)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.SorOrderTest().Symbol("BNBUSDT").Side(models.OrderCancelReplaceSideParameterBuy).Type(models.SorOrderPlaceTypeParameterMarket).Quantity(float64(1)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {

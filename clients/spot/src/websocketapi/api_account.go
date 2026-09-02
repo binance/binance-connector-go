@@ -98,7 +98,7 @@ func (a *AccountAPIService) AccountCommissionExecute(r ApiAccountCommissionReque
 type ApiAccountRateLimitsOrdersRequest struct {
 	ApiService *AccountAPIService
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -108,7 +108,7 @@ func (r ApiAccountRateLimitsOrdersRequest) Id(id string) ApiAccountRateLimitsOrd
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiAccountRateLimitsOrdersRequest) RecvWindow(recvWindow float32) ApiAccountRateLimitsOrdersRequest {
+func (r ApiAccountRateLimitsOrdersRequest) RecvWindow(recvWindow float64) ApiAccountRateLimitsOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -177,7 +177,7 @@ type ApiAccountStatusRequest struct {
 	ApiService       *AccountAPIService
 	id               *string
 	omitZeroBalances *bool
-	recvWindow       *float32
+	recvWindow       *float64
 }
 
 // Client-generated request identifier.
@@ -193,7 +193,7 @@ func (r ApiAccountStatusRequest) OmitZeroBalances(omitZeroBalances bool) ApiAcco
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiAccountStatusRequest) RecvWindow(recvWindow float32) ApiAccountStatusRequest {
+func (r ApiAccountStatusRequest) RecvWindow(recvWindow float64) ApiAccountStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -268,7 +268,7 @@ type ApiAllOrderListsRequest struct {
 	startTime  *int64
 	endTime    *int64
 	limit      *int32
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -302,7 +302,7 @@ func (r ApiAllOrderListsRequest) Limit(limit int32) ApiAllOrderListsRequest {
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiAllOrderListsRequest) RecvWindow(recvWindow float32) ApiAllOrderListsRequest {
+func (r ApiAllOrderListsRequest) RecvWindow(recvWindow float64) ApiAllOrderListsRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -387,7 +387,7 @@ type ApiAllOrdersRequest struct {
 	startTime  *int64
 	endTime    *int64
 	limit      *int32
-	recvWindow *float32
+	recvWindow *float64
 }
 
 func (r ApiAllOrdersRequest) Symbol(symbol string) ApiAllOrdersRequest {
@@ -426,7 +426,7 @@ func (r ApiAllOrdersRequest) Limit(limit int32) ApiAllOrdersRequest {
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiAllOrdersRequest) RecvWindow(recvWindow float32) ApiAllOrdersRequest {
+func (r ApiAllOrdersRequest) RecvWindow(recvWindow float64) ApiAllOrdersRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -517,7 +517,7 @@ type ApiMyAllocationsRequest struct {
 	fromAllocationId *int32
 	limit            *int32
 	orderId          *int64
-	recvWindow       *float32
+	recvWindow       *float64
 }
 
 func (r ApiMyAllocationsRequest) Symbol(symbol string) ApiMyAllocationsRequest {
@@ -562,7 +562,7 @@ func (r ApiMyAllocationsRequest) OrderId(orderId int64) ApiMyAllocationsRequest 
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiMyAllocationsRequest) RecvWindow(recvWindow float32) ApiMyAllocationsRequest {
+func (r ApiMyAllocationsRequest) RecvWindow(recvWindow float64) ApiMyAllocationsRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -651,7 +651,7 @@ type ApiMyFiltersRequest struct {
 	ApiService *AccountAPIService
 	symbol     *string
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 func (r ApiMyFiltersRequest) Symbol(symbol string) ApiMyFiltersRequest {
@@ -666,7 +666,7 @@ func (r ApiMyFiltersRequest) Id(id string) ApiMyFiltersRequest {
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiMyFiltersRequest) RecvWindow(recvWindow float32) ApiMyFiltersRequest {
+func (r ApiMyFiltersRequest) RecvWindow(recvWindow float64) ApiMyFiltersRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -744,7 +744,7 @@ type ApiMyPreventedMatchesRequest struct {
 	orderId              *int64
 	fromPreventedMatchId *int64
 	limit                *int32
-	recvWindow           *float32
+	recvWindow           *float64
 }
 
 func (r ApiMyPreventedMatchesRequest) Symbol(symbol string) ApiMyPreventedMatchesRequest {
@@ -783,7 +783,7 @@ func (r ApiMyPreventedMatchesRequest) Limit(limit int32) ApiMyPreventedMatchesRe
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiMyPreventedMatchesRequest) RecvWindow(recvWindow float32) ApiMyPreventedMatchesRequest {
+func (r ApiMyPreventedMatchesRequest) RecvWindow(recvWindow float64) ApiMyPreventedMatchesRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -874,7 +874,7 @@ type ApiMyTradesRequest struct {
 	endTime    *int64
 	fromId     *int32
 	limit      *int32
-	recvWindow *float32
+	recvWindow *float64
 }
 
 func (r ApiMyTradesRequest) Symbol(symbol string) ApiMyTradesRequest {
@@ -919,7 +919,7 @@ func (r ApiMyTradesRequest) Limit(limit int32) ApiMyTradesRequest {
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiMyTradesRequest) RecvWindow(recvWindow float32) ApiMyTradesRequest {
+func (r ApiMyTradesRequest) RecvWindow(recvWindow float64) ApiMyTradesRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1007,7 +1007,7 @@ func (a *AccountAPIService) MyTradesExecute(r ApiMyTradesRequest) (chan *common.
 type ApiOpenOrderListsStatusRequest struct {
 	ApiService *AccountAPIService
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -1017,7 +1017,7 @@ func (r ApiOpenOrderListsStatusRequest) Id(id string) ApiOpenOrderListsStatusReq
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOpenOrderListsStatusRequest) RecvWindow(recvWindow float32) ApiOpenOrderListsStatusRequest {
+func (r ApiOpenOrderListsStatusRequest) RecvWindow(recvWindow float64) ApiOpenOrderListsStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1086,7 +1086,7 @@ type ApiOpenOrdersStatusRequest struct {
 	ApiService *AccountAPIService
 	id         *string
 	symbol     *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -1102,7 +1102,7 @@ func (r ApiOpenOrdersStatusRequest) Symbol(symbol string) ApiOpenOrdersStatusReq
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOpenOrdersStatusRequest) RecvWindow(recvWindow float32) ApiOpenOrdersStatusRequest {
+func (r ApiOpenOrdersStatusRequest) RecvWindow(recvWindow float64) ApiOpenOrdersStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1177,7 +1177,7 @@ type ApiOrderAmendmentsRequest struct {
 	id              *string
 	fromExecutionId *int64
 	limit           *int64
-	recvWindow      *float32
+	recvWindow      *float64
 }
 
 func (r ApiOrderAmendmentsRequest) Symbol(symbol string) ApiOrderAmendmentsRequest {
@@ -1210,7 +1210,7 @@ func (r ApiOrderAmendmentsRequest) Limit(limit int64) ApiOrderAmendmentsRequest 
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderAmendmentsRequest) RecvWindow(recvWindow float32) ApiOrderAmendmentsRequest {
+func (r ApiOrderAmendmentsRequest) RecvWindow(recvWindow float64) ApiOrderAmendmentsRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1296,7 +1296,7 @@ type ApiOrderListStatusRequest struct {
 	id                *string
 	origClientOrderId *string
 	orderListId       *int32
-	recvWindow        *float32
+	recvWindow        *float64
 }
 
 // Client-generated request identifier.
@@ -1318,7 +1318,7 @@ func (r ApiOrderListStatusRequest) OrderListId(orderListId int32) ApiOrderListSt
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListStatusRequest) RecvWindow(recvWindow float32) ApiOrderListStatusRequest {
+func (r ApiOrderListStatusRequest) RecvWindow(recvWindow float64) ApiOrderListStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1395,7 +1395,7 @@ type ApiOrderStatusRequest struct {
 	id                *string
 	orderId           *int64
 	origClientOrderId *string
-	recvWindow        *float32
+	recvWindow        *float64
 }
 
 func (r ApiOrderStatusRequest) Symbol(symbol string) ApiOrderStatusRequest {
@@ -1422,7 +1422,7 @@ func (r ApiOrderStatusRequest) OrigClientOrderId(origClientOrderId string) ApiOr
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderStatusRequest) RecvWindow(recvWindow float32) ApiOrderStatusRequest {
+func (r ApiOrderStatusRequest) RecvWindow(recvWindow float64) ApiOrderStatusRequest {
 	r.recvWindow = &recvWindow
 	return r
 }

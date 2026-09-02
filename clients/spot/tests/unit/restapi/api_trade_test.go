@@ -344,7 +344,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/api/v3/order/amend/keepPriority", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("newQty"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("newQty"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -361,7 +361,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderAmendKeepPriority(context.Background()).Symbol("BNBUSDT").NewQty(float32(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderAmendKeepPriority(context.Background()).Symbol("BNBUSDT").NewQty(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -503,7 +503,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/api/v3/orderList/oco", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
 			require.Equal(t, string(models.OrderListOcoAboveTypeParameterStopLossLimit), r.URL.Query().Get("aboveType"))
 			require.Equal(t, string(models.OrderListOcoBelowTypeParameterStopLoss), r.URL.Query().Get("belowType"))
 			w.Header().Set("Content-Type", "application/json")
@@ -522,7 +522,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderListOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(float32(1)).AboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListOcoBelowTypeParameterStopLoss).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderListOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(float64(1)).AboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).BelowType(models.OrderListOcoBelowTypeParameterStopLoss).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -585,8 +585,8 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.OrderListOpoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingQuantity"))
 			require.Equal(t, string(models.OrderListOpoPendingTypeParameterLimit), r.URL.Query().Get("pendingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
 			w.Header().Set("Content-Type", "application/json")
@@ -605,7 +605,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderListOpo(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListOpoPendingTypeParameterLimit).PendingSide(models.NewOrderSideParameterBuy).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderListOpo(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListOpoPendingTypeParameterLimit).PendingSide(models.NewOrderSideParameterBuy).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -668,8 +668,8 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.OrderListOpoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingQuantity"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
 			require.Equal(t, string(models.OrderListOcoAboveTypeParameterStopLossLimit), r.URL.Query().Get("pendingAboveType"))
 			w.Header().Set("Content-Type", "application/json")
@@ -688,7 +688,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderListOpoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.NewOrderSideParameterBuy).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderListOpoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.NewOrderSideParameterBuy).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -751,11 +751,11 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.OrderListOpoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingQuantity"))
 			require.Equal(t, string(models.OrderListOpoPendingTypeParameterLimit), r.URL.Query().Get("pendingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("pendingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("pendingQuantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -772,7 +772,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderListOto(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingType(models.OrderListOpoPendingTypeParameterLimit).PendingSide(models.NewOrderSideParameterBuy).PendingQuantity(float32(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderListOto(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingType(models.OrderListOpoPendingTypeParameterLimit).PendingSide(models.NewOrderSideParameterBuy).PendingQuantity(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -835,10 +835,10 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.OrderListOpoWorkingTypeParameterLimit), r.URL.Query().Get("workingType"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("workingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingPrice"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("workingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("workingQuantity"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("pendingSide"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("pendingQuantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("pendingQuantity"))
 			require.Equal(t, string(models.OrderListOcoAboveTypeParameterStopLossLimit), r.URL.Query().Get("pendingAboveType"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -856,7 +856,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderListOtoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float32(1)).WorkingQuantity(float32(1)).PendingSide(models.NewOrderSideParameterBuy).PendingQuantity(float32(1)).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderListOtoco(context.Background()).Symbol("BNBUSDT").WorkingType(models.OrderListOpoWorkingTypeParameterLimit).WorkingSide(models.NewOrderSideParameterBuy).WorkingPrice(float64(1)).WorkingQuantity(float64(1)).PendingSide(models.NewOrderSideParameterBuy).PendingQuantity(float64(1)).PendingAboveType(models.OrderListOcoAboveTypeParameterStopLossLimit).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -918,9 +918,9 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/api/v3/order/oco", r.URL.Path)
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("price"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("stopPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("price"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("stopPrice"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -937,7 +937,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.OrderOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(float32(1)).Price(float32(1)).StopPrice(float32(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.OrderOco(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Quantity(float64(1)).Price(float64(1)).StopPrice(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1079,7 +1079,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.SorOrderTypeParameterMarket), r.URL.Query().Get("type"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1096,7 +1096,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.SorOrder(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.SorOrderTypeParameterMarket).Quantity(float32(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.SorOrder(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.SorOrderTypeParameterMarket).Quantity(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1159,7 +1159,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BNBUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.NewOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.SorOrderTypeParameterMarket), r.URL.Query().Get("type"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1176,7 +1176,7 @@ func Test_binancespotrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.SorOrderTest(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.SorOrderTypeParameterMarket).Quantity(float32(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.SorOrderTest(context.Background()).Symbol("BNBUSDT").Side(models.NewOrderSideParameterBuy).Type(models.SorOrderTypeParameterMarket).Quantity(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

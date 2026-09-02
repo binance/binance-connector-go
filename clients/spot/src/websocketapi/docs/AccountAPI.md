@@ -116,7 +116,7 @@ import (
 
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -155,7 +155,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -191,7 +191,7 @@ import (
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. Default value: `false`. (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -231,7 +231,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
  **omitZeroBalances** | **bool** | When set to &#x60;true&#x60;, emits only the non-zero balances of an account. Default value: &#x60;false&#x60;. | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -270,7 +270,7 @@ func main() {
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -313,7 +313,7 @@ Name          | Type          | Description   | Notes
  **startTime** | **int64** | Timestamp in ms | 
  **endTime** | **int64** | Timestamp in ms | 
  **limit** | **int32** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -353,7 +353,7 @@ func main() {
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -397,7 +397,7 @@ Name          | Type          | Description   | Notes
  **startTime** | **int64** | Timestamp in ms | 
  **endTime** | **int64** | Timestamp in ms | 
  **limit** | **int32** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -438,7 +438,7 @@ func main() {
 	fromAllocationId := int32(1) // int32 | Allocation ID to begin at (optional)
 	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
 	orderId := int64(1) // int64 | Order ID (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -483,7 +483,7 @@ Name          | Type          | Description   | Notes
  **fromAllocationId** | **int32** | Allocation ID to begin at | 
  **limit** | **int32** | Default: 500; Maximum: 1000 | 
  **orderId** | **int64** | Order ID | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -519,7 +519,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -559,7 +559,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Client-generated request identifier. | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -599,7 +599,7 @@ func main() {
 	orderId := int64(1) // int64 | Order ID (optional)
 	fromPreventedMatchId := int64(1) // int64 | Prevented match ID to begin at (optional)
 	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -643,7 +643,7 @@ Name          | Type          | Description   | Notes
  **orderId** | **int64** | Order ID | 
  **fromPreventedMatchId** | **int64** | Prevented match ID to begin at | 
  **limit** | **int32** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -684,7 +684,7 @@ func main() {
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	fromId := int32(1) // int32 | First trade ID to query (optional)
 	limit := int32(1) // int32 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -729,7 +729,7 @@ Name          | Type          | Description   | Notes
  **endTime** | **int64** | Timestamp in ms | 
  **fromId** | **int32** | First trade ID to query | 
  **limit** | **int32** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -764,7 +764,7 @@ import (
 
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -803,7 +803,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -839,7 +839,7 @@ import (
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | If omitted, open orders for all symbols are returned (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -879,7 +879,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
  **symbol** | **string** | If omitted, open orders for all symbols are returned | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -918,7 +918,7 @@ func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	fromExecutionId := int64(1) // int64 | Execution ID to begin at (optional)
 	limit := int64(1) // int64 | Default: 500; Maximum: 1000 (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -961,7 +961,7 @@ Name          | Type          | Description   | Notes
  **id** | **string** | Client-generated request identifier. | 
  **fromExecutionId** | **int64** | Execution ID to begin at | 
  **limit** | **int64** | Default: 500; Maximum: 1000 | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -998,7 +998,7 @@ func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	origClientOrderId := "08985fedd9ea2cf6b28996" // string | Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided. (optional)
 	orderListId := int32(1) // int32 | Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided. (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1039,7 +1039,7 @@ Name          | Type          | Description   | Notes
  **id** | **string** | Client-generated request identifier. | 
  **origClientOrderId** | **string** | Query order list by &#x60;listClientOrderId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
  **orderListId** | **int32** | Query order list by &#x60;orderListId&#x60;. &#x60;orderListId&#x60; or &#x60;origClientOrderId&#x60; must be provided. | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 
@@ -1077,7 +1077,7 @@ func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	orderId := int64(1) // int64 | Lookup order by `orderId` (optional)
 	origClientOrderId := "myOrder1" // string | Lookup order by `clientOrderId` (optional)
-	recvWindow := float32(5000) // float32 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -1119,7 +1119,7 @@ Name          | Type          | Description   | Notes
  **id** | **string** | Client-generated request identifier. | 
  **orderId** | **int64** | Lookup order by &#x60;orderId&#x60; | 
  **origClientOrderId** | **string** | Lookup order by &#x60;clientOrderId&#x60; | 
- **recvWindow** | **float32** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
 

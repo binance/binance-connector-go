@@ -1,5 +1,399 @@
 ### Changelog
 
+## 1.14.0 - 2026-09-02
+
+### Changed (61)
+
+#### REST API
+
+- Modified parameter `abovePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+- Modified parameter `aboveStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+- Modified parameter `belowPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+- Modified parameter `belowStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+- Modified parameter `icebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+    - `sorOrder()` (`POST /api/v3/sor/order`)
+    - `sorOrderTest()` (`POST /api/v3/sor/order/test`)
+- Modified parameter `limitIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderOco()` (`POST /api/v3/order/oco`)
+- Modified parameter `newQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderAmendKeepPriority()` (`PUT /api/v3/order/amend/keepPriority`)
+- Modified parameter `pendingAboveIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingAbovePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingAboveStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingAboveTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingBelowIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingBelowPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingBelowStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingBelowTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+- Modified parameter `pendingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+- Modified parameter `pendingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `pendingStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+- Modified parameter `pendingTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderOco()` (`POST /api/v3/order/oco`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+    - `sorOrder()` (`POST /api/v3/sor/order`)
+    - `sorOrderTest()` (`POST /api/v3/sor/order/test`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+    - `orderOco()` (`POST /api/v3/order/oco`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+    - `sorOrder()` (`POST /api/v3/sor/order`)
+    - `sorOrderTest()` (`POST /api/v3/sor/order/test`)
+- Modified parameter `quoteOrderQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+- Modified parameter `recvWindow`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `allOrderList()` (`GET /api/v3/allOrderList`)
+    - `allOrders()` (`GET /api/v3/allOrders`)
+    - `deleteOpenOrders()` (`DELETE /api/v3/openOrders`)
+    - `deleteOrder()` (`DELETE /api/v3/order`)
+    - `deleteOrderList()` (`DELETE /api/v3/orderList`)
+    - `getAccount()` (`GET /api/v3/account`)
+    - `getOpenOrders()` (`GET /api/v3/openOrders`)
+    - `getOrder()` (`GET /api/v3/order`)
+    - `getOrderList()` (`GET /api/v3/orderList`)
+    - `myAllocations()` (`GET /api/v3/myAllocations`)
+    - `myFilters()` (`GET /api/v3/myFilters`)
+    - `myPreventedMatches()` (`GET /api/v3/myPreventedMatches`)
+    - `myTrades()` (`GET /api/v3/myTrades`)
+    - `newOrder()` (`POST /api/v3/order`)
+    - `openOrderList()` (`GET /api/v3/openOrderList`)
+    - `orderAmendKeepPriority()` (`PUT /api/v3/order/amend/keepPriority`)
+    - `orderAmendments()` (`GET /api/v3/order/amendments`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderListOco()` (`POST /api/v3/orderList/oco`)
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+    - `orderOco()` (`POST /api/v3/order/oco`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+    - `rateLimitOrder()` (`GET /api/v3/rateLimit/order`)
+    - `sorOrder()` (`POST /api/v3/sor/order`)
+    - `sorOrderTest()` (`POST /api/v3/sor/order/test`)
+- Modified parameter `stopIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderOco()` (`POST /api/v3/order/oco`)
+- Modified parameter `stopLimitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderOco()` (`POST /api/v3/order/oco`)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /api/v3/order`)
+    - `orderCancelReplace()` (`POST /api/v3/order/cancelReplace`)
+    - `orderOco()` (`POST /api/v3/order/oco`)
+    - `orderTest()` (`POST /api/v3/order/test`)
+- Modified parameter `workingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `workingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+- Modified parameter `workingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListOpo()` (`POST /api/v3/orderList/opo`)
+    - `orderListOpoco()` (`POST /api/v3/orderList/opoco`)
+    - `orderListOto()` (`POST /api/v3/orderList/oto`)
+    - `orderListOtoco()` (`POST /api/v3/orderList/otoco`)
+
+#### WebSocket API
+
+- Modified parameter `abovePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+- Modified parameter `aboveStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+- Modified parameter `belowPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+- Modified parameter `belowStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+- Modified parameter `icebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+    - `sorOrderPlace()` (`sor.order.place` method)
+    - `sorOrderTest()` (`sor.order.test` method)
+- Modified parameter `limitIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlace()` (`orderList.place` method)
+- Modified parameter `newQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderAmendKeepPriority()` (`order.amend.keepPriority` method)
+- Modified parameter `pendingAboveIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingAbovePrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingAboveStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingAboveTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingBelowIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingBelowPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingBelowStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingBelowTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+- Modified parameter `pendingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+- Modified parameter `pendingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `pendingStopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+- Modified parameter `pendingTrailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderListPlace()` (`orderList.place` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+    - `sorOrderPlace()` (`sor.order.place` method)
+    - `sorOrderTest()` (`sor.order.test` method)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderListPlace()` (`orderList.place` method)
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+    - `sorOrderPlace()` (`sor.order.place` method)
+    - `sorOrderTest()` (`sor.order.test` method)
+- Modified parameter `quoteOrderQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+- Modified parameter `recvWindow`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `accountRateLimitsOrders()` (`account.rateLimits.orders` method)
+    - `accountStatus()` (`account.status` method)
+    - `allOrderLists()` (`allOrderLists` stream)
+    - `allOrders()` (`allOrders` stream)
+    - `myAllocations()` (`myAllocations` stream)
+    - `myFilters()` (`myFilters` stream)
+    - `myPreventedMatches()` (`myPreventedMatches` stream)
+    - `myTrades()` (`myTrades` stream)
+    - `openOrderListsStatus()` (`openOrderLists.status` method)
+    - `openOrdersCancelAll()` (`openOrders.cancelAll` method)
+    - `openOrdersStatus()` (`openOrders.status` method)
+    - `orderAmendKeepPriority()` (`order.amend.keepPriority` method)
+    - `orderAmendments()` (`order.amendments` method)
+    - `orderCancel()` (`order.cancel` method)
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderListCancel()` (`orderList.cancel` method)
+    - `orderListPlace()` (`orderList.place` method)
+    - `orderListPlaceOco()` (`orderList.place.oco` method)
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+    - `orderListStatus()` (`orderList.status` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderStatus()` (`order.status` method)
+    - `orderTest()` (`order.test` method)
+    - `sessionLogon()` (`session.logon` method)
+    - `sorOrderPlace()` (`sor.order.place` method)
+    - `sorOrderTest()` (`sor.order.test` method)
+    - `userDataStreamSubscribeSignature()` (`userDataStream.subscribe.signature` method)
+- Modified parameter `stopIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlace()` (`orderList.place` method)
+- Modified parameter `stopLimitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlace()` (`orderList.place` method)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+    - `orderListPlace()` (`orderList.place` method)
+    - `orderPlace()` (`order.place` method)
+    - `orderTest()` (`order.test` method)
+- Modified parameter `trailingDelta`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderCancelReplace()` (`order.cancelReplace` method)
+- Modified parameter `workingIcebergQty`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `workingPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+- Modified parameter `workingQuantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `orderListPlaceOpo()` (`orderList.place.opo` method)
+    - `orderListPlaceOpoco()` (`orderList.place.opoco` method)
+    - `orderListPlaceOto()` (`orderList.place.oto` method)
+    - `orderListPlaceOtoco()` (`orderList.place.otoco` method)
+
 ## 1.13.0 - 2026-08-28
 
 ### Changed (2)

@@ -172,7 +172,7 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 type ApiUserDataStreamSubscribeSignatureRequest struct {
 	ApiService *UserDataStreamAPIService
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 // Client-generated request identifier.
@@ -182,7 +182,7 @@ func (r ApiUserDataStreamSubscribeSignatureRequest) Id(id string) ApiUserDataStr
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiUserDataStreamSubscribeSignatureRequest) RecvWindow(recvWindow float32) ApiUserDataStreamSubscribeSignatureRequest {
+func (r ApiUserDataStreamSubscribeSignatureRequest) RecvWindow(recvWindow float64) ApiUserDataStreamSubscribeSignatureRequest {
 	r.recvWindow = &recvWindow
 	return r
 }

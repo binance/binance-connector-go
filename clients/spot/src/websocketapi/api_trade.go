@@ -20,7 +20,7 @@ type ApiOpenOrdersCancelAllRequest struct {
 	ApiService *TradeAPIService
 	symbol     *string
 	id         *string
-	recvWindow *float32
+	recvWindow *float64
 }
 
 func (r ApiOpenOrdersCancelAllRequest) Symbol(symbol string) ApiOpenOrdersCancelAllRequest {
@@ -35,7 +35,7 @@ func (r ApiOpenOrdersCancelAllRequest) Id(id string) ApiOpenOrdersCancelAllReque
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOpenOrdersCancelAllRequest) RecvWindow(recvWindow float32) ApiOpenOrdersCancelAllRequest {
+func (r ApiOpenOrdersCancelAllRequest) RecvWindow(recvWindow float64) ApiOpenOrdersCancelAllRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -108,12 +108,12 @@ func (a *TradeAPIService) OpenOrdersCancelAllExecute(r ApiOpenOrdersCancelAllReq
 type ApiOrderAmendKeepPriorityRequest struct {
 	ApiService        *TradeAPIService
 	symbol            *string
-	newQty            *float32
+	newQty            *float64
 	id                *string
 	orderId           *int64
 	origClientOrderId *string
 	newClientOrderId  *string
-	recvWindow        *float32
+	recvWindow        *float64
 }
 
 func (r ApiOrderAmendKeepPriorityRequest) Symbol(symbol string) ApiOrderAmendKeepPriorityRequest {
@@ -122,7 +122,7 @@ func (r ApiOrderAmendKeepPriorityRequest) Symbol(symbol string) ApiOrderAmendKee
 }
 
 // &#x60;newQty&#x60; must be greater than 0 and less than the order&#39;s quantity.
-func (r ApiOrderAmendKeepPriorityRequest) NewQty(newQty float32) ApiOrderAmendKeepPriorityRequest {
+func (r ApiOrderAmendKeepPriorityRequest) NewQty(newQty float64) ApiOrderAmendKeepPriorityRequest {
 	r.newQty = &newQty
 	return r
 }
@@ -152,7 +152,7 @@ func (r ApiOrderAmendKeepPriorityRequest) NewClientOrderId(newClientOrderId stri
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderAmendKeepPriorityRequest) RecvWindow(recvWindow float32) ApiOrderAmendKeepPriorityRequest {
+func (r ApiOrderAmendKeepPriorityRequest) RecvWindow(recvWindow float64) ApiOrderAmendKeepPriorityRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -244,7 +244,7 @@ type ApiOrderCancelRequest struct {
 	origClientOrderId  *string
 	newClientOrderId   *string
 	cancelRestrictions *models.OrderCancelCancelRestrictionsParameter
-	recvWindow         *float32
+	recvWindow         *float64
 }
 
 func (r ApiOrderCancelRequest) Symbol(symbol string) ApiOrderCancelRequest {
@@ -281,7 +281,7 @@ func (r ApiOrderCancelRequest) CancelRestrictions(cancelRestrictions models.Orde
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderCancelRequest) RecvWindow(recvWindow float32) ApiOrderCancelRequest {
+func (r ApiOrderCancelRequest) RecvWindow(recvWindow float64) ApiOrderCancelRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -374,14 +374,14 @@ type ApiOrderCancelReplaceRequest struct {
 	cancelOrigClientOrderId    *string
 	cancelNewClientOrderId     *string
 	timeInForce                *models.OrderCancelReplaceTimeInForceParameter
-	price                      *float32
-	quantity                   *float32
-	quoteOrderQty              *float32
+	price                      *float64
+	quantity                   *float64
+	quoteOrderQty              *float64
 	newClientOrderId           *string
 	newOrderRespType           *models.OrderCancelReplaceNewOrderRespTypeParameter
-	stopPrice                  *float32
-	trailingDelta              *float32
-	icebergQty                 *float32
+	stopPrice                  *float64
+	trailingDelta              *float64
+	icebergQty                 *float64
 	strategyId                 *int64
 	strategyType               *int32
 	selfTradePreventionMode    *models.OrderCancelReplaceSelfTradePreventionModeParameter
@@ -390,7 +390,7 @@ type ApiOrderCancelReplaceRequest struct {
 	pegPriceType               *models.OrderCancelReplacePegPriceTypeParameter
 	pegOffsetValue             *int32
 	pegOffsetType              *models.OrderCancelReplacePegOffsetTypeParameter
-	recvWindow                 *float32
+	recvWindow                 *float64
 }
 
 func (r ApiOrderCancelReplaceRequest) Symbol(symbol string) ApiOrderCancelReplaceRequest {
@@ -446,17 +446,17 @@ func (r ApiOrderCancelReplaceRequest) TimeInForce(timeInForce models.OrderCancel
 	return r
 }
 
-func (r ApiOrderCancelReplaceRequest) Price(price float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) Price(price float64) ApiOrderCancelReplaceRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiOrderCancelReplaceRequest) Quantity(quantity float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) Quantity(quantity float64) ApiOrderCancelReplaceRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiOrderCancelReplaceRequest) QuoteOrderQty(quoteOrderQty float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) QuoteOrderQty(quoteOrderQty float64) ApiOrderCancelReplaceRequest {
 	r.quoteOrderQty = &quoteOrderQty
 	return r
 }
@@ -474,19 +474,19 @@ func (r ApiOrderCancelReplaceRequest) NewOrderRespType(newOrderRespType models.O
 }
 
 // Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
-func (r ApiOrderCancelReplaceRequest) StopPrice(stopPrice float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) StopPrice(stopPrice float64) ApiOrderCancelReplaceRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
 
 // See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
-func (r ApiOrderCancelReplaceRequest) TrailingDelta(trailingDelta float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) TrailingDelta(trailingDelta float64) ApiOrderCancelReplaceRequest {
 	r.trailingDelta = &trailingDelta
 	return r
 }
 
 // Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order.
-func (r ApiOrderCancelReplaceRequest) IcebergQty(icebergQty float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) IcebergQty(icebergQty float64) ApiOrderCancelReplaceRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -539,7 +539,7 @@ func (r ApiOrderCancelReplaceRequest) PegOffsetType(pegOffsetType models.OrderCa
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderCancelReplaceRequest) RecvWindow(recvWindow float32) ApiOrderCancelReplaceRequest {
+func (r ApiOrderCancelReplaceRequest) RecvWindow(recvWindow float64) ApiOrderCancelReplaceRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -691,7 +691,7 @@ type ApiOrderListCancelRequest struct {
 	orderListId       *int32
 	listClientOrderId *string
 	newClientOrderId  *string
-	recvWindow        *float32
+	recvWindow        *float64
 }
 
 func (r ApiOrderListCancelRequest) Symbol(symbol string) ApiOrderListCancelRequest {
@@ -724,7 +724,7 @@ func (r ApiOrderListCancelRequest) NewClientOrderId(newClientOrderId string) Api
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListCancelRequest) RecvWindow(recvWindow float32) ApiOrderListCancelRequest {
+func (r ApiOrderListCancelRequest) RecvWindow(recvWindow float64) ApiOrderListCancelRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -807,25 +807,25 @@ type ApiOrderListPlaceRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.OrderCancelReplaceSideParameter
-	price                   *float32
-	quantity                *float32
+	price                   *float64
+	quantity                *float64
 	id                      *string
 	listClientOrderId       *string
 	limitClientOrderId      *string
-	limitIcebergQty         *float32
+	limitIcebergQty         *float64
 	limitStrategyId         *int64
 	limitStrategyType       *int32
-	stopPrice               *float32
+	stopPrice               *float64
 	trailingDelta           *int32
 	stopClientOrderId       *string
-	stopLimitPrice          *float32
+	stopLimitPrice          *float64
 	stopLimitTimeInForce    *models.OrderCancelReplaceTimeInForceParameter
-	stopIcebergQty          *float32
+	stopIcebergQty          *float64
 	stopStrategyId          *int64
 	stopStrategyType        *int32
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderListPlaceRequest) Symbol(symbol string) ApiOrderListPlaceRequest {
@@ -839,12 +839,12 @@ func (r ApiOrderListPlaceRequest) Side(side models.OrderCancelReplaceSideParamet
 	return r
 }
 
-func (r ApiOrderListPlaceRequest) Price(price float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) Price(price float64) ApiOrderListPlaceRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiOrderListPlaceRequest) Quantity(quantity float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) Quantity(quantity float64) ApiOrderListPlaceRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -868,7 +868,7 @@ func (r ApiOrderListPlaceRequest) LimitClientOrderId(limitClientOrderId string) 
 }
 
 // Used to make the &#x60;LIMIT_MAKER&#x60; leg an iceberg order.
-func (r ApiOrderListPlaceRequest) LimitIcebergQty(limitIcebergQty float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) LimitIcebergQty(limitIcebergQty float64) ApiOrderListPlaceRequest {
 	r.limitIcebergQty = &limitIcebergQty
 	return r
 }
@@ -884,7 +884,7 @@ func (r ApiOrderListPlaceRequest) LimitStrategyType(limitStrategyType int32) Api
 	return r
 }
 
-func (r ApiOrderListPlaceRequest) StopPrice(stopPrice float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) StopPrice(stopPrice float64) ApiOrderListPlaceRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -901,7 +901,7 @@ func (r ApiOrderListPlaceRequest) StopClientOrderId(stopClientOrderId string) Ap
 }
 
 // If provided, &#x60;stopLimitTimeInForce&#x60; is required.
-func (r ApiOrderListPlaceRequest) StopLimitPrice(stopLimitPrice float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) StopLimitPrice(stopLimitPrice float64) ApiOrderListPlaceRequest {
 	r.stopLimitPrice = &stopLimitPrice
 	return r
 }
@@ -913,7 +913,7 @@ func (r ApiOrderListPlaceRequest) StopLimitTimeInForce(stopLimitTimeInForce mode
 }
 
 // Used with &#x60;STOP_LOSS_LIMIT&#x60; leg to make an iceberg order.
-func (r ApiOrderListPlaceRequest) StopIcebergQty(stopIcebergQty float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) StopIcebergQty(stopIcebergQty float64) ApiOrderListPlaceRequest {
 	r.stopIcebergQty = &stopIcebergQty
 	return r
 }
@@ -942,7 +942,7 @@ func (r ApiOrderListPlaceRequest) SelfTradePreventionMode(selfTradePreventionMod
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceRequest {
+func (r ApiOrderListPlaceRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1080,15 +1080,15 @@ type ApiOrderListPlaceOcoRequest struct {
 	ApiService              *TradeAPIService
 	symbol                  *string
 	side                    *models.OrderCancelReplaceSideParameter
-	quantity                *float32
+	quantity                *float64
 	aboveType               *models.OrderListPlaceOcoAboveTypeParameter
 	belowType               *models.OrderListPlaceOcoBelowTypeParameter
 	id                      *string
 	listClientOrderId       *string
 	aboveClientOrderId      *string
 	aboveIcebergQty         *int64
-	abovePrice              *float32
-	aboveStopPrice          *float32
+	abovePrice              *float64
+	aboveStopPrice          *float64
 	aboveTrailingDelta      *int64
 	aboveTimeInForce        *models.OrderCancelReplaceTimeInForceParameter
 	aboveStrategyId         *int64
@@ -1098,8 +1098,8 @@ type ApiOrderListPlaceOcoRequest struct {
 	abovePegOffsetValue     *int32
 	belowClientOrderId      *string
 	belowIcebergQty         *int64
-	belowPrice              *float32
-	belowStopPrice          *float32
+	belowPrice              *float64
+	belowStopPrice          *float64
 	belowTrailingDelta      *int64
 	belowTimeInForce        *models.OrderCancelReplaceTimeInForceParameter
 	belowStrategyId         *int64
@@ -1109,7 +1109,7 @@ type ApiOrderListPlaceOcoRequest struct {
 	belowPegOffsetValue     *int32
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderListPlaceOcoRequest) Symbol(symbol string) ApiOrderListPlaceOcoRequest {
@@ -1124,7 +1124,7 @@ func (r ApiOrderListPlaceOcoRequest) Side(side models.OrderCancelReplaceSidePara
 }
 
 // Quantity for both orders of the order list.
-func (r ApiOrderListPlaceOcoRequest) Quantity(quantity float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) Quantity(quantity float64) ApiOrderListPlaceOcoRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -1165,13 +1165,13 @@ func (r ApiOrderListPlaceOcoRequest) AboveIcebergQty(aboveIcebergQty int64) ApiO
 }
 
 // Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOcoRequest) AbovePrice(abovePrice float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) AbovePrice(abovePrice float64) ApiOrderListPlaceOcoRequest {
 	r.abovePrice = &abovePrice
 	return r
 }
 
 // Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or &#x60;aboveTrailingDelta&#x60; or both, must be specified.
-func (r ApiOrderListPlaceOcoRequest) AboveStopPrice(aboveStopPrice float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) AboveStopPrice(aboveStopPrice float64) ApiOrderListPlaceOcoRequest {
 	r.aboveStopPrice = &aboveStopPrice
 	return r
 }
@@ -1229,13 +1229,13 @@ func (r ApiOrderListPlaceOcoRequest) BelowIcebergQty(belowIcebergQty int64) ApiO
 }
 
 // Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOcoRequest) BelowPrice(belowPrice float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) BelowPrice(belowPrice float64) ApiOrderListPlaceOcoRequest {
 	r.belowPrice = &belowPrice
 	return r
 }
 
 // Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified.
-func (r ApiOrderListPlaceOcoRequest) BelowStopPrice(belowStopPrice float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) BelowStopPrice(belowStopPrice float64) ApiOrderListPlaceOcoRequest {
 	r.belowStopPrice = &belowStopPrice
 	return r
 }
@@ -1293,7 +1293,7 @@ func (r ApiOrderListPlaceOcoRequest) SelfTradePreventionMode(selfTradePrevention
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceOcoRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceOcoRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1463,8 +1463,8 @@ type ApiOrderListPlaceOpoRequest struct {
 	symbol                  *string
 	workingType             *models.OrderListPlaceOpoWorkingTypeParameter
 	workingSide             *models.OrderCancelReplaceSideParameter
-	workingPrice            *float32
-	workingQuantity         *float32
+	workingPrice            *float64
+	workingQuantity         *float64
 	pendingType             *models.OrderListPlaceOpoPendingTypeParameter
 	pendingSide             *models.OrderCancelReplaceSideParameter
 	id                      *string
@@ -1472,7 +1472,7 @@ type ApiOrderListPlaceOpoRequest struct {
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	workingClientOrderId    *string
-	workingIcebergQty       *float32
+	workingIcebergQty       *float64
 	workingTimeInForce      *models.OrderCancelReplaceTimeInForceParameter
 	workingStrategyId       *int64
 	workingStrategyType     *int32
@@ -1480,17 +1480,17 @@ type ApiOrderListPlaceOpoRequest struct {
 	workingPegOffsetType    *models.OrderCancelReplacePegOffsetTypeParameter
 	workingPegOffsetValue   *int32
 	pendingClientOrderId    *string
-	pendingPrice            *float32
-	pendingStopPrice        *float32
-	pendingTrailingDelta    *float32
-	pendingIcebergQty       *float32
+	pendingPrice            *float64
+	pendingStopPrice        *float64
+	pendingTrailingDelta    *float64
+	pendingIcebergQty       *float64
 	pendingTimeInForce      *models.OrderCancelReplaceTimeInForceParameter
 	pendingStrategyId       *int64
 	pendingStrategyType     *int32
 	pendingPegPriceType     *models.OrderCancelReplacePegPriceTypeParameter
 	pendingPegOffsetType    *models.OrderCancelReplacePegOffsetTypeParameter
 	pendingPegOffsetValue   *int32
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderListPlaceOpoRequest) Symbol(symbol string) ApiOrderListPlaceOpoRequest {
@@ -1511,13 +1511,13 @@ func (r ApiOrderListPlaceOpoRequest) WorkingSide(workingSide models.OrderCancelR
 }
 
 // Price for the working order.
-func (r ApiOrderListPlaceOpoRequest) WorkingPrice(workingPrice float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) WorkingPrice(workingPrice float64) ApiOrderListPlaceOpoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
 // Sets the quantity for the working order.
-func (r ApiOrderListPlaceOpoRequest) WorkingQuantity(workingQuantity float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) WorkingQuantity(workingQuantity float64) ApiOrderListPlaceOpoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
@@ -1565,7 +1565,7 @@ func (r ApiOrderListPlaceOpoRequest) WorkingClientOrderId(workingClientOrderId s
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOpoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiOrderListPlaceOpoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -1611,25 +1611,25 @@ func (r ApiOrderListPlaceOpoRequest) PendingClientOrderId(pendingClientOrderId s
 }
 
 // Price for the pending order.
-func (r ApiOrderListPlaceOpoRequest) PendingPrice(pendingPrice float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) PendingPrice(pendingPrice float64) ApiOrderListPlaceOpoRequest {
 	r.pendingPrice = &pendingPrice
 	return r
 }
 
 // Stop price for the pending order.
-func (r ApiOrderListPlaceOpoRequest) PendingStopPrice(pendingStopPrice float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) PendingStopPrice(pendingStopPrice float64) ApiOrderListPlaceOpoRequest {
 	r.pendingStopPrice = &pendingStopPrice
 	return r
 }
 
 // Trailing delta for the pending order.
-func (r ApiOrderListPlaceOpoRequest) PendingTrailingDelta(pendingTrailingDelta float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) PendingTrailingDelta(pendingTrailingDelta float64) ApiOrderListPlaceOpoRequest {
 	r.pendingTrailingDelta = &pendingTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOpoRequest) PendingIcebergQty(pendingIcebergQty float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) PendingIcebergQty(pendingIcebergQty float64) ApiOrderListPlaceOpoRequest {
 	r.pendingIcebergQty = &pendingIcebergQty
 	return r
 }
@@ -1669,7 +1669,7 @@ func (r ApiOrderListPlaceOpoRequest) PendingPegOffsetValue(pendingPegOffsetValue
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceOpoRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceOpoRequest {
+func (r ApiOrderListPlaceOpoRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceOpoRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -1840,8 +1840,8 @@ type ApiOrderListPlaceOpocoRequest struct {
 	symbol                     *string
 	workingType                *models.OrderListPlaceOpoWorkingTypeParameter
 	workingSide                *models.OrderCancelReplaceSideParameter
-	workingPrice               *float32
-	workingQuantity            *float32
+	workingPrice               *float64
+	workingQuantity            *float64
 	pendingSide                *models.OrderCancelReplaceSideParameter
 	pendingAboveType           *models.OrderListPlaceOcoAboveTypeParameter
 	id                         *string
@@ -1849,7 +1849,7 @@ type ApiOrderListPlaceOpocoRequest struct {
 	newOrderRespType           *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode    *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	workingClientOrderId       *string
-	workingIcebergQty          *float32
+	workingIcebergQty          *float64
 	workingTimeInForce         *models.OrderCancelReplaceTimeInForceParameter
 	workingStrategyId          *int64
 	workingStrategyType        *int32
@@ -1857,10 +1857,10 @@ type ApiOrderListPlaceOpocoRequest struct {
 	workingPegOffsetType       *models.OrderCancelReplacePegOffsetTypeParameter
 	workingPegOffsetValue      *int32
 	pendingAboveClientOrderId  *string
-	pendingAbovePrice          *float32
-	pendingAboveStopPrice      *float32
-	pendingAboveTrailingDelta  *float32
-	pendingAboveIcebergQty     *float32
+	pendingAbovePrice          *float64
+	pendingAboveStopPrice      *float64
+	pendingAboveTrailingDelta  *float64
+	pendingAboveIcebergQty     *float64
 	pendingAboveTimeInForce    *models.OrderCancelReplaceTimeInForceParameter
 	pendingAboveStrategyId     *int64
 	pendingAboveStrategyType   *int32
@@ -1869,17 +1869,17 @@ type ApiOrderListPlaceOpocoRequest struct {
 	pendingAbovePegOffsetValue *int32
 	pendingBelowType           *models.OrderListPlaceOcoBelowTypeParameter
 	pendingBelowClientOrderId  *string
-	pendingBelowPrice          *float32
-	pendingBelowStopPrice      *float32
-	pendingBelowTrailingDelta  *float32
-	pendingBelowIcebergQty     *float32
+	pendingBelowPrice          *float64
+	pendingBelowStopPrice      *float64
+	pendingBelowTrailingDelta  *float64
+	pendingBelowIcebergQty     *float64
 	pendingBelowTimeInForce    *models.OrderCancelReplaceTimeInForceParameter
 	pendingBelowStrategyId     *int64
 	pendingBelowStrategyType   *int32
 	pendingBelowPegPriceType   *models.OrderCancelReplacePegPriceTypeParameter
 	pendingBelowPegOffsetType  *models.OrderCancelReplacePegOffsetTypeParameter
 	pendingBelowPegOffsetValue *int32
-	recvWindow                 *float32
+	recvWindow                 *float64
 }
 
 func (r ApiOrderListPlaceOpocoRequest) Symbol(symbol string) ApiOrderListPlaceOpocoRequest {
@@ -1899,13 +1899,13 @@ func (r ApiOrderListPlaceOpocoRequest) WorkingSide(workingSide models.OrderCance
 }
 
 // Price for the working order.
-func (r ApiOrderListPlaceOpocoRequest) WorkingPrice(workingPrice float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) WorkingPrice(workingPrice float64) ApiOrderListPlaceOpocoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
 // Sets the quantity for the working order.
-func (r ApiOrderListPlaceOpocoRequest) WorkingQuantity(workingQuantity float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) WorkingQuantity(workingQuantity float64) ApiOrderListPlaceOpocoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
@@ -1953,7 +1953,7 @@ func (r ApiOrderListPlaceOpocoRequest) WorkingClientOrderId(workingClientOrderId
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOpocoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiOrderListPlaceOpocoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -2001,25 +2001,25 @@ func (r ApiOrderListPlaceOpocoRequest) PendingAboveClientOrderId(pendingAboveCli
 }
 
 // Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOpocoRequest) PendingAbovePrice(pendingAbovePrice float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingAbovePrice(pendingAbovePrice float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingAbovePrice = &pendingAbovePrice
 	return r
 }
 
 // Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;.
-func (r ApiOrderListPlaceOpocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingAboveStopPrice = &pendingAboveStopPrice
 	return r
 }
 
 // See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
-func (r ApiOrderListPlaceOpocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingAboveTrailingDelta = &pendingAboveTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOpocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingAboveIcebergQty = &pendingAboveIcebergQty
 	return r
 }
@@ -2073,25 +2073,25 @@ func (r ApiOrderListPlaceOpocoRequest) PendingBelowClientOrderId(pendingBelowCli
 }
 
 // Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOpocoRequest) PendingBelowPrice(pendingBelowPrice float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingBelowPrice(pendingBelowPrice float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingBelowPrice = &pendingBelowPrice
 	return r
 }
 
 // Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified.
-func (r ApiOrderListPlaceOpocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingBelowStopPrice = &pendingBelowStopPrice
 	return r
 }
 
 // See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
-func (r ApiOrderListPlaceOpocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingBelowTrailingDelta = &pendingBelowTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60; or &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOpocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float64) ApiOrderListPlaceOpocoRequest {
 	r.pendingBelowIcebergQty = &pendingBelowIcebergQty
 	return r
 }
@@ -2131,7 +2131,7 @@ func (r ApiOrderListPlaceOpocoRequest) PendingBelowPegOffsetValue(pendingBelowPe
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceOpocoRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceOpocoRequest {
+func (r ApiOrderListPlaceOpocoRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceOpocoRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -2338,17 +2338,17 @@ type ApiOrderListPlaceOtoRequest struct {
 	symbol                  *string
 	workingType             *models.OrderListPlaceOpoWorkingTypeParameter
 	workingSide             *models.OrderCancelReplaceSideParameter
-	workingPrice            *float32
-	workingQuantity         *float32
+	workingPrice            *float64
+	workingQuantity         *float64
 	pendingType             *models.OrderListPlaceOpoPendingTypeParameter
 	pendingSide             *models.OrderCancelReplaceSideParameter
-	pendingQuantity         *float32
+	pendingQuantity         *float64
 	id                      *string
 	listClientOrderId       *string
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	workingClientOrderId    *string
-	workingIcebergQty       *float32
+	workingIcebergQty       *float64
 	workingTimeInForce      *models.OrderCancelReplaceTimeInForceParameter
 	workingStrategyId       *int64
 	workingStrategyType     *int32
@@ -2356,17 +2356,17 @@ type ApiOrderListPlaceOtoRequest struct {
 	workingPegOffsetType    *models.OrderCancelReplacePegOffsetTypeParameter
 	workingPegOffsetValue   *int32
 	pendingClientOrderId    *string
-	pendingPrice            *float32
-	pendingStopPrice        *float32
-	pendingTrailingDelta    *float32
-	pendingIcebergQty       *float32
+	pendingPrice            *float64
+	pendingStopPrice        *float64
+	pendingTrailingDelta    *float64
+	pendingIcebergQty       *float64
 	pendingTimeInForce      *models.OrderCancelReplaceTimeInForceParameter
 	pendingStrategyId       *int64
 	pendingStrategyType     *int32
 	pendingPegOffsetType    *models.OrderCancelReplacePegOffsetTypeParameter
 	pendingPegPriceType     *models.OrderCancelReplacePegPriceTypeParameter
 	pendingPegOffsetValue   *int32
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderListPlaceOtoRequest) Symbol(symbol string) ApiOrderListPlaceOtoRequest {
@@ -2386,13 +2386,13 @@ func (r ApiOrderListPlaceOtoRequest) WorkingSide(workingSide models.OrderCancelR
 	return r
 }
 
-func (r ApiOrderListPlaceOtoRequest) WorkingPrice(workingPrice float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) WorkingPrice(workingPrice float64) ApiOrderListPlaceOtoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
 // Sets the quantity for the working order.
-func (r ApiOrderListPlaceOtoRequest) WorkingQuantity(workingQuantity float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) WorkingQuantity(workingQuantity float64) ApiOrderListPlaceOtoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
@@ -2410,7 +2410,7 @@ func (r ApiOrderListPlaceOtoRequest) PendingSide(pendingSide models.OrderCancelR
 }
 
 // Sets the quantity for the pending order.
-func (r ApiOrderListPlaceOtoRequest) PendingQuantity(pendingQuantity float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) PendingQuantity(pendingQuantity float64) ApiOrderListPlaceOtoRequest {
 	r.pendingQuantity = &pendingQuantity
 	return r
 }
@@ -2446,7 +2446,7 @@ func (r ApiOrderListPlaceOtoRequest) WorkingClientOrderId(workingClientOrderId s
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOtoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiOrderListPlaceOtoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -2491,23 +2491,23 @@ func (r ApiOrderListPlaceOtoRequest) PendingClientOrderId(pendingClientOrderId s
 	return r
 }
 
-func (r ApiOrderListPlaceOtoRequest) PendingPrice(pendingPrice float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) PendingPrice(pendingPrice float64) ApiOrderListPlaceOtoRequest {
 	r.pendingPrice = &pendingPrice
 	return r
 }
 
-func (r ApiOrderListPlaceOtoRequest) PendingStopPrice(pendingStopPrice float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) PendingStopPrice(pendingStopPrice float64) ApiOrderListPlaceOtoRequest {
 	r.pendingStopPrice = &pendingStopPrice
 	return r
 }
 
-func (r ApiOrderListPlaceOtoRequest) PendingTrailingDelta(pendingTrailingDelta float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) PendingTrailingDelta(pendingTrailingDelta float64) ApiOrderListPlaceOtoRequest {
 	r.pendingTrailingDelta = &pendingTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOtoRequest) PendingIcebergQty(pendingIcebergQty float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) PendingIcebergQty(pendingIcebergQty float64) ApiOrderListPlaceOtoRequest {
 	r.pendingIcebergQty = &pendingIcebergQty
 	return r
 }
@@ -2547,7 +2547,7 @@ func (r ApiOrderListPlaceOtoRequest) PendingPegOffsetValue(pendingPegOffsetValue
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceOtoRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceOtoRequest {
+func (r ApiOrderListPlaceOtoRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceOtoRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -2723,17 +2723,17 @@ type ApiOrderListPlaceOtocoRequest struct {
 	symbol                     *string
 	workingType                *models.OrderListPlaceOpoWorkingTypeParameter
 	workingSide                *models.OrderCancelReplaceSideParameter
-	workingPrice               *float32
-	workingQuantity            *float32
+	workingPrice               *float64
+	workingQuantity            *float64
 	pendingSide                *models.OrderCancelReplaceSideParameter
-	pendingQuantity            *float32
+	pendingQuantity            *float64
 	pendingAboveType           *models.OrderListPlaceOcoAboveTypeParameter
 	id                         *string
 	listClientOrderId          *string
 	newOrderRespType           *models.OrderCancelReplaceNewOrderRespTypeParameter
 	selfTradePreventionMode    *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	workingClientOrderId       *string
-	workingIcebergQty          *float32
+	workingIcebergQty          *float64
 	workingTimeInForce         *models.OrderCancelReplaceTimeInForceParameter
 	workingStrategyId          *int64
 	workingStrategyType        *int32
@@ -2741,10 +2741,10 @@ type ApiOrderListPlaceOtocoRequest struct {
 	workingPegOffsetType       *models.OrderCancelReplacePegOffsetTypeParameter
 	workingPegOffsetValue      *int32
 	pendingAboveClientOrderId  *string
-	pendingAbovePrice          *float32
-	pendingAboveStopPrice      *float32
-	pendingAboveTrailingDelta  *float32
-	pendingAboveIcebergQty     *float32
+	pendingAbovePrice          *float64
+	pendingAboveStopPrice      *float64
+	pendingAboveTrailingDelta  *float64
+	pendingAboveIcebergQty     *float64
 	pendingAboveTimeInForce    *models.OrderCancelReplaceTimeInForceParameter
 	pendingAboveStrategyId     *int64
 	pendingAboveStrategyType   *int32
@@ -2753,17 +2753,17 @@ type ApiOrderListPlaceOtocoRequest struct {
 	pendingAbovePegOffsetValue *int32
 	pendingBelowType           *models.OrderListPlaceOcoBelowTypeParameter
 	pendingBelowClientOrderId  *string
-	pendingBelowPrice          *float32
-	pendingBelowStopPrice      *float32
-	pendingBelowTrailingDelta  *float32
-	pendingBelowIcebergQty     *float32
+	pendingBelowPrice          *float64
+	pendingBelowStopPrice      *float64
+	pendingBelowTrailingDelta  *float64
+	pendingBelowIcebergQty     *float64
 	pendingBelowTimeInForce    *models.OrderCancelReplaceTimeInForceParameter
 	pendingBelowStrategyId     *int64
 	pendingBelowStrategyType   *int32
 	pendingBelowPegPriceType   *models.OrderCancelReplacePegPriceTypeParameter
 	pendingBelowPegOffsetType  *models.OrderCancelReplacePegOffsetTypeParameter
 	pendingBelowPegOffsetValue *int32
-	recvWindow                 *float32
+	recvWindow                 *float64
 }
 
 func (r ApiOrderListPlaceOtocoRequest) Symbol(symbol string) ApiOrderListPlaceOtocoRequest {
@@ -2783,13 +2783,13 @@ func (r ApiOrderListPlaceOtocoRequest) WorkingSide(workingSide models.OrderCance
 	return r
 }
 
-func (r ApiOrderListPlaceOtocoRequest) WorkingPrice(workingPrice float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) WorkingPrice(workingPrice float64) ApiOrderListPlaceOtocoRequest {
 	r.workingPrice = &workingPrice
 	return r
 }
 
 // Sets the quantity for the working order.
-func (r ApiOrderListPlaceOtocoRequest) WorkingQuantity(workingQuantity float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) WorkingQuantity(workingQuantity float64) ApiOrderListPlaceOtocoRequest {
 	r.workingQuantity = &workingQuantity
 	return r
 }
@@ -2801,7 +2801,7 @@ func (r ApiOrderListPlaceOtocoRequest) PendingSide(pendingSide models.OrderCance
 }
 
 // Sets the quantity for the pending orders.
-func (r ApiOrderListPlaceOtocoRequest) PendingQuantity(pendingQuantity float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingQuantity(pendingQuantity float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingQuantity = &pendingQuantity
 	return r
 }
@@ -2843,7 +2843,7 @@ func (r ApiOrderListPlaceOtocoRequest) WorkingClientOrderId(workingClientOrderId
 }
 
 // This can only be used if &#x60;workingTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;workingType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOtocoRequest) WorkingIcebergQty(workingIcebergQty float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) WorkingIcebergQty(workingIcebergQty float64) ApiOrderListPlaceOtocoRequest {
 	r.workingIcebergQty = &workingIcebergQty
 	return r
 }
@@ -2889,25 +2889,25 @@ func (r ApiOrderListPlaceOtocoRequest) PendingAboveClientOrderId(pendingAboveCli
 }
 
 // Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOtocoRequest) PendingAbovePrice(pendingAbovePrice float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingAbovePrice(pendingAbovePrice float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingAbovePrice = &pendingAbovePrice
 	return r
 }
 
 // Can be used if &#x60;pendingAboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;.
-func (r ApiOrderListPlaceOtocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingAboveStopPrice(pendingAboveStopPrice float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingAboveStopPrice = &pendingAboveStopPrice
 	return r
 }
 
 // See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
-func (r ApiOrderListPlaceOtocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingAboveTrailingDelta(pendingAboveTrailingDelta float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingAboveTrailingDelta = &pendingAboveTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingAboveTimeInForce&#x60; is &#x60;GTC&#x60; or if &#x60;pendingAboveType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOtocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingAboveIcebergQty(pendingAboveIcebergQty float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingAboveIcebergQty = &pendingAboveIcebergQty
 	return r
 }
@@ -2959,25 +2959,25 @@ func (r ApiOrderListPlaceOtocoRequest) PendingBelowClientOrderId(pendingBelowCli
 }
 
 // Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60; or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price.
-func (r ApiOrderListPlaceOtocoRequest) PendingBelowPrice(pendingBelowPrice float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingBelowPrice(pendingBelowPrice float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingBelowPrice = &pendingBelowPrice
 	return r
 }
 
 // Can be used if &#x60;pendingBelowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;pendingBelowStopPrice&#x60; or &#x60;pendingBelowTrailingDelta&#x60; or both, must be specified.
-func (r ApiOrderListPlaceOtocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingBelowStopPrice(pendingBelowStopPrice float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingBelowStopPrice = &pendingBelowStopPrice
 	return r
 }
 
 // See [Trailing Stop order FAQ](/products/spot/faqs/trailing-stop-faq)
-func (r ApiOrderListPlaceOtocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingBelowTrailingDelta(pendingBelowTrailingDelta float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingBelowTrailingDelta = &pendingBelowTrailingDelta
 	return r
 }
 
 // This can only be used if &#x60;pendingBelowTimeInForce&#x60; is &#x60;GTC&#x60;, or if &#x60;pendingBelowType&#x60; is &#x60;LIMIT_MAKER&#x60;.
-func (r ApiOrderListPlaceOtocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) PendingBelowIcebergQty(pendingBelowIcebergQty float64) ApiOrderListPlaceOtocoRequest {
 	r.pendingBelowIcebergQty = &pendingBelowIcebergQty
 	return r
 }
@@ -3017,7 +3017,7 @@ func (r ApiOrderListPlaceOtocoRequest) PendingBelowPegOffsetValue(pendingBelowPe
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderListPlaceOtocoRequest) RecvWindow(recvWindow float32) ApiOrderListPlaceOtocoRequest {
+func (r ApiOrderListPlaceOtocoRequest) RecvWindow(recvWindow float64) ApiOrderListPlaceOtocoRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -3231,21 +3231,21 @@ type ApiOrderPlaceRequest struct {
 	type_                   *models.OrderCancelReplaceTypeParameter
 	id                      *string
 	timeInForce             *models.OrderCancelReplaceTimeInForceParameter
-	price                   *float32
-	quantity                *float32
-	quoteOrderQty           *float32
+	price                   *float64
+	quantity                *float64
+	quoteOrderQty           *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
-	stopPrice               *float32
+	stopPrice               *float64
 	trailingDelta           *int32
-	icebergQty              *float32
+	icebergQty              *float64
 	strategyId              *int64
 	strategyType            *int32
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	pegPriceType            *models.OrderCancelReplacePegPriceTypeParameter
 	pegOffsetValue          *int32
 	pegOffsetType           *models.OrderCancelReplacePegOffsetTypeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderPlaceRequest) Symbol(symbol string) ApiOrderPlaceRequest {
@@ -3277,17 +3277,17 @@ func (r ApiOrderPlaceRequest) TimeInForce(timeInForce models.OrderCancelReplaceT
 	return r
 }
 
-func (r ApiOrderPlaceRequest) Price(price float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) Price(price float64) ApiOrderPlaceRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiOrderPlaceRequest) Quantity(quantity float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) Quantity(quantity float64) ApiOrderPlaceRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiOrderPlaceRequest) QuoteOrderQty(quoteOrderQty float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) QuoteOrderQty(quoteOrderQty float64) ApiOrderPlaceRequest {
 	r.quoteOrderQty = &quoteOrderQty
 	return r
 }
@@ -3305,7 +3305,7 @@ func (r ApiOrderPlaceRequest) NewOrderRespType(newOrderRespType models.OrderCanc
 }
 
 // Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
-func (r ApiOrderPlaceRequest) StopPrice(stopPrice float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) StopPrice(stopPrice float64) ApiOrderPlaceRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -3317,7 +3317,7 @@ func (r ApiOrderPlaceRequest) TrailingDelta(trailingDelta int32) ApiOrderPlaceRe
 }
 
 // Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order.
-func (r ApiOrderPlaceRequest) IcebergQty(icebergQty float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) IcebergQty(icebergQty float64) ApiOrderPlaceRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -3358,7 +3358,7 @@ func (r ApiOrderPlaceRequest) PegOffsetType(pegOffsetType models.OrderCancelRepl
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderPlaceRequest) RecvWindow(recvWindow float32) ApiOrderPlaceRequest {
+func (r ApiOrderPlaceRequest) RecvWindow(recvWindow float64) ApiOrderPlaceRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -3491,21 +3491,21 @@ type ApiOrderTestRequest struct {
 	id                      *string
 	computeCommissionRates  *bool
 	timeInForce             *models.OrderCancelReplaceTimeInForceParameter
-	price                   *float32
-	quantity                *float32
-	quoteOrderQty           *float32
+	price                   *float64
+	quantity                *float64
+	quoteOrderQty           *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
-	stopPrice               *float32
+	stopPrice               *float64
 	trailingDelta           *int32
-	icebergQty              *float32
+	icebergQty              *float64
 	strategyId              *int64
 	strategyType            *int32
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
 	pegPriceType            *models.OrderCancelReplacePegPriceTypeParameter
 	pegOffsetValue          *int32
 	pegOffsetType           *models.OrderCancelReplacePegOffsetTypeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiOrderTestRequest) Symbol(symbol string) ApiOrderTestRequest {
@@ -3543,17 +3543,17 @@ func (r ApiOrderTestRequest) TimeInForce(timeInForce models.OrderCancelReplaceTi
 	return r
 }
 
-func (r ApiOrderTestRequest) Price(price float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) Price(price float64) ApiOrderTestRequest {
 	r.price = &price
 	return r
 }
 
-func (r ApiOrderTestRequest) Quantity(quantity float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) Quantity(quantity float64) ApiOrderTestRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiOrderTestRequest) QuoteOrderQty(quoteOrderQty float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) QuoteOrderQty(quoteOrderQty float64) ApiOrderTestRequest {
 	r.quoteOrderQty = &quoteOrderQty
 	return r
 }
@@ -3571,7 +3571,7 @@ func (r ApiOrderTestRequest) NewOrderRespType(newOrderRespType models.OrderCance
 }
 
 // Used with &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; orders.
-func (r ApiOrderTestRequest) StopPrice(stopPrice float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) StopPrice(stopPrice float64) ApiOrderTestRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -3583,7 +3583,7 @@ func (r ApiOrderTestRequest) TrailingDelta(trailingDelta int32) ApiOrderTestRequ
 }
 
 // Used with &#x60;LIMIT&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, and &#x60;TAKE_PROFIT_LIMIT&#x60; to create an iceberg order.
-func (r ApiOrderTestRequest) IcebergQty(icebergQty float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) IcebergQty(icebergQty float64) ApiOrderTestRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -3624,7 +3624,7 @@ func (r ApiOrderTestRequest) PegOffsetType(pegOffsetType models.OrderCancelRepla
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiOrderTestRequest) RecvWindow(recvWindow float32) ApiOrderTestRequest {
+func (r ApiOrderTestRequest) RecvWindow(recvWindow float64) ApiOrderTestRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -3757,17 +3757,17 @@ type ApiSorOrderPlaceRequest struct {
 	symbol                  *string
 	side                    *models.OrderCancelReplaceSideParameter
 	type_                   *models.SorOrderPlaceTypeParameter
-	quantity                *float32
+	quantity                *float64
 	id                      *string
 	timeInForce             *models.OrderCancelReplaceTimeInForceParameter
-	price                   *float32
+	price                   *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
-	icebergQty              *float32
+	icebergQty              *float64
 	strategyId              *int64
 	strategyType            *int32
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiSorOrderPlaceRequest) Symbol(symbol string) ApiSorOrderPlaceRequest {
@@ -3787,7 +3787,7 @@ func (r ApiSorOrderPlaceRequest) Type(type_ models.SorOrderPlaceTypeParameter) A
 	return r
 }
 
-func (r ApiSorOrderPlaceRequest) Quantity(quantity float32) ApiSorOrderPlaceRequest {
+func (r ApiSorOrderPlaceRequest) Quantity(quantity float64) ApiSorOrderPlaceRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -3804,7 +3804,7 @@ func (r ApiSorOrderPlaceRequest) TimeInForce(timeInForce models.OrderCancelRepla
 	return r
 }
 
-func (r ApiSorOrderPlaceRequest) Price(price float32) ApiSorOrderPlaceRequest {
+func (r ApiSorOrderPlaceRequest) Price(price float64) ApiSorOrderPlaceRequest {
 	r.price = &price
 	return r
 }
@@ -3822,7 +3822,7 @@ func (r ApiSorOrderPlaceRequest) NewOrderRespType(newOrderRespType models.OrderC
 }
 
 // Used with &#x60;LIMIT&#x60; to create an iceberg order.
-func (r ApiSorOrderPlaceRequest) IcebergQty(icebergQty float32) ApiSorOrderPlaceRequest {
+func (r ApiSorOrderPlaceRequest) IcebergQty(icebergQty float64) ApiSorOrderPlaceRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -3845,7 +3845,7 @@ func (r ApiSorOrderPlaceRequest) SelfTradePreventionMode(selfTradePreventionMode
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiSorOrderPlaceRequest) RecvWindow(recvWindow float32) ApiSorOrderPlaceRequest {
+func (r ApiSorOrderPlaceRequest) RecvWindow(recvWindow float64) ApiSorOrderPlaceRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
@@ -3959,18 +3959,18 @@ type ApiSorOrderTestRequest struct {
 	symbol                  *string
 	side                    *models.OrderCancelReplaceSideParameter
 	type_                   *models.SorOrderPlaceTypeParameter
-	quantity                *float32
+	quantity                *float64
 	id                      *string
 	computeCommissionRates  *bool
 	timeInForce             *models.OrderCancelReplaceTimeInForceParameter
-	price                   *float32
+	price                   *float64
 	newClientOrderId        *string
 	newOrderRespType        *models.OrderCancelReplaceNewOrderRespTypeParameter
-	icebergQty              *float32
+	icebergQty              *float64
 	strategyId              *int64
 	strategyType            *int32
 	selfTradePreventionMode *models.OrderCancelReplaceSelfTradePreventionModeParameter
-	recvWindow              *float32
+	recvWindow              *float64
 }
 
 func (r ApiSorOrderTestRequest) Symbol(symbol string) ApiSorOrderTestRequest {
@@ -3990,7 +3990,7 @@ func (r ApiSorOrderTestRequest) Type(type_ models.SorOrderPlaceTypeParameter) Ap
 	return r
 }
 
-func (r ApiSorOrderTestRequest) Quantity(quantity float32) ApiSorOrderTestRequest {
+func (r ApiSorOrderTestRequest) Quantity(quantity float64) ApiSorOrderTestRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -4013,7 +4013,7 @@ func (r ApiSorOrderTestRequest) TimeInForce(timeInForce models.OrderCancelReplac
 	return r
 }
 
-func (r ApiSorOrderTestRequest) Price(price float32) ApiSorOrderTestRequest {
+func (r ApiSorOrderTestRequest) Price(price float64) ApiSorOrderTestRequest {
 	r.price = &price
 	return r
 }
@@ -4031,7 +4031,7 @@ func (r ApiSorOrderTestRequest) NewOrderRespType(newOrderRespType models.OrderCa
 }
 
 // Used with &#x60;LIMIT&#x60; to create an iceberg order.
-func (r ApiSorOrderTestRequest) IcebergQty(icebergQty float32) ApiSorOrderTestRequest {
+func (r ApiSorOrderTestRequest) IcebergQty(icebergQty float64) ApiSorOrderTestRequest {
 	r.icebergQty = &icebergQty
 	return r
 }
@@ -4054,7 +4054,7 @@ func (r ApiSorOrderTestRequest) SelfTradePreventionMode(selfTradePreventionMode 
 }
 
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
-func (r ApiSorOrderTestRequest) RecvWindow(recvWindow float32) ApiSorOrderTestRequest {
+func (r ApiSorOrderTestRequest) RecvWindow(recvWindow float64) ApiSorOrderTestRequest {
 	r.recvWindow = &recvWindow
 	return r
 }
