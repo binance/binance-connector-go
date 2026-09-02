@@ -346,11 +346,11 @@ type ApiPlaceLimitOrderRequest struct {
 	ApiService  *TradeAPIService
 	baseAsset   *string
 	quoteAsset  *string
-	limitPrice  *float32
+	limitPrice  *float64
 	side        *models.PlaceLimitOrderSideParameter
 	expiredType *models.PlaceLimitOrderExpiredTypeParameter
-	baseAmount  *float32
-	quoteAmount *float32
+	baseAmount  *float64
+	quoteAmount *float64
 	walletType  *models.PlaceLimitOrderWalletTypeParameter
 	recvWindow  *int64
 }
@@ -368,7 +368,7 @@ func (r ApiPlaceLimitOrderRequest) QuoteAsset(quoteAsset string) ApiPlaceLimitOr
 }
 
 // Symbol limit price (from baseAsset to quoteAsset)
-func (r ApiPlaceLimitOrderRequest) LimitPrice(limitPrice float32) ApiPlaceLimitOrderRequest {
+func (r ApiPlaceLimitOrderRequest) LimitPrice(limitPrice float64) ApiPlaceLimitOrderRequest {
 	r.limitPrice = &limitPrice
 	return r
 }
@@ -386,13 +386,13 @@ func (r ApiPlaceLimitOrderRequest) ExpiredType(expiredType models.PlaceLimitOrde
 }
 
 // Base asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required)
-func (r ApiPlaceLimitOrderRequest) BaseAmount(baseAmount float32) ApiPlaceLimitOrderRequest {
+func (r ApiPlaceLimitOrderRequest) BaseAmount(baseAmount float64) ApiPlaceLimitOrderRequest {
 	r.baseAmount = &baseAmount
 	return r
 }
 
 // Quote asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required)
-func (r ApiPlaceLimitOrderRequest) QuoteAmount(quoteAmount float32) ApiPlaceLimitOrderRequest {
+func (r ApiPlaceLimitOrderRequest) QuoteAmount(quoteAmount float64) ApiPlaceLimitOrderRequest {
 	r.quoteAmount = &quoteAmount
 	return r
 }
@@ -570,8 +570,8 @@ type ApiSendQuoteRequestRequest struct {
 	ApiService *TradeAPIService
 	fromAsset  *string
 	toAsset    *string
-	fromAmount *float32
-	toAmount   *float32
+	fromAmount *float64
+	toAmount   *float64
 	walletType *models.PlaceLimitOrderWalletTypeParameter
 	validTime  *models.SendQuoteRequestValidTimeParameter
 	recvWindow *int64
@@ -588,13 +588,13 @@ func (r ApiSendQuoteRequestRequest) ToAsset(toAsset string) ApiSendQuoteRequestR
 }
 
 // When specified, it is the amount you will be debited after the conversion
-func (r ApiSendQuoteRequestRequest) FromAmount(fromAmount float32) ApiSendQuoteRequestRequest {
+func (r ApiSendQuoteRequestRequest) FromAmount(fromAmount float64) ApiSendQuoteRequestRequest {
 	r.fromAmount = &fromAmount
 	return r
 }
 
 // When specified, it is the amount you will be credited after the conversion
-func (r ApiSendQuoteRequestRequest) ToAmount(toAmount float32) ApiSendQuoteRequestRequest {
+func (r ApiSendQuoteRequestRequest) ToAmount(toAmount float64) ApiSendQuoteRequestRequest {
 	r.toAmount = &toAmount
 	return r
 }

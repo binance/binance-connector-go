@@ -1,5 +1,32 @@
 ### Changelog
 
+## 1.11.0 - 2026-09-02
+
+### Changed (5)
+
+#### REST API
+
+- Modified parameter `baseAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `placeLimitOrder()` (`POST /sapi/v1/convert/limit/placeOrder`)
+- Modified parameter `fromAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `sendQuoteRequest()` (`POST /sapi/v1/convert/getQuote`)
+- Modified parameter `limitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `placeLimitOrder()` (`POST /sapi/v1/convert/limit/placeOrder`)
+- Modified parameter `quoteAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `placeLimitOrder()` (`POST /sapi/v1/convert/limit/placeOrder`)
+- Modified parameter `toAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `sendQuoteRequest()` (`POST /sapi/v1/convert/getQuote`)
+
 ## 1.10.0 - 2026-08-28
 
 ### Changed (2)

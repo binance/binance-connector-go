@@ -326,7 +326,7 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/convert/limit/placeOrder", r.URL.Path)
 			require.Equal(t, "BTC", r.URL.Query().Get("baseAsset"))
 			require.Equal(t, "USDT", r.URL.Query().Get("quoteAsset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("limitPrice"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("limitPrice"))
 			require.Equal(t, string(models.PlaceLimitOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D), r.URL.Query().Get("expiredType"))
 			w.Header().Set("Content-Type", "application/json")
@@ -345,7 +345,7 @@ func Test_binanceconvertrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("BTC").QuoteAsset("USDT").LimitPrice(float32(1)).Side(models.PlaceLimitOrderSideParameterBuy).ExpiredType(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.PlaceLimitOrder(context.Background()).BaseAsset("BTC").QuoteAsset("USDT").LimitPrice(float64(1)).Side(models.PlaceLimitOrderSideParameterBuy).ExpiredType(models.PlaceLimitOrderExpiredTypeParameterExpiredType1D).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

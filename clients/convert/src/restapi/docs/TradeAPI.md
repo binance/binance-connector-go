@@ -322,11 +322,11 @@ import (
 func main() {
 	baseAsset := "BTC" // string | base asset (use the response `fromIsBase` from `GET /sapi/v1/convert/exchangeInfo` api to check which one is baseAsset )
 	quoteAsset := "USDT" // string | quote asset
-	limitPrice := float32(1) // float32 | Symbol limit price (from baseAsset to quoteAsset)
+	limitPrice := float64(1) // float64 | Symbol limit price (from baseAsset to quoteAsset)
 	side := models.PlaceLimitOrderSideParameterBuy // PlaceLimitOrderSideParameter | `BUY` or `SELL`
 	expiredType := models.PlaceLimitOrderExpiredTypeParameterExpiredType1D // PlaceLimitOrderExpiredTypeParameter | Order expiry duration. 1_D, 3_D, 7_D, 30_D (D means day)
-	baseAmount := float32(1) // float32 | Base asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
-	quoteAmount := float32(1) // float32 | Quote asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
+	baseAmount := float64(1) // float64 | Base asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
+	quoteAmount := float64(1) // float64 | Quote asset amount. (One of `baseAmount` or `quoteAmount` is required) (optional)
 	walletType := models.PlaceLimitOrderWalletTypeParameterSpot // PlaceLimitOrderWalletTypeParameter | Wallet to use for payment. Supported values: `SPOT`, `FUNDING`, `EARN`. Combined wallets also supported: `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN`, `SPOT_EARN`. Default is `SPOT`. (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
@@ -358,11 +358,11 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **baseAsset** | **string** | base asset (use the response &#x60;fromIsBase&#x60; from &#x60;GET /sapi/v1/convert/exchangeInfo&#x60; api to check which one is baseAsset ) | 
  **quoteAsset** | **string** | quote asset | 
- **limitPrice** | **float32** | Symbol limit price (from baseAsset to quoteAsset) | 
+ **limitPrice** | **float64** | Symbol limit price (from baseAsset to quoteAsset) | 
  **side** | [**PlaceLimitOrderSideParameter**](PlaceLimitOrderSideParameter.md) | &#x60;BUY&#x60; or &#x60;SELL&#x60; | 
  **expiredType** | [**PlaceLimitOrderExpiredTypeParameter**](PlaceLimitOrderExpiredTypeParameter.md) | Order expiry duration. 1_D, 3_D, 7_D, 30_D (D means day) | 
- **baseAmount** | **float32** | Base asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
- **quoteAmount** | **float32** | Quote asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
+ **baseAmount** | **float64** | Base asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
+ **quoteAmount** | **float64** | Quote asset amount. (One of &#x60;baseAmount&#x60; or &#x60;quoteAmount&#x60; is required) | 
  **walletType** | [**PlaceLimitOrderWalletTypeParameter**](PlaceLimitOrderWalletTypeParameter.md) | Wallet to use for payment. Supported values: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;, &#x60;EARN&#x60;. Combined wallets also supported: &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60;, &#x60;SPOT_EARN&#x60;. Default is &#x60;SPOT&#x60;. | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
@@ -474,8 +474,8 @@ import (
 func main() {
 	fromAsset := "BTC" // string | 
 	toAsset := "USDT" // string | 
-	fromAmount := float32(1) // float32 | When specified, it is the amount you will be debited after the conversion (optional)
-	toAmount := float32(1) // float32 | When specified, it is the amount you will be credited after the conversion (optional)
+	fromAmount := float64(1) // float64 | When specified, it is the amount you will be debited after the conversion (optional)
+	toAmount := float64(1) // float64 | When specified, it is the amount you will be credited after the conversion (optional)
 	walletType := models.PlaceLimitOrderWalletTypeParameterSpot // PlaceLimitOrderWalletTypeParameter | Wallet to use for payment. Supported values: `SPOT`, `FUNDING`, `EARN`. Combined wallets also supported: `SPOT_FUNDING`, `FUNDING_EARN`, `SPOT_FUNDING_EARN`, `SPOT_EARN`. Default is `SPOT`. (optional)
 	validTime := models.SendQuoteRequestValidTimeParameterValidTime10s // SendQuoteRequestValidTimeParameter | Quote valid duration. Supported values: 10s, 30s, 1m. Default is 10s. (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
@@ -508,8 +508,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromAsset** | **string** |  | 
  **toAsset** | **string** |  | 
- **fromAmount** | **float32** | When specified, it is the amount you will be debited after the conversion | 
- **toAmount** | **float32** | When specified, it is the amount you will be credited after the conversion | 
+ **fromAmount** | **float64** | When specified, it is the amount you will be debited after the conversion | 
+ **toAmount** | **float64** | When specified, it is the amount you will be credited after the conversion | 
  **walletType** | [**PlaceLimitOrderWalletTypeParameter**](PlaceLimitOrderWalletTypeParameter.md) | Wallet to use for payment. Supported values: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;, &#x60;EARN&#x60;. Combined wallets also supported: &#x60;SPOT_FUNDING&#x60;, &#x60;FUNDING_EARN&#x60;, &#x60;SPOT_FUNDING_EARN&#x60;, &#x60;SPOT_EARN&#x60;. Default is &#x60;SPOT&#x60;. | 
  **validTime** | [**SendQuoteRequestValidTimeParameter**](SendQuoteRequestValidTimeParameter.md) | Quote valid duration. Supported values: 10s, 30s, 1m. Default is 10s. | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
