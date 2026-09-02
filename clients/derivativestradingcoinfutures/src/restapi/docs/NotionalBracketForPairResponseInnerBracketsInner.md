@@ -8,8 +8,8 @@ Name         | Type          | Description.  | Notes
 **InitialLeverage** | Pointer to **int64** | the maximum leverage | [optional] 
 **QtyCap** | Pointer to **int64** | upper edge of base asset quantity | [optional] 
 **QtylFloor** | Pointer to **int64** | lower edge of base asset quantity | [optional] 
-**MaintMarginRatio** | Pointer to **float32** | Maintenance margin ratio. | [optional] 
-**Cum** | Pointer to **float32** | Cumulative value. | [optional] 
+**MaintMarginRatio** | Pointer to **float64** | Maintenance margin ratio. | [optional] 
+**Cum** | Pointer to **float64** | Cumulative value. | [optional] 
 
 ## Methods
 
@@ -132,20 +132,20 @@ HasQtylFloor returns a boolean if a field has been set.
 
 ### GetMaintMarginRatio
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatio() float32`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatio() float64`
 
 GetMaintMarginRatio returns the MaintMarginRatio field if non-nil, zero value otherwise.
 
 ### GetMaintMarginRatioOk
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float32, bool)`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float64, bool)`
 
 GetMaintMarginRatioOk returns a tuple with the MaintMarginRatio field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMaintMarginRatio
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) SetMaintMarginRatio(v float32)`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) SetMaintMarginRatio(v float64)`
 
 SetMaintMarginRatio sets MaintMarginRatio field to given value.
 
@@ -157,20 +157,20 @@ HasMaintMarginRatio returns a boolean if a field has been set.
 
 ### GetCum
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCum() float32`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCum() float64`
 
 GetCum returns the Cum field if non-nil, zero value otherwise.
 
 ### GetCumOk
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCumOk() (*float32, bool)`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCumOk() (*float64, bool)`
 
 GetCumOk returns a tuple with the Cum field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCum
 
-`func (o *NotionalBracketForPairResponseInnerBracketsInner) SetCum(v float32)`
+`func (o *NotionalBracketForPairResponseInnerBracketsInner) SetCum(v float64)`
 
 SetCum sets Cum field to given value.
 

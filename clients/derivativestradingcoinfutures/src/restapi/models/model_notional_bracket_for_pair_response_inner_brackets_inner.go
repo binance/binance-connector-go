@@ -26,9 +26,9 @@ type NotionalBracketForPairResponseInnerBracketsInner struct {
 	// lower edge of base asset quantity
 	QtylFloor *int64 `json:"qtylFloor,omitempty"`
 	// Maintenance margin ratio.
-	MaintMarginRatio *float32 `json:"maintMarginRatio,omitempty"`
+	MaintMarginRatio *float64 `json:"maintMarginRatio,omitempty"`
 	// Cumulative value.
-	Cum                  *float32 `json:"cum,omitempty"`
+	Cum                  *float64 `json:"cum,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -180,9 +180,9 @@ func (o *NotionalBracketForPairResponseInnerBracketsInner) SetQtylFloor(v int64)
 }
 
 // GetMaintMarginRatio returns the MaintMarginRatio field value if set, zero value otherwise.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatio() float32 {
+func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatio() float64 {
 	if o == nil || common.IsNil(o.MaintMarginRatio) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.MaintMarginRatio
@@ -190,7 +190,7 @@ func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatio()
 
 // GetMaintMarginRatioOk returns a tuple with the MaintMarginRatio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float32, bool) {
+func (o *NotionalBracketForPairResponseInnerBracketsInner) GetMaintMarginRatioOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.MaintMarginRatio) {
 		return nil, false
 	}
@@ -206,15 +206,15 @@ func (o *NotionalBracketForPairResponseInnerBracketsInner) HasMaintMarginRatio()
 	return false
 }
 
-// SetMaintMarginRatio gets a reference to the given float32 and assigns it to the MaintMarginRatio field.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) SetMaintMarginRatio(v float32) {
+// SetMaintMarginRatio gets a reference to the given float64 and assigns it to the MaintMarginRatio field.
+func (o *NotionalBracketForPairResponseInnerBracketsInner) SetMaintMarginRatio(v float64) {
 	o.MaintMarginRatio = &v
 }
 
 // GetCum returns the Cum field value if set, zero value otherwise.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCum() float32 {
+func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCum() float64 {
 	if o == nil || common.IsNil(o.Cum) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Cum
@@ -222,7 +222,7 @@ func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCum() float32 {
 
 // GetCumOk returns a tuple with the Cum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCumOk() (*float32, bool) {
+func (o *NotionalBracketForPairResponseInnerBracketsInner) GetCumOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Cum) {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *NotionalBracketForPairResponseInnerBracketsInner) HasCum() bool {
 	return false
 }
 
-// SetCum gets a reference to the given float32 and assigns it to the Cum field.
-func (o *NotionalBracketForPairResponseInnerBracketsInner) SetCum(v float32) {
+// SetCum gets a reference to the given float64 and assigns it to the Cum field.
+func (o *NotionalBracketForPairResponseInnerBracketsInner) SetCum(v float64) {
 	o.Cum = &v
 }
 

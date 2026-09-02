@@ -27,7 +27,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 	t.Run("Test TradeAPIService AccountTradeList Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"symbol":"BTCUSD_200626","id":6,"orderId":28,"pair":"BTCUSD","side":"SELL","price":"8800","qty":"1","realizedPnl":"0","marginAsset":"BTC","baseQty":"0.01136364","quoteQty":"100","commission":"0.00000454","commissionAsset":"BTC","time":1590743483586,"positionSide":"BOTH","buyer":false,"maker":false}]`
+		mockedJSON = `[{"symbol":"BTCUSD_200626","id":6,"orderId":28,"pair":"BTCUSD","side":"SELL","price":"8800","qty":"1","realizedPnl":"0","marginAsset":"BTC","baseQty":"0.01136364","quoteQty":"0","commission":"0.00000454","commissionAsset":"BTC","time":1590743483586,"positionSide":"BOTH","buyer":false,"maker":false}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -907,7 +907,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/positionMargin", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, "1", r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -925,7 +925,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("BTCUSDT").Amount(float32(1.0)).Type(int64(1)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.ModifyIsolatedPositionMargin(context.Background()).Symbol("BTCUSDT").Amount(float64(1.0)).Type(int64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1234,7 +1234,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).BatchOrders([]models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.PlaceMultipleOrdersBatchOrdersParameterInnerSide("Buy"), models.PlaceMultipleOrdersBatchOrdersParameterInnerType("Limit"), float32(1))}).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).BatchOrders([]models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.PlaceMultipleOrdersBatchOrdersParameterInnerSide("Buy"), models.PlaceMultipleOrdersBatchOrdersParameterInnerType("Limit"), float64(1))}).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

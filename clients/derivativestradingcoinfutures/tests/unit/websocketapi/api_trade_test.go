@@ -201,7 +201,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		conn.Listen()
 
-		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
+		responseChan, errorChan, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).ExecuteAsync()
 		require.NoError(t, err)
 
 		<-mockWS.HasSentChan
@@ -256,7 +256,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 
 		resultChan := make(chan common.ResultWebsocket[models.ModifyOrderResponse], 1)
 		go func() {
-			resp, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).Execute()
+			resp, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).Execute()
 			resultChan <- common.ResultWebsocket[models.ModifyOrderResponse]{Value: resp, Err: err}
 		}()
 
@@ -395,7 +395,7 @@ func Test_binancederivativestradingcoinfutureswebsocketapi_TradeAPIService(t *te
 		done := make(chan struct{})
 
 		go func() {
-			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float32(1.0)).Price(float32(1.0)).ExecuteAsync()
+			respChan, _, err := mockClient.WebsocketAPI.TradeAPI.ModifyOrder().Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Quantity(float64(1.0)).Price(float64(1.0)).ExecuteAsync()
 			if err != nil {
 				var wsErr *common.WebSocketError
 				if errors.As(err, &wsErr) {

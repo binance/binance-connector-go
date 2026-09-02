@@ -35,9 +35,9 @@ type AccountTradeListResponseInner struct {
 	RealizedPnl *string `json:"realizedPnl,omitempty"`
 	// Margin asset.
 	MarginAsset *string `json:"marginAsset,omitempty"`
-	// Base asset quantity.
+	// Base asset quantity. Populated for COIN-M symbols; returns \"0\" for USDⓈ-M symbols.
 	BaseQty *string `json:"baseQty,omitempty"`
-	// Quote asset quantity.
+	// Quote asset quantity. Populated for USDⓈ-M symbols; returns \"0\" for COIN-M symbols.
 	QuoteQty *string `json:"quoteQty,omitempty"`
 	// Transaction Fee (in Crypto)
 	Commission *string `json:"commission,omitempty"`

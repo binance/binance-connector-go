@@ -25,18 +25,18 @@ type PlaceMultipleOrdersBatchOrdersParameterInner struct {
 	Type         PlaceMultipleOrdersBatchOrdersParameterInnerType          `json:"type"`
 	TimeInForce  *PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce  `json:"timeInForce,omitempty"`
 	// quantity measured by contract number
-	Quantity   float32                                                 `json:"quantity"`
+	Quantity   float64                                                 `json:"quantity"`
 	ReduceOnly *PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly `json:"reduceOnly,omitempty"`
 	// Order price
-	Price *float32 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	// A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
 	NewClientOrderId *string `json:"newClientOrderId,omitempty"`
 	// Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
-	StopPrice *float32 `json:"stopPrice,omitempty"`
+	StopPrice *float64 `json:"stopPrice,omitempty"`
 	// Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`)
-	ActivationPrice *float32 `json:"activationPrice,omitempty"`
+	ActivationPrice *float64 `json:"activationPrice,omitempty"`
 	// Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 4 where 1 for 1%
-	CallbackRate            *float32                                                             `json:"callbackRate,omitempty"`
+	CallbackRate            *float64                                                             `json:"callbackRate,omitempty"`
 	WorkingType             *PlaceMultipleOrdersBatchOrdersParameterInnerWorkingType             `json:"workingType,omitempty"`
 	PriceProtect            *PlaceMultipleOrdersBatchOrdersParameterInnerPriceProtect            `json:"priceProtect,omitempty"`
 	NewOrderRespType        *PlaceMultipleOrdersBatchOrdersParameterInnerNewOrderRespType        `json:"newOrderRespType,omitempty"`
@@ -51,7 +51,7 @@ type _PlaceMultipleOrdersBatchOrdersParameterInner PlaceMultipleOrdersBatchOrder
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side PlaceMultipleOrdersBatchOrdersParameterInnerSide, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float32) *PlaceMultipleOrdersBatchOrdersParameterInner {
+func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side PlaceMultipleOrdersBatchOrdersParameterInnerSide, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float64) *PlaceMultipleOrdersBatchOrdersParameterInner {
 	this := PlaceMultipleOrdersBatchOrdersParameterInner{}
 	this.Symbol = symbol
 	this.Side = side
@@ -237,9 +237,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v PlaceMul
 }
 
 // GetQuantity returns the Quantity field value
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -248,7 +248,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -256,7 +256,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32
 }
 
 // SetQuantity sets field value
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64) {
 	o.Quantity = v
 }
 
@@ -293,9 +293,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetReduceOnly(v PlaceMult
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float64 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -303,7 +303,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPrice() float32 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -319,8 +319,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given float32 and assigns it to the Price field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
@@ -357,9 +357,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetNewClientOrderId(v str
 }
 
 // GetStopPrice returns the StopPrice field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float64 {
 	if o == nil || common.IsNil(o.StopPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.StopPrice
@@ -367,7 +367,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetStopPrice() float32 {
 
 // GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetStopPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.StopPrice) {
 		return nil, false
 	}
@@ -383,15 +383,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasStopPrice() bool {
 	return false
 }
 
-// SetStopPrice gets a reference to the given float32 and assigns it to the StopPrice field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float32) {
+// SetStopPrice gets a reference to the given float64 and assigns it to the StopPrice field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetStopPrice(v float64) {
 	o.StopPrice = &v
 }
 
 // GetActivationPrice returns the ActivationPrice field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetActivationPrice() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetActivationPrice() float64 {
 	if o == nil || common.IsNil(o.ActivationPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.ActivationPrice
@@ -399,7 +399,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetActivationPrice() floa
 
 // GetActivationPriceOk returns a tuple with the ActivationPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetActivationPriceOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetActivationPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.ActivationPrice) {
 		return nil, false
 	}
@@ -415,15 +415,15 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasActivationPrice() bool
 	return false
 }
 
-// SetActivationPrice gets a reference to the given float32 and assigns it to the ActivationPrice field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetActivationPrice(v float32) {
+// SetActivationPrice gets a reference to the given float64 and assigns it to the ActivationPrice field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetActivationPrice(v float64) {
 	o.ActivationPrice = &v
 }
 
 // GetCallbackRate returns the CallbackRate field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetCallbackRate() float32 {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetCallbackRate() float64 {
 	if o == nil || common.IsNil(o.CallbackRate) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.CallbackRate
@@ -431,7 +431,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetCallbackRate() float32
 
 // GetCallbackRateOk returns a tuple with the CallbackRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetCallbackRateOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetCallbackRateOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.CallbackRate) {
 		return nil, false
 	}
@@ -447,8 +447,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasCallbackRate() bool {
 	return false
 }
 
-// SetCallbackRate gets a reference to the given float32 and assigns it to the CallbackRate field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetCallbackRate(v float32) {
+// SetCallbackRate gets a reference to the given float64 and assigns it to the CallbackRate field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetCallbackRate(v float64) {
 	o.CallbackRate = &v
 }
 

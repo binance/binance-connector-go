@@ -1228,7 +1228,7 @@ type ApiModifyIsolatedPositionMarginRequest struct {
 	ctx          context.Context
 	ApiService   *TradeAPIService
 	symbol       *string
-	amount       *float32
+	amount       *float64
 	type_        *int64
 	positionSide *models.NewOrderPositionSideParameter
 	recvWindow   *int64
@@ -1241,7 +1241,7 @@ func (r ApiModifyIsolatedPositionMarginRequest) Symbol(symbol string) ApiModifyI
 }
 
 // Margin asset
-func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float32) ApiModifyIsolatedPositionMarginRequest {
+func (r ApiModifyIsolatedPositionMarginRequest) Amount(amount float64) ApiModifyIsolatedPositionMarginRequest {
 	r.amount = &amount
 	return r
 }
@@ -1421,8 +1421,8 @@ type ApiModifyOrderRequest struct {
 	side              *models.PlaceMultipleOrdersBatchOrdersParameterInnerSide
 	orderId           *int64
 	origClientOrderId *string
-	quantity          *float32
-	price             *float32
+	quantity          *float64
+	price             *float64
 	priceMatch        *models.ModifyOrderPriceMatchParameter
 	modifyId          *int64
 	recvWindow        *int64
@@ -1452,13 +1452,13 @@ func (r ApiModifyOrderRequest) OrigClientOrderId(origClientOrderId string) ApiMo
 }
 
 // Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;price&#x60;).
-func (r ApiModifyOrderRequest) Quantity(quantity float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Quantity(quantity float64) ApiModifyOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;quantity&#x60;).
-func (r ApiModifyOrderRequest) Price(price float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Price(price float64) ApiModifyOrderRequest {
 	r.price = &price
 	return r
 }
@@ -1575,13 +1575,13 @@ type ApiNewOrderRequest struct {
 	type_                   *models.NewOrderTypeParameter
 	positionSide            *models.NewOrderPositionSideParameter
 	reduceOnly              *models.NewOrderReduceOnlyParameter
-	quantity                *float32
-	price                   *float32
+	quantity                *float64
+	price                   *float64
 	newClientOrderId        *string
-	stopPrice               *float32
+	stopPrice               *float64
 	closePosition           *string
-	activationPrice         *float32
-	callbackRate            *float32
+	activationPrice         *float64
+	callbackRate            *float64
 	timeInForce             *models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce
 	workingType             *models.NewOrderWorkingTypeParameter
 	priceProtect            *models.NewOrderReduceOnlyParameter
@@ -1621,13 +1621,13 @@ func (r ApiNewOrderRequest) ReduceOnly(reduceOnly models.NewOrderReduceOnlyParam
 }
 
 // quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
-func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Quantity(quantity float64) ApiNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order price
-func (r ApiNewOrderRequest) Price(price float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Price(price float64) ApiNewOrderRequest {
 	r.price = &price
 	return r
 }
@@ -1639,7 +1639,7 @@ func (r ApiNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewOrde
 }
 
 // Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewOrderRequest) StopPrice(stopPrice float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) StopPrice(stopPrice float64) ApiNewOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -1651,13 +1651,13 @@ func (r ApiNewOrderRequest) ClosePosition(closePosition string) ApiNewOrderReque
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;)
-func (r ApiNewOrderRequest) ActivationPrice(activationPrice float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) ActivationPrice(activationPrice float64) ApiNewOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1%
-func (r ApiNewOrderRequest) CallbackRate(callbackRate float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) CallbackRate(callbackRate float64) ApiNewOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }

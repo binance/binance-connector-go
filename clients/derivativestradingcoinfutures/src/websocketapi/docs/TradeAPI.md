@@ -114,8 +114,8 @@ import (
 func main() {
 	symbol := "BTCUSD_PERP" // string | 
 	side := models.ModifyOrderSideParameterBuy // ModifyOrderSideParameter | 
-	quantity := float32(1.0) // float32 | Order quantity, cannot be sent with `closePosition=true`
-	price := float32(1.0) // float32 | 
+	quantity := float64(1.0) // float64 | Order quantity, cannot be sent with `closePosition=true`
+	price := float64(1.0) // float64 | 
 	id := "e9d6b4349871b40611412680b3445fac" // string |  (optional)
 	orderId := int64(1) // int64 |  (optional)
 	origClientOrderId := "1" // string |  (optional)
@@ -161,8 +161,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **side** | [**ModifyOrderSideParameter**](ModifyOrderSideParameter.md) |  | 
- **quantity** | **float32** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60; | 
- **price** | **float32** |  | 
+ **quantity** | **float64** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60; | 
+ **price** | **float64** |  | 
  **id** | **string** |  | 
  **orderId** | **int64** |  | 
  **origClientOrderId** | **string** |  | 
@@ -208,14 +208,14 @@ func main() {
 	id := "e9d6b4349871b40611412680b3445fac" // string |  (optional)
 	positionSide := models.NewOrderPositionSideParameterBoth // NewOrderPositionSideParameter | Default `BOTH` for One-way Mode; `LONG` or `SHORT` for Hedge Mode.  It must be sent in Hedge Mode. (optional)
 	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
-	quantity := float32(1.0) // float32 | Quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
+	quantity := float64(1.0) // float64 | Quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
 	reduceOnly := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (Close-All)\" (optional)
-	price := float32(1.0) // float32 |  (optional)
+	price := float64(1.0) // float64 |  (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
 	closePosition := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | `true`, `false`；Close-All，used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
-	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different workingType) (optional)
-	callbackRate := float32(5000.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
+	activationPrice := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different workingType) (optional)
+	callbackRate := float64(5000.0) // float64 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
 	workingType := models.NewOrderWorkingTypeParameterMarkPrice // NewOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
 	priceProtect := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.' (optional)
 	newOrderRespType := models.NewOrderNewOrderRespTypeParameterAck // NewOrderNewOrderRespTypeParameter |  (optional)
@@ -265,14 +265,14 @@ Name          | Type          | Description   | Notes
  **id** | **string** |  | 
  **positionSide** | [**NewOrderPositionSideParameter**](NewOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode.  It must be sent in Hedge Mode. | 
  **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
- **quantity** | **float32** | Quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
+ **quantity** | **float64** | Quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
  **reduceOnly** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; (Close-All)\&quot; | 
- **price** | **float32** |  | 
+ **price** | **float64** |  | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
- **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **stopPrice** | **float64** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
  **closePosition** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | &#x60;true&#x60;, &#x60;false&#x60;；Close-All，used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
- **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different workingType) | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
+ **activationPrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different workingType) | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
  **workingType** | [**NewOrderWorkingTypeParameter**](NewOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
  **priceProtect** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.&#39; | 
  **newOrderRespType** | [**NewOrderNewOrderRespTypeParameter**](NewOrderNewOrderRespTypeParameter.md) |  | 

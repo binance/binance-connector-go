@@ -8,8 +8,8 @@ Name         | Type          | Description.  | Notes
 **OrigClientOrderId** | Pointer to **string** | Client order ID, required when orderId is not sent. Only support letters, numbers and underscores, and must be unique within 24 hours. | [optional] 
 **Symbol** | **string** | Trading symbol | 
 **Side** | [**ModifyMultipleOrdersBatchOrdersParameterInnerSide**](ModifyMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
-**Quantity** | Pointer to **float32** | Order quantity, cannot be sent with closePosition&#x3D;true. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
-**Price** | Pointer to **float32** | Latest token price. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
+**Quantity** | Pointer to **float64** | Order quantity, cannot be sent with closePosition&#x3D;true. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
+**Price** | Pointer to **float64** | Latest token price. **After CM migration, this parameter becomes mandatory** (each batch element must send both &#x60;price&#x60; and &#x60;quantity&#x60;). | [optional] 
 **ModifyId** | Pointer to **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | [optional] 
 **RecvWindow** | Pointer to **int64** |  | [optional] 
 **Timestamp** | **int64** | Unix timestamp in milliseconds used to sign the request. The value must reflect the current client time and is validated by the server for signed endpoints. | 
@@ -125,20 +125,20 @@ SetSide sets Side field to given value.
 
 ### GetQuantity
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float32`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantity() float64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float32, bool)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetQuantityOk() (*float64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float32)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetQuantity(v float64)`
 
 SetQuantity sets Quantity field to given value.
 
@@ -150,20 +150,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float32`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float32, bool)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float32)`
+`func (o *ModifyMultipleOrdersBatchOrdersParameterInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

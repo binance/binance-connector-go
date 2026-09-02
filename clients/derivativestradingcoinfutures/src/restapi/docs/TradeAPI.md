@@ -948,7 +948,7 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | Symbol
-	amount := float32(1.0) // float32 | Margin asset
+	amount := float64(1.0) // float64 | Margin asset
 	type_ := int64(1) // int64 | 1: Add position margin,2: Reduce position margin
 	positionSide := models.NewOrderPositionSideParameterBoth // NewOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent with Hedge Mode. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -980,7 +980,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Symbol | 
- **amount** | **float32** | Margin asset | 
+ **amount** | **float64** | Margin asset | 
  **type_** | **int64** | 1: Add position margin,2: Reduce position margin | 
  **positionSide** | [**NewOrderPositionSideParameter**](NewOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent with Hedge Mode. | 
  **recvWindow** | **int64** |  | 
@@ -1097,8 +1097,8 @@ func main() {
 	side := models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy // PlaceMultipleOrdersBatchOrdersParameterInnerSide | 
 	orderId := int64(1) // int64 | Order ID (optional)
 	origClientOrderId := "1" // string | Client order ID (optional)
-	quantity := float32(1.0) // float32 | Order quantity, cannot be sent with `closePosition=true`. **After CM migration, this parameter becomes mandatory** (must be sent together with `price`). (optional)
-	price := float32(1.0) // float32 | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with `quantity`). (optional)
+	quantity := float64(1.0) // float64 | Order quantity, cannot be sent with `closePosition=true`. **After CM migration, this parameter becomes mandatory** (must be sent together with `price`). (optional)
+	price := float64(1.0) // float64 | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with `quantity`). (optional)
 	priceMatch := models.ModifyOrderPriceMatchParameterOpponent // ModifyOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price` (optional)
 	modifyId := int64(1) // int64 | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -1133,8 +1133,8 @@ Name          | Type          | Description   | Notes
  **side** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSide**](PlaceMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
  **orderId** | **int64** | Order ID | 
  **origClientOrderId** | **string** | Client order ID | 
- **quantity** | **float32** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;price&#x60;). | 
- **price** | **float32** | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;quantity&#x60;). | 
+ **quantity** | **float64** | Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;price&#x60;). | 
+ **price** | **float64** | Order price. **After CM migration, this parameter becomes mandatory** (must be sent together with &#x60;quantity&#x60;). | 
  **priceMatch** | [**ModifyOrderPriceMatchParameter**](ModifyOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; Can&#39;t be passed together with &#x60;price&#x60; | 
  **modifyId** | **int64** | User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness. | 
  **recvWindow** | **int64** |  | 
@@ -1182,13 +1182,13 @@ func main() {
 	type_ := models.NewOrderTypeParameterLimit // NewOrderTypeParameter | **After CM migration, stop-type values (`STOP`, `STOP_MARKET`, `TAKE_PROFIT`, `TAKE_PROFIT_MARKET`, `TRAILING_STOP_MARKET`) are no longer accepted by this endpoint and will return `-4120`. Use the new `/dapi/v1/algoOrder` endpoint instead.**
 	positionSide := models.NewOrderPositionSideParameterBoth // NewOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	reduceOnly := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | \"true\" or \"false\". Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`(Close-All) (optional)
-	quantity := float32(1.0) // float32 | quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
-	price := float32(1.0) // float32 | Order price (optional)
+	quantity := float64(1.0) // float64 | quantity measured by contract number, Cannot be sent with `closePosition`=`true` (optional)
+	price := float64(1.0) // float64 | Order price (optional)
 	newClientOrderId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$` (optional)
-	stopPrice := float32(1.0) // float32 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
+	stopPrice := float64(1.0) // float64 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
 	closePosition := "true" // string | `true`, `false`；Close-All,used with `STOP_MARKET` or `TAKE_PROFIT_MARKET`. (optional)
-	activationPrice := float32(1.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
-	callbackRate := float32(5000.0) // float32 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
+	activationPrice := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders, default as the latest price(supporting different `workingType`) (optional)
+	callbackRate := float64(5000.0) // float64 | Used with `TRAILING_STOP_MARKET` orders, min 0.1, max 10 where 1 for 1% (optional)
 	timeInForce := models.PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc // PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce |  (optional)
 	workingType := models.NewOrderWorkingTypeParameterMarkPrice // NewOrderWorkingTypeParameter | 'stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". (optional)
 	priceProtect := models.NewOrderReduceOnlyParameterTrue // NewOrderReduceOnlyParameter | \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
@@ -1228,13 +1228,13 @@ Name          | Type          | Description   | Notes
  **type_** | [**NewOrderTypeParameter**](NewOrderTypeParameter.md) | **After CM migration, stop-type values (&#x60;STOP&#x60;, &#x60;STOP_MARKET&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_MARKET&#x60;, &#x60;TRAILING_STOP_MARKET&#x60;) are no longer accepted by this endpoint and will return &#x60;-4120&#x60;. Use the new &#x60;/dapi/v1/algoOrder&#x60; endpoint instead.** | 
  **positionSide** | [**NewOrderPositionSideParameter**](NewOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **reduceOnly** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
- **quantity** | **float32** | quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **price** | **float32** | Order price | 
+ **quantity** | **float64** | quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
+ **price** | **float64** | Order price | 
  **newClientOrderId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,36}$&#x60; | 
- **stopPrice** | **float32** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
+ **stopPrice** | **float64** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
  **closePosition** | **string** | &#x60;true&#x60;, &#x60;false&#x60;；Close-All,used with &#x60;STOP_MARKET&#x60; or &#x60;TAKE_PROFIT_MARKET&#x60;. | 
- **activationPrice** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
- **callbackRate** | **float32** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
+ **activationPrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different &#x60;workingType&#x60;) | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1% | 
  **timeInForce** | [**PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce.md) |  | 
  **workingType** | [**NewOrderWorkingTypeParameter**](NewOrderWorkingTypeParameter.md) | &#39;stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. | 
  **priceProtect** | [**NewOrderReduceOnlyParameter**](NewOrderReduceOnlyParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
@@ -1281,7 +1281,7 @@ import (
 )
 
 func main() {
-	batchOrders := []models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.placeMultipleOrders_batchOrders_parameter_inner_side("BUY"), models.placeMultipleOrders_batchOrders_parameter_inner_type("LIMIT"), float32(1))} // []PlaceMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
+	batchOrders := []models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.placeMultipleOrders_batchOrders_parameter_inner_side("BUY"), models.placeMultipleOrders_batchOrders_parameter_inner_type("LIMIT"), float64(1))} // []PlaceMultipleOrdersBatchOrdersParameterInner | order list. Max 5 orders
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(

@@ -125,8 +125,8 @@ type ApiModifyOrderRequest struct {
 	ApiService        *TradeAPIService
 	symbol            *string
 	side              *models.ModifyOrderSideParameter
-	quantity          *float32
-	price             *float32
+	quantity          *float64
+	price             *float64
 	id                *string
 	orderId           *int64
 	origClientOrderId *string
@@ -146,12 +146,12 @@ func (r ApiModifyOrderRequest) Side(side models.ModifyOrderSideParameter) ApiMod
 }
 
 // Order quantity, cannot be sent with &#x60;closePosition&#x3D;true&#x60;
-func (r ApiModifyOrderRequest) Quantity(quantity float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Quantity(quantity float64) ApiModifyOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
-func (r ApiModifyOrderRequest) Price(price float32) ApiModifyOrderRequest {
+func (r ApiModifyOrderRequest) Price(price float64) ApiModifyOrderRequest {
 	r.price = &price
 	return r
 }
@@ -288,14 +288,14 @@ type ApiNewOrderRequest struct {
 	id                      *string
 	positionSide            *models.NewOrderPositionSideParameter
 	timeInForce             *models.NewOrderTimeInForceParameter
-	quantity                *float32
+	quantity                *float64
 	reduceOnly              *models.NewOrderReduceOnlyParameter
-	price                   *float32
+	price                   *float64
 	newClientOrderId        *string
-	stopPrice               *float32
+	stopPrice               *float64
 	closePosition           *models.NewOrderReduceOnlyParameter
-	activationPrice         *float32
-	callbackRate            *float32
+	activationPrice         *float64
+	callbackRate            *float64
 	workingType             *models.NewOrderWorkingTypeParameter
 	priceProtect            *models.NewOrderReduceOnlyParameter
 	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
@@ -337,7 +337,7 @@ func (r ApiNewOrderRequest) TimeInForce(timeInForce models.NewOrderTimeInForcePa
 }
 
 // Quantity measured by contract number, Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;
-func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Quantity(quantity float64) ApiNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -348,7 +348,7 @@ func (r ApiNewOrderRequest) ReduceOnly(reduceOnly models.NewOrderReduceOnlyParam
 	return r
 }
 
-func (r ApiNewOrderRequest) Price(price float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Price(price float64) ApiNewOrderRequest {
 	r.price = &price
 	return r
 }
@@ -360,7 +360,7 @@ func (r ApiNewOrderRequest) NewClientOrderId(newClientOrderId string) ApiNewOrde
 }
 
 // Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders.
-func (r ApiNewOrderRequest) StopPrice(stopPrice float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) StopPrice(stopPrice float64) ApiNewOrderRequest {
 	r.stopPrice = &stopPrice
 	return r
 }
@@ -372,13 +372,13 @@ func (r ApiNewOrderRequest) ClosePosition(closePosition models.NewOrderReduceOnl
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, default as the latest price(supporting different workingType)
-func (r ApiNewOrderRequest) ActivationPrice(activationPrice float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) ActivationPrice(activationPrice float64) ApiNewOrderRequest {
 	r.activationPrice = &activationPrice
 	return r
 }
 
 // Used with &#x60;TRAILING_STOP_MARKET&#x60; orders, min 0.1, max 10 where 1 for 1%
-func (r ApiNewOrderRequest) CallbackRate(callbackRate float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) CallbackRate(callbackRate float64) ApiNewOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
 }

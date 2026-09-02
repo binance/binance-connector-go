@@ -1,5 +1,93 @@
 ### Changelog
 
+## 1.19.0 - 2026-09-02
+
+### Changed (18)
+
+#### REST API
+
+- Modified parameter `activationPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyIsolatedPositionMargin()` (`POST /dapi/v1/positionMargin`)
+- Modified parameter `callbackRate`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`PUT /dapi/v1/order`)
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`PUT /dapi/v1/order`)
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /dapi/v1/order`)
+- Modified parameter `batchOrders`:
+  - items.`price`: type `float32` → `float64`
+  - items.`quantity`: type `float32` → `float64`
+  - affected methods:
+    - `modifyMultipleOrders()` (`PUT /dapi/v1/batchOrders`)
+- Modified parameter `batchOrders`:
+  - items.`activationPrice`: type `float32` → `float64`
+  - items.`callbackRate`: type `float32` → `float64`
+  - items.`price`: type `float32` → `float64`
+  - items.`quantity`: type `float32` → `float64`
+  - items.`stopPrice`: type `float32` → `float64`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /dapi/v1/batchOrders`)
+- Modified response for `modifyIsolatedPositionMargin()` (`POST /dapi/v1/positionMargin`):
+  - `amount`: type `float32` → `float64`
+- Modified response for `notionalBracketForPair()` (`GET /dapi/v1/leverageBracket`):
+  - items.`brackets`.items.`cum`: type `float32` → `float64`
+  - items.`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+- Modified response for `notionalBracketForSymbol()` (`GET /dapi/v2/leverageBracket`):
+  - items.`brackets`.items.`cum`: type `float32` → `float64`
+  - items.`brackets`.items.`maintMarginRatio`: type `float32` → `float64`
+  - items.`notionalCoef`: type `float32` → `float64`
+- Modified response for `accountTradeList()` (`GET /dapi/v1/userTrades`):
+  - items.`baseQty`: description updated
+  - items.`quoteQty`: description updated
+
+#### WebSocket API
+
+- Modified parameter `activationPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Modified parameter `callbackRate`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+    - `newOrder()` (`order.place` method)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `modifyOrder()` (`order.modify` method)
+    - `newOrder()` (`order.place` method)
+- Modified parameter `stopPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`order.place` method)
+
+#### WebSocket Streams
+
+- Modified response for `contractInfoStream()` (`!contractInfo` stream):
+  - `bks`.items.`mmr`: type `float32` → `float64`
+
 ## 1.18.0 - 2026-08-28
 
 ### Changed (2)
