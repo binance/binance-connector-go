@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **float32** |  | [optional] 
+**Quantity** | Pointer to **float64** |  | [optional] 
 **PositionSide** | Pointer to **string** | Required when productType&#x3D;UM. Optional and ignored when productType&#x3D;OPTION (the response returns positionSide as null). | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantity() float32`
+`func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantity() float64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantityOk() (*float32, bool)`
+`func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantityOk() (*float64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *MovePositionForSubAccountOrderArgsParameterInner) SetQuantity(v float32)`
+`func (o *MovePositionForSubAccountOrderArgsParameterInner) SetQuantity(v float64)`
 
 SetQuantity sets Quantity field to given value.
 

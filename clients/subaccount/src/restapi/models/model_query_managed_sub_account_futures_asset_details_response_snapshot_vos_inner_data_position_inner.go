@@ -20,7 +20,7 @@ type QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositi
 	Symbol               *string  `json:"symbol,omitempty"`
 	EntryPrice           *int64   `json:"entryPrice,omitempty"`
 	MarkPrice            *int64   `json:"markPrice,omitempty"`
-	PositionAmt          *float32 `json:"positionAmt,omitempty"`
+	PositionAmt          *float64 `json:"positionAmt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPo
 }
 
 // GetPositionAmt returns the PositionAmt field value if set, zero value otherwise.
-func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmt() float32 {
+func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmt() float64 {
 	if o == nil || common.IsNil(o.PositionAmt) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.PositionAmt
@@ -150,7 +150,7 @@ func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPo
 
 // GetPositionAmtOk returns a tuple with the PositionAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmtOk() (*float32, bool) {
+func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmtOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.PositionAmt) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPo
 	return false
 }
 
-// SetPositionAmt gets a reference to the given float32 and assigns it to the PositionAmt field.
-func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) SetPositionAmt(v float32) {
+// SetPositionAmt gets a reference to the given float64 and assigns it to the PositionAmt field.
+func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) SetPositionAmt(v float64) {
 	o.PositionAmt = &v
 }
 

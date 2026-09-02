@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Freeze** | Pointer to **int64** |  | [optional] 
 **Withdrawing** | Pointer to **int64** |  | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
-**Free** | Pointer to **float32** |  | [optional] 
+**Free** | Pointer to **float64** |  | [optional] 
 **Locked** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasAsset returns a boolean if a field has been set.
 
 ### GetFree
 
-`func (o *QuerySubAccountAssetsResponseBalancesInner) GetFree() float32`
+`func (o *QuerySubAccountAssetsResponseBalancesInner) GetFree() float64`
 
 GetFree returns the Free field if non-nil, zero value otherwise.
 
 ### GetFreeOk
 
-`func (o *QuerySubAccountAssetsResponseBalancesInner) GetFreeOk() (*float32, bool)`
+`func (o *QuerySubAccountAssetsResponseBalancesInner) GetFreeOk() (*float64, bool)`
 
 GetFreeOk returns a tuple with the Free field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFree
 
-`func (o *QuerySubAccountAssetsResponseBalancesInner) SetFree(v float32)`
+`func (o *QuerySubAccountAssetsResponseBalancesInner) SetFree(v float64)`
 
 SetFree sets Free field to given value.
 

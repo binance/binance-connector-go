@@ -35,7 +35,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/sub-account/futures/transfer", r.URL.Path)
 			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
 			require.Equal(t, "USDT", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, "1", r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -53,7 +53,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.FuturesTransferForSubAccount(context.Background()).Email("123@test.com").Asset("USDT").Amount(float32(1.0)).Type(int64(1)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.FuturesTransferForSubAccount(context.Background()).Email("123@test.com").Asset("USDT").Amount(float64(1.0)).Type(int64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -795,7 +795,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/sub-account/margin/transfer", r.URL.Path)
 			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, "1", r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -813,7 +813,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.MarginTransferForSubAccount(context.Background()).Email("123@test.com").Asset("BTC").Amount(float32(1.0)).Type(int64(1)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.MarginTransferForSubAccount(context.Background()).Email("123@test.com").Asset("BTC").Amount(float64(1.0)).Type(int64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1365,7 +1365,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "def@test.com", r.URL.Query().Get("toEmail"))
 			require.Equal(t, "1", r.URL.Query().Get("futuresType"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1382,7 +1382,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.SubAccountFuturesAssetTransfer(context.Background()).FromEmail("abc@test.com").ToEmail("def@test.com").FuturesType(int64(1)).Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.SubAccountFuturesAssetTransfer(context.Background()).FromEmail("abc@test.com").ToEmail("def@test.com").FuturesType(int64(1)).Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1502,7 +1502,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/sub-account/transfer/subToMaster", r.URL.Path)
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1519,7 +1519,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.TransferToMaster(context.Background()).Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.TransferToMaster(context.Background()).Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1581,7 +1581,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/sub-account/transfer/subToSub", r.URL.Path)
 			require.Equal(t, "abc@test.com", r.URL.Query().Get("toEmail"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1598,7 +1598,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.TransferToSubAccountOfSameMaster(context.Background()).ToEmail("abc@test.com").Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.TransferToSubAccountOfSameMaster(context.Background()).ToEmail("abc@test.com").Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1661,7 +1661,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			require.Equal(t, string(models.UniversalTransferFromAccountTypeParameterSpot), r.URL.Query().Get("fromAccountType"))
 			require.Equal(t, string(models.UniversalTransferFromAccountTypeParameterSpot), r.URL.Query().Get("toAccountType"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1678,7 +1678,7 @@ func Test_binancesubaccountrestapi_AssetManagementAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetManagementAPI.UniversalTransfer(context.Background()).FromAccountType(models.UniversalTransferFromAccountTypeParameterSpot).ToAccountType(models.UniversalTransferFromAccountTypeParameterSpot).Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetManagementAPI.UniversalTransfer(context.Background()).FromAccountType(models.UniversalTransferFromAccountTypeParameterSpot).ToAccountType(models.UniversalTransferFromAccountTypeParameterSpot).Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

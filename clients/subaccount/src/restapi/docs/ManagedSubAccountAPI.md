@@ -42,7 +42,7 @@ import (
 func main() {
 	toEmail := "abc@test.com" // string | 
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -73,7 +73,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **toEmail** | **string** |  | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ func main() {
 	email := "abc@test.com" // string | 
 	coin := "USDT" // string | 
 	network := "LIGHTNING" // string | networks can be found in `GET /sapi/v1/capital/deposit/address` (optional)
-	amount := float32(1.0) // float32 |  (optional)
+	amount := float64(1.0) // float64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -149,7 +149,7 @@ Name          | Type          | Description   | Notes
  **email** | **string** |  | 
  **coin** | **string** |  | 
  **network** | **string** | networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -794,7 +794,7 @@ import (
 func main() {
 	fromEmail := "from@test.com" // string | 
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	transferDate := int64(789) // int64 | Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -826,7 +826,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromEmail** | **string** |  | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **transferDate** | **int64** | Withdrawal will happen automatically on the selected date (UTC 0). If no date is selected, withdrawal takes effect immediately. | 
  **recvWindow** | **int64** |  | 
 

@@ -23,7 +23,7 @@ type ApiFuturesTransferForSubAccountRequest struct {
 	ApiService *AssetManagementAPIService
 	email      *string
 	asset      *string
-	amount     *float32
+	amount     *float64
 	type_      *int64
 	recvWindow *int64
 }
@@ -40,7 +40,7 @@ func (r ApiFuturesTransferForSubAccountRequest) Asset(asset string) ApiFuturesTr
 }
 
 // The amount to be transferred
-func (r ApiFuturesTransferForSubAccountRequest) Amount(amount float32) ApiFuturesTransferForSubAccountRequest {
+func (r ApiFuturesTransferForSubAccountRequest) Amount(amount float64) ApiFuturesTransferForSubAccountRequest {
 	r.amount = &amount
 	return r
 }
@@ -505,7 +505,7 @@ type ApiGetSubAccountDepositAddressRequest struct {
 	email      *string
 	coin       *string
 	network    *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -525,7 +525,7 @@ func (r ApiGetSubAccountDepositAddressRequest) Network(network string) ApiGetSub
 	return r
 }
 
-func (r ApiGetSubAccountDepositAddressRequest) Amount(amount float32) ApiGetSubAccountDepositAddressRequest {
+func (r ApiGetSubAccountDepositAddressRequest) Amount(amount float64) ApiGetSubAccountDepositAddressRequest {
 	r.amount = &amount
 	return r
 }
@@ -1013,7 +1013,7 @@ type ApiMarginTransferForSubAccountRequest struct {
 	ApiService *AssetManagementAPIService
 	email      *string
 	asset      *string
-	amount     *float32
+	amount     *float64
 	type_      *int64
 	recvWindow *int64
 }
@@ -1030,7 +1030,7 @@ func (r ApiMarginTransferForSubAccountRequest) Asset(asset string) ApiMarginTran
 }
 
 // The amount to be transferred
-func (r ApiMarginTransferForSubAccountRequest) Amount(amount float32) ApiMarginTransferForSubAccountRequest {
+func (r ApiMarginTransferForSubAccountRequest) Amount(amount float64) ApiMarginTransferForSubAccountRequest {
 	r.amount = &amount
 	return r
 }
@@ -1866,7 +1866,7 @@ type ApiSubAccountFuturesAssetTransferRequest struct {
 	toEmail     *string
 	futuresType *int64
 	asset       *string
-	amount      *float32
+	amount      *float64
 	recvWindow  *int64
 }
 
@@ -1893,7 +1893,7 @@ func (r ApiSubAccountFuturesAssetTransferRequest) Asset(asset string) ApiSubAcco
 	return r
 }
 
-func (r ApiSubAccountFuturesAssetTransferRequest) Amount(amount float32) ApiSubAccountFuturesAssetTransferRequest {
+func (r ApiSubAccountFuturesAssetTransferRequest) Amount(amount float64) ApiSubAccountFuturesAssetTransferRequest {
 	r.amount = &amount
 	return r
 }
@@ -2113,7 +2113,7 @@ type ApiTransferToMasterRequest struct {
 	ctx        context.Context
 	ApiService *AssetManagementAPIService
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -2122,7 +2122,7 @@ func (r ApiTransferToMasterRequest) Asset(asset string) ApiTransferToMasterReque
 	return r
 }
 
-func (r ApiTransferToMasterRequest) Amount(amount float32) ApiTransferToMasterRequest {
+func (r ApiTransferToMasterRequest) Amount(amount float64) ApiTransferToMasterRequest {
 	r.amount = &amount
 	return r
 }
@@ -2200,7 +2200,7 @@ type ApiTransferToSubAccountOfSameMasterRequest struct {
 	ApiService *AssetManagementAPIService
 	toEmail    *string
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -2214,7 +2214,7 @@ func (r ApiTransferToSubAccountOfSameMasterRequest) Asset(asset string) ApiTrans
 	return r
 }
 
-func (r ApiTransferToSubAccountOfSameMasterRequest) Amount(amount float32) ApiTransferToSubAccountOfSameMasterRequest {
+func (r ApiTransferToSubAccountOfSameMasterRequest) Amount(amount float64) ApiTransferToSubAccountOfSameMasterRequest {
 	r.amount = &amount
 	return r
 }
@@ -2299,7 +2299,7 @@ type ApiUniversalTransferRequest struct {
 	fromAccountType *models.UniversalTransferFromAccountTypeParameter
 	toAccountType   *models.UniversalTransferFromAccountTypeParameter
 	asset           *string
-	amount          *float32
+	amount          *float64
 	fromEmail       *string
 	toEmail         *string
 	clientTranId    *string
@@ -2322,7 +2322,7 @@ func (r ApiUniversalTransferRequest) Asset(asset string) ApiUniversalTransferReq
 	return r
 }
 
-func (r ApiUniversalTransferRequest) Amount(amount float32) ApiUniversalTransferRequest {
+func (r ApiUniversalTransferRequest) Amount(amount float64) ApiUniversalTransferRequest {
 	r.amount = &amount
 	return r
 }

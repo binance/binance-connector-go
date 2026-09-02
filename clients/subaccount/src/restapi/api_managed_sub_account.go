@@ -23,7 +23,7 @@ type ApiDepositAssetsIntoTheManagedSubAccountRequest struct {
 	ApiService *ManagedSubAccountAPIService
 	toEmail    *string
 	asset      *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -37,7 +37,7 @@ func (r ApiDepositAssetsIntoTheManagedSubAccountRequest) Asset(asset string) Api
 	return r
 }
 
-func (r ApiDepositAssetsIntoTheManagedSubAccountRequest) Amount(amount float32) ApiDepositAssetsIntoTheManagedSubAccountRequest {
+func (r ApiDepositAssetsIntoTheManagedSubAccountRequest) Amount(amount float64) ApiDepositAssetsIntoTheManagedSubAccountRequest {
 	r.amount = &amount
 	return r
 }
@@ -122,7 +122,7 @@ type ApiGetManagedSubAccountDepositAddressRequest struct {
 	email      *string
 	coin       *string
 	network    *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -142,7 +142,7 @@ func (r ApiGetManagedSubAccountDepositAddressRequest) Network(network string) Ap
 	return r
 }
 
-func (r ApiGetManagedSubAccountDepositAddressRequest) Amount(amount float32) ApiGetManagedSubAccountDepositAddressRequest {
+func (r ApiGetManagedSubAccountDepositAddressRequest) Amount(amount float64) ApiGetManagedSubAccountDepositAddressRequest {
 	r.amount = &amount
 	return r
 }
@@ -1075,7 +1075,7 @@ type ApiWithdrawlAssetsFromTheManagedSubAccountRequest struct {
 	ApiService   *ManagedSubAccountAPIService
 	fromEmail    *string
 	asset        *string
-	amount       *float32
+	amount       *float64
 	transferDate *int64
 	recvWindow   *int64
 }
@@ -1090,7 +1090,7 @@ func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) Asset(asset string) A
 	return r
 }
 
-func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) Amount(amount float32) ApiWithdrawlAssetsFromTheManagedSubAccountRequest {
+func (r ApiWithdrawlAssetsFromTheManagedSubAccountRequest) Amount(amount float64) ApiWithdrawlAssetsFromTheManagedSubAccountRequest {
 	r.amount = &amount
 	return r
 }

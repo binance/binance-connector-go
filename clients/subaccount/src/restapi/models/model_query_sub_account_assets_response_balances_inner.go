@@ -20,7 +20,7 @@ type QuerySubAccountAssetsResponseBalancesInner struct {
 	Freeze               *int64   `json:"freeze,omitempty"`
 	Withdrawing          *int64   `json:"withdrawing,omitempty"`
 	Asset                *string  `json:"asset,omitempty"`
-	Free                 *float32 `json:"free,omitempty"`
+	Free                 *float64 `json:"free,omitempty"`
 	Locked               *int64   `json:"locked,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -141,9 +141,9 @@ func (o *QuerySubAccountAssetsResponseBalancesInner) SetAsset(v string) {
 }
 
 // GetFree returns the Free field value if set, zero value otherwise.
-func (o *QuerySubAccountAssetsResponseBalancesInner) GetFree() float32 {
+func (o *QuerySubAccountAssetsResponseBalancesInner) GetFree() float64 {
 	if o == nil || common.IsNil(o.Free) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Free
@@ -151,7 +151,7 @@ func (o *QuerySubAccountAssetsResponseBalancesInner) GetFree() float32 {
 
 // GetFreeOk returns a tuple with the Free field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QuerySubAccountAssetsResponseBalancesInner) GetFreeOk() (*float32, bool) {
+func (o *QuerySubAccountAssetsResponseBalancesInner) GetFreeOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Free) {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *QuerySubAccountAssetsResponseBalancesInner) HasFree() bool {
 	return false
 }
 
-// SetFree gets a reference to the given float32 and assigns it to the Free field.
-func (o *QuerySubAccountAssetsResponseBalancesInner) SetFree(v float32) {
+// SetFree gets a reference to the given float64 and assigns it to the Free field.
+func (o *QuerySubAccountAssetsResponseBalancesInner) SetFree(v float64) {
 	o.Free = &v
 }
 

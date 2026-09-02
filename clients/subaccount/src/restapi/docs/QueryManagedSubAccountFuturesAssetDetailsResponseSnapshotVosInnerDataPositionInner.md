@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Symbol** | Pointer to **string** |  | [optional] 
 **EntryPrice** | Pointer to **int64** |  | [optional] 
 **MarkPrice** | Pointer to **int64** |  | [optional] 
-**PositionAmt** | Pointer to **float32** |  | [optional] 
+**PositionAmt** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasMarkPrice returns a boolean if a field has been set.
 
 ### GetPositionAmt
 
-`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmt() float32`
+`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmt() float64`
 
 GetPositionAmt returns the PositionAmt field if non-nil, zero value otherwise.
 
 ### GetPositionAmtOk
 
-`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmtOk() (*float32, bool)`
+`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) GetPositionAmtOk() (*float64, bool)`
 
 GetPositionAmtOk returns a tuple with the PositionAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPositionAmt
 
-`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) SetPositionAmt(v float32)`
+`func (o *QueryManagedSubAccountFuturesAssetDetailsResponseSnapshotVosInnerDataPositionInner) SetPositionAmt(v float64)`
 
 SetPositionAmt sets PositionAmt field to given value.
 

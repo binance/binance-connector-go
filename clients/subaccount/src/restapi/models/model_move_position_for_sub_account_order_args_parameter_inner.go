@@ -18,7 +18,7 @@ var _ common.MappedNullable = &MovePositionForSubAccountOrderArgsParameterInner{
 // MovePositionForSubAccountOrderArgsParameterInner struct for MovePositionForSubAccountOrderArgsParameterInner
 type MovePositionForSubAccountOrderArgsParameterInner struct {
 	Symbol   *string  `json:"symbol,omitempty"`
-	Quantity *float32 `json:"quantity,omitempty"`
+	Quantity *float64 `json:"quantity,omitempty"`
 	// Required when productType=UM. Optional and ignored when productType=OPTION (the response returns positionSide as null).
 	PositionSide         *string `json:"positionSide,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -76,9 +76,9 @@ func (o *MovePositionForSubAccountOrderArgsParameterInner) SetSymbol(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantity() float32 {
+func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantity() float64 {
 	if o == nil || common.IsNil(o.Quantity) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Quantity
@@ -86,7 +86,7 @@ func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantity() float32
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantityOk() (*float32, bool) {
+func (o *MovePositionForSubAccountOrderArgsParameterInner) GetQuantityOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *MovePositionForSubAccountOrderArgsParameterInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *MovePositionForSubAccountOrderArgsParameterInner) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given float64 and assigns it to the Quantity field.
+func (o *MovePositionForSubAccountOrderArgsParameterInner) SetQuantity(v float64) {
 	o.Quantity = &v
 }
 

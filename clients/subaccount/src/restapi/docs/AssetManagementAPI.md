@@ -54,7 +54,7 @@ import (
 func main() {
 	email := "123@test.com" // string | 
 	asset := "USDT" // string | The asset being transferred
-	amount := float32(1.0) // float32 | The amount to be transferred
+	amount := float64(1.0) // float64 | The amount to be transferred
 	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4:transfer from subaccount's COIN-margined futures account to its spot account
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -86,7 +86,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** |  | 
  **asset** | **string** | The asset being transferred | 
- **amount** | **float32** | The amount to be transferred | 
+ **amount** | **float64** | The amount to be transferred | 
  **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from subaccount&#39;s COIN-margined futures account to its spot account | 
  **recvWindow** | **int64** |  | 
 
@@ -423,7 +423,7 @@ func main() {
 	email := "123@test.com" // string | 
 	coin := "BTC" // string | 
 	network := "network_example" // string | networks can be found in `GET /sapi/v1/capital/deposit/address` (optional)
-	amount := float32(1.0) // float32 |  (optional)
+	amount := float64(1.0) // float64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -455,7 +455,7 @@ Name          | Type          | Description   | Notes
  **email** | **string** |  | 
  **coin** | **string** |  | 
  **network** | **string** | networks can be found in &#x60;GET /sapi/v1/capital/deposit/address&#x60; | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -798,7 +798,7 @@ import (
 func main() {
 	email := "123@test.com" // string | 
 	asset := "BTC" // string | The asset being transferred
-	amount := float32(1.0) // float32 | The amount to be transferred
+	amount := float64(1.0) // float64 | The amount to be transferred
 	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to margin account 2: transfer from subaccount's margin account to its spot account
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -830,7 +830,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** |  | 
  **asset** | **string** | The asset being transferred | 
- **amount** | **float32** | The amount to be transferred | 
+ **amount** | **float64** | The amount to be transferred | 
  **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to margin account 2: transfer from subaccount&#39;s margin account to its spot account | 
  **recvWindow** | **int64** |  | 
 
@@ -1408,7 +1408,7 @@ func main() {
 	toEmail := "def@test.com" // string | Recipient email
 	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1441,7 +1441,7 @@ Name          | Type          | Description   | Notes
  **toEmail** | **string** | Recipient email | 
  **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1563,7 +1563,7 @@ import (
 
 func main() {
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1593,7 +1593,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1636,7 +1636,7 @@ import (
 func main() {
 	toEmail := "abc@test.com" // string | 
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1667,7 +1667,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **toEmail** | **string** |  | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1711,7 +1711,7 @@ func main() {
 	fromAccountType := models.UniversalTransferFromAccountTypeParameterSpot // UniversalTransferFromAccountTypeParameter | 
 	toAccountType := models.UniversalTransferFromAccountTypeParameterSpot // UniversalTransferFromAccountTypeParameter | 
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	fromEmail := "abc@test.com" // string |  (optional)
 	toEmail := "def@test.com" // string |  (optional)
 	clientTranId := "1" // string | Must be unique (optional)
@@ -1747,7 +1747,7 @@ Name          | Type          | Description   | Notes
  **fromAccountType** | [**UniversalTransferFromAccountTypeParameter**](UniversalTransferFromAccountTypeParameter.md) |  | 
  **toAccountType** | [**UniversalTransferFromAccountTypeParameter**](UniversalTransferFromAccountTypeParameter.md) |  | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **fromEmail** | **string** |  | 
  **toEmail** | **string** |  | 
  **clientTranId** | **string** | Must be unique | 

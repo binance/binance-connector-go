@@ -1,5 +1,33 @@
 ### Changelog
 
+## 1.14.0 - 2026-09-02
+
+### Changed (4)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `depositAssetsIntoTheManagedSubAccount()` (`POST /sapi/v1/managed-subaccount/deposit`)
+    - `futuresTransferForSubAccount()` (`POST /sapi/v1/sub-account/futures/transfer`)
+    - `getManagedSubAccountDepositAddress()` (`GET /sapi/v1/managed-subaccount/deposit/address`)
+    - `getSubAccountDepositAddress()` (`GET /sapi/v1/capital/deposit/subAddress`)
+    - `marginTransferForSubAccount()` (`POST /sapi/v1/sub-account/margin/transfer`)
+    - `subAccountFuturesAssetTransfer()` (`POST /sapi/v1/sub-account/futures/internalTransfer`)
+    - `transferToMaster()` (`POST /sapi/v1/sub-account/transfer/subToMaster`)
+    - `transferToSubAccountOfSameMaster()` (`POST /sapi/v1/sub-account/transfer/subToSub`)
+    - `universalTransfer()` (`POST /sapi/v1/sub-account/universalTransfer`)
+    - `withdrawlAssetsFromTheManagedSubAccount()` (`POST /sapi/v1/managed-subaccount/withdraw`)
+- Modified parameter `orderArgs`:
+  - items.`quantity`: type `float32` → `float64`
+  - affected methods:
+    - `movePositionForSubAccount()` (`POST /sapi/v1/sub-account/futures/move-position`)
+- Modified response for `queryManagedSubAccountFuturesAssetDetails()` (`GET /sapi/v1/managed-subaccount/fetch-future-asset`):
+  - `snapshotVos`.items.`data`.`position`.items.`positionAmt`: type `float32` → `float64`
+- Modified response for `querySubAccountAssets()` (`GET /sapi/v3/sub-account/assets`):
+  - `balances`.items.`free`: type `float32` → `float64`
+
 ## 1.13.0 - 2026-08-28
 
 ### Changed (2)

@@ -35,7 +35,7 @@ func Test_binancesubaccountrestapi_ManagedSubAccountAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/managed-subaccount/deposit", r.URL.Path)
 			require.Equal(t, "abc@test.com", r.URL.Query().Get("toEmail"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -52,7 +52,7 @@ func Test_binancesubaccountrestapi_ManagedSubAccountAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.ManagedSubAccountAPI.DepositAssetsIntoTheManagedSubAccount(context.Background()).ToEmail("abc@test.com").Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.ManagedSubAccountAPI.DepositAssetsIntoTheManagedSubAccount(context.Background()).ToEmail("abc@test.com").Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -802,7 +802,7 @@ func Test_binancesubaccountrestapi_ManagedSubAccountAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/managed-subaccount/withdraw", r.URL.Path)
 			require.Equal(t, "from@test.com", r.URL.Query().Get("fromEmail"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -819,7 +819,7 @@ func Test_binancesubaccountrestapi_ManagedSubAccountAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.ManagedSubAccountAPI.WithdrawlAssetsFromTheManagedSubAccount(context.Background()).FromEmail("from@test.com").Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.ManagedSubAccountAPI.WithdrawlAssetsFromTheManagedSubAccount(context.Background()).FromEmail("from@test.com").Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
