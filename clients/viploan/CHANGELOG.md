@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.11.0 - 2026-09-02
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `vipLoanRepay()` (`POST /sapi/v1/loan/vip/repay`)
+- Modified parameter `loanAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `vipLoanBorrow()` (`POST /sapi/v1/loan/vip/borrow`)
+
 ## 1.10.0 - 2026-08-28
 
 ### Changed (2)

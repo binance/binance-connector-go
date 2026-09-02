@@ -35,7 +35,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/loan/vip/borrow", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("loanAccountId"))
 			require.Equal(t, "BTC", r.URL.Query().Get("loanCoin"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("loanAmount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("loanAmount"))
 			require.Equal(t, "12345678,12345678,12345678", r.URL.Query().Get("collateralAccountId"))
 			require.Equal(t, "BUSD,USDT,ETH", r.URL.Query().Get("collateralCoin"))
 			require.Equal(t, "true", r.URL.Query().Get("isFlexibleRate"))
@@ -55,7 +55,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.VipLoanBorrow(context.Background()).LoanAccountId(int64(1)).LoanCoin("BTC").LoanAmount(float32(1.0)).CollateralAccountId("12345678,12345678,12345678").CollateralCoin("BUSD,USDT,ETH").IsFlexibleRate(true).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.VipLoanBorrow(context.Background()).LoanAccountId(int64(1)).LoanCoin("BTC").LoanAmount(float64(1.0)).CollateralAccountId("12345678,12345678,12345678").CollateralCoin("BUSD,USDT,ETH").IsFlexibleRate(true).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -276,7 +276,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/sapi/v1/loan/vip/repay", r.URL.Path)
 			require.Equal(t, "1", r.URL.Query().Get("orderId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -293,7 +293,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.VipLoanRepay(context.Background()).OrderId(int64(1)).Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.VipLoanRepay(context.Background()).OrderId(int64(1)).Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

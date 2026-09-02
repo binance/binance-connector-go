@@ -23,7 +23,7 @@ type ApiVipLoanBorrowRequest struct {
 	ApiService          *TradeAPIService
 	loanAccountId       *int64
 	loanCoin            *string
-	loanAmount          *float32
+	loanAmount          *float64
 	collateralAccountId *string
 	collateralCoin      *string
 	isFlexibleRate      *bool
@@ -41,7 +41,7 @@ func (r ApiVipLoanBorrowRequest) LoanCoin(loanCoin string) ApiVipLoanBorrowReque
 	return r
 }
 
-func (r ApiVipLoanBorrowRequest) LoanAmount(loanAmount float32) ApiVipLoanBorrowRequest {
+func (r ApiVipLoanBorrowRequest) LoanAmount(loanAmount float64) ApiVipLoanBorrowRequest {
 	r.loanAmount = &loanAmount
 	return r
 }
@@ -408,7 +408,7 @@ type ApiVipLoanRepayRequest struct {
 	ctx        context.Context
 	ApiService *TradeAPIService
 	orderId    *int64
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -417,7 +417,7 @@ func (r ApiVipLoanRepayRequest) OrderId(orderId int64) ApiVipLoanRepayRequest {
 	return r
 }
 
-func (r ApiVipLoanRepayRequest) Amount(amount float32) ApiVipLoanRepayRequest {
+func (r ApiVipLoanRepayRequest) Amount(amount float64) ApiVipLoanRepayRequest {
 	r.amount = &amount
 	return r
 }

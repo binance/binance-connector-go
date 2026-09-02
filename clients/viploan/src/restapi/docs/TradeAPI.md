@@ -35,7 +35,7 @@ import (
 func main() {
 	loanAccountId := int64(1) // int64 | 
 	loanCoin := "BTC" // string | 
-	loanAmount := float32(1.0) // float32 | 
+	loanAmount := float64(1.0) // float64 | 
 	collateralAccountId := "12345678,12345678,12345678" // string | Collateral account ID(s). Multiple split by `,`
 	collateralCoin := "BUSD,USDT,ETH" // string | 
 	isFlexibleRate := true // bool | TRUE: flexible rate; FALSE: fixed rate
@@ -70,7 +70,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanAccountId** | **int64** |  | 
  **loanCoin** | **string** |  | 
- **loanAmount** | **float32** |  | 
+ **loanAmount** | **float64** |  | 
  **collateralAccountId** | **string** | Collateral account ID(s). Multiple split by &#x60;,&#x60; | 
  **collateralCoin** | **string** |  | 
  **isFlexibleRate** | **bool** | TRUE: flexible rate; FALSE: fixed rate | 
@@ -270,7 +270,7 @@ import (
 
 func main() {
 	orderId := int64(1) // int64 | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -300,7 +300,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **int64** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
