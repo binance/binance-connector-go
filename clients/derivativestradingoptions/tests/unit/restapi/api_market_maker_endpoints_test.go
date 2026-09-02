@@ -404,8 +404,8 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("underlying"))
 			require.Equal(t, "1000", r.URL.Query().Get("windowTimeInMilliseconds"))
 			require.Equal(t, "1000", r.URL.Query().Get("frozenTimeInMilliseconds"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("qtyLimit"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("deltaLimit"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("qtyLimit"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("deltaLimit"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -422,7 +422,7 @@ func Test_binancederivativestradingoptionsrestapi_MarketMakerEndpointsAPIService
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").WindowTimeInMilliseconds(int64(1000)).FrozenTimeInMilliseconds(int64(1000)).QtyLimit(float32(1.0)).DeltaLimit(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.MarketMakerEndpointsAPI.SetMarketMakerProtectionConfig(context.Background()).Underlying("BTCUSDT").WindowTimeInMilliseconds(int64(1000)).FrozenTimeInMilliseconds(int64(1000)).QtyLimit(float64(1.0)).DeltaLimit(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

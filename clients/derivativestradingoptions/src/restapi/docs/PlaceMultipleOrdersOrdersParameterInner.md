@@ -7,8 +7,8 @@ Name         | Type          | Description.  | Notes
 **Symbol** | **string** |  | 
 **Side** | [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) |  | 
 **Type** | [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) |  | 
-**Quantity** | **float32** | Order Quantity | 
-**Price** | Pointer to **float32** | Order Price | [optional] 
+**Quantity** | **float64** | Order Quantity | 
+**Price** | Pointer to **float64** | Order Price | [optional] 
 **TimeInForce** | Pointer to [**PlaceMultipleOrdersOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersOrdersParameterInnerTimeInForce.md) |  | [optional] [default to PLACEMULTIPLEORDERSORDERSPARAMETERINNERTIMEINFORCE_GTC]
 **ReduceOnly** | Pointer to **bool** |  | [optional] [default to false]
 **PostOnly** | Pointer to **bool** |  | [optional] [default to false]
@@ -21,7 +21,7 @@ Name         | Type          | Description.  | Notes
 
 ### NewPlaceMultipleOrdersOrdersParameterInner
 
-`func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float32, ) *PlaceMultipleOrdersOrdersParameterInner`
+`func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float64, ) *PlaceMultipleOrdersOrdersParameterInner`
 
 NewPlaceMultipleOrdersOrdersParameterInner instantiates a new PlaceMultipleOrdersOrdersParameterInner object
 This constructor will assign default values to properties that have it defined,
@@ -98,40 +98,40 @@ SetType sets Type field to given value.
 
 ### GetQuantity
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float32`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float32, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float32)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float64)`
 
 SetQuantity sets Quantity field to given value.
 
 
 ### GetPrice
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float32`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float32, bool)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float32)`
+`func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

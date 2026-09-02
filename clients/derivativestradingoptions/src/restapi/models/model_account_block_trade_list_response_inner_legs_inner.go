@@ -26,17 +26,17 @@ type AccountBlockTradeListResponseInnerLegsInner struct {
 	// order Id
 	OrderId *string `json:"orderId,omitempty"`
 	// order Price
-	OrderPrice *float32 `json:"orderPrice,omitempty"`
+	OrderPrice *float64 `json:"orderPrice,omitempty"`
 	// order Quantity
-	OrderQuantity *float32 `json:"orderQuantity,omitempty"`
+	OrderQuantity *float64 `json:"orderQuantity,omitempty"`
 	// order Status
 	OrderStatus *string `json:"orderStatus,omitempty"`
 	// executed Qty
-	ExecutedQty *float32 `json:"executedQty,omitempty"`
+	ExecutedQty *float64 `json:"executedQty,omitempty"`
 	// executed Amount
-	ExecutedAmount *float32 `json:"executedAmount,omitempty"`
+	ExecutedAmount *float64 `json:"executedAmount,omitempty"`
 	// fee
-	Fee *float32 `json:"fee,omitempty"`
+	Fee *float64 `json:"fee,omitempty"`
 	// order Type
 	OrderType *string `json:"orderType,omitempty"`
 	// order Side
@@ -46,15 +46,15 @@ type AccountBlockTradeListResponseInnerLegsInner struct {
 	// trade Id
 	TradeId *int64 `json:"tradeId,omitempty"`
 	// trade Price
-	TradePrice *float32 `json:"tradePrice,omitempty"`
+	TradePrice *float64 `json:"tradePrice,omitempty"`
 	// trade Qty
-	TradeQty *float32 `json:"tradeQty,omitempty"`
+	TradeQty *float64 `json:"tradeQty,omitempty"`
 	// trade Time
 	TradeTime *int64 `json:"tradeTime,omitempty"`
 	// liquidity
 	Liquidity *string `json:"liquidity,omitempty"`
 	// commission
-	Commission           *float32 `json:"commission,omitempty"`
+	Commission           *float64 `json:"commission,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -206,9 +206,9 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderId(v string) {
 }
 
 // GetOrderPrice returns the OrderPrice field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPrice() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPrice() float64 {
 	if o == nil || common.IsNil(o.OrderPrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.OrderPrice
@@ -216,7 +216,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPrice() float32 {
 
 // GetOrderPriceOk returns a tuple with the OrderPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPriceOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.OrderPrice) {
 		return nil, false
 	}
@@ -232,15 +232,15 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasOrderPrice() bool {
 	return false
 }
 
-// SetOrderPrice gets a reference to the given float32 and assigns it to the OrderPrice field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderPrice(v float32) {
+// SetOrderPrice gets a reference to the given float64 and assigns it to the OrderPrice field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderPrice(v float64) {
 	o.OrderPrice = &v
 }
 
 // GetOrderQuantity returns the OrderQuantity field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantity() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantity() float64 {
 	if o == nil || common.IsNil(o.OrderQuantity) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.OrderQuantity
@@ -248,7 +248,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantity() float32
 
 // GetOrderQuantityOk returns a tuple with the OrderQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantityOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantityOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.OrderQuantity) {
 		return nil, false
 	}
@@ -264,8 +264,8 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasOrderQuantity() bool {
 	return false
 }
 
-// SetOrderQuantity gets a reference to the given float32 and assigns it to the OrderQuantity field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderQuantity(v float32) {
+// SetOrderQuantity gets a reference to the given float64 and assigns it to the OrderQuantity field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderQuantity(v float64) {
 	o.OrderQuantity = &v
 }
 
@@ -302,9 +302,9 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderStatus(v string) {
 }
 
 // GetExecutedQty returns the ExecutedQty field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQty() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQty() float64 {
 	if o == nil || common.IsNil(o.ExecutedQty) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.ExecutedQty
@@ -312,7 +312,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQty() float32 {
 
 // GetExecutedQtyOk returns a tuple with the ExecutedQty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQtyOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQtyOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.ExecutedQty) {
 		return nil, false
 	}
@@ -328,15 +328,15 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasExecutedQty() bool {
 	return false
 }
 
-// SetExecutedQty gets a reference to the given float32 and assigns it to the ExecutedQty field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedQty(v float32) {
+// SetExecutedQty gets a reference to the given float64 and assigns it to the ExecutedQty field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedQty(v float64) {
 	o.ExecutedQty = &v
 }
 
 // GetExecutedAmount returns the ExecutedAmount field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmount() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmount() float64 {
 	if o == nil || common.IsNil(o.ExecutedAmount) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.ExecutedAmount
@@ -344,7 +344,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmount() float3
 
 // GetExecutedAmountOk returns a tuple with the ExecutedAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmountOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmountOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.ExecutedAmount) {
 		return nil, false
 	}
@@ -360,15 +360,15 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasExecutedAmount() bool {
 	return false
 }
 
-// SetExecutedAmount gets a reference to the given float32 and assigns it to the ExecutedAmount field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedAmount(v float32) {
+// SetExecutedAmount gets a reference to the given float64 and assigns it to the ExecutedAmount field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedAmount(v float64) {
 	o.ExecutedAmount = &v
 }
 
 // GetFee returns the Fee field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetFee() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetFee() float64 {
 	if o == nil || common.IsNil(o.Fee) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Fee
@@ -376,7 +376,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetFee() float32 {
 
 // GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetFeeOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetFeeOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Fee) {
 		return nil, false
 	}
@@ -392,8 +392,8 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasFee() bool {
 	return false
 }
 
-// SetFee gets a reference to the given float32 and assigns it to the Fee field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetFee(v float32) {
+// SetFee gets a reference to the given float64 and assigns it to the Fee field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetFee(v float64) {
 	o.Fee = &v
 }
 
@@ -526,9 +526,9 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradeId(v int64) {
 }
 
 // GetTradePrice returns the TradePrice field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePrice() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePrice() float64 {
 	if o == nil || common.IsNil(o.TradePrice) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.TradePrice
@@ -536,7 +536,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePrice() float32 {
 
 // GetTradePriceOk returns a tuple with the TradePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePriceOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.TradePrice) {
 		return nil, false
 	}
@@ -552,15 +552,15 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasTradePrice() bool {
 	return false
 }
 
-// SetTradePrice gets a reference to the given float32 and assigns it to the TradePrice field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradePrice(v float32) {
+// SetTradePrice gets a reference to the given float64 and assigns it to the TradePrice field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradePrice(v float64) {
 	o.TradePrice = &v
 }
 
 // GetTradeQty returns the TradeQty field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQty() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQty() float64 {
 	if o == nil || common.IsNil(o.TradeQty) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.TradeQty
@@ -568,7 +568,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQty() float32 {
 
 // GetTradeQtyOk returns a tuple with the TradeQty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQtyOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQtyOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.TradeQty) {
 		return nil, false
 	}
@@ -584,8 +584,8 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasTradeQty() bool {
 	return false
 }
 
-// SetTradeQty gets a reference to the given float32 and assigns it to the TradeQty field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradeQty(v float32) {
+// SetTradeQty gets a reference to the given float64 and assigns it to the TradeQty field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradeQty(v float64) {
 	o.TradeQty = &v
 }
 
@@ -654,9 +654,9 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) SetLiquidity(v string) {
 }
 
 // GetCommission returns the Commission field value if set, zero value otherwise.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommission() float32 {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommission() float64 {
 	if o == nil || common.IsNil(o.Commission) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Commission
@@ -664,7 +664,7 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommission() float32 {
 
 // GetCommissionOk returns a tuple with the Commission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommissionOk() (*float32, bool) {
+func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommissionOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Commission) {
 		return nil, false
 	}
@@ -680,8 +680,8 @@ func (o *AccountBlockTradeListResponseInnerLegsInner) HasCommission() bool {
 	return false
 }
 
-// SetCommission gets a reference to the given float32 and assigns it to the Commission field.
-func (o *AccountBlockTradeListResponseInnerLegsInner) SetCommission(v float32) {
+// SetCommission gets a reference to the given float64 and assigns it to the Commission field.
+func (o *AccountBlockTradeListResponseInnerLegsInner) SetCommission(v float64) {
 	o.Commission = &v
 }
 

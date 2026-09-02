@@ -421,7 +421,7 @@ func Test_binancederivativestradingoptionsrestapi_TradeAPIService(t *testing.T) 
 			require.Equal(t, "BTC-200730-9000-C", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.PlaceMultipleOrdersOrdersParameterInnerSideBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit), r.URL.Query().Get("type"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("quantity"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -438,7 +438,7 @@ func Test_binancederivativestradingoptionsrestapi_TradeAPIService(t *testing.T) 
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("BTC-200730-9000-C").Side(models.PlaceMultipleOrdersOrdersParameterInnerSideBuy).Type(models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit).Quantity(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("BTC-200730-9000-C").Side(models.PlaceMultipleOrdersOrdersParameterInnerSideBuy).Type(models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit).Quantity(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -573,7 +573,7 @@ func Test_binancederivativestradingoptionsrestapi_TradeAPIService(t *testing.T) 
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).Orders([]models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner("BTC-200730-9000-C", models.PlaceMultipleOrdersOrdersParameterInnerSide("Buy"), models.PlaceMultipleOrdersOrdersParameterInnerType("Limit"), float32(1.0))}).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).Orders([]models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner("BTC-200730-9000-C", models.PlaceMultipleOrdersOrdersParameterInnerSide("Buy"), models.PlaceMultipleOrdersOrdersParameterInnerType("Limit"), float64(1.0))}).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

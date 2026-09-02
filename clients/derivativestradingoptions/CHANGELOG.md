@@ -1,5 +1,42 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (6)
+
+#### REST API
+
+- Modified parameter `deltaLimit`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `setMarketMakerProtectionConfig()` (`POST /eapi/v1/mmpSet`)
+- Modified parameter `price`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /eapi/v1/order`)
+- Modified parameter `qtyLimit`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `setMarketMakerProtectionConfig()` (`POST /eapi/v1/mmpSet`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `newOrder()` (`POST /eapi/v1/order`)
+- Modified parameter `orders`:
+  - items.`price`: type `float32` → `float64`
+  - items.`quantity`: type `float32` → `float64`
+  - affected methods:
+    - `placeMultipleOrders()` (`POST /eapi/v1/batchOrders`)
+- Modified response for `accountBlockTradeList()` (`GET /eapi/v1/block/user-trades`):
+  - items.`legs`.items.`commission`: type `float32` → `float64`
+  - items.`legs`.items.`executedAmount`: type `float32` → `float64`
+  - items.`legs`.items.`executedQty`: type `float32` → `float64`
+  - items.`legs`.items.`fee`: type `float32` → `float64`
+  - items.`legs`.items.`orderPrice`: type `float32` → `float64`
+  - items.`legs`.items.`orderQuantity`: type `float32` → `float64`
+  - items.`legs`.items.`tradePrice`: type `float32` → `float64`
+  - items.`legs`.items.`tradeQty`: type `float32` → `float64`
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)

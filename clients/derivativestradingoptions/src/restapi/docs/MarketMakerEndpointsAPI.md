@@ -390,8 +390,8 @@ func main() {
 	underlying := "BTCUSDT" // string | 
 	windowTimeInMilliseconds := int64(1000) // int64 | MMP Interval in milliseconds
 	frozenTimeInMilliseconds := int64(1000) // int64 | MMP frozen time in milliseconds, if set to 0 manual reset is required
-	qtyLimit := float32(1.0) // float32 | quantity limit
-	deltaLimit := float32(1.0) // float32 | net delta limit
+	qtyLimit := float64(1.0) // float64 | quantity limit
+	deltaLimit := float64(1.0) // float64 | net delta limit
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -423,8 +423,8 @@ Name          | Type          | Description   | Notes
  **underlying** | **string** |  | 
  **windowTimeInMilliseconds** | **int64** | MMP Interval in milliseconds | 
  **frozenTimeInMilliseconds** | **int64** | MMP frozen time in milliseconds, if set to 0 manual reset is required | 
- **qtyLimit** | **float32** | quantity limit | 
- **deltaLimit** | **float32** | net delta limit | 
+ **qtyLimit** | **float64** | quantity limit | 
+ **deltaLimit** | **float64** | net delta limit | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

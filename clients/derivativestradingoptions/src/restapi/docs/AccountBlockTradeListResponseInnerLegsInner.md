@@ -8,21 +8,21 @@ Name         | Type          | Description.  | Notes
 **UpdateTime** | Pointer to **int64** | update Time | [optional] 
 **Symbol** | Pointer to **string** | symbol | [optional] 
 **OrderId** | Pointer to **string** | order Id | [optional] 
-**OrderPrice** | Pointer to **float32** | order Price | [optional] 
-**OrderQuantity** | Pointer to **float32** | order Quantity | [optional] 
+**OrderPrice** | Pointer to **float64** | order Price | [optional] 
+**OrderQuantity** | Pointer to **float64** | order Quantity | [optional] 
 **OrderStatus** | Pointer to **string** | order Status | [optional] 
-**ExecutedQty** | Pointer to **float32** | executed Qty | [optional] 
-**ExecutedAmount** | Pointer to **float32** | executed Amount | [optional] 
-**Fee** | Pointer to **float32** | fee | [optional] 
+**ExecutedQty** | Pointer to **float64** | executed Qty | [optional] 
+**ExecutedAmount** | Pointer to **float64** | executed Amount | [optional] 
+**Fee** | Pointer to **float64** | fee | [optional] 
 **OrderType** | Pointer to **string** | order Type | [optional] 
 **OrderSide** | Pointer to **string** | order Side | [optional] 
 **Id** | Pointer to **string** | id | [optional] 
 **TradeId** | Pointer to **int64** | trade Id | [optional] 
-**TradePrice** | Pointer to **float32** | trade Price | [optional] 
-**TradeQty** | Pointer to **float32** | trade Qty | [optional] 
+**TradePrice** | Pointer to **float64** | trade Price | [optional] 
+**TradeQty** | Pointer to **float64** | trade Qty | [optional] 
 **TradeTime** | Pointer to **int64** | trade Time | [optional] 
 **Liquidity** | Pointer to **string** | liquidity | [optional] 
-**Commission** | Pointer to **float32** | commission | [optional] 
+**Commission** | Pointer to **float64** | commission | [optional] 
 
 ## Methods
 
@@ -145,20 +145,20 @@ HasOrderId returns a boolean if a field has been set.
 
 ### GetOrderPrice
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPrice() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPrice() float64`
 
 GetOrderPrice returns the OrderPrice field if non-nil, zero value otherwise.
 
 ### GetOrderPriceOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPriceOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderPriceOk() (*float64, bool)`
 
 GetOrderPriceOk returns a tuple with the OrderPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrderPrice
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderPrice(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderPrice(v float64)`
 
 SetOrderPrice sets OrderPrice field to given value.
 
@@ -170,20 +170,20 @@ HasOrderPrice returns a boolean if a field has been set.
 
 ### GetOrderQuantity
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantity() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantity() float64`
 
 GetOrderQuantity returns the OrderQuantity field if non-nil, zero value otherwise.
 
 ### GetOrderQuantityOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantityOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetOrderQuantityOk() (*float64, bool)`
 
 GetOrderQuantityOk returns a tuple with the OrderQuantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrderQuantity
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderQuantity(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetOrderQuantity(v float64)`
 
 SetOrderQuantity sets OrderQuantity field to given value.
 
@@ -220,20 +220,20 @@ HasOrderStatus returns a boolean if a field has been set.
 
 ### GetExecutedQty
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQty() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQty() float64`
 
 GetExecutedQty returns the ExecutedQty field if non-nil, zero value otherwise.
 
 ### GetExecutedQtyOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQtyOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedQtyOk() (*float64, bool)`
 
 GetExecutedQtyOk returns a tuple with the ExecutedQty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutedQty
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedQty(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedQty(v float64)`
 
 SetExecutedQty sets ExecutedQty field to given value.
 
@@ -245,20 +245,20 @@ HasExecutedQty returns a boolean if a field has been set.
 
 ### GetExecutedAmount
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmount() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmount() float64`
 
 GetExecutedAmount returns the ExecutedAmount field if non-nil, zero value otherwise.
 
 ### GetExecutedAmountOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmountOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetExecutedAmountOk() (*float64, bool)`
 
 GetExecutedAmountOk returns a tuple with the ExecutedAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecutedAmount
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedAmount(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetExecutedAmount(v float64)`
 
 SetExecutedAmount sets ExecutedAmount field to given value.
 
@@ -270,20 +270,20 @@ HasExecutedAmount returns a boolean if a field has been set.
 
 ### GetFee
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetFee() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetFee() float64`
 
 GetFee returns the Fee field if non-nil, zero value otherwise.
 
 ### GetFeeOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetFeeOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetFeeOk() (*float64, bool)`
 
 GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFee
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetFee(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetFee(v float64)`
 
 SetFee sets Fee field to given value.
 
@@ -395,20 +395,20 @@ HasTradeId returns a boolean if a field has been set.
 
 ### GetTradePrice
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePrice() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePrice() float64`
 
 GetTradePrice returns the TradePrice field if non-nil, zero value otherwise.
 
 ### GetTradePriceOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePriceOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradePriceOk() (*float64, bool)`
 
 GetTradePriceOk returns a tuple with the TradePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradePrice
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradePrice(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradePrice(v float64)`
 
 SetTradePrice sets TradePrice field to given value.
 
@@ -420,20 +420,20 @@ HasTradePrice returns a boolean if a field has been set.
 
 ### GetTradeQty
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQty() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQty() float64`
 
 GetTradeQty returns the TradeQty field if non-nil, zero value otherwise.
 
 ### GetTradeQtyOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQtyOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetTradeQtyOk() (*float64, bool)`
 
 GetTradeQtyOk returns a tuple with the TradeQty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeQty
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradeQty(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetTradeQty(v float64)`
 
 SetTradeQty sets TradeQty field to given value.
 
@@ -495,20 +495,20 @@ HasLiquidity returns a boolean if a field has been set.
 
 ### GetCommission
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommission() float32`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommission() float64`
 
 GetCommission returns the Commission field if non-nil, zero value otherwise.
 
 ### GetCommissionOk
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommissionOk() (*float32, bool)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) GetCommissionOk() (*float64, bool)`
 
 GetCommissionOk returns a tuple with the Commission field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommission
 
-`func (o *AccountBlockTradeListResponseInnerLegsInner) SetCommission(v float32)`
+`func (o *AccountBlockTradeListResponseInnerLegsInner) SetCommission(v float64)`
 
 SetCommission sets Commission field to given value.
 

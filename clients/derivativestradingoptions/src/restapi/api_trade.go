@@ -494,8 +494,8 @@ type ApiNewOrderRequest struct {
 	symbol                  *string
 	side                    *models.PlaceMultipleOrdersOrdersParameterInnerSide
 	type_                   *models.PlaceMultipleOrdersOrdersParameterInnerType
-	quantity                *float32
-	price                   *float32
+	quantity                *float64
+	price                   *float64
 	timeInForce             *models.NewOrderTimeInForceParameter
 	reduceOnly              *bool
 	postOnly                *bool
@@ -522,13 +522,13 @@ func (r ApiNewOrderRequest) Type(type_ models.PlaceMultipleOrdersOrdersParameter
 }
 
 // Order Quantity
-func (r ApiNewOrderRequest) Quantity(quantity float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Quantity(quantity float64) ApiNewOrderRequest {
 	r.quantity = &quantity
 	return r
 }
 
 // Order Price
-func (r ApiNewOrderRequest) Price(price float32) ApiNewOrderRequest {
+func (r ApiNewOrderRequest) Price(price float64) ApiNewOrderRequest {
 	r.price = &price
 	return r
 }

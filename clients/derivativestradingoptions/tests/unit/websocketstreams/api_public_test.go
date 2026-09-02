@@ -27,7 +27,7 @@ func Test_binancederivativestradingoptionswebsocketstreams_PublicAPIService(t *t
 		)
 		mockClient.WebsocketStreams.WsPublic.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"depthUpdate","E":1762866729459,"T":1762866729358,"s":"BTC-251123-126000-C","U":465,"u":465,"pu":464,"b":[["1100.000"]],"a":[["1300.000"]]}`
+		mockedJSON := `{"e":"depthUpdate","E":1762866729459,"T":1762866729358,"s":"BTC-251123-126000-C","U":465,"u":465,"pu":464,"b":[["1100.000","0.6000"]],"a":[["1300.000","0.6000"]]}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.PublicAPI.DiffBookDepthStreams().Symbol("btcusdt").UpdateSpeed(models.DiffBookDepthStreamsUpdateSpeedParameterUpdateSpeed100ms).Execute()

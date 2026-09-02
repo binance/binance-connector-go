@@ -412,8 +412,8 @@ func main() {
 	symbol := "BTC-200730-9000-C" // string | 
 	side := models.PlaceMultipleOrdersOrdersParameterInnerSideBuy // PlaceMultipleOrdersOrdersParameterInnerSide | 
 	type_ := models.PlaceMultipleOrdersOrdersParameterInnerTypeLimit // PlaceMultipleOrdersOrdersParameterInnerType | 
-	quantity := float32(1.0) // float32 | Order Quantity
-	price := float32(1.0) // float32 | Order Price (optional)
+	quantity := float64(1.0) // float64 | Order Quantity
+	price := float64(1.0) // float64 | Order Price (optional)
 	timeInForce := models.NewOrderTimeInForceParameterGtc // NewOrderTimeInForceParameter |  (optional)
 	reduceOnly := false // bool |  (optional)
 	postOnly := false // bool |  (optional)
@@ -452,8 +452,8 @@ Name          | Type          | Description   | Notes
  **symbol** | **string** |  | 
  **side** | [**PlaceMultipleOrdersOrdersParameterInnerSide**](PlaceMultipleOrdersOrdersParameterInnerSide.md) |  | 
  **type_** | [**PlaceMultipleOrdersOrdersParameterInnerType**](PlaceMultipleOrdersOrdersParameterInnerType.md) |  | 
- **quantity** | **float32** | Order Quantity | 
- **price** | **float32** | Order Price | 
+ **quantity** | **float64** | Order Quantity | 
+ **price** | **float64** | Order Price | 
  **timeInForce** | [**NewOrderTimeInForceParameter**](NewOrderTimeInForceParameter.md) |  | 
  **reduceOnly** | **bool** |  | 
  **postOnly** | **bool** |  | 
@@ -571,7 +571,7 @@ import (
 )
 
 func main() {
-	orders := []models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner("BTC-200730-9000-C", models.placeMultipleOrders_orders_parameter_inner_side("BUY"), models.placeMultipleOrders_orders_parameter_inner_type("LIMIT"), float32(1.0))} // []PlaceMultipleOrdersOrdersParameterInner | order list. Max 10 orders
+	orders := []models.PlaceMultipleOrdersOrdersParameterInner{*models.NewPlaceMultipleOrdersOrdersParameterInner("BTC-200730-9000-C", models.placeMultipleOrders_orders_parameter_inner_side("BUY"), models.placeMultipleOrders_orders_parameter_inner_type("LIMIT"), float64(1.0))} // []PlaceMultipleOrdersOrdersParameterInner | order list. Max 10 orders
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(

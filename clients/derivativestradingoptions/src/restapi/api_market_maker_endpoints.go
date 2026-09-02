@@ -409,8 +409,8 @@ type ApiSetMarketMakerProtectionConfigRequest struct {
 	underlying               *string
 	windowTimeInMilliseconds *int64
 	frozenTimeInMilliseconds *int64
-	qtyLimit                 *float32
-	deltaLimit               *float32
+	qtyLimit                 *float64
+	deltaLimit               *float64
 	recvWindow               *int64
 }
 
@@ -432,13 +432,13 @@ func (r ApiSetMarketMakerProtectionConfigRequest) FrozenTimeInMilliseconds(froze
 }
 
 // quantity limit
-func (r ApiSetMarketMakerProtectionConfigRequest) QtyLimit(qtyLimit float32) ApiSetMarketMakerProtectionConfigRequest {
+func (r ApiSetMarketMakerProtectionConfigRequest) QtyLimit(qtyLimit float64) ApiSetMarketMakerProtectionConfigRequest {
 	r.qtyLimit = &qtyLimit
 	return r
 }
 
 // net delta limit
-func (r ApiSetMarketMakerProtectionConfigRequest) DeltaLimit(deltaLimit float32) ApiSetMarketMakerProtectionConfigRequest {
+func (r ApiSetMarketMakerProtectionConfigRequest) DeltaLimit(deltaLimit float64) ApiSetMarketMakerProtectionConfigRequest {
 	r.deltaLimit = &deltaLimit
 	return r
 }

@@ -22,9 +22,9 @@ type PlaceMultipleOrdersOrdersParameterInner struct {
 	Side   PlaceMultipleOrdersOrdersParameterInnerSide `json:"side"`
 	Type   PlaceMultipleOrdersOrdersParameterInnerType `json:"type"`
 	// Order Quantity
-	Quantity float32 `json:"quantity"`
+	Quantity float64 `json:"quantity"`
 	// Order Price
-	Price            *float32                                                 `json:"price,omitempty"`
+	Price            *float64                                                 `json:"price,omitempty"`
 	TimeInForce      *PlaceMultipleOrdersOrdersParameterInnerTimeInForce      `json:"timeInForce,omitempty"`
 	ReduceOnly       *bool                                                    `json:"reduceOnly,omitempty"`
 	PostOnly         *bool                                                    `json:"postOnly,omitempty"`
@@ -43,7 +43,7 @@ type _PlaceMultipleOrdersOrdersParameterInner PlaceMultipleOrdersOrdersParameter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float32) *PlaceMultipleOrdersOrdersParameterInner {
+func NewPlaceMultipleOrdersOrdersParameterInner(symbol string, side PlaceMultipleOrdersOrdersParameterInnerSide, type_ PlaceMultipleOrdersOrdersParameterInnerType, quantity float64) *PlaceMultipleOrdersOrdersParameterInner {
 	this := PlaceMultipleOrdersOrdersParameterInner{}
 	this.Symbol = symbol
 	this.Side = side
@@ -153,9 +153,9 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) SetType(v PlaceMultipleOrdersO
 }
 
 // GetQuantity returns the Quantity field value
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float32 {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float64 {
 	if o == nil {
-		var ret float32
+		var ret float64
 		return ret
 	}
 
@@ -164,7 +164,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -172,14 +172,14 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetQuantityOk() (*float32, boo
 }
 
 // SetQuantity sets field value
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float32) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetQuantity(v float64) {
 	o.Quantity = v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float32 {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float64 {
 	if o == nil || common.IsNil(o.Price) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -187,7 +187,7 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) GetPrice() float32 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float32, bool) {
+func (o *PlaceMultipleOrdersOrdersParameterInner) GetPriceOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Price) {
 		return nil, false
 	}
@@ -203,8 +203,8 @@ func (o *PlaceMultipleOrdersOrdersParameterInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given float32 and assigns it to the Price field.
-func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float32) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *PlaceMultipleOrdersOrdersParameterInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
