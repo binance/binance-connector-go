@@ -1,5 +1,16 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `depositAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `subscribeDualInvestmentProducts()` (`POST /sapi/v1/dci/product/subscribe`)
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)

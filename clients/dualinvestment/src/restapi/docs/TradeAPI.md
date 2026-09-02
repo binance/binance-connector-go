@@ -249,7 +249,7 @@ import (
 func main() {
 	id := "741590" // string | get id from `/sapi/v1/dci/product/list`
 	orderId := "8257205859" // string | get orderId from `/sapi/v1/dci/product/list`
-	depositAmount := float32(1) // float32 | the amount for subscribing
+	depositAmount := float64(1) // float64 | the amount for subscribing
 	autoCompoundPlan := models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone // ChangeAutoCompoundStatusAutoCompoundPlanParameter | `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
@@ -281,7 +281,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | get id from &#x60;/sapi/v1/dci/product/list&#x60; | 
  **orderId** | **string** | get orderId from &#x60;/sapi/v1/dci/product/list&#x60; | 
- **depositAmount** | **float32** | the amount for subscribing | 
+ **depositAmount** | **float64** | the amount for subscribing | 
  **autoCompoundPlan** | [**ChangeAutoCompoundStatusAutoCompoundPlanParameter**](ChangeAutoCompoundStatusAutoCompoundPlanParameter.md) | &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 

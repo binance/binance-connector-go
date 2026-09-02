@@ -271,7 +271,7 @@ type ApiSubscribeDualInvestmentProductsRequest struct {
 	ApiService       *TradeAPIService
 	id               *string
 	orderId          *string
-	depositAmount    *float32
+	depositAmount    *float64
 	autoCompoundPlan *models.ChangeAutoCompoundStatusAutoCompoundPlanParameter
 	recvWindow       *int64
 }
@@ -289,7 +289,7 @@ func (r ApiSubscribeDualInvestmentProductsRequest) OrderId(orderId string) ApiSu
 }
 
 // the amount for subscribing
-func (r ApiSubscribeDualInvestmentProductsRequest) DepositAmount(depositAmount float32) ApiSubscribeDualInvestmentProductsRequest {
+func (r ApiSubscribeDualInvestmentProductsRequest) DepositAmount(depositAmount float64) ApiSubscribeDualInvestmentProductsRequest {
 	r.depositAmount = &depositAmount
 	return r
 }

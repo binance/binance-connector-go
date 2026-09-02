@@ -231,7 +231,7 @@ func Test_binancedualinvestmentrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/dci/product/subscribe", r.URL.Path)
 			require.Equal(t, "741590", r.URL.Query().Get("id"))
 			require.Equal(t, "8257205859", r.URL.Query().Get("orderId"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("depositAmount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("depositAmount"))
 			require.Equal(t, string(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone), r.URL.Query().Get("autoCompoundPlan"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -249,7 +249,7 @@ func Test_binancedualinvestmentrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(float32(1)).AutoCompoundPlan(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(float64(1)).AutoCompoundPlan(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
