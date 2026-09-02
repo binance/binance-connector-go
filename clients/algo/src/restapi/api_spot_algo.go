@@ -395,10 +395,10 @@ type ApiTimeWeightedAveragePriceSpotAlgoRequest struct {
 	ApiService   *SpotAlgoAPIService
 	symbol       *string
 	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
-	quantity     *float32
+	quantity     *float64
 	duration     *int64
 	clientAlgoId *string
-	limitPrice   *float32
+	limitPrice   *float64
 }
 
 // Trading symbol eg. BTCUSDT
@@ -414,7 +414,7 @@ func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Side(side models.QueryHistor
 }
 
 // Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
-func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Quantity(quantity float32) ApiTimeWeightedAveragePriceSpotAlgoRequest {
+func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) Quantity(quantity float64) ApiTimeWeightedAveragePriceSpotAlgoRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -432,7 +432,7 @@ func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) ClientAlgoId(clientAlgoId st
 }
 
 // Limit price of the order; If it is not sent, will place order by market price by default
-func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) LimitPrice(limitPrice float32) ApiTimeWeightedAveragePriceSpotAlgoRequest {
+func (r ApiTimeWeightedAveragePriceSpotAlgoRequest) LimitPrice(limitPrice float64) ApiTimeWeightedAveragePriceSpotAlgoRequest {
 	r.limitPrice = &limitPrice
 	return r
 }

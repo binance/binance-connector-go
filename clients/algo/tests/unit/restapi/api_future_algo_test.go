@@ -289,7 +289,7 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/algo/futures/newOrderTwap", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
 			require.Equal(t, "5000", r.URL.Query().Get("duration"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -307,7 +307,7 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FutureAlgoAPI.TimeWeightedAveragePriceFutureAlgo(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(float32(1)).Duration(int64(5000)).Execute()
+		resp, err := apiClient.RestApi.FutureAlgoAPI.TimeWeightedAveragePriceFutureAlgo(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(float64(1)).Duration(int64(5000)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -369,7 +369,7 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/algo/futures/newOrderVp", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
 			require.Equal(t, string(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy), r.URL.Query().Get("side"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
 			require.Equal(t, string(models.VolumeParticipationFutureAlgoUrgencyParameterLow), r.URL.Query().Get("urgency"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -387,7 +387,7 @@ func Test_binancealgorestapi_FutureAlgoAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FutureAlgoAPI.VolumeParticipationFutureAlgo(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(float32(1)).Urgency(models.VolumeParticipationFutureAlgoUrgencyParameterLow).Execute()
+		resp, err := apiClient.RestApi.FutureAlgoAPI.VolumeParticipationFutureAlgo(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(float64(1)).Urgency(models.VolumeParticipationFutureAlgoUrgencyParameterLow).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

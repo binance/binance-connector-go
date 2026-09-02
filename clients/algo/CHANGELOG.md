@@ -1,5 +1,24 @@
 ### Changelog
 
+## 1.11.0 - 2026-09-02
+
+### Changed (2)
+
+#### REST API
+
+- Modified parameter `limitPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `timeWeightedAveragePriceFutureAlgo()` (`POST /sapi/v1/algo/futures/newOrderTwap`)
+    - `timeWeightedAveragePriceSpotAlgo()` (`POST /sapi/v1/algo/spot/newOrderTwap`)
+    - `volumeParticipationFutureAlgo()` (`POST /sapi/v1/algo/futures/newOrderVp`)
+- Modified parameter `quantity`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `timeWeightedAveragePriceFutureAlgo()` (`POST /sapi/v1/algo/futures/newOrderTwap`)
+    - `timeWeightedAveragePriceSpotAlgo()` (`POST /sapi/v1/algo/spot/newOrderTwap`)
+    - `volumeParticipationFutureAlgo()` (`POST /sapi/v1/algo/futures/newOrderVp`)
+
 ## 1.10.0 - 2026-08-28
 
 ### Changed (2)

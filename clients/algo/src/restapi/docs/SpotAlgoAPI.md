@@ -330,10 +330,10 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
 	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
-	quantity := float32(1) // float32 | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
+	quantity := float64(1) // float64 | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order.
 	duration := int64(5000) // int64 | Duration for TWAP orders in seconds
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
-	limitPrice := float32(1) // float32 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
+	limitPrice := float64(1) // float64 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -363,10 +363,10 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
  **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
- **quantity** | **float32** | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order. | 
+ **quantity** | **float64** | Quantity of base asset; Maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if you order is above the maximum notional per order. | 
  **duration** | **int64** | Duration for TWAP orders in seconds | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 
- **limitPrice** | **float32** | Limit price of the order; If it is not sent, will place order by market price by default | 
+ **limitPrice** | **float64** | Limit price of the order; If it is not sent, will place order by market price by default | 
 
 ### Return type
 

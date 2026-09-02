@@ -398,12 +398,12 @@ type ApiTimeWeightedAveragePriceFutureAlgoRequest struct {
 	ApiService   *FutureAlgoAPIService
 	symbol       *string
 	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
-	quantity     *float32
+	quantity     *float64
 	duration     *int64
 	positionSide *models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter
 	clientAlgoId *string
 	reduceOnly   *bool
-	limitPrice   *float32
+	limitPrice   *float64
 	recvWindow   *int64
 }
 
@@ -420,7 +420,7 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Side(side models.QueryHist
 }
 
 // Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
-func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Quantity(quantity float32) ApiTimeWeightedAveragePriceFutureAlgoRequest {
+func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Quantity(quantity float64) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -450,7 +450,7 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) ReduceOnly(reduceOnly bool
 }
 
 // Limit price of the order; If it is not sent, will place order by market price by default
-func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) LimitPrice(limitPrice float32) ApiTimeWeightedAveragePriceFutureAlgoRequest {
+func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) LimitPrice(limitPrice float64) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.limitPrice = &limitPrice
 	return r
 }
@@ -563,12 +563,12 @@ type ApiVolumeParticipationFutureAlgoRequest struct {
 	ApiService   *FutureAlgoAPIService
 	symbol       *string
 	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
-	quantity     *float32
+	quantity     *float64
 	urgency      *models.VolumeParticipationFutureAlgoUrgencyParameter
 	positionSide *models.TimeWeightedAveragePriceFutureAlgoPositionSideParameter
 	clientAlgoId *string
 	reduceOnly   *bool
-	limitPrice   *float32
+	limitPrice   *float64
 	recvWindow   *int64
 }
 
@@ -585,7 +585,7 @@ func (r ApiVolumeParticipationFutureAlgoRequest) Side(side models.QueryHistorica
 }
 
 // Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
-func (r ApiVolumeParticipationFutureAlgoRequest) Quantity(quantity float32) ApiVolumeParticipationFutureAlgoRequest {
+func (r ApiVolumeParticipationFutureAlgoRequest) Quantity(quantity float64) ApiVolumeParticipationFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
 }
@@ -615,7 +615,7 @@ func (r ApiVolumeParticipationFutureAlgoRequest) ReduceOnly(reduceOnly bool) Api
 }
 
 // Limit price of the order; If it is not sent, will place order by market price by default
-func (r ApiVolumeParticipationFutureAlgoRequest) LimitPrice(limitPrice float32) ApiVolumeParticipationFutureAlgoRequest {
+func (r ApiVolumeParticipationFutureAlgoRequest) LimitPrice(limitPrice float64) ApiVolumeParticipationFutureAlgoRequest {
 	r.limitPrice = &limitPrice
 	return r
 }

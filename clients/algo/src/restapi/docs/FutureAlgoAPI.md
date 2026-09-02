@@ -331,12 +331,12 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
 	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
-	quantity := float32(1) // float32 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
+	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
 	duration := int64(5000) // int64 | Duration for TWAP orders in seconds
 	positionSide := models.TimeWeightedAveragePriceFutureAlgoPositionSideParameterBoth // TimeWeightedAveragePriceFutureAlgoPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
 	reduceOnly := false // bool | \"true\" or \"false\". Default \"false\"; Cannot be sent in Hedge Mode; Cannot be sent when you open a position (optional)
-	limitPrice := float32(1) // float32 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
+	limitPrice := float64(1) // float64 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -367,12 +367,12 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
  **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
- **quantity** | **float32** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT | 
+ **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT | 
  **duration** | **int64** | Duration for TWAP orders in seconds | 
  **positionSide** | [**TimeWeightedAveragePriceFutureAlgoPositionSideParameter**](TimeWeightedAveragePriceFutureAlgoPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 
  **reduceOnly** | **bool** | \&quot;true\&quot; or \&quot;false\&quot;. Default \&quot;false\&quot;; Cannot be sent in Hedge Mode; Cannot be sent when you open a position | 
- **limitPrice** | **float32** | Limit price of the order; If it is not sent, will place order by market price by default | 
+ **limitPrice** | **float64** | Limit price of the order; If it is not sent, will place order by market price by default | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
@@ -415,12 +415,12 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
 	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
-	quantity := float32(1) // float32 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
+	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
 	urgency := models.VolumeParticipationFutureAlgoUrgencyParameterLow // VolumeParticipationFutureAlgoUrgencyParameter | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
 	positionSide := models.TimeWeightedAveragePriceFutureAlgoPositionSideParameterBoth // TimeWeightedAveragePriceFutureAlgoPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
 	reduceOnly := false // bool | \"true\" or \"false\". Default \"false\"; Cannot be sent in Hedge Mode; Cannot be sent when you open a position (optional)
-	limitPrice := float32(1) // float32 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
+	limitPrice := float64(1) // float64 | Limit price of the order; If it is not sent, will place order by market price by default (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -451,12 +451,12 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
  **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
- **quantity** | **float32** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT | 
+ **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT | 
  **urgency** | [**VolumeParticipationFutureAlgoUrgencyParameter**](VolumeParticipationFutureAlgoUrgencyParameter.md) | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH | 
  **positionSide** | [**TimeWeightedAveragePriceFutureAlgoPositionSideParameter**](TimeWeightedAveragePriceFutureAlgoPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 
  **reduceOnly** | **bool** | \&quot;true\&quot; or \&quot;false\&quot;. Default \&quot;false\&quot;; Cannot be sent in Hedge Mode; Cannot be sent when you open a position | 
- **limitPrice** | **float32** | Limit price of the order; If it is not sent, will place order by market price by default | 
+ **limitPrice** | **float64** | Limit price of the order; If it is not sent, will place order by market price by default | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
