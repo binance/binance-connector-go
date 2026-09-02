@@ -1,5 +1,11 @@
 ### Changelog
 
+## 1.11.0 - 2026-09-02
+
+### Changed (1)
+
+- Updated the connector version for this release; no API changes.
+
 ## 1.10.0 - 2026-08-28
 
 ### Changed (2)
