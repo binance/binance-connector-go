@@ -113,7 +113,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v2/loan/flexible/adjust/ltv", r.URL.Path)
 			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
 			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("adjustmentAmount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("adjustmentAmount"))
 			require.Equal(t, string(models.FlexibleLoanAdjustLtvDirectionParameterAdditional), r.URL.Query().Get("direction"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -131,7 +131,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").AdjustmentAmount(float32(1)).Direction(models.FlexibleLoanAdjustLtvDirectionParameterAdditional).Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanAdjustLtv(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").AdjustmentAmount(float64(1)).Direction(models.FlexibleLoanAdjustLtvDirectionParameterAdditional).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -271,7 +271,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v2/loan/flexible/repay", r.URL.Path)
 			require.Equal(t, "BUSD", r.URL.Query().Get("loanCoin"))
 			require.Equal(t, "BNB", r.URL.Query().Get("collateralCoin"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1)), r.URL.Query().Get("repayAmount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("repayAmount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -288,7 +288,7 @@ func Test_binancecryptoloanrestapi_FlexibleRateAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").RepayAmount(float32(1)).Execute()
+		resp, err := apiClient.RestApi.FlexibleRateAPI.FlexibleLoanRepay(context.Background()).LoanCoin("BUSD").CollateralCoin("BNB").RepayAmount(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

@@ -1,5 +1,28 @@
 ### Changelog
 
+## 1.10.0 - 2026-09-02
+
+### Changed (4)
+
+#### REST API
+
+- Modified parameter `adjustmentAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `flexibleLoanAdjustLtv()` (`POST /sapi/v2/loan/flexible/adjust/ltv`)
+- Modified parameter `collateralAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `flexibleLoanBorrow()` (`POST /sapi/v2/loan/flexible/borrow`)
+- Modified parameter `loanAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `flexibleLoanBorrow()` (`POST /sapi/v2/loan/flexible/borrow`)
+- Modified parameter `repayAmount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `flexibleLoanRepay()` (`POST /sapi/v2/loan/flexible/repay`)
+
 ## 1.9.0 - 2026-08-28
 
 ### Changed (2)

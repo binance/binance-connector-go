@@ -115,7 +115,7 @@ import (
 func main() {
 	loanCoin := "BUSD" // string | 
 	collateralCoin := "BNB" // string | 
-	adjustmentAmount := float32(1) // float32 | 
+	adjustmentAmount := float64(1) // float64 | 
 	direction := models.FlexibleLoanAdjustLtvDirectionParameterAdditional // FlexibleLoanAdjustLtvDirectionParameter | 
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
@@ -147,7 +147,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **adjustmentAmount** | **float32** |  | 
+ **adjustmentAmount** | **float64** |  | 
  **direction** | [**FlexibleLoanAdjustLtvDirectionParameter**](FlexibleLoanAdjustLtvDirectionParameter.md) |  | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
@@ -191,8 +191,8 @@ import (
 func main() {
 	loanCoin := "BUSD" // string | 
 	collateralCoin := "BNB" // string | 
-	loanAmount := float32(1) // float32 | Mandatory when collateralAmount is empty (optional)
-	collateralAmount := float32(1) // float32 | Mandatory when loanAmount is empty (optional)
+	loanAmount := float64(1) // float64 | Mandatory when collateralAmount is empty (optional)
+	collateralAmount := float64(1) // float64 | Mandatory when loanAmount is empty (optional)
 	recvWindow := int64(5000) // int64 | Request validity window in milliseconds (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -223,8 +223,8 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **loanAmount** | **float32** | Mandatory when collateralAmount is empty | 
- **collateralAmount** | **float32** | Mandatory when loanAmount is empty | 
+ **loanAmount** | **float64** | Mandatory when collateralAmount is empty | 
+ **collateralAmount** | **float64** | Mandatory when loanAmount is empty | 
  **recvWindow** | **int64** | Request validity window in milliseconds | 
 
 ### Return type
@@ -267,7 +267,7 @@ import (
 func main() {
 	loanCoin := "BUSD" // string | 
 	collateralCoin := "BNB" // string | 
-	repayAmount := float32(1) // float32 | 
+	repayAmount := float64(1) // float64 | 
 	collateralReturn := true // bool | TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV. (optional)
 	fullRepayment := false // bool | TRUE: Full repayment; FALSE: Partial repayment based on loan amount (optional)
 	repaymentType := models.FlexibleLoanRepayRepaymentTypeParameterRepaymentType1 // FlexibleLoanRepayRepaymentTypeParameter | 1: Repayment with loan asset; 2: Repayment with collateral (optional)
@@ -301,7 +301,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **loanCoin** | **string** |  | 
  **collateralCoin** | **string** |  | 
- **repayAmount** | **float32** |  | 
+ **repayAmount** | **float64** |  | 
  **collateralReturn** | **bool** | TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order and lower LTV. | 
  **fullRepayment** | **bool** | TRUE: Full repayment; FALSE: Partial repayment based on loan amount | 
  **repaymentType** | [**FlexibleLoanRepayRepaymentTypeParameter**](FlexibleLoanRepayRepaymentTypeParameter.md) | 1: Repayment with loan asset; 2: Repayment with collateral | 

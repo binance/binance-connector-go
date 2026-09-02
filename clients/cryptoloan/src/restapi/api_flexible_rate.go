@@ -110,7 +110,7 @@ type ApiFlexibleLoanAdjustLtvRequest struct {
 	ApiService       *FlexibleRateAPIService
 	loanCoin         *string
 	collateralCoin   *string
-	adjustmentAmount *float32
+	adjustmentAmount *float64
 	direction        *models.FlexibleLoanAdjustLtvDirectionParameter
 	recvWindow       *int64
 }
@@ -125,7 +125,7 @@ func (r ApiFlexibleLoanAdjustLtvRequest) CollateralCoin(collateralCoin string) A
 	return r
 }
 
-func (r ApiFlexibleLoanAdjustLtvRequest) AdjustmentAmount(adjustmentAmount float32) ApiFlexibleLoanAdjustLtvRequest {
+func (r ApiFlexibleLoanAdjustLtvRequest) AdjustmentAmount(adjustmentAmount float64) ApiFlexibleLoanAdjustLtvRequest {
 	r.adjustmentAmount = &adjustmentAmount
 	return r
 }
@@ -221,8 +221,8 @@ type ApiFlexibleLoanBorrowRequest struct {
 	ApiService       *FlexibleRateAPIService
 	loanCoin         *string
 	collateralCoin   *string
-	loanAmount       *float32
-	collateralAmount *float32
+	loanAmount       *float64
+	collateralAmount *float64
 	recvWindow       *int64
 }
 
@@ -237,13 +237,13 @@ func (r ApiFlexibleLoanBorrowRequest) CollateralCoin(collateralCoin string) ApiF
 }
 
 // Mandatory when collateralAmount is empty
-func (r ApiFlexibleLoanBorrowRequest) LoanAmount(loanAmount float32) ApiFlexibleLoanBorrowRequest {
+func (r ApiFlexibleLoanBorrowRequest) LoanAmount(loanAmount float64) ApiFlexibleLoanBorrowRequest {
 	r.loanAmount = &loanAmount
 	return r
 }
 
 // Mandatory when loanAmount is empty
-func (r ApiFlexibleLoanBorrowRequest) CollateralAmount(collateralAmount float32) ApiFlexibleLoanBorrowRequest {
+func (r ApiFlexibleLoanBorrowRequest) CollateralAmount(collateralAmount float64) ApiFlexibleLoanBorrowRequest {
 	r.collateralAmount = &collateralAmount
 	return r
 }
@@ -330,7 +330,7 @@ type ApiFlexibleLoanRepayRequest struct {
 	ApiService       *FlexibleRateAPIService
 	loanCoin         *string
 	collateralCoin   *string
-	repayAmount      *float32
+	repayAmount      *float64
 	collateralReturn *bool
 	fullRepayment    *bool
 	repaymentType    *models.FlexibleLoanRepayRepaymentTypeParameter
@@ -347,7 +347,7 @@ func (r ApiFlexibleLoanRepayRequest) CollateralCoin(collateralCoin string) ApiFl
 	return r
 }
 
-func (r ApiFlexibleLoanRepayRequest) RepayAmount(repayAmount float32) ApiFlexibleLoanRepayRequest {
+func (r ApiFlexibleLoanRepayRequest) RepayAmount(repayAmount float64) ApiFlexibleLoanRepayRequest {
 	r.repayAmount = &repayAmount
 	return r
 }
