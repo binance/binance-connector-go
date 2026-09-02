@@ -108,7 +108,7 @@ import (
 func main() {
 	coin := "BTC" // string | `coin` refers to the parent network address format that the address is using
 	network := "network_example" // string |  (optional)
-	amount := float32(1.0) // float32 |  (optional)
+	amount := float64(1.0) // float64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -139,7 +139,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** | &#x60;coin&#x60; refers to the parent network address format that the address is using | 
  **network** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -540,7 +540,7 @@ import (
 func main() {
 	coin := "BTC" // string | 
 	address := "address_example" // string | Withdrawal address
-	amount := float32(1.0) // float32 | Amount
+	amount := float64(1.0) // float64 | Amount
 	withdrawOrderId := "1" // string | client side id for withdrawal, if provide here, can be used in GET `/sapi/v1/capital/withdraw/history` for query. (optional)
 	network := "network_example" // string | Withdrawal network (optional)
 	addressTag := "addressTag_example" // string | Secondary address identifier for coins like XRP,XMR etc. (optional)
@@ -577,7 +577,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
  **address** | **string** | Withdrawal address | 
- **amount** | **float32** | Amount | 
+ **amount** | **float64** | Amount | 
  **withdrawOrderId** | **string** | client side id for withdrawal, if provide here, can be used in GET &#x60;/sapi/v1/capital/withdraw/history&#x60; for query. | 
  **network** | **string** | Withdrawal network | 
  **addressTag** | **string** | Secondary address identifier for coins like XRP,XMR etc. | 

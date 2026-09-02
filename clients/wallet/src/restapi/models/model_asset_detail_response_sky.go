@@ -19,7 +19,7 @@ var _ common.MappedNullable = &AssetDetailResponseSKY{}
 type AssetDetailResponseSKY struct {
 	MinWithdrawAmount    *string  `json:"minWithdrawAmount,omitempty"`
 	DepositStatus        *bool    `json:"depositStatus,omitempty"`
-	WithdrawFee          *float32 `json:"withdrawFee,omitempty"`
+	WithdrawFee          *float64 `json:"withdrawFee,omitempty"`
 	WithdrawStatus       *bool    `json:"withdrawStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -108,9 +108,9 @@ func (o *AssetDetailResponseSKY) SetDepositStatus(v bool) {
 }
 
 // GetWithdrawFee returns the WithdrawFee field value if set, zero value otherwise.
-func (o *AssetDetailResponseSKY) GetWithdrawFee() float32 {
+func (o *AssetDetailResponseSKY) GetWithdrawFee() float64 {
 	if o == nil || common.IsNil(o.WithdrawFee) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.WithdrawFee
@@ -118,7 +118,7 @@ func (o *AssetDetailResponseSKY) GetWithdrawFee() float32 {
 
 // GetWithdrawFeeOk returns a tuple with the WithdrawFee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetDetailResponseSKY) GetWithdrawFeeOk() (*float32, bool) {
+func (o *AssetDetailResponseSKY) GetWithdrawFeeOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.WithdrawFee) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *AssetDetailResponseSKY) HasWithdrawFee() bool {
 	return false
 }
 
-// SetWithdrawFee gets a reference to the given float32 and assigns it to the WithdrawFee field.
-func (o *AssetDetailResponseSKY) SetWithdrawFee(v float32) {
+// SetWithdrawFee gets a reference to the given float64 and assigns it to the WithdrawFee field.
+func (o *AssetDetailResponseSKY) SetWithdrawFee(v float64) {
 	o.WithdrawFee = &v
 }
 

@@ -1149,7 +1149,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/asset/transfer", r.URL.Path)
 			require.Equal(t, string(models.UserUniversalTransferTypeParameterMainUmfuture), r.URL.Query().Get("type"))
 			require.Equal(t, "BTC", r.URL.Query().Get("asset"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1166,7 +1166,7 @@ func Test_binancewalletrestapi_AssetAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type(models.UserUniversalTransferTypeParameterMainUmfuture).Asset("BTC").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.AssetAPI.UserUniversalTransfer(context.Background()).Type(models.UserUniversalTransferTypeParameterMainUmfuture).Asset("BTC").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

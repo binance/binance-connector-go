@@ -85,7 +85,7 @@ type ApiDepositAddressRequest struct {
 	ApiService *CapitalAPIService
 	coin       *string
 	network    *string
-	amount     *float32
+	amount     *float64
 	recvWindow *int64
 }
 
@@ -100,7 +100,7 @@ func (r ApiDepositAddressRequest) Network(network string) ApiDepositAddressReque
 	return r
 }
 
-func (r ApiDepositAddressRequest) Amount(amount float32) ApiDepositAddressRequest {
+func (r ApiDepositAddressRequest) Amount(amount float64) ApiDepositAddressRequest {
 	r.amount = &amount
 	return r
 }
@@ -600,7 +600,7 @@ type ApiWithdrawRequest struct {
 	ApiService         *CapitalAPIService
 	coin               *string
 	address            *string
-	amount             *float32
+	amount             *float64
 	withdrawOrderId    *string
 	network            *string
 	addressTag         *string
@@ -622,7 +622,7 @@ func (r ApiWithdrawRequest) Address(address string) ApiWithdrawRequest {
 }
 
 // Amount
-func (r ApiWithdrawRequest) Amount(amount float32) ApiWithdrawRequest {
+func (r ApiWithdrawRequest) Amount(amount float64) ApiWithdrawRequest {
 	r.amount = &amount
 	return r
 }

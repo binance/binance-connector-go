@@ -1,5 +1,28 @@
 ### Changelog
 
+## 1.16.0 - 2026-09-02
+
+### Changed (3)
+
+#### REST API
+
+- Modified parameter `amount`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `brokerWithdraw()` (`POST /sapi/v1/localentity/broker/withdraw/apply`)
+    - `depositAddress()` (`GET /sapi/v1/capital/deposit/address`)
+    - `submitDepositQuestionnaire()` (`PUT /sapi/v1/localentity/broker/deposit/provide-info`)
+    - `userUniversalTransfer()` (`POST /sapi/v1/asset/transfer`)
+    - `withdraw()` (`POST /sapi/v1/capital/withdraw/apply`)
+    - `withdrawTravelRule()` (`POST /sapi/v1/localentity/withdraw/apply`)
+- Modified parameter `dustQuotaAssetToTargetAssetPrice`:
+  - type `float32` → `float64`
+  - affected methods:
+    - `dustConvert()` (`POST /sapi/v1/asset/dust-convert/convert`)
+    - `dustConvertibleAssets()` (`POST /sapi/v1/asset/dust-convert/query-convertible-assets`)
+- Modified response for `assetDetail()` (`GET /sapi/v1/asset/assetDetail`):
+  - `SKY`.`withdrawFee`: type `float32` → `float64`
+
 ## 1.15.0 - 2026-08-28
 
 ### Changed (2)

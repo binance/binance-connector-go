@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **MinWithdrawAmount** | Pointer to **string** |  | [optional] 
 **DepositStatus** | Pointer to **bool** |  | [optional] 
-**WithdrawFee** | Pointer to **float32** |  | [optional] 
+**WithdrawFee** | Pointer to **float64** |  | [optional] 
 **WithdrawStatus** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasDepositStatus returns a boolean if a field has been set.
 
 ### GetWithdrawFee
 
-`func (o *AssetDetailResponseSKY) GetWithdrawFee() float32`
+`func (o *AssetDetailResponseSKY) GetWithdrawFee() float64`
 
 GetWithdrawFee returns the WithdrawFee field if non-nil, zero value otherwise.
 
 ### GetWithdrawFeeOk
 
-`func (o *AssetDetailResponseSKY) GetWithdrawFeeOk() (*float32, bool)`
+`func (o *AssetDetailResponseSKY) GetWithdrawFeeOk() (*float64, bool)`
 
 GetWithdrawFeeOk returns a tuple with the WithdrawFee field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWithdrawFee
 
-`func (o *AssetDetailResponseSKY) SetWithdrawFee(v float32)`
+`func (o *AssetDetailResponseSKY) SetWithdrawFee(v float64)`
 
 SetWithdrawFee sets WithdrawFee field to given value.
 

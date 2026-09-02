@@ -484,7 +484,7 @@ func Test_binancewalletrestapi_CapitalAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/capital/withdraw/apply", r.URL.Path)
 			require.Equal(t, "BTC", r.URL.Query().Get("coin"))
 			require.Equal(t, "address_example", r.URL.Query().Get("address"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -501,7 +501,7 @@ func Test_binancewalletrestapi_CapitalAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.CapitalAPI.Withdraw(context.Background()).Coin("BTC").Address("address_example").Amount(float32(1.0)).Execute()
+		resp, err := apiClient.RestApi.CapitalAPI.Withdraw(context.Background()).Coin("BTC").Address("address_example").Amount(float64(1.0)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

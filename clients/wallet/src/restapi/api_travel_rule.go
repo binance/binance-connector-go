@@ -23,7 +23,7 @@ type ApiBrokerWithdrawRequest struct {
 	ApiService         *TravelRuleAPIService
 	address            *string
 	coin               *string
-	amount             *float32
+	amount             *float64
 	withdrawOrderId    *string
 	questionnaire      *string
 	originatorPii      *string
@@ -44,7 +44,7 @@ func (r ApiBrokerWithdrawRequest) Coin(coin string) ApiBrokerWithdrawRequest {
 	return r
 }
 
-func (r ApiBrokerWithdrawRequest) Amount(amount float32) ApiBrokerWithdrawRequest {
+func (r ApiBrokerWithdrawRequest) Amount(amount float64) ApiBrokerWithdrawRequest {
 	r.amount = &amount
 	return r
 }
@@ -786,7 +786,7 @@ type ApiSubmitDepositQuestionnaireRequest struct {
 	beneficiaryPii *string
 	network        *string
 	coin           *string
-	amount         *float32
+	amount         *float64
 	address        *string
 	addressTag     *string
 }
@@ -825,7 +825,7 @@ func (r ApiSubmitDepositQuestionnaireRequest) Coin(coin string) ApiSubmitDeposit
 	return r
 }
 
-func (r ApiSubmitDepositQuestionnaireRequest) Amount(amount float32) ApiSubmitDepositQuestionnaireRequest {
+func (r ApiSubmitDepositQuestionnaireRequest) Amount(amount float64) ApiSubmitDepositQuestionnaireRequest {
 	r.amount = &amount
 	return r
 }
@@ -1490,7 +1490,7 @@ type ApiWithdrawTravelRuleRequest struct {
 	ApiService         *TravelRuleAPIService
 	coin               *string
 	address            *string
-	amount             *float32
+	amount             *float64
 	questionnaire      *string
 	withdrawOrderId    *string
 	network            *string
@@ -1513,7 +1513,7 @@ func (r ApiWithdrawTravelRuleRequest) Address(address string) ApiWithdrawTravelR
 }
 
 // Amount
-func (r ApiWithdrawTravelRuleRequest) Amount(amount float32) ApiWithdrawTravelRuleRequest {
+func (r ApiWithdrawTravelRuleRequest) Amount(amount float64) ApiWithdrawTravelRuleRequest {
 	r.amount = &amount
 	return r
 }

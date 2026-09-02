@@ -35,7 +35,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/localentity/broker/withdraw/apply", r.URL.Path)
 			require.Equal(t, "address_example", r.URL.Query().Get("address"))
 			require.Equal(t, "BTC", r.URL.Query().Get("coin"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, "1", r.URL.Query().Get("withdrawOrderId"))
 			require.Equal(t, "questionnaire_example", r.URL.Query().Get("questionnaire"))
 			require.Equal(t, "originatorPii_example", r.URL.Query().Get("originatorPii"))
@@ -55,7 +55,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TravelRuleAPI.BrokerWithdraw(context.Background()).Address("address_example").Coin("BTC").Amount(float32(1.0)).WithdrawOrderId("1").Questionnaire("questionnaire_example").OriginatorPii("originatorPii_example").Execute()
+		resp, err := apiClient.RestApi.TravelRuleAPI.BrokerWithdraw(context.Background()).Address("address_example").Coin("BTC").Amount(float64(1.0)).WithdrawOrderId("1").Questionnaire("questionnaire_example").OriginatorPii("originatorPii_example").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -902,7 +902,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 			require.Equal(t, "/sapi/v1/localentity/withdraw/apply", r.URL.Path)
 			require.Equal(t, "BTC", r.URL.Query().Get("coin"))
 			require.Equal(t, "address_example", r.URL.Query().Get("address"))
-			require.Equal(t, fmt.Sprintf("%v", float32(1.0)), r.URL.Query().Get("amount"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("amount"))
 			require.Equal(t, "questionnaire_example", r.URL.Query().Get("questionnaire"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -920,7 +920,7 @@ func Test_binancewalletrestapi_TravelRuleAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TravelRuleAPI.WithdrawTravelRule(context.Background()).Coin("BTC").Address("address_example").Amount(float32(1.0)).Questionnaire("questionnaire_example").Execute()
+		resp, err := apiClient.RestApi.TravelRuleAPI.WithdrawTravelRule(context.Background()).Coin("BTC").Address("address_example").Amount(float64(1.0)).Questionnaire("questionnaire_example").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

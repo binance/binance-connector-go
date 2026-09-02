@@ -200,7 +200,7 @@ type ApiDustConvertRequest struct {
 	clientId                         *string
 	targetAsset                      *string
 	thirdPartyClientId               *string
-	dustQuotaAssetToTargetAssetPrice *float32
+	dustQuotaAssetToTargetAssetPrice *float64
 }
 
 func (r ApiDustConvertRequest) Asset(asset string) ApiDustConvertRequest {
@@ -230,7 +230,7 @@ func (r ApiDustConvertRequest) ThirdPartyClientId(thirdPartyClientId string) Api
 	return r
 }
 
-func (r ApiDustConvertRequest) DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice float32) ApiDustConvertRequest {
+func (r ApiDustConvertRequest) DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice float64) ApiDustConvertRequest {
 	r.dustQuotaAssetToTargetAssetPrice = &dustQuotaAssetToTargetAssetPrice
 	return r
 }
@@ -313,7 +313,7 @@ type ApiDustConvertibleAssetsRequest struct {
 	ApiService                       *AssetAPIService
 	targetAsset                      *string
 	accountType                      *string
-	dustQuotaAssetToTargetAssetPrice *float32
+	dustQuotaAssetToTargetAssetPrice *float64
 }
 
 func (r ApiDustConvertibleAssetsRequest) TargetAsset(targetAsset string) ApiDustConvertibleAssetsRequest {
@@ -327,7 +327,7 @@ func (r ApiDustConvertibleAssetsRequest) AccountType(accountType string) ApiDust
 	return r
 }
 
-func (r ApiDustConvertibleAssetsRequest) DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice float32) ApiDustConvertibleAssetsRequest {
+func (r ApiDustConvertibleAssetsRequest) DustQuotaAssetToTargetAssetPrice(dustQuotaAssetToTargetAssetPrice float64) ApiDustConvertibleAssetsRequest {
 	r.dustQuotaAssetToTargetAssetPrice = &dustQuotaAssetToTargetAssetPrice
 	return r
 }
@@ -1569,7 +1569,7 @@ type ApiUserUniversalTransferRequest struct {
 	ApiService *AssetAPIService
 	type_      *models.UserUniversalTransferTypeParameter
 	asset      *string
-	amount     *float32
+	amount     *float64
 	fromSymbol *models.QueryUserUniversalTransferHistoryFromSymbolParameter
 	toSymbol   *models.QueryUserUniversalTransferHistoryToSymbolParameter
 	recvWindow *int64
@@ -1585,7 +1585,7 @@ func (r ApiUserUniversalTransferRequest) Asset(asset string) ApiUserUniversalTra
 	return r
 }
 
-func (r ApiUserUniversalTransferRequest) Amount(amount float32) ApiUserUniversalTransferRequest {
+func (r ApiUserUniversalTransferRequest) Amount(amount float64) ApiUserUniversalTransferRequest {
 	r.amount = &amount
 	return r
 }

@@ -45,7 +45,7 @@ import (
 func main() {
 	address := "address_example" // string | 
 	coin := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	withdrawOrderId := "1" // string | withdrawID defined by the client (i.e. client's internal withdrawID)
 	questionnaire := "questionnaire_example" // string | JSON format questionnaire answers.
 	originatorPii := "originatorPii_example" // string | JSON format originator Pii, see StandardPii section below
@@ -83,7 +83,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **string** |  | 
  **coin** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **withdrawOrderId** | **string** | withdrawID defined by the client (i.e. client&#39;s internal withdrawID) | 
  **questionnaire** | **string** | JSON format questionnaire answers. | 
  **originatorPii** | **string** | JSON format originator Pii, see StandardPii section below | 
@@ -583,7 +583,7 @@ func main() {
 	beneficiaryPii := "beneficiaryPii_example" // string | JSON format beneficiary Pii, see StandardPii section below
 	network := "network_example" // string |  (optional)
 	coin := "BTC" // string |  (optional)
-	amount := float32(1.0) // float32 |  (optional)
+	amount := float64(1.0) // float64 |  (optional)
 	address := "address_example" // string |  (optional)
 	addressTag := "addressTag_example" // string |  (optional)
 
@@ -619,7 +619,7 @@ Name          | Type          | Description   | Notes
  **beneficiaryPii** | **string** | JSON format beneficiary Pii, see StandardPii section below | 
  **network** | **string** |  | 
  **coin** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **address** | **string** |  | 
  **addressTag** | **string** |  | 
 
@@ -1047,7 +1047,7 @@ import (
 func main() {
 	coin := "BTC" // string | 
 	address := "address_example" // string | Withdrawal address
-	amount := float32(1.0) // float32 | Amount
+	amount := float64(1.0) // float64 | Amount
 	questionnaire := "questionnaire_example" // string | JSON format questionnaire answers.
 	withdrawOrderId := "1" // string | withdrawID defined by the client (i.e. client's internal withdrawID) (optional)
 	network := "network_example" // string | Withdrawal network (optional)
@@ -1085,7 +1085,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
  **address** | **string** | Withdrawal address | 
- **amount** | **float32** | Amount | 
+ **amount** | **float64** | Amount | 
  **questionnaire** | **string** | JSON format questionnaire answers. | 
  **withdrawOrderId** | **string** | withdrawID defined by the client (i.e. client&#39;s internal withdrawID) | 
  **network** | **string** | Withdrawal network | 

@@ -198,7 +198,7 @@ func main() {
 	clientId := "1" // string | A unique id for the request (optional)
 	targetAsset := "BTC" // string |  (optional)
 	thirdPartyClientId := "1" // string |  (optional)
-	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
+	dustQuotaAssetToTargetAssetPrice := float64(1.0) // float64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -231,7 +231,7 @@ Name          | Type          | Description   | Notes
  **clientId** | **string** | A unique id for the request | 
  **targetAsset** | **string** |  | 
  **thirdPartyClientId** | **string** |  | 
- **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
+ **dustQuotaAssetToTargetAssetPrice** | **float64** |  | 
 
 ### Return type
 
@@ -273,7 +273,7 @@ import (
 func main() {
 	targetAsset := "BTC" // string | 
 	accountType := "SPOT" // string | `SPOT` or `MARGIN`, default `SPOT` (optional)
-	dustQuotaAssetToTargetAssetPrice := float32(1.0) // float32 |  (optional)
+	dustQuotaAssetToTargetAssetPrice := float64(1.0) // float64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
 		common.WithBasePath(common.SpotRestApiProdUrl),
@@ -303,7 +303,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **targetAsset** | **string** |  | 
  **accountType** | **string** | &#x60;SPOT&#x60; or &#x60;MARGIN&#x60;, default &#x60;SPOT&#x60; | 
- **dustQuotaAssetToTargetAssetPrice** | **float32** |  | 
+ **dustQuotaAssetToTargetAssetPrice** | **float64** |  | 
 
 ### Return type
 
@@ -1296,7 +1296,7 @@ import (
 func main() {
 	type_ := models.UserUniversalTransferTypeParameterMainUmfuture // UserUniversalTransferTypeParameter | 
 	asset := "BTC" // string | 
-	amount := float32(1.0) // float32 | 
+	amount := float64(1.0) // float64 | 
 	fromSymbol := models.QueryUserUniversalTransferHistoryFromSymbolParameterIsolatedmarginMargin // QueryUserUniversalTransferHistoryFromSymbolParameter |  (optional)
 	toSymbol := models.QueryUserUniversalTransferHistoryToSymbolParameterMarginIsolatedmargin // QueryUserUniversalTransferHistoryToSymbolParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -1329,7 +1329,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **type_** | [**UserUniversalTransferTypeParameter**](UserUniversalTransferTypeParameter.md) |  | 
  **asset** | **string** |  | 
- **amount** | **float32** |  | 
+ **amount** | **float64** |  | 
  **fromSymbol** | [**QueryUserUniversalTransferHistoryFromSymbolParameter**](QueryUserUniversalTransferHistoryFromSymbolParameter.md) |  | 
  **toSymbol** | [**QueryUserUniversalTransferHistoryToSymbolParameter**](QueryUserUniversalTransferHistoryToSymbolParameter.md) |  | 
  **recvWindow** | **int64** |  | 
