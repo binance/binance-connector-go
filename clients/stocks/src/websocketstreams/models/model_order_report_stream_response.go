@@ -36,19 +36,19 @@ type OrderReportStreamResponse struct {
 	// Order type: `\"market\"` / `\"limit\"` / `\"stop\"` / `\"stop_limit\"` / `\"trailing_stop\"`. Note: lowercase.
 	Smallo *string `json:"o,omitempty"`
 	// Limit price; null for market orders.
-	Smallp *float32 `json:"p,omitempty"`
+	Smallp *float64 `json:"p,omitempty"`
 	// Order quantity (shares); `0` when the order was submitted as notional.
-	Q *float32 `json:"Q,omitempty"`
+	Q *float64 `json:"Q,omitempty"`
 	// Order notional; set when the order was submitted as notional (market buy), null when submitted as quantity.
-	N *float32 `json:"N,omitempty"`
+	N *float64 `json:"N,omitempty"`
 	// Filled quantity.
-	Smallfq *float32 `json:"fq,omitempty"`
+	Smallfq *float64 `json:"fq,omitempty"`
 	// Filled notional (= filledQty × filledAvgPrice).
-	FN *float32 `json:"FN,omitempty"`
+	FN *float64 `json:"FN,omitempty"`
 	// Total cost — cumulative buy-in cost including the commission fee.
-	Smalltc *float32 `json:"tc,omitempty"`
+	Smalltc *float64 `json:"tc,omitempty"`
 	// Fill progress percentage (0–100, 2 dp). By notional: `FN / N × 100`. By qty: `fq / Q × 100`.
-	Z *float32 `json:"Z,omitempty"`
+	Z *float64 `json:"Z,omitempty"`
 	// Trading session label, e.g. `\"Regular\"`, `\"24 Hours Trading\"`.
 	Smalln *string `json:"n,omitempty"`
 	// Order status, e.g. `\"accepted\"`, `\"partially_filled\"`, `\"filled\"`, `\"canceled\"`. Note: lowercase, unlike REST responses.
@@ -368,9 +368,9 @@ func (o *OrderReportStreamResponse) SetSmallo(v string) {
 }
 
 // GetP returns the P field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OrderReportStreamResponse) GetSmallp() float32 {
+func (o *OrderReportStreamResponse) GetSmallp() float64 {
 	if o == nil || common.IsNil(o.Smallp) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Smallp
@@ -379,7 +379,7 @@ func (o *OrderReportStreamResponse) GetSmallp() float32 {
 // GetPOk returns a tuple with the P field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OrderReportStreamResponse) GetSmallpOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetSmallpOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -395,15 +395,15 @@ func (o *OrderReportStreamResponse) HasSmallp() bool {
 	return false
 }
 
-// SetP gets a reference to the given NullableFloat32 and assigns it to the P field.
-func (o *OrderReportStreamResponse) SetSmallp(v float32) {
+// SetP gets a reference to the given NullableFloat64 and assigns it to the P field.
+func (o *OrderReportStreamResponse) SetSmallp(v float64) {
 	o.Smallp = &v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
-func (o *OrderReportStreamResponse) GetQ() float32 {
+func (o *OrderReportStreamResponse) GetQ() float64 {
 	if o == nil || common.IsNil(o.Q) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Q
@@ -411,7 +411,7 @@ func (o *OrderReportStreamResponse) GetQ() float32 {
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderReportStreamResponse) GetQOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetQOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Q) {
 		return nil, false
 	}
@@ -427,15 +427,15 @@ func (o *OrderReportStreamResponse) HasQ() bool {
 	return false
 }
 
-// SetQ gets a reference to the given float32 and assigns it to the Q field.
-func (o *OrderReportStreamResponse) SetQ(v float32) {
+// SetQ gets a reference to the given float64 and assigns it to the Q field.
+func (o *OrderReportStreamResponse) SetQ(v float64) {
 	o.Q = &v
 }
 
 // GetN returns the N field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OrderReportStreamResponse) GetN() float32 {
+func (o *OrderReportStreamResponse) GetN() float64 {
 	if o == nil || common.IsNil(o.N) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.N
@@ -444,7 +444,7 @@ func (o *OrderReportStreamResponse) GetN() float32 {
 // GetNOk returns a tuple with the N field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OrderReportStreamResponse) GetNOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetNOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -460,15 +460,15 @@ func (o *OrderReportStreamResponse) HasN() bool {
 	return false
 }
 
-// SetN gets a reference to the given NullableFloat32 and assigns it to the N field.
-func (o *OrderReportStreamResponse) SetN(v float32) {
+// SetN gets a reference to the given NullableFloat64 and assigns it to the N field.
+func (o *OrderReportStreamResponse) SetN(v float64) {
 	o.N = &v
 }
 
 // GetFq returns the Fq field value if set, zero value otherwise.
-func (o *OrderReportStreamResponse) GetSmallfq() float32 {
+func (o *OrderReportStreamResponse) GetSmallfq() float64 {
 	if o == nil || common.IsNil(o.Smallfq) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Smallfq
@@ -476,7 +476,7 @@ func (o *OrderReportStreamResponse) GetSmallfq() float32 {
 
 // GetFqOk returns a tuple with the Fq field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderReportStreamResponse) GetSmallfqOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetSmallfqOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Smallfq) {
 		return nil, false
 	}
@@ -492,15 +492,15 @@ func (o *OrderReportStreamResponse) HasSmallfq() bool {
 	return false
 }
 
-// SetFq gets a reference to the given float32 and assigns it to the Fq field.
-func (o *OrderReportStreamResponse) SetSmallfq(v float32) {
+// SetFq gets a reference to the given float64 and assigns it to the Fq field.
+func (o *OrderReportStreamResponse) SetSmallfq(v float64) {
 	o.Smallfq = &v
 }
 
 // GetFN returns the FN field value if set, zero value otherwise.
-func (o *OrderReportStreamResponse) GetFN() float32 {
+func (o *OrderReportStreamResponse) GetFN() float64 {
 	if o == nil || common.IsNil(o.FN) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.FN
@@ -508,7 +508,7 @@ func (o *OrderReportStreamResponse) GetFN() float32 {
 
 // GetFNOk returns a tuple with the FN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderReportStreamResponse) GetFNOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetFNOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.FN) {
 		return nil, false
 	}
@@ -524,15 +524,15 @@ func (o *OrderReportStreamResponse) HasFN() bool {
 	return false
 }
 
-// SetFN gets a reference to the given float32 and assigns it to the FN field.
-func (o *OrderReportStreamResponse) SetFN(v float32) {
+// SetFN gets a reference to the given float64 and assigns it to the FN field.
+func (o *OrderReportStreamResponse) SetFN(v float64) {
 	o.FN = &v
 }
 
 // GetTc returns the Tc field value if set, zero value otherwise.
-func (o *OrderReportStreamResponse) GetSmalltc() float32 {
+func (o *OrderReportStreamResponse) GetSmalltc() float64 {
 	if o == nil || common.IsNil(o.Smalltc) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Smalltc
@@ -540,7 +540,7 @@ func (o *OrderReportStreamResponse) GetSmalltc() float32 {
 
 // GetTcOk returns a tuple with the Tc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderReportStreamResponse) GetSmalltcOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetSmalltcOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Smalltc) {
 		return nil, false
 	}
@@ -556,15 +556,15 @@ func (o *OrderReportStreamResponse) HasSmalltc() bool {
 	return false
 }
 
-// SetTc gets a reference to the given float32 and assigns it to the Tc field.
-func (o *OrderReportStreamResponse) SetSmalltc(v float32) {
+// SetTc gets a reference to the given float64 and assigns it to the Tc field.
+func (o *OrderReportStreamResponse) SetSmalltc(v float64) {
 	o.Smalltc = &v
 }
 
 // GetZ returns the Z field value if set, zero value otherwise.
-func (o *OrderReportStreamResponse) GetZ() float32 {
+func (o *OrderReportStreamResponse) GetZ() float64 {
 	if o == nil || common.IsNil(o.Z) {
-		var ret float32
+		var ret float64
 		return ret
 	}
 	return *o.Z
@@ -572,7 +572,7 @@ func (o *OrderReportStreamResponse) GetZ() float32 {
 
 // GetZOk returns a tuple with the Z field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderReportStreamResponse) GetZOk() (*float32, bool) {
+func (o *OrderReportStreamResponse) GetZOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Z) {
 		return nil, false
 	}
@@ -588,8 +588,8 @@ func (o *OrderReportStreamResponse) HasZ() bool {
 	return false
 }
 
-// SetZ gets a reference to the given float32 and assigns it to the Z field.
-func (o *OrderReportStreamResponse) SetZ(v float32) {
+// SetZ gets a reference to the given float64 and assigns it to the Z field.
+func (o *OrderReportStreamResponse) SetZ(v float64) {
 	o.Z = &v
 }
 

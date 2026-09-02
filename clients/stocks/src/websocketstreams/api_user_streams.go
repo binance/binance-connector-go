@@ -17,11 +17,18 @@ type UserStreamsAPIService Service
 type ApiOrderReportStreamRequest struct {
 	ApiService *UserStreamsAPIService
 	listenKey  *string
+	id         *string
 }
 
 // User data listen key obtained from the Listen Key endpoint.
 func (r ApiOrderReportStreamRequest) ListenKey(listenKey string) ApiOrderReportStreamRequest {
 	r.listenKey = &listenKey
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiOrderReportStreamRequest) Id(id string) ApiOrderReportStreamRequest {
+	r.id = &id
 	return r
 }
 
@@ -35,7 +42,7 @@ OrderReportStream Order Report Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/user-streams#order-report-stream
 
-@param listenKey User data listen key obtained from the Listen Key endpoint.
+@param listenKey User data listen key obtained from the Listen Key endpoint.	@param id Unique WebSocket request ID.
 @return ApiOrderReportStreamRequest
 */
 func (a *UserStreamsAPIService) OrderReportStream() ApiOrderReportStreamRequest {
@@ -61,11 +68,20 @@ func (a *UserStreamsAPIService) OrderReportStreamExecute(r ApiOrderReportStreamR
 				}
 				return *r.listenKey
 			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
 		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.OrderReportStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)

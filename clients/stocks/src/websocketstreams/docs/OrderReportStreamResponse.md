@@ -13,13 +13,13 @@ Name         | Type          | Description.  | Notes
 **Q** | Pointer to **string** | Quote currency, e.g. &#x60;\&quot;USD\&quot;&#x60;. | [optional] 
 **S** | Pointer to **string** | Order side: &#x60;\&quot;buy\&quot;&#x60; or &#x60;\&quot;sell\&quot;&#x60;. Note: lowercase, unlike REST responses. | [optional] 
 **O** | Pointer to **string** | Order type: &#x60;\&quot;market\&quot;&#x60; / &#x60;\&quot;limit\&quot;&#x60; / &#x60;\&quot;stop\&quot;&#x60; / &#x60;\&quot;stop_limit\&quot;&#x60; / &#x60;\&quot;trailing_stop\&quot;&#x60;. Note: lowercase. | [optional] 
-**P** | Pointer to **NullableFloat32** | Limit price; null for market orders. | [optional] 
-**Q** | Pointer to **float32** | Order quantity (shares); &#x60;0&#x60; when the order was submitted as notional. | [optional] 
-**N** | Pointer to **NullableFloat32** | Order notional; set when the order was submitted as notional (market buy), null when submitted as quantity. | [optional] 
-**Fq** | Pointer to **float32** | Filled quantity. | [optional] 
-**FN** | Pointer to **float32** | Filled notional (&#x3D; filledQty × filledAvgPrice). | [optional] 
-**Tc** | Pointer to **float32** | Total cost — cumulative buy-in cost including the commission fee. | [optional] 
-**Z** | Pointer to **float32** | Fill progress percentage (0–100, 2 dp). By notional: &#x60;FN / N × 100&#x60;. By qty: &#x60;fq / Q × 100&#x60;. | [optional] 
+**P** | Pointer to **NullableFloat64** | Limit price; null for market orders. | [optional] 
+**Q** | Pointer to **float64** | Order quantity (shares); &#x60;0&#x60; when the order was submitted as notional. | [optional] 
+**N** | Pointer to **NullableFloat64** | Order notional; set when the order was submitted as notional (market buy), null when submitted as quantity. | [optional] 
+**Fq** | Pointer to **float64** | Filled quantity. | [optional] 
+**FN** | Pointer to **float64** | Filled notional (&#x3D; filledQty × filledAvgPrice). | [optional] 
+**Tc** | Pointer to **float64** | Total cost — cumulative buy-in cost including the commission fee. | [optional] 
+**Z** | Pointer to **float64** | Fill progress percentage (0–100, 2 dp). By notional: &#x60;FN / N × 100&#x60;. By qty: &#x60;fq / Q × 100&#x60;. | [optional] 
 **N** | Pointer to **string** | Trading session label, e.g. &#x60;\&quot;Regular\&quot;&#x60;, &#x60;\&quot;24 Hours Trading\&quot;&#x60;. | [optional] 
 **S** | Pointer to **string** | Order status, e.g. &#x60;\&quot;accepted\&quot;&#x60;, &#x60;\&quot;partially_filled\&quot;&#x60;, &#x60;\&quot;filled\&quot;&#x60;, &#x60;\&quot;canceled\&quot;&#x60;. Note: lowercase, unlike REST responses. | [optional] 
 **T** | Pointer to **int64** | Order create time (epoch milliseconds). | [optional] 
@@ -271,20 +271,20 @@ HasO returns a boolean if a field has been set.
 
 ### GetP
 
-`func (o *OrderReportStreamResponse) GetP() float32`
+`func (o *OrderReportStreamResponse) GetP() float64`
 
 GetP returns the P field if non-nil, zero value otherwise.
 
 ### GetPOk
 
-`func (o *OrderReportStreamResponse) GetPOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetPOk() (*float64, bool)`
 
 GetPOk returns a tuple with the P field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetP
 
-`func (o *OrderReportStreamResponse) SetP(v float32)`
+`func (o *OrderReportStreamResponse) SetP(v float64)`
 
 SetP sets P field to given value.
 
@@ -306,20 +306,20 @@ HasP returns a boolean if a field has been set.
 UnsetP ensures that no value is present for P, not even an explicit nil
 ### GetQ
 
-`func (o *OrderReportStreamResponse) GetQ() float32`
+`func (o *OrderReportStreamResponse) GetQ() float64`
 
 GetQ returns the Q field if non-nil, zero value otherwise.
 
 ### GetQOk
 
-`func (o *OrderReportStreamResponse) GetQOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetQOk() (*float64, bool)`
 
 GetQOk returns a tuple with the Q field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQ
 
-`func (o *OrderReportStreamResponse) SetQ(v float32)`
+`func (o *OrderReportStreamResponse) SetQ(v float64)`
 
 SetQ sets Q field to given value.
 
@@ -331,20 +331,20 @@ HasQ returns a boolean if a field has been set.
 
 ### GetN
 
-`func (o *OrderReportStreamResponse) GetN() float32`
+`func (o *OrderReportStreamResponse) GetN() float64`
 
 GetN returns the N field if non-nil, zero value otherwise.
 
 ### GetNOk
 
-`func (o *OrderReportStreamResponse) GetNOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetNOk() (*float64, bool)`
 
 GetNOk returns a tuple with the N field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetN
 
-`func (o *OrderReportStreamResponse) SetN(v float32)`
+`func (o *OrderReportStreamResponse) SetN(v float64)`
 
 SetN sets N field to given value.
 
@@ -366,20 +366,20 @@ HasN returns a boolean if a field has been set.
 UnsetN ensures that no value is present for N, not even an explicit nil
 ### GetFq
 
-`func (o *OrderReportStreamResponse) GetFq() float32`
+`func (o *OrderReportStreamResponse) GetFq() float64`
 
 GetFq returns the Fq field if non-nil, zero value otherwise.
 
 ### GetFqOk
 
-`func (o *OrderReportStreamResponse) GetFqOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetFqOk() (*float64, bool)`
 
 GetFqOk returns a tuple with the Fq field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFq
 
-`func (o *OrderReportStreamResponse) SetFq(v float32)`
+`func (o *OrderReportStreamResponse) SetFq(v float64)`
 
 SetFq sets Fq field to given value.
 
@@ -391,20 +391,20 @@ HasFq returns a boolean if a field has been set.
 
 ### GetFN
 
-`func (o *OrderReportStreamResponse) GetFN() float32`
+`func (o *OrderReportStreamResponse) GetFN() float64`
 
 GetFN returns the FN field if non-nil, zero value otherwise.
 
 ### GetFNOk
 
-`func (o *OrderReportStreamResponse) GetFNOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetFNOk() (*float64, bool)`
 
 GetFNOk returns a tuple with the FN field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFN
 
-`func (o *OrderReportStreamResponse) SetFN(v float32)`
+`func (o *OrderReportStreamResponse) SetFN(v float64)`
 
 SetFN sets FN field to given value.
 
@@ -416,20 +416,20 @@ HasFN returns a boolean if a field has been set.
 
 ### GetTc
 
-`func (o *OrderReportStreamResponse) GetTc() float32`
+`func (o *OrderReportStreamResponse) GetTc() float64`
 
 GetTc returns the Tc field if non-nil, zero value otherwise.
 
 ### GetTcOk
 
-`func (o *OrderReportStreamResponse) GetTcOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetTcOk() (*float64, bool)`
 
 GetTcOk returns a tuple with the Tc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTc
 
-`func (o *OrderReportStreamResponse) SetTc(v float32)`
+`func (o *OrderReportStreamResponse) SetTc(v float64)`
 
 SetTc sets Tc field to given value.
 
@@ -441,20 +441,20 @@ HasTc returns a boolean if a field has been set.
 
 ### GetZ
 
-`func (o *OrderReportStreamResponse) GetZ() float32`
+`func (o *OrderReportStreamResponse) GetZ() float64`
 
 GetZ returns the Z field if non-nil, zero value otherwise.
 
 ### GetZOk
 
-`func (o *OrderReportStreamResponse) GetZOk() (*float32, bool)`
+`func (o *OrderReportStreamResponse) GetZOk() (*float64, bool)`
 
 GetZOk returns a tuple with the Z field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetZ
 
-`func (o *OrderReportStreamResponse) SetZ(v float32)`
+`func (o *OrderReportStreamResponse) SetZ(v float64)`
 
 SetZ sets Z field to given value.
 

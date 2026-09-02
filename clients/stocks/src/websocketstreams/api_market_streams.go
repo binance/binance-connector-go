@@ -16,6 +16,13 @@ type MarketStreamsAPIService Service
 
 type ApiCalendarStreamRequest struct {
 	ApiService *MarketStreamsAPIService
+	id         *string
+}
+
+// Unique WebSocket request ID.
+func (r ApiCalendarStreamRequest) Id(id string) ApiCalendarStreamRequest {
+	r.id = &id
+	return r
 }
 
 func (r ApiCalendarStreamRequest) Execute() (*common.StreamHandler[models.CalendarStreamResponse], error) {
@@ -28,6 +35,7 @@ CalendarStream Calendar Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#calendar-stream
 
+@param id Unique WebSocket request ID.
 @return ApiCalendarStreamRequest
 */
 func (a *MarketStreamsAPIService) CalendarStream() ApiCalendarStreamRequest {
@@ -43,11 +51,21 @@ func (a *MarketStreamsAPIService) CalendarStreamExecute(r ApiCalendarStreamReque
 
 	localStream := common.WsStreamsPlaceholder(
 		"/calendar"[1:],
-		map[string]string{},
+		map[string]string{
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
+		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.CalendarStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
@@ -62,6 +80,7 @@ type ApiKlineStreamRequest struct {
 	ApiService *MarketStreamsAPIService
 	symbol     *string
 	interval   *string
+	id         *string
 }
 
 // US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;.
@@ -76,6 +95,12 @@ func (r ApiKlineStreamRequest) Interval(interval string) ApiKlineStreamRequest {
 	return r
 }
 
+// Unique WebSocket request ID.
+func (r ApiKlineStreamRequest) Id(id string) ApiKlineStreamRequest {
+	r.id = &id
+	return r
+}
+
 func (r ApiKlineStreamRequest) Execute() (*common.StreamHandler[models.KlineStreamResponse], error) {
 	return r.ApiService.KlineStreamExecute(r)
 }
@@ -86,7 +111,7 @@ KlineStream Kline Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#kline-stream
 
-@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.	@param interval Kline interval — `5m` / `1h` / `1d` / `1w` / `1M`.
+@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.	@param interval Kline interval — `5m` / `1h` / `1d` / `1w` / `1M`.	@param id Unique WebSocket request ID.
 @return ApiKlineStreamRequest
 */
 func (a *MarketStreamsAPIService) KlineStream() ApiKlineStreamRequest {
@@ -121,11 +146,20 @@ func (a *MarketStreamsAPIService) KlineStreamExecute(r ApiKlineStreamRequest) (*
 				}
 				return *r.interval
 			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
 		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.KlineStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
@@ -138,6 +172,13 @@ func (a *MarketStreamsAPIService) KlineStreamExecute(r ApiKlineStreamRequest) (*
 
 type ApiPriceStreamRequest struct {
 	ApiService *MarketStreamsAPIService
+	id         *string
+}
+
+// Unique WebSocket request ID.
+func (r ApiPriceStreamRequest) Id(id string) ApiPriceStreamRequest {
+	r.id = &id
+	return r
 }
 
 func (r ApiPriceStreamRequest) Execute() (*common.StreamHandler[models.PriceStreamResponse], error) {
@@ -150,6 +191,7 @@ PriceStream Price Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#price-stream
 
+@param id Unique WebSocket request ID.
 @return ApiPriceStreamRequest
 */
 func (a *MarketStreamsAPIService) PriceStream() ApiPriceStreamRequest {
@@ -165,11 +207,21 @@ func (a *MarketStreamsAPIService) PriceStreamExecute(r ApiPriceStreamRequest) (*
 
 	localStream := common.WsStreamsPlaceholder(
 		"/price"[1:],
-		map[string]string{},
+		map[string]string{
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
+		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.PriceStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
@@ -183,11 +235,18 @@ func (a *MarketStreamsAPIService) PriceStreamExecute(r ApiPriceStreamRequest) (*
 type ApiQuoteStreamRequest struct {
 	ApiService *MarketStreamsAPIService
 	symbol     *string
+	id         *string
 }
 
 // US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;.
 func (r ApiQuoteStreamRequest) Symbol(symbol string) ApiQuoteStreamRequest {
 	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiQuoteStreamRequest) Id(id string) ApiQuoteStreamRequest {
+	r.id = &id
 	return r
 }
 
@@ -201,7 +260,7 @@ QuoteStream Quote Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#quote-stream
 
-@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.
+@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.	@param id Unique WebSocket request ID.
 @return ApiQuoteStreamRequest
 */
 func (a *MarketStreamsAPIService) QuoteStream() ApiQuoteStreamRequest {
@@ -227,11 +286,20 @@ func (a *MarketStreamsAPIService) QuoteStreamExecute(r ApiQuoteStreamRequest) (*
 				}
 				return *r.symbol
 			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
 		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.QuoteStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
@@ -245,11 +313,18 @@ func (a *MarketStreamsAPIService) QuoteStreamExecute(r ApiQuoteStreamRequest) (*
 type ApiTradabilityStreamRequest struct {
 	ApiService *MarketStreamsAPIService
 	symbol     *string
+	id         *string
 }
 
 // US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;.
 func (r ApiTradabilityStreamRequest) Symbol(symbol string) ApiTradabilityStreamRequest {
 	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiTradabilityStreamRequest) Id(id string) ApiTradabilityStreamRequest {
+	r.id = &id
 	return r
 }
 
@@ -263,7 +338,7 @@ TradabilityStream Tradability Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#tradability-stream
 
-@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.
+@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.	@param id Unique WebSocket request ID.
 @return ApiTradabilityStreamRequest
 */
 func (a *MarketStreamsAPIService) TradabilityStream() ApiTradabilityStreamRequest {
@@ -289,11 +364,20 @@ func (a *MarketStreamsAPIService) TradabilityStreamExecute(r ApiTradabilityStrea
 				}
 				return *r.symbol
 			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
 		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.TradabilityStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
@@ -307,11 +391,18 @@ func (a *MarketStreamsAPIService) TradabilityStreamExecute(r ApiTradabilityStrea
 type ApiTradingStatusStreamRequest struct {
 	ApiService *MarketStreamsAPIService
 	symbol     *string
+	id         *string
 }
 
 // US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;.
 func (r ApiTradingStatusStreamRequest) Symbol(symbol string) ApiTradingStatusStreamRequest {
 	r.symbol = &symbol
+	return r
+}
+
+// Unique WebSocket request ID.
+func (r ApiTradingStatusStreamRequest) Id(id string) ApiTradingStatusStreamRequest {
+	r.id = &id
 	return r
 }
 
@@ -325,7 +416,7 @@ TradingStatusStream Trading Status Stream
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/ws-streams/market-streams#trading-status-stream
 
-@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.
+@param symbol US-equity ticker (UPPERCASE), e.g. `AAPL`.	@param id Unique WebSocket request ID.
 @return ApiTradingStatusStreamRequest
 */
 func (a *MarketStreamsAPIService) TradingStatusStream() ApiTradingStatusStreamRequest {
@@ -351,11 +442,20 @@ func (a *MarketStreamsAPIService) TradingStatusStreamExecute(r ApiTradingStatusS
 				}
 				return *r.symbol
 			}(),
+			"id": func() string {
+				if r.id == nil {
+					return ""
+				}
+				return *r.id
+			}(),
 		},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
+	if r.id != nil {
+		id = []any{*r.id}
+	}
 	resp, err := common.CreateStreamHandler[models.TradingStatusStreamResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)

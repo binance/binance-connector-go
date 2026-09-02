@@ -34,6 +34,7 @@ import (
 )
 
 func main() {
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -47,7 +48,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.CalendarStream().Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.CalendarStream().Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.CalendarStream``: %v\n", err)
 		return
@@ -74,7 +75,9 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -107,6 +110,7 @@ import (
 func main() {
 	symbol := "AAPL" // string | US-equity ticker (UPPERCASE), e.g. `AAPL`.
 	interval := "5m" // string | Kline interval — `5m` / `1h` / `1d` / `1w` / `1M`.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -120,7 +124,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.KlineStream().Symbol(symbol).Interval(interval).Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.KlineStream().Symbol(symbol).Interval(interval).Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.KlineStream``: %v\n", err)
 		return
@@ -151,6 +155,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;. | 
  **interval** | **string** | Kline interval — &#x60;5m&#x60; / &#x60;1h&#x60; / &#x60;1d&#x60; / &#x60;1w&#x60; / &#x60;1M&#x60;. | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -181,6 +186,7 @@ import (
 )
 
 func main() {
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -194,7 +200,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.PriceStream().Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.PriceStream().Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.PriceStream``: %v\n", err)
 		return
@@ -221,7 +227,9 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -253,6 +261,7 @@ import (
 
 func main() {
 	symbol := "AAPL" // string | US-equity ticker (UPPERCASE), e.g. `AAPL`.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -266,7 +275,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.QuoteStream().Symbol(symbol).Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.QuoteStream().Symbol(symbol).Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.QuoteStream``: %v\n", err)
 		return
@@ -296,6 +305,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;. | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -327,6 +337,7 @@ import (
 
 func main() {
 	symbol := "AAPL" // string | US-equity ticker (UPPERCASE), e.g. `AAPL`.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -340,7 +351,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.TradabilityStream().Symbol(symbol).Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.TradabilityStream().Symbol(symbol).Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.TradabilityStream``: %v\n", err)
 		return
@@ -370,6 +381,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;. | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
@@ -401,6 +413,7 @@ import (
 
 func main() {
 	symbol := "AAPL" // string | US-equity ticker (UPPERCASE), e.g. `AAPL`.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -414,7 +427,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.TradingStatusStream().Symbol(symbol).Execute()
+	handler, err := wsClient.WebsocketStreams.MarketStreamsAPI.TradingStatusStream().Symbol(symbol).Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `MarketStreamsAPI.TradingStatusStream``: %v\n", err)
 		return
@@ -444,6 +457,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | US-equity ticker (UPPERCASE), e.g. &#x60;AAPL&#x60;. | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 

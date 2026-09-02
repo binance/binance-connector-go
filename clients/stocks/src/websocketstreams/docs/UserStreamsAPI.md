@@ -30,6 +30,7 @@ import (
 
 func main() {
 	listenKey := "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s6af0dkfj2a97b8a91d" // string | User data listen key obtained from the Listen Key endpoint.
+	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -43,7 +44,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.UserStreamsAPI.OrderReportStream().ListenKey(listenKey).Execute()
+	handler, err := wsClient.WebsocketStreams.UserStreamsAPI.OrderReportStream().ListenKey(listenKey).Id(id).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `UserStreamsAPI.OrderReportStream``: %v\n", err)
 		return
@@ -73,6 +74,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **listenKey** | **string** | User data listen key obtained from the Listen Key endpoint. | 
+ **id** | **string** | Unique WebSocket request ID. | 
 
 ### Authorization
 
