@@ -458,8 +458,51 @@ func TestSendRequest_RetryLogic(t *testing.T) {
 		t.Errorf("Expected 3 attempts (1 initial + 2 retries), got %d", attempts)
 	}
 
-	if resp.Status != 0 {
-		t.Errorf("Expected status 0 on failure, got %d", resp.Status)
+	if resp.Status != 500 {
+		t.Errorf("Expected status 500 on failure, got %d", resp.Status)
+	}
+}
+
+func TestSendRequest_RetryEligibility(t *testing.T) {
+	tests := []struct {
+		name       string
+		method     string
+		statusCode int
+		attempts   int
+	}{
+		{name: "post server error", method: http.MethodPost, statusCode: http.StatusInternalServerError, attempts: 1},
+		{name: "put server error", method: http.MethodPut, statusCode: http.StatusServiceUnavailable, attempts: 1},
+		{name: "non-retriable server status", method: http.MethodGet, statusCode: http.StatusNotImplemented, attempts: 1},
+		{name: "retriable get server error", method: http.MethodGet, statusCode: http.StatusServiceUnavailable, attempts: 3},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			attempts := 0
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				attempts++
+				w.WriteHeader(tt.statusCode)
+			}))
+			defer server.Close()
+
+			cfg := &common.ConfigurationRestAPI{
+				Retries: 2,
+				Backoff: 1,
+			}
+
+			resp, err := common.SendRequest[SampleResponse](
+				context.Background(), server.URL, tt.method, url.Values{}, nil, cfg, false,
+			)
+			if err == nil {
+				t.Fatal("Expected request to fail")
+			}
+			if attempts != tt.attempts {
+				t.Fatalf("Expected %d attempts, got %d", tt.attempts, attempts)
+			}
+			if resp.Status != tt.statusCode {
+				t.Fatalf("Expected status %d on failure, got %d", tt.statusCode, resp.Status)
+			}
+		})
 	}
 }
 

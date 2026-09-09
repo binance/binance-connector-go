@@ -116,6 +116,7 @@ func NewRateLimitBanError(msg string) *RateLimitBanError {
 // ServerError represents an error that occurs when there is an internal server error.
 type ServerError struct {
 	BaseError
+	StatusCode int
 }
 
 func NewServerError(msg string, statusCode int) *ServerError {
@@ -127,6 +128,7 @@ func NewServerError(msg string, statusCode int) *ServerError {
 			Name:    "ServerError",
 			Message: msg,
 		},
+		StatusCode: statusCode,
 	}
 }
 

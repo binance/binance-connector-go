@@ -1,5 +1,15 @@
 ### Changelog
 
+## 2.8.1 - 2026-09-09
+
+### Added (1)
+
+- Added `StatusCode` to `ServerError`.
+
+### Changed (1)
+
+- Fixed `5xx` responses being retried regardless of the HTTP method and status code: only `GET` and `DELETE` are retried, and only on `500`, `502`, `503` and `504`. Other `5xx` now fail immediately with a `ServerError`.
+
 ## 2.8.0 - 2026-08-28
 
 ### Added (2)
