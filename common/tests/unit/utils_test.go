@@ -458,20 +458,22 @@ func TestSendRequest_RetryLogic(t *testing.T) {
 		t.Errorf("Expected 3 attempts (1 initial + 2 retries), got %d", attempts)
 	}
 
-	if resp.Status != 0 {
-		t.Errorf("Expected status 0 on failure, got %d", resp.Status)
+	if resp.Status != 500 {
+		t.Errorf("Expected status 500 on failure, got %d", resp.Status)
 	}
 }
 
-func TestSendRequest_DoesNotRetryUnsafeMethodsOrStatuses(t *testing.T) {
+func TestSendRequest_RetryEligibility(t *testing.T) {
 	tests := []struct {
 		name       string
 		method     string
 		statusCode int
+		attempts   int
 	}{
-		{name: "post server error", method: http.MethodPost, statusCode: http.StatusInternalServerError},
-		{name: "put server error", method: http.MethodPut, statusCode: http.StatusServiceUnavailable},
-		{name: "non-retriable server status", method: http.MethodGet, statusCode: http.StatusNotImplemented},
+		{name: "post server error", method: http.MethodPost, statusCode: http.StatusInternalServerError, attempts: 1},
+		{name: "put server error", method: http.MethodPut, statusCode: http.StatusServiceUnavailable, attempts: 1},
+		{name: "non-retriable server status", method: http.MethodGet, statusCode: http.StatusNotImplemented, attempts: 1},
+		{name: "retriable get server error", method: http.MethodGet, statusCode: http.StatusServiceUnavailable, attempts: 3},
 	}
 
 	for _, tt := range tests {
@@ -488,14 +490,17 @@ func TestSendRequest_DoesNotRetryUnsafeMethodsOrStatuses(t *testing.T) {
 				Backoff: 1,
 			}
 
-			_, err := common.SendRequest[SampleResponse](
+			resp, err := common.SendRequest[SampleResponse](
 				context.Background(), server.URL, tt.method, url.Values{}, nil, cfg, false,
 			)
 			if err == nil {
 				t.Fatal("Expected request to fail")
 			}
-			if attempts != 1 {
-				t.Fatalf("Expected one attempt, got %d", attempts)
+			if attempts != tt.attempts {
+				t.Fatalf("Expected %d attempts, got %d", tt.attempts, attempts)
+			}
+			if resp.Status != tt.statusCode {
+				t.Fatalf("Expected status %d on failure, got %d", tt.statusCode, resp.Status)
 			}
 		})
 	}
