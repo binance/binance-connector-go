@@ -38,6 +38,7 @@ const (
 	GetIncomeHistoryIncomeTypeParameterStrategyUmfuturesTransfer GetIncomeHistoryIncomeTypeParameter = "STRATEGY_UMFUTURES_TRANSFER"
 	GetIncomeHistoryIncomeTypeParameterFeeReturn                 GetIncomeHistoryIncomeTypeParameter = "FEE_RETURN"
 	GetIncomeHistoryIncomeTypeParameterBfusdReward               GetIncomeHistoryIncomeTypeParameter = "BFUSD_REWARD"
+	GetIncomeHistoryIncomeTypeParameterSpecialFundingFee         GetIncomeHistoryIncomeTypeParameter = "SPECIAL_FUNDING_FEE"
 )
 
 // All allowed values of GetIncomeHistoryIncomeTypeParameter enum
@@ -64,6 +65,7 @@ var AllowedGetIncomeHistoryIncomeTypeParameterEnumValues = []GetIncomeHistoryInc
 	"STRATEGY_UMFUTURES_TRANSFER",
 	"FEE_RETURN",
 	"BFUSD_REWARD",
+	"SPECIAL_FUNDING_FEE",
 }
 
 func (v *GetIncomeHistoryIncomeTypeParameter) UnmarshalJSON(src []byte) error {

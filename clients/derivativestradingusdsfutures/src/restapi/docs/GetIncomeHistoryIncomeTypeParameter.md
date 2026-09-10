@@ -24,6 +24,7 @@
 * `GetIncomeHistoryIncomeTypeParameterStrategyUmfuturesTransfer` (value: `"STRATEGY_UMFUTURES_TRANSFER"`)
 * `GetIncomeHistoryIncomeTypeParameterFeeReturn` (value: `"FEE_RETURN"`)
 * `GetIncomeHistoryIncomeTypeParameterBfusdReward` (value: `"BFUSD_REWARD"`)
+* `GetIncomeHistoryIncomeTypeParameterSpecialFundingFee` (value: `"SPECIAL_FUNDING_FEE"`)
 
 
 [[Back to README]](../README.md)
