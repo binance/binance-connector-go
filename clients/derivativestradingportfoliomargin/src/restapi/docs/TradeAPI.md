@@ -7,7 +7,6 @@ Method        | HTTP request  | Description
 [**CancelAllCmOpenConditionalOrders**](TradeAPI.md#CancelAllCmOpenConditionalOrders) | **Delete** /papi/v1/cm/conditional/allOpenOrders | Cancel All CM Open Conditional Orders (TRADE)
 [**CancelAllCmOpenOrders**](TradeAPI.md#CancelAllCmOpenOrders) | **Delete** /papi/v1/cm/allOpenOrders | Cancel All CM Open Orders (TRADE)
 [**CancelAllUmAlgoOpenOrders**](TradeAPI.md#CancelAllUmAlgoOpenOrders) | **Delete** /papi/v1/um/algo/allOpenOrders | Cancel All UM Algo Open Orders (TRADE)
-[**CancelAllUmOpenConditionalOrders**](TradeAPI.md#CancelAllUmOpenConditionalOrders) | **Delete** /papi/v1/um/conditional/allOpenOrders | Cancel All UM Open Conditional Orders - Deprecated (TRADE)
 [**CancelAllUmOpenOrders**](TradeAPI.md#CancelAllUmOpenOrders) | **Delete** /papi/v1/um/allOpenOrders | Cancel All UM Open Orders (TRADE)
 [**CancelCmConditionalOrder**](TradeAPI.md#CancelCmConditionalOrder) | **Delete** /papi/v1/cm/conditional/order | Cancel CM Conditional Order (TRADE)
 [**CancelCmOrder**](TradeAPI.md#CancelCmOrder) | **Delete** /papi/v1/cm/order | Cancel CM Order (TRADE)
@@ -15,7 +14,6 @@ Method        | HTTP request  | Description
 [**CancelMarginAccountOcoOrders**](TradeAPI.md#CancelMarginAccountOcoOrders) | **Delete** /papi/v1/margin/orderList | Cancel Margin Account OCO Orders (TRADE)
 [**CancelMarginAccountOrder**](TradeAPI.md#CancelMarginAccountOrder) | **Delete** /papi/v1/margin/order | Cancel Margin Account Order (TRADE)
 [**CancelUmAlgoOrder**](TradeAPI.md#CancelUmAlgoOrder) | **Delete** /papi/v1/um/algo/order | Cancel UM Algo Order (TRADE)
-[**CancelUmConditionalOrder**](TradeAPI.md#CancelUmConditionalOrder) | **Delete** /papi/v1/um/conditional/order | Cancel UM Conditional Order - Deprecated (TRADE)
 [**CancelUmOrder**](TradeAPI.md#CancelUmOrder) | **Delete** /papi/v1/um/order | Cancel UM Order (TRADE)
 [**CmAccountTradeList**](TradeAPI.md#CmAccountTradeList) | **Get** /papi/v1/cm/userTrades | CM Account Trade List (USER_DATA)
 [**CmPositionAdlQuantileEstimation**](TradeAPI.md#CmPositionAdlQuantileEstimation) | **Get** /papi/v1/cm/adlQuantile | CM Position ADL Quantile Estimation (USER_DATA)
@@ -32,17 +30,14 @@ Method        | HTTP request  | Description
 [**NewCmOrder**](TradeAPI.md#NewCmOrder) | **Post** /papi/v1/cm/order | New CM Order (TRADE)
 [**NewMarginOrder**](TradeAPI.md#NewMarginOrder) | **Post** /papi/v1/margin/order | New Margin Order (TRADE)
 [**NewUmAlgoOrder**](TradeAPI.md#NewUmAlgoOrder) | **Post** /papi/v1/um/algo/order | New UM Algo Order (TRADE)
-[**NewUmConditionalOrder**](TradeAPI.md#NewUmConditionalOrder) | **Post** /papi/v1/um/conditional/order | New UM Conditional Order - Deprecated (TRADE)
 [**NewUmOrder**](TradeAPI.md#NewUmOrder) | **Post** /papi/v1/um/order | New UM Order (TRADE)
 [**QueryAllCmConditionalOrders**](TradeAPI.md#QueryAllCmConditionalOrders) | **Get** /papi/v1/cm/conditional/allOrders | Query All CM Conditional Orders (USER_DATA)
 [**QueryAllCmOrders**](TradeAPI.md#QueryAllCmOrders) | **Get** /papi/v1/cm/allOrders | Query All CM Orders (USER_DATA)
 [**QueryAllCurrentCmOpenConditionalOrders**](TradeAPI.md#QueryAllCurrentCmOpenConditionalOrders) | **Get** /papi/v1/cm/conditional/openOrders | Query All Current CM Open Conditional Orders (USER_DATA)
 [**QueryAllCurrentCmOpenOrders**](TradeAPI.md#QueryAllCurrentCmOpenOrders) | **Get** /papi/v1/cm/openOrders | Query All Current CM Open Orders (USER_DATA)
 [**QueryAllCurrentUmOpenAlgoOrders**](TradeAPI.md#QueryAllCurrentUmOpenAlgoOrders) | **Get** /papi/v1/um/algo/openAlgoOrders | Query All Current UM Open Algo Orders (USER_DATA)
-[**QueryAllCurrentUmOpenConditionalOrders**](TradeAPI.md#QueryAllCurrentUmOpenConditionalOrders) | **Get** /papi/v1/um/conditional/openOrders | Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
 [**QueryAllCurrentUmOpenOrders**](TradeAPI.md#QueryAllCurrentUmOpenOrders) | **Get** /papi/v1/um/openOrders | Query All Current UM Open Orders (USER_DATA)
 [**QueryAllMarginAccountOrders**](TradeAPI.md#QueryAllMarginAccountOrders) | **Get** /papi/v1/margin/allOrders | Query All Margin Account Orders (USER_DATA)
-[**QueryAllUmConditionalOrders**](TradeAPI.md#QueryAllUmConditionalOrders) | **Get** /papi/v1/um/conditional/allOrders | Query All UM Conditional Orders - Deprecated (USER_DATA)
 [**QueryAllUmOrders**](TradeAPI.md#QueryAllUmOrders) | **Get** /papi/v1/um/allOrders | Query All UM Orders (USER_DATA)
 [**QueryCmConditionalOrderHistory**](TradeAPI.md#QueryCmConditionalOrderHistory) | **Get** /papi/v1/cm/conditional/orderHistory | Query CM Conditional Order History (USER_DATA)
 [**QueryCmModifyOrderHistory**](TradeAPI.md#QueryCmModifyOrderHistory) | **Get** /papi/v1/cm/orderAmendment | Query CM Modify Order History (TRADE)
@@ -51,14 +46,12 @@ Method        | HTTP request  | Description
 [**QueryCurrentCmOpenOrder**](TradeAPI.md#QueryCurrentCmOpenOrder) | **Get** /papi/v1/cm/openOrder | Query Current CM Open Order (USER_DATA)
 [**QueryCurrentMarginOpenOrder**](TradeAPI.md#QueryCurrentMarginOpenOrder) | **Get** /papi/v1/margin/openOrders | Query Current Margin Open Order (USER_DATA)
 [**QueryCurrentUmOpenAlgoOrder**](TradeAPI.md#QueryCurrentUmOpenAlgoOrder) | **Get** /papi/v1/um/algo/algoOrder | Query Current UM Open Algo Order (USER_DATA)
-[**QueryCurrentUmOpenConditionalOrder**](TradeAPI.md#QueryCurrentUmOpenConditionalOrder) | **Get** /papi/v1/um/conditional/openOrder | Query Current UM Open Conditional Order - Deprecated (USER_DATA)
 [**QueryCurrentUmOpenOrder**](TradeAPI.md#QueryCurrentUmOpenOrder) | **Get** /papi/v1/um/openOrder | Query Current UM Open Order (USER_DATA)
 [**QueryMarginAccountOrder**](TradeAPI.md#QueryMarginAccountOrder) | **Get** /papi/v1/margin/order | Query Margin Account Order (USER_DATA)
 [**QueryMarginAccountsAllOco**](TradeAPI.md#QueryMarginAccountsAllOco) | **Get** /papi/v1/margin/allOrderList | Query Margin Account&#39;s all OCO (USER_DATA)
 [**QueryMarginAccountsOco**](TradeAPI.md#QueryMarginAccountsOco) | **Get** /papi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA)
 [**QueryMarginAccountsOpenOco**](TradeAPI.md#QueryMarginAccountsOpenOco) | **Get** /papi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA)
 [**QueryUmAlgoOrderHistory**](TradeAPI.md#QueryUmAlgoOrderHistory) | **Get** /papi/v1/um/algo/allAlgoOrders | Query UM Algo Order History (USER_DATA)
-[**QueryUmConditionalOrderHistory**](TradeAPI.md#QueryUmConditionalOrderHistory) | **Get** /papi/v1/um/conditional/orderHistory | Query UM Conditional Order History - Deprecated (USER_DATA)
 [**QueryUmModifyOrderHistory**](TradeAPI.md#QueryUmModifyOrderHistory) | **Get** /papi/v1/um/orderAmendment | Query UM Modify Order History (TRADE)
 [**QueryUmOrder**](TradeAPI.md#QueryUmOrder) | **Get** /papi/v1/um/order | Query UM Order (USER_DATA)
 [**QueryUsersCmForceOrders**](TradeAPI.md#QueryUsersCmForceOrders) | **Get** /papi/v1/cm/forceOrders | Query User&#39;s CM Force Orders (USER_DATA)
@@ -267,76 +260,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**CancelAllUmAlgoOpenOrdersResponse**](CancelAllUmAlgoOpenOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## CancelAllUmOpenConditionalOrders
-
-> CancelAllUmOpenConditionalOrdersResponse CancelAllUmOpenConditionalOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
-
-Cancel All UM Open Conditional Orders - Deprecated (TRADE)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string | Symbol
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.CancelAllUmOpenConditionalOrders(context.Background()).Symbol(symbol).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.CancelAllUmOpenConditionalOrders``: %v\n", err)
-		return
-	}
-
-	// response from `CancelAllUmOpenConditionalOrders`: CancelAllUmOpenConditionalOrdersResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**CancelAllUmOpenConditionalOrdersResponse**](CancelAllUmOpenConditionalOrdersResponse.md)
 
 ### Authorization
 
@@ -849,80 +772,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**CancelUmAlgoOrderResponse**](CancelUmAlgoOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## CancelUmConditionalOrder
-
-> CancelUmConditionalOrderResponse CancelUmConditionalOrder(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-
-Cancel UM Conditional Order - Deprecated (TRADE)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string | Symbol
-	strategyId := int64(1) // int64 |  (optional)
-	newClientStrategyId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.CancelUmConditionalOrder(context.Background()).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.CancelUmConditionalOrder``: %v\n", err)
-		return
-	}
-
-	// response from `CancelUmConditionalOrder`: CancelUmConditionalOrderResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
- **strategyId** | **int64** |  | 
- **newClientStrategyId** | **string** |  | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**CancelUmConditionalOrderResponse**](CancelUmConditionalOrderResponse.md)
 
 ### Authorization
 
@@ -2247,108 +2096,6 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## NewUmConditionalOrder
-
-> NewUmConditionalOrderResponse NewUmConditionalOrder(ctx).Symbol(symbol).Side(side).StrategyType(strategyType).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).WorkingType(workingType).PriceProtect(priceProtect).NewClientStrategyId(newClientStrategyId).StopPrice(stopPrice).ActivationPrice(activationPrice).CallbackRate(callbackRate).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
-
-New UM Conditional Order - Deprecated (TRADE)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string | Symbol
-	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | 
-	strategyType := models.NewCmConditionalOrderStrategyTypeParameterStop // NewCmConditionalOrderStrategyTypeParameter | 
-	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
-	timeInForce := models.NewUmConditionalOrderTimeInForceParameterGtc // NewUmConditionalOrderTimeInForceParameter |  (optional)
-	quantity := float64(1.0) // float64 |  (optional)
-	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". Cannot be sent in Hedge Mode ; cannot be sent with `closePosition`=`true` (optional)
-	price := float64(1.0) // float64 |  (optional)
-	workingType := models.NewCmConditionalOrderWorkingTypeParameterMarkPrice // NewCmConditionalOrderWorkingTypeParameter | stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\" (optional)
-	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders (optional)
-	newClientStrategyId := "1" // string | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$` (optional)
-	stopPrice := float64(1.0) // float64 | Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders. (optional)
-	activationPrice := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
-	callbackRate := float64(1.0) // float64 | Used with `TRAILING_STOP_MARKET` orders. (optional)
-	priceMatch := models.ModifyCmOrderPriceMatchParameterOpponent // ModifyCmOrderPriceMatchParameter | only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price` (optional)
-	selfTradePreventionMode := models.NewMarginOrderSelfTradePreventionModeParameterNone // NewMarginOrderSelfTradePreventionModeParameter | `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers (optional)
-	goodTillDate := int64(1770736694138) // int64 | order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.NewUmConditionalOrder(context.Background()).Symbol(symbol).Side(side).StrategyType(strategyType).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).WorkingType(workingType).PriceProtect(priceProtect).NewClientStrategyId(newClientStrategyId).StopPrice(stopPrice).ActivationPrice(activationPrice).CallbackRate(callbackRate).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.NewUmConditionalOrder``: %v\n", err)
-		return
-	}
-
-	// response from `NewUmConditionalOrder`: NewUmConditionalOrderResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
- **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) |  | 
- **strategyType** | [**NewCmConditionalOrderStrategyTypeParameter**](NewCmConditionalOrderStrategyTypeParameter.md) |  | 
- **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
- **timeInForce** | [**NewUmConditionalOrderTimeInForceParameter**](NewUmConditionalOrderTimeInForceParameter.md) |  | 
- **quantity** | **float64** |  | 
- **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Cannot be sent in Hedge Mode ; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
- **price** | **float64** |  | 
- **workingType** | [**NewCmConditionalOrderWorkingTypeParameter**](NewCmConditionalOrderWorkingTypeParameter.md) | stopPrice triggered by: \&quot;MARK_PRICE\&quot;, \&quot;CONTRACT_PRICE\&quot;. Default \&quot;CONTRACT_PRICE\&quot; | 
- **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders | 
- **newClientStrategyId** | **string** | A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: &#x60;^[\\.A-Z\\:/a-z0-9_-]{1,32}$&#x60; | 
- **stopPrice** | **float64** | Used with &#x60;STOP/STOP_MARKET&#x60; or &#x60;TAKE_PROFIT/TAKE_PROFIT_MARKET&#x60; orders. | 
- **activationPrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
- **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60; orders. | 
- **priceMatch** | [**ModifyCmOrderPriceMatchParameter**](ModifyCmOrderPriceMatchParameter.md) | only avaliable for &#x60;LIMIT&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60; order; can be set to &#x60;OPPONENT&#x60;/ &#x60;OPPONENT_5&#x60;/ &#x60;OPPONENT_10&#x60;/ &#x60;OPPONENT_20&#x60;: /&#x60;QUEUE&#x60;/ &#x60;QUEUE_5&#x60;/ &#x60;QUEUE_10&#x60;/ &#x60;QUEUE_20&#x60;; Can&#39;t be passed together with &#x60;price&#x60; | 
- **selfTradePreventionMode** | [**NewMarginOrderSelfTradePreventionModeParameter**](NewMarginOrderSelfTradePreventionModeParameter.md) | &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers | 
- **goodTillDate** | **int64** | order cancel time for timeInForce &#x60;GTD&#x60;, mandatory when &#x60;timeInforce&#x60; set to &#x60;GTD&#x60;; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode. | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**NewUmConditionalOrderResponse**](NewUmConditionalOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
 ## NewUmOrder
 
 > NewUmOrderResponse NewUmOrder(ctx).Symbol(symbol).Side(side).Type(type_).PositionSide(positionSide).TimeInForce(timeInForce).Quantity(quantity).ReduceOnly(reduceOnly).Price(price).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).PriceMatch(priceMatch).SelfTradePreventionMode(selfTradePreventionMode).GoodTillDate(goodTillDate).RecvWindow(recvWindow).Execute()
@@ -2376,7 +2123,7 @@ func main() {
 	side := models.NewCmConditionalOrderSideParameterBuy // NewCmConditionalOrderSideParameter | 
 	type_ := models.NewCmOrderTypeParameterLimit // NewCmOrderTypeParameter | 
 	positionSide := models.NewCmConditionalOrderPositionSideParameterBoth // NewCmConditionalOrderPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
-	timeInForce := models.NewUmConditionalOrderTimeInForceParameterGtc // NewUmConditionalOrderTimeInForceParameter | Valid values (optional)
+	timeInForce := models.NewUmOrderTimeInForceParameterGtc // NewUmOrderTimeInForceParameter | Valid values (optional)
 	quantity := float64(1.0) // float64 | Place amount (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | \"true\" or \"false\". default \"false\". Cannot be sent in Hedge Mode . (optional)
 	price := float64(1.0) // float64 | Order price (optional)
@@ -2417,7 +2164,7 @@ Name          | Type          | Description   | Notes
  **side** | [**NewCmConditionalOrderSideParameter**](NewCmConditionalOrderSideParameter.md) |  | 
  **type_** | [**NewCmOrderTypeParameter**](NewCmOrderTypeParameter.md) |  | 
  **positionSide** | [**NewCmConditionalOrderPositionSideParameter**](NewCmConditionalOrderPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
- **timeInForce** | [**NewUmConditionalOrderTimeInForceParameter**](NewUmConditionalOrderTimeInForceParameter.md) | Valid values | 
+ **timeInForce** | [**NewUmOrderTimeInForceParameter**](NewUmOrderTimeInForceParameter.md) | Valid values | 
  **quantity** | **float64** | Place amount | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | \&quot;true\&quot; or \&quot;false\&quot;. default \&quot;false\&quot;. Cannot be sent in Hedge Mode . | 
  **price** | **float64** | Order price | 
@@ -2817,76 +2564,6 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## QueryAllCurrentUmOpenConditionalOrders
-
-> QueryAllCurrentUmOpenConditionalOrdersResponse QueryAllCurrentUmOpenConditionalOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
-
-Query All Current UM Open Conditional Orders - Deprecated (USER_DATA)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.QueryAllCurrentUmOpenConditionalOrders(context.Background()).Symbol(symbol).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryAllCurrentUmOpenConditionalOrders``: %v\n", err)
-		return
-	}
-
-	// response from `QueryAllCurrentUmOpenConditionalOrders`: QueryAllCurrentUmOpenConditionalOrdersResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**QueryAllCurrentUmOpenConditionalOrdersResponse**](QueryAllCurrentUmOpenConditionalOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
 ## QueryAllCurrentUmOpenOrders
 
 > QueryAllCurrentUmOpenOrdersResponse QueryAllCurrentUmOpenOrders(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
@@ -3023,84 +2700,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**QueryAllMarginAccountOrdersResponse**](QueryAllMarginAccountOrdersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## QueryAllUmConditionalOrders
-
-> QueryAllUmConditionalOrdersResponse QueryAllUmConditionalOrders(ctx).Symbol(symbol).StrategyId(strategyId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
-
-Query All UM Conditional Orders - Deprecated (USER_DATA)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string |  (optional)
-	strategyId := int64(1) // int64 |  (optional)
-	startTime := int64(1623319461670) // int64 | Timestamp in ms to get funding from INCLUSIVE. (optional)
-	endTime := int64(1641782889000) // int64 | Timestamp in ms to get funding until INCLUSIVE. (optional)
-	limit := int64(500) // int64 | Number of results returned. (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.QueryAllUmConditionalOrders(context.Background()).Symbol(symbol).StrategyId(strategyId).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryAllUmConditionalOrders``: %v\n", err)
-		return
-	}
-
-	// response from `QueryAllUmConditionalOrders`: QueryAllUmConditionalOrdersResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** |  | 
- **strategyId** | **int64** |  | 
- **startTime** | **int64** | Timestamp in ms to get funding from INCLUSIVE. | 
- **endTime** | **int64** | Timestamp in ms to get funding until INCLUSIVE. | 
- **limit** | **int64** | Number of results returned. | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**QueryAllUmConditionalOrdersResponse**](QueryAllUmConditionalOrdersResponse.md)
 
 ### Authorization
 
@@ -3709,80 +3308,6 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
-## QueryCurrentUmOpenConditionalOrder
-
-> QueryCurrentUmOpenConditionalOrderResponse QueryCurrentUmOpenConditionalOrder(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-
-Query Current UM Open Conditional Order - Deprecated (USER_DATA)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string | Symbol
-	strategyId := int64(1) // int64 |  (optional)
-	newClientStrategyId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.QueryCurrentUmOpenConditionalOrder(context.Background()).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryCurrentUmOpenConditionalOrder``: %v\n", err)
-		return
-	}
-
-	// response from `QueryCurrentUmOpenConditionalOrder`: QueryCurrentUmOpenConditionalOrderResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
- **strategyId** | **int64** |  | 
- **newClientStrategyId** | **string** |  | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**QueryCurrentUmOpenConditionalOrderResponse**](QueryCurrentUmOpenConditionalOrderResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
 ## QueryCurrentUmOpenOrder
 
 > QueryCurrentUmOpenOrderResponse QueryCurrentUmOpenOrder(ctx).Symbol(symbol).OrderId(orderId).OrigClientOrderId(origClientOrderId).RecvWindow(recvWindow).Execute()
@@ -4213,80 +3738,6 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**QueryUmAlgoOrderHistoryResponse**](QueryUmAlgoOrderHistoryResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Accept**: application/json
-
-[[Back to README]](../../../README.md)
-
-
-## QueryUmConditionalOrderHistory
-
-> QueryUmConditionalOrderHistoryResponse QueryUmConditionalOrderHistory(ctx).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-
-Query UM Conditional Order History - Deprecated (USER_DATA)
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"log"
-	"os"
-
-	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	symbol := "BTCUSDT" // string | Symbol
-	strategyId := int64(1) // int64 |  (optional)
-	newClientStrategyId := "1" // string |  (optional)
-	recvWindow := int64(5000) // int64 |  (optional)
-
-	configuration := common.NewConfigurationRestAPI(
-		common.WithBasePath(common.SpotRestApiProdUrl),
-		common.WithApiKey("Your API Key"),
-		common.WithApiSecret("Your API Secret"),
-	)
-	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
-
-	resp, err := apiClient.RestApi.TradeAPI.QueryUmConditionalOrderHistory(context.Background()).Symbol(symbol).StrategyId(strategyId).NewClientStrategyId(newClientStrategyId).RecvWindow(recvWindow).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryUmConditionalOrderHistory``: %v\n", err)
-		return
-	}
-
-	// response from `QueryUmConditionalOrderHistory`: QueryUmConditionalOrderHistoryResponse
-	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
-	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
-
-	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
-	log.Printf("Response: %s\n", string(dataValue))
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **symbol** | **string** | Symbol | 
- **strategyId** | **int64** |  | 
- **newClientStrategyId** | **string** |  | 
- **recvWindow** | **int64** |  | 
-
-### Return type
-
-[**QueryUmConditionalOrderHistoryResponse**](QueryUmConditionalOrderHistoryResponse.md)
 
 ### Authorization
 

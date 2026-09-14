@@ -1,5 +1,31 @@
 ### Changelog
 
+## 1.18.0 - 2026-09-14
+
+### Changed (7)
+
+#### REST API
+
+- Removed response schema `newUmConditionalOrderResponse`
+- Removed response schema `queryAllUmConditionalOrdersResponse`
+- Removed response schema `cancelAllUmOpenConditionalOrdersResponse`
+- Removed response schema `cancelUmConditionalOrderResponse`
+- Removed response schema `queryCurrentUmOpenConditionalOrderResponse`
+- Removed response schema `queryAllCurrentUmOpenConditionalOrdersResponse`
+- Removed response schema `queryUmConditionalOrderHistoryResponse`
+
+### Removed (7)
+
+#### REST API
+
+- `cancelAllUmOpenConditionalOrders()` (`DELETE /papi/v1/um/conditional/allOpenOrders`)
+- `cancelUmConditionalOrder()` (`DELETE /papi/v1/um/conditional/order`)
+- `newUmConditionalOrder()` (`POST /papi/v1/um/conditional/order`)
+- `queryAllCurrentUmOpenConditionalOrders()` (`GET /papi/v1/um/conditional/openOrders`)
+- `queryAllUmConditionalOrders()` (`GET /papi/v1/um/conditional/allOrders`)
+- `queryCurrentUmOpenConditionalOrder()` (`GET /papi/v1/um/conditional/openOrder`)
+- `queryUmConditionalOrderHistory()` (`GET /papi/v1/um/conditional/orderHistory`)
+
 ## 1.17.1 - 2026-09-09
 
 ### Changed (1)
