@@ -1765,6 +1765,7 @@ type ApiModifyOrderRequest struct {
 	origClientOrderId *string
 	priceMatch        *models.NewAlgoOrderPriceMatchParameter
 	modifyId          *int64
+	reduceOnly        *models.NewAlgoOrderClosePositionParameter
 	recvWindow        *int64
 }
 
@@ -1811,6 +1812,12 @@ func (r ApiModifyOrderRequest) ModifyId(modifyId int64) ApiModifyOrderRequest {
 	return r
 }
 
+// See notes below for behavior.
+func (r ApiModifyOrderRequest) ReduceOnly(reduceOnly models.NewAlgoOrderClosePositionParameter) ApiModifyOrderRequest {
+	r.reduceOnly = &reduceOnly
+	return r
+}
+
 func (r ApiModifyOrderRequest) RecvWindow(recvWindow int64) ApiModifyOrderRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -1835,6 +1842,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param origClientOrderId -
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
 @param modifyId -  User-defined modification identifier, returned as-is in the response. Optional; not validated for uniqueness.
+@param reduceOnly -  See notes below for behavior.
 @param recvWindow -
 @return ApiModifyOrderRequest
 */
@@ -1886,6 +1894,9 @@ func (a *TradeAPIService) ModifyOrderExecute(r ApiModifyOrderRequest) (*common.R
 	}
 	if r.modifyId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "modifyId", r.modifyId, "form", "")
+	}
+	if r.reduceOnly != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "reduceOnly", r.reduceOnly, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
@@ -2033,7 +2044,7 @@ func (r ApiNewAlgoOrderRequest) NewOrderRespType(newOrderRespType models.NewAlgo
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers / &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
+// &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers / &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiNewAlgoOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiNewAlgoOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -2079,7 +2090,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param callbackRate -  Used with `TRAILING_STOP_MARKET` orders
 @param clientAlgoId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
 @param newOrderRespType -
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers / `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
+@param selfTradePreventionMode -  `EXPIRE_TAKER`: expire taker order when STP triggers / `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers; default `NONE`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiNewAlgoOrderRequest
@@ -2268,7 +2279,7 @@ func (r ApiNewOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatchP
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60;
+// &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers; default &#x60;EXPIRE_MAKER&#x60;
 func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -2307,7 +2318,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,36}$`
 @param newOrderRespType -
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `EXPIRE_MAKER`
+@param selfTradePreventionMode -  `EXPIRE_TAKER`: expire taker order when STP triggers/ `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers; default `EXPIRE_MAKER`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiNewOrderRequest
@@ -3194,7 +3205,7 @@ func (r ApiTestOrderRequest) PriceMatch(priceMatch models.NewAlgoOrderPriceMatch
 	return r
 }
 
-// &#x60;NONE&#x60;:No STP / &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers; default &#x60;NONE&#x60;
+// &#x60;NONE&#x60;: No STP / &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers; default &#x60;NONE&#x60;
 func (r ApiTestOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewAlgoOrderSelfTradePreventionModeParameter) ApiTestOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -3239,7 +3250,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param priceProtect -
 @param newOrderRespType -
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
-@param selfTradePreventionMode -  `NONE`:No STP / `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers; default `NONE`
+@param selfTradePreventionMode -  `NONE`: No STP / `EXPIRE_TAKER`: expire taker order when STP triggers/ `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers; default `NONE`
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000
 @param recvWindow -
 @return ApiTestOrderRequest

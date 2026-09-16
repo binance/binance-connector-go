@@ -11,7 +11,7 @@ import (
 	"fmt"
 )
 
-// PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode EXPIRE_TAKER:expire taker order when STP triggers/ EXPIRE_MAKER:expire taker order when STP triggers/ EXPIRE_BOTH:expire both orders when STP triggers; default NONE
+// PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode EXPIRE_TAKER: expire taker order when STP triggers/ EXPIRE_MAKER: expire taker order when STP triggers/ EXPIRE_BOTH: expire both orders when STP triggers; default NONE
 type PlaceMultipleOrdersBatchOrdersParameterInnerSelfTradePreventionMode string
 
 // List of placeMultipleOrders_batchOrders_parameter_inner_selfTradePreventionMode
