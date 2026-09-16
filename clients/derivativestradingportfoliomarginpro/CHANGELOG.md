@@ -1,5 +1,14 @@
 ### Changelog
 
+## 1.10.2 - 2026-09-16
+
+### Changed (2)
+
+#### WebSocket Streams
+
+- Modified response schema `UserDataStreamEventsResponse`:
+  - oneOf modified
+
 ## 1.10.1 - 2026-09-09
 
 ### Changed (1)

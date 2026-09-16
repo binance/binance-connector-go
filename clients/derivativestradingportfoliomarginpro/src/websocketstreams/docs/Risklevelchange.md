@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **E** | Pointer to **int64** | Event Time | [optional] 
 **U** | Pointer to **string** | uniMMR level | [optional] 
-**S** | Pointer to **string** | Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION | [optional] 
+**S** | Pointer to **string** | Risk level: NORMAL, MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION | [optional] 
 **Eq** | Pointer to **string** | Account equity in USD value | [optional] 
 **Ae** | Pointer to **string** | Actual equity without collateral rate in USD value | [optional] 
 **M** | Pointer to **string** | Total maintenance margin in USD value | [optional] 

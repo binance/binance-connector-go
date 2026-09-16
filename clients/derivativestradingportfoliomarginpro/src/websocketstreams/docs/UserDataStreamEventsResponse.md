@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **Mm** | Pointer to **string** | Total maintenance margin in USD | [optional] 
 **Avb** | Pointer to **string** | Total available balance in USD | [optional] 
 **Vmw** | Pointer to **string** | Virtual maxWithdraw amount in USD | [optional] 
-**S** | Pointer to **string** | Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION | [optional] 
+**S** | Pointer to **string** | Risk level: NORMAL, MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION | [optional] 
 **M** | Pointer to **string** | Total maintenance margin in USD value | [optional] 
 
 ## Methods

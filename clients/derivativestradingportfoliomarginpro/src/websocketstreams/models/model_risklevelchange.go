@@ -21,7 +21,7 @@ type Risklevelchange struct {
 	E *int64 `json:"E,omitempty"`
 	// uniMMR level
 	Smallu *string `json:"u,omitempty"`
-	// Risk level: MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
+	// Risk level: NORMAL, MARGIN_CALL, REDUCE_ONLY, FORCE_LIQUIDATION
 	Smalls *string `json:"s,omitempty"`
 	// Account equity in USD value
 	Smalleq *string `json:"eq,omitempty"`
