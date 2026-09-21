@@ -9,6 +9,7 @@ Name         | Type          | Description.  | Notes
 **KR_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesKREQUITY**](TradingScheduleResponseMarketSchedulesKREQUITY.md) |  | [optional] 
 **HK_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  | [optional] 
 **CN_EQUITY** | Pointer to [**TradingScheduleResponseMarketSchedulesHKEQUITY**](TradingScheduleResponseMarketSchedulesHKEQUITY.md) |  | [optional] 
+**FX** | Pointer to [**TradingScheduleResponseMarketSchedulesFX**](TradingScheduleResponseMarketSchedulesFX.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetCN_EQUITY sets CN_EQUITY field to given value.
 `func (o *TradingScheduleResponseMarketSchedules) HasCN_EQUITY() bool`
 
 HasCN_EQUITY returns a boolean if a field has been set.
+
+### GetFX
+
+`func (o *TradingScheduleResponseMarketSchedules) GetFX() TradingScheduleResponseMarketSchedulesFX`
+
+GetFX returns the FX field if non-nil, zero value otherwise.
+
+### GetFXOk
+
+`func (o *TradingScheduleResponseMarketSchedules) GetFXOk() (*TradingScheduleResponseMarketSchedulesFX, bool)`
+
+GetFXOk returns a tuple with the FX field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFX
+
+`func (o *TradingScheduleResponseMarketSchedules) SetFX(v TradingScheduleResponseMarketSchedulesFX)`
+
+SetFX sets FX field to given value.
+
+### HasFX
+
+`func (o *TradingScheduleResponseMarketSchedules) HasFX() bool`
+
+HasFX returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -22,6 +22,7 @@ type TradingScheduleResponseMarketSchedules struct {
 	KR_EQUITY            *TradingScheduleResponseMarketSchedulesKREQUITY  `json:"KR_EQUITY,omitempty"`
 	HK_EQUITY            *TradingScheduleResponseMarketSchedulesHKEQUITY  `json:"HK_EQUITY,omitempty"`
 	CN_EQUITY            *TradingScheduleResponseMarketSchedulesHKEQUITY  `json:"CN_EQUITY,omitempty"`
+	FX                   *TradingScheduleResponseMarketSchedulesFX        `json:"FX,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -204,6 +205,38 @@ func (o *TradingScheduleResponseMarketSchedules) SetCN_EQUITY(v TradingScheduleR
 	o.CN_EQUITY = &v
 }
 
+// GetFX returns the FX field value if set, zero value otherwise.
+func (o *TradingScheduleResponseMarketSchedules) GetFX() TradingScheduleResponseMarketSchedulesFX {
+	if o == nil || common.IsNil(o.FX) {
+		var ret TradingScheduleResponseMarketSchedulesFX
+		return ret
+	}
+	return *o.FX
+}
+
+// GetFXOk returns a tuple with the FX field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TradingScheduleResponseMarketSchedules) GetFXOk() (*TradingScheduleResponseMarketSchedulesFX, bool) {
+	if o == nil || common.IsNil(o.FX) {
+		return nil, false
+	}
+	return o.FX, true
+}
+
+// HasFX returns a boolean if a field has been set.
+func (o *TradingScheduleResponseMarketSchedules) HasFX() bool {
+	if o != nil && !common.IsNil(o.FX) {
+		return true
+	}
+
+	return false
+}
+
+// SetFX gets a reference to the given TradingScheduleResponseMarketSchedulesFX and assigns it to the FX field.
+func (o *TradingScheduleResponseMarketSchedules) SetFX(v TradingScheduleResponseMarketSchedulesFX) {
+	o.FX = &v
+}
+
 func (o TradingScheduleResponseMarketSchedules) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -228,6 +261,9 @@ func (o TradingScheduleResponseMarketSchedules) ToMap() (map[string]interface{},
 	}
 	if !common.IsNil(o.CN_EQUITY) {
 		toSerialize["CN_EQUITY"] = o.CN_EQUITY
+	}
+	if !common.IsNil(o.FX) {
+		toSerialize["FX"] = o.FX
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -256,6 +292,7 @@ func (o *TradingScheduleResponseMarketSchedules) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "KR_EQUITY")
 		delete(additionalProperties, "HK_EQUITY")
 		delete(additionalProperties, "CN_EQUITY")
+		delete(additionalProperties, "FX")
 		o.AdditionalProperties = additionalProperties
 	}
 

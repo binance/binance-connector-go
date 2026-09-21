@@ -17,7 +17,7 @@ var _ common.MappedNullable = &TradingSessionStreamResponse{}
 
 // TradingSessionStreamResponse struct for TradingSessionStreamResponse
 type TradingSessionStreamResponse struct {
-	// Event type, can also be CommodityUpdate, KR_EquityUpdate, HK_EquityUpdate or CN_EquityUpdate
+	// Event type, can also be CommodityUpdate, KR_EquityUpdate, HK_EquityUpdate, CN_EquityUpdate or FXUpdate
 	Smalle *string `json:"e,omitempty"`
 	// Event time
 	E *int64 `json:"E,omitempty"`
