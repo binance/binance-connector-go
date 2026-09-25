@@ -21,7 +21,7 @@ type AccountBalanceResponse1Inner struct {
 	Asset *string `json:"asset,omitempty"`
 	// Total Wallet Balance.
 	TotalWalletBalance *string `json:"totalWalletBalance,omitempty"`
-	// Cross Margin Asset.
+	// Cross Margin Asset. Equal to crossMarginFree + crossMarginLocked.
 	CrossMarginAsset *string `json:"crossMarginAsset,omitempty"`
 	// Cross Margin Borrowed.
 	CrossMarginBorrowed *string `json:"crossMarginBorrowed,omitempty"`

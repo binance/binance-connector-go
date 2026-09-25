@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** | asset name | [optional] 
 **TotalWalletBalance** | Pointer to **string** | Total Wallet Balance. | [optional] 
-**CrossMarginAsset** | Pointer to **string** | Cross Margin Asset. | [optional] 
+**CrossMarginAsset** | Pointer to **string** | Cross Margin Asset. Equal to crossMarginFree + crossMarginLocked. | [optional] 
 **CrossMarginBorrowed** | Pointer to **string** | Cross Margin Borrowed. | [optional] 
 **CrossMarginFree** | Pointer to **string** | Cross Margin Free. | [optional] 
 **CrossMarginInterest** | Pointer to **string** | Cross Margin Interest. | [optional] 

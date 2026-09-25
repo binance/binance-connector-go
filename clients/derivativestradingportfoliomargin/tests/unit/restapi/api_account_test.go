@@ -27,7 +27,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_AccountAPIService(t *t
 	t.Run("Test AccountAPIService AccountBalance Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"asset":"USDT","totalWalletBalance":"122607.35137903","crossMarginAsset":"92.27530794","crossMarginBorrowed":"10.00000000","crossMarginFree":"100.00000000","crossMarginInterest":"0.72469206","crossMarginLocked":"3.00000000","umWalletBalance":"0.00000000","umUnrealizedPNL":"23.72469206","cmWalletBalance":"23.72469206","cmUnrealizedPNL":"","updateTime":1617939110373,"negativeBalance":"0"}]`
+		mockedJSON = `[{"asset":"USDT","totalWalletBalance":"126.72469206","crossMarginAsset":"103.00000000","crossMarginBorrowed":"10.00000000","crossMarginFree":"100.00000000","crossMarginInterest":"0.72469206","crossMarginLocked":"3.00000000","umWalletBalance":"0.00000000","umUnrealizedPNL":"23.72469206","cmWalletBalance":"23.72469206","cmUnrealizedPNL":"","updateTime":1617939110373,"negativeBalance":"0"}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

@@ -1,5 +1,17 @@
 ### Changelog
 
+## 1.18.1 - 2026-09-25
+
+### Changed (3)
+
+#### REST API
+
+- Modified response for `accountBalance()` (`GET /papi/v1/balance`):
+  - oneOf modified
+
+- Modified response schema `accountBalanceResponse`:
+  - oneOf modified
+
 ## 1.18.0 - 2026-09-14
 
 ### Changed (7)
