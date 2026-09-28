@@ -16,7 +16,6 @@
 * `GetUmIncomeHistoryIncomeTypeParameterOptionsPremiumFee` (value: `"OPTIONS_PREMIUM_FEE"`)
 * `GetUmIncomeHistoryIncomeTypeParameterOptionsSettleProfit` (value: `"OPTIONS_SETTLE_PROFIT"`)
 * `GetUmIncomeHistoryIncomeTypeParameterInternalTransfer` (value: `"INTERNAL_TRANSFER"`)
-* `GetUmIncomeHistoryIncomeTypeParameterAutoExchange` (value: `"AUTO_EXCHANGE"`)
 * `GetUmIncomeHistoryIncomeTypeParameterDeliveredSettelment` (value: `"DELIVERED_SETTELMENT"`)
 * `GetUmIncomeHistoryIncomeTypeParameterCoinSwapDeposit` (value: `"COIN_SWAP_DEPOSIT"`)
 * `GetUmIncomeHistoryIncomeTypeParameterCoinSwapWithdraw` (value: `"COIN_SWAP_WITHDRAW"`)

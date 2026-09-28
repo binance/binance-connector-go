@@ -30,7 +30,6 @@ const (
 	GetUmIncomeHistoryIncomeTypeParameterOptionsPremiumFee        GetUmIncomeHistoryIncomeTypeParameter = "OPTIONS_PREMIUM_FEE"
 	GetUmIncomeHistoryIncomeTypeParameterOptionsSettleProfit      GetUmIncomeHistoryIncomeTypeParameter = "OPTIONS_SETTLE_PROFIT"
 	GetUmIncomeHistoryIncomeTypeParameterInternalTransfer         GetUmIncomeHistoryIncomeTypeParameter = "INTERNAL_TRANSFER"
-	GetUmIncomeHistoryIncomeTypeParameterAutoExchange             GetUmIncomeHistoryIncomeTypeParameter = "AUTO_EXCHANGE"
 	GetUmIncomeHistoryIncomeTypeParameterDeliveredSettelment      GetUmIncomeHistoryIncomeTypeParameter = "DELIVERED_SETTELMENT"
 	GetUmIncomeHistoryIncomeTypeParameterCoinSwapDeposit          GetUmIncomeHistoryIncomeTypeParameter = "COIN_SWAP_DEPOSIT"
 	GetUmIncomeHistoryIncomeTypeParameterCoinSwapWithdraw         GetUmIncomeHistoryIncomeTypeParameter = "COIN_SWAP_WITHDRAW"
@@ -53,7 +52,6 @@ var AllowedGetUmIncomeHistoryIncomeTypeParameterEnumValues = []GetUmIncomeHistor
 	"OPTIONS_PREMIUM_FEE",
 	"OPTIONS_SETTLE_PROFIT",
 	"INTERNAL_TRANSFER",
-	"AUTO_EXCHANGE",
 	"DELIVERED_SETTELMENT",
 	"COIN_SWAP_DEPOSIT",
 	"COIN_SWAP_WITHDRAW",
