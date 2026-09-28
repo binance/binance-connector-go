@@ -1,6 +1,12 @@
 ### Changelog
 
-## 2.8.1 - 2026-09-09
+## 2.9.0 - 2026-09-28
+
+### Changed (1)
+
+- Handle `Float32` and `Float64` separately in `ParameterAddToHeaderOrQuery`.
+
+## 2.8.1 - 2026-09-08
 
 ### Added (1)
 
