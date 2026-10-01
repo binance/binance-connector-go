@@ -1,5 +1,25 @@
 ### Changelog
 
+## 1.15.0 - 2026-10-01
+
+### Added (1)
+
+#### REST API
+
+- `queryMarginAccountsOpenOtootocoOrderLists()` (`GET /sapi/v1/margin/oto/openOrderList`)
+
+### Changed (3)
+
+#### REST API
+
+- Modified response for `queryCrossMarginAccountDetails()` (`GET /sapi/v1/margin/account`):
+  - property `totalOpenOrderLossInUSDT` deleted
+
+- Removed response field `totalOpenOrderLossInUSDT`
+  - affected events:
+    - `queryCrossMarginAccountDetailsResponse`
+- Added response schema `queryMarginAccountsOpenOtootocoOrderListsResponse`
+
 ## 1.14.0 - 2026-09-28
 
 ### Changed (1)

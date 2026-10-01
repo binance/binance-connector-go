@@ -1657,6 +1657,65 @@ func Test_binancemargintradingrestapi_TradeAPIService(t *testing.T) {
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService QueryMarginAccountsOpenOtootocoOrderLists Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `[{"orderListId":24867326110,"contingencyType":"OTOCO","listStatusType":"EXEC_STARTED","listOrderStatus":"EXECUTING","listClientOrderId":"web_6324e98951224f96b8a24f312abe5067","transactionTime":1790063061632,"symbol":"ASTERUSDT","orders":[{"symbol":"ASTERUSDT","orderId":499470863,"status":"NEW","clientOrderId":"web_f8890794e27b42a1a2ef6b5aef79a949"}]}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/margin/oto/openOrderList", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryMarginAccountsOpenOtootocoOrderListsResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryMarginAccountsOpenOtootocoOrderLists(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryMarginAccountsOpenOtootocoOrderListsResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryMarginAccountsOpenOtootocoOrderListsResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryMarginAccountsOpenOtootocoOrderLists Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryMarginAccountsOpenOtootocoOrderLists(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService QueryMarginAccountsOrder Success", func(t *testing.T) {
 
 		var mockedJSON string

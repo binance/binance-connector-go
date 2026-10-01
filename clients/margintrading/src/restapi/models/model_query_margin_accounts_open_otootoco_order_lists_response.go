@@ -1,0 +1,96 @@
+/*
+Margin REST API
+
+Access account information, borrow and repay assets, and trade with Binance Margin.
+*/
+
+package models
+
+import (
+	"encoding/json"
+
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+// checks if the QueryMarginAccountsOpenOtootocoOrderListsResponse type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &QueryMarginAccountsOpenOtootocoOrderListsResponse{}
+
+// QueryMarginAccountsOpenOtootocoOrderListsResponse struct for QueryMarginAccountsOpenOtootocoOrderListsResponse
+type QueryMarginAccountsOpenOtootocoOrderListsResponse struct {
+	Items []QueryMarginAccountsOpenOtootocoOrderListsResponseInner
+}
+
+// NewQueryMarginAccountsOpenOtootocoOrderListsResponse instantiates a new QueryMarginAccountsOpenOtootocoOrderListsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewQueryMarginAccountsOpenOtootocoOrderListsResponse() *QueryMarginAccountsOpenOtootocoOrderListsResponse {
+	this := QueryMarginAccountsOpenOtootocoOrderListsResponse{}
+	return &this
+}
+
+// NewQueryMarginAccountsOpenOtootocoOrderListsResponseWithDefaults instantiates a new QueryMarginAccountsOpenOtootocoOrderListsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewQueryMarginAccountsOpenOtootocoOrderListsResponseWithDefaults() *QueryMarginAccountsOpenOtootocoOrderListsResponse {
+	this := QueryMarginAccountsOpenOtootocoOrderListsResponse{}
+	return &this
+}
+
+func (o QueryMarginAccountsOpenOtootocoOrderListsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o QueryMarginAccountsOpenOtootocoOrderListsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := make([]interface{}, len(o.Items))
+	for i, item := range o.Items {
+		toSerialize[i] = item
+	}
+	return map[string]interface{}{
+		"items": toSerialize,
+	}, nil
+}
+
+func (o *QueryMarginAccountsOpenOtootocoOrderListsResponse) UnmarshalJSON(data []byte) (err error) {
+	return json.Unmarshal(data, &o.Items)
+}
+
+type NullableQueryMarginAccountsOpenOtootocoOrderListsResponse struct {
+	value QueryMarginAccountsOpenOtootocoOrderListsResponse
+	isSet bool
+}
+
+func (v NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) Get() QueryMarginAccountsOpenOtootocoOrderListsResponse {
+	return v.value
+}
+
+func (v *NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) Set(val QueryMarginAccountsOpenOtootocoOrderListsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) Unset() {
+	v.value = QueryMarginAccountsOpenOtootocoOrderListsResponse{}
+	v.isSet = false
+}
+
+func NewNullableQueryMarginAccountsOpenOtootocoOrderListsResponse(val QueryMarginAccountsOpenOtootocoOrderListsResponse) *NullableQueryMarginAccountsOpenOtootocoOrderListsResponse {
+	return &NullableQueryMarginAccountsOpenOtootocoOrderListsResponse{value: val, isSet: true}
+}
+
+func (v NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableQueryMarginAccountsOpenOtootocoOrderListsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

@@ -3062,6 +3062,78 @@ func (a *TradeAPIService) QueryMarginAccountsOpenOrdersExecute(r ApiQueryMarginA
 	return resp, nil
 }
 
+type ApiQueryMarginAccountsOpenOtootocoOrderListsRequest struct {
+	ctx        context.Context
+	ApiService *TradeAPIService
+	symbol     *string
+	recvWindow *int64
+}
+
+func (r ApiQueryMarginAccountsOpenOtootocoOrderListsRequest) Symbol(symbol string) ApiQueryMarginAccountsOpenOtootocoOrderListsRequest {
+	r.symbol = &symbol
+	return r
+}
+
+func (r ApiQueryMarginAccountsOpenOtootocoOrderListsRequest) RecvWindow(recvWindow int64) ApiQueryMarginAccountsOpenOtootocoOrderListsRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiQueryMarginAccountsOpenOtootocoOrderListsRequest) Execute() (*common.RestApiResponse[models.QueryMarginAccountsOpenOtootocoOrderListsResponse], error) {
+	return r.ApiService.QueryMarginAccountsOpenOtootocoOrderListsExecute(r)
+}
+
+/*
+QueryMarginAccountsOpenOtootocoOrderLists Query Margin Account's Open OTO/OTOCO Order Lists (USER_DATA)
+Get /sapi/v1/margin/oto/openOrderList
+
+https://developers.binance.com/en/docs/catalog/core-trading-margin-trading/api/rest-api/trade#query-margin-accounts-open-otootoco-order-lists
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -
+@param recvWindow -
+@return ApiQueryMarginAccountsOpenOtootocoOrderListsRequest
+*/
+func (a *TradeAPIService) QueryMarginAccountsOpenOtootocoOrderLists(ctx context.Context) ApiQueryMarginAccountsOpenOtootocoOrderListsRequest {
+	return ApiQueryMarginAccountsOpenOtootocoOrderListsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return QueryMarginAccountsOpenOtootocoOrderListsResponse
+func (a *TradeAPIService) QueryMarginAccountsOpenOtootocoOrderListsExecute(r ApiQueryMarginAccountsOpenOtootocoOrderListsRequest) (*common.RestApiResponse[models.QueryMarginAccountsOpenOtootocoOrderListsResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/margin/oto/openOrderList"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.QueryMarginAccountsOpenOtootocoOrderListsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiQueryMarginAccountsOrderRequest struct {
 	ctx               context.Context
 	ApiService        *TradeAPIService

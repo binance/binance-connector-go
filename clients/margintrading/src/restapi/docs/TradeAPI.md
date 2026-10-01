@@ -28,6 +28,7 @@ Method        | HTTP request  | Description
 [**QueryMarginAccountsOco**](TradeAPI.md#QueryMarginAccountsOco) | **Get** /sapi/v1/margin/orderList | Query Margin Account&#39;s OCO (USER_DATA)
 [**QueryMarginAccountsOpenOco**](TradeAPI.md#QueryMarginAccountsOpenOco) | **Get** /sapi/v1/margin/openOrderList | Query Margin Account&#39;s Open OCO (USER_DATA)
 [**QueryMarginAccountsOpenOrders**](TradeAPI.md#QueryMarginAccountsOpenOrders) | **Get** /sapi/v1/margin/openOrders | Query Margin Account&#39;s Open Orders (USER_DATA)
+[**QueryMarginAccountsOpenOtootocoOrderLists**](TradeAPI.md#QueryMarginAccountsOpenOtootocoOrderLists) | **Get** /sapi/v1/margin/oto/openOrderList | Query Margin Account&#39;s Open OTO/OTOCO Order Lists (USER_DATA)
 [**QueryMarginAccountsOrder**](TradeAPI.md#QueryMarginAccountsOrder) | **Get** /sapi/v1/margin/order | Query Margin Account&#39;s Order (USER_DATA)
 [**QueryMarginAccountsTradeList**](TradeAPI.md#QueryMarginAccountsTradeList) | **Get** /sapi/v1/margin/myTrades | Query Margin Account&#39;s Trade List (USER_DATA)
 [**QueryPreventedMatches**](TradeAPI.md#QueryPreventedMatches) | **Get** /sapi/v1/margin/myPreventedMatches | Query Prevented Matches (USER_DATA)
@@ -1932,6 +1933,76 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**QueryMarginAccountsOpenOrdersResponse**](QueryMarginAccountsOpenOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## QueryMarginAccountsOpenOtootocoOrderLists
+
+> QueryMarginAccountsOpenOtootocoOrderListsResponse QueryMarginAccountsOpenOtootocoOrderLists(ctx).Symbol(symbol).RecvWindow(recvWindow).Execute()
+
+Query Margin Account's Open OTO/OTOCO Order Lists (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/margintrading"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "ASTERUSDT" // string |  (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceMarginTradingClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TradeAPI.QueryMarginAccountsOpenOtootocoOrderLists(context.Background()).Symbol(symbol).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TradeAPI.QueryMarginAccountsOpenOtootocoOrderLists``: %v\n", err)
+		return
+	}
+
+	// response from `QueryMarginAccountsOpenOtootocoOrderLists`: QueryMarginAccountsOpenOtootocoOrderListsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** |  | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**QueryMarginAccountsOpenOtootocoOrderListsResponse**](QueryMarginAccountsOpenOtootocoOrderListsResponse.md)
 
 ### Authorization
 
