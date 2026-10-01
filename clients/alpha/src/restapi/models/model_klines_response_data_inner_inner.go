@@ -62,11 +62,21 @@ func (dst *KlinesResponseDataInnerInner) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Int64 = nil
-		dst.String = nil
+		kept := 0
+		if dst.Int64 != nil {
+			kept++
+			if kept > 1 {
+				dst.Int64 = nil
+			}
+		}
+		if dst.String != nil {
+			kept++
+			if kept > 1 {
+				dst.String = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(KlinesResponseDataInnerInner)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
