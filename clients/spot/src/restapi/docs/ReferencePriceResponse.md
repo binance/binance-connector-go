@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**ReferencePrice** | Pointer to **interface{}** | Reference price. Can be &#x60;null&#x60; if no reference price is set. | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp when reference price was valid | [optional] 
+**ReferencePrice** | Pointer to **NullableString** | Reference price. Can be &#x60;null&#x60; if no reference price is set. | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp when reference price was valid. | [optional] 
 
 ## Methods
 
@@ -54,20 +54,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetReferencePrice
 
-`func (o *ReferencePriceResponse) GetReferencePrice() interface{}`
+`func (o *ReferencePriceResponse) GetReferencePrice() string`
 
 GetReferencePrice returns the ReferencePrice field if non-nil, zero value otherwise.
 
 ### GetReferencePriceOk
 
-`func (o *ReferencePriceResponse) GetReferencePriceOk() (*interface{}, bool)`
+`func (o *ReferencePriceResponse) GetReferencePriceOk() (*string, bool)`
 
 GetReferencePriceOk returns a tuple with the ReferencePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReferencePrice
 
-`func (o *ReferencePriceResponse) SetReferencePrice(v interface{})`
+`func (o *ReferencePriceResponse) SetReferencePrice(v string)`
 
 SetReferencePrice sets ReferencePrice field to given value.
 

@@ -1,5 +1,26 @@
 ### Changelog
 
+## 1.17.0 - 2026-10-01
+
+### Changed (3)
+
+#### REST API
+
+- Modified response for `referencePrice()` (`GET /api/v3/referencePrice`):
+  - Reverted `oneOf` back to a single schema with properties `symbol`, `referencePrice` and `timestamp`
+  - `referencePrice`: type `interface{}` → `string` (nullable)
+  - Removed response schemas `referencePriceResponse1` and `referencePriceResponse2`
+
+#### WebSocket API
+
+- `userDataStreamSubscribe()` (`userDataStream.subscribe` method) no longer sends the API key with the request.
+
+- Modified response for `referencePrice()` (`referencePrice` method):
+  - Reverted `oneOf` back to a single schema with properties `id`, `status`, `result` and `rateLimits`
+  - `result`.`referencePrice`: nullable `false` → `true`
+  - Removed response schemas `referencePriceResponse1`, `referencePriceResponse2` and `referencePriceResponse2Result`
+  - Renamed response schema `referencePriceResponse1Result` → `referencePriceResponseResult`
+
 ## 1.16.0 - 2026-10-01
 
 ### Changed (47)

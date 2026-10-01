@@ -133,7 +133,7 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 
 	sendParams := common.SendParams{
 		Signed:           false,
-		WithAPIKey:       true,
+		WithAPIKey:       false,
 		WithSessionLogon: false,
 	}
 

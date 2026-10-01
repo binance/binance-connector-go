@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the ReferencePriceResponse1Result type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &ReferencePriceResponse1Result{}
+// checks if the ReferencePriceResponseResult type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &ReferencePriceResponseResult{}
 
-// ReferencePriceResponse1Result struct for ReferencePriceResponse1Result
-type ReferencePriceResponse1Result struct {
+// ReferencePriceResponseResult struct for ReferencePriceResponseResult
+type ReferencePriceResponseResult struct {
 	Symbol         *string `json:"symbol,omitempty"`
 	ReferencePrice *string `json:"referencePrice,omitempty"`
 	// Timestamp when the reference price was valid
@@ -26,27 +26,27 @@ type ReferencePriceResponse1Result struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ReferencePriceResponse1Result ReferencePriceResponse1Result
+type _ReferencePriceResponseResult ReferencePriceResponseResult
 
-// NewReferencePriceResponse1Result instantiates a new ReferencePriceResponse1Result object
+// NewReferencePriceResponseResult instantiates a new ReferencePriceResponseResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReferencePriceResponse1Result() *ReferencePriceResponse1Result {
-	this := ReferencePriceResponse1Result{}
+func NewReferencePriceResponseResult() *ReferencePriceResponseResult {
+	this := ReferencePriceResponseResult{}
 	return &this
 }
 
-// NewReferencePriceResponse1ResultWithDefaults instantiates a new ReferencePriceResponse1Result object
+// NewReferencePriceResponseResultWithDefaults instantiates a new ReferencePriceResponseResult object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewReferencePriceResponse1ResultWithDefaults() *ReferencePriceResponse1Result {
-	this := ReferencePriceResponse1Result{}
+func NewReferencePriceResponseResultWithDefaults() *ReferencePriceResponseResult {
+	this := ReferencePriceResponseResult{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *ReferencePriceResponse1Result) GetSymbol() string {
+func (o *ReferencePriceResponseResult) GetSymbol() string {
 	if o == nil || common.IsNil(o.Symbol) {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *ReferencePriceResponse1Result) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse1Result) GetSymbolOk() (*string, bool) {
+func (o *ReferencePriceResponseResult) GetSymbolOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Symbol) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ReferencePriceResponse1Result) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *ReferencePriceResponse1Result) HasSymbol() bool {
+func (o *ReferencePriceResponseResult) HasSymbol() bool {
 	if o != nil && !common.IsNil(o.Symbol) {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *ReferencePriceResponse1Result) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *ReferencePriceResponse1Result) SetSymbol(v string) {
+func (o *ReferencePriceResponseResult) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
-// GetReferencePrice returns the ReferencePrice field value if set, zero value otherwise.
-func (o *ReferencePriceResponse1Result) GetReferencePrice() string {
+// GetReferencePrice returns the ReferencePrice field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReferencePriceResponseResult) GetReferencePrice() string {
 	if o == nil || common.IsNil(o.ReferencePrice) {
 		var ret string
 		return ret
@@ -88,29 +88,30 @@ func (o *ReferencePriceResponse1Result) GetReferencePrice() string {
 
 // GetReferencePriceOk returns a tuple with the ReferencePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse1Result) GetReferencePriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ReferencePrice) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReferencePriceResponseResult) GetReferencePriceOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return o.ReferencePrice, true
 }
 
 // HasReferencePrice returns a boolean if a field has been set.
-func (o *ReferencePriceResponse1Result) HasReferencePrice() bool {
-	if o != nil && !common.IsNil(o.ReferencePrice) {
+func (o *ReferencePriceResponseResult) HasReferencePrice() bool {
+	if o != nil && common.IsNil(o.ReferencePrice) {
 		return true
 	}
 
 	return false
 }
 
-// SetReferencePrice gets a reference to the given string and assigns it to the ReferencePrice field.
-func (o *ReferencePriceResponse1Result) SetReferencePrice(v string) {
+// SetReferencePrice gets a reference to the given NullableString and assigns it to the ReferencePrice field.
+func (o *ReferencePriceResponseResult) SetReferencePrice(v string) {
 	o.ReferencePrice = &v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ReferencePriceResponse1Result) GetTimestamp() int64 {
+func (o *ReferencePriceResponseResult) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
 		var ret int64
 		return ret
@@ -120,7 +121,7 @@ func (o *ReferencePriceResponse1Result) GetTimestamp() int64 {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse1Result) GetTimestampOk() (*int64, bool) {
+func (o *ReferencePriceResponseResult) GetTimestampOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Timestamp) {
 		return nil, false
 	}
@@ -128,7 +129,7 @@ func (o *ReferencePriceResponse1Result) GetTimestampOk() (*int64, bool) {
 }
 
 // HasTimestamp returns a boolean if a field has been set.
-func (o *ReferencePriceResponse1Result) HasTimestamp() bool {
+func (o *ReferencePriceResponseResult) HasTimestamp() bool {
 	if o != nil && !common.IsNil(o.Timestamp) {
 		return true
 	}
@@ -137,12 +138,12 @@ func (o *ReferencePriceResponse1Result) HasTimestamp() bool {
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
-func (o *ReferencePriceResponse1Result) SetTimestamp(v int64) {
+func (o *ReferencePriceResponseResult) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *ReferencePriceResponse1Result) GetCode() int64 {
+func (o *ReferencePriceResponseResult) GetCode() int64 {
 	if o == nil || common.IsNil(o.Code) {
 		var ret int64
 		return ret
@@ -152,7 +153,7 @@ func (o *ReferencePriceResponse1Result) GetCode() int64 {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse1Result) GetCodeOk() (*int64, bool) {
+func (o *ReferencePriceResponseResult) GetCodeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Code) {
 		return nil, false
 	}
@@ -160,7 +161,7 @@ func (o *ReferencePriceResponse1Result) GetCodeOk() (*int64, bool) {
 }
 
 // HasCode returns a boolean if a field has been set.
-func (o *ReferencePriceResponse1Result) HasCode() bool {
+func (o *ReferencePriceResponseResult) HasCode() bool {
 	if o != nil && !common.IsNil(o.Code) {
 		return true
 	}
@@ -169,12 +170,12 @@ func (o *ReferencePriceResponse1Result) HasCode() bool {
 }
 
 // SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *ReferencePriceResponse1Result) SetCode(v int64) {
+func (o *ReferencePriceResponseResult) SetCode(v int64) {
 	o.Code = &v
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *ReferencePriceResponse1Result) GetMsg() string {
+func (o *ReferencePriceResponseResult) GetMsg() string {
 	if o == nil || common.IsNil(o.Msg) {
 		var ret string
 		return ret
@@ -184,7 +185,7 @@ func (o *ReferencePriceResponse1Result) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse1Result) GetMsgOk() (*string, bool) {
+func (o *ReferencePriceResponseResult) GetMsgOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Msg) {
 		return nil, false
 	}
@@ -192,7 +193,7 @@ func (o *ReferencePriceResponse1Result) GetMsgOk() (*string, bool) {
 }
 
 // HasMsg returns a boolean if a field has been set.
-func (o *ReferencePriceResponse1Result) HasMsg() bool {
+func (o *ReferencePriceResponseResult) HasMsg() bool {
 	if o != nil && !common.IsNil(o.Msg) {
 		return true
 	}
@@ -201,11 +202,11 @@ func (o *ReferencePriceResponse1Result) HasMsg() bool {
 }
 
 // SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *ReferencePriceResponse1Result) SetMsg(v string) {
+func (o *ReferencePriceResponseResult) SetMsg(v string) {
 	o.Msg = &v
 }
 
-func (o ReferencePriceResponse1Result) MarshalJSON() ([]byte, error) {
+func (o ReferencePriceResponseResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -213,7 +214,7 @@ func (o ReferencePriceResponse1Result) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ReferencePriceResponse1Result) ToMap() (map[string]interface{}, error) {
+func (o ReferencePriceResponseResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
@@ -238,16 +239,16 @@ func (o ReferencePriceResponse1Result) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ReferencePriceResponse1Result) UnmarshalJSON(data []byte) (err error) {
-	varReferencePriceResponse1Result := _ReferencePriceResponse1Result{}
+func (o *ReferencePriceResponseResult) UnmarshalJSON(data []byte) (err error) {
+	varReferencePriceResponseResult := _ReferencePriceResponseResult{}
 
-	err = json.Unmarshal(data, &varReferencePriceResponse1Result)
+	err = json.Unmarshal(data, &varReferencePriceResponseResult)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ReferencePriceResponse1Result(varReferencePriceResponse1Result)
+	*o = ReferencePriceResponseResult(varReferencePriceResponseResult)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -263,38 +264,38 @@ func (o *ReferencePriceResponse1Result) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableReferencePriceResponse1Result struct {
-	value *ReferencePriceResponse1Result
+type NullableReferencePriceResponseResult struct {
+	value *ReferencePriceResponseResult
 	isSet bool
 }
 
-func (v NullableReferencePriceResponse1Result) Get() *ReferencePriceResponse1Result {
+func (v NullableReferencePriceResponseResult) Get() *ReferencePriceResponseResult {
 	return v.value
 }
 
-func (v *NullableReferencePriceResponse1Result) Set(val *ReferencePriceResponse1Result) {
+func (v *NullableReferencePriceResponseResult) Set(val *ReferencePriceResponseResult) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableReferencePriceResponse1Result) IsSet() bool {
+func (v NullableReferencePriceResponseResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableReferencePriceResponse1Result) Unset() {
+func (v *NullableReferencePriceResponseResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableReferencePriceResponse1Result(val *ReferencePriceResponse1Result) *NullableReferencePriceResponse1Result {
-	return &NullableReferencePriceResponse1Result{value: val, isSet: true}
+func NewNullableReferencePriceResponseResult(val *ReferencePriceResponseResult) *NullableReferencePriceResponseResult {
+	return &NullableReferencePriceResponseResult{value: val, isSet: true}
 }
 
-func (v NullableReferencePriceResponse1Result) MarshalJSON() ([]byte, error) {
+func (v NullableReferencePriceResponseResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableReferencePriceResponse1Result) UnmarshalJSON(src []byte) error {
+func (v *NullableReferencePriceResponseResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

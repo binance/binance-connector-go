@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**ReferencePriceResponse2Result**](ReferencePriceResponse2Result.md) |  | [optional] 
+**Result** | Pointer to [**ReferencePriceResponseResult**](ReferencePriceResponseResult.md) |  | [optional] 
 **RateLimits** | Pointer to [**[]AvgPriceResponseRateLimitsInner**](AvgPriceResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *ReferencePriceResponse) GetResult() ReferencePriceResponse2Result`
+`func (o *ReferencePriceResponse) GetResult() ReferencePriceResponseResult`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *ReferencePriceResponse) GetResultOk() (*ReferencePriceResponse2Result, bool)`
+`func (o *ReferencePriceResponse) GetResultOk() (*ReferencePriceResponseResult, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponse2Result)`
+`func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponseResult)`
 
 SetResult sets Result field to given value.
 

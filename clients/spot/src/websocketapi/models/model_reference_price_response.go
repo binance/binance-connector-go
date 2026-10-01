@@ -8,110 +8,221 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
+
+	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// ReferencePriceResponse - struct for ReferencePriceResponse
+// checks if the ReferencePriceResponse type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &ReferencePriceResponse{}
+
+// ReferencePriceResponse struct for ReferencePriceResponse
 type ReferencePriceResponse struct {
-	ReferencePriceResponse1 *ReferencePriceResponse1
-	ReferencePriceResponse2 *ReferencePriceResponse2
+	Id                   *string                           `json:"id,omitempty"`
+	Status               *int64                            `json:"status,omitempty"`
+	Result               *ReferencePriceResponseResult     `json:"result,omitempty"`
+	RateLimits           []AvgPriceResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
-// ReferencePriceResponse1AsReferencePriceResponse is a convenience function that returns ReferencePriceResponse1 wrapped in ReferencePriceResponse
-func ReferencePriceResponse1AsReferencePriceResponse(v *ReferencePriceResponse1) ReferencePriceResponse {
-	return ReferencePriceResponse{
-		ReferencePriceResponse1: v,
-	}
+type _ReferencePriceResponse ReferencePriceResponse
+
+// NewReferencePriceResponse instantiates a new ReferencePriceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewReferencePriceResponse() *ReferencePriceResponse {
+	this := ReferencePriceResponse{}
+	return &this
 }
 
-// ReferencePriceResponse2AsReferencePriceResponse is a convenience function that returns ReferencePriceResponse2 wrapped in ReferencePriceResponse
-func ReferencePriceResponse2AsReferencePriceResponse(v *ReferencePriceResponse2) ReferencePriceResponse {
-	return ReferencePriceResponse{
-		ReferencePriceResponse2: v,
-	}
+// NewReferencePriceResponseWithDefaults instantiates a new ReferencePriceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReferencePriceResponseWithDefaults() *ReferencePriceResponse {
+	this := ReferencePriceResponse{}
+	return &this
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *ReferencePriceResponse) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into ReferencePriceResponse1
-	err = json.Unmarshal(data, &dst.ReferencePriceResponse1)
-	if err == nil {
-		jsonReferencePriceResponse1, _ := json.Marshal(dst.ReferencePriceResponse1)
-		if string(jsonReferencePriceResponse1) == "{}" { // empty struct
-			dst.ReferencePriceResponse1 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ReferencePriceResponse1 = nil
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ReferencePriceResponse) GetId() string {
+	if o == nil || common.IsNil(o.Id) {
+		var ret string
+		return ret
 	}
-
-	// try to unmarshal data into ReferencePriceResponse2
-	err = json.Unmarshal(data, &dst.ReferencePriceResponse2)
-	if err == nil {
-		jsonReferencePriceResponse2, _ := json.Marshal(dst.ReferencePriceResponse2)
-		if string(jsonReferencePriceResponse2) == "{}" { // empty struct
-			dst.ReferencePriceResponse2 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ReferencePriceResponse2 = nil
-	}
-
-	if match > 1 { // more than 1 match
-		kept := 0
-		if dst.ReferencePriceResponse1 != nil {
-			kept++
-			if kept > 1 {
-				dst.ReferencePriceResponse1 = nil
-			}
-		}
-		if dst.ReferencePriceResponse2 != nil {
-			kept++
-			if kept > 1 {
-				dst.ReferencePriceResponse2 = nil
-			}
-		}
-
-		return nil
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ReferencePriceResponse)")
-	}
+	return *o.Id
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src ReferencePriceResponse) MarshalJSON() ([]byte, error) {
-	if src.ReferencePriceResponse1 != nil {
-		return json.Marshal(&src.ReferencePriceResponse1)
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponse) GetIdOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Id) {
+		return nil, false
 	}
-
-	if src.ReferencePriceResponse2 != nil {
-		return json.Marshal(&src.ReferencePriceResponse2)
-	}
-
-	return nil, nil // no data in oneOf schemas
+	return o.Id, true
 }
 
-// Get the actual instance
-func (obj *ReferencePriceResponse) GetActualInstance() interface{} {
-	if obj == nil {
-		return nil
-	}
-	if obj.ReferencePriceResponse1 != nil {
-		return obj.ReferencePriceResponse1
+// HasId returns a boolean if a field has been set.
+func (o *ReferencePriceResponse) HasId() bool {
+	if o != nil && !common.IsNil(o.Id) {
+		return true
 	}
 
-	if obj.ReferencePriceResponse2 != nil {
-		return obj.ReferencePriceResponse2
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ReferencePriceResponse) SetId(v string) {
+	o.Id = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ReferencePriceResponse) GetStatus() int64 {
+	if o == nil || common.IsNil(o.Status) {
+		var ret int64
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponse) GetStatusOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ReferencePriceResponse) HasStatus() bool {
+	if o != nil && !common.IsNil(o.Status) {
+		return true
 	}
 
-	// all schemas are nil
-	return nil
+	return false
+}
+
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *ReferencePriceResponse) SetStatus(v int64) {
+	o.Status = &v
+}
+
+// GetResult returns the Result field value if set, zero value otherwise.
+func (o *ReferencePriceResponse) GetResult() ReferencePriceResponseResult {
+	if o == nil || common.IsNil(o.Result) {
+		var ret ReferencePriceResponseResult
+		return ret
+	}
+	return *o.Result
+}
+
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponse) GetResultOk() (*ReferencePriceResponseResult, bool) {
+	if o == nil || common.IsNil(o.Result) {
+		return nil, false
+	}
+	return o.Result, true
+}
+
+// HasResult returns a boolean if a field has been set.
+func (o *ReferencePriceResponse) HasResult() bool {
+	if o != nil && !common.IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given ReferencePriceResponseResult and assigns it to the Result field.
+func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponseResult) {
+	o.Result = &v
+}
+
+// GetRateLimits returns the RateLimits field value if set, zero value otherwise.
+func (o *ReferencePriceResponse) GetRateLimits() []AvgPriceResponseRateLimitsInner {
+	if o == nil || common.IsNil(o.RateLimits) {
+		var ret []AvgPriceResponseRateLimitsInner
+		return ret
+	}
+	return o.RateLimits
+}
+
+// GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReferencePriceResponse) GetRateLimitsOk() ([]AvgPriceResponseRateLimitsInner, bool) {
+	if o == nil || common.IsNil(o.RateLimits) {
+		return nil, false
+	}
+	return o.RateLimits, true
+}
+
+// HasRateLimits returns a boolean if a field has been set.
+func (o *ReferencePriceResponse) HasRateLimits() bool {
+	if o != nil && !common.IsNil(o.RateLimits) {
+		return true
+	}
+
+	return false
+}
+
+// SetRateLimits gets a reference to the given []AvgPriceResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *ReferencePriceResponse) SetRateLimits(v []AvgPriceResponseRateLimitsInner) {
+	o.RateLimits = v
+}
+
+func (o ReferencePriceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReferencePriceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !common.IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !common.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !common.IsNil(o.Result) {
+		toSerialize["result"] = o.Result
+	}
+	if !common.IsNil(o.RateLimits) {
+		toSerialize["rateLimits"] = o.RateLimits
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *ReferencePriceResponse) UnmarshalJSON(data []byte) (err error) {
+	varReferencePriceResponse := _ReferencePriceResponse{}
+
+	err = json.Unmarshal(data, &varReferencePriceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ReferencePriceResponse(varReferencePriceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "result")
+		delete(additionalProperties, "rateLimits")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableReferencePriceResponse struct {
