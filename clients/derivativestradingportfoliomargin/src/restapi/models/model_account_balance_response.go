@@ -62,11 +62,21 @@ func (dst *AccountBalanceResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AccountBalanceResponse1 = nil
-		dst.AccountBalanceResponse2 = nil
+		kept := 0
+		if dst.AccountBalanceResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.AccountBalanceResponse1 = nil
+			}
+		}
+		if dst.AccountBalanceResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.AccountBalanceResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(AccountBalanceResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
