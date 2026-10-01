@@ -331,7 +331,7 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
 	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
-	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
+	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 	duration := int64(5000) // int64 | Duration for TWAP orders in seconds
 	positionSide := models.TimeWeightedAveragePriceFutureAlgoPositionSideParameterBoth // TimeWeightedAveragePriceFutureAlgoPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
@@ -367,7 +367,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
  **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
- **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT | 
+ **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols | 
  **duration** | **int64** | Duration for TWAP orders in seconds | 
  **positionSide** | [**TimeWeightedAveragePriceFutureAlgoPositionSideParameter**](TimeWeightedAveragePriceFutureAlgoPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 
@@ -415,7 +415,7 @@ import (
 func main() {
 	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
 	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
-	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
+	quantity := float64(1) // float64 | Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 	urgency := models.VolumeParticipationFutureAlgoUrgencyParameterLow // VolumeParticipationFutureAlgoUrgencyParameter | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
 	positionSide := models.TimeWeightedAveragePriceFutureAlgoPositionSideParameterBoth // TimeWeightedAveragePriceFutureAlgoPositionSideParameter | Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode. (optional)
 	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value (optional)
@@ -451,7 +451,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | Trading symbol eg. BTCUSDT | 
  **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
- **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT | 
+ **quantity** | **float64** | Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols | 
  **urgency** | [**VolumeParticipationFutureAlgoUrgencyParameter**](VolumeParticipationFutureAlgoUrgencyParameter.md) | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH | 
  **positionSide** | [**TimeWeightedAveragePriceFutureAlgoPositionSideParameter**](TimeWeightedAveragePriceFutureAlgoPositionSideParameter.md) | Default &#x60;BOTH&#x60; for One-way Mode ; &#x60;LONG&#x60; or &#x60;SHORT&#x60; for Hedge Mode. It must be sent in Hedge Mode. | 
  **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value | 

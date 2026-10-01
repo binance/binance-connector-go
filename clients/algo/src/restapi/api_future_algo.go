@@ -419,7 +419,7 @@ func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Side(side models.QueryHist
 	return r
 }
 
-// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
+// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 1,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 func (r ApiTimeWeightedAveragePriceFutureAlgoRequest) Quantity(quantity float64) ApiTimeWeightedAveragePriceFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
@@ -474,7 +474,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  Trading side ( BUY or SELL )
-@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT and less than the equivalent of 1,000,000 USDT
+@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 1,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 @param duration -  Duration for TWAP orders in seconds
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param clientAlgoId -  A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value
@@ -584,7 +584,7 @@ func (r ApiVolumeParticipationFutureAlgoRequest) Side(side models.QueryHistorica
 	return r
 }
 
-// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
+// Quantity of base asset; The notional (&#x60;quantity&#x60; * &#x60;mark price(base asset)&#x60;) must be more than the equivalent of 10,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 func (r ApiVolumeParticipationFutureAlgoRequest) Quantity(quantity float64) ApiVolumeParticipationFutureAlgoRequest {
 	r.quantity = &quantity
 	return r
@@ -639,7 +639,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -  Trading symbol eg. BTCUSDT
 @param side -  Trading side ( BUY or SELL )
-@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT
+@param quantity -  Quantity of base asset; The notional (`quantity` * `mark price(base asset)`) must be more than the equivalent of 10,000 USDT, and the maximum notional varies by symbol: up to 50,000,000 USDT for BTCUSDT perpetual, up to 25,000,000 USDT for ETHUSDT perpetual, and up to 5,000,000 USDT for other symbols
 @param urgency -  Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
 @param positionSide -  Default `BOTH` for One-way Mode ; `LONG` or `SHORT` for Hedge Mode. It must be sent in Hedge Mode.
 @param clientAlgoId -  A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value
