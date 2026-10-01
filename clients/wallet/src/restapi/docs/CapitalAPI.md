@@ -626,7 +626,7 @@ import (
 func main() {
 	coin := "BTC" // string |  (optional)
 	withdrawOrderId := "1" // string | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query. (optional)
-	status := int64(0) // int64 | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) (optional)
+	status := int64(0) // int64 | 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed) (optional)
 	offset := int64(0) // int64 | Default: 0 (optional)
 	limit := int64(1000) // int64 |  (optional)
 	idList := "idList_example" // string | id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,` (optional)
@@ -662,7 +662,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **coin** | **string** |  | 
  **withdrawOrderId** | **string** | client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | 
- **status** | **int64** | 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed) | 
+ **status** | **int64** | 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed) | 
  **offset** | **int64** | Default: 0 | 
  **limit** | **int64** |  | 
  **idList** | **string** | id list returned in the response of POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, separated by &#x60;,&#x60; | 

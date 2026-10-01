@@ -204,7 +204,7 @@ func main() {
 	tranId := "1" // string | Comma(,) separated list of wallet tran Ids. (optional)
 	network := "network_example" // string |  (optional)
 	coin := "BTC" // string |  (optional)
-	travelRuleStatus := int64(0) // int64 | 0:Completed,1:Pending,2:Failed (optional)
+	travelRuleStatus := int64(0) // int64 | 0: Completed,1: Pending,2: Failed (optional)
 	pendingQuestionnaire := true // bool | true: Only return records that pending deposit questionnaire. false/not provided: return all records. (optional)
 	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
 	endTime := int64(1641782889000) // int64 | Default: present timestamp (optional)
@@ -242,7 +242,7 @@ Name          | Type          | Description   | Notes
  **tranId** | **string** | Comma(,) separated list of wallet tran Ids. | 
  **network** | **string** |  | 
  **coin** | **string** |  | 
- **travelRuleStatus** | **int64** | 0:Completed,1:Pending,2:Failed | 
+ **travelRuleStatus** | **int64** | 0: Completed,1: Pending,2: Failed | 
  **pendingQuestionnaire** | **bool** | true: Only return records that pending deposit questionnaire. false/not provided: return all records. | 
  **startTime** | **int64** | Default: 90 days from current timestamp | 
  **endTime** | **int64** | Default: present timestamp | 
@@ -874,7 +874,7 @@ func main() {
 	withdrawOrderId := "1" // string | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query. (optional)
 	network := "network_example" // string |  (optional)
 	coin := "BTC" // string |  (optional)
-	travelRuleStatus := int64(0) // int64 | 0:Completed,1:Pending,2:Failed (optional)
+	travelRuleStatus := int64(0) // int64 | 0: Completed,1: Pending,2: Failed (optional)
 	offset := int64(0) // int64 |  (optional)
 	limit := int64(1000) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
@@ -912,7 +912,7 @@ Name          | Type          | Description   | Notes
  **withdrawOrderId** | **string** | client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | 
  **network** | **string** |  | 
  **coin** | **string** |  | 
- **travelRuleStatus** | **int64** | 0:Completed,1:Pending,2:Failed | 
+ **travelRuleStatus** | **int64** | 0: Completed,1: Pending,2: Failed | 
  **offset** | **int64** |  | 
  **limit** | **int64** |  | 
  **startTime** | **int64** | Default: 90 days from current timestamp | 
@@ -962,7 +962,7 @@ func main() {
 	withdrawOrderId := "1" // string | client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query. (optional)
 	network := "network_example" // string |  (optional)
 	coin := "coin_example" // string |  (optional)
-	travelRuleStatus := int64(0) // int64 | 0:Completed,1:Pending,2:Failed (optional)
+	travelRuleStatus := int64(0) // int64 | 0: Completed,1: Pending,2: Failed (optional)
 	offset := int64(0) // int64 |  (optional)
 	limit := int64(1000) // int64 |  (optional)
 	startTime := int64(1623319461670) // int64 | Default: 90 days from current timestamp (optional)
@@ -1000,7 +1000,7 @@ Name          | Type          | Description   | Notes
  **withdrawOrderId** | **string** | client side id for withdrawal, if provided in POST &#x60;/sapi/v1/capital/withdraw/apply&#x60;, can be used here for query. | 
  **network** | **string** |  | 
  **coin** | **string** |  | 
- **travelRuleStatus** | **int64** | 0:Completed,1:Pending,2:Failed | 
+ **travelRuleStatus** | **int64** | 0: Completed,1: Pending,2: Failed | 
  **offset** | **int64** |  | 
  **limit** | **int64** |  | 
  **startTime** | **int64** | Default: 90 days from current timestamp | 

@@ -785,7 +785,7 @@ func (r ApiWithdrawHistoryRequest) WithdrawOrderId(withdrawOrderId string) ApiWi
 	return r
 }
 
-// 0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+// 0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
 func (r ApiWithdrawHistoryRequest) Status(status int64) ApiWithdrawHistoryRequest {
 	r.status = &status
 	return r
@@ -838,7 +838,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param coin -
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
-@param status -  0(0:Email Sent, 2:Awaiting Approval 3:Rejected 4:Processing 6:Completed)
+@param status -  0(0: Email Sent, 2: Awaiting Approval 3: Rejected 4: Processing 6: Completed)
 @param offset -  Default: 0
 @param limit -
 @param idList -  id list returned in the response of POST `/sapi/v1/capital/withdraw/apply`, separated by `,`

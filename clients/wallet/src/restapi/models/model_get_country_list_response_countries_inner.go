@@ -27,7 +27,7 @@ type GetCountryListResponseCountriesInner struct {
 	DepositAllowed *bool `json:"depositAllowed,omitempty"`
 	// Whether withdrawal is allowed for this country.
 	WithdrawalAllowed *bool `json:"withdrawalAllowed,omitempty"`
-	// Whether this country has region-level restrictions.
+	// Whether this country has region-level restrictions. Always `false` for the BR entity, which does not collect region/city.
 	HasRegionRestrictions *bool `json:"hasRegionRestrictions,omitempty"`
 	AdditionalProperties  map[string]interface{}
 }

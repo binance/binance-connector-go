@@ -305,7 +305,7 @@ func (r ApiDepositHistoryTravelRuleRequest) Coin(coin string) ApiDepositHistoryT
 	return r
 }
 
-// 0:Completed,1:Pending,2:Failed
+// 0: Completed,1: Pending,2: Failed
 func (r ApiDepositHistoryTravelRuleRequest) TravelRuleStatus(travelRuleStatus int64) ApiDepositHistoryTravelRuleRequest {
 	r.travelRuleStatus = &travelRuleStatus
 	return r
@@ -356,7 +356,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param tranId -  Comma(,) separated list of wallet tran Ids.
 @param network -
 @param coin -
-@param travelRuleStatus -  0:Completed,1:Pending,2:Failed
+@param travelRuleStatus -  0: Completed,1: Pending,2: Failed
 @param pendingQuestionnaire -  true: Only return records that pending deposit questionnaire. false/not provided: return all records.
 @param startTime -  Default: 90 days from current timestamp
 @param endTime -  Default: present timestamp
@@ -1193,7 +1193,7 @@ func (r ApiWithdrawHistoryV1Request) Coin(coin string) ApiWithdrawHistoryV1Reque
 	return r
 }
 
-// 0:Completed,1:Pending,2:Failed
+// 0: Completed,1: Pending,2: Failed
 func (r ApiWithdrawHistoryV1Request) TravelRuleStatus(travelRuleStatus int64) ApiWithdrawHistoryV1Request {
 	r.travelRuleStatus = &travelRuleStatus
 	return r
@@ -1242,7 +1242,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
 @param network -
 @param coin -
-@param travelRuleStatus -  0:Completed,1:Pending,2:Failed
+@param travelRuleStatus -  0: Completed,1: Pending,2: Failed
 @param offset -
 @param limit -
 @param startTime -  Default: 90 days from current timestamp
@@ -1361,7 +1361,7 @@ func (r ApiWithdrawHistoryV2Request) Coin(coin string) ApiWithdrawHistoryV2Reque
 	return r
 }
 
-// 0:Completed,1:Pending,2:Failed
+// 0: Completed,1: Pending,2: Failed
 func (r ApiWithdrawHistoryV2Request) TravelRuleStatus(travelRuleStatus int64) ApiWithdrawHistoryV2Request {
 	r.travelRuleStatus = &travelRuleStatus
 	return r
@@ -1410,7 +1410,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-wallet/api/rest-api/
 @param withdrawOrderId -  client side id for withdrawal, if provided in POST `/sapi/v1/capital/withdraw/apply`, can be used here for query.
 @param network -
 @param coin -
-@param travelRuleStatus -  0:Completed,1:Pending,2:Failed
+@param travelRuleStatus -  0: Completed,1: Pending,2: Failed
 @param offset -
 @param limit -
 @param startTime -  Default: 90 days from current timestamp
