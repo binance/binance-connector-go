@@ -62,11 +62,21 @@ func (dst *AssetIndexResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AssetIndexResponse1 = nil
-		dst.AssetIndexResponse2 = nil
+		kept := 0
+		if dst.AssetIndexResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.AssetIndexResponse1 = nil
+			}
+		}
+		if dst.AssetIndexResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.AssetIndexResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(AssetIndexResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

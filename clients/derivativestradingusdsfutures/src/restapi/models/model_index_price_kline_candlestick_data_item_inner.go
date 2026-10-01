@@ -62,11 +62,21 @@ func (dst *IndexPriceKlineCandlestickDataItemInner) UnmarshalJSON(data []byte) e
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Int64 = nil
-		dst.String = nil
+		kept := 0
+		if dst.Int64 != nil {
+			kept++
+			if kept > 1 {
+				dst.Int64 = nil
+			}
+		}
+		if dst.String != nil {
+			kept++
+			if kept > 1 {
+				dst.String = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(IndexPriceKlineCandlestickDataItemInner)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

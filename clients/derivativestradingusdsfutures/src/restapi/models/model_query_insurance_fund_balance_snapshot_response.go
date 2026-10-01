@@ -62,11 +62,21 @@ func (dst *QueryInsuranceFundBalanceSnapshotResponse) UnmarshalJSON(data []byte)
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.QueryInsuranceFundBalanceSnapshotResponse1 = nil
-		dst.QueryInsuranceFundBalanceSnapshotResponse2 = nil
+		kept := 0
+		if dst.QueryInsuranceFundBalanceSnapshotResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.QueryInsuranceFundBalanceSnapshotResponse1 = nil
+			}
+		}
+		if dst.QueryInsuranceFundBalanceSnapshotResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.QueryInsuranceFundBalanceSnapshotResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(QueryInsuranceFundBalanceSnapshotResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

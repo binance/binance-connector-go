@@ -62,11 +62,21 @@ func (dst *SymbolPriceTickerV2Response) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.SymbolPriceTickerV2Response1 = nil
-		dst.SymbolPriceTickerV2Response2 = nil
+		kept := 0
+		if dst.SymbolPriceTickerV2Response1 != nil {
+			kept++
+			if kept > 1 {
+				dst.SymbolPriceTickerV2Response1 = nil
+			}
+		}
+		if dst.SymbolPriceTickerV2Response2 != nil {
+			kept++
+			if kept > 1 {
+				dst.SymbolPriceTickerV2Response2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(SymbolPriceTickerV2Response)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

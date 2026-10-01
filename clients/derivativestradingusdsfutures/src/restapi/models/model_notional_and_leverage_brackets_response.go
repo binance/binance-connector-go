@@ -62,11 +62,21 @@ func (dst *NotionalAndLeverageBracketsResponse) UnmarshalJSON(data []byte) error
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.NotionalAndLeverageBracketsResponse1 = nil
-		dst.NotionalAndLeverageBracketsResponse2 = nil
+		kept := 0
+		if dst.NotionalAndLeverageBracketsResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.NotionalAndLeverageBracketsResponse1 = nil
+			}
+		}
+		if dst.NotionalAndLeverageBracketsResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.NotionalAndLeverageBracketsResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(NotionalAndLeverageBracketsResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

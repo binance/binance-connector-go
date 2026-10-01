@@ -62,11 +62,21 @@ func (dst *AdlRiskResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.AdlRiskResponse1 = nil
-		dst.AdlRiskResponse2 = nil
+		kept := 0
+		if dst.AdlRiskResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.AdlRiskResponse1 = nil
+			}
+		}
+		if dst.AdlRiskResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.AdlRiskResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(AdlRiskResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

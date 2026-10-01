@@ -1,5 +1,11 @@
 ### Changelog
 
+## 1.22.1 - 2026-10-01
+
+### Changed (1)
+
+- Fixed `oneOf` response deserialization: when a response matches more than one schema, the first matching schema is now kept instead of returning an error.
+
 ## 1.22.0 - 2026-09-28
 
 ### Changed (1)
