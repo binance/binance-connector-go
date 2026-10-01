@@ -1690,7 +1690,7 @@ func (r ApiNewOrderRequest) PriceMatch(priceMatch models.ModifyOrderPriceMatchPa
 	return r
 }
 
-// &#x60;EXPIRE_TAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;:expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;:expire both orders when STP triggers
+// &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers
 func (r ApiNewOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewOrderSelfTradePreventionModeParameter) ApiNewOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
@@ -1729,7 +1729,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param priceProtect -  \"true\" or \"false\". Used with `STOP/STOP_MARKET` or `TAKE_PROFIT/TAKE_PROFIT_MARKET` orders.
 @param newOrderRespType -
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; Can't be passed together with `price`
-@param selfTradePreventionMode -  `EXPIRE_TAKER`:expire taker order when STP triggers/ `EXPIRE_MAKER`:expire taker order when STP triggers/ `EXPIRE_BOTH`:expire both orders when STP triggers
+@param selfTradePreventionMode -  `EXPIRE_TAKER`: expire taker order when STP triggers/ `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers
 @param recvWindow -
 @return ApiNewOrderRequest
 */
