@@ -314,7 +314,7 @@ type ApiPlaceOrderRequest struct {
 	fundTransferAmount *string
 }
 
-// User&#39;s prediction wallet address
+// User&#39;s prediction wallet address. Must be a valid address owned by the calling UID — a well-formed address not owned by the UID and a malformed (non-address) value both return the same generic &#x60;-3026&#x60;. An empty string instead returns &#x60;-1102&#x60; naming the field.
 func (r ApiPlaceOrderRequest) WalletAddress(walletAddress string) ApiPlaceOrderRequest {
 	r.walletAddress = &walletAddress
 	return r
@@ -338,13 +338,13 @@ func (r ApiPlaceOrderRequest) TimeInForce(timeInForce string) ApiPlaceOrderReque
 	return r
 }
 
-// Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;
+// Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;. This only determines the settlement/reference account — it does not control which balance is debited. See &#x60;fundingSource&#x60; below for that.
 func (r ApiPlaceOrderRequest) AccountType(accountType models.PlaceOrderAccountTypeParameter) ApiPlaceOrderRequest {
 	r.accountType = &accountType
 	return r
 }
 
-// Order type. Enum: &#x60;MARKET&#x60;, &#x60;LIMIT&#x60;
+// Order type. Enum: &#x60;MARKET&#x60;, &#x60;LIMIT&#x60; only. Do not combine with &#x60;timeInForce&#x60; (e.g. &#x60;LIMIT_GTC&#x60; is not a valid value) — set &#x60;timeInForce&#x60; separately per the Validation Rules table below.
 func (r ApiPlaceOrderRequest) OrderType(orderType models.GetQuoteOrderTypeParameter) ApiPlaceOrderRequest {
 	r.orderType = &orderType
 	return r
@@ -356,13 +356,13 @@ func (r ApiPlaceOrderRequest) SlippageBps(slippageBps int32) ApiPlaceOrderReques
 	return r
 }
 
-// Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0
+// Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;, must be &gt; 0. Omitting it when &#x60;orderType&#x3D;LIMIT&#x60; returns a generic &#x60;-3026&#x60; (no field name in the message).
 func (r ApiPlaceOrderRequest) PriceLimit(priceLimit string) ApiPlaceOrderRequest {
 	r.priceLimit = &priceLimit
 	return r
 }
 
-// Funding source. Enum: &#x60;MPC&#x60;, &#x60;CEX&#x60;. Default &#x60;MPC&#x60;
+// Funding source. Enum: &#x60;MPC&#x60;, &#x60;CEX&#x60;. Default &#x60;MPC&#x60;. This determines which balance is actually debited, independent of &#x60;accountType&#x60;.
 func (r ApiPlaceOrderRequest) FundingSource(fundingSource models.GetQuoteFundingSourceParameter) ApiPlaceOrderRequest {
 	r.fundingSource = &fundingSource
 	return r
@@ -385,15 +385,15 @@ Post /sapi/v1/w3w/wallet/prediction/trade/place-order-bundle
 https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/api/rest-api/trade#place-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param walletAddress -  User's prediction wallet address
+@param walletAddress -  User's prediction wallet address. Must be a valid address owned by the calling UID — a well-formed address not owned by the UID and a malformed (non-address) value both return the same generic `-3026`. An empty string instead returns `-1102` naming the field.
 @param walletId -  Wallet ID
 @param quoteId -  Quote ID obtained from `Get Quote`
 @param timeInForce -  Must match `orderType`: `FOK` for `MARKET`, `GTC` for `LIMIT`
-@param accountType -  Payment account type. Enum: `SPOT`, `FUNDING`
-@param orderType -  Order type. Enum: `MARKET`, `LIMIT`
+@param accountType -  Payment account type. Enum: `SPOT`, `FUNDING`. This only determines the settlement/reference account — it does not control which balance is debited. See `fundingSource` below for that.
+@param orderType -  Order type. Enum: `MARKET`, `LIMIT` only. Do not combine with `timeInForce` (e.g. `LIMIT_GTC` is not a valid value) — set `timeInForce` separately per the Validation Rules table below.
 @param slippageBps -  Slippage tolerance in basis points. Range 1–10000
-@param priceLimit -  Limit price. Required when `orderType=LIMIT`. Must be > 0
-@param fundingSource -  Funding source. Enum: `MPC`, `CEX`. Default `MPC`
+@param priceLimit -  Limit price. Required when `orderType=LIMIT`, must be > 0. Omitting it when `orderType=LIMIT` returns a generic `-3026` (no field name in the message).
+@param fundingSource -  Funding source. Enum: `MPC`, `CEX`. Default `MPC`. This determines which balance is actually debited, independent of `accountType`.
 @param fundTransferAmount -  Auto-transfer amount before order (wei). Must be > 0 if provided
 @return ApiPlaceOrderRequest
 */

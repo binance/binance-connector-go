@@ -194,15 +194,15 @@ import (
 )
 
 func main() {
-	walletAddress := "0x12e32db8817e292508c34111cbc4b23340df542c" // string | User's prediction wallet address
+	walletAddress := "0x12e32db8817e292508c34111cbc4b23340df542c" // string | User's prediction wallet address. Must be a valid address owned by the calling UID — a well-formed address not owned by the UID and a malformed (non-address) value both return the same generic `-3026`. An empty string instead returns `-1102` naming the field.
 	walletId := "5b5c1ec3be4e4416a5872b21c1ca5d20" // string | Wallet ID
 	quoteId := "q_20260525_abc123xyz" // string | Quote ID obtained from `Get Quote`
 	timeInForce := "FOK" // string | Must match `orderType`: `FOK` for `MARKET`, `GTC` for `LIMIT`
-	accountType := models.PlaceOrderAccountTypeParameterSpot // PlaceOrderAccountTypeParameter | Payment account type. Enum: `SPOT`, `FUNDING`
-	orderType := models.GetQuoteOrderTypeParameterMarket // GetQuoteOrderTypeParameter | Order type. Enum: `MARKET`, `LIMIT`
+	accountType := models.PlaceOrderAccountTypeParameterSpot // PlaceOrderAccountTypeParameter | Payment account type. Enum: `SPOT`, `FUNDING`. This only determines the settlement/reference account — it does not control which balance is debited. See `fundingSource` below for that.
+	orderType := models.GetQuoteOrderTypeParameterMarket // GetQuoteOrderTypeParameter | Order type. Enum: `MARKET`, `LIMIT` only. Do not combine with `timeInForce` (e.g. `LIMIT_GTC` is not a valid value) — set `timeInForce` separately per the Validation Rules table below.
 	slippageBps := int32(1200) // int32 | Slippage tolerance in basis points. Range 1–10000
-	priceLimit := "0.5" // string | Limit price. Required when `orderType=LIMIT`. Must be > 0 (optional)
-	fundingSource := models.GetQuoteFundingSourceParameterMpc // GetQuoteFundingSourceParameter | Funding source. Enum: `MPC`, `CEX`. Default `MPC` (optional)
+	priceLimit := "0.5" // string | Limit price. Required when `orderType=LIMIT`, must be > 0. Omitting it when `orderType=LIMIT` returns a generic `-3026` (no field name in the message). (optional)
+	fundingSource := models.GetQuoteFundingSourceParameterMpc // GetQuoteFundingSourceParameter | Funding source. Enum: `MPC`, `CEX`. Default `MPC`. This determines which balance is actually debited, independent of `accountType`. (optional)
 	fundTransferAmount := "1000000000000000000" // string | Auto-transfer amount before order (wei). Must be > 0 if provided (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -231,15 +231,15 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **walletAddress** | **string** | User&#39;s prediction wallet address | 
+ **walletAddress** | **string** | User&#39;s prediction wallet address. Must be a valid address owned by the calling UID — a well-formed address not owned by the UID and a malformed (non-address) value both return the same generic &#x60;-3026&#x60;. An empty string instead returns &#x60;-1102&#x60; naming the field. | 
  **walletId** | **string** | Wallet ID | 
  **quoteId** | **string** | Quote ID obtained from &#x60;Get Quote&#x60; | 
  **timeInForce** | **string** | Must match &#x60;orderType&#x60;: &#x60;FOK&#x60; for &#x60;MARKET&#x60;, &#x60;GTC&#x60; for &#x60;LIMIT&#x60; | 
- **accountType** | [**PlaceOrderAccountTypeParameter**](PlaceOrderAccountTypeParameter.md) | Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60; | 
- **orderType** | [**GetQuoteOrderTypeParameter**](GetQuoteOrderTypeParameter.md) | Order type. Enum: &#x60;MARKET&#x60;, &#x60;LIMIT&#x60; | 
+ **accountType** | [**PlaceOrderAccountTypeParameter**](PlaceOrderAccountTypeParameter.md) | Payment account type. Enum: &#x60;SPOT&#x60;, &#x60;FUNDING&#x60;. This only determines the settlement/reference account — it does not control which balance is debited. See &#x60;fundingSource&#x60; below for that. | 
+ **orderType** | [**GetQuoteOrderTypeParameter**](GetQuoteOrderTypeParameter.md) | Order type. Enum: &#x60;MARKET&#x60;, &#x60;LIMIT&#x60; only. Do not combine with &#x60;timeInForce&#x60; (e.g. &#x60;LIMIT_GTC&#x60; is not a valid value) — set &#x60;timeInForce&#x60; separately per the Validation Rules table below. | 
  **slippageBps** | **int32** | Slippage tolerance in basis points. Range 1–10000 | 
- **priceLimit** | **string** | Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0 | 
- **fundingSource** | [**GetQuoteFundingSourceParameter**](GetQuoteFundingSourceParameter.md) | Funding source. Enum: &#x60;MPC&#x60;, &#x60;CEX&#x60;. Default &#x60;MPC&#x60; | 
+ **priceLimit** | **string** | Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;, must be &gt; 0. Omitting it when &#x60;orderType&#x3D;LIMIT&#x60; returns a generic &#x60;-3026&#x60; (no field name in the message). | 
+ **fundingSource** | [**GetQuoteFundingSourceParameter**](GetQuoteFundingSourceParameter.md) | Funding source. Enum: &#x60;MPC&#x60;, &#x60;CEX&#x60;. Default &#x60;MPC&#x60;. This determines which balance is actually debited, independent of &#x60;accountType&#x60;. | 
  **fundTransferAmount** | **string** | Auto-transfer amount before order (wei). Must be &gt; 0 if provided | 
 
 ### Return type
