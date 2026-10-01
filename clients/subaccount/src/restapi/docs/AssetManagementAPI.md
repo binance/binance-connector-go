@@ -55,7 +55,7 @@ func main() {
 	email := "123@test.com" // string | 
 	asset := "USDT" // string | The asset being transferred
 	amount := float64(1.0) // float64 | The amount to be transferred
-	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4:transfer from subaccount's COIN-margined futures account to its spot account
+	type_ := int64(1) // int64 | 1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4: transfer from subaccount's COIN-margined futures account to its spot account
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -87,7 +87,7 @@ Name          | Type          | Description   | Notes
  **email** | **string** |  | 
  **asset** | **string** | The asset being transferred | 
  **amount** | **float64** | The amount to be transferred | 
- **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from subaccount&#39;s COIN-margined futures account to its spot account | 
+ **type_** | **int64** | 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4: transfer from subaccount&#39;s COIN-margined futures account to its spot account | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -199,7 +199,7 @@ import (
 
 func main() {
 	email := "123@test.com" // string | 
-	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	futuresType := int64(1) // int64 | 1: USDT-margined Futures，2: Coin-margined Futures
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -229,7 +229,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** |  | 
- **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
+ **futuresType** | **int64** | 1: USDT-margined Futures，2: Coin-margined Futures | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -654,7 +654,7 @@ import (
 )
 
 func main() {
-	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	futuresType := int64(1) // int64 | 1: USDT-margined Futures，2: Coin-margined Futures
 	page := int64(1) // int64 |  (optional)
 	limit := int64(10) // int64 |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -685,7 +685,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
+ **futuresType** | **int64** | 1: USDT-margined Futures，2: Coin-margined Futures | 
  **page** | **int64** |  | 
  **limit** | **int64** |  | 
  **recvWindow** | **int64** |  | 
@@ -1089,7 +1089,7 @@ import (
 
 func main() {
 	email := "123@test.com" // string | 
-	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	futuresType := int64(1) // int64 | 1: USDT-margined Futures，2: Coin-margined Futures
 	startTime := int64(1623319461670) // int64 | Cannot be earlier than 1 month ago (optional)
 	endTime := int64(1641782889000) // int64 |  (optional)
 	page := int64(1) // int64 |  (optional)
@@ -1123,7 +1123,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** |  | 
- **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
+ **futuresType** | **int64** | 1: USDT-margined Futures，2: Coin-margined Futures | 
  **startTime** | **int64** | Cannot be earlier than 1 month ago | 
  **endTime** | **int64** |  | 
  **page** | **int64** |  | 
@@ -1406,7 +1406,7 @@ import (
 func main() {
 	fromEmail := "abc@test.com" // string | Sender email
 	toEmail := "def@test.com" // string | Recipient email
-	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	futuresType := int64(1) // int64 | 1: USDT-margined Futures，2: Coin-margined Futures
 	asset := "BTC" // string | 
 	amount := float64(1.0) // float64 | 
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -1439,7 +1439,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **fromEmail** | **string** | Sender email | 
  **toEmail** | **string** | Recipient email | 
- **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
+ **futuresType** | **int64** | 1: USDT-margined Futures，2: Coin-margined Futures | 
  **asset** | **string** |  | 
  **amount** | **float64** |  | 
  **recvWindow** | **int64** |  | 

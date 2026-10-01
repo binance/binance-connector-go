@@ -45,7 +45,7 @@ func (r ApiFuturesTransferForSubAccountRequest) Amount(amount float64) ApiFuture
 	return r
 }
 
-// 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4:transfer from subaccount&#39;s COIN-margined futures account to its spot account
+// 1: transfer from subaccount&#39;s spot account to its USDT-margined futures account 2: transfer from subaccount&#39;s USDT-margined futures account to its spot account 3: transfer from subaccount&#39;s spot account to its COIN-margined futures account 4: transfer from subaccount&#39;s COIN-margined futures account to its spot account
 func (r ApiFuturesTransferForSubAccountRequest) Type(type_ int64) ApiFuturesTransferForSubAccountRequest {
 	r.type_ = &type_
 	return r
@@ -70,7 +70,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param email -
 @param asset -  The asset being transferred
 @param amount -  The amount to be transferred
-@param type_ -  1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4:transfer from subaccount's COIN-margined futures account to its spot account
+@param type_ -  1: transfer from subaccount's spot account to its USDT-margined futures account 2: transfer from subaccount's USDT-margined futures account to its spot account 3: transfer from subaccount's spot account to its COIN-margined futures account 4: transfer from subaccount's COIN-margined futures account to its spot account
 @param recvWindow -
 @return ApiFuturesTransferForSubAccountRequest
 */
@@ -218,7 +218,7 @@ func (r ApiGetDetailOnSubAccountsFuturesAccountV2Request) Email(email string) Ap
 	return r
 }
 
-// 1:USDT-margined Futures，2: Coin-margined Futures
+// 1: USDT-margined Futures，2: Coin-margined Futures
 func (r ApiGetDetailOnSubAccountsFuturesAccountV2Request) FuturesType(futuresType int64) ApiGetDetailOnSubAccountsFuturesAccountV2Request {
 	r.futuresType = &futuresType
 	return r
@@ -241,7 +241,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -
-@param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
+@param futuresType -  1: USDT-margined Futures，2: Coin-margined Futures
 @param recvWindow -
 @return ApiGetDetailOnSubAccountsFuturesAccountV2Request
 */
@@ -860,7 +860,7 @@ type ApiGetSummaryOfSubAccountsFuturesAccountV2Request struct {
 	recvWindow  *int64
 }
 
-// 1:USDT-margined Futures，2: Coin-margined Futures
+// 1: USDT-margined Futures，2: Coin-margined Futures
 func (r ApiGetSummaryOfSubAccountsFuturesAccountV2Request) FuturesType(futuresType int64) ApiGetSummaryOfSubAccountsFuturesAccountV2Request {
 	r.futuresType = &futuresType
 	return r
@@ -892,7 +892,7 @@ Get /sapi/v2/sub-account/futures/accountSummary
 https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/asset-management#get-summary-of-sub-accounts-futures-account-v2
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
+@param futuresType -  1: USDT-margined Futures，2: Coin-margined Futures
 @param page -
 @param limit -
 @param recvWindow -
@@ -1401,7 +1401,7 @@ func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) Email(email string
 	return r
 }
 
-// 1:USDT-margined Futures，2: Coin-margined Futures
+// 1: USDT-margined Futures，2: Coin-margined Futures
 func (r ApiQuerySubAccountFuturesAssetTransferHistoryRequest) FuturesType(futuresType int64) ApiQuerySubAccountFuturesAssetTransferHistoryRequest {
 	r.futuresType = &futuresType
 	return r
@@ -1445,7 +1445,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -
-@param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
+@param futuresType -  1: USDT-margined Futures，2: Coin-margined Futures
 @param startTime -  Cannot be earlier than 1 month ago
 @param endTime -
 @param page -
@@ -1882,7 +1882,7 @@ func (r ApiSubAccountFuturesAssetTransferRequest) ToEmail(toEmail string) ApiSub
 	return r
 }
 
-// 1:USDT-margined Futures，2: Coin-margined Futures
+// 1: USDT-margined Futures，2: Coin-margined Futures
 func (r ApiSubAccountFuturesAssetTransferRequest) FuturesType(futuresType int64) ApiSubAccountFuturesAssetTransferRequest {
 	r.futuresType = &futuresType
 	return r
@@ -1916,7 +1916,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param fromEmail -  Sender email
 @param toEmail -  Recipient email
-@param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
+@param futuresType -  1: USDT-margined Futures，2: Coin-margined Futures
 @param asset -
 @param amount -
 @param recvWindow -

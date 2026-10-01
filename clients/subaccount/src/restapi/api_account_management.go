@@ -328,7 +328,7 @@ func (r ApiGetFuturesPositionRiskOfSubAccountV2Request) Email(email string) ApiG
 	return r
 }
 
-// 1:USDT-margined Futures，2: Coin-margined Futures
+// 1: USDT-margined Futures，2: Coin-margined Futures
 func (r ApiGetFuturesPositionRiskOfSubAccountV2Request) FuturesType(futuresType int64) ApiGetFuturesPositionRiskOfSubAccountV2Request {
 	r.futuresType = &futuresType
 	return r
@@ -351,7 +351,7 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param email -
-@param futuresType -  1:USDT-margined Futures，2: Coin-margined Futures
+@param futuresType -  1: USDT-margined Futures，2: Coin-margined Futures
 @param recvWindow -
 @return ApiGetFuturesPositionRiskOfSubAccountV2Request
 */

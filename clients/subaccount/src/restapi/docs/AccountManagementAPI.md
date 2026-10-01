@@ -318,7 +318,7 @@ import (
 
 func main() {
 	email := "123@test.com" // string | 
-	futuresType := int64(1) // int64 | 1:USDT-margined Futures，2: Coin-margined Futures
+	futuresType := int64(1) // int64 | 1: USDT-margined Futures，2: Coin-margined Futures
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -348,7 +348,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** |  | 
- **futuresType** | **int64** | 1:USDT-margined Futures，2: Coin-margined Futures | 
+ **futuresType** | **int64** | 1: USDT-margined Futures，2: Coin-margined Futures | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
