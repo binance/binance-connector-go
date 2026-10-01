@@ -15,11 +15,12 @@ import (
 // checks if the OrderTestResponseResultDiscount type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderTestResponseResultDiscount{}
 
-// OrderTestResponseResultDiscount struct for OrderTestResponseResultDiscount
+// OrderTestResponseResultDiscount Discount on standard commissions when paying in BNB.
 type OrderTestResponseResultDiscount struct {
-	EnabledForAccount    *bool   `json:"enabledForAccount,omitempty"`
-	EnabledForSymbol     *bool   `json:"enabledForSymbol,omitempty"`
-	DiscountAsset        *string `json:"discountAsset,omitempty"`
+	EnabledForAccount *bool   `json:"enabledForAccount,omitempty"`
+	EnabledForSymbol  *bool   `json:"enabledForSymbol,omitempty"`
+	DiscountAsset     *string `json:"discountAsset,omitempty"`
+	// Standard commission is reduced by this rate when paying commission in BNB.
 	Discount             *string `json:"discount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

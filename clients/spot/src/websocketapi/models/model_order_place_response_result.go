@@ -17,8 +17,9 @@ var _ common.MappedNullable = &OrderPlaceResponseResult{}
 
 // OrderPlaceResponseResult struct for OrderPlaceResponseResult
 type OrderPlaceResponseResult struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
+	Symbol  *string `json:"symbol,omitempty"`
+	OrderId *int64  `json:"orderId,omitempty"`
+	// always -1 for singular orders
 	OrderListId             *int64  `json:"orderListId,omitempty"`
 	ClientOrderId           *string `json:"clientOrderId,omitempty"`
 	TransactTime            *int64  `json:"transactTime,omitempty"`
@@ -62,7 +63,8 @@ type OrderPlaceResponseResult struct {
 	// Current price order is pegged at. Only for pegged orders, once determined.
 	PeggedPrice *string `json:"peggedPrice,omitempty"`
 	// Cause of the order's expiration. Appears when an order has expired.
-	ExpiryReason         *string                              `json:"expiryReason,omitempty"`
+	ExpiryReason *string `json:"expiryReason,omitempty"`
+	// FULL response is identical to RESULT response, with the same optional fields based on the order type and parameters. FULL response additionally includes the list of trades which immediately filled the order.
 	Fills                []OrderPlaceResponseResultFillsInner `json:"fills,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

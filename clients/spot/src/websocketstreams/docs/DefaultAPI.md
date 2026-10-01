@@ -14,7 +14,7 @@ Method        | HTTP request  | Description
 [**Kline**](DefaultAPI.md#Kline) | /&lt;symbol&gt;@kline_&lt;interval&gt; | Kline/Candlestick Streams for UTC
 [**KlineOffset**](DefaultAPI.md#KlineOffset) | /&lt;symbol&gt;@kline_&lt;interval&gt;@+08:00 | Kline/Candlestick Streams with timezone offset
 [**MiniTicker**](DefaultAPI.md#MiniTicker) | /&lt;symbol&gt;@miniTicker | Individual Symbol Mini Ticker Stream
-[**PartialBookDepth**](DefaultAPI.md#PartialBookDepth) | /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | WebSocket Partial Book Depth Streams
+[**PartialBookDepth**](DefaultAPI.md#PartialBookDepth) | /&lt;symbol&gt;@depth&lt;levels&gt;@&lt;updateSpeed&gt; | Partial Book Depth Streams
 [**ReferencePrice**](DefaultAPI.md#ReferencePrice) | /&lt;symbol&gt;@referencePrice | Reference Price Streams
 [**RollingWindowTicker**](DefaultAPI.md#RollingWindowTicker) | /&lt;symbol&gt;@ticker_&lt;windowSize&gt; | Individual Symbol Rolling Window Statistics Streams
 [**Ticker**](DefaultAPI.md#Ticker) | /&lt;symbol&gt;@ticker | Individual Symbol Ticker Streams
@@ -787,7 +787,7 @@ No authorization required
 
 ## PartialBookDepth
 
-WebSocket Partial Book Depth Streams
+Partial Book Depth Streams
 
 
 ### Example

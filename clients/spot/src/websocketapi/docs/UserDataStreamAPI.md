@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**SessionSubscriptions**](UserDataStreamAPI.md#SessionSubscriptions) | /session.subscriptions | Listing all subscriptions
-[**UserDataStreamSubscribe**](UserDataStreamAPI.md#UserDataStreamSubscribe) | /userDataStream.subscribe | Subscribe to User Data Stream
+[**UserDataStreamSubscribe**](UserDataStreamAPI.md#UserDataStreamSubscribe) | /userDataStream.subscribe | Subscribe to User Data Stream (USER_STREAM)
 [**UserDataStreamSubscribeSignature**](UserDataStreamAPI.md#UserDataStreamSubscribeSignature) | /userDataStream.subscribe.signature | Subscribe to User Data Stream through signature subscription (USER_STREAM)
-[**UserDataStreamUnsubscribe**](UserDataStreamAPI.md#UserDataStreamUnsubscribe) | /userDataStream.unsubscribe | WebSocket Unsubscribe from User Data Stream
+[**UserDataStreamUnsubscribe**](UserDataStreamAPI.md#UserDataStreamUnsubscribe) | /userDataStream.unsubscribe | Unsubscribe from User Data Stream
 
 
 ## SessionSubscriptions
@@ -86,7 +86,7 @@ No authorization required
 
 > UserDataStreamSubscribeResponse UserDataStreamSubscribe().Id(id).Execute()
 
-Subscribe to User Data Stream
+Subscribe to User Data Stream (USER_STREAM)
 
 
 ### Example
@@ -240,7 +240,7 @@ No authorization required
 
 > UserDataStreamUnsubscribeResponse UserDataStreamUnsubscribe().Id(id).SubscriptionId(subscriptionId).Execute()
 
-WebSocket Unsubscribe from User Data Stream
+Unsubscribe from User Data Stream
 
 
 ### Example

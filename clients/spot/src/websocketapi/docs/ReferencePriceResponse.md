@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**ReferencePriceResponseResult**](ReferencePriceResponseResult.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
+**Result** | Pointer to [**ReferencePriceResponse2Result**](ReferencePriceResponse2Result.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AvgPriceResponseRateLimitsInner**](AvgPriceResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *ReferencePriceResponse) GetResult() ReferencePriceResponseResult`
+`func (o *ReferencePriceResponse) GetResult() ReferencePriceResponse2Result`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *ReferencePriceResponse) GetResultOk() (*ReferencePriceResponseResult, bool)`
+`func (o *ReferencePriceResponse) GetResultOk() (*ReferencePriceResponse2Result, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponseResult)`
+`func (o *ReferencePriceResponse) SetResult(v ReferencePriceResponse2Result)`
 
 SetResult sets Result field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *ReferencePriceResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
+`func (o *ReferencePriceResponse) GetRateLimits() []AvgPriceResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *ReferencePriceResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
+`func (o *ReferencePriceResponse) GetRateLimitsOk() (*[]AvgPriceResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *ReferencePriceResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
+`func (o *ReferencePriceResponse) SetRateLimits(v []AvgPriceResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

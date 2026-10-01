@@ -18,7 +18,7 @@ var _ common.MappedNullable = &SorOrderTestResponseResult{}
 // SorOrderTestResponseResult struct for SorOrderTestResponseResult
 type SorOrderTestResponseResult struct {
 	StandardCommissionForOrder *OrderTestResponseResultStandardCommissionForOrder `json:"standardCommissionForOrder,omitempty"`
-	TaxCommissionForOrder      *OrderTestResponseResultStandardCommissionForOrder `json:"taxCommissionForOrder,omitempty"`
+	TaxCommissionForOrder      *OrderTestResponseResultTaxCommissionForOrder      `json:"taxCommissionForOrder,omitempty"`
 	Discount                   *OrderTestResponseResultDiscount                   `json:"discount,omitempty"`
 	AdditionalProperties       map[string]interface{}
 }
@@ -75,9 +75,9 @@ func (o *SorOrderTestResponseResult) SetStandardCommissionForOrder(v OrderTestRe
 }
 
 // GetTaxCommissionForOrder returns the TaxCommissionForOrder field value if set, zero value otherwise.
-func (o *SorOrderTestResponseResult) GetTaxCommissionForOrder() OrderTestResponseResultStandardCommissionForOrder {
+func (o *SorOrderTestResponseResult) GetTaxCommissionForOrder() OrderTestResponseResultTaxCommissionForOrder {
 	if o == nil || common.IsNil(o.TaxCommissionForOrder) {
-		var ret OrderTestResponseResultStandardCommissionForOrder
+		var ret OrderTestResponseResultTaxCommissionForOrder
 		return ret
 	}
 	return *o.TaxCommissionForOrder
@@ -85,7 +85,7 @@ func (o *SorOrderTestResponseResult) GetTaxCommissionForOrder() OrderTestRespons
 
 // GetTaxCommissionForOrderOk returns a tuple with the TaxCommissionForOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SorOrderTestResponseResult) GetTaxCommissionForOrderOk() (*OrderTestResponseResultStandardCommissionForOrder, bool) {
+func (o *SorOrderTestResponseResult) GetTaxCommissionForOrderOk() (*OrderTestResponseResultTaxCommissionForOrder, bool) {
 	if o == nil || common.IsNil(o.TaxCommissionForOrder) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *SorOrderTestResponseResult) HasTaxCommissionForOrder() bool {
 	return false
 }
 
-// SetTaxCommissionForOrder gets a reference to the given OrderTestResponseResultStandardCommissionForOrder and assigns it to the TaxCommissionForOrder field.
-func (o *SorOrderTestResponseResult) SetTaxCommissionForOrder(v OrderTestResponseResultStandardCommissionForOrder) {
+// SetTaxCommissionForOrder gets a reference to the given OrderTestResponseResultTaxCommissionForOrder and assigns it to the TaxCommissionForOrder field.
+func (o *SorOrderTestResponseResult) SetTaxCommissionForOrder(v OrderTestResponseResultTaxCommissionForOrder) {
 	o.TaxCommissionForOrder = &v
 }
 

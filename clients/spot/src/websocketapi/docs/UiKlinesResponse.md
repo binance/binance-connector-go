@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Result** | Pointer to [**[][]KlinesResponseResultInnerInner**]([]KlinesResponseResultInnerInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]AvgPriceResponseRateLimitsInner**](AvgPriceResponseRateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *UiKlinesResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
+`func (o *UiKlinesResponse) GetRateLimits() []AvgPriceResponseRateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *UiKlinesResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
+`func (o *UiKlinesResponse) GetRateLimitsOk() (*[]AvgPriceResponseRateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *UiKlinesResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
+`func (o *UiKlinesResponse) SetRateLimits(v []AvgPriceResponseRateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

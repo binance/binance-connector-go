@@ -17,12 +17,15 @@ var _ common.MappedNullable = &ExchangeInfoResponse{}
 
 // ExchangeInfoResponse struct for ExchangeInfoResponse
 type ExchangeInfoResponse struct {
-	Timezone             *string                            `json:"timezone,omitempty"`
-	ServerTime           *int64                             `json:"serverTime,omitempty"`
-	RateLimits           []RateLimits                       `json:"rateLimits,omitempty"`
-	ExchangeFilters      []ExchangeFilters                  `json:"exchangeFilters,omitempty"`
-	Symbols              []ExchangeInfoResponseSymbolsInner `json:"symbols,omitempty"`
-	Sors                 []ExchangeInfoResponseSorsInner    `json:"sors,omitempty"`
+	Timezone   *string `json:"timezone,omitempty"`
+	ServerTime *int64  `json:"serverTime,omitempty"`
+	// Global rate limits. See \"Rate limits\" section.
+	RateLimits []RateLimits `json:"rateLimits,omitempty"`
+	// Exchange filters are explained on the \"Filters\" page: All exchange filters are optional.
+	ExchangeFilters []ExchangeFilters                  `json:"exchangeFilters,omitempty"`
+	Symbols         []ExchangeInfoResponseSymbolsInner `json:"symbols,omitempty"`
+	// Optional field. Present only when SOR is available.
+	Sors                 []ExchangeInfoResponseSorsInner `json:"sors,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

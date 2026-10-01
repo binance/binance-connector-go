@@ -17,10 +17,10 @@ var _ common.MappedNullable = &ReferencePriceCalculationResponse{}
 
 // ReferencePriceCalculationResponse struct for ReferencePriceCalculationResponse
 type ReferencePriceCalculationResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               *ReferencePriceCalculationResponseResult   `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                                  `json:"id,omitempty"`
+	Status               *int64                                   `json:"status,omitempty"`
+	Result               *ReferencePriceCalculationResponseResult `json:"result,omitempty"`
+	RateLimits           []AvgPriceResponseRateLimitsInner        `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *ReferencePriceCalculationResponse) SetResult(v ReferencePriceCalculatio
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *ReferencePriceCalculationResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *ReferencePriceCalculationResponse) GetRateLimits() []AvgPriceResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []AvgPriceResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *ReferencePriceCalculationResponse) GetRateLimits() []AccountCommissionR
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferencePriceCalculationResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *ReferencePriceCalculationResponse) GetRateLimitsOk() ([]AvgPriceResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *ReferencePriceCalculationResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *ReferencePriceCalculationResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []AvgPriceResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *ReferencePriceCalculationResponse) SetRateLimits(v []AvgPriceResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

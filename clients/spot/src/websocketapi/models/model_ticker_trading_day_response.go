@@ -8,221 +8,110 @@ package models
 
 import (
 	"encoding/json"
-
-	"github.com/binance/binance-connector-go/common/v2/common"
+	"fmt"
 )
 
-// checks if the TickerTradingDayResponse type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &TickerTradingDayResponse{}
-
-// TickerTradingDayResponse struct for TickerTradingDayResponse
+// TickerTradingDayResponse - struct for TickerTradingDayResponse
 type TickerTradingDayResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               []TickerTradingDayResponseResultInner      `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
-	AdditionalProperties map[string]interface{}
+	TickerTradingDayResponse1 *TickerTradingDayResponse1
+	TickerTradingDayResponse2 *TickerTradingDayResponse2
 }
 
-type _TickerTradingDayResponse TickerTradingDayResponse
-
-// NewTickerTradingDayResponse instantiates a new TickerTradingDayResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewTickerTradingDayResponse() *TickerTradingDayResponse {
-	this := TickerTradingDayResponse{}
-	return &this
-}
-
-// NewTickerTradingDayResponseWithDefaults instantiates a new TickerTradingDayResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewTickerTradingDayResponseWithDefaults() *TickerTradingDayResponse {
-	this := TickerTradingDayResponse{}
-	return &this
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *TickerTradingDayResponse) GetId() string {
-	if o == nil || common.IsNil(o.Id) {
-		var ret string
-		return ret
+// TickerTradingDayResponse1AsTickerTradingDayResponse is a convenience function that returns TickerTradingDayResponse1 wrapped in TickerTradingDayResponse
+func TickerTradingDayResponse1AsTickerTradingDayResponse(v *TickerTradingDayResponse1) TickerTradingDayResponse {
+	return TickerTradingDayResponse{
+		TickerTradingDayResponse1: v,
 	}
-	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponse) GetIdOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Id) {
-		return nil, false
+// TickerTradingDayResponse2AsTickerTradingDayResponse is a convenience function that returns TickerTradingDayResponse2 wrapped in TickerTradingDayResponse
+func TickerTradingDayResponse2AsTickerTradingDayResponse(v *TickerTradingDayResponse2) TickerTradingDayResponse {
+	return TickerTradingDayResponse{
+		TickerTradingDayResponse2: v,
 	}
-	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *TickerTradingDayResponse) HasId() bool {
-	if o != nil && !common.IsNil(o.Id) {
-		return true
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *TickerTradingDayResponse) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into TickerTradingDayResponse1
+	err = json.Unmarshal(data, &dst.TickerTradingDayResponse1)
+	if err == nil {
+		jsonTickerTradingDayResponse1, _ := json.Marshal(dst.TickerTradingDayResponse1)
+		if string(jsonTickerTradingDayResponse1) == "{}" { // empty struct
+			dst.TickerTradingDayResponse1 = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TickerTradingDayResponse1 = nil
 	}
 
-	return false
+	// try to unmarshal data into TickerTradingDayResponse2
+	err = json.Unmarshal(data, &dst.TickerTradingDayResponse2)
+	if err == nil {
+		jsonTickerTradingDayResponse2, _ := json.Marshal(dst.TickerTradingDayResponse2)
+		if string(jsonTickerTradingDayResponse2) == "{}" { // empty struct
+			dst.TickerTradingDayResponse2 = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.TickerTradingDayResponse2 = nil
+	}
+
+	if match > 1 { // more than 1 match
+		kept := 0
+		if dst.TickerTradingDayResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.TickerTradingDayResponse1 = nil
+			}
+		}
+		if dst.TickerTradingDayResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.TickerTradingDayResponse2 = nil
+			}
+		}
+
+		return nil
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(TickerTradingDayResponse)")
+	}
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *TickerTradingDayResponse) SetId(v string) {
-	o.Id = &v
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src TickerTradingDayResponse) MarshalJSON() ([]byte, error) {
+	if src.TickerTradingDayResponse1 != nil {
+		return json.Marshal(&src.TickerTradingDayResponse1)
+	}
+
+	if src.TickerTradingDayResponse2 != nil {
+		return json.Marshal(&src.TickerTradingDayResponse2)
+	}
+
+	return nil, nil // no data in oneOf schemas
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *TickerTradingDayResponse) GetStatus() int64 {
-	if o == nil || common.IsNil(o.Status) {
-		var ret int64
-		return ret
+// Get the actual instance
+func (obj *TickerTradingDayResponse) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
 	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponse) GetStatusOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *TickerTradingDayResponse) HasStatus() bool {
-	if o != nil && !common.IsNil(o.Status) {
-		return true
+	if obj.TickerTradingDayResponse1 != nil {
+		return obj.TickerTradingDayResponse1
 	}
 
-	return false
-}
-
-// SetStatus gets a reference to the given int64 and assigns it to the Status field.
-func (o *TickerTradingDayResponse) SetStatus(v int64) {
-	o.Status = &v
-}
-
-// GetResult returns the Result field value if set, zero value otherwise.
-func (o *TickerTradingDayResponse) GetResult() []TickerTradingDayResponseResultInner {
-	if o == nil || common.IsNil(o.Result) {
-		var ret []TickerTradingDayResponseResultInner
-		return ret
-	}
-	return o.Result
-}
-
-// GetResultOk returns a tuple with the Result field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponse) GetResultOk() ([]TickerTradingDayResponseResultInner, bool) {
-	if o == nil || common.IsNil(o.Result) {
-		return nil, false
-	}
-	return o.Result, true
-}
-
-// HasResult returns a boolean if a field has been set.
-func (o *TickerTradingDayResponse) HasResult() bool {
-	if o != nil && !common.IsNil(o.Result) {
-		return true
+	if obj.TickerTradingDayResponse2 != nil {
+		return obj.TickerTradingDayResponse2
 	}
 
-	return false
-}
-
-// SetResult gets a reference to the given []TickerTradingDayResponseResultInner and assigns it to the Result field.
-func (o *TickerTradingDayResponse) SetResult(v []TickerTradingDayResponseResultInner) {
-	o.Result = v
-}
-
-// GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *TickerTradingDayResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
-	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
-		return ret
-	}
-	return o.RateLimits
-}
-
-// GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
-	if o == nil || common.IsNil(o.RateLimits) {
-		return nil, false
-	}
-	return o.RateLimits, true
-}
-
-// HasRateLimits returns a boolean if a field has been set.
-func (o *TickerTradingDayResponse) HasRateLimits() bool {
-	if o != nil && !common.IsNil(o.RateLimits) {
-		return true
-	}
-
-	return false
-}
-
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *TickerTradingDayResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
-	o.RateLimits = v
-}
-
-func (o TickerTradingDayResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o TickerTradingDayResponse) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !common.IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !common.IsNil(o.Result) {
-		toSerialize["result"] = o.Result
-	}
-	if !common.IsNil(o.RateLimits) {
-		toSerialize["rateLimits"] = o.RateLimits
-	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *TickerTradingDayResponse) UnmarshalJSON(data []byte) (err error) {
-	varTickerTradingDayResponse := _TickerTradingDayResponse{}
-
-	err = json.Unmarshal(data, &varTickerTradingDayResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TickerTradingDayResponse(varTickerTradingDayResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "result")
-		delete(additionalProperties, "rateLimits")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
+	// all schemas are nil
+	return nil
 }
 
 type NullableTickerTradingDayResponse struct {

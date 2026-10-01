@@ -17,11 +17,13 @@ var _ common.MappedNullable = &SessionStatusResponseResult{}
 
 // SessionStatusResponseResult struct for SessionStatusResponseResult
 type SessionStatusResponseResult struct {
-	ApiKey           *string `json:"apiKey,omitempty"`
-	AuthorizedSince  *int64  `json:"authorizedSince,omitempty"`
-	ConnectedSince   *int64  `json:"connectedSince,omitempty"`
-	ReturnRateLimits *bool   `json:"returnRateLimits,omitempty"`
-	ServerTime       *int64  `json:"serverTime,omitempty"`
+	// `null` if the connection is not authenticated.
+	ApiKey *string `json:"apiKey,omitempty"`
+	// `null` if the connection is not authenticated.
+	AuthorizedSince  *int64 `json:"authorizedSince,omitempty"`
+	ConnectedSince   *int64 `json:"connectedSince,omitempty"`
+	ReturnRateLimits *bool  `json:"returnRateLimits,omitempty"`
+	ServerTime       *int64 `json:"serverTime,omitempty"`
 	// Is User Data Stream subscription active?
 	UserDataStream       *bool `json:"userDataStream,omitempty"`
 	AdditionalProperties map[string]interface{}

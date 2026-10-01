@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **EnabledForAccount** | Pointer to **bool** |  | [optional] 
 **EnabledForSymbol** | Pointer to **bool** |  | [optional] 
 **DiscountAsset** | Pointer to **string** |  | [optional] 
-**Discount** | Pointer to **string** |  | [optional] 
+**Discount** | Pointer to **string** | Standard commission is reduced by this rate when paying commission in BNB. | [optional] 
 
 ## Methods
 

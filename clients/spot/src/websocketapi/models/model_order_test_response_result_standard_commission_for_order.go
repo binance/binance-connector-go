@@ -15,7 +15,7 @@ import (
 // checks if the OrderTestResponseResultStandardCommissionForOrder type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderTestResponseResultStandardCommissionForOrder{}
 
-// OrderTestResponseResultStandardCommissionForOrder struct for OrderTestResponseResultStandardCommissionForOrder
+// OrderTestResponseResultStandardCommissionForOrder Standard commission rates on trades from the order.
 type OrderTestResponseResultStandardCommissionForOrder struct {
 	Maker                *string `json:"maker,omitempty"`
 	Taker                *string `json:"taker,omitempty"`

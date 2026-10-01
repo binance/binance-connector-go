@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**ReferencePrice** | Pointer to **string** | Reference price. Can be &#x60;null&#x60; if no reference price is set. | [optional] 
-**Timestamp** | Pointer to **int64** | Timestamp when reference price was valid. | [optional] 
+**ReferencePrice** | Pointer to **interface{}** | Reference price. Can be &#x60;null&#x60; if no reference price is set. | [optional] 
+**Timestamp** | Pointer to **int64** | Timestamp when reference price was valid | [optional] 
 
 ## Methods
 
@@ -54,20 +54,20 @@ HasSymbol returns a boolean if a field has been set.
 
 ### GetReferencePrice
 
-`func (o *ReferencePriceResponse) GetReferencePrice() string`
+`func (o *ReferencePriceResponse) GetReferencePrice() interface{}`
 
 GetReferencePrice returns the ReferencePrice field if non-nil, zero value otherwise.
 
 ### GetReferencePriceOk
 
-`func (o *ReferencePriceResponse) GetReferencePriceOk() (*string, bool)`
+`func (o *ReferencePriceResponse) GetReferencePriceOk() (*interface{}, bool)`
 
 GetReferencePriceOk returns a tuple with the ReferencePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReferencePrice
 
-`func (o *ReferencePriceResponse) SetReferencePrice(v string)`
+`func (o *ReferencePriceResponse) SetReferencePrice(v interface{})`
 
 SetReferencePrice sets ReferencePrice field to given value.
 
@@ -77,6 +77,16 @@ SetReferencePrice sets ReferencePrice field to given value.
 
 HasReferencePrice returns a boolean if a field has been set.
 
+### SetReferencePriceNil
+
+`func (o *ReferencePriceResponse) SetReferencePriceNil(b bool)`
+
+ SetReferencePriceNil sets the value for ReferencePrice to be an explicit nil
+
+### UnsetReferencePrice
+`func (o *ReferencePriceResponse) UnsetReferencePrice()`
+
+UnsetReferencePrice ensures that no value is present for ReferencePrice, not even an explicit nil
 ### GetTimestamp
 
 `func (o *ReferencePriceResponse) GetTimestamp() int64`

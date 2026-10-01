@@ -36,7 +36,7 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0}]}`
+		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0},{"subscriptionId":1}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -93,7 +93,7 @@ func Test_binancespotwebsocketapi_UserDataStreamAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0}]}`
+		mockedJSON := `{"id":"123","status":200,"result":[{"subscriptionId":0},{"subscriptionId":1}]}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)

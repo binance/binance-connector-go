@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**OrigClientOrderId** | Pointer to **string** |  | [optional] 
+**OrigClientOrderId** | Pointer to **string** | clientOrderId that was canceled | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
-**OrderListId** | Pointer to **int64** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
+**OrderListId** | Pointer to **int64** | set only for legs of an order list | [optional] 
+**ClientOrderId** | Pointer to **string** | newClientOrderId from request | [optional] 
 **TransactTime** | Pointer to **int64** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 
@@ -19,11 +19,11 @@ Name         | Type          | Description.  | Notes
 **TimeInForce** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Side** | Pointer to **string** |  | [optional] 
-**StopPrice** | Pointer to **string** | Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders. | [optional] 
-**TrailingDelta** | Pointer to **int64** | Delta price change required before order activation. | [optional] 
-**IcebergQty** | Pointer to **string** | Appears only if the parameter icebergQty was sent in the request. | [optional] 
-**StrategyId** | Pointer to **int64** | Appears only if the strategyId parameter was provided upon order placement. | [optional] 
-**StrategyType** | Pointer to **int64** | Appears only if the strategyType parameter was provided upon order placement. | [optional] 
+**StopPrice** | Pointer to **string** | present only if stopPrice set for the order | [optional] 
+**TrailingDelta** | Pointer to **int64** | present only if trailingDelta set for the order | [optional] 
+**IcebergQty** | Pointer to **string** | present only if icebergQty set for the order | [optional] 
+**StrategyId** | Pointer to **int64** | present only if strategyId set for the order | [optional] 
+**StrategyType** | Pointer to **int64** | present only if strategyType set for the order | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **PreventedMatchId** | Pointer to **int64** | Appears only if the order expired due to STP. | [optional] 
 **PreventedQuantity** | Pointer to **string** | Order quantity that expired due to STP. | [optional] 
@@ -41,7 +41,7 @@ Name         | Type          | Description.  | Notes
 **ListClientOrderId** | Pointer to **string** |  | [optional] 
 **TransactionTime** | Pointer to **int64** |  | [optional] 
 **Orders** | Pointer to [**[]OpenOrdersCancelAllResponseResultInnerOrdersInner**](OpenOrdersCancelAllResponseResultInnerOrdersInner.md) |  | [optional] 
-**OrderReports** | Pointer to [**[]OpenOrdersCancelAllResponseResultInnerOrderReportsInner**](OpenOrdersCancelAllResponseResultInnerOrderReportsInner.md) |  | [optional] 
+**OrderReports** | Pointer to [**[]OpenOrdersCancelAllResponseResultInnerOrderReportsInner**](OpenOrdersCancelAllResponseResultInnerOrderReportsInner.md) | order list order&#39;s status format is the same as for individual orders. | [optional] 
 
 ## Methods
 

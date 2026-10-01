@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | Pointer to **string** |  | [optional] 
-**AuthorizedSince** | Pointer to **int64** |  | [optional] 
+**ApiKey** | Pointer to **string** | &#x60;null&#x60; if the connection is not authenticated. | [optional] 
+**AuthorizedSince** | Pointer to **int64** | &#x60;null&#x60; if the connection is not authenticated. | [optional] 
 **ConnectedSince** | Pointer to **int64** |  | [optional] 
 **ReturnRateLimits** | Pointer to **bool** |  | [optional] 
 **ServerTime** | Pointer to **int64** |  | [optional] 

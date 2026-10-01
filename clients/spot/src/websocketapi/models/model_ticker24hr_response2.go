@@ -15,12 +15,12 @@ import (
 // checks if the Ticker24hrResponse2 type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &Ticker24hrResponse2{}
 
-// Ticker24hrResponse2 struct for Ticker24hrResponse2
+// Ticker24hrResponse2 If more than one symbol is requested, response returns an array:
 type Ticker24hrResponse2 struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               []Ticker24hrResponse2ResultInner           `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                           `json:"id,omitempty"`
+	Status               *int64                            `json:"status,omitempty"`
+	Result               []Ticker24hrResponse2ResultInner  `json:"result,omitempty"`
+	RateLimits           []AvgPriceResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *Ticker24hrResponse2) SetResult(v []Ticker24hrResponse2ResultInner) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *Ticker24hrResponse2) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *Ticker24hrResponse2) GetRateLimits() []AvgPriceResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []AvgPriceResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *Ticker24hrResponse2) GetRateLimits() []AccountCommissionResponseRateLim
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ticker24hrResponse2) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *Ticker24hrResponse2) GetRateLimitsOk() ([]AvgPriceResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *Ticker24hrResponse2) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *Ticker24hrResponse2) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []AvgPriceResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *Ticker24hrResponse2) SetRateLimits(v []AvgPriceResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

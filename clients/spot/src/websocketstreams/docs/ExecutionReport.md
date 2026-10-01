@@ -24,7 +24,7 @@ Name         | Type          | Description.  | Notes
 **Z** | Pointer to **string** | Cumulative filled quantity | [optional] 
 **L** | Pointer to **string** | Last executed price | [optional] 
 **N** | Pointer to **string** | Commission amount | [optional] 
-**N** | Pointer to **string** | Commission asset | [optional] 
+**N** | Pointer to **NullableString** | Commission asset | [optional] 
 **T** | Pointer to **int64** | Transaction time | [optional] 
 **T** | Pointer to **int64** | Trade ID | [optional] 
 **V** | Pointer to **int64** | Prevented Match Id; This is only visible if the order expired due to STP | [optional] 
@@ -604,6 +604,16 @@ SetN sets N field to given value.
 
 HasN returns a boolean if a field has been set.
 
+### SetNNil
+
+`func (o *ExecutionReport) SetNNil(b bool)`
+
+ SetNNil sets the value for N to be an explicit nil
+
+### UnsetN
+`func (o *ExecutionReport) UnsetN()`
+
+UnsetN ensures that no value is present for N, not even an explicit nil
 ### GetT
 
 `func (o *ExecutionReport) GetT() int64`

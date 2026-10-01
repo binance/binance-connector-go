@@ -102,7 +102,7 @@ func (r ApiUserDataStreamSubscribeRequest) Execute() (*common.ResponseOrRaw[mode
 }
 
 /*
-UserDataStreamSubscribe Subscribe to User Data Stream
+UserDataStreamSubscribe Subscribe to User Data Stream (USER_STREAM)
 /userDataStream.subscribe
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe
@@ -133,7 +133,7 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 
 	sendParams := common.SendParams{
 		Signed:           false,
-		WithAPIKey:       false,
+		WithAPIKey:       true,
 		WithSessionLogon: false,
 	}
 
@@ -299,7 +299,7 @@ func (r ApiUserDataStreamUnsubscribeRequest) ExecuteAsync() (chan *common.Respon
 }
 
 /*
-UserDataStreamUnsubscribe WebSocket Unsubscribe from User Data Stream
+UserDataStreamUnsubscribe Unsubscribe from User Data Stream
 /userDataStream.unsubscribe
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-unsubscribe

@@ -15,12 +15,12 @@ import (
 // checks if the OrderCancelReplaceResponse type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderCancelReplaceResponse{}
 
-// OrderCancelReplaceResponse struct for OrderCancelReplaceResponse
+// OrderCancelReplaceResponse If both cancel and placement succeed, you get the following response with `\"status\": 200`:
 type OrderCancelReplaceResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               *OrderCancelReplaceResponseResult          `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                           `json:"id,omitempty"`
+	Status               *int64                            `json:"status,omitempty"`
+	Result               *OrderCancelReplaceResponseResult `json:"result,omitempty"`
+	RateLimits           []PingResponseRateLimitsInner     `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *OrderCancelReplaceResponse) SetResult(v OrderCancelReplaceResponseResul
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *OrderCancelReplaceResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *OrderCancelReplaceResponse) GetRateLimits() []PingResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []PingResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *OrderCancelReplaceResponse) GetRateLimits() []AccountCommissionResponse
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderCancelReplaceResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *OrderCancelReplaceResponse) GetRateLimitsOk() ([]PingResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *OrderCancelReplaceResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *OrderCancelReplaceResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []PingResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *OrderCancelReplaceResponse) SetRateLimits(v []PingResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

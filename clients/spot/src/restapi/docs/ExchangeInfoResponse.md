@@ -7,9 +7,9 @@ Name         | Type          | Description.  | Notes
 **Timezone** | Pointer to **string** |  | [optional] 
 **ServerTime** | Pointer to **int64** |  | [optional] 
 **RateLimits** | Pointer to [**[]MyFiltersResponseRateLimitsInner**](MyFiltersResponseRateLimitsInner.md) |  | [optional] 
-**ExchangeFilters** | Pointer to [**[]MyFiltersResponseExchangeFiltersInner**](MyFiltersResponseExchangeFiltersInner.md) |  | [optional] 
+**ExchangeFilters** | Pointer to [**[]MyFiltersResponseExchangeFiltersInner**](MyFiltersResponseExchangeFiltersInner.md) | Exchange filters are explained on the \&quot;Filters\&quot; page: All exchange filters are optional. | [optional] 
 **Symbols** | Pointer to [**[]ExchangeInfoResponseSymbolsInner**](ExchangeInfoResponseSymbolsInner.md) |  | [optional] 
-**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) | Optional. Present only when SOR is available. | [optional] 
+**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) | Optional field. Present only when SOR is available. | [optional] 
 
 ## Methods
 

@@ -8,186 +8,110 @@ package models
 
 import (
 	"encoding/json"
-
-	"github.com/binance/binance-connector-go/common/v2/common"
+	"fmt"
 )
 
-// checks if the ReferencePriceResponse type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &ReferencePriceResponse{}
-
-// ReferencePriceResponse struct for ReferencePriceResponse
+// ReferencePriceResponse - struct for ReferencePriceResponse
 type ReferencePriceResponse struct {
-	Symbol *string `json:"symbol,omitempty"`
-	// Reference price. Can be `null` if no reference price is set.
-	ReferencePrice *string `json:"referencePrice,omitempty"`
-	// Timestamp when reference price was valid.
-	Timestamp            *int64 `json:"timestamp,omitempty"`
-	AdditionalProperties map[string]interface{}
+	ReferencePriceResponse1 *ReferencePriceResponse1
+	ReferencePriceResponse2 *ReferencePriceResponse2
 }
 
-type _ReferencePriceResponse ReferencePriceResponse
-
-// NewReferencePriceResponse instantiates a new ReferencePriceResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewReferencePriceResponse() *ReferencePriceResponse {
-	this := ReferencePriceResponse{}
-	return &this
-}
-
-// NewReferencePriceResponseWithDefaults instantiates a new ReferencePriceResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewReferencePriceResponseWithDefaults() *ReferencePriceResponse {
-	this := ReferencePriceResponse{}
-	return &this
-}
-
-// GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *ReferencePriceResponse) GetSymbol() string {
-	if o == nil || common.IsNil(o.Symbol) {
-		var ret string
-		return ret
+// ReferencePriceResponse1AsReferencePriceResponse is a convenience function that returns ReferencePriceResponse1 wrapped in ReferencePriceResponse
+func ReferencePriceResponse1AsReferencePriceResponse(v *ReferencePriceResponse1) ReferencePriceResponse {
+	return ReferencePriceResponse{
+		ReferencePriceResponse1: v,
 	}
-	return *o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse) GetSymbolOk() (*string, bool) {
-	if o == nil || common.IsNil(o.Symbol) {
-		return nil, false
+// ReferencePriceResponse2AsReferencePriceResponse is a convenience function that returns ReferencePriceResponse2 wrapped in ReferencePriceResponse
+func ReferencePriceResponse2AsReferencePriceResponse(v *ReferencePriceResponse2) ReferencePriceResponse {
+	return ReferencePriceResponse{
+		ReferencePriceResponse2: v,
 	}
-	return o.Symbol, true
 }
 
-// HasSymbol returns a boolean if a field has been set.
-func (o *ReferencePriceResponse) HasSymbol() bool {
-	if o != nil && !common.IsNil(o.Symbol) {
-		return true
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ReferencePriceResponse) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ReferencePriceResponse1
+	err = json.Unmarshal(data, &dst.ReferencePriceResponse1)
+	if err == nil {
+		jsonReferencePriceResponse1, _ := json.Marshal(dst.ReferencePriceResponse1)
+		if string(jsonReferencePriceResponse1) == "{}" { // empty struct
+			dst.ReferencePriceResponse1 = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ReferencePriceResponse1 = nil
 	}
 
-	return false
+	// try to unmarshal data into ReferencePriceResponse2
+	err = json.Unmarshal(data, &dst.ReferencePriceResponse2)
+	if err == nil {
+		jsonReferencePriceResponse2, _ := json.Marshal(dst.ReferencePriceResponse2)
+		if string(jsonReferencePriceResponse2) == "{}" { // empty struct
+			dst.ReferencePriceResponse2 = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ReferencePriceResponse2 = nil
+	}
+
+	if match > 1 { // more than 1 match
+		kept := 0
+		if dst.ReferencePriceResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.ReferencePriceResponse1 = nil
+			}
+		}
+		if dst.ReferencePriceResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.ReferencePriceResponse2 = nil
+			}
+		}
+
+		return nil
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(ReferencePriceResponse)")
+	}
 }
 
-// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *ReferencePriceResponse) SetSymbol(v string) {
-	o.Symbol = &v
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ReferencePriceResponse) MarshalJSON() ([]byte, error) {
+	if src.ReferencePriceResponse1 != nil {
+		return json.Marshal(&src.ReferencePriceResponse1)
+	}
+
+	if src.ReferencePriceResponse2 != nil {
+		return json.Marshal(&src.ReferencePriceResponse2)
+	}
+
+	return nil, nil // no data in oneOf schemas
 }
 
-// GetReferencePrice returns the ReferencePrice field value if set, zero value otherwise.
-func (o *ReferencePriceResponse) GetReferencePrice() string {
-	if o == nil || common.IsNil(o.ReferencePrice) {
-		var ret string
-		return ret
+// Get the actual instance
+func (obj *ReferencePriceResponse) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
 	}
-	return *o.ReferencePrice
-}
-
-// GetReferencePriceOk returns a tuple with the ReferencePrice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse) GetReferencePriceOk() (*string, bool) {
-	if o == nil || common.IsNil(o.ReferencePrice) {
-		return nil, false
-	}
-	return o.ReferencePrice, true
-}
-
-// HasReferencePrice returns a boolean if a field has been set.
-func (o *ReferencePriceResponse) HasReferencePrice() bool {
-	if o != nil && !common.IsNil(o.ReferencePrice) {
-		return true
+	if obj.ReferencePriceResponse1 != nil {
+		return obj.ReferencePriceResponse1
 	}
 
-	return false
-}
-
-// SetReferencePrice gets a reference to the given string and assigns it to the ReferencePrice field.
-func (o *ReferencePriceResponse) SetReferencePrice(v string) {
-	o.ReferencePrice = &v
-}
-
-// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ReferencePriceResponse) GetTimestamp() int64 {
-	if o == nil || common.IsNil(o.Timestamp) {
-		var ret int64
-		return ret
-	}
-	return *o.Timestamp
-}
-
-// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ReferencePriceResponse) GetTimestampOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.Timestamp) {
-		return nil, false
-	}
-	return o.Timestamp, true
-}
-
-// HasTimestamp returns a boolean if a field has been set.
-func (o *ReferencePriceResponse) HasTimestamp() bool {
-	if o != nil && !common.IsNil(o.Timestamp) {
-		return true
+	if obj.ReferencePriceResponse2 != nil {
+		return obj.ReferencePriceResponse2
 	}
 
-	return false
-}
-
-// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
-func (o *ReferencePriceResponse) SetTimestamp(v int64) {
-	o.Timestamp = &v
-}
-
-func (o ReferencePriceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o ReferencePriceResponse) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !common.IsNil(o.Symbol) {
-		toSerialize["symbol"] = o.Symbol
-	}
-	if !common.IsNil(o.ReferencePrice) {
-		toSerialize["referencePrice"] = o.ReferencePrice
-	}
-	if !common.IsNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *ReferencePriceResponse) UnmarshalJSON(data []byte) (err error) {
-	varReferencePriceResponse := _ReferencePriceResponse{}
-
-	err = json.Unmarshal(data, &varReferencePriceResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ReferencePriceResponse(varReferencePriceResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "referencePrice")
-		delete(additionalProperties, "timestamp")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
+	// all schemas are nil
+	return nil
 }
 
 type NullableReferencePriceResponse struct {

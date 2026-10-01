@@ -37,7 +37,8 @@ type TickerResponse1Result struct {
 	CloseTime *int64 `json:"closeTime,omitempty"`
 	// Trade IDs
 	FirstId *int64 `json:"firstId,omitempty"`
-	LastId  *int64 `json:"lastId,omitempty"`
+	// Last trade ID
+	LastId *int64 `json:"lastId,omitempty"`
 	// Number of trades in the interval
 	Count                *int64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -17,10 +17,10 @@ var _ common.MappedNullable = &SorOrderTestResponse{}
 
 // SorOrderTestResponse struct for SorOrderTestResponse
 type SorOrderTestResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               *SorOrderTestResponseResult                `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                       `json:"id,omitempty"`
+	Status               *int64                        `json:"status,omitempty"`
+	Result               *SorOrderTestResponseResult   `json:"result,omitempty"`
+	RateLimits           []PingResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *SorOrderTestResponse) SetResult(v SorOrderTestResponseResult) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *SorOrderTestResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *SorOrderTestResponse) GetRateLimits() []PingResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []PingResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *SorOrderTestResponse) GetRateLimits() []AccountCommissionResponseRateLi
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SorOrderTestResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *SorOrderTestResponse) GetRateLimitsOk() ([]PingResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *SorOrderTestResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *SorOrderTestResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []PingResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *SorOrderTestResponse) SetRateLimits(v []PingResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

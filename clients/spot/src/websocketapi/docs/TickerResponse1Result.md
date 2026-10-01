@@ -17,7 +17,7 @@ Name         | Type          | Description.  | Notes
 **OpenTime** | Pointer to **int64** | Open time for ticker window | [optional] 
 **CloseTime** | Pointer to **int64** | Close time for ticker window | [optional] 
 **FirstId** | Pointer to **int64** | Trade IDs | [optional] 
-**LastId** | Pointer to **int64** |  | [optional] 
+**LastId** | Pointer to **int64** | Last trade ID | [optional] 
 **Count** | Pointer to **int64** | Number of trades in the interval | [optional] 
 
 ## Methods

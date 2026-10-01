@@ -15,7 +15,7 @@ import (
 // checks if the OrderCancelReplaceResponse type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderCancelReplaceResponse{}
 
-// OrderCancelReplaceResponse struct for OrderCancelReplaceResponse
+// OrderCancelReplaceResponse Both the cancel and the new order placement succeeded, and the account has not exceeded its unfilled order count:
 type OrderCancelReplaceResponse struct {
 	CancelResult         *string                                     `json:"cancelResult,omitempty"`
 	NewOrderResult       *string                                     `json:"newOrderResult,omitempty"`

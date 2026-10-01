@@ -62,11 +62,21 @@ func (dst *TickerBookTickerResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.TickerBookTickerResponse1 = nil
-		dst.TickerBookTickerResponse2 = nil
+		kept := 0
+		if dst.TickerBookTickerResponse1 != nil {
+			kept++
+			if kept > 1 {
+				dst.TickerBookTickerResponse1 = nil
+			}
+		}
+		if dst.TickerBookTickerResponse2 != nil {
+			kept++
+			if kept > 1 {
+				dst.TickerBookTickerResponse2 = nil
+			}
+		}
 
-		return fmt.Errorf("data matches more than one schema in oneOf(TickerBookTickerResponse)")
+		return nil
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match

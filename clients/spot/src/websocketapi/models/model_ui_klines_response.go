@@ -17,10 +17,10 @@ var _ common.MappedNullable = &UiKlinesResponse{}
 
 // UiKlinesResponse struct for UiKlinesResponse
 type UiKlinesResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               [][]KlinesResponseResultInnerInner         `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                            `json:"id,omitempty"`
+	Status               *int64                             `json:"status,omitempty"`
+	Result               [][]KlinesResponseResultInnerInner `json:"result,omitempty"`
+	RateLimits           []AvgPriceResponseRateLimitsInner  `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *UiKlinesResponse) SetResult(v [][]KlinesResponseResultInnerInner) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *UiKlinesResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *UiKlinesResponse) GetRateLimits() []AvgPriceResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []AvgPriceResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *UiKlinesResponse) GetRateLimits() []AccountCommissionResponseRateLimits
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UiKlinesResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *UiKlinesResponse) GetRateLimitsOk() ([]AvgPriceResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *UiKlinesResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *UiKlinesResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []AvgPriceResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *UiKlinesResponse) SetRateLimits(v []AvgPriceResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

@@ -27,7 +27,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"aggTrade","E":1672515782136,"s":"BNBBTC","a":12345,"f":100,"l":105,"T":1672515782136,"m":true,"M":true}`
+		mockedJSON := `{"e":"aggTrade","E":1672515782136,"s":"BNBBTC","a":12345,"p":"0.001","q":"100","f":100,"l":105,"T":1672515782136,"m":true,"M":true}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.AggTrade().Symbol("bnbusdt").Execute()
@@ -136,7 +136,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"1hTicker","E":1672515782136,"s":"BNBBTC","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}]`
+		mockedJSON := `[{"e":"1hTicker","E":1672515782136,"s":"BNBBTC","p":"0.0015","P":"250.00","o":"0.0010","h":"0.0025","l":"0.0010","c":"0.0025","w":"0.0018","v":"10000","q":"18","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.AllMarketRollingWindowTicker().WindowSize(models.AllMarketRollingWindowTickerWindowSizeParameterWindowSize1h).Execute()
@@ -245,7 +245,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `[{"e":"24hrMiniTicker","E":1672515782136,"s":"BNBBTC"}]`
+		mockedJSON := `[{"e":"24hrMiniTicker","E":1672515782136,"s":"BNBBTC","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18"}]`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.AllMiniTicker().Execute()
@@ -337,7 +337,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"avgPrice","E":1693907033000,"s":"BTCUSDT","i":"5m","T":1693907032213}`
+		mockedJSON := `{"e":"avgPrice","E":1693907033000,"s":"BTCUSDT","i":"5m","w":"25776.86000000","T":1693907032213}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.AvgPrice().Symbol("bnbusdt").Execute()
@@ -555,7 +555,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"u":400900217,"s":"BNBUSDT"}`
+		mockedJSON := `{"u":400900217,"s":"BNBUSDT","b":"25.35190000","B":"31.21000000","a":"25.36520000","A":"40.66000000"}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.BookTicker().Symbol("bnbusdt").Execute()
@@ -773,7 +773,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"kline","E":1672515782136,"s":"BNBBTC","k":{"t":1672515780000,"T":1672515839999,"s":"BNBBTC","i":"1m","f":100,"L":200,"n":100,"x":false}}`
+		mockedJSON := `{"e":"kline","E":1672515782136,"s":"BNBBTC","k":{"t":1672515780000,"T":1672515839999,"s":"BNBBTC","i":"1m","f":100,"L":200,"o":"0.0010","c":"0.0020","h":"0.0025","l":"0.0015","v":"1000","n":100,"x":false,"q":"1.0000","V":"500","Q":"0.500","B":"123456"}}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.Kline().Symbol("bnbusdt").Interval(models.KlineIntervalParameterInterval1s).Execute()
@@ -899,7 +899,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"kline","E":1672515782136,"s":"BNBBTC","k":{"t":1672515780000,"T":1672515839999,"s":"BNBBTC","i":"1m","f":100,"L":200,"n":100,"x":false}}`
+		mockedJSON := `{"e":"kline","E":1672515782136,"s":"BNBBTC","k":{"t":1672515780000,"T":1672515839999,"s":"BNBBTC","i":"1m","f":100,"L":200,"o":"0.0010","c":"0.0020","h":"0.0025","l":"0.0015","v":"1000","n":100,"x":false,"q":"1.0000","V":"500","Q":"0.500","B":"123456"}}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.KlineOffset().Symbol("bnbusdt").Interval(models.KlineIntervalParameterInterval1s).Execute()
@@ -1025,7 +1025,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"24hrMiniTicker","E":1672515782136,"s":"BNBBTC"}`
+		mockedJSON := `{"e":"24hrMiniTicker","E":1672515782136,"s":"BNBBTC","c":"0.0025","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18"}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.MiniTicker().Symbol("bnbusdt").Execute()
@@ -1369,7 +1369,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"1hTicker","E":1672515782136,"s":"BNBBTC","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}`
+		mockedJSON := `{"e":"1hTicker","E":1672515782136,"s":"BNBBTC","p":"0.0015","P":"250.00","o":"0.0010","h":"0.0025","l":"0.0010","c":"0.0025","w":"0.0018","v":"10000","q":"18","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.RollingWindowTicker().Symbol("bnbusdt").WindowSize(models.AllMarketRollingWindowTickerWindowSizeParameterWindowSize1h).Execute()
@@ -1495,7 +1495,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"24hrTicker","E":1672515782136,"s":"BNBBTC","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}`
+		mockedJSON := `{"e":"24hrTicker","E":1672515782136,"s":"BNBBTC","p":"0.0015","P":"250.00","w":"0.0018","x":"0.0009","c":"0.0025","Q":"10","b":"0.0024","B":"10","a":"0.0026","A":"100","o":"0.0010","h":"0.0025","l":"0.0010","v":"10000","q":"18","O":0,"C":1675216573749,"F":0,"L":18150,"n":18151}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.Ticker().Symbol("bnbusdt").Execute()
@@ -1604,7 +1604,7 @@ func Test_binancespotwebsocketstreams_DefaultAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"trade","E":1672515782136,"s":"BNBBTC","t":12345,"T":1672515782136,"m":true,"M":true}`
+		mockedJSON := `{"e":"trade","E":1672515782136,"s":"BNBBTC","t":12345,"p":"0.001","q":"100","T":1672515782136,"m":true,"M":true}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.DefaultAPI.Trade().Symbol("bnbusdt").Execute()

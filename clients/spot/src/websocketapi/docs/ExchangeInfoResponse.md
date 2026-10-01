@@ -6,10 +6,10 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Timezone** | Pointer to **string** |  | [optional] 
 **ServerTime** | Pointer to **int64** |  | [optional] 
-**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) |  | [optional] 
-**ExchangeFilters** | Pointer to [**[]ExchangeFilters**](ExchangeFilters.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]RateLimits**](RateLimits.md) | Global rate limits. See \&quot;Rate limits\&quot; section. | [optional] 
+**ExchangeFilters** | Pointer to [**[]ExchangeFilters**](ExchangeFilters.md) | Exchange filters are explained on the \&quot;Filters\&quot; page: All exchange filters are optional. | [optional] 
 **Symbols** | Pointer to [**[]ExchangeInfoResponseSymbolsInner**](ExchangeInfoResponseSymbolsInner.md) |  | [optional] 
-**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) |  | [optional] 
+**Sors** | Pointer to [**[]ExchangeInfoResponseSorsInner**](ExchangeInfoResponseSorsInner.md) | Optional field. Present only when SOR is available. | [optional] 
 
 ## Methods
 

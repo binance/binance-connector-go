@@ -856,7 +856,7 @@ func (r ApiPartialBookDepthRequest) Execute() (*common.StreamHandler[models.Part
 }
 
 /*
-PartialBookDepth WebSocket Partial Book Depth Streams
+PartialBookDepth Partial Book Depth Streams
 /<symbol>@depth<levels>@<updateSpeed>
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~#partial-book-depth

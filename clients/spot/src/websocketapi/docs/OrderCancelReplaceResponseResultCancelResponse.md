@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
-**OrigClientOrderId** | Pointer to **string** |  | [optional] 
+**OrigClientOrderId** | Pointer to **string** | cancelOrigClientOrderId from request | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
 **OrderListId** | Pointer to **int64** |  | [optional] 
-**ClientOrderId** | Pointer to **string** |  | [optional] 
+**ClientOrderId** | Pointer to **string** | cancelNewClientOrderId from request | [optional] 
 **TransactTime** | Pointer to **int64** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
 **OrigQty** | Pointer to **string** |  | [optional] 

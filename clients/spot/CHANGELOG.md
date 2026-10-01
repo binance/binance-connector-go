@@ -1,5 +1,128 @@
 ### Changelog
 
+## 1.16.0 - 2026-10-01
+
+### Changed (47)
+
+- Fixed `oneOf` response deserialization: when a response matches more than one schema, the first matching schema is now kept instead of returning an error.
+
+#### REST API
+
+- Modified response for `referencePrice()` (`GET /api/v3/referencePrice`):
+  - property `referencePrice` deleted
+  - property `symbol` deleted
+  - property `timestamp` deleted
+  - oneOf added 2 schema(s)
+
+- Modified response for `ticker()` (`GET /api/v3/ticker`):
+  - oneOf modified
+
+- Modified response for `ticker24hr()` (`GET /api/v3/ticker/24hr`):
+  - oneOf modified
+
+- Modified response for `tickerBookTicker()` (`GET /api/v3/ticker/bookTicker`):
+  - oneOf modified
+
+- Modified response for `tickerPrice()` (`GET /api/v3/ticker/price`):
+  - oneOf modified
+
+- Modified response for `tickerTradingDay()` (`GET /api/v3/ticker/tradingDay`):
+  - oneOf modified
+
+- Removed response field `timestamp`
+  - affected events:
+    - `referencePriceResponse`
+- Removed response field `referencePrice`
+  - affected events:
+    - `referencePriceResponse`
+- Removed response field `symbol`
+  - affected events:
+    - `referencePriceResponse`
+- Added response schema `referencePriceResponse2`
+- Added response schema `referencePriceResponse1`
+- Modified response schema `ticker24hrResponse`:
+  - oneOf modified
+- Modified response schema `tickerBookTickerResponse`:
+  - oneOf modified
+- Modified response schema `tickerPriceResponse`:
+  - oneOf modified
+- Modified response schema `tickerResponse`:
+  - oneOf modified
+- Modified response schema `tickerTradingDayResponse`:
+  - oneOf modified
+
+#### WebSocket API
+
+- `userDataStreamSubscribe()` (`userDataStream.subscribe` method) now sends the API key with the request.
+
+- Modified response for `referencePrice()` (`referencePrice` method):
+  - property `id` deleted
+  - property `rateLimits` deleted
+  - property `result` deleted
+  - property `status` deleted
+  - oneOf added 2 schema(s)
+
+- Modified response for `ticker()` (`ticker` method):
+  - oneOf modified
+
+- Modified response for `ticker24hr()` (`ticker.24hr` method):
+  - oneOf modified
+
+- Modified response for `tickerBook()` (`ticker.book` method):
+  - oneOf modified
+
+- Modified response for `tickerPrice()` (`ticker.price` method):
+  - oneOf modified
+
+- Modified response for `tickerTradingDay()` (`ticker.tradingDay` method):
+  - property `status` deleted
+  - property `id` deleted
+  - property `rateLimits` deleted
+  - property `result` deleted
+  - oneOf added 2 schema(s)
+
+- Removed response field `rateLimits`
+  - affected events:
+    - `referencePriceResponse`
+    - `tickerTradingDayResponse`
+- Removed response field `result`
+  - affected events:
+    - `referencePriceResponse`
+    - `tickerTradingDayResponse`
+- Removed response field `status`
+  - affected events:
+    - `referencePriceResponse`
+    - `tickerTradingDayResponse`
+- Removed response field `id`
+  - affected events:
+    - `referencePriceResponse`
+    - `tickerTradingDayResponse`
+- Modified response field `N`:
+  - nullable `false` → `true`
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `executionReport`
+- Added response schema `referencePriceResponse2`
+- Added response schema `tickerTradingDayResponse1`
+- Added response schema `referencePriceResponse1`
+- Added response schema `tickerTradingDayResponse2`
+- Modified response schema `ticker24hrResponse`:
+  - oneOf modified
+- Modified response schema `tickerBookResponse`:
+  - oneOf modified
+- Modified response schema `tickerPriceResponse`:
+  - oneOf modified
+- Modified response schema `tickerResponse`:
+  - oneOf modified
+
+#### WebSocket Streams
+
+- Modified response field `N`:
+  - nullable `false` → `true`
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `executionReport`
+
 ## 1.15.0 - 2026-09-28
 
 ### Changed (1)

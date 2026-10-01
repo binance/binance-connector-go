@@ -15,12 +15,14 @@ import (
 // checks if the OrderCancelReplaceResponseResultCancelResponse type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderCancelReplaceResponseResultCancelResponse{}
 
-// OrderCancelReplaceResponseResultCancelResponse struct for OrderCancelReplaceResponseResultCancelResponse
+// OrderCancelReplaceResponseResultCancelResponse Format is identical to \"order.cancel\" format. Some fields are optional and are included only for orders that set them.
 type OrderCancelReplaceResponseResultCancelResponse struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	OrigClientOrderId       *string `json:"origClientOrderId,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrderListId             *int64  `json:"orderListId,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// cancelOrigClientOrderId from request
+	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
+	OrderId           *int64  `json:"orderId,omitempty"`
+	OrderListId       *int64  `json:"orderListId,omitempty"`
+	// cancelNewClientOrderId from request
 	ClientOrderId           *string `json:"clientOrderId,omitempty"`
 	TransactTime            *int64  `json:"transactTime,omitempty"`
 	Price                   *string `json:"price,omitempty"`

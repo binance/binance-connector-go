@@ -17,10 +17,10 @@ var _ common.MappedNullable = &TickerResponse1{}
 
 // TickerResponse1 struct for TickerResponse1
 type TickerResponse1 struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               *TickerResponse1Result                     `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                          `json:"id,omitempty"`
+	Status               *int64                           `json:"status,omitempty"`
+	Result               *TickerResponse1Result           `json:"result,omitempty"`
+	RateLimits           []TickerResponse1RateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *TickerResponse1) SetResult(v TickerResponse1Result) {
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *TickerResponse1) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *TickerResponse1) GetRateLimits() []TickerResponse1RateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []TickerResponse1RateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *TickerResponse1) GetRateLimits() []AccountCommissionResponseRateLimitsI
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerResponse1) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *TickerResponse1) GetRateLimitsOk() ([]TickerResponse1RateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *TickerResponse1) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *TickerResponse1) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []TickerResponse1RateLimitsInner and assigns it to the RateLimits field.
+func (o *TickerResponse1) SetRateLimits(v []TickerResponse1RateLimitsInner) {
 	o.RateLimits = v
 }
 

@@ -6,7 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | Pointer to **string** |  | [optional] 
 **OrderId** | Pointer to **int64** |  | [optional] 
-**OrderListId** | Pointer to **int64** |  | [optional] 
+**OrderListId** | Pointer to **int64** | always -1 for singular orders | [optional] 
 **ClientOrderId** | Pointer to **string** |  | [optional] 
 **TransactTime** | Pointer to **int64** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
@@ -35,7 +35,7 @@ Name         | Type          | Description.  | Notes
 **PegOffsetValue** | Pointer to **int64** | Price peg offset value. Only for pegged orders, if requested. | [optional] 
 **PeggedPrice** | Pointer to **string** | Current price order is pegged at. Only for pegged orders, once determined. | [optional] 
 **ExpiryReason** | Pointer to **string** | Cause of the order&#39;s expiration. Appears when an order has expired. | [optional] 
-**Fills** | Pointer to [**[]OrderPlaceResponseResultFillsInner**](OrderPlaceResponseResultFillsInner.md) |  | [optional] 
+**Fills** | Pointer to [**[]OrderPlaceResponseResultFillsInner**](OrderPlaceResponseResultFillsInner.md) | FULL response is identical to RESULT response, with the same optional fields based on the order type and parameters. FULL response additionally includes the list of trades which immediately filled the order. | [optional] 
 
 ## Methods
 

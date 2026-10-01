@@ -17,27 +17,28 @@ var _ common.MappedNullable = &ExchangeInfoResponseSymbolsInner{}
 
 // ExchangeInfoResponseSymbolsInner struct for ExchangeInfoResponseSymbolsInner
 type ExchangeInfoResponseSymbolsInner struct {
-	Symbol                          *string         `json:"symbol,omitempty"`
-	Status                          *string         `json:"status,omitempty"`
-	BaseAsset                       *string         `json:"baseAsset,omitempty"`
-	BaseAssetPrecision              *int64          `json:"baseAssetPrecision,omitempty"`
-	QuoteAsset                      *string         `json:"quoteAsset,omitempty"`
-	QuotePrecision                  *int64          `json:"quotePrecision,omitempty"`
-	QuoteAssetPrecision             *int64          `json:"quoteAssetPrecision,omitempty"`
-	BaseCommissionPrecision         *int64          `json:"baseCommissionPrecision,omitempty"`
-	QuoteCommissionPrecision        *int64          `json:"quoteCommissionPrecision,omitempty"`
-	OrderTypes                      []string        `json:"orderTypes,omitempty"`
-	IcebergAllowed                  *bool           `json:"icebergAllowed,omitempty"`
-	OcoAllowed                      *bool           `json:"ocoAllowed,omitempty"`
-	OtoAllowed                      *bool           `json:"otoAllowed,omitempty"`
-	OpoAllowed                      *bool           `json:"opoAllowed,omitempty"`
-	QuoteOrderQtyMarketAllowed      *bool           `json:"quoteOrderQtyMarketAllowed,omitempty"`
-	AllowTrailingStop               *bool           `json:"allowTrailingStop,omitempty"`
-	CancelReplaceAllowed            *bool           `json:"cancelReplaceAllowed,omitempty"`
-	AmendAllowed                    *bool           `json:"amendAllowed,omitempty"`
-	PegInstructionsAllowed          *bool           `json:"pegInstructionsAllowed,omitempty"`
-	IsSpotTradingAllowed            *bool           `json:"isSpotTradingAllowed,omitempty"`
-	IsMarginTradingAllowed          *bool           `json:"isMarginTradingAllowed,omitempty"`
+	Symbol                     *string  `json:"symbol,omitempty"`
+	Status                     *string  `json:"status,omitempty"`
+	BaseAsset                  *string  `json:"baseAsset,omitempty"`
+	BaseAssetPrecision         *int64   `json:"baseAssetPrecision,omitempty"`
+	QuoteAsset                 *string  `json:"quoteAsset,omitempty"`
+	QuotePrecision             *int64   `json:"quotePrecision,omitempty"`
+	QuoteAssetPrecision        *int64   `json:"quoteAssetPrecision,omitempty"`
+	BaseCommissionPrecision    *int64   `json:"baseCommissionPrecision,omitempty"`
+	QuoteCommissionPrecision   *int64   `json:"quoteCommissionPrecision,omitempty"`
+	OrderTypes                 []string `json:"orderTypes,omitempty"`
+	IcebergAllowed             *bool    `json:"icebergAllowed,omitempty"`
+	OcoAllowed                 *bool    `json:"ocoAllowed,omitempty"`
+	OtoAllowed                 *bool    `json:"otoAllowed,omitempty"`
+	OpoAllowed                 *bool    `json:"opoAllowed,omitempty"`
+	QuoteOrderQtyMarketAllowed *bool    `json:"quoteOrderQtyMarketAllowed,omitempty"`
+	AllowTrailingStop          *bool    `json:"allowTrailingStop,omitempty"`
+	CancelReplaceAllowed       *bool    `json:"cancelReplaceAllowed,omitempty"`
+	AmendAllowed               *bool    `json:"amendAllowed,omitempty"`
+	PegInstructionsAllowed     *bool    `json:"pegInstructionsAllowed,omitempty"`
+	IsSpotTradingAllowed       *bool    `json:"isSpotTradingAllowed,omitempty"`
+	IsMarginTradingAllowed     *bool    `json:"isMarginTradingAllowed,omitempty"`
+	// Symbol filters are explained on the \"Filters\" page: All symbol filters are optional.
 	Filters                         []SymbolFilters `json:"filters,omitempty"`
 	Permissions                     []string        `json:"permissions,omitempty"`
 	PermissionSets                  [][]string      `json:"permissionSets,omitempty"`

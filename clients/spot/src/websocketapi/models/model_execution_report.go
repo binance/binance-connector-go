@@ -789,7 +789,7 @@ func (o *ExecutionReport) SetSmalln(v string) {
 	o.Smalln = &v
 }
 
-// GetN returns the N field value if set, zero value otherwise.
+// GetN returns the N field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ExecutionReport) GetN() string {
 	if o == nil || common.IsNil(o.N) {
 		var ret string
@@ -800,8 +800,9 @@ func (o *ExecutionReport) GetN() string {
 
 // GetNOk returns a tuple with the N field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExecutionReport) GetNOk() (*string, bool) {
-	if o == nil || common.IsNil(o.N) {
+	if o == nil {
 		return nil, false
 	}
 	return o.N, true
@@ -809,14 +810,14 @@ func (o *ExecutionReport) GetNOk() (*string, bool) {
 
 // HasN returns a boolean if a field has been set.
 func (o *ExecutionReport) HasN() bool {
-	if o != nil && !common.IsNil(o.N) {
+	if o != nil && common.IsNil(o.N) {
 		return true
 	}
 
 	return false
 }
 
-// SetN gets a reference to the given string and assigns it to the N field.
+// SetN gets a reference to the given NullableString and assigns it to the N field.
 func (o *ExecutionReport) SetN(v string) {
 	o.N = &v
 }

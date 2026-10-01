@@ -6,8 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
-**Result** | Pointer to [**[]TickerTradingDayResponseResultInner**](TickerTradingDayResponseResultInner.md) |  | [optional] 
-**RateLimits** | Pointer to [**[]AccountCommissionResponseRateLimitsInner**](AccountCommissionResponseRateLimitsInner.md) |  | [optional] 
+**Result** | Pointer to [**[]TickerTradingDayResponse2ResultInner**](TickerTradingDayResponse2ResultInner.md) |  | [optional] 
+**RateLimits** | Pointer to [**[]TickerResponse2RateLimitsInner**](TickerResponse2RateLimitsInner.md) |  | [optional] 
 
 ## Methods
 
@@ -80,20 +80,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetResult
 
-`func (o *TickerTradingDayResponse) GetResult() []TickerTradingDayResponseResultInner`
+`func (o *TickerTradingDayResponse) GetResult() []TickerTradingDayResponse2ResultInner`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *TickerTradingDayResponse) GetResultOk() (*[]TickerTradingDayResponseResultInner, bool)`
+`func (o *TickerTradingDayResponse) GetResultOk() (*[]TickerTradingDayResponse2ResultInner, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *TickerTradingDayResponse) SetResult(v []TickerTradingDayResponseResultInner)`
+`func (o *TickerTradingDayResponse) SetResult(v []TickerTradingDayResponse2ResultInner)`
 
 SetResult sets Result field to given value.
 
@@ -105,20 +105,20 @@ HasResult returns a boolean if a field has been set.
 
 ### GetRateLimits
 
-`func (o *TickerTradingDayResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner`
+`func (o *TickerTradingDayResponse) GetRateLimits() []TickerResponse2RateLimitsInner`
 
 GetRateLimits returns the RateLimits field if non-nil, zero value otherwise.
 
 ### GetRateLimitsOk
 
-`func (o *TickerTradingDayResponse) GetRateLimitsOk() (*[]AccountCommissionResponseRateLimitsInner, bool)`
+`func (o *TickerTradingDayResponse) GetRateLimitsOk() (*[]TickerResponse2RateLimitsInner, bool)`
 
 GetRateLimitsOk returns a tuple with the RateLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimits
 
-`func (o *TickerTradingDayResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner)`
+`func (o *TickerTradingDayResponse) SetRateLimits(v []TickerResponse2RateLimitsInner)`
 
 SetRateLimits sets RateLimits field to given value.
 

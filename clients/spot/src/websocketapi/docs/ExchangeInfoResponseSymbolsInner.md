@@ -25,7 +25,7 @@ Name         | Type          | Description.  | Notes
 **PegInstructionsAllowed** | Pointer to **bool** |  | [optional] 
 **IsSpotTradingAllowed** | Pointer to **bool** |  | [optional] 
 **IsMarginTradingAllowed** | Pointer to **bool** |  | [optional] 
-**Filters** | Pointer to [**[]SymbolFilters**](SymbolFilters.md) |  | [optional] 
+**Filters** | Pointer to [**[]SymbolFilters**](SymbolFilters.md) | Symbol filters are explained on the \&quot;Filters\&quot; page: All symbol filters are optional. | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **PermissionSets** | Pointer to **[][]string** |  | [optional] 
 **DefaultSelfTradePreventionMode** | Pointer to **string** |  | [optional] 

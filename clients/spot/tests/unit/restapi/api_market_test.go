@@ -721,7 +721,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 	t.Run("Test MarketAPIService Ticker Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"symbol":"LTCBTC","openTime":1656986580000,"closeTime":1657001016795,"firstId":0,"lastId":34,"count":35}`
+		mockedJSON = `{"symbol":"LTCBTC","priceChange":"-8.00000000","priceChangePercent":"-88.889","weightedAvgPrice":"2.60427807","openPrice":"0.10000000","highPrice":"2.00000000","lowPrice":"0.10000000","lastPrice":"2.00000000","volume":"39.00000000","quoteVolume":"13.40000000","openTime":1656986580000,"closeTime":1657001016795,"firstId":0,"lastId":34,"count":35}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -780,7 +780,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 	t.Run("Test MarketAPIService Ticker24hr Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"symbol":"BNBBTC","openTime":1499783499040,"closeTime":1499869899040,"firstId":28385,"lastId":28460,"count":76}`
+		mockedJSON = `{"symbol":"BNBBTC","priceChange":"-94.99999800","priceChangePercent":"-95.960","weightedAvgPrice":"0.29628482","prevClosePrice":"0.10002000","lastPrice":"4.00000200","lastQty":"200.00000000","bidPrice":"4.00000000","bidQty":"100.00000000","askPrice":"4.00000200","askQty":"100.00000000","openPrice":"99.00000000","highPrice":"100.00000000","lowPrice":"0.10000000","volume":"8913.30000000","quoteVolume":"15.30000000","openTime":1499783499040,"closeTime":1499869899040,"firstId":28385,"lastId":28460,"count":76}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -839,7 +839,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 	t.Run("Test MarketAPIService TickerBookTicker Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"symbol":"LTCBTC"}`
+		mockedJSON = `{"symbol":"LTCBTC","bidPrice":"4.00000000","bidQty":"431.00000000","askPrice":"4.00000200","askQty":"9.00000000"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -898,7 +898,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 	t.Run("Test MarketAPIService TickerPrice Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"symbol":"LTCBTC"}`
+		mockedJSON = `{"symbol":"LTCBTC","price":"4.00000200"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -957,7 +957,7 @@ func Test_binancespotrestapi_MarketAPIService(t *testing.T) {
 	t.Run("Test MarketAPIService TickerTradingDay Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"symbol":"BTCUSDT","openTime":1695686400000,"closeTime":1695772799999,"firstId":3220151555,"lastId":3220849281,"count":697727}`
+		mockedJSON = `{"symbol":"BTCUSDT","priceChange":"-83.13000000","priceChangePercent":"-0.317","weightedAvgPrice":"26234.58803036","openPrice":"26304.80000000","highPrice":"26397.46000000","lowPrice":"26088.34000000","lastPrice":"26221.67000000","volume":"18495.35066000","quoteVolume":"485217905.04210480","openTime":1695686400000,"closeTime":1695772799999,"firstId":3220151555,"lastId":3220849281,"count":697727}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

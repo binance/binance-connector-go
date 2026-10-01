@@ -17,11 +17,13 @@ var _ common.MappedNullable = &OrderCancelReplaceResponseCancelResponse{}
 
 // OrderCancelReplaceResponseCancelResponse struct for OrderCancelReplaceResponseCancelResponse
 type OrderCancelReplaceResponseCancelResponse struct {
-	Symbol            *string `json:"symbol,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// cancelOrigClientOrderId from request
 	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
 	OrderId           *int64  `json:"orderId,omitempty"`
 	// Unless it's part of an order list, value will be -1
-	OrderListId             *int64  `json:"orderListId,omitempty"`
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// cancelNewClientOrderId from request
 	ClientOrderId           *string `json:"clientOrderId,omitempty"`
 	TransactTime            *int64  `json:"transactTime,omitempty"`
 	Price                   *string `json:"price,omitempty"`

@@ -15,7 +15,7 @@ import (
 // checks if the OrderCancelReplaceResponseResultNewOrderResponse type satisfies the MappedNullable interface at compile time
 var _ common.MappedNullable = &OrderCancelReplaceResponseResultNewOrderResponse{}
 
-// OrderCancelReplaceResponseResultNewOrderResponse struct for OrderCancelReplaceResponseResultNewOrderResponse
+// OrderCancelReplaceResponseResultNewOrderResponse Format is identical to \"order.place\" format, affected by \"newOrderRespType\". Some fields are optional and are included only for orders that set them.
 type OrderCancelReplaceResponseResultNewOrderResponse struct {
 	Symbol                  *string `json:"symbol,omitempty"`
 	OrderId                 *int64  `json:"orderId,omitempty"`

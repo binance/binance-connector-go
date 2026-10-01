@@ -17,10 +17,10 @@ var _ common.MappedNullable = &OrderAmendmentsResponse{}
 
 // OrderAmendmentsResponse struct for OrderAmendmentsResponse
 type OrderAmendmentsResponse struct {
-	Id                   *string                                    `json:"id,omitempty"`
-	Status               *int64                                     `json:"status,omitempty"`
-	Result               []OrderAmendmentsResponseResultInner       `json:"result,omitempty"`
-	RateLimits           []AccountCommissionResponseRateLimitsInner `json:"rateLimits,omitempty"`
+	Id                   *string                                  `json:"id,omitempty"`
+	Status               *int64                                   `json:"status,omitempty"`
+	Result               []OrderAmendmentsResponseResultInner     `json:"result,omitempty"`
+	RateLimits           []OrderAmendmentsResponseRateLimitsInner `json:"rateLimits,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *OrderAmendmentsResponse) SetResult(v []OrderAmendmentsResponseResultInn
 }
 
 // GetRateLimits returns the RateLimits field value if set, zero value otherwise.
-func (o *OrderAmendmentsResponse) GetRateLimits() []AccountCommissionResponseRateLimitsInner {
+func (o *OrderAmendmentsResponse) GetRateLimits() []OrderAmendmentsResponseRateLimitsInner {
 	if o == nil || common.IsNil(o.RateLimits) {
-		var ret []AccountCommissionResponseRateLimitsInner
+		var ret []OrderAmendmentsResponseRateLimitsInner
 		return ret
 	}
 	return o.RateLimits
@@ -150,7 +150,7 @@ func (o *OrderAmendmentsResponse) GetRateLimits() []AccountCommissionResponseRat
 
 // GetRateLimitsOk returns a tuple with the RateLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrderAmendmentsResponse) GetRateLimitsOk() ([]AccountCommissionResponseRateLimitsInner, bool) {
+func (o *OrderAmendmentsResponse) GetRateLimitsOk() ([]OrderAmendmentsResponseRateLimitsInner, bool) {
 	if o == nil || common.IsNil(o.RateLimits) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *OrderAmendmentsResponse) HasRateLimits() bool {
 	return false
 }
 
-// SetRateLimits gets a reference to the given []AccountCommissionResponseRateLimitsInner and assigns it to the RateLimits field.
-func (o *OrderAmendmentsResponse) SetRateLimits(v []AccountCommissionResponseRateLimitsInner) {
+// SetRateLimits gets a reference to the given []OrderAmendmentsResponseRateLimitsInner and assigns it to the RateLimits field.
+func (o *OrderAmendmentsResponse) SetRateLimits(v []OrderAmendmentsResponseRateLimitsInner) {
 	o.RateLimits = v
 }
 

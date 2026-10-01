@@ -12,11 +12,11 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// checks if the TickerTradingDayResponseResultInner type satisfies the MappedNullable interface at compile time
-var _ common.MappedNullable = &TickerTradingDayResponseResultInner{}
+// checks if the TickerTradingDayResponse1Result type satisfies the MappedNullable interface at compile time
+var _ common.MappedNullable = &TickerTradingDayResponse1Result{}
 
-// TickerTradingDayResponseResultInner struct for TickerTradingDayResponseResultInner
-type TickerTradingDayResponseResultInner struct {
+// TickerTradingDayResponse1Result struct for TickerTradingDayResponse1Result
+type TickerTradingDayResponse1Result struct {
 	Symbol *string `json:"symbol,omitempty"`
 	// Absolute price change
 	PriceChange *string `json:"priceChange,omitempty"`
@@ -43,27 +43,27 @@ type TickerTradingDayResponseResultInner struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _TickerTradingDayResponseResultInner TickerTradingDayResponseResultInner
+type _TickerTradingDayResponse1Result TickerTradingDayResponse1Result
 
-// NewTickerTradingDayResponseResultInner instantiates a new TickerTradingDayResponseResultInner object
+// NewTickerTradingDayResponse1Result instantiates a new TickerTradingDayResponse1Result object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTickerTradingDayResponseResultInner() *TickerTradingDayResponseResultInner {
-	this := TickerTradingDayResponseResultInner{}
+func NewTickerTradingDayResponse1Result() *TickerTradingDayResponse1Result {
+	this := TickerTradingDayResponse1Result{}
 	return &this
 }
 
-// NewTickerTradingDayResponseResultInnerWithDefaults instantiates a new TickerTradingDayResponseResultInner object
+// NewTickerTradingDayResponse1ResultWithDefaults instantiates a new TickerTradingDayResponse1Result object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTickerTradingDayResponseResultInnerWithDefaults() *TickerTradingDayResponseResultInner {
-	this := TickerTradingDayResponseResultInner{}
+func NewTickerTradingDayResponse1ResultWithDefaults() *TickerTradingDayResponse1Result {
+	this := TickerTradingDayResponse1Result{}
 	return &this
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetSymbol() string {
+func (o *TickerTradingDayResponse1Result) GetSymbol() string {
 	if o == nil || common.IsNil(o.Symbol) {
 		var ret string
 		return ret
@@ -73,7 +73,7 @@ func (o *TickerTradingDayResponseResultInner) GetSymbol() string {
 
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetSymbolOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetSymbolOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Symbol) {
 		return nil, false
 	}
@@ -81,7 +81,7 @@ func (o *TickerTradingDayResponseResultInner) GetSymbolOk() (*string, bool) {
 }
 
 // HasSymbol returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasSymbol() bool {
+func (o *TickerTradingDayResponse1Result) HasSymbol() bool {
 	if o != nil && !common.IsNil(o.Symbol) {
 		return true
 	}
@@ -90,12 +90,12 @@ func (o *TickerTradingDayResponseResultInner) HasSymbol() bool {
 }
 
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *TickerTradingDayResponseResultInner) SetSymbol(v string) {
+func (o *TickerTradingDayResponse1Result) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
 // GetPriceChange returns the PriceChange field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetPriceChange() string {
+func (o *TickerTradingDayResponse1Result) GetPriceChange() string {
 	if o == nil || common.IsNil(o.PriceChange) {
 		var ret string
 		return ret
@@ -105,7 +105,7 @@ func (o *TickerTradingDayResponseResultInner) GetPriceChange() string {
 
 // GetPriceChangeOk returns a tuple with the PriceChange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetPriceChangeOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetPriceChangeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.PriceChange) {
 		return nil, false
 	}
@@ -113,7 +113,7 @@ func (o *TickerTradingDayResponseResultInner) GetPriceChangeOk() (*string, bool)
 }
 
 // HasPriceChange returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasPriceChange() bool {
+func (o *TickerTradingDayResponse1Result) HasPriceChange() bool {
 	if o != nil && !common.IsNil(o.PriceChange) {
 		return true
 	}
@@ -122,12 +122,12 @@ func (o *TickerTradingDayResponseResultInner) HasPriceChange() bool {
 }
 
 // SetPriceChange gets a reference to the given string and assigns it to the PriceChange field.
-func (o *TickerTradingDayResponseResultInner) SetPriceChange(v string) {
+func (o *TickerTradingDayResponse1Result) SetPriceChange(v string) {
 	o.PriceChange = &v
 }
 
 // GetPriceChangePercent returns the PriceChangePercent field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetPriceChangePercent() string {
+func (o *TickerTradingDayResponse1Result) GetPriceChangePercent() string {
 	if o == nil || common.IsNil(o.PriceChangePercent) {
 		var ret string
 		return ret
@@ -137,7 +137,7 @@ func (o *TickerTradingDayResponseResultInner) GetPriceChangePercent() string {
 
 // GetPriceChangePercentOk returns a tuple with the PriceChangePercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetPriceChangePercentOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetPriceChangePercentOk() (*string, bool) {
 	if o == nil || common.IsNil(o.PriceChangePercent) {
 		return nil, false
 	}
@@ -145,7 +145,7 @@ func (o *TickerTradingDayResponseResultInner) GetPriceChangePercentOk() (*string
 }
 
 // HasPriceChangePercent returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasPriceChangePercent() bool {
+func (o *TickerTradingDayResponse1Result) HasPriceChangePercent() bool {
 	if o != nil && !common.IsNil(o.PriceChangePercent) {
 		return true
 	}
@@ -154,12 +154,12 @@ func (o *TickerTradingDayResponseResultInner) HasPriceChangePercent() bool {
 }
 
 // SetPriceChangePercent gets a reference to the given string and assigns it to the PriceChangePercent field.
-func (o *TickerTradingDayResponseResultInner) SetPriceChangePercent(v string) {
+func (o *TickerTradingDayResponse1Result) SetPriceChangePercent(v string) {
 	o.PriceChangePercent = &v
 }
 
 // GetWeightedAvgPrice returns the WeightedAvgPrice field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetWeightedAvgPrice() string {
+func (o *TickerTradingDayResponse1Result) GetWeightedAvgPrice() string {
 	if o == nil || common.IsNil(o.WeightedAvgPrice) {
 		var ret string
 		return ret
@@ -169,7 +169,7 @@ func (o *TickerTradingDayResponseResultInner) GetWeightedAvgPrice() string {
 
 // GetWeightedAvgPriceOk returns a tuple with the WeightedAvgPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetWeightedAvgPriceOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetWeightedAvgPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.WeightedAvgPrice) {
 		return nil, false
 	}
@@ -177,7 +177,7 @@ func (o *TickerTradingDayResponseResultInner) GetWeightedAvgPriceOk() (*string, 
 }
 
 // HasWeightedAvgPrice returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasWeightedAvgPrice() bool {
+func (o *TickerTradingDayResponse1Result) HasWeightedAvgPrice() bool {
 	if o != nil && !common.IsNil(o.WeightedAvgPrice) {
 		return true
 	}
@@ -186,12 +186,12 @@ func (o *TickerTradingDayResponseResultInner) HasWeightedAvgPrice() bool {
 }
 
 // SetWeightedAvgPrice gets a reference to the given string and assigns it to the WeightedAvgPrice field.
-func (o *TickerTradingDayResponseResultInner) SetWeightedAvgPrice(v string) {
+func (o *TickerTradingDayResponse1Result) SetWeightedAvgPrice(v string) {
 	o.WeightedAvgPrice = &v
 }
 
 // GetOpenPrice returns the OpenPrice field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetOpenPrice() string {
+func (o *TickerTradingDayResponse1Result) GetOpenPrice() string {
 	if o == nil || common.IsNil(o.OpenPrice) {
 		var ret string
 		return ret
@@ -201,7 +201,7 @@ func (o *TickerTradingDayResponseResultInner) GetOpenPrice() string {
 
 // GetOpenPriceOk returns a tuple with the OpenPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetOpenPriceOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetOpenPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.OpenPrice) {
 		return nil, false
 	}
@@ -209,7 +209,7 @@ func (o *TickerTradingDayResponseResultInner) GetOpenPriceOk() (*string, bool) {
 }
 
 // HasOpenPrice returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasOpenPrice() bool {
+func (o *TickerTradingDayResponse1Result) HasOpenPrice() bool {
 	if o != nil && !common.IsNil(o.OpenPrice) {
 		return true
 	}
@@ -218,12 +218,12 @@ func (o *TickerTradingDayResponseResultInner) HasOpenPrice() bool {
 }
 
 // SetOpenPrice gets a reference to the given string and assigns it to the OpenPrice field.
-func (o *TickerTradingDayResponseResultInner) SetOpenPrice(v string) {
+func (o *TickerTradingDayResponse1Result) SetOpenPrice(v string) {
 	o.OpenPrice = &v
 }
 
 // GetHighPrice returns the HighPrice field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetHighPrice() string {
+func (o *TickerTradingDayResponse1Result) GetHighPrice() string {
 	if o == nil || common.IsNil(o.HighPrice) {
 		var ret string
 		return ret
@@ -233,7 +233,7 @@ func (o *TickerTradingDayResponseResultInner) GetHighPrice() string {
 
 // GetHighPriceOk returns a tuple with the HighPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetHighPriceOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetHighPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.HighPrice) {
 		return nil, false
 	}
@@ -241,7 +241,7 @@ func (o *TickerTradingDayResponseResultInner) GetHighPriceOk() (*string, bool) {
 }
 
 // HasHighPrice returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasHighPrice() bool {
+func (o *TickerTradingDayResponse1Result) HasHighPrice() bool {
 	if o != nil && !common.IsNil(o.HighPrice) {
 		return true
 	}
@@ -250,12 +250,12 @@ func (o *TickerTradingDayResponseResultInner) HasHighPrice() bool {
 }
 
 // SetHighPrice gets a reference to the given string and assigns it to the HighPrice field.
-func (o *TickerTradingDayResponseResultInner) SetHighPrice(v string) {
+func (o *TickerTradingDayResponse1Result) SetHighPrice(v string) {
 	o.HighPrice = &v
 }
 
 // GetLowPrice returns the LowPrice field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetLowPrice() string {
+func (o *TickerTradingDayResponse1Result) GetLowPrice() string {
 	if o == nil || common.IsNil(o.LowPrice) {
 		var ret string
 		return ret
@@ -265,7 +265,7 @@ func (o *TickerTradingDayResponseResultInner) GetLowPrice() string {
 
 // GetLowPriceOk returns a tuple with the LowPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetLowPriceOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetLowPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.LowPrice) {
 		return nil, false
 	}
@@ -273,7 +273,7 @@ func (o *TickerTradingDayResponseResultInner) GetLowPriceOk() (*string, bool) {
 }
 
 // HasLowPrice returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasLowPrice() bool {
+func (o *TickerTradingDayResponse1Result) HasLowPrice() bool {
 	if o != nil && !common.IsNil(o.LowPrice) {
 		return true
 	}
@@ -282,12 +282,12 @@ func (o *TickerTradingDayResponseResultInner) HasLowPrice() bool {
 }
 
 // SetLowPrice gets a reference to the given string and assigns it to the LowPrice field.
-func (o *TickerTradingDayResponseResultInner) SetLowPrice(v string) {
+func (o *TickerTradingDayResponse1Result) SetLowPrice(v string) {
 	o.LowPrice = &v
 }
 
 // GetLastPrice returns the LastPrice field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetLastPrice() string {
+func (o *TickerTradingDayResponse1Result) GetLastPrice() string {
 	if o == nil || common.IsNil(o.LastPrice) {
 		var ret string
 		return ret
@@ -297,7 +297,7 @@ func (o *TickerTradingDayResponseResultInner) GetLastPrice() string {
 
 // GetLastPriceOk returns a tuple with the LastPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetLastPriceOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetLastPriceOk() (*string, bool) {
 	if o == nil || common.IsNil(o.LastPrice) {
 		return nil, false
 	}
@@ -305,7 +305,7 @@ func (o *TickerTradingDayResponseResultInner) GetLastPriceOk() (*string, bool) {
 }
 
 // HasLastPrice returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasLastPrice() bool {
+func (o *TickerTradingDayResponse1Result) HasLastPrice() bool {
 	if o != nil && !common.IsNil(o.LastPrice) {
 		return true
 	}
@@ -314,12 +314,12 @@ func (o *TickerTradingDayResponseResultInner) HasLastPrice() bool {
 }
 
 // SetLastPrice gets a reference to the given string and assigns it to the LastPrice field.
-func (o *TickerTradingDayResponseResultInner) SetLastPrice(v string) {
+func (o *TickerTradingDayResponse1Result) SetLastPrice(v string) {
 	o.LastPrice = &v
 }
 
 // GetVolume returns the Volume field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetVolume() string {
+func (o *TickerTradingDayResponse1Result) GetVolume() string {
 	if o == nil || common.IsNil(o.Volume) {
 		var ret string
 		return ret
@@ -329,7 +329,7 @@ func (o *TickerTradingDayResponseResultInner) GetVolume() string {
 
 // GetVolumeOk returns a tuple with the Volume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetVolumeOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetVolumeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Volume) {
 		return nil, false
 	}
@@ -337,7 +337,7 @@ func (o *TickerTradingDayResponseResultInner) GetVolumeOk() (*string, bool) {
 }
 
 // HasVolume returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasVolume() bool {
+func (o *TickerTradingDayResponse1Result) HasVolume() bool {
 	if o != nil && !common.IsNil(o.Volume) {
 		return true
 	}
@@ -346,12 +346,12 @@ func (o *TickerTradingDayResponseResultInner) HasVolume() bool {
 }
 
 // SetVolume gets a reference to the given string and assigns it to the Volume field.
-func (o *TickerTradingDayResponseResultInner) SetVolume(v string) {
+func (o *TickerTradingDayResponse1Result) SetVolume(v string) {
 	o.Volume = &v
 }
 
 // GetQuoteVolume returns the QuoteVolume field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetQuoteVolume() string {
+func (o *TickerTradingDayResponse1Result) GetQuoteVolume() string {
 	if o == nil || common.IsNil(o.QuoteVolume) {
 		var ret string
 		return ret
@@ -361,7 +361,7 @@ func (o *TickerTradingDayResponseResultInner) GetQuoteVolume() string {
 
 // GetQuoteVolumeOk returns a tuple with the QuoteVolume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetQuoteVolumeOk() (*string, bool) {
+func (o *TickerTradingDayResponse1Result) GetQuoteVolumeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.QuoteVolume) {
 		return nil, false
 	}
@@ -369,7 +369,7 @@ func (o *TickerTradingDayResponseResultInner) GetQuoteVolumeOk() (*string, bool)
 }
 
 // HasQuoteVolume returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasQuoteVolume() bool {
+func (o *TickerTradingDayResponse1Result) HasQuoteVolume() bool {
 	if o != nil && !common.IsNil(o.QuoteVolume) {
 		return true
 	}
@@ -378,12 +378,12 @@ func (o *TickerTradingDayResponseResultInner) HasQuoteVolume() bool {
 }
 
 // SetQuoteVolume gets a reference to the given string and assigns it to the QuoteVolume field.
-func (o *TickerTradingDayResponseResultInner) SetQuoteVolume(v string) {
+func (o *TickerTradingDayResponse1Result) SetQuoteVolume(v string) {
 	o.QuoteVolume = &v
 }
 
 // GetOpenTime returns the OpenTime field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetOpenTime() int64 {
+func (o *TickerTradingDayResponse1Result) GetOpenTime() int64 {
 	if o == nil || common.IsNil(o.OpenTime) {
 		var ret int64
 		return ret
@@ -393,7 +393,7 @@ func (o *TickerTradingDayResponseResultInner) GetOpenTime() int64 {
 
 // GetOpenTimeOk returns a tuple with the OpenTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetOpenTimeOk() (*int64, bool) {
+func (o *TickerTradingDayResponse1Result) GetOpenTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.OpenTime) {
 		return nil, false
 	}
@@ -401,7 +401,7 @@ func (o *TickerTradingDayResponseResultInner) GetOpenTimeOk() (*int64, bool) {
 }
 
 // HasOpenTime returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasOpenTime() bool {
+func (o *TickerTradingDayResponse1Result) HasOpenTime() bool {
 	if o != nil && !common.IsNil(o.OpenTime) {
 		return true
 	}
@@ -410,12 +410,12 @@ func (o *TickerTradingDayResponseResultInner) HasOpenTime() bool {
 }
 
 // SetOpenTime gets a reference to the given int64 and assigns it to the OpenTime field.
-func (o *TickerTradingDayResponseResultInner) SetOpenTime(v int64) {
+func (o *TickerTradingDayResponse1Result) SetOpenTime(v int64) {
 	o.OpenTime = &v
 }
 
 // GetCloseTime returns the CloseTime field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetCloseTime() int64 {
+func (o *TickerTradingDayResponse1Result) GetCloseTime() int64 {
 	if o == nil || common.IsNil(o.CloseTime) {
 		var ret int64
 		return ret
@@ -425,7 +425,7 @@ func (o *TickerTradingDayResponseResultInner) GetCloseTime() int64 {
 
 // GetCloseTimeOk returns a tuple with the CloseTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetCloseTimeOk() (*int64, bool) {
+func (o *TickerTradingDayResponse1Result) GetCloseTimeOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.CloseTime) {
 		return nil, false
 	}
@@ -433,7 +433,7 @@ func (o *TickerTradingDayResponseResultInner) GetCloseTimeOk() (*int64, bool) {
 }
 
 // HasCloseTime returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasCloseTime() bool {
+func (o *TickerTradingDayResponse1Result) HasCloseTime() bool {
 	if o != nil && !common.IsNil(o.CloseTime) {
 		return true
 	}
@@ -442,12 +442,12 @@ func (o *TickerTradingDayResponseResultInner) HasCloseTime() bool {
 }
 
 // SetCloseTime gets a reference to the given int64 and assigns it to the CloseTime field.
-func (o *TickerTradingDayResponseResultInner) SetCloseTime(v int64) {
+func (o *TickerTradingDayResponse1Result) SetCloseTime(v int64) {
 	o.CloseTime = &v
 }
 
 // GetFirstId returns the FirstId field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetFirstId() int64 {
+func (o *TickerTradingDayResponse1Result) GetFirstId() int64 {
 	if o == nil || common.IsNil(o.FirstId) {
 		var ret int64
 		return ret
@@ -457,7 +457,7 @@ func (o *TickerTradingDayResponseResultInner) GetFirstId() int64 {
 
 // GetFirstIdOk returns a tuple with the FirstId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetFirstIdOk() (*int64, bool) {
+func (o *TickerTradingDayResponse1Result) GetFirstIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.FirstId) {
 		return nil, false
 	}
@@ -465,7 +465,7 @@ func (o *TickerTradingDayResponseResultInner) GetFirstIdOk() (*int64, bool) {
 }
 
 // HasFirstId returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasFirstId() bool {
+func (o *TickerTradingDayResponse1Result) HasFirstId() bool {
 	if o != nil && !common.IsNil(o.FirstId) {
 		return true
 	}
@@ -474,12 +474,12 @@ func (o *TickerTradingDayResponseResultInner) HasFirstId() bool {
 }
 
 // SetFirstId gets a reference to the given int64 and assigns it to the FirstId field.
-func (o *TickerTradingDayResponseResultInner) SetFirstId(v int64) {
+func (o *TickerTradingDayResponse1Result) SetFirstId(v int64) {
 	o.FirstId = &v
 }
 
 // GetLastId returns the LastId field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetLastId() int64 {
+func (o *TickerTradingDayResponse1Result) GetLastId() int64 {
 	if o == nil || common.IsNil(o.LastId) {
 		var ret int64
 		return ret
@@ -489,7 +489,7 @@ func (o *TickerTradingDayResponseResultInner) GetLastId() int64 {
 
 // GetLastIdOk returns a tuple with the LastId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetLastIdOk() (*int64, bool) {
+func (o *TickerTradingDayResponse1Result) GetLastIdOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.LastId) {
 		return nil, false
 	}
@@ -497,7 +497,7 @@ func (o *TickerTradingDayResponseResultInner) GetLastIdOk() (*int64, bool) {
 }
 
 // HasLastId returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasLastId() bool {
+func (o *TickerTradingDayResponse1Result) HasLastId() bool {
 	if o != nil && !common.IsNil(o.LastId) {
 		return true
 	}
@@ -506,12 +506,12 @@ func (o *TickerTradingDayResponseResultInner) HasLastId() bool {
 }
 
 // SetLastId gets a reference to the given int64 and assigns it to the LastId field.
-func (o *TickerTradingDayResponseResultInner) SetLastId(v int64) {
+func (o *TickerTradingDayResponse1Result) SetLastId(v int64) {
 	o.LastId = &v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *TickerTradingDayResponseResultInner) GetCount() int64 {
+func (o *TickerTradingDayResponse1Result) GetCount() int64 {
 	if o == nil || common.IsNil(o.Count) {
 		var ret int64
 		return ret
@@ -521,7 +521,7 @@ func (o *TickerTradingDayResponseResultInner) GetCount() int64 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TickerTradingDayResponseResultInner) GetCountOk() (*int64, bool) {
+func (o *TickerTradingDayResponse1Result) GetCountOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Count) {
 		return nil, false
 	}
@@ -529,7 +529,7 @@ func (o *TickerTradingDayResponseResultInner) GetCountOk() (*int64, bool) {
 }
 
 // HasCount returns a boolean if a field has been set.
-func (o *TickerTradingDayResponseResultInner) HasCount() bool {
+func (o *TickerTradingDayResponse1Result) HasCount() bool {
 	if o != nil && !common.IsNil(o.Count) {
 		return true
 	}
@@ -538,11 +538,11 @@ func (o *TickerTradingDayResponseResultInner) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *TickerTradingDayResponseResultInner) SetCount(v int64) {
+func (o *TickerTradingDayResponse1Result) SetCount(v int64) {
 	o.Count = &v
 }
 
-func (o TickerTradingDayResponseResultInner) MarshalJSON() ([]byte, error) {
+func (o TickerTradingDayResponse1Result) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -550,7 +550,7 @@ func (o TickerTradingDayResponseResultInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o TickerTradingDayResponseResultInner) ToMap() (map[string]interface{}, error) {
+func (o TickerTradingDayResponse1Result) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
@@ -605,16 +605,16 @@ func (o TickerTradingDayResponseResultInner) ToMap() (map[string]interface{}, er
 	return toSerialize, nil
 }
 
-func (o *TickerTradingDayResponseResultInner) UnmarshalJSON(data []byte) (err error) {
-	varTickerTradingDayResponseResultInner := _TickerTradingDayResponseResultInner{}
+func (o *TickerTradingDayResponse1Result) UnmarshalJSON(data []byte) (err error) {
+	varTickerTradingDayResponse1Result := _TickerTradingDayResponse1Result{}
 
-	err = json.Unmarshal(data, &varTickerTradingDayResponseResultInner)
+	err = json.Unmarshal(data, &varTickerTradingDayResponse1Result)
 
 	if err != nil {
 		return err
 	}
 
-	*o = TickerTradingDayResponseResultInner(varTickerTradingDayResponseResultInner)
+	*o = TickerTradingDayResponse1Result(varTickerTradingDayResponse1Result)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -640,38 +640,38 @@ func (o *TickerTradingDayResponseResultInner) UnmarshalJSON(data []byte) (err er
 	return err
 }
 
-type NullableTickerTradingDayResponseResultInner struct {
-	value *TickerTradingDayResponseResultInner
+type NullableTickerTradingDayResponse1Result struct {
+	value *TickerTradingDayResponse1Result
 	isSet bool
 }
 
-func (v NullableTickerTradingDayResponseResultInner) Get() *TickerTradingDayResponseResultInner {
+func (v NullableTickerTradingDayResponse1Result) Get() *TickerTradingDayResponse1Result {
 	return v.value
 }
 
-func (v *NullableTickerTradingDayResponseResultInner) Set(val *TickerTradingDayResponseResultInner) {
+func (v *NullableTickerTradingDayResponse1Result) Set(val *TickerTradingDayResponse1Result) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTickerTradingDayResponseResultInner) IsSet() bool {
+func (v NullableTickerTradingDayResponse1Result) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTickerTradingDayResponseResultInner) Unset() {
+func (v *NullableTickerTradingDayResponse1Result) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTickerTradingDayResponseResultInner(val *TickerTradingDayResponseResultInner) *NullableTickerTradingDayResponseResultInner {
-	return &NullableTickerTradingDayResponseResultInner{value: val, isSet: true}
+func NewNullableTickerTradingDayResponse1Result(val *TickerTradingDayResponse1Result) *NullableTickerTradingDayResponse1Result {
+	return &NullableTickerTradingDayResponse1Result{value: val, isSet: true}
 }
 
-func (v NullableTickerTradingDayResponseResultInner) MarshalJSON() ([]byte, error) {
+func (v NullableTickerTradingDayResponse1Result) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTickerTradingDayResponseResultInner) UnmarshalJSON(src []byte) error {
+func (v *NullableTickerTradingDayResponse1Result) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

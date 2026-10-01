@@ -17,10 +17,13 @@ var _ common.MappedNullable = &OrderCancelResponseResult{}
 
 // OrderCancelResponseResult struct for OrderCancelResponseResult
 type OrderCancelResponseResult struct {
-	Symbol              *string `json:"symbol,omitempty"`
-	OrigClientOrderId   *string `json:"origClientOrderId,omitempty"`
-	OrderId             *int64  `json:"orderId,omitempty"`
-	OrderListId         *int64  `json:"orderListId,omitempty"`
+	Symbol *string `json:"symbol,omitempty"`
+	// clientOrderId that was canceled
+	OrigClientOrderId *string `json:"origClientOrderId,omitempty"`
+	OrderId           *int64  `json:"orderId,omitempty"`
+	// set only for legs of an order list
+	OrderListId *int64 `json:"orderListId,omitempty"`
+	// newClientOrderId from request
 	ClientOrderId       *string `json:"clientOrderId,omitempty"`
 	TransactTime        *int64  `json:"transactTime,omitempty"`
 	Price               *string `json:"price,omitempty"`
@@ -32,15 +35,15 @@ type OrderCancelResponseResult struct {
 	TimeInForce         *string `json:"timeInForce,omitempty"`
 	Type                *string `json:"type,omitempty"`
 	Side                *string `json:"side,omitempty"`
-	// Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
+	// present only if stopPrice set for the order
 	StopPrice *string `json:"stopPrice,omitempty"`
-	// Delta price change required before order activation.
+	// present only if trailingDelta set for the order
 	TrailingDelta *int64 `json:"trailingDelta,omitempty"`
-	// Appears only if the parameter icebergQty was sent in the request.
+	// present only if icebergQty set for the order
 	IcebergQty *string `json:"icebergQty,omitempty"`
-	// Appears only if the strategyId parameter was provided upon order placement.
+	// present only if strategyId set for the order
 	StrategyId *int64 `json:"strategyId,omitempty"`
-	// Appears only if the strategyType parameter was provided upon order placement.
+	// present only if strategyType set for the order
 	StrategyType            *int64  `json:"strategyType,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	// Appears only if the order expired due to STP.
@@ -62,13 +65,14 @@ type OrderCancelResponseResult struct {
 	// Current price order is pegged at. Only for pegged orders, once determined.
 	PeggedPrice *string `json:"peggedPrice,omitempty"`
 	// Cause of the order's expiration. Appears when an order has expired.
-	ExpiryReason         *string                                                   `json:"expiryReason,omitempty"`
-	ContingencyType      *string                                                   `json:"contingencyType,omitempty"`
-	ListStatusType       *string                                                   `json:"listStatusType,omitempty"`
-	ListOrderStatus      *string                                                   `json:"listOrderStatus,omitempty"`
-	ListClientOrderId    *string                                                   `json:"listClientOrderId,omitempty"`
-	TransactionTime      *int64                                                    `json:"transactionTime,omitempty"`
-	Orders               []OpenOrdersCancelAllResponseResultInnerOrdersInner       `json:"orders,omitempty"`
+	ExpiryReason      *string                                             `json:"expiryReason,omitempty"`
+	ContingencyType   *string                                             `json:"contingencyType,omitempty"`
+	ListStatusType    *string                                             `json:"listStatusType,omitempty"`
+	ListOrderStatus   *string                                             `json:"listOrderStatus,omitempty"`
+	ListClientOrderId *string                                             `json:"listClientOrderId,omitempty"`
+	TransactionTime   *int64                                              `json:"transactionTime,omitempty"`
+	Orders            []OpenOrdersCancelAllResponseResultInnerOrdersInner `json:"orders,omitempty"`
+	// order list order's status format is the same as for individual orders.
 	OrderReports         []OpenOrdersCancelAllResponseResultInnerOrderReportsInner `json:"orderReports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
