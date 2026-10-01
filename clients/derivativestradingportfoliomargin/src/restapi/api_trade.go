@@ -3152,7 +3152,7 @@ type ApiNewUmOrderRequest struct {
 	newClientOrderId        *string
 	newOrderRespType        *models.NewCmOrderNewOrderRespTypeParameter
 	priceMatch              *models.ModifyCmOrderPriceMatchParameter
-	selfTradePreventionMode *models.NewMarginOrderSelfTradePreventionModeParameter
+	selfTradePreventionMode *models.NewUmOrderSelfTradePreventionModeParameter
 	goodTillDate            *int64
 	recvWindow              *int64
 }
@@ -3221,8 +3221,8 @@ func (r ApiNewUmOrderRequest) PriceMatch(priceMatch models.ModifyCmOrderPriceMat
 	return r
 }
 
-// &#x60;NONE&#x60;: No STP / &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers
-func (r ApiNewUmOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewMarginOrderSelfTradePreventionModeParameter) ApiNewUmOrderRequest {
+// &#x60;EXPIRE_TAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_MAKER&#x60;: expire taker order when STP triggers/ &#x60;EXPIRE_BOTH&#x60;: expire both orders when STP triggers
+func (r ApiNewUmOrderRequest) SelfTradePreventionMode(selfTradePreventionMode models.NewUmOrderSelfTradePreventionModeParameter) ApiNewUmOrderRequest {
 	r.selfTradePreventionMode = &selfTradePreventionMode
 	return r
 }
@@ -3260,7 +3260,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 @param newClientOrderId -  A unique id among open orders. Automatically generated if not sent. Can only be string following the rule: `^[\\.A-Z\\:/a-z0-9_-]{1,32}$`
 @param newOrderRespType -  `ACK`, `RESULT`, default `ACK`
 @param priceMatch -  only avaliable for `LIMIT`/`STOP`/`TAKE_PROFIT` order; can be set to `OPPONENT`/ `OPPONENT_5`/ `OPPONENT_10`/ `OPPONENT_20`: /`QUEUE`/ `QUEUE_5`/ `QUEUE_10`/ `QUEUE_20`; Can't be passed together with `price`
-@param selfTradePreventionMode -  `NONE`: No STP / `EXPIRE_TAKER`: expire taker order when STP triggers/ `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers
+@param selfTradePreventionMode -  `EXPIRE_TAKER`: expire taker order when STP triggers/ `EXPIRE_MAKER`: expire taker order when STP triggers/ `EXPIRE_BOTH`: expire both orders when STP triggers
 @param goodTillDate -  order cancel time for timeInForce `GTD`, mandatory when `timeInforce` set to `GTD`; order the timestamp only retains second-level precision, ms part will be ignored; The goodTillDate timestamp must be greater than the current time plus 600 seconds and smaller than 253402300799000Mode. It must be sent in Hedge Mode.
 @param recvWindow -
 @return ApiNewUmOrderRequest

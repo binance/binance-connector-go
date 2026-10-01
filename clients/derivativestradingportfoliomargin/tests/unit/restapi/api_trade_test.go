@@ -779,7 +779,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService CancelUmOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"clientOrderId":"myOrder1","cumQty":"0","executedQty":"0","orderId":4611875134427365000,"origQty":"0.40","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"CANCELED","symbol":"BTCUSDT","timeInForce":"GTC","type":"LIMIT","updateTime":1571110484038,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}`
+		mockedJSON = `{"clientOrderId":"myOrder1","cumQty":"0","executedQty":"0","orderId":4611875134427365000,"origQty":"0.40","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"CANCELED","symbol":"BTCUSDT","timeInForce":"GTC","type":"LIMIT","updateTime":1571110484038,"selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"priceMatch":"NONE"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -1563,7 +1563,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService ModifyUmOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"orderId":20072994037,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"LJ9R4QZDihCaS8UAOOLpgW","modifyId":1,"price":"30005","origQty":"1","executedQty":"0","cumQty":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"side":"BUY","positionSide":"LONG","origType":"LIMIT","selfTradePreventionMode":"NONE","goodTillDate":0,"updateTime":1629182711600,"priceMatch":"NONE"}`
+		mockedJSON = `{"orderId":20072994037,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"LJ9R4QZDihCaS8UAOOLpgW","modifyId":1,"price":"30005","origQty":"1","executedQty":"0","cumQty":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"side":"BUY","positionSide":"LONG","origType":"LIMIT","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1629182711600,"priceMatch":"NONE"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -1960,7 +1960,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService NewUmOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"clientOrderId":"testOrder","cumQty":"0","executedQty":"0","orderId":22542179,"origQty":"10","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","timeInForce":"GTD","type":"MARKET","selfTradePreventionMode":"NONE","goodTillDate":1693207680000,"updateTime":1566818724722,"priceMatch":"NONE"}`
+		mockedJSON = `{"clientOrderId":"testOrder","cumQty":"0","executedQty":"0","orderId":22542179,"origQty":"10","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","timeInForce":"GTD","type":"MARKET","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":1693207680000,"updateTime":1566818724722,"priceMatch":"NONE"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -2275,7 +2275,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService QueryAllCurrentUmOpenAlgoOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","selfTradePreventionMode":"NONE","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}]`
+		mockedJSON = `[{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BNBUSDT","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -2334,7 +2334,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService QueryAllCurrentUmOpenOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}]`
+		mockedJSON = `[{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"priceMatch":"NONE"}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -2470,7 +2470,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService QueryAllUmOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}]`
+		mockedJSON = `[{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"priceMatch":"NONE"}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -3068,7 +3068,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService QueryCurrentUmOpenOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}`
+		mockedJSON = `{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"priceMatch":"NONE"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -3553,7 +3553,7 @@ func Test_binancederivativestradingportfoliomarginrestapi_TradeAPIService(t *tes
 	t.Run("Test TradeAPIService QueryUmOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"NONE","goodTillDate":0,"priceMatch":"NONE"}`
+		mockedJSON = `{"avgPrice":"0.00000","clientOrderId":"abc","cumQuote":"0","executedQty":"0","orderId":1917641,"origQty":"0.40","origType":"LIMIT","price":"0","reduceOnly":false,"side":"BUY","positionSide":"SHORT","status":"NEW","symbol":"BTCUSDT","time":1579276756075,"timeInForce":"GTC","type":"LIMIT","updateTime":1579276756075,"selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"priceMatch":"NONE"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
