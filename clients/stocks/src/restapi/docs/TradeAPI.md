@@ -480,7 +480,7 @@ import (
 )
 
 func main() {
-	symbol := "AAPL" // string | US stock ticker, e.g. `AAPL`, `TSLA`. Must be a symbol with tokenization enabled — check via `/market/tokenized-assets`.
+	symbol := "AAPL" // string | US stock ticker, e.g. `AAPL`, `TSLA`. Must be a tradable US-equity symbol — verify via `/sapi/v1/equity/market/exchangeInfo`. Tokenization enablement (verifiable via `/sapi/v1/equity/market/tokenized-assets`) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The `tokenize` parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise.
 	side := models.PlaceEquityOrderSideParameterBuy // PlaceEquityOrderSideParameter | `BUY` / `SELL`.
 	orderType := models.PlaceEquityOrderOrderTypeParameterMarket // PlaceEquityOrderOrderTypeParameter | `MARKET` / `LIMIT`.
 	quoteAsset := "USDC" // string | Quote asset. Defaults to `USDC`; must be within the server's allowed set. (optional)
@@ -491,7 +491,7 @@ func main() {
 	tradingSession := models.PlaceEquityOrderTradingSessionParameterRth // PlaceEquityOrderTradingSessionParameter | `RTH` / `EXTENDED` / `24H`. **Required** for `LIMIT`; **forbidden** for `MARKET`. (optional)
 	walletType := models.PlaceEquityOrderWalletTypeParameterCard // PlaceEquityOrderWalletTypeParameter | Payment wallet for `BUY` orders: `CARD` (default) / `MAIN`. `SELL` orders always settle to `CARD`. (optional)
 	clientOrderId := "web_2c9c92b74f1e4a7c8f3b9e1a2d3c4b5a" // string | Client-supplied order id. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted. (optional)
-	tokenize := true // bool | Whether to tokenize the purchased stock asset upon settlement. Default `true`. Set to `false` to receive the underlying equity directly instead of a tokenized asset. (optional)
+	tokenize := true // bool | Whether to tokenize the purchased stock asset upon settlement. Default `true`. Only takes effect when the symbol is tokenization-enabled (check via `/market/tokenized-assets`); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -520,7 +520,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string** | US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a symbol with tokenization enabled — check via &#x60;/market/tokenized-assets&#x60;. | 
+ **symbol** | **string** | US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;. Tokenization enablement (verifiable via &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise. | 
  **side** | [**PlaceEquityOrderSideParameter**](PlaceEquityOrderSideParameter.md) | &#x60;BUY&#x60; / &#x60;SELL&#x60;. | 
  **orderType** | [**PlaceEquityOrderOrderTypeParameter**](PlaceEquityOrderOrderTypeParameter.md) | &#x60;MARKET&#x60; / &#x60;LIMIT&#x60;. | 
  **quoteAsset** | **string** | Quote asset. Defaults to &#x60;USDC&#x60;; must be within the server&#39;s allowed set. | 
@@ -531,7 +531,7 @@ Name          | Type          | Description   | Notes
  **tradingSession** | [**PlaceEquityOrderTradingSessionParameter**](PlaceEquityOrderTradingSessionParameter.md) | &#x60;RTH&#x60; / &#x60;EXTENDED&#x60; / &#x60;24H&#x60;. **Required** for &#x60;LIMIT&#x60;; **forbidden** for &#x60;MARKET&#x60;. | 
  **walletType** | [**PlaceEquityOrderWalletTypeParameter**](PlaceEquityOrderWalletTypeParameter.md) | Payment wallet for &#x60;BUY&#x60; orders: &#x60;CARD&#x60; (default) / &#x60;MAIN&#x60;. &#x60;SELL&#x60; orders always settle to &#x60;CARD&#x60;. | 
  **clientOrderId** | **string** | Client-supplied order id. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted. | 
- **tokenize** | **bool** | Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Set to &#x60;false&#x60; to receive the underlying equity directly instead of a tokenized asset. | 
+ **tokenize** | **bool** | Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades. | 
  **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
 
 ### Return type

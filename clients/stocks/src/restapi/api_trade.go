@@ -622,7 +622,7 @@ type ApiPlaceEquityOrderRequest struct {
 	recvWindow     *int64
 }
 
-// US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a symbol with tokenization enabled — check via &#x60;/market/tokenized-assets&#x60;.
+// US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;. Tokenization enablement (verifiable via &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise.
 func (r ApiPlaceEquityOrderRequest) Symbol(symbol string) ApiPlaceEquityOrderRequest {
 	r.symbol = &symbol
 	return r
@@ -688,7 +688,7 @@ func (r ApiPlaceEquityOrderRequest) ClientOrderId(clientOrderId string) ApiPlace
 	return r
 }
 
-// Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Set to &#x60;false&#x60; to receive the underlying equity directly instead of a tokenized asset.
+// Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades.
 func (r ApiPlaceEquityOrderRequest) Tokenize(tokenize bool) ApiPlaceEquityOrderRequest {
 	r.tokenize = &tokenize
 	return r
@@ -711,7 +711,7 @@ Post /sapi/v1/equity/order/place
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/trade#place-equity-order
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param symbol -  US stock ticker, e.g. `AAPL`, `TSLA`. Must be a symbol with tokenization enabled — check via `/market/tokenized-assets`.
+@param symbol -  US stock ticker, e.g. `AAPL`, `TSLA`. Must be a tradable US-equity symbol — verify via `/sapi/v1/equity/market/exchangeInfo`. Tokenization enablement (verifiable via `/sapi/v1/equity/market/tokenized-assets`) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The `tokenize` parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise.
 @param side -  `BUY` / `SELL`.
 @param orderType -  `MARKET` / `LIMIT`.
 @param quoteAsset -  Quote asset. Defaults to `USDC`; must be within the server's allowed set.
@@ -722,7 +722,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/a
 @param tradingSession -  `RTH` / `EXTENDED` / `24H`. **Required** for `LIMIT`; **forbidden** for `MARKET`.
 @param walletType -  Payment wallet for `BUY` orders: `CARD` (default) / `MAIN`. `SELL` orders always settle to `CARD`.
 @param clientOrderId -  Client-supplied order id. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted.
-@param tokenize -  Whether to tokenize the purchased stock asset upon settlement. Default `true`. Set to `false` to receive the underlying equity directly instead of a tokenized asset.
+@param tokenize -  Whether to tokenize the purchased stock asset upon settlement. Default `true`. Only takes effect when the symbol is tokenization-enabled (check via `/market/tokenized-assets`); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades.
 @param recvWindow -  The value cannot be greater than `60000`.
 @return ApiPlaceEquityOrderRequest
 */
