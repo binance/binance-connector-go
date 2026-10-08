@@ -6,7 +6,6 @@ import (
 	"log"
 
 	client "github.com/binance/binance-connector-go/clients/dualinvestment"
-	"github.com/binance/binance-connector-go/clients/dualinvestment/src/restapi/models"
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
@@ -23,7 +22,7 @@ func SubscribeDualInvestmentProducts() {
 	apiClient := client.NewBinanceDualInvestmentClient(
 		client.WithRestAPI(configuration),
 	)
-	resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(1).AutoCompoundPlan(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(1).Execute()
 	if err != nil {
 		log.Println(err)
 		return

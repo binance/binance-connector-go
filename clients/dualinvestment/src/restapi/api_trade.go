@@ -1,7 +1,7 @@
 /*
 Dual Investment REST API
 
-Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies. The auto-compound setting is no longer managed via API — it must be toggled by the user in the Binance Web UI.
 */
 
 package binancedualinvestmentrestapi
@@ -17,95 +17,6 @@ import (
 
 // TradeAPIService TradeAPI Service
 type TradeAPIService Service
-
-type ApiChangeAutoCompoundStatusRequest struct {
-	ctx              context.Context
-	ApiService       *TradeAPIService
-	positionId       *string
-	autoCompoundPlan *models.ChangeAutoCompoundStatusAutoCompoundPlanParameter
-	recvWindow       *int64
-}
-
-// Get positionId from &#x60;/sapi/v1/dci/product/positions&#x60;
-func (r ApiChangeAutoCompoundStatusRequest) PositionId(positionId string) ApiChangeAutoCompoundStatusRequest {
-	r.positionId = &positionId
-	return r
-}
-
-// &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan
-func (r ApiChangeAutoCompoundStatusRequest) AutoCompoundPlan(autoCompoundPlan models.ChangeAutoCompoundStatusAutoCompoundPlanParameter) ApiChangeAutoCompoundStatusRequest {
-	r.autoCompoundPlan = &autoCompoundPlan
-	return r
-}
-
-// Request validity window in milliseconds
-func (r ApiChangeAutoCompoundStatusRequest) RecvWindow(recvWindow int64) ApiChangeAutoCompoundStatusRequest {
-	r.recvWindow = &recvWindow
-	return r
-}
-
-func (r ApiChangeAutoCompoundStatusRequest) Execute() (*common.RestApiResponse[models.ChangeAutoCompoundStatusResponse], error) {
-	return r.ApiService.ChangeAutoCompoundStatusExecute(r)
-}
-
-/*
-ChangeAutoCompoundStatus Change Auto-Compound status (USER_DATA)
-Post /sapi/v1/dci/product/auto_compound/edit-status
-
-https://developers.binance.com/en/docs/catalog/investment-and-services-dual-investment/api/rest-api/trade#change-auto-compound-status
-
-@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param positionId -  Get positionId from `/sapi/v1/dci/product/positions`
-@param autoCompoundPlan -  `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
-@param recvWindow -  Request validity window in milliseconds
-@return ApiChangeAutoCompoundStatusRequest
-*/
-func (a *TradeAPIService) ChangeAutoCompoundStatus(ctx context.Context) ApiChangeAutoCompoundStatusRequest {
-	return ApiChangeAutoCompoundStatusRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-//
-//	@return ChangeAutoCompoundStatusResponse
-func (a *TradeAPIService) ChangeAutoCompoundStatusExecute(r ApiChangeAutoCompoundStatusRequest) (*common.RestApiResponse[models.ChangeAutoCompoundStatusResponse], error) {
-	localVarHTTPMethod := http.MethodPost
-	localVarPath := a.client.cfg.BasePath + "/sapi/v1/dci/product/auto_compound/edit-status"
-
-	localVarQueryParams := url.Values{}
-	localVarBodyParameters := make(map[string]interface{})
-
-	if r.positionId == nil {
-		return nil, common.ReportError("positionId is required and must be specified")
-	}
-
-	if r.autoCompoundPlan == nil {
-		return nil, common.ReportError("autoCompoundPlan is required and must be specified")
-	}
-
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "positionId", r.positionId, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "autoCompoundPlan", r.autoCompoundPlan, "form", "")
-	if r.recvWindow != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
-	}
-
-	resp, err := SendRequest[models.ChangeAutoCompoundStatusResponse](
-		r.ctx,
-		localVarPath,
-		localVarHTTPMethod,
-		localVarQueryParams,
-		localVarBodyParameters,
-		a.client.cfg,
-		true,
-	)
-	if err != nil || resp == nil {
-		return nil, err
-	}
-
-	return resp, nil
-}
 
 type ApiCheckDualInvestmentAccountsRequest struct {
 	ctx        context.Context
@@ -267,13 +178,12 @@ func (a *TradeAPIService) GetDualInvestmentPositionsExecute(r ApiGetDualInvestme
 }
 
 type ApiSubscribeDualInvestmentProductsRequest struct {
-	ctx              context.Context
-	ApiService       *TradeAPIService
-	id               *string
-	orderId          *string
-	depositAmount    *float64
-	autoCompoundPlan *models.ChangeAutoCompoundStatusAutoCompoundPlanParameter
-	recvWindow       *int64
+	ctx           context.Context
+	ApiService    *TradeAPIService
+	id            *string
+	orderId       *string
+	depositAmount *float64
+	recvWindow    *int64
 }
 
 // get id from &#x60;/sapi/v1/dci/product/list&#x60;
@@ -291,12 +201,6 @@ func (r ApiSubscribeDualInvestmentProductsRequest) OrderId(orderId string) ApiSu
 // the amount for subscribing
 func (r ApiSubscribeDualInvestmentProductsRequest) DepositAmount(depositAmount float64) ApiSubscribeDualInvestmentProductsRequest {
 	r.depositAmount = &depositAmount
-	return r
-}
-
-// &#x60;NONE&#x60;: switch off the plan, &#x60;STANDARD&#x60;: standard plan, &#x60;ADVANCED&#x60;: advanced plan
-func (r ApiSubscribeDualInvestmentProductsRequest) AutoCompoundPlan(autoCompoundPlan models.ChangeAutoCompoundStatusAutoCompoundPlanParameter) ApiSubscribeDualInvestmentProductsRequest {
-	r.autoCompoundPlan = &autoCompoundPlan
 	return r
 }
 
@@ -320,7 +224,6 @@ https://developers.binance.com/en/docs/catalog/investment-and-services-dual-inve
 @param id -  get id from `/sapi/v1/dci/product/list`
 @param orderId -  get orderId from `/sapi/v1/dci/product/list`
 @param depositAmount -  the amount for subscribing
-@param autoCompoundPlan -  `NONE`: switch off the plan, `STANDARD`: standard plan, `ADVANCED`: advanced plan
 @param recvWindow -  Request validity window in milliseconds
 @return ApiSubscribeDualInvestmentProductsRequest
 */
@@ -353,14 +256,9 @@ func (a *TradeAPIService) SubscribeDualInvestmentProductsExecute(r ApiSubscribeD
 		return nil, common.ReportError("depositAmount is required and must be specified")
 	}
 
-	if r.autoCompoundPlan == nil {
-		return nil, common.ReportError("autoCompoundPlan is required and must be specified")
-	}
-
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "orderId", r.orderId, "form", "")
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "depositAmount", r.depositAmount, "form", "")
-	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "autoCompoundPlan", r.autoCompoundPlan, "form", "")
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}

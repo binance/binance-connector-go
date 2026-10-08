@@ -24,84 +24,6 @@ import (
 
 func Test_binancedualinvestmentrestapi_TradeAPIService(t *testing.T) {
 
-	t.Run("Test TradeAPIService ChangeAutoCompoundStatus Success", func(t *testing.T) {
-
-		var mockedJSON string
-		mockedJSON = `{"positionId":"123456789","autoCompoundPlan":"ADVANCED"}`
-		if mockedJSON == "" {
-			mockedJSON = `{}`
-		}
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			require.Equal(t, "/sapi/v1/dci/product/auto_compound/edit-status", r.URL.Path)
-			require.Equal(t, "741590", r.URL.Query().Get("positionId"))
-			require.Equal(t, string(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone), r.URL.Query().Get("autoCompoundPlan"))
-			w.Header().Set("Content-Type", "application/json")
-			_, _ = w.Write([]byte(mockedJSON))
-		}))
-		defer mockServer.Close()
-
-		var expected models.ChangeAutoCompoundStatusResponse
-		err := json.Unmarshal([]byte(mockedJSON), &expected)
-		require.NoError(t, err)
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-
-		apiClient := client.NewBinanceDualInvestmentClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.TradeAPI.ChangeAutoCompoundStatus(context.Background()).PositionId("741590").AutoCompoundPlan(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone).Execute()
-		require.NoError(t, err)
-		require.NotNil(t, resp)
-		require.Equal(
-			t,
-			reflect.TypeOf(&common.RestApiResponse[models.ChangeAutoCompoundStatusResponse]{}),
-			reflect.TypeOf(resp),
-		)
-		require.Equal(t, reflect.TypeOf(models.ChangeAutoCompoundStatusResponse{}), reflect.TypeOf(resp.Data))
-		require.Equal(t, 200, resp.Status)
-		require.Equal(t, expected, resp.Data)
-	})
-
-	t.Run("Test TradeAPIService ChangeAutoCompoundStatus Missing Required Params", func(t *testing.T) {
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
-		defer mockServer.Close()
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-
-		apiClient := client.NewBinanceDualInvestmentClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.TradeAPI.ChangeAutoCompoundStatus(context.Background()).Execute()
-
-		require.Error(t, err)
-		require.Nil(t, resp)
-	})
-
-	t.Run("Test TradeAPIService ChangeAutoCompoundStatus Server Error", func(t *testing.T) {
-		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			http.Error(w, "internal error", http.StatusInternalServerError)
-		}))
-		defer mockServer.Close()
-
-		configuration := common.NewConfigurationRestAPI()
-		configuration.BasePath = mockServer.URL
-		configuration.Retries = 1
-		configuration.Backoff = 1
-
-		apiClient := client.NewBinanceDualInvestmentClient(
-			client.WithRestAPI(configuration),
-		)
-
-		resp, err := apiClient.RestApi.TradeAPI.ChangeAutoCompoundStatus(context.Background()).Execute()
-
-		require.Error(t, err)
-		require.Nil(t, resp)
-	})
-
 	t.Run("Test TradeAPIService CheckDualInvestmentAccounts Success", func(t *testing.T) {
 
 		var mockedJSON string
@@ -232,7 +154,6 @@ func Test_binancedualinvestmentrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "741590", r.URL.Query().Get("id"))
 			require.Equal(t, "8257205859", r.URL.Query().Get("orderId"))
 			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("depositAmount"))
-			require.Equal(t, string(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone), r.URL.Query().Get("autoCompoundPlan"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -249,7 +170,7 @@ func Test_binancedualinvestmentrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(float64(1)).AutoCompoundPlan(models.ChangeAutoCompoundStatusAutoCompoundPlanParameterNone).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.SubscribeDualInvestmentProducts(context.Background()).Id("741590").OrderId("8257205859").DepositAmount(float64(1)).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

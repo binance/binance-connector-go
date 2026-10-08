@@ -1,7 +1,7 @@
 /*
 Dual Investment REST API
 
-Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies.
+Query products, request quotes, and subscribe to Advanced Earn Dual Investment strategies. The auto-compound setting is no longer managed via API — it must be toggled by the user in the Binance Web UI.
 */
 
 package binancedualinvestmentrestapi
@@ -14,7 +14,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Dual Investment REST API API v1.11.0
+// RestAPIClient manages communication with the Dual Investment REST API API v1.12.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
@@ -37,7 +37,7 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-dualinvestment/1.11.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-dualinvestment/1.12.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
