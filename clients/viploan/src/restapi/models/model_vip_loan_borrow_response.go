@@ -18,12 +18,13 @@ var _ common.MappedNullable = &VipLoanBorrowResponse{}
 // VipLoanBorrowResponse struct for VipLoanBorrowResponse
 type VipLoanBorrowResponse struct {
 	// Loan receiving account.
-	LoanAccountId        *string `json:"loanAccountId,omitempty"`
-	RequestId            *string `json:"requestId,omitempty"`
-	LoanCoin             *string `json:"loanCoin,omitempty"`
-	IsFlexibleRate       *string `json:"isFlexibleRate,omitempty"`
-	LoanAmount           *string `json:"loanAmount,omitempty"`
-	CollateralAccountId  *string `json:"collateralAccountId,omitempty"`
+	LoanAccountId       *string `json:"loanAccountId,omitempty"`
+	RequestId           *string `json:"requestId,omitempty"`
+	LoanCoin            *string `json:"loanCoin,omitempty"`
+	IsFlexibleRate      *string `json:"isFlexibleRate,omitempty"`
+	LoanAmount          *string `json:"loanAmount,omitempty"`
+	CollateralAccountId *string `json:"collateralAccountId,omitempty"`
+	// Includes `<ASSET>-Earn` entries when a Simple Earn Flexible position is pledged.
 	CollateralCoin       *string `json:"collateralCoin,omitempty"`
 	LoanTerm             *string `json:"loanTerm,omitempty"`
 	AdditionalProperties map[string]interface{}

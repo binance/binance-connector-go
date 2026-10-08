@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **LoanCoin** | Pointer to **string** |  | [optional] 
 **LoanAmount** | Pointer to **string** |  | [optional] 
 **CollateralAccountId** | Pointer to **string** |  | [optional] 
-**CollateralCoin** | Pointer to **string** |  | [optional] 
+**CollateralCoin** | Pointer to **string** | Includes &#x60;&lt;ASSET&gt;-Earn&#x60; entries when a Simple Earn Flexible position is pledged. | [optional] 
 **LoanTerm** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** | Order status (&#x60;Accruing_Interest&#x60;, &#x60;Overdue&#x60;, &#x60;Liquidating&#x60;, &#x60;Repaying&#x60;, &#x60;Repaid&#x60;, &#x60;Liquidated&#x60;, &#x60;Pending&#x60;, &#x60;Failed&#x60;). | [optional] 
 **LoanDate** | Pointer to **string** |  | [optional] 

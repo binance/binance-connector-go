@@ -37,7 +37,7 @@ func main() {
 	loanCoin := "BTC" // string | 
 	loanAmount := float64(1.0) // float64 | 
 	collateralAccountId := "12345678,12345678,12345678" // string | Collateral account ID(s). Multiple split by `,`
-	collateralCoin := "BUSD,USDT,ETH" // string | 
+	collateralCoin := "BUSD,USDT,USDT-Earn,ETH" // string | Collateral coin(s), multiple separated by `,`. Use `<ASSET>-Earn` for a Simple Earn Flexible position; it must be sent together with its Spot asset, e.g. `USDT,USDT-Earn`.
 	isFlexibleRate := true // bool | TRUE: flexible rate; FALSE: fixed rate
 	loanTerm := int64(30) // int64 | Mandatory for fixed rate. Optional for flexible rate. e.g. 30/60 days (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
@@ -72,7 +72,7 @@ Name          | Type          | Description   | Notes
  **loanCoin** | **string** |  | 
  **loanAmount** | **float64** |  | 
  **collateralAccountId** | **string** | Collateral account ID(s). Multiple split by &#x60;,&#x60; | 
- **collateralCoin** | **string** |  | 
+ **collateralCoin** | **string** | Collateral coin(s), multiple separated by &#x60;,&#x60;. Use &#x60;&lt;ASSET&gt;-Earn&#x60; for a Simple Earn Flexible position; it must be sent together with its Spot asset, e.g. &#x60;USDT,USDT-Earn&#x60;. | 
  **isFlexibleRate** | **bool** | TRUE: flexible rate; FALSE: fixed rate | 
  **loanTerm** | **int64** | Mandatory for fixed rate. Optional for flexible rate. e.g. 30/60 days | 
  **recvWindow** | **int64** |  | 
@@ -119,7 +119,7 @@ func main() {
 	borrowCoin := "BUSD" // string | Borrow coin
 	loanTerm := int64(30) // int64 | Loan term in days
 	borrowUid := int64(12345678) // int64 | Borrow receiving account UID
-	collateralCoin := "BNB,ETH,BTC" // string | Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
+	collateralCoin := "BNB,BNB-Earn,ETH,BTC" // string | Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire Spot balance of the coin; for `<ASSET>-Earn`, the Simple Earn Flexible position of the asset). `<ASSET>-Earn` must be sent together with its Spot asset, e.g. `BNB,BNB-Earn`.
 	collateralAccountId := "12345,67890,13579" // string | Collateral account ID(s), multiple separated by `,`
 	autoRepay := true // bool | Default: `true`. `true`: auto repay at expiration; `false`: auto-convert to flexible (floating rate) at expiration (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000` (optional)
@@ -154,7 +154,7 @@ Name          | Type          | Description   | Notes
  **borrowCoin** | **string** | Borrow coin | 
  **loanTerm** | **int64** | Loan term in days | 
  **borrowUid** | **int64** | Borrow receiving account UID | 
- **collateralCoin** | **string** | Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance) | 
+ **collateralCoin** | **string** | Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire Spot balance of the coin; for &#x60;&lt;ASSET&gt;-Earn&#x60;, the Simple Earn Flexible position of the asset). &#x60;&lt;ASSET&gt;-Earn&#x60; must be sent together with its Spot asset, e.g. &#x60;BNB,BNB-Earn&#x60;. | 
  **collateralAccountId** | **string** | Collateral account ID(s), multiple separated by &#x60;,&#x60; | 
  **autoRepay** | **bool** | Default: &#x60;true&#x60;. &#x60;true&#x60;: auto repay at expiration; &#x60;false&#x60;: auto-convert to flexible (floating rate) at expiration | 
  **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60; | 

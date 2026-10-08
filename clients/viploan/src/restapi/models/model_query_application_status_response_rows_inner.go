@@ -24,8 +24,9 @@ type QueryApplicationStatusResponseRowsInner struct {
 	LoanCoin            *string `json:"loanCoin,omitempty"`
 	LoanAmount          *string `json:"loanAmount,omitempty"`
 	CollateralAccountId *string `json:"collateralAccountId,omitempty"`
-	CollateralCoin      *string `json:"collateralCoin,omitempty"`
-	LoanTerm            *string `json:"loanTerm,omitempty"`
+	// Includes `<ASSET>-Earn` entries when a Simple Earn Flexible position is pledged.
+	CollateralCoin *string `json:"collateralCoin,omitempty"`
+	LoanTerm       *string `json:"loanTerm,omitempty"`
 	// Order status (`Accruing_Interest`, `Overdue`, `Liquidating`, `Repaying`, `Repaid`, `Liquidated`, `Pending`, `Failed`).
 	Status               *string `json:"status,omitempty"`
 	LoanDate             *string `json:"loanDate,omitempty"`

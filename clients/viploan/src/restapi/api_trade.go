@@ -52,6 +52,7 @@ func (r ApiVipLoanBorrowRequest) CollateralAccountId(collateralAccountId string)
 	return r
 }
 
+// Collateral coin(s), multiple separated by &#x60;,&#x60;. Use &#x60;&lt;ASSET&gt;-Earn&#x60; for a Simple Earn Flexible position; it must be sent together with its Spot asset, e.g. &#x60;USDT,USDT-Earn&#x60;.
 func (r ApiVipLoanBorrowRequest) CollateralCoin(collateralCoin string) ApiVipLoanBorrowRequest {
 	r.collateralCoin = &collateralCoin
 	return r
@@ -89,7 +90,7 @@ https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/
 @param loanCoin -
 @param loanAmount -
 @param collateralAccountId -  Collateral account ID(s). Multiple split by `,`
-@param collateralCoin -
+@param collateralCoin -  Collateral coin(s), multiple separated by `,`. Use `<ASSET>-Earn` for a Simple Earn Flexible position; it must be sent together with its Spot asset, e.g. `USDT,USDT-Earn`.
 @param isFlexibleRate -  TRUE: flexible rate; FALSE: fixed rate
 @param loanTerm -  Mandatory for fixed rate. Optional for flexible rate. e.g. 30/60 days
 @param recvWindow -
@@ -202,7 +203,7 @@ func (r ApiVipLoanFixedRateBorrowRequest) BorrowUid(borrowUid int64) ApiVipLoanF
 	return r
 }
 
-// Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire spot account balance)
+// Collateral coin(s), multiple separated by &#x60;,&#x60;. Only coin names, no amount (VIP loan collateral amount &#x3D; entire Spot balance of the coin; for &#x60;&lt;ASSET&gt;-Earn&#x60;, the Simple Earn Flexible position of the asset). &#x60;&lt;ASSET&gt;-Earn&#x60; must be sent together with its Spot asset, e.g. &#x60;BNB,BNB-Earn&#x60;.
 func (r ApiVipLoanFixedRateBorrowRequest) CollateralCoin(collateralCoin string) ApiVipLoanFixedRateBorrowRequest {
 	r.collateralCoin = &collateralCoin
 	return r
@@ -241,7 +242,7 @@ https://developers.binance.com/en/docs/catalog/investment-and-services-vip-loan/
 @param borrowCoin -  Borrow coin
 @param loanTerm -  Loan term in days
 @param borrowUid -  Borrow receiving account UID
-@param collateralCoin -  Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire spot account balance)
+@param collateralCoin -  Collateral coin(s), multiple separated by `,`. Only coin names, no amount (VIP loan collateral amount = entire Spot balance of the coin; for `<ASSET>-Earn`, the Simple Earn Flexible position of the asset). `<ASSET>-Earn` must be sent together with its Spot asset, e.g. `BNB,BNB-Earn`.
 @param collateralAccountId -  Collateral account ID(s), multiple separated by `,`
 @param autoRepay -  Default: `true`. `true`: auto repay at expiration; `false`: auto-convert to flexible (floating rate) at expiration
 @param recvWindow -  The value cannot be greater than `60000`

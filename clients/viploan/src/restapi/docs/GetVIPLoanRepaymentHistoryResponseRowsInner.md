@@ -6,6 +6,8 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **LoanCoin** | Pointer to **string** |  | [optional] 
 **RepayAmount** | Pointer to **string** |  | [optional] 
+**RepayPrincipal** | Pointer to **string** |  | [optional] 
+**RepayInterest** | Pointer to **string** |  | [optional] 
 **CollateralCoin** | Pointer to **string** |  | [optional] 
 **RepayStatus** | Pointer to **string** | Repayment status (&#x60;Repaid&#x60;, &#x60;Repaying&#x60;, &#x60;Failed&#x60;). | [optional] 
 **LoanDate** | Pointer to **string** |  | [optional] 
@@ -80,6 +82,56 @@ SetRepayAmount sets RepayAmount field to given value.
 `func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayAmount() bool`
 
 HasRepayAmount returns a boolean if a field has been set.
+
+### GetRepayPrincipal
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayPrincipal() string`
+
+GetRepayPrincipal returns the RepayPrincipal field if non-nil, zero value otherwise.
+
+### GetRepayPrincipalOk
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayPrincipalOk() (*string, bool)`
+
+GetRepayPrincipalOk returns a tuple with the RepayPrincipal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepayPrincipal
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) SetRepayPrincipal(v string)`
+
+SetRepayPrincipal sets RepayPrincipal field to given value.
+
+### HasRepayPrincipal
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayPrincipal() bool`
+
+HasRepayPrincipal returns a boolean if a field has been set.
+
+### GetRepayInterest
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayInterest() string`
+
+GetRepayInterest returns the RepayInterest field if non-nil, zero value otherwise.
+
+### GetRepayInterestOk
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayInterestOk() (*string, bool)`
+
+GetRepayInterestOk returns a tuple with the RepayInterest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepayInterest
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) SetRepayInterest(v string)`
+
+SetRepayInterest sets RepayInterest field to given value.
+
+### HasRepayInterest
+
+`func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayInterest() bool`
+
+HasRepayInterest returns a boolean if a field has been set.
 
 ### GetCollateralCoin
 

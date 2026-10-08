@@ -27,7 +27,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 	t.Run("Test TradeAPIService VipLoanBorrow Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"loanAccountId":"12345678","requestId":"12345678","loanCoin":"BTC","isFlexibleRate":"Yes","loanAmount":"100.55","collateralAccountId":"12345678,12345678,12345678","collateralCoin":"BUSD,USDT,ETH","loanTerm":"30"}`
+		mockedJSON = `{"loanAccountId":"12345678","requestId":"12345678","loanCoin":"BTC","isFlexibleRate":"Yes","loanAmount":"100.55","collateralAccountId":"12345678,12345678,12345678","collateralCoin":"BUSD,USDT,USDT-Earn,ETH","loanTerm":"30"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -37,7 +37,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BTC", r.URL.Query().Get("loanCoin"))
 			require.Equal(t, fmt.Sprintf("%v", float64(1.0)), r.URL.Query().Get("loanAmount"))
 			require.Equal(t, "12345678,12345678,12345678", r.URL.Query().Get("collateralAccountId"))
-			require.Equal(t, "BUSD,USDT,ETH", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, "BUSD,USDT,USDT-Earn,ETH", r.URL.Query().Get("collateralCoin"))
 			require.Equal(t, "true", r.URL.Query().Get("isFlexibleRate"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -55,7 +55,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.VipLoanBorrow(context.Background()).LoanAccountId(int64(1)).LoanCoin("BTC").LoanAmount(float64(1.0)).CollateralAccountId("12345678,12345678,12345678").CollateralCoin("BUSD,USDT,ETH").IsFlexibleRate(true).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.VipLoanBorrow(context.Background()).LoanAccountId(int64(1)).LoanCoin("BTC").LoanAmount(float64(1.0)).CollateralAccountId("12345678,12345678,12345678").CollateralCoin("BUSD,USDT,USDT-Earn,ETH").IsFlexibleRate(true).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -109,7 +109,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 	t.Run("Test TradeAPIService VipLoanFixedRateBorrow Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"borrowCoin":"BUSD","borrowAmount":"100.5","actualReceivedAmount":"98.75","collateralCoin":"BNB,ETH,BTC","collateralAccountId":"12345,67890,13579","borrowInterestRate":"0.01501231","duration":"30Days","autoRepay":true,"orderId":123456789,"status":"Succeeds"}`
+		mockedJSON = `{"borrowCoin":"BUSD","borrowAmount":"100.5","actualReceivedAmount":"98.75","collateralCoin":"BNB,BNB-Earn,ETH,BTC","collateralAccountId":"12345,67890,13579","borrowInterestRate":"0.01501231","duration":"30Days","autoRepay":true,"orderId":123456789,"status":"Succeeds"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -119,7 +119,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			require.Equal(t, "BUSD", r.URL.Query().Get("borrowCoin"))
 			require.Equal(t, "30", r.URL.Query().Get("loanTerm"))
 			require.Equal(t, "12345678", r.URL.Query().Get("borrowUid"))
-			require.Equal(t, "BNB,ETH,BTC", r.URL.Query().Get("collateralCoin"))
+			require.Equal(t, "BNB,BNB-Earn,ETH,BTC", r.URL.Query().Get("collateralCoin"))
 			require.Equal(t, "12345,67890,13579", r.URL.Query().Get("collateralAccountId"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -137,7 +137,7 @@ func Test_binanceviploanrestapi_TradeAPIService(t *testing.T) {
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.VipLoanFixedRateBorrow(context.Background()).SupplyRequest("1212:0.12:100;3434:0.13:50").BorrowCoin("BUSD").LoanTerm(int64(30)).BorrowUid(int64(12345678)).CollateralCoin("BNB,ETH,BTC").CollateralAccountId("12345,67890,13579").Execute()
+		resp, err := apiClient.RestApi.TradeAPI.VipLoanFixedRateBorrow(context.Background()).SupplyRequest("1212:0.12:100;3434:0.13:50").BorrowCoin("BUSD").LoanTerm(int64(30)).BorrowUid(int64(12345678)).CollateralCoin("BNB,BNB-Earn,ETH,BTC").CollateralAccountId("12345,67890,13579").Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

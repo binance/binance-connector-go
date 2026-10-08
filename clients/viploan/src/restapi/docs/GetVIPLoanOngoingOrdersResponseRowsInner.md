@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **LoanRate** | Pointer to **string** | For flexible loans, this is the flexible rate. | [optional] 
 **ResidualInterest** | Pointer to **string** |  | [optional] 
 **CollateralAccountId** | Pointer to **string** |  | [optional] 
-**CollateralCoin** | Pointer to **string** |  | [optional] 
+**CollateralCoin** | Pointer to **string** | Includes &#x60;&lt;ASSET&gt;-Earn&#x60; entries when a Simple Earn Flexible position is pledged. | [optional] 
 **TotalCollateralValueAfterHaircut** | Pointer to **string** |  | [optional] 
 **LockedCollateralValue** | Pointer to **string** |  | [optional] 
 **CurrentLTV** | Pointer to **string** |  | [optional] 

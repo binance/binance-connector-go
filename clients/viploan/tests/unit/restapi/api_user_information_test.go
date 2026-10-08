@@ -144,7 +144,7 @@ func Test_binanceviploanrestapi_UserInformationAPIService(t *testing.T) {
 	t.Run("Test UserInformationAPIService GetVIPLoanOngoingOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"rows":[{"orderId":100000001,"loanCoin":"BUSD","totalDebt":"10000","loanRate":"0.0123","residualInterest":"10.27687923","collateralAccountId":"12345678,23456789","collateralCoin":"BNB,BTC,ETH","totalCollateralValueAfterHaircut":"25000.27565492","lockedCollateralValue":"25000.27565492","currentLTV":"0.57","expirationTime":1575018510000,"loanDate":"1676851200000","loanTerm":"30days"}],"total":1}`
+		mockedJSON = `{"rows":[{"orderId":100000001,"loanCoin":"BUSD","totalDebt":"10000","loanRate":"0.0123","residualInterest":"10.27687923","collateralAccountId":"12345678,23456789","collateralCoin":"BNB,BNB-Earn,BTC,ETH","totalCollateralValueAfterHaircut":"25000.27565492","lockedCollateralValue":"25000.27565492","currentLTV":"0.57","expirationTime":1575018510000,"loanDate":"1676851200000","loanTerm":"30days"}],"total":1}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -203,7 +203,7 @@ func Test_binanceviploanrestapi_UserInformationAPIService(t *testing.T) {
 	t.Run("Test UserInformationAPIService GetVIPLoanRepaymentHistory Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"rows":[{"loanCoin":"BUSD","repayAmount":"10000","collateralCoin":"BNB,BTC,ETH","repayStatus":"Repaid","loanDate":"1676851200000","repayTime":"1575018510000","orderId":"756783308056935434"}],"total":1}`
+		mockedJSON = `{"rows":[{"loanCoin":"BUSD","repayAmount":"10000","repayPrincipal":"9500","repayInterest":"500","collateralCoin":"BNB,BTC,ETH","repayStatus":"Repaid","loanDate":"1676851200000","repayTime":"1575018510000","orderId":"756783308056935434"}],"total":1}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -262,7 +262,7 @@ func Test_binanceviploanrestapi_UserInformationAPIService(t *testing.T) {
 	t.Run("Test UserInformationAPIService QueryApplicationStatus Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"rows":[{"loanAccountId":"12345678","orderId":"12345678","requestId":"12345678","loanCoin":"BTC","loanAmount":"100.55","collateralAccountId":"12345678,12345678,12345678","collateralCoin":"BUSD,USDT,ETH","loanTerm":"30","status":"Repaid","loanDate":"1676851200000"}],"total":1}`
+		mockedJSON = `{"rows":[{"loanAccountId":"12345678","orderId":"12345678","requestId":"12345678","loanCoin":"BTC","loanAmount":"100.55","collateralAccountId":"12345678,12345678,12345678","collateralCoin":"BUSD,USDT,USDT-Earn,ETH","loanTerm":"30","status":"Repaid","loanDate":"1676851200000"}],"total":1}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

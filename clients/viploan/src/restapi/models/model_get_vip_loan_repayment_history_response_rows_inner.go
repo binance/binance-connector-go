@@ -19,6 +19,8 @@ var _ common.MappedNullable = &GetVIPLoanRepaymentHistoryResponseRowsInner{}
 type GetVIPLoanRepaymentHistoryResponseRowsInner struct {
 	LoanCoin       *string `json:"loanCoin,omitempty"`
 	RepayAmount    *string `json:"repayAmount,omitempty"`
+	RepayPrincipal *string `json:"repayPrincipal,omitempty"`
+	RepayInterest  *string `json:"repayInterest,omitempty"`
 	CollateralCoin *string `json:"collateralCoin,omitempty"`
 	// Repayment status (`Repaid`, `Repaying`, `Failed`).
 	RepayStatus          *string `json:"repayStatus,omitempty"`
@@ -109,6 +111,70 @@ func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayAmount() bool {
 // SetRepayAmount gets a reference to the given string and assigns it to the RepayAmount field.
 func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) SetRepayAmount(v string) {
 	o.RepayAmount = &v
+}
+
+// GetRepayPrincipal returns the RepayPrincipal field value if set, zero value otherwise.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayPrincipal() string {
+	if o == nil || common.IsNil(o.RepayPrincipal) {
+		var ret string
+		return ret
+	}
+	return *o.RepayPrincipal
+}
+
+// GetRepayPrincipalOk returns a tuple with the RepayPrincipal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayPrincipalOk() (*string, bool) {
+	if o == nil || common.IsNil(o.RepayPrincipal) {
+		return nil, false
+	}
+	return o.RepayPrincipal, true
+}
+
+// HasRepayPrincipal returns a boolean if a field has been set.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayPrincipal() bool {
+	if o != nil && !common.IsNil(o.RepayPrincipal) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepayPrincipal gets a reference to the given string and assigns it to the RepayPrincipal field.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) SetRepayPrincipal(v string) {
+	o.RepayPrincipal = &v
+}
+
+// GetRepayInterest returns the RepayInterest field value if set, zero value otherwise.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayInterest() string {
+	if o == nil || common.IsNil(o.RepayInterest) {
+		var ret string
+		return ret
+	}
+	return *o.RepayInterest
+}
+
+// GetRepayInterestOk returns a tuple with the RepayInterest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) GetRepayInterestOk() (*string, bool) {
+	if o == nil || common.IsNil(o.RepayInterest) {
+		return nil, false
+	}
+	return o.RepayInterest, true
+}
+
+// HasRepayInterest returns a boolean if a field has been set.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) HasRepayInterest() bool {
+	if o != nil && !common.IsNil(o.RepayInterest) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepayInterest gets a reference to the given string and assigns it to the RepayInterest field.
+func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) SetRepayInterest(v string) {
+	o.RepayInterest = &v
 }
 
 // GetCollateralCoin returns the CollateralCoin field value if set, zero value otherwise.
@@ -287,6 +353,12 @@ func (o GetVIPLoanRepaymentHistoryResponseRowsInner) ToMap() (map[string]interfa
 	if !common.IsNil(o.RepayAmount) {
 		toSerialize["repayAmount"] = o.RepayAmount
 	}
+	if !common.IsNil(o.RepayPrincipal) {
+		toSerialize["repayPrincipal"] = o.RepayPrincipal
+	}
+	if !common.IsNil(o.RepayInterest) {
+		toSerialize["repayInterest"] = o.RepayInterest
+	}
 	if !common.IsNil(o.CollateralCoin) {
 		toSerialize["collateralCoin"] = o.CollateralCoin
 	}
@@ -326,6 +398,8 @@ func (o *GetVIPLoanRepaymentHistoryResponseRowsInner) UnmarshalJSON(data []byte)
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "loanCoin")
 		delete(additionalProperties, "repayAmount")
+		delete(additionalProperties, "repayPrincipal")
+		delete(additionalProperties, "repayInterest")
 		delete(additionalProperties, "collateralCoin")
 		delete(additionalProperties, "repayStatus")
 		delete(additionalProperties, "loanDate")

@@ -21,9 +21,10 @@ type GetVIPLoanOngoingOrdersResponseRowsInner struct {
 	LoanCoin  *string `json:"loanCoin,omitempty"`
 	TotalDebt *string `json:"totalDebt,omitempty"`
 	// For flexible loans, this is the flexible rate.
-	LoanRate                         *string `json:"loanRate,omitempty"`
-	ResidualInterest                 *string `json:"residualInterest,omitempty"`
-	CollateralAccountId              *string `json:"collateralAccountId,omitempty"`
+	LoanRate            *string `json:"loanRate,omitempty"`
+	ResidualInterest    *string `json:"residualInterest,omitempty"`
+	CollateralAccountId *string `json:"collateralAccountId,omitempty"`
+	// Includes `<ASSET>-Earn` entries when a Simple Earn Flexible position is pledged.
 	CollateralCoin                   *string `json:"collateralCoin,omitempty"`
 	TotalCollateralValueAfterHaircut *string `json:"totalCollateralValueAfterHaircut,omitempty"`
 	LockedCollateralValue            *string `json:"lockedCollateralValue,omitempty"`
