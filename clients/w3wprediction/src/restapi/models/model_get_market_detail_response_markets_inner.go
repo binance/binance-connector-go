@@ -17,16 +17,17 @@ var _ common.MappedNullable = &GetMarketDetailResponseMarketsInner{}
 
 // GetMarketDetailResponseMarketsInner struct for GetMarketDetailResponseMarketsInner
 type GetMarketDetailResponseMarketsInner struct {
-	MarketId             *int64                                             `json:"marketId,omitempty"`
-	ExternalId           *string                                            `json:"externalId,omitempty"`
-	Title                *string                                            `json:"title,omitempty"`
-	Question             *string                                            `json:"question,omitempty"`
-	Description          *string                                            `json:"description,omitempty"`
-	ConditionId          *string                                            `json:"conditionId,omitempty"`
-	Status               *string                                            `json:"status,omitempty"`
-	TradingStatus        *string                                            `json:"tradingStatus,omitempty"`
-	TradeVolume          *string                                            `json:"tradeVolume,omitempty"`
-	Liquidity            *string                                            `json:"liquidity,omitempty"`
+	MarketId      *int64  `json:"marketId,omitempty"`
+	ExternalId    *string `json:"externalId,omitempty"`
+	Title         *string `json:"title,omitempty"`
+	Question      *string `json:"question,omitempty"`
+	Description   *string `json:"description,omitempty"`
+	ConditionId   *string `json:"conditionId,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	TradingStatus *string `json:"tradingStatus,omitempty"`
+	TradeVolume   *string `json:"tradeVolume,omitempty"`
+	Liquidity     *string `json:"liquidity,omitempty"`
+	// Price precision of the market, in decimal places. The price tick is 10 to the power of minus `decimalPrecision`, for example `2` means a tick of 0.01. A limit price that is not on the tick is truncated down
 	DecimalPrecision     *int32                                             `json:"decimalPrecision,omitempty"`
 	Outcomes             []GetMarketDetailResponseMarketsInnerOutcomesInner `json:"outcomes,omitempty"`
 	AdditionalProperties map[string]interface{}

@@ -142,7 +142,7 @@ func (r ApiGetQuoteRequest) Side(side models.GetQuoteSideParameter) ApiGetQuoteR
 	return r
 }
 
-// Input amount in wei (18 decimals). Must be &gt; 0. For &#x60;MARKET&#x60; orders, minimum is approximately 1.5 USDT (varies by market depth). Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT
+// Input amount in wei (18 decimals). Must be &gt; 0. The minimum is set by the server and may change, see the response notes. Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT
 func (r ApiGetQuoteRequest) AmountIn(amountIn string) ApiGetQuoteRequest {
 	r.amountIn = &amountIn
 	return r
@@ -160,7 +160,7 @@ func (r ApiGetQuoteRequest) SlippageBps(slippageBps int32) ApiGetQuoteRequest {
 	return r
 }
 
-// Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0
+// Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0. A price that is not on the price tick of the market (see &#x60;decimalPrecision&#x60; in Get Market Detail) is truncated down instead of being rejected, unless the result is 0
 func (r ApiGetQuoteRequest) PriceLimit(priceLimit string) ApiGetQuoteRequest {
 	r.priceLimit = &priceLimit
 	return r
@@ -204,10 +204,10 @@ https://developers.binance.com/en/docs/catalog/web3-wallet-prediction-trading/ap
 @param walletAddress -  User's prediction wallet address
 @param tokenId -  Prediction outcome token ID
 @param side -  Trade direction. Enum: `BUY`, `SELL`
-@param amountIn -  Input amount in wei (18 decimals). Must be > 0. For `MARKET` orders, minimum is approximately 1.5 USDT (varies by market depth). Example: `1000000000000000000` = 1 USDT
+@param amountIn -  Input amount in wei (18 decimals). Must be > 0. The minimum is set by the server and may change, see the response notes. Example: `1000000000000000000` = 1 USDT
 @param orderType -  Order type. Enum: `MARKET`, `LIMIT`
 @param slippageBps -  Slippage tolerance in basis points. Range 1–10000
-@param priceLimit -  Limit price. Required when `orderType=LIMIT`. Must be > 0
+@param priceLimit -  Limit price. Required when `orderType=LIMIT`. Must be > 0. A price that is not on the price tick of the market (see `decimalPrecision` in Get Market Detail) is truncated down instead of being rejected, unless the result is 0
 @param chainId -  Chain ID. Default `56` (BSC)
 @param feeRateBps -  Fee rate in basis points. Default `200`, range 1–10000
 @param fundingSource -  Funding source. Enum: `MPC`, `CEX`. Default `MPC`

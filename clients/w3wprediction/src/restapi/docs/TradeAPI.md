@@ -109,10 +109,10 @@ func main() {
 	walletAddress := "0x12e32db8817e292508c34111cbc4b23340df542c" // string | User's prediction wallet address
 	tokenId := "112233" // string | Prediction outcome token ID
 	side := models.GetQuoteSideParameterBuy // GetQuoteSideParameter | Trade direction. Enum: `BUY`, `SELL`
-	amountIn := "1000000000000000000" // string | Input amount in wei (18 decimals). Must be > 0. For `MARKET` orders, minimum is approximately 1.5 USDT (varies by market depth). Example: `1000000000000000000` = 1 USDT
+	amountIn := "1000000000000000000" // string | Input amount in wei (18 decimals). Must be > 0. The minimum is set by the server and may change, see the response notes. Example: `1000000000000000000` = 1 USDT
 	orderType := models.GetQuoteOrderTypeParameterMarket // GetQuoteOrderTypeParameter | Order type. Enum: `MARKET`, `LIMIT`
 	slippageBps := int32(1200) // int32 | Slippage tolerance in basis points. Range 1–10000
-	priceLimit := "0.5" // string | Limit price. Required when `orderType=LIMIT`. Must be > 0 (optional)
+	priceLimit := "0.5" // string | Limit price. Required when `orderType=LIMIT`. Must be > 0. A price that is not on the price tick of the market (see `decimalPrecision` in Get Market Detail) is truncated down instead of being rejected, unless the result is 0 (optional)
 	chainId := "56" // string | Chain ID. Default `56` (BSC) (optional)
 	feeRateBps := int32(200) // int32 | Fee rate in basis points. Default `200`, range 1–10000 (optional)
 	fundingSource := models.GetQuoteFundingSourceParameterMpc // GetQuoteFundingSourceParameter | Funding source. Enum: `MPC`, `CEX`. Default `MPC` (optional)
@@ -147,10 +147,10 @@ Name          | Type          | Description   | Notes
  **walletAddress** | **string** | User&#39;s prediction wallet address | 
  **tokenId** | **string** | Prediction outcome token ID | 
  **side** | [**GetQuoteSideParameter**](GetQuoteSideParameter.md) | Trade direction. Enum: &#x60;BUY&#x60;, &#x60;SELL&#x60; | 
- **amountIn** | **string** | Input amount in wei (18 decimals). Must be &gt; 0. For &#x60;MARKET&#x60; orders, minimum is approximately 1.5 USDT (varies by market depth). Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT | 
+ **amountIn** | **string** | Input amount in wei (18 decimals). Must be &gt; 0. The minimum is set by the server and may change, see the response notes. Example: &#x60;1000000000000000000&#x60; &#x3D; 1 USDT | 
  **orderType** | [**GetQuoteOrderTypeParameter**](GetQuoteOrderTypeParameter.md) | Order type. Enum: &#x60;MARKET&#x60;, &#x60;LIMIT&#x60; | 
  **slippageBps** | **int32** | Slippage tolerance in basis points. Range 1–10000 | 
- **priceLimit** | **string** | Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0 | 
+ **priceLimit** | **string** | Limit price. Required when &#x60;orderType&#x3D;LIMIT&#x60;. Must be &gt; 0. A price that is not on the price tick of the market (see &#x60;decimalPrecision&#x60; in Get Market Detail) is truncated down instead of being rejected, unless the result is 0 | 
  **chainId** | **string** | Chain ID. Default &#x60;56&#x60; (BSC) | 
  **feeRateBps** | **int32** | Fee rate in basis points. Default &#x60;200&#x60;, range 1–10000 | 
  **fundingSource** | [**GetQuoteFundingSourceParameter**](GetQuoteFundingSourceParameter.md) | Funding source. Enum: &#x60;MPC&#x60;, &#x60;CEX&#x60;. Default &#x60;MPC&#x60; | 

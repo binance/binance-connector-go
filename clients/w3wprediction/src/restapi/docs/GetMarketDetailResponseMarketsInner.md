@@ -14,7 +14,7 @@ Name         | Type          | Description.  | Notes
 **TradingStatus** | Pointer to **string** |  | [optional] 
 **TradeVolume** | Pointer to **string** |  | [optional] 
 **Liquidity** | Pointer to **string** |  | [optional] 
-**DecimalPrecision** | Pointer to **int32** |  | [optional] 
+**DecimalPrecision** | Pointer to **int32** | Price precision of the market, in decimal places. The price tick is 10 to the power of minus &#x60;decimalPrecision&#x60;, for example &#x60;2&#x60; means a tick of 0.01. A limit price that is not on the tick is truncated down | [optional] 
 **Outcomes** | Pointer to [**[]GetMarketDetailResponseMarketsInnerOutcomesInner**](GetMarketDetailResponseMarketsInnerOutcomesInner.md) |  | [optional] 
 
 ## Methods

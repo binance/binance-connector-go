@@ -9,6 +9,7 @@ Name         | Type          | Description.  | Notes
 **Chance** | Pointer to **string** |  | [optional] 
 **Index** | Pointer to **int32** |  | [optional] 
 **TokenId** | Pointer to **string** |  | [optional] 
+**Winner** | Pointer to **bool** | Whether this outcome won. Returned only after the market is resolved. More than one outcome can be &#x60;true&#x60; when the payout is split | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetTokenId sets TokenId field to given value.
 `func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) HasTokenId() bool`
 
 HasTokenId returns a boolean if a field has been set.
+
+### GetWinner
+
+`func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) GetWinner() bool`
+
+GetWinner returns the Winner field if non-nil, zero value otherwise.
+
+### GetWinnerOk
+
+`func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) GetWinnerOk() (*bool, bool)`
+
+GetWinnerOk returns a tuple with the Winner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWinner
+
+`func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) SetWinner(v bool)`
+
+SetWinner sets Winner field to given value.
+
+### HasWinner
+
+`func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) HasWinner() bool`
+
+HasWinner returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

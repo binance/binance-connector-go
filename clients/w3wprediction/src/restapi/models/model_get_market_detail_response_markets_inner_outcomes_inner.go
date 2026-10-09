@@ -17,11 +17,13 @@ var _ common.MappedNullable = &GetMarketDetailResponseMarketsInnerOutcomesInner{
 
 // GetMarketDetailResponseMarketsInnerOutcomesInner struct for GetMarketDetailResponseMarketsInnerOutcomesInner
 type GetMarketDetailResponseMarketsInnerOutcomesInner struct {
-	Name                 *string `json:"name,omitempty"`
-	Price                *string `json:"price,omitempty"`
-	Chance               *string `json:"chance,omitempty"`
-	Index                *int32  `json:"index,omitempty"`
-	TokenId              *string `json:"tokenId,omitempty"`
+	Name    *string `json:"name,omitempty"`
+	Price   *string `json:"price,omitempty"`
+	Chance  *string `json:"chance,omitempty"`
+	Index   *int32  `json:"index,omitempty"`
+	TokenId *string `json:"tokenId,omitempty"`
+	// Whether this outcome won. Returned only after the market is resolved. More than one outcome can be `true` when the payout is split
+	Winner               *bool `json:"winner,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -204,6 +206,38 @@ func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) SetTokenId(v string) 
 	o.TokenId = &v
 }
 
+// GetWinner returns the Winner field value if set, zero value otherwise.
+func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) GetWinner() bool {
+	if o == nil || common.IsNil(o.Winner) {
+		var ret bool
+		return ret
+	}
+	return *o.Winner
+}
+
+// GetWinnerOk returns a tuple with the Winner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) GetWinnerOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.Winner) {
+		return nil, false
+	}
+	return o.Winner, true
+}
+
+// HasWinner returns a boolean if a field has been set.
+func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) HasWinner() bool {
+	if o != nil && !common.IsNil(o.Winner) {
+		return true
+	}
+
+	return false
+}
+
+// SetWinner gets a reference to the given bool and assigns it to the Winner field.
+func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) SetWinner(v bool) {
+	o.Winner = &v
+}
+
 func (o GetMarketDetailResponseMarketsInnerOutcomesInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -228,6 +262,9 @@ func (o GetMarketDetailResponseMarketsInnerOutcomesInner) ToMap() (map[string]in
 	}
 	if !common.IsNil(o.TokenId) {
 		toSerialize["tokenId"] = o.TokenId
+	}
+	if !common.IsNil(o.Winner) {
+		toSerialize["winner"] = o.Winner
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -256,6 +293,7 @@ func (o *GetMarketDetailResponseMarketsInnerOutcomesInner) UnmarshalJSON(data []
 		delete(additionalProperties, "chance")
 		delete(additionalProperties, "index")
 		delete(additionalProperties, "tokenId")
+		delete(additionalProperties, "winner")
 		o.AdditionalProperties = additionalProperties
 	}
 
