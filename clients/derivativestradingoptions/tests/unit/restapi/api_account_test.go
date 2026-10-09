@@ -26,7 +26,7 @@ func Test_binancederivativestradingoptionsrestapi_AccountAPIService(t *testing.T
 	t.Run("Test AccountAPIService AccountFundingFlow Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"id":1125899906842624000,"asset":"USDT","amount":"-0.552","type":"FEE","createDate":1592449456000}]`
+		mockedJSON = `[{"id":1125899906842624000,"asset":"USDT","amount":"-0.552","symbol":"BTC-200730-9000-C","type":"FEE","createDate":1592449456000}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

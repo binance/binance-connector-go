@@ -7,6 +7,7 @@ Name         | Type          | Description.  | Notes
 **Id** | Pointer to **int64** | id | [optional] 
 **Asset** | Pointer to **string** | Asset type | [optional] 
 **Amount** | Pointer to **string** | Amount (positive numbers represent inflow, negative numbers represent outflow) | [optional] 
+**Symbol** | Pointer to **string** | Option symbol the record relates to. Returned only for contract-related types (e.g. &#x60;CONTRACT&#x60;, &#x60;FEE&#x60;, &#x60;EXERCISE_PNL&#x60;, &#x60;EXERCISE_FEE&#x60;); omitted for other types such as &#x60;TRANSFER&#x60;. Older records may not include this field. | [optional] 
 **Type** | Pointer to **string** | type (fees) | [optional] 
 **CreateDate** | Pointer to **int64** | Time | [optional] 
 
@@ -103,6 +104,31 @@ SetAmount sets Amount field to given value.
 `func (o *AccountFundingFlowResponseInner) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
+
+### GetSymbol
+
+`func (o *AccountFundingFlowResponseInner) GetSymbol() string`
+
+GetSymbol returns the Symbol field if non-nil, zero value otherwise.
+
+### GetSymbolOk
+
+`func (o *AccountFundingFlowResponseInner) GetSymbolOk() (*string, bool)`
+
+GetSymbolOk returns a tuple with the Symbol field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSymbol
+
+`func (o *AccountFundingFlowResponseInner) SetSymbol(v string)`
+
+SetSymbol sets Symbol field to given value.
+
+### HasSymbol
+
+`func (o *AccountFundingFlowResponseInner) HasSymbol() bool`
+
+HasSymbol returns a boolean if a field has been set.
 
 ### GetType
 

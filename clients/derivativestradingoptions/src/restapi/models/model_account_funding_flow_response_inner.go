@@ -23,6 +23,8 @@ type AccountFundingFlowResponseInner struct {
 	Asset *string `json:"asset,omitempty"`
 	// Amount (positive numbers represent inflow, negative numbers represent outflow)
 	Amount *string `json:"amount,omitempty"`
+	// Option symbol the record relates to. Returned only for contract-related types (e.g. `CONTRACT`, `FEE`, `EXERCISE_PNL`, `EXERCISE_FEE`); omitted for other types such as `TRANSFER`. Older records may not include this field.
+	Symbol *string `json:"symbol,omitempty"`
 	// type (fees)
 	Type *string `json:"type,omitempty"`
 	// Time
@@ -145,6 +147,38 @@ func (o *AccountFundingFlowResponseInner) SetAmount(v string) {
 	o.Amount = &v
 }
 
+// GetSymbol returns the Symbol field value if set, zero value otherwise.
+func (o *AccountFundingFlowResponseInner) GetSymbol() string {
+	if o == nil || common.IsNil(o.Symbol) {
+		var ret string
+		return ret
+	}
+	return *o.Symbol
+}
+
+// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountFundingFlowResponseInner) GetSymbolOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Symbol) {
+		return nil, false
+	}
+	return o.Symbol, true
+}
+
+// HasSymbol returns a boolean if a field has been set.
+func (o *AccountFundingFlowResponseInner) HasSymbol() bool {
+	if o != nil && !common.IsNil(o.Symbol) {
+		return true
+	}
+
+	return false
+}
+
+// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+func (o *AccountFundingFlowResponseInner) SetSymbol(v string) {
+	o.Symbol = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *AccountFundingFlowResponseInner) GetType() string {
 	if o == nil || common.IsNil(o.Type) {
@@ -228,6 +262,9 @@ func (o AccountFundingFlowResponseInner) ToMap() (map[string]interface{}, error)
 	if !common.IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
+	if !common.IsNil(o.Symbol) {
+		toSerialize["symbol"] = o.Symbol
+	}
 	if !common.IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
@@ -259,6 +296,7 @@ func (o *AccountFundingFlowResponseInner) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "asset")
 		delete(additionalProperties, "amount")
+		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "createDate")
 		o.AdditionalProperties = additionalProperties
