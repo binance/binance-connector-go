@@ -84,23 +84,23 @@ type ExecutionReport struct {
 	// selfTradePreventionMode
 	V *string `json:"V,omitempty"`
 	// Trailing Delta; This is only visible if the order was a trailing stop order.
-	Smalld *string `json:"d,omitempty"`
+	Smalld *int64 `json:"d,omitempty"`
 	// Trailing Time
-	D *string `json:"D,omitempty"`
+	D *int64 `json:"D,omitempty"`
 	// Strategy Id
-	Smallj *string `json:"j,omitempty"`
+	Smallj *int64 `json:"j,omitempty"`
 	// Strategy Type
-	J *string `json:"J,omitempty"`
+	J *int64 `json:"J,omitempty"`
 	// Prevented Match Id
-	Smallv *string `json:"v,omitempty"`
+	Smallv *int64 `json:"v,omitempty"`
 	// Prevented Quantity
 	A *string `json:"A,omitempty"`
 	// Last Prevented Quantity
 	B *string `json:"B,omitempty"`
 	// Trade Group Id
-	Smallu *string `json:"u,omitempty"`
+	Smallu *int64 `json:"u,omitempty"`
 	// Counter Order Id
-	U *string `json:"U,omitempty"`
+	U *int64 `json:"U,omitempty"`
 	// Counter Symbol
 	Cs *string `json:"Cs,omitempty"`
 	// Prevented Execution Quantity
@@ -112,7 +112,7 @@ type ExecutionReport struct {
 	// Match Type
 	Smallb *string `json:"b,omitempty"`
 	// Allocation ID
-	Smalla *string `json:"a,omitempty"`
+	Smalla *int64 `json:"a,omitempty"`
 	// Working Floor
 	Smallk *string `json:"k,omitempty"`
 	// UsedSor
@@ -1196,9 +1196,9 @@ func (o *ExecutionReport) SetV(v string) {
 }
 
 // GetD returns the D field value if set, zero value otherwise.
-func (o *ExecutionReport) GetSmalld() string {
+func (o *ExecutionReport) GetSmalld() int64 {
 	if o == nil || common.IsNil(o.Smalld) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Smalld
@@ -1206,7 +1206,7 @@ func (o *ExecutionReport) GetSmalld() string {
 
 // GetDOk returns a tuple with the D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetSmalldOk() (*string, bool) {
+func (o *ExecutionReport) GetSmalldOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smalld) {
 		return nil, false
 	}
@@ -1222,15 +1222,15 @@ func (o *ExecutionReport) HasSmalld() bool {
 	return false
 }
 
-// SetD gets a reference to the given string and assigns it to the D field.
-func (o *ExecutionReport) SetSmalld(v string) {
+// SetD gets a reference to the given int64 and assigns it to the D field.
+func (o *ExecutionReport) SetSmalld(v int64) {
 	o.Smalld = &v
 }
 
 // GetD returns the D field value if set, zero value otherwise.
-func (o *ExecutionReport) GetD() string {
+func (o *ExecutionReport) GetD() int64 {
 	if o == nil || common.IsNil(o.D) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.D
@@ -1238,7 +1238,7 @@ func (o *ExecutionReport) GetD() string {
 
 // GetDOk returns a tuple with the D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetDOk() (*string, bool) {
+func (o *ExecutionReport) GetDOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.D) {
 		return nil, false
 	}
@@ -1254,15 +1254,15 @@ func (o *ExecutionReport) HasD() bool {
 	return false
 }
 
-// SetD gets a reference to the given string and assigns it to the D field.
-func (o *ExecutionReport) SetD(v string) {
+// SetD gets a reference to the given int64 and assigns it to the D field.
+func (o *ExecutionReport) SetD(v int64) {
 	o.D = &v
 }
 
 // GetJ returns the J field value if set, zero value otherwise.
-func (o *ExecutionReport) GetSmallj() string {
+func (o *ExecutionReport) GetSmallj() int64 {
 	if o == nil || common.IsNil(o.Smallj) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Smallj
@@ -1270,7 +1270,7 @@ func (o *ExecutionReport) GetSmallj() string {
 
 // GetJOk returns a tuple with the J field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetSmalljOk() (*string, bool) {
+func (o *ExecutionReport) GetSmalljOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smallj) {
 		return nil, false
 	}
@@ -1286,15 +1286,15 @@ func (o *ExecutionReport) HasSmallj() bool {
 	return false
 }
 
-// SetJ gets a reference to the given string and assigns it to the J field.
-func (o *ExecutionReport) SetSmallj(v string) {
+// SetJ gets a reference to the given int64 and assigns it to the J field.
+func (o *ExecutionReport) SetSmallj(v int64) {
 	o.Smallj = &v
 }
 
 // GetJ returns the J field value if set, zero value otherwise.
-func (o *ExecutionReport) GetJ() string {
+func (o *ExecutionReport) GetJ() int64 {
 	if o == nil || common.IsNil(o.J) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.J
@@ -1302,7 +1302,7 @@ func (o *ExecutionReport) GetJ() string {
 
 // GetJOk returns a tuple with the J field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetJOk() (*string, bool) {
+func (o *ExecutionReport) GetJOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.J) {
 		return nil, false
 	}
@@ -1318,15 +1318,15 @@ func (o *ExecutionReport) HasJ() bool {
 	return false
 }
 
-// SetJ gets a reference to the given string and assigns it to the J field.
-func (o *ExecutionReport) SetJ(v string) {
+// SetJ gets a reference to the given int64 and assigns it to the J field.
+func (o *ExecutionReport) SetJ(v int64) {
 	o.J = &v
 }
 
 // GetV returns the V field value if set, zero value otherwise.
-func (o *ExecutionReport) GetSmallv() string {
+func (o *ExecutionReport) GetSmallv() int64 {
 	if o == nil || common.IsNil(o.Smallv) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Smallv
@@ -1334,7 +1334,7 @@ func (o *ExecutionReport) GetSmallv() string {
 
 // GetVOk returns a tuple with the V field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetSmallvOk() (*string, bool) {
+func (o *ExecutionReport) GetSmallvOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smallv) {
 		return nil, false
 	}
@@ -1350,8 +1350,8 @@ func (o *ExecutionReport) HasSmallv() bool {
 	return false
 }
 
-// SetV gets a reference to the given string and assigns it to the V field.
-func (o *ExecutionReport) SetSmallv(v string) {
+// SetV gets a reference to the given int64 and assigns it to the V field.
+func (o *ExecutionReport) SetSmallv(v int64) {
 	o.Smallv = &v
 }
 
@@ -1420,9 +1420,9 @@ func (o *ExecutionReport) SetB(v string) {
 }
 
 // GetU returns the U field value if set, zero value otherwise.
-func (o *ExecutionReport) GetSmallu() string {
+func (o *ExecutionReport) GetSmallu() int64 {
 	if o == nil || common.IsNil(o.Smallu) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Smallu
@@ -1430,7 +1430,7 @@ func (o *ExecutionReport) GetSmallu() string {
 
 // GetUOk returns a tuple with the U field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetSmalluOk() (*string, bool) {
+func (o *ExecutionReport) GetSmalluOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smallu) {
 		return nil, false
 	}
@@ -1446,15 +1446,15 @@ func (o *ExecutionReport) HasSmallu() bool {
 	return false
 }
 
-// SetU gets a reference to the given string and assigns it to the U field.
-func (o *ExecutionReport) SetSmallu(v string) {
+// SetU gets a reference to the given int64 and assigns it to the U field.
+func (o *ExecutionReport) SetSmallu(v int64) {
 	o.Smallu = &v
 }
 
 // GetU returns the U field value if set, zero value otherwise.
-func (o *ExecutionReport) GetU() string {
+func (o *ExecutionReport) GetU() int64 {
 	if o == nil || common.IsNil(o.U) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.U
@@ -1462,7 +1462,7 @@ func (o *ExecutionReport) GetU() string {
 
 // GetUOk returns a tuple with the U field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetUOk() (*string, bool) {
+func (o *ExecutionReport) GetUOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.U) {
 		return nil, false
 	}
@@ -1478,8 +1478,8 @@ func (o *ExecutionReport) HasU() bool {
 	return false
 }
 
-// SetU gets a reference to the given string and assigns it to the U field.
-func (o *ExecutionReport) SetU(v string) {
+// SetU gets a reference to the given int64 and assigns it to the U field.
+func (o *ExecutionReport) SetU(v int64) {
 	o.U = &v
 }
 
@@ -1644,9 +1644,9 @@ func (o *ExecutionReport) SetSmallb(v string) {
 }
 
 // GetA returns the A field value if set, zero value otherwise.
-func (o *ExecutionReport) GetSmalla() string {
+func (o *ExecutionReport) GetSmalla() int64 {
 	if o == nil || common.IsNil(o.Smalla) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Smalla
@@ -1654,7 +1654,7 @@ func (o *ExecutionReport) GetSmalla() string {
 
 // GetAOk returns a tuple with the A field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionReport) GetSmallaOk() (*string, bool) {
+func (o *ExecutionReport) GetSmallaOk() (*int64, bool) {
 	if o == nil || common.IsNil(o.Smalla) {
 		return nil, false
 	}
@@ -1670,8 +1670,8 @@ func (o *ExecutionReport) HasSmalla() bool {
 	return false
 }
 
-// SetA gets a reference to the given string and assigns it to the A field.
-func (o *ExecutionReport) SetSmalla(v string) {
+// SetA gets a reference to the given int64 and assigns it to the A field.
+func (o *ExecutionReport) SetSmalla(v int64) {
 	o.Smalla = &v
 }
 

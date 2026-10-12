@@ -37,21 +37,21 @@ Name         | Type          | Description.  | Notes
 **Q** | Pointer to **string** | Quote Order Quantity | [optional] 
 **W** | Pointer to **int64** | Working Time; This is only visible if the order has been placed on the book. | [optional] 
 **V** | Pointer to **string** | selfTradePreventionMode | [optional] 
-**D** | Pointer to **string** | Trailing Delta; This is only visible if the order was a trailing stop order. | [optional] 
-**D** | Pointer to **string** | Trailing Time | [optional] 
-**J** | Pointer to **string** | Strategy Id | [optional] 
-**J** | Pointer to **string** | Strategy Type | [optional] 
-**V** | Pointer to **string** | Prevented Match Id | [optional] 
+**D** | Pointer to **int64** | Trailing Delta; This is only visible if the order was a trailing stop order. | [optional] 
+**D** | Pointer to **int64** | Trailing Time | [optional] 
+**J** | Pointer to **int64** | Strategy Id | [optional] 
+**J** | Pointer to **int64** | Strategy Type | [optional] 
+**V** | Pointer to **int64** | Prevented Match Id | [optional] 
 **A** | Pointer to **string** | Prevented Quantity | [optional] 
 **B** | Pointer to **string** | Last Prevented Quantity | [optional] 
-**U** | Pointer to **string** | Trade Group Id | [optional] 
-**U** | Pointer to **string** | Counter Order Id | [optional] 
+**U** | Pointer to **int64** | Trade Group Id | [optional] 
+**U** | Pointer to **int64** | Counter Order Id | [optional] 
 **Cs** | Pointer to **string** | Counter Symbol | [optional] 
 **Pl** | Pointer to **string** | Prevented Execution Quantity | [optional] 
 **PL** | Pointer to **string** | Prevented Execution Price | [optional] 
 **PY** | Pointer to **string** | Prevented Execution Quote Qty | [optional] 
 **B** | Pointer to **string** | Match Type | [optional] 
-**A** | Pointer to **string** | Allocation ID | [optional] 
+**A** | Pointer to **int64** | Allocation ID | [optional] 
 **K** | Pointer to **string** | Working Floor | [optional] 
 **US** | Pointer to **bool** | UsedSor | [optional] 
 
@@ -901,20 +901,20 @@ HasV returns a boolean if a field has been set.
 
 ### GetD
 
-`func (o *ExecutionReport) GetD() string`
+`func (o *ExecutionReport) GetD() int64`
 
 GetD returns the D field if non-nil, zero value otherwise.
 
 ### GetDOk
 
-`func (o *ExecutionReport) GetDOk() (*string, bool)`
+`func (o *ExecutionReport) GetDOk() (*int64, bool)`
 
 GetDOk returns a tuple with the D field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetD
 
-`func (o *ExecutionReport) SetD(v string)`
+`func (o *ExecutionReport) SetD(v int64)`
 
 SetD sets D field to given value.
 
@@ -926,20 +926,20 @@ HasD returns a boolean if a field has been set.
 
 ### GetD
 
-`func (o *ExecutionReport) GetD() string`
+`func (o *ExecutionReport) GetD() int64`
 
 GetD returns the D field if non-nil, zero value otherwise.
 
 ### GetDOk
 
-`func (o *ExecutionReport) GetDOk() (*string, bool)`
+`func (o *ExecutionReport) GetDOk() (*int64, bool)`
 
 GetDOk returns a tuple with the D field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetD
 
-`func (o *ExecutionReport) SetD(v string)`
+`func (o *ExecutionReport) SetD(v int64)`
 
 SetD sets D field to given value.
 
@@ -951,20 +951,20 @@ HasD returns a boolean if a field has been set.
 
 ### GetJ
 
-`func (o *ExecutionReport) GetJ() string`
+`func (o *ExecutionReport) GetJ() int64`
 
 GetJ returns the J field if non-nil, zero value otherwise.
 
 ### GetJOk
 
-`func (o *ExecutionReport) GetJOk() (*string, bool)`
+`func (o *ExecutionReport) GetJOk() (*int64, bool)`
 
 GetJOk returns a tuple with the J field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJ
 
-`func (o *ExecutionReport) SetJ(v string)`
+`func (o *ExecutionReport) SetJ(v int64)`
 
 SetJ sets J field to given value.
 
@@ -976,20 +976,20 @@ HasJ returns a boolean if a field has been set.
 
 ### GetJ
 
-`func (o *ExecutionReport) GetJ() string`
+`func (o *ExecutionReport) GetJ() int64`
 
 GetJ returns the J field if non-nil, zero value otherwise.
 
 ### GetJOk
 
-`func (o *ExecutionReport) GetJOk() (*string, bool)`
+`func (o *ExecutionReport) GetJOk() (*int64, bool)`
 
 GetJOk returns a tuple with the J field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetJ
 
-`func (o *ExecutionReport) SetJ(v string)`
+`func (o *ExecutionReport) SetJ(v int64)`
 
 SetJ sets J field to given value.
 
@@ -1001,20 +1001,20 @@ HasJ returns a boolean if a field has been set.
 
 ### GetV
 
-`func (o *ExecutionReport) GetV() string`
+`func (o *ExecutionReport) GetV() int64`
 
 GetV returns the V field if non-nil, zero value otherwise.
 
 ### GetVOk
 
-`func (o *ExecutionReport) GetVOk() (*string, bool)`
+`func (o *ExecutionReport) GetVOk() (*int64, bool)`
 
 GetVOk returns a tuple with the V field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetV
 
-`func (o *ExecutionReport) SetV(v string)`
+`func (o *ExecutionReport) SetV(v int64)`
 
 SetV sets V field to given value.
 
@@ -1076,20 +1076,20 @@ HasB returns a boolean if a field has been set.
 
 ### GetU
 
-`func (o *ExecutionReport) GetU() string`
+`func (o *ExecutionReport) GetU() int64`
 
 GetU returns the U field if non-nil, zero value otherwise.
 
 ### GetUOk
 
-`func (o *ExecutionReport) GetUOk() (*string, bool)`
+`func (o *ExecutionReport) GetUOk() (*int64, bool)`
 
 GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetU
 
-`func (o *ExecutionReport) SetU(v string)`
+`func (o *ExecutionReport) SetU(v int64)`
 
 SetU sets U field to given value.
 
@@ -1101,20 +1101,20 @@ HasU returns a boolean if a field has been set.
 
 ### GetU
 
-`func (o *ExecutionReport) GetU() string`
+`func (o *ExecutionReport) GetU() int64`
 
 GetU returns the U field if non-nil, zero value otherwise.
 
 ### GetUOk
 
-`func (o *ExecutionReport) GetUOk() (*string, bool)`
+`func (o *ExecutionReport) GetUOk() (*int64, bool)`
 
 GetUOk returns a tuple with the U field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetU
 
-`func (o *ExecutionReport) SetU(v string)`
+`func (o *ExecutionReport) SetU(v int64)`
 
 SetU sets U field to given value.
 
@@ -1251,20 +1251,20 @@ HasB returns a boolean if a field has been set.
 
 ### GetA
 
-`func (o *ExecutionReport) GetA() string`
+`func (o *ExecutionReport) GetA() int64`
 
 GetA returns the A field if non-nil, zero value otherwise.
 
 ### GetAOk
 
-`func (o *ExecutionReport) GetAOk() (*string, bool)`
+`func (o *ExecutionReport) GetAOk() (*int64, bool)`
 
 GetAOk returns a tuple with the A field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetA
 
-`func (o *ExecutionReport) SetA(v string)`
+`func (o *ExecutionReport) SetA(v int64)`
 
 SetA sets A field to given value.
 
