@@ -521,3 +521,140 @@ func (a *SpotAlgoAPIService) TimeWeightedAveragePriceSpotAlgoExecute(r ApiTimeWe
 
 	return resp, nil
 }
+
+type ApiVolumeParticipationRequest struct {
+	ctx          context.Context
+	ApiService   *SpotAlgoAPIService
+	symbol       *string
+	side         *models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter
+	quantity     *float64
+	urgency      *models.VolumeParticipationFutureAlgoUrgencyParameter
+	clientAlgoId *string
+	vpTimeLimit  *int64
+	recvWindow   *int64
+}
+
+// Trading symbol eg. BTCUSDT
+func (r ApiVolumeParticipationRequest) Symbol(symbol string) ApiVolumeParticipationRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// Trading side ( BUY or SELL )
+func (r ApiVolumeParticipationRequest) Side(side models.QueryHistoricalAlgoOrdersFutureAlgoSideParameter) ApiVolumeParticipationRequest {
+	r.side = &side
+	return r
+}
+
+// Total order quantity in base asset; The notional must be at least the equivalent of 1,000 USDT, and the maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if your order is above the maximum notional per order.
+func (r ApiVolumeParticipationRequest) Quantity(quantity float64) ApiVolumeParticipationRequest {
+	r.quantity = &quantity
+	return r
+}
+
+// Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
+func (r ApiVolumeParticipationRequest) Urgency(urgency models.VolumeParticipationFutureAlgoUrgencyParameter) ApiVolumeParticipationRequest {
+	r.urgency = &urgency
+	return r
+}
+
+// A unique id among Algo orders (length should be 32 characters). If it is not sent, we will give default value. Must be unique across all open Algo orders.
+func (r ApiVolumeParticipationRequest) ClientAlgoId(clientAlgoId string) ApiVolumeParticipationRequest {
+	r.clientAlgoId = &clientAlgoId
+	return r
+}
+
+// Max allowed duration in seconds (minimum 300, maximum 86400). If it is not sent, 86400 is used and the order runs until fully filled or cancelled.
+func (r ApiVolumeParticipationRequest) VpTimeLimit(vpTimeLimit int64) ApiVolumeParticipationRequest {
+	r.vpTimeLimit = &vpTimeLimit
+	return r
+}
+
+// Cannot be greater than 60000
+func (r ApiVolumeParticipationRequest) RecvWindow(recvWindow int64) ApiVolumeParticipationRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiVolumeParticipationRequest) Execute() (*common.RestApiResponse[models.VolumeParticipationResponse], error) {
+	return r.ApiService.VolumeParticipationExecute(r)
+}
+
+/*
+VolumeParticipation Volume Participation (VP) New Order (TRADE)
+Post /sapi/v1/algo/spot/newOrderVp
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-algo-trading/api/rest-api/spot-algo#volume-participation
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param symbol -  Trading symbol eg. BTCUSDT
+@param side -  Trading side ( BUY or SELL )
+@param quantity -  Total order quantity in base asset; The notional must be at least the equivalent of 1,000 USDT, and the maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if your order is above the maximum notional per order.
+@param urgency -  Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
+@param clientAlgoId -  A unique id among Algo orders (length should be 32 characters). If it is not sent, we will give default value. Must be unique across all open Algo orders.
+@param vpTimeLimit -  Max allowed duration in seconds (minimum 300, maximum 86400). If it is not sent, 86400 is used and the order runs until fully filled or cancelled.
+@param recvWindow -  Cannot be greater than 60000
+@return ApiVolumeParticipationRequest
+*/
+func (a *SpotAlgoAPIService) VolumeParticipation(ctx context.Context) ApiVolumeParticipationRequest {
+	return ApiVolumeParticipationRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return VolumeParticipationResponse
+func (a *SpotAlgoAPIService) VolumeParticipationExecute(r ApiVolumeParticipationRequest) (*common.RestApiResponse[models.VolumeParticipationResponse], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/algo/spot/newOrderVp"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.symbol == nil {
+		return nil, common.ReportError("symbol is required and must be specified")
+	}
+
+	if r.side == nil {
+		return nil, common.ReportError("side is required and must be specified")
+	}
+
+	if r.quantity == nil {
+		return nil, common.ReportError("quantity is required and must be specified")
+	}
+
+	if r.urgency == nil {
+		return nil, common.ReportError("urgency is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "side", r.side, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quantity", r.quantity, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "urgency", r.urgency, "form", "")
+	if r.clientAlgoId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientAlgoId", r.clientAlgoId, "form", "")
+	}
+	if r.vpTimeLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "vpTimeLimit", r.vpTimeLimit, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.VolumeParticipationResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}

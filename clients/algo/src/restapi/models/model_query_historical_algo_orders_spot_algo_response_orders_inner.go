@@ -42,7 +42,9 @@ type QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner struct {
 	// Algo order type
 	AlgoType *string `json:"algoType,omitempty"`
 	// Execution urgency
-	Urgency              *string `json:"urgency,omitempty"`
+	Urgency *string `json:"urgency,omitempty"`
+	// Order duration in seconds. Only returned for TWAP orders
+	Duration             *int64 `json:"duration,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -481,6 +483,38 @@ func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) SetUrgency(v stri
 	o.Urgency = &v
 }
 
+// GetDuration returns the Duration field value if set, zero value otherwise.
+func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) GetDuration() int64 {
+	if o == nil || common.IsNil(o.Duration) {
+		var ret int64
+		return ret
+	}
+	return *o.Duration
+}
+
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) GetDurationOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.Duration) {
+		return nil, false
+	}
+	return o.Duration, true
+}
+
+// HasDuration returns a boolean if a field has been set.
+func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) HasDuration() bool {
+	if o != nil && !common.IsNil(o.Duration) {
+		return true
+	}
+
+	return false
+}
+
+// SetDuration gets a reference to the given int64 and assigns it to the Duration field.
+func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) SetDuration(v int64) {
+	o.Duration = &v
+}
+
 func (o QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -530,6 +564,9 @@ func (o QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) ToMap() (map[strin
 	if !common.IsNil(o.Urgency) {
 		toSerialize["urgency"] = o.Urgency
 	}
+	if !common.IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -565,6 +602,7 @@ func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) UnmarshalJSON(dat
 		delete(additionalProperties, "algoStatus")
 		delete(additionalProperties, "algoType")
 		delete(additionalProperties, "urgency")
+		delete(additionalProperties, "duration")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -9,6 +9,7 @@ Method        | HTTP request  | Description
 [**QueryHistoricalAlgoOrdersSpotAlgo**](SpotAlgoAPI.md#QueryHistoricalAlgoOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/historicalOrders | Query Historical Spot Algo Orders (USER_DATA)
 [**QuerySubOrdersSpotAlgo**](SpotAlgoAPI.md#QuerySubOrdersSpotAlgo) | **Get** /sapi/v1/algo/spot/subOrders | Query Spot Sub Orders (USER_DATA)
 [**TimeWeightedAveragePriceSpotAlgo**](SpotAlgoAPI.md#TimeWeightedAveragePriceSpotAlgo) | **Post** /sapi/v1/algo/spot/newOrderTwap | Time-Weighted Spot Average Price(Twap) New Order (TRADE)
+[**VolumeParticipation**](SpotAlgoAPI.md#VolumeParticipation) | **Post** /sapi/v1/algo/spot/newOrderVp | Volume Participation (VP) New Order (TRADE)
 
 
 ## CancelAlgoOrderSpotAlgo
@@ -371,6 +372,86 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**TimeWeightedAveragePriceSpotAlgoResponse**](TimeWeightedAveragePriceSpotAlgoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## VolumeParticipation
+
+> VolumeParticipationResponse VolumeParticipation(ctx).Symbol(symbol).Side(side).Quantity(quantity).Urgency(urgency).ClientAlgoId(clientAlgoId).VpTimeLimit(vpTimeLimit).RecvWindow(recvWindow).Execute()
+
+Volume Participation (VP) New Order (TRADE)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/algo"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	symbol := "BTCUSDT" // string | Trading symbol eg. BTCUSDT
+	side := models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy // QueryHistoricalAlgoOrdersFutureAlgoSideParameter | Trading side ( BUY or SELL )
+	quantity := float64(1) // float64 | Total order quantity in base asset; The notional must be at least the equivalent of 1,000 USDT, and the maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if your order is above the maximum notional per order.
+	urgency := models.VolumeParticipationFutureAlgoUrgencyParameterLow // VolumeParticipationFutureAlgoUrgencyParameter | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH
+	clientAlgoId := "1" // string | A unique id among Algo orders (length should be 32 characters). If it is not sent, we will give default value. Must be unique across all open Algo orders. (optional)
+	vpTimeLimit := int64(5000) // int64 | Max allowed duration in seconds (minimum 300, maximum 86400). If it is not sent, 86400 is used and the order runs until fully filled or cancelled. (optional)
+	recvWindow := int64(5000) // int64 | Cannot be greater than 60000 (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceAlgoClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.SpotAlgoAPI.VolumeParticipation(context.Background()).Symbol(symbol).Side(side).Quantity(quantity).Urgency(urgency).ClientAlgoId(clientAlgoId).VpTimeLimit(vpTimeLimit).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `SpotAlgoAPI.VolumeParticipation``: %v\n", err)
+		return
+	}
+
+	// response from `VolumeParticipation`: VolumeParticipationResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Trading symbol eg. BTCUSDT | 
+ **side** | [**QueryHistoricalAlgoOrdersFutureAlgoSideParameter**](QueryHistoricalAlgoOrdersFutureAlgoSideParameter.md) | Trading side ( BUY or SELL ) | 
+ **quantity** | **float64** | Total order quantity in base asset; The notional must be at least the equivalent of 1,000 USDT, and the maximum notional per order is 200k, 2mm or 10mm, depending on symbol. Please reduce your size if your order is above the maximum notional per order. | 
+ **urgency** | [**VolumeParticipationFutureAlgoUrgencyParameter**](VolumeParticipationFutureAlgoUrgencyParameter.md) | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH | 
+ **clientAlgoId** | **string** | A unique id among Algo orders (length should be 32 characters). If it is not sent, we will give default value. Must be unique across all open Algo orders. | 
+ **vpTimeLimit** | **int64** | Max allowed duration in seconds (minimum 300, maximum 86400). If it is not sent, 86400 is used and the order runs until fully filled or cancelled. | 
+ **recvWindow** | **int64** | Cannot be greater than 60000 | 
+
+### Return type
+
+[**VolumeParticipationResponse**](VolumeParticipationResponse.md)
 
 ### Authorization
 

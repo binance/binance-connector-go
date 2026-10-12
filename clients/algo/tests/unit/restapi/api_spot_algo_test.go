@@ -86,7 +86,7 @@ func Test_binancealgorestapi_SpotAlgoAPIService(t *testing.T) {
 	t.Run("Test SpotAlgoAPIService QueryCurrentAlgoOpenOrdersSpotAlgo Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"total":1,"orders":[{"algoId":14517,"symbol":"ETHUSDT","side":"SELL","totalQty":"5.000","executedQty":"0.000","executedAmt":"0.00000000","avgPrice":"0.00","clientAlgoId":"d7096549481642f8a0bb69e9e2e31f2e","bookTime":1649756817004,"endTime":0,"algoStatus":"WORKING","algoType":"VP","urgency":"LOW"}]}`
+		mockedJSON = `{"total":1,"orders":[{"algoId":14517,"symbol":"ETHUSDT","side":"SELL","totalQty":"5.000","executedQty":"0.000","executedAmt":"0.00000000","avgPrice":"0.00","clientAlgoId":"d7096549481642f8a0bb69e9e2e31f2e","bookTime":1649756817004,"endTime":0,"algoStatus":"WORKING","algoType":"TWAP","urgency":"LOW","duration":86400}]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -145,7 +145,7 @@ func Test_binancealgorestapi_SpotAlgoAPIService(t *testing.T) {
 	t.Run("Test SpotAlgoAPIService QueryHistoricalAlgoOrdersSpotAlgo Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"total":1,"orders":[{"algoId":14518,"symbol":"BNBUSDT","side":"BUY","totalQty":"100.00","executedQty":"0.00","executedAmt":"0.00000000","avgPrice":"0.000","clientAlgoId":"acacab56b3c44bef9f6a8f8ebd2a8408","bookTime":1649757019503,"endTime":1649757088101,"algoStatus":"CANCELLED","algoType":"VP","urgency":"LOW"}]}`
+		mockedJSON = `{"total":1,"orders":[{"algoId":14518,"symbol":"BNBUSDT","side":"BUY","totalQty":"100.00","executedQty":"0.00","executedAmt":"0.00000000","avgPrice":"0.000","clientAlgoId":"acacab56b3c44bef9f6a8f8ebd2a8408","bookTime":1649757019503,"endTime":1649757088101,"algoStatus":"CANCELLED","algoType":"TWAP","urgency":"LOW","duration":86400}]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -353,6 +353,86 @@ func Test_binancealgorestapi_SpotAlgoAPIService(t *testing.T) {
 		)
 
 		resp, err := apiClient.RestApi.SpotAlgoAPI.TimeWeightedAveragePriceSpotAlgo(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test SpotAlgoAPIService VolumeParticipation Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"clientAlgoId":"65ce1630101a480b85915d7e11fd5078","success":true,"code":0,"msg":"OK"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v1/algo/spot/newOrderVp", r.URL.Path)
+			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
+			require.Equal(t, string(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy), r.URL.Query().Get("side"))
+			require.Equal(t, fmt.Sprintf("%v", float64(1)), r.URL.Query().Get("quantity"))
+			require.Equal(t, string(models.VolumeParticipationFutureAlgoUrgencyParameterLow), r.URL.Query().Get("urgency"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.VolumeParticipationResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceAlgoClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.SpotAlgoAPI.VolumeParticipation(context.Background()).Symbol("BTCUSDT").Side(models.QueryHistoricalAlgoOrdersFutureAlgoSideParameterBuy).Quantity(float64(1)).Urgency(models.VolumeParticipationFutureAlgoUrgencyParameterLow).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.VolumeParticipationResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.VolumeParticipationResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test SpotAlgoAPIService VolumeParticipation Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceAlgoClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.SpotAlgoAPI.VolumeParticipation(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test SpotAlgoAPIService VolumeParticipation Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceAlgoClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.SpotAlgoAPI.VolumeParticipation(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

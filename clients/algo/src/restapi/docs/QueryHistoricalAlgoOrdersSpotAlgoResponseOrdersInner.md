@@ -17,6 +17,7 @@ Name         | Type          | Description.  | Notes
 **AlgoStatus** | Pointer to **string** | Algo order status | [optional] 
 **AlgoType** | Pointer to **string** | Algo order type | [optional] 
 **Urgency** | Pointer to **string** | Execution urgency | [optional] 
+**Duration** | Pointer to **int64** | Order duration in seconds. Only returned for TWAP orders | [optional] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ SetUrgency sets Urgency field to given value.
 `func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) HasUrgency() bool`
 
 HasUrgency returns a boolean if a field has been set.
+
+### GetDuration
+
+`func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) GetDuration() int64`
+
+GetDuration returns the Duration field if non-nil, zero value otherwise.
+
+### GetDurationOk
+
+`func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) GetDurationOk() (*int64, bool)`
+
+GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) SetDuration(v int64)`
+
+SetDuration sets Duration field to given value.
+
+### HasDuration
+
+`func (o *QueryHistoricalAlgoOrdersSpotAlgoResponseOrdersInner) HasDuration() bool`
+
+HasDuration returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)
