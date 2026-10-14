@@ -1,5 +1,17 @@
 ### Changelog
 
+## 1.20.1 - 2026-10-14
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `leverage`:
+  - description updated
+  - maximum removed: `125`
+  - affected methods:
+    - `changeUmInitialLeverage()` (`POST /papi/v1/um/leverage`)
+
 ## 1.20.0 - 2026-10-01
 
 ### Changed (3)
