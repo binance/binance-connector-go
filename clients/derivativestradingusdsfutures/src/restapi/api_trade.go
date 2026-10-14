@@ -780,7 +780,7 @@ func (r ApiChangeInitialLeverageRequest) Symbol(symbol string) ApiChangeInitialL
 	return r
 }
 
-// target initial leverage
+// Target initial leverage. The maximum is symbol-specific: use &#x60;initialLeverage&#x60; of bracket 1 from &#x60;GET /fapi/v1/leverageBracket&#x60;.
 func (r ApiChangeInitialLeverageRequest) Leverage(leverage int64) ApiChangeInitialLeverageRequest {
 	r.leverage = &leverage
 	return r
@@ -803,7 +803,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param leverage -  target initial leverage
+@param leverage -  Target initial leverage. The maximum is symbol-specific: use `initialLeverage` of bracket 1 from `GET /fapi/v1/leverageBracket`.
 @param recvWindow -
 @return ApiChangeInitialLeverageRequest
 */
@@ -833,9 +833,6 @@ func (a *TradeAPIService) ChangeInitialLeverageExecute(r ApiChangeInitialLeverag
 	}
 	if *r.leverage < 1 {
 		return nil, common.ReportError("leverage must be greater than 1")
-	}
-	if *r.leverage > 125 {
-		return nil, common.ReportError("leverage must be less than 125")
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "symbol", r.symbol, "form", "")

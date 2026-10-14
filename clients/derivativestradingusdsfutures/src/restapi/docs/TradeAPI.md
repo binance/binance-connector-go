@@ -652,7 +652,7 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | 
-	leverage := int64(1) // int64 | target initial leverage
+	leverage := int64(1) // int64 | Target initial leverage. The maximum is symbol-specific: use `initialLeverage` of bracket 1 from `GET /fapi/v1/leverageBracket`.
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -682,7 +682,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **leverage** | **int64** | target initial leverage | 
+ **leverage** | **int64** | Target initial leverage. The maximum is symbol-specific: use &#x60;initialLeverage&#x60; of bracket 1 from &#x60;GET /fapi/v1/leverageBracket&#x60;. | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

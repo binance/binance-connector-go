@@ -1,5 +1,17 @@
 ### Changelog
 
+## 1.22.2 - 2026-10-14
+
+### Changed (1)
+
+#### REST API
+
+- Modified parameter `leverage`:
+  - description updated
+  - maximum removed: `125`
+  - affected methods:
+    - `changeInitialLeverage()` (`POST /fapi/v1/leverage`)
+
 ## 1.22.1 - 2026-10-01
 
 ### Changed (1)
