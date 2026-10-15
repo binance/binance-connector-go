@@ -33,7 +33,7 @@ This is a client library for the Binance Derivatives Trading USDS-M Futures API,
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.25** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.26** or higher is required). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/derivativestradingusdsfutures

@@ -1069,7 +1069,7 @@ No authorization required
 
 ## GetIncomeHistory
 
-> GetIncomeHistoryResponse GetIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+> GetIncomeHistoryResponse GetIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
 Get Income History (USER_DATA)
 
@@ -1094,7 +1094,6 @@ func main() {
 	incomeType := models.GetIncomeHistoryIncomeTypeParameterTransfer // GetIncomeHistoryIncomeTypeParameter | Income type. (optional)
 	startTime := int64(1623319461670) // int64 | Timestamp in milliseconds (inclusive start). (optional)
 	endTime := int64(1641782889000) // int64 | Timestamp in milliseconds (inclusive end). (optional)
-	page := int64(1) // int64 | Pagination page number. (optional)
 	limit := int64(30) // int64 | Maximum number of records to return. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1105,7 +1104,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingUsdsFuturesClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.GetIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.GetIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.GetIncomeHistory``: %v\n", err)
 		return
@@ -1128,7 +1127,6 @@ Name          | Type          | Description   | Notes
  **incomeType** | [**GetIncomeHistoryIncomeTypeParameter**](GetIncomeHistoryIncomeTypeParameter.md) | Income type. | 
  **startTime** | **int64** | Timestamp in milliseconds (inclusive start). | 
  **endTime** | **int64** | Timestamp in milliseconds (inclusive end). | 
- **page** | **int64** | Pagination page number. | 
  **limit** | **int64** | Maximum number of records to return. | 
  **recvWindow** | **int64** |  | 
 

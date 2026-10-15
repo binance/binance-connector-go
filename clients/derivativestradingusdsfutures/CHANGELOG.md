@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.23.0 - 2026-10-15
+
+### Changed (4)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.10.0`.
+- Updated dependencies.
+- Raised the minimum Go version to `1.26`.
+
+#### REST API
+
+- Deleted parameter `page`
+  - affected methods:
+    - `getIncomeHistory()` (`GET /fapi/v1/income`)
+
 ## 1.22.2 - 2026-10-14
 
 ### Changed (1)

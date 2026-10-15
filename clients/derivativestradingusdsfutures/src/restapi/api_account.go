@@ -1082,7 +1082,6 @@ type ApiGetIncomeHistoryRequest struct {
 	incomeType *models.GetIncomeHistoryIncomeTypeParameter
 	startTime  *int64
 	endTime    *int64
-	page       *int64
 	limit      *int64
 	recvWindow *int64
 }
@@ -1108,12 +1107,6 @@ func (r ApiGetIncomeHistoryRequest) StartTime(startTime int64) ApiGetIncomeHisto
 // Timestamp in milliseconds (inclusive end).
 func (r ApiGetIncomeHistoryRequest) EndTime(endTime int64) ApiGetIncomeHistoryRequest {
 	r.endTime = &endTime
-	return r
-}
-
-// Pagination page number.
-func (r ApiGetIncomeHistoryRequest) Page(page int64) ApiGetIncomeHistoryRequest {
-	r.page = &page
 	return r
 }
 
@@ -1143,7 +1136,6 @@ https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-
 @param incomeType -  Income type.
 @param startTime -  Timestamp in milliseconds (inclusive start).
 @param endTime -  Timestamp in milliseconds (inclusive end).
-@param page -  Pagination page number.
 @param limit -  Maximum number of records to return.
 @param recvWindow -
 @return ApiGetIncomeHistoryRequest
@@ -1176,9 +1168,6 @@ func (a *AccountAPIService) GetIncomeHistoryExecute(r ApiGetIncomeHistoryRequest
 	}
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
-	}
-	if r.page != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
