@@ -5,9 +5,10 @@
 [![Known Vulnerabilities](https://img.shields.io/badge/security-scanned-brightgreen)](https://github.com/binance/binance-connector-go/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a client library for the Binance W3W Prediction API, enabling developers to interact programmatically with Binance's W3W Prediction trading platform. The library provides tools to place and manage prediction market orders, query positions and transfer funds through the REST API:
+This is a client library for the Binance W3W Prediction API, enabling developers to interact programmatically with Binance's W3W Prediction trading platform. The library provides tools to place and manage prediction market orders, query positions and transfer funds through the REST API, and to receive real-time trading events and order book updates through the WebSocket Streams:
 
 - [REST API](./src/restapi/rest_api.go)
+- [Websocket Stream](./src/websocketstreams/websocket_streams.go)
 
 ## Table of Contents
 
@@ -15,6 +16,7 @@ This is a client library for the Binance W3W Prediction API, enabling developers
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [REST APIs](#rest-apis)
+- [Websocket Streams](#websocket-streams)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -23,11 +25,13 @@ This is a client library for the Binance W3W Prediction API, enabling developers
 
 - REST API Endpoints:
   - `/sapi/v1/w3w/wallet/prediction/*`
+- WebSocket Streams:
+  - Real-time trading, claim, transfer and market resolution events, and order book updates.
 - Inclusion of test cases and examples for quick onboarding.
 
 ## Installation
 
-To use this library, ensure you have Go installed (version **1.25** or higher is recommended). You can install the library using the following command:
+To use this library, ensure you have Go installed (version **1.26** or higher is required). You can install the library using the following command:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/w3wprediction
@@ -153,6 +157,180 @@ See the [Error Handling example](./docs/restapi/error-handling.md) for detailed 
 
 If `basePath` is not provided, it defaults to `https://api.binance.com`.
 
+### Websocket Streams
+
+WebSocket Streams push real-time events for your prediction orders, reward claims, fund transfers and market resolutions, as well as order book updates. Use the [websocket-streams](./src/websocketstreams/websocket_streams.go) module to subscribe to these streams.
+
+The streams are signed: provide your Binance API credentials in the configuration. The connection URL is signed again on every connect and reconnect.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"time"
+
+	client "github.com/binance/binance-connector-go/clients/w3wprediction"
+	"github.com/binance/binance-connector-go/clients/w3wprediction/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	PredictionOrderBookByMarketId()
+}
+
+func PredictionOrderBookByMarketId() {
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsStreamsBasePath(common.W3wPredictionWebsocketStreamsProdUrl),
+		common.WithWsStreamsApiKey("Your API Key"),
+		common.WithWsStreamsApiSecret("Your API Secret"),
+	)
+
+	wsClient := client.NewBinanceW3wPredictionClient(
+		client.WithWebsocketStreams(configuration),
+	)
+
+	err := wsClient.WebsocketStreams.Connect([]string{})
+	if err != nil {
+		log.Fatalf("Error connecting to WebSocket: %v", err)
+	}
+
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.PredictionOrderBookByMarketId().MarketId("8859231").Execute()
+	if err != nil {
+		log.Fatalf("Error subscribing to stream: %v", err)
+	}
+
+	handler.On("message", func(message models.PredictionOrderBookByMarketIdResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	for {
+		time.Sleep(1 * time.Second)
+	}
+}
+```
+
+More examples are available in the [`examples/websocketstreams/DefaultAPI`](./examples/websocketstreams/DefaultAPI/) folder.
+
+#### Configuration Options
+
+The WebSocket Streams API supports the following advanced configuration options:
+
+- `ApiKey`: Binance API key, sent with every connection.
+- `ApiSecret`: Binance API secret, used to sign the connection URL.
+- `PrivateKey`: RSA or ED25519 private key, used to sign the connection URL instead of `ApiSecret`.
+- `PrivateKeyPassphrase`: Passphrase for the private key, if encrypted.
+- `ReconnectDelay`: Delay between reconnection attempts.
+- `MaxReconnectAttempts`: Number of reconnection attempts before giving up (1-10, default: 3).
+- `Compression`: Enable response compression.
+- `Proxy`: Proxy configuration:
+  - `Host`: Proxy server hostname.
+  - `Port`: Proxy server port.
+  - `Protocol`: Proxy protocol (http or https).
+  - `Auth`: Proxy authentication credentials:
+    - `Username`: Proxy username.
+    - `Password`: Proxy password.
+- `Mode`: Choose between `single` and `pool` connection modes.
+  - `Single`: A single WebSocket connection.
+  - `Pool`: A pool of WebSocket connections.
+- `PoolSize`: Define the number of WebSocket connections in pool mode.
+- `Agent`: Customize the WebSocket Agent for advanced configurations.
+
+##### Key Pair Based Authentication
+
+The WebSocket Streams support key pair-based authentication. You can use `RSA` or `ED25519` keys to sign the connection URL. See the [Key Pair Based Authentication example](./docs/websocketstreams/key-pair-authentication.md) for detailed usage.
+
+##### Reconnect Delay
+
+Specify the delay in milliseconds between WebSocket reconnection attempts for streams. See the [Reconnect Delay example](./docs/websocketstreams/reconnect-delay.md) for detailed usage.
+
+##### Max Reconnect Attempts
+
+Specify how many times a reconnection is attempted before giving up and reporting `ErrReconnectAttemptsExhausted`, from 1 to 10 and defaulting to 3. See the [Max Reconnect Attempts example](./docs/websocketstreams/max-reconnect-attempts.md) for detailed usage.
+
+##### Compression
+
+Enable or disable compression for WebSocket Streams messages. See the [Compression example](./docs/websocketstreams/compression.md) for detailed usage.
+
+##### Proxy
+
+The WebSocket Streams supports HTTP/HTTPS proxy configurations. See the [Proxy example](./docs/websocketstreams/proxy.md) for detailed usage.
+
+##### Connection Mode
+
+Choose between `single` and `pool` connection modes for WebSocket Streams. The `single` mode uses a single WebSocket connection, while the `pool` mode uses a pool of WebSocket connections. See the [Connection Mode example](./docs/websocketstreams/connection-mode.md) for detailed usage.
+
+##### WebSocket Agent
+
+Customize the agent for advanced configurations. See the [WebSocket Agent example](./docs/websocketstreams/agent.md) for detailed usage.
+
+#### Unsubscribing from Streams
+
+You can unsubscribe from specific WebSocket streams using the `Unsubscribe` method. This is useful for managing active subscriptions without closing the connection.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"time"
+
+	client "github.com/binance/binance-connector-go/clients/w3wprediction"
+	"github.com/binance/binance-connector-go/clients/w3wprediction/src/websocketstreams/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	LimitOrderFullyFilled()
+}
+
+func LimitOrderFullyFilled() {
+	configuration := common.NewConfigurationWebsocketStreams(
+		common.WithWsStreamsBasePath(common.W3wPredictionWebsocketStreamsProdUrl),
+		common.WithWsStreamsApiKey("Your API Key"),
+		common.WithWsStreamsApiSecret("Your API Secret"),
+	)
+
+	wsClient := client.NewBinanceW3wPredictionClient(
+		client.WithWebsocketStreams(configuration),
+	)
+
+	err := wsClient.WebsocketStreams.Connect([]string{})
+	if err != nil {
+		log.Fatalf("Error connecting to WebSocket: %v", err)
+	}
+
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderFullyFilled().Execute()
+	if err != nil {
+		log.Fatalf("Error subscribing to stream: %v", err)
+	}
+
+	handler.On("message", func(message models.LimitOrderFullyFilledResponse) {
+		b, _ := json.MarshalIndent(message, "", "  ")
+		log.Printf("Received message: %s\n", string(b))
+	})
+
+	log.Println("Subscribed. Waiting 10 seconds...")
+	time.Sleep(10 * time.Second)
+
+	log.Println("Unsubscribing from stream...")
+	handler.Unsubscribe()
+
+	log.Println("Closing WebSocket connection...")
+	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
+	if err != nil {
+		log.Fatalf("Error closing WebSocket connection: %v", err)
+	}
+}
+```
+
+#### Reconnecting
+
+Messages are delivered at most once, their order is not guaranteed and messages sent while you are disconnected are not cached. After a reconnect, fetch the latest state through the REST API and deduplicate events on `pushId` (business events) or on `marketId` + `updateTimestampMs` (order book).
+
 ## Testing
 
 To run the test cases, use the following command:
@@ -163,6 +341,7 @@ go test ./tests/...
 
 The tests cover: 
 - REST API endpoints
+- WebSocket Streams endpoints
 - Error handling and edge cases
 
 ## Contributing
