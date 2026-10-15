@@ -2,8 +2,16 @@ package commontests
 
 import (
 	"bytes"
+	"crypto/ed25519"
+	"crypto/hmac"
+	"crypto/rand"
+	"crypto/sha256"
 	"crypto/tls"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
+	"encoding/pem"
 	"errors"
 	"io"
 	"log"
@@ -158,8 +166,8 @@ func createTestWebsocketAPI(mockConn *MockWebSocketConn) *common.WebsocketAPI {
 	cfg := common.NewConfigurationWebsocketApi(
 		common.WithWsApiKey("test-api-key"),
 		common.WithWsApiSecret("test-api-secret"),
-		common.WithWsTimeout(5 * time.Second),
-		common.WithWsReconnectDelay(1 * time.Second),
+		common.WithWsTimeout(5*time.Second),
+		common.WithWsReconnectDelay(1*time.Second),
 		common.WithWsPoolSize(1),
 	)
 
@@ -1097,7 +1105,7 @@ func TestHandleServerShutdown_MissingTimestamp_NoReconnect(t *testing.T) {
 	case <-conn.ReconnectChan:
 		t.Fatal("expected no reconnect signal but one was received")
 	case <-time.After(100 * time.Millisecond):
-    }
+	}
 }
 
 func TestHandleServerShutdown_MissingTimestamp(t *testing.T) {
@@ -2611,7 +2619,7 @@ func TestWebsocketAPI_CloseWebSocketConnection_MultipleConnections(t *testing.T)
 	cfg := common.NewConfigurationWebsocketApi(
 		common.WithWsApiKey("test-key"),
 		common.WithWsApiSecret("test-secret"),
-		common.WithWsTimeout(5 * time.Second),
+		common.WithWsTimeout(5*time.Second),
 		common.WithWsPoolSize(2),
 	)
 
@@ -4614,4 +4622,333 @@ func TestCloseDuringServerDrop_NoPanicNoReconnect(t *testing.T) {
 
 		server.Close()
 	}
+}
+
+// =============================================================================
+// Signed WebSocket Streams
+// =============================================================================
+
+func newSignedStreamsConfig(basePath string, opts ...common.ConfigurationWebsocketStreamsOption) *common.ConfigurationWebsocketStreams {
+	options := append([]common.ConfigurationWebsocketStreamsOption{
+		common.WithWsStreamsBasePath(basePath),
+		common.WithWsStreamsSigned(true),
+		common.WithWsStreamsApiKey("test-api-key"),
+		common.WithWsStreamsApiSecret("test-api-secret"),
+		common.WithWsStreamsReconnectDelay(10 * time.Millisecond),
+	}, opts...)
+	return common.NewConfigurationWebsocketStreams(options...)
+}
+
+func splitSignedQuery(t *testing.T, signedURL string) (string, url.Values, string, string) {
+	t.Helper()
+
+	base, rawQuery, found := strings.Cut(signedURL, "?")
+	require.True(t, found, "expected a query string on %s", signedURL)
+	payload, signature, found := strings.Cut(rawQuery, "&signature=")
+	require.True(t, found, "expected a signature on %s", signedURL)
+
+	params, err := url.ParseQuery(payload)
+	require.NoError(t, err)
+	decodedSignature, err := url.QueryUnescape(signature)
+	require.NoError(t, err)
+	return base, params, payload, decodedSignature
+}
+
+func TestSignStreamsURL_HMAC(t *testing.T) {
+	cfg := newSignedStreamsConfig("wss://test.example.com/sapi/wss")
+
+	signedURL, err := common.SignStreamsURL(cfg)
+	require.NoError(t, err)
+
+	base, params, payload, signature := splitSignedQuery(t, signedURL)
+	mac := hmac.New(sha256.New, []byte("test-api-secret"))
+	mac.Write([]byte(payload))
+
+	assert.Equal(t, "wss://test.example.com/sapi/wss", base)
+	assert.Len(t, params.Get("random"), 32)
+	assert.Equal(t, "30000", params.Get("recvWindow"))
+	assert.NotEmpty(t, params.Get("timestamp"))
+	assert.Equal(t, hex.EncodeToString(mac.Sum(nil)), signature)
+}
+
+func TestSignStreamsURL_PrivateKey(t *testing.T) {
+	publicKey, privateKey, err := ed25519.GenerateKey(rand.Reader)
+	require.NoError(t, err)
+	der, err := x509.MarshalPKCS8PrivateKey(privateKey)
+	require.NoError(t, err)
+	privateKeyPEM := string(pem.EncodeToMemory(&pem.Block{Type: "PRIVATE KEY", Bytes: der}))
+
+	cfg := newSignedStreamsConfig("wss://test.example.com/sapi/wss", common.WithWsStreamsPrivateKey(privateKeyPEM))
+
+	signedURL, err := common.SignStreamsURL(cfg)
+	require.NoError(t, err)
+
+	_, _, payload, signature := splitSignedQuery(t, signedURL)
+	decoded, err := base64.StdEncoding.DecodeString(signature)
+	require.NoError(t, err)
+	assert.True(t, ed25519.Verify(publicKey, []byte(payload), decoded))
+	assert.NotNil(t, cfg.Signer, "expected the loaded signer to be cached on the configuration")
+}
+
+func TestSignStreamsURL_IsFreshOnEachCall(t *testing.T) {
+	cfg := newSignedStreamsConfig("wss://test.example.com/sapi/wss")
+
+	first, err := common.SignStreamsURL(cfg)
+	require.NoError(t, err)
+	second, err := common.SignStreamsURL(cfg)
+	require.NoError(t, err)
+
+	assert.NotEqual(t, first, second)
+}
+
+func TestSignStreamsURL_RequiresCredentials(t *testing.T) {
+	cfg := common.NewConfigurationWebsocketStreams(
+		common.WithWsStreamsBasePath("wss://test.example.com/sapi/wss"),
+		common.WithWsStreamsSigned(true),
+	)
+
+	_, err := common.SignStreamsURL(cfg)
+
+	assert.ErrorContains(t, err, "either an API secret or a private key is required")
+}
+
+func TestStreamMessages(t *testing.T) {
+	t.Run("signed streams send one command per stream", func(t *testing.T) {
+		messages := common.StreamMessages(true, "SUBSCRIBE", []string{"topic_a", "topic_b"}, "id-1")
+
+		assert.Equal(t, []map[string]interface{}{
+			{"command": "SUBSCRIBE", "value": "topic_a"},
+			{"command": "SUBSCRIBE", "value": "topic_b"},
+		}, messages)
+	})
+
+	t.Run("unsigned streams send a single method message", func(t *testing.T) {
+		messages := common.StreamMessages(false, "UNSUBSCRIBE", []string{"topic_a", "topic_b"}, "id-1")
+
+		assert.Equal(t, []map[string]interface{}{
+			{"method": "UNSUBSCRIBE", "params": []string{"topic_a", "topic_b"}, "id": "id-1"},
+		}, messages)
+	})
+}
+
+func TestParseSignedStreamMessage(t *testing.T) {
+	t.Run("data with a JSON string payload", func(t *testing.T) {
+		data := map[string]interface{}{"type": "DATA", "topic": "topic_a", "data": `{"price":"1.0"}`}
+
+		assert.Equal(t, map[string]interface{}{
+			"stream": "topic_a",
+			"data":   map[string]interface{}{"price": "1.0"},
+		}, common.ParseSignedStreamMessage(data))
+	})
+
+	t.Run("data with a non JSON string payload", func(t *testing.T) {
+		data := map[string]interface{}{"type": "DATA", "topic": "topic_a", "data": "plain"}
+
+		assert.Equal(t, map[string]interface{}{"stream": "topic_a", "data": "plain"}, common.ParseSignedStreamMessage(data))
+	})
+
+	t.Run("command replies are unchanged", func(t *testing.T) {
+		reply := map[string]interface{}{"type": "COMMAND", "data": "SUCCESS", "subType": "REGISTER", "code": "00000000"}
+
+		assert.Equal(t, reply, common.ParseSignedStreamMessage(reply))
+	})
+
+	t.Run("stream messages are unchanged", func(t *testing.T) {
+		message := map[string]interface{}{"stream": "btcusdt@trade", "data": map[string]interface{}{"p": "1"}}
+
+		assert.Equal(t, message, common.ParseSignedStreamMessage(message))
+	})
+}
+
+func TestWebsocketStreams_SignedSubscribeAndUnsubscribe(t *testing.T) {
+	mockConn := NewMockWebSocketConn()
+	ws := createTestWebsocketStreams(mockConn)
+	ws.Cfg.Signed = true
+
+	require.NoError(t, ws.Subscribe([]string{"topic_a"}, []any{"id-1"}, false))
+	require.NoError(t, ws.Unsubscribe([]string{"topic_a"}))
+
+	writtenMsgs := mockConn.GetWrittenMessages()
+	require.Len(t, writtenMsgs, 2)
+	assert.JSONEq(t, `{"command":"SUBSCRIBE","value":"topic_a"}`, string(writtenMsgs[0].data))
+	assert.JSONEq(t, `{"command":"UNSUBSCRIBE","value":"topic_a"}`, string(writtenMsgs[1].data))
+	assert.False(t, ws.IsSubscribed("topic_a"))
+}
+
+type signedStreamsServer struct {
+	*httptest.Server
+	upgrader websocket.Upgrader
+
+	mu       sync.Mutex
+	urls     []string
+	apiKeys  []string
+	commands []map[string]interface{}
+	held     []*websocket.Conn
+}
+
+func newSignedStreamsServer() *signedStreamsServer {
+	s := &signedStreamsServer{
+		upgrader: websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { return true }},
+	}
+	s.Server = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		conn, err := s.upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			return
+		}
+
+		s.mu.Lock()
+		s.urls = append(s.urls, r.URL.String())
+		s.apiKeys = append(s.apiKeys, r.Header.Get("X-MBX-APIKEY"))
+		s.held = append(s.held, conn)
+		s.mu.Unlock()
+
+		var writeMu sync.Mutex
+		write := func(v interface{}) {
+			writeMu.Lock()
+			defer writeMu.Unlock()
+			_ = conn.WriteJSON(v)
+		}
+		write(map[string]interface{}{"type": "COMMAND", "data": "SUCCESS", "subType": "REGISTER", "code": "00000000"})
+
+		go func() {
+			for {
+				_, msg, err := conn.ReadMessage()
+				if err != nil {
+					return
+				}
+
+				var command map[string]interface{}
+				if err := json.Unmarshal(msg, &command); err != nil {
+					continue
+				}
+				s.mu.Lock()
+				s.commands = append(s.commands, command)
+				s.mu.Unlock()
+
+				if command["command"] == "SUBSCRIBE" {
+					write(map[string]interface{}{"type": "DATA", "topic": command["value"], "data": `{"marketId":8859231}`})
+				}
+			}
+		}()
+	}))
+	return s
+}
+
+func (s *signedStreamsServer) wsURL() string {
+	return "ws" + strings.TrimPrefix(s.URL, "http") + "/sapi/wss"
+}
+
+func (s *signedStreamsServer) snapshot() ([]string, []string, []map[string]interface{}) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return append([]string(nil), s.urls...), append([]string(nil), s.apiKeys...), append([]map[string]interface{}(nil), s.commands...)
+}
+
+func (s *signedStreamsServer) dropHeld() {
+	s.mu.Lock()
+	held := s.held
+	s.held = nil
+	s.mu.Unlock()
+
+	for _, conn := range held {
+		_ = conn.UnderlyingConn().Close()
+	}
+}
+
+type signedStreamEvent struct {
+	MarketId int64 `json:"marketId"`
+}
+
+func TestWebsocketStreams_SignedConnectSubscribeAndReconnect(t *testing.T) {
+	server := newSignedStreamsServer()
+	defer server.Close()
+
+	ws, err := common.NewWebsocketStreams(newSignedStreamsConfig(server.wsURL()))
+	require.NoError(t, err)
+	require.NoError(t, ws.Connect("test-agent", nil))
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	events := make(chan signedStreamEvent, 4)
+	handler, err := common.CreateStreamHandler[signedStreamEvent](&common.StreamHandlerWrapper{WebsocketStreams: ws}, "topic_a", nil, false)
+	require.NoError(t, err)
+	handler.On("message", func(event signedStreamEvent) { events <- event })
+
+	select {
+	case event := <-events:
+		assert.Equal(t, int64(8859231), event.MarketId)
+	case <-time.After(5 * time.Second):
+		t.Fatal("expected the signed DATA push to reach the stream handler")
+	}
+
+	server.dropHeld()
+
+	require.Eventually(t, func() bool {
+		_, _, commands := server.snapshot()
+		return len(commands) >= 2
+	}, 5*time.Second, 20*time.Millisecond, "expected the client to reconnect and resubscribe")
+
+	urls, apiKeys, commands := server.snapshot()
+	require.Len(t, urls, 2)
+	for i, connectURL := range urls {
+		base, params, payload, signature := splitSignedQuery(t, connectURL)
+		mac := hmac.New(sha256.New, []byte("test-api-secret"))
+		mac.Write([]byte(payload))
+
+		assert.Equal(t, "/sapi/wss", base, "expected no /stream suffix on connection %d", i)
+		assert.NotContains(t, params, "streams")
+		assert.Equal(t, hex.EncodeToString(mac.Sum(nil)), signature, "expected a valid signature on connection %d", i)
+		assert.Equal(t, "test-api-key", apiKeys[i])
+	}
+	assert.NotEqual(t, urls[0], urls[1], "expected the reconnect to use a fresh signature")
+	for _, command := range commands[:2] {
+		assert.Equal(t, map[string]interface{}{"command": "SUBSCRIBE", "value": "topic_a"}, command)
+	}
+
+	handler.Unsubscribe()
+	require.Eventually(t, func() bool {
+		_, _, commands := server.snapshot()
+		return len(commands) >= 3 && commands[len(commands)-1]["command"] == "UNSUBSCRIBE"
+	}, 5*time.Second, 20*time.Millisecond, "expected an UNSUBSCRIBE command")
+}
+
+func TestWebsocketStreams_SignedConnectWithStreamsSubscribesAfterConnecting(t *testing.T) {
+	server := newSignedStreamsServer()
+	defer server.Close()
+
+	ws, err := common.NewWebsocketStreams(newSignedStreamsConfig(server.wsURL()))
+	require.NoError(t, err)
+	require.NoError(t, ws.Connect("test-agent", []string{"topic_a"}))
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.Eventually(t, func() bool {
+		_, _, commands := server.snapshot()
+		return len(commands) == 1
+	}, 5*time.Second, 20*time.Millisecond, "expected the streams passed to Connect to be subscribed")
+
+	urls, _, commands := server.snapshot()
+	assert.NotContains(t, urls[0], "streams=")
+	assert.Equal(t, map[string]interface{}{"command": "SUBSCRIBE", "value": "topic_a"}, commands[0])
+	assert.True(t, ws.IsSubscribed("topic_a"))
+}
+
+func TestWebsocketStreams_UnsignedConnectionIsNotSigned(t *testing.T) {
+	server := newSignedStreamsServer()
+	defer server.Close()
+
+	ws, err := common.NewWebsocketStreams(common.NewConfigurationWebsocketStreams(
+		common.WithWsStreamsBasePath(server.wsURL()),
+		common.WithWsStreamsApiKey("test-api-key"),
+	))
+	require.NoError(t, err)
+	require.NoError(t, ws.Connect("test-agent", []string{"btcusdt@trade"}))
+	defer func() { _ = ws.CloseWebSocketStreamConnection() }()
+
+	require.Eventually(t, func() bool {
+		urls, _, _ := server.snapshot()
+		return len(urls) == 1
+	}, 5*time.Second, 20*time.Millisecond)
+
+	urls, apiKeys, _ := server.snapshot()
+	assert.Equal(t, "/sapi/wss?streams=btcusdt@trade", urls[0])
+	assert.Empty(t, apiKeys[0])
 }

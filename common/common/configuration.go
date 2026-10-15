@@ -97,6 +97,8 @@ type ConfigurationWebsocketApiOption func(*ConfigurationWebsocketApi)
 // @field PoolSize The size of the connection pool.
 // @field TimeUnit The time unit used for rate limiting.
 // @field Agent The HTTPS agent configuration.
+// @field Signed Indicates whether the streams require a signed connection.
+// @field Signer The signer used for signed streams.
 type ConfigurationWebsocketStreams struct {
 	BasePath             string
 	ReconnectDelay       time.Duration
@@ -107,6 +109,12 @@ type ConfigurationWebsocketStreams struct {
 	PoolSize             int
 	TimeUnit             TimeUnit
 	Agent                HTTPSAgent
+	Signed               bool
+	Signer               Signer
+	apiKey               string
+	apiSecret            string
+	privateKey           string
+	privateKeyPassphrase string
 }
 
 type ConfigurationWebsocketStreamsOption func(*ConfigurationWebsocketStreams)
@@ -465,6 +473,46 @@ func WithWsStreamsAgent(v HTTPSAgent) ConfigurationWebsocketStreamsOption {
 
 func (c *ConfigurationWebsocketStreams) GetAgent() HTTPSAgent {
 	return c.Agent
+}
+
+func WithWsStreamsSigned(v bool) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.Signed = v }
+}
+
+func (c *ConfigurationWebsocketStreams) IsSigned() bool {
+	return c.Signed
+}
+
+func WithWsStreamsApiKey(v string) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.apiKey = v }
+}
+
+func (c *ConfigurationWebsocketStreams) GetWsStreamsApiKey() string {
+	return c.apiKey
+}
+
+func WithWsStreamsApiSecret(v string) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.apiSecret = v }
+}
+
+func (c *ConfigurationWebsocketStreams) GetWsStreamsApiSecret() string {
+	return c.apiSecret
+}
+
+func WithWsStreamsPrivateKey(v string) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.privateKey = v }
+}
+
+func (c *ConfigurationWebsocketStreams) GetWsStreamsPrivateKey() string {
+	return c.privateKey
+}
+
+func WithWsStreamsPrivateKeyPassphrase(v string) ConfigurationWebsocketStreamsOption {
+	return func(c *ConfigurationWebsocketStreams) { c.privateKeyPassphrase = v }
+}
+
+func (c *ConfigurationWebsocketStreams) GetWsStreamsPrivateKeyPassphrase() string {
+	return c.privateKeyPassphrase
 }
 
 // GetTLSConfig retrieves the TLS configuration from the HTTPS agent or proxy settings.

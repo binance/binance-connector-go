@@ -6,6 +6,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"crypto/tls"
+	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -13,6 +14,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"sync"
@@ -273,6 +275,7 @@ func (c *WebSocketConnection) ProcessMessage() error {
 			Op:      "parse_message",
 		}
 	}
+	data = ParseSignedStreamMessage(data)
 
 	if c.isServerShutdown(data) {
 		go c.HandleServerShutdown(data)
@@ -610,7 +613,10 @@ func (w *WebSocketCommon) Connect(config WebSocketConfig, userAgent string, stre
 	dialer := w.CreateWebSocketDialer(config)
 
 	if w.Mode == SINGLE {
-		BasePath := w.prepareBasePath(config, streams, true)
+		BasePath, err := w.prepareBasePath(config, streams, true)
+		if err != nil {
+			return err
+		}
 		return w.connectSingleMode(BasePath, headers, dialer, config, userAgent)
 	}
 	return w.connectPoolMode(headers, dialer, config, userAgent, streams)
@@ -621,8 +627,12 @@ func (w *WebSocketCommon) Connect(config WebSocketConfig, userAgent string, stre
 // @param config The WebSocketConfig containing configuration details.
 // @param streams The list of streams to include in the base path.
 // @param includeStreams A boolean indicating whether to include streams in the base path.
-// @return The constructed base path string.
-func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []string, includeStreams bool) string {
+// @return The constructed base path string, or an error if a signed streams URL cannot be signed.
+func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []string, includeStreams bool) (string, error) {
+	if streamsCfg, ok := config.(*ConfigurationWebsocketStreams); ok && streamsCfg.IsSigned() {
+		return SignStreamsURL(streamsCfg)
+	}
+
 	BasePath := config.GetBasePath()
 	if includeStreams && streams != nil && len(streams) > 0 {
 		BasePath += "?streams="
@@ -638,7 +648,120 @@ func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []stri
 			BasePath += "?timeUnit=" + string(timeUnit)
 		}
 	}
-	return BasePath
+	return BasePath, nil
+}
+
+// SignStreamsURL appends a freshly signed query string to the signed streams base path.
+//
+// @param cfg The signed streams configuration holding the credentials.
+// @return The base path with the `random`, `recvWindow`, `timestamp` and `signature` query parameters,
+// or an error if the query cannot be signed.
+func SignStreamsURL(cfg *ConfigurationWebsocketStreams) (string, error) {
+	random, err := RandomString()
+	if err != nil {
+		return "", err
+	}
+	query := "random=" + random + "&recvWindow=30000&timestamp=" + strconv.FormatInt(GetTimestamp(), 10)
+
+	var signature string
+	switch {
+	case cfg.GetWsStreamsPrivateKey() != "":
+		if cfg.Signer == nil {
+			key, err := LoadPrivateKey(cfg.GetWsStreamsPrivateKey(), cfg.GetWsStreamsPrivateKeyPassphrase())
+			if err != nil {
+				return "", fmt.Errorf("failed to load private key: %w", err)
+			}
+			cfg.Signer = &cryptoSigner{s: key}
+		}
+		signed, err := cfg.Signer.Sign([]byte(query))
+		if err != nil {
+			return "", fmt.Errorf("failed signing: %w", err)
+		}
+		signature = base64.StdEncoding.EncodeToString(signed)
+	case cfg.GetWsStreamsApiSecret() != "":
+		signer := hmac.New(sha256.New, []byte(cfg.GetWsStreamsApiSecret()))
+		signer.Write([]byte(query))
+		signature = hex.EncodeToString(signer.Sum(nil))
+	default:
+		return "", errors.New("either an API secret or a private key is required for signed streams")
+	}
+
+	return cfg.GetBasePath() + "?" + query + "&signature=" + url.QueryEscape(signature), nil
+}
+
+// ParseSignedStreamMessage converts a signed streams data push to the stream message format.
+//
+// Signed streams push `{"type": "DATA", "topic": ..., "data": ...}`, where `data` may be a
+// JSON string; any other message is returned unchanged.
+//
+// @param data The parsed message data as a map.
+// @return `{"stream": <topic>, "data": <payload>}` for data pushes, otherwise data.
+func ParseSignedStreamMessage(data map[string]interface{}) map[string]interface{} {
+	topic, ok := data["topic"].(string)
+	if !ok || data["type"] != "DATA" {
+		return data
+	}
+
+	payload := data["data"]
+	if raw, ok := payload.(string); ok {
+		var decoded interface{}
+		if err := json.Unmarshal([]byte(raw), &decoded); err == nil {
+			payload = decoded
+		}
+	}
+	return map[string]interface{}{"stream": topic, "data": payload}
+}
+
+// StreamMessages builds the messages that subscribe to or unsubscribe from streams.
+//
+// @param signed Whether the streams are signed streams.
+// @param method Either "SUBSCRIBE" or "UNSUBSCRIBE".
+// @param streams The streams to subscribe to or unsubscribe from.
+// @param id The request ID, used by unsigned streams only.
+// @return One `{"command": ..., "value": <stream>}` message per stream for signed streams,
+// otherwise a single `{"method": ..., "params": [...], "id": ...}` message.
+func StreamMessages(signed bool, method string, streams []string, id interface{}) []map[string]interface{} {
+	if signed {
+		messages := make([]map[string]interface{}, 0, len(streams))
+		for _, stream := range streams {
+			messages = append(messages, map[string]interface{}{"command": method, "value": stream})
+		}
+		return messages
+	}
+
+	return []map[string]interface{}{{"method": method, "params": streams, "id": id}}
+}
+
+// resubscribeSignedStreams resubscribes a reconnected signed streams connection, as its URL carries no streams.
+//
+// @param conn The reconnected WebSocketConnection.
+// @param config The WebSocketConfig containing configuration details.
+// @param streams The streams the connection was subscribed to.
+func (w *WebSocketCommon) resubscribeSignedStreams(conn *WebSocketConnection, config WebSocketConfig, streams []string) {
+	streamsCfg, ok := config.(*ConfigurationWebsocketStreams)
+	if !ok || !streamsCfg.IsSigned() || len(streams) == 0 {
+		return
+	}
+
+	ws := conn.conn()
+	if ws == nil {
+		return
+	}
+
+	for _, payload := range StreamMessages(true, "SUBSCRIBE", streams, nil) {
+		message, err := json.Marshal(payload)
+		if err != nil {
+			log.Printf("error encoding resubscription for connection %s: %v", conn.Id, err)
+			continue
+		}
+
+		conn.mu.Lock()
+		err = ws.WriteMessage(websocket.TextMessage, message)
+		conn.mu.Unlock()
+		if err != nil {
+			log.Printf("error resubscribing connection %s: %v", conn.Id, err)
+		}
+	}
 }
 
 // prepareHeaders prepares the HTTP headers for the WebSocket connection.
@@ -649,6 +772,9 @@ func (w *WebSocketCommon) prepareBasePath(config WebSocketConfig, streams []stri
 func (w *WebSocketCommon) prepareHeaders(config WebSocketConfig, userAgent string) http.Header {
 	headers := http.Header{
 		"User-Agent": []string{userAgent},
+	}
+	if streamsCfg, ok := config.(*ConfigurationWebsocketStreams); ok && streamsCfg.IsSigned() {
+		headers.Set("X-MBX-APIKEY", streamsCfg.GetWsStreamsApiKey())
 	}
 	return headers
 }
@@ -935,7 +1061,11 @@ func (w *WebSocketCommon) connectPoolMode(headers http.Header, dialer websocket.
 			go func(num int, conn *WebSocketConnection) {
 				defer wg.Done()
 
-				BasePath := w.prepareBasePath(config, streams, num == 0)
+				BasePath, err := w.prepareBasePath(config, streams, num == 0)
+				if err != nil {
+					errChan <- err
+					return
+				}
 				wsConn, _, err := dialer.Dial(BasePath, headers)
 				if err != nil {
 					log.Printf("WebSocket connection error: %v", err)
@@ -1071,7 +1201,10 @@ func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketC
 	logonRequest := conn.SessionLogonRequest
 	conn.mu.Unlock()
 
-	BasePath := w.prepareBasePath(config, streams, logonRequest == nil)
+	BasePath, err := w.prepareBasePath(config, streams, logonRequest == nil)
+	if err != nil {
+		return err
+	}
 	headers := w.prepareHeaders(config, userAgent)
 	dialer := w.CreateWebSocketDialer(config)
 
@@ -1093,6 +1226,7 @@ func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketC
 			w.restoreSessionIfNeeded(tempConn)
 			w.resubscribeUserDataStreams(tempConn)
 		}
+		w.resubscribeSignedStreams(tempConn, config, streams)
 
 		newWs := tempConn.conn()
 		oldWs, adopted := conn.adoptSocket(newWs)
@@ -1132,6 +1266,7 @@ func (w *WebSocketCommon) reconnect(conn *WebSocketConnection, config WebSocketC
 
 		conn.waitForListenerExit(5 * time.Second)
 		conn.Listen()
+		w.resubscribeSignedStreams(conn, config, streams)
 
 		if conn.SessionLogonRequest != nil && !conn.SessionLogon {
 			w.restoreSessionIfNeeded(conn)
@@ -1625,6 +1760,18 @@ func NewWebsocketStreams(cfg *ConfigurationWebsocketStreams) (*WebsocketStreams,
 // @param streams A slice of stream names to subscribe to upon connection.
 // @return An error if the connection fails, otherwise nil.
 func (w *WebsocketStreams) Connect(userAgent string, streams []string) error {
+	if w.isSigned() {
+		// Signed streams URLs carry no streams, so they are subscribed once connected
+		if err := w.WsCommon.Connect(w.Cfg, userAgent, nil); err != nil {
+			fmt.Println("WebSocket connection error:", err)
+			return err
+		}
+		if len(streams) > 0 {
+			return w.Subscribe(streams, nil, false)
+		}
+		return nil
+	}
+
 	err := w.WsCommon.Connect(w.Cfg, userAgent, streams)
 	if err != nil {
 		fmt.Println("WebSocket connection error:", err)
@@ -1677,23 +1824,20 @@ func (w *WebsocketStreams) Subscribe(streams []string, id []any, strictInt bool)
 		if len(id) > num {
 			streamID = id[num]
 		}
-		subscribePayload := map[string]interface{}{
-			"method": "SUBSCRIBE",
-			"params": []string{stream},
-			"id":     streamID,
-		}
 
-		message, err := json.Marshal(subscribePayload)
-		if err != nil {
-			return err
-		}
+		for _, subscribePayload := range StreamMessages(w.isSigned(), "SUBSCRIBE", []string{stream}, streamID) {
+			message, err := json.Marshal(subscribePayload)
+			if err != nil {
+				return err
+			}
 
-		log.Printf("Sending subscription1: %s", string(message))
-		conn.mu.Lock()
-		err = conn.Websocket.WriteMessage(websocket.TextMessage, message)
-		conn.mu.Unlock()
-		if err != nil {
-			return err
+			log.Printf("Sending subscription1: %s", string(message))
+			conn.mu.Lock()
+			err = conn.Websocket.WriteMessage(websocket.TextMessage, message)
+			conn.mu.Unlock()
+			if err != nil {
+				return err
+			}
 		}
 
 		w.GlobalStreamConnectionMap[stream] = append(w.GlobalStreamConnectionMap[stream], conn)
@@ -1800,22 +1944,18 @@ func (w *WebsocketStreams) Unsubscribe(streams []string) error {
 
 		conn := w.GlobalStreamConnectionMap[stream][0]
 
-		unsubscribePayload := map[string]interface{}{
-			"method": "UNSUBSCRIBE",
-			"params": []string{stream},
-			"id":     GenerateUUID(),
-		}
+		for _, unsubscribePayload := range StreamMessages(w.isSigned(), "UNSUBSCRIBE", []string{stream}, GenerateUUID()) {
+			message, err := json.Marshal(unsubscribePayload)
+			if err != nil {
+				return err
+			}
 
-		message, err := json.Marshal(unsubscribePayload)
-		if err != nil {
-			return err
-		}
-
-		conn.mu.Lock()
-		err = conn.Websocket.WriteMessage(websocket.TextMessage, message)
-		conn.mu.Unlock()
-		if err != nil {
-			return err
+			conn.mu.Lock()
+			err = conn.Websocket.WriteMessage(websocket.TextMessage, message)
+			conn.mu.Unlock()
+			if err != nil {
+				return err
+			}
 		}
 
 		delete(w.GlobalStreamConnectionMap, stream)
@@ -1837,6 +1977,13 @@ func (w *WebsocketStreams) Unsubscribe(streams []string) error {
 	}
 
 	return nil
+}
+
+// isSigned reports whether the streams require a signed connection.
+//
+// @return True if the streams are signed streams, otherwise false.
+func (w *WebsocketStreams) isSigned() bool {
+	return w.Cfg != nil && w.Cfg.IsSigned()
 }
 
 // IsSubscribed checks if the specified stream is currently subscribed.

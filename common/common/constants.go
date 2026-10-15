@@ -55,6 +55,9 @@ const AlphaWebsocketStreamsProdUrl = "wss://nbstream.binance.com/w3w/wsa/stream"
 // C2C API URLs
 const C2CRestApiProdUrl = "https://api.binance.com"
 
+// CMS API URLS
+const CmsWebsocketStreamsProdUrl = "wss://api.binance.com/sapi/wss"
+
 // Convert API URLs
 const ConvertRestApiProdUrl = "https://api.binance.com"
 
@@ -152,3 +155,4 @@ const WalletRestApiProdUrl = "https://api.binance.com"
 
 // Web3 Prediction constants
 const W3wPredictionRestApiProdUrl = "https://api.binance.com"
+const W3wPredictionWebsocketStreamsProdUrl = "wss://api.binance.com/sapi/wss"

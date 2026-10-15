@@ -1,5 +1,17 @@
 ### Changelog
 
+## 2.10.0 - 2026-10-15
+
+### Added (2)
+
+- Added signed WebSocket Streams support: `WithWsStreamsSigned(true)` signs the connection URL on every connect and reconnect, sends the API key, and subscribes with `command`/`value` messages. `ConfigurationWebsocketStreams` now accepts `WithWsStreamsApiKey`, `WithWsStreamsApiSecret`, `WithWsStreamsPrivateKey` and `WithWsStreamsPrivateKeyPassphrase`.
+- Added the `CmsWebsocketStreamsProdUrl` and `W3wPredictionWebsocketStreamsProdUrl` base URLs.
+
+### Changed (2)
+
+- Updated dependencies.
+- Raised the minimum Go version to `1.26`.
+
 ## 2.9.0 - 2026-09-28
 
 ### Changed (1)
