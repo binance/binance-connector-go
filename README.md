@@ -10,36 +10,37 @@ Collection of auto-generated Go SDK for Binance APIs.
 ## Prerequisites
 
 Before using the SDK, ensure you have:
-- **Go** (version 1.25 or later)
+- **Go** (version 1.26 or later)
 - **Go Modules** (for dependency management)
 
 ## Available SDK
 
-- [binance-connector-algo](./clients/algo) - Algo Trading connector
+- [binance-connector-algo](./clients/algo/) - Algo Trading connector
 - [binance-connector-alpha](./clients/alpha/) - Alpha connector
-- [binance-connector-c2c](./clients/c2c/) - C2
+- [binance-connector-c2c](./clients/c2c/) - C2C connector
+- [binance-cms](./clients/cms/) - CMS connector
 - [binance-convert](./clients/convert/) - Convert connector
-- [binance-copy-trading](./clients/copy-trading/) - Copy Trading connector
-- [binance-crypto-loan](./clients/crypto-loan/) - Crypto Loan connector
-- [binance-derivatives-trading-coin-futures](./clients/derivatives-trading-coin-futures/) - Coin Futures Trading connector
-- [binance-derivatives-trading-options](./clients/derivatives-trading-options/) - Options Trading connector
-- [binance-derivatives-trading-portfolio-margin](./clients/derivatives-trading-portfolio-margin/) - Portfolio Margin Futures Trading connector
-- [binance-derivatives-trading-portfolio-margin-pro](./clients/derivatives-trading-portfolio-margin-pro/) - Portfolio Margin Pro Trading connector
-- [binance-derivatives-trading-usds-futures](./clients/derivatives-trading-usds-futures/) - USDs Futures Trading connector
-- [binance-dual-investment](./clients/dual-investment/) - Dual Investment connector
+- [binance-copy-trading](./clients/copytrading/) - Copy Trading connector
+- [binance-crypto-loan](./clients/cryptoloan/) - Crypto Loan connector
+- [binance-derivatives-trading-coin-futures](./clients/derivativestradingcoinfutures/) - Coin Futures Trading connector
+- [binance-derivatives-trading-options](./clients/derivativestradingoptions/) - Options Trading connector
+- [binance-derivatives-trading-portfolio-margin](./clients/derivativestradingportfoliomargin/) - Portfolio Margin Futures Trading connector
+- [binance-derivatives-trading-portfolio-margin-pro](./clients/derivativestradingportfoliomarginpro/) - Portfolio Margin Pro Trading connector
+- [binance-derivatives-trading-usds-futures](./clients/derivativestradingusdsfutures/) - USDs Futures Trading connector
+- [binance-dual-investment](./clients/dualinvestment/) - Dual Investment connector
 - [binance-fiat](./clients/fiat/) - Fiat connector
-- [binance-gift-card](./clients/gift-card/) - Gift Card connector
-- [binance-margin-trading](./clients/margin-trading/) - Margin Trading connector
+- [binance-gift-card](./clients/giftcard/) - Gift Card connector
+- [binance-margin-trading](./clients/margintrading/) - Margin Trading connector
 - [binance-mining](./clients/mining/) - Mining connector
 - **Deprecated**: ~~[binance-nft](./clients/nft/) - NFT connector~~
 - [binance-pay](./clients/pay/) - Pay connector
 - [binance-rebate](./clients/rebate/) - Rebate connector
-- [binance-simple-earn](./clients/simple-earn/) - Simple Earn connector
+- [binance-simple-earn](./clients/simpleearn/) - Simple Earn connector
 - [binance-spot](./clients/spot/) - Spot Trading connector
 - [binance-staking](./clients/staking/) - Staking connector
 - [binance-stocks](./clients/stocks/) - Stocks connector
-- [binance-sub-account](./clients/sub-account/) - Sub Account connector
-- [binance-vip-loan](./clients/vip-loan/) - VIP Loan connector
+- [binance-sub-account](./clients/subaccount/) - Sub Account connector
+- [binance-vip-loan](./clients/viploan/) - VIP Loan connector
 - [binance-wallet](./clients/wallet/) - Wallet connector
 - [binance-w3w-prediction](./clients/w3wprediction/) - W3w Prediction connector
 
@@ -49,7 +50,7 @@ For detailed information, refer to the [Binance API Documentation](https://devel
 
 ## Installation
 
-Each connector is published as a separate Python package. You can install them via `go get`. For example:
+Each connector is published as a separate Go module. You can install them via `go get`. For example:
 
 ```bash
 go get github.com/binance/binance-connector-go/clients/spot
