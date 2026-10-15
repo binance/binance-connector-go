@@ -784,11 +784,25 @@ type ApiFundCollectionByAssetRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
 	asset      *string
+	amount     *float64
+	futureType *models.FundCollectionByAssetFutureTypeParameter
 	recvWindow *int64
 }
 
 func (r ApiFundCollectionByAssetRequest) Asset(asset string) ApiFundCollectionByAssetRequest {
 	r.asset = &asset
+	return r
+}
+
+// Amount to collect. When provided, &#x60;futureType&#x60; is required.
+func (r ApiFundCollectionByAssetRequest) Amount(amount float64) ApiFundCollectionByAssetRequest {
+	r.amount = &amount
+	return r
+}
+
+// Target wallet for the collection. &#x60;OPTION&#x60; is for SPAN only. Cannot be sent without &#x60;amount&#x60;. &#x60;amount&#x60; and &#x60;futureType&#x60; must be provided together. If neither is provided, existing behavior is unchanged (query all wallets + transfer).
+func (r ApiFundCollectionByAssetRequest) FutureType(futureType models.FundCollectionByAssetFutureTypeParameter) ApiFundCollectionByAssetRequest {
+	r.futureType = &futureType
 	return r
 }
 
@@ -809,6 +823,8 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param asset -
+@param amount -  Amount to collect. When provided, `futureType` is required.
+@param futureType -  Target wallet for the collection. `OPTION` is for SPAN only. Cannot be sent without `amount`. `amount` and `futureType` must be provided together. If neither is provided, existing behavior is unchanged (query all wallets + transfer).
 @param recvWindow -
 @return ApiFundCollectionByAssetRequest
 */
@@ -834,6 +850,12 @@ func (a *AccountAPIService) FundCollectionByAssetExecute(r ApiFundCollectionByAs
 	}
 
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "asset", r.asset, "form", "")
+	if r.amount != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "amount", r.amount, "form", "")
+	}
+	if r.futureType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "futureType", r.futureType, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
