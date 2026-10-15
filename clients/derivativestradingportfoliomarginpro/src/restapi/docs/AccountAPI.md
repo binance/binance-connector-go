@@ -306,7 +306,7 @@ No authorization required
 
 ## FundCollectionByAsset
 
-> FundCollectionByAssetResponse FundCollectionByAsset(ctx).Asset(asset).RecvWindow(recvWindow).Execute()
+> FundCollectionByAssetResponse FundCollectionByAsset(ctx).Asset(asset).Amount(amount).FutureType(futureType).RecvWindow(recvWindow).Execute()
 
 Fund Collection by Asset (USER_DATA)
 
@@ -328,6 +328,8 @@ import (
 
 func main() {
 	asset := "USDT" // string | 
+	amount := float64(10) // float64 | Amount to collect. When provided, `futureType` is required. (optional)
+	futureType := models.FundCollectionByAssetFutureTypeParameterUm // FundCollectionByAssetFutureTypeParameter | Target wallet for the collection. `OPTION` is for SPAN only. Cannot be sent without `amount`. `amount` and `futureType` must be provided together. If neither is provided, existing behavior is unchanged (query all wallets + transfer). (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -337,7 +339,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.FundCollectionByAsset(context.Background()).Asset(asset).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.FundCollectionByAsset(context.Background()).Asset(asset).Amount(amount).FutureType(futureType).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.FundCollectionByAsset``: %v\n", err)
 		return
@@ -357,6 +359,8 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **string** |  | 
+ **amount** | **float64** | Amount to collect. When provided, &#x60;futureType&#x60; is required. | 
+ **futureType** | [**FundCollectionByAssetFutureTypeParameter**](FundCollectionByAssetFutureTypeParameter.md) | Target wallet for the collection. &#x60;OPTION&#x60; is for SPAN only. Cannot be sent without &#x60;amount&#x60;. &#x60;amount&#x60; and &#x60;futureType&#x60; must be provided together. If neither is provided, existing behavior is unchanged (query all wallets + transfer). | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

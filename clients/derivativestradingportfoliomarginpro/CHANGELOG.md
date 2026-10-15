@@ -1,5 +1,22 @@
 ### Changelog
 
+## 1.12.0 - 2026-10-15
+
+### Changed (5)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.10.0`.
+- Updated dependencies.
+- Raised the minimum Go version to `1.26`.
+
+#### REST API
+
+- Added parameter `amount`
+  - affected methods:
+    - `fundCollectionByAsset()` (`POST /sapi/v1/portfolio/asset-collection`)
+- Added parameter `futureType`
+  - affected methods:
+    - `fundCollectionByAsset()` (`POST /sapi/v1/portfolio/asset-collection`)
+
 ## 1.11.0 - 2026-09-28
 
 ### Changed (1)
