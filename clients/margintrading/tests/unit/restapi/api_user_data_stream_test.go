@@ -63,6 +63,46 @@ func Test_binancemargintradingrestapi_UserDataStreamAPIService(t *testing.T) {
 		require.Error(t, err)
 	})
 
+	t.Run("Test UserDataStreamAPIService CloseUserDataStreamV2 Success", func(t *testing.T) {
+
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v2/margin/listen-key", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{}`))
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		_, err := apiClient.RestApi.UserDataStreamAPI.CloseUserDataStreamV2(context.Background()).Execute()
+		require.NoError(t, err)
+	})
+
+	t.Run("Test UserDataStreamAPIService CloseUserDataStreamV2 Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		_, err := apiClient.RestApi.UserDataStreamAPI.CloseUserDataStreamV2(context.Background()).Execute()
+
+		require.Error(t, err)
+	})
+
 	t.Run("Test UserDataStreamAPIService KeepaliveUserDataStream Success", func(t *testing.T) {
 
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -116,6 +156,63 @@ func Test_binancemargintradingrestapi_UserDataStreamAPIService(t *testing.T) {
 		)
 
 		_, err := apiClient.RestApi.UserDataStreamAPI.KeepaliveUserDataStream(context.Background()).Execute()
+
+		require.Error(t, err)
+	})
+
+	t.Run("Test UserDataStreamAPIService KeepaliveUserDataStreamV2 Success", func(t *testing.T) {
+
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v2/margin/listen-key", r.URL.Path)
+			require.Equal(t, "listenKey_example", r.URL.Query().Get("listenKey"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(`{}`))
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		_, err := apiClient.RestApi.UserDataStreamAPI.KeepaliveUserDataStreamV2(context.Background()).ListenKey("listenKey_example").Execute()
+		require.NoError(t, err)
+	})
+
+	t.Run("Test UserDataStreamAPIService KeepaliveUserDataStreamV2 Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		_, err := apiClient.RestApi.UserDataStreamAPI.KeepaliveUserDataStreamV2(context.Background()).Execute()
+
+		require.Error(t, err)
+	})
+
+	t.Run("Test UserDataStreamAPIService KeepaliveUserDataStreamV2 Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		_, err := apiClient.RestApi.UserDataStreamAPI.KeepaliveUserDataStreamV2(context.Background()).Execute()
 
 		require.Error(t, err)
 	})
@@ -174,6 +271,65 @@ func Test_binancemargintradingrestapi_UserDataStreamAPIService(t *testing.T) {
 		)
 
 		resp, err := apiClient.RestApi.UserDataStreamAPI.StartUserDataStream(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test UserDataStreamAPIService StartUserDataStreamV2 Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"listenKey":"T3ee22BIYuWqmvne0HNq2A2WsFlEtLhvWCtItw6ffhhd"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v2/margin/listen-key", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.StartUserDataStreamV2Response
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.UserDataStreamAPI.StartUserDataStreamV2(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.StartUserDataStreamV2Response]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.StartUserDataStreamV2Response{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test UserDataStreamAPIService StartUserDataStreamV2 Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceMarginTradingClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.UserDataStreamAPI.StartUserDataStreamV2(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

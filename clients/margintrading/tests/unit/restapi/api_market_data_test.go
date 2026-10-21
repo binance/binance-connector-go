@@ -203,7 +203,7 @@ func Test_binancemargintradingrestapi_MarketDataAPIService(t *testing.T) {
 	t.Run("Test MarketDataAPIService GetAllMarginAssets Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `[{"assetFullName":"USD coin","assetName":"USDC","isBorrowable":true,"isMortgageable":true,"userMinBorrow":"0.00000000","userMinRepay":"0.00000000","delistTime":1704973040}]`
+		mockedJSON = `[{"assetFullName":"USD coin","assetName":"USDC","isBorrowable":true,"isMortgageable":true,"userMinBorrow":"5.00000000","userMinRepay":"0.00000000","delistTime":1704973040000}]`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
