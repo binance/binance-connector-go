@@ -426,7 +426,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			require.Equal(t, "/fapi/v1/continuousKlines", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("pair"))
 			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataContractTypeParameterPerpetual), r.URL.Query().Get("contractType"))
-			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
+			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s), r.URL.Query().Get("interval"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -443,7 +443,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.ContinuousContractKlineCandlestickData(context.Background()).Pair("BTCUSDT").ContractType(models.ContinuousContractKlineCandlestickDataContractTypeParameterPerpetual).Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.ContinuousContractKlineCandlestickData(context.Background()).Pair("BTCUSDT").ContractType(models.ContinuousContractKlineCandlestickDataContractTypeParameterPerpetual).Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -681,7 +681,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/indexPriceKlines", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("pair"))
-			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
+			require.Equal(t, string(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -698,7 +698,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.IndexPriceKlineCandlestickData(context.Background()).Pair("BTCUSDT").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.IndexPriceKlineCandlestickData(context.Background()).Pair("BTCUSDT").Interval(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -759,7 +759,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/klines", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
+			require.Equal(t, string(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -776,7 +776,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("BTCUSDT").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.KlineCandlestickData(context.Background()).Symbol("BTCUSDT").Interval(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -974,7 +974,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/markPriceKlines", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
+			require.Equal(t, string(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -991,7 +991,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.MarkPriceKlineCandlestickData(context.Background()).Symbol("BTCUSDT").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.MarkPriceKlineCandlestickData(context.Background()).Symbol("BTCUSDT").Interval(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1361,7 +1361,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/fapi/v1/premiumIndexKlines", r.URL.Path)
 			require.Equal(t, "BTCUSDT", r.URL.Query().Get("symbol"))
-			require.Equal(t, string(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
+			require.Equal(t, string(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m), r.URL.Query().Get("interval"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1378,7 +1378,7 @@ func Test_binancederivativestradingusdsfuturesrestapi_MarketDataAPIService(t *te
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.MarketDataAPI.PremiumIndexKlineData(context.Background()).Symbol("BTCUSDT").Interval(models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m).Execute()
+		resp, err := apiClient.RestApi.MarketDataAPI.PremiumIndexKlineData(context.Background()).Symbol("BTCUSDT").Interval(models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(

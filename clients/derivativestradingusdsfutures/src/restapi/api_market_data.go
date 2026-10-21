@@ -805,7 +805,7 @@ type ApiIndexPriceKlineCandlestickDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	pair       *string
-	interval   *models.ContinuousContractKlineCandlestickDataIntervalParameter
+	interval   *models.IndexPriceKlineCandlestickDataIntervalParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
@@ -817,7 +817,7 @@ func (r ApiIndexPriceKlineCandlestickDataRequest) Pair(pair string) ApiIndexPric
 	return r
 }
 
-func (r ApiIndexPriceKlineCandlestickDataRequest) Interval(interval models.ContinuousContractKlineCandlestickDataIntervalParameter) ApiIndexPriceKlineCandlestickDataRequest {
+func (r ApiIndexPriceKlineCandlestickDataRequest) Interval(interval models.IndexPriceKlineCandlestickDataIntervalParameter) ApiIndexPriceKlineCandlestickDataRequest {
 	r.interval = &interval
 	return r
 }
@@ -914,7 +914,7 @@ type ApiKlineCandlestickDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	symbol     *string
-	interval   *models.ContinuousContractKlineCandlestickDataIntervalParameter
+	interval   *models.IndexPriceKlineCandlestickDataIntervalParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
@@ -926,7 +926,7 @@ func (r ApiKlineCandlestickDataRequest) Symbol(symbol string) ApiKlineCandlestic
 	return r
 }
 
-func (r ApiKlineCandlestickDataRequest) Interval(interval models.ContinuousContractKlineCandlestickDataIntervalParameter) ApiKlineCandlestickDataRequest {
+func (r ApiKlineCandlestickDataRequest) Interval(interval models.IndexPriceKlineCandlestickDataIntervalParameter) ApiKlineCandlestickDataRequest {
 	r.interval = &interval
 	return r
 }
@@ -1191,7 +1191,7 @@ type ApiMarkPriceKlineCandlestickDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	symbol     *string
-	interval   *models.ContinuousContractKlineCandlestickDataIntervalParameter
+	interval   *models.IndexPriceKlineCandlestickDataIntervalParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
@@ -1203,7 +1203,7 @@ func (r ApiMarkPriceKlineCandlestickDataRequest) Symbol(symbol string) ApiMarkPr
 	return r
 }
 
-func (r ApiMarkPriceKlineCandlestickDataRequest) Interval(interval models.ContinuousContractKlineCandlestickDataIntervalParameter) ApiMarkPriceKlineCandlestickDataRequest {
+func (r ApiMarkPriceKlineCandlestickDataRequest) Interval(interval models.IndexPriceKlineCandlestickDataIntervalParameter) ApiMarkPriceKlineCandlestickDataRequest {
 	r.interval = &interval
 	return r
 }
@@ -1630,7 +1630,7 @@ type ApiPremiumIndexKlineDataRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService
 	symbol     *string
-	interval   *models.ContinuousContractKlineCandlestickDataIntervalParameter
+	interval   *models.IndexPriceKlineCandlestickDataIntervalParameter
 	startTime  *int64
 	endTime    *int64
 	limit      *int64
@@ -1642,7 +1642,7 @@ func (r ApiPremiumIndexKlineDataRequest) Symbol(symbol string) ApiPremiumIndexKl
 	return r
 }
 
-func (r ApiPremiumIndexKlineDataRequest) Interval(interval models.ContinuousContractKlineCandlestickDataIntervalParameter) ApiPremiumIndexKlineDataRequest {
+func (r ApiPremiumIndexKlineDataRequest) Interval(interval models.IndexPriceKlineCandlestickDataIntervalParameter) ApiPremiumIndexKlineDataRequest {
 	r.interval = &interval
 	return r
 }

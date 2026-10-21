@@ -16,6 +16,7 @@ type ContinuousContractKlineCandlestickDataIntervalParameter string
 
 // List of continuousContractKlineCandlestickData_interval_parameter
 const (
+	ContinuousContractKlineCandlestickDataIntervalParameterInterval1s  ContinuousContractKlineCandlestickDataIntervalParameter = "1s"
 	ContinuousContractKlineCandlestickDataIntervalParameterInterval1m  ContinuousContractKlineCandlestickDataIntervalParameter = "1m"
 	ContinuousContractKlineCandlestickDataIntervalParameterInterval3m  ContinuousContractKlineCandlestickDataIntervalParameter = "3m"
 	ContinuousContractKlineCandlestickDataIntervalParameterInterval5m  ContinuousContractKlineCandlestickDataIntervalParameter = "5m"
@@ -35,6 +36,7 @@ const (
 
 // All allowed values of ContinuousContractKlineCandlestickDataIntervalParameter enum
 var AllowedContinuousContractKlineCandlestickDataIntervalParameterEnumValues = []ContinuousContractKlineCandlestickDataIntervalParameter{
+	"1s",
 	"1m",
 	"3m",
 	"5m",

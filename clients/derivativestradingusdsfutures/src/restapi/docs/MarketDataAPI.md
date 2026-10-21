@@ -488,7 +488,7 @@ import (
 func main() {
 	pair := "BTCUSDT" // string | After CM migration, accepts both UM and CM pair values.
 	contractType := models.ContinuousContractKlineCandlestickDataContractTypeParameterPerpetual // ContinuousContractKlineCandlestickDataContractTypeParameter | Futurestype
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1s // ContinuousContractKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)
 	limit := int64(50) // int64 |  (optional)
@@ -769,7 +769,7 @@ import (
 
 func main() {
 	pair := "BTCUSDT" // string | After CM migration, accepts both UM and CM pair values.
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m // IndexPriceKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)
 	limit := int64(50) // int64 |  (optional)
@@ -801,7 +801,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **string** | After CM migration, accepts both UM and CM pair values. | 
- **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
+ **interval** | [**IndexPriceKlineCandlestickDataIntervalParameter**](IndexPriceKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** | Start time | 
  **endTime** | **int64** | End time | 
  **limit** | **int64** |  | 
@@ -845,7 +845,7 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m // IndexPriceKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)
 	limit := int64(50) // int64 |  (optional)
@@ -877,7 +877,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
- **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
+ **interval** | [**IndexPriceKlineCandlestickDataIntervalParameter**](IndexPriceKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** | Start time | 
  **endTime** | **int64** | End time | 
  **limit** | **int64** |  | 
@@ -1065,7 +1065,7 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m // IndexPriceKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)
 	limit := int64(50) // int64 |  (optional)
@@ -1097,7 +1097,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
- **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
+ **interval** | [**IndexPriceKlineCandlestickDataIntervalParameter**](IndexPriceKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** | Start time | 
  **endTime** | **int64** | End time | 
  **limit** | **int64** |  | 
@@ -1427,7 +1427,7 @@ import (
 
 func main() {
 	symbol := "BTCUSDT" // string | After CM migration, accepts both UM and CM symbols.
-	interval := models.ContinuousContractKlineCandlestickDataIntervalParameterInterval1m // ContinuousContractKlineCandlestickDataIntervalParameter | 
+	interval := models.IndexPriceKlineCandlestickDataIntervalParameterInterval1m // IndexPriceKlineCandlestickDataIntervalParameter | 
 	startTime := int64(1623319461670) // int64 | Start time (optional)
 	endTime := int64(1641782889000) // int64 | End time (optional)
 	limit := int64(50) // int64 |  (optional)
@@ -1459,7 +1459,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** | After CM migration, accepts both UM and CM symbols. | 
- **interval** | [**ContinuousContractKlineCandlestickDataIntervalParameter**](ContinuousContractKlineCandlestickDataIntervalParameter.md) |  | 
+ **interval** | [**IndexPriceKlineCandlestickDataIntervalParameter**](IndexPriceKlineCandlestickDataIntervalParameter.md) |  | 
  **startTime** | **int64** | Start time | 
  **endTime** | **int64** | End time | 
  **limit** | **int64** |  | 
