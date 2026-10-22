@@ -1030,7 +1030,7 @@ No authorization required
 
 ## GetCmIncomeHistory
 
-> GetCmIncomeHistoryResponse GetCmIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+> GetCmIncomeHistoryResponse GetCmIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
 Get CM Income History (USER_DATA)
 
@@ -1055,7 +1055,6 @@ func main() {
 	incomeType := models.GetCmIncomeHistoryIncomeTypeParameterTransfer // GetCmIncomeHistoryIncomeTypeParameter |  (optional)
 	startTime := int64(1623319461670) // int64 | Timestamp in ms to get funding from INCLUSIVE. (optional)
 	endTime := int64(1641782889000) // int64 | Timestamp in ms to get funding until INCLUSIVE. (optional)
-	page := int64(1) // int64 |  (optional)
 	limit := int64(100) // int64 | Number of results returned. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1066,7 +1065,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.GetCmIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.GetCmIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.GetCmIncomeHistory``: %v\n", err)
 		return
@@ -1089,7 +1088,6 @@ Name          | Type          | Description   | Notes
  **incomeType** | [**GetCmIncomeHistoryIncomeTypeParameter**](GetCmIncomeHistoryIncomeTypeParameter.md) |  | 
  **startTime** | **int64** | Timestamp in ms to get funding from INCLUSIVE. | 
  **endTime** | **int64** | Timestamp in ms to get funding until INCLUSIVE. | 
- **page** | **int64** |  | 
  **limit** | **int64** | Number of results returned. | 
  **recvWindow** | **int64** |  | 
 
@@ -1820,7 +1818,7 @@ No authorization required
 
 ## GetUmIncomeHistory
 
-> GetUmIncomeHistoryResponse GetUmIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+> GetUmIncomeHistoryResponse GetUmIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 
 Get UM Income History (USER_DATA)
 
@@ -1845,7 +1843,6 @@ func main() {
 	incomeType := models.GetUmIncomeHistoryIncomeTypeParameterTransfer // GetUmIncomeHistoryIncomeTypeParameter | Income type. (optional)
 	startTime := int64(1623319461670) // int64 | Timestamp in ms to get funding from INCLUSIVE. (optional)
 	endTime := int64(1641782889000) // int64 | Timestamp in ms to get funding until INCLUSIVE. (optional)
-	page := int64(1) // int64 | Page number. (optional)
 	limit := int64(100) // int64 | Number of results returned. (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
@@ -1856,7 +1853,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.GetUmIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Page(page).Limit(limit).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.GetUmIncomeHistory(context.Background()).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.GetUmIncomeHistory``: %v\n", err)
 		return
@@ -1879,7 +1876,6 @@ Name          | Type          | Description   | Notes
  **incomeType** | [**GetUmIncomeHistoryIncomeTypeParameter**](GetUmIncomeHistoryIncomeTypeParameter.md) | Income type. | 
  **startTime** | **int64** | Timestamp in ms to get funding from INCLUSIVE. | 
  **endTime** | **int64** | Timestamp in ms to get funding until INCLUSIVE. | 
- **page** | **int64** | Page number. | 
  **limit** | **int64** | Number of results returned. | 
  **recvWindow** | **int64** |  | 
 

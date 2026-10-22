@@ -1069,7 +1069,6 @@ type ApiGetCmIncomeHistoryRequest struct {
 	incomeType *models.GetCmIncomeHistoryIncomeTypeParameter
 	startTime  *int64
 	endTime    *int64
-	page       *int64
 	limit      *int64
 	recvWindow *int64
 }
@@ -1093,11 +1092,6 @@ func (r ApiGetCmIncomeHistoryRequest) StartTime(startTime int64) ApiGetCmIncomeH
 // Timestamp in ms to get funding until INCLUSIVE.
 func (r ApiGetCmIncomeHistoryRequest) EndTime(endTime int64) ApiGetCmIncomeHistoryRequest {
 	r.endTime = &endTime
-	return r
-}
-
-func (r ApiGetCmIncomeHistoryRequest) Page(page int64) ApiGetCmIncomeHistoryRequest {
-	r.page = &page
 	return r
 }
 
@@ -1127,7 +1121,6 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 @param incomeType -
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param page -
 @param limit -  Number of results returned.
 @param recvWindow -
 @return ApiGetCmIncomeHistoryRequest
@@ -1160,9 +1153,6 @@ func (a *AccountAPIService) GetCmIncomeHistoryExecute(r ApiGetCmIncomeHistoryReq
 	}
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
-	}
-	if r.page != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -1997,7 +1987,6 @@ type ApiGetUmIncomeHistoryRequest struct {
 	incomeType *models.GetUmIncomeHistoryIncomeTypeParameter
 	startTime  *int64
 	endTime    *int64
-	page       *int64
 	limit      *int64
 	recvWindow *int64
 }
@@ -2022,12 +2011,6 @@ func (r ApiGetUmIncomeHistoryRequest) StartTime(startTime int64) ApiGetUmIncomeH
 // Timestamp in ms to get funding until INCLUSIVE.
 func (r ApiGetUmIncomeHistoryRequest) EndTime(endTime int64) ApiGetUmIncomeHistoryRequest {
 	r.endTime = &endTime
-	return r
-}
-
-// Page number.
-func (r ApiGetUmIncomeHistoryRequest) Page(page int64) ApiGetUmIncomeHistoryRequest {
-	r.page = &page
 	return r
 }
 
@@ -2057,7 +2040,6 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 @param incomeType -  Income type.
 @param startTime -  Timestamp in ms to get funding from INCLUSIVE.
 @param endTime -  Timestamp in ms to get funding until INCLUSIVE.
-@param page -  Page number.
 @param limit -  Number of results returned.
 @param recvWindow -
 @return ApiGetUmIncomeHistoryRequest
@@ -2090,9 +2072,6 @@ func (a *AccountAPIService) GetUmIncomeHistoryExecute(r ApiGetUmIncomeHistoryReq
 	}
 	if r.endTime != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
-	}
-	if r.page != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.limit != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")

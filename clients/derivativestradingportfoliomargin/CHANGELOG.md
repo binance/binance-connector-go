@@ -1,5 +1,22 @@
 ### Changelog
 
+## 1.22.0 - 2026-10-22
+
+### Changed (3)
+
+#### REST API
+
+- Added parameter `amount`
+  - affected methods:
+    - `fundCollectionByAsset()` (`POST /papi/v1/asset-collection`)
+- Added parameter `futureType`
+  - affected methods:
+    - `fundCollectionByAsset()` (`POST /papi/v1/asset-collection`)
+- Deleted parameter `page`
+  - affected methods:
+    - `getCmIncomeHistory()` (`GET /papi/v1/cm/income`)
+    - `getUmIncomeHistory()` (`GET /papi/v1/um/income`)
+
 ## 1.21.0 - 2026-10-15
 
 ### Changed (5)
