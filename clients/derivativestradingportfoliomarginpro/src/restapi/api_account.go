@@ -873,13 +873,7 @@ func (a *AccountAPIService) GetTransferableEarnAssetBalanceForPortfolioMarginExe
 type ApiPortfolioMarginProBankruptcyLoanRepayRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	from       *models.PortfolioMarginProBankruptcyLoanRepayFromParameter
 	recvWindow *int64
-}
-
-func (r ApiPortfolioMarginProBankruptcyLoanRepayRequest) From(from models.PortfolioMarginProBankruptcyLoanRepayFromParameter) ApiPortfolioMarginProBankruptcyLoanRepayRequest {
-	r.from = &from
-	return r
 }
 
 func (r ApiPortfolioMarginProBankruptcyLoanRepayRequest) RecvWindow(recvWindow int64) ApiPortfolioMarginProBankruptcyLoanRepayRequest {
@@ -898,7 +892,6 @@ Post /sapi/v1/portfolio/repay
 https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#portfolio-margin-pro-bankruptcy-loan-repay
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param from -
 @param recvWindow -
 @return ApiPortfolioMarginProBankruptcyLoanRepayRequest
 */
@@ -919,9 +912,6 @@ func (a *AccountAPIService) PortfolioMarginProBankruptcyLoanRepayExecute(r ApiPo
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.from != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
-	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -1218,13 +1208,7 @@ func (a *AccountAPIService) QueryPortfolioMarginProNegativeBalanceInterestHistor
 type ApiRepayFuturesNegativeBalanceRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
-	from       *models.PortfolioMarginProBankruptcyLoanRepayFromParameter
 	recvWindow *int64
-}
-
-func (r ApiRepayFuturesNegativeBalanceRequest) From(from models.PortfolioMarginProBankruptcyLoanRepayFromParameter) ApiRepayFuturesNegativeBalanceRequest {
-	r.from = &from
-	return r
 }
 
 func (r ApiRepayFuturesNegativeBalanceRequest) RecvWindow(recvWindow int64) ApiRepayFuturesNegativeBalanceRequest {
@@ -1243,7 +1227,6 @@ Post /sapi/v1/portfolio/repay-futures-negative-balance
 https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/account#repay-futures-negative-balance
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@param from -
 @param recvWindow -
 @return ApiRepayFuturesNegativeBalanceRequest
 */
@@ -1264,9 +1247,6 @@ func (a *AccountAPIService) RepayFuturesNegativeBalanceExecute(r ApiRepayFutures
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
 
-	if r.from != nil {
-		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
-	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}

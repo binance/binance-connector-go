@@ -862,7 +862,7 @@ No authorization required
 
 ## PortfolioMarginProBankruptcyLoanRepay
 
-> PortfolioMarginProBankruptcyLoanRepayResponse PortfolioMarginProBankruptcyLoanRepay(ctx).From(from).RecvWindow(recvWindow).Execute()
+> PortfolioMarginProBankruptcyLoanRepayResponse PortfolioMarginProBankruptcyLoanRepay(ctx).RecvWindow(recvWindow).Execute()
 
 Portfolio Margin Pro Bankruptcy Loan Repay (TRADE)
 
@@ -883,7 +883,6 @@ import (
 )
 
 func main() {
-	from := models.PortfolioMarginProBankruptcyLoanRepayFromParameterSpot // PortfolioMarginProBankruptcyLoanRepayFromParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -893,7 +892,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.PortfolioMarginProBankruptcyLoanRepay(context.Background()).From(from).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.PortfolioMarginProBankruptcyLoanRepay(context.Background()).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.PortfolioMarginProBankruptcyLoanRepay``: %v\n", err)
 		return
@@ -912,7 +911,6 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | [**PortfolioMarginProBankruptcyLoanRepayFromParameter**](PortfolioMarginProBankruptcyLoanRepayFromParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
@@ -1152,7 +1150,7 @@ No authorization required
 
 ## RepayFuturesNegativeBalance
 
-> RepayFuturesNegativeBalanceResponse RepayFuturesNegativeBalance(ctx).From(from).RecvWindow(recvWindow).Execute()
+> RepayFuturesNegativeBalanceResponse RepayFuturesNegativeBalance(ctx).RecvWindow(recvWindow).Execute()
 
 Repay futures Negative Balance (USER_DATA)
 
@@ -1173,7 +1171,6 @@ import (
 )
 
 func main() {
-	from := models.PortfolioMarginProBankruptcyLoanRepayFromParameterSpot // PortfolioMarginProBankruptcyLoanRepayFromParameter |  (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -1183,7 +1180,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.AccountAPI.RepayFuturesNegativeBalance(context.Background()).From(from).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.AccountAPI.RepayFuturesNegativeBalance(context.Background()).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `AccountAPI.RepayFuturesNegativeBalance``: %v\n", err)
 		return
@@ -1202,7 +1199,6 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | [**PortfolioMarginProBankruptcyLoanRepayFromParameter**](PortfolioMarginProBankruptcyLoanRepayFromParameter.md) |  | 
  **recvWindow** | **int64** |  | 
 
 ### Return type
