@@ -14,13 +14,12 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// RestAPIClient manages communication with the Crypto Loan REST API API v1.12.0
+// RestAPIClient manages communication with the Crypto Loan REST API API v1.13.0
 type RestAPIClient struct {
 	cfg *common.ConfigurationRestAPI
 
 	// API Services
 	FlexibleRateAPI *FlexibleRateAPIService
-	StableRateAPI   *StableRateAPIService
 }
 
 type Service struct {
@@ -37,13 +36,12 @@ func NewRestAPIClient(cfg *common.ConfigurationRestAPI) *RestAPIClient {
 	if customHeaders == nil {
 		customHeaders = make(map[string]string)
 	}
-	customHeaders["User-Agent"] = "binance-cryptoloan/1.12.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	customHeaders["User-Agent"] = "binance-cryptoloan/1.13.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 	cfg.CustomHeaders = customHeaders
 	c := &RestAPIClient{cfg: cfg}
 
 	// API Services
 	c.FlexibleRateAPI = &FlexibleRateAPIService{client: c}
-	c.StableRateAPI = &StableRateAPIService{client: c}
 
 	return c
 }
