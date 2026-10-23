@@ -2966,7 +2966,7 @@ func (r ApiNewUmAlgoOrderRequest) ActivatePrice(activatePrice float64) ApiNewUmA
 	return r
 }
 
-// Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%)
+// Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 20 (1 &#x3D; 1%)
 func (r ApiNewUmAlgoOrderRequest) CallbackRate(callbackRate float64) ApiNewUmAlgoOrderRequest {
 	r.callbackRate = &callbackRate
 	return r
@@ -3025,7 +3025,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trad
 @param priceProtect -  Price protection. Default `false`
 @param reduceOnly -  Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true`
 @param activatePrice -  Used with `TRAILING_STOP_MARKET`, default as latest price
-@param callbackRate -  Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%)
+@param callbackRate -  Used with `TRAILING_STOP_MARKET`, min 0.1, max 20 (1 = 1%)
 @param clientAlgoId -  Unique id among open orders. Auto-generated if not sent
 @param newOrderRespType -
 @param selfTradePreventionMode -

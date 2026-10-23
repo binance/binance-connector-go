@@ -1,5 +1,18 @@
 ### Changelog
 
+## 1.23.0 - 2026-10-23
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.11.0`.
+
+#### REST API
+
+- Modified parameter `callbackRate`:
+  - description updated (max `10` → `20`)
+  - affected methods:
+    - `newUmAlgoOrder()` (`POST /papi/v1/um/algo/order`)
+
 ## 1.22.0 - 2026-10-22
 
 ### Changed (3)

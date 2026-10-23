@@ -2026,7 +2026,7 @@ func main() {
 	priceProtect := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Price protection. Default `false` (optional)
 	reduceOnly := models.ChangeAutoRepayFuturesStatusAutoRepayParameterTrue // ChangeAutoRepayFuturesStatusAutoRepayParameter | Cannot be sent in Hedge Mode; cannot be sent with `closePosition`=`true` (optional)
 	activatePrice := float64(700) // float64 | Used with `TRAILING_STOP_MARKET`, default as latest price (optional)
-	callbackRate := float64(1) // float64 | Used with `TRAILING_STOP_MARKET`, min 0.1, max 10 (1 = 1%) (optional)
+	callbackRate := float64(1) // float64 | Used with `TRAILING_STOP_MARKET`, min 0.1, max 20 (1 = 1%) (optional)
 	clientAlgoId := "6B2I9XVcJpCjqPAJ4YoFX7" // string | Unique id among open orders. Auto-generated if not sent (optional)
 	newOrderRespType := models.NewCmOrderNewOrderRespTypeParameterAck // NewCmOrderNewOrderRespTypeParameter |  (optional)
 	selfTradePreventionMode := models.NewUmAlgoOrderSelfTradePreventionModeParameterNone // NewUmAlgoOrderSelfTradePreventionModeParameter |  (optional)
@@ -2074,7 +2074,7 @@ Name          | Type          | Description   | Notes
  **priceProtect** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Price protection. Default &#x60;false&#x60; | 
  **reduceOnly** | [**ChangeAutoRepayFuturesStatusAutoRepayParameter**](ChangeAutoRepayFuturesStatusAutoRepayParameter.md) | Cannot be sent in Hedge Mode; cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60; | 
  **activatePrice** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, default as latest price | 
- **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 10 (1 &#x3D; 1%) | 
+ **callbackRate** | **float64** | Used with &#x60;TRAILING_STOP_MARKET&#x60;, min 0.1, max 20 (1 &#x3D; 1%) | 
  **clientAlgoId** | **string** | Unique id among open orders. Auto-generated if not sent | 
  **newOrderRespType** | [**NewCmOrderNewOrderRespTypeParameter**](NewCmOrderNewOrderRespTypeParameter.md) |  | 
  **selfTradePreventionMode** | [**NewUmAlgoOrderSelfTradePreventionModeParameter**](NewUmAlgoOrderSelfTradePreventionModeParameter.md) |  | 
