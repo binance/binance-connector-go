@@ -20,7 +20,7 @@ type AccountCommissionResponseDiscount struct {
 	EnabledForAccount *bool   `json:"enabledForAccount,omitempty"`
 	EnabledForSymbol  *bool   `json:"enabledForSymbol,omitempty"`
 	DiscountAsset     *string `json:"discountAsset,omitempty"`
-	// Standard commission is reduced by this rate when paying commission in BNB.
+	// Multiplier applied to the standard commission when paying commission in BNB (e.g. 0.75 = 75% of the standard commission is charged).
 	Discount             *string `json:"discount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

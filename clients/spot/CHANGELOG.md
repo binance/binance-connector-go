@@ -1,5 +1,21 @@
 ### Changelog
 
+## 1.19.0 - 2026-10-23
+
+### Changed (3)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.11.0`.
+
+#### REST API
+
+- Modified response for `accountCommission()` (`GET /api/v3/account/commission`):
+  - `discount`.`discount`: description updated
+
+#### WebSocket API
+
+- Modified response for `accountCommission()` (`account.commission` method):
+  - `result`.`discount`.`discount`: description updated
+
 ## 1.18.0 - 2026-10-15
 
 ### Changed (3)
