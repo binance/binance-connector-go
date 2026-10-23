@@ -49,7 +49,7 @@ func (a *MarketStreamsAPIService) CalendarStream() ApiCalendarStreamRequest {
 //	@return CalendarStreamResponse
 func (a *MarketStreamsAPIService) CalendarStreamExecute(r ApiCalendarStreamRequest) (*common.StreamHandler[models.CalendarStreamResponse], error) {
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/calendar"[1:],
 		map[string]string{
 			"id": func() string {
@@ -131,7 +131,7 @@ func (a *MarketStreamsAPIService) KlineStreamExecute(r ApiKlineStreamRequest) (*
 		return nil, common.ReportError("interval is required and must be specified")
 	}
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/<symbol>@kline_<interval>"[1:],
 		map[string]string{
 			"symbol": func() string {
@@ -205,7 +205,7 @@ func (a *MarketStreamsAPIService) PriceStream() ApiPriceStreamRequest {
 //	@return PriceStreamResponse
 func (a *MarketStreamsAPIService) PriceStreamExecute(r ApiPriceStreamRequest) (*common.StreamHandler[models.PriceStreamResponse], error) {
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/price"[1:],
 		map[string]string{
 			"id": func() string {
@@ -277,7 +277,7 @@ func (a *MarketStreamsAPIService) QuoteStreamExecute(r ApiQuoteStreamRequest) (*
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/<symbol>@quote"[1:],
 		map[string]string{
 			"symbol": func() string {
@@ -355,7 +355,7 @@ func (a *MarketStreamsAPIService) TradabilityStreamExecute(r ApiTradabilityStrea
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/<symbol>@tradability"[1:],
 		map[string]string{
 			"symbol": func() string {
@@ -433,7 +433,7 @@ func (a *MarketStreamsAPIService) TradingStatusStreamExecute(r ApiTradingStatusS
 		return nil, common.ReportError("symbol is required and must be specified")
 	}
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/<symbol>@tradingStatus"[1:],
 		map[string]string{
 			"symbol": func() string {

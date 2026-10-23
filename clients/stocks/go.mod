@@ -3,7 +3,7 @@ module github.com/binance/binance-connector-go/clients/stocks
 go 1.26.0
 
 require (
-	github.com/binance/binance-connector-go/common/v2 v2.10.0
+	github.com/binance/binance-connector-go/common/v2 v2.11.0
 	github.com/stretchr/testify v1.12.1
 )
 

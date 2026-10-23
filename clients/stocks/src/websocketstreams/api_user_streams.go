@@ -59,7 +59,7 @@ func (a *UserStreamsAPIService) OrderReportStreamExecute(r ApiOrderReportStreamR
 		return nil, common.ReportError("listenKey is required and must be specified")
 	}
 
-	localStream := common.WsStreamsPlaceholder(
+	localStream := common.WsStreamsPlaceholderPreserveCase(
 		"/<listenKey>@orderReport"[1:],
 		map[string]string{
 			"listenKey": func() string {

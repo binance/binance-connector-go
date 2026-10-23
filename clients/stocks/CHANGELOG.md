@@ -1,5 +1,12 @@
 ### Changelog
 
+## 1.5.0 - 2026-10-23
+
+### Changed (2)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.11.0`.
+- Fixed WebSocket Streams names being converted to lowercase: the case of stream names is now kept.
+
 ## 1.4.0 - 2026-10-15
 
 ### Changed (3)
