@@ -1,5 +1,11 @@
 ### Changelog
 
+## 1.24.0 - 2026-10-23
+
+### Changed (1)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.11.0`.
+
 ## 1.23.1 - 2026-10-21
 
 ### Changed (1)
