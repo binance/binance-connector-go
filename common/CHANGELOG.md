@@ -1,5 +1,11 @@
 ### Changelog
 
+## 2.11.0 - 2026-10-23
+
+### Added (1)
+
+- Added `WsStreamsPlaceholderPreserveCase`, which keeps the case of stream names.
+
 ## 2.10.0 - 2026-10-15
 
 ### Added (2)

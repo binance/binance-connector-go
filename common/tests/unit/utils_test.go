@@ -939,3 +939,49 @@ func TestBuildTransport_UnsupportedAgent(t *testing.T) {
 		t.Errorf("expected error message %q, got %q", expectedMsg, err.Error())
 	}
 }
+
+func TestWsStreamsPlaceholder(t *testing.T) {
+	tests := []struct {
+		name     string
+		stream   string
+		params   map[string]string
+		expected string
+	}{
+		{"single placeholder", "<symbol>@depth", map[string]string{"symbol": "BTCUSDT"}, "btcusdt@depth"},
+		{"multiple placeholders", "<symbol>@depth<updateSpeed>", map[string]string{"symbol": "BTCUSDT", "updateSpeed": "100ms"}, "btcusdt@depth@100ms"},
+		{"empty values ignored", "<symbol>@depth<updateSpeed>", map[string]string{"symbol": "BTCUSDT", "updateSpeed": ""}, "btcusdt@depth"},
+		{"window size", "<symbol>@ticker_<windowSize>", map[string]string{"symbol": "BTCUSDT", "windowSize": "1H"}, "btcusdt@ticker_1h"},
+		{"missing placeholder", "<symbol>@depth<missing>", map[string]string{"symbol": "BTCUSDT"}, "btcusdt@depth"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := common.WsStreamsPlaceholder(tt.stream, tt.params); got != tt.expected {
+				t.Errorf("expected %q, got %q", tt.expected, got)
+			}
+		})
+	}
+}
+
+func TestWsStreamsPlaceholderPreserveCase(t *testing.T) {
+	tests := []struct {
+		name     string
+		stream   string
+		params   map[string]string
+		expected string
+	}{
+		{"single placeholder", "<symbol>@depth", map[string]string{"symbol": "AAPL"}, "AAPL@depth"},
+		{"multiple placeholders", "<symbol>@depth<updateSpeed>", map[string]string{"symbol": "AAPL", "updateSpeed": "100ms"}, "AAPL@depth@100ms"},
+		{"empty values ignored", "<symbol>@depth<updateSpeed>", map[string]string{"symbol": "AAPL", "updateSpeed": ""}, "AAPL@depth"},
+		{"window size", "<symbol>@ticker_<windowSize>", map[string]string{"symbol": "AAPL", "windowSize": "1H"}, "AAPL@ticker_1H"},
+		{"missing placeholder", "<symbol>@depth<missing>", map[string]string{"symbol": "AAPL"}, "AAPL@depth"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := common.WsStreamsPlaceholderPreserveCase(tt.stream, tt.params); got != tt.expected {
+				t.Errorf("expected %q, got %q", tt.expected, got)
+			}
+		})
+	}
+}

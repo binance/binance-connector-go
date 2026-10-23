@@ -1010,6 +1010,21 @@ func FilterArrays[T any](slice []T, keep func(T) bool) []T {
 // @param params A map of parameter names to their corresponding values.
 // @return The WebSocket stream string with placeholders replaced by actual values.
 func WsStreamsPlaceholder(stream string, params map[string]string) string {
+	return wsStreamsPlaceholder(stream, params, true)
+}
+
+// WsStreamsPlaceholderPreserveCase replaces placeholders in a WebSocket stream string with actual parameter values,
+// without changing the case of any value. Same as WsStreamsPlaceholder, except that `<symbol>` and `<windowSize>`
+// values are kept as given.
+//
+// @param stream The WebSocket stream string containing placeholders.
+// @param params A map of parameter names to their corresponding values.
+// @return The WebSocket stream string with placeholders replaced by actual values.
+func WsStreamsPlaceholderPreserveCase(stream string, params map[string]string) string {
+	return wsStreamsPlaceholder(stream, params, false)
+}
+
+func wsStreamsPlaceholder(stream string, params map[string]string, lowercaseValues bool) string {
 	cleanParams := make(map[string]string)
 	for k, v := range params {
 		if v != "" {
@@ -1045,10 +1060,13 @@ func WsStreamsPlaceholder(stream string, params map[string]string) string {
 
 		switch nf {
 		case "symbol", "windowsize":
-			if prefix == "_" {
-				return "_" + strings.ToLower(value)
+			if lowercaseValues {
+				value = strings.ToLower(value)
 			}
-			return strings.ToLower(value)
+			if prefix == "_" {
+				return "_" + value
+			}
+			return value
 		case "updatespeed":
 			return "@" + value
 		default:
