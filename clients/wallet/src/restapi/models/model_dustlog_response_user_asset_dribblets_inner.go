@@ -17,8 +17,10 @@ var _ common.MappedNullable = &DustlogResponseUserAssetDribbletsInner{}
 
 // DustlogResponseUserAssetDribbletsInner struct for DustlogResponseUserAssetDribbletsInner
 type DustlogResponseUserAssetDribbletsInner struct {
-	OperateTime              *int64                                                                `json:"operateTime,omitempty"`
-	TotalTransferedAmount    *string                                                               `json:"totalTransferedAmount,omitempty"`
+	OperateTime *int64 `json:"operateTime,omitempty"`
+	// Total transfered BNB amount for this exchange.
+	TotalTransferedAmount *string `json:"totalTransferedAmount,omitempty"`
+	// Total service charge amount for this exchange.
 	TotalServiceChargeAmount *string                                                               `json:"totalServiceChargeAmount,omitempty"`
 	TransId                  *int64                                                                `json:"transId,omitempty"`
 	UserAssetDribbletDetails []DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner `json:"userAssetDribbletDetails,omitempty"`

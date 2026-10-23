@@ -17,24 +17,40 @@ var _ common.MappedNullable = &WithdrawHistoryV1ResponseInner{}
 
 // WithdrawHistoryV1ResponseInner struct for WithdrawHistoryV1ResponseInner
 type WithdrawHistoryV1ResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
-	TrId                 *int64  `json:"trId,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	TransactionFee       *string `json:"transactionFee,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	WithdrawalStatus     *int64  `json:"withdrawalStatus,omitempty"`
-	TravelRuleStatus     *int64  `json:"travelRuleStatus,omitempty"`
-	Address              *string `json:"address,omitempty"`
-	TxId                 *string `json:"txId,omitempty"`
-	ApplyTime            *string `json:"applyTime,omitempty"`
-	Network              *string `json:"network,omitempty"`
-	TransferType         *int64  `json:"transferType,omitempty"`
-	WithdrawOrderId      *string `json:"withdrawOrderId,omitempty"`
-	Info                 *string `json:"info,omitempty"`
-	ConfirmNo            *int64  `json:"confirmNo,omitempty"`
-	WalletType           *int64  `json:"walletType,omitempty"`
-	TxKey                *string `json:"txKey,omitempty"`
-	Questionnaire        *string `json:"questionnaire,omitempty"`
+	// Withdrawal id in Binance
+	Id *string `json:"id,omitempty"`
+	// Travel rule record id
+	TrId *int64 `json:"trId,omitempty"`
+	// withdrawal amount
+	Amount *string `json:"amount,omitempty"`
+	// only available for sAPI requests
+	TransactionFee *string `json:"transactionFee,omitempty"`
+	Coin           *string `json:"coin,omitempty"`
+	// Capital withdrawal status, only available for sAPI requests
+	WithdrawalStatus *int64 `json:"withdrawalStatus,omitempty"`
+	// Travel rule status.
+	TravelRuleStatus *int64  `json:"travelRuleStatus,omitempty"`
+	Address          *string `json:"address,omitempty"`
+	// withdrawal transaction id
+	TxId *string `json:"txId,omitempty"`
+	// UTC time
+	ApplyTime *string `json:"applyTime,omitempty"`
+	Network   *string `json:"network,omitempty"`
+	// 1 for internal transfer, 0 for external transfer, only available for sAPI requests
+	TransferType *int64 `json:"transferType,omitempty"`
+	// will not be returned if there's no withdrawOrderId for this withdraw, only available for sAPI requests
+	WithdrawOrderId *string `json:"withdrawOrderId,omitempty"`
+	// reason for withdrawal failure, only available for sAPI requests
+	Info *string `json:"info,omitempty"`
+	// confirm times for withdraw, only available for sAPI requests
+	ConfirmNo *int64 `json:"confirmNo,omitempty"`
+	// 1: Funding Wallet 0:Spot Wallet, only available for sAPI requests
+	WalletType *int64 `json:"walletType,omitempty"`
+	// only available for sAPI requests
+	TxKey *string `json:"txKey,omitempty"`
+	// The answers of the questionnaire
+	Questionnaire *string `json:"questionnaire,omitempty"`
+	// complete UTC time when user's asset is deduct from withdrawing, only if status =  6(success)
 	CompleteTime         *string `json:"completeTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

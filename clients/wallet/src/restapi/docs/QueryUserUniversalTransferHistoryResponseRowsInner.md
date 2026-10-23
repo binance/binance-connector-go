@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Asset** | Pointer to **string** |  | [optional] 
 **Amount** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | status: CONFIRMED / FAILED / PENDING | [optional] 
 **TranId** | Pointer to **int64** |  | [optional] 
 **Timestamp** | Pointer to **int64** |  | [optional] 
 

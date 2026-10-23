@@ -17,6 +17,7 @@ var _ common.MappedNullable = &DustlogResponse{}
 
 // DustlogResponse struct for DustlogResponse
 type DustlogResponse struct {
+	// Total counts of exchange
 	Total                *int64                                   `json:"total,omitempty"`
 	UserAssetDribblets   []DustlogResponseUserAssetDribbletsInner `json:"userAssetDribblets,omitempty"`
 	AdditionalProperties map[string]interface{}

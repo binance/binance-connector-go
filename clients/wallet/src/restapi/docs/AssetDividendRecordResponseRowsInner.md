@@ -10,7 +10,7 @@ Name         | Type          | Description.  | Notes
 **DivTime** | Pointer to **int64** |  | [optional] 
 **EnInfo** | Pointer to **string** |  | [optional] 
 **TranId** | Pointer to **int64** |  | [optional] 
-**Direction** | Pointer to **int64** |  | [optional] 
+**Direction** | Pointer to **int64** | direction: 1 for Asset credited (inflow), -1 for Asset debited (outflow) | [optional] 
 
 ## Methods
 

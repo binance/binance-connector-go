@@ -17,9 +17,12 @@ var _ common.MappedNullable = &FundingWalletResponseInner{}
 
 // FundingWalletResponseInner struct for FundingWalletResponseInner
 type FundingWalletResponseInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	Free                 *string `json:"free,omitempty"`
-	Locked               *string `json:"locked,omitempty"`
+	Asset *string `json:"asset,omitempty"`
+	// avalible balance
+	Free *string `json:"free,omitempty"`
+	// locked asset
+	Locked *string `json:"locked,omitempty"`
+	// freeze asset
 	Freeze               *string `json:"freeze,omitempty"`
 	Withdrawing          *string `json:"withdrawing,omitempty"`
 	BtcValuation         *string `json:"btcValuation,omitempty"`

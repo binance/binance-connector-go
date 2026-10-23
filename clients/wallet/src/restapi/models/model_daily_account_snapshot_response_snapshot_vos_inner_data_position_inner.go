@@ -17,10 +17,11 @@ var _ common.MappedNullable = &DailyAccountSnapshotResponseSnapshotVosInnerDataP
 
 // DailyAccountSnapshotResponseSnapshotVosInnerDataPositionInner struct for DailyAccountSnapshotResponseSnapshotVosInnerDataPositionInner
 type DailyAccountSnapshotResponseSnapshotVosInnerDataPositionInner struct {
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
+	EntryPrice  *string `json:"entryPrice,omitempty"`
+	MarkPrice   *string `json:"markPrice,omitempty"`
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	Symbol      *string `json:"symbol,omitempty"`
+	// Only show the value at the time of opening the position
 	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

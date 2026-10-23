@@ -17,10 +17,11 @@ var _ common.MappedNullable = &GetAssetsThatCanBeConvertedIntoBnbResponse{}
 
 // GetAssetsThatCanBeConvertedIntoBnbResponse struct for GetAssetsThatCanBeConvertedIntoBnbResponse
 type GetAssetsThatCanBeConvertedIntoBnbResponse struct {
-	Details              []GetAssetsThatCanBeConvertedIntoBnbResponseDetailsInner `json:"details,omitempty"`
-	TotalTransferBtc     *string                                                  `json:"totalTransferBtc,omitempty"`
-	TotalTransferBNB     *string                                                  `json:"totalTransferBNB,omitempty"`
-	DribbletPercentage   *string                                                  `json:"dribbletPercentage,omitempty"`
+	Details          []GetAssetsThatCanBeConvertedIntoBnbResponseDetailsInner `json:"details,omitempty"`
+	TotalTransferBtc *string                                                  `json:"totalTransferBtc,omitempty"`
+	TotalTransferBNB *string                                                  `json:"totalTransferBNB,omitempty"`
+	// Commission fee
+	DribbletPercentage   *string `json:"dribbletPercentage,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

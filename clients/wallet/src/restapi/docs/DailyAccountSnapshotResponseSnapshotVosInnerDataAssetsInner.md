@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** |  | [optional] 
-**MarginBalance** | Pointer to **string** |  | [optional] 
+**MarginBalance** | Pointer to **string** | Not real-time data, can ignore | [optional] 
 **WalletBalance** | Pointer to **string** |  | [optional] 
 
 ## Methods

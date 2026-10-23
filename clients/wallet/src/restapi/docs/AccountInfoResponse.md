@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **VipLevel** | Pointer to **int64** |  | [optional] 
-**IsMarginEnabled** | Pointer to **bool** |  | [optional] 
-**IsFutureEnabled** | Pointer to **bool** |  | [optional] 
-**IsOptionsEnabled** | Pointer to **bool** |  | [optional] 
-**IsPortfolioMarginRetailEnabled** | Pointer to **bool** |  | [optional] 
+**IsMarginEnabled** | Pointer to **bool** | true or false for margin. | [optional] 
+**IsFutureEnabled** | Pointer to **bool** | true or false for futures. | [optional] 
+**IsOptionsEnabled** | Pointer to **bool** | true or false for options. | [optional] 
+**IsPortfolioMarginRetailEnabled** | Pointer to **bool** | true or false for portfolio margin retail. | [optional] 
 
 ## Methods
 

@@ -17,8 +17,11 @@ var _ common.MappedNullable = &WithdrawTravelRuleResponse{}
 
 // WithdrawTravelRuleResponse struct for WithdrawTravelRuleResponse
 type WithdrawTravelRuleResponse struct {
-	TrId                 *int64  `json:"trId,omitempty"`
-	Accepted             *bool   `json:"accepted,omitempty"`
+	// The travel rule record Id
+	TrId *int64 `json:"trId,omitempty"`
+	// Whether the withdraw request is accepted
+	Accepted *bool `json:"accepted,omitempty"`
+	// The detailed infomation of the withdrawal result.
 	Info                 *string `json:"info,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

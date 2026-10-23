@@ -17,7 +17,9 @@ var _ common.MappedNullable = &AccountApiTradingStatusResponseData{}
 
 // AccountApiTradingStatusResponseData struct for AccountApiTradingStatusResponseData
 type AccountApiTradingStatusResponseData struct {
-	IsLocked             *bool                                                `json:"isLocked,omitempty"`
+	// API trading function is locked or not
+	IsLocked *bool `json:"isLocked,omitempty"`
+	// If API trading function is locked, this is the planned recover time
 	PlannedRecoverTime   *int64                                               `json:"plannedRecoverTime,omitempty"`
 	TriggerCondition     *AccountApiTradingStatusResponseDataTriggerCondition `json:"triggerCondition,omitempty"`
 	UpdateTime           *int64                                               `json:"updateTime,omitempty"`

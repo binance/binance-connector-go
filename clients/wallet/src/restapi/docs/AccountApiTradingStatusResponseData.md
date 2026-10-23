@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**IsLocked** | Pointer to **bool** |  | [optional] 
-**PlannedRecoverTime** | Pointer to **int64** |  | [optional] 
+**IsLocked** | Pointer to **bool** | API trading function is locked or not | [optional] 
+**PlannedRecoverTime** | Pointer to **int64** | If API trading function is locked, this is the planned recover time | [optional] 
 **TriggerCondition** | Pointer to [**AccountApiTradingStatusResponseDataTriggerCondition**](AccountApiTradingStatusResponseDataTriggerCondition.md) |  | [optional] 
 **UpdateTime** | Pointer to **int64** |  | [optional] 
 

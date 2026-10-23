@@ -31,9 +31,10 @@ type DepositHistoryTravelRuleResponseInner struct {
 	TxId               *string `json:"txId,omitempty"`
 	InsertTime         *int64  `json:"insertTime,omitempty"`
 	// Timestamp when the deposit was fully completed/credited (epoch ms).
-	CompleteTime         *int64  `json:"completeTime,omitempty"`
-	TransferType         *int64  `json:"transferType,omitempty"`
-	ConfirmTimes         *string `json:"confirmTimes,omitempty"`
+	CompleteTime *int64  `json:"completeTime,omitempty"`
+	TransferType *int64  `json:"transferType,omitempty"`
+	ConfirmTimes *string `json:"confirmTimes,omitempty"`
+	// true: This deposit require user to answer questionnaire to get it credited, false: This deposit doesn't require user to answer questionnaire as it's already completed or information has been verified
 	RequireQuestionnaire *bool   `json:"requireQuestionnaire,omitempty"`
 	Questionnaire        *string `json:"questionnaire,omitempty"`
 	AdditionalProperties map[string]interface{}

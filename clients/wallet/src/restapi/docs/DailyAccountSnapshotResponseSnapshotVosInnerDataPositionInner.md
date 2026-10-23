@@ -8,7 +8,7 @@ Name         | Type          | Description.  | Notes
 **MarkPrice** | Pointer to **string** |  | [optional] 
 **PositionAmt** | Pointer to **string** |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
-**UnRealizedProfit** | Pointer to **string** |  | [optional] 
+**UnRealizedProfit** | Pointer to **string** | Only show the value at the time of opening the position | [optional] 
 
 ## Methods
 

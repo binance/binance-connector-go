@@ -17,7 +17,9 @@ var _ common.MappedNullable = &SystemStatusResponse{}
 
 // SystemStatusResponse struct for SystemStatusResponse
 type SystemStatusResponse struct {
-	Status               *int64  `json:"status,omitempty"`
+	// 0: normal，1：system maintenance
+	Status *int64 `json:"status,omitempty"`
+	// \"normal\", \"system_maintenance\"
 	Msg                  *string `json:"msg,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**WdQuota** | Pointer to **string** |  | [optional] 
-**UsedWdQuota** | Pointer to **string** |  | [optional] 
+**WdQuota** | Pointer to **string** | User&#39;s total withdrawal quota in the past 24 hours (including on-chain withdrawal and internal transfer), unit in USD | [optional] 
+**UsedWdQuota** | Pointer to **string** | User withdrawal quota usage in the past 24 hours, unit in USD | [optional] 
 
 ## Methods
 

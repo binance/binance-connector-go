@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**TrId** | Pointer to **int64** |  | [optional] 
-**Accepted** | Pointer to **bool** |  | [optional] 
-**Info** | Pointer to **string** |  | [optional] 
+**TrId** | Pointer to **int64** | The travel rule record Id | [optional] 
+**Accepted** | Pointer to **bool** | Whether the withdraw request is accepted | [optional] 
+**Info** | Pointer to **string** | The detailed infomation of the withdrawal result. | [optional] 
 
 ## Methods
 

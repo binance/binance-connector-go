@@ -7,7 +7,7 @@ Name         | Type          | Description.  | Notes
 **Details** | Pointer to [**[]GetAssetsThatCanBeConvertedIntoBnbResponseDetailsInner**](GetAssetsThatCanBeConvertedIntoBnbResponseDetailsInner.md) |  | [optional] 
 **TotalTransferBtc** | Pointer to **string** |  | [optional] 
 **TotalTransferBNB** | Pointer to **string** |  | [optional] 
-**DribbletPercentage** | Pointer to **string** |  | [optional] 
+**DribbletPercentage** | Pointer to **string** | Commission fee | [optional] 
 
 ## Methods
 

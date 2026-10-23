@@ -4,22 +4,22 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Amount** | Pointer to **string** |  | [optional] 
-**TransactionFee** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **string** | Withdrawal id in Binance | [optional] 
+**Amount** | Pointer to **string** | withdrawal amount | [optional] 
+**TransactionFee** | Pointer to **string** | transaction fee | [optional] 
 **Coin** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
-**TxId** | Pointer to **string** |  | [optional] 
-**ApplyTime** | Pointer to **string** |  | [optional] 
+**TxId** | Pointer to **string** | withdrawal transaction id | [optional] 
+**ApplyTime** | Pointer to **string** | UTC time | [optional] 
 **Network** | Pointer to **string** |  | [optional] 
-**TransferType** | Pointer to **int64** |  | [optional] 
-**WithdrawOrderId** | Pointer to **string** |  | [optional] 
-**Info** | Pointer to **string** |  | [optional] 
-**ConfirmNo** | Pointer to **int64** |  | [optional] 
-**WalletType** | Pointer to **int64** |  | [optional] 
+**TransferType** | Pointer to **int64** | 1 for internal transfer, 0 for external transfer | [optional] 
+**WithdrawOrderId** | Pointer to **string** | will not be returned if there&#39;s no withdrawOrderId for this withdraw. | [optional] 
+**Info** | Pointer to **string** | reason for withdrawal failure | [optional] 
+**ConfirmNo** | Pointer to **int64** | confirm times for withdraw | [optional] 
+**WalletType** | Pointer to **int64** | 1: Funding Wallet 0:Spot Wallet | [optional] 
 **TxKey** | Pointer to **string** |  | [optional] 
-**CompleteTime** | Pointer to **string** |  | [optional] 
+**CompleteTime** | Pointer to **string** | complete UTC time when user&#39;s asset is deduct from withdrawing, only if status &#x3D;  6(success) | [optional] 
 
 ## Methods
 

@@ -17,13 +17,14 @@ var _ common.MappedNullable = &AssetDividendRecordResponseRowsInner{}
 
 // AssetDividendRecordResponseRowsInner struct for AssetDividendRecordResponseRowsInner
 type AssetDividendRecordResponseRowsInner struct {
-	Id                   *int64  `json:"id,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	DivTime              *int64  `json:"divTime,omitempty"`
-	EnInfo               *string `json:"enInfo,omitempty"`
-	TranId               *int64  `json:"tranId,omitempty"`
-	Direction            *int64  `json:"direction,omitempty"`
+	Id      *int64  `json:"id,omitempty"`
+	Amount  *string `json:"amount,omitempty"`
+	Asset   *string `json:"asset,omitempty"`
+	DivTime *int64  `json:"divTime,omitempty"`
+	EnInfo  *string `json:"enInfo,omitempty"`
+	TranId  *int64  `json:"tranId,omitempty"`
+	// direction: 1 for Asset credited (inflow), -1 for Asset debited (outflow)
+	Direction            *int64 `json:"direction,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

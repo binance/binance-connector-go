@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**GCR** | Pointer to **int64** |  | [optional] 
-**IFER** | Pointer to **int64** |  | [optional] 
-**UFR** | Pointer to **int64** |  | [optional] 
+**GCR** | Pointer to **int64** | Number of GTC orders | [optional] 
+**IFER** | Pointer to **int64** | Number of FOK/IOC orders | [optional] 
+**UFR** | Pointer to **int64** | Number of orders | [optional] 
 
 ## Methods
 

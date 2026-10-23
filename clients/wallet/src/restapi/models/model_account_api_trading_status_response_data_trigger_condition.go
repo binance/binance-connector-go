@@ -17,8 +17,11 @@ var _ common.MappedNullable = &AccountApiTradingStatusResponseDataTriggerConditi
 
 // AccountApiTradingStatusResponseDataTriggerCondition struct for AccountApiTradingStatusResponseDataTriggerCondition
 type AccountApiTradingStatusResponseDataTriggerCondition struct {
-	GCR                  *int64 `json:"GCR,omitempty"`
-	IFER                 *int64 `json:"IFER,omitempty"`
+	// Number of GTC orders
+	GCR *int64 `json:"GCR,omitempty"`
+	// Number of FOK/IOC orders
+	IFER *int64 `json:"IFER,omitempty"`
+	// Number of orders
 	UFR                  *int64 `json:"UFR,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

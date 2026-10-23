@@ -4,10 +4,10 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Coin** | Pointer to **string** |  | [optional] 
+**Coin** | Pointer to **string** | coin here means network address space, ETH for all EVM-like network | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
 **Tag** | Pointer to **string** |  | [optional] 
-**IsDefault** | Pointer to **int64** |  | [optional] 
+**IsDefault** | Pointer to **int64** | &#39;isDefault&#39; is 1 means the address is default, same as shown in the app. | [optional] 
 
 ## Methods
 

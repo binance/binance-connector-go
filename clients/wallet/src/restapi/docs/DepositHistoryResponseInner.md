@@ -13,12 +13,12 @@ Name         | Type          | Description.  | Notes
 **AddressTag** | Pointer to **string** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **InsertTime** | Pointer to **int64** |  | [optional] 
-**CompleteTime** | Pointer to **int64** |  | [optional] 
+**CompleteTime** | Pointer to **int64** | represents deposit completion datetime, available for deposits after 6-Mar-2025. | [optional] 
 **TransferType** | Pointer to **int64** |  | [optional] 
 **ConfirmTimes** | Pointer to **string** |  | [optional] 
 **UnlockConfirm** | Pointer to **int64** |  | [optional] 
 **WalletType** | Pointer to **int64** |  | [optional] 
-**TravelRuleStatus** | Pointer to **int64** |  | [optional] 
+**TravelRuleStatus** | Pointer to **int64** | 0: travel rule not required OR info already provided and funds ready to use, 1: travel rule required to provide deposit info | [optional] 
 
 ## Methods
 

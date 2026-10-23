@@ -5,9 +5,9 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** |  | [optional] 
-**Free** | Pointer to **string** |  | [optional] 
-**Locked** | Pointer to **string** |  | [optional] 
-**Freeze** | Pointer to **string** |  | [optional] 
+**Free** | Pointer to **string** | avalible balance | [optional] 
+**Locked** | Pointer to **string** | locked asset | [optional] 
+**Freeze** | Pointer to **string** | freeze asset | [optional] 
 **Withdrawing** | Pointer to **string** |  | [optional] 
 **BtcValuation** | Pointer to **string** |  | [optional] 
 

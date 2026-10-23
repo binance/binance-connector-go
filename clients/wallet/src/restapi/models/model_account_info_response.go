@@ -17,11 +17,15 @@ var _ common.MappedNullable = &AccountInfoResponse{}
 
 // AccountInfoResponse struct for AccountInfoResponse
 type AccountInfoResponse struct {
-	VipLevel                       *int64 `json:"vipLevel,omitempty"`
-	IsMarginEnabled                *bool  `json:"isMarginEnabled,omitempty"`
-	IsFutureEnabled                *bool  `json:"isFutureEnabled,omitempty"`
-	IsOptionsEnabled               *bool  `json:"isOptionsEnabled,omitempty"`
-	IsPortfolioMarginRetailEnabled *bool  `json:"isPortfolioMarginRetailEnabled,omitempty"`
+	VipLevel *int64 `json:"vipLevel,omitempty"`
+	// true or false for margin.
+	IsMarginEnabled *bool `json:"isMarginEnabled,omitempty"`
+	// true or false for futures.
+	IsFutureEnabled *bool `json:"isFutureEnabled,omitempty"`
+	// true or false for options.
+	IsOptionsEnabled *bool `json:"isOptionsEnabled,omitempty"`
+	// true or false for portfolio margin retail.
+	IsPortfolioMarginRetailEnabled *bool `json:"isPortfolioMarginRetailEnabled,omitempty"`
 	AdditionalProperties           map[string]interface{}
 }
 

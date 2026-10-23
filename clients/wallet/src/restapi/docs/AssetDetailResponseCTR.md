@@ -4,11 +4,11 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**MinWithdrawAmount** | Pointer to **string** |  | [optional] 
-**DepositStatus** | Pointer to **bool** |  | [optional] 
-**WithdrawFee** | Pointer to **int64** |  | [optional] 
-**WithdrawStatus** | Pointer to **bool** |  | [optional] 
-**DepositTip** | Pointer to **string** |  | [optional] 
+**MinWithdrawAmount** | Pointer to **string** | min withdraw amount | [optional] 
+**DepositStatus** | Pointer to **bool** | deposit status (false if ALL of networks&#39; are false) | [optional] 
+**WithdrawFee** | Pointer to **int64** | withdraw fee | [optional] 
+**WithdrawStatus** | Pointer to **bool** | withdraw status (false if ALL of networks&#39; are false) | [optional] 
+**DepositTip** | Pointer to **string** | reason | [optional] 
 
 ## Methods
 

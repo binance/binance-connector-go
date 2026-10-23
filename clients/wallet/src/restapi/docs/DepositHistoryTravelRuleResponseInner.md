@@ -19,7 +19,7 @@ Name         | Type          | Description.  | Notes
 **CompleteTime** | Pointer to **int64** | Timestamp when the deposit was fully completed/credited (epoch ms). | [optional] 
 **TransferType** | Pointer to **int64** |  | [optional] 
 **ConfirmTimes** | Pointer to **string** |  | [optional] 
-**RequireQuestionnaire** | Pointer to **bool** |  | [optional] 
+**RequireQuestionnaire** | Pointer to **bool** | true: This deposit require user to answer questionnaire to get it credited, false: This deposit doesn&#39;t require user to answer questionnaire as it&#39;s already completed or information has been verified | [optional] 
 **Questionnaire** | Pointer to **string** |  | [optional] 
 
 ## Methods

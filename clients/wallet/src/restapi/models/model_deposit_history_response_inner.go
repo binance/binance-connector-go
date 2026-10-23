@@ -17,21 +17,23 @@ var _ common.MappedNullable = &DepositHistoryResponseInner{}
 
 // DepositHistoryResponseInner struct for DepositHistoryResponseInner
 type DepositHistoryResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	Network              *string `json:"network,omitempty"`
-	Status               *int64  `json:"status,omitempty"`
-	Address              *string `json:"address,omitempty"`
-	AddressTag           *string `json:"addressTag,omitempty"`
-	TxId                 *string `json:"txId,omitempty"`
-	InsertTime           *int64  `json:"insertTime,omitempty"`
-	CompleteTime         *int64  `json:"completeTime,omitempty"`
-	TransferType         *int64  `json:"transferType,omitempty"`
-	ConfirmTimes         *string `json:"confirmTimes,omitempty"`
-	UnlockConfirm        *int64  `json:"unlockConfirm,omitempty"`
-	WalletType           *int64  `json:"walletType,omitempty"`
-	TravelRuleStatus     *int64  `json:"travelRuleStatus,omitempty"`
+	Id         *string `json:"id,omitempty"`
+	Amount     *string `json:"amount,omitempty"`
+	Coin       *string `json:"coin,omitempty"`
+	Network    *string `json:"network,omitempty"`
+	Status     *int64  `json:"status,omitempty"`
+	Address    *string `json:"address,omitempty"`
+	AddressTag *string `json:"addressTag,omitempty"`
+	TxId       *string `json:"txId,omitempty"`
+	InsertTime *int64  `json:"insertTime,omitempty"`
+	// represents deposit completion datetime, available for deposits after 6-Mar-2025.
+	CompleteTime  *int64  `json:"completeTime,omitempty"`
+	TransferType  *int64  `json:"transferType,omitempty"`
+	ConfirmTimes  *string `json:"confirmTimes,omitempty"`
+	UnlockConfirm *int64  `json:"unlockConfirm,omitempty"`
+	WalletType    *int64  `json:"walletType,omitempty"`
+	// 0: travel rule not required OR info already provided and funds ready to use, 1: travel rule required to provide deposit info
+	TravelRuleStatus     *int64 `json:"travelRuleStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -17,10 +17,12 @@ var _ common.MappedNullable = &FetchDepositAddressListWithNetworkResponseInner{}
 
 // FetchDepositAddressListWithNetworkResponseInner struct for FetchDepositAddressListWithNetworkResponseInner
 type FetchDepositAddressListWithNetworkResponseInner struct {
-	Coin                 *string `json:"coin,omitempty"`
-	Address              *string `json:"address,omitempty"`
-	Tag                  *string `json:"tag,omitempty"`
-	IsDefault            *int64  `json:"isDefault,omitempty"`
+	// coin here means network address space, ETH for all EVM-like network
+	Coin    *string `json:"coin,omitempty"`
+	Address *string `json:"address,omitempty"`
+	Tag     *string `json:"tag,omitempty"`
+	// 'isDefault' is 1 means the address is default, same as shown in the app.
+	IsDefault            *int64 `json:"isDefault,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

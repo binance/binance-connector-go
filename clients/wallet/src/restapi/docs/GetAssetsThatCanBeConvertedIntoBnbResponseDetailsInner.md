@@ -6,11 +6,11 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Asset** | Pointer to **string** |  | [optional] 
 **AssetFullName** | Pointer to **string** |  | [optional] 
-**AmountFree** | Pointer to **string** |  | [optional] 
-**ToBTC** | Pointer to **string** |  | [optional] 
-**ToBNB** | Pointer to **string** |  | [optional] 
-**ToBNBOffExchange** | Pointer to **string** |  | [optional] 
-**Exchange** | Pointer to **string** |  | [optional] 
+**AmountFree** | Pointer to **string** | Convertible amount | [optional] 
+**ToBTC** | Pointer to **string** | BTC amount | [optional] 
+**ToBNB** | Pointer to **string** | BNB amount（Not deducted commission fee） | [optional] 
+**ToBNBOffExchange** | Pointer to **string** | BNB amount（Deducted commission fee） | [optional] 
+**Exchange** | Pointer to **string** | Commission fee | [optional] 
 
 ## Methods
 

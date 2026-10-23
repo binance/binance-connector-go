@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to **int64** |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **int64** | 0: normal，1：system maintenance | [optional] 
+**Msg** | Pointer to **string** | \&quot;normal\&quot;, \&quot;system_maintenance\&quot; | [optional] 
 
 ## Methods
 

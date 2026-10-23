@@ -17,21 +17,32 @@ var _ common.MappedNullable = &WithdrawHistoryResponseInner{}
 
 // WithdrawHistoryResponseInner struct for WithdrawHistoryResponseInner
 type WithdrawHistoryResponseInner struct {
-	Id                   *string `json:"id,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	TransactionFee       *string `json:"transactionFee,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	Status               *int64  `json:"status,omitempty"`
-	Address              *string `json:"address,omitempty"`
-	TxId                 *string `json:"txId,omitempty"`
-	ApplyTime            *string `json:"applyTime,omitempty"`
-	Network              *string `json:"network,omitempty"`
-	TransferType         *int64  `json:"transferType,omitempty"`
-	WithdrawOrderId      *string `json:"withdrawOrderId,omitempty"`
-	Info                 *string `json:"info,omitempty"`
-	ConfirmNo            *int64  `json:"confirmNo,omitempty"`
-	WalletType           *int64  `json:"walletType,omitempty"`
-	TxKey                *string `json:"txKey,omitempty"`
+	// Withdrawal id in Binance
+	Id *string `json:"id,omitempty"`
+	// withdrawal amount
+	Amount *string `json:"amount,omitempty"`
+	// transaction fee
+	TransactionFee *string `json:"transactionFee,omitempty"`
+	Coin           *string `json:"coin,omitempty"`
+	Status         *int64  `json:"status,omitempty"`
+	Address        *string `json:"address,omitempty"`
+	// withdrawal transaction id
+	TxId *string `json:"txId,omitempty"`
+	// UTC time
+	ApplyTime *string `json:"applyTime,omitempty"`
+	Network   *string `json:"network,omitempty"`
+	// 1 for internal transfer, 0 for external transfer
+	TransferType *int64 `json:"transferType,omitempty"`
+	// will not be returned if there's no withdrawOrderId for this withdraw.
+	WithdrawOrderId *string `json:"withdrawOrderId,omitempty"`
+	// reason for withdrawal failure
+	Info *string `json:"info,omitempty"`
+	// confirm times for withdraw
+	ConfirmNo *int64 `json:"confirmNo,omitempty"`
+	// 1: Funding Wallet 0:Spot Wallet
+	WalletType *int64  `json:"walletType,omitempty"`
+	TxKey      *string `json:"txKey,omitempty"`
+	// complete UTC time when user's asset is deduct from withdrawing, only if status =  6(success)
 	CompleteTime         *string `json:"completeTime,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

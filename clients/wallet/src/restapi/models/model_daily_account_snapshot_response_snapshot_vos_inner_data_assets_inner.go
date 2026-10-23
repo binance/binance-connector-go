@@ -17,7 +17,8 @@ var _ common.MappedNullable = &DailyAccountSnapshotResponseSnapshotVosInnerDataA
 
 // DailyAccountSnapshotResponseSnapshotVosInnerDataAssetsInner struct for DailyAccountSnapshotResponseSnapshotVosInnerDataAssetsInner
 type DailyAccountSnapshotResponseSnapshotVosInnerDataAssetsInner struct {
-	Asset                *string `json:"asset,omitempty"`
+	Asset *string `json:"asset,omitempty"`
+	// Not real-time data, can ignore
 	MarginBalance        *string `json:"marginBalance,omitempty"`
 	WalletBalance        *string `json:"walletBalance,omitempty"`
 	AdditionalProperties map[string]interface{}

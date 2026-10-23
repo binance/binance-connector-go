@@ -17,9 +17,10 @@ var _ common.MappedNullable = &QueryUserUniversalTransferHistoryResponseRowsInne
 
 // QueryUserUniversalTransferHistoryResponseRowsInner struct for QueryUserUniversalTransferHistoryResponseRowsInner
 type QueryUserUniversalTransferHistoryResponseRowsInner struct {
-	Asset                *string `json:"asset,omitempty"`
-	Amount               *string `json:"amount,omitempty"`
-	Type                 *string `json:"type,omitempty"`
+	Asset  *string `json:"asset,omitempty"`
+	Amount *string `json:"amount,omitempty"`
+	Type   *string `json:"type,omitempty"`
+	// status: CONFIRMED / FAILED / PENDING
 	Status               *string `json:"status,omitempty"`
 	TranId               *int64  `json:"tranId,omitempty"`
 	Timestamp            *int64  `json:"timestamp,omitempty"`

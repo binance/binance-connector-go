@@ -17,7 +17,9 @@ var _ common.MappedNullable = &FetchWithdrawQuotaResponse{}
 
 // FetchWithdrawQuotaResponse struct for FetchWithdrawQuotaResponse
 type FetchWithdrawQuotaResponse struct {
-	WdQuota              *string `json:"wdQuota,omitempty"`
+	// User's total withdrawal quota in the past 24 hours (including on-chain withdrawal and internal transfer), unit in USD
+	WdQuota *string `json:"wdQuota,omitempty"`
+	// User withdrawal quota usage in the past 24 hours, unit in USD
 	UsedWdQuota          *string `json:"usedWdQuota,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

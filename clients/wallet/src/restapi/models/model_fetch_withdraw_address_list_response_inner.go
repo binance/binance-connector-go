@@ -17,14 +17,18 @@ var _ common.MappedNullable = &FetchWithdrawAddressListResponseInner{}
 
 // FetchWithdrawAddressListResponseInner struct for FetchWithdrawAddressListResponseInner
 type FetchWithdrawAddressListResponseInner struct {
-	Address              *string `json:"address,omitempty"`
-	AddressTag           *string `json:"addressTag,omitempty"`
-	Coin                 *string `json:"coin,omitempty"`
-	Name                 *string `json:"name,omitempty"`
-	Network              *string `json:"network,omitempty"`
-	Origin               *string `json:"origin,omitempty"`
-	OriginType           *string `json:"originType,omitempty"`
-	WhiteStatus          *bool   `json:"whiteStatus,omitempty"`
+	Address    *string `json:"address,omitempty"`
+	AddressTag *string `json:"addressTag,omitempty"`
+	Coin       *string `json:"coin,omitempty"`
+	// is a user-defined name
+	Name    *string `json:"name,omitempty"`
+	Network *string `json:"network,omitempty"`
+	// if originType != 'others', this value is blank, otherwise the origin is manually filled in by the user
+	Origin *string `json:"origin,omitempty"`
+	// Address source type, including but not limited to: type Exchange Address: Binance, CoinBase, HTX, Bitfinex, OKX, Bithumb, Kraken, Kucoin, Gemini, Bitget, Bybit, Upbit, Gate.io;  type Wallet Address: Binance Web3 Wallet, Trust Wallet, MetaMask, Rabby Wallet, Phantom, OKX Web 3 Wallet, Coinbase Wallet, Bitget Wallet; type Others: others(multilanguage support)
+	OriginType *string `json:"originType,omitempty"`
+	// Is it whitelisted
+	WhiteStatus          *bool `json:"whiteStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

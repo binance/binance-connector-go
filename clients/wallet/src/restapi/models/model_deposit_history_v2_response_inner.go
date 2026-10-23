@@ -17,17 +17,19 @@ var _ common.MappedNullable = &DepositHistoryV2ResponseInner{}
 
 // DepositHistoryV2ResponseInner struct for DepositHistoryV2ResponseInner
 type DepositHistoryV2ResponseInner struct {
-	DepositId            *string                                     `json:"depositId,omitempty"`
-	Amount               *string                                     `json:"amount,omitempty"`
-	Network              *string                                     `json:"network,omitempty"`
-	Coin                 *string                                     `json:"coin,omitempty"`
-	DepositStatus        *int64                                      `json:"depositStatus,omitempty"`
-	TravelRuleReqStatus  *int64                                      `json:"travelRuleReqStatus,omitempty"`
-	Address              *string                                     `json:"address,omitempty"`
-	AddressTag           *string                                     `json:"addressTag,omitempty"`
-	TxId                 *string                                     `json:"txId,omitempty"`
-	TransferType         *int64                                      `json:"transferType,omitempty"`
-	ConfirmTimes         *string                                     `json:"confirmTimes,omitempty"`
+	DepositId     *string `json:"depositId,omitempty"`
+	Amount        *string `json:"amount,omitempty"`
+	Network       *string `json:"network,omitempty"`
+	Coin          *string `json:"coin,omitempty"`
+	DepositStatus *int64  `json:"depositStatus,omitempty"`
+	// 0:PASS,2:REJECTED,3:PENDING,-1:FAILED
+	TravelRuleReqStatus *int64  `json:"travelRuleReqStatus,omitempty"`
+	Address             *string `json:"address,omitempty"`
+	AddressTag          *string `json:"addressTag,omitempty"`
+	TxId                *string `json:"txId,omitempty"`
+	TransferType        *int64  `json:"transferType,omitempty"`
+	ConfirmTimes        *string `json:"confirmTimes,omitempty"`
+	// true: This deposit require user to answer questionnaire to get it credited, false: This deposit doesn't require user to answer questionnaire as it's already completed or information has been verified
 	RequireQuestionnaire *bool                                       `json:"requireQuestionnaire,omitempty"`
 	Questionnaire        *DepositHistoryV2ResponseInnerQuestionnaire `json:"questionnaire,omitempty"`
 	InsertTime           *int64                                      `json:"insertTime,omitempty"`

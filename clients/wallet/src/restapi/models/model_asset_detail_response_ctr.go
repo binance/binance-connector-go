@@ -17,10 +17,15 @@ var _ common.MappedNullable = &AssetDetailResponseCTR{}
 
 // AssetDetailResponseCTR struct for AssetDetailResponseCTR
 type AssetDetailResponseCTR struct {
-	MinWithdrawAmount    *string `json:"minWithdrawAmount,omitempty"`
-	DepositStatus        *bool   `json:"depositStatus,omitempty"`
-	WithdrawFee          *int64  `json:"withdrawFee,omitempty"`
-	WithdrawStatus       *bool   `json:"withdrawStatus,omitempty"`
+	// min withdraw amount
+	MinWithdrawAmount *string `json:"minWithdrawAmount,omitempty"`
+	// deposit status (false if ALL of networks' are false)
+	DepositStatus *bool `json:"depositStatus,omitempty"`
+	// withdraw fee
+	WithdrawFee *int64 `json:"withdrawFee,omitempty"`
+	// withdraw status (false if ALL of networks' are false)
+	WithdrawStatus *bool `json:"withdrawStatus,omitempty"`
+	// reason
 	DepositTip           *string `json:"depositTip,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

@@ -4,7 +4,7 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **int64** |  | [optional] 
+**Total** | Pointer to **int64** | Total counts of exchange | [optional] 
 **UserAssetDribblets** | Pointer to [**[]DustlogResponseUserAssetDribbletsInner**](DustlogResponseUserAssetDribbletsInner.md) |  | [optional] 
 
 ## Methods

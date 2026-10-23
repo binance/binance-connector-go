@@ -23,29 +23,37 @@ type AllCoinsInformationResponseInnerNetworkListInner struct {
 	IsDefault               *bool   `json:"isDefault,omitempty"`
 	DepositEnable           *bool   `json:"depositEnable,omitempty"`
 	WithdrawEnable          *bool   `json:"withdrawEnable,omitempty"`
-	DepositDesc             *string `json:"depositDesc,omitempty"`
-	WithdrawDesc            *string `json:"withdrawDesc,omitempty"`
-	SpecialTips             *string `json:"specialTips,omitempty"`
-	SpecialWithdrawTips     *string `json:"specialWithdrawTips,omitempty"`
-	Name                    *string `json:"name,omitempty"`
-	ResetAddressStatus      *bool   `json:"resetAddressStatus,omitempty"`
-	AddressRegex            *string `json:"addressRegex,omitempty"`
-	MemoRegex               *string `json:"memoRegex,omitempty"`
-	WithdrawFee             *string `json:"withdrawFee,omitempty"`
-	WithdrawMin             *string `json:"withdrawMin,omitempty"`
-	WithdrawMax             *string `json:"withdrawMax,omitempty"`
-	WithdrawInternalMin     *string `json:"withdrawInternalMin,omitempty"`
-	DepositDust             *string `json:"depositDust,omitempty"`
-	MinConfirm              *int64  `json:"minConfirm,omitempty"`
-	UnLockConfirm           *int64  `json:"unLockConfirm,omitempty"`
-	SameAddress             *bool   `json:"sameAddress,omitempty"`
-	WithdrawTag             *bool   `json:"withdrawTag,omitempty"`
-	EstimatedArrivalTime    *int64  `json:"estimatedArrivalTime,omitempty"`
-	Busy                    *bool   `json:"busy,omitempty"`
-	ContractAddressUrl      *string `json:"contractAddressUrl,omitempty"`
-	ContractAddress         *string `json:"contractAddress,omitempty"`
-	Denomination            *int64  `json:"denomination,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// shown only when \"depositEnable\" is false.
+	DepositDesc *string `json:"depositDesc,omitempty"`
+	// shown only when \"withdrawEnable\" is false.
+	WithdrawDesc        *string `json:"withdrawDesc,omitempty"`
+	SpecialTips         *string `json:"specialTips,omitempty"`
+	SpecialWithdrawTips *string `json:"specialWithdrawTips,omitempty"`
+	Name                *string `json:"name,omitempty"`
+	ResetAddressStatus  *bool   `json:"resetAddressStatus,omitempty"`
+	AddressRegex        *string `json:"addressRegex,omitempty"`
+	MemoRegex           *string `json:"memoRegex,omitempty"`
+	WithdrawFee         *string `json:"withdrawFee,omitempty"`
+	WithdrawMin         *string `json:"withdrawMin,omitempty"`
+	WithdrawMax         *string `json:"withdrawMax,omitempty"`
+	// Minimum internal transfer amount
+	WithdrawInternalMin *string `json:"withdrawInternalMin,omitempty"`
+	DepositDust         *string `json:"depositDust,omitempty"`
+	// min number for balance confirmation
+	MinConfirm *int64 `json:"minConfirm,omitempty"`
+	// confirmation number for balance unlock
+	UnLockConfirm *int64 `json:"unLockConfirm,omitempty"`
+	// Obsoleted, recomment to use withdrawTag
+	SameAddress *bool `json:"sameAddress,omitempty"`
+	// If the coin needs to provide memo to withdraw
+	WithdrawTag          *bool   `json:"withdrawTag,omitempty"`
+	EstimatedArrivalTime *int64  `json:"estimatedArrivalTime,omitempty"`
+	Busy                 *bool   `json:"busy,omitempty"`
+	ContractAddressUrl   *string `json:"contractAddressUrl,omitempty"`
+	ContractAddress      *string `json:"contractAddress,omitempty"`
+	// 1 1MBABYDOGE = 1000000 BABYDOGE
+	Denomination         *int64 `json:"denomination,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AllCoinsInformationResponseInnerNetworkListInner AllCoinsInformationResponseInnerNetworkListInner

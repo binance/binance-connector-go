@@ -17,19 +17,27 @@ var _ common.MappedNullable = &GetApiKeyPermissionResponse{}
 
 // GetApiKeyPermissionResponse struct for GetApiKeyPermissionResponse
 type GetApiKeyPermissionResponse struct {
-	IpRestrict                   *bool  `json:"ipRestrict,omitempty"`
-	CreateTime                   *int64 `json:"createTime,omitempty"`
-	EnableReading                *bool  `json:"enableReading,omitempty"`
-	EnableWithdrawals            *bool  `json:"enableWithdrawals,omitempty"`
-	EnableInternalTransfer       *bool  `json:"enableInternalTransfer,omitempty"`
-	EnableMargin                 *bool  `json:"enableMargin,omitempty"`
-	EnableFutures                *bool  `json:"enableFutures,omitempty"`
-	PermitsUniversalTransfer     *bool  `json:"permitsUniversalTransfer,omitempty"`
-	EnableVanillaOptions         *bool  `json:"enableVanillaOptions,omitempty"`
-	EnableFixApiTrade            *bool  `json:"enableFixApiTrade,omitempty"`
-	EnableFixReadOnly            *bool  `json:"enableFixReadOnly,omitempty"`
-	EnableSpotAndMarginTrading   *bool  `json:"enableSpotAndMarginTrading,omitempty"`
-	EnablePortfolioMarginTrading *bool  `json:"enablePortfolioMarginTrading,omitempty"`
+	IpRestrict    *bool  `json:"ipRestrict,omitempty"`
+	CreateTime    *int64 `json:"createTime,omitempty"`
+	EnableReading *bool  `json:"enableReading,omitempty"`
+	// This option allows you to withdraw via API. You must apply the IP Access Restriction filter in order to enable withdrawals
+	EnableWithdrawals *bool `json:"enableWithdrawals,omitempty"`
+	// This option authorizes this key to transfer funds between your master account and your sub account instantly
+	EnableInternalTransfer *bool `json:"enableInternalTransfer,omitempty"`
+	// This option can be adjusted after the Cross Margin account transfer is completed
+	EnableMargin *bool `json:"enableMargin,omitempty"`
+	// The Futures API cannot be used if the API key was created before the Futures account was opened, or if you have enabled portfolio margin.
+	EnableFutures *bool `json:"enableFutures,omitempty"`
+	// Authorizes this key to be used for a dedicated universal transfer API to transfer multiple supported currencies. Each business's own transfer API rights are not affected by this authorization
+	PermitsUniversalTransfer *bool `json:"permitsUniversalTransfer,omitempty"`
+	// Authorizes this key to Vanilla options trading
+	EnableVanillaOptions *bool `json:"enableVanillaOptions,omitempty"`
+	EnableFixApiTrade    *bool `json:"enableFixApiTrade,omitempty"`
+	EnableFixReadOnly    *bool `json:"enableFixReadOnly,omitempty"`
+	// Spot and margin trading
+	EnableSpotAndMarginTrading *bool `json:"enableSpotAndMarginTrading,omitempty"`
+	// API Key created before your activate portfolio margin does not support portfolio margin API service
+	EnablePortfolioMarginTrading *bool `json:"enablePortfolioMarginTrading,omitempty"`
 	AdditionalProperties         map[string]interface{}
 }
 

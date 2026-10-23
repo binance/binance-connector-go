@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **OperateTime** | Pointer to **int64** |  | [optional] 
-**TotalTransferedAmount** | Pointer to **string** |  | [optional] 
-**TotalServiceChargeAmount** | Pointer to **string** |  | [optional] 
+**TotalTransferedAmount** | Pointer to **string** | Total transfered BNB amount for this exchange. | [optional] 
+**TotalServiceChargeAmount** | Pointer to **string** | Total service charge amount for this exchange. | [optional] 
 **TransId** | Pointer to **int64** |  | [optional] 
 **UserAssetDribbletDetails** | Pointer to [**[]DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner**](DustlogResponseUserAssetDribbletsInnerUserAssetDribbletDetailsInner.md) |  | [optional] 
 

@@ -17,7 +17,9 @@ var _ common.MappedNullable = &DailyAccountSnapshotResponse{}
 
 // DailyAccountSnapshotResponse struct for DailyAccountSnapshotResponse
 type DailyAccountSnapshotResponse struct {
-	Code                 *int64                                         `json:"code,omitempty"`
+	// 200 for success; others are error codes
+	Code *int64 `json:"code,omitempty"`
+	// error message
 	Msg                  *string                                        `json:"msg,omitempty"`
 	SnapshotVos          []DailyAccountSnapshotResponseSnapshotVosInner `json:"snapshotVos,omitempty"`
 	AdditionalProperties map[string]interface{}
