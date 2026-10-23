@@ -1,7 +1,7 @@
 /*
 Prediction Trading Streams
 
-Binance Web3 Prediction pushes 14 types of per-user business events in real time via the Binance SApi WebSocket channel, covering trading (market / limit), reward claim, fund transfer and market resolution, plus order book (bid/ask) quotes broadcast per topic. Business events are routed by exact `(topic, userId)` match; order book topics are broadcast to every subscriber. Delivery is at-most-once, ordering is not guaranteed, and offline messages are not cached — pull the latest state via the REST API after reconnecting and deduplicate on `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
+Binance Web3 Prediction pushes 14 kinds of real-time events over the Binance SApi WebSocket channel, covering market and limit trading, reward claims, fund transfers and market resolution, plus order book (bid/ask) quotes per market. Trading events go only to the user they belong to; order book quotes go to everyone subscribed. A message may occasionally be missed, order is not guaranteed, and nothing is stored while you are offline — after reconnecting, fetch the latest state from the REST API and drop duplicates using `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
 */
 
 package models
@@ -17,16 +17,16 @@ var _ common.MappedNullable = &PredictionOrderBookByMarketIdResponse{}
 
 // PredictionOrderBookByMarketIdResponse struct for PredictionOrderBookByMarketIdResponse
 type PredictionOrderBookByMarketIdResponse struct {
-	// Message type, fixed value `orderbook`; use it to dispatch message types.
+	// Message type, always `orderbook`.
 	MsgType *string `json:"msgType,omitempty"`
-	// Binance internal market ID (mapped from the upstream vendor ID), aligned with the REST API.
+	// Market ID of this order book, the same `markets[].marketId` used by the REST API.
 	MarketId *int64 `json:"marketId,omitempty"`
-	// Quote update time, millisecond UTC timestamp. No strict ordering is guaranteed for the same `marketId`, so use this field for out-of-order detection and discard messages older than the current snapshot.
+	// Quote update time in milliseconds (UTC). Messages for the same market may arrive out of order, so discard anything older than the snapshot you already have.
 	UpdateTimestampMs *int64 `json:"updateTimestampMs,omitempty"`
-	// Ask levels sorted by price **ascending**; an empty array means no asks. Typically the top N levels (generally <= 50, depending on upstream policy).
-	Asks [][]string `json:"asks,omitempty"`
-	// Bid levels sorted by price **descending**; an empty array means no bids. Typically the top N levels (generally <= 50, depending on upstream policy).
-	Bids                 [][]string `json:"bids,omitempty"`
+	// Ask levels sorted by price **ascending**, usually the top 50 or fewer; an empty array means no asks. Values may carry floating-point noise (e.g. `6865.999999999999`), so round them before display.
+	Asks [][]float64 `json:"asks,omitempty"`
+	// Bid levels sorted by price **descending**, usually the top 50 or fewer; an empty array means no bids. Values may carry floating-point noise (e.g. `6865.999999999999`), so round them before display.
+	Bids                 [][]float64 `json:"bids,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -146,9 +146,9 @@ func (o *PredictionOrderBookByMarketIdResponse) SetUpdateTimestampMs(v int64) {
 }
 
 // GetAsks returns the Asks field value if set, zero value otherwise.
-func (o *PredictionOrderBookByMarketIdResponse) GetAsks() [][]string {
+func (o *PredictionOrderBookByMarketIdResponse) GetAsks() [][]float64 {
 	if o == nil || common.IsNil(o.Asks) {
-		var ret [][]string
+		var ret [][]float64
 		return ret
 	}
 	return o.Asks
@@ -156,7 +156,7 @@ func (o *PredictionOrderBookByMarketIdResponse) GetAsks() [][]string {
 
 // GetAsksOk returns a tuple with the Asks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PredictionOrderBookByMarketIdResponse) GetAsksOk() ([][]string, bool) {
+func (o *PredictionOrderBookByMarketIdResponse) GetAsksOk() ([][]float64, bool) {
 	if o == nil || common.IsNil(o.Asks) {
 		return nil, false
 	}
@@ -172,15 +172,15 @@ func (o *PredictionOrderBookByMarketIdResponse) HasAsks() bool {
 	return false
 }
 
-// SetAsks gets a reference to the given [][]string and assigns it to the Asks field.
-func (o *PredictionOrderBookByMarketIdResponse) SetAsks(v [][]string) {
+// SetAsks gets a reference to the given [][]float64 and assigns it to the Asks field.
+func (o *PredictionOrderBookByMarketIdResponse) SetAsks(v [][]float64) {
 	o.Asks = v
 }
 
 // GetBids returns the Bids field value if set, zero value otherwise.
-func (o *PredictionOrderBookByMarketIdResponse) GetBids() [][]string {
+func (o *PredictionOrderBookByMarketIdResponse) GetBids() [][]float64 {
 	if o == nil || common.IsNil(o.Bids) {
-		var ret [][]string
+		var ret [][]float64
 		return ret
 	}
 	return o.Bids
@@ -188,7 +188,7 @@ func (o *PredictionOrderBookByMarketIdResponse) GetBids() [][]string {
 
 // GetBidsOk returns a tuple with the Bids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PredictionOrderBookByMarketIdResponse) GetBidsOk() ([][]string, bool) {
+func (o *PredictionOrderBookByMarketIdResponse) GetBidsOk() ([][]float64, bool) {
 	if o == nil || common.IsNil(o.Bids) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *PredictionOrderBookByMarketIdResponse) HasBids() bool {
 	return false
 }
 
-// SetBids gets a reference to the given [][]string and assigns it to the Bids field.
-func (o *PredictionOrderBookByMarketIdResponse) SetBids(v [][]string) {
+// SetBids gets a reference to the given [][]float64 and assigns it to the Bids field.
+func (o *PredictionOrderBookByMarketIdResponse) SetBids(v [][]float64) {
 	o.Bids = v
 }
 

@@ -1,5 +1,46 @@
 ### Changelog
 
+## 1.10.0 - 2026-10-23
+
+### Changed (5)
+
+- Updated `github.com/binance/binance-connector-go/common/v2` library to version `2.11.0`.
+- Update descriptions.
+
+#### WebSocket Streams
+
+- Deleted parameter `id`
+  - affected methods:
+    - `BatchClaimPartiallySucceeded()` (`web3_prediction_pm_claim_partial_success` stream)
+    - `FundTransferFailed()` (`web3_prediction_pm_transfer_fail` stream)
+    - `FundTransferSucceeded()` (`web3_prediction_pm_transfer_success` stream)
+    - `LimitOrderFullyFilled()` (`web3_prediction_pm_limit_order_filled` stream)
+    - `LimitOrderPartiallyFilled()` (`web3_prediction_pm_limit_order_partial_fill` stream)
+    - `LimitOrderSubmissionFailed()` (`web3_prediction_pm_limit_submit_fail` stream)
+    - `LimitOrderSubmittedSuccessfully()` (`web3_prediction_pm_limit_submit_success` stream)
+    - `MarketBuyOrderFailed()` (`web3_prediction_pm_market_buy_fail` stream)
+    - `MarketBuyOrderFullyFilled()` (`web3_prediction_pm_market_buy_success` stream)
+    - `MarketResolutionNotification()` (`web3_prediction_pm_market_close` stream)
+    - `MarketSellOrderFailedExpired()` (`web3_prediction_pm_market_sell_fail` stream)
+    - `MarketSellOrderFullyFilled()` (`web3_prediction_pm_market_sell_success` stream)
+    - `PredictionOrderBookByMarketId()` (`web3_prediction_orderbook_<marketId>` stream)
+    - `RewardClaimFailed()` (`web3_prediction_pm_claim_fail` stream)
+    - `RewardClaimSucceeded()` (`web3_prediction_pm_claim_success` stream)
+- Modified response field `asks`:
+  - items.items: type `string` → `number`
+  - affected events:
+    - `predictionOrderBookByMarketIdResponse`
+- Modified response field `bids`:
+  - items.items: type `string` → `number`
+  - affected events:
+    - `predictionOrderBookByMarketIdResponse`
+
+### Removed (1)
+
+#### WebSocket Streams
+
+- `PredictionOrderBookAll()` (`web3_prediction_orderbook_data` stream)
+
 ## 1.9.0 - 2026-10-15
 
 ### Added (16)

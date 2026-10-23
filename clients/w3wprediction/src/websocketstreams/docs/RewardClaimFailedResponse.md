@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**PushId** | Pointer to **string** | Unique push ID in the form &#x60;pm_&lt;refId&gt;_&lt;scenarioCode&gt;_&lt;8hex&gt;&#x60;, present in every topic; &#x60;refId&#x60; is the claim &#x60;batchId&#x60;. Use it for client-side deduplication. | [optional] 
-**Amount** | Pointer to **string** | Amount of the **first failed claim**, &#x60;dataItems[0].amount&#x60;. Truncated to 2 decimals (towards zero); rendered as &#x60;&lt;0.01&#x60; when the value is below 0.01. | [optional] 
-**Outcome** | Pointer to **string** | Outcome name of the **first failed claim**, &#x60;dataItems[0].outcome.name&#x60; (e.g. &#x60;Yes&#x60; / &#x60;No&#x60; for binary markets). Passed through as-is, never truncated; may be an empty string when the data is missing. | [optional] 
+**PushId** | Pointer to **string** | Unique ID of this push. Use it to remove duplicates. | [optional] 
+**Amount** | Pointer to **string** | Amount of the **first failed claim**. Rounded down to 2 decimals; shown as &#x60;&lt;0.01&#x60; if smaller. | [optional] 
+**Outcome** | Pointer to **string** | Outcome name of the **first failed claim**, such as &#x60;Yes&#x60; or &#x60;No&#x60;; empty if unavailable. | [optional] 
 
 ## Methods
 

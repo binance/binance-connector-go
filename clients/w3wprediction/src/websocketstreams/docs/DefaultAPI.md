@@ -16,7 +16,6 @@ Method        | HTTP request  | Description
 [**MarketResolutionNotification**](DefaultAPI.md#MarketResolutionNotification) | /web3_prediction_pm_market_close | Market resolution notification
 [**MarketSellOrderFailedExpired**](DefaultAPI.md#MarketSellOrderFailedExpired) | /web3_prediction_pm_market_sell_fail | Market sell order failed / expired
 [**MarketSellOrderFullyFilled**](DefaultAPI.md#MarketSellOrderFullyFilled) | /web3_prediction_pm_market_sell_success | Market sell order fully filled
-[**PredictionOrderBookAll**](DefaultAPI.md#PredictionOrderBookAll) | /web3_prediction_orderbook_data | Prediction Order Book All
 [**PredictionOrderBookByMarketId**](DefaultAPI.md#PredictionOrderBookByMarketId) | /web3_prediction_orderbook_&lt;marketId&gt; | Prediction Order Book by marketId
 [**RewardClaimFailed**](DefaultAPI.md#RewardClaimFailed) | /web3_prediction_pm_claim_fail | Reward claim failed
 [**RewardClaimSucceeded**](DefaultAPI.md#RewardClaimSucceeded) | /web3_prediction_pm_claim_success | Reward claim succeeded
@@ -44,7 +43,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -58,7 +56,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.BatchClaimPartiallySucceeded().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.BatchClaimPartiallySucceeded().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.BatchClaimPartiallySucceeded``: %v\n", err)
 		return
@@ -85,9 +83,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -118,7 +114,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -132,7 +127,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.FundTransferFailed().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.FundTransferFailed().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.FundTransferFailed``: %v\n", err)
 		return
@@ -159,9 +154,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -192,7 +185,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -206,7 +198,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.FundTransferSucceeded().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.FundTransferSucceeded().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.FundTransferSucceeded``: %v\n", err)
 		return
@@ -233,9 +225,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -266,7 +256,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -280,7 +269,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderFullyFilled().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderFullyFilled().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.LimitOrderFullyFilled``: %v\n", err)
 		return
@@ -307,9 +296,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -340,7 +327,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -354,7 +340,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderPartiallyFilled().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderPartiallyFilled().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.LimitOrderPartiallyFilled``: %v\n", err)
 		return
@@ -381,9 +367,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -414,7 +398,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -428,7 +411,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderSubmissionFailed().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderSubmissionFailed().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.LimitOrderSubmissionFailed``: %v\n", err)
 		return
@@ -455,9 +438,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -488,7 +469,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -502,7 +482,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderSubmittedSuccessfully().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.LimitOrderSubmittedSuccessfully().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.LimitOrderSubmittedSuccessfully``: %v\n", err)
 		return
@@ -529,9 +509,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -562,7 +540,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -576,7 +553,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketBuyOrderFailed().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketBuyOrderFailed().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.MarketBuyOrderFailed``: %v\n", err)
 		return
@@ -603,9 +580,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -636,7 +611,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -650,7 +624,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketBuyOrderFullyFilled().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketBuyOrderFullyFilled().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.MarketBuyOrderFullyFilled``: %v\n", err)
 		return
@@ -677,9 +651,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -710,7 +682,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -724,7 +695,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketResolutionNotification().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketResolutionNotification().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.MarketResolutionNotification``: %v\n", err)
 		return
@@ -751,9 +722,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -784,7 +753,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -798,7 +766,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketSellOrderFailedExpired().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketSellOrderFailedExpired().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.MarketSellOrderFailedExpired``: %v\n", err)
 		return
@@ -825,9 +793,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -858,7 +824,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -872,7 +837,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketSellOrderFullyFilled().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.MarketSellOrderFullyFilled().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.MarketSellOrderFullyFilled``: %v\n", err)
 		return
@@ -899,83 +864,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
-
-### Authorization
-
-No authorization required
-
-[[Back to README]](../../../README.md)
-
-
-## PredictionOrderBookAll
-
-Prediction Order Book All
-
-
-### Example
-
-```go
-package main
-
-import (
-	"encoding/json"
-	"log"
-	"os"
-	"time"
-
-	models "github.com/binance/binance-connector-go/clients/w3wprediction"
-	responseModels "github.com/binance/binance-connector-go/clients/w3wprediction/src/websocketstreams/models"
-	"github.com/binance/binance-connector-go/common/v2/common"
-)
-
-func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
-
-	configuration := common.NewConfigurationWebsocketStreams(
-		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
-	)
-	wsClient := models.NewBinanceW3wPredictionClient(models.WithWebsocketStreams(configuration))
-
-	// Connect to WebSocket
-	err := wsClient.WebsocketStreams.Connect([]string{})
-	if err != nil {
-		log.Printf("Error connecting to WebSocket: %v\n", err)
-		return
-	}
-
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.PredictionOrderBookAll().Id(id).Execute()
-	if err != nil {
-		log.Println(os.Stderr, "Error when calling `DefaultAPI.PredictionOrderBookAll``: %v\n", err)
-		return
-	}
-
-	handler.On("message", func(message responseModels.PredictionOrderBookAllResponse) {
-		b, _ := json.MarshalIndent(message, "", "  ")
-		log.Printf("Received message: %s\n", string(b))
-	})
-
-	log.Println("Subscribed. Waiting 10 seconds...")
-	time.Sleep(10 * time.Second)
-
-	log.Println("Unsubscribing from stream...")
-	handler.Unsubscribe()
-
-	log.Println("Closing WebSocket connection...")
-	err = wsClient.WebsocketStreams.CloseWebSocketStreamConnection()
-	if err != nil {
-		log.Fatalf("Error closing WebSocket connection: %v", err)
-	}
-}
-```
-
-### Path Parameters
-
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -1006,8 +895,7 @@ import (
 )
 
 func main() {
-	marketId := "8859231" // string | Binance internal market ID to subscribe to.
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
+	marketId := "8859231" // string | Market ID to subscribe to — the `marketId` inside `markets[]` returned by `market/list` or `market/detail`. It is **not** `marketTopicId` and **not** `externalId`. A wrong id is never rejected: subscribing with `marketTopicId`, `externalId`, or with a closed or resolved market returns the same successful `COMMAND` reply as a correct id and then pushes nothing at all, so a stream that stays silent is far more likely a wrong id than a broken connection.
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -1021,7 +909,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.PredictionOrderBookByMarketId().MarketId(marketId).Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.PredictionOrderBookByMarketId().MarketId(marketId).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.PredictionOrderBookByMarketId``: %v\n", err)
 		return
@@ -1050,8 +938,7 @@ func main() {
 
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
- **marketId** | **string** | Binance internal market ID to subscribe to. | 
- **id** | **string** | Unique WebSocket request ID. | 
+ **marketId** | **string** | Market ID to subscribe to — the &#x60;marketId&#x60; inside &#x60;markets[]&#x60; returned by &#x60;market/list&#x60; or &#x60;market/detail&#x60;. It is **not** &#x60;marketTopicId&#x60; and **not** &#x60;externalId&#x60;. A wrong id is never rejected: subscribing with &#x60;marketTopicId&#x60;, &#x60;externalId&#x60;, or with a closed or resolved market returns the same successful &#x60;COMMAND&#x60; reply as a correct id and then pushes nothing at all, so a stream that stays silent is far more likely a wrong id than a broken connection. | 
 
 ### Authorization
 
@@ -1082,7 +969,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -1096,7 +982,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.RewardClaimFailed().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.RewardClaimFailed().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.RewardClaimFailed``: %v\n", err)
 		return
@@ -1123,9 +1009,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 
@@ -1156,7 +1040,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -1170,7 +1053,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.RewardClaimSucceeded().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.RewardClaimSucceeded().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.RewardClaimSucceeded``: %v\n", err)
 		return
@@ -1197,9 +1080,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 

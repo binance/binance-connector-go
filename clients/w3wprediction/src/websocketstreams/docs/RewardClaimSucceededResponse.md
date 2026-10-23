@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**PushId** | Pointer to **string** | Unique push ID in the form &#x60;pm_&lt;refId&gt;_&lt;scenarioCode&gt;_&lt;8hex&gt;&#x60;, present in every topic; &#x60;refId&#x60; is the claim &#x60;batchId&#x60;. Use it for client-side deduplication. | [optional] 
-**Amount** | Pointer to **string** | Total claimed USDT across the batch, &#x60;SUM(dataItems[].amount)&#x60;. Truncated to 2 decimals (towards zero); rendered as &#x60;&lt;0.01&#x60; when the value is below 0.01. | [optional] 
+**PushId** | Pointer to **string** | Unique ID of this push. Use it to remove duplicates. | [optional] 
+**Amount** | Pointer to **string** | Total USDT claimed. Rounded down to 2 decimals; shown as &#x60;&lt;0.01&#x60; if smaller. | [optional] 
 
 ## Methods
 

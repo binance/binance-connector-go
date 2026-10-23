@@ -1,7 +1,7 @@
 /*
 Prediction Trading Streams
 
-Binance Web3 Prediction pushes 14 types of per-user business events in real time via the Binance SApi WebSocket channel, covering trading (market / limit), reward claim, fund transfer and market resolution, plus order book (bid/ask) quotes broadcast per topic. Business events are routed by exact `(topic, userId)` match; order book topics are broadcast to every subscriber. Delivery is at-most-once, ordering is not guaranteed, and offline messages are not cached — pull the latest state via the REST API after reconnecting and deduplicate on `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
+Binance Web3 Prediction pushes 14 kinds of real-time events over the Binance SApi WebSocket channel, covering market and limit trading, reward claims, fund transfers and market resolution, plus order book (bid/ask) quotes per market. Trading events go only to the user they belong to; order book quotes go to everyone subscribed. A message may occasionally be missed, order is not guaranteed, and nothing is stored while you are offline — after reconnecting, fetch the latest state from the REST API and drop duplicates using `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
 */
 
 package models
@@ -17,9 +17,9 @@ var _ common.MappedNullable = &FundTransferFailedResponse{}
 
 // FundTransferFailedResponse struct for FundTransferFailedResponse
 type FundTransferFailedResponse struct {
-	// Unique push ID in the form `pm_<refId>_<scenarioCode>_<8hex>`, present in every topic; `refId` is the `transferId`. Use it for client-side deduplication.
+	// Unique ID of this push. Use it to remove duplicates.
 	PushId *string `json:"pushId,omitempty"`
-	// Original transfer amount, from `FundTransferOrder.fromTokenAmount`. Truncated to 2 decimals (towards zero); rendered as `<0.01` when the value is below 0.01.
+	// Amount of the attempted transfer. Rounded down to 2 decimals; shown as `<0.01` if smaller.
 	Amount               *string `json:"amount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
