@@ -1,7 +1,7 @@
 /*
-Prediction Trading Streams
+Binance Announcements
 
-Binance Web3 Prediction pushes 14 types of per-user business events in real time via the Binance SApi WebSocket channel, covering trading (market / limit), reward claim, fund transfer and market resolution, plus order book (bid/ask) quotes broadcast per topic. Business events are routed by exact `(topic, userId)` match; order book topics are broadcast to every subscriber. Delivery is at-most-once, ordering is not guaranteed, and offline messages are not cached — pull the latest state via the REST API after reconnecting and deduplicate on `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
+Binance announcements in English
 */
 
 package binancecmswebsocketstreams
@@ -13,7 +13,7 @@ import (
 	"github.com/binance/binance-connector-go/common/v2/common"
 )
 
-// WebsocketStreamsClient manages communication with the Binance Prediction Trading Streams WebSocket Streams v1.0.0
+// WebsocketStreamsClient manages communication with the Binance Binance Announcements WebSocket Streams v1.1.0
 type WebsocketStreamsClient struct {
 	cfg       *common.ConfigurationWebsocketStreams
 	userAgent string
@@ -23,7 +23,7 @@ type WebsocketStreamsClient struct {
 	DefaultAPI *DefaultAPIService
 }
 
-// NewWebsocketStreamsClient creates a new Binance Prediction Trading Streams WebSocket Streams client
+// NewWebsocketStreamsClient creates a new Binance Binance Announcements WebSocket Streams client
 //
 // @param cfg *common.ConfigurationWebsocketStreams - The configuration for the WebSocket Streams client
 // @return *WebsocketStreamsClient - The newly created WebSocket Streams client
@@ -33,7 +33,7 @@ func NewWebsocketStreamsClient(cfg *common.ConfigurationWebsocketStreams) *Webso
 	// Signed streams sign the connection URL with the configured credentials
 	cfg.Signed = true
 
-	c.userAgent = "binance-cms/1.0.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
+	c.userAgent = "binance-cms/1.1.0 (Go/" + runtime.Version() + "; " + runtime.GOOS + "; " + runtime.GOARCH + ")"
 
 	wsClient, err := common.NewWebsocketStreams(c.cfg)
 	if err != nil {

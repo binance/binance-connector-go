@@ -29,7 +29,6 @@ import (
 )
 
 func main() {
-	id := "e9d6b4349871b40611412680b3445fac" // string | Unique WebSocket request ID. (optional)
 
 	configuration := common.NewConfigurationWebsocketStreams(
 		common.WithWsBasePath(common.SpotWebsocketStreamsProdUrl),
@@ -43,7 +42,7 @@ func main() {
 		return
 	}
 
-	handler, err := wsClient.WebsocketStreams.DefaultAPI.ComAnnouncementEn().Id(id).Execute()
+	handler, err := wsClient.WebsocketStreams.DefaultAPI.ComAnnouncementEn().Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `DefaultAPI.ComAnnouncementEn``: %v\n", err)
 		return
@@ -70,9 +69,7 @@ func main() {
 
 ### Path Parameters
 
-Name          | Type          | Description   | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string** | Unique WebSocket request ID. | 
+This endpoint does not need any parameter.
 
 ### Authorization
 

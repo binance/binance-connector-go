@@ -1,7 +1,7 @@
 /*
-Prediction Trading Streams
+Binance Announcements
 
-Binance Web3 Prediction pushes 14 types of per-user business events in real time via the Binance SApi WebSocket channel, covering trading (market / limit), reward claim, fund transfer and market resolution, plus order book (bid/ask) quotes broadcast per topic. Business events are routed by exact `(topic, userId)` match; order book topics are broadcast to every subscriber. Delivery is at-most-once, ordering is not guaranteed, and offline messages are not cached — pull the latest state via the REST API after reconnecting and deduplicate on `pushId` (business events) or `marketId` + `updateTimestampMs` (order book).
+Binance announcements in English
 */
 
 package binancecmswebsocketstreams
@@ -16,13 +16,6 @@ type DefaultAPIService Service
 
 type ApiComAnnouncementEnRequest struct {
 	ApiService *DefaultAPIService
-	id         *string
-}
-
-// Unique WebSocket request ID.
-func (r ApiComAnnouncementEnRequest) Id(id string) ApiComAnnouncementEnRequest {
-	r.id = &id
-	return r
 }
 
 func (r ApiComAnnouncementEnRequest) Execute() (*common.StreamHandler[models.ComAnnouncementEnResponse], error) {
@@ -35,7 +28,6 @@ ComAnnouncementEn Method for ComAnnouncementEn
 
 https://developers.binance.com/en/docs/products/announcements/announcement
 
-@param id Unique WebSocket request ID.
 @return ApiComAnnouncementEnRequest
 */
 func (a *DefaultAPIService) ComAnnouncementEn() ApiComAnnouncementEnRequest {
@@ -51,21 +43,11 @@ func (a *DefaultAPIService) ComAnnouncementEnExecute(r ApiComAnnouncementEnReque
 
 	localStream := common.WsStreamsPlaceholder(
 		"/com_announcement_en"[1:],
-		map[string]string{
-			"id": func() string {
-				if r.id == nil {
-					return ""
-				}
-				return *r.id
-			}(),
-		},
+		map[string]string{},
 	)
 	ws := a.client.Ws
 
 	id := []any{common.GenerateUUID()}
-	if r.id != nil {
-		id = []any{*r.id}
-	}
 	resp, err := common.CreateStreamHandler[models.ComAnnouncementEnResponse](&common.StreamHandlerWrapper{
 		WebsocketStreams: ws,
 	}, localStream, id, false)
