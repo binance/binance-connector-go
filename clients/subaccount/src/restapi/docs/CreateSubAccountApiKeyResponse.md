@@ -12,6 +12,8 @@ Name         | Type          | Description.  | Notes
 **CanFuturesTrade** | Pointer to **bool** |  | [optional] 
 **CanUniversalTransfer** | Pointer to **bool** |  | [optional] 
 **CanVanillaOptions** | Pointer to **bool** |  | [optional] 
+**CanFixApiTrading** | Pointer to **bool** |  | [optional] 
+**CanFixApiReading** | Pointer to **bool** |  | [optional] 
 **Status** | Pointer to **int64** |  | [optional] 
 **IpList** | Pointer to **[]string** |  | [optional] 
 
@@ -233,6 +235,56 @@ SetCanVanillaOptions sets CanVanillaOptions field to given value.
 `func (o *CreateSubAccountApiKeyResponse) HasCanVanillaOptions() bool`
 
 HasCanVanillaOptions returns a boolean if a field has been set.
+
+### GetCanFixApiTrading
+
+`func (o *CreateSubAccountApiKeyResponse) GetCanFixApiTrading() bool`
+
+GetCanFixApiTrading returns the CanFixApiTrading field if non-nil, zero value otherwise.
+
+### GetCanFixApiTradingOk
+
+`func (o *CreateSubAccountApiKeyResponse) GetCanFixApiTradingOk() (*bool, bool)`
+
+GetCanFixApiTradingOk returns a tuple with the CanFixApiTrading field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanFixApiTrading
+
+`func (o *CreateSubAccountApiKeyResponse) SetCanFixApiTrading(v bool)`
+
+SetCanFixApiTrading sets CanFixApiTrading field to given value.
+
+### HasCanFixApiTrading
+
+`func (o *CreateSubAccountApiKeyResponse) HasCanFixApiTrading() bool`
+
+HasCanFixApiTrading returns a boolean if a field has been set.
+
+### GetCanFixApiReading
+
+`func (o *CreateSubAccountApiKeyResponse) GetCanFixApiReading() bool`
+
+GetCanFixApiReading returns the CanFixApiReading field if non-nil, zero value otherwise.
+
+### GetCanFixApiReadingOk
+
+`func (o *CreateSubAccountApiKeyResponse) GetCanFixApiReadingOk() (*bool, bool)`
+
+GetCanFixApiReadingOk returns a tuple with the CanFixApiReading field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanFixApiReading
+
+`func (o *CreateSubAccountApiKeyResponse) SetCanFixApiReading(v bool)`
+
+SetCanFixApiReading sets CanFixApiReading field to given value.
+
+### HasCanFixApiReading
+
+`func (o *CreateSubAccountApiKeyResponse) HasCanFixApiReading() bool`
+
+HasCanFixApiReading returns a boolean if a field has been set.
 
 ### GetStatus
 

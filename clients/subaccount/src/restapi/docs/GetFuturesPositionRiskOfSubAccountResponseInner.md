@@ -5,8 +5,8 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **EntryPrice** | Pointer to **string** |  | [optional] 
-**Leverage** | Pointer to **string** |  | [optional] 
-**MaxNotional** | Pointer to **string** |  | [optional] 
+**Leverage** | Pointer to **string** | current initial leverage | [optional] 
+**MaxNotional** | Pointer to **string** | notional value limit of current initial leverage | [optional] 
 **LiquidationPrice** | Pointer to **string** |  | [optional] 
 **MarkPrice** | Pointer to **string** |  | [optional] 
 **PositionAmount** | Pointer to **string** |  | [optional] 

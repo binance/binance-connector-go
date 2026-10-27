@@ -17,10 +17,11 @@ var _ common.MappedNullable = &QueryManagedSubAccountSnapshotResponseSnapshotVos
 
 // QueryManagedSubAccountSnapshotResponseSnapshotVosInnerDataPositionInner struct for QueryManagedSubAccountSnapshotResponseSnapshotVosInnerDataPositionInner
 type QueryManagedSubAccountSnapshotResponseSnapshotVosInnerDataPositionInner struct {
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	MarkPrice            *string `json:"markPrice,omitempty"`
-	PositionAmt          *string `json:"positionAmt,omitempty"`
-	Symbol               *string `json:"symbol,omitempty"`
+	EntryPrice  *string `json:"entryPrice,omitempty"`
+	MarkPrice   *string `json:"markPrice,omitempty"`
+	PositionAmt *string `json:"positionAmt,omitempty"`
+	Symbol      *string `json:"symbol,omitempty"`
+	// Only show the value at the time of opening the position
 	UnRealizedProfit     *string `json:"unRealizedProfit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

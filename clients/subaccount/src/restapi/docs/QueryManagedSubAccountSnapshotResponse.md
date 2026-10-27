@@ -4,8 +4,8 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **int64** |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **int64** | 200 for success; others are error codes | [optional] 
+**Msg** | Pointer to **string** | error message | [optional] 
 **SnapshotVos** | Pointer to [**[]QueryManagedSubAccountSnapshotResponseSnapshotVosInner**](QueryManagedSubAccountSnapshotResponseSnapshotVosInner.md) |  | [optional] 
 
 ## Methods

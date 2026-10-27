@@ -17,8 +17,10 @@ var _ common.MappedNullable = &GetFuturesPositionRiskOfSubAccountResponseInner{}
 
 // GetFuturesPositionRiskOfSubAccountResponseInner struct for GetFuturesPositionRiskOfSubAccountResponseInner
 type GetFuturesPositionRiskOfSubAccountResponseInner struct {
-	EntryPrice           *string `json:"entryPrice,omitempty"`
-	Leverage             *string `json:"leverage,omitempty"`
+	EntryPrice *string `json:"entryPrice,omitempty"`
+	// current initial leverage
+	Leverage *string `json:"leverage,omitempty"`
+	// notional value limit of current initial leverage
 	MaxNotional          *string `json:"maxNotional,omitempty"`
 	LiquidationPrice     *string `json:"liquidationPrice,omitempty"`
 	MarkPrice            *string `json:"markPrice,omitempty"`

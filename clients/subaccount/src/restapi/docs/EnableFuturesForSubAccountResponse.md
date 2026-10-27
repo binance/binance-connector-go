@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** |  | [optional] 
-**IsFuturesEnabled** | Pointer to **bool** |  | [optional] 
+**IsFuturesEnabled** | Pointer to **bool** | true or false | [optional] 
 
 ## Methods
 

@@ -4,9 +4,9 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceLiquidationBar** | Pointer to **string** |  | [optional] 
-**MarginCallBar** | Pointer to **string** |  | [optional] 
-**NormalBar** | Pointer to **string** |  | [optional] 
+**ForceLiquidationBar** | Pointer to **string** | Liquidation margin ratio | [optional] 
+**MarginCallBar** | Pointer to **string** | Margin call margin ratio | [optional] 
+**NormalBar** | Pointer to **string** | Initial margin ratio | [optional] 
 
 ## Methods
 

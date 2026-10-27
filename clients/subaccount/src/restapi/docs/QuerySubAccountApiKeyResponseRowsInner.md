@@ -12,6 +12,8 @@ Name         | Type          | Description.  | Notes
 **CanFuturesTrade** | Pointer to **bool** |  | [optional] 
 **CanUniversalTransfer** | Pointer to **bool** |  | [optional] 
 **CanVanillaOptions** | Pointer to **bool** |  | [optional] 
+**CanFixApiTrading** | Pointer to **bool** |  | [optional] 
+**CanFixApiReading** | Pointer to **bool** |  | [optional] 
 **Timestamp** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -232,6 +234,56 @@ SetCanVanillaOptions sets CanVanillaOptions field to given value.
 `func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanVanillaOptions() bool`
 
 HasCanVanillaOptions returns a boolean if a field has been set.
+
+### GetCanFixApiTrading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiTrading() bool`
+
+GetCanFixApiTrading returns the CanFixApiTrading field if non-nil, zero value otherwise.
+
+### GetCanFixApiTradingOk
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiTradingOk() (*bool, bool)`
+
+GetCanFixApiTradingOk returns a tuple with the CanFixApiTrading field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanFixApiTrading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFixApiTrading(v bool)`
+
+SetCanFixApiTrading sets CanFixApiTrading field to given value.
+
+### HasCanFixApiTrading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFixApiTrading() bool`
+
+HasCanFixApiTrading returns a boolean if a field has been set.
+
+### GetCanFixApiReading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiReading() bool`
+
+GetCanFixApiReading returns the CanFixApiReading field if non-nil, zero value otherwise.
+
+### GetCanFixApiReadingOk
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiReadingOk() (*bool, bool)`
+
+GetCanFixApiReadingOk returns a tuple with the CanFixApiReading field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanFixApiReading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFixApiReading(v bool)`
+
+SetCanFixApiReading sets CanFixApiReading field to given value.
+
+### HasCanFixApiReading
+
+`func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFixApiReading() bool`
+
+HasCanFixApiReading returns a boolean if a field has been set.
 
 ### GetTimestamp
 

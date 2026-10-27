@@ -139,6 +139,8 @@ type ApiCreateSubAccountApiKeyRequest struct {
 	canFuturesTrade      *bool
 	canUniversalTransfer *bool
 	canVanillaOptions    *bool
+	canFixApiTrading     *bool
+	canFixApiReading     *bool
 	ipAddress            *string
 	thirdPartyName       *string
 	publicKey            *string
@@ -193,6 +195,18 @@ func (r ApiCreateSubAccountApiKeyRequest) CanVanillaOptions(canVanillaOptions bo
 	return r
 }
 
+// FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiCreateSubAccountApiKeyRequest) CanFixApiTrading(canFixApiTrading bool) ApiCreateSubAccountApiKeyRequest {
+	r.canFixApiTrading = &canFixApiTrading
+	return r
+}
+
+// FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiCreateSubAccountApiKeyRequest) CanFixApiReading(canFixApiReading bool) ApiCreateSubAccountApiKeyRequest {
+	r.canFixApiReading = &canFixApiReading
+	return r
+}
+
 // Required when status&#x3D;2. IP address list, max 500 chars
 func (r ApiCreateSubAccountApiKeyRequest) IpAddress(ipAddress string) ApiCreateSubAccountApiKeyRequest {
 	r.ipAddress = &ipAddress
@@ -235,6 +249,8 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param canFuturesTrade -  Futures trading permission, default false
 @param canUniversalTransfer -  Universal transfer permission, default false
 @param canVanillaOptions -  Vanilla options permission, default false
+@param canFixApiTrading -  FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
+@param canFixApiReading -  FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
 @param ipAddress -  Required when status=2. IP address list, max 500 chars
 @param thirdPartyName -  Required when status=3. Third-party name
 @param publicKey -  Ed25519 public key (optional, for Ed25519 type API Key)
@@ -288,6 +304,12 @@ func (a *ApiManagementAPIService) CreateSubAccountApiKeyExecute(r ApiCreateSubAc
 	if r.canVanillaOptions != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canVanillaOptions", r.canVanillaOptions, "form", "")
 	}
+	if r.canFixApiTrading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiTrading", r.canFixApiTrading, "form", "")
+	}
+	if r.canFixApiReading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiReading", r.canFixApiReading, "form", "")
+	}
 	if r.ipAddress != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "form", "")
 	}
@@ -302,6 +324,217 @@ func (a *ApiManagementAPIService) CreateSubAccountApiKeyExecute(r ApiCreateSubAc
 	}
 
 	resp, err := SendRequest[models.CreateSubAccountApiKeyResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiCreateSubAccountApiKeyV2Request struct {
+	ctx                  context.Context
+	ApiService           *ApiManagementAPIService
+	email                *string
+	apiName              *string
+	status               *int64
+	canTrade             *bool
+	canMarginLoanRepay   *bool
+	canFuturesTrade      *bool
+	canUniversalTransfer *bool
+	canVanillaOptions    *bool
+	canFixApiTrading     *bool
+	canFixApiReading     *bool
+	ipAddress            *string
+	thirdPartyName       *string
+	publicKey            *string
+	recvWindow           *int64
+}
+
+// Sub-account email
+func (r ApiCreateSubAccountApiKeyV2Request) Email(email string) ApiCreateSubAccountApiKeyV2Request {
+	r.email = &email
+	return r
+}
+
+// API Key name
+func (r ApiCreateSubAccountApiKeyV2Request) ApiName(apiName string) ApiCreateSubAccountApiKeyV2Request {
+	r.apiName = &apiName
+	return r
+}
+
+// IP restriction status. 1 &#x3D; unrestricted, 2 &#x3D; restricted to trusted IPs, 3 &#x3D; third-party IP restriction
+func (r ApiCreateSubAccountApiKeyV2Request) Status(status int64) ApiCreateSubAccountApiKeyV2Request {
+	r.status = &status
+	return r
+}
+
+// Spot &amp; Margin trading permission, default false
+func (r ApiCreateSubAccountApiKeyV2Request) CanTrade(canTrade bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canTrade = &canTrade
+	return r
+}
+
+// Margin borrow/repay permission, default false
+func (r ApiCreateSubAccountApiKeyV2Request) CanMarginLoanRepay(canMarginLoanRepay bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canMarginLoanRepay = &canMarginLoanRepay
+	return r
+}
+
+// Futures trading permission, default false
+func (r ApiCreateSubAccountApiKeyV2Request) CanFuturesTrade(canFuturesTrade bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canFuturesTrade = &canFuturesTrade
+	return r
+}
+
+// Universal transfer permission, default false
+func (r ApiCreateSubAccountApiKeyV2Request) CanUniversalTransfer(canUniversalTransfer bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canUniversalTransfer = &canUniversalTransfer
+	return r
+}
+
+// Vanilla options permission, default false
+func (r ApiCreateSubAccountApiKeyV2Request) CanVanillaOptions(canVanillaOptions bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canVanillaOptions = &canVanillaOptions
+	return r
+}
+
+// FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiCreateSubAccountApiKeyV2Request) CanFixApiTrading(canFixApiTrading bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canFixApiTrading = &canFixApiTrading
+	return r
+}
+
+// FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiCreateSubAccountApiKeyV2Request) CanFixApiReading(canFixApiReading bool) ApiCreateSubAccountApiKeyV2Request {
+	r.canFixApiReading = &canFixApiReading
+	return r
+}
+
+// Required when status&#x3D;2. IP address list, max 500 chars
+func (r ApiCreateSubAccountApiKeyV2Request) IpAddress(ipAddress string) ApiCreateSubAccountApiKeyV2Request {
+	r.ipAddress = &ipAddress
+	return r
+}
+
+// Required when status&#x3D;3. Third-party name
+func (r ApiCreateSubAccountApiKeyV2Request) ThirdPartyName(thirdPartyName string) ApiCreateSubAccountApiKeyV2Request {
+	r.thirdPartyName = &thirdPartyName
+	return r
+}
+
+// RSA or Ed25519 public key (optional). Must be sent in the request body; it is rejected if passed in the URL query string
+func (r ApiCreateSubAccountApiKeyV2Request) PublicKey(publicKey string) ApiCreateSubAccountApiKeyV2Request {
+	r.publicKey = &publicKey
+	return r
+}
+
+func (r ApiCreateSubAccountApiKeyV2Request) RecvWindow(recvWindow int64) ApiCreateSubAccountApiKeyV2Request {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiCreateSubAccountApiKeyV2Request) Execute() (*common.RestApiResponse[models.CreateSubAccountApiKeyV2Response], error) {
+	return r.ApiService.CreateSubAccountApiKeyV2Execute(r)
+}
+
+/*
+CreateSubAccountApiKeyV2 Create Sub-account API Key V2 (For Master Account) (USER_DATA)
+Post /sapi/v2/sub-account/subAccountApi
+
+https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account/api/rest-api/api-management#create-sub-account-api-key-v2
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param email -  Sub-account email
+@param apiName -  API Key name
+@param status -  IP restriction status. 1 = unrestricted, 2 = restricted to trusted IPs, 3 = third-party IP restriction
+@param canTrade -  Spot & Margin trading permission, default false
+@param canMarginLoanRepay -  Margin borrow/repay permission, default false
+@param canFuturesTrade -  Futures trading permission, default false
+@param canUniversalTransfer -  Universal transfer permission, default false
+@param canVanillaOptions -  Vanilla options permission, default false
+@param canFixApiTrading -  FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
+@param canFixApiReading -  FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
+@param ipAddress -  Required when status=2. IP address list, max 500 chars
+@param thirdPartyName -  Required when status=3. Third-party name
+@param publicKey -  RSA or Ed25519 public key (optional). Must be sent in the request body; it is rejected if passed in the URL query string
+@param recvWindow -
+@return ApiCreateSubAccountApiKeyV2Request
+*/
+func (a *ApiManagementAPIService) CreateSubAccountApiKeyV2(ctx context.Context) ApiCreateSubAccountApiKeyV2Request {
+	return ApiCreateSubAccountApiKeyV2Request{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CreateSubAccountApiKeyV2Response
+func (a *ApiManagementAPIService) CreateSubAccountApiKeyV2Execute(r ApiCreateSubAccountApiKeyV2Request) (*common.RestApiResponse[models.CreateSubAccountApiKeyV2Response], error) {
+	localVarHTTPMethod := http.MethodPost
+	localVarPath := a.client.cfg.BasePath + "/sapi/v2/sub-account/subAccountApi"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.email == nil {
+		return nil, common.ReportError("email is required and must be specified")
+	}
+
+	if r.apiName == nil {
+		return nil, common.ReportError("apiName is required and must be specified")
+	}
+
+	if r.status == nil {
+		return nil, common.ReportError("status is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "apiName", r.apiName, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	if r.canTrade != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canTrade", r.canTrade, "form", "")
+	}
+	if r.canMarginLoanRepay != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canMarginLoanRepay", r.canMarginLoanRepay, "form", "")
+	}
+	if r.canFuturesTrade != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFuturesTrade", r.canFuturesTrade, "form", "")
+	}
+	if r.canUniversalTransfer != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canUniversalTransfer", r.canUniversalTransfer, "form", "")
+	}
+	if r.canVanillaOptions != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canVanillaOptions", r.canVanillaOptions, "form", "")
+	}
+	if r.canFixApiTrading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiTrading", r.canFixApiTrading, "form", "")
+	}
+	if r.canFixApiReading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiReading", r.canFixApiReading, "form", "")
+	}
+	if r.ipAddress != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "ipAddress", r.ipAddress, "form", "")
+	}
+	if r.thirdPartyName != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "thirdPartyName", r.thirdPartyName, "form", "")
+	}
+	if r.publicKey != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "publicKey", r.publicKey, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.CreateSubAccountApiKeyV2Response](
 		r.ctx,
 		localVarPath,
 		localVarHTTPMethod,
@@ -600,6 +833,8 @@ type ApiModifySubAccountApiKeyPermissionRequest struct {
 	canFuturesTrade      *bool
 	canUniversalTransfer *bool
 	canVanillaOptions    *bool
+	canFixApiTrading     *bool
+	canFixApiReading     *bool
 	recvWindow           *int64
 }
 
@@ -645,6 +880,18 @@ func (r ApiModifySubAccountApiKeyPermissionRequest) CanVanillaOptions(canVanilla
 	return r
 }
 
+// FIX API Trading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiModifySubAccountApiKeyPermissionRequest) CanFixApiTrading(canFixApiTrading bool) ApiModifySubAccountApiKeyPermissionRequest {
+	r.canFixApiTrading = &canFixApiTrading
+	return r
+}
+
+// FIX API Reading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60;
+func (r ApiModifySubAccountApiKeyPermissionRequest) CanFixApiReading(canFixApiReading bool) ApiModifySubAccountApiKeyPermissionRequest {
+	r.canFixApiReading = &canFixApiReading
+	return r
+}
+
 func (r ApiModifySubAccountApiKeyPermissionRequest) RecvWindow(recvWindow int64) ApiModifySubAccountApiKeyPermissionRequest {
 	r.recvWindow = &recvWindow
 	return r
@@ -668,6 +915,8 @@ https://developers.binance.com/en/docs/catalog/vip-and-institutional-sub-account
 @param canFuturesTrade -  Futures trading permission
 @param canUniversalTransfer -  Universal transfer permission
 @param canVanillaOptions -  Vanilla options permission
+@param canFixApiTrading -  FIX API Trading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
+@param canFixApiReading -  FIX API Reading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation`
 @param recvWindow -
 @return ApiModifySubAccountApiKeyPermissionRequest
 */
@@ -712,6 +961,12 @@ func (a *ApiManagementAPIService) ModifySubAccountApiKeyPermissionExecute(r ApiM
 	}
 	if r.canVanillaOptions != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canVanillaOptions", r.canVanillaOptions, "form", "")
+	}
+	if r.canFixApiTrading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiTrading", r.canFixApiTrading, "form", "")
+	}
+	if r.canFixApiReading != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "canFixApiReading", r.canFixApiReading, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

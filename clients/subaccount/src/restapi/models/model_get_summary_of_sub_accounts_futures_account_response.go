@@ -17,16 +17,17 @@ var _ common.MappedNullable = &GetSummaryOfSubAccountsFuturesAccountResponse{}
 
 // GetSummaryOfSubAccountsFuturesAccountResponse struct for GetSummaryOfSubAccountsFuturesAccountResponse
 type GetSummaryOfSubAccountsFuturesAccountResponse struct {
-	TotalInitialMargin          *string                                                            `json:"totalInitialMargin,omitempty"`
-	TotalMaintenanceMargin      *string                                                            `json:"totalMaintenanceMargin,omitempty"`
-	TotalMarginBalance          *string                                                            `json:"totalMarginBalance,omitempty"`
-	TotalOpenOrderInitialMargin *string                                                            `json:"totalOpenOrderInitialMargin,omitempty"`
-	TotalPositionInitialMargin  *string                                                            `json:"totalPositionInitialMargin,omitempty"`
-	TotalUnrealizedProfit       *string                                                            `json:"totalUnrealizedProfit,omitempty"`
-	TotalWalletBalance          *string                                                            `json:"totalWalletBalance,omitempty"`
-	Asset                       *string                                                            `json:"asset,omitempty"`
-	SubAccountList              []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner `json:"subAccountList,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	TotalInitialMargin          *string `json:"totalInitialMargin,omitempty"`
+	TotalMaintenanceMargin      *string `json:"totalMaintenanceMargin,omitempty"`
+	TotalMarginBalance          *string `json:"totalMarginBalance,omitempty"`
+	TotalOpenOrderInitialMargin *string `json:"totalOpenOrderInitialMargin,omitempty"`
+	TotalPositionInitialMargin  *string `json:"totalPositionInitialMargin,omitempty"`
+	TotalUnrealizedProfit       *string `json:"totalUnrealizedProfit,omitempty"`
+	TotalWalletBalance          *string `json:"totalWalletBalance,omitempty"`
+	// The sum of BUSD and USDT
+	Asset                *string                                                            `json:"asset,omitempty"`
+	SubAccountList       []GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner `json:"subAccountList,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetSummaryOfSubAccountsFuturesAccountResponse GetSummaryOfSubAccountsFuturesAccountResponse

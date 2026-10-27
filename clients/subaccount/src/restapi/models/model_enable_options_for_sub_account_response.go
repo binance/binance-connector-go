@@ -17,8 +17,9 @@ var _ common.MappedNullable = &EnableOptionsForSubAccountResponse{}
 
 // EnableOptionsForSubAccountResponse struct for EnableOptionsForSubAccountResponse
 type EnableOptionsForSubAccountResponse struct {
-	Email                *string `json:"email,omitempty"`
-	IsEOptionsEnabled    *bool   `json:"isEOptionsEnabled,omitempty"`
+	Email *string `json:"email,omitempty"`
+	// true or false
+	IsEOptionsEnabled    *bool `json:"isEOptionsEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

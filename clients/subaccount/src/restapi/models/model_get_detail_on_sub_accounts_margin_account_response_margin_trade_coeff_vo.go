@@ -17,8 +17,11 @@ var _ common.MappedNullable = &GetDetailOnSubAccountsMarginAccountResponseMargin
 
 // GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo struct for GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo
 type GetDetailOnSubAccountsMarginAccountResponseMarginTradeCoeffVo struct {
-	ForceLiquidationBar  *string `json:"forceLiquidationBar,omitempty"`
-	MarginCallBar        *string `json:"marginCallBar,omitempty"`
+	// Liquidation margin ratio
+	ForceLiquidationBar *string `json:"forceLiquidationBar,omitempty"`
+	// Margin call margin ratio
+	MarginCallBar *string `json:"marginCallBar,omitempty"`
+	// Initial margin ratio
 	NormalBar            *string `json:"normalBar,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

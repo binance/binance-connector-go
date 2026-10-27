@@ -6,6 +6,7 @@ Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**AddIpRestrictionForSubAccountApiKey**](ApiManagementAPI.md#AddIpRestrictionForSubAccountApiKey) | **Post** /sapi/v2/sub-account/subAccountApi/ipRestriction | Add IP Restriction for Sub-Account API key (For Master Account) (USER_DATA)
 [**CreateSubAccountApiKey**](ApiManagementAPI.md#CreateSubAccountApiKey) | **Post** /sapi/v1/sub-account/subAccountApi | Create Sub-account API Key (For Master Account) (USER_DATA)
+[**CreateSubAccountApiKeyV2**](ApiManagementAPI.md#CreateSubAccountApiKeyV2) | **Post** /sapi/v2/sub-account/subAccountApi | Create Sub-account API Key V2 (For Master Account) (USER_DATA)
 [**DeleteIpListForASubAccountApiKey**](ApiManagementAPI.md#DeleteIpListForASubAccountApiKey) | **Delete** /sapi/v1/sub-account/subAccountApi/ipRestriction/ipList | Delete IP List For a Sub-account API Key (For Master Account) (USER_DATA)
 [**DeleteSubAccountApiKey**](ApiManagementAPI.md#DeleteSubAccountApiKey) | **Delete** /sapi/v1/sub-account/subAccountApi | Delete Sub-account API Key (For Master Account) (USER_DATA)
 [**GetIpRestrictionForASubAccountApiKey**](ApiManagementAPI.md#GetIpRestrictionForASubAccountApiKey) | **Get** /sapi/v1/sub-account/subAccountApi/ipRestriction | Get IP Restriction for a Sub-account API Key (For Master Account) (USER_DATA)
@@ -91,7 +92,7 @@ No authorization required
 
 ## CreateSubAccountApiKey
 
-> CreateSubAccountApiKeyResponse CreateSubAccountApiKey(ctx).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
+> CreateSubAccountApiKeyResponse CreateSubAccountApiKey(ctx).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
 
 Create Sub-account API Key (For Master Account) (USER_DATA)
 
@@ -120,6 +121,8 @@ func main() {
 	canFuturesTrade := false // bool | Futures trading permission, default false (optional)
 	canUniversalTransfer := false // bool | Universal transfer permission, default false (optional)
 	canVanillaOptions := false // bool | Vanilla options permission, default false (optional)
+	canFixApiTrading := true // bool | FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
+	canFixApiReading := false // bool | FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
 	ipAddress := "69.210.67.14" // string | Required when status=2. IP address list, max 500 chars (optional)
 	thirdPartyName := "thirdParty" // string | Required when status=3. Third-party name (optional)
 	publicKey := "publicKey_example" // string | Ed25519 public key (optional, for Ed25519 type API Key) (optional)
@@ -132,7 +135,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKey(context.Background()).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKey(context.Background()).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `ApiManagementAPI.CreateSubAccountApiKey``: %v\n", err)
 		return
@@ -159,6 +162,8 @@ Name          | Type          | Description   | Notes
  **canFuturesTrade** | **bool** | Futures trading permission, default false | 
  **canUniversalTransfer** | **bool** | Universal transfer permission, default false | 
  **canVanillaOptions** | **bool** | Vanilla options permission, default false | 
+ **canFixApiTrading** | **bool** | FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
+ **canFixApiReading** | **bool** | FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
  **ipAddress** | **string** | Required when status&#x3D;2. IP address list, max 500 chars | 
  **thirdPartyName** | **string** | Required when status&#x3D;3. Third-party name | 
  **publicKey** | **string** | Ed25519 public key (optional, for Ed25519 type API Key) | 
@@ -167,6 +172,100 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**CreateSubAccountApiKeyResponse**](CreateSubAccountApiKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## CreateSubAccountApiKeyV2
+
+> CreateSubAccountApiKeyV2Response CreateSubAccountApiKeyV2(ctx).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
+
+Create Sub-account API Key V2 (For Master Account) (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/subaccount"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	email := "123@test.com" // string | Sub-account email
+	apiName := "myKey" // string | API Key name
+	status := int64(2) // int64 | IP restriction status. 1 = unrestricted, 2 = restricted to trusted IPs, 3 = third-party IP restriction
+	canTrade := true // bool | Spot & Margin trading permission, default false (optional)
+	canMarginLoanRepay := false // bool | Margin borrow/repay permission, default false (optional)
+	canFuturesTrade := false // bool | Futures trading permission, default false (optional)
+	canUniversalTransfer := false // bool | Universal transfer permission, default false (optional)
+	canVanillaOptions := false // bool | Vanilla options permission, default false (optional)
+	canFixApiTrading := true // bool | FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
+	canFixApiReading := false // bool | FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
+	ipAddress := "69.210.67.14" // string | Required when status=2. IP address list, max 500 chars (optional)
+	thirdPartyName := "thirdParty" // string | Required when status=3. Third-party name (optional)
+	publicKey := "publicKey_example" // string | RSA or Ed25519 public key (optional). Must be sent in the request body; it is rejected if passed in the URL query string (optional)
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKeyV2(context.Background()).Email(email).ApiName(apiName).Status(status).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).IpAddress(ipAddress).ThirdPartyName(thirdPartyName).PublicKey(publicKey).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `ApiManagementAPI.CreateSubAccountApiKeyV2``: %v\n", err)
+		return
+	}
+
+	// response from `CreateSubAccountApiKeyV2`: CreateSubAccountApiKeyV2Response
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **string** | Sub-account email | 
+ **apiName** | **string** | API Key name | 
+ **status** | **int64** | IP restriction status. 1 &#x3D; unrestricted, 2 &#x3D; restricted to trusted IPs, 3 &#x3D; third-party IP restriction | 
+ **canTrade** | **bool** | Spot &amp; Margin trading permission, default false | 
+ **canMarginLoanRepay** | **bool** | Margin borrow/repay permission, default false | 
+ **canFuturesTrade** | **bool** | Futures trading permission, default false | 
+ **canUniversalTransfer** | **bool** | Universal transfer permission, default false | 
+ **canVanillaOptions** | **bool** | Vanilla options permission, default false | 
+ **canFixApiTrading** | **bool** | FIX API Trading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
+ **canFixApiReading** | **bool** | FIX API Reading permission. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
+ **ipAddress** | **string** | Required when status&#x3D;2. IP address list, max 500 chars | 
+ **thirdPartyName** | **string** | Required when status&#x3D;3. Third-party name | 
+ **publicKey** | **string** | RSA or Ed25519 public key (optional). Must be sent in the request body; it is rejected if passed in the URL query string | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**CreateSubAccountApiKeyV2Response**](CreateSubAccountApiKeyV2Response.md)
 
 ### Authorization
 
@@ -399,7 +498,7 @@ No authorization required
 
 ## ModifySubAccountApiKeyPermission
 
-> ModifySubAccountApiKeyPermissionResponse ModifySubAccountApiKeyPermission(ctx).Email(email).SubAccountApiKey(subAccountApiKey).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).RecvWindow(recvWindow).Execute()
+> ModifySubAccountApiKeyPermissionResponse ModifySubAccountApiKeyPermission(ctx).Email(email).SubAccountApiKey(subAccountApiKey).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).RecvWindow(recvWindow).Execute()
 
 Modify Sub-account API Key Permission (For Master Account) (USER_DATA)
 
@@ -427,6 +526,8 @@ func main() {
 	canFuturesTrade := true // bool | Futures trading permission (optional)
 	canUniversalTransfer := false // bool | Universal transfer permission (optional)
 	canVanillaOptions := false // bool | Vanilla options permission (optional)
+	canFixApiTrading := true // bool | FIX API Trading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
+	canFixApiReading := false // bool | FIX API Reading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to `true` for any other key type returns `-9000` `Unsupported operation` (optional)
 	recvWindow := int64(5000) // int64 |  (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -436,7 +537,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceSubAccountClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.ApiManagementAPI.ModifySubAccountApiKeyPermission(context.Background()).Email(email).SubAccountApiKey(subAccountApiKey).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.ApiManagementAPI.ModifySubAccountApiKeyPermission(context.Background()).Email(email).SubAccountApiKey(subAccountApiKey).CanTrade(canTrade).CanMarginLoanRepay(canMarginLoanRepay).CanFuturesTrade(canFuturesTrade).CanUniversalTransfer(canUniversalTransfer).CanVanillaOptions(canVanillaOptions).CanFixApiTrading(canFixApiTrading).CanFixApiReading(canFixApiReading).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `ApiManagementAPI.ModifySubAccountApiKeyPermission``: %v\n", err)
 		return
@@ -462,6 +563,8 @@ Name          | Type          | Description   | Notes
  **canFuturesTrade** | **bool** | Futures trading permission | 
  **canUniversalTransfer** | **bool** | Universal transfer permission | 
  **canVanillaOptions** | **bool** | Vanilla options permission | 
+ **canFixApiTrading** | **bool** | FIX API Trading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
+ **canFixApiReading** | **bool** | FIX API Reading permission. If omitted, the existing value is unchanged. Only supported for API Keys using an Ed25519 public key. Setting it to &#x60;true&#x60; for any other key type returns &#x60;-9000&#x60; &#x60;Unsupported operation&#x60; | 
  **recvWindow** | **int64** |  | 
 
 ### Return type

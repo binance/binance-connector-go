@@ -12,7 +12,7 @@ Name         | Type          | Description.  | Notes
 **TotalPositionInitialMargin** | Pointer to **string** |  | [optional] 
 **TotalUnrealizedProfit** | Pointer to **string** |  | [optional] 
 **TotalWalletBalance** | Pointer to **string** |  | [optional] 
-**Asset** | Pointer to **string** |  | [optional] 
+**Asset** | Pointer to **string** | The sum of BUSD and USDT | [optional] 
 
 ## Methods
 

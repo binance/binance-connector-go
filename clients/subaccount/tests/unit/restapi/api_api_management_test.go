@@ -105,7 +105,7 @@ func Test_binancesubaccountrestapi_ApiManagementAPIService(t *testing.T) {
 	t.Run("Test ApiManagementAPIService CreateSubAccountApiKey Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"apiName":"myKey","apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","secretKey":"NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"status":2,"ipList":["69.210.67.14"]}`
+		mockedJSON = `{"apiName":"myKey","apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","secretKey":"NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"canFixApiTrading":true,"canFixApiReading":false,"status":2,"ipList":["69.210.67.14"]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -176,6 +176,85 @@ func Test_binancesubaccountrestapi_ApiManagementAPIService(t *testing.T) {
 		)
 
 		resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKey(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test ApiManagementAPIService CreateSubAccountApiKeyV2 Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"apiName":"myKey","apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","secretKey":"NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"canFixApiTrading":true,"canFixApiReading":false,"status":2,"ipList":["69.210.67.14"]}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/sapi/v2/sub-account/subAccountApi", r.URL.Path)
+			require.Equal(t, "123@test.com", r.URL.Query().Get("email"))
+			require.Equal(t, "myKey", r.URL.Query().Get("apiName"))
+			require.Equal(t, "2", r.URL.Query().Get("status"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CreateSubAccountApiKeyV2Response
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSubAccountClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKeyV2(context.Background()).Email("123@test.com").ApiName("myKey").Status(int64(2)).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CreateSubAccountApiKeyV2Response]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CreateSubAccountApiKeyV2Response{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test ApiManagementAPIService CreateSubAccountApiKeyV2 Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceSubAccountClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKeyV2(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test ApiManagementAPIService CreateSubAccountApiKeyV2 Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceSubAccountClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.ApiManagementAPI.CreateSubAccountApiKeyV2(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)
@@ -418,7 +497,7 @@ func Test_binancesubaccountrestapi_ApiManagementAPIService(t *testing.T) {
 	t.Run("Test ApiManagementAPIService ModifySubAccountApiKeyPermission Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":true,"canUniversalTransfer":false,"canVanillaOptions":false,"timestamp":1640000000000}`
+		mockedJSON = `{"apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":true,"canUniversalTransfer":false,"canVanillaOptions":false,"canFixApiTrading":true,"canFixApiReading":false,"timestamp":1640000000000}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -496,7 +575,7 @@ func Test_binancesubaccountrestapi_ApiManagementAPIService(t *testing.T) {
 	t.Run("Test ApiManagementAPIService QuerySubAccountApiKey Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"total":1,"rows":[{"email":"123@test.com","apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"timestamp":1640000000000}]}`
+		mockedJSON = `{"total":1,"rows":[{"email":"123@test.com","apiName":"myKey","apikey":"k5V49ldtn4tszj6W3hystegdfvmGbqDzjmkCtpTvC0G74WhK7yd4rfCTo4lShf","canTrade":true,"canMarginLoanRepay":false,"canFuturesTrade":false,"canUniversalTransfer":false,"canVanillaOptions":false,"canFixApiTrading":true,"canFixApiReading":false,"timestamp":1640000000000}]}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

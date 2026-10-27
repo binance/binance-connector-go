@@ -6,12 +6,12 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **CounterParty** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int64** |  | [optional] 
+**Type** | Pointer to **int64** | 1 for transfer in, 2 for transfer out | [optional] 
 **Asset** | Pointer to **string** |  | [optional] 
 **Qty** | Pointer to **string** |  | [optional] 
 **FromAccountType** | Pointer to **string** |  | [optional] 
 **ToAccountType** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | status: PROCESS / SUCCESS / FAILURE | [optional] 
 **TranId** | Pointer to **int64** |  | [optional] 
 **Time** | Pointer to **int64** |  | [optional] 
 

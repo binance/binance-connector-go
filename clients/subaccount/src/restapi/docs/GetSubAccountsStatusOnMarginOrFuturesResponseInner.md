@@ -4,13 +4,13 @@
 
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**IsSubUserEnabled** | Pointer to **bool** |  | [optional] 
-**IsUserActive** | Pointer to **bool** |  | [optional] 
-**InsertTime** | Pointer to **int64** |  | [optional] 
-**IsMarginEnabled** | Pointer to **bool** |  | [optional] 
-**IsFutureEnabled** | Pointer to **bool** |  | [optional] 
-**Mobile** | Pointer to **int64** |  | [optional] 
+**Email** | Pointer to **string** | user email | [optional] 
+**IsSubUserEnabled** | Pointer to **bool** | true or false | [optional] 
+**IsUserActive** | Pointer to **bool** | true or false | [optional] 
+**InsertTime** | Pointer to **int64** | sub account create time | [optional] 
+**IsMarginEnabled** | Pointer to **bool** | true or false for margin | [optional] 
+**IsFutureEnabled** | Pointer to **bool** | true or false for futures. | [optional] 
+**Mobile** | Pointer to **int64** | user mobile number | [optional] 
 
 ## Methods
 

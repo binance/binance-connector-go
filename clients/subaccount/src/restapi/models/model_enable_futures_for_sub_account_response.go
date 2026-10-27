@@ -17,8 +17,9 @@ var _ common.MappedNullable = &EnableFuturesForSubAccountResponse{}
 
 // EnableFuturesForSubAccountResponse struct for EnableFuturesForSubAccountResponse
 type EnableFuturesForSubAccountResponse struct {
-	Email                *string `json:"email,omitempty"`
-	IsFuturesEnabled     *bool   `json:"isFuturesEnabled,omitempty"`
+	Email *string `json:"email,omitempty"`
+	// true or false
+	IsFuturesEnabled     *bool `json:"isFuturesEnabled,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -25,6 +25,8 @@ type QuerySubAccountApiKeyResponseRowsInner struct {
 	CanFuturesTrade      *bool   `json:"canFuturesTrade,omitempty"`
 	CanUniversalTransfer *bool   `json:"canUniversalTransfer,omitempty"`
 	CanVanillaOptions    *bool   `json:"canVanillaOptions,omitempty"`
+	CanFixApiTrading     *bool   `json:"canFixApiTrading,omitempty"`
+	CanFixApiReading     *bool   `json:"canFixApiReading,omitempty"`
 	Timestamp            *int64  `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -304,6 +306,70 @@ func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanVanillaOptions(v bool) {
 	o.CanVanillaOptions = &v
 }
 
+// GetCanFixApiTrading returns the CanFixApiTrading field value if set, zero value otherwise.
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiTrading() bool {
+	if o == nil || common.IsNil(o.CanFixApiTrading) {
+		var ret bool
+		return ret
+	}
+	return *o.CanFixApiTrading
+}
+
+// GetCanFixApiTradingOk returns a tuple with the CanFixApiTrading field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiTradingOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanFixApiTrading) {
+		return nil, false
+	}
+	return o.CanFixApiTrading, true
+}
+
+// HasCanFixApiTrading returns a boolean if a field has been set.
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFixApiTrading() bool {
+	if o != nil && !common.IsNil(o.CanFixApiTrading) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanFixApiTrading gets a reference to the given bool and assigns it to the CanFixApiTrading field.
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFixApiTrading(v bool) {
+	o.CanFixApiTrading = &v
+}
+
+// GetCanFixApiReading returns the CanFixApiReading field value if set, zero value otherwise.
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiReading() bool {
+	if o == nil || common.IsNil(o.CanFixApiReading) {
+		var ret bool
+		return ret
+	}
+	return *o.CanFixApiReading
+}
+
+// GetCanFixApiReadingOk returns a tuple with the CanFixApiReading field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QuerySubAccountApiKeyResponseRowsInner) GetCanFixApiReadingOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.CanFixApiReading) {
+		return nil, false
+	}
+	return o.CanFixApiReading, true
+}
+
+// HasCanFixApiReading returns a boolean if a field has been set.
+func (o *QuerySubAccountApiKeyResponseRowsInner) HasCanFixApiReading() bool {
+	if o != nil && !common.IsNil(o.CanFixApiReading) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanFixApiReading gets a reference to the given bool and assigns it to the CanFixApiReading field.
+func (o *QuerySubAccountApiKeyResponseRowsInner) SetCanFixApiReading(v bool) {
+	o.CanFixApiReading = &v
+}
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *QuerySubAccountApiKeyResponseRowsInner) GetTimestamp() int64 {
 	if o == nil || common.IsNil(o.Timestamp) {
@@ -370,6 +436,12 @@ func (o QuerySubAccountApiKeyResponseRowsInner) ToMap() (map[string]interface{},
 	if !common.IsNil(o.CanVanillaOptions) {
 		toSerialize["canVanillaOptions"] = o.CanVanillaOptions
 	}
+	if !common.IsNil(o.CanFixApiTrading) {
+		toSerialize["canFixApiTrading"] = o.CanFixApiTrading
+	}
+	if !common.IsNil(o.CanFixApiReading) {
+		toSerialize["canFixApiReading"] = o.CanFixApiReading
+	}
 	if !common.IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
@@ -403,6 +475,8 @@ func (o *QuerySubAccountApiKeyResponseRowsInner) UnmarshalJSON(data []byte) (err
 		delete(additionalProperties, "canFuturesTrade")
 		delete(additionalProperties, "canUniversalTransfer")
 		delete(additionalProperties, "canVanillaOptions")
+		delete(additionalProperties, "canFixApiTrading")
+		delete(additionalProperties, "canFixApiReading")
 		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}

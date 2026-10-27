@@ -17,13 +17,15 @@ var _ common.MappedNullable = &SubAccountTransferHistoryResponseInner{}
 
 // SubAccountTransferHistoryResponseInner struct for SubAccountTransferHistoryResponseInner
 type SubAccountTransferHistoryResponseInner struct {
-	CounterParty         *string `json:"counterParty,omitempty"`
-	Email                *string `json:"email,omitempty"`
-	Type                 *int64  `json:"type,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
-	Qty                  *string `json:"qty,omitempty"`
-	FromAccountType      *string `json:"fromAccountType,omitempty"`
-	ToAccountType        *string `json:"toAccountType,omitempty"`
+	CounterParty *string `json:"counterParty,omitempty"`
+	Email        *string `json:"email,omitempty"`
+	// 1 for transfer in, 2 for transfer out
+	Type            *int64  `json:"type,omitempty"`
+	Asset           *string `json:"asset,omitempty"`
+	Qty             *string `json:"qty,omitempty"`
+	FromAccountType *string `json:"fromAccountType,omitempty"`
+	ToAccountType   *string `json:"toAccountType,omitempty"`
+	// status: PROCESS / SUCCESS / FAILURE
 	Status               *string `json:"status,omitempty"`
 	TranId               *int64  `json:"tranId,omitempty"`
 	Time                 *int64  `json:"time,omitempty"`

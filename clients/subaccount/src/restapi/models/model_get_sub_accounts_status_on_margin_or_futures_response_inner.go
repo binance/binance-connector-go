@@ -17,13 +17,20 @@ var _ common.MappedNullable = &GetSubAccountsStatusOnMarginOrFuturesResponseInne
 
 // GetSubAccountsStatusOnMarginOrFuturesResponseInner struct for GetSubAccountsStatusOnMarginOrFuturesResponseInner
 type GetSubAccountsStatusOnMarginOrFuturesResponseInner struct {
-	Email                *string `json:"email,omitempty"`
-	IsSubUserEnabled     *bool   `json:"isSubUserEnabled,omitempty"`
-	IsUserActive         *bool   `json:"isUserActive,omitempty"`
-	InsertTime           *int64  `json:"insertTime,omitempty"`
-	IsMarginEnabled      *bool   `json:"isMarginEnabled,omitempty"`
-	IsFutureEnabled      *bool   `json:"isFutureEnabled,omitempty"`
-	Mobile               *int64  `json:"mobile,omitempty"`
+	// user email
+	Email *string `json:"email,omitempty"`
+	// true or false
+	IsSubUserEnabled *bool `json:"isSubUserEnabled,omitempty"`
+	// true or false
+	IsUserActive *bool `json:"isUserActive,omitempty"`
+	// sub account create time
+	InsertTime *int64 `json:"insertTime,omitempty"`
+	// true or false for margin
+	IsMarginEnabled *bool `json:"isMarginEnabled,omitempty"`
+	// true or false for futures.
+	IsFutureEnabled *bool `json:"isFutureEnabled,omitempty"`
+	// user mobile number
+	Mobile               *int64 `json:"mobile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 

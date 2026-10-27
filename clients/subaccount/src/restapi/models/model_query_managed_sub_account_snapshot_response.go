@@ -17,7 +17,9 @@ var _ common.MappedNullable = &QueryManagedSubAccountSnapshotResponse{}
 
 // QueryManagedSubAccountSnapshotResponse struct for QueryManagedSubAccountSnapshotResponse
 type QueryManagedSubAccountSnapshotResponse struct {
-	Code                 *int64                                                   `json:"code,omitempty"`
+	// 200 for success; others are error codes
+	Code *int64 `json:"code,omitempty"`
+	// error message
 	Msg                  *string                                                  `json:"msg,omitempty"`
 	SnapshotVos          []QueryManagedSubAccountSnapshotResponseSnapshotVosInner `json:"snapshotVos,omitempty"`
 	AdditionalProperties map[string]interface{}

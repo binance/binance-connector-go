@@ -25,8 +25,9 @@ type GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner struct {
 	TotalPositionInitialMargin  *string `json:"totalPositionInitialMargin,omitempty"`
 	TotalUnrealizedProfit       *string `json:"totalUnrealizedProfit,omitempty"`
 	TotalWalletBalance          *string `json:"totalWalletBalance,omitempty"`
-	Asset                       *string `json:"asset,omitempty"`
-	AdditionalProperties        map[string]interface{}
+	// The sum of BUSD and USDT
+	Asset                *string `json:"asset,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner GetSummaryOfSubAccountsFuturesAccountResponseSubAccountListInner

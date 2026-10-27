@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** |  | [optional] 
-**IsEOptionsEnabled** | Pointer to **bool** |  | [optional] 
+**IsEOptionsEnabled** | Pointer to **bool** | true or false | [optional] 
 
 ## Methods
 
