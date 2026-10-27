@@ -16,9 +16,10 @@ type ExchangeInfoSymbolStatusParameter string
 
 // List of exchangeInfo_symbolStatus_parameter
 const (
-	ExchangeInfoSymbolStatusParameterTrading ExchangeInfoSymbolStatusParameter = "TRADING"
-	ExchangeInfoSymbolStatusParameterHalt    ExchangeInfoSymbolStatusParameter = "HALT"
-	ExchangeInfoSymbolStatusParameterBreak   ExchangeInfoSymbolStatusParameter = "BREAK"
+	ExchangeInfoSymbolStatusParameterTrading    ExchangeInfoSymbolStatusParameter = "TRADING"
+	ExchangeInfoSymbolStatusParameterHalt       ExchangeInfoSymbolStatusParameter = "HALT"
+	ExchangeInfoSymbolStatusParameterBreak      ExchangeInfoSymbolStatusParameter = "BREAK"
+	ExchangeInfoSymbolStatusParameterCancelOnly ExchangeInfoSymbolStatusParameter = "CANCEL_ONLY"
 )
 
 // All allowed values of ExchangeInfoSymbolStatusParameter enum
@@ -26,6 +27,7 @@ var AllowedExchangeInfoSymbolStatusParameterEnumValues = []ExchangeInfoSymbolSta
 	"TRADING",
 	"HALT",
 	"BREAK",
+	"CANCEL_ONLY",
 }
 
 func (v *ExchangeInfoSymbolStatusParameter) UnmarshalJSON(src []byte) error {

@@ -56,7 +56,7 @@ func (r ApiExchangeInfoRequest) ShowPermissionSets(showPermissionSets bool) ApiE
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;.
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;.
 func (r ApiExchangeInfoRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExchangeInfoRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -86,7 +86,7 @@ ExchangeInfo Exchange information
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#exchange-info
 
-@param id Client-generated request identifier.	@param symbol Describe a single symbol	@param symbols Describe multiple symbols	@param permissions Filter symbols by permissions	@param showPermissionSets Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true`.	@param symbolStatus Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`. Cannot be used in combination with `symbol` or `symbols`.
+@param id Client-generated request identifier.	@param symbol Describe a single symbol	@param symbols Describe multiple symbols	@param permissions Filter symbols by permissions	@param showPermissionSets Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true`.	@param symbolStatus Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`. Cannot be used in combination with `symbol` or `symbols`.
 @return ApiExchangeInfoRequest
 */
 func (a *GeneralAPIService) ExchangeInfo() ApiExchangeInfoRequest {
@@ -160,7 +160,7 @@ func (r ApiExecutionRulesRequest) Symbols(symbols []string) ApiExecutionRulesReq
 	return r
 }
 
-// Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiExecutionRulesRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiExecutionRulesRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -190,7 +190,7 @@ ExecutionRules Query Execution Rules
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/general#execution-rules
 
-@param id Client-generated request identifier.	@param symbol Query for specified symbol.	@param symbols Query for multiple symbols.	@param symbolStatus Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol Query for specified symbol.	@param symbols Query for multiple symbols.	@param symbolStatus Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiExecutionRulesRequest
 */
 func (a *GeneralAPIService) ExecutionRules() ApiExecutionRulesRequest {

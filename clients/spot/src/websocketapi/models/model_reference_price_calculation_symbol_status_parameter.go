@@ -16,9 +16,10 @@ type ReferencePriceCalculationSymbolStatusParameter string
 
 // List of referencePriceCalculation_symbolStatus_parameter
 const (
-	ReferencePriceCalculationSymbolStatusParameterTrading ReferencePriceCalculationSymbolStatusParameter = "TRADING"
-	ReferencePriceCalculationSymbolStatusParameterHalt    ReferencePriceCalculationSymbolStatusParameter = "HALT"
-	ReferencePriceCalculationSymbolStatusParameterBreak   ReferencePriceCalculationSymbolStatusParameter = "BREAK"
+	ReferencePriceCalculationSymbolStatusParameterTrading    ReferencePriceCalculationSymbolStatusParameter = "TRADING"
+	ReferencePriceCalculationSymbolStatusParameterHalt       ReferencePriceCalculationSymbolStatusParameter = "HALT"
+	ReferencePriceCalculationSymbolStatusParameterBreak      ReferencePriceCalculationSymbolStatusParameter = "BREAK"
+	ReferencePriceCalculationSymbolStatusParameterCancelOnly ReferencePriceCalculationSymbolStatusParameter = "CANCEL_ONLY"
 )
 
 // All allowed values of ReferencePriceCalculationSymbolStatusParameter enum
@@ -26,6 +27,7 @@ var AllowedReferencePriceCalculationSymbolStatusParameterEnumValues = []Referenc
 	"TRADING",
 	"HALT",
 	"BREAK",
+	"CANCEL_ONLY",
 }
 
 func (v *ReferencePriceCalculationSymbolStatusParameter) UnmarshalJSON(src []byte) error {

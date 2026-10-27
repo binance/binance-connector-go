@@ -715,7 +715,7 @@ func (r ApiReferencePriceCalculationRequest) Symbol(symbol string) ApiReferenceP
 	return r
 }
 
-// Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiReferencePriceCalculationRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiReferencePriceCalculationRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -733,7 +733,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param symbolStatus -  Supported values: `TRADING`, `HALT`, `BREAK`
+@param symbolStatus -  Supported values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiReferencePriceCalculationRequest
 */
 func (a *MarketAPIService) ReferencePriceCalculation(ctx context.Context) ApiReferencePriceCalculationRequest {

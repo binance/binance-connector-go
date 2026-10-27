@@ -628,7 +628,7 @@ func (r ApiTickerRequest) WindowSize(windowSize models.TickerWindowSizeParameter
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiTickerRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -658,7 +658,7 @@ Ticker Rolling window price change statistics
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker
 
-@param id Client-generated request identifier.	@param symbol Query ticker of a single symbol	@param symbols Query ticker for multiple symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param windowSize Defaults to 1d if no parameter provided.	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol Query ticker of a single symbol	@param symbols Query ticker for multiple symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param windowSize Defaults to 1d if no parameter provided.	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiTickerRequest
 */
 func (a *MarketAPIService) Ticker() ApiTickerRequest {
@@ -737,7 +737,7 @@ func (r ApiTicker24hrRequest) Type(type_ models.TickerTypeParameter) ApiTicker24
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiTicker24hrRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTicker24hrRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -767,7 +767,7 @@ Ticker24hr 24hr ticker price change statistics
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker24hr
 
-@param id Client-generated request identifier.	@param symbol	@param symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol	@param symbols	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiTicker24hrRequest
 */
 func (a *MarketAPIService) Ticker24hr() ApiTicker24hrRequest {
@@ -838,7 +838,7 @@ func (r ApiTickerBookRequest) Symbols(symbols []string) ApiTickerBookRequest {
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiTickerBookRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerBookRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -868,7 +868,7 @@ TickerBook Symbol order book ticker
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-book
 
-@param id Client-generated request identifier.	@param symbol Query ticker for a single symbol	@param symbols Query ticker for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol Query ticker for a single symbol	@param symbols Query ticker for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiTickerBookRequest
 */
 func (a *MarketAPIService) TickerBook() ApiTickerBookRequest {
@@ -936,7 +936,7 @@ func (r ApiTickerPriceRequest) Symbols(symbols []string) ApiTickerPriceRequest {
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiTickerPriceRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerPriceRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -966,7 +966,7 @@ TickerPrice Symbol price ticker
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-price
 
-@param id Client-generated request identifier.	@param symbol Query price for a single symbol	@param symbols Query price for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol Query price for a single symbol	@param symbols Query price for multiple symbols	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiTickerPriceRequest
 */
 func (a *MarketAPIService) TickerPrice() ApiTickerPriceRequest {
@@ -1046,7 +1046,7 @@ func (r ApiTickerTradingDayRequest) Type(type_ models.TickerTypeParameter) ApiTi
 	return r
 }
 
-// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;
+// Filters for symbols that have this &#x60;tradingStatus&#x60;. For a single symbol, a status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;
 func (r ApiTickerTradingDayRequest) SymbolStatus(symbolStatus models.ExchangeInfoSymbolStatusParameter) ApiTickerTradingDayRequest {
 	r.symbolStatus = &symbolStatus
 	return r
@@ -1076,7 +1076,7 @@ TickerTradingDay Trading Day Ticker
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#ticker-trading-day
 
-@param id Client-generated request identifier.	@param symbol	@param symbols	@param timeZone Default: 0 (UTC)	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`
+@param id Client-generated request identifier.	@param symbol	@param symbols	@param timeZone Default: 0 (UTC)	@param type_ Ticker type. Supported values: FULL (default) or MINI	@param symbolStatus Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`
 @return ApiTickerTradingDayRequest
 */
 func (a *MarketAPIService) TickerTradingDay() ApiTickerTradingDayRequest {

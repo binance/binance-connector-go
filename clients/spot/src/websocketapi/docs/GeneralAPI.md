@@ -36,7 +36,7 @@ func main() {
 	symbols := []string{"BTCUSDT"} // []string | Describe multiple symbols (optional)
 	permissions := []string{"SPOT"} // []string | Filter symbols by permissions (optional)
 	showPermissionSets := true // bool | Controls whether the content of the `permissionSets` field is populated or not. Defaults to `true`. (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`. Cannot be used in combination with `symbol` or `symbols`. (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY`. Cannot be used in combination with `symbol` or `symbols`. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -79,7 +79,7 @@ Name          | Type          | Description   | Notes
  **symbols** | **[]string** | Describe multiple symbols | 
  **permissions** | **[]string** | Filter symbols by permissions | 
  **showPermissionSets** | **bool** | Controls whether the content of the &#x60;permissionSets&#x60; field is populated or not. Defaults to &#x60;true&#x60;. | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;. | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. Valid values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60;. Cannot be used in combination with &#x60;symbol&#x60; or &#x60;symbols&#x60;. | 
 
 ### Return type
 
@@ -116,7 +116,7 @@ func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	symbol := "BAZUSD" // string | Query for specified symbol. (optional)
 	symbols := []string{"BAZUSD"} // []string | Query for multiple symbols. (optional)
-	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK` (optional)
+	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY` (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -157,7 +157,7 @@ Name          | Type          | Description   | Notes
  **id** | **string** | Client-generated request identifier. | 
  **symbol** | **string** | Query for specified symbol. | 
  **symbols** | **[]string** | Query for multiple symbols. | 
- **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60; | 
+ **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Query for all symbols with the specified status. Supported values: &#x60;TRADING&#x60;, &#x60;HALT&#x60;, &#x60;BREAK&#x60;, &#x60;CANCEL_ONLY&#x60; | 
 
 ### Return type
 

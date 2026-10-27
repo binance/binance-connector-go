@@ -16,9 +16,10 @@ type TickerSymbolStatusParameter string
 
 // List of ticker_symbolStatus_parameter
 const (
-	TickerSymbolStatusParameterTrading TickerSymbolStatusParameter = "TRADING"
-	TickerSymbolStatusParameterHalt    TickerSymbolStatusParameter = "HALT"
-	TickerSymbolStatusParameterBreak   TickerSymbolStatusParameter = "BREAK"
+	TickerSymbolStatusParameterTrading    TickerSymbolStatusParameter = "TRADING"
+	TickerSymbolStatusParameterHalt       TickerSymbolStatusParameter = "HALT"
+	TickerSymbolStatusParameterBreak      TickerSymbolStatusParameter = "BREAK"
+	TickerSymbolStatusParameterCancelOnly TickerSymbolStatusParameter = "CANCEL_ONLY"
 )
 
 // All allowed values of TickerSymbolStatusParameter enum
@@ -26,6 +27,7 @@ var AllowedTickerSymbolStatusParameterEnumValues = []TickerSymbolStatusParameter
 	"TRADING",
 	"HALT",
 	"BREAK",
+	"CANCEL_ONLY",
 }
 
 func (v *TickerSymbolStatusParameter) UnmarshalJSON(src []byte) error {
