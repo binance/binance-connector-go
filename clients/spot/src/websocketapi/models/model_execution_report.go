@@ -109,6 +109,10 @@ type ExecutionReport struct {
 	SmallpL *string `json:"pL,omitempty"`
 	// Prevented Execution Quote Qty
 	SmallpY *string `json:"pY,omitempty"`
+	// Quote Notional Limit. Appears only if the order was placed with a quote notional limit.
+	Qq *string `json:"Qq,omitempty"`
+	// Effective Self Trade Prevention Mode. Appears on prevented-match reports when the applied STP mode differs from the order's `selfTradePreventionMode`. Values: `EXPIRE_MAKER`, `EXPIRE_BOTH`, `DECREMENT`.
+	SmalleV *string `json:"eV,omitempty"`
 	// Match Type
 	Smallb *string `json:"b,omitempty"`
 	// Allocation ID
@@ -1622,6 +1626,70 @@ func (o *ExecutionReport) SetSmallpY(v string) {
 	o.SmallpY = &v
 }
 
+// GetQq returns the Qq field value if set, zero value otherwise.
+func (o *ExecutionReport) GetQq() string {
+	if o == nil || common.IsNil(o.Qq) {
+		var ret string
+		return ret
+	}
+	return *o.Qq
+}
+
+// GetQqOk returns a tuple with the Qq field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecutionReport) GetQqOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Qq) {
+		return nil, false
+	}
+	return o.Qq, true
+}
+
+// HasQq returns a boolean if a field has been set.
+func (o *ExecutionReport) HasQq() bool {
+	if o != nil && !common.IsNil(o.Qq) {
+		return true
+	}
+
+	return false
+}
+
+// SetQq gets a reference to the given string and assigns it to the Qq field.
+func (o *ExecutionReport) SetQq(v string) {
+	o.Qq = &v
+}
+
+// GetEV returns the EV field value if set, zero value otherwise.
+func (o *ExecutionReport) GetSmalleV() string {
+	if o == nil || common.IsNil(o.SmalleV) {
+		var ret string
+		return ret
+	}
+	return *o.SmalleV
+}
+
+// GetEVOk returns a tuple with the EV field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecutionReport) GetSmalleVOk() (*string, bool) {
+	if o == nil || common.IsNil(o.SmalleV) {
+		return nil, false
+	}
+	return o.SmalleV, true
+}
+
+// HasEV returns a boolean if a field has been set.
+func (o *ExecutionReport) HasSmalleV() bool {
+	if o != nil && !common.IsNil(o.SmalleV) {
+		return true
+	}
+
+	return false
+}
+
+// SetEV gets a reference to the given string and assigns it to the EV field.
+func (o *ExecutionReport) SetSmalleV(v string) {
+	o.SmalleV = &v
+}
+
 // GetB returns the B field value if set, zero value otherwise.
 func (o *ExecutionReport) GetSmallb() string {
 	if o == nil || common.IsNil(o.Smallb) {
@@ -2058,6 +2126,12 @@ func (o ExecutionReport) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.SmallpY) {
 		toSerialize["pY"] = o.SmallpY
 	}
+	if !common.IsNil(o.Qq) {
+		toSerialize["Qq"] = o.Qq
+	}
+	if !common.IsNil(o.SmalleV) {
+		toSerialize["eV"] = o.SmalleV
+	}
 	if !common.IsNil(o.Smallb) {
 		toSerialize["b"] = o.Smallb
 	}
@@ -2153,6 +2227,8 @@ func (o *ExecutionReport) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pl")
 		delete(additionalProperties, "pL")
 		delete(additionalProperties, "pY")
+		delete(additionalProperties, "Qq")
+		delete(additionalProperties, "eV")
 		delete(additionalProperties, "b")
 		delete(additionalProperties, "a")
 		delete(additionalProperties, "k")

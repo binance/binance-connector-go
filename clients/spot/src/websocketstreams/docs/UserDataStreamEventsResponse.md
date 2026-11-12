@@ -51,6 +51,8 @@ Name         | Type          | Description.  | Notes
 **Pl** | Pointer to **string** | Prevented Execution Quantity | [optional] 
 **PL** | Pointer to **string** | Prevented Execution Price | [optional] 
 **PY** | Pointer to **string** | Prevented Execution Quote Qty | [optional] 
+**Qq** | Pointer to **string** | Quote Notional Limit. Appears only if the order was placed with a quote notional limit. | [optional] 
+**EV** | Pointer to **string** | Effective Self Trade Prevention Mode. Appears on prevented-match reports when the applied STP mode differs from the order&#39;s &#x60;selfTradePreventionMode&#x60;. Values: &#x60;EXPIRE_MAKER&#x60;, &#x60;EXPIRE_BOTH&#x60;, &#x60;DECREMENT&#x60;. | [optional] 
 **B** | Pointer to **string** | Match Type | [optional] 
 **K** | Pointer to **string** | Working Floor | [optional] 
 **US** | Pointer to **bool** | UsedSor | [optional] 
@@ -1263,6 +1265,56 @@ SetPY sets PY field to given value.
 `func (o *UserDataStreamEventsResponse) HasPY() bool`
 
 HasPY returns a boolean if a field has been set.
+
+### GetQq
+
+`func (o *UserDataStreamEventsResponse) GetQq() string`
+
+GetQq returns the Qq field if non-nil, zero value otherwise.
+
+### GetQqOk
+
+`func (o *UserDataStreamEventsResponse) GetQqOk() (*string, bool)`
+
+GetQqOk returns a tuple with the Qq field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQq
+
+`func (o *UserDataStreamEventsResponse) SetQq(v string)`
+
+SetQq sets Qq field to given value.
+
+### HasQq
+
+`func (o *UserDataStreamEventsResponse) HasQq() bool`
+
+HasQq returns a boolean if a field has been set.
+
+### GetEV
+
+`func (o *UserDataStreamEventsResponse) GetEV() string`
+
+GetEV returns the EV field if non-nil, zero value otherwise.
+
+### GetEVOk
+
+`func (o *UserDataStreamEventsResponse) GetEVOk() (*string, bool)`
+
+GetEVOk returns a tuple with the EV field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEV
+
+`func (o *UserDataStreamEventsResponse) SetEV(v string)`
+
+SetEV sets EV field to given value.
+
+### HasEV
+
+`func (o *UserDataStreamEventsResponse) HasEV() bool`
+
+HasEV returns a boolean if a field has been set.
 
 ### GetB
 

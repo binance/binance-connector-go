@@ -89,11 +89,18 @@ func (a *UserDataStreamAPIService) SessionSubscriptionsExecute(r ApiSessionSubsc
 type ApiUserDataStreamSubscribeRequest struct {
 	ApiService *UserDataStreamAPIService
 	id         *string
+	filter     *map[string]interface{}
 }
 
 // Client-generated request identifier.
 func (r ApiUserDataStreamSubscribeRequest) Id(id string) ApiUserDataStreamSubscribeRequest {
 	r.id = &id
+	return r
+}
+
+// Optional filter that controls which events are delivered on this subscription. See User Data Stream Subscription Filters. When omitted, all events for the subscribed account are delivered.
+func (r ApiUserDataStreamSubscribeRequest) Filter(filter map[string]interface{}) ApiUserDataStreamSubscribeRequest {
+	r.filter = &filter
 	return r
 }
 
@@ -107,7 +114,7 @@ UserDataStreamSubscribe Subscribe to User Data Stream (USER_STREAM)
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe
 
-@param id Client-generated request identifier.
+@param id Client-generated request identifier.	@param filter Optional filter that controls which events are delivered on this subscription. See User Data Stream Subscription Filters. When omitted, all events for the subscribed account are delivered.
 @return ApiUserDataStreamSubscribeRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamSubscribe() ApiUserDataStreamSubscribeRequest {
@@ -124,6 +131,9 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeExecute(r ApiUserDataS
 
 	if r.id != nil {
 		localVarQueryParams["id"] = *r.id
+	}
+	if r.filter != nil {
+		localVarQueryParams["filter"] = *r.filter
 	}
 
 	localPayload := map[string]any{
@@ -173,6 +183,7 @@ type ApiUserDataStreamSubscribeSignatureRequest struct {
 	ApiService *UserDataStreamAPIService
 	id         *string
 	recvWindow *float64
+	filter     *map[string]interface{}
 }
 
 // Client-generated request identifier.
@@ -187,6 +198,12 @@ func (r ApiUserDataStreamSubscribeSignatureRequest) RecvWindow(recvWindow float6
 	return r
 }
 
+// Optional event filter. See User Data Stream Subscription Filters. When included, &#x60;filter&#x60; must be in the signed string with sorted keys and no whitespace between JSON elements.
+func (r ApiUserDataStreamSubscribeSignatureRequest) Filter(filter map[string]interface{}) ApiUserDataStreamSubscribeSignatureRequest {
+	r.filter = &filter
+	return r
+}
+
 func (r ApiUserDataStreamSubscribeSignatureRequest) Execute() (*common.ResponseOrRaw[models.UserDataStreamSubscribeSignatureResponse], *common.StreamHandler[models.UserDataStreamEventsResponse], chan error, error) {
 	return r.ApiService.UserDataStreamSubscribeSignatureExecute(r)
 }
@@ -197,7 +214,7 @@ UserDataStreamSubscribeSignature Subscribe to User Data Stream through signature
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/user-data-stream#user-data-stream-subscribe-signature
 
-@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
+@param id Client-generated request identifier.	@param recvWindow Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.	@param filter Optional event filter. See User Data Stream Subscription Filters. When included, `filter` must be in the signed string with sorted keys and no whitespace between JSON elements.
 @return ApiUserDataStreamSubscribeSignatureRequest
 */
 func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignature() ApiUserDataStreamSubscribeSignatureRequest {
@@ -217,6 +234,9 @@ func (a *UserDataStreamAPIService) UserDataStreamSubscribeSignatureExecute(r Api
 	}
 	if r.recvWindow != nil {
 		localVarQueryParams["recvWindow"] = *r.recvWindow
+	}
+	if r.filter != nil {
+		localVarQueryParams["filter"] = *r.filter
 	}
 
 	localPayload := map[string]any{

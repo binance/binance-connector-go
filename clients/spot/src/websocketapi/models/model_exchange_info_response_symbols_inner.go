@@ -17,27 +17,29 @@ var _ common.MappedNullable = &ExchangeInfoResponseSymbolsInner{}
 
 // ExchangeInfoResponseSymbolsInner struct for ExchangeInfoResponseSymbolsInner
 type ExchangeInfoResponseSymbolsInner struct {
-	Symbol                     *string  `json:"symbol,omitempty"`
-	Status                     *string  `json:"status,omitempty"`
-	BaseAsset                  *string  `json:"baseAsset,omitempty"`
-	BaseAssetPrecision         *int64   `json:"baseAssetPrecision,omitempty"`
-	QuoteAsset                 *string  `json:"quoteAsset,omitempty"`
-	QuotePrecision             *int64   `json:"quotePrecision,omitempty"`
-	QuoteAssetPrecision        *int64   `json:"quoteAssetPrecision,omitempty"`
-	BaseCommissionPrecision    *int64   `json:"baseCommissionPrecision,omitempty"`
-	QuoteCommissionPrecision   *int64   `json:"quoteCommissionPrecision,omitempty"`
-	OrderTypes                 []string `json:"orderTypes,omitempty"`
-	IcebergAllowed             *bool    `json:"icebergAllowed,omitempty"`
-	OcoAllowed                 *bool    `json:"ocoAllowed,omitempty"`
-	OtoAllowed                 *bool    `json:"otoAllowed,omitempty"`
-	OpoAllowed                 *bool    `json:"opoAllowed,omitempty"`
-	QuoteOrderQtyMarketAllowed *bool    `json:"quoteOrderQtyMarketAllowed,omitempty"`
-	AllowTrailingStop          *bool    `json:"allowTrailingStop,omitempty"`
-	CancelReplaceAllowed       *bool    `json:"cancelReplaceAllowed,omitempty"`
-	AmendAllowed               *bool    `json:"amendAllowed,omitempty"`
-	PegInstructionsAllowed     *bool    `json:"pegInstructionsAllowed,omitempty"`
-	IsSpotTradingAllowed       *bool    `json:"isSpotTradingAllowed,omitempty"`
-	IsMarginTradingAllowed     *bool    `json:"isMarginTradingAllowed,omitempty"`
+	Symbol                          *string  `json:"symbol,omitempty"`
+	Status                          *string  `json:"status,omitempty"`
+	BaseAsset                       *string  `json:"baseAsset,omitempty"`
+	BaseAssetPrecision              *int64   `json:"baseAssetPrecision,omitempty"`
+	QuoteAsset                      *string  `json:"quoteAsset,omitempty"`
+	QuotePrecision                  *int64   `json:"quotePrecision,omitempty"`
+	QuoteAssetPrecision             *int64   `json:"quoteAssetPrecision,omitempty"`
+	BaseCommissionPrecision         *int64   `json:"baseCommissionPrecision,omitempty"`
+	QuoteCommissionPrecision        *int64   `json:"quoteCommissionPrecision,omitempty"`
+	OrderTypes                      []string `json:"orderTypes,omitempty"`
+	IcebergAllowed                  *bool    `json:"icebergAllowed,omitempty"`
+	OcoAllowed                      *bool    `json:"ocoAllowed,omitempty"`
+	OtoAllowed                      *bool    `json:"otoAllowed,omitempty"`
+	OpoAllowed                      *bool    `json:"opoAllowed,omitempty"`
+	QuoteOrderQtyMarketAllowed      *bool    `json:"quoteOrderQtyMarketAllowed,omitempty"`
+	AllowTrailingStop               *bool    `json:"allowTrailingStop,omitempty"`
+	CancelReplaceAllowed            *bool    `json:"cancelReplaceAllowed,omitempty"`
+	AmendAllowed                    *bool    `json:"amendAllowed,omitempty"`
+	PegInstructionsAllowed          *bool    `json:"pegInstructionsAllowed,omitempty"`
+	MarketQuoteNotionalLimitAllowed *bool    `json:"marketQuoteNotionalLimitAllowed,omitempty"`
+	LimitQuoteNotionalLimitAllowed  *bool    `json:"limitQuoteNotionalLimitAllowed,omitempty"`
+	IsSpotTradingAllowed            *bool    `json:"isSpotTradingAllowed,omitempty"`
+	IsMarginTradingAllowed          *bool    `json:"isMarginTradingAllowed,omitempty"`
 	// Symbol filters are explained on the \"Filters\" page: All symbol filters are optional.
 	Filters                         []SymbolFilters `json:"filters,omitempty"`
 	Permissions                     []string        `json:"permissions,omitempty"`
@@ -674,6 +676,70 @@ func (o *ExchangeInfoResponseSymbolsInner) SetPegInstructionsAllowed(v bool) {
 	o.PegInstructionsAllowed = &v
 }
 
+// GetMarketQuoteNotionalLimitAllowed returns the MarketQuoteNotionalLimitAllowed field value if set, zero value otherwise.
+func (o *ExchangeInfoResponseSymbolsInner) GetMarketQuoteNotionalLimitAllowed() bool {
+	if o == nil || common.IsNil(o.MarketQuoteNotionalLimitAllowed) {
+		var ret bool
+		return ret
+	}
+	return *o.MarketQuoteNotionalLimitAllowed
+}
+
+// GetMarketQuoteNotionalLimitAllowedOk returns a tuple with the MarketQuoteNotionalLimitAllowed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponseSymbolsInner) GetMarketQuoteNotionalLimitAllowedOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.MarketQuoteNotionalLimitAllowed) {
+		return nil, false
+	}
+	return o.MarketQuoteNotionalLimitAllowed, true
+}
+
+// HasMarketQuoteNotionalLimitAllowed returns a boolean if a field has been set.
+func (o *ExchangeInfoResponseSymbolsInner) HasMarketQuoteNotionalLimitAllowed() bool {
+	if o != nil && !common.IsNil(o.MarketQuoteNotionalLimitAllowed) {
+		return true
+	}
+
+	return false
+}
+
+// SetMarketQuoteNotionalLimitAllowed gets a reference to the given bool and assigns it to the MarketQuoteNotionalLimitAllowed field.
+func (o *ExchangeInfoResponseSymbolsInner) SetMarketQuoteNotionalLimitAllowed(v bool) {
+	o.MarketQuoteNotionalLimitAllowed = &v
+}
+
+// GetLimitQuoteNotionalLimitAllowed returns the LimitQuoteNotionalLimitAllowed field value if set, zero value otherwise.
+func (o *ExchangeInfoResponseSymbolsInner) GetLimitQuoteNotionalLimitAllowed() bool {
+	if o == nil || common.IsNil(o.LimitQuoteNotionalLimitAllowed) {
+		var ret bool
+		return ret
+	}
+	return *o.LimitQuoteNotionalLimitAllowed
+}
+
+// GetLimitQuoteNotionalLimitAllowedOk returns a tuple with the LimitQuoteNotionalLimitAllowed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExchangeInfoResponseSymbolsInner) GetLimitQuoteNotionalLimitAllowedOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.LimitQuoteNotionalLimitAllowed) {
+		return nil, false
+	}
+	return o.LimitQuoteNotionalLimitAllowed, true
+}
+
+// HasLimitQuoteNotionalLimitAllowed returns a boolean if a field has been set.
+func (o *ExchangeInfoResponseSymbolsInner) HasLimitQuoteNotionalLimitAllowed() bool {
+	if o != nil && !common.IsNil(o.LimitQuoteNotionalLimitAllowed) {
+		return true
+	}
+
+	return false
+}
+
+// SetLimitQuoteNotionalLimitAllowed gets a reference to the given bool and assigns it to the LimitQuoteNotionalLimitAllowed field.
+func (o *ExchangeInfoResponseSymbolsInner) SetLimitQuoteNotionalLimitAllowed(v bool) {
+	o.LimitQuoteNotionalLimitAllowed = &v
+}
+
 // GetIsSpotTradingAllowed returns the IsSpotTradingAllowed field value if set, zero value otherwise.
 func (o *ExchangeInfoResponseSymbolsInner) GetIsSpotTradingAllowed() bool {
 	if o == nil || common.IsNil(o.IsSpotTradingAllowed) {
@@ -965,6 +1031,12 @@ func (o ExchangeInfoResponseSymbolsInner) ToMap() (map[string]interface{}, error
 	if !common.IsNil(o.PegInstructionsAllowed) {
 		toSerialize["pegInstructionsAllowed"] = o.PegInstructionsAllowed
 	}
+	if !common.IsNil(o.MarketQuoteNotionalLimitAllowed) {
+		toSerialize["marketQuoteNotionalLimitAllowed"] = o.MarketQuoteNotionalLimitAllowed
+	}
+	if !common.IsNil(o.LimitQuoteNotionalLimitAllowed) {
+		toSerialize["limitQuoteNotionalLimitAllowed"] = o.LimitQuoteNotionalLimitAllowed
+	}
 	if !common.IsNil(o.IsSpotTradingAllowed) {
 		toSerialize["isSpotTradingAllowed"] = o.IsSpotTradingAllowed
 	}
@@ -1027,6 +1099,8 @@ func (o *ExchangeInfoResponseSymbolsInner) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "cancelReplaceAllowed")
 		delete(additionalProperties, "amendAllowed")
 		delete(additionalProperties, "pegInstructionsAllowed")
+		delete(additionalProperties, "marketQuoteNotionalLimitAllowed")
+		delete(additionalProperties, "limitQuoteNotionalLimitAllowed")
 		delete(additionalProperties, "isSpotTradingAllowed")
 		delete(additionalProperties, "isMarginTradingAllowed")
 		delete(additionalProperties, "filters")

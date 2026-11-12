@@ -339,6 +339,7 @@ type ApiNewOrderRequest struct {
 	pegPriceType            *models.NewOrderPegPriceTypeParameter
 	pegOffsetValue          *int32
 	pegOffsetType           *models.NewOrderPegOffsetTypeParameter
+	quoteNotionalLimit      *float64
 	recvWindow              *float64
 }
 
@@ -445,6 +446,12 @@ func (r ApiNewOrderRequest) PegOffsetType(pegOffsetType models.NewOrderPegOffset
 	return r
 }
 
+// For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit.
+func (r ApiNewOrderRequest) QuoteNotionalLimit(quoteNotionalLimit float64) ApiNewOrderRequest {
+	r.quoteNotionalLimit = &quoteNotionalLimit
+	return r
+}
+
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiNewOrderRequest) RecvWindow(recvWindow float64) ApiNewOrderRequest {
 	r.recvWindow = &recvWindow
@@ -480,6 +487,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pegPriceType -  See Pegged Orders Info
 @param pegOffsetValue -  Price level to peg the price to (max: 100). See Pegged Orders Info
 @param pegOffsetType -  Only `PRICE_LEVEL` is supported. See Pegged Orders Info
+@param quoteNotionalLimit -  For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit.
 @param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiNewOrderRequest
 */
@@ -559,6 +567,9 @@ func (a *TradeAPIService) NewOrderExecute(r ApiNewOrderRequest) (*common.RestApi
 	}
 	if r.pegOffsetType != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pegOffsetType", r.pegOffsetType, "form", "")
+	}
+	if r.quoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteNotionalLimit", r.quoteNotionalLimit, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
@@ -728,6 +739,7 @@ type ApiOrderCancelReplaceRequest struct {
 	pegPriceType               *models.NewOrderPegPriceTypeParameter
 	pegOffsetValue             *int32
 	pegOffsetType              *models.NewOrderPegOffsetTypeParameter
+	quoteNotionalLimit         *float64
 	recvWindow                 *float64
 }
 
@@ -865,6 +877,12 @@ func (r ApiOrderCancelReplaceRequest) PegOffsetType(pegOffsetType models.NewOrde
 	return r
 }
 
+// For replacement orders on the BUY side only. Maximum quote-asset notional the replacement order may consume. See Quote Notional Limit.
+func (r ApiOrderCancelReplaceRequest) QuoteNotionalLimit(quoteNotionalLimit float64) ApiOrderCancelReplaceRequest {
+	r.quoteNotionalLimit = &quoteNotionalLimit
+	return r
+}
+
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderCancelReplaceRequest) RecvWindow(recvWindow float64) ApiOrderCancelReplaceRequest {
 	r.recvWindow = &recvWindow
@@ -906,6 +924,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pegPriceType -  `PRIMARY_PEG` or `MARKET_PEG` <br> See Pegged Orders
 @param pegOffsetValue -  Price level to peg the price to (max: 100) <br> See Pegged Orders
 @param pegOffsetType -  Only `PRICE_LEVEL` is supported <br> See Pegged Orders.
+@param quoteNotionalLimit -  For replacement orders on the BUY side only. Maximum quote-asset notional the replacement order may consume. See Quote Notional Limit.
 @param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderCancelReplaceRequest
 */
@@ -1006,6 +1025,9 @@ func (a *TradeAPIService) OrderCancelReplaceExecute(r ApiOrderCancelReplaceReque
 	if r.pegOffsetType != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pegOffsetType", r.pegOffsetType, "form", "")
 	}
+	if r.quoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteNotionalLimit", r.quoteNotionalLimit, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -1059,6 +1081,8 @@ type ApiOrderListOcoRequest struct {
 	belowPegOffsetValue     *int32
 	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
 	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
+	aboveQuoteNotionalLimit *float64
+	belowQuoteNotionalLimit *float64
 	recvWindow              *float64
 }
 
@@ -1235,6 +1259,18 @@ func (r ApiOrderListOcoRequest) SelfTradePreventionMode(selfTradePreventionMode 
 	return r
 }
 
+// Quote notional limit for the above order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOcoRequest) AboveQuoteNotionalLimit(aboveQuoteNotionalLimit float64) ApiOrderListOcoRequest {
+	r.aboveQuoteNotionalLimit = &aboveQuoteNotionalLimit
+	return r
+}
+
+// Quote notional limit for the below order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOcoRequest) BelowQuoteNotionalLimit(belowQuoteNotionalLimit float64) ApiOrderListOcoRequest {
+	r.belowQuoteNotionalLimit = &belowQuoteNotionalLimit
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListOcoRequest) RecvWindow(recvWindow float64) ApiOrderListOcoRequest {
 	r.recvWindow = &recvWindow
@@ -1282,6 +1318,8 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param belowPegOffsetValue -
 @param newOrderRespType -  Select response format: `ACK`, `RESULT`, `FULL`.
 @param selfTradePreventionMode -  The allowed enums is dependent on what is configured on the symbol. Supported values: STP Modes
+@param aboveQuoteNotionalLimit -  Quote notional limit for the above order (only for orders on the BUY side). See Quote Notional Limit.
+@param belowQuoteNotionalLimit -  Quote notional limit for the below order (only for orders on the BUY side). See Quote Notional Limit.
 @param recvWindow -  The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListOcoRequest
 */
@@ -1402,6 +1440,12 @@ func (a *TradeAPIService) OrderListOcoExecute(r ApiOrderListOcoRequest) (*common
 	if r.selfTradePreventionMode != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "selfTradePreventionMode", r.selfTradePreventionMode, "form", "")
 	}
+	if r.aboveQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "aboveQuoteNotionalLimit", r.aboveQuoteNotionalLimit, "form", "")
+	}
+	if r.belowQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "belowQuoteNotionalLimit", r.belowQuoteNotionalLimit, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -1423,38 +1467,39 @@ func (a *TradeAPIService) OrderListOcoExecute(r ApiOrderListOcoRequest) (*common
 }
 
 type ApiOrderListOpoRequest struct {
-	ctx                     context.Context
-	ApiService              *TradeAPIService
-	symbol                  *string
-	workingType             *models.OrderListOpoWorkingTypeParameter
-	workingSide             *models.NewOrderSideParameter
-	workingPrice            *float64
-	workingQuantity         *float64
-	pendingType             *models.OrderListOpoPendingTypeParameter
-	pendingSide             *models.NewOrderSideParameter
-	listClientOrderId       *string
-	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
-	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
-	workingClientOrderId    *string
-	workingIcebergQty       *float64
-	workingTimeInForce      *models.NewOrderTimeInForceParameter
-	workingStrategyId       *int64
-	workingStrategyType     *int32
-	workingPegPriceType     *models.NewOrderPegPriceTypeParameter
-	workingPegOffsetType    *models.NewOrderPegOffsetTypeParameter
-	workingPegOffsetValue   *int32
-	pendingClientOrderId    *string
-	pendingPrice            *float64
-	pendingStopPrice        *float64
-	pendingTrailingDelta    *float64
-	pendingIcebergQty       *float64
-	pendingTimeInForce      *models.NewOrderTimeInForceParameter
-	pendingStrategyId       *int64
-	pendingStrategyType     *int32
-	pendingPegPriceType     *models.NewOrderPegPriceTypeParameter
-	pendingPegOffsetType    *models.NewOrderPegOffsetTypeParameter
-	pendingPegOffsetValue   *int32
-	recvWindow              *float64
+	ctx                       context.Context
+	ApiService                *TradeAPIService
+	symbol                    *string
+	workingType               *models.OrderListOpoWorkingTypeParameter
+	workingSide               *models.NewOrderSideParameter
+	workingPrice              *float64
+	workingQuantity           *float64
+	pendingType               *models.OrderListOpoPendingTypeParameter
+	pendingSide               *models.NewOrderSideParameter
+	listClientOrderId         *string
+	newOrderRespType          *models.NewOrderNewOrderRespTypeParameter
+	selfTradePreventionMode   *models.NewOrderSelfTradePreventionModeParameter
+	workingClientOrderId      *string
+	workingIcebergQty         *float64
+	workingTimeInForce        *models.NewOrderTimeInForceParameter
+	workingStrategyId         *int64
+	workingStrategyType       *int32
+	workingPegPriceType       *models.NewOrderPegPriceTypeParameter
+	workingPegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	workingPegOffsetValue     *int32
+	pendingClientOrderId      *string
+	pendingPrice              *float64
+	pendingStopPrice          *float64
+	pendingTrailingDelta      *float64
+	pendingIcebergQty         *float64
+	pendingTimeInForce        *models.NewOrderTimeInForceParameter
+	pendingStrategyId         *int64
+	pendingStrategyType       *int32
+	pendingPegPriceType       *models.NewOrderPegPriceTypeParameter
+	pendingPegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	pendingPegOffsetValue     *int32
+	workingQuoteNotionalLimit *float64
+	recvWindow                *float64
 }
 
 func (r ApiOrderListOpoRequest) Symbol(symbol string) ApiOrderListOpoRequest {
@@ -1626,6 +1671,12 @@ func (r ApiOrderListOpoRequest) PendingPegOffsetValue(pendingPegOffsetValue int3
 	return r
 }
 
+// Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit.
+func (r ApiOrderListOpoRequest) WorkingQuoteNotionalLimit(workingQuoteNotionalLimit float64) ApiOrderListOpoRequest {
+	r.workingQuoteNotionalLimit = &workingQuoteNotionalLimit
+	return r
+}
+
 // Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListOpoRequest) RecvWindow(recvWindow float64) ApiOrderListOpoRequest {
 	r.recvWindow = &recvWindow
@@ -1672,6 +1723,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pendingPegPriceType -  See Pegged Orders
 @param pendingPegOffsetType -
 @param pendingPegOffsetValue -
+@param workingQuoteNotionalLimit -  Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit.
 @param recvWindow -  Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListOpoRequest
 */
@@ -1793,6 +1845,9 @@ func (a *TradeAPIService) OrderListOpoExecute(r ApiOrderListOpoRequest) (*common
 	if r.pendingPegOffsetValue != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingPegOffsetValue", r.pendingPegOffsetValue, "form", "")
 	}
+	if r.workingQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "workingQuoteNotionalLimit", r.workingQuoteNotionalLimit, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -1857,6 +1912,7 @@ type ApiOrderListOpocoRequest struct {
 	pendingBelowPegPriceType   *models.NewOrderPegPriceTypeParameter
 	pendingBelowPegOffsetType  *models.NewOrderPegOffsetTypeParameter
 	pendingBelowPegOffsetValue *int32
+	workingQuoteNotionalLimit  *float64
 	recvWindow                 *float64
 }
 
@@ -1865,6 +1921,7 @@ func (r ApiOrderListOpocoRequest) Symbol(symbol string) ApiOrderListOpocoRequest
 	return r
 }
 
+// Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;
 func (r ApiOrderListOpocoRequest) WorkingType(workingType models.OrderListOpoWorkingTypeParameter) ApiOrderListOpocoRequest {
 	r.workingType = &workingType
 	return r
@@ -2102,6 +2159,12 @@ func (r ApiOrderListOpocoRequest) PendingBelowPegOffsetValue(pendingBelowPegOffs
 	return r
 }
 
+// Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit.
+func (r ApiOrderListOpocoRequest) WorkingQuoteNotionalLimit(workingQuoteNotionalLimit float64) ApiOrderListOpocoRequest {
+	r.workingQuoteNotionalLimit = &workingQuoteNotionalLimit
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListOpocoRequest) RecvWindow(recvWindow float64) ApiOrderListOpocoRequest {
 	r.recvWindow = &recvWindow
@@ -2120,7 +2183,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param workingType -
+@param workingType -  Supported values: `LIMIT`, `LIMIT_MAKER`
 @param workingSide -  Supported values: Order Side
 @param workingPrice -  Price for the working order.
 @param workingQuantity -  Sets the quantity for the working order.
@@ -2160,6 +2223,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pendingBelowPegPriceType -  See Pegged Orders
 @param pendingBelowPegOffsetType -
 @param pendingBelowPegOffsetValue -
+@param workingQuoteNotionalLimit -  Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit.
 @param recvWindow -  The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListOpocoRequest
 */
@@ -2317,6 +2381,9 @@ func (a *TradeAPIService) OrderListOpocoExecute(r ApiOrderListOpocoRequest) (*co
 	if r.pendingBelowPegOffsetValue != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingBelowPegOffsetValue", r.pendingBelowPegOffsetValue, "form", "")
 	}
+	if r.workingQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "workingQuoteNotionalLimit", r.workingQuoteNotionalLimit, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -2338,39 +2405,41 @@ func (a *TradeAPIService) OrderListOpocoExecute(r ApiOrderListOpocoRequest) (*co
 }
 
 type ApiOrderListOtoRequest struct {
-	ctx                     context.Context
-	ApiService              *TradeAPIService
-	symbol                  *string
-	workingType             *models.OrderListOpoWorkingTypeParameter
-	workingSide             *models.NewOrderSideParameter
-	workingPrice            *float64
-	workingQuantity         *float64
-	pendingType             *models.OrderListOpoPendingTypeParameter
-	pendingSide             *models.NewOrderSideParameter
-	pendingQuantity         *float64
-	listClientOrderId       *string
-	newOrderRespType        *models.NewOrderNewOrderRespTypeParameter
-	selfTradePreventionMode *models.NewOrderSelfTradePreventionModeParameter
-	workingClientOrderId    *string
-	workingIcebergQty       *float64
-	workingTimeInForce      *models.NewOrderTimeInForceParameter
-	workingStrategyId       *int64
-	workingStrategyType     *int32
-	workingPegPriceType     *models.NewOrderPegPriceTypeParameter
-	workingPegOffsetType    *models.NewOrderPegOffsetTypeParameter
-	workingPegOffsetValue   *int32
-	pendingClientOrderId    *string
-	pendingPrice            *float64
-	pendingStopPrice        *float64
-	pendingTrailingDelta    *float64
-	pendingIcebergQty       *float64
-	pendingTimeInForce      *models.NewOrderTimeInForceParameter
-	pendingStrategyId       *int64
-	pendingStrategyType     *int32
-	pendingPegPriceType     *models.NewOrderPegPriceTypeParameter
-	pendingPegOffsetType    *models.NewOrderPegOffsetTypeParameter
-	pendingPegOffsetValue   *int32
-	recvWindow              *float64
+	ctx                       context.Context
+	ApiService                *TradeAPIService
+	symbol                    *string
+	workingType               *models.OrderListOpoWorkingTypeParameter
+	workingSide               *models.NewOrderSideParameter
+	workingPrice              *float64
+	workingQuantity           *float64
+	pendingType               *models.OrderListOpoPendingTypeParameter
+	pendingSide               *models.NewOrderSideParameter
+	pendingQuantity           *float64
+	listClientOrderId         *string
+	newOrderRespType          *models.NewOrderNewOrderRespTypeParameter
+	selfTradePreventionMode   *models.NewOrderSelfTradePreventionModeParameter
+	workingClientOrderId      *string
+	workingIcebergQty         *float64
+	workingTimeInForce        *models.NewOrderTimeInForceParameter
+	workingStrategyId         *int64
+	workingStrategyType       *int32
+	workingPegPriceType       *models.NewOrderPegPriceTypeParameter
+	workingPegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	workingPegOffsetValue     *int32
+	pendingClientOrderId      *string
+	pendingPrice              *float64
+	pendingStopPrice          *float64
+	pendingTrailingDelta      *float64
+	pendingIcebergQty         *float64
+	pendingTimeInForce        *models.NewOrderTimeInForceParameter
+	pendingStrategyId         *int64
+	pendingStrategyType       *int32
+	pendingPegPriceType       *models.NewOrderPegPriceTypeParameter
+	pendingPegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	pendingPegOffsetValue     *int32
+	workingQuoteNotionalLimit *float64
+	pendingQuoteNotionalLimit *float64
+	recvWindow                *float64
 }
 
 func (r ApiOrderListOtoRequest) Symbol(symbol string) ApiOrderListOtoRequest {
@@ -2544,6 +2613,18 @@ func (r ApiOrderListOtoRequest) PendingPegOffsetValue(pendingPegOffsetValue int3
 	return r
 }
 
+// Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOtoRequest) WorkingQuoteNotionalLimit(workingQuoteNotionalLimit float64) ApiOrderListOtoRequest {
+	r.workingQuoteNotionalLimit = &workingQuoteNotionalLimit
+	return r
+}
+
+// Quote notional limit for the pending order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOtoRequest) PendingQuoteNotionalLimit(pendingQuoteNotionalLimit float64) ApiOrderListOtoRequest {
+	r.pendingQuoteNotionalLimit = &pendingQuoteNotionalLimit
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListOtoRequest) RecvWindow(recvWindow float64) ApiOrderListOtoRequest {
 	r.recvWindow = &recvWindow
@@ -2591,6 +2672,8 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pendingPegPriceType -  See Pegged Orders
 @param pendingPegOffsetType -
 @param pendingPegOffsetValue -
+@param workingQuoteNotionalLimit -  Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit.
+@param pendingQuoteNotionalLimit -  Quote notional limit for the pending order (only for orders on the BUY side). See Quote Notional Limit.
 @param recvWindow -  The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListOtoRequest
 */
@@ -2717,6 +2800,12 @@ func (a *TradeAPIService) OrderListOtoExecute(r ApiOrderListOtoRequest) (*common
 	if r.pendingPegOffsetValue != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingPegOffsetValue", r.pendingPegOffsetValue, "form", "")
 	}
+	if r.workingQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "workingQuoteNotionalLimit", r.workingQuoteNotionalLimit, "form", "")
+	}
+	if r.pendingQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingQuoteNotionalLimit", r.pendingQuoteNotionalLimit, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -2738,51 +2827,54 @@ func (a *TradeAPIService) OrderListOtoExecute(r ApiOrderListOtoRequest) (*common
 }
 
 type ApiOrderListOtocoRequest struct {
-	ctx                        context.Context
-	ApiService                 *TradeAPIService
-	symbol                     *string
-	workingType                *models.OrderListOpoWorkingTypeParameter
-	workingSide                *models.NewOrderSideParameter
-	workingPrice               *float64
-	workingQuantity            *float64
-	pendingSide                *models.NewOrderSideParameter
-	pendingQuantity            *float64
-	pendingAboveType           *models.OrderListOcoAboveTypeParameter
-	listClientOrderId          *string
-	newOrderRespType           *models.NewOrderNewOrderRespTypeParameter
-	selfTradePreventionMode    *models.NewOrderSelfTradePreventionModeParameter
-	workingClientOrderId       *string
-	workingIcebergQty          *float64
-	workingTimeInForce         *models.NewOrderTimeInForceParameter
-	workingStrategyId          *int64
-	workingStrategyType        *int32
-	workingPegPriceType        *models.NewOrderPegPriceTypeParameter
-	workingPegOffsetType       *models.NewOrderPegOffsetTypeParameter
-	workingPegOffsetValue      *int32
-	pendingAboveClientOrderId  *string
-	pendingAbovePrice          *float64
-	pendingAboveStopPrice      *float64
-	pendingAboveTrailingDelta  *float64
-	pendingAboveIcebergQty     *float64
-	pendingAboveTimeInForce    *models.NewOrderTimeInForceParameter
-	pendingAboveStrategyId     *int64
-	pendingAboveStrategyType   *int32
-	pendingAbovePegPriceType   *models.NewOrderPegPriceTypeParameter
-	pendingAbovePegOffsetType  *models.NewOrderPegOffsetTypeParameter
-	pendingAbovePegOffsetValue *int32
-	pendingBelowType           *models.OrderListOcoBelowTypeParameter
-	pendingBelowClientOrderId  *string
-	pendingBelowPrice          *float64
-	pendingBelowStopPrice      *float64
-	pendingBelowTrailingDelta  *float64
-	pendingBelowIcebergQty     *float64
-	pendingBelowTimeInForce    *models.NewOrderTimeInForceParameter
-	pendingBelowStrategyId     *int64
-	pendingBelowStrategyType   *int32
-	pendingBelowPegPriceType   *models.NewOrderPegPriceTypeParameter
-	pendingBelowPegOffsetType  *models.NewOrderPegOffsetTypeParameter
-	pendingBelowPegOffsetValue *int32
-	recvWindow                 *float64
+	ctx                            context.Context
+	ApiService                     *TradeAPIService
+	symbol                         *string
+	workingType                    *models.OrderListOpoWorkingTypeParameter
+	workingSide                    *models.NewOrderSideParameter
+	workingPrice                   *float64
+	workingQuantity                *float64
+	pendingSide                    *models.NewOrderSideParameter
+	pendingQuantity                *float64
+	pendingAboveType               *models.OrderListOcoAboveTypeParameter
+	listClientOrderId              *string
+	newOrderRespType               *models.NewOrderNewOrderRespTypeParameter
+	selfTradePreventionMode        *models.NewOrderSelfTradePreventionModeParameter
+	workingClientOrderId           *string
+	workingIcebergQty              *float64
+	workingTimeInForce             *models.NewOrderTimeInForceParameter
+	workingStrategyId              *int64
+	workingStrategyType            *int32
+	workingPegPriceType            *models.NewOrderPegPriceTypeParameter
+	workingPegOffsetType           *models.NewOrderPegOffsetTypeParameter
+	workingPegOffsetValue          *int32
+	pendingAboveClientOrderId      *string
+	pendingAbovePrice              *float64
+	pendingAboveStopPrice          *float64
+	pendingAboveTrailingDelta      *float64
+	pendingAboveIcebergQty         *float64
+	pendingAboveTimeInForce        *models.NewOrderTimeInForceParameter
+	pendingAboveStrategyId         *int64
+	pendingAboveStrategyType       *int32
+	pendingAbovePegPriceType       *models.NewOrderPegPriceTypeParameter
+	pendingAbovePegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	pendingAbovePegOffsetValue     *int32
+	pendingBelowType               *models.OrderListOcoBelowTypeParameter
+	pendingBelowClientOrderId      *string
+	pendingBelowPrice              *float64
+	pendingBelowStopPrice          *float64
+	pendingBelowTrailingDelta      *float64
+	pendingBelowIcebergQty         *float64
+	pendingBelowTimeInForce        *models.NewOrderTimeInForceParameter
+	pendingBelowStrategyId         *int64
+	pendingBelowStrategyType       *int32
+	pendingBelowPegPriceType       *models.NewOrderPegPriceTypeParameter
+	pendingBelowPegOffsetType      *models.NewOrderPegOffsetTypeParameter
+	pendingBelowPegOffsetValue     *int32
+	workingQuoteNotionalLimit      *float64
+	pendingAboveQuoteNotionalLimit *float64
+	pendingBelowQuoteNotionalLimit *float64
+	recvWindow                     *float64
 }
 
 func (r ApiOrderListOtocoRequest) Symbol(symbol string) ApiOrderListOtocoRequest {
@@ -3029,6 +3121,24 @@ func (r ApiOrderListOtocoRequest) PendingBelowPegOffsetValue(pendingBelowPegOffs
 	return r
 }
 
+// Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOtocoRequest) WorkingQuoteNotionalLimit(workingQuoteNotionalLimit float64) ApiOrderListOtocoRequest {
+	r.workingQuoteNotionalLimit = &workingQuoteNotionalLimit
+	return r
+}
+
+// Quote notional limit for the pending above order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOtocoRequest) PendingAboveQuoteNotionalLimit(pendingAboveQuoteNotionalLimit float64) ApiOrderListOtocoRequest {
+	r.pendingAboveQuoteNotionalLimit = &pendingAboveQuoteNotionalLimit
+	return r
+}
+
+// Quote notional limit for the pending below order (only for orders on the BUY side). See Quote Notional Limit.
+func (r ApiOrderListOtocoRequest) PendingBelowQuoteNotionalLimit(pendingBelowQuoteNotionalLimit float64) ApiOrderListOtocoRequest {
+	r.pendingBelowQuoteNotionalLimit = &pendingBelowQuoteNotionalLimit
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderListOtocoRequest) RecvWindow(recvWindow float64) ApiOrderListOtocoRequest {
 	r.recvWindow = &recvWindow
@@ -3088,6 +3198,9 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pendingBelowPegPriceType -  See Pegged Orders
 @param pendingBelowPegOffsetType -
 @param pendingBelowPegOffsetValue -
+@param workingQuoteNotionalLimit -  Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit.
+@param pendingAboveQuoteNotionalLimit -  Quote notional limit for the pending above order (only for orders on the BUY side). See Quote Notional Limit.
+@param pendingBelowQuoteNotionalLimit -  Quote notional limit for the pending below order (only for orders on the BUY side). See Quote Notional Limit.
 @param recvWindow -  The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderListOtocoRequest
 */
@@ -3249,6 +3362,15 @@ func (a *TradeAPIService) OrderListOtocoExecute(r ApiOrderListOtocoRequest) (*co
 	}
 	if r.pendingBelowPegOffsetValue != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingBelowPegOffsetValue", r.pendingBelowPegOffsetValue, "form", "")
+	}
+	if r.workingQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "workingQuoteNotionalLimit", r.workingQuoteNotionalLimit, "form", "")
+	}
+	if r.pendingAboveQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingAboveQuoteNotionalLimit", r.pendingAboveQuoteNotionalLimit, "form", "")
+	}
+	if r.pendingBelowQuoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pendingBelowQuoteNotionalLimit", r.pendingBelowQuoteNotionalLimit, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
@@ -3570,6 +3692,7 @@ type ApiOrderTestRequest struct {
 	pegPriceType            *models.NewOrderPegPriceTypeParameter
 	pegOffsetValue          *int32
 	pegOffsetType           *models.NewOrderPegOffsetTypeParameter
+	quoteNotionalLimit      *float64
 	recvWindow              *float64
 }
 
@@ -3682,6 +3805,12 @@ func (r ApiOrderTestRequest) PegOffsetType(pegOffsetType models.NewOrderPegOffse
 	return r
 }
 
+// For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit.
+func (r ApiOrderTestRequest) QuoteNotionalLimit(quoteNotionalLimit float64) ApiOrderTestRequest {
+	r.quoteNotionalLimit = &quoteNotionalLimit
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 func (r ApiOrderTestRequest) RecvWindow(recvWindow float64) ApiOrderTestRequest {
 	r.recvWindow = &recvWindow
@@ -3718,6 +3847,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 @param pegPriceType -  `PRIMARY_PEG` or `MARKET_PEG`. See Pegged Orders
 @param pegOffsetValue -  Price level for pegging (max: 100). See Pegged Orders
 @param pegOffsetType -  Only `PRICE_LEVEL` is supported. See Pegged Orders
+@param quoteNotionalLimit -  For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit.
 @param recvWindow -  The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified.
 @return ApiOrderTestRequest
 */
@@ -3800,6 +3930,9 @@ func (a *TradeAPIService) OrderTestExecute(r ApiOrderTestRequest) (*common.RestA
 	}
 	if r.pegOffsetType != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "pegOffsetType", r.pegOffsetType, "form", "")
+	}
+	if r.quoteNotionalLimit != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "quoteNotionalLimit", r.quoteNotionalLimit, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

@@ -23,6 +23,8 @@ Name         | Type          | Description.  | Notes
 **CancelReplaceAllowed** | Pointer to **bool** |  | [optional] 
 **AmendAllowed** | Pointer to **bool** |  | [optional] 
 **PegInstructionsAllowed** | Pointer to **bool** |  | [optional] 
+**MarketQuoteNotionalLimitAllowed** | Pointer to **bool** |  | [optional] 
+**LimitQuoteNotionalLimitAllowed** | Pointer to **bool** |  | [optional] 
 **IsSpotTradingAllowed** | Pointer to **bool** |  | [optional] 
 **IsMarginTradingAllowed** | Pointer to **bool** |  | [optional] 
 **Filters** | Pointer to [**[]SymbolFilters**](SymbolFilters.md) | Symbol filters are explained on the \&quot;Filters\&quot; page: All symbol filters are optional. | [optional] 
@@ -524,6 +526,56 @@ SetPegInstructionsAllowed sets PegInstructionsAllowed field to given value.
 `func (o *ExchangeInfoResponseSymbolsInner) HasPegInstructionsAllowed() bool`
 
 HasPegInstructionsAllowed returns a boolean if a field has been set.
+
+### GetMarketQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) GetMarketQuoteNotionalLimitAllowed() bool`
+
+GetMarketQuoteNotionalLimitAllowed returns the MarketQuoteNotionalLimitAllowed field if non-nil, zero value otherwise.
+
+### GetMarketQuoteNotionalLimitAllowedOk
+
+`func (o *ExchangeInfoResponseSymbolsInner) GetMarketQuoteNotionalLimitAllowedOk() (*bool, bool)`
+
+GetMarketQuoteNotionalLimitAllowedOk returns a tuple with the MarketQuoteNotionalLimitAllowed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMarketQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) SetMarketQuoteNotionalLimitAllowed(v bool)`
+
+SetMarketQuoteNotionalLimitAllowed sets MarketQuoteNotionalLimitAllowed field to given value.
+
+### HasMarketQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) HasMarketQuoteNotionalLimitAllowed() bool`
+
+HasMarketQuoteNotionalLimitAllowed returns a boolean if a field has been set.
+
+### GetLimitQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) GetLimitQuoteNotionalLimitAllowed() bool`
+
+GetLimitQuoteNotionalLimitAllowed returns the LimitQuoteNotionalLimitAllowed field if non-nil, zero value otherwise.
+
+### GetLimitQuoteNotionalLimitAllowedOk
+
+`func (o *ExchangeInfoResponseSymbolsInner) GetLimitQuoteNotionalLimitAllowedOk() (*bool, bool)`
+
+GetLimitQuoteNotionalLimitAllowedOk returns a tuple with the LimitQuoteNotionalLimitAllowed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLimitQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) SetLimitQuoteNotionalLimitAllowed(v bool)`
+
+SetLimitQuoteNotionalLimitAllowed sets LimitQuoteNotionalLimitAllowed field to given value.
+
+### HasLimitQuoteNotionalLimitAllowed
+
+`func (o *ExchangeInfoResponseSymbolsInner) HasLimitQuoteNotionalLimitAllowed() bool`
+
+HasLimitQuoteNotionalLimitAllowed returns a boolean if a field has been set.
 
 ### GetIsSpotTradingAllowed
 

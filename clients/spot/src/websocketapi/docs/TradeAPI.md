@@ -267,7 +267,7 @@ No authorization required
 
 ## OrderCancelReplace
 
-> OrderCancelReplaceResponse OrderCancelReplace().Symbol(symbol).CancelReplaceMode(cancelReplaceMode).Side(side).Type(type_).Id(id).CancelOrderId(cancelOrderId).CancelOrigClientOrderId(cancelOrigClientOrderId).CancelNewClientOrderId(cancelNewClientOrderId).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).CancelRestrictions(cancelRestrictions).OrderRateLimitExceededMode(orderRateLimitExceededMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+> OrderCancelReplaceResponse OrderCancelReplace().Symbol(symbol).CancelReplaceMode(cancelReplaceMode).Side(side).Type(type_).Id(id).CancelOrderId(cancelOrderId).CancelOrigClientOrderId(cancelOrigClientOrderId).CancelNewClientOrderId(cancelNewClientOrderId).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).CancelRestrictions(cancelRestrictions).OrderRateLimitExceededMode(orderRateLimitExceededMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Cancel and replace order (TRADE)
 
@@ -311,6 +311,7 @@ func main() {
 	pegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | `PRIMARY_PEG` or `MARKET_PEG` <br> See Pegged Orders (optional)
 	pegOffsetValue := int32(1) // int32 | Price level to peg the price to (max: 100) <br> See Pegged Orders (optional)
 	pegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter | Only `PRICE_LEVEL` is supported <br> See Pegged Orders (optional)
+	quoteNotionalLimit := float64(100) // float64 | For replacement orders on the BUY side only. Maximum quote-asset notional the replacement order may consume. See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -328,7 +329,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderCancelReplace().Symbol(symbol).CancelReplaceMode(cancelReplaceMode).Side(side).Type(type_).Id(id).CancelOrderId(cancelOrderId).CancelOrigClientOrderId(cancelOrigClientOrderId).CancelNewClientOrderId(cancelNewClientOrderId).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).CancelRestrictions(cancelRestrictions).OrderRateLimitExceededMode(orderRateLimitExceededMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderCancelReplace().Symbol(symbol).CancelReplaceMode(cancelReplaceMode).Side(side).Type(type_).Id(id).CancelOrderId(cancelOrderId).CancelOrigClientOrderId(cancelOrigClientOrderId).CancelNewClientOrderId(cancelNewClientOrderId).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).CancelRestrictions(cancelRestrictions).OrderRateLimitExceededMode(orderRateLimitExceededMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderCancelReplace``: %v\n", err)
 		return
@@ -374,6 +375,7 @@ Name          | Type          | Description   | Notes
  **pegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60; &lt;br&gt; See Pegged Orders | 
  **pegOffsetValue** | **int32** | Price level to peg the price to (max: 100) &lt;br&gt; See Pegged Orders | 
  **pegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported &lt;br&gt; See Pegged Orders | 
+ **quoteNotionalLimit** | **float64** | For replacement orders on the BUY side only. Maximum quote-asset notional the replacement order may consume. See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -583,7 +585,7 @@ No authorization required
 
 ## OrderListPlaceOco
 
-> OrderListPlaceOcoResponse OrderListPlaceOco().Symbol(symbol).Side(side).Quantity(quantity).AboveType(aboveType).BelowType(belowType).Id(id).ListClientOrderId(listClientOrderId).AboveClientOrderId(aboveClientOrderId).AboveIcebergQty(aboveIcebergQty).AbovePrice(abovePrice).AboveStopPrice(aboveStopPrice).AboveTrailingDelta(aboveTrailingDelta).AboveTimeInForce(aboveTimeInForce).AboveStrategyId(aboveStrategyId).AboveStrategyType(aboveStrategyType).AbovePegPriceType(abovePegPriceType).AbovePegOffsetType(abovePegOffsetType).AbovePegOffsetValue(abovePegOffsetValue).BelowClientOrderId(belowClientOrderId).BelowIcebergQty(belowIcebergQty).BelowPrice(belowPrice).BelowStopPrice(belowStopPrice).BelowTrailingDelta(belowTrailingDelta).BelowTimeInForce(belowTimeInForce).BelowStrategyId(belowStrategyId).BelowStrategyType(belowStrategyType).BelowPegPriceType(belowPegPriceType).BelowPegOffsetType(belowPegOffsetType).BelowPegOffsetValue(belowPegOffsetValue).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
+> OrderListPlaceOcoResponse OrderListPlaceOco().Symbol(symbol).Side(side).Quantity(quantity).AboveType(aboveType).BelowType(belowType).Id(id).ListClientOrderId(listClientOrderId).AboveClientOrderId(aboveClientOrderId).AboveIcebergQty(aboveIcebergQty).AbovePrice(abovePrice).AboveStopPrice(aboveStopPrice).AboveTrailingDelta(aboveTrailingDelta).AboveTimeInForce(aboveTimeInForce).AboveStrategyId(aboveStrategyId).AboveStrategyType(aboveStrategyType).AbovePegPriceType(abovePegPriceType).AbovePegOffsetType(abovePegOffsetType).AbovePegOffsetValue(abovePegOffsetValue).BelowClientOrderId(belowClientOrderId).BelowIcebergQty(belowIcebergQty).BelowPrice(belowPrice).BelowStopPrice(belowStopPrice).BelowTrailingDelta(belowTrailingDelta).BelowTimeInForce(belowTimeInForce).BelowStrategyId(belowStrategyId).BelowStrategyType(belowStrategyType).BelowPegPriceType(belowPegPriceType).BelowPegOffsetType(belowPegOffsetType).BelowPegOffsetValue(belowPegOffsetValue).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).AboveQuoteNotionalLimit(aboveQuoteNotionalLimit).BelowQuoteNotionalLimit(belowQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Place new Order list - OCO (TRADE)
 
@@ -633,6 +635,8 @@ func main() {
 	belowPegOffsetValue := int32(1) // int32 |  (optional)
 	newOrderRespType := models.OrderCancelReplaceNewOrderRespTypeParameterAck // OrderCancelReplaceNewOrderRespTypeParameter | Select response format: `ACK`, `RESULT`, `FULL`. (optional)
 	selfTradePreventionMode := models.OrderCancelReplaceSelfTradePreventionModeParameterNone // OrderCancelReplaceSelfTradePreventionModeParameter | The allowed enums is dependent on what is configured on the symbol. Supported values: STP Modes (optional)
+	aboveQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the above order (only for orders on the BUY side). See Quote Notional Limit. (optional)
+	belowQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the below order (only for orders on the BUY side). See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -650,7 +654,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol(symbol).Side(side).Quantity(quantity).AboveType(aboveType).BelowType(belowType).Id(id).ListClientOrderId(listClientOrderId).AboveClientOrderId(aboveClientOrderId).AboveIcebergQty(aboveIcebergQty).AbovePrice(abovePrice).AboveStopPrice(aboveStopPrice).AboveTrailingDelta(aboveTrailingDelta).AboveTimeInForce(aboveTimeInForce).AboveStrategyId(aboveStrategyId).AboveStrategyType(aboveStrategyType).AbovePegPriceType(abovePegPriceType).AbovePegOffsetType(abovePegOffsetType).AbovePegOffsetValue(abovePegOffsetValue).BelowClientOrderId(belowClientOrderId).BelowIcebergQty(belowIcebergQty).BelowPrice(belowPrice).BelowStopPrice(belowStopPrice).BelowTrailingDelta(belowTrailingDelta).BelowTimeInForce(belowTimeInForce).BelowStrategyId(belowStrategyId).BelowStrategyType(belowStrategyType).BelowPegPriceType(belowPegPriceType).BelowPegOffsetType(belowPegOffsetType).BelowPegOffsetValue(belowPegOffsetValue).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOco().Symbol(symbol).Side(side).Quantity(quantity).AboveType(aboveType).BelowType(belowType).Id(id).ListClientOrderId(listClientOrderId).AboveClientOrderId(aboveClientOrderId).AboveIcebergQty(aboveIcebergQty).AbovePrice(abovePrice).AboveStopPrice(aboveStopPrice).AboveTrailingDelta(aboveTrailingDelta).AboveTimeInForce(aboveTimeInForce).AboveStrategyId(aboveStrategyId).AboveStrategyType(aboveStrategyType).AbovePegPriceType(abovePegPriceType).AbovePegOffsetType(abovePegOffsetType).AbovePegOffsetValue(abovePegOffsetValue).BelowClientOrderId(belowClientOrderId).BelowIcebergQty(belowIcebergQty).BelowPrice(belowPrice).BelowStopPrice(belowStopPrice).BelowTrailingDelta(belowTrailingDelta).BelowTimeInForce(belowTimeInForce).BelowStrategyId(belowStrategyId).BelowStrategyType(belowStrategyType).BelowPegPriceType(belowPegPriceType).BelowPegOffsetType(belowPegOffsetType).BelowPegOffsetValue(belowPegOffsetValue).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).AboveQuoteNotionalLimit(aboveQuoteNotionalLimit).BelowQuoteNotionalLimit(belowQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderListPlaceOco``: %v\n", err)
 		return
@@ -702,6 +706,8 @@ Name          | Type          | Description   | Notes
  **belowPegOffsetValue** | **int32** |  | 
  **newOrderRespType** | [**OrderCancelReplaceNewOrderRespTypeParameter**](OrderCancelReplaceNewOrderRespTypeParameter.md) | Select response format: &#x60;ACK&#x60;, &#x60;RESULT&#x60;, &#x60;FULL&#x60;. | 
  **selfTradePreventionMode** | [**OrderCancelReplaceSelfTradePreventionModeParameter**](OrderCancelReplaceSelfTradePreventionModeParameter.md) | The allowed enums is dependent on what is configured on the symbol. Supported values: STP Modes | 
+ **aboveQuoteNotionalLimit** | **float64** | Quote notional limit for the above order (only for orders on the BUY side). See Quote Notional Limit. | 
+ **belowQuoteNotionalLimit** | **float64** | Quote notional limit for the below order (only for orders on the BUY side). See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -717,7 +723,7 @@ No authorization required
 
 ## OrderListPlaceOpo
 
-> OrderListPlaceOpoResponse OrderListPlaceOpo().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
+> OrderListPlaceOpoResponse OrderListPlaceOpo().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 OPO (TRADE)
 
@@ -766,6 +772,7 @@ func main() {
 	pendingPegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | See Pegged Orders (optional)
 	pendingPegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter |  (optional)
 	pendingPegOffsetValue := int32(1) // int32 |  (optional)
+	workingQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -783,7 +790,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOpo().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetType(pendingPegOffsetType).PendingPegOffsetValue(pendingPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderListPlaceOpo``: %v\n", err)
 		return
@@ -834,6 +841,7 @@ Name          | Type          | Description   | Notes
  **pendingPegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | See Pegged Orders | 
  **pendingPegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) |  | 
  **pendingPegOffsetValue** | **int32** |  | 
+ **workingQuoteNotionalLimit** | **float64** | Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -849,7 +857,7 @@ No authorization required
 
 ## OrderListPlaceOpoco
 
-> OrderListPlaceOpocoResponse OrderListPlaceOpoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
+> OrderListPlaceOpocoResponse OrderListPlaceOpoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 OPOCO (TRADE)
 
@@ -869,7 +877,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	workingType := models.OrderListPlaceOpoWorkingTypeParameterLimit // OrderListPlaceOpoWorkingTypeParameter | 
+	workingType := models.OrderListPlaceOpoWorkingTypeParameterLimit // OrderListPlaceOpoWorkingTypeParameter | Supported values: `LIMIT`, `LIMIT_MAKER`
 	workingSide := models.OrderCancelReplaceSideParameterBuy // OrderCancelReplaceSideParameter | Supported values: Order Side
 	workingPrice := float64(1) // float64 | Price for the working order.
 	workingQuantity := float64(1) // float64 | Sets the quantity for the working order.
@@ -910,6 +918,7 @@ func main() {
 	pendingBelowPegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | See Pegged Orders (optional)
 	pendingBelowPegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter |  (optional)
 	pendingBelowPegOffsetValue := int32(1) // int32 |  (optional)
+	workingQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -927,7 +936,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOpoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderListPlaceOpoco``: %v\n", err)
 		return
@@ -949,7 +958,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **workingType** | [**OrderListPlaceOpoWorkingTypeParameter**](OrderListPlaceOpoWorkingTypeParameter.md) |  | 
+ **workingType** | [**OrderListPlaceOpoWorkingTypeParameter**](OrderListPlaceOpoWorkingTypeParameter.md) | Supported values: &#x60;LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60; | 
  **workingSide** | [**OrderCancelReplaceSideParameter**](OrderCancelReplaceSideParameter.md) | Supported values: Order Side | 
  **workingPrice** | **float64** | Price for the working order. | 
  **workingQuantity** | **float64** | Sets the quantity for the working order. | 
@@ -990,6 +999,7 @@ Name          | Type          | Description   | Notes
  **pendingBelowPegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | See Pegged Orders | 
  **pendingBelowPegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) |  | 
  **pendingBelowPegOffsetValue** | **int32** |  | 
+ **workingQuoteNotionalLimit** | **float64** | Quote notional limit for the working LIMIT order on the BUY side. See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1005,7 +1015,7 @@ No authorization required
 
 ## OrderListPlaceOto
 
-> OrderListPlaceOtoResponse OrderListPlaceOto().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).PendingQuantity(pendingQuantity).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegOffsetType(pendingPegOffsetType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
+> OrderListPlaceOtoResponse OrderListPlaceOto().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).PendingQuantity(pendingQuantity).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegOffsetType(pendingPegOffsetType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetValue(pendingPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).PendingQuoteNotionalLimit(pendingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Place new Order list - OTO (TRADE)
 
@@ -1055,6 +1065,8 @@ func main() {
 	pendingPegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter |  (optional)
 	pendingPegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | See Pegged Orders (optional)
 	pendingPegOffsetValue := int32(1) // int32 |  (optional)
+	workingQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit. (optional)
+	pendingQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the pending order (only for orders on the BUY side). See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1072,7 +1084,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).PendingQuantity(pendingQuantity).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegOffsetType(pendingPegOffsetType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetValue(pendingPegOffsetValue).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOto().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingType(pendingType).PendingSide(pendingSide).PendingQuantity(pendingQuantity).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingClientOrderId(pendingClientOrderId).PendingPrice(pendingPrice).PendingStopPrice(pendingStopPrice).PendingTrailingDelta(pendingTrailingDelta).PendingIcebergQty(pendingIcebergQty).PendingTimeInForce(pendingTimeInForce).PendingStrategyId(pendingStrategyId).PendingStrategyType(pendingStrategyType).PendingPegOffsetType(pendingPegOffsetType).PendingPegPriceType(pendingPegPriceType).PendingPegOffsetValue(pendingPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).PendingQuoteNotionalLimit(pendingQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderListPlaceOto``: %v\n", err)
 		return
@@ -1124,6 +1136,8 @@ Name          | Type          | Description   | Notes
  **pendingPegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) |  | 
  **pendingPegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | See Pegged Orders | 
  **pendingPegOffsetValue** | **int32** |  | 
+ **workingQuoteNotionalLimit** | **float64** | Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit. | 
+ **pendingQuoteNotionalLimit** | **float64** | Quote notional limit for the pending order (only for orders on the BUY side). See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1139,7 +1153,7 @@ No authorization required
 
 ## OrderListPlaceOtoco
 
-> OrderListPlaceOtocoResponse OrderListPlaceOtoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingQuantity(pendingQuantity).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
+> OrderListPlaceOtocoResponse OrderListPlaceOtoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingQuantity(pendingQuantity).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).PendingAboveQuoteNotionalLimit(pendingAboveQuoteNotionalLimit).PendingBelowQuoteNotionalLimit(pendingBelowQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Place new Order list - OTOCO (TRADE)
 
@@ -1201,6 +1215,9 @@ func main() {
 	pendingBelowPegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | See Pegged Orders (optional)
 	pendingBelowPegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter |  (optional)
 	pendingBelowPegOffsetValue := int32(1) // int32 |  (optional)
+	workingQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit. (optional)
+	pendingAboveQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the pending above order (only for orders on the BUY side). See Quote Notional Limit. (optional)
+	pendingBelowQuoteNotionalLimit := float64(100) // float64 | Quote notional limit for the pending below order (only for orders on the BUY side). See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1218,7 +1235,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingQuantity(pendingQuantity).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderListPlaceOtoco().Symbol(symbol).WorkingType(workingType).WorkingSide(workingSide).WorkingPrice(workingPrice).WorkingQuantity(workingQuantity).PendingSide(pendingSide).PendingQuantity(pendingQuantity).PendingAboveType(pendingAboveType).Id(id).ListClientOrderId(listClientOrderId).NewOrderRespType(newOrderRespType).SelfTradePreventionMode(selfTradePreventionMode).WorkingClientOrderId(workingClientOrderId).WorkingIcebergQty(workingIcebergQty).WorkingTimeInForce(workingTimeInForce).WorkingStrategyId(workingStrategyId).WorkingStrategyType(workingStrategyType).WorkingPegPriceType(workingPegPriceType).WorkingPegOffsetType(workingPegOffsetType).WorkingPegOffsetValue(workingPegOffsetValue).PendingAboveClientOrderId(pendingAboveClientOrderId).PendingAbovePrice(pendingAbovePrice).PendingAboveStopPrice(pendingAboveStopPrice).PendingAboveTrailingDelta(pendingAboveTrailingDelta).PendingAboveIcebergQty(pendingAboveIcebergQty).PendingAboveTimeInForce(pendingAboveTimeInForce).PendingAboveStrategyId(pendingAboveStrategyId).PendingAboveStrategyType(pendingAboveStrategyType).PendingAbovePegPriceType(pendingAbovePegPriceType).PendingAbovePegOffsetType(pendingAbovePegOffsetType).PendingAbovePegOffsetValue(pendingAbovePegOffsetValue).PendingBelowType(pendingBelowType).PendingBelowClientOrderId(pendingBelowClientOrderId).PendingBelowPrice(pendingBelowPrice).PendingBelowStopPrice(pendingBelowStopPrice).PendingBelowTrailingDelta(pendingBelowTrailingDelta).PendingBelowIcebergQty(pendingBelowIcebergQty).PendingBelowTimeInForce(pendingBelowTimeInForce).PendingBelowStrategyId(pendingBelowStrategyId).PendingBelowStrategyType(pendingBelowStrategyType).PendingBelowPegPriceType(pendingBelowPegPriceType).PendingBelowPegOffsetType(pendingBelowPegOffsetType).PendingBelowPegOffsetValue(pendingBelowPegOffsetValue).WorkingQuoteNotionalLimit(workingQuoteNotionalLimit).PendingAboveQuoteNotionalLimit(pendingAboveQuoteNotionalLimit).PendingBelowQuoteNotionalLimit(pendingBelowQuoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderListPlaceOtoco``: %v\n", err)
 		return
@@ -1282,6 +1299,9 @@ Name          | Type          | Description   | Notes
  **pendingBelowPegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | See Pegged Orders | 
  **pendingBelowPegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) |  | 
  **pendingBelowPegOffsetValue** | **int32** |  | 
+ **workingQuoteNotionalLimit** | **float64** | Quote notional limit for the working order (only for orders on the BUY side). See Quote Notional Limit. | 
+ **pendingAboveQuoteNotionalLimit** | **float64** | Quote notional limit for the pending above order (only for orders on the BUY side). See Quote Notional Limit. | 
+ **pendingBelowQuoteNotionalLimit** | **float64** | Quote notional limit for the pending below order (only for orders on the BUY side). See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1297,7 +1317,7 @@ No authorization required
 
 ## OrderPlace
 
-> OrderPlaceResponse OrderPlace().Symbol(symbol).Side(side).Type(type_).Id(id).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+> OrderPlaceResponse OrderPlace().Symbol(symbol).Side(side).Type(type_).Id(id).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Place new order (TRADE)
 
@@ -1335,6 +1355,7 @@ func main() {
 	pegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | See Pegged Orders Info (optional)
 	pegOffsetValue := int32(1) // int32 | Price level to peg the price to (max: 100). See Pegged Orders Info (optional)
 	pegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter | Only `PRICE_LEVEL` is supported. See Pegged Orders Info (optional)
+	quoteNotionalLimit := float64(100) // float64 | For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1352,7 +1373,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderPlace().Symbol(symbol).Side(side).Type(type_).Id(id).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderPlace().Symbol(symbol).Side(side).Type(type_).Id(id).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderPlace``: %v\n", err)
 		return
@@ -1392,6 +1413,7 @@ Name          | Type          | Description   | Notes
  **pegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | See Pegged Orders Info | 
  **pegOffsetValue** | **int32** | Price level to peg the price to (max: 100). See Pegged Orders Info | 
  **pegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported. See Pegged Orders Info | 
+ **quoteNotionalLimit** | **float64** | For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type
@@ -1407,7 +1429,7 @@ No authorization required
 
 ## OrderTest
 
-> OrderTestResponse OrderTest().Symbol(symbol).Side(side).Type(type_).Id(id).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+> OrderTestResponse OrderTest().Symbol(symbol).Side(side).Type(type_).Id(id).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 
 Test new order (TRADE)
 
@@ -1446,6 +1468,7 @@ func main() {
 	pegPriceType := models.OrderCancelReplacePegPriceTypeParameterPrimaryPeg // OrderCancelReplacePegPriceTypeParameter | `PRIMARY_PEG` or `MARKET_PEG`. See Pegged Orders (optional)
 	pegOffsetValue := int32(1) // int32 | Price level for pegging (max: 100). See Pegged Orders (optional)
 	pegOffsetType := models.OrderCancelReplacePegOffsetTypeParameterPriceLevel // OrderCancelReplacePegOffsetTypeParameter | Only `PRICE_LEVEL` is supported. See Pegged Orders (optional)
+	quoteNotionalLimit := float64(100) // float64 | For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1463,7 +1486,7 @@ func main() {
 	}
 
 
-	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderTest().Symbol(symbol).Side(side).Type(type_).Id(id).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).RecvWindow(recvWindow).Execute()
+	resp, err := wsClient.WebsocketAPI.TradeAPI.OrderTest().Symbol(symbol).Side(side).Type(type_).Id(id).ComputeCommissionRates(computeCommissionRates).TimeInForce(timeInForce).Price(price).Quantity(quantity).QuoteOrderQty(quoteOrderQty).NewClientOrderId(newClientOrderId).NewOrderRespType(newOrderRespType).StopPrice(stopPrice).TrailingDelta(trailingDelta).IcebergQty(icebergQty).StrategyId(strategyId).StrategyType(strategyType).SelfTradePreventionMode(selfTradePreventionMode).PegPriceType(pegPriceType).PegOffsetValue(pegOffsetValue).PegOffsetType(pegOffsetType).QuoteNotionalLimit(quoteNotionalLimit).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.OrderTest``: %v\n", err)
 		return
@@ -1504,6 +1527,7 @@ Name          | Type          | Description   | Notes
  **pegPriceType** | [**OrderCancelReplacePegPriceTypeParameter**](OrderCancelReplacePegPriceTypeParameter.md) | &#x60;PRIMARY_PEG&#x60; or &#x60;MARKET_PEG&#x60;. See Pegged Orders | 
  **pegOffsetValue** | **int32** | Price level for pegging (max: 100). See Pegged Orders | 
  **pegOffsetType** | [**OrderCancelReplacePegOffsetTypeParameter**](OrderCancelReplacePegOffsetTypeParameter.md) | Only &#x60;PRICE_LEVEL&#x60; is supported. See Pegged Orders | 
+ **quoteNotionalLimit** | **float64** | For orders on the BUY side only. Maximum quote-asset notional the order may consume. See Quote Notional Limit. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
 
 ### Return type

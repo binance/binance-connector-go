@@ -84,7 +84,7 @@ No authorization required
 
 ## UserDataStreamSubscribe
 
-> UserDataStreamSubscribeResponse UserDataStreamSubscribe().Id(id).Execute()
+> UserDataStreamSubscribeResponse UserDataStreamSubscribe().Id(id).Filter(filter).Execute()
 
 Subscribe to User Data Stream (USER_STREAM)
 
@@ -104,6 +104,7 @@ import (
 
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	filter := map[string]interface{}{ ... } // map[string]interface{} | Optional filter that controls which events are delivered on this subscription. See User Data Stream Subscription Filters. When omitted, all events for the subscribed account are delivered. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -146,6 +147,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
+ **filter** | [**map[string]interface{}**](map[string]interface{}.md) | Optional filter that controls which events are delivered on this subscription. See User Data Stream Subscription Filters. When omitted, all events for the subscribed account are delivered. | 
 
 ### Return type
 
@@ -160,7 +162,7 @@ No authorization required
 
 ## UserDataStreamSubscribeSignature
 
-> UserDataStreamSubscribeSignatureResponse UserDataStreamSubscribeSignature().Id(id).RecvWindow(recvWindow).Execute()
+> UserDataStreamSubscribeSignatureResponse UserDataStreamSubscribeSignature().Id(id).RecvWindow(recvWindow).Filter(filter).Execute()
 
 Subscribe to User Data Stream through signature subscription (USER_STREAM)
 
@@ -181,6 +183,7 @@ import (
 func main() {
 	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
+	filter := map[string]interface{}{ ... } // map[string]interface{} | Optional event filter. See User Data Stream Subscription Filters. When included, `filter` must be in the signed string with sorted keys and no whitespace between JSON elements. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -224,6 +227,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Client-generated request identifier. | 
  **recvWindow** | **float64** | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. | 
+ **filter** | [**map[string]interface{}**](map[string]interface{}.md) | Optional event filter. See User Data Stream Subscription Filters. When included, &#x60;filter&#x60; must be in the signed string with sorted keys and no whitespace between JSON elements. | 
 
 ### Return type
 
