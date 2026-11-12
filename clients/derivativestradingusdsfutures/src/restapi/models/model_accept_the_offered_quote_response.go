@@ -17,8 +17,9 @@ var _ common.MappedNullable = &AcceptTheOfferedQuoteResponse{}
 
 // AcceptTheOfferedQuoteResponse struct for AcceptTheOfferedQuoteResponse
 type AcceptTheOfferedQuoteResponse struct {
-	OrderId              *string `json:"orderId,omitempty"`
-	CreateTime           *int64  `json:"createTime,omitempty"`
+	OrderId    *string `json:"orderId,omitempty"`
+	CreateTime *int64  `json:"createTime,omitempty"`
+	// PROCESS/ACCEPT_SUCCESS/SUCCESS/FAIL
 	OrderStatus          *string `json:"orderStatus,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

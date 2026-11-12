@@ -16,7 +16,7 @@ Name         | Type          | Description.  | Notes
 **AlgoStatus** | Pointer to **string** |  | [optional] 
 **TriggerPrice** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**IcebergQuantity** | Pointer to **string** |  | [optional] 
+**IcebergQuantity** | Pointer to **string** | Reserved field, ignore. | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 
 **PriceMatch** | Pointer to **string** |  | [optional] 

@@ -19,7 +19,8 @@ var _ common.MappedNullable = &ClassicPortfolioMarginAccountInformationResponse{
 type ClassicPortfolioMarginAccountInformationResponse struct {
 	// Classic Portfolio margin maximum virtual amount for transfer out in USD
 	MaxWithdrawAmountUSD *string `json:"maxWithdrawAmountUSD,omitempty"`
-	Asset                *string `json:"asset,omitempty"`
+	// asset name
+	Asset *string `json:"asset,omitempty"`
 	// maximum amount for transfer out
 	MaxWithdrawAmount    *string `json:"maxWithdrawAmount,omitempty"`
 	AdditionalProperties map[string]interface{}

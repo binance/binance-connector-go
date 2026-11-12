@@ -30,6 +30,9 @@ Name         | Type          | Description.  | Notes
 **Gtd** | Pointer to **int64** | Good till time for GTD time in force | [optional] 
 **Rm** | Pointer to **string** | Algo order failed reason | [optional] 
 **Ia** | Pointer to **bool** | Is activated or not, only meaningful for trailing order | [optional] 
+**Spt** | Pointer to **string** | Sub price type, only meaningful for CHASE order | [optional] 
+**Spv** | Pointer to **string** | Sub price value, only meaningful for CHASE order | [optional] 
+**Splv** | Pointer to **string** | Sub price limit value, only meaningful for CHASE order | [optional] 
 
 ## Methods
 
@@ -699,6 +702,81 @@ SetIa sets Ia field to given value.
 `func (o *AlgoUpdateO) HasIa() bool`
 
 HasIa returns a boolean if a field has been set.
+
+### GetSpt
+
+`func (o *AlgoUpdateO) GetSpt() string`
+
+GetSpt returns the Spt field if non-nil, zero value otherwise.
+
+### GetSptOk
+
+`func (o *AlgoUpdateO) GetSptOk() (*string, bool)`
+
+GetSptOk returns a tuple with the Spt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpt
+
+`func (o *AlgoUpdateO) SetSpt(v string)`
+
+SetSpt sets Spt field to given value.
+
+### HasSpt
+
+`func (o *AlgoUpdateO) HasSpt() bool`
+
+HasSpt returns a boolean if a field has been set.
+
+### GetSpv
+
+`func (o *AlgoUpdateO) GetSpv() string`
+
+GetSpv returns the Spv field if non-nil, zero value otherwise.
+
+### GetSpvOk
+
+`func (o *AlgoUpdateO) GetSpvOk() (*string, bool)`
+
+GetSpvOk returns a tuple with the Spv field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSpv
+
+`func (o *AlgoUpdateO) SetSpv(v string)`
+
+SetSpv sets Spv field to given value.
+
+### HasSpv
+
+`func (o *AlgoUpdateO) HasSpv() bool`
+
+HasSpv returns a boolean if a field has been set.
+
+### GetSplv
+
+`func (o *AlgoUpdateO) GetSplv() string`
+
+GetSplv returns the Splv field if non-nil, zero value otherwise.
+
+### GetSplvOk
+
+`func (o *AlgoUpdateO) GetSplvOk() (*string, bool)`
+
+GetSplvOk returns a tuple with the Splv field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSplv
+
+`func (o *AlgoUpdateO) SetSplv(v string)`
+
+SetSplv sets Splv field to given value.
+
+### HasSplv
+
+`func (o *AlgoUpdateO) HasSplv() bool`
+
+HasSplv returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

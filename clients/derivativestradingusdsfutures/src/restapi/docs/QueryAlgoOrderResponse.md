@@ -20,7 +20,7 @@ Name         | Type          | Description.  | Notes
 **ActualQty** | Pointer to **string** | Optional field, only present when filled/partially filled. | [optional] 
 **TriggerPrice** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**IcebergQuantity** | Pointer to **string** |  | [optional] 
+**IcebergQuantity** | Pointer to **string** | Reserved field, ignore. | [optional] 
 **TpOrderType** | Pointer to **string** |  | [optional] 
 **SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
 **WorkingType** | Pointer to **string** |  | [optional] 

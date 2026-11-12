@@ -18,7 +18,7 @@ Name         | Type          | Description.  | Notes
 **ActualPrice** | Pointer to **string** |  | [optional] 
 **TriggerPrice** | Pointer to **string** |  | [optional] 
 **Price** | Pointer to **string** |  | [optional] 
-**IcebergQuantity** | Pointer to **string** |  | [optional] 
+**IcebergQuantity** | Pointer to **string** | Reserved field, ignore. | [optional] 
 **TpTriggerPrice** | Pointer to **string** |  | [optional] 
 **TpPrice** | Pointer to **string** |  | [optional] 
 **SlTriggerPrice** | Pointer to **string** |  | [optional] 

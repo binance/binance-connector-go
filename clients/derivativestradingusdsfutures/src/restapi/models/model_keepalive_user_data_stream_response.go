@@ -17,6 +17,7 @@ var _ common.MappedNullable = &KeepaliveUserDataStreamResponse{}
 
 // KeepaliveUserDataStreamResponse struct for KeepaliveUserDataStreamResponse
 type KeepaliveUserDataStreamResponse struct {
+	// the listenkey which got extended
 	ListenKey            *string `json:"listenKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

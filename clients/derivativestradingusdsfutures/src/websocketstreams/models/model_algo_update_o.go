@@ -68,7 +68,13 @@ type AlgoUpdateO struct {
 	// Algo order failed reason
 	Smallrm *string `json:"rm,omitempty"`
 	// Is activated or not, only meaningful for trailing order
-	Smallia              *bool `json:"ia,omitempty"`
+	Smallia *bool `json:"ia,omitempty"`
+	// Sub price type, only meaningful for CHASE order
+	Spt *string `json:"spt,omitempty"`
+	// Sub price value, only meaningful for CHASE order
+	Spv *string `json:"spv,omitempty"`
+	// Sub price limit value, only meaningful for CHASE order
+	Splv                 *string `json:"splv,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -923,6 +929,102 @@ func (o *AlgoUpdateO) SetSmallia(v bool) {
 	o.Smallia = &v
 }
 
+// GetSpt returns the Spt field value if set, zero value otherwise.
+func (o *AlgoUpdateO) GetSpt() string {
+	if o == nil || common.IsNil(o.Spt) {
+		var ret string
+		return ret
+	}
+	return *o.Spt
+}
+
+// GetSptOk returns a tuple with the Spt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlgoUpdateO) GetSptOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Spt) {
+		return nil, false
+	}
+	return o.Spt, true
+}
+
+// HasSpt returns a boolean if a field has been set.
+func (o *AlgoUpdateO) HasSpt() bool {
+	if o != nil && !common.IsNil(o.Spt) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpt gets a reference to the given string and assigns it to the Spt field.
+func (o *AlgoUpdateO) SetSpt(v string) {
+	o.Spt = &v
+}
+
+// GetSpv returns the Spv field value if set, zero value otherwise.
+func (o *AlgoUpdateO) GetSpv() string {
+	if o == nil || common.IsNil(o.Spv) {
+		var ret string
+		return ret
+	}
+	return *o.Spv
+}
+
+// GetSpvOk returns a tuple with the Spv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlgoUpdateO) GetSpvOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Spv) {
+		return nil, false
+	}
+	return o.Spv, true
+}
+
+// HasSpv returns a boolean if a field has been set.
+func (o *AlgoUpdateO) HasSpv() bool {
+	if o != nil && !common.IsNil(o.Spv) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpv gets a reference to the given string and assigns it to the Spv field.
+func (o *AlgoUpdateO) SetSpv(v string) {
+	o.Spv = &v
+}
+
+// GetSplv returns the Splv field value if set, zero value otherwise.
+func (o *AlgoUpdateO) GetSplv() string {
+	if o == nil || common.IsNil(o.Splv) {
+		var ret string
+		return ret
+	}
+	return *o.Splv
+}
+
+// GetSplvOk returns a tuple with the Splv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlgoUpdateO) GetSplvOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Splv) {
+		return nil, false
+	}
+	return o.Splv, true
+}
+
+// HasSplv returns a boolean if a field has been set.
+func (o *AlgoUpdateO) HasSplv() bool {
+	if o != nil && !common.IsNil(o.Splv) {
+		return true
+	}
+
+	return false
+}
+
+// SetSplv gets a reference to the given string and assigns it to the Splv field.
+func (o *AlgoUpdateO) SetSplv(v string) {
+	o.Splv = &v
+}
+
 func (o AlgoUpdateO) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -1011,6 +1113,15 @@ func (o AlgoUpdateO) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Smallia) {
 		toSerialize["ia"] = o.Smallia
 	}
+	if !common.IsNil(o.Spt) {
+		toSerialize["spt"] = o.Spt
+	}
+	if !common.IsNil(o.Spv) {
+		toSerialize["spv"] = o.Spv
+	}
+	if !common.IsNil(o.Splv) {
+		toSerialize["splv"] = o.Splv
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1059,6 +1170,9 @@ func (o *AlgoUpdateO) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "gtd")
 		delete(additionalProperties, "rm")
 		delete(additionalProperties, "ia")
+		delete(additionalProperties, "spt")
+		delete(additionalProperties, "spv")
+		delete(additionalProperties, "splv")
 		o.AdditionalProperties = additionalProperties
 	}
 

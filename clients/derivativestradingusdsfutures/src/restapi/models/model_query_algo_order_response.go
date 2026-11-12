@@ -34,9 +34,10 @@ type QueryAlgoOrderResponse struct {
 	// Optional field, only present when triggered.
 	ActualType *string `json:"actualType,omitempty"`
 	// Optional field, only present when filled/partially filled.
-	ActualQty               *string `json:"actualQty,omitempty"`
-	TriggerPrice            *string `json:"triggerPrice,omitempty"`
-	Price                   *string `json:"price,omitempty"`
+	ActualQty    *string `json:"actualQty,omitempty"`
+	TriggerPrice *string `json:"triggerPrice,omitempty"`
+	Price        *string `json:"price,omitempty"`
+	// Reserved field, ignore.
 	IcebergQuantity         *string `json:"icebergQuantity,omitempty"`
 	TpOrderType             *string `json:"tpOrderType,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`

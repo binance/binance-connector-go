@@ -17,18 +17,19 @@ var _ common.MappedNullable = &NewAlgoOrderResponse{}
 
 // NewAlgoOrderResponse struct for NewAlgoOrderResponse
 type NewAlgoOrderResponse struct {
-	AlgoId                  *int64  `json:"algoId,omitempty"`
-	ClientAlgoId            *string `json:"clientAlgoId,omitempty"`
-	AlgoType                *string `json:"algoType,omitempty"`
-	OrderType               *string `json:"orderType,omitempty"`
-	Symbol                  *string `json:"symbol,omitempty"`
-	Side                    *string `json:"side,omitempty"`
-	PositionSide            *string `json:"positionSide,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Quantity                *string `json:"quantity,omitempty"`
-	AlgoStatus              *string `json:"algoStatus,omitempty"`
-	TriggerPrice            *string `json:"triggerPrice,omitempty"`
-	Price                   *string `json:"price,omitempty"`
+	AlgoId       *int64  `json:"algoId,omitempty"`
+	ClientAlgoId *string `json:"clientAlgoId,omitempty"`
+	AlgoType     *string `json:"algoType,omitempty"`
+	OrderType    *string `json:"orderType,omitempty"`
+	Symbol       *string `json:"symbol,omitempty"`
+	Side         *string `json:"side,omitempty"`
+	PositionSide *string `json:"positionSide,omitempty"`
+	TimeInForce  *string `json:"timeInForce,omitempty"`
+	Quantity     *string `json:"quantity,omitempty"`
+	AlgoStatus   *string `json:"algoStatus,omitempty"`
+	TriggerPrice *string `json:"triggerPrice,omitempty"`
+	Price        *string `json:"price,omitempty"`
+	// Reserved field, ignore.
 	IcebergQuantity         *string `json:"icebergQuantity,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	WorkingType             *string `json:"workingType,omitempty"`
