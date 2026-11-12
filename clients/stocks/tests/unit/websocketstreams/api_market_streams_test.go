@@ -245,7 +245,7 @@ func Test_binancestockswebsocketstreams_MarketStreamsAPIService(t *testing.T) {
 		)
 		mockClient.WebsocketStreams.Ws.WsCommon.Connections = []*common.WebSocketConnection{conn}
 
-		mockedJSON := `{"e":"price","rates":[{"s":"AAPL","ac":"EQ_AAPL","p":"182.5","t":1710320400000,"pc":"181.2000","tc":"182.0000","mp":"O"}]}`
+		mockedJSON := `{"e":"price","rates":[{"s":"AAPL","ac":"EQ_AAPL","p":"182.5","t":1710320400000,"pc":"181.2000","tc":"182.0000","lrc":"182.0000","prc":"181.2000","mp":"O"}]}`
 		mockWS.QueueMessage([]byte(mockedJSON))
 
 		resp, err := mockClient.WebsocketStreams.MarketStreamsAPI.PriceStream().Execute()

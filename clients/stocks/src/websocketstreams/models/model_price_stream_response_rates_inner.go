@@ -25,10 +25,14 @@ type PriceStreamResponseRatesInner struct {
 	P *string `json:"p,omitempty"`
 	// Price time (epoch milliseconds UTC); may be null.
 	T *int64 `json:"t,omitempty"`
-	// Previous day's RTH close price (reference); absent when unknown.
+	// Previous trading day's close price; absent when unknown.
 	Pc *string `json:"pc,omitempty"`
-	// Today's RTH close price; absent before After-Hours.
+	// Today's close price; absent before After-Hours.
 	Tc *string `json:"tc,omitempty"`
+	// Final close price of the most recent completed RTH trading day. Rolls forward only once the next trading day enters Post-Market and the 1-minute kline for the minute before that day's RTH close is available; while unavailable, the previous `lrc`/`prc` pair is retained.
+	Lrc *string `json:"lrc,omitempty"`
+	// Final close price of the trading day before the `lrc` trading day. `null` when the symbol has only one completed RTH trading day (e.g. a new IPO).
+	Prc *string `json:"prc,omitempty"`
 	// Per-symbol market phase: `C` Closed, `ON` Overnight, `PRE` Pre-Market, `O` Market Open, `POST` Post-Market.
 	Mp                   *string `json:"mp,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -246,6 +250,71 @@ func (o *PriceStreamResponseRatesInner) SetTc(v string) {
 	o.Tc = &v
 }
 
+// GetLrc returns the Lrc field value if set, zero value otherwise.
+func (o *PriceStreamResponseRatesInner) GetLrc() string {
+	if o == nil || common.IsNil(o.Lrc) {
+		var ret string
+		return ret
+	}
+	return *o.Lrc
+}
+
+// GetLrcOk returns a tuple with the Lrc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PriceStreamResponseRatesInner) GetLrcOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Lrc) {
+		return nil, false
+	}
+	return o.Lrc, true
+}
+
+// HasLrc returns a boolean if a field has been set.
+func (o *PriceStreamResponseRatesInner) HasLrc() bool {
+	if o != nil && !common.IsNil(o.Lrc) {
+		return true
+	}
+
+	return false
+}
+
+// SetLrc gets a reference to the given string and assigns it to the Lrc field.
+func (o *PriceStreamResponseRatesInner) SetLrc(v string) {
+	o.Lrc = &v
+}
+
+// GetPrc returns the Prc field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PriceStreamResponseRatesInner) GetPrc() string {
+	if o == nil || common.IsNil(o.Prc) {
+		var ret string
+		return ret
+	}
+	return *o.Prc
+}
+
+// GetPrcOk returns a tuple with the Prc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PriceStreamResponseRatesInner) GetPrcOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prc, true
+}
+
+// HasPrc returns a boolean if a field has been set.
+func (o *PriceStreamResponseRatesInner) HasPrc() bool {
+	if o != nil && common.IsNil(o.Prc) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrc gets a reference to the given NullableString and assigns it to the Prc field.
+func (o *PriceStreamResponseRatesInner) SetPrc(v string) {
+	o.Prc = &v
+}
+
 // GetMp returns the Mp field value if set, zero value otherwise.
 func (o *PriceStreamResponseRatesInner) GetMp() string {
 	if o == nil || common.IsNil(o.Mp) {
@@ -306,6 +375,12 @@ func (o PriceStreamResponseRatesInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Tc) {
 		toSerialize["tc"] = o.Tc
 	}
+	if !common.IsNil(o.Lrc) {
+		toSerialize["lrc"] = o.Lrc
+	}
+	if !common.IsNil(o.Prc) {
+		toSerialize["prc"] = o.Prc
+	}
 	if !common.IsNil(o.Mp) {
 		toSerialize["mp"] = o.Mp
 	}
@@ -337,6 +412,8 @@ func (o *PriceStreamResponseRatesInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "t")
 		delete(additionalProperties, "pc")
 		delete(additionalProperties, "tc")
+		delete(additionalProperties, "lrc")
+		delete(additionalProperties, "prc")
 		delete(additionalProperties, "mp")
 		o.AdditionalProperties = additionalProperties
 	}
