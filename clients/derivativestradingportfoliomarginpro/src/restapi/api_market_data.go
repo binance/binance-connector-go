@@ -69,6 +69,57 @@ func (a *MarketDataAPIService) GetPortfolioMarginAssetLeverageExecute(r ApiGetPo
 	return resp, nil
 }
 
+type ApiGetPortfolioMarginTieredCollateralRatesRequest struct {
+	ctx        context.Context
+	ApiService *MarketDataAPIService
+}
+
+func (r ApiGetPortfolioMarginTieredCollateralRatesRequest) Execute() (*common.RestApiResponse[models.GetPortfolioMarginTieredCollateralRatesResponse], error) {
+	return r.ApiService.GetPortfolioMarginTieredCollateralRatesExecute(r)
+}
+
+/*
+GetPortfolioMarginTieredCollateralRates Get Portfolio Margin Tiered Collateral Rates (MARKET_DATA)
+Get /sapi/v2/portfolio/retail/collateralRate
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin-pro/api/rest-api/market-data#get-portfolio-margin-tiered-collateral-rates
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return ApiGetPortfolioMarginTieredCollateralRatesRequest
+*/
+func (a *MarketDataAPIService) GetPortfolioMarginTieredCollateralRates(ctx context.Context) ApiGetPortfolioMarginTieredCollateralRatesRequest {
+	return ApiGetPortfolioMarginTieredCollateralRatesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetPortfolioMarginTieredCollateralRatesResponse
+func (a *MarketDataAPIService) GetPortfolioMarginTieredCollateralRatesExecute(r ApiGetPortfolioMarginTieredCollateralRatesRequest) (*common.RestApiResponse[models.GetPortfolioMarginTieredCollateralRatesResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v2/portfolio/retail/collateralRate"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	resp, err := SendRequest[models.GetPortfolioMarginTieredCollateralRatesResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		false,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiPortfolioMarginCollateralRateRequest struct {
 	ctx        context.Context
 	ApiService *MarketDataAPIService

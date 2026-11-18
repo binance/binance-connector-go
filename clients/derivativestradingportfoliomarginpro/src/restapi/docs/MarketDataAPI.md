@@ -5,6 +5,7 @@ All URIs are relative to *https://api.binance.com*
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
 [**GetPortfolioMarginAssetLeverage**](MarketDataAPI.md#GetPortfolioMarginAssetLeverage) | **Get** /sapi/v1/portfolio/margin-asset-leverage | Get Portfolio Margin Asset Leverage (USER_DATA)
+[**GetPortfolioMarginTieredCollateralRates**](MarketDataAPI.md#GetPortfolioMarginTieredCollateralRates) | **Get** /sapi/v2/portfolio/retail/collateralRate | Get Portfolio Margin Tiered Collateral Rates (MARKET_DATA)
 [**PortfolioMarginCollateralRate**](MarketDataAPI.md#PortfolioMarginCollateralRate) | **Get** /sapi/v1/portfolio/collateralRate | Portfolio Margin Collateral Rate (MARKET_DATA)
 [**PortfolioMarginProTieredCollateralRate**](MarketDataAPI.md#PortfolioMarginProTieredCollateralRate) | **Get** /sapi/v2/portfolio/collateralRate | Portfolio Margin Pro Tiered Collateral Rate (USER_DATA)
 [**QueryPortfolioMarginAssetIndexPrice**](MarketDataAPI.md#QueryPortfolioMarginAssetIndexPrice) | **Get** /sapi/v1/portfolio/asset-index-price | Query Portfolio Margin Asset Index Price (MARKET_DATA)
@@ -63,6 +64,71 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GetPortfolioMarginAssetLeverageResponse**](GetPortfolioMarginAssetLeverageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetPortfolioMarginTieredCollateralRates
+
+> GetPortfolioMarginTieredCollateralRatesResponse GetPortfolioMarginTieredCollateralRates(ctx).Execute()
+
+Get Portfolio Margin Tiered Collateral Rates (MARKET_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomarginpro"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginProClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.MarketDataAPI.GetPortfolioMarginTieredCollateralRates(context.Background()).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `MarketDataAPI.GetPortfolioMarginTieredCollateralRates``: %v\n", err)
+		return
+	}
+
+	// response from `GetPortfolioMarginTieredCollateralRates`: GetPortfolioMarginTieredCollateralRatesResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetPortfolioMarginTieredCollateralRatesResponse**](GetPortfolioMarginTieredCollateralRatesResponse.md)
 
 ### Authorization
 
