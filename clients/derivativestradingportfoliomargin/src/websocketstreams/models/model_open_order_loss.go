@@ -19,8 +19,8 @@ var _ common.MappedNullable = &OpenOrderLoss{}
 type OpenOrderLoss struct {
 	// Event Time
 	E *int64 `json:"E,omitempty"`
-	// Update Data
-	O                    []OpenOrderLossOInner `json:"O,omitempty"`
+	// Aggregated account-level open order loss, in USD
+	Smallo               *string `json:"o,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,35 +76,35 @@ func (o *OpenOrderLoss) SetE(v int64) {
 }
 
 // GetO returns the O field value if set, zero value otherwise.
-func (o *OpenOrderLoss) GetO() []OpenOrderLossOInner {
-	if o == nil || common.IsNil(o.O) {
-		var ret []OpenOrderLossOInner
+func (o *OpenOrderLoss) GetSmallo() string {
+	if o == nil || common.IsNil(o.Smallo) {
+		var ret string
 		return ret
 	}
-	return o.O
+	return *o.Smallo
 }
 
 // GetOOk returns a tuple with the O field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpenOrderLoss) GetOOk() ([]OpenOrderLossOInner, bool) {
-	if o == nil || common.IsNil(o.O) {
+func (o *OpenOrderLoss) GetSmalloOk() (*string, bool) {
+	if o == nil || common.IsNil(o.Smallo) {
 		return nil, false
 	}
-	return o.O, true
+	return o.Smallo, true
 }
 
 // HasO returns a boolean if a field has been set.
-func (o *OpenOrderLoss) HasO() bool {
-	if o != nil && !common.IsNil(o.O) {
+func (o *OpenOrderLoss) HasSmallo() bool {
+	if o != nil && !common.IsNil(o.Smallo) {
 		return true
 	}
 
 	return false
 }
 
-// SetO gets a reference to the given []OpenOrderLossOInner and assigns it to the O field.
-func (o *OpenOrderLoss) SetO(v []OpenOrderLossOInner) {
-	o.O = v
+// SetO gets a reference to the given string and assigns it to the O field.
+func (o *OpenOrderLoss) SetSmallo(v string) {
+	o.Smallo = &v
 }
 
 func (o OpenOrderLoss) MarshalJSON() ([]byte, error) {
@@ -120,8 +120,8 @@ func (o OpenOrderLoss) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.E) {
 		toSerialize["E"] = o.E
 	}
-	if !common.IsNil(o.O) {
-		toSerialize["O"] = o.O
+	if !common.IsNil(o.Smallo) {
+		toSerialize["o"] = o.Smallo
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -146,7 +146,7 @@ func (o *OpenOrderLoss) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "E")
-		delete(additionalProperties, "O")
+		delete(additionalProperties, "o")
 		o.AdditionalProperties = additionalProperties
 	}
 

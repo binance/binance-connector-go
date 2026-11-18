@@ -5,7 +5,7 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **E** | Pointer to **int64** | Event Time | [optional] 
-**O** | Pointer to [**[]OpenOrderLossOInner**](OpenOrderLossOInner.md) | Update Data | [optional] 
+**O** | Pointer to **string** | Aggregated account-level open order loss, in USD | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasE returns a boolean if a field has been set.
 
 ### GetO
 
-`func (o *OpenOrderLoss) GetO() []OpenOrderLossOInner`
+`func (o *OpenOrderLoss) GetO() string`
 
 GetO returns the O field if non-nil, zero value otherwise.
 
 ### GetOOk
 
-`func (o *OpenOrderLoss) GetOOk() (*[]OpenOrderLossOInner, bool)`
+`func (o *OpenOrderLoss) GetOOk() (*string, bool)`
 
 GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetO
 
-`func (o *OpenOrderLoss) SetO(v []OpenOrderLossOInner)`
+`func (o *OpenOrderLoss) SetO(v string)`
 
 SetO sets O field to given value.
 

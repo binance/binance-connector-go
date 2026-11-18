@@ -38,7 +38,7 @@ Name         | Type          | Description.  | Notes
 **I** | Pointer to **int64** | updateId | [optional] 
 **W** | Pointer to **bool** | Is the order on the book? | [optional] 
 **M** | Pointer to **string** | Total maintenance margin in USD value | [optional] 
-**O** | Pointer to [**[]OpenOrderLossOInner**](OpenOrderLossOInner.md) | Update Data | [optional] 
+**O** | Pointer to **int64** | Order creation time | [optional] 
 **Z** | Pointer to **string** | Cumulative quote asset transacted quantity | [optional] 
 **Y** | Pointer to **string** | Last quote asset transacted quantity (i.e. lastPrice * lastQty) | [optional] 
 **Q** | Pointer to **string** | Quote Order Quantity; This is only visible if indicated in the order | [optional] 
@@ -929,20 +929,20 @@ HasM returns a boolean if a field has been set.
 
 ### GetO
 
-`func (o *UserDataStreamEventsResponse) GetO() []OpenOrderLossOInner`
+`func (o *UserDataStreamEventsResponse) GetO() int64`
 
 GetO returns the O field if non-nil, zero value otherwise.
 
 ### GetOOk
 
-`func (o *UserDataStreamEventsResponse) GetOOk() (*[]OpenOrderLossOInner, bool)`
+`func (o *UserDataStreamEventsResponse) GetOOk() (*int64, bool)`
 
 GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetO
 
-`func (o *UserDataStreamEventsResponse) SetO(v []OpenOrderLossOInner)`
+`func (o *UserDataStreamEventsResponse) SetO(v int64)`
 
 SetO sets O field to given value.
 

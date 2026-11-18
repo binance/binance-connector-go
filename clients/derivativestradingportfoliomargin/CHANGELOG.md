@@ -1,5 +1,20 @@
 ### Changelog
 
+## 1.23.1 - 2026-11-18
+
+### Changed (2)
+
+#### WebSocket Streams
+
+- Added response field `o`
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `openOrderLoss`
+- Removed response field `O`
+  - affected events:
+    - `UserDataStreamEventsResponse`
+    - `openOrderLoss`
+
 ## 1.23.0 - 2026-10-23
 
 ### Changed (2)
