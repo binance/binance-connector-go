@@ -58,7 +58,8 @@ type PlaceMultipleOrdersResponseInner struct {
 	// quote Asset
 	QuoteAsset *string `json:"quoteAsset,omitempty"`
 	// mmp
-	Mmp                     *bool   `json:"mmp,omitempty"`
+	Mmp *bool `json:"mmp,omitempty"`
+	// self trading prevention mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	Source                  *string `json:"source,omitempty"`
 	AdditionalProperties    map[string]interface{}

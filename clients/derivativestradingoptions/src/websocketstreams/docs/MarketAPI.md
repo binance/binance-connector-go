@@ -7,7 +7,7 @@ Method        | HTTP request  | Description
 [**IndexPriceStreams**](MarketAPI.md#IndexPriceStreams) | /!index@arr | Index Price Streams
 [**KlineCandlestickStreams**](MarketAPI.md#KlineCandlestickStreams) | /&lt;symbol&gt;@kline_&lt;interval&gt; | Kline/Candlestick Streams
 [**NewSymbolInfo**](MarketAPI.md#NewSymbolInfo) | /!optionSymbol | New Symbol Info
-[**OpenInterest**](MarketAPI.md#OpenInterest) | /&lt;underlying&gt;@openInterest@&lt;expirationDate&gt; | Open Interest
+[**OpenInterest**](MarketAPI.md#OpenInterest) | /&lt;underlying&gt;@optionOpenInterest@&lt;expirationDate&gt; | Open Interest
 [**OptionMarkPrice**](MarketAPI.md#OptionMarkPrice) | /&lt;underlying&gt;@optionMarkPrice | Option Mark Price
 
 

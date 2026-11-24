@@ -1,5 +1,19 @@
 ### Changelog
 
+## 1.14.0 - 2026-11-24
+
+### Added (1)
+
+#### WebSocket Streams
+
+- `openInterest()` (`<underlying>@optionOpenInterest@<expirationDate>` stream)
+
+### Removed (1)
+
+#### WebSocket Streams
+
+- `openInterest()` (`<underlying>@openInterest@<expirationDate>` stream)
+
 ## 1.13.0 - 2026-10-23
 
 ### Changed (1)

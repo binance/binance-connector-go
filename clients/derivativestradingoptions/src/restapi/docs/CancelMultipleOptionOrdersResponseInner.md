@@ -25,7 +25,7 @@ Name         | Type          | Description.  | Notes
 **QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
 **Mmp** | Pointer to **bool** | mmp | [optional] 
 **Source** | Pointer to **string** |  | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading prevention mode | [optional] 
 
 ## Methods
 

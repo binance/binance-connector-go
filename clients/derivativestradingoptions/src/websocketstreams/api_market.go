@@ -263,7 +263,7 @@ func (r ApiOpenInterestRequest) Execute() (*common.StreamHandler[models.OpenInte
 
 /*
 OpenInterest Open Interest
-/<underlying>@openInterest@<expirationDate>
+/<underlying>@optionOpenInterest@<expirationDate>
 
 https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-options/api/ws-streams/market#open-interest
 
@@ -288,7 +288,7 @@ func (a *MarketAPIService) OpenInterestExecute(r ApiOpenInterestRequest) (*commo
 	}
 
 	localStream := common.WsStreamsPlaceholder(
-		"/<underlying>@openInterest@<expirationDate>"[1:],
+		"/<underlying>@optionOpenInterest@<expirationDate>"[1:],
 		map[string]string{
 			"underlying": func() string {
 				if r.underlying == nil {

@@ -56,8 +56,9 @@ type CancelMultipleOptionOrdersResponseInner struct {
 	// quote Asset
 	QuoteAsset *string `json:"quoteAsset,omitempty"`
 	// mmp
-	Mmp                     *bool   `json:"mmp,omitempty"`
-	Source                  *string `json:"source,omitempty"`
+	Mmp    *bool   `json:"mmp,omitempty"`
+	Source *string `json:"source,omitempty"`
+	// self trading prevention mode
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }

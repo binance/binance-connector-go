@@ -24,7 +24,7 @@ Name         | Type          | Description.  | Notes
 **OptionSide** | Pointer to **string** | option Side | [optional] 
 **QuoteAsset** | Pointer to **string** | quote Asset | [optional] 
 **Mmp** | Pointer to **bool** | mmp | [optional] 
-**SelfTradePreventionMode** | Pointer to **string** |  | [optional] 
+**SelfTradePreventionMode** | Pointer to **string** | self trading prevention mode | [optional] 
 
 ## Methods
 
