@@ -1,5 +1,16 @@
 ### Changelog
 
+## 1.24.2 - 2026-11-24
+
+### Changed (1)
+
+#### WebSocket API
+
+- Modified parameter `timeInForce`:
+  - enum added: `GTX`, `GTD`
+  - affected methods:
+    - `newAlgoOrder()` (`algoOrder.place` method)
+
 ## 1.24.1 - 2026-11-12
 
 ### Changed (1)

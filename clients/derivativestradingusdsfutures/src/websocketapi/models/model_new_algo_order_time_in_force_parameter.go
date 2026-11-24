@@ -19,6 +19,8 @@ const (
 	NewAlgoOrderTimeInForceParameterIoc NewAlgoOrderTimeInForceParameter = "IOC"
 	NewAlgoOrderTimeInForceParameterGtc NewAlgoOrderTimeInForceParameter = "GTC"
 	NewAlgoOrderTimeInForceParameterFok NewAlgoOrderTimeInForceParameter = "FOK"
+	NewAlgoOrderTimeInForceParameterGtx NewAlgoOrderTimeInForceParameter = "GTX"
+	NewAlgoOrderTimeInForceParameterGtd NewAlgoOrderTimeInForceParameter = "GTD"
 )
 
 // All allowed values of NewAlgoOrderTimeInForceParameter enum
@@ -26,6 +28,8 @@ var AllowedNewAlgoOrderTimeInForceParameterEnumValues = []NewAlgoOrderTimeInForc
 	"IOC",
 	"GTC",
 	"FOK",
+	"GTX",
+	"GTD",
 }
 
 func (v *NewAlgoOrderTimeInForceParameter) UnmarshalJSON(src []byte) error {

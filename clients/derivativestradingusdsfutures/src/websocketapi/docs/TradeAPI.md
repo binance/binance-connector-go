@@ -291,7 +291,7 @@ func main() {
 	type_ := models.NewAlgoOrderTypeParameterStopMarket // NewAlgoOrderTypeParameter | For `CONDITIONAL` algoType, `STOP_MARKET`/`TAKE_PROFIT_MARKET`/`STOP`/`TAKE_PROFIT`/`TRAILING_STOP_MARKET` as order type
 	id := "e9d6b4349871b40611412680b3445fac" // string | Id. (optional)
 	positionSide := models.NewAlgoOrderPositionSideParameterBoth // NewAlgoOrderPositionSideParameter | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. (optional)
-	timeInForce := models.NewAlgoOrderTimeInForceParameterIoc // NewAlgoOrderTimeInForceParameter | `IOC` or `GTC` or `FOK`, default `GTC` (optional)
+	timeInForce := models.NewAlgoOrderTimeInForceParameterIoc // NewAlgoOrderTimeInForceParameter | `IOC` or `GTC` or `FOK` or `GTX` or `GTD`, default `GTC` (optional)
 	quantity := float64(1.0) // float64 | Cannot be sent with `closePosition`=`true`(Close-All) (optional)
 	price := float64(1.0) // float64 | Price. (optional)
 	triggerPrice := float64(1.0) // float64 | Trigger Price. (optional)
@@ -350,7 +350,7 @@ Name          | Type          | Description   | Notes
  **type_** | [**NewAlgoOrderTypeParameter**](NewAlgoOrderTypeParameter.md) | For &#x60;CONDITIONAL&#x60; algoType, &#x60;STOP_MARKET&#x60;/&#x60;TAKE_PROFIT_MARKET&#x60;/&#x60;STOP&#x60;/&#x60;TAKE_PROFIT&#x60;/&#x60;TRAILING_STOP_MARKET&#x60; as order type | 
  **id** | **string** | Id. | 
  **positionSide** | [**NewAlgoOrderPositionSideParameter**](NewAlgoOrderPositionSideParameter.md) | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. | 
- **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) | &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;FOK&#x60;, default &#x60;GTC&#x60; | 
+ **timeInForce** | [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) | &#x60;IOC&#x60; or &#x60;GTC&#x60; or &#x60;FOK&#x60; or &#x60;GTX&#x60; or &#x60;GTD&#x60;, default &#x60;GTC&#x60; | 
  **quantity** | **float64** | Cannot be sent with &#x60;closePosition&#x60;&#x3D;&#x60;true&#x60;(Close-All) | 
  **price** | **float64** | Price. | 
  **triggerPrice** | **float64** | Trigger Price. | 
