@@ -13,6 +13,7 @@ Name         | Type          | Description.  | Notes
 **Status** | Pointer to **string** | Convert status: &#x60;P&#x60; &#x3D; processing, &#x60;S&#x60; &#x3D; success, &#x60;F&#x60; &#x3D; failed. | [optional] 
 **CreatedAt** | Pointer to **int64** | Creation time (ms epoch). | [optional] 
 **UpdatedAt** | Pointer to **int64** | Last update time (ms epoch). | [optional] 
+**TokenizedAssetSettleWalletType** | Pointer to **string** | The wallet the tokenized asset is settled in: &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. | [optional] 
 
 ## Methods
 
@@ -257,6 +258,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *TokenizedConvertHistoryResponseRowsInner) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetTokenizedAssetSettleWalletType
+
+`func (o *TokenizedConvertHistoryResponseRowsInner) GetTokenizedAssetSettleWalletType() string`
+
+GetTokenizedAssetSettleWalletType returns the TokenizedAssetSettleWalletType field if non-nil, zero value otherwise.
+
+### GetTokenizedAssetSettleWalletTypeOk
+
+`func (o *TokenizedConvertHistoryResponseRowsInner) GetTokenizedAssetSettleWalletTypeOk() (*string, bool)`
+
+GetTokenizedAssetSettleWalletTypeOk returns a tuple with the TokenizedAssetSettleWalletType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenizedAssetSettleWalletType
+
+`func (o *TokenizedConvertHistoryResponseRowsInner) SetTokenizedAssetSettleWalletType(v string)`
+
+SetTokenizedAssetSettleWalletType sets TokenizedAssetSettleWalletType field to given value.
+
+### HasTokenizedAssetSettleWalletType
+
+`func (o *TokenizedConvertHistoryResponseRowsInner) HasTokenizedAssetSettleWalletType() bool`
+
+HasTokenizedAssetSettleWalletType returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

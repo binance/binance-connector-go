@@ -215,12 +215,13 @@ func (a *TokenizedAPIService) TokenizedConvertStatusExecute(r ApiTokenizedConver
 }
 
 type ApiTokenizedMintRequest struct {
-	ctx                   context.Context
-	ApiService            *TokenizedAPIService
-	underlyingAsset       *string
-	underlyingAssetAmount *string
-	clientOrderId         *string
-	recvWindow            *int64
+	ctx                            context.Context
+	ApiService                     *TokenizedAPIService
+	underlyingAsset                *string
+	underlyingAssetAmount          *string
+	clientOrderId                  *string
+	tokenizedAssetSettleWalletType *models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter
+	recvWindow                     *int64
 }
 
 // Underlying US-equity ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Resolved against the active-symbol list; unknown tickers return &#x60;-26004&#x60;. The target tokenized asset is looked up from this field via &#x60;/market/tokenized-assets&#x60;.
@@ -238,6 +239,12 @@ func (r ApiTokenizedMintRequest) UnderlyingAssetAmount(underlyingAssetAmount str
 // Client order id for idempotency. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted.
 func (r ApiTokenizedMintRequest) ClientOrderId(clientOrderId string) ApiTokenizedMintRequest {
 	r.clientOrderId = &clientOrderId
+	return r
+}
+
+// Wallet that receives the minted tokenized asset. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
+func (r ApiTokenizedMintRequest) TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter) ApiTokenizedMintRequest {
+	r.tokenizedAssetSettleWalletType = &tokenizedAssetSettleWalletType
 	return r
 }
 
@@ -261,6 +268,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/a
 @param underlyingAsset -  Underlying US-equity ticker, e.g. `AAPL`, `TSLA`. Resolved against the active-symbol list; unknown tickers return `-26004`. The target tokenized asset is looked up from this field via `/market/tokenized-assets`.
 @param underlyingAssetAmount -  Quantity of the underlying asset to mint from. Must be > 0.
 @param clientOrderId -  Client order id for idempotency. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted.
+@param tokenizedAssetSettleWalletType -  Wallet that receives the minted tokenized asset. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
 @param recvWindow -  The value cannot be greater than `60000`.
 @return ApiTokenizedMintRequest
 */
@@ -294,6 +302,9 @@ func (a *TokenizedAPIService) TokenizedMintExecute(r ApiTokenizedMintRequest) (*
 	if r.clientOrderId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientOrderId", r.clientOrderId, "form", "")
 	}
+	if r.tokenizedAssetSettleWalletType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenizedAssetSettleWalletType", r.tokenizedAssetSettleWalletType, "form", "")
+	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
 	}
@@ -315,12 +326,13 @@ func (a *TokenizedAPIService) TokenizedMintExecute(r ApiTokenizedMintRequest) (*
 }
 
 type ApiTokenizedRedeemRequest struct {
-	ctx                  context.Context
-	ApiService           *TokenizedAPIService
-	tokenizedAsset       *string
-	tokenizedAssetAmount *string
-	clientOrderId        *string
-	recvWindow           *int64
+	ctx                            context.Context
+	ApiService                     *TokenizedAPIService
+	tokenizedAsset                 *string
+	tokenizedAssetAmount           *string
+	clientOrderId                  *string
+	tokenizedAssetSettleWalletType *models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter
+	recvWindow                     *int64
 }
 
 // Tokenized asset to redeem, e.g. &#x60;AAPLB&#x60;. Not a US-equity ticker — this is the on-chain tokenized asset identifier. Unknown asset returns &#x60;-1102&#x60; (the message currently says the parameter was empty/malformed, but it was in fact sent — it is simply unknown). The target underlying ticker is looked up from this field via &#x60;/market/tokenized-assets&#x60;.
@@ -338,6 +350,12 @@ func (r ApiTokenizedRedeemRequest) TokenizedAssetAmount(tokenizedAssetAmount str
 // Client order id for idempotency. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted.
 func (r ApiTokenizedRedeemRequest) ClientOrderId(clientOrderId string) ApiTokenizedRedeemRequest {
 	r.clientOrderId = &clientOrderId
+	return r
+}
+
+// Wallet the tokenized asset is deducted from on redeem. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
+func (r ApiTokenizedRedeemRequest) TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter) ApiTokenizedRedeemRequest {
+	r.tokenizedAssetSettleWalletType = &tokenizedAssetSettleWalletType
 	return r
 }
 
@@ -361,6 +379,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/a
 @param tokenizedAsset -  Tokenized asset to redeem, e.g. `AAPLB`. Not a US-equity ticker — this is the on-chain tokenized asset identifier. Unknown asset returns `-1102` (the message currently says the parameter was empty/malformed, but it was in fact sent — it is simply unknown). The target underlying ticker is looked up from this field via `/market/tokenized-assets`.
 @param tokenizedAssetAmount -  Quantity of the tokenized asset to redeem. Must be > 0.
 @param clientOrderId -  Client order id for idempotency. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted.
+@param tokenizedAssetSettleWalletType -  Wallet the tokenized asset is deducted from on redeem. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
 @param recvWindow -  The value cannot be greater than `60000`.
 @return ApiTokenizedRedeemRequest
 */
@@ -393,6 +412,9 @@ func (a *TokenizedAPIService) TokenizedRedeemExecute(r ApiTokenizedRedeemRequest
 	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenizedAssetAmount", r.tokenizedAssetAmount, "form", "")
 	if r.clientOrderId != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "clientOrderId", r.clientOrderId, "form", "")
+	}
+	if r.tokenizedAssetSettleWalletType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenizedAssetSettleWalletType", r.tokenizedAssetSettleWalletType, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

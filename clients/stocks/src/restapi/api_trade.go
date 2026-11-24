@@ -605,21 +605,22 @@ func (a *TradeAPIService) EquityTradeHistoryExecute(r ApiEquityTradeHistoryReque
 }
 
 type ApiPlaceEquityOrderRequest struct {
-	ctx            context.Context
-	ApiService     *TradeAPIService
-	symbol         *string
-	side           *models.PlaceEquityOrderSideParameter
-	orderType      *models.PlaceEquityOrderOrderTypeParameter
-	quoteAsset     *string
-	price          *string
-	quantity       *string
-	notional       *string
-	timeInForce    *models.PlaceEquityOrderTimeInForceParameter
-	tradingSession *models.PlaceEquityOrderTradingSessionParameter
-	walletType     *models.PlaceEquityOrderWalletTypeParameter
-	clientOrderId  *string
-	tokenize       *bool
-	recvWindow     *int64
+	ctx                            context.Context
+	ApiService                     *TradeAPIService
+	symbol                         *string
+	side                           *models.PlaceEquityOrderSideParameter
+	orderType                      *models.PlaceEquityOrderOrderTypeParameter
+	quoteAsset                     *string
+	price                          *string
+	quantity                       *string
+	notional                       *string
+	timeInForce                    *models.PlaceEquityOrderTimeInForceParameter
+	tradingSession                 *models.PlaceEquityOrderTradingSessionParameter
+	walletType                     *models.PlaceEquityOrderWalletTypeParameter
+	clientOrderId                  *string
+	tokenize                       *bool
+	tokenizedAssetSettleWalletType *models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter
+	recvWindow                     *int64
 }
 
 // US stock ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Must be a tradable US-equity symbol — verify via &#x60;/sapi/v1/equity/market/exchangeInfo&#x60;. Tokenization enablement (verifiable via &#x60;/sapi/v1/equity/market/tokenized-assets&#x60;) is *not* required; non-tokenized symbols are accepted and settle as traditional underlying-equity trades. The &#x60;tokenize&#x60; parameter only takes effect on tokenization-enabled symbols and is silently ignored otherwise.
@@ -694,6 +695,12 @@ func (r ApiPlaceEquityOrderRequest) Tokenize(tokenize bool) ApiPlaceEquityOrderR
 	return r
 }
 
+// Wallet that receives the tokenized asset minted after the order fills. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. Only applies when &#x60;side&#x60; &#x3D; &#x60;BUY&#x60; and &#x60;tokenize&#x60; &#x3D; &#x60;true&#x60;; ignored for &#x60;SELL&#x60; or &#x60;tokenize&#x60; &#x3D; &#x60;false&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
+func (r ApiPlaceEquityOrderRequest) TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter) ApiPlaceEquityOrderRequest {
+	r.tokenizedAssetSettleWalletType = &tokenizedAssetSettleWalletType
+	return r
+}
+
 // The value cannot be greater than &#x60;60000&#x60;.
 func (r ApiPlaceEquityOrderRequest) RecvWindow(recvWindow int64) ApiPlaceEquityOrderRequest {
 	r.recvWindow = &recvWindow
@@ -723,6 +730,7 @@ https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/a
 @param walletType -  Payment wallet for `BUY` orders: `CARD` (default) / `MAIN`. `SELL` orders always settle to `CARD`.
 @param clientOrderId -  Client-supplied order id. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted.
 @param tokenize -  Whether to tokenize the purchased stock asset upon settlement. Default `true`. Only takes effect when the symbol is tokenization-enabled (check via `/market/tokenized-assets`); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades.
+@param tokenizedAssetSettleWalletType -  Wallet that receives the tokenized asset minted after the order fills. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. Only applies when `side` = `BUY` and `tokenize` = `true`; ignored for `SELL` or `tokenize` = `false`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter.
 @param recvWindow -  The value cannot be greater than `60000`.
 @return ApiPlaceEquityOrderRequest
 */
@@ -784,6 +792,9 @@ func (a *TradeAPIService) PlaceEquityOrderExecute(r ApiPlaceEquityOrderRequest) 
 	}
 	if r.tokenize != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenize", r.tokenize, "form", "")
+	}
+	if r.tokenizedAssetSettleWalletType != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "tokenizedAssetSettleWalletType", r.tokenizedAssetSettleWalletType, "form", "")
 	}
 	if r.recvWindow != nil {
 		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")

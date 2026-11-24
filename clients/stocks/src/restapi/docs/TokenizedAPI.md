@@ -160,7 +160,7 @@ No authorization required
 
 ## TokenizedMint
 
-> TokenizedMintResponse TokenizedMint(ctx).UnderlyingAsset(underlyingAsset).UnderlyingAssetAmount(underlyingAssetAmount).ClientOrderId(clientOrderId).RecvWindow(recvWindow).Execute()
+> TokenizedMintResponse TokenizedMint(ctx).UnderlyingAsset(underlyingAsset).UnderlyingAssetAmount(underlyingAssetAmount).ClientOrderId(clientOrderId).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 
 Tokenized Mint (TRADE)
 
@@ -184,6 +184,7 @@ func main() {
 	underlyingAsset := "AAPL" // string | Underlying US-equity ticker, e.g. `AAPL`, `TSLA`. Resolved against the active-symbol list; unknown tickers return `-26004`. The target tokenized asset is looked up from this field via `/market/tokenized-assets`.
 	underlyingAssetAmount := "1" // string | Quantity of the underlying asset to mint from. Must be > 0.
 	clientOrderId := "mint-client-id-32chars-0000000001" // string | Client order id for idempotency. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted. (optional)
+	tokenizedAssetSettleWalletType := models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameterMain // PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter | Wallet that receives the minted tokenized asset. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -193,7 +194,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStocksClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TokenizedAPI.TokenizedMint(context.Background()).UnderlyingAsset(underlyingAsset).UnderlyingAssetAmount(underlyingAssetAmount).ClientOrderId(clientOrderId).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TokenizedAPI.TokenizedMint(context.Background()).UnderlyingAsset(underlyingAsset).UnderlyingAssetAmount(underlyingAssetAmount).ClientOrderId(clientOrderId).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TokenizedAPI.TokenizedMint``: %v\n", err)
 		return
@@ -215,6 +216,7 @@ Name          | Type          | Description   | Notes
  **underlyingAsset** | **string** | Underlying US-equity ticker, e.g. &#x60;AAPL&#x60;, &#x60;TSLA&#x60;. Resolved against the active-symbol list; unknown tickers return &#x60;-26004&#x60;. The target tokenized asset is looked up from this field via &#x60;/market/tokenized-assets&#x60;. | 
  **underlyingAssetAmount** | **string** | Quantity of the underlying asset to mint from. Must be &gt; 0. | 
  **clientOrderId** | **string** | Client order id for idempotency. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted. | 
+ **tokenizedAssetSettleWalletType** | [**PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter**](PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter.md) | Wallet that receives the minted tokenized asset. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. | 
  **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
 
 ### Return type
@@ -234,7 +236,7 @@ No authorization required
 
 ## TokenizedRedeem
 
-> TokenizedRedeemResponse TokenizedRedeem(ctx).TokenizedAsset(tokenizedAsset).TokenizedAssetAmount(tokenizedAssetAmount).ClientOrderId(clientOrderId).RecvWindow(recvWindow).Execute()
+> TokenizedRedeemResponse TokenizedRedeem(ctx).TokenizedAsset(tokenizedAsset).TokenizedAssetAmount(tokenizedAssetAmount).ClientOrderId(clientOrderId).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 
 Tokenized Redeem (TRADE)
 
@@ -258,6 +260,7 @@ func main() {
 	tokenizedAsset := "AAPLB" // string | Tokenized asset to redeem, e.g. `AAPLB`. Not a US-equity ticker — this is the on-chain tokenized asset identifier. Unknown asset returns `-1102` (the message currently says the parameter was empty/malformed, but it was in fact sent — it is simply unknown). The target underlying ticker is looked up from this field via `/market/tokenized-assets`.
 	tokenizedAssetAmount := "1" // string | Quantity of the tokenized asset to redeem. Must be > 0.
 	clientOrderId := "redeem-client-id-32chars-000000001" // string | Client order id for idempotency. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted. (optional)
+	tokenizedAssetSettleWalletType := models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameterMain // PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter | Wallet the tokenized asset is deducted from on redeem. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -267,7 +270,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStocksClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TokenizedAPI.TokenizedRedeem(context.Background()).TokenizedAsset(tokenizedAsset).TokenizedAssetAmount(tokenizedAssetAmount).ClientOrderId(clientOrderId).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TokenizedAPI.TokenizedRedeem(context.Background()).TokenizedAsset(tokenizedAsset).TokenizedAssetAmount(tokenizedAssetAmount).ClientOrderId(clientOrderId).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TokenizedAPI.TokenizedRedeem``: %v\n", err)
 		return
@@ -289,6 +292,7 @@ Name          | Type          | Description   | Notes
  **tokenizedAsset** | **string** | Tokenized asset to redeem, e.g. &#x60;AAPLB&#x60;. Not a US-equity ticker — this is the on-chain tokenized asset identifier. Unknown asset returns &#x60;-1102&#x60; (the message currently says the parameter was empty/malformed, but it was in fact sent — it is simply unknown). The target underlying ticker is looked up from this field via &#x60;/market/tokenized-assets&#x60;. | 
  **tokenizedAssetAmount** | **string** | Quantity of the tokenized asset to redeem. Must be &gt; 0. | 
  **clientOrderId** | **string** | Client order id for idempotency. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted. | 
+ **tokenizedAssetSettleWalletType** | [**PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter**](PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter.md) | Wallet the tokenized asset is deducted from on redeem. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. | 
  **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
 
 ### Return type

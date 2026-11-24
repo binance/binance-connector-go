@@ -26,7 +26,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 	t.Run("Test TokenizedAPIService TokenizedConvertHistory Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"rows":[{"underlyingAsset":"AAPL","underlyingAssetAmount":"1.000000000","tokenizedAsset":"AAPLB","tokenizedAssetAmount":"1.000000000","issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","convertType":"MINT","status":"S","createdAt":1735900000000,"updatedAt":1735900060000}],"hasMore":true,"nextLastId":10020}`
+		mockedJSON = `{"rows":[{"underlyingAsset":"AAPL","underlyingAssetAmount":"1.000000000","tokenizedAsset":"AAPLB","tokenizedAssetAmount":"1.000000000","issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","convertType":"MINT","status":"S","createdAt":1735900000000,"updatedAt":1735900060000,"tokenizedAssetSettleWalletType":"CARD"}],"hasMore":true,"nextLastId":10020}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -85,7 +85,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 	t.Run("Test TokenizedAPIService TokenizedConvertStatus Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"underlyingAsset":"AAPL","underlyingAssetAmount":"1.000000000","tokenizedAsset":"AAPLB","tokenizedAssetAmount":"1.000000000","issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","convertType":"MINT","status":"S","createdAt":1735900000000,"updatedAt":1735900060000}`
+		mockedJSON = `{"underlyingAsset":"AAPL","underlyingAssetAmount":"1.000000000","tokenizedAsset":"AAPLB","tokenizedAssetAmount":"1.000000000","issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","convertType":"MINT","status":"S","createdAt":1735900000000,"updatedAt":1735900060000,"tokenizedAssetSettleWalletType":"CARD"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -163,7 +163,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 	t.Run("Test TokenizedAPIService TokenizedMint Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","status":"P"}`
+		mockedJSON = `{"issuerRequestId":"mint-20260505-8f3b9e1a2d3c4b5a","status":"P","tokenizedAssetSettleWalletType":"CARD"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}
@@ -241,7 +241,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 	t.Run("Test TokenizedAPIService TokenizedRedeem Success", func(t *testing.T) {
 
 		var mockedJSON string
-		mockedJSON = `{"issuerRequestId":"redeem-20260505-a1b2c3d4e5f6","status":"P"}`
+		mockedJSON = `{"issuerRequestId":"redeem-20260505-a1b2c3d4e5f6","status":"P","tokenizedAssetSettleWalletType":"CARD"}`
 		if mockedJSON == "" {
 			mockedJSON = `{}`
 		}

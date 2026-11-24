@@ -6,6 +6,7 @@ Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **IssuerRequestId** | Pointer to **string** | Server-assigned convert request id. Use it to poll &#x60;/tokenized/convert-status&#x60;. | [optional] 
 **Status** | Pointer to **string** | Convert status code: &#x60;P&#x60; &#x3D; processing, &#x60;S&#x60; &#x3D; success, &#x60;F&#x60; &#x3D; failed. | [optional] 
+**TokenizedAssetSettleWalletType** | Pointer to **string** | The wallet the tokenized asset is settled in: &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetStatus sets Status field to given value.
 `func (o *TokenizedMintResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetTokenizedAssetSettleWalletType
+
+`func (o *TokenizedMintResponse) GetTokenizedAssetSettleWalletType() string`
+
+GetTokenizedAssetSettleWalletType returns the TokenizedAssetSettleWalletType field if non-nil, zero value otherwise.
+
+### GetTokenizedAssetSettleWalletTypeOk
+
+`func (o *TokenizedMintResponse) GetTokenizedAssetSettleWalletTypeOk() (*string, bool)`
+
+GetTokenizedAssetSettleWalletTypeOk returns a tuple with the TokenizedAssetSettleWalletType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenizedAssetSettleWalletType
+
+`func (o *TokenizedMintResponse) SetTokenizedAssetSettleWalletType(v string)`
+
+SetTokenizedAssetSettleWalletType sets TokenizedAssetSettleWalletType field to given value.
+
+### HasTokenizedAssetSettleWalletType
+
+`func (o *TokenizedMintResponse) HasTokenizedAssetSettleWalletType() bool`
+
+HasTokenizedAssetSettleWalletType returns a boolean if a field has been set.
 
 
 [[Back to README]](../README.md)

@@ -459,7 +459,7 @@ No authorization required
 
 ## PlaceEquityOrder
 
-> PlaceEquityOrderResponse PlaceEquityOrder(ctx).Symbol(symbol).Side(side).OrderType(orderType).QuoteAsset(quoteAsset).Price(price).Quantity(quantity).Notional(notional).TimeInForce(timeInForce).TradingSession(tradingSession).WalletType(walletType).ClientOrderId(clientOrderId).Tokenize(tokenize).RecvWindow(recvWindow).Execute()
+> PlaceEquityOrderResponse PlaceEquityOrder(ctx).Symbol(symbol).Side(side).OrderType(orderType).QuoteAsset(quoteAsset).Price(price).Quantity(quantity).Notional(notional).TimeInForce(timeInForce).TradingSession(tradingSession).WalletType(walletType).ClientOrderId(clientOrderId).Tokenize(tokenize).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 
 Place Equity Order (TRADE)
 
@@ -492,6 +492,7 @@ func main() {
 	walletType := models.PlaceEquityOrderWalletTypeParameterCard // PlaceEquityOrderWalletTypeParameter | Payment wallet for `BUY` orders: `CARD` (default) / `MAIN`. `SELL` orders always settle to `CARD`. (optional)
 	clientOrderId := "web_2c9c92b74f1e4a7c8f3b9e1a2d3c4b5a" // string | Client-supplied order id. Format `^[a-zA-Z0-9-_]{32,36}$`. Auto-generated when omitted. (optional)
 	tokenize := true // bool | Whether to tokenize the purchased stock asset upon settlement. Default `true`. Only takes effect when the symbol is tokenization-enabled (check via `/market/tokenized-assets`); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades. (optional)
+	tokenizedAssetSettleWalletType := models.PlaceEquityOrderTokenizedAssetSettleWalletTypeParameterMain // PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter | Wallet that receives the tokenized asset minted after the order fills. `MAIN` = Spot wallet, `CARD` = Funding wallet. Default `CARD`. Only applies when `side` = `BUY` and `tokenize` = `true`; ignored for `SELL` or `tokenize` = `false`. If `MAIN` is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. (optional)
 	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -501,7 +502,7 @@ func main() {
 	)
 	apiClient := models.NewBinanceStocksClient(models.WithRestAPI(configuration))
 
-	resp, err := apiClient.RestApi.TradeAPI.PlaceEquityOrder(context.Background()).Symbol(symbol).Side(side).OrderType(orderType).QuoteAsset(quoteAsset).Price(price).Quantity(quantity).Notional(notional).TimeInForce(timeInForce).TradingSession(tradingSession).WalletType(walletType).ClientOrderId(clientOrderId).Tokenize(tokenize).RecvWindow(recvWindow).Execute()
+	resp, err := apiClient.RestApi.TradeAPI.PlaceEquityOrder(context.Background()).Symbol(symbol).Side(side).OrderType(orderType).QuoteAsset(quoteAsset).Price(price).Quantity(quantity).Notional(notional).TimeInForce(timeInForce).TradingSession(tradingSession).WalletType(walletType).ClientOrderId(clientOrderId).Tokenize(tokenize).TokenizedAssetSettleWalletType(tokenizedAssetSettleWalletType).RecvWindow(recvWindow).Execute()
 	if err != nil {
 		log.Println(os.Stderr, "Error when calling `TradeAPI.PlaceEquityOrder``: %v\n", err)
 		return
@@ -532,6 +533,7 @@ Name          | Type          | Description   | Notes
  **walletType** | [**PlaceEquityOrderWalletTypeParameter**](PlaceEquityOrderWalletTypeParameter.md) | Payment wallet for &#x60;BUY&#x60; orders: &#x60;CARD&#x60; (default) / &#x60;MAIN&#x60;. &#x60;SELL&#x60; orders always settle to &#x60;CARD&#x60;. | 
  **clientOrderId** | **string** | Client-supplied order id. Format &#x60;^[a-zA-Z0-9-_]{32,36}$&#x60;. Auto-generated when omitted. | 
  **tokenize** | **bool** | Whether to tokenize the purchased stock asset upon settlement. Default &#x60;true&#x60;. Only takes effect when the symbol is tokenization-enabled (check via &#x60;/market/tokenized-assets&#x60;); silently ignored for non-tokenized symbols, which always settle as traditional underlying-equity trades. | 
+ **tokenizedAssetSettleWalletType** | [**PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter**](PlaceEquityOrderTokenizedAssetSettleWalletTypeParameter.md) | Wallet that receives the tokenized asset minted after the order fills. &#x60;MAIN&#x60; &#x3D; Spot wallet, &#x60;CARD&#x60; &#x3D; Funding wallet. Default &#x60;CARD&#x60;. Only applies when &#x60;side&#x60; &#x3D; &#x60;BUY&#x60; and &#x60;tokenize&#x60; &#x3D; &#x60;true&#x60;; ignored for &#x60;SELL&#x60; or &#x60;tokenize&#x60; &#x3D; &#x60;false&#x60;. If &#x60;MAIN&#x60; is sent while Spot wallet settlement is not enabled, the request is rejected as an illegal parameter. | 
  **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
 
 ### Return type

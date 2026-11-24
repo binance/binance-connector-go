@@ -25,11 +25,11 @@ type EquityOrderHistoryResponseRowsInner struct {
 	Quote *string `json:"quote,omitempty"`
 	// `BUY` / `SELL`.
 	Side *string `json:"side,omitempty"`
-	// `MARKET` / `LIMIT`.
+	// `MARKET` / `LIMIT`; stop-limit orders placed in the app are `STOP_LOSS_LIMIT` / `TAKE_PROFIT_LIMIT`, and stop-limit orders not placed through Binance are `STOP_LIMIT`.
 	OrderType *string `json:"orderType,omitempty"`
-	// Limit price (USD). Non-null for `LIMIT` orders, `null` for `MARKET`.
+	// Limit price (USD). Returned for `LIMIT` and stop-limit orders; `MARKET` orders have no limit price (`null`).
 	LimitPrice *string `json:"limitPrice,omitempty"`
-	// Average fill price (USD). `null` until the first fill. For `MARKET` orders this is the only meaningful price field.
+	// Average fill price (USD) as reported by the broker, returned for all order types. `null` until the first fill.
 	AvgFilledPrice *string `json:"avgFilledPrice,omitempty"`
 	// Requested quantity. `null` for `BUY MARKET` (use `notional` instead).
 	Qty *string `json:"qty,omitempty"`

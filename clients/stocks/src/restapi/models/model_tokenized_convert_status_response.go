@@ -34,8 +34,10 @@ type TokenizedConvertStatusResponse struct {
 	// Creation time (ms epoch).
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// Last update time (ms epoch).
-	UpdatedAt            *int64 `json:"updatedAt,omitempty"`
-	AdditionalProperties map[string]interface{}
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
+	// The wallet the tokenized asset is settled in: `MAIN` = Spot wallet, `CARD` = Funding wallet.
+	TokenizedAssetSettleWalletType *string `json:"tokenizedAssetSettleWalletType,omitempty"`
+	AdditionalProperties           map[string]interface{}
 }
 
 type _TokenizedConvertStatusResponse TokenizedConvertStatusResponse
@@ -345,6 +347,38 @@ func (o *TokenizedConvertStatusResponse) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
+// GetTokenizedAssetSettleWalletType returns the TokenizedAssetSettleWalletType field value if set, zero value otherwise.
+func (o *TokenizedConvertStatusResponse) GetTokenizedAssetSettleWalletType() string {
+	if o == nil || common.IsNil(o.TokenizedAssetSettleWalletType) {
+		var ret string
+		return ret
+	}
+	return *o.TokenizedAssetSettleWalletType
+}
+
+// GetTokenizedAssetSettleWalletTypeOk returns a tuple with the TokenizedAssetSettleWalletType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TokenizedConvertStatusResponse) GetTokenizedAssetSettleWalletTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.TokenizedAssetSettleWalletType) {
+		return nil, false
+	}
+	return o.TokenizedAssetSettleWalletType, true
+}
+
+// HasTokenizedAssetSettleWalletType returns a boolean if a field has been set.
+func (o *TokenizedConvertStatusResponse) HasTokenizedAssetSettleWalletType() bool {
+	if o != nil && !common.IsNil(o.TokenizedAssetSettleWalletType) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenizedAssetSettleWalletType gets a reference to the given string and assigns it to the TokenizedAssetSettleWalletType field.
+func (o *TokenizedConvertStatusResponse) SetTokenizedAssetSettleWalletType(v string) {
+	o.TokenizedAssetSettleWalletType = &v
+}
+
 func (o TokenizedConvertStatusResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -382,6 +416,9 @@ func (o TokenizedConvertStatusResponse) ToMap() (map[string]interface{}, error) 
 	if !common.IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+	if !common.IsNil(o.TokenizedAssetSettleWalletType) {
+		toSerialize["tokenizedAssetSettleWalletType"] = o.TokenizedAssetSettleWalletType
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -413,6 +450,7 @@ func (o *TokenizedConvertStatusResponse) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "tokenizedAssetSettleWalletType")
 		o.AdditionalProperties = additionalProperties
 	}
 
