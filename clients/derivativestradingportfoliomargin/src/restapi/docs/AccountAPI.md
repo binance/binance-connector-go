@@ -18,7 +18,13 @@ Method        | HTTP request  | Description
 [**GetAutoRepayFuturesStatus**](AccountAPI.md#GetAutoRepayFuturesStatus) | **Get** /papi/v1/repay-futures-switch | Get Auto-repay-futures Status (USER_DATA)
 [**GetCmAccountDetail**](AccountAPI.md#GetCmAccountDetail) | **Get** /papi/v1/cm/account | Get CM Account Detail (USER_DATA)
 [**GetCmCurrentPositionMode**](AccountAPI.md#GetCmCurrentPositionMode) | **Get** /papi/v1/cm/positionSide/dual | Get CM Current Position Mode (USER_DATA)
+[**GetCmFuturesOrderDownloadLinkById**](AccountAPI.md#GetCmFuturesOrderDownloadLinkById) | **Get** /papi/v1/cm/order/asyn/id | Get CM Futures Order Download Link by Id (USER_DATA)
+[**GetCmFuturesTradeDownloadLinkById**](AccountAPI.md#GetCmFuturesTradeDownloadLinkById) | **Get** /papi/v1/cm/trade/asyn/id | Get CM Futures Trade Download Link by Id (USER_DATA)
+[**GetCmFuturesTransactionDownloadLinkById**](AccountAPI.md#GetCmFuturesTransactionDownloadLinkById) | **Get** /papi/v1/cm/income/asyn/id | Get CM Futures Transaction Download Link by Id (USER_DATA)
 [**GetCmIncomeHistory**](AccountAPI.md#GetCmIncomeHistory) | **Get** /papi/v1/cm/income | Get CM Income History (USER_DATA)
+[**GetDownloadIdForCmFuturesOrderHistory**](AccountAPI.md#GetDownloadIdForCmFuturesOrderHistory) | **Get** /papi/v1/cm/order/asyn | Get Download Id For CM Futures Order History (USER_DATA)
+[**GetDownloadIdForCmFuturesTradeHistory**](AccountAPI.md#GetDownloadIdForCmFuturesTradeHistory) | **Get** /papi/v1/cm/trade/asyn | Get Download Id For CM Futures Trade History (USER_DATA)
+[**GetDownloadIdForCmFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForCmFuturesTransactionHistory) | **Get** /papi/v1/cm/income/asyn | Get Download Id For CM Futures Transaction History (USER_DATA)
 [**GetDownloadIdForUmFuturesOrderHistory**](AccountAPI.md#GetDownloadIdForUmFuturesOrderHistory) | **Get** /papi/v1/um/order/asyn | Get Download Id For UM Futures Order History (USER_DATA)
 [**GetDownloadIdForUmFuturesTradeHistory**](AccountAPI.md#GetDownloadIdForUmFuturesTradeHistory) | **Get** /papi/v1/um/trade/asyn | Get Download Id For UM Futures Trade History (USER_DATA)
 [**GetDownloadIdForUmFuturesTransactionHistory**](AccountAPI.md#GetDownloadIdForUmFuturesTransactionHistory) | **Get** /papi/v1/um/income/asyn | Get Download Id For UM Futures Transaction History (USER_DATA)
@@ -1028,6 +1034,216 @@ No authorization required
 [[Back to README]](../../../README.md)
 
 
+## GetCmFuturesOrderDownloadLinkById
+
+> GetCmFuturesOrderDownloadLinkByIdResponse GetCmFuturesOrderDownloadLinkById(ctx).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+
+Get CM Futures Order Download Link by Id (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	downloadId := "545923594199212032" // string | get by download id api
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetCmFuturesOrderDownloadLinkById(context.Background()).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetCmFuturesOrderDownloadLinkById``: %v\n", err)
+		return
+	}
+
+	// response from `GetCmFuturesOrderDownloadLinkById`: GetCmFuturesOrderDownloadLinkByIdResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **downloadId** | **string** | get by download id api | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetCmFuturesOrderDownloadLinkByIdResponse**](GetCmFuturesOrderDownloadLinkByIdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetCmFuturesTradeDownloadLinkById
+
+> GetCmFuturesTradeDownloadLinkByIdResponse GetCmFuturesTradeDownloadLinkById(ctx).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+
+Get CM Futures Trade Download Link by Id (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	downloadId := "545923594199212032" // string | get by download id api
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetCmFuturesTradeDownloadLinkById(context.Background()).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetCmFuturesTradeDownloadLinkById``: %v\n", err)
+		return
+	}
+
+	// response from `GetCmFuturesTradeDownloadLinkById`: GetCmFuturesTradeDownloadLinkByIdResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **downloadId** | **string** | get by download id api | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetCmFuturesTradeDownloadLinkByIdResponse**](GetCmFuturesTradeDownloadLinkByIdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetCmFuturesTransactionDownloadLinkById
+
+> GetCmFuturesTransactionDownloadLinkByIdResponse GetCmFuturesTransactionDownloadLinkById(ctx).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+
+Get CM Futures Transaction Download Link by Id (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	downloadId := "545923594199212032" // string | get by download id api
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetCmFuturesTransactionDownloadLinkById(context.Background()).DownloadId(downloadId).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetCmFuturesTransactionDownloadLinkById``: %v\n", err)
+		return
+	}
+
+	// response from `GetCmFuturesTransactionDownloadLinkById`: GetCmFuturesTransactionDownloadLinkByIdResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **downloadId** | **string** | get by download id api | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetCmFuturesTransactionDownloadLinkByIdResponse**](GetCmFuturesTransactionDownloadLinkByIdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
 ## GetCmIncomeHistory
 
 > GetCmIncomeHistoryResponse GetCmIncomeHistory(ctx).Symbol(symbol).IncomeType(incomeType).StartTime(startTime).EndTime(endTime).Limit(limit).RecvWindow(recvWindow).Execute()
@@ -1094,6 +1310,222 @@ Name          | Type          | Description   | Notes
 ### Return type
 
 [**GetCmIncomeHistoryResponse**](GetCmIncomeHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetDownloadIdForCmFuturesOrderHistory
+
+> GetDownloadIdForCmFuturesOrderHistoryResponse GetDownloadIdForCmFuturesOrderHistory(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+
+Get Download Id For CM Futures Order History (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	startTime := int64(1623319461670) // int64 | Timestamp in ms
+	endTime := int64(1641782889000) // int64 | Timestamp in ms
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetDownloadIdForCmFuturesOrderHistory(context.Background()).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetDownloadIdForCmFuturesOrderHistory``: %v\n", err)
+		return
+	}
+
+	// response from `GetDownloadIdForCmFuturesOrderHistory`: GetDownloadIdForCmFuturesOrderHistoryResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetDownloadIdForCmFuturesOrderHistoryResponse**](GetDownloadIdForCmFuturesOrderHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetDownloadIdForCmFuturesTradeHistory
+
+> GetDownloadIdForCmFuturesTradeHistoryResponse GetDownloadIdForCmFuturesTradeHistory(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+
+Get Download Id For CM Futures Trade History (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	startTime := int64(1623319461670) // int64 | Timestamp in ms
+	endTime := int64(1641782889000) // int64 | Timestamp in ms
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetDownloadIdForCmFuturesTradeHistory(context.Background()).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetDownloadIdForCmFuturesTradeHistory``: %v\n", err)
+		return
+	}
+
+	// response from `GetDownloadIdForCmFuturesTradeHistory`: GetDownloadIdForCmFuturesTradeHistoryResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetDownloadIdForCmFuturesTradeHistoryResponse**](GetDownloadIdForCmFuturesTradeHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## GetDownloadIdForCmFuturesTransactionHistory
+
+> GetDownloadIdForCmFuturesTransactionHistoryResponse GetDownloadIdForCmFuturesTransactionHistory(ctx).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+
+Get Download Id For CM Futures Transaction History (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/derivativestradingportfoliomargin"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	startTime := int64(1623319461670) // int64 | Timestamp in ms
+	endTime := int64(1641782889000) // int64 | Timestamp in ms
+	recvWindow := int64(5000) // int64 |  (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceDerivativesTradingPortfolioMarginClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.AccountAPI.GetDownloadIdForCmFuturesTransactionHistory(context.Background()).StartTime(startTime).EndTime(endTime).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `AccountAPI.GetDownloadIdForCmFuturesTransactionHistory``: %v\n", err)
+		return
+	}
+
+	// response from `GetDownloadIdForCmFuturesTransactionHistory`: GetDownloadIdForCmFuturesTransactionHistoryResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **startTime** | **int64** | Timestamp in ms | 
+ **endTime** | **int64** | Timestamp in ms | 
+ **recvWindow** | **int64** |  | 
+
+### Return type
+
+[**GetDownloadIdForCmFuturesTransactionHistoryResponse**](GetDownloadIdForCmFuturesTransactionHistoryResponse.md)
 
 ### Authorization
 

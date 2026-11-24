@@ -1062,6 +1062,231 @@ func (a *AccountAPIService) GetCmCurrentPositionModeExecute(r ApiGetCmCurrentPos
 	return resp, nil
 }
 
+type ApiGetCmFuturesOrderDownloadLinkByIdRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	downloadId *string
+	recvWindow *int64
+}
+
+// get by download id api
+func (r ApiGetCmFuturesOrderDownloadLinkByIdRequest) DownloadId(downloadId string) ApiGetCmFuturesOrderDownloadLinkByIdRequest {
+	r.downloadId = &downloadId
+	return r
+}
+
+func (r ApiGetCmFuturesOrderDownloadLinkByIdRequest) RecvWindow(recvWindow int64) ApiGetCmFuturesOrderDownloadLinkByIdRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetCmFuturesOrderDownloadLinkByIdRequest) Execute() (*common.RestApiResponse[models.GetCmFuturesOrderDownloadLinkByIdResponse], error) {
+	return r.ApiService.GetCmFuturesOrderDownloadLinkByIdExecute(r)
+}
+
+/*
+GetCmFuturesOrderDownloadLinkById Get CM Futures Order Download Link by Id (USER_DATA)
+Get /papi/v1/cm/order/asyn/id
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-cm-futures-order-download-link-by-id
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param downloadId -  get by download id api
+@param recvWindow -
+@return ApiGetCmFuturesOrderDownloadLinkByIdRequest
+*/
+func (a *AccountAPIService) GetCmFuturesOrderDownloadLinkById(ctx context.Context) ApiGetCmFuturesOrderDownloadLinkByIdRequest {
+	return ApiGetCmFuturesOrderDownloadLinkByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCmFuturesOrderDownloadLinkByIdResponse
+func (a *AccountAPIService) GetCmFuturesOrderDownloadLinkByIdExecute(r ApiGetCmFuturesOrderDownloadLinkByIdRequest) (*common.RestApiResponse[models.GetCmFuturesOrderDownloadLinkByIdResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/order/asyn/id"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.downloadId == nil {
+		return nil, common.ReportError("downloadId is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "downloadId", r.downloadId, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetCmFuturesOrderDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetCmFuturesTradeDownloadLinkByIdRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	downloadId *string
+	recvWindow *int64
+}
+
+// get by download id api
+func (r ApiGetCmFuturesTradeDownloadLinkByIdRequest) DownloadId(downloadId string) ApiGetCmFuturesTradeDownloadLinkByIdRequest {
+	r.downloadId = &downloadId
+	return r
+}
+
+func (r ApiGetCmFuturesTradeDownloadLinkByIdRequest) RecvWindow(recvWindow int64) ApiGetCmFuturesTradeDownloadLinkByIdRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetCmFuturesTradeDownloadLinkByIdRequest) Execute() (*common.RestApiResponse[models.GetCmFuturesTradeDownloadLinkByIdResponse], error) {
+	return r.ApiService.GetCmFuturesTradeDownloadLinkByIdExecute(r)
+}
+
+/*
+GetCmFuturesTradeDownloadLinkById Get CM Futures Trade Download Link by Id (USER_DATA)
+Get /papi/v1/cm/trade/asyn/id
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-cm-futures-trade-download-link-by-id
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param downloadId -  get by download id api
+@param recvWindow -
+@return ApiGetCmFuturesTradeDownloadLinkByIdRequest
+*/
+func (a *AccountAPIService) GetCmFuturesTradeDownloadLinkById(ctx context.Context) ApiGetCmFuturesTradeDownloadLinkByIdRequest {
+	return ApiGetCmFuturesTradeDownloadLinkByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCmFuturesTradeDownloadLinkByIdResponse
+func (a *AccountAPIService) GetCmFuturesTradeDownloadLinkByIdExecute(r ApiGetCmFuturesTradeDownloadLinkByIdRequest) (*common.RestApiResponse[models.GetCmFuturesTradeDownloadLinkByIdResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/trade/asyn/id"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.downloadId == nil {
+		return nil, common.ReportError("downloadId is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "downloadId", r.downloadId, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetCmFuturesTradeDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetCmFuturesTransactionDownloadLinkByIdRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	downloadId *string
+	recvWindow *int64
+}
+
+// get by download id api
+func (r ApiGetCmFuturesTransactionDownloadLinkByIdRequest) DownloadId(downloadId string) ApiGetCmFuturesTransactionDownloadLinkByIdRequest {
+	r.downloadId = &downloadId
+	return r
+}
+
+func (r ApiGetCmFuturesTransactionDownloadLinkByIdRequest) RecvWindow(recvWindow int64) ApiGetCmFuturesTransactionDownloadLinkByIdRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetCmFuturesTransactionDownloadLinkByIdRequest) Execute() (*common.RestApiResponse[models.GetCmFuturesTransactionDownloadLinkByIdResponse], error) {
+	return r.ApiService.GetCmFuturesTransactionDownloadLinkByIdExecute(r)
+}
+
+/*
+GetCmFuturesTransactionDownloadLinkById Get CM Futures Transaction Download Link by Id (USER_DATA)
+Get /papi/v1/cm/income/asyn/id
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-cm-futures-transaction-download-link-by-id
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param downloadId -  get by download id api
+@param recvWindow -
+@return ApiGetCmFuturesTransactionDownloadLinkByIdRequest
+*/
+func (a *AccountAPIService) GetCmFuturesTransactionDownloadLinkById(ctx context.Context) ApiGetCmFuturesTransactionDownloadLinkByIdRequest {
+	return ApiGetCmFuturesTransactionDownloadLinkByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCmFuturesTransactionDownloadLinkByIdResponse
+func (a *AccountAPIService) GetCmFuturesTransactionDownloadLinkByIdExecute(r ApiGetCmFuturesTransactionDownloadLinkByIdRequest) (*common.RestApiResponse[models.GetCmFuturesTransactionDownloadLinkByIdResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/income/asyn/id"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.downloadId == nil {
+		return nil, common.ReportError("downloadId is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "downloadId", r.downloadId, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetCmFuturesTransactionDownloadLinkByIdResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiGetCmIncomeHistoryRequest struct {
 	ctx        context.Context
 	ApiService *AccountAPIService
@@ -1162,6 +1387,270 @@ func (a *AccountAPIService) GetCmIncomeHistoryExecute(r ApiGetCmIncomeHistoryReq
 	}
 
 	resp, err := SendRequest[models.GetCmIncomeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetDownloadIdForCmFuturesOrderHistoryRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	startTime  *int64
+	endTime    *int64
+	recvWindow *int64
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesOrderHistoryRequest) StartTime(startTime int64) ApiGetDownloadIdForCmFuturesOrderHistoryRequest {
+	r.startTime = &startTime
+	return r
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesOrderHistoryRequest) EndTime(endTime int64) ApiGetDownloadIdForCmFuturesOrderHistoryRequest {
+	r.endTime = &endTime
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesOrderHistoryRequest) RecvWindow(recvWindow int64) ApiGetDownloadIdForCmFuturesOrderHistoryRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesOrderHistoryRequest) Execute() (*common.RestApiResponse[models.GetDownloadIdForCmFuturesOrderHistoryResponse], error) {
+	return r.ApiService.GetDownloadIdForCmFuturesOrderHistoryExecute(r)
+}
+
+/*
+GetDownloadIdForCmFuturesOrderHistory Get Download Id For CM Futures Order History (USER_DATA)
+Get /papi/v1/cm/order/asyn
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-download-id-for-cm-futures-order-history
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param startTime -  Timestamp in ms
+@param endTime -  Timestamp in ms
+@param recvWindow -
+@return ApiGetDownloadIdForCmFuturesOrderHistoryRequest
+*/
+func (a *AccountAPIService) GetDownloadIdForCmFuturesOrderHistory(ctx context.Context) ApiGetDownloadIdForCmFuturesOrderHistoryRequest {
+	return ApiGetDownloadIdForCmFuturesOrderHistoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetDownloadIdForCmFuturesOrderHistoryResponse
+func (a *AccountAPIService) GetDownloadIdForCmFuturesOrderHistoryExecute(r ApiGetDownloadIdForCmFuturesOrderHistoryRequest) (*common.RestApiResponse[models.GetDownloadIdForCmFuturesOrderHistoryResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/order/asyn"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.startTime == nil {
+		return nil, common.ReportError("startTime is required and must be specified")
+	}
+
+	if r.endTime == nil {
+		return nil, common.ReportError("endTime is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetDownloadIdForCmFuturesOrderHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetDownloadIdForCmFuturesTradeHistoryRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	startTime  *int64
+	endTime    *int64
+	recvWindow *int64
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesTradeHistoryRequest) StartTime(startTime int64) ApiGetDownloadIdForCmFuturesTradeHistoryRequest {
+	r.startTime = &startTime
+	return r
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesTradeHistoryRequest) EndTime(endTime int64) ApiGetDownloadIdForCmFuturesTradeHistoryRequest {
+	r.endTime = &endTime
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesTradeHistoryRequest) RecvWindow(recvWindow int64) ApiGetDownloadIdForCmFuturesTradeHistoryRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesTradeHistoryRequest) Execute() (*common.RestApiResponse[models.GetDownloadIdForCmFuturesTradeHistoryResponse], error) {
+	return r.ApiService.GetDownloadIdForCmFuturesTradeHistoryExecute(r)
+}
+
+/*
+GetDownloadIdForCmFuturesTradeHistory Get Download Id For CM Futures Trade History (USER_DATA)
+Get /papi/v1/cm/trade/asyn
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-download-id-for-cm-futures-trade-history
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param startTime -  Timestamp in ms
+@param endTime -  Timestamp in ms
+@param recvWindow -
+@return ApiGetDownloadIdForCmFuturesTradeHistoryRequest
+*/
+func (a *AccountAPIService) GetDownloadIdForCmFuturesTradeHistory(ctx context.Context) ApiGetDownloadIdForCmFuturesTradeHistoryRequest {
+	return ApiGetDownloadIdForCmFuturesTradeHistoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetDownloadIdForCmFuturesTradeHistoryResponse
+func (a *AccountAPIService) GetDownloadIdForCmFuturesTradeHistoryExecute(r ApiGetDownloadIdForCmFuturesTradeHistoryRequest) (*common.RestApiResponse[models.GetDownloadIdForCmFuturesTradeHistoryResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/trade/asyn"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.startTime == nil {
+		return nil, common.ReportError("startTime is required and must be specified")
+	}
+
+	if r.endTime == nil {
+		return nil, common.ReportError("endTime is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetDownloadIdForCmFuturesTradeHistoryResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiGetDownloadIdForCmFuturesTransactionHistoryRequest struct {
+	ctx        context.Context
+	ApiService *AccountAPIService
+	startTime  *int64
+	endTime    *int64
+	recvWindow *int64
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesTransactionHistoryRequest) StartTime(startTime int64) ApiGetDownloadIdForCmFuturesTransactionHistoryRequest {
+	r.startTime = &startTime
+	return r
+}
+
+// Timestamp in ms
+func (r ApiGetDownloadIdForCmFuturesTransactionHistoryRequest) EndTime(endTime int64) ApiGetDownloadIdForCmFuturesTransactionHistoryRequest {
+	r.endTime = &endTime
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesTransactionHistoryRequest) RecvWindow(recvWindow int64) ApiGetDownloadIdForCmFuturesTransactionHistoryRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiGetDownloadIdForCmFuturesTransactionHistoryRequest) Execute() (*common.RestApiResponse[models.GetDownloadIdForCmFuturesTransactionHistoryResponse], error) {
+	return r.ApiService.GetDownloadIdForCmFuturesTransactionHistoryExecute(r)
+}
+
+/*
+GetDownloadIdForCmFuturesTransactionHistory Get Download Id For CM Futures Transaction History (USER_DATA)
+Get /papi/v1/cm/income/asyn
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-derivatives-trading-portfolio-margin/api/rest-api/account#get-download-id-for-cm-futures-transaction-history
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param startTime -  Timestamp in ms
+@param endTime -  Timestamp in ms
+@param recvWindow -
+@return ApiGetDownloadIdForCmFuturesTransactionHistoryRequest
+*/
+func (a *AccountAPIService) GetDownloadIdForCmFuturesTransactionHistory(ctx context.Context) ApiGetDownloadIdForCmFuturesTransactionHistoryRequest {
+	return ApiGetDownloadIdForCmFuturesTransactionHistoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetDownloadIdForCmFuturesTransactionHistoryResponse
+func (a *AccountAPIService) GetDownloadIdForCmFuturesTransactionHistoryExecute(r ApiGetDownloadIdForCmFuturesTransactionHistoryRequest) (*common.RestApiResponse[models.GetDownloadIdForCmFuturesTransactionHistoryResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/papi/v1/cm/income/asyn"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.startTime == nil {
+		return nil, common.ReportError("startTime is required and must be specified")
+	}
+
+	if r.endTime == nil {
+		return nil, common.ReportError("endTime is required and must be specified")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "form", "")
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "form", "")
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.GetDownloadIdForCmFuturesTransactionHistoryResponse](
 		r.ctx,
 		localVarPath,
 		localVarHTTPMethod,
