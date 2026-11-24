@@ -43,7 +43,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -118,7 +118,7 @@ import (
 func main() {
 	symbol := "BNBBTC" // string | 
 	fromId := int64(582) // int64 | Block trade ID to fetch from
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	limit := int64(500) // int64 | Default: 500; Maximum: 1000 (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -195,8 +195,8 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
-	limit := int32(1) // int32 |  (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
+	limit := int32(1) // int32 | If limit > 7500, only 7500 entries will be returned. (optional)
 	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -237,7 +237,7 @@ Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
  **id** | **string** | Client-generated request identifier. | 
- **limit** | **int32** |  | 
+ **limit** | **int32** | If limit &gt; 7500, only 7500 entries will be returned. | 
  **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. | 
 
 ### Return type
@@ -274,7 +274,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
 	timeZone := "0" // string | Default: 0 (UTC) (optional)
@@ -357,7 +357,7 @@ import (
 
 func main() {
 	symbol := "BAZUSD" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -431,7 +431,7 @@ import (
 
 func main() {
 	symbol := "BAZUSD" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbolStatus := models.ReferencePriceCalculationSymbolStatusParameterTrading // ReferencePriceCalculationSymbolStatusParameter |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -506,7 +506,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | Query ticker of a single symbol (optional)
 	symbols := []string{"BTCUSDT"} // []string | Query ticker for multiple symbols (optional)
 	type_ := models.TickerTypeParameterFull // TickerTypeParameter | Ticker type. Supported values: FULL (default) or MINI (optional)
@@ -588,7 +588,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string |  (optional)
 	symbols := []string{"BTCUSDT"} // []string |  (optional)
 	type_ := models.TickerTypeParameterFull // TickerTypeParameter | Ticker type. Supported values: FULL (default) or MINI (optional)
@@ -668,7 +668,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | Query ticker for a single symbol (optional)
 	symbols := []string{"BTCUSDT"} // []string | Query ticker for multiple symbols (optional)
 	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY` (optional)
@@ -746,7 +746,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | Query price for a single symbol (optional)
 	symbols := []string{"BTCUSDT"} // []string | Query price for multiple symbols (optional)
 	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. For a single symbol, a status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. For multiple or all symbols, non-matching ones are simply excluded from the response. Valid values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY` (optional)
@@ -824,7 +824,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string |  (optional)
 	symbols := []string{"BTCUSDT"} // []string |  (optional)
 	timeZone := "0" // string | Default: 0 (UTC) (optional)
@@ -907,7 +907,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	fromId := int64(1) // int64 | Aggregate trade ID to begin at (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades from INCLUSIVE. (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms to get aggregate trades until INCLUSIVE. (optional)
@@ -989,7 +989,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	fromId := int64(1) // int64 | Trade ID to begin at (optional)
 	limit := int32(1) // int32 |  (optional)
 
@@ -1067,7 +1067,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	limit := int32(1) // int32 |  (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -1144,7 +1144,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	interval := models.KlinesIntervalParameterInterval1s // KlinesIntervalParameter | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	startTime := int64(1735693200000) // int64 |  (optional)
 	endTime := int64(1735693200000) // int64 |  (optional)
 	timeZone := "0" // string | Default: 0 (UTC) (optional)

@@ -35,7 +35,7 @@ func Test_binancespotwebsocketapi_AuthAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649729878630,"userDataStream":false}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"YOUR_API_KEY","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649729878630,"userDataStream":false}}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -92,7 +92,7 @@ func Test_binancespotwebsocketapi_AuthAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649729878630,"userDataStream":false}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"YOUR_API_KEY","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649729878630,"userDataStream":false}}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -345,7 +345,7 @@ func Test_binancespotwebsocketapi_AuthAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649730611671,"userDataStream":true}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"YOUR_API_KEY","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649730611671,"userDataStream":true}}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)
@@ -402,7 +402,7 @@ func Test_binancespotwebsocketapi_AuthAPIService(t *testing.T) {
 		err = json.Unmarshal(mockWS.MessagesWritten[0], &sent)
 		require.NoError(t, err)
 
-		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649730611671,"userDataStream":true}}`
+		mockedJSON := `{"id":"123","status":200,"result":{"apiKey":"YOUR_API_KEY","authorizedSince":1649729878532,"connectedSince":1649729873021,"returnRateLimits":false,"serverTime":1649730611671,"userDataStream":true}}`
 
 		var mocked map[string]interface{}
 		err = json.Unmarshal([]byte(mockedJSON), &mocked)

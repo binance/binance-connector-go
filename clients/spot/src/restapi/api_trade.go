@@ -1058,7 +1058,7 @@ type ApiOrderListOcoRequest struct {
 	belowType               *models.OrderListOcoBelowTypeParameter
 	listClientOrderId       *string
 	aboveClientOrderId      *string
-	aboveIcebergQty         *int64
+	aboveIcebergQty         *float64
 	abovePrice              *float64
 	aboveStopPrice          *float64
 	aboveTrailingDelta      *int64
@@ -1069,7 +1069,7 @@ type ApiOrderListOcoRequest struct {
 	abovePegOffsetType      *models.NewOrderPegOffsetTypeParameter
 	abovePegOffsetValue     *int32
 	belowClientOrderId      *string
-	belowIcebergQty         *int64
+	belowIcebergQty         *float64
 	belowPrice              *float64
 	belowStopPrice          *float64
 	belowTrailingDelta      *int64
@@ -1126,7 +1126,7 @@ func (r ApiOrderListOcoRequest) AboveClientOrderId(aboveClientOrderId string) Ap
 }
 
 // Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiOrderListOcoRequest) AboveIcebergQty(aboveIcebergQty int64) ApiOrderListOcoRequest {
+func (r ApiOrderListOcoRequest) AboveIcebergQty(aboveIcebergQty float64) ApiOrderListOcoRequest {
 	r.aboveIcebergQty = &aboveIcebergQty
 	return r
 }
@@ -1190,7 +1190,7 @@ func (r ApiOrderListOcoRequest) BelowClientOrderId(belowClientOrderId string) Ap
 }
 
 // Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiOrderListOcoRequest) BelowIcebergQty(belowIcebergQty int64) ApiOrderListOcoRequest {
+func (r ApiOrderListOcoRequest) BelowIcebergQty(belowIcebergQty float64) ApiOrderListOcoRequest {
 	r.belowIcebergQty = &belowIcebergQty
 	return r
 }

@@ -189,7 +189,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	limit := int32(1) // int32 | If limit > 5000, only 5000 entries will be returned. (optional)
+	limit := int32(1) // int32 | If limit > 7500, only 7500 entries will be returned. (optional)
 	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`. (optional)
 
 	configuration := common.NewConfigurationRestAPI(
@@ -219,7 +219,7 @@ func main() {
 Name          | Type          | Description   | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string** |  | 
- **limit** | **int32** | If limit &gt; 5000, only 5000 entries will be returned. | 
+ **limit** | **int32** | If limit &gt; 7500, only 7500 entries will be returned. | 
  **symbolStatus** | [**ExchangeInfoSymbolStatusParameter**](ExchangeInfoSymbolStatusParameter.md) | Filters for symbols that have this &#x60;tradingStatus&#x60;. A status mismatch returns error &#x60;-1220 SYMBOL_DOES_NOT_MATCH_STATUS&#x60;. | 
 
 ### Return type

@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | Describe a single symbol (optional)
 	symbols := []string{"BTCUSDT"} // []string | Describe multiple symbols (optional)
 	permissions := []string{"SPOT"} // []string | Filter symbols by permissions (optional)
@@ -113,7 +113,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BAZUSD" // string | Query for specified symbol. (optional)
 	symbols := []string{"BAZUSD"} // []string | Query for multiple symbols. (optional)
 	symbolStatus := models.ExchangeInfoSymbolStatusParameterTrading // ExchangeInfoSymbolStatusParameter | Query for all symbols with the specified status. Supported values: `TRADING`, `HALT`, `BREAK`, `CANCEL_ONLY` (optional)
@@ -191,7 +191,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -263,7 +263,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),

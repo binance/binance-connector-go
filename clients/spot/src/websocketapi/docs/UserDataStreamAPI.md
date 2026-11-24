@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	filter := map[string]interface{}{ ... } // map[string]interface{} | Optional filter that controls which events are delivered on this subscription. See User Data Stream Subscription Filters. When omitted, all events for the subscribed account are delivered. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -181,7 +181,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 	filter := map[string]interface{}{ ... } // map[string]interface{} | Optional event filter. See User Data Stream Subscription Filters. When included, `filter` must be in the signed string with sorted keys and no whitespace between JSON elements. (optional)
 
@@ -261,7 +261,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	subscriptionId := int32(1) // int32 | When called with no parameter, this will close all subscriptions. When called with the subscriptionId parameter, this will attempt to close the subscription with that subscription id, if it exists. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(

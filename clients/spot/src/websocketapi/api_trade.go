@@ -1096,7 +1096,7 @@ type ApiOrderListPlaceOcoRequest struct {
 	id                      *string
 	listClientOrderId       *string
 	aboveClientOrderId      *string
-	aboveIcebergQty         *int64
+	aboveIcebergQty         *float64
 	abovePrice              *float64
 	aboveStopPrice          *float64
 	aboveTrailingDelta      *int64
@@ -1107,7 +1107,7 @@ type ApiOrderListPlaceOcoRequest struct {
 	abovePegOffsetType      *models.OrderCancelReplacePegOffsetTypeParameter
 	abovePegOffsetValue     *int32
 	belowClientOrderId      *string
-	belowIcebergQty         *int64
+	belowIcebergQty         *float64
 	belowPrice              *float64
 	belowStopPrice          *float64
 	belowTrailingDelta      *int64
@@ -1171,7 +1171,7 @@ func (r ApiOrderListPlaceOcoRequest) AboveClientOrderId(aboveClientOrderId strin
 }
 
 // Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiOrderListPlaceOcoRequest) AboveIcebergQty(aboveIcebergQty int64) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) AboveIcebergQty(aboveIcebergQty float64) ApiOrderListPlaceOcoRequest {
 	r.aboveIcebergQty = &aboveIcebergQty
 	return r
 }
@@ -1235,7 +1235,7 @@ func (r ApiOrderListPlaceOcoRequest) BelowClientOrderId(belowClientOrderId strin
 }
 
 // Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;.
-func (r ApiOrderListPlaceOcoRequest) BelowIcebergQty(belowIcebergQty int64) ApiOrderListPlaceOcoRequest {
+func (r ApiOrderListPlaceOcoRequest) BelowIcebergQty(belowIcebergQty float64) ApiOrderListPlaceOcoRequest {
 	r.belowIcebergQty = &belowIcebergQty
 	return r
 }

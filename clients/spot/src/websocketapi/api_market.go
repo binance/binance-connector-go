@@ -215,6 +215,7 @@ func (r ApiDepthRequest) Id(id string) ApiDepthRequest {
 	return r
 }
 
+// If limit &gt; 7500, only 7500 entries will be returned.
 func (r ApiDepthRequest) Limit(limit int32) ApiDepthRequest {
 	r.limit = &limit
 	return r
@@ -250,7 +251,7 @@ Depth Order book
 
 https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-api/market#depth
 
-@param symbol	@param id Client-generated request identifier.	@param limit	@param symbolStatus Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`.
+@param symbol	@param id Client-generated request identifier.	@param limit If limit > 7500, only 7500 entries will be returned.	@param symbolStatus Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`.
 @return ApiDepthRequest
 */
 func (a *MarketAPIService) Depth() ApiDepthRequest {

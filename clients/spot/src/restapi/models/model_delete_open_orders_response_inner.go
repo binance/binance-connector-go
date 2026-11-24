@@ -17,23 +17,60 @@ var _ common.MappedNullable = &DeleteOpenOrdersResponseInner{}
 
 // DeleteOpenOrdersResponseInner struct for DeleteOpenOrdersResponseInner
 type DeleteOpenOrdersResponseInner struct {
-	Symbol                  *string `json:"symbol,omitempty"`
-	OrigClientOrderId       *string `json:"origClientOrderId,omitempty"`
-	OrderId                 *int64  `json:"orderId,omitempty"`
-	OrderListId             *int64  `json:"orderListId,omitempty"`
-	ClientOrderId           *string `json:"clientOrderId,omitempty"`
-	TransactTime            *int64  `json:"transactTime,omitempty"`
-	Price                   *string `json:"price,omitempty"`
-	OrigQty                 *string `json:"origQty,omitempty"`
-	ExecutedQty             *string `json:"executedQty,omitempty"`
-	OrigQuoteOrderQty       *string `json:"origQuoteOrderQty,omitempty"`
-	CummulativeQuoteQty     *string `json:"cummulativeQuoteQty,omitempty"`
-	Status                  *string `json:"status,omitempty"`
-	TimeInForce             *string `json:"timeInForce,omitempty"`
-	Type                    *string `json:"type,omitempty"`
-	Side                    *string `json:"side,omitempty"`
+	OrderListId         *int64                                           `json:"orderListId,omitempty"`
+	ContingencyType     *string                                          `json:"contingencyType,omitempty"`
+	ListStatusType      *string                                          `json:"listStatusType,omitempty"`
+	ListOrderStatus     *string                                          `json:"listOrderStatus,omitempty"`
+	ListClientOrderId   *string                                          `json:"listClientOrderId,omitempty"`
+	TransactionTime     *int64                                           `json:"transactionTime,omitempty"`
+	Symbol              *string                                          `json:"symbol,omitempty"`
+	Orders              []DeleteOpenOrdersResponseInnerOrdersInner       `json:"orders,omitempty"`
+	OrderReports        []DeleteOpenOrdersResponseInnerOrderReportsInner `json:"orderReports,omitempty"`
+	OrigClientOrderId   *string                                          `json:"origClientOrderId,omitempty"`
+	OrderId             *int64                                           `json:"orderId,omitempty"`
+	ClientOrderId       *string                                          `json:"clientOrderId,omitempty"`
+	TransactTime        *int64                                           `json:"transactTime,omitempty"`
+	Price               *string                                          `json:"price,omitempty"`
+	OrigQty             *string                                          `json:"origQty,omitempty"`
+	ExecutedQty         *string                                          `json:"executedQty,omitempty"`
+	OrigQuoteOrderQty   *string                                          `json:"origQuoteOrderQty,omitempty"`
+	CummulativeQuoteQty *string                                          `json:"cummulativeQuoteQty,omitempty"`
+	Status              *string                                          `json:"status,omitempty"`
+	TimeInForce         *string                                          `json:"timeInForce,omitempty"`
+	Type                *string                                          `json:"type,omitempty"`
+	Side                *string                                          `json:"side,omitempty"`
+	// Appears for STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT orders.
+	StopPrice *string `json:"stopPrice,omitempty"`
+	// Delta price change required before order activation.
+	TrailingDelta *int64 `json:"trailingDelta,omitempty"`
+	// Time when the trailing order is now active and tracking price changes.
+	TrailingTime *int64 `json:"trailingTime,omitempty"`
+	// Appears only if the parameter icebergQty was sent in the request.
+	IcebergQty *string `json:"icebergQty,omitempty"`
+	// Appears only if the strategyId parameter was provided upon order placement.
+	StrategyId *int64 `json:"strategyId,omitempty"`
+	// Appears only if the strategyType parameter was provided upon order placement.
+	StrategyType            *int64  `json:"strategyType,omitempty"`
 	SelfTradePreventionMode *string `json:"selfTradePreventionMode,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// Appears only if the order expired due to STP.
+	PreventedMatchId *int64 `json:"preventedMatchId,omitempty"`
+	// Order quantity that expired due to STP.
+	PreventedQuantity *string `json:"preventedQuantity,omitempty"`
+	// Field that determines whether order used SOR.
+	UsedSor *bool `json:"usedSor,omitempty"`
+	// Determines whether the order is being filled by the SOR or by the order book.
+	WorkingFloor *string `json:"workingFloor,omitempty"`
+	// Price peg type. Only for pegged orders.
+	PegPriceType *string `json:"pegPriceType,omitempty"`
+	// Price peg offset type. Only for pegged orders, if requested.
+	PegOffsetType *string `json:"pegOffsetType,omitempty"`
+	// Price peg offset value. Only for pegged orders, if requested.
+	PegOffsetValue *int64 `json:"pegOffsetValue,omitempty"`
+	// Current price order is pegged at. Only for pegged orders, once determined.
+	PeggedPrice *string `json:"peggedPrice,omitempty"`
+	// Cause of the order's expiration. Appears when an order has expired.
+	ExpiryReason         *string `json:"expiryReason,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeleteOpenOrdersResponseInner DeleteOpenOrdersResponseInner
@@ -53,6 +90,198 @@ func NewDeleteOpenOrdersResponseInner() *DeleteOpenOrdersResponseInner {
 func NewDeleteOpenOrdersResponseInnerWithDefaults() *DeleteOpenOrdersResponseInner {
 	this := DeleteOpenOrdersResponseInner{}
 	return &this
+}
+
+// GetOrderListId returns the OrderListId field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetOrderListId() int64 {
+	if o == nil || common.IsNil(o.OrderListId) {
+		var ret int64
+		return ret
+	}
+	return *o.OrderListId
+}
+
+// GetOrderListIdOk returns a tuple with the OrderListId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetOrderListIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.OrderListId) {
+		return nil, false
+	}
+	return o.OrderListId, true
+}
+
+// HasOrderListId returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasOrderListId() bool {
+	if o != nil && !common.IsNil(o.OrderListId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderListId gets a reference to the given int64 and assigns it to the OrderListId field.
+func (o *DeleteOpenOrdersResponseInner) SetOrderListId(v int64) {
+	o.OrderListId = &v
+}
+
+// GetContingencyType returns the ContingencyType field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetContingencyType() string {
+	if o == nil || common.IsNil(o.ContingencyType) {
+		var ret string
+		return ret
+	}
+	return *o.ContingencyType
+}
+
+// GetContingencyTypeOk returns a tuple with the ContingencyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetContingencyTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ContingencyType) {
+		return nil, false
+	}
+	return o.ContingencyType, true
+}
+
+// HasContingencyType returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasContingencyType() bool {
+	if o != nil && !common.IsNil(o.ContingencyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetContingencyType gets a reference to the given string and assigns it to the ContingencyType field.
+func (o *DeleteOpenOrdersResponseInner) SetContingencyType(v string) {
+	o.ContingencyType = &v
+}
+
+// GetListStatusType returns the ListStatusType field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetListStatusType() string {
+	if o == nil || common.IsNil(o.ListStatusType) {
+		var ret string
+		return ret
+	}
+	return *o.ListStatusType
+}
+
+// GetListStatusTypeOk returns a tuple with the ListStatusType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetListStatusTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ListStatusType) {
+		return nil, false
+	}
+	return o.ListStatusType, true
+}
+
+// HasListStatusType returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasListStatusType() bool {
+	if o != nil && !common.IsNil(o.ListStatusType) {
+		return true
+	}
+
+	return false
+}
+
+// SetListStatusType gets a reference to the given string and assigns it to the ListStatusType field.
+func (o *DeleteOpenOrdersResponseInner) SetListStatusType(v string) {
+	o.ListStatusType = &v
+}
+
+// GetListOrderStatus returns the ListOrderStatus field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetListOrderStatus() string {
+	if o == nil || common.IsNil(o.ListOrderStatus) {
+		var ret string
+		return ret
+	}
+	return *o.ListOrderStatus
+}
+
+// GetListOrderStatusOk returns a tuple with the ListOrderStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetListOrderStatusOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ListOrderStatus) {
+		return nil, false
+	}
+	return o.ListOrderStatus, true
+}
+
+// HasListOrderStatus returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasListOrderStatus() bool {
+	if o != nil && !common.IsNil(o.ListOrderStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetListOrderStatus gets a reference to the given string and assigns it to the ListOrderStatus field.
+func (o *DeleteOpenOrdersResponseInner) SetListOrderStatus(v string) {
+	o.ListOrderStatus = &v
+}
+
+// GetListClientOrderId returns the ListClientOrderId field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetListClientOrderId() string {
+	if o == nil || common.IsNil(o.ListClientOrderId) {
+		var ret string
+		return ret
+	}
+	return *o.ListClientOrderId
+}
+
+// GetListClientOrderIdOk returns a tuple with the ListClientOrderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetListClientOrderIdOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ListClientOrderId) {
+		return nil, false
+	}
+	return o.ListClientOrderId, true
+}
+
+// HasListClientOrderId returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasListClientOrderId() bool {
+	if o != nil && !common.IsNil(o.ListClientOrderId) {
+		return true
+	}
+
+	return false
+}
+
+// SetListClientOrderId gets a reference to the given string and assigns it to the ListClientOrderId field.
+func (o *DeleteOpenOrdersResponseInner) SetListClientOrderId(v string) {
+	o.ListClientOrderId = &v
+}
+
+// GetTransactionTime returns the TransactionTime field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetTransactionTime() int64 {
+	if o == nil || common.IsNil(o.TransactionTime) {
+		var ret int64
+		return ret
+	}
+	return *o.TransactionTime
+}
+
+// GetTransactionTimeOk returns a tuple with the TransactionTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetTransactionTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TransactionTime) {
+		return nil, false
+	}
+	return o.TransactionTime, true
+}
+
+// HasTransactionTime returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasTransactionTime() bool {
+	if o != nil && !common.IsNil(o.TransactionTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransactionTime gets a reference to the given int64 and assigns it to the TransactionTime field.
+func (o *DeleteOpenOrdersResponseInner) SetTransactionTime(v int64) {
+	o.TransactionTime = &v
 }
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
@@ -85,6 +314,70 @@ func (o *DeleteOpenOrdersResponseInner) HasSymbol() bool {
 // SetSymbol gets a reference to the given string and assigns it to the Symbol field.
 func (o *DeleteOpenOrdersResponseInner) SetSymbol(v string) {
 	o.Symbol = &v
+}
+
+// GetOrders returns the Orders field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetOrders() []DeleteOpenOrdersResponseInnerOrdersInner {
+	if o == nil || common.IsNil(o.Orders) {
+		var ret []DeleteOpenOrdersResponseInnerOrdersInner
+		return ret
+	}
+	return o.Orders
+}
+
+// GetOrdersOk returns a tuple with the Orders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetOrdersOk() ([]DeleteOpenOrdersResponseInnerOrdersInner, bool) {
+	if o == nil || common.IsNil(o.Orders) {
+		return nil, false
+	}
+	return o.Orders, true
+}
+
+// HasOrders returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasOrders() bool {
+	if o != nil && !common.IsNil(o.Orders) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrders gets a reference to the given []DeleteOpenOrdersResponseInnerOrdersInner and assigns it to the Orders field.
+func (o *DeleteOpenOrdersResponseInner) SetOrders(v []DeleteOpenOrdersResponseInnerOrdersInner) {
+	o.Orders = v
+}
+
+// GetOrderReports returns the OrderReports field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetOrderReports() []DeleteOpenOrdersResponseInnerOrderReportsInner {
+	if o == nil || common.IsNil(o.OrderReports) {
+		var ret []DeleteOpenOrdersResponseInnerOrderReportsInner
+		return ret
+	}
+	return o.OrderReports
+}
+
+// GetOrderReportsOk returns a tuple with the OrderReports field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetOrderReportsOk() ([]DeleteOpenOrdersResponseInnerOrderReportsInner, bool) {
+	if o == nil || common.IsNil(o.OrderReports) {
+		return nil, false
+	}
+	return o.OrderReports, true
+}
+
+// HasOrderReports returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasOrderReports() bool {
+	if o != nil && !common.IsNil(o.OrderReports) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrderReports gets a reference to the given []DeleteOpenOrdersResponseInnerOrderReportsInner and assigns it to the OrderReports field.
+func (o *DeleteOpenOrdersResponseInner) SetOrderReports(v []DeleteOpenOrdersResponseInnerOrderReportsInner) {
+	o.OrderReports = v
 }
 
 // GetOrigClientOrderId returns the OrigClientOrderId field value if set, zero value otherwise.
@@ -149,38 +442,6 @@ func (o *DeleteOpenOrdersResponseInner) HasOrderId() bool {
 // SetOrderId gets a reference to the given int64 and assigns it to the OrderId field.
 func (o *DeleteOpenOrdersResponseInner) SetOrderId(v int64) {
 	o.OrderId = &v
-}
-
-// GetOrderListId returns the OrderListId field value if set, zero value otherwise.
-func (o *DeleteOpenOrdersResponseInner) GetOrderListId() int64 {
-	if o == nil || common.IsNil(o.OrderListId) {
-		var ret int64
-		return ret
-	}
-	return *o.OrderListId
-}
-
-// GetOrderListIdOk returns a tuple with the OrderListId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeleteOpenOrdersResponseInner) GetOrderListIdOk() (*int64, bool) {
-	if o == nil || common.IsNil(o.OrderListId) {
-		return nil, false
-	}
-	return o.OrderListId, true
-}
-
-// HasOrderListId returns a boolean if a field has been set.
-func (o *DeleteOpenOrdersResponseInner) HasOrderListId() bool {
-	if o != nil && !common.IsNil(o.OrderListId) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrderListId gets a reference to the given int64 and assigns it to the OrderListId field.
-func (o *DeleteOpenOrdersResponseInner) SetOrderListId(v int64) {
-	o.OrderListId = &v
 }
 
 // GetClientOrderId returns the ClientOrderId field value if set, zero value otherwise.
@@ -535,6 +796,198 @@ func (o *DeleteOpenOrdersResponseInner) SetSide(v string) {
 	o.Side = &v
 }
 
+// GetStopPrice returns the StopPrice field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetStopPrice() string {
+	if o == nil || common.IsNil(o.StopPrice) {
+		var ret string
+		return ret
+	}
+	return *o.StopPrice
+}
+
+// GetStopPriceOk returns a tuple with the StopPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetStopPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.StopPrice) {
+		return nil, false
+	}
+	return o.StopPrice, true
+}
+
+// HasStopPrice returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasStopPrice() bool {
+	if o != nil && !common.IsNil(o.StopPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopPrice gets a reference to the given string and assigns it to the StopPrice field.
+func (o *DeleteOpenOrdersResponseInner) SetStopPrice(v string) {
+	o.StopPrice = &v
+}
+
+// GetTrailingDelta returns the TrailingDelta field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetTrailingDelta() int64 {
+	if o == nil || common.IsNil(o.TrailingDelta) {
+		var ret int64
+		return ret
+	}
+	return *o.TrailingDelta
+}
+
+// GetTrailingDeltaOk returns a tuple with the TrailingDelta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetTrailingDeltaOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TrailingDelta) {
+		return nil, false
+	}
+	return o.TrailingDelta, true
+}
+
+// HasTrailingDelta returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasTrailingDelta() bool {
+	if o != nil && !common.IsNil(o.TrailingDelta) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrailingDelta gets a reference to the given int64 and assigns it to the TrailingDelta field.
+func (o *DeleteOpenOrdersResponseInner) SetTrailingDelta(v int64) {
+	o.TrailingDelta = &v
+}
+
+// GetTrailingTime returns the TrailingTime field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetTrailingTime() int64 {
+	if o == nil || common.IsNil(o.TrailingTime) {
+		var ret int64
+		return ret
+	}
+	return *o.TrailingTime
+}
+
+// GetTrailingTimeOk returns a tuple with the TrailingTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetTrailingTimeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.TrailingTime) {
+		return nil, false
+	}
+	return o.TrailingTime, true
+}
+
+// HasTrailingTime returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasTrailingTime() bool {
+	if o != nil && !common.IsNil(o.TrailingTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrailingTime gets a reference to the given int64 and assigns it to the TrailingTime field.
+func (o *DeleteOpenOrdersResponseInner) SetTrailingTime(v int64) {
+	o.TrailingTime = &v
+}
+
+// GetIcebergQty returns the IcebergQty field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetIcebergQty() string {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		var ret string
+		return ret
+	}
+	return *o.IcebergQty
+}
+
+// GetIcebergQtyOk returns a tuple with the IcebergQty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetIcebergQtyOk() (*string, bool) {
+	if o == nil || common.IsNil(o.IcebergQty) {
+		return nil, false
+	}
+	return o.IcebergQty, true
+}
+
+// HasIcebergQty returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasIcebergQty() bool {
+	if o != nil && !common.IsNil(o.IcebergQty) {
+		return true
+	}
+
+	return false
+}
+
+// SetIcebergQty gets a reference to the given string and assigns it to the IcebergQty field.
+func (o *DeleteOpenOrdersResponseInner) SetIcebergQty(v string) {
+	o.IcebergQty = &v
+}
+
+// GetStrategyId returns the StrategyId field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetStrategyId() int64 {
+	if o == nil || common.IsNil(o.StrategyId) {
+		var ret int64
+		return ret
+	}
+	return *o.StrategyId
+}
+
+// GetStrategyIdOk returns a tuple with the StrategyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetStrategyIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.StrategyId) {
+		return nil, false
+	}
+	return o.StrategyId, true
+}
+
+// HasStrategyId returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasStrategyId() bool {
+	if o != nil && !common.IsNil(o.StrategyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyId gets a reference to the given int64 and assigns it to the StrategyId field.
+func (o *DeleteOpenOrdersResponseInner) SetStrategyId(v int64) {
+	o.StrategyId = &v
+}
+
+// GetStrategyType returns the StrategyType field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetStrategyType() int64 {
+	if o == nil || common.IsNil(o.StrategyType) {
+		var ret int64
+		return ret
+	}
+	return *o.StrategyType
+}
+
+// GetStrategyTypeOk returns a tuple with the StrategyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetStrategyTypeOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.StrategyType) {
+		return nil, false
+	}
+	return o.StrategyType, true
+}
+
+// HasStrategyType returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasStrategyType() bool {
+	if o != nil && !common.IsNil(o.StrategyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyType gets a reference to the given int64 and assigns it to the StrategyType field.
+func (o *DeleteOpenOrdersResponseInner) SetStrategyType(v int64) {
+	o.StrategyType = &v
+}
+
 // GetSelfTradePreventionMode returns the SelfTradePreventionMode field value if set, zero value otherwise.
 func (o *DeleteOpenOrdersResponseInner) GetSelfTradePreventionMode() string {
 	if o == nil || common.IsNil(o.SelfTradePreventionMode) {
@@ -567,6 +1020,294 @@ func (o *DeleteOpenOrdersResponseInner) SetSelfTradePreventionMode(v string) {
 	o.SelfTradePreventionMode = &v
 }
 
+// GetPreventedMatchId returns the PreventedMatchId field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPreventedMatchId() int64 {
+	if o == nil || common.IsNil(o.PreventedMatchId) {
+		var ret int64
+		return ret
+	}
+	return *o.PreventedMatchId
+}
+
+// GetPreventedMatchIdOk returns a tuple with the PreventedMatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPreventedMatchIdOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PreventedMatchId) {
+		return nil, false
+	}
+	return o.PreventedMatchId, true
+}
+
+// HasPreventedMatchId returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPreventedMatchId() bool {
+	if o != nil && !common.IsNil(o.PreventedMatchId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventedMatchId gets a reference to the given int64 and assigns it to the PreventedMatchId field.
+func (o *DeleteOpenOrdersResponseInner) SetPreventedMatchId(v int64) {
+	o.PreventedMatchId = &v
+}
+
+// GetPreventedQuantity returns the PreventedQuantity field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPreventedQuantity() string {
+	if o == nil || common.IsNil(o.PreventedQuantity) {
+		var ret string
+		return ret
+	}
+	return *o.PreventedQuantity
+}
+
+// GetPreventedQuantityOk returns a tuple with the PreventedQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPreventedQuantityOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PreventedQuantity) {
+		return nil, false
+	}
+	return o.PreventedQuantity, true
+}
+
+// HasPreventedQuantity returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPreventedQuantity() bool {
+	if o != nil && !common.IsNil(o.PreventedQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreventedQuantity gets a reference to the given string and assigns it to the PreventedQuantity field.
+func (o *DeleteOpenOrdersResponseInner) SetPreventedQuantity(v string) {
+	o.PreventedQuantity = &v
+}
+
+// GetUsedSor returns the UsedSor field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetUsedSor() bool {
+	if o == nil || common.IsNil(o.UsedSor) {
+		var ret bool
+		return ret
+	}
+	return *o.UsedSor
+}
+
+// GetUsedSorOk returns a tuple with the UsedSor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetUsedSorOk() (*bool, bool) {
+	if o == nil || common.IsNil(o.UsedSor) {
+		return nil, false
+	}
+	return o.UsedSor, true
+}
+
+// HasUsedSor returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasUsedSor() bool {
+	if o != nil && !common.IsNil(o.UsedSor) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsedSor gets a reference to the given bool and assigns it to the UsedSor field.
+func (o *DeleteOpenOrdersResponseInner) SetUsedSor(v bool) {
+	o.UsedSor = &v
+}
+
+// GetWorkingFloor returns the WorkingFloor field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetWorkingFloor() string {
+	if o == nil || common.IsNil(o.WorkingFloor) {
+		var ret string
+		return ret
+	}
+	return *o.WorkingFloor
+}
+
+// GetWorkingFloorOk returns a tuple with the WorkingFloor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetWorkingFloorOk() (*string, bool) {
+	if o == nil || common.IsNil(o.WorkingFloor) {
+		return nil, false
+	}
+	return o.WorkingFloor, true
+}
+
+// HasWorkingFloor returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasWorkingFloor() bool {
+	if o != nil && !common.IsNil(o.WorkingFloor) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkingFloor gets a reference to the given string and assigns it to the WorkingFloor field.
+func (o *DeleteOpenOrdersResponseInner) SetWorkingFloor(v string) {
+	o.WorkingFloor = &v
+}
+
+// GetPegPriceType returns the PegPriceType field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPegPriceType() string {
+	if o == nil || common.IsNil(o.PegPriceType) {
+		var ret string
+		return ret
+	}
+	return *o.PegPriceType
+}
+
+// GetPegPriceTypeOk returns a tuple with the PegPriceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPegPriceTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PegPriceType) {
+		return nil, false
+	}
+	return o.PegPriceType, true
+}
+
+// HasPegPriceType returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPegPriceType() bool {
+	if o != nil && !common.IsNil(o.PegPriceType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegPriceType gets a reference to the given string and assigns it to the PegPriceType field.
+func (o *DeleteOpenOrdersResponseInner) SetPegPriceType(v string) {
+	o.PegPriceType = &v
+}
+
+// GetPegOffsetType returns the PegOffsetType field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPegOffsetType() string {
+	if o == nil || common.IsNil(o.PegOffsetType) {
+		var ret string
+		return ret
+	}
+	return *o.PegOffsetType
+}
+
+// GetPegOffsetTypeOk returns a tuple with the PegOffsetType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPegOffsetTypeOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PegOffsetType) {
+		return nil, false
+	}
+	return o.PegOffsetType, true
+}
+
+// HasPegOffsetType returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPegOffsetType() bool {
+	if o != nil && !common.IsNil(o.PegOffsetType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegOffsetType gets a reference to the given string and assigns it to the PegOffsetType field.
+func (o *DeleteOpenOrdersResponseInner) SetPegOffsetType(v string) {
+	o.PegOffsetType = &v
+}
+
+// GetPegOffsetValue returns the PegOffsetValue field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPegOffsetValue() int64 {
+	if o == nil || common.IsNil(o.PegOffsetValue) {
+		var ret int64
+		return ret
+	}
+	return *o.PegOffsetValue
+}
+
+// GetPegOffsetValueOk returns a tuple with the PegOffsetValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPegOffsetValueOk() (*int64, bool) {
+	if o == nil || common.IsNil(o.PegOffsetValue) {
+		return nil, false
+	}
+	return o.PegOffsetValue, true
+}
+
+// HasPegOffsetValue returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPegOffsetValue() bool {
+	if o != nil && !common.IsNil(o.PegOffsetValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetPegOffsetValue gets a reference to the given int64 and assigns it to the PegOffsetValue field.
+func (o *DeleteOpenOrdersResponseInner) SetPegOffsetValue(v int64) {
+	o.PegOffsetValue = &v
+}
+
+// GetPeggedPrice returns the PeggedPrice field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetPeggedPrice() string {
+	if o == nil || common.IsNil(o.PeggedPrice) {
+		var ret string
+		return ret
+	}
+	return *o.PeggedPrice
+}
+
+// GetPeggedPriceOk returns a tuple with the PeggedPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetPeggedPriceOk() (*string, bool) {
+	if o == nil || common.IsNil(o.PeggedPrice) {
+		return nil, false
+	}
+	return o.PeggedPrice, true
+}
+
+// HasPeggedPrice returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasPeggedPrice() bool {
+	if o != nil && !common.IsNil(o.PeggedPrice) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeggedPrice gets a reference to the given string and assigns it to the PeggedPrice field.
+func (o *DeleteOpenOrdersResponseInner) SetPeggedPrice(v string) {
+	o.PeggedPrice = &v
+}
+
+// GetExpiryReason returns the ExpiryReason field value if set, zero value otherwise.
+func (o *DeleteOpenOrdersResponseInner) GetExpiryReason() string {
+	if o == nil || common.IsNil(o.ExpiryReason) {
+		var ret string
+		return ret
+	}
+	return *o.ExpiryReason
+}
+
+// GetExpiryReasonOk returns a tuple with the ExpiryReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteOpenOrdersResponseInner) GetExpiryReasonOk() (*string, bool) {
+	if o == nil || common.IsNil(o.ExpiryReason) {
+		return nil, false
+	}
+	return o.ExpiryReason, true
+}
+
+// HasExpiryReason returns a boolean if a field has been set.
+func (o *DeleteOpenOrdersResponseInner) HasExpiryReason() bool {
+	if o != nil && !common.IsNil(o.ExpiryReason) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiryReason gets a reference to the given string and assigns it to the ExpiryReason field.
+func (o *DeleteOpenOrdersResponseInner) SetExpiryReason(v string) {
+	o.ExpiryReason = &v
+}
+
 func (o DeleteOpenOrdersResponseInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -577,17 +1318,38 @@ func (o DeleteOpenOrdersResponseInner) MarshalJSON() ([]byte, error) {
 
 func (o DeleteOpenOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !common.IsNil(o.OrderListId) {
+		toSerialize["orderListId"] = o.OrderListId
+	}
+	if !common.IsNil(o.ContingencyType) {
+		toSerialize["contingencyType"] = o.ContingencyType
+	}
+	if !common.IsNil(o.ListStatusType) {
+		toSerialize["listStatusType"] = o.ListStatusType
+	}
+	if !common.IsNil(o.ListOrderStatus) {
+		toSerialize["listOrderStatus"] = o.ListOrderStatus
+	}
+	if !common.IsNil(o.ListClientOrderId) {
+		toSerialize["listClientOrderId"] = o.ListClientOrderId
+	}
+	if !common.IsNil(o.TransactionTime) {
+		toSerialize["transactionTime"] = o.TransactionTime
+	}
 	if !common.IsNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
+	}
+	if !common.IsNil(o.Orders) {
+		toSerialize["orders"] = o.Orders
+	}
+	if !common.IsNil(o.OrderReports) {
+		toSerialize["orderReports"] = o.OrderReports
 	}
 	if !common.IsNil(o.OrigClientOrderId) {
 		toSerialize["origClientOrderId"] = o.OrigClientOrderId
 	}
 	if !common.IsNil(o.OrderId) {
 		toSerialize["orderId"] = o.OrderId
-	}
-	if !common.IsNil(o.OrderListId) {
-		toSerialize["orderListId"] = o.OrderListId
 	}
 	if !common.IsNil(o.ClientOrderId) {
 		toSerialize["clientOrderId"] = o.ClientOrderId
@@ -622,8 +1384,53 @@ func (o DeleteOpenOrdersResponseInner) ToMap() (map[string]interface{}, error) {
 	if !common.IsNil(o.Side) {
 		toSerialize["side"] = o.Side
 	}
+	if !common.IsNil(o.StopPrice) {
+		toSerialize["stopPrice"] = o.StopPrice
+	}
+	if !common.IsNil(o.TrailingDelta) {
+		toSerialize["trailingDelta"] = o.TrailingDelta
+	}
+	if !common.IsNil(o.TrailingTime) {
+		toSerialize["trailingTime"] = o.TrailingTime
+	}
+	if !common.IsNil(o.IcebergQty) {
+		toSerialize["icebergQty"] = o.IcebergQty
+	}
+	if !common.IsNil(o.StrategyId) {
+		toSerialize["strategyId"] = o.StrategyId
+	}
+	if !common.IsNil(o.StrategyType) {
+		toSerialize["strategyType"] = o.StrategyType
+	}
 	if !common.IsNil(o.SelfTradePreventionMode) {
 		toSerialize["selfTradePreventionMode"] = o.SelfTradePreventionMode
+	}
+	if !common.IsNil(o.PreventedMatchId) {
+		toSerialize["preventedMatchId"] = o.PreventedMatchId
+	}
+	if !common.IsNil(o.PreventedQuantity) {
+		toSerialize["preventedQuantity"] = o.PreventedQuantity
+	}
+	if !common.IsNil(o.UsedSor) {
+		toSerialize["usedSor"] = o.UsedSor
+	}
+	if !common.IsNil(o.WorkingFloor) {
+		toSerialize["workingFloor"] = o.WorkingFloor
+	}
+	if !common.IsNil(o.PegPriceType) {
+		toSerialize["pegPriceType"] = o.PegPriceType
+	}
+	if !common.IsNil(o.PegOffsetType) {
+		toSerialize["pegOffsetType"] = o.PegOffsetType
+	}
+	if !common.IsNil(o.PegOffsetValue) {
+		toSerialize["pegOffsetValue"] = o.PegOffsetValue
+	}
+	if !common.IsNil(o.PeggedPrice) {
+		toSerialize["peggedPrice"] = o.PeggedPrice
+	}
+	if !common.IsNil(o.ExpiryReason) {
+		toSerialize["expiryReason"] = o.ExpiryReason
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -647,10 +1454,17 @@ func (o *DeleteOpenOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "orderListId")
+		delete(additionalProperties, "contingencyType")
+		delete(additionalProperties, "listStatusType")
+		delete(additionalProperties, "listOrderStatus")
+		delete(additionalProperties, "listClientOrderId")
+		delete(additionalProperties, "transactionTime")
 		delete(additionalProperties, "symbol")
+		delete(additionalProperties, "orders")
+		delete(additionalProperties, "orderReports")
 		delete(additionalProperties, "origClientOrderId")
 		delete(additionalProperties, "orderId")
-		delete(additionalProperties, "orderListId")
 		delete(additionalProperties, "clientOrderId")
 		delete(additionalProperties, "transactTime")
 		delete(additionalProperties, "price")
@@ -662,7 +1476,22 @@ func (o *DeleteOpenOrdersResponseInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "timeInForce")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "side")
+		delete(additionalProperties, "stopPrice")
+		delete(additionalProperties, "trailingDelta")
+		delete(additionalProperties, "trailingTime")
+		delete(additionalProperties, "icebergQty")
+		delete(additionalProperties, "strategyId")
+		delete(additionalProperties, "strategyType")
 		delete(additionalProperties, "selfTradePreventionMode")
+		delete(additionalProperties, "preventedMatchId")
+		delete(additionalProperties, "preventedQuantity")
+		delete(additionalProperties, "usedSor")
+		delete(additionalProperties, "workingFloor")
+		delete(additionalProperties, "pegPriceType")
+		delete(additionalProperties, "pegOffsetType")
+		delete(additionalProperties, "pegOffsetValue")
+		delete(additionalProperties, "peggedPrice")
+		delete(additionalProperties, "expiryReason")
 		o.AdditionalProperties = additionalProperties
 	}
 

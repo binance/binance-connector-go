@@ -42,7 +42,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -115,7 +115,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -189,7 +189,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	omitZeroBalances := false // bool | When set to `true`, emits only the non-zero balances of an account. Default value: `false`. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
@@ -265,7 +265,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	fromId := int32(1) // int32 | Order list ID to begin at (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
@@ -348,7 +348,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	orderId := int64(1) // int64 | Order ID to begin at (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
@@ -432,7 +432,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	fromAllocationId := int32(1) // int32 | Allocation ID to begin at (optional)
@@ -518,7 +518,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -594,7 +594,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	preventedMatchId := int64(1) // int64 | Prevented match ID (optional)
 	orderId := int64(1) // int64 | Order ID (optional)
 	fromPreventedMatchId := int64(1) // int64 | Prevented match ID to begin at (optional)
@@ -678,7 +678,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	orderId := int64(1) // int64 | This can only be used in combination with `symbol`. (optional)
 	startTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
 	endTime := int64(1735693200000) // int64 | Timestamp in ms (optional)
@@ -763,7 +763,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -837,7 +837,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	symbol := "BNBUSDT" // string | If omitted, open orders for all symbols are returned (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
@@ -915,7 +915,7 @@ import (
 func main() {
 	symbol := "BNBUSDT" // string | 
 	orderId := int64(1) // int64 | Order ID
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	fromExecutionId := int64(1) // int64 | Execution ID to begin at (optional)
 	limit := int64(1) // int64 | Default: 500; Maximum: 1000 (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
@@ -995,7 +995,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	origClientOrderId := "08985fedd9ea2cf6b28996" // string | Query order list by `listClientOrderId`. `orderListId` or `origClientOrderId` must be provided. (optional)
 	orderListId := int32(1) // int32 | Query order list by `orderListId`. `orderListId` or `origClientOrderId` must be provided. (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
@@ -1074,7 +1074,7 @@ import (
 
 func main() {
 	symbol := "BNBUSDT" // string | 
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	orderId := int64(1) // int64 | Lookup order by `orderId` (optional)
 	origClientOrderId := "myOrder1" // string | Lookup order by `clientOrderId` (optional)
 	recvWindow := float64(5000) // float64 | Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)

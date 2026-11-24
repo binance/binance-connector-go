@@ -202,7 +202,7 @@ func (r ApiDepthRequest) Symbol(symbol string) ApiDepthRequest {
 	return r
 }
 
-// If limit &gt; 5000, only 5000 entries will be returned.
+// If limit &gt; 7500, only 7500 entries will be returned.
 func (r ApiDepthRequest) Limit(limit int32) ApiDepthRequest {
 	r.limit = &limit
 	return r
@@ -226,7 +226,7 @@ https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/res
 
 @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @param symbol -
-@param limit -  If limit > 5000, only 5000 entries will be returned.
+@param limit -  If limit > 7500, only 7500 entries will be returned.
 @param symbolStatus -  Filters for symbols that have this `tradingStatus`. A status mismatch returns error `-1220 SYMBOL_DOES_NOT_MATCH_STATUS`.
 @return ApiDepthRequest
 */

@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 	recvWindow := float64(5000) // float64 | The value cannot be greater than `60000`. Supports up to three decimal places of precision (e.g., 6000.346) so that microseconds may be specified. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),
@@ -176,7 +176,7 @@ import (
 )
 
 func main() {
-	id := "7d3b9b46-5f4f-4c8b-9a2d-0a8f9a4a0f5b" // string | Client-generated request identifier. (optional)
+	id := "5494febb-d167-46a2-996d-70533eb4d976" // string | Client-generated request identifier. (optional)
 
 	configuration := common.NewConfigurationWebsocketApi(
 		common.WithWsApiBasePath(common.SpotWebsocketApiProdUrl),

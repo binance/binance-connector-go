@@ -577,7 +577,7 @@ func main() {
 	belowType := models.OrderListOcoBelowTypeParameterStopLoss // OrderListOcoBelowTypeParameter | Supported values: `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`
 	listClientOrderId := "lH1YDkuQKWiXVXHPSKYEIp" // string | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired. `listClientOrderId` is distinct from the `aboveClientOrderId` and the `belowClientOrderId`. (optional)
 	aboveClientOrderId := "aboveOrder1" // string | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent. (optional)
-	aboveIcebergQty := int64(1) // int64 | Note that this can only be used if `aboveTimeInForce` is `GTC`. (optional)
+	aboveIcebergQty := float64(1) // float64 | Note that this can only be used if `aboveTimeInForce` is `GTC`. (optional)
 	abovePrice := float64(1.5) // float64 | Can be used if `aboveType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
 	aboveStopPrice := float64(1.50000001) // float64 | Can be used if `aboveType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `aboveStopPrice` or `aboveTrailingDelta` or both, must be specified. (optional)
 	aboveTrailingDelta := int64(1) // int64 | See Trailing Stop order FAQ (optional)
@@ -588,7 +588,7 @@ func main() {
 	abovePegOffsetType := models.NewOrderPegOffsetTypeParameterPriceLevel // NewOrderPegOffsetTypeParameter |  (optional)
 	abovePegOffsetValue := int32(1) // int32 |  (optional)
 	belowClientOrderId := "belowOrder1" // string | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent. (optional)
-	belowIcebergQty := int64(1) // int64 | Note that this can only be used if `belowTimeInForce` is `GTC`. (optional)
+	belowIcebergQty := float64(1) // float64 | Note that this can only be used if `belowTimeInForce` is `GTC`. (optional)
 	belowPrice := float64(1.49999999) // float64 | Can be used if `belowType` is `STOP_LOSS_LIMIT`, `LIMIT_MAKER`, or `TAKE_PROFIT_LIMIT` to specify the limit price. (optional)
 	belowStopPrice := float64(1.50000001) // float64 | Can be used if `belowType` is `STOP_LOSS`, `STOP_LOSS_LIMIT`, `TAKE_PROFIT`, `TAKE_PROFIT_LIMIT`. Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified. (optional)
 	belowTrailingDelta := int64(1) // int64 | See Trailing Stop order FAQ (optional)
@@ -637,7 +637,7 @@ Name          | Type          | Description   | Notes
  **belowType** | [**OrderListOcoBelowTypeParameter**](OrderListOcoBelowTypeParameter.md) | Supported values: &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60; | 
  **listClientOrderId** | **string** | Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same &#x60;listClientOrderId&#x60; is accepted only when the previous one is filled or completely expired. &#x60;listClientOrderId&#x60; is distinct from the &#x60;aboveClientOrderId&#x60; and the &#x60;belowClientOrderId&#x60;. | 
  **aboveClientOrderId** | **string** | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent. | 
- **aboveIcebergQty** | **int64** | Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **aboveIcebergQty** | **float64** | Note that this can only be used if &#x60;aboveTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **abovePrice** | **float64** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
  **aboveStopPrice** | **float64** | Can be used if &#x60;aboveType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;aboveStopPrice&#x60; or &#x60;aboveTrailingDelta&#x60; or both, must be specified. | 
  **aboveTrailingDelta** | **int64** | See Trailing Stop order FAQ | 
@@ -648,7 +648,7 @@ Name          | Type          | Description   | Notes
  **abovePegOffsetType** | [**NewOrderPegOffsetTypeParameter**](NewOrderPegOffsetTypeParameter.md) |  | 
  **abovePegOffsetValue** | **int32** |  | 
  **belowClientOrderId** | **string** | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent. | 
- **belowIcebergQty** | **int64** | Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
+ **belowIcebergQty** | **float64** | Note that this can only be used if &#x60;belowTimeInForce&#x60; is &#x60;GTC&#x60;. | 
  **belowPrice** | **float64** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;LIMIT_MAKER&#x60;, or &#x60;TAKE_PROFIT_LIMIT&#x60; to specify the limit price. | 
  **belowStopPrice** | **float64** | Can be used if &#x60;belowType&#x60; is &#x60;STOP_LOSS&#x60;, &#x60;STOP_LOSS_LIMIT&#x60;, &#x60;TAKE_PROFIT&#x60;, &#x60;TAKE_PROFIT_LIMIT&#x60;. Either &#x60;belowStopPrice&#x60; or &#x60;belowTrailingDelta&#x60; or both, must be specified. | 
  **belowTrailingDelta** | **int64** | See Trailing Stop order FAQ | 
