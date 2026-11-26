@@ -18,6 +18,214 @@ import (
 // TokenizedAPIService TokenizedAPI Service
 type TokenizedAPIService Service
 
+type ApiBstocksCorporateActionRecordsRequest struct {
+	ctx        context.Context
+	ApiService *TokenizedAPIService
+	limit      *int32
+	lastTime   *int64
+	lastId     *int64
+	recvWindow *int64
+}
+
+// Number of records to return. Default &#x60;20&#x60;, range &#x60;1&#x60; to &#x60;100&#x60;.
+func (r ApiBstocksCorporateActionRecordsRequest) Limit(limit int32) ApiBstocksCorporateActionRecordsRequest {
+	r.limit = &limit
+	return r
+}
+
+// The &#x60;nextTime&#x60; returned by the previous page, in milliseconds. Must be sent together with &#x60;lastId&#x60;.
+func (r ApiBstocksCorporateActionRecordsRequest) LastTime(lastTime int64) ApiBstocksCorporateActionRecordsRequest {
+	r.lastTime = &lastTime
+	return r
+}
+
+// The &#x60;nextId&#x60; returned by the previous page. Must be sent together with &#x60;lastTime&#x60;.
+func (r ApiBstocksCorporateActionRecordsRequest) LastId(lastId int64) ApiBstocksCorporateActionRecordsRequest {
+	r.lastId = &lastId
+	return r
+}
+
+// The value cannot be greater than &#x60;60000&#x60;.
+func (r ApiBstocksCorporateActionRecordsRequest) RecvWindow(recvWindow int64) ApiBstocksCorporateActionRecordsRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiBstocksCorporateActionRecordsRequest) Execute() (*common.RestApiResponse[models.BstocksCorporateActionRecordsResponse], error) {
+	return r.ApiService.BstocksCorporateActionRecordsExecute(r)
+}
+
+/*
+BstocksCorporateActionRecords Bstocks Corporate Action Records (USER_DATA)
+Get /sapi/v1/bstocks/corp-action
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/tokenized#bstocks-corporate-action-records
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param limit -  Number of records to return. Default `20`, range `1` to `100`.
+@param lastTime -  The `nextTime` returned by the previous page, in milliseconds. Must be sent together with `lastId`.
+@param lastId -  The `nextId` returned by the previous page. Must be sent together with `lastTime`.
+@param recvWindow -  The value cannot be greater than `60000`.
+@return ApiBstocksCorporateActionRecordsRequest
+*/
+func (a *TokenizedAPIService) BstocksCorporateActionRecords(ctx context.Context) ApiBstocksCorporateActionRecordsRequest {
+	return ApiBstocksCorporateActionRecordsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BstocksCorporateActionRecordsResponse
+func (a *TokenizedAPIService) BstocksCorporateActionRecordsExecute(r ApiBstocksCorporateActionRecordsRequest) (*common.RestApiResponse[models.BstocksCorporateActionRecordsResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/bstocks/corp-action"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.limit == nil {
+		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return nil, common.ReportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return nil, common.ReportError("limit must be less than 100")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	if r.lastTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "lastTime", r.lastTime, "form", "")
+	}
+	if r.lastId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "lastId", r.lastId, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.BstocksCorporateActionRecordsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ApiCorporateActionRecordsRequest struct {
+	ctx        context.Context
+	ApiService *TokenizedAPIService
+	limit      *int32
+	lastTime   *int64
+	lastId     *int64
+	recvWindow *int64
+}
+
+// Number of records to return. Default &#x60;20&#x60;, range &#x60;1&#x60; to &#x60;100&#x60;.
+func (r ApiCorporateActionRecordsRequest) Limit(limit int32) ApiCorporateActionRecordsRequest {
+	r.limit = &limit
+	return r
+}
+
+// The &#x60;nextTime&#x60; returned by the previous page, in milliseconds. Must be sent together with &#x60;lastId&#x60;.
+func (r ApiCorporateActionRecordsRequest) LastTime(lastTime int64) ApiCorporateActionRecordsRequest {
+	r.lastTime = &lastTime
+	return r
+}
+
+// The &#x60;nextId&#x60; returned by the previous page. Must be sent together with &#x60;lastTime&#x60;.
+func (r ApiCorporateActionRecordsRequest) LastId(lastId int64) ApiCorporateActionRecordsRequest {
+	r.lastId = &lastId
+	return r
+}
+
+// The value cannot be greater than &#x60;60000&#x60;.
+func (r ApiCorporateActionRecordsRequest) RecvWindow(recvWindow int64) ApiCorporateActionRecordsRequest {
+	r.recvWindow = &recvWindow
+	return r
+}
+
+func (r ApiCorporateActionRecordsRequest) Execute() (*common.RestApiResponse[models.CorporateActionRecordsResponse], error) {
+	return r.ApiService.CorporateActionRecordsExecute(r)
+}
+
+/*
+CorporateActionRecords Corporate Action Records (USER_DATA)
+Get /sapi/v1/equity/corp-action
+
+https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/tokenized#corporate-action-records
+
+@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@param limit -  Number of records to return. Default `20`, range `1` to `100`.
+@param lastTime -  The `nextTime` returned by the previous page, in milliseconds. Must be sent together with `lastId`.
+@param lastId -  The `nextId` returned by the previous page. Must be sent together with `lastTime`.
+@param recvWindow -  The value cannot be greater than `60000`.
+@return ApiCorporateActionRecordsRequest
+*/
+func (a *TokenizedAPIService) CorporateActionRecords(ctx context.Context) ApiCorporateActionRecordsRequest {
+	return ApiCorporateActionRecordsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CorporateActionRecordsResponse
+func (a *TokenizedAPIService) CorporateActionRecordsExecute(r ApiCorporateActionRecordsRequest) (*common.RestApiResponse[models.CorporateActionRecordsResponse], error) {
+	localVarHTTPMethod := http.MethodGet
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/equity/corp-action"
+
+	localVarQueryParams := url.Values{}
+	localVarBodyParameters := make(map[string]interface{})
+
+	if r.limit == nil {
+		return nil, common.ReportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return nil, common.ReportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return nil, common.ReportError("limit must be less than 100")
+	}
+
+	common.ParameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	if r.lastTime != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "lastTime", r.lastTime, "form", "")
+	}
+	if r.lastId != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "lastId", r.lastId, "form", "")
+	}
+	if r.recvWindow != nil {
+		common.ParameterAddToHeaderOrQuery(localVarQueryParams, "recvWindow", r.recvWindow, "form", "")
+	}
+
+	resp, err := SendRequest[models.CorporateActionRecordsResponse](
+		r.ctx,
+		localVarPath,
+		localVarHTTPMethod,
+		localVarQueryParams,
+		localVarBodyParameters,
+		a.client.cfg,
+		true,
+	)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 type ApiTokenizedConvertHistoryRequest struct {
 	ctx        context.Context
 	ApiService *TokenizedAPIService

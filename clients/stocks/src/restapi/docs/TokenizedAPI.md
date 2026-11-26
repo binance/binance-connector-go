@@ -4,10 +4,160 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
+[**BstocksCorporateActionRecords**](TokenizedAPI.md#BstocksCorporateActionRecords) | **Get** /sapi/v1/bstocks/corp-action | Bstocks Corporate Action Records (USER_DATA)
+[**CorporateActionRecords**](TokenizedAPI.md#CorporateActionRecords) | **Get** /sapi/v1/equity/corp-action | Corporate Action Records (USER_DATA)
 [**TokenizedConvertHistory**](TokenizedAPI.md#TokenizedConvertHistory) | **Get** /sapi/v1/equity/tokenized/history | Tokenized Convert History (USER_DATA)
 [**TokenizedConvertStatus**](TokenizedAPI.md#TokenizedConvertStatus) | **Get** /sapi/v1/equity/tokenized/convert-status | Tokenized Convert Status (USER_DATA)
 [**TokenizedMint**](TokenizedAPI.md#TokenizedMint) | **Post** /sapi/v1/equity/tokenized/mint | Tokenized Mint (TRADE)
 [**TokenizedRedeem**](TokenizedAPI.md#TokenizedRedeem) | **Post** /sapi/v1/equity/tokenized/redeem | Tokenized Redeem (TRADE)
+
+
+## BstocksCorporateActionRecords
+
+> BstocksCorporateActionRecordsResponse BstocksCorporateActionRecords(ctx).Limit(limit).LastTime(lastTime).LastId(lastId).RecvWindow(recvWindow).Execute()
+
+Bstocks Corporate Action Records (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/stocks"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	limit := int32(20) // int32 | Number of records to return. Default `20`, range `1` to `100`.
+	lastTime := int64(1795593600000) // int64 | The `nextTime` returned by the previous page, in milliseconds. Must be sent together with `lastId`. (optional)
+	lastId := int64(123456) // int64 | The `nextId` returned by the previous page. Must be sent together with `lastTime`. (optional)
+	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceStocksClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TokenizedAPI.BstocksCorporateActionRecords(context.Background()).Limit(limit).LastTime(lastTime).LastId(lastId).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TokenizedAPI.BstocksCorporateActionRecords``: %v\n", err)
+		return
+	}
+
+	// response from `BstocksCorporateActionRecords`: BstocksCorporateActionRecordsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** | Number of records to return. Default &#x60;20&#x60;, range &#x60;1&#x60; to &#x60;100&#x60;. | 
+ **lastTime** | **int64** | The &#x60;nextTime&#x60; returned by the previous page, in milliseconds. Must be sent together with &#x60;lastId&#x60;. | 
+ **lastId** | **int64** | The &#x60;nextId&#x60; returned by the previous page. Must be sent together with &#x60;lastTime&#x60;. | 
+ **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
+
+### Return type
+
+[**BstocksCorporateActionRecordsResponse**](BstocksCorporateActionRecordsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
+
+
+## CorporateActionRecords
+
+> CorporateActionRecordsResponse CorporateActionRecords(ctx).Limit(limit).LastTime(lastTime).LastId(lastId).RecvWindow(recvWindow).Execute()
+
+Corporate Action Records (USER_DATA)
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"os"
+
+	models "github.com/binance/binance-connector-go/clients/stocks"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	limit := int32(20) // int32 | Number of records to return. Default `20`, range `1` to `100`.
+	lastTime := int64(1795593600000) // int64 | The `nextTime` returned by the previous page, in milliseconds. Must be sent together with `lastId`. (optional)
+	lastId := int64(123456) // int64 | The `nextId` returned by the previous page. Must be sent together with `lastTime`. (optional)
+	recvWindow := int64(5000) // int64 | The value cannot be greater than `60000`. (optional)
+
+	configuration := common.NewConfigurationRestAPI(
+		common.WithBasePath(common.SpotRestApiProdUrl),
+		common.WithApiKey("Your API Key"),
+		common.WithApiSecret("Your API Secret"),
+	)
+	apiClient := models.NewBinanceStocksClient(models.WithRestAPI(configuration))
+
+	resp, err := apiClient.RestApi.TokenizedAPI.CorporateActionRecords(context.Background()).Limit(limit).LastTime(lastTime).LastId(lastId).RecvWindow(recvWindow).Execute()
+	if err != nil {
+		log.Println(os.Stderr, "Error when calling `TokenizedAPI.CorporateActionRecords``: %v\n", err)
+		return
+	}
+
+	// response from `CorporateActionRecords`: CorporateActionRecordsResponse
+	rateLimitsValue, _ := json.MarshalIndent(resp.RateLimits, "", "  ")
+	log.Printf("Rate limits: %s\n", string(rateLimitsValue))
+
+	dataValue, _ := json.MarshalIndent(resp.Data, "", "  ")
+	log.Printf("Response: %s\n", string(dataValue))
+}
+```
+
+### Path Parameters
+
+Name          | Type          | Description   | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** | Number of records to return. Default &#x60;20&#x60;, range &#x60;1&#x60; to &#x60;100&#x60;. | 
+ **lastTime** | **int64** | The &#x60;nextTime&#x60; returned by the previous page, in milliseconds. Must be sent together with &#x60;lastId&#x60;. | 
+ **lastId** | **int64** | The &#x60;nextId&#x60; returned by the previous page. Must be sent together with &#x60;lastTime&#x60;. | 
+ **recvWindow** | **int64** | The value cannot be greater than &#x60;60000&#x60;. | 
+
+### Return type
+
+[**CorporateActionRecordsResponse**](CorporateActionRecordsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Accept**: application/json
+
+[[Back to README]](../../../README.md)
 
 
 ## TokenizedConvertHistory

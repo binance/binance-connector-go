@@ -1,5 +1,21 @@
 ### Changelog
 
+## 1.7.0 - 2026-11-26
+
+### Added (2)
+
+#### REST API
+
+- `bstocksCorporateActionRecords()` (`GET /sapi/v1/bstocks/corp-action`)
+- `corporateActionRecords()` (`GET /sapi/v1/equity/corp-action`)
+
+### Changed (2)
+
+#### REST API
+
+- Added response schema `bstocksCorporateActionRecordsResponse`
+- Added response schema `corporateActionRecordsResponse`
+
 ## 1.6.0 - 2026-11-24
 
 ### Changed (7)
