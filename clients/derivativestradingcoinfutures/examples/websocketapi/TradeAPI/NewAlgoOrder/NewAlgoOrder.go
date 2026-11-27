@@ -1,0 +1,51 @@
+package main
+
+import (
+	"encoding/json"
+	"log"
+
+	client "github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures"
+	"github.com/binance/binance-connector-go/clients/derivativestradingcoinfutures/src/websocketapi/models"
+	"github.com/binance/binance-connector-go/common/v2/common"
+)
+
+func main() {
+	NewAlgoOrder()
+}
+
+func NewAlgoOrder() {
+	configuration := common.NewConfigurationWebsocketApi(
+		common.WithWsApiBasePath(common.DerivativesTradingCoinFuturesWebsocketApiProdUrl),
+		common.WithWsApiKey("Your API Key"),
+		common.WithWsApiSecret("Your API Secret"),
+	)
+
+	wsClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+		client.WithWebsocketAPI(configuration),
+	)
+	err := wsClient.WebsocketAPI.Connect()
+	if err != nil {
+		log.Printf("Error connecting to WebSocket: %v\n", err)
+		return
+	}
+
+	responseChan, errorChan, err := wsClient.WebsocketAPI.TradeAPI.NewAlgoOrder().AlgoType(models.NewAlgoOrderAlgoTypeParameterConditional).Symbol("BTCUSD_PERP").Side(models.ModifyOrderSideParameterBuy).Type(models.NewAlgoOrderTypeParameterStopMarket).ExecuteAsync()
+	if err != nil {
+		log.Printf("Error executing NewAlgoOrder request: %v\n", err)
+		return
+	}
+
+	select {
+	case resp := <-responseChan:
+		result, _ := json.MarshalIndent(resp.Typed, "", "  ")
+		log.Printf("Result: %s\n", result)
+	case err := <-errorChan:
+		log.Printf("Error: %v\n", err)
+	}
+
+	err = wsClient.WebsocketAPI.CloseWebSocketConnection()
+	if err != nil {
+		log.Printf("Error closing WebSocket connection: %v\n", err)
+		return
+	}
+}

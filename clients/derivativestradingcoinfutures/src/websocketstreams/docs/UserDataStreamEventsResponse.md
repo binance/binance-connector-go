@@ -9,11 +9,12 @@ Name         | Type          | Description.  | Notes
 **Ac** | Pointer to [**AccountConfigUpdateAc**](AccountConfigUpdateAc.md) |  | [optional] 
 **I** | Pointer to **string** | Account Alias | [optional] 
 **A** | Pointer to [**AccountUpdateA**](AccountUpdateA.md) |  | [optional] 
+**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
+**Or** | Pointer to [**ConditionalOrderTriggerRejectOr**](ConditionalOrderTriggerRejectOr.md) |  | [optional] 
 **Gu** | Pointer to [**GridUpdateGu**](GridUpdateGu.md) |  | [optional] 
 **ListenKey** | Pointer to **string** |  | [optional] 
 **Cw** | Pointer to **string** | Cross Wallet Balance. Only pushed with crossed position margin call | [optional] 
 **P** | Pointer to [**[]MarginCallPInner**](MarginCallPInner.md) | Position(s) of Margin Call | [optional] 
-**O** | Pointer to [**OrderTradeUpdateO**](OrderTradeUpdateO.md) |  | [optional] 
 **Su** | Pointer to [**StrategyUpdateSu**](StrategyUpdateSu.md) |  | [optional] 
 
 ## Methods
@@ -160,6 +161,56 @@ SetA sets A field to given value.
 
 HasA returns a boolean if a field has been set.
 
+### GetO
+
+`func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
+
+GetO returns the O field if non-nil, zero value otherwise.
+
+### GetOOk
+
+`func (o *UserDataStreamEventsResponse) GetOOk() (*OrderTradeUpdateO, bool)`
+
+GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetO
+
+`func (o *UserDataStreamEventsResponse) SetO(v OrderTradeUpdateO)`
+
+SetO sets O field to given value.
+
+### HasO
+
+`func (o *UserDataStreamEventsResponse) HasO() bool`
+
+HasO returns a boolean if a field has been set.
+
+### GetOr
+
+`func (o *UserDataStreamEventsResponse) GetOr() ConditionalOrderTriggerRejectOr`
+
+GetOr returns the Or field if non-nil, zero value otherwise.
+
+### GetOrOk
+
+`func (o *UserDataStreamEventsResponse) GetOrOk() (*ConditionalOrderTriggerRejectOr, bool)`
+
+GetOrOk returns a tuple with the Or field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOr
+
+`func (o *UserDataStreamEventsResponse) SetOr(v ConditionalOrderTriggerRejectOr)`
+
+SetOr sets Or field to given value.
+
+### HasOr
+
+`func (o *UserDataStreamEventsResponse) HasOr() bool`
+
+HasOr returns a boolean if a field has been set.
+
 ### GetGu
 
 `func (o *UserDataStreamEventsResponse) GetGu() GridUpdateGu`
@@ -259,31 +310,6 @@ SetP sets P field to given value.
 `func (o *UserDataStreamEventsResponse) HasP() bool`
 
 HasP returns a boolean if a field has been set.
-
-### GetO
-
-`func (o *UserDataStreamEventsResponse) GetO() OrderTradeUpdateO`
-
-GetO returns the O field if non-nil, zero value otherwise.
-
-### GetOOk
-
-`func (o *UserDataStreamEventsResponse) GetOOk() (*OrderTradeUpdateO, bool)`
-
-GetOOk returns a tuple with the O field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetO
-
-`func (o *UserDataStreamEventsResponse) SetO(v OrderTradeUpdateO)`
-
-SetO sets O field to given value.
-
-### HasO
-
-`func (o *UserDataStreamEventsResponse) HasO() bool`
-
-HasO returns a boolean if a field has been set.
 
 ### GetSu
 

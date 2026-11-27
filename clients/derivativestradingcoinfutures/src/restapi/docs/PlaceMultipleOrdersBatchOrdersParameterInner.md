@@ -5,10 +5,10 @@
 Name         | Type          | Description.  | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | **string** | Symbol | 
-**Side** | [**PlaceMultipleOrdersBatchOrdersParameterInnerSide**](PlaceMultipleOrdersBatchOrdersParameterInnerSide.md) |  | 
+**Side** | [**NewAlgoOrderSideParameter**](NewAlgoOrderSideParameter.md) |  | 
 **PositionSide** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide**](PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide.md) |  | [optional] 
 **Type** | [**PlaceMultipleOrdersBatchOrdersParameterInnerType**](PlaceMultipleOrdersBatchOrdersParameterInnerType.md) |  | 
-**TimeInForce** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce**](PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce.md) |  | [optional] 
+**TimeInForce** | Pointer to [**NewAlgoOrderTimeInForceParameter**](NewAlgoOrderTimeInForceParameter.md) |  | [optional] 
 **Quantity** | **float64** | quantity measured by contract number | 
 **ReduceOnly** | Pointer to [**PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly**](PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly.md) |  | [optional] [default to PLACEMULTIPLEORDERSBATCHORDERSPARAMETERINNERREDUCEONLY_FALSE]
 **Price** | Pointer to **float64** | Order price | [optional] 
@@ -26,7 +26,7 @@ Name         | Type          | Description.  | Notes
 
 ### NewPlaceMultipleOrdersBatchOrdersParameterInner
 
-`func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side PlaceMultipleOrdersBatchOrdersParameterInnerSide, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float64, ) *PlaceMultipleOrdersBatchOrdersParameterInner`
+`func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side NewAlgoOrderSideParameter, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float64, ) *PlaceMultipleOrdersBatchOrdersParameterInner`
 
 NewPlaceMultipleOrdersBatchOrdersParameterInner instantiates a new PlaceMultipleOrdersBatchOrdersParameterInner object
 This constructor will assign default values to properties that have it defined,
@@ -63,20 +63,20 @@ SetSymbol sets Symbol field to given value.
 
 ### GetSide
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSide() PlaceMultipleOrdersBatchOrdersParameterInnerSide`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSide() NewAlgoOrderSideParameter`
 
 GetSide returns the Side field if non-nil, zero value otherwise.
 
 ### GetSideOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerSide, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*NewAlgoOrderSideParameter, bool)`
 
 GetSideOk returns a tuple with the Side field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSide
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSide(v PlaceMultipleOrdersBatchOrdersParameterInnerSide)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSide(v NewAlgoOrderSideParameter)`
 
 SetSide sets Side field to given value.
 
@@ -128,20 +128,20 @@ SetType sets Type field to given value.
 
 ### GetTimeInForce
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForce() PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForce() NewAlgoOrderTimeInForceParameter`
 
 GetTimeInForce returns the TimeInForce field if non-nil, zero value otherwise.
 
 ### GetTimeInForceOk
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForceOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce, bool)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForceOk() (*NewAlgoOrderTimeInForceParameter, bool)`
 
 GetTimeInForceOk returns a tuple with the TimeInForce field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeInForce
 
-`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce)`
+`func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v NewAlgoOrderTimeInForceParameter)`
 
 SetTimeInForce sets TimeInForce field to given value.
 

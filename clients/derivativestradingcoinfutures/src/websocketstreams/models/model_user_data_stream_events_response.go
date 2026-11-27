@@ -15,13 +15,15 @@ import (
 
 // UserDataStreamEventsResponse - struct for UserDataStreamEventsResponse
 type UserDataStreamEventsResponse struct {
-	AccountConfigUpdate *AccountConfigUpdate
-	AccountUpdate       *AccountUpdate
-	GridUpdate          *GridUpdate
-	ListenKeyExpired    *ListenKeyExpired
-	MarginCall          *MarginCall
-	OrderTradeUpdate    *OrderTradeUpdate
-	StrategyUpdate      *StrategyUpdate
+	AccountConfigUpdate           *AccountConfigUpdate
+	AccountUpdate                 *AccountUpdate
+	AlgoUpdate                    *AlgoUpdate
+	ConditionalOrderTriggerReject *ConditionalOrderTriggerReject
+	GridUpdate                    *GridUpdate
+	ListenKeyExpired              *ListenKeyExpired
+	MarginCall                    *MarginCall
+	OrderTradeUpdate              *OrderTradeUpdate
+	StrategyUpdate                *StrategyUpdate
 }
 
 // AccountConfigUpdateAsUserDataStreamEventsResponse is a convenience function that returns AccountConfigUpdate wrapped in UserDataStreamEventsResponse
@@ -35,6 +37,20 @@ func AccountConfigUpdateAsUserDataStreamEventsResponse(v *AccountConfigUpdate) U
 func AccountUpdateAsUserDataStreamEventsResponse(v *AccountUpdate) UserDataStreamEventsResponse {
 	return UserDataStreamEventsResponse{
 		AccountUpdate: v,
+	}
+}
+
+// AlgoUpdateAsUserDataStreamEventsResponse is a convenience function that returns AlgoUpdate wrapped in UserDataStreamEventsResponse
+func AlgoUpdateAsUserDataStreamEventsResponse(v *AlgoUpdate) UserDataStreamEventsResponse {
+	return UserDataStreamEventsResponse{
+		AlgoUpdate: v,
+	}
+}
+
+// ConditionalOrderTriggerRejectAsUserDataStreamEventsResponse is a convenience function that returns ConditionalOrderTriggerReject wrapped in UserDataStreamEventsResponse
+func ConditionalOrderTriggerRejectAsUserDataStreamEventsResponse(v *ConditionalOrderTriggerReject) UserDataStreamEventsResponse {
+	return UserDataStreamEventsResponse{
+		ConditionalOrderTriggerReject: v,
 	}
 }
 
@@ -121,6 +137,30 @@ func (dst *UserDataStreamEventsResponse) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'ALGO_UPDATE'
+	if jsonDict["e"] == "ALGO_UPDATE" {
+		// try to unmarshal JSON data into AlgoUpdate
+		err = json.Unmarshal(cleanedData, &dst.AlgoUpdate)
+		if err == nil {
+			return nil // data stored in dst.AlgoUpdate, return on the first match
+		} else {
+			dst.AlgoUpdate = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as AlgoUpdate: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'CONDITIONAL_ORDER_TRIGGER_REJECT'
+	if jsonDict["e"] == "CONDITIONAL_ORDER_TRIGGER_REJECT" {
+		// try to unmarshal JSON data into ConditionalOrderTriggerReject
+		err = json.Unmarshal(cleanedData, &dst.ConditionalOrderTriggerReject)
+		if err == nil {
+			return nil // data stored in dst.ConditionalOrderTriggerReject, return on the first match
+		} else {
+			dst.ConditionalOrderTriggerReject = nil
+			return fmt.Errorf("failed to unmarshal UserDataStreamEventsResponse as ConditionalOrderTriggerReject: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'GRID_UPDATE'
 	if jsonDict["e"] == "GRID_UPDATE" {
 		// try to unmarshal JSON data into GridUpdate
@@ -194,6 +234,14 @@ func (src UserDataStreamEventsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AccountUpdate)
 	}
 
+	if src.AlgoUpdate != nil {
+		return json.Marshal(&src.AlgoUpdate)
+	}
+
+	if src.ConditionalOrderTriggerReject != nil {
+		return json.Marshal(&src.ConditionalOrderTriggerReject)
+	}
+
 	if src.GridUpdate != nil {
 		return json.Marshal(&src.GridUpdate)
 	}
@@ -228,6 +276,14 @@ func (obj *UserDataStreamEventsResponse) GetActualInstance() interface{} {
 
 	if obj.AccountUpdate != nil {
 		return obj.AccountUpdate
+	}
+
+	if obj.AlgoUpdate != nil {
+		return obj.AlgoUpdate
+	}
+
+	if obj.ConditionalOrderTriggerReject != nil {
+		return obj.ConditionalOrderTriggerReject
 	}
 
 	if obj.GridUpdate != nil {

@@ -220,6 +220,142 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService CancelAlgoOrder Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","code":"200","msg":"success"}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/algoOrder", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CancelAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAlgoOrder(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CancelAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CancelAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService CancelAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService CancelAllAlgoOpenOrders Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"code":200,"msg":"The operation of cancel all open order is done."}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/algoOpenOrders", r.URL.Path)
+			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CancelAllAlgoOpenOrdersResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllAlgoOpenOrders(context.Background()).Symbol("BTCUSD_PERP").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CancelAllAlgoOpenOrdersResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CancelAllAlgoOpenOrdersResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService CancelAllAlgoOpenOrders Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllAlgoOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService CancelAllAlgoOpenOrders Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CancelAllAlgoOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService CancelAllOpenOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
@@ -684,6 +820,65 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService CurrentAllAlgoOpenOrders Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `[{"algoId":2148627,"clientAlgoId":"MRumok0dkhrP4kCm12AHaB","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BTCUSD_PERP","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","actualOrderId":"","actualPrice":"0.00000","triggerPrice":"750.000","price":"750.000","icebergQuantity":"null","tpTriggerPrice":"0.000","tpPrice":"0.000","slTriggerPrice":"0.000","slPrice":"0.000","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750514941540,"updateTime":1750514941540,"triggerTime":0,"goodTillDate":0}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/openAlgoOrders", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.CurrentAllAlgoOpenOrdersResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CurrentAllAlgoOpenOrders(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.CurrentAllAlgoOpenOrdersResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.CurrentAllAlgoOpenOrdersResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService CurrentAllAlgoOpenOrders Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.CurrentAllAlgoOpenOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService CurrentAllOpenOrders Success", func(t *testing.T) {
 
 		var mockedJSON string
@@ -1062,7 +1257,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/order", r.URL.Path)
 			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
-			require.Equal(t, string(models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy), r.URL.Query().Get("side"))
+			require.Equal(t, string(models.NewAlgoOrderSideParameterBuy), r.URL.Query().Get("side"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
 		}))
@@ -1079,7 +1274,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol("BTCUSD_PERP").Side(models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.ModifyOrder(context.Background()).Symbol("BTCUSD_PERP").Side(models.NewAlgoOrderSideParameterBuy).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1130,6 +1325,86 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		require.Nil(t, resp)
 	})
 
+	t.Run("Test TradeAPIService NewAlgoOrder Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BTCUSD_PERP","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"NEW","triggerPrice":"750.000","price":"750.000","icebergQuantity":"null","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"activatePrice":"","callbackRate":"","createTime":1750485492076,"updateTime":1750485492076,"triggerTime":0,"goodTillDate":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/algoOrder", r.URL.Path)
+			require.Equal(t, string(models.NewAlgoOrderAlgoTypeParameterConditional), r.URL.Query().Get("algoType"))
+			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
+			require.Equal(t, string(models.NewAlgoOrderSideParameterBuy), r.URL.Query().Get("side"))
+			require.Equal(t, string(models.NewAlgoOrderTypeParameterLimit), r.URL.Query().Get("type"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.NewAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewAlgoOrder(context.Background()).AlgoType(models.NewAlgoOrderAlgoTypeParameterConditional).Symbol("BTCUSD_PERP").Side(models.NewAlgoOrderSideParameterBuy).Type(models.NewAlgoOrderTypeParameterLimit).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.NewAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.NewAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService NewAlgoOrder Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService NewAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.NewAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
 	t.Run("Test TradeAPIService NewOrder Success", func(t *testing.T) {
 
 		var mockedJSON string
@@ -1140,7 +1415,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			require.Equal(t, "/dapi/v1/order", r.URL.Path)
 			require.Equal(t, "BTCUSD_200925", r.URL.Query().Get("symbol"))
-			require.Equal(t, string(models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy), r.URL.Query().Get("side"))
+			require.Equal(t, string(models.NewAlgoOrderSideParameterBuy), r.URL.Query().Get("side"))
 			require.Equal(t, string(models.NewOrderTypeParameterLimit), r.URL.Query().Get("type"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -1158,7 +1433,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("BTCUSD_200925").Side(models.PlaceMultipleOrdersBatchOrdersParameterInnerSideBuy).Type(models.NewOrderTypeParameterLimit).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.NewOrder(context.Background()).Symbol("BTCUSD_200925").Side(models.NewAlgoOrderSideParameterBuy).Type(models.NewOrderTypeParameterLimit).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1234,7 +1509,7 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 			client.WithRestAPI(configuration),
 		)
 
-		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).BatchOrders([]models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.PlaceMultipleOrdersBatchOrdersParameterInnerSide("Buy"), models.PlaceMultipleOrdersBatchOrdersParameterInnerType("Limit"), float64(1))}).Execute()
+		resp, err := apiClient.RestApi.TradeAPI.PlaceMultipleOrders(context.Background()).BatchOrders([]models.PlaceMultipleOrdersBatchOrdersParameterInner{*models.NewPlaceMultipleOrdersBatchOrdersParameterInner("BTCUSD_PERP", models.NewAlgoOrderSideParameter("Buy"), models.PlaceMultipleOrdersBatchOrdersParameterInnerType("Limit"), float64(1))}).Execute()
 		require.NoError(t, err)
 		require.NotNil(t, resp)
 		require.Equal(
@@ -1398,6 +1673,142 @@ func Test_binancederivativestradingcoinfuturesrestapi_TradeAPIService(t *testing
 		)
 
 		resp, err := apiClient.RestApi.TradeAPI.PositionInformation(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryAlgoOrder Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BTCUSD_PERP","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"CANCELED","actualOrderId":"","actualPrice":"0.00000","actualType":"LIMIT","actualQty":"0.01","triggerPrice":"750.000","price":"750.000","icebergQuantity":"null","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750514545091,"triggerTime":0,"goodTillDate":0}`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/algoOrder", r.URL.Path)
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryAlgoOrderResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAlgoOrder(context.Background()).Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryAlgoOrderResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryAlgoOrderResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryAlgoOrder Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAlgoOrder(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryAllAlgoOrders Success", func(t *testing.T) {
+
+		var mockedJSON string
+		mockedJSON = `[{"algoId":2146760,"clientAlgoId":"6B2I9XVcJpCjqPAJ4YoFX7","algoType":"CONDITIONAL","orderType":"TAKE_PROFIT","symbol":"BTCUSD_PERP","side":"SELL","positionSide":"BOTH","timeInForce":"GTC","quantity":"0.01","algoStatus":"CANCELED","actualOrderId":"","actualPrice":"0.00000","triggerPrice":"750.000","price":"750.000","icebergQuantity":"null","tpTriggerPrice":"0.000","tpPrice":"0.000","slTriggerPrice":"0.000","slPrice":"0.000","tpOrderType":"","selfTradePreventionMode":"EXPIRE_MAKER","workingType":"CONTRACT_PRICE","priceMatch":"NONE","closePosition":false,"priceProtect":false,"reduceOnly":false,"createTime":1750485492076,"updateTime":1750514545091,"triggerTime":0,"goodTillDate":0}]`
+		if mockedJSON == "" {
+			mockedJSON = `{}`
+		}
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			require.Equal(t, "/dapi/v1/allAlgoOrders", r.URL.Path)
+			require.Equal(t, "BTCUSD_PERP", r.URL.Query().Get("symbol"))
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(mockedJSON))
+		}))
+		defer mockServer.Close()
+
+		var expected models.QueryAllAlgoOrdersResponse
+		err := json.Unmarshal([]byte(mockedJSON), &expected)
+		require.NoError(t, err)
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAllAlgoOrders(context.Background()).Symbol("BTCUSD_PERP").Execute()
+		require.NoError(t, err)
+		require.NotNil(t, resp)
+		require.Equal(
+			t,
+			reflect.TypeOf(&common.RestApiResponse[models.QueryAllAlgoOrdersResponse]{}),
+			reflect.TypeOf(resp),
+		)
+		require.Equal(t, reflect.TypeOf(models.QueryAllAlgoOrdersResponse{}), reflect.TypeOf(resp.Data))
+		require.Equal(t, 200, resp.Status)
+		require.Equal(t, expected, resp.Data)
+	})
+
+	t.Run("Test TradeAPIService QueryAllAlgoOrders Missing Required Params", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAllAlgoOrders(context.Background()).Execute()
+
+		require.Error(t, err)
+		require.Nil(t, resp)
+	})
+
+	t.Run("Test TradeAPIService QueryAllAlgoOrders Server Error", func(t *testing.T) {
+		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			http.Error(w, "internal error", http.StatusInternalServerError)
+		}))
+		defer mockServer.Close()
+
+		configuration := common.NewConfigurationRestAPI()
+		configuration.BasePath = mockServer.URL
+		configuration.Retries = 1
+		configuration.Backoff = 1
+
+		apiClient := client.NewBinanceDerivativesTradingCoinFuturesClient(
+			client.WithRestAPI(configuration),
+		)
+
+		resp, err := apiClient.RestApi.TradeAPI.QueryAllAlgoOrders(context.Background()).Execute()
 
 		require.Error(t, err)
 		require.Nil(t, resp)

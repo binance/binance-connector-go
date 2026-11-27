@@ -1,5 +1,46 @@
 ### Changelog
 
+## 1.23.0 - 2026-11-27
+
+### Added (8)
+
+#### REST API
+
+- `cancelAlgoOrder()` (`DELETE /dapi/v1/algoOrder`)
+- `cancelAllAlgoOpenOrders()` (`DELETE /dapi/v1/algoOpenOrders`)
+- `currentAllAlgoOpenOrders()` (`GET /dapi/v1/openAlgoOrders`)
+- `newAlgoOrder()` (`POST /dapi/v1/algoOrder`)
+- `queryAlgoOrder()` (`GET /dapi/v1/algoOrder`)
+- `queryAllAlgoOrders()` (`GET /dapi/v1/allAlgoOrders`)
+
+#### WebSocket API
+
+- `cancelAlgoOrder()` (`algoOrder.cancel` method)
+- `newAlgoOrder()` (`algoOrder.place` method)
+
+### Changed (12)
+
+#### REST API
+
+- Added response schema `queryAllAlgoOrdersResponse`
+- Added response schema `cancelAlgoOrderResponse`
+- Added response schema `cancelAllAlgoOpenOrdersResponse`
+- Added response schema `currentAllAlgoOpenOrdersResponse`
+- Added response schema `newAlgoOrderResponse`
+- Added response schema `queryAlgoOrderResponse`
+
+#### WebSocket API
+
+- Added response schema `newAlgoOrderResponse`
+- Added response schema `cancelAlgoOrderResponse`
+
+#### WebSocket Streams
+
+- Added response schema `algoUpdate`
+- Added response schema `conditionalOrderTriggerReject`
+- Modified response schema `UserDataStreamEventsResponse`:
+  - oneOf added 2 schema(s)
+
 ## 1.22.0 - 2026-10-23
 
 ### Changed (1)

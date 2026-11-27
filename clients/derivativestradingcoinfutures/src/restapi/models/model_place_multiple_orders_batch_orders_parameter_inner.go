@@ -20,10 +20,10 @@ var _ common.MappedNullable = &PlaceMultipleOrdersBatchOrdersParameterInner{}
 type PlaceMultipleOrdersBatchOrdersParameterInner struct {
 	// Symbol
 	Symbol       string                                                    `json:"symbol"`
-	Side         PlaceMultipleOrdersBatchOrdersParameterInnerSide          `json:"side"`
+	Side         NewAlgoOrderSideParameter                                 `json:"side"`
 	PositionSide *PlaceMultipleOrdersBatchOrdersParameterInnerPositionSide `json:"positionSide,omitempty"`
 	Type         PlaceMultipleOrdersBatchOrdersParameterInnerType          `json:"type"`
-	TimeInForce  *PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce  `json:"timeInForce,omitempty"`
+	TimeInForce  *NewAlgoOrderTimeInForceParameter                         `json:"timeInForce,omitempty"`
 	// quantity measured by contract number
 	Quantity   float64                                                 `json:"quantity"`
 	ReduceOnly *PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnly `json:"reduceOnly,omitempty"`
@@ -51,14 +51,14 @@ type _PlaceMultipleOrdersBatchOrdersParameterInner PlaceMultipleOrdersBatchOrder
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side PlaceMultipleOrdersBatchOrdersParameterInnerSide, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float64) *PlaceMultipleOrdersBatchOrdersParameterInner {
+func NewPlaceMultipleOrdersBatchOrdersParameterInner(symbol string, side NewAlgoOrderSideParameter, type_ PlaceMultipleOrdersBatchOrdersParameterInnerType, quantity float64) *PlaceMultipleOrdersBatchOrdersParameterInner {
 	this := PlaceMultipleOrdersBatchOrdersParameterInner{}
 	this.Symbol = symbol
 	this.Side = side
 	var positionSide = PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth
 	this.PositionSide = &positionSide
 	this.Type = type_
-	var timeInForce = PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc
+	var timeInForce = NewAlgoOrderTimeInForceParameterGtc
 	this.TimeInForce = &timeInForce
 	this.Quantity = quantity
 	var reduceOnly = PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnlyTrue
@@ -83,7 +83,7 @@ func NewPlaceMultipleOrdersBatchOrdersParameterInnerWithDefaults() *PlaceMultipl
 	this := PlaceMultipleOrdersBatchOrdersParameterInner{}
 	var positionSide = PlaceMultipleOrdersBatchOrdersParameterInnerPositionSideBoth
 	this.PositionSide = &positionSide
-	var timeInForce = PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForceGtc
+	var timeInForce = NewAlgoOrderTimeInForceParameterGtc
 	this.TimeInForce = &timeInForce
 	var reduceOnly = PlaceMultipleOrdersBatchOrdersParameterInnerReduceOnlyTrue
 	this.ReduceOnly = &reduceOnly
@@ -125,9 +125,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSymbol(v string) {
 }
 
 // GetSide returns the Side field value
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSide() PlaceMultipleOrdersBatchOrdersParameterInnerSide {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSide() NewAlgoOrderSideParameter {
 	if o == nil {
-		var ret PlaceMultipleOrdersBatchOrdersParameterInnerSide
+		var ret NewAlgoOrderSideParameter
 		return ret
 	}
 
@@ -136,7 +136,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSide() PlaceMultipleOr
 
 // GetSideOk returns a tuple with the Side field value
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerSide, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*NewAlgoOrderSideParameter, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetSideOk() (*PlaceMultip
 }
 
 // SetSide sets field value
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSide(v PlaceMultipleOrdersBatchOrdersParameterInnerSide) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetSide(v NewAlgoOrderSideParameter) {
 	o.Side = v
 }
 
@@ -205,9 +205,9 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetType(v PlaceMultipleOr
 }
 
 // GetTimeInForce returns the TimeInForce field value if set, zero value otherwise.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForce() PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForce() NewAlgoOrderTimeInForceParameter {
 	if o == nil || common.IsNil(o.TimeInForce) {
-		var ret PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce
+		var ret NewAlgoOrderTimeInForceParameter
 		return ret
 	}
 	return *o.TimeInForce
@@ -215,7 +215,7 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForce() PlaceMul
 
 // GetTimeInForceOk returns a tuple with the TimeInForce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForceOk() (*PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce, bool) {
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) GetTimeInForceOk() (*NewAlgoOrderTimeInForceParameter, bool) {
 	if o == nil || common.IsNil(o.TimeInForce) {
 		return nil, false
 	}
@@ -231,8 +231,8 @@ func (o *PlaceMultipleOrdersBatchOrdersParameterInner) HasTimeInForce() bool {
 	return false
 }
 
-// SetTimeInForce gets a reference to the given PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce and assigns it to the TimeInForce field.
-func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v PlaceMultipleOrdersBatchOrdersParameterInnerTimeInForce) {
+// SetTimeInForce gets a reference to the given NewAlgoOrderTimeInForceParameter and assigns it to the TimeInForce field.
+func (o *PlaceMultipleOrdersBatchOrdersParameterInner) SetTimeInForce(v NewAlgoOrderTimeInForceParameter) {
 	o.TimeInForce = &v
 }
 
