@@ -31,7 +31,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 			mockedJSON = `{}`
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			require.Equal(t, "/sapi/v1/bstocks/corp-action", r.URL.Path)
+			require.Equal(t, "/sapi/v1/bstocks/corp-action/history", r.URL.Path)
 			require.Equal(t, "20", r.URL.Query().Get("limit"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))
@@ -108,7 +108,7 @@ func Test_binancestocksrestapi_TokenizedAPIService(t *testing.T) {
 			mockedJSON = `{}`
 		}
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			require.Equal(t, "/sapi/v1/equity/corp-action", r.URL.Path)
+			require.Equal(t, "/sapi/v1/equity/corp-action/history", r.URL.Path)
 			require.Equal(t, "20", r.URL.Query().Get("limit"))
 			w.Header().Set("Content-Type", "application/json")
 			_, _ = w.Write([]byte(mockedJSON))

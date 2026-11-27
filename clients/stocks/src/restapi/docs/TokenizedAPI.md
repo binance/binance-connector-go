@@ -4,8 +4,8 @@ All URIs are relative to *https://api.binance.com*
 
 Method        | HTTP request  | Description
 ------------- | ------------- | -------------
-[**BstocksCorporateActionRecords**](TokenizedAPI.md#BstocksCorporateActionRecords) | **Get** /sapi/v1/bstocks/corp-action | Bstocks Corporate Action Records (USER_DATA)
-[**CorporateActionRecords**](TokenizedAPI.md#CorporateActionRecords) | **Get** /sapi/v1/equity/corp-action | Corporate Action Records (USER_DATA)
+[**BstocksCorporateActionRecords**](TokenizedAPI.md#BstocksCorporateActionRecords) | **Get** /sapi/v1/bstocks/corp-action/history | Bstocks Corporate Action Records (USER_DATA)
+[**CorporateActionRecords**](TokenizedAPI.md#CorporateActionRecords) | **Get** /sapi/v1/equity/corp-action/history | Corporate Action Records (USER_DATA)
 [**TokenizedConvertHistory**](TokenizedAPI.md#TokenizedConvertHistory) | **Get** /sapi/v1/equity/tokenized/history | Tokenized Convert History (USER_DATA)
 [**TokenizedConvertStatus**](TokenizedAPI.md#TokenizedConvertStatus) | **Get** /sapi/v1/equity/tokenized/convert-status | Tokenized Convert Status (USER_DATA)
 [**TokenizedMint**](TokenizedAPI.md#TokenizedMint) | **Post** /sapi/v1/equity/tokenized/mint | Tokenized Mint (TRADE)

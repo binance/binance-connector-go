@@ -57,7 +57,7 @@ func (r ApiBstocksCorporateActionRecordsRequest) Execute() (*common.RestApiRespo
 
 /*
 BstocksCorporateActionRecords Bstocks Corporate Action Records (USER_DATA)
-Get /sapi/v1/bstocks/corp-action
+Get /sapi/v1/bstocks/corp-action/history
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/tokenized#bstocks-corporate-action-records
 
@@ -80,7 +80,7 @@ func (a *TokenizedAPIService) BstocksCorporateActionRecords(ctx context.Context)
 //	@return BstocksCorporateActionRecordsResponse
 func (a *TokenizedAPIService) BstocksCorporateActionRecordsExecute(r ApiBstocksCorporateActionRecordsRequest) (*common.RestApiResponse[models.BstocksCorporateActionRecordsResponse], error) {
 	localVarHTTPMethod := http.MethodGet
-	localVarPath := a.client.cfg.BasePath + "/sapi/v1/bstocks/corp-action"
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/bstocks/corp-action/history"
 
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
@@ -161,7 +161,7 @@ func (r ApiCorporateActionRecordsRequest) Execute() (*common.RestApiResponse[mod
 
 /*
 CorporateActionRecords Corporate Action Records (USER_DATA)
-Get /sapi/v1/equity/corp-action
+Get /sapi/v1/equity/corp-action/history
 
 https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/tokenized#corporate-action-records
 
@@ -184,7 +184,7 @@ func (a *TokenizedAPIService) CorporateActionRecords(ctx context.Context) ApiCor
 //	@return CorporateActionRecordsResponse
 func (a *TokenizedAPIService) CorporateActionRecordsExecute(r ApiCorporateActionRecordsRequest) (*common.RestApiResponse[models.CorporateActionRecordsResponse], error) {
 	localVarHTTPMethod := http.MethodGet
-	localVarPath := a.client.cfg.BasePath + "/sapi/v1/equity/corp-action"
+	localVarPath := a.client.cfg.BasePath + "/sapi/v1/equity/corp-action/history"
 
 	localVarQueryParams := url.Values{}
 	localVarBodyParameters := make(map[string]interface{})
